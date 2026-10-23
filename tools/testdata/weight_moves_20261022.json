@@ -1,0 +1,7606 @@
+{
+  "moves": [
+    "GRASS_KNOT",
+    "HEAVY_SLAM"
+  ],
+  "smogon_revision": "f7d73fdb20909885b70c4463f3878cf37875068d",
+  "lumi_revision": "45319ae889acf8b83ea012f65a2aa2a519693524",
+  "policy": "(the October 2026 move-expansion rules):\n- Recipients are exactly the roster entries whose canonical pool (own form\n  plus pre-evolutions, Gen I-IX through the SV DLC) contains the move.\n- Lumi direct level-up schedules take priority; the species' own most recent\n  Smogon level-up source fills gaps. Level 0/1 (reminder) sources are taught\n  by the tutor, because the attacking-learnset review freezes level-1 rows.\n- A root species with a canonical egg source gets the move in its family egg\n  list when a real breeding donor exists in this ROM.\n- Everything else is taught by the existing Blackthorn fallback tutor\n  (regenerate with tools/restore_blackthorn_move_access.py afterwards).\nLumi-only placements that are not canonical modern learners are not added.",
+  "required": {
+    "BULBASAUR": [
+      "GRASS_KNOT"
+    ],
+    "IVYSAUR": [
+      "GRASS_KNOT"
+    ],
+    "VENUSAUR": [
+      "GRASS_KNOT"
+    ],
+    "RATTATA": [
+      "GRASS_KNOT"
+    ],
+    "RATICATE": [
+      "GRASS_KNOT"
+    ],
+    "PIKACHU": [
+      "GRASS_KNOT"
+    ],
+    "RAICHU": [
+      "GRASS_KNOT"
+    ],
+    "CLEFAIRY": [
+      "GRASS_KNOT"
+    ],
+    "CLEFABLE": [
+      "GRASS_KNOT"
+    ],
+    "JIGGLYPUFF": [
+      "GRASS_KNOT"
+    ],
+    "WIGGLYTUFF": [
+      "GRASS_KNOT"
+    ],
+    "ODDISH": [
+      "GRASS_KNOT"
+    ],
+    "GLOOM": [
+      "GRASS_KNOT"
+    ],
+    "VILEPLUME": [
+      "GRASS_KNOT"
+    ],
+    "PARAS": [
+      "GRASS_KNOT"
+    ],
+    "PARASECT": [
+      "GRASS_KNOT"
+    ],
+    "GOLDUCK": [
+      "GRASS_KNOT"
+    ],
+    "ABRA": [
+      "GRASS_KNOT"
+    ],
+    "KADABRA": [
+      "GRASS_KNOT"
+    ],
+    "ALAKAZAM": [
+      "GRASS_KNOT"
+    ],
+    "MACHOP": [
+      "HEAVY_SLAM"
+    ],
+    "MACHOKE": [
+      "HEAVY_SLAM"
+    ],
+    "MACHAMP": [
+      "HEAVY_SLAM"
+    ],
+    "BELLSPROUT": [
+      "GRASS_KNOT"
+    ],
+    "WEEPINBELL": [
+      "GRASS_KNOT"
+    ],
+    "VICTREEBEL": [
+      "GRASS_KNOT"
+    ],
+    "GRAVELER": [
+      "HEAVY_SLAM"
+    ],
+    "GOLEM": [
+      "HEAVY_SLAM"
+    ],
+    "SLOWPOKE": [
+      "GRASS_KNOT"
+    ],
+    "SLOWBRO": [
+      "GRASS_KNOT"
+    ],
+    "MAGNEMITE": [
+      "HEAVY_SLAM"
+    ],
+    "MAGNETON": [
+      "HEAVY_SLAM"
+    ],
+    "ONIX": [
+      "HEAVY_SLAM"
+    ],
+    "DROWZEE": [
+      "GRASS_KNOT"
+    ],
+    "HYPNO": [
+      "GRASS_KNOT"
+    ],
+    "EXEGGCUTE": [
+      "GRASS_KNOT"
+    ],
+    "EXEGGUTOR": [
+      "GRASS_KNOT"
+    ],
+    "RHYHORN": [
+      "HEAVY_SLAM"
+    ],
+    "RHYDON": [
+      "HEAVY_SLAM"
+    ],
+    "CHANSEY": [
+      "GRASS_KNOT"
+    ],
+    "TANGELA": [
+      "GRASS_KNOT"
+    ],
+    "STARMIE": [
+      "GRASS_KNOT"
+    ],
+    "MR__MIME": [
+      "GRASS_KNOT"
+    ],
+    "JYNX": [
+      "GRASS_KNOT"
+    ],
+    "SNORLAX": [
+      "HEAVY_SLAM"
+    ],
+    "MEWTWO": [
+      "GRASS_KNOT"
+    ],
+    "MEW": [
+      "GRASS_KNOT",
+      "HEAVY_SLAM"
+    ],
+    "CHIKORITA": [
+      "GRASS_KNOT"
+    ],
+    "BAYLEEF": [
+      "GRASS_KNOT"
+    ],
+    "MEGANIUM": [
+      "GRASS_KNOT"
+    ],
+    "SENTRET": [
+      "GRASS_KNOT"
+    ],
+    "FURRET": [
+      "GRASS_KNOT"
+    ],
+    "PICHU": [
+      "GRASS_KNOT"
+    ],
+    "CLEFFA": [
+      "GRASS_KNOT"
+    ],
+    "IGGLYBUFF": [
+      "GRASS_KNOT"
+    ],
+    "TOGEPI": [
+      "GRASS_KNOT"
+    ],
+    "TOGETIC": [
+      "GRASS_KNOT"
+    ],
+    "NATU": [
+      "GRASS_KNOT"
+    ],
+    "XATU": [
+      "GRASS_KNOT"
+    ],
+    "BELLOSSOM": [
+      "GRASS_KNOT"
+    ],
+    "MARILL": [
+      "GRASS_KNOT"
+    ],
+    "AZUMARILL": [
+      "GRASS_KNOT"
+    ],
+    "SUDOWOODO": [
+      "GRASS_KNOT"
+    ],
+    "HOPPIP": [
+      "GRASS_KNOT"
+    ],
+    "SKIPLOOM": [
+      "GRASS_KNOT"
+    ],
+    "JUMPLUFF": [
+      "GRASS_KNOT"
+    ],
+    "AIPOM": [
+      "GRASS_KNOT"
+    ],
+    "SUNKERN": [
+      "GRASS_KNOT"
+    ],
+    "SUNFLORA": [
+      "GRASS_KNOT"
+    ],
+    "ESPEON": [
+      "GRASS_KNOT"
+    ],
+    "SLOWKING": [
+      "GRASS_KNOT"
+    ],
+    "MISDREAVUS": [
+      "GRASS_KNOT"
+    ],
+    "GIRAFARIG": [
+      "GRASS_KNOT"
+    ],
+    "FORRETRESS": [
+      "HEAVY_SLAM"
+    ],
+    "STEELIX": [
+      "HEAVY_SLAM"
+    ],
+    "PHANPY": [
+      "HEAVY_SLAM"
+    ],
+    "DONPHAN": [
+      "HEAVY_SLAM"
+    ],
+    "SMOOCHUM": [
+      "GRASS_KNOT"
+    ],
+    "MILTANK": [
+      "HEAVY_SLAM"
+    ],
+    "BLISSEY": [
+      "GRASS_KNOT"
+    ],
+    "TYRANITAR": [
+      "HEAVY_SLAM"
+    ],
+    "CELEBI": [
+      "GRASS_KNOT"
+    ],
+    "BULBASAUR_CLONE": [
+      "GRASS_KNOT"
+    ],
+    "IVYSAUR_CLONE": [
+      "GRASS_KNOT"
+    ],
+    "VENUSAUR_CLONE": [
+      "GRASS_KNOT"
+    ],
+    "AMBIPOM": [
+      "GRASS_KNOT"
+    ],
+    "DUDUNSPARCE": [
+      "HEAVY_SLAM"
+    ],
+    "FARIGIRAF": [
+      "GRASS_KNOT"
+    ],
+    "RALTS": [
+      "GRASS_KNOT"
+    ],
+    "KIRLIA": [
+      "GRASS_KNOT"
+    ],
+    "GARDEVOIR": [
+      "GRASS_KNOT"
+    ],
+    "GALLADE": [
+      "GRASS_KNOT"
+    ],
+    "LEAFEON": [
+      "GRASS_KNOT"
+    ],
+    "MAGNEZONE": [
+      "HEAVY_SLAM"
+    ],
+    "MAMOSWINE": [
+      "HEAVY_SLAM"
+    ],
+    "MISMAGIUS": [
+      "GRASS_KNOT"
+    ],
+    "RHYPERIOR": [
+      "HEAVY_SLAM"
+    ],
+    "TANGROWTH": [
+      "GRASS_KNOT"
+    ],
+    "TOGEKISS": [
+      "GRASS_KNOT"
+    ],
+    "URSALUNA": [
+      "HEAVY_SLAM"
+    ],
+    "LILEEP": [
+      "GRASS_KNOT"
+    ],
+    "CRADILY": [
+      "GRASS_KNOT"
+    ],
+    "GOLETT": [
+      "GRASS_KNOT",
+      "HEAVY_SLAM"
+    ],
+    "GOLURK": [
+      "GRASS_KNOT",
+      "HEAVY_SLAM"
+    ],
+    "TIMBURR": [
+      "GRASS_KNOT"
+    ],
+    "GURDURR": [
+      "GRASS_KNOT"
+    ],
+    "CONKELDURR": [
+      "GRASS_KNOT"
+    ],
+    "TINKATON": [
+      "HEAVY_SLAM"
+    ],
+    "CORVIKNIGHT": [
+      "HEAVY_SLAM"
+    ],
+    "SNOVER": [
+      "GRASS_KNOT"
+    ],
+    "ABOMASNOW": [
+      "GRASS_KNOT"
+    ],
+    "DIPPLIN": [
+      "GRASS_KNOT"
+    ],
+    "APPLETUN": [
+      "GRASS_KNOT",
+      "HEAVY_SLAM"
+    ],
+    "FLAPPLE": [
+      "GRASS_KNOT",
+      "HEAVY_SLAM"
+    ],
+    "HYDRAPPLE": [
+      "GRASS_KNOT",
+      "HEAVY_SLAM"
+    ],
+    "DURALUDON": [
+      "HEAVY_SLAM"
+    ],
+    "ARCHALUDON": [
+      "HEAVY_SLAM"
+    ],
+    "SHROOMISH": [
+      "GRASS_KNOT"
+    ],
+    "BRELOOM": [
+      "GRASS_KNOT"
+    ],
+    "BUNEARY": [
+      "GRASS_KNOT"
+    ],
+    "LOPUNNY": [
+      "GRASS_KNOT"
+    ],
+    "NUMEL": [
+      "HEAVY_SLAM"
+    ],
+    "CAMERUPT": [
+      "HEAVY_SLAM"
+    ],
+    "SPOINK": [
+      "GRASS_KNOT"
+    ],
+    "GRUMPIG": [
+      "GRASS_KNOT"
+    ],
+    "PAWNIARD": [
+      "GRASS_KNOT"
+    ],
+    "BISHARP": [
+      "GRASS_KNOT"
+    ],
+    "KINGAMBIT": [
+      "GRASS_KNOT"
+    ],
+    "LOTAD": [
+      "GRASS_KNOT"
+    ],
+    "LOMBRE": [
+      "GRASS_KNOT"
+    ],
+    "LUDICOLO": [
+      "GRASS_KNOT"
+    ],
+    "SCRAGGY": [
+      "GRASS_KNOT"
+    ],
+    "SCRAFTY": [
+      "GRASS_KNOT"
+    ],
+    "WALREIN": [
+      "HEAVY_SLAM"
+    ],
+    "URSALUNABM": [
+      "HEAVY_SLAM"
+    ],
+    "HAXORUS": [
+      "GRASS_KNOT"
+    ],
+    "RAMPARDOS": [
+      "HEAVY_SLAM"
+    ],
+    "SHIELDON": [
+      "HEAVY_SLAM"
+    ],
+    "BASTIODON": [
+      "HEAVY_SLAM"
+    ],
+    "CETODDLE": [
+      "HEAVY_SLAM"
+    ],
+    "CETITAN": [
+      "HEAVY_SLAM"
+    ],
+    "MR__RIME": [
+      "GRASS_KNOT"
+    ],
+    "TORKOAL": [
+      "HEAVY_SLAM"
+    ],
+    "RATTATA_ALOLAN": [
+      "GRASS_KNOT"
+    ],
+    "RATICATE_ALOLAN": [
+      "GRASS_KNOT"
+    ],
+    "RAICHU_ALOLAN": [
+      "GRASS_KNOT"
+    ],
+    "GOLEM_ALOLAN": [
+      "HEAVY_SLAM"
+    ],
+    "EXEGGUTOR_ALOLAN": [
+      "GRASS_KNOT"
+    ],
+    "PERRSERKER": [
+      "HEAVY_SLAM"
+    ],
+    "SLOWPOKE_GALARIAN": [
+      "GRASS_KNOT"
+    ],
+    "SLOWBRO_GALARIAN": [
+      "GRASS_KNOT"
+    ],
+    "SLOWKING_GALARIAN": [
+      "GRASS_KNOT"
+    ],
+    "VOLTORB_HISUIAN": [
+      "GRASS_KNOT"
+    ],
+    "ELECTRODE_HISUIAN": [
+      "GRASS_KNOT"
+    ],
+    "SNEASEL_HISUIAN": [
+      "GRASS_KNOT"
+    ],
+    "SNEASLER": [
+      "GRASS_KNOT"
+    ],
+    "CLODSIRE": [
+      "HEAVY_SLAM"
+    ],
+    "BOUNSWEET": [
+      "GRASS_KNOT"
+    ],
+    "STEENEE": [
+      "GRASS_KNOT"
+    ],
+    "TSAREENA": [
+      "GRASS_KNOT"
+    ],
+    "ARON": [
+      "HEAVY_SLAM"
+    ],
+    "LAIRON": [
+      "HEAVY_SLAM"
+    ],
+    "AGGRON": [
+      "HEAVY_SLAM"
+    ],
+    "ZANGOOSE": [
+      "GRASS_KNOT"
+    ],
+    "MAWILE": [
+      "GRASS_KNOT"
+    ],
+    "PALAFIN": [
+      "GRASS_KNOT"
+    ],
+    "BONSLY": [
+      "GRASS_KNOT"
+    ],
+    "MIME_JR_": [
+      "GRASS_KNOT"
+    ],
+    "HAPPINY": [
+      "GRASS_KNOT"
+    ],
+    "SANDILE": [
+      "GRASS_KNOT"
+    ],
+    "KROKOROK": [
+      "GRASS_KNOT"
+    ],
+    "KROOKODILE": [
+      "GRASS_KNOT"
+    ],
+    "JIRACHI": [
+      "GRASS_KNOT"
+    ],
+    "PHANTUMP": [
+      "GRASS_KNOT"
+    ],
+    "TREVENANT": [
+      "GRASS_KNOT"
+    ]
+  },
+  "level_up": {
+    "GOLEM": {
+      "HEAVY_SLAM": 60
+    },
+    "SNORLAX": {
+      "HEAVY_SLAM": 32
+    },
+    "FORRETRESS": {
+      "HEAVY_SLAM": 64
+    },
+    "GOLETT": {
+      "HEAVY_SLAM": 40
+    },
+    "GOLURK": {
+      "HEAVY_SLAM": 40
+    },
+    "NUMEL": {
+      "HEAVY_SLAM": 21
+    },
+    "CAMERUPT": {
+      "HEAVY_SLAM": 21
+    },
+    "SHIELDON": {
+      "HEAVY_SLAM": 46
+    },
+    "BASTIODON": {
+      "HEAVY_SLAM": 58
+    },
+    "ARON": {
+      "HEAVY_SLAM": 52
+    },
+    "LAIRON": {
+      "HEAVY_SLAM": 64
+    },
+    "AGGRON": {
+      "HEAVY_SLAM": 72
+    }
+  },
+  "new_egg_moves": {
+    "ONIX": [
+      "HEAVY_SLAM"
+    ],
+    "PHANPY": [
+      "HEAVY_SLAM"
+    ]
+  },
+  "egg_sources_taught_by_tutor": {
+    "MACHOP": [
+      "HEAVY_SLAM"
+    ]
+  },
+  "evidence": {
+    "BULBASAUR": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "4M"
+        }
+      ]
+    },
+    "IVYSAUR": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "4M"
+        }
+      ]
+    },
+    "VENUSAUR": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "4M"
+        }
+      ]
+    },
+    "RATTATA": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "rattata",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rattata",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rattata",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rattata",
+          "source": "4M"
+        }
+      ]
+    },
+    "RATICATE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "rattata",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rattata",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rattata",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rattata",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raticate",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raticate",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raticate",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raticate",
+          "source": "4M"
+        }
+      ]
+    },
+    "PIKACHU": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5S27"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5S26"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5S25"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "4S13"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "4S4"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "4M"
+        }
+      ]
+    },
+    "RAICHU": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "raichu",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raichu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raichu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raichu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raichu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raichu",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5S27"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5S26"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5S25"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "4S13"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "4S4"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "4M"
+        }
+      ]
+    },
+    "CLEFAIRY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "4M"
+        }
+      ]
+    },
+    "CLEFABLE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefairy",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefable",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefable",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefable",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefable",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefable",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "clefable",
+          "source": "4M"
+        }
+      ]
+    },
+    "JIGGLYPUFF": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "4M"
+        }
+      ]
+    },
+    "WIGGLYTUFF": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "wigglytuff",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "wigglytuff",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "wigglytuff",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "wigglytuff",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "wigglytuff",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "wigglytuff",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jigglypuff",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "4M"
+        }
+      ]
+    },
+    "ODDISH": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "4M"
+        }
+      ]
+    },
+    "GLOOM": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "4M"
+        }
+      ]
+    },
+    "VILEPLUME": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "vileplume",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "vileplume",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "vileplume",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "vileplume",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "vileplume",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "vileplume",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "4M"
+        }
+      ]
+    },
+    "PARAS": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "paras",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "paras",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "paras",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "paras",
+          "source": "4M"
+        }
+      ]
+    },
+    "PARASECT": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "parasect",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "parasect",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "parasect",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "parasect",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "paras",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "paras",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "paras",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "paras",
+          "source": "4M"
+        }
+      ]
+    },
+    "GOLDUCK": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "golduck",
+          "source": "9M"
+        }
+      ]
+    },
+    "ABRA": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "4M"
+        }
+      ]
+    },
+    "KADABRA": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "4M"
+        }
+      ]
+    },
+    "ALAKAZAM": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kadabra",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "alakazam",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "alakazam",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "alakazam",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "alakazam",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "alakazam",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abra",
+          "source": "4M"
+        }
+      ]
+    },
+    "MACHOP": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "7E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "6E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "5E"
+        }
+      ]
+    },
+    "MACHOKE": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "7E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "6E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "5E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machoke",
+          "source": "8M"
+        }
+      ]
+    },
+    "MACHAMP": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "7E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "6E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machop",
+          "source": "5E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machoke",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "machamp",
+          "source": "8M"
+        }
+      ]
+    },
+    "BELLSPROUT": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "4M"
+        }
+      ]
+    },
+    "WEEPINBELL": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "4M"
+        }
+      ]
+    },
+    "VICTREEBEL": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "weepinbell",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "victreebel",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "victreebel",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "victreebel",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "victreebel",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "victreebel",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellsprout",
+          "source": "4M"
+        }
+      ]
+    },
+    "GRAVELER": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "graveler",
+          "source": "9M"
+        }
+      ]
+    },
+    "GOLEM": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "graveler",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golem",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golem",
+          "source": "9L1"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golem",
+          "source": "7L1"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golem",
+          "source": "6L1"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golem",
+          "source": "5L69"
+        },
+        {
+          "reference": "Lumi",
+          "species": "GOLEM",
+          "source": "L60",
+          "dexid": 76
+        }
+      ]
+    },
+    "SLOWPOKE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "4M"
+        }
+      ]
+    },
+    "SLOWBRO": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowbro",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowbro",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowbro",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowbro",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowbro",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowbro",
+          "source": "4M"
+        }
+      ]
+    },
+    "MAGNEMITE": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "magnemite",
+          "source": "9M"
+        }
+      ]
+    },
+    "MAGNETON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "magneton",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "magnemite",
+          "source": "9M"
+        }
+      ]
+    },
+    "ONIX": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "onix",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "onix",
+          "source": "7E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "onix",
+          "source": "6E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "onix",
+          "source": "5E"
+        }
+      ]
+    },
+    "DROWZEE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "4M"
+        }
+      ]
+    },
+    "HYPNO": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "hypno",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hypno",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hypno",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hypno",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hypno",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "drowzee",
+          "source": "4M"
+        }
+      ]
+    },
+    "EXEGGCUTE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "4M"
+        }
+      ]
+    },
+    "EXEGGUTOR": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "exeggutor",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggutor",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggutor",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggutor",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggutor",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggutor",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "4M"
+        }
+      ]
+    },
+    "RHYHORN": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "rhyhorn",
+          "source": "9M"
+        }
+      ]
+    },
+    "RHYDON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "rhyhorn",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rhydon",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rhydon",
+          "source": "8M"
+        }
+      ]
+    },
+    "CHANSEY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "4M"
+        }
+      ]
+    },
+    "TANGELA": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "4M"
+        }
+      ]
+    },
+    "STARMIE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "starmie",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "starmie",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "starmie",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "starmie",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "starmie",
+          "source": "4M"
+        }
+      ]
+    },
+    "MR__MIME": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "mrmime",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mrmime",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mrmime",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mrmime",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mrmime",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "4M"
+        }
+      ]
+    },
+    "JYNX": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jynx",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jynx",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jynx",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jynx",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jynx",
+          "source": "4M"
+        }
+      ]
+    },
+    "SNORLAX": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "snorlax",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snorlax",
+          "source": "9L32"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snorlax",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snorlax",
+          "source": "8L32"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snorlax",
+          "source": "7L50"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snorlax",
+          "source": "6L50"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snorlax",
+          "source": "5L52"
+        },
+        {
+          "reference": "Lumi",
+          "species": "SNORLAX",
+          "source": "L32",
+          "dexid": 143
+        }
+      ]
+    },
+    "MEWTWO": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "mewtwo",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mewtwo",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mewtwo",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mewtwo",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mewtwo",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mewtwo",
+          "source": "4M"
+        }
+      ]
+    },
+    "MEW": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "mew",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mew",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mew",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mew",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mew",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mew",
+          "source": "4M"
+        }
+      ],
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "mew",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mew",
+          "source": "8M"
+        }
+      ]
+    },
+    "CHIKORITA": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "4M"
+        }
+      ]
+    },
+    "BAYLEEF": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "4M"
+        }
+      ]
+    },
+    "MEGANIUM": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "meganium",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "meganium",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "meganium",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "meganium",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "meganium",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chikorita",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bayleef",
+          "source": "4M"
+        }
+      ]
+    },
+    "SENTRET": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "4M"
+        }
+      ]
+    },
+    "FURRET": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sentret",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "furret",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "furret",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "furret",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "furret",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "furret",
+          "source": "4M"
+        }
+      ]
+    },
+    "PICHU": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "4S4"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "4M"
+        }
+      ]
+    },
+    "CLEFFA": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cleffa",
+          "source": "4M"
+        }
+      ]
+    },
+    "IGGLYBUFF": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "igglybuff",
+          "source": "4M"
+        }
+      ]
+    },
+    "TOGEPI": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "4M"
+        }
+      ]
+    },
+    "TOGETIC": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "4M"
+        }
+      ]
+    },
+    "NATU": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "4M"
+        }
+      ]
+    },
+    "XATU": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "xatu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "xatu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "xatu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "xatu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "xatu",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "natu",
+          "source": "4M"
+        }
+      ]
+    },
+    "BELLOSSOM": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "oddish",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gloom",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellossom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellossom",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellossom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellossom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellossom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bellossom",
+          "source": "4M"
+        }
+      ]
+    },
+    "MARILL": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "4M"
+        }
+      ]
+    },
+    "AZUMARILL": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "marill",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "azumarill",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "azumarill",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "azumarill",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "azumarill",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "azumarill",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "azumarill",
+          "source": "4M"
+        }
+      ]
+    },
+    "SUDOWOODO": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sudowoodo",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bonsly",
+          "source": "9M"
+        }
+      ]
+    },
+    "HOPPIP": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "4M"
+        }
+      ]
+    },
+    "SKIPLOOM": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "4M"
+        }
+      ]
+    },
+    "JUMPLUFF": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "skiploom",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jumpluff",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jumpluff",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jumpluff",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jumpluff",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jumpluff",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "hoppip",
+          "source": "4M"
+        }
+      ]
+    },
+    "AIPOM": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "4M"
+        }
+      ]
+    },
+    "SUNKERN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "4M"
+        }
+      ]
+    },
+    "SUNFLORA": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunkern",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunflora",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunflora",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunflora",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunflora",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sunflora",
+          "source": "4M"
+        }
+      ]
+    },
+    "ESPEON": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "espeon",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "espeon",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "espeon",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "espeon",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "espeon",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "espeon",
+          "source": "4M"
+        }
+      ]
+    },
+    "SLOWKING": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpoke",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowking",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowking",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowking",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowking",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowking",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowking",
+          "source": "4M"
+        }
+      ]
+    },
+    "MISDREAVUS": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "misdreavus",
+          "source": "9M"
+        }
+      ]
+    },
+    "GIRAFARIG": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "4M"
+        }
+      ]
+    },
+    "FORRETRESS": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "forretress",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "forretress",
+          "source": "9L0"
+        },
+        {
+          "reference": "Smogon",
+          "species": "forretress",
+          "source": "7L1"
+        },
+        {
+          "reference": "Smogon",
+          "species": "forretress",
+          "source": "6L1"
+        },
+        {
+          "reference": "Smogon",
+          "species": "forretress",
+          "source": "5L70"
+        },
+        {
+          "reference": "Lumi",
+          "species": "FORRETRESS",
+          "source": "L64",
+          "dexid": 205
+        }
+      ]
+    },
+    "STEELIX": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "steelix",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "onix",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "onix",
+          "source": "7E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "onix",
+          "source": "6E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "onix",
+          "source": "5E"
+        }
+      ]
+    },
+    "PHANPY": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "9E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "7E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "6E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "5E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "5D"
+        }
+      ]
+    },
+    "DONPHAN": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "9E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "7E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "6E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "5E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phanpy",
+          "source": "5D"
+        },
+        {
+          "reference": "Smogon",
+          "species": "donphan",
+          "source": "9M"
+        }
+      ]
+    },
+    "SMOOCHUM": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "smoochum",
+          "source": "4M"
+        }
+      ]
+    },
+    "MILTANK": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "miltank",
+          "source": "8M"
+        }
+      ]
+    },
+    "BLISSEY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "chansey",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "blissey",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "blissey",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "blissey",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "blissey",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "blissey",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "blissey",
+          "source": "4M"
+        }
+      ]
+    },
+    "TYRANITAR": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "tyranitar",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tyranitar",
+          "source": "8M"
+        }
+      ]
+    },
+    "CELEBI": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "celebi",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "celebi",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "celebi",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "celebi",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "celebi",
+          "source": "4M"
+        }
+      ]
+    },
+    "BULBASAUR_CLONE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "4M"
+        }
+      ]
+    },
+    "IVYSAUR_CLONE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "4M"
+        }
+      ]
+    },
+    "VENUSAUR_CLONE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "venusaur",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ivysaur",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bulbasaur",
+          "source": "4M"
+        }
+      ]
+    },
+    "AMBIPOM": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "ambipom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ambipom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ambipom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ambipom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ambipom",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aipom",
+          "source": "4M"
+        }
+      ]
+    },
+    "DUDUNSPARCE": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "dudunsparce",
+          "source": "9M"
+        }
+      ]
+    },
+    "FARIGIRAF": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "girafarig",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "farigiraf",
+          "source": "9M"
+        }
+      ]
+    },
+    "RALTS": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "4M"
+        }
+      ]
+    },
+    "KIRLIA": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "4M"
+        }
+      ]
+    },
+    "GARDEVOIR": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gardevoir",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gardevoir",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gardevoir",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gardevoir",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gardevoir",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gardevoir",
+          "source": "4M"
+        }
+      ]
+    },
+    "GALLADE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ralts",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kirlia",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gallade",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gallade",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gallade",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gallade",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gallade",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gallade",
+          "source": "4M"
+        }
+      ]
+    },
+    "LEAFEON": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "leafeon",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "leafeon",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "leafeon",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "leafeon",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "leafeon",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "leafeon",
+          "source": "4M"
+        }
+      ]
+    },
+    "MAGNEZONE": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "magnezone",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "magnezone",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "magneton",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "magnemite",
+          "source": "9M"
+        }
+      ]
+    },
+    "MAMOSWINE": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "mamoswine",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mamoswine",
+          "source": "8M"
+        }
+      ]
+    },
+    "MISMAGIUS": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "mismagius",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "misdreavus",
+          "source": "9M"
+        }
+      ]
+    },
+    "RHYPERIOR": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "rhyperior",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rhyperior",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rhyhorn",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rhydon",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "rhydon",
+          "source": "8M"
+        }
+      ]
+    },
+    "TANGROWTH": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "tangrowth",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangrowth",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangrowth",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangrowth",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangrowth",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tangela",
+          "source": "4M"
+        }
+      ]
+    },
+    "TOGEKISS": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togetic",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togepi",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togekiss",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togekiss",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togekiss",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togekiss",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "togekiss",
+          "source": "4M"
+        }
+      ]
+    },
+    "URSALUNA": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "ursaluna",
+          "source": "9M"
+        }
+      ]
+    },
+    "LILEEP": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "4M"
+        }
+      ]
+    },
+    "CRADILY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lileep",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cradily",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cradily",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cradily",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cradily",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cradily",
+          "source": "4M"
+        }
+      ]
+    },
+    "GOLETT": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "5M"
+        }
+      ],
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "9L40"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "8L40"
+        }
+      ]
+    },
+    "GOLURK": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "5M"
+        }
+      ],
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "9L40"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "8L40"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "7L1"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "6L43"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golurk",
+          "source": "5L43"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "9L40"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golett",
+          "source": "8L40"
+        }
+      ]
+    },
+    "TIMBURR": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "5M"
+        }
+      ]
+    },
+    "GURDURR": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "5M"
+        }
+      ]
+    },
+    "CONKELDURR": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "timburr",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "gurdurr",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "conkeldurr",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "conkeldurr",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "conkeldurr",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "conkeldurr",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "conkeldurr",
+          "source": "5M"
+        }
+      ]
+    },
+    "TINKATON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "tinkaton",
+          "source": "9M"
+        }
+      ]
+    },
+    "CORVIKNIGHT": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "corviknight",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "corviknight",
+          "source": "8M"
+        }
+      ]
+    },
+    "SNOVER": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "4M"
+        }
+      ]
+    },
+    "ABOMASNOW": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "snover",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abomasnow",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abomasnow",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abomasnow",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abomasnow",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abomasnow",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "abomasnow",
+          "source": "4M"
+        }
+      ]
+    },
+    "DIPPLIN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "dipplin",
+          "source": "9M"
+        }
+      ]
+    },
+    "APPLETUN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "appletun",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "appletun",
+          "source": "8M"
+        }
+      ],
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "appletun",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "appletun",
+          "source": "8M"
+        }
+      ]
+    },
+    "FLAPPLE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "flapple",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "flapple",
+          "source": "8M"
+        }
+      ],
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "flapple",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "flapple",
+          "source": "8M"
+        }
+      ]
+    },
+    "HYDRAPPLE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "hydrapple",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "dipplin",
+          "source": "9M"
+        }
+      ],
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "hydrapple",
+          "source": "9M"
+        }
+      ]
+    },
+    "DURALUDON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "duraludon",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "duraludon",
+          "source": "8M"
+        }
+      ]
+    },
+    "ARCHALUDON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "duraludon",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "duraludon",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "archaludon",
+          "source": "9M"
+        }
+      ]
+    },
+    "SHROOMISH": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "4M"
+        }
+      ]
+    },
+    "BRELOOM": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shroomish",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "breloom",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "breloom",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "breloom",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "breloom",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "breloom",
+          "source": "4M"
+        }
+      ]
+    },
+    "BUNEARY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "4M"
+        }
+      ]
+    },
+    "LOPUNNY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "lopunny",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lopunny",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lopunny",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lopunny",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lopunny",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "buneary",
+          "source": "4M"
+        }
+      ]
+    },
+    "NUMEL": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "numel",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "numel",
+          "source": "9E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "numel",
+          "source": "7E"
+        },
+        {
+          "reference": "Lumi",
+          "species": "NUMEL",
+          "source": "L21",
+          "dexid": 320
+        }
+      ]
+    },
+    "CAMERUPT": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "numel",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "numel",
+          "source": "9E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "numel",
+          "source": "7E"
+        },
+        {
+          "reference": "Smogon",
+          "species": "camerupt",
+          "source": "9M"
+        },
+        {
+          "reference": "Lumi",
+          "species": "CAMERUPT",
+          "source": "L21",
+          "dexid": 321
+        }
+      ]
+    },
+    "SPOINK": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "4M"
+        }
+      ]
+    },
+    "GRUMPIG": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "spoink",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "grumpig",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "grumpig",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "grumpig",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "grumpig",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "grumpig",
+          "source": "4M"
+        }
+      ]
+    },
+    "PAWNIARD": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "5M"
+        }
+      ]
+    },
+    "BISHARP": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "5M"
+        }
+      ]
+    },
+    "KINGAMBIT": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pawniard",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "kingambit",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bisharp",
+          "source": "5M"
+        }
+      ]
+    },
+    "LOTAD": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "4M"
+        }
+      ]
+    },
+    "LOMBRE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "4M"
+        }
+      ]
+    },
+    "LUDICOLO": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "ludicolo",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ludicolo",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ludicolo",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ludicolo",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ludicolo",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "ludicolo",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lotad",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lombre",
+          "source": "4M"
+        }
+      ]
+    },
+    "SCRAGGY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "5M"
+        }
+      ]
+    },
+    "SCRAFTY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scraggy",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scrafty",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scrafty",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scrafty",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scrafty",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "scrafty",
+          "source": "5M"
+        }
+      ]
+    },
+    "WALREIN": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "walrein",
+          "source": "8M"
+        }
+      ]
+    },
+    "URSALUNABM": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "ursalunabloodmoon",
+          "source": "9M"
+        }
+      ]
+    },
+    "HAXORUS": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "haxorus",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "haxorus",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "haxorus",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "haxorus",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "haxorus",
+          "source": "5M"
+        }
+      ]
+    },
+    "RAMPARDOS": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "rampardos",
+          "source": "9M"
+        }
+      ]
+    },
+    "SHIELDON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "9L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "7L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "6L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "5L46"
+        }
+      ]
+    },
+    "BASTIODON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "9L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "7L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "6L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "shieldon",
+          "source": "5L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bastiodon",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bastiodon",
+          "source": "9L58"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bastiodon",
+          "source": "7L58"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bastiodon",
+          "source": "6L58"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bastiodon",
+          "source": "5L58"
+        }
+      ]
+    },
+    "CETODDLE": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "cetoddle",
+          "source": "9M"
+        }
+      ]
+    },
+    "CETITAN": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "cetoddle",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "cetitan",
+          "source": "9M"
+        }
+      ]
+    },
+    "MR__RIME": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "mrrime",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mrmimegalar",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "4M"
+        }
+      ]
+    },
+    "TORKOAL": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "torkoal",
+          "source": "9M"
+        }
+      ]
+    },
+    "RATTATA_ALOLAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "rattataalola",
+          "source": "7M"
+        }
+      ]
+    },
+    "RATICATE_ALOLAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "rattataalola",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raticatealola",
+          "source": "7M"
+        }
+      ]
+    },
+    "RAICHU_ALOLAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "raichualola",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raichualola",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "raichualola",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5S27"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5S26"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5S25"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "4S13"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pikachu",
+          "source": "4M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "4S4"
+        },
+        {
+          "reference": "Smogon",
+          "species": "pichu",
+          "source": "4M"
+        }
+      ]
+    },
+    "GOLEM_ALOLAN": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "golemalola",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golemalola",
+          "source": "9L1"
+        },
+        {
+          "reference": "Smogon",
+          "species": "golemalola",
+          "source": "7L1"
+        }
+      ]
+    },
+    "EXEGGUTOR_ALOLAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "exeggutoralola",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggutoralola",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggutoralola",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "exeggcute",
+          "source": "4M"
+        }
+      ]
+    },
+    "PERRSERKER": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "perrserker",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "perrserker",
+          "source": "8M"
+        }
+      ]
+    },
+    "SLOWPOKE_GALARIAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "slowpokegalar",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpokegalar",
+          "source": "8M"
+        }
+      ]
+    },
+    "SLOWBRO_GALARIAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "slowpokegalar",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpokegalar",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowbrogalar",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowbrogalar",
+          "source": "8M"
+        }
+      ]
+    },
+    "SLOWKING_GALARIAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "slowpokegalar",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowpokegalar",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowkinggalar",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "slowkinggalar",
+          "source": "8M"
+        }
+      ]
+    },
+    "VOLTORB_HISUIAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "voltorbhisui",
+          "source": "9M"
+        }
+      ]
+    },
+    "ELECTRODE_HISUIAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "voltorbhisui",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "electrodehisui",
+          "source": "9M"
+        }
+      ]
+    },
+    "SNEASEL_HISUIAN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sneaselhisui",
+          "source": "9M"
+        }
+      ]
+    },
+    "SNEASLER": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sneasler",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "sneaselhisui",
+          "source": "9M"
+        }
+      ]
+    },
+    "CLODSIRE": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "clodsire",
+          "source": "9M"
+        }
+      ]
+    },
+    "BOUNSWEET": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "bounsweet",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bounsweet",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bounsweet",
+          "source": "7M"
+        }
+      ]
+    },
+    "STEENEE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "steenee",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "steenee",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "steenee",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bounsweet",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bounsweet",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bounsweet",
+          "source": "7M"
+        }
+      ]
+    },
+    "TSAREENA": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "tsareena",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tsareena",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "tsareena",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "steenee",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "steenee",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "steenee",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bounsweet",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bounsweet",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "bounsweet",
+          "source": "7M"
+        }
+      ]
+    },
+    "ARON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "8L52"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "7L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "6L43"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "5L43"
+        },
+        {
+          "reference": "Lumi",
+          "species": "ARON",
+          "source": "L52",
+          "dexid": 304
+        }
+      ]
+    },
+    "LAIRON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "8L64"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "7L51"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "6L51"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "5L51"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "8L52"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "7L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "6L43"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "5L43"
+        },
+        {
+          "reference": "Lumi",
+          "species": "LAIRON",
+          "source": "L64",
+          "dexid": 305
+        }
+      ]
+    },
+    "AGGRON": {
+      "HEAVY_SLAM": [
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "8L64"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "7L51"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "6L51"
+        },
+        {
+          "reference": "Smogon",
+          "species": "lairon",
+          "source": "5L51"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "8L52"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "7L46"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "6L43"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aron",
+          "source": "5L43"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aggron",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aggron",
+          "source": "8L72"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aggron",
+          "source": "7L57"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aggron",
+          "source": "6L57"
+        },
+        {
+          "reference": "Smogon",
+          "species": "aggron",
+          "source": "5L57"
+        },
+        {
+          "reference": "Lumi",
+          "species": "AGGRON",
+          "source": "L72",
+          "dexid": 306
+        }
+      ]
+    },
+    "ZANGOOSE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "zangoose",
+          "source": "9M"
+        }
+      ]
+    },
+    "MAWILE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "mawile",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mawile",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mawile",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mawile",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mawile",
+          "source": "4M"
+        }
+      ]
+    },
+    "PALAFIN": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "palafin",
+          "source": "9M"
+        }
+      ]
+    },
+    "BONSLY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "bonsly",
+          "source": "9M"
+        }
+      ]
+    },
+    "MIME_JR_": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "mimejr",
+          "source": "4M"
+        }
+      ]
+    },
+    "HAPPINY": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "happiny",
+          "source": "4M"
+        }
+      ]
+    },
+    "SANDILE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sandile",
+          "source": "9M"
+        }
+      ]
+    },
+    "KROKOROK": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sandile",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "5M"
+        }
+      ]
+    },
+    "KROOKODILE": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "sandile",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krookodile",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krookodile",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krookodile",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krookodile",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krookodile",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "krokorok",
+          "source": "5M"
+        }
+      ]
+    },
+    "JIRACHI": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "jirachi",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jirachi",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jirachi",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jirachi",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jirachi",
+          "source": "5M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "jirachi",
+          "source": "4M"
+        }
+      ]
+    },
+    "PHANTUMP": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "phantump",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phantump",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phantump",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phantump",
+          "source": "6M"
+        }
+      ]
+    },
+    "TREVENANT": {
+      "GRASS_KNOT": [
+        {
+          "reference": "Smogon",
+          "species": "trevenant",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "trevenant",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "trevenant",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "trevenant",
+          "source": "6M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phantump",
+          "source": "9M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phantump",
+          "source": "8M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phantump",
+          "source": "7M"
+        },
+        {
+          "reference": "Smogon",
+          "species": "phantump",
+          "source": "6M"
+        }
+      ]
+    }
+  },
+  "mechanics": {
+    "LOW_KICK": "Power 20/40/60/80/100/120 from target weight (<10/25/50/100/200 kg); no flinch",
+    "GRASS_KNOT": "Special Grass, contact; power from target weight like Low Kick",
+    "HEAVY_SLAM": "Physical Steel, contact; power 40/60/80/100/120 when user >= 2x/3x/4x/5x target weight; double damage and no accuracy check against a minimized target",
+    "HEAT_CRASH": "Physical Fire, contact; Heavy Slam formula and Minimize interaction; no burn chance"
+  }
+}

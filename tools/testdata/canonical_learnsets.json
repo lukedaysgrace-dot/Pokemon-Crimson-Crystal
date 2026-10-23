@@ -5027,6 +5027,7 @@
         "DOUBLE_TEAM",
         "FALSE_SWIPE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "MEGA_DRAIN",
         "MIMIC",
         "OUTRAGE",
@@ -5045,6 +5046,7 @@
         "DOUBLE_TEAM",
         "FALSE_SWIPE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "MEGA_DRAIN",
         "MIMIC",
         "OUTRAGE",
@@ -5065,6 +5067,7 @@
         "FALSE_SWIPE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "MEGA_DRAIN",
         "MIMIC",
         "OUTRAGE",
@@ -5403,6 +5406,7 @@
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "ICY_WIND",
         "IRON_TAIL",
         "MIMIC",
@@ -5418,6 +5422,7 @@
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "ICY_WIND",
         "IRON_TAIL",
         "MIMIC",
@@ -5524,6 +5529,7 @@
         "DYNAMICPUNCH",
         "EXTREMESPEED",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -5554,6 +5560,7 @@
         "EXTREMESPEED",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -5808,6 +5815,7 @@
         "DYNAMICPUNCH",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "ICY_WIND",
         "INCINERATE",
@@ -5856,6 +5864,7 @@
         "FRUSTRATION",
         "FUTURE_SIGHT",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "ICY_WIND",
         "INCINERATE",
@@ -5951,6 +5960,7 @@
         "ENCORE",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "ICY_WIND",
         "INCINERATE",
@@ -5996,6 +6006,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "ICY_WIND",
         "INCINERATE",
@@ -6078,6 +6089,7 @@
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INFESTATION",
         "MIMIC",
         "RAGE",
@@ -6093,6 +6105,7 @@
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INFESTATION",
         "MIMIC",
         "RAGE",
@@ -6109,6 +6122,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "LEAF_BLADE",
         "MIMIC",
@@ -6129,6 +6143,7 @@
         "FRUSTRATION",
         "FURY_SWIPES",
         "GIGA_DRAIN",
+        "GRASS_KNOT",
         "MEGA_DRAIN",
         "MIMIC",
         "RAGE",
@@ -6152,6 +6167,7 @@
         "FURY_SWIPES",
         "GIGA_DRAIN",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "MEGA_DRAIN",
         "MIMIC",
         "RAGE",
@@ -6363,6 +6379,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "HAZE",
         "ICY_WIND",
@@ -6585,6 +6602,7 @@
         "ENDURE",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -6616,6 +6634,7 @@
         "ENDURE",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -6647,6 +6666,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -6676,6 +6696,7 @@
         "FISSURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "HEAVY_SLAM",
         "INCINERATE",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -6699,6 +6720,7 @@
         "FISSURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "HEAVY_SLAM",
         "INCINERATE",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -6724,6 +6746,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HEAVY_SLAM",
         "INCINERATE",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -6745,6 +6768,7 @@
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INFESTATION",
         "LUNGE",
         "MEGA_DRAIN",
@@ -6762,6 +6786,7 @@
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INFESTATION",
         "LUNGE",
         "MEGA_DRAIN",
@@ -6781,6 +6806,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "LUNGE",
         "MEGA_DRAIN",
@@ -6868,6 +6894,7 @@
         "FISSURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "HEAVY_SLAM",
         "INCINERATE",
         "METRONOME",
         "MIMIC",
@@ -6955,6 +6982,7 @@
         "FISSURE",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HAIL",
         "HYDRO_PUMP",
         "ICY_WIND",
@@ -6994,6 +7022,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "ICY_WIND",
         "INCINERATE",
@@ -7025,6 +7054,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "MIMIC",
         "PSYCH_UP",
         "RAGE",
@@ -7044,6 +7074,7 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "MIMIC",
         "PSYCH_UP",
         "RAGE",
@@ -7373,6 +7404,7 @@
         "FOCUS_BLAST",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HAZE",
         "LOW_KICK",
         "LOW_SWEEP",
@@ -7415,6 +7447,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAZE",
         "HEX",
         "LOW_KICK",
@@ -7522,6 +7555,7 @@
         "ENDURE",
         "EXPLOSION",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INFESTATION",
         "MIMIC",
         "NIGHTMARE",
@@ -7548,6 +7582,7 @@
         "EXPLOSION",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "LOW_KICK",
         "MIMIC",
@@ -7753,6 +7788,7 @@
         "ENDURE",
         "FISSURE",
         "FRUSTRATION",
+        "HEAVY_SLAM",
         "ICY_WIND",
         "INCINERATE",
         "LEER",
@@ -7780,6 +7816,7 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HEAT_CRASH",
+        "HEAVY_SLAM",
         "HYDRO_PUMP",
         "ICY_WIND",
         "INCINERATE",
@@ -7817,6 +7854,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "ICY_WIND",
         "INCINERATE",
@@ -7850,6 +7888,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "MIMIC",
         "MORNING_SUN",
@@ -8005,6 +8044,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "ICY_WIND",
         "MIMIC",
@@ -8036,6 +8076,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "IRON_DEFENSE",
         "MEGA_KICK",
@@ -8093,6 +8134,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "HEAL_BELL",
         "HYPER_VOICE",
@@ -8733,6 +8775,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "HEX",
         "HURRICANE",
@@ -8834,6 +8877,7 @@
         "FRUSTRATION",
         "GIGA_DRAIN",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "GUNK_SHOT",
         "GYRO_BALL",
         "HAIL",
@@ -8841,6 +8885,7 @@
         "HEAL_BELL",
         "HEAT_CRASH",
         "HEAT_WAVE",
+        "HEAVY_SLAM",
         "HEX",
         "HORN_DRILL",
         "HURRICANE",
@@ -8944,6 +8989,7 @@
         "ENCORE",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "MIMIC",
         "SNORE",
@@ -8957,6 +9003,7 @@
         "ENCORE",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "MIMIC",
         "SNORE",
@@ -8972,6 +9019,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "MIMIC",
         "OUTRAGE",
@@ -9117,6 +9165,7 @@
         "DYNAMICPUNCH",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "MIMIC",
         "ROLLOUT",
@@ -9137,6 +9186,7 @@
         "ENDURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "MIMIC",
         "ROLLOUT",
@@ -9339,6 +9389,7 @@
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -9359,6 +9410,7 @@
         "DREAM_EATER",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "ICY_WIND",
         "INCINERATE",
@@ -9391,6 +9443,7 @@
         "ENCORE",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "ICY_WIND",
         "INCINERATE",
@@ -9420,6 +9473,7 @@
         "DREAM_EATER",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "HYPER_VOICE",
         "INCINERATE",
@@ -9451,6 +9505,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "INCINERATE",
         "MEGA_KICK",
@@ -9482,6 +9537,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_DRAIN",
+        "GRASS_KNOT",
         "MIMIC",
         "NIGHTMARE",
         "PAIN_SPLIT",
@@ -9504,6 +9560,7 @@
         "FRUSTRATION",
         "GIGA_DRAIN",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "MIMIC",
         "NIGHTMARE",
         "PAIN_SPLIT",
@@ -9566,6 +9623,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "MIMIC",
         "RAGE",
@@ -9583,6 +9641,7 @@
         "DYNAMICPUNCH",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HAIL",
         "ICY_WIND",
         "IRON_TAIL",
@@ -9605,6 +9664,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "ICY_WIND",
         "IRON_TAIL",
@@ -9627,6 +9687,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "LOW_SWEEP",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -9679,6 +9740,7 @@
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INFESTATION",
         "LUNGE",
         "MIMIC",
@@ -9696,6 +9758,7 @@
         "DEFENSE_CURL",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INFESTATION",
         "LUNGE",
         "MIMIC",
@@ -9715,6 +9778,7 @@
         "FALSE_SWIPE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "LUNGE",
         "MIMIC",
@@ -9734,6 +9798,7 @@
         "ENDURE",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "GUNK_SHOT",
         "LOW_KICK",
         "LOW_SWEEP",
@@ -9754,6 +9819,7 @@
       "SUNKERN": [
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "MIMIC",
         "SNORE",
         "SWORDS_DANCE",
@@ -9763,6 +9829,7 @@
         "DOUBLE_TEAM",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "MIMIC",
         "PETAL_BLIZZARD",
         "SNORE",
@@ -9844,6 +9911,7 @@
         "FOCUS_ENERGY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "MAGICAL_LEAF",
         "MIMIC",
@@ -9916,6 +9984,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "ICY_WIND",
         "INCINERATE",
@@ -9949,6 +10018,7 @@
         "FRUSTRATION",
         "FUTURE_SIGHT",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "HYPER_VOICE",
         "ICY_WIND",
@@ -9971,6 +10041,7 @@
         "ENDURE",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "LOW_KICK",
         "MIMIC",
@@ -10746,6 +10817,7 @@
         "ENCORE",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HAIL",
         "HEAL_BELL",
         "MEGA_KICK",
@@ -10802,6 +10874,7 @@
         "DYNAMICPUNCH",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "HEAVY_SLAM",
         "ICY_WIND",
         "IRON_TAIL",
         "MEGA_KICK",
@@ -10829,6 +10902,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "ICY_WIND",
         "INCINERATE",
@@ -10963,6 +11037,7 @@
         "ENDURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "HEAVY_SLAM",
         "HYDRO_PUMP",
         "ICY_WIND",
         "INCINERATE",
@@ -11052,6 +11127,7 @@
         "FRUSTRATION",
         "GIGA_DRAIN",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "LEAF_BLADE",
         "METRONOME",
         "MIMIC",
@@ -11271,6 +11347,7 @@
         "DOUBLE_TEAM",
         "FALSE_SWIPE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "MEGA_DRAIN",
         "MIMIC",
         "OUTRAGE",
@@ -11289,6 +11366,7 @@
         "DOUBLE_TEAM",
         "FALSE_SWIPE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "MEGA_DRAIN",
         "MIMIC",
         "OUTRAGE",
@@ -11309,6 +11387,7 @@
         "FALSE_SWIPE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "MEGA_DRAIN",
         "MIMIC",
         "OUTRAGE",
@@ -11355,6 +11434,7 @@
         "ENDURE",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "GUNK_SHOT",
         "LOW_KICK",
         "LOW_SWEEP",
@@ -11475,6 +11555,7 @@
         "EARTH_POWER",
         "FRUSTRATION",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "INCINERATE",
         "IRON_TAIL",
         "LUNGE",
@@ -11525,6 +11606,7 @@
         "ENDURE",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "LOW_KICK",
         "MIMIC",
@@ -11541,6 +11623,7 @@
         "DOUBLE_EDGE",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "ICY_WIND",
         "MEGA_KICK",
@@ -11565,6 +11648,7 @@
         "DOUBLE_EDGE",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "ICY_WIND",
         "MEGA_KICK",
@@ -11591,6 +11675,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "ICY_WIND",
         "MEGA_KICK",
@@ -11623,6 +11708,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HEX",
         "HYPER_VOICE",
         "ICY_WIND",
@@ -11685,6 +11771,7 @@
         "FRUSTRATION",
         "GIGA_DRAIN",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "LEAF_STORM",
         "MAGICAL_LEAF",
@@ -11818,6 +11905,7 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "MIMIC",
         "PSYCH_UP",
         "RAGE",
@@ -11838,6 +11926,7 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HAZE",
+        "HEAVY_SLAM",
         "MIMIC",
         "REVERSAL",
         "ROCK_BLAST",
@@ -11858,6 +11947,7 @@
         "FRUSTRATION",
         "FUTURE_SIGHT",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "ICY_WIND",
         "MIMIC",
@@ -11909,6 +11999,7 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "HEAT_CRASH",
+        "HEAVY_SLAM",
         "HYDRO_PUMP",
         "ICY_WIND",
         "INCINERATE",
@@ -11979,6 +12070,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "MIMIC",
         "MORNING_SUN",
@@ -12008,6 +12100,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "INCINERATE",
         "MEGA_KICK",
@@ -12036,6 +12129,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GUNK_SHOT",
+        "HEAVY_SLAM",
         "HYPER_VOICE",
         "LOW_KICK",
         "MEGA_KICK",
@@ -12130,6 +12224,7 @@
         "DOUBLE_EDGE",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INFESTATION",
         "MIMIC",
         "MUD_SHOT",
@@ -12147,6 +12242,7 @@
         "DOUBLE_TEAM",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "MIMIC",
         "MUD_SHOT",
@@ -12206,6 +12302,7 @@
         "ENDURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "GYRO_BALL",
         "HEX",
         "ICY_WIND",
@@ -12232,6 +12329,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "GYRO_BALL",
         "HEAT_CRASH",
         "HEX",
@@ -12329,6 +12427,7 @@
         "DOUBLE_TEAM",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "POISON_JAB",
@@ -12341,6 +12440,7 @@
         "DOUBLE_TEAM",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "POISON_JAB",
@@ -12356,6 +12456,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "MEGA_KICK",
         "MEGA_PUNCH",
         "POISON_JAB",
@@ -12550,6 +12651,7 @@
         "BRICK_BREAK",
         "ENDURE",
         "FOUL_PLAY",
+        "HEAVY_SLAM",
         "METRONOME",
         "ROCK_SLIDE",
         "SKILL_SWAP",
@@ -12637,6 +12739,7 @@
         "ENDURE",
         "FOCUS_ENERGY",
         "GIGA_IMPACT",
+        "HEAVY_SLAM",
         "HURRICANE",
         "METAL_CLAW",
         "REVERSAL",
@@ -12648,6 +12751,7 @@
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HAIL",
         "ICICLE_SPEAR",
         "IRON_TAIL",
@@ -12669,6 +12773,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "ICICLE_SPEAR",
         "IRON_TAIL",
@@ -12729,6 +12834,7 @@
         "BUG_BITE",
         "ENDURE",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "GYRO_BALL",
         "TAKE_DOWN"
       ],
@@ -12737,7 +12843,9 @@
         "BULLDOZE",
         "ENDURE",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "SAFEGUARD",
         "SNORE",
         "SUPERPOWER",
@@ -12749,6 +12857,8 @@
         "ENDURE",
         "FOCUS_ENERGY",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
+        "HEAVY_SLAM",
         "SCARY_FACE",
         "SNORE",
         "TAKE_DOWN"
@@ -12759,7 +12869,9 @@
         "DOUBLE_EDGE",
         "ENDURE",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "HYDRO_PUMP",
         "POWER_WHIP",
         "TAKE_DOWN",
@@ -12774,6 +12886,7 @@
         "FOUL_PLAY",
         "GIGA_IMPACT",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "SCARY_FACE",
         "SNARL",
         "SNORE",
@@ -12790,6 +12903,7 @@
         "FOUL_PLAY",
         "GIGA_IMPACT",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "SCARY_FACE",
         "SNARL",
         "SNORE",
@@ -12802,6 +12916,7 @@
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "GUNK_SHOT",
         "MIMIC",
         "SAFEGUARD",
@@ -12819,6 +12934,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "GUNK_SHOT",
         "IRON_TAIL",
         "LEAF_STORM",
@@ -12838,6 +12954,7 @@
       ],
       "BUNEARY": [
         "DOUBLE_TEAM",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "HYPER_VOICE",
         "IRON_TAIL",
@@ -12854,6 +12971,7 @@
         "AURA_SPHERE",
         "DOUBLE_TEAM",
         "FOCUS_BLAST",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "HYPER_VOICE",
         "IRON_TAIL",
@@ -13254,6 +13372,7 @@
         "DOUBLE_TEAM",
         "ENCORE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "ICY_WIND",
         "IRON_TAIL",
@@ -13281,6 +13400,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HEAL_BELL",
         "HYPER_VOICE",
         "ICY_WIND",
@@ -13312,6 +13432,7 @@
         "ENDURE",
         "FALSE_SWIPE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "LOW_KICK",
         "POISON_JAB",
         "SCREECH",
@@ -13333,6 +13454,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "LOW_KICK",
         "POISON_JAB",
         "REVERSAL",
@@ -13355,6 +13477,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "LOW_KICK",
         "POISON_JAB",
         "REVERSAL",
@@ -13372,6 +13495,7 @@
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HAIL",
         "ICY_WIND",
         "MIMIC",
@@ -13389,6 +13513,7 @@
         "ENCORE",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HAIL",
         "HYPER_VOICE",
         "ICY_WIND",
@@ -13413,6 +13538,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "HYPER_VOICE",
         "ICY_WIND",
@@ -13451,6 +13577,7 @@
         "ENDURE",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INCINERATE",
         "IRON_DEFENSE",
         "IRON_TAIL",
@@ -13474,6 +13601,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INCINERATE",
         "IRON_DEFENSE",
         "IRON_TAIL",
@@ -13523,6 +13651,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HEAVY_SLAM",
         "ICICLE_SPEAR",
         "ICY_WIND",
         "IRON_TAIL",
@@ -13593,6 +13722,7 @@
         "GUNK_SHOT",
         "HAMMER_ARM",
         "HEADLONGRUSH",
+        "HEAVY_SLAM",
         "LOW_KICK",
         "MUD_SHOT",
         "ROCK_SLIDE",
@@ -13645,6 +13775,7 @@
         "DRACO_METEOR",
         "FOCUS_BLAST",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INCINERATE",
         "LOW_SWEEP",
         "PSYCHO_CUT",
@@ -13678,6 +13809,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HEAVY_SLAM",
         "INCINERATE",
         "OUTRAGE",
         "PAIN_SPLIT",
@@ -13717,6 +13849,7 @@
         "CHARM",
         "ENDURE",
         "FREEZE_DRY",
+        "HEAVY_SLAM",
         "HYPER_VOICE",
         "ICY_WIND",
         "LIQUIDATION",
@@ -13730,6 +13863,7 @@
         "ENDURE",
         "FREEZE_DRY",
         "GIGA_IMPACT",
+        "HEAVY_SLAM",
         "HYPER_VOICE",
         "ICY_WIND",
         "WATER_PULSE"
@@ -13842,6 +13976,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "ICICLE_SPEAR",
         "INFESTATION",
@@ -14000,6 +14135,7 @@
         "FRUSTRATION",
         "GIGA_IMPACT",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "IRON_TAIL",
         "MIMIC",
         "ROCK_SLIDE",
@@ -14013,6 +14149,7 @@
         "DARK_PULSE",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "ICY_WIND",
         "IRON_TAIL",
         "SHADOW_CLAW",
@@ -14025,6 +14162,7 @@
         "DARK_PULSE",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "ICY_WIND",
         "IRON_TAIL",
         "SHADOW_CLAW",
@@ -14045,6 +14183,7 @@
         "EXTREMESPEED",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "MEGA_KICK",
         "MEGA_PUNCH",
@@ -14290,6 +14429,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "HEAVY_SLAM",
         "METRONOME",
         "MUD_SHOT",
         "SCARY_FACE",
@@ -14366,6 +14506,7 @@
         "EXPLOSION",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "INFESTATION",
         "IRON_TAIL",
         "LOW_KICK",
@@ -14454,6 +14595,7 @@
         "GIGA_IMPACT",
         "GUNK_SHOT",
         "GYRO_BALL",
+        "HEAVY_SLAM",
         "HYPER_VOICE",
         "METRONOME",
         "SHADOW_CLAW",
@@ -14495,6 +14637,7 @@
         "CALM_MIND",
         "ENDURE",
         "FOUL_PLAY",
+        "GRASS_KNOT",
         "HAIL",
         "HYDRO_PUMP",
         "ICY_WIND",
@@ -14517,6 +14660,7 @@
         "FOCUS_BLAST",
         "FOUL_PLAY",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAIL",
         "HAZE",
         "HYDRO_PUMP",
@@ -14547,6 +14691,7 @@
         "FOCUS_BLAST",
         "FOUL_PLAY",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "GUNK_SHOT",
         "HAIL",
         "HEX",
@@ -14615,6 +14760,7 @@
         "DOUBLE_EDGE",
         "ENDURE",
         "FOUL_PLAY",
+        "GRASS_KNOT",
         "GYRO_BALL",
         "SEED_BOMB",
         "TAKE_DOWN",
@@ -14627,6 +14773,7 @@
         "ENDURE",
         "FOUL_PLAY",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "GYRO_BALL",
         "SCARY_FACE",
         "SEED_BOMB",
@@ -14663,6 +14810,7 @@
         "FALSE_SWIPE",
         "FOCUS_BLAST",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "POISON_TAIL",
         "REVERSAL",
         "SHADOW_CLAW",
@@ -14678,6 +14826,7 @@
         "FALSE_SWIPE",
         "FOCUS_BLAST",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "POISON_TAIL",
         "REVERSAL",
         "ROCK_SLIDE",
@@ -14707,6 +14856,7 @@
         "DOUBLE_EDGE",
         "ENDURE",
         "GIGA_IMPACT",
+        "HEAVY_SLAM",
         "HYDRO_PUMP",
         "LIQUIDATION",
         "LOW_KICK",
@@ -14738,6 +14888,7 @@
         "DAZZLING_GLEAM",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "SAFEGUARD",
         "SNORE",
         "TAKE_DOWN"
@@ -14747,6 +14898,7 @@
         "DAZZLING_GLEAM",
         "DOUBLE_TEAM",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "LOW_SWEEP",
         "PETAL_BLIZZARD",
         "SAFEGUARD",
@@ -14761,6 +14913,7 @@
         "DOUBLE_TEAM",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "IRON_TAIL",
         "LOW_KICK",
         "MEGA_KICK",
@@ -14915,6 +15068,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_DRAIN",
+        "GRASS_KNOT",
         "GUNK_SHOT",
         "ICY_WIND",
         "INCINERATE",
@@ -15115,6 +15269,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "ICY_WIND",
         "INCINERATE",
         "MEGA_KICK",
@@ -15266,6 +15421,7 @@
         "DRAINING_KISS",
         "ENDURE",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HYPER_VOICE",
         "ICY_WIND",
         "OUTRAGE",
@@ -15296,6 +15452,7 @@
         "EARTH_POWER",
         "FOUL_PLAY",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "MUD_SHOT",
         "PSYCH_UP",
         "SNORE",
@@ -15306,6 +15463,7 @@
         "DOUBLE_TEAM",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INFESTATION",
         "PSYSHOCK",
         "SNORE",
@@ -15316,6 +15474,7 @@
         "DOUBLE_TEAM",
         "DREAM_EATER",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "HAIL",
         "ICY_WIND",
         "INCINERATE",
@@ -15390,6 +15549,7 @@
         "EARTH_POWER",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INCINERATE",
         "IRON_TAIL",
         "MUD_SHOT",
@@ -15411,6 +15571,7 @@
         "EARTH_POWER",
         "ENDURE",
         "FRUSTRATION",
+        "GRASS_KNOT",
         "INCINERATE",
         "IRON_TAIL",
         "LOW_KICK",
@@ -15440,6 +15601,7 @@
         "FOCUS_BLAST",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "GUNK_SHOT",
         "INCINERATE",
         "IRON_TAIL",
@@ -15475,6 +15637,7 @@
         "ENDURE",
         "FRUSTRATION",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "ICY_WIND",
         "IRON_DEFENSE",
         "MEGA_KICK",
@@ -15507,6 +15670,7 @@
         "FOUL_PLAY",
         "FRUSTRATION",
         "GIGA_DRAIN",
+        "GRASS_KNOT",
         "HEX",
         "MAGICAL_LEAF",
         "NIGHT_SHADE",
@@ -15535,6 +15699,7 @@
         "FRUSTRATION",
         "GIGA_DRAIN",
         "GIGA_IMPACT",
+        "GRASS_KNOT",
         "HAZE",
         "LEAF_STORM",
         "MAGICAL_LEAF",
@@ -20141,6 +20306,9 @@
         "Smogon:magnemite:5D",
         "Smogon:magnemite:4M",
         "Lumi:MAGNEMITE:TM67"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:magnemite:9M"
       ]
     },
     "MAGNETON": {
@@ -20248,6 +20416,9 @@
         "Smogon:magnemite:4M",
         "Lumi:MAGNETON:TM67",
         "Lumi:MAGNEMITE:TM67"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:magneton:9M"
       ]
     },
     "FARFETCH_D": {
@@ -21312,6 +21483,10 @@
       ],
       "TWISTER": [
         "onix:4T"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:onix:8M",
+        "Smogon:onix:7E"
       ]
     },
     "HYPNO": {
@@ -21520,6 +21695,9 @@
         "Smogon:drowzee:4M",
         "Lumi:HYPNO:TM67",
         "Lumi:DROWZEE:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:hypno:9M"
       ]
     },
     "KRABBY": {
@@ -21915,6 +22093,9 @@
         "Smogon:exeggcute:9M",
         "Lumi:EXEGGUTOR:TM147",
         "Lumi:EXEGGCUTE:TM147"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:exeggutor:9M"
       ]
     },
     "CUBONE": {
@@ -22516,6 +22697,9 @@
       ],
       "THRASH": [
         "rhyhorn:7V"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:rhyhorn:9M"
       ]
     },
     "RHYDON": {
@@ -22706,6 +22890,9 @@
       ],
       "WATER_GUN": [
         "rhydon:7V"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:rhyhorn:9M"
       ]
     },
     "KANGASKHAN": {
@@ -23314,6 +23501,9 @@
         "Lumi:MR__MIME:TM67",
         "Lumi:MIME_JR_:L24",
         "Lumi:MIME_JR_:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:mrmime:8M"
       ]
     },
     "SCYTHER": {
@@ -23656,6 +23846,9 @@
         "Smogon:smoochum:4M",
         "Lumi:JYNX:TM67",
         "Lumi:SMOOCHUM:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:smoochum:8M"
       ]
     },
     "PINSIR": {
@@ -24790,6 +24983,10 @@
         "Lumi:SNORLAX:TM67",
         "Lumi:MUNCHLAX:L15",
         "Lumi:MUNCHLAX:TM67"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:snorlax:9M",
+        "Smogon:snorlax:9L32"
       ]
     },
     "DRATINI": {
@@ -25501,6 +25698,9 @@
         "Smogon:mewtwo:5T",
         "Smogon:mewtwo:4M",
         "Lumi:MEWTWO:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:mewtwo:9M"
       ]
     },
     "CHIKORITA": {
@@ -25598,6 +25798,9 @@
       "VINE_WHIP": [
         "chikorita:9E",
         "chikorita:7V"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:chikorita:9M"
       ]
     },
     "BAYLEEF": {
@@ -25672,6 +25875,9 @@
       ],
       "TAKE_DOWN": [
         "bayleef:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:chikorita:9M"
       ]
     },
     "MEGANIUM": {
@@ -25759,6 +25965,9 @@
         "Smogon:meganium:7L1",
         "Smogon:meganium:6L1",
         "Lumi:MEGANIUM:L70"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:meganium:9M"
       ]
     },
     "CYNDAQUIL": {
@@ -26791,6 +27000,9 @@
         "Smogon:cleffa:5T",
         "Smogon:cleffa:4M",
         "Lumi:CLEFFA:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:cleffa:9M"
       ]
     },
     "TOGEPI": {
@@ -26935,6 +27147,9 @@
         "Smogon:togepi:6M",
         "Smogon:togepi:5M",
         "Lumi:TOGEPI:TM147"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:togepi:8M"
       ]
     },
     "TOGETIC": {
@@ -27085,6 +27300,9 @@
       "OMINOUS_WIND": [
         "Smogon:togetic:4T",
         "Lumi:TOGETIC:T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:togetic:8M"
       ]
     },
     "NATU": {
@@ -27252,6 +27470,9 @@
         "Smogon:natu:4L39",
         "Lumi:NATU:L20",
         "Lumi:NATU:T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:natu:8M"
       ]
     },
     "XATU": {
@@ -27389,6 +27610,9 @@
         "Smogon:natu:4L39",
         "Lumi:XATU:L20",
         "Lumi:XATU:T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:xatu:8M"
       ]
     },
     "MAREEP": {
@@ -27838,6 +28062,9 @@
         "Smogon:gloom:6L49",
         "Lumi:BELLOSSOM:L0",
         "Lumi:BELLOSSOM:L1"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:oddish:9M"
       ]
     },
     "SUDOWOODO": {
@@ -27956,6 +28183,9 @@
       ],
       "TORMENT": [
         "sudowoodo:7M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sudowoodo:9M"
       ]
     },
     "YANMA": {
@@ -28610,6 +28840,9 @@
         "Smogon:misdreavus:4E",
         "Lumi:MISDREAVUS:E",
         "Lumi:MISDREAVUS:T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:misdreavus:9M"
       ]
     },
     "PINECO": {
@@ -28859,6 +29092,10 @@
       ],
       "VENOSHOCK": [
         "forretress:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:forretress:9M",
+        "Smogon:forretress:9L0"
       ]
     },
     "DUNSPARCE": {
@@ -29142,6 +29379,10 @@
       ],
       "TWISTER": [
         "steelix:4T"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:steelix:8M",
+        "Smogon:onix:7E"
       ]
     },
     "SNUBBULL": {
@@ -31334,6 +31575,9 @@
         "Smogon:smoochum:5T",
         "Smogon:smoochum:4M",
         "Lumi:SMOOCHUM:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:smoochum:8M"
       ]
     },
     "MILTANK": {
@@ -31447,6 +31691,9 @@
       "WATER_PULSE": [
         "miltank:7T",
         "miltank:4M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:miltank:8M"
       ]
     },
     "HO_OH": {
@@ -31700,6 +31947,9 @@
       "WATER_PULSE": [
         "celebi:7T",
         "celebi:4M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:celebi:8M"
       ]
     },
     "CHARMANDER_CLONE": {
@@ -33196,6 +33446,9 @@
       "POISON_TAIL": [
         "Smogon:dudunsparce:9M",
         "Smogon:dunsparce:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:dudunsparce:9M"
       ]
     },
     "RALTS": {
@@ -33354,6 +33607,9 @@
         "Smogon:ralts:5T",
         "Smogon:ralts:4M",
         "Lumi:RALTS:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:ralts:9M"
       ]
     },
     "KIRLIA": {
@@ -33512,6 +33768,9 @@
         "Smogon:ralts:4M",
         "Lumi:KIRLIA:TM67",
         "Lumi:RALTS:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:ralts:9M"
       ]
     },
     "GARDEVOIR": {
@@ -33683,6 +33942,9 @@
         "Lumi:GARDEVOIR:TM67",
         "Lumi:KIRLIA:TM67",
         "Lumi:RALTS:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:ralts:9M"
       ]
     },
     "GLACEON": {
@@ -33858,6 +34120,9 @@
       ],
       "SOLAR_BLADE": [
         "leafeon:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:leafeon:9M"
       ]
     },
     "MAGNEZONE": {
@@ -33965,6 +34230,9 @@
         "Lumi:MAGNEZONE:TM67",
         "Lumi:MAGNETON:TM67",
         "Lumi:MAGNEMITE:TM67"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:magnezone:9M"
       ]
     },
     "MAMOSWINE": {
@@ -34046,6 +34314,9 @@
       "SUPERPOWER": [
         "mamoswine:8M",
         "mamoswine:7T"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:mamoswine:9M"
       ]
     },
     "MISMAGIUS": {
@@ -34160,6 +34431,9 @@
         "Lumi:MISMAGIUS:T",
         "Lumi:MISDREAVUS:E",
         "Lumi:MISDREAVUS:T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:mismagius:9M"
       ]
     },
     "RHYPERIOR": {
@@ -34302,6 +34576,9 @@
         "rhydon:8V",
         "rhyperior:8M",
         "rhyperior:7T"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:rhyperior:9M"
       ]
     },
     "VENIPEDE": {
@@ -34699,6 +34976,9 @@
         "Smogon:togetic:4T",
         "Lumi:TOGEKISS:T",
         "Lumi:TOGETIC:T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:togetic:8M"
       ]
     },
     "YANMEGA": {
@@ -35104,6 +35384,13 @@
       ],
       "TAKE_DOWN": [
         "golett:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:golett:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:golett:9M",
+        "Smogon:golett:9L40"
       ]
     },
     "GOLURK": {
@@ -35238,6 +35525,13 @@
       ],
       "TRICK": [
         "golurk:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:golurk:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:golurk:9M",
+        "Smogon:golurk:9L40"
       ]
     },
     "DUSKULL": {
@@ -35766,6 +36060,9 @@
       ],
       "TAUNT": [
         "timburr:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:timburr:9M"
       ]
     },
     "GURDURR": {
@@ -35829,6 +36126,9 @@
       ],
       "TAUNT": [
         "gurdurr:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:timburr:9M"
       ]
     },
     "CONKELDURR": {
@@ -35900,6 +36200,9 @@
       ],
       "TAUNT": [
         "conkeldurr:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:timburr:9M"
       ]
     },
     "DEINO": {
@@ -36509,6 +36812,9 @@
         "Lumi:DIPPLIN:E",
         "Lumi:APPLIN:E",
         "Lumi:APPLIN:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:dipplin:9M"
       ]
     },
     "APPLETUN": {
@@ -36579,6 +36885,12 @@
         "Lumi:DIPPLIN:E",
         "Lumi:APPLIN:E",
         "Lumi:APPLIN:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:appletun:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:appletun:9M"
       ]
     },
     "FLAPPLE": {
@@ -36638,6 +36950,12 @@
         "Lumi:DIPPLIN:E",
         "Lumi:APPLIN:E",
         "Lumi:APPLIN:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:flapple:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:flapple:9M"
       ]
     },
     "HYDRAPPLE": {
@@ -36707,6 +37025,12 @@
         "Lumi:DIPPLIN:E",
         "Lumi:APPLIN:E",
         "Lumi:APPLIN:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:hydrapple:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:hydrapple:9M"
       ]
     },
     "BRELOOM": {
@@ -36856,6 +37180,9 @@
         "Smogon:breloom:4L33",
         "Smogon:breloom:3L36",
         "Lumi:BRELOOM:L38"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:shroomish:9M"
       ]
     },
     "GRUBBIN": {
@@ -38225,6 +38552,9 @@
         "Smogon:spoink:5D",
         "Smogon:spoink:4M",
         "Lumi:SPOINK:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:spoink:9M"
       ]
     },
     "PAWNIARD": {
@@ -38336,6 +38666,9 @@
       ],
       "X_SCISSOR": [
         "pawniard:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:pawniard:9M"
       ]
     },
     "BISHARP": {
@@ -38440,6 +38773,9 @@
       ],
       "X_SCISSOR": [
         "bisharp:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:pawniard:9M"
       ]
     },
     "KINGAMBIT": {
@@ -38508,6 +38844,9 @@
       ],
       "X_SCISSOR": [
         "kingambit:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:pawniard:9M"
       ]
     },
     "SCRAGGY": {
@@ -38652,6 +38991,9 @@
       ],
       "TAUNT": [
         "scraggy:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:scraggy:9M"
       ]
     },
     "SCRAFTY": {
@@ -38772,6 +39114,9 @@
       ],
       "TAUNT": [
         "scrafty:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:scraggy:9M"
       ]
     },
     "TEDDIURSABM": {
@@ -39410,6 +39755,9 @@
       "X_SCISSOR": [
         "haxorus:9M",
         "haxorus:5S0"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:haxorus:9M"
       ]
     },
     "CRANIDOS": {
@@ -39628,6 +39976,9 @@
       ],
       "SPITE": [
         "rampardos:7T"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:rampardos:9M"
       ]
     },
     "CETODDLE": {
@@ -39675,6 +40026,9 @@
       ],
       "WATER_PULSE": [
         "cetoddle:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:cetoddle:9M"
       ]
     },
     "CETITAN": {
@@ -39713,6 +40067,9 @@
       ],
       "WATER_PULSE": [
         "cetitan:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:cetoddle:9M"
       ]
     },
     "MIMIKYU": {
@@ -40532,6 +40889,9 @@
         "Smogon:torkoal:3E",
         "Lumi:TORKOAL:L49",
         "Lumi:TORKOAL:E"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:torkoal:9M"
       ]
     },
     "SANDSHREW_ALOLAN": {
@@ -41154,6 +41514,9 @@
         "Smogon:exeggutoralola:8L0",
         "Smogon:exeggutoralola:7L1",
         "Lumi:EXEGGUTOR_ALOLAN:L52"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:exeggutoralola:9M"
       ]
     },
     "MEOWTH_GALARIAN": {
@@ -41331,6 +41694,9 @@
       ],
       "X_SCISSOR": [
         "perrserker:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:perrserker:9M"
       ]
     },
     "RAPIDASH_GALARIAN": {
@@ -41504,6 +41870,9 @@
         "Smogon:slowpokegalar:8M",
         "Lumi:SLOWBRO_GALARIAN:TM147",
         "Lumi:SLOWPOKE_GALARIAN:TM147"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:slowpokegalar:9M"
       ]
     },
     "WEEZING_GALARIAN": {
@@ -41724,6 +42093,9 @@
       ],
       "RECYCLE": [
         "Smogon:voltorbhisui:9E"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:voltorbhisui:9M"
       ]
     },
     "ELECTRODE_HISUIAN": {
@@ -41771,6 +42143,9 @@
       ],
       "RECYCLE": [
         "Smogon:voltorbhisui:9E"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:voltorbhisui:9M"
       ]
     },
     "TYPHLOSION_HISUIAN": {
@@ -41948,6 +42323,9 @@
       ],
       "POISON_TAIL": [
         "Smogon:sneaselhisui:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sneaselhisui:9M"
       ]
     },
     "WOOPER_PALDEAN": {
@@ -42097,6 +42475,9 @@
         "steenee:8T"
       ],
       "PETAL_BLIZZARD": [
+        "Smogon:steenee:9M"
+      ],
+      "GRASS_KNOT": [
         "Smogon:steenee:9M"
       ]
     },
@@ -42414,6 +42795,9 @@
       "WATER_PULSE": [
         "zangoose:7T",
         "zangoose:4M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:zangoose:9M"
       ]
     },
     "LITWICK": {
@@ -42863,6 +43247,9 @@
       ],
       "TORMENT": [
         "mawile:7M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:mawile:8M"
       ]
     },
     "NOIBAT": {
@@ -43426,6 +43813,9 @@
       ],
       "WATER_PULSE": [
         "palafin:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:palafin:9M"
       ]
     },
     "AZURILL": {
@@ -43626,6 +44016,9 @@
       ],
       "TAKE_DOWN": [
         "bonsly:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:bonsly:9M"
       ]
     },
     "MIME_JR_": {
@@ -43739,6 +44132,9 @@
         "Smogon:mimejr:4L32",
         "Lumi:MIME_JR_:L24",
         "Lumi:MIME_JR_:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:mimejr:8M"
       ]
     },
     "HAPPINY": {
@@ -43824,6 +44220,9 @@
         "Smogon:happiny:5T",
         "Smogon:happiny:4M",
         "Lumi:HAPPINY:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:happiny:9M"
       ]
     },
     "MANTYKE": {
@@ -44001,6 +44400,9 @@
       ],
       "TAUNT": [
         "sandile:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sandile:9M"
       ]
     },
     "KROKOROK": {
@@ -44119,6 +44521,9 @@
       "THUNDER_FANG": [
         "krokorok:9M",
         "sandile:7E"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sandile:9M"
       ]
     },
     "KROOKODILE": {
@@ -44252,6 +44657,9 @@
       "THUNDER_FANG": [
         "krookodile:9M",
         "sandile:7E"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sandile:9M"
       ]
     },
     "BULBASAUR": {
@@ -44381,6 +44789,9 @@
       ],
       "VENOSHOCK": [
         "bulbasaur:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:bulbasaur:9M"
       ]
     },
     "PIDGEY": {
@@ -44592,6 +45003,9 @@
       ],
       "WILD_CHARGE": [
         "rattata:7M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:rattata:7M"
       ]
     },
     "SPEAROW": {
@@ -44988,6 +45402,10 @@
       "WISH": [
         "pichu:9E",
         "pichu:3S1"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:pichu:9M",
+        "Smogon:pichu:4S4"
       ]
     },
     "SANDSHREW": {
@@ -45746,6 +46164,9 @@
         "Smogon:igglybuff:5T",
         "Smogon:igglybuff:4M",
         "Lumi:IGGLYBUFF:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:igglybuff:9M"
       ]
     },
     "ODDISH": {
@@ -45836,6 +46257,9 @@
       ],
       "VENOSHOCK": [
         "oddish:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:oddish:9M"
       ]
     },
     "PARAS": {
@@ -45965,6 +46389,9 @@
       ],
       "TAKE_DOWN": [
         "paras:7V"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:paras:7M"
       ]
     },
     "VENONAT": {
@@ -46701,6 +47128,9 @@
         "Smogon:abra:5T",
         "Smogon:abra:4M",
         "Lumi:ABRA:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:abra:8M"
       ]
     },
     "MACHOP": {
@@ -46854,6 +47284,10 @@
       "VACUUM_WAVE": [
         "Smogon:machop:4T",
         "Lumi:MACHOP:T"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:machop:8M",
+        "Smogon:machop:7E"
       ]
     },
     "BELLSPROUT": {
@@ -46962,6 +47396,9 @@
       ],
       "VENOSHOCK": [
         "bellsprout:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:bellsprout:9M"
       ]
     },
     "TENTACOOL": {
@@ -47390,6 +47827,9 @@
         "Smogon:slowpoke:5T",
         "Smogon:slowpoke:4M",
         "Lumi:SLOWPOKE:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:slowpoke:9M"
       ]
     },
     "SEEL": {
@@ -47886,6 +48326,9 @@
         "Smogon:drowzee:5T",
         "Smogon:drowzee:4M",
         "Lumi:DROWZEE:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:drowzee:9M"
       ]
     },
     "EXEGGCUTE": {
@@ -48048,6 +48491,9 @@
       "PSYSHOCK": [
         "Smogon:exeggcute:9M",
         "Lumi:EXEGGCUTE:TM147"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:exeggcute:9M"
       ]
     },
     "TYROGUE": {
@@ -48572,6 +49018,9 @@
       ],
       "TAKE_DOWN": [
         "tangela:7V"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:tangela:8M"
       ]
     },
     "HORSEA": {
@@ -49741,6 +50190,9 @@
       "WATER_PULSE": [
         "sentret:9M",
         "sentret:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sentret:9M"
       ]
     },
     "HOOTHOOT": {
@@ -50198,6 +50650,9 @@
         "Smogon:hoppip:6E",
         "Smogon:hoppip:5E",
         "Lumi:HOPPIP:E"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:hoppip:9M"
       ]
     },
     "AIPOM": {
@@ -50368,6 +50823,9 @@
       "WATER_PULSE": [
         "aipom:9M",
         "aipom:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:aipom:9M"
       ]
     },
     "SUNKERN": {
@@ -50434,6 +50892,9 @@
       ],
       "TAKE_DOWN": [
         "sunkern:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sunkern:9M"
       ]
     },
     "GIRAFARIG": {
@@ -50581,6 +51042,9 @@
         "Smogon:girafarig:5T",
         "Smogon:girafarig:4M",
         "Lumi:GIRAFARIG:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:girafarig:9M"
       ]
     },
     "GLIGAR": {
@@ -51688,6 +52152,11 @@
       ],
       "WATER_GUN": [
         "phanpy:7V"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:phanpy:9M",
+        "Smogon:phanpy:9E",
+        "Smogon:phanpy:5D"
       ]
     },
     "LARVITAR": {
@@ -51947,6 +52416,9 @@
       ],
       "VENOSHOCK": [
         "bulbasaur:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:bulbasaur:9M"
       ]
     },
     "LILEEP": {
@@ -52041,6 +52513,9 @@
       ],
       "SYNTHESIS": [
         "lileep:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:lileep:8M"
       ]
     },
     "LARVESTA": {
@@ -52302,6 +52777,9 @@
       "WATER_PULSE": [
         "snover:9M",
         "snover:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:snover:9M"
       ]
     },
     "APPLIN": {
@@ -52393,6 +52871,9 @@
       ],
       "TAKE_DOWN": [
         "duraludon:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:duraludon:9M"
       ]
     },
     "SHROOMISH": {
@@ -52479,6 +52960,9 @@
       ],
       "VENOSHOCK": [
         "shroomish:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:shroomish:9M"
       ]
     },
     "BUNEARY": {
@@ -52601,6 +53085,9 @@
         "Smogon:buneary:5E",
         "Smogon:buneary:4E",
         "Lumi:BUNEARY:E"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:buneary:8M"
       ]
     },
     "NUMEL": {
@@ -52706,6 +53193,10 @@
         "Smogon:numel:5L22",
         "Smogon:numel:4L31",
         "Lumi:NUMEL:L22"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:numel:9M",
+        "Smogon:numel:9E"
       ]
     },
     "SIZZLIPEDE": {
@@ -53176,6 +53667,9 @@
         "lotad:9M",
         "lotad:7T",
         "lotad:5D"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:lotad:9M"
       ]
     },
     "SPHEAL": {
@@ -53351,6 +53845,10 @@
       ],
       "TORMENT": [
         "shieldon:7M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:shieldon:9M",
+        "Smogon:shieldon:9L46"
       ]
     },
     "FEEBAS": {
@@ -53677,6 +54175,9 @@
       "U_TURN": [
         "rattataalola:8V",
         "rattataalola:7M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:rattataalola:7M"
       ]
     },
     "DIGLETT_ALOLAN": {
@@ -54158,6 +54659,9 @@
       ],
       "TAKE_DOWN": [
         "bounsweet:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:bounsweet:9M"
       ]
     },
     "ARON": {
@@ -54268,6 +54772,10 @@
       "WATER_PULSE": [
         "aron:7T",
         "aron:4M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:aron:8M",
+        "Smogon:aron:8L52"
       ]
     },
     "GLIMMET": {
@@ -54982,6 +55490,9 @@
       ],
       "VENOSHOCK": [
         "ivysaur:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:ivysaur:9M"
       ]
     },
     "VENUSAUR": {
@@ -55097,6 +55608,9 @@
         "Smogon:venusaur:7L50",
         "Smogon:venusaur:6L50",
         "Lumi:VENUSAUR:L0"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:venusaur:9M"
       ]
     },
     "BUTTERFREE": {
@@ -55556,6 +56070,9 @@
       ],
       "WILD_CHARGE": [
         "raticate:7M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:rattata:7M"
       ]
     },
     "FEAROW": {
@@ -55959,6 +56476,10 @@
         "Smogon:pikachu:5L42",
         "Smogon:pikachu:4L37",
         "Lumi:PIKACHU:L31"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:pikachu:9M",
+        "Smogon:pikachu:5S27"
       ]
     },
     "RAICHU": {
@@ -56110,6 +56631,10 @@
         "Smogon:pikachu:4L37",
         "Lumi:RAICHU:L60",
         "Lumi:PIKACHU:L31"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:raichu:9M",
+        "Smogon:pikachu:5S27"
       ]
     },
     "NIDORINA": {
@@ -56845,6 +57370,9 @@
         "Smogon:cleffa:4M",
         "Lumi:CLEFAIRY:TM67",
         "Lumi:CLEFFA:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:cleffa:9M"
       ]
     },
     "CLEFABLE": {
@@ -57114,6 +57642,9 @@
         "Lumi:CLEFABLE:TM67",
         "Lumi:CLEFAIRY:TM67",
         "Lumi:CLEFFA:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:cleffa:9M"
       ]
     },
     "NINETALES": {
@@ -57449,6 +57980,9 @@
         "Smogon:igglybuff:4M",
         "Lumi:JIGGLYPUFF:TM67",
         "Lumi:IGGLYBUFF:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:jigglypuff:9M"
       ]
     },
     "WIGGLYTUFF": {
@@ -57662,6 +58196,9 @@
         "Lumi:WIGGLYTUFF:TM67",
         "Lumi:JIGGLYPUFF:TM67",
         "Lumi:IGGLYBUFF:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:wigglytuff:9M"
       ]
     },
     "GLOOM": {
@@ -57753,6 +58290,9 @@
         "Smogon:gloom:9M",
         "Smogon:gloom:7L49",
         "Smogon:gloom:6L49"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:oddish:9M"
       ]
     },
     "VILEPLUME": {
@@ -57858,6 +58398,9 @@
         "Smogon:gloom:6L49",
         "Lumi:VILEPLUME:L0",
         "Lumi:VILEPLUME:L1"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:vileplume:9M"
       ]
     },
     "PARASECT": {
@@ -57948,6 +58491,9 @@
       ],
       "TAKE_DOWN": [
         "parasect:7V"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:parasect:7M"
       ]
     },
     "VENOMOTH": {
@@ -58423,6 +58969,9 @@
       "VACUUM_WAVE": [
         "Smogon:golduck:9M",
         "Smogon:psyduck:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:golduck:9M"
       ]
     },
     "POLIWHIRL": {
@@ -58891,6 +59440,9 @@
         "Smogon:abra:4M",
         "Lumi:KADABRA:TM67",
         "Lumi:ABRA:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:kadabra:8M"
       ]
     },
     "ALAKAZAM": {
@@ -59071,6 +59623,9 @@
         "Lumi:ALAKAZAM:TM67",
         "Lumi:KADABRA:TM67",
         "Lumi:ABRA:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:kadabra:8M"
       ]
     },
     "MACHOKE": {
@@ -59182,6 +59737,10 @@
         "Smogon:machop:4T",
         "Lumi:MACHOKE:T",
         "Lumi:MACHOP:T"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:machop:8M",
+        "Smogon:machop:7E"
       ]
     },
     "MACHAMP": {
@@ -59299,6 +59858,10 @@
         "Lumi:MACHAMP:T",
         "Lumi:MACHOKE:T",
         "Lumi:MACHOP:T"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:machop:8M",
+        "Smogon:machop:7E"
       ]
     },
     "WEEPINBELL": {
@@ -59404,6 +59967,9 @@
       ],
       "VENOSHOCK": [
         "weepinbell:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:weepinbell:9M"
       ]
     },
     "VICTREEBEL": {
@@ -59501,6 +60067,9 @@
       ],
       "VENOSHOCK": [
         "victreebel:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:weepinbell:9M"
       ]
     },
     "TENTACRUEL": {
@@ -59730,6 +60299,9 @@
       "TAKE_DOWN": [
         "graveler:9M",
         "graveler:8V"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:graveler:9M"
       ]
     },
     "SLOWBRO": {
@@ -59949,6 +60521,9 @@
         "Smogon:slowpoke:4M",
         "Lumi:SLOWBRO:TM67",
         "Lumi:SLOWPOKE:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:slowpoke:9M"
       ]
     },
     "DEWGONG": {
@@ -60870,6 +61445,9 @@
         "Smogon:happiny:4M",
         "Lumi:CHANSEY:TM67",
         "Lumi:HAPPINY:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:happiny:9M"
       ]
     },
     "STARMIE": {
@@ -61023,6 +61601,9 @@
         "Smogon:staryu:4M",
         "Lumi:STARMIE:TM67",
         "Lumi:STARYU:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:starmie:8M"
       ]
     },
     "MAGMAR": {
@@ -62633,6 +63214,12 @@
       "OMINOUS_WIND": [
         "Smogon:mew:4T",
         "Lumi:MEW:T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:mew:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:mew:9M"
       ]
     },
     "TYPHLOSION": {
@@ -62871,6 +63458,9 @@
       "WATER_PULSE": [
         "furret:9M",
         "furret:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sentret:9M"
       ]
     },
     "NOCTOWL": {
@@ -63321,6 +63911,9 @@
       "WATER_PULSE": [
         "marill:9M",
         "marill:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:marill:9M"
       ]
     },
     "AZUMARILL": {
@@ -63423,6 +64016,9 @@
       "WATER_PULSE": [
         "azumarill:9M",
         "azumarill:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:marill:9M"
       ]
     },
     "POLITOED": {
@@ -63645,6 +64241,9 @@
         "Smogon:hoppip:6E",
         "Smogon:hoppip:5E",
         "Lumi:HOPPIP:E"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:skiploom:9M"
       ]
     },
     "JUMPLUFF": {
@@ -63740,6 +64339,9 @@
         "Smogon:hoppip:6E",
         "Smogon:hoppip:5E",
         "Lumi:HOPPIP:E"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:skiploom:9M"
       ]
     },
     "SUNFLORA": {
@@ -63793,6 +64395,9 @@
         "Smogon:sunflora:7L50",
         "Smogon:sunflora:6L50",
         "Lumi:SUNFLORA:L72"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sunkern:9M"
       ]
     },
     "QUAGSIRE": {
@@ -64030,6 +64635,9 @@
         "Smogon:espeon:6M",
         "Smogon:espeon:5M",
         "Lumi:ESPEON:TM147"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:espeon:9M"
       ]
     },
     "SLOWKING": {
@@ -64217,6 +64825,9 @@
         "Smogon:slowpoke:4M",
         "Lumi:SLOWKING:TM67",
         "Lumi:SLOWPOKE:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:slowpoke:9M"
       ]
     },
     "UNOWN": {
@@ -64441,6 +65052,11 @@
       ],
       "SUPERPOWER": [
         "donphan:7T"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:phanpy:9M",
+        "Smogon:phanpy:9E",
+        "Smogon:phanpy:5D"
       ]
     },
     "PORYGON2": {
@@ -64867,6 +65483,9 @@
         "Lumi:BLISSEY:TM67",
         "Lumi:CHANSEY:TM67",
         "Lumi:HAPPINY:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:happiny:9M"
       ]
     },
     "ENTEI": {
@@ -65321,6 +65940,9 @@
       "WATER_PULSE": [
         "tyranitar:7T",
         "tyranitar:4M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:tyranitar:9M"
       ]
     },
     "LUGIA": {
@@ -65591,6 +66213,9 @@
       ],
       "VENOSHOCK": [
         "ivysaur:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:ivysaur:9M"
       ]
     },
     "VENUSAUR_CLONE": {
@@ -65706,6 +66331,9 @@
         "Smogon:venusaur:7L50",
         "Smogon:venusaur:6L50",
         "Lumi:VENUSAUR:L0"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:venusaur:9M"
       ]
     },
     "AMBIPOM": {
@@ -65806,6 +66434,9 @@
       "WATER_PULSE": [
         "ambipom:9M",
         "ambipom:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:ambipom:9M"
       ]
     },
     "ANNIHILAPE": {
@@ -66121,6 +66752,9 @@
         "Smogon:girafarig:5T",
         "Smogon:girafarig:4M",
         "Lumi:GIRAFARIG:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:girafarig:9M"
       ]
     },
     "GALLADE": {
@@ -66328,6 +66962,9 @@
         "Lumi:GALLADE:TM67",
         "Lumi:KIRLIA:TM67",
         "Lumi:RALTS:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:ralts:9M"
       ]
     },
     "SYLVEON": {
@@ -67009,6 +67646,9 @@
         "tangrowth:8M",
         "tangela:7V",
         "tangela:3T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:tangrowth:8M"
       ]
     },
     "URSALUNA": {
@@ -67076,6 +67716,9 @@
       ],
       "TAUNT": [
         "ursaluna:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:ursaluna:9M"
       ]
     },
     "WEAVILE": {
@@ -67349,6 +67992,9 @@
       ],
       "SYNTHESIS": [
         "cradily:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:lileep:8M"
       ]
     },
     "VOLCARONA": {
@@ -67637,6 +68283,9 @@
       ],
       "STONE_EDGE": [
         "tinkaton:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:tinkaton:9M"
       ]
     },
     "ARCTIBAX": {
@@ -67886,6 +68535,9 @@
       ],
       "TAKE_DOWN": [
         "corviknight:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:corviknight:9M"
       ]
     },
     "ABOMASNOW": {
@@ -68000,6 +68652,9 @@
       "WATER_PULSE": [
         "abomasnow:9M",
         "abomasnow:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:snover:9M"
       ]
     },
     "ALTARIA": {
@@ -68214,6 +68869,9 @@
       ],
       "TAKE_DOWN": [
         "archaludon:9M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:duraludon:9M"
       ]
     },
     "LOPUNNY": {
@@ -68328,6 +68986,9 @@
         "Smogon:buneary:5E",
         "Smogon:buneary:4E",
         "Lumi:BUNEARY:E"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:lopunny:8M"
       ]
     },
     "CAMERUPT": {
@@ -68449,6 +69110,10 @@
         "Smogon:camerupt:4L57",
         "Smogon:camerupt:3L45",
         "Lumi:CAMERUPT:L51"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:numel:9M",
+        "Smogon:numel:9E"
       ]
     },
     "CENTISKORCH": {
@@ -68996,6 +69661,9 @@
         "Smogon:spoink:4M",
         "Lumi:GRUMPIG:TM67",
         "Lumi:SPOINK:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:spoink:9M"
       ]
     },
     "LOMBRE": {
@@ -69122,6 +69790,9 @@
         "lombre:9M",
         "lombre:7T",
         "lotad:5D"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:lotad:9M"
       ]
     },
     "LUDICOLO": {
@@ -69272,6 +69943,9 @@
         "ludicolo:9M",
         "ludicolo:7T",
         "lotad:5D"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:ludicolo:9M"
       ]
     },
     "OVERQWIL": {
@@ -69486,6 +70160,9 @@
       ],
       "SWORDS_DANCE": [
         "walrein:8M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:walrein:8M"
       ]
     },
     "URSALUNABM": {
@@ -69556,6 +70233,9 @@
         "ursalunabloodmoon:9M"
       ],
       "VACUUM_WAVE": [
+        "Smogon:ursalunabloodmoon:9M"
+      ],
+      "HEAVY_SLAM": [
         "Smogon:ursalunabloodmoon:9M"
       ]
     },
@@ -69645,6 +70325,10 @@
       ],
       "TORMENT": [
         "bastiodon:7M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:shieldon:9M",
+        "Smogon:bastiodon:9L58"
       ]
     },
     "MILOTIC": {
@@ -69842,6 +70526,9 @@
         "Lumi:MR__MIME:TM67",
         "Lumi:MIME_JR_:L24",
         "Lumi:MIME_JR_:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:mrrime:8M"
       ]
     },
     "GRAVELER_ALOLAN": {
@@ -69998,6 +70685,10 @@
         "Lumi:GOLEM_ALOLAN:L34",
         "Lumi:GRAVELER_ALOLAN:L34",
         "Lumi:GEODUDE_ALOLAN:L31"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:golemalola:9M",
+        "Smogon:golemalola:9L1"
       ]
     },
     "MUK_ALOLAN": {
@@ -70381,6 +71072,9 @@
         "Smogon:slowpokegalar:8M",
         "Lumi:SLOWKING_GALARIAN:TM147",
         "Lumi:SLOWPOKE_GALARIAN:TM147"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:slowpokegalar:9M"
       ]
     },
     "SNEASLER": {
@@ -70447,6 +71141,9 @@
       "POISON_TAIL": [
         "Smogon:sneasler:9M",
         "Smogon:sneaselhisui:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:sneasler:9M"
       ]
     },
     "CLODSIRE": {
@@ -70508,6 +71205,9 @@
         "Smogon:wooperpaldea:9L8",
         "Lumi:CLODSIRE:L23",
         "Lumi:WOOPER_PALDEAN:L22"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:clodsire:9M"
       ]
     },
     "LAIRON": {
@@ -70598,6 +71298,10 @@
       "WATER_PULSE": [
         "lairon:7T",
         "lairon:4M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:lairon:8M",
+        "Smogon:lairon:8L64"
       ]
     },
     "AGGRON": {
@@ -70777,6 +71481,10 @@
       "WATER_PULSE": [
         "aggron:7T",
         "aggron:4M"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:lairon:8M",
+        "Smogon:aggron:8L72"
       ]
     },
     "KLEAVOR": {
@@ -71547,6 +72255,10 @@
       "TAKE_DOWN": [
         "golem:9M",
         "golem:8V"
+      ],
+      "HEAVY_SLAM": [
+        "Smogon:graveler:9M",
+        "Smogon:golem:9L1"
       ]
     },
     "GENGAR": {
@@ -72574,6 +73286,9 @@
       ],
       "VENOSHOCK": [
         "raticatealola:7M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:rattataalola:7M"
       ]
     },
     "RAICHU_ALOLAN": {
@@ -72694,6 +73409,10 @@
       ],
       "RECYCLE": [
         "Smogon:raichualola:7T"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:raichualola:9M",
+        "Smogon:pikachu:5S27"
       ]
     },
     "NINETALES_ALOLAN": {
@@ -73049,6 +73768,9 @@
         "Smogon:slowpokegalar:9M",
         "Smogon:slowpokegalar:8M",
         "Lumi:SLOWPOKE_GALARIAN:TM147"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:slowpokegalar:9M"
       ]
     },
     "TSAREENA": {
@@ -73125,6 +73847,9 @@
       "PETAL_BLIZZARD": [
         "Smogon:tsareena:9M",
         "Smogon:steenee:9M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:tsareena:9M"
       ]
     },
     "CARRACOSTA": {
@@ -73969,6 +74694,9 @@
         "Smogon:jirachi:5T",
         "Smogon:jirachi:4M",
         "Lumi:JIRACHI:TM67"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:jirachi:9M"
       ]
     },
     "MESMERIA": {
@@ -74318,6 +75046,9 @@
         "phantump:8L44",
         "phantump:7L49",
         "phantump:6L49"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:phantump:9M"
       ]
     },
     "TREVENANT": {
@@ -74692,6 +75423,9 @@
         "trevenant:8M",
         "trevenant:7M",
         "trevenant:6M"
+      ],
+      "GRASS_KNOT": [
+        "Smogon:trevenant:9M"
       ]
     }
   },
@@ -74717,6 +75451,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "GROWTH",
       "HEADBUTT",
@@ -74787,6 +75522,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "GROWTH",
       "HEADBUTT",
@@ -74862,6 +75598,7 @@
       "FURY_CUTTER",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "GROWTH",
       "HEADBUTT",
@@ -75851,6 +76588,7 @@
       "FOCUS_ENERGY",
       "FRUSTRATION",
       "FURY_SWIPES",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPER_FANG",
@@ -75916,6 +76654,7 @@
       "FRUSTRATION",
       "FURY_SWIPES",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -76270,6 +77009,7 @@
       "FLASH",
       "FLY",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -76359,6 +77099,7 @@
       "FOCUS_BLAST",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -77139,6 +77880,7 @@
       "FLAMETHROWER",
       "FLASH",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -77257,6 +77999,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -77517,6 +78260,7 @@
       "FLAMETHROWER",
       "FLASH",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "GYRO_BALL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -77632,6 +78376,7 @@
       "FOCUS_BLAST",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GYRO_BALL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -77872,6 +78617,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -77928,6 +78674,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -77987,6 +78734,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -78055,6 +78803,7 @@
       "FURY_CUTTER",
       "FURY_SWIPES",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -78129,6 +78878,7 @@
       "FURY_SWIPES",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -78759,6 +79509,7 @@
       "FURY_SWIPES",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAIL",
       "HAZE",
       "HEADBUTT",
@@ -79420,6 +80171,7 @@
       "FLASH",
       "FOUL_PLAY",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "ICE_PUNCH",
@@ -79495,6 +80247,7 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "ICE_PUNCH",
@@ -79577,6 +80330,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -79663,6 +80417,7 @@
       "FORESIGHT",
       "FRUSTRATION",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "ICE_PUNCH",
       "INCINERATE",
@@ -79738,6 +80493,7 @@
       "FORESIGHT",
       "FRUSTRATION",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "ICE_PUNCH",
       "INCINERATE",
@@ -79815,6 +80571,7 @@
       "FRUSTRATION",
       "GIGA_IMPACT",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "ICE_PUNCH",
@@ -79880,6 +80637,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -79942,6 +80700,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -80007,6 +80766,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -80306,6 +81066,7 @@
       "HAMMER_ARM",
       "HARDEN",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "INCINERATE",
       "IRON_DEFENSE",
@@ -80381,6 +81142,7 @@
       "HAMMER_ARM",
       "HARDEN",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "INCINERATE",
@@ -80582,6 +81344,7 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "GROWL",
       "HAIL",
       "HEADBUTT",
@@ -80681,6 +81444,7 @@
       "FURY_CUTTER",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HAIL",
       "HEADBUTT",
@@ -80768,6 +81532,7 @@
       "FRUSTRATION",
       "GYRO_BALL",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "IRON_DEFENSE",
       "IRON_HEAD",
@@ -80823,6 +81588,7 @@
       "GIGA_IMPACT",
       "GYRO_BALL",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "IRON_DEFENSE",
@@ -81792,6 +82558,7 @@
       "HARDEN",
       "HEADBUTT",
       "HEAD_SMASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "IRON_HEAD",
       "IRON_TAIL",
@@ -81859,6 +82626,7 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "HAZE",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -81951,6 +82719,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAZE",
       "HEADBUTT",
       "HEX",
@@ -82290,6 +83059,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPNOSIS",
@@ -82365,6 +83135,7 @@
       "FUTURE_SIGHT",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -83001,6 +83772,7 @@
       "FRUSTRATION",
       "FURY_ATTACK",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HORN_ATTACK",
       "HORN_DRILL",
@@ -83099,6 +83871,7 @@
       "HAMMER_ARM",
       "HEADBUTT",
       "HEAT_CRASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HORN_ATTACK",
       "HORN_DRILL",
@@ -83203,6 +83976,7 @@
       "FOCUS_BLAST",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HAIL",
       "HEADBUTT",
@@ -83299,6 +84073,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -83789,6 +84564,7 @@
       "FLIP_TURN",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GYRO_BALL",
       "HAIL",
       "HARDEN",
@@ -83880,6 +84656,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -84043,6 +84820,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAIL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -85386,6 +86164,7 @@
       "HARDEN",
       "HEADBUTT",
       "HEAT_CRASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYDRO_PUMP",
       "HYPER_BEAM",
@@ -85983,6 +86762,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAIL",
       "HEADBUTT",
       "HEX",
@@ -86162,6 +86942,7 @@
       "FUTURE_SIGHT",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GUNK_SHOT",
       "GYRO_BALL",
       "HAIL",
@@ -86170,6 +86951,7 @@
       "HEAL_BELL",
       "HEAT_CRASH",
       "HEAT_WAVE",
+      "HEAVY_SLAM",
       "HEX",
       "HIDDEN_POWER",
       "HONE_CLAWS",
@@ -86346,6 +87128,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -86401,6 +87184,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -86464,6 +87248,7 @@
       "FURY_CUTTER",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -87003,6 +87788,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "FURY_SWIPES",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HONE_CLAWS",
@@ -87080,6 +87866,7 @@
       "FURY_CUTTER",
       "FURY_SWIPES",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HONE_CLAWS",
@@ -87787,6 +88574,7 @@
       "FLAIL",
       "FLASH",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "IRON_TAIL",
@@ -87854,6 +88642,7 @@
       "FLAMETHROWER",
       "FLASH",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPER_VOICE",
@@ -87931,6 +88720,7 @@
       "FLAMETHROWER",
       "FLASH",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HEAL_BELL",
       "HIDDEN_POWER",
@@ -88005,6 +88795,7 @@
       "FORESIGHT",
       "FRUSTRATION",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -88092,6 +88883,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -88177,6 +88969,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "HAZE",
       "HEAT_WAVE",
       "HIDDEN_POWER",
@@ -88250,6 +89043,7 @@
       "FUTURE_SIGHT",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAZE",
       "HEAT_WAVE",
       "HIDDEN_POWER",
@@ -88509,6 +89303,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -88582,6 +89377,7 @@
       "FORESIGHT",
       "FRUSTRATION",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "HAIL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -88663,6 +89459,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAIL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -88741,6 +89538,7 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAMMER_ARM",
       "HARDEN",
       "HEADBUTT",
@@ -88902,6 +89700,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -88967,6 +89766,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -89034,6 +89834,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -89104,6 +89905,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "FURY_SWIPES",
+      "GRASS_KNOT",
       "GUNK_SHOT",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -89175,6 +89977,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWTH",
       "HIDDEN_POWER",
       "LEAF_STORM",
@@ -89225,6 +90028,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -89501,6 +90305,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -89753,6 +90558,7 @@
       "FURY_CUTTER",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HAIL",
       "HEADBUTT",
@@ -89852,6 +90658,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -89948,6 +90755,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -90092,6 +90900,7 @@
       "GIGA_IMPACT",
       "GYRO_BALL",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "IRON_DEFENSE",
@@ -90365,6 +91174,7 @@
       "HARDEN",
       "HEADBUTT",
       "HEAD_SMASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "ICE_FANG",
@@ -92105,6 +92915,7 @@
       "GUNK_SHOT",
       "HEADBUTT",
       "HEAD_SMASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_VOICE",
       "ICE_SHARD",
@@ -92173,6 +92984,7 @@
       "GYRO_BALL",
       "HEADBUTT",
       "HEAD_SMASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HORN_ATTACK",
       "HYPER_BEAM",
@@ -92526,6 +93338,7 @@
       "FAKE_OUT",
       "FLASH",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HAIL",
       "HEAL_BELL",
       "HIDDEN_POWER",
@@ -92728,6 +93541,7 @@
       "HAMMER_ARM",
       "HEADBUTT",
       "HEAL_BELL",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "ICE_BEAM",
@@ -92812,6 +93626,7 @@
       "FOCUS_BLAST",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HAIL",
       "HEADBUTT",
@@ -93267,6 +94082,7 @@
       "FURY_CUTTER",
       "GIGA_IMPACT",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HONE_CLAWS",
       "HYDRO_PUMP",
@@ -93542,6 +94358,7 @@
       "FUTURE_SIGHT",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEAL_BELL",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -94179,6 +94996,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "GROWTH",
       "HEADBUTT",
@@ -94249,6 +95067,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "GROWTH",
       "HEADBUTT",
@@ -94324,6 +95143,7 @@
       "FURY_CUTTER",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "GROWTH",
       "HEADBUTT",
@@ -94490,6 +95310,7 @@
       "FURY_CUTTER",
       "FURY_SWIPES",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GUNK_SHOT",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -94900,6 +95721,7 @@
       "GLARE",
       "GYRO_BALL",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HEX",
       "HIDDEN_POWER",
       "HURRICANE",
@@ -95069,6 +95891,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -95147,6 +95970,7 @@
       "FLASH",
       "FRUSTRATION",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -95224,6 +96048,7 @@
       "FLASH",
       "FRUSTRATION",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -95307,6 +96132,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -95406,6 +96232,7 @@
       "FURY_CUTTER",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEX",
@@ -95588,6 +96415,7 @@
       "FURY_CUTTER",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -96019,6 +96847,7 @@
       "GIGA_IMPACT",
       "GYRO_BALL",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "IRON_DEFENSE",
@@ -96093,6 +96922,7 @@
       "HAIL",
       "HAZE",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HORN_ATTACK",
       "HYPER_BEAM",
@@ -96162,6 +96992,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -96328,6 +97159,7 @@
       "HAMMER_ARM",
       "HEADBUTT",
       "HEAT_CRASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HORN_ATTACK",
       "HORN_DRILL",
@@ -96579,6 +97411,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -96664,6 +97497,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -96764,6 +97598,7 @@
       "HAMMER_ARM",
       "HEADBUTT",
       "HEADLONGRUSH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HONE_CLAWS",
       "HYPER_BEAM",
@@ -97088,6 +97923,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "HIDDEN_POWER",
       "INFESTATION",
       "MEGA_DRAIN",
@@ -97147,6 +97983,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -97340,8 +98177,10 @@
       "FLASH",
       "FOCUS_BLAST",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "GYRO_BALL",
       "HAMMER_ARM",
+      "HEAVY_SLAM",
       "HEX",
       "HIDDEN_POWER",
       "ICE_BEAM",
@@ -97415,9 +98254,11 @@
       "FOCUS_BLAST",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GYRO_BALL",
       "HAMMER_ARM",
       "HEAT_CRASH",
+      "HEAVY_SLAM",
       "HEX",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -97725,6 +98566,7 @@
       "FORCE_PALM",
       "FORESIGHT",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HAMMER_ARM",
       "HIDDEN_POWER",
       "ICE_PUNCH",
@@ -97787,6 +98629,7 @@
       "FORCE_PALM",
       "FORESIGHT",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HAMMER_ARM",
       "HIDDEN_POWER",
       "ICE_PUNCH",
@@ -97853,6 +98696,7 @@
       "FORESIGHT",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAMMER_ARM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -98561,6 +99405,7 @@
       "FLASH_CANNON",
       "FOUL_PLAY",
       "GIGA_HAMMER",
+      "HEAVY_SLAM",
       "KNOCK_OFF",
       "LIGHT_SCREEN",
       "METAL_CLAW",
@@ -98935,6 +99780,7 @@
       "FOCUS_ENERGY",
       "FURY_ATTACK",
       "GIGA_IMPACT",
+      "HEAVY_SLAM",
       "HONE_CLAWS",
       "HURRICANE",
       "HYPER_BEAM",
@@ -98985,6 +99831,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWTH",
       "HAIL",
       "HEADBUTT",
@@ -99049,6 +99896,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HAIL",
       "HEADBUTT",
@@ -99277,6 +100125,7 @@
       "FACADE",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "GYRO_BALL",
       "HYPER_BEAM",
@@ -99319,9 +100168,11 @@
       "FACADE",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "GYRO_BALL",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HYPER_BEAM",
       "IRON_DEFENSE",
       "IRON_HEAD",
@@ -99372,8 +100223,10 @@
       "FOCUS_ENERGY",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GRAV_APPLE",
       "GROWTH",
+      "HEAVY_SLAM",
       "HYPER_BEAM",
       "IRON_DEFENSE",
       "LEAF_STORM",
@@ -99420,8 +100273,10 @@
       "FICKLE_BEAM",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "GYRO_BALL",
+      "HEAVY_SLAM",
       "HYDRO_PUMP",
       "HYPER_BEAM",
       "INFESTATION",
@@ -99466,6 +100321,7 @@
       "FOUL_PLAY",
       "GIGA_IMPACT",
       "GYRO_BALL",
+      "HEAVY_SLAM",
       "HONE_CLAWS",
       "HYPER_BEAM",
       "IRON_DEFENSE",
@@ -99519,6 +100375,7 @@
       "FOUL_PLAY",
       "GIGA_IMPACT",
       "GYRO_BALL",
+      "HEAVY_SLAM",
       "HONE_CLAWS",
       "HYPER_BEAM",
       "IRON_DEFENSE",
@@ -99568,6 +100425,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWTH",
       "GUNK_SHOT",
       "HEADBUTT",
@@ -99630,6 +100488,7 @@
       "FURY_CUTTER",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "GUNK_SHOT",
       "HEADBUTT",
@@ -99710,6 +100569,7 @@
       "FLAIL",
       "FORESIGHT",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HEAL_BELL",
       "HIDDEN_POWER",
@@ -99781,6 +100641,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HEAL_BELL",
       "HIDDEN_POWER",
@@ -99859,6 +100720,7 @@
       "HEADBUTT",
       "HEAT_CRASH",
       "HEAT_WAVE",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "INCINERATE",
       "IRON_HEAD",
@@ -99930,6 +100792,7 @@
       "HEADBUTT",
       "HEAT_CRASH",
       "HEAT_WAVE",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "INCINERATE",
@@ -101250,6 +102113,7 @@
       "FLASH_CANNON",
       "FRUSTRATION",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -101327,6 +102191,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -101404,6 +102269,7 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "FURY_CUTTER",
+      "GRASS_KNOT",
       "GUILLOTINE",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -101471,6 +102337,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GUILLOTINE",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -101540,6 +102407,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GUILLOTINE",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -101611,6 +102479,7 @@
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "HAIL",
       "HEADBUTT",
@@ -101675,6 +102544,7 @@
       "FRUSTRATION",
       "FURY_SWIPES",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWL",
       "HAIL",
       "HEADBUTT",
@@ -101756,6 +102626,7 @@
       "FURY_SWIPES",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HAIL",
       "HEADBUTT",
@@ -101901,6 +102772,7 @@
       "FOCUS_BLAST",
       "FOUL_PLAY",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HEAD_SMASH",
       "HIDDEN_POWER",
@@ -101978,6 +102850,7 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HEAD_SMASH",
       "HIDDEN_POWER",
@@ -102162,6 +103035,7 @@
       "GROWL",
       "HAIL",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYDRO_PUMP",
       "HYPER_BEAM",
@@ -102393,6 +103267,7 @@
       "HAMMER_ARM",
       "HARDEN",
       "HEADLONGRUSH",
+      "HEAVY_SLAM",
       "HYPER_BEAM",
       "HYPER_VOICE",
       "ICE_PUNCH",
@@ -102593,6 +103468,7 @@
       "FOCUS_ENERGY",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GUILLOTINE",
       "HARDEN",
       "HIDDEN_POWER",
@@ -102739,6 +103615,7 @@
       "HAMMER_ARM",
       "HEADBUTT",
       "HEAD_SMASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "ICE_BEAM",
@@ -102810,6 +103687,7 @@
       "FOCUS_ENERGY",
       "FRUSTRATION",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "ICE_BEAM",
       "INCINERATE",
@@ -102873,6 +103751,7 @@
       "FRUSTRATION",
       "GIGA_IMPACT",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "ICE_BEAM",
@@ -102931,6 +103810,7 @@
       "FACADE",
       "FLAIL",
       "GROWL",
+      "HEAVY_SLAM",
       "HYPER_BEAM",
       "HYPER_VOICE",
       "ICE_BEAM",
@@ -102972,6 +103852,7 @@
       "FLAIL",
       "GIGA_IMPACT",
       "GROWL",
+      "HEAVY_SLAM",
       "HYPER_BEAM",
       "HYPER_VOICE",
       "ICE_BEAM",
@@ -103334,6 +104215,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAIL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -103987,6 +104869,7 @@
       "HEADBUTT",
       "HEAT_CRASH",
       "HEAT_WAVE",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "INCINERATE",
@@ -104043,6 +104926,7 @@
       "FOCUS_ENERGY",
       "FRUSTRATION",
       "FURY_SWIPES",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPER_FANG",
@@ -104092,6 +104976,7 @@
       "FRUSTRATION",
       "FURY_SWIPES",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -104164,6 +105049,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -104962,6 +105848,7 @@
       "GIGA_IMPACT",
       "GYRO_BALL",
       "HEADBUTT",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "IRON_DEFENSE",
@@ -105198,6 +106085,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -105446,6 +106334,7 @@
       "GROWL",
       "GUNK_SHOT",
       "GYRO_BALL",
+      "HEAVY_SLAM",
       "HONE_CLAWS",
       "HYPER_BEAM",
       "HYPER_VOICE",
@@ -105594,6 +106483,7 @@
       "FLAMETHROWER",
       "FOUL_PLAY",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "GROWL",
       "HAIL",
       "HEADBUTT",
@@ -105664,6 +106554,7 @@
       "FOUL_PLAY",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "GUNK_SHOT",
       "HAIL",
@@ -105755,6 +106646,7 @@
       "FOUL_PLAY",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "GUNK_SHOT",
       "HAIL",
@@ -106007,6 +106899,7 @@
       "FACADE",
       "FOUL_PLAY",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GYRO_BALL",
       "LEAF_STORM",
       "LEECH_SEED",
@@ -106048,6 +106941,7 @@
       "FOUL_PLAY",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GYRO_BALL",
       "HYPER_BEAM",
       "LEAF_STORM",
@@ -106181,6 +107075,7 @@
       "FALSE_SWIPE",
       "FOCUS_BLAST",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GUNK_SHOT",
       "HONE_CLAWS",
       "LEER",
@@ -106236,6 +107131,7 @@
       "FIRE_PUNCH",
       "FOCUS_BLAST",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GUNK_SHOT",
       "HONE_CLAWS",
       "HYPER_BEAM",
@@ -106345,6 +107241,7 @@
       "GIGA_IMPACT",
       "GUNK_SHOT",
       "HAZE",
+      "HEAVY_SLAM",
       "HYDRO_PUMP",
       "HYPER_BEAM",
       "IRON_HEAD",
@@ -106494,6 +107391,7 @@
       "FLAIL",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "HIDDEN_POWER",
       "LEAF_STORM",
       "LIGHT_SCREEN",
@@ -106536,6 +107434,7 @@
       "FLAIL",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "HIDDEN_POWER",
       "KNOCK_OFF",
       "LEAF_STORM",
@@ -106585,6 +107484,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HIDDEN_POWER",
       "HI_JUMP_KICK",
       "HYPER_BEAM",
@@ -106648,6 +107548,7 @@
       "HARDEN",
       "HEADBUTT",
       "HEAD_SMASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HONE_CLAWS",
       "IRON_DEFENSE",
@@ -106707,6 +107608,7 @@
       "HARDEN",
       "HEADBUTT",
       "HEAD_SMASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HONE_CLAWS",
       "IRON_DEFENSE",
@@ -106785,6 +107687,7 @@
       "HARDEN",
       "HEADBUTT",
       "HEAD_SMASH",
+      "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HONE_CLAWS",
       "HYDRO_PUMP",
@@ -107138,6 +108041,7 @@
       "FURY_SWIPES",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GUNK_SHOT",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -107974,6 +108878,7 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWL",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -108454,6 +109359,7 @@
       "FOCUS_BLAST",
       "FOCUS_ENERGY",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HAZE",
       "HYDRO_PUMP",
       "HYPER_BEAM",
@@ -108571,6 +109477,7 @@
       "FLAIL",
       "FOUL_PLAY",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HARDEN",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -108626,6 +109533,7 @@
       "FLASH",
       "FRUSTRATION",
       "FUTURE_SIGHT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPNOSIS",
@@ -108683,6 +109591,7 @@
       "FLAMETHROWER",
       "FLASH",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HAIL",
       "HEADBUTT",
       "HEAL_BELL",
@@ -108960,6 +109869,7 @@
       "FOCUS_ENERGY",
       "FOUL_PLAY",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HIDDEN_POWER",
       "HONE_CLAWS",
       "INCINERATE",
@@ -109024,6 +109934,7 @@
       "FOCUS_ENERGY",
       "FOUL_PLAY",
       "FRUSTRATION",
+      "GRASS_KNOT",
       "HIDDEN_POWER",
       "HONE_CLAWS",
       "INCINERATE",
@@ -109101,6 +110012,7 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GUNK_SHOT",
       "HIDDEN_POWER",
       "HONE_CLAWS",
@@ -109181,6 +110093,7 @@
       "FRUSTRATION",
       "FUTURE_SIGHT",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -109271,6 +110184,7 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "GIGA_DRAIN",
+      "GRASS_KNOT",
       "GROWTH",
       "HEX",
       "HIDDEN_POWER",
@@ -109337,6 +110251,7 @@
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GRASS_KNOT",
       "GROWTH",
       "HAZE",
       "HEX",
@@ -109396,7 +110311,6 @@
       "Confide",
       "Echoed Voice",
       "Frenzy Plant",
-      "Grass Knot",
       "Grass Pledge",
       "Grass Whistle",
       "Grassy Glide",
@@ -109416,7 +110330,6 @@
       "Captivate",
       "Confide",
       "Echoed Voice",
-      "Grass Knot",
       "Grass Pledge",
       "Grassy Glide",
       "Grassy Terrain",
@@ -109441,7 +110354,6 @@
       "Confide",
       "Echoed Voice",
       "Frenzy Plant",
-      "Grass Knot",
       "Grass Pledge",
       "Grassy Glide",
       "Grassy Terrain",
@@ -109705,7 +110617,6 @@
       "Covet",
       "Endeavor",
       "Final Gambit",
-      "Grass Knot",
       "Last Resort",
       "Me First",
       "Natural Gift",
@@ -109724,7 +110635,6 @@
       "Confide",
       "Covet",
       "Endeavor",
-      "Grass Knot",
       "Last Resort",
       "Natural Gift",
       "Pluck",
@@ -109841,7 +110751,6 @@
       "Feint",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Happy Hour",
       "Heart Stamp",
       "Helping Hand",
@@ -109883,7 +110792,6 @@
       "Feint",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Laser Focus",
       "Magnet Rise",
@@ -110080,7 +110988,6 @@
       "Fling",
       "Focus Punch",
       "Follow Me",
-      "Grass Knot",
       "Gravity",
       "Healing Wish",
       "Helping Hand",
@@ -110128,7 +111035,6 @@
       "Fling",
       "Focus Punch",
       "Follow Me",
-      "Grass Knot",
       "Gravity",
       "Healing Wish",
       "Helping Hand",
@@ -110228,7 +111134,6 @@
       "Fake Tears",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
       "Helping Hand",
       "Ice Spinner",
@@ -110275,7 +111180,6 @@
       "Fake Tears",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
       "Helping Hand",
       "Ice Spinner",
@@ -110345,7 +111249,6 @@
       "Captivate",
       "Confide",
       "Gastro Acid",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Helping Hand",
@@ -110369,7 +111272,6 @@
       "Confide",
       "Fling",
       "Gastro Acid",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Helping Hand",
@@ -110396,7 +111298,6 @@
       "Corrosive Gas",
       "Fling",
       "Gastro Acid",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Helping Hand",
@@ -110421,7 +111322,6 @@
       "Captivate",
       "Confide",
       "Fell Stinger",
-      "Grass Knot",
       "Grassy Terrain",
       "Natural Gift",
       "Nature Power",
@@ -110438,7 +111338,6 @@
       "Aromatherapy",
       "Captivate",
       "Confide",
-      "Grass Knot",
       "Natural Gift",
       "Nature Power",
       "Rage Powder",
@@ -110632,7 +111531,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Laser Focus",
       "Me First",
@@ -110832,7 +111730,6 @@
       "Embargo",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
       "Guard Split",
       "Guard Swap",
@@ -110861,7 +111758,6 @@
       "Expanding Force",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
       "Guard Swap",
       "Magic Coat",
@@ -110891,7 +111787,6 @@
       "Expanding Force",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
       "Guard Swap",
       "Imprison",
@@ -110922,7 +111817,6 @@
       "Dual Chop",
       "Fling",
       "Focus Punch",
-      "Heavy Slam",
       "Helping Hand",
       "Natural Gift",
       "Payback",
@@ -110947,7 +111841,6 @@
       "Dual Chop",
       "Fling",
       "Focus Punch",
-      "Heavy Slam",
       "Helping Hand",
       "Natural Gift",
       "Payback",
@@ -110975,7 +111868,6 @@
       "Dual Chop",
       "Fling",
       "Focus Punch",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Natural Gift",
@@ -111004,7 +111896,6 @@
       "Clear Smog",
       "Confide",
       "Gastro Acid",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Ingrain",
@@ -111027,7 +111918,6 @@
       "Captivate",
       "Confide",
       "Gastro Acid",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Natural Gift",
@@ -111053,7 +111943,6 @@
       "Clear Smog",
       "Confide",
       "Gastro Acid",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Leaf Tornado",
@@ -111153,7 +112042,6 @@
       "Fling",
       "Focus Punch",
       "Hard Press",
-      "Heavy Slam",
       "High Horsepower",
       "Mud Sport",
       "Natural Gift",
@@ -111175,7 +112063,6 @@
       "Fling",
       "Focus Punch",
       "Hard Press",
-      "Heavy Slam",
       "High Horsepower",
       "Mud Sport",
       "Natural Gift",
@@ -111229,7 +112116,6 @@
       "Dive",
       "Echoed Voice",
       "Expanding Force",
-      "Grass Knot",
       "Heal Pulse",
       "Helping Hand",
       "Imprison",
@@ -111258,7 +112144,6 @@
       "Expanding Force",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Heal Pulse",
       "Helping Hand",
       "Imprison",
@@ -111288,7 +112173,6 @@
       "Electro Ball",
       "Electroweb",
       "Gravity",
-      "Heavy Slam",
       "Helping Hand",
       "Magic Coat",
       "Magnet Bomb",
@@ -111312,7 +112196,6 @@
       "Electro Ball",
       "Electroweb",
       "Gravity",
-      "Heavy Slam",
       "Helping Hand",
       "Magic Coat",
       "Magnet Bomb",
@@ -111623,7 +112506,6 @@
       "Brutal Swing",
       "Captivate",
       "Confide",
-      "Heavy Slam",
       "High Horsepower",
       "Meteor Beam",
       "Mud Sport",
@@ -111650,7 +112532,6 @@
       "Flatter",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Guard Swap",
       "Helping Hand",
       "Imprison",
@@ -111680,7 +112561,6 @@
       "Expanding Force",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Imprison",
       "Magic Coat",
@@ -111786,7 +112666,6 @@
       "Block",
       "Captivate",
       "Confide",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Gravity",
@@ -111811,7 +112690,6 @@
       "Captivate",
       "Confide",
       "Expanding Force",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Gravity",
@@ -112011,7 +112889,6 @@
       "Dragon Rush",
       "Endeavor",
       "Guard Split",
-      "Heavy Slam",
       "High Horsepower",
       "Metal Burst",
       "Natural Gift",
@@ -112039,7 +112916,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Meteor Beam",
@@ -112078,7 +112954,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
       "Healing Wish",
       "Heal Pulse",
@@ -112108,7 +112983,6 @@
       "Captivate",
       "Confide",
       "Endeavor",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Ingrain",
@@ -112226,7 +113100,6 @@
       "Confide",
       "Dive",
       "Expanding Force",
-      "Grass Knot",
       "Gravity",
       "Magic Coat",
       "Meteor Beam",
@@ -112251,7 +113124,6 @@
       "Fling",
       "Focus Punch",
       "Follow Me",
-      "Grass Knot",
       "Guard Swap",
       "Helping Hand",
       "Magic Coat",
@@ -112313,7 +113185,6 @@
       "Fling",
       "Focus Punch",
       "Frost Breath",
-      "Grass Knot",
       "Heart Stamp",
       "Helping Hand",
       "Magic Coat",
@@ -112722,7 +113593,6 @@
       "Focus Punch",
       "Gastro Acid",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Last Resort",
@@ -112872,7 +113742,6 @@
       "Expanding Force",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
       "Guard Swap",
       "Heal Pulse",
@@ -112945,14 +113814,12 @@
       "Frenzy Plant",
       "Frost Breath",
       "Gastro Acid",
-      "Grass Knot",
       "Grass Pledge",
       "Grassy Glide",
       "Grassy Terrain",
       "Gravity",
       "Guard Swap",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Hydro Cannon",
@@ -113033,7 +113900,6 @@
       "Echoed Voice",
       "Fake Tears",
       "Frenzy Plant",
-      "Grass Knot",
       "Grass Pledge",
       "Grass Whistle",
       "Grassy Glide",
@@ -113058,7 +113924,6 @@
       "Confide",
       "Echoed Voice",
       "Fake Tears",
-      "Grass Knot",
       "Grass Pledge",
       "Grassy Glide",
       "Grassy Terrain",
@@ -113088,7 +113953,6 @@
       "Endeavor",
       "Fake Tears",
       "Frenzy Plant",
-      "Grass Knot",
       "Grass Pledge",
       "Grassy Glide",
       "Grassy Terrain",
@@ -113274,7 +114138,6 @@
       "Fling",
       "Focus Punch",
       "Follow Me",
-      "Grass Knot",
       "Helping Hand",
       "Last Resort",
       "Me First",
@@ -113302,7 +114165,6 @@
       "Fling",
       "Focus Punch",
       "Follow Me",
-      "Grass Knot",
       "Helping Hand",
       "Last Resort",
       "Me First",
@@ -113505,7 +114367,6 @@
       "Endeavor",
       "Fling",
       "Follow Me",
-      "Grass Knot",
       "Helping Hand",
       "Lucky Chant",
       "Magnet Rise",
@@ -113533,7 +114394,6 @@
       "Endeavor",
       "Fake Tears",
       "Fling",
-      "Grass Knot",
       "Gravity",
       "Heal Pulse",
       "Helping Hand",
@@ -113562,7 +114422,6 @@
       "Endeavor",
       "Fake Tears",
       "Fling",
-      "Grass Knot",
       "Gravity",
       "Heal Pulse",
       "Helping Hand",
@@ -113590,7 +114449,6 @@
       "Endeavor",
       "Fling",
       "Follow Me",
-      "Grass Knot",
       "Helping Hand",
       "Last Resort",
       "Life Dew",
@@ -113617,7 +114475,6 @@
       "Fling",
       "Focus Punch",
       "Follow Me",
-      "Grass Knot",
       "Helping Hand",
       "Imprison",
       "Last Resort",
@@ -113644,7 +114501,6 @@
       "Confide",
       "Expanding Force",
       "Feather Dance",
-      "Grass Knot",
       "Guard Swap",
       "Imprison",
       "Lucky Chant",
@@ -113671,7 +114527,6 @@
       "Captivate",
       "Confide",
       "Expanding Force",
-      "Grass Knot",
       "Guard Swap",
       "Imprison",
       "Laser Focus",
@@ -113791,7 +114646,6 @@
       "Endeavor",
       "Fling",
       "Gastro Acid",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Helping Hand",
@@ -113825,7 +114679,6 @@
       "Fake Tears",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Ice Spinner",
       "Misty Explosion",
@@ -113857,7 +114710,6 @@
       "Fake Tears",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Ice Spinner",
       "Misty Explosion",
@@ -113890,7 +114742,6 @@
       "Fake Tears",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "High Horsepower",
       "Meteor Beam",
@@ -113937,7 +114788,6 @@
       "Captivate",
       "Confide",
       "Fling",
-      "Grass Knot",
       "Grassy Terrain",
       "Helping Hand",
       "Memento",
@@ -113959,7 +114809,6 @@
       "Confide",
       "Endeavor",
       "Fling",
-      "Grass Knot",
       "Grassy Terrain",
       "Helping Hand",
       "Memento",
@@ -113982,7 +114831,6 @@
       "Confide",
       "Endeavor",
       "Fling",
-      "Grass Knot",
       "Grassy Terrain",
       "Helping Hand",
       "Memento",
@@ -114009,7 +114857,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Last Resort",
       "Natural Gift",
@@ -114038,7 +114885,6 @@
       "Captivate",
       "Confide",
       "Endeavor",
-      "Grass Knot",
       "Grass Whistle",
       "Grassy Terrain",
       "Helping Hand",
@@ -114058,7 +114904,6 @@
       "Confide",
       "Endeavor",
       "Flower Shield",
-      "Grass Knot",
       "Grass Whistle",
       "Grassy Glide",
       "Grassy Terrain",
@@ -114155,7 +115000,6 @@
       "Echoed Voice",
       "Expanding Force",
       "Fake Tears",
-      "Grass Knot",
       "Gravity",
       "Helping Hand",
       "Imprison",
@@ -114248,7 +115092,6 @@
       "Expanding Force",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Heal Pulse",
       "Helping Hand",
       "Imprison",
@@ -114282,7 +115125,6 @@
       "Echoed Voice",
       "Embargo",
       "Fake Tears",
-      "Grass Knot",
       "Grudge",
       "Helping Hand",
       "Imprison",
@@ -114319,7 +115161,6 @@
       "Echoed Voice",
       "Endeavor",
       "Expanding Force",
-      "Grass Knot",
       "Gravity",
       "Guard Swap",
       "Helping Hand",
@@ -114369,7 +115210,6 @@
       "Confide",
       "Gravity",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "Ice Spinner",
       "Laser Focus",
@@ -114446,7 +115286,6 @@
       "Brutal Swing",
       "Captivate",
       "Confide",
-      "Heavy Slam",
       "High Horsepower",
       "Magnet Rise",
       "Meteor Beam",
@@ -114980,7 +115819,6 @@
       "Confide",
       "Echoed Voice",
       "Endeavor",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Last Resort",
@@ -115002,7 +115840,6 @@
       "Confide",
       "Echoed Voice",
       "Endeavor",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Ice Spinner",
@@ -115118,7 +115955,6 @@
       "Fake Tears",
       "Fling",
       "Frost Breath",
-      "Grass Knot",
       "Heart Stamp",
       "Helping Hand",
       "Lucky Chant",
@@ -115196,7 +116032,6 @@
       "Fling",
       "Focus Punch",
       "Heart Stamp",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Natural Gift",
@@ -115226,7 +116061,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
       "Healing Wish",
       "Heal Pulse",
@@ -115363,7 +116197,6 @@
       "Fling",
       "Focus Punch",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Lash Out",
@@ -115437,7 +116270,6 @@
       "Echoed Voice",
       "Expanding Force",
       "Fling",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Heal Block",
@@ -115631,7 +116463,6 @@
       "Confide",
       "Echoed Voice",
       "Frenzy Plant",
-      "Grass Knot",
       "Grass Pledge",
       "Grass Whistle",
       "Grassy Glide",
@@ -115651,7 +116482,6 @@
       "Captivate",
       "Confide",
       "Echoed Voice",
-      "Grass Knot",
       "Grass Pledge",
       "Grassy Glide",
       "Grassy Terrain",
@@ -115676,7 +116506,6 @@
       "Confide",
       "Echoed Voice",
       "Frenzy Plant",
-      "Grass Knot",
       "Grass Pledge",
       "Grassy Glide",
       "Grassy Terrain",
@@ -115731,7 +116560,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Laser Focus",
       "Last Resort",
@@ -115835,7 +116663,6 @@
       "Coil",
       "Dragon Rush",
       "Endeavor",
-      "Heavy Slam",
       "Helping Hand",
       "Hyper Drill",
       "Ice Spinner",
@@ -115900,7 +116727,6 @@
       "Double Hit",
       "Endeavor",
       "Expanding Force",
-      "Grass Knot",
       "Gravity",
       "Guard Swap",
       "Helping Hand",
@@ -115938,7 +116764,6 @@
       "Echoed Voice",
       "Expanding Force",
       "Fling",
-      "Grass Knot",
       "Grudge",
       "Heal Pulse",
       "Helping Hand",
@@ -115971,7 +116796,6 @@
       "Echoed Voice",
       "Expanding Force",
       "Fling",
-      "Grass Knot",
       "Heal Pulse",
       "Helping Hand",
       "Imprison",
@@ -116004,7 +116828,6 @@
       "Echoed Voice",
       "Expanding Force",
       "Fling",
-      "Grass Knot",
       "Gravity",
       "Guard Swap",
       "Healing Wish",
@@ -116049,7 +116872,6 @@
       "Feint",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Heal Pulse",
       "Helping Hand",
       "Imprison",
@@ -116121,7 +116943,6 @@
       "Covet",
       "Echoed Voice",
       "Fake Tears",
-      "Grass Knot",
       "Grass Whistle",
       "Grassy Glide",
       "Helping Hand",
@@ -116256,7 +117077,6 @@
       "Electroweb",
       "Gravity",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "Magic Coat",
       "Magnet Bomb",
@@ -116282,7 +117102,6 @@
       "Double Hit",
       "Endeavor",
       "Hard Press",
-      "Heavy Slam",
       "High Horsepower",
       "Mud Bomb",
       "Mud Sport",
@@ -116308,7 +117127,6 @@
       "Echoed Voice",
       "Embargo",
       "Fake Tears",
-      "Grass Knot",
       "Helping Hand",
       "Imprison",
       "Laser Focus",
@@ -116370,7 +117188,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Meteor Beam",
@@ -116443,7 +117260,6 @@
       "Confide",
       "Endeavor",
       "Fling",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Ingrain",
@@ -116472,7 +117288,6 @@
       "Fling",
       "Focus Punch",
       "Follow Me",
-      "Grass Knot",
       "Helping Hand",
       "Imprison",
       "Laser Focus",
@@ -116502,7 +117317,6 @@
       "Fling",
       "Focus Punch",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Payback",
@@ -116607,7 +117421,6 @@
       "Captivate",
       "Confide",
       "Gastro Acid",
-      "Grass Knot",
       "Ingrain",
       "Meteor Beam",
       "Natural Gift",
@@ -116627,7 +117440,6 @@
       "Captivate",
       "Confide",
       "Gastro Acid",
-      "Grass Knot",
       "Grassy Terrain",
       "Ingrain",
       "Meteor Beam",
@@ -116674,9 +117486,7 @@
       "Confide",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
-      "Heavy Slam",
       "Helping Hand",
       "Imprison",
       "Magic Coat",
@@ -116699,10 +117509,8 @@
       "Darkest Lariat",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Gravity",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Imprison",
@@ -116805,7 +117613,6 @@
       "Confide",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Payback",
       "Power-Up Punch",
@@ -116827,7 +117634,6 @@
       "Confide",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "High Horsepower",
       "Payback",
@@ -116850,7 +117656,6 @@
       "Confide",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Hard Press",
       "Helping Hand",
       "High Horsepower",
@@ -117096,7 +117901,6 @@
       "Flatter",
       "Fling",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "Metal Sound",
       "Pounce",
@@ -117191,7 +117995,6 @@
     "CORVIKNIGHT": [
       "Assurance",
       "Fake Tears",
-      "Heavy Slam",
       "Metal Sound",
       "Payback",
       "Pluck",
@@ -117208,7 +118011,6 @@
       "Chilling Water",
       "Confide",
       "Frost Breath",
-      "Grass Knot",
       "Grass Whistle",
       "Grassy Glide",
       "Helping Hand",
@@ -117234,7 +118036,6 @@
       "Fling",
       "Focus Punch",
       "Frost Breath",
-      "Grass Knot",
       "Grass Whistle",
       "Grassy Glide",
       "Hard Press",
@@ -117306,7 +118107,6 @@
     "DIPPLIN": [
       "Double Hit",
       "Dragon Cheer",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Pollen Puff",
@@ -117315,10 +118115,8 @@
       "Tera Blast"
     ],
     "APPLETUN": [
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Payback",
@@ -117332,10 +118130,8 @@
       "Acid Spray",
       "Dragon Rush",
       "Endeavor",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
-      "Heavy Slam",
       "Pounce",
       "Round",
       "Tera Blast",
@@ -117345,10 +118141,8 @@
       "Breaking Swipe",
       "Double Hit",
       "Dragon Cheer",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
-      "Heavy Slam",
       "Pollen Puff",
       "Pounce",
       "Syrup Bomb",
@@ -117358,7 +118152,6 @@
     "DURALUDON": [
       "Breaking Swipe",
       "Dragon Cheer",
-      "Heavy Slam",
       "Laser Focus",
       "Metal Burst",
       "Metal Sound",
@@ -117373,7 +118166,6 @@
       "Dragon Cheer",
       "Electro Shot",
       "Hard Press",
-      "Heavy Slam",
       "Metal Burst",
       "Metal Sound",
       "Meteor Beam",
@@ -117390,7 +118182,6 @@
       "Confide",
       "Fake Tears",
       "Focus Punch",
-      "Grass Knot",
       "Grassy Terrain",
       "Helping Hand",
       "Natural Gift",
@@ -117410,7 +118201,6 @@
       "Feint",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Grassy Terrain",
       "Helping Hand",
       "Laser Focus",
@@ -117442,7 +118232,6 @@
       "Flatter",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Healing Wish",
       "Helping Hand",
       "Last Resort",
@@ -117474,7 +118263,6 @@
       "Flatter",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Healing Wish",
       "Helping Hand",
       "Laser Focus",
@@ -117502,7 +118290,6 @@
       "Echoed Voice",
       "Endeavor",
       "Flame Burst",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Howl",
@@ -117528,7 +118315,6 @@
       "Echoed Voice",
       "Endeavor",
       "Flame Burst",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Lash Out",
@@ -117961,7 +118747,6 @@
       "Covet",
       "Endeavor",
       "Expanding Force",
-      "Grass Knot",
       "Helping Hand",
       "Imprison",
       "Lucky Chant",
@@ -117995,7 +118780,6 @@
       "Expanding Force",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Imprison",
       "Laser Focus",
@@ -118028,7 +118812,6 @@
       "Dual Chop",
       "Embargo",
       "Fling",
-      "Grass Knot",
       "Laser Focus",
       "Lash Out",
       "Magnet Rise",
@@ -118051,7 +118834,6 @@
       "Dual Chop",
       "Embargo",
       "Fling",
-      "Grass Knot",
       "Laser Focus",
       "Lash Out",
       "Magnet Rise",
@@ -118073,7 +118855,6 @@
     "KINGAMBIT": [
       "Assurance",
       "Fling",
-      "Grass Knot",
       "Lash Out",
       "Metal Burst",
       "Metal Sound",
@@ -118100,7 +118881,6 @@
       "Chilling Water",
       "Confide",
       "Echoed Voice",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Muddy Water",
@@ -118121,7 +118901,6 @@
       "Dive",
       "Echoed Voice",
       "Fling",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Muddy Water",
@@ -118145,7 +118924,6 @@
       "Echoed Voice",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Ice Spinner",
@@ -118188,7 +118966,6 @@
       "Fake Tears",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Lash Out",
       "Payback",
@@ -118218,7 +118995,6 @@
       "Fake Tears",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Lash Out",
       "Payback",
@@ -118283,7 +119059,6 @@
       "Dive",
       "Echoed Voice",
       "Frost Breath",
-      "Heavy Slam",
       "Ice Ball",
       "Natural Gift",
       "Round",
@@ -118354,7 +119129,6 @@
       "Fling",
       "Focus Punch",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Payback",
@@ -118408,7 +119182,6 @@
       "Dual Chop",
       "Endeavor",
       "Fling",
-      "Grass Knot",
       "Laser Focus",
       "Payback",
       "Round",
@@ -118449,7 +119222,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Heavy Slam",
       "Laser Focus",
       "Natural Gift",
       "Payback",
@@ -118470,7 +119242,6 @@
       "Confide",
       "Guard Split",
       "Hard Press",
-      "Heavy Slam",
       "Magnet Rise",
       "Metal Burst",
       "Metal Sound",
@@ -118492,7 +119263,6 @@
       "Captivate",
       "Confide",
       "Hard Press",
-      "Heavy Slam",
       "Magic Coat",
       "Magnet Rise",
       "Metal Burst",
@@ -118516,7 +119286,6 @@
       "Chilling Water",
       "Echoed Voice",
       "Entrainment",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Ice Spinner",
@@ -118528,7 +119297,6 @@
       "Chilling Water",
       "Echoed Voice",
       "Hard Press",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Ice Spinner",
@@ -118632,7 +119400,6 @@
       "Expanding Force",
       "Fake Tears",
       "Fling",
-      "Grass Knot",
       "Guard Swap",
       "Helping Hand",
       "Magic Room",
@@ -118825,7 +119592,6 @@
       "Clear Smog",
       "Confide",
       "Flame Burst",
-      "Heavy Slam",
       "Helping Hand",
       "Inferno",
       "Natural Gift",
@@ -118844,7 +119610,6 @@
       "Embargo",
       "Endeavor",
       "Final Gambit",
-      "Grass Knot",
       "Last Resort",
       "Me First",
       "Quash",
@@ -118863,7 +119628,6 @@
       "Covet",
       "Embargo",
       "Endeavor",
-      "Grass Knot",
       "Last Resort",
       "Quash",
       "Round",
@@ -118898,7 +119662,6 @@
       "Feint",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Laser Focus",
       "Magic Coat",
@@ -119186,7 +119949,6 @@
       "Fling",
       "Focus Punch",
       "Hard Press",
-      "Heavy Slam",
       "Magnet Rise",
       "Meteor Beam",
       "Nature Power",
@@ -119261,7 +120023,6 @@
       "Celebrate",
       "Confide",
       "Dragon Cheer",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Gravity",
@@ -119337,7 +120098,6 @@
       "Endeavor",
       "Fake Tears",
       "Fling",
-      "Heavy Slam",
       "Helping Hand",
       "Lash Out",
       "Metal Burst",
@@ -119387,7 +120147,6 @@
       "Chilling Water",
       "Dive",
       "Expanding Force",
-      "Grass Knot",
       "Heal Pulse",
       "Helping Hand",
       "Imprison",
@@ -119406,7 +120165,6 @@
       "Dive",
       "Expanding Force",
       "Fling",
-      "Grass Knot",
       "Heal Pulse",
       "Helping Hand",
       "Imprison",
@@ -119431,7 +120189,6 @@
       "Dive",
       "Expanding Force",
       "Fling",
-      "Grass Knot",
       "Heal Pulse",
       "Helping Hand",
       "Imprison",
@@ -119510,7 +120267,6 @@
       "Electric Terrain",
       "Electro Ball",
       "Electroweb",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Tera Blast",
@@ -119523,7 +120279,6 @@
       "Electric Terrain",
       "Electro Ball",
       "Electroweb",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Supercell Slam",
@@ -119559,7 +120314,6 @@
       "Feint",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Lash Out",
       "Quick Guard",
       "Sludge Wave",
@@ -119573,7 +120327,6 @@
       "Coaching",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Lash Out",
       "Sludge Wave",
       "Tera Blast",
@@ -119601,7 +120354,6 @@
     "CLODSIRE": [
       "Acid Spray",
       "Chilling Water",
-      "Heavy Slam",
       "Helping Hand",
       "High Horsepower",
       "Muddy Water",
@@ -119643,7 +120395,6 @@
       "Covet",
       "Endeavor",
       "Feint",
-      "Grass Knot",
       "Grass Whistle",
       "Grassy Glide",
       "Grassy Terrain",
@@ -119665,7 +120416,6 @@
       "Covet",
       "Endeavor",
       "Fling",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Helping Hand",
@@ -119689,7 +120439,6 @@
       "Covet",
       "Endeavor",
       "Fling",
-      "Grass Knot",
       "Grassy Glide",
       "Grassy Terrain",
       "Helping Hand",
@@ -119714,7 +120463,6 @@
       "Confide",
       "Dragon Rush",
       "Endeavor",
-      "Heavy Slam",
       "Magnet Rise",
       "Metal Burst",
       "Metal Sound",
@@ -119732,7 +120480,6 @@
       "Captivate",
       "Confide",
       "Endeavor",
-      "Heavy Slam",
       "Magnet Rise",
       "Metal Burst",
       "Metal Sound",
@@ -119757,7 +120504,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Heavy Slam",
       "High Horsepower",
       "Magnet Rise",
       "Metal Burst",
@@ -119880,7 +120626,6 @@
       "Final Gambit",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Last Resort",
       "Natural Gift",
@@ -120172,7 +120917,6 @@
       "Fake Tears",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Guard Swap",
       "Helping Hand",
       "Laser Focus",
@@ -120312,7 +121056,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Hard Press",
       "Helping Hand",
       "Jet Punch",
@@ -120354,7 +121097,6 @@
       "Copycat",
       "Covet",
       "Fake Tears",
-      "Grass Knot",
       "Helping Hand",
       "Natural Gift",
       "Nature Power",
@@ -120378,7 +121120,6 @@
       "Covet",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Healing Wish",
       "Helping Hand",
       "Magic Coat",
@@ -120409,7 +121150,6 @@
       "Echoed Voice",
       "Endeavor",
       "Fling",
-      "Grass Knot",
       "Gravity",
       "Helping Hand",
       "Last Resort",
@@ -120497,7 +121237,6 @@
       "Confide",
       "Embargo",
       "Fling",
-      "Grass Knot",
       "Helping Hand",
       "Lash Out",
       "Me First",
@@ -120524,7 +121263,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "Lash Out",
       "Payback",
@@ -120555,7 +121293,6 @@
       "Endeavor",
       "Fling",
       "Focus Punch",
-      "Grass Knot",
       "Helping Hand",
       "High Horsepower",
       "Lash Out",
@@ -120586,7 +121323,6 @@
       "Fake Tears",
       "Fling",
       "Follow Me",
-      "Grass Knot",
       "Gravity",
       "Happy Hour",
       "Healing Wish",
@@ -182580,6 +183316,12 @@
     "OCTOBER_2026": {
       "name": "October 2026 move expansion",
       "receipt": "tools/testdata/move_expansion_20261019.json",
+      "smogon_revision": "f7d73fdb20909885b70c4463f3878cf37875068d",
+      "lumi_revision": "45319ae889acf8b83ea012f65a2aa2a519693524"
+    },
+    "WEIGHT_MOVES_2026": {
+      "name": "Grass Knot and Heavy Slam (weight-based moves)",
+      "receipt": "tools/testdata/weight_moves_20261022.json",
       "smogon_revision": "f7d73fdb20909885b70c4463f3878cf37875068d",
       "lumi_revision": "45319ae889acf8b83ea012f65a2aa2a519693524"
     }

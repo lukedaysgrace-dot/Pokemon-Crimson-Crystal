@@ -1,0 +1,348 @@
+# Weight-based moves: Low Kick, Grass Knot, Heavy Slam and Heat Crash.
+#
+# Powers follow Showdown's basePowerCallback code (data/moves.ts), using the
+# official weights in hectograms (tools/testdata/species_weights.json):
+#   Low Kick / Grass Knot (target): >=2000 120, >=1000 100, >=500 80,
+#                                   >=250 60, >=100 40, else 20
+#   Heavy Slam / Heat Crash (user vs target): >=5x 120, >=4x 100, >=3x 80,
+#                                   >=2x 60, else 40
+# wDamageCalcBasePower holds the power damagecalc used for the last hit.
+# tools/battletest/weight_checks.py checks every species' native weight.
+
+# ---- Low Kick thresholds (exact boundary weights) -----------------------
+- name: "Low Kick: 9.9 kg Metapod -> 20 power"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: METAPOD, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 20
+    - enemy.hp < enemy.start_hp
+
+- name: "Low Kick: 10.0 kg Kakuna -> 40 power"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: KAKUNA, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 40
+
+- name: "Low Kick: 25.0 kg Seadra -> 60 power"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: SEADRA, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 60
+
+- name: "Low Kick: 50.0 kg Zweilous -> 80 power"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: ZWEILOUS, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 80
+
+- name: "Low Kick: 100.0 kg Venusaur -> 100 power"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: VENUSAUR, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 100
+
+- name: "Low Kick: 199.0 kg Ho-Oh -> 100 power"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: HO_OH, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 100
+
+- name: "Low Kick: 200.5 kg Scolipede -> 120 power"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: SCOLIPEDE, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 120
+
+- name: "Low Kick: enemy side uses the player's weight"
+  player: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 120
+    - player.hp < player.start_hp
+
+- name: "Low Kick: no longer flinches (the slower target still moves)"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [GROWL] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.stat_levels[0] == 6
+
+- name: "Low Kick: a transformed Pokemon has its new form's weight"
+  # Ditto (4.0 kg) transforms into Snorlax (460.0 kg) before the kick.
+  player: { species: DITTO, level: 50, ability: NO_ABILITY, moves: [TRANSFORM] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'SNORLAX'
+    - wram('wDamageCalcBasePower') == 120
+
+# ---- Technician sees the computed power -------------------------------
+- name: "Low Kick control: 20 power without Technician"
+  id: weight_lowkick_light_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: PICHU, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 20
+
+- name: "Low Kick: Technician boosts a 20-power kick"
+  player: { species: MEW, level: 50, ability: TECHNICIAN, moves: [LOW_KICK] }
+  enemy: { species: PICHU, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < result('weight_lowkick_light_control')['enemy']['hp']
+
+- name: "Low Kick control: 120 power without Technician"
+  id: weight_lowkick_heavy_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 120
+
+- name: "Low Kick: Technician ignores a 120-power kick"
+  player: { species: MEW, level: 50, ability: TECHNICIAN, moves: [LOW_KICK] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == result('weight_lowkick_heavy_control')['enemy']['hp']
+
+# ---- Grass Knot ---------------------------------------------------------
+- name: "Grass Knot: 9.9 kg Metapod -> 20 power"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GRASS_KNOT] }
+  enemy: { species: METAPOD, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 20
+
+- name: "Grass Knot: 300.0 kg Golem -> 120 power"
+  id: weight_grassknot_golem
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GRASS_KNOT] }
+  enemy: { species: GOLEM, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 120
+    - enemy.hp < enemy.start_hp
+
+- name: "Grass Knot: special, so Defense boosts don't reduce it"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GRASS_KNOT] }
+  enemy: { species: GOLEM, level: 100, ability: NO_ABILITY, stages: { def: 6 }, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == result('weight_grassknot_golem')['enemy']['hp']
+
+- name: "Grass Knot: makes contact (Rocky Helmet)"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [GRASS_KNOT] }
+  enemy: { species: GOLEM, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+# ---- Heavy Slam ratios (exact boundary pairs) ----------------------------
+- name: "Heavy Slam: 6.9 kg vs 3.5 kg (just under 2x) -> 40 power"
+  player: { species: BULBASAUR, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: RATTATA, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 40
+
+- name: "Heavy Slam: 13.0 kg vs 6.5 kg (exactly 2x) -> 60 power"
+  player: { species: IVYSAUR, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: KRABBY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 60
+
+- name: "Heavy Slam: 6.9 kg vs 2.3 kg (exactly 3x) -> 80 power"
+  player: { species: BULBASAUR, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: SHUPPET, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 80
+
+- name: "Heavy Slam: 100.0 kg vs 25.0 kg (exactly 4x) -> 100 power"
+  player: { species: VENUSAUR, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: SEADRA, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 100
+
+- name: "Heavy Slam: 13.0 kg vs 2.6 kg (exactly 5x) -> 120 power"
+  player: { species: IVYSAUR, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: LOTAD, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 120
+
+- name: "Heavy Slam: lighter user -> 40 power"
+  player: { species: PICHU, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 40
+    - enemy.hp < enemy.start_hp
+
+- name: "Heavy Slam: enemy side compares the enemy's weight with the player's"
+  player: { species: PICHU, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 120
+    - player.hp < player.start_hp
+
+- name: "Heavy Slam: makes contact (Rocky Helmet)"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+# ---- Minimize: double damage and no accuracy check (Gen VI+) -----------
+- name: "Heavy Slam control: normal damage"
+  id: weight_slam_minimize_control
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Heavy Slam: doubled against a minimized target"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wEnemyMinimized: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == 2 * (result('weight_slam_minimize_control')['enemy']['damage'])
+
+- name: "Heavy Slam control: +6 evasion makes the slam miss"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, stages: { eva: 6 }, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+
+- name: "Heavy Slam: never misses a minimized target"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, stages: { eva: 6 }, moves: [SPLASH] }
+  setup_wram: { wEnemyMinimized: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Heat Crash: never misses a minimized player either"
+  player: { species: MEW, level: 100, ability: NO_ABILITY, stages: { eva: 6 }, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [HEAT_CRASH] }
+  setup_wram: { wPlayerMinimized: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+- name: "Heavy Slam: Protect still blocks it against a minimized target"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: MEW, level: 100, ability: NO_ABILITY, moves: [PROTECT] }
+  setup_wram: { wEnemyMinimized: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+
+- name: "Low Kick: Minimize doesn't double it"
+  id: weight_lowkick_minimize_check
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [LOW_KICK] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  setup_wram: { wEnemyMinimized: 1 }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == result('weight_lowkick_heavy_control')['enemy']['hp']
+
+# ---- Heat Crash ---------------------------------------------------------
+- name: "Heat Crash: weight ratio power, no burn chance"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [HEAT_CRASH] }
+  enemy: { species: PICHU, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 120
+    - enemy.hp < enemy.start_hp
+    - enemy.status == 0
+
+- name: "Heat Crash: 13.0 kg vs 6.5 kg (exactly 2x) -> 60 power"
+  player: { species: IVYSAUR, level: 50, ability: NO_ABILITY, moves: [HEAT_CRASH] }
+  enemy: { species: KRABBY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wDamageCalcBasePower') == 60
+
+# ---- Trainer AI predicts the weight-based power ------------------------
+- name: "AI: picks a 120-power Heavy Slam over Tackle"
+  # Shuckle (20.5 kg) survives either move, so the choice is about power.
+  player: { species: SHUCKLE, level: 100, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE, HEAVY_SLAM] }
+  enemy2: { species: PIDGEY, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'HEAVY_SLAM'
+
+- name: "AI: prefers Tackle when Heavy Slam would be 40 power"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: PICHU, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM, TACKLE] }
+  enemy2: { species: PIDGEY, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'TACKLE'
+
+- name: "AI: picks a 120-power Low Kick over Tackle"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE, LOW_KICK] }
+  enemy2: { species: PIDGEY, level: 50, moves: [TACKLE] }
+  enemy_class: FALKNER
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy_move() == 'LOW_KICK'

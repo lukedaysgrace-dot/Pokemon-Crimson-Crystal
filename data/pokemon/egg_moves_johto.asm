@@ -2125,6 +2125,7 @@ CanonicalPHANPYEggMoves:
 	dw MUD_SLAP
 	dw PLAY_ROUGH
 	dw SNORE
+	dw HEAVY_SLAM
 	dw -1 ; end
 
 CanonicalSTANTLEREggMoves:

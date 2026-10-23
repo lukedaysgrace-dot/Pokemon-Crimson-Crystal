@@ -231,3 +231,5 @@
 	const EFFECT_HP_SCALED
 	const EFFECT_SP_ATK_UP_3
 	const EFFECT_RECYCLE
+	const EFFECT_LOW_KICK   ; Low Kick, Grass Knot: power from the target's weight
+	const EFFECT_HEAVY_SLAM ; Heavy Slam, Heat Crash: power from the weight ratio

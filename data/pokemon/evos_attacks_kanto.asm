@@ -2004,6 +2004,7 @@ GolemEvosAttacks:
 	dbw 46, DOUBLE_EDGE
 	dbw 50, STONE_EDGE
 	dbw 52, HEAD_SMASH
+	dbw 60, HEAVY_SLAM
 	db 0 ; no more level-up moves
 
 PonytaEvosAttacks:
@@ -3835,6 +3836,7 @@ SnorlaxEvosAttacks:
 	dbw 30, ROLLOUT
 	dbw 30, WORK_UP
 	dbw 32, BODY_PRESS
+	dbw 32, HEAVY_SLAM
 	dbw 33, ZEN_HEADBUTT
 	dbw 36, CRUNCH
 	dbw 42, BELLY_DRUM

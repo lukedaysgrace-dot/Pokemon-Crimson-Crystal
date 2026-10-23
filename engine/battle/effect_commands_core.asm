@@ -2230,6 +2230,7 @@ PlayStatChangeAnim_Core:
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/new_move_cores.asm"
 INCLUDE "engine/battle/move_effects/october_move_cores.asm"
+INCLUDE "engine/battle/move_effects/weight_power.asm"
 INCLUDE "engine/battle/move_effects/thief.asm"
 
 CheckDefScreenPierced:

@@ -2702,6 +2702,56 @@
           "label": "Horn Leech and learners"
         }
       ]
+    },
+    {
+      "id": "weight-based-moves",
+      "category": "moves",
+      "title": "Low Kick, Grass Knot, Heavy Slam and Heat Crash use weight",
+      "before": "Low Kick has 50 power and may cause flinching. Grass Knot and Heavy Slam do not exist.",
+      "after": "These moves use each Pokémon’s Pokédex weight with the modern formulas. Low Kick and Grass Knot have 20, 40, 60, 80, 100 or 120 power against targets under 10 kg, from 10 kg, 25 kg, 50 kg, 100 kg and 200 kg. Heavy Slam and Heat Crash have 40 power, rising to 60, 80, 100 or 120 when the user weighs at least two, three, four or five times as much as the target. Heavy Slam and Heat Crash deal double damage to, and never miss, a target that used Minimize. A transformed Pokémon uses its new form’s weight. Low Kick no longer flinches, and Heat Crash no longer burns. Grass Knot is a special Grass contact move; Heavy Slam is a physical Steel contact move.",
+      "comparison": "Gen 2",
+      "kind": "modern",
+      "sources": [
+        "engine/battle/move_effects/weight_power.asm",
+        "data/moves/moves.asm",
+        "data/moves/effects.asm",
+        "data/pokemon/dex_entries.asm"
+      ],
+      "links": [
+        {
+          "href": "moves/grass-knot.html",
+          "label": "Grass Knot and learners"
+        },
+        {
+          "href": "moves/heavy-slam.html",
+          "label": "Heavy Slam and learners"
+        }
+      ]
+    },
+    {
+      "id": "grass-knot-heavy-slam-learners",
+      "category": "training",
+      "title": "Grass Knot and Heavy Slam learners",
+      "before": "Grass Knot and Heavy Slam are unavailable in original Crystal.",
+      "after": "Every Pokémon that can learn Grass Knot or Heavy Slam in the main series through Scarlet and Violet can learn it here. Aron, Lairon, Aggron, Golem, Snorlax, Forretress, Numel, Camerupt, Shieldon, Bastiodon, Golett and Golurk learn Heavy Slam by level-up; Onix and Phanpy can learn it as an Egg Move. The Blackthorn move tutor teaches the rest. Grass Knot’s animation comes from mae-pokeorange; Heavy Slam has a new animation: a Metal Claw-style steel sheen over the user, a forward lunge and a heavy impact.",
+      "comparison": "Gen 2",
+      "kind": "expanded",
+      "sources": [
+        "data/pokemon/technical_tutor.asm",
+        "data/pokemon/evos_attacks_johto.asm",
+        "data/pokemon/egg_moves_kanto.asm",
+        "data/moves/animations6.asm"
+      ],
+      "links": [
+        {
+          "href": "moves/grass-knot.html",
+          "label": "Grass Knot"
+        },
+        {
+          "href": "moves/heavy-slam.html",
+          "label": "Heavy Slam"
+        }
+      ]
     }
   ]
 }
