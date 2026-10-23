@@ -1,0 +1,2993 @@
+{
+ "description": "Official weights (hectograms) for every species slot, from PokeAPI pokemon.csv; Blood Moon Ursaluna corrected to 333.0 kg. Palafin uses Hero Form and Dudunsparce its Two-Segment Form. dex_lbs_x10 is the value stored in the Pokedex entry (round(hg * 2.20462)). Custom species have no official weight.",
+ "species": {
+  "BULBASAUR": {
+   "dex_entry": "bulbasaur",
+   "source": "bulbasaur",
+   "weight_hg": 69,
+   "dex_lbs_x10": 152
+  },
+  "IVYSAUR": {
+   "dex_entry": "ivysaur",
+   "source": "ivysaur",
+   "weight_hg": 130,
+   "dex_lbs_x10": 287
+  },
+  "VENUSAUR": {
+   "dex_entry": "venusaur",
+   "source": "venusaur",
+   "weight_hg": 1000,
+   "dex_lbs_x10": 2205
+  },
+  "CHARMANDER": {
+   "dex_entry": "charmander",
+   "source": "charmander",
+   "weight_hg": 85,
+   "dex_lbs_x10": 187
+  },
+  "CHARMELEON": {
+   "dex_entry": "charmeleon",
+   "source": "charmeleon",
+   "weight_hg": 190,
+   "dex_lbs_x10": 419
+  },
+  "CHARIZARD": {
+   "dex_entry": "charizard",
+   "source": "charizard",
+   "weight_hg": 905,
+   "dex_lbs_x10": 1995
+  },
+  "SQUIRTLE": {
+   "dex_entry": "squirtle",
+   "source": "squirtle",
+   "weight_hg": 90,
+   "dex_lbs_x10": 198
+  },
+  "WARTORTLE": {
+   "dex_entry": "wartortle",
+   "source": "wartortle",
+   "weight_hg": 225,
+   "dex_lbs_x10": 496
+  },
+  "BLASTOISE": {
+   "dex_entry": "blastoise",
+   "source": "blastoise",
+   "weight_hg": 855,
+   "dex_lbs_x10": 1885
+  },
+  "CATERPIE": {
+   "dex_entry": "caterpie",
+   "source": "caterpie",
+   "weight_hg": 29,
+   "dex_lbs_x10": 64
+  },
+  "METAPOD": {
+   "dex_entry": "metapod",
+   "source": "metapod",
+   "weight_hg": 99,
+   "dex_lbs_x10": 218
+  },
+  "BUTTERFREE": {
+   "dex_entry": "butterfree",
+   "source": "butterfree",
+   "weight_hg": 320,
+   "dex_lbs_x10": 705
+  },
+  "WEEDLE": {
+   "dex_entry": "weedle",
+   "source": "weedle",
+   "weight_hg": 32,
+   "dex_lbs_x10": 71
+  },
+  "KAKUNA": {
+   "dex_entry": "kakuna",
+   "source": "kakuna",
+   "weight_hg": 100,
+   "dex_lbs_x10": 220
+  },
+  "BEEDRILL": {
+   "dex_entry": "beedrill",
+   "source": "beedrill",
+   "weight_hg": 295,
+   "dex_lbs_x10": 650
+  },
+  "PIDGEY": {
+   "dex_entry": "pidgey",
+   "source": "pidgey",
+   "weight_hg": 18,
+   "dex_lbs_x10": 40
+  },
+  "PIDGEOTTO": {
+   "dex_entry": "pidgeotto",
+   "source": "pidgeotto",
+   "weight_hg": 300,
+   "dex_lbs_x10": 661
+  },
+  "PIDGEOT": {
+   "dex_entry": "pidgeot",
+   "source": "pidgeot",
+   "weight_hg": 395,
+   "dex_lbs_x10": 871
+  },
+  "RATTATA": {
+   "dex_entry": "rattata",
+   "source": "rattata",
+   "weight_hg": 35,
+   "dex_lbs_x10": 77
+  },
+  "RATICATE": {
+   "dex_entry": "raticate",
+   "source": "raticate",
+   "weight_hg": 185,
+   "dex_lbs_x10": 408
+  },
+  "SPEAROW": {
+   "dex_entry": "spearow",
+   "source": "spearow",
+   "weight_hg": 20,
+   "dex_lbs_x10": 44
+  },
+  "FEAROW": {
+   "dex_entry": "fearow",
+   "source": "fearow",
+   "weight_hg": 380,
+   "dex_lbs_x10": 838
+  },
+  "EKANS": {
+   "dex_entry": "ekans",
+   "source": "ekans",
+   "weight_hg": 69,
+   "dex_lbs_x10": 152
+  },
+  "ARBOK": {
+   "dex_entry": "arbok",
+   "source": "arbok",
+   "weight_hg": 650,
+   "dex_lbs_x10": 1433
+  },
+  "PIKACHU": {
+   "dex_entry": "pikachu",
+   "source": "pikachu",
+   "weight_hg": 60,
+   "dex_lbs_x10": 132
+  },
+  "RAICHU": {
+   "dex_entry": "raichu",
+   "source": "raichu",
+   "weight_hg": 300,
+   "dex_lbs_x10": 661
+  },
+  "SANDSHREW": {
+   "dex_entry": "sandshrew",
+   "source": "sandshrew",
+   "weight_hg": 120,
+   "dex_lbs_x10": 265
+  },
+  "SANDSLASH": {
+   "dex_entry": "sandslash",
+   "source": "sandslash",
+   "weight_hg": 295,
+   "dex_lbs_x10": 650
+  },
+  "NIDORAN_F": {
+   "dex_entry": "nidoran_f",
+   "source": "nidoran-f",
+   "weight_hg": 70,
+   "dex_lbs_x10": 154
+  },
+  "NIDORINA": {
+   "dex_entry": "nidorina",
+   "source": "nidorina",
+   "weight_hg": 200,
+   "dex_lbs_x10": 441
+  },
+  "NIDOQUEEN": {
+   "dex_entry": "nidoqueen",
+   "source": "nidoqueen",
+   "weight_hg": 600,
+   "dex_lbs_x10": 1323
+  },
+  "NIDORAN_M": {
+   "dex_entry": "nidoran_m",
+   "source": "nidoran-m",
+   "weight_hg": 90,
+   "dex_lbs_x10": 198
+  },
+  "NIDORINO": {
+   "dex_entry": "nidorino",
+   "source": "nidorino",
+   "weight_hg": 195,
+   "dex_lbs_x10": 430
+  },
+  "NIDOKING": {
+   "dex_entry": "nidoking",
+   "source": "nidoking",
+   "weight_hg": 620,
+   "dex_lbs_x10": 1367
+  },
+  "CLEFAIRY": {
+   "dex_entry": "clefairy",
+   "source": "clefairy",
+   "weight_hg": 75,
+   "dex_lbs_x10": 165
+  },
+  "CLEFABLE": {
+   "dex_entry": "clefable",
+   "source": "clefable",
+   "weight_hg": 400,
+   "dex_lbs_x10": 882
+  },
+  "VULPIX": {
+   "dex_entry": "vulpix",
+   "source": "vulpix",
+   "weight_hg": 99,
+   "dex_lbs_x10": 218
+  },
+  "NINETALES": {
+   "dex_entry": "ninetales",
+   "source": "ninetales",
+   "weight_hg": 199,
+   "dex_lbs_x10": 439
+  },
+  "JIGGLYPUFF": {
+   "dex_entry": "jigglypuff",
+   "source": "jigglypuff",
+   "weight_hg": 55,
+   "dex_lbs_x10": 121
+  },
+  "WIGGLYTUFF": {
+   "dex_entry": "wigglytuff",
+   "source": "wigglytuff",
+   "weight_hg": 120,
+   "dex_lbs_x10": 265
+  },
+  "ZUBAT": {
+   "dex_entry": "zubat",
+   "source": "zubat",
+   "weight_hg": 75,
+   "dex_lbs_x10": 165
+  },
+  "GOLBAT": {
+   "dex_entry": "golbat",
+   "source": "golbat",
+   "weight_hg": 550,
+   "dex_lbs_x10": 1213
+  },
+  "ODDISH": {
+   "dex_entry": "oddish",
+   "source": "oddish",
+   "weight_hg": 54,
+   "dex_lbs_x10": 119
+  },
+  "GLOOM": {
+   "dex_entry": "gloom",
+   "source": "gloom",
+   "weight_hg": 86,
+   "dex_lbs_x10": 190
+  },
+  "VILEPLUME": {
+   "dex_entry": "vileplume",
+   "source": "vileplume",
+   "weight_hg": 186,
+   "dex_lbs_x10": 410
+  },
+  "PARAS": {
+   "dex_entry": "paras",
+   "source": "paras",
+   "weight_hg": 54,
+   "dex_lbs_x10": 119
+  },
+  "PARASECT": {
+   "dex_entry": "parasect",
+   "source": "parasect",
+   "weight_hg": 295,
+   "dex_lbs_x10": 650
+  },
+  "VENONAT": {
+   "dex_entry": "venonat",
+   "source": "venonat",
+   "weight_hg": 300,
+   "dex_lbs_x10": 661
+  },
+  "VENOMOTH": {
+   "dex_entry": "venomoth",
+   "source": "venomoth",
+   "weight_hg": 125,
+   "dex_lbs_x10": 276
+  },
+  "DIGLETT": {
+   "dex_entry": "diglett",
+   "source": "diglett",
+   "weight_hg": 8,
+   "dex_lbs_x10": 18
+  },
+  "DUGTRIO": {
+   "dex_entry": "dugtrio",
+   "source": "dugtrio",
+   "weight_hg": 333,
+   "dex_lbs_x10": 734
+  },
+  "MEOWTH": {
+   "dex_entry": "meowth",
+   "source": "meowth",
+   "weight_hg": 42,
+   "dex_lbs_x10": 93
+  },
+  "PERSIAN": {
+   "dex_entry": "persian",
+   "source": "persian",
+   "weight_hg": 320,
+   "dex_lbs_x10": 705
+  },
+  "PSYDUCK": {
+   "dex_entry": "psyduck",
+   "source": "psyduck",
+   "weight_hg": 196,
+   "dex_lbs_x10": 432
+  },
+  "GOLDUCK": {
+   "dex_entry": "golduck",
+   "source": "golduck",
+   "weight_hg": 766,
+   "dex_lbs_x10": 1689
+  },
+  "MANKEY": {
+   "dex_entry": "mankey",
+   "source": "mankey",
+   "weight_hg": 280,
+   "dex_lbs_x10": 617
+  },
+  "PRIMEAPE": {
+   "dex_entry": "primeape",
+   "source": "primeape",
+   "weight_hg": 320,
+   "dex_lbs_x10": 705
+  },
+  "GROWLITHE": {
+   "dex_entry": "growlithe",
+   "source": "growlithe",
+   "weight_hg": 190,
+   "dex_lbs_x10": 419
+  },
+  "ARCANINE": {
+   "dex_entry": "arcanine",
+   "source": "arcanine",
+   "weight_hg": 1550,
+   "dex_lbs_x10": 3417
+  },
+  "POLIWAG": {
+   "dex_entry": "poliwag",
+   "source": "poliwag",
+   "weight_hg": 124,
+   "dex_lbs_x10": 273
+  },
+  "POLIWHIRL": {
+   "dex_entry": "poliwhirl",
+   "source": "poliwhirl",
+   "weight_hg": 200,
+   "dex_lbs_x10": 441
+  },
+  "POLIWRATH": {
+   "dex_entry": "poliwrath",
+   "source": "poliwrath",
+   "weight_hg": 540,
+   "dex_lbs_x10": 1190
+  },
+  "ABRA": {
+   "dex_entry": "abra",
+   "source": "abra",
+   "weight_hg": 195,
+   "dex_lbs_x10": 430
+  },
+  "KADABRA": {
+   "dex_entry": "kadabra",
+   "source": "kadabra",
+   "weight_hg": 565,
+   "dex_lbs_x10": 1246
+  },
+  "ALAKAZAM": {
+   "dex_entry": "alakazam",
+   "source": "alakazam",
+   "weight_hg": 480,
+   "dex_lbs_x10": 1058
+  },
+  "MACHOP": {
+   "dex_entry": "machop",
+   "source": "machop",
+   "weight_hg": 195,
+   "dex_lbs_x10": 430
+  },
+  "MACHOKE": {
+   "dex_entry": "machoke",
+   "source": "machoke",
+   "weight_hg": 705,
+   "dex_lbs_x10": 1554
+  },
+  "MACHAMP": {
+   "dex_entry": "machamp",
+   "source": "machamp",
+   "weight_hg": 1300,
+   "dex_lbs_x10": 2866
+  },
+  "BELLSPROUT": {
+   "dex_entry": "bellsprout",
+   "source": "bellsprout",
+   "weight_hg": 40,
+   "dex_lbs_x10": 88
+  },
+  "WEEPINBELL": {
+   "dex_entry": "weepinbell",
+   "source": "weepinbell",
+   "weight_hg": 64,
+   "dex_lbs_x10": 141
+  },
+  "VICTREEBEL": {
+   "dex_entry": "victreebel",
+   "source": "victreebel",
+   "weight_hg": 155,
+   "dex_lbs_x10": 342
+  },
+  "TENTACOOL": {
+   "dex_entry": "tentacool",
+   "source": "tentacool",
+   "weight_hg": 455,
+   "dex_lbs_x10": 1003
+  },
+  "TENTACRUEL": {
+   "dex_entry": "tentacruel",
+   "source": "tentacruel",
+   "weight_hg": 550,
+   "dex_lbs_x10": 1213
+  },
+  "GEODUDE": {
+   "dex_entry": "geodude",
+   "source": "geodude",
+   "weight_hg": 200,
+   "dex_lbs_x10": 441
+  },
+  "GRAVELER": {
+   "dex_entry": "graveler",
+   "source": "graveler",
+   "weight_hg": 1050,
+   "dex_lbs_x10": 2315
+  },
+  "GOLEM": {
+   "dex_entry": "golem",
+   "source": "golem",
+   "weight_hg": 3000,
+   "dex_lbs_x10": 6614
+  },
+  "PONYTA": {
+   "dex_entry": "ponyta",
+   "source": "ponyta",
+   "weight_hg": 300,
+   "dex_lbs_x10": 661
+  },
+  "RAPIDASH": {
+   "dex_entry": "rapidash",
+   "source": "rapidash",
+   "weight_hg": 950,
+   "dex_lbs_x10": 2094
+  },
+  "SLOWPOKE": {
+   "dex_entry": "slowpoke",
+   "source": "slowpoke",
+   "weight_hg": 360,
+   "dex_lbs_x10": 794
+  },
+  "SLOWBRO": {
+   "dex_entry": "slowbro",
+   "source": "slowbro",
+   "weight_hg": 785,
+   "dex_lbs_x10": 1731
+  },
+  "MAGNEMITE": {
+   "dex_entry": "magnemite",
+   "source": "magnemite",
+   "weight_hg": 60,
+   "dex_lbs_x10": 132
+  },
+  "MAGNETON": {
+   "dex_entry": "magneton",
+   "source": "magneton",
+   "weight_hg": 600,
+   "dex_lbs_x10": 1323
+  },
+  "FARFETCH_D": {
+   "dex_entry": "farfetch_d",
+   "source": "farfetchd",
+   "weight_hg": 150,
+   "dex_lbs_x10": 331
+  },
+  "DODUO": {
+   "dex_entry": "doduo",
+   "source": "doduo",
+   "weight_hg": 392,
+   "dex_lbs_x10": 864
+  },
+  "DODRIO": {
+   "dex_entry": "dodrio",
+   "source": "dodrio",
+   "weight_hg": 852,
+   "dex_lbs_x10": 1878
+  },
+  "SEEL": {
+   "dex_entry": "seel",
+   "source": "seel",
+   "weight_hg": 900,
+   "dex_lbs_x10": 1984
+  },
+  "DEWGONG": {
+   "dex_entry": "dewgong",
+   "source": "dewgong",
+   "weight_hg": 1200,
+   "dex_lbs_x10": 2646
+  },
+  "GRIMER": {
+   "dex_entry": "grimer",
+   "source": "grimer",
+   "weight_hg": 300,
+   "dex_lbs_x10": 661
+  },
+  "MUK": {
+   "dex_entry": "muk",
+   "source": "muk",
+   "weight_hg": 300,
+   "dex_lbs_x10": 661
+  },
+  "SHELLDER": {
+   "dex_entry": "shellder",
+   "source": "shellder",
+   "weight_hg": 40,
+   "dex_lbs_x10": 88
+  },
+  "CLOYSTER": {
+   "dex_entry": "cloyster",
+   "source": "cloyster",
+   "weight_hg": 1325,
+   "dex_lbs_x10": 2921
+  },
+  "GASTLY": {
+   "dex_entry": "gastly",
+   "source": "gastly",
+   "weight_hg": 1,
+   "dex_lbs_x10": 2
+  },
+  "HAUNTER": {
+   "dex_entry": "haunter",
+   "source": "haunter",
+   "weight_hg": 1,
+   "dex_lbs_x10": 2
+  },
+  "GENGAR": {
+   "dex_entry": "gengar",
+   "source": "gengar",
+   "weight_hg": 405,
+   "dex_lbs_x10": 893
+  },
+  "ONIX": {
+   "dex_entry": "onix",
+   "source": "onix",
+   "weight_hg": 2100,
+   "dex_lbs_x10": 4630
+  },
+  "DROWZEE": {
+   "dex_entry": "drowzee",
+   "source": "drowzee",
+   "weight_hg": 324,
+   "dex_lbs_x10": 714
+  },
+  "HYPNO": {
+   "dex_entry": "hypno",
+   "source": "hypno",
+   "weight_hg": 756,
+   "dex_lbs_x10": 1667
+  },
+  "KRABBY": {
+   "dex_entry": "krabby",
+   "source": "krabby",
+   "weight_hg": 65,
+   "dex_lbs_x10": 143
+  },
+  "KINGLER": {
+   "dex_entry": "kingler",
+   "source": "kingler",
+   "weight_hg": 600,
+   "dex_lbs_x10": 1323
+  },
+  "VOLTORB": {
+   "dex_entry": "voltorb",
+   "source": "voltorb",
+   "weight_hg": 104,
+   "dex_lbs_x10": 229
+  },
+  "ELECTRODE": {
+   "dex_entry": "electrode",
+   "source": "electrode",
+   "weight_hg": 666,
+   "dex_lbs_x10": 1468
+  },
+  "EXEGGCUTE": {
+   "dex_entry": "exeggcute",
+   "source": "exeggcute",
+   "weight_hg": 25,
+   "dex_lbs_x10": 55
+  },
+  "EXEGGUTOR": {
+   "dex_entry": "exeggutor",
+   "source": "exeggutor",
+   "weight_hg": 1200,
+   "dex_lbs_x10": 2646
+  },
+  "CUBONE": {
+   "dex_entry": "cubone",
+   "source": "cubone",
+   "weight_hg": 65,
+   "dex_lbs_x10": 143
+  },
+  "MAROWAK": {
+   "dex_entry": "marowak",
+   "source": "marowak",
+   "weight_hg": 450,
+   "dex_lbs_x10": 992
+  },
+  "HITMONLEE": {
+   "dex_entry": "hitmonlee",
+   "source": "hitmonlee",
+   "weight_hg": 498,
+   "dex_lbs_x10": 1098
+  },
+  "HITMONCHAN": {
+   "dex_entry": "hitmonchan",
+   "source": "hitmonchan",
+   "weight_hg": 502,
+   "dex_lbs_x10": 1107
+  },
+  "LICKITUNG": {
+   "dex_entry": "lickitung",
+   "source": "lickitung",
+   "weight_hg": 655,
+   "dex_lbs_x10": 1444
+  },
+  "KOFFING": {
+   "dex_entry": "koffing",
+   "source": "koffing",
+   "weight_hg": 10,
+   "dex_lbs_x10": 22
+  },
+  "WEEZING": {
+   "dex_entry": "weezing",
+   "source": "weezing",
+   "weight_hg": 95,
+   "dex_lbs_x10": 209
+  },
+  "RHYHORN": {
+   "dex_entry": "rhyhorn",
+   "source": "rhyhorn",
+   "weight_hg": 1150,
+   "dex_lbs_x10": 2535
+  },
+  "RHYDON": {
+   "dex_entry": "rhydon",
+   "source": "rhydon",
+   "weight_hg": 1200,
+   "dex_lbs_x10": 2646
+  },
+  "CHANSEY": {
+   "dex_entry": "chansey",
+   "source": "chansey",
+   "weight_hg": 346,
+   "dex_lbs_x10": 763
+  },
+  "TANGELA": {
+   "dex_entry": "tangela",
+   "source": "tangela",
+   "weight_hg": 350,
+   "dex_lbs_x10": 772
+  },
+  "KANGASKHAN": {
+   "dex_entry": "kangaskhan",
+   "source": "kangaskhan",
+   "weight_hg": 800,
+   "dex_lbs_x10": 1764
+  },
+  "HORSEA": {
+   "dex_entry": "horsea",
+   "source": "horsea",
+   "weight_hg": 80,
+   "dex_lbs_x10": 176
+  },
+  "SEADRA": {
+   "dex_entry": "seadra",
+   "source": "seadra",
+   "weight_hg": 250,
+   "dex_lbs_x10": 551
+  },
+  "GOLDEEN": {
+   "dex_entry": "goldeen",
+   "source": "goldeen",
+   "weight_hg": 150,
+   "dex_lbs_x10": 331
+  },
+  "SEAKING": {
+   "dex_entry": "seaking",
+   "source": "seaking",
+   "weight_hg": 390,
+   "dex_lbs_x10": 860
+  },
+  "STARYU": {
+   "dex_entry": "staryu",
+   "source": "staryu",
+   "weight_hg": 345,
+   "dex_lbs_x10": 761
+  },
+  "STARMIE": {
+   "dex_entry": "starmie",
+   "source": "starmie",
+   "weight_hg": 800,
+   "dex_lbs_x10": 1764
+  },
+  "MR__MIME": {
+   "dex_entry": "mr__mime",
+   "source": "mr-mime",
+   "weight_hg": 545,
+   "dex_lbs_x10": 1202
+  },
+  "SCYTHER": {
+   "dex_entry": "scyther",
+   "source": "scyther",
+   "weight_hg": 560,
+   "dex_lbs_x10": 1235
+  },
+  "JYNX": {
+   "dex_entry": "jynx",
+   "source": "jynx",
+   "weight_hg": 406,
+   "dex_lbs_x10": 895
+  },
+  "ELECTABUZZ": {
+   "dex_entry": "electabuzz",
+   "source": "electabuzz",
+   "weight_hg": 300,
+   "dex_lbs_x10": 661
+  },
+  "MAGMAR": {
+   "dex_entry": "magmar",
+   "source": "magmar",
+   "weight_hg": 445,
+   "dex_lbs_x10": 981
+  },
+  "PINSIR": {
+   "dex_entry": "pinsir",
+   "source": "pinsir",
+   "weight_hg": 550,
+   "dex_lbs_x10": 1213
+  },
+  "TAUROS": {
+   "dex_entry": "tauros",
+   "source": "tauros",
+   "weight_hg": 884,
+   "dex_lbs_x10": 1949
+  },
+  "MAGIKARP": {
+   "dex_entry": "magikarp",
+   "source": "magikarp",
+   "weight_hg": 100,
+   "dex_lbs_x10": 220
+  },
+  "GYARADOS": {
+   "dex_entry": "gyarados",
+   "source": "gyarados",
+   "weight_hg": 2350,
+   "dex_lbs_x10": 5181
+  },
+  "LAPRAS": {
+   "dex_entry": "lapras",
+   "source": "lapras",
+   "weight_hg": 2200,
+   "dex_lbs_x10": 4850
+  },
+  "DITTO": {
+   "dex_entry": "ditto",
+   "source": "ditto",
+   "weight_hg": 40,
+   "dex_lbs_x10": 88
+  },
+  "EEVEE": {
+   "dex_entry": "eevee",
+   "source": "eevee",
+   "weight_hg": 65,
+   "dex_lbs_x10": 143
+  },
+  "VAPOREON": {
+   "dex_entry": "vaporeon",
+   "source": "vaporeon",
+   "weight_hg": 290,
+   "dex_lbs_x10": 639
+  },
+  "JOLTEON": {
+   "dex_entry": "jolteon",
+   "source": "jolteon",
+   "weight_hg": 245,
+   "dex_lbs_x10": 540
+  },
+  "FLAREON": {
+   "dex_entry": "flareon",
+   "source": "flareon",
+   "weight_hg": 250,
+   "dex_lbs_x10": 551
+  },
+  "PORYGON": {
+   "dex_entry": "porygon",
+   "source": "porygon",
+   "weight_hg": 365,
+   "dex_lbs_x10": 805
+  },
+  "OMANYTE": {
+   "dex_entry": "omanyte",
+   "source": "omanyte",
+   "weight_hg": 75,
+   "dex_lbs_x10": 165
+  },
+  "OMASTAR": {
+   "dex_entry": "omastar",
+   "source": "omastar",
+   "weight_hg": 350,
+   "dex_lbs_x10": 772
+  },
+  "KABUTO": {
+   "dex_entry": "kabuto",
+   "source": "kabuto",
+   "weight_hg": 115,
+   "dex_lbs_x10": 254
+  },
+  "KABUTOPS": {
+   "dex_entry": "kabutops",
+   "source": "kabutops",
+   "weight_hg": 405,
+   "dex_lbs_x10": 893
+  },
+  "AERODACTYL": {
+   "dex_entry": "aerodactyl",
+   "source": "aerodactyl",
+   "weight_hg": 590,
+   "dex_lbs_x10": 1301
+  },
+  "SNORLAX": {
+   "dex_entry": "snorlax",
+   "source": "snorlax",
+   "weight_hg": 4600,
+   "dex_lbs_x10": 10141
+  },
+  "ARTICUNO": {
+   "dex_entry": "articuno",
+   "source": "articuno",
+   "weight_hg": 554,
+   "dex_lbs_x10": 1221
+  },
+  "ZAPDOS": {
+   "dex_entry": "zapdos",
+   "source": "zapdos",
+   "weight_hg": 526,
+   "dex_lbs_x10": 1160
+  },
+  "MOLTRES": {
+   "dex_entry": "moltres",
+   "source": "moltres",
+   "weight_hg": 600,
+   "dex_lbs_x10": 1323
+  },
+  "DRATINI": {
+   "dex_entry": "dratini",
+   "source": "dratini",
+   "weight_hg": 33,
+   "dex_lbs_x10": 73
+  },
+  "DRAGONAIR": {
+   "dex_entry": "dragonair",
+   "source": "dragonair",
+   "weight_hg": 165,
+   "dex_lbs_x10": 364
+  },
+  "DRAGONITE": {
+   "dex_entry": "dragonite",
+   "source": "dragonite",
+   "weight_hg": 2100,
+   "dex_lbs_x10": 4630
+  },
+  "MEWTWO": {
+   "dex_entry": "mewtwo",
+   "source": "mewtwo",
+   "weight_hg": 1220,
+   "dex_lbs_x10": 2690
+  },
+  "MEW": {
+   "dex_entry": "mew",
+   "source": "mew",
+   "weight_hg": 40,
+   "dex_lbs_x10": 88
+  },
+  "CHIKORITA": {
+   "dex_entry": "chikorita",
+   "source": "chikorita",
+   "weight_hg": 64,
+   "dex_lbs_x10": 141
+  },
+  "BAYLEEF": {
+   "dex_entry": "bayleef",
+   "source": "bayleef",
+   "weight_hg": 158,
+   "dex_lbs_x10": 348
+  },
+  "MEGANIUM": {
+   "dex_entry": "meganium",
+   "source": "meganium",
+   "weight_hg": 1005,
+   "dex_lbs_x10": 2216
+  },
+  "CYNDAQUIL": {
+   "dex_entry": "cyndaquil",
+   "source": "cyndaquil",
+   "weight_hg": 79,
+   "dex_lbs_x10": 174
+  },
+  "QUILAVA": {
+   "dex_entry": "quilava",
+   "source": "quilava",
+   "weight_hg": 190,
+   "dex_lbs_x10": 419
+  },
+  "TYPHLOSION": {
+   "dex_entry": "typhlosion",
+   "source": "typhlosion",
+   "weight_hg": 795,
+   "dex_lbs_x10": 1753
+  },
+  "TOTODILE": {
+   "dex_entry": "totodile",
+   "source": "totodile",
+   "weight_hg": 95,
+   "dex_lbs_x10": 209
+  },
+  "CROCONAW": {
+   "dex_entry": "croconaw",
+   "source": "croconaw",
+   "weight_hg": 250,
+   "dex_lbs_x10": 551
+  },
+  "FERALIGATR": {
+   "dex_entry": "feraligatr",
+   "source": "feraligatr",
+   "weight_hg": 888,
+   "dex_lbs_x10": 1958
+  },
+  "SENTRET": {
+   "dex_entry": "sentret",
+   "source": "sentret",
+   "weight_hg": 60,
+   "dex_lbs_x10": 132
+  },
+  "FURRET": {
+   "dex_entry": "furret",
+   "source": "furret",
+   "weight_hg": 325,
+   "dex_lbs_x10": 717
+  },
+  "HOOTHOOT": {
+   "dex_entry": "hoothoot",
+   "source": "hoothoot",
+   "weight_hg": 212,
+   "dex_lbs_x10": 467
+  },
+  "NOCTOWL": {
+   "dex_entry": "noctowl",
+   "source": "noctowl",
+   "weight_hg": 408,
+   "dex_lbs_x10": 899
+  },
+  "LEDYBA": {
+   "dex_entry": "ledyba",
+   "source": "ledyba",
+   "weight_hg": 108,
+   "dex_lbs_x10": 238
+  },
+  "LEDIAN": {
+   "dex_entry": "ledian",
+   "source": "ledian",
+   "weight_hg": 356,
+   "dex_lbs_x10": 785
+  },
+  "SPINARAK": {
+   "dex_entry": "spinarak",
+   "source": "spinarak",
+   "weight_hg": 85,
+   "dex_lbs_x10": 187
+  },
+  "ARIADOS": {
+   "dex_entry": "ariados",
+   "source": "ariados",
+   "weight_hg": 335,
+   "dex_lbs_x10": 739
+  },
+  "CROBAT": {
+   "dex_entry": "crobat",
+   "source": "crobat",
+   "weight_hg": 750,
+   "dex_lbs_x10": 1653
+  },
+  "CHINCHOU": {
+   "dex_entry": "chinchou",
+   "source": "chinchou",
+   "weight_hg": 120,
+   "dex_lbs_x10": 265
+  },
+  "LANTURN": {
+   "dex_entry": "lanturn",
+   "source": "lanturn",
+   "weight_hg": 225,
+   "dex_lbs_x10": 496
+  },
+  "PICHU": {
+   "dex_entry": "pichu",
+   "source": "pichu",
+   "weight_hg": 20,
+   "dex_lbs_x10": 44
+  },
+  "CLEFFA": {
+   "dex_entry": "cleffa",
+   "source": "cleffa",
+   "weight_hg": 30,
+   "dex_lbs_x10": 66
+  },
+  "IGGLYBUFF": {
+   "dex_entry": "igglybuff",
+   "source": "igglybuff",
+   "weight_hg": 10,
+   "dex_lbs_x10": 22
+  },
+  "TOGEPI": {
+   "dex_entry": "togepi",
+   "source": "togepi",
+   "weight_hg": 15,
+   "dex_lbs_x10": 33
+  },
+  "TOGETIC": {
+   "dex_entry": "togetic",
+   "source": "togetic",
+   "weight_hg": 32,
+   "dex_lbs_x10": 71
+  },
+  "NATU": {
+   "dex_entry": "natu",
+   "source": "natu",
+   "weight_hg": 20,
+   "dex_lbs_x10": 44
+  },
+  "XATU": {
+   "dex_entry": "xatu",
+   "source": "xatu",
+   "weight_hg": 150,
+   "dex_lbs_x10": 331
+  },
+  "MAREEP": {
+   "dex_entry": "mareep",
+   "source": "mareep",
+   "weight_hg": 78,
+   "dex_lbs_x10": 172
+  },
+  "FLAAFFY": {
+   "dex_entry": "flaaffy",
+   "source": "flaaffy",
+   "weight_hg": 133,
+   "dex_lbs_x10": 293
+  },
+  "AMPHAROS": {
+   "dex_entry": "ampharos",
+   "source": "ampharos",
+   "weight_hg": 615,
+   "dex_lbs_x10": 1356
+  },
+  "BELLOSSOM": {
+   "dex_entry": "bellossom",
+   "source": "bellossom",
+   "weight_hg": 58,
+   "dex_lbs_x10": 128
+  },
+  "MARILL": {
+   "dex_entry": "marill",
+   "source": "marill",
+   "weight_hg": 85,
+   "dex_lbs_x10": 187
+  },
+  "AZUMARILL": {
+   "dex_entry": "azumarill",
+   "source": "azumarill",
+   "weight_hg": 285,
+   "dex_lbs_x10": 628
+  },
+  "SUDOWOODO": {
+   "dex_entry": "sudowoodo",
+   "source": "sudowoodo",
+   "weight_hg": 380,
+   "dex_lbs_x10": 838
+  },
+  "POLITOED": {
+   "dex_entry": "politoed",
+   "source": "politoed",
+   "weight_hg": 339,
+   "dex_lbs_x10": 747
+  },
+  "HOPPIP": {
+   "dex_entry": "hoppip",
+   "source": "hoppip",
+   "weight_hg": 5,
+   "dex_lbs_x10": 11
+  },
+  "SKIPLOOM": {
+   "dex_entry": "skiploom",
+   "source": "skiploom",
+   "weight_hg": 10,
+   "dex_lbs_x10": 22
+  },
+  "JUMPLUFF": {
+   "dex_entry": "jumpluff",
+   "source": "jumpluff",
+   "weight_hg": 30,
+   "dex_lbs_x10": 66
+  },
+  "AIPOM": {
+   "dex_entry": "aipom",
+   "source": "aipom",
+   "weight_hg": 115,
+   "dex_lbs_x10": 254
+  },
+  "SUNKERN": {
+   "dex_entry": "sunkern",
+   "source": "sunkern",
+   "weight_hg": 18,
+   "dex_lbs_x10": 40
+  },
+  "SUNFLORA": {
+   "dex_entry": "sunflora",
+   "source": "sunflora",
+   "weight_hg": 85,
+   "dex_lbs_x10": 187
+  },
+  "YANMA": {
+   "dex_entry": "yanma",
+   "source": "yanma",
+   "weight_hg": 380,
+   "dex_lbs_x10": 838
+  },
+  "WOOPER": {
+   "dex_entry": "wooper",
+   "source": "wooper",
+   "weight_hg": 85,
+   "dex_lbs_x10": 187
+  },
+  "QUAGSIRE": {
+   "dex_entry": "quagsire",
+   "source": "quagsire",
+   "weight_hg": 750,
+   "dex_lbs_x10": 1653
+  },
+  "ESPEON": {
+   "dex_entry": "espeon",
+   "source": "espeon",
+   "weight_hg": 265,
+   "dex_lbs_x10": 584
+  },
+  "UMBREON": {
+   "dex_entry": "umbreon",
+   "source": "umbreon",
+   "weight_hg": 270,
+   "dex_lbs_x10": 595
+  },
+  "MURKROW": {
+   "dex_entry": "murkrow",
+   "source": "murkrow",
+   "weight_hg": 21,
+   "dex_lbs_x10": 46
+  },
+  "SLOWKING": {
+   "dex_entry": "slowking",
+   "source": "slowking",
+   "weight_hg": 795,
+   "dex_lbs_x10": 1753
+  },
+  "MISDREAVUS": {
+   "dex_entry": "misdreavus",
+   "source": "misdreavus",
+   "weight_hg": 10,
+   "dex_lbs_x10": 22
+  },
+  "UNOWN": {
+   "dex_entry": "unown",
+   "source": "unown",
+   "weight_hg": 50,
+   "dex_lbs_x10": 110
+  },
+  "WOBBUFFET": {
+   "dex_entry": "wobbuffet",
+   "source": "wobbuffet",
+   "weight_hg": 285,
+   "dex_lbs_x10": 628
+  },
+  "GIRAFARIG": {
+   "dex_entry": "girafarig",
+   "source": "girafarig",
+   "weight_hg": 415,
+   "dex_lbs_x10": 915
+  },
+  "PINECO": {
+   "dex_entry": "pineco",
+   "source": "pineco",
+   "weight_hg": 72,
+   "dex_lbs_x10": 159
+  },
+  "FORRETRESS": {
+   "dex_entry": "forretress",
+   "source": "forretress",
+   "weight_hg": 1258,
+   "dex_lbs_x10": 2773
+  },
+  "DUNSPARCE": {
+   "dex_entry": "dunsparce",
+   "source": "dunsparce",
+   "weight_hg": 140,
+   "dex_lbs_x10": 309
+  },
+  "GLIGAR": {
+   "dex_entry": "gligar",
+   "source": "gligar",
+   "weight_hg": 648,
+   "dex_lbs_x10": 1429
+  },
+  "STEELIX": {
+   "dex_entry": "steelix",
+   "source": "steelix",
+   "weight_hg": 4000,
+   "dex_lbs_x10": 8818
+  },
+  "SNUBBULL": {
+   "dex_entry": "snubbull",
+   "source": "snubbull",
+   "weight_hg": 78,
+   "dex_lbs_x10": 172
+  },
+  "GRANBULL": {
+   "dex_entry": "granbull",
+   "source": "granbull",
+   "weight_hg": 487,
+   "dex_lbs_x10": 1074
+  },
+  "QWILFISH": {
+   "dex_entry": "qwilfish",
+   "source": "qwilfish",
+   "weight_hg": 39,
+   "dex_lbs_x10": 86
+  },
+  "SCIZOR": {
+   "dex_entry": "scizor",
+   "source": "scizor",
+   "weight_hg": 1180,
+   "dex_lbs_x10": 2601
+  },
+  "SHUCKLE": {
+   "dex_entry": "shuckle",
+   "source": "shuckle",
+   "weight_hg": 205,
+   "dex_lbs_x10": 452
+  },
+  "HERACROSS": {
+   "dex_entry": "heracross",
+   "source": "heracross",
+   "weight_hg": 540,
+   "dex_lbs_x10": 1190
+  },
+  "SNEASEL": {
+   "dex_entry": "sneasel",
+   "source": "sneasel",
+   "weight_hg": 280,
+   "dex_lbs_x10": 617
+  },
+  "TEDDIURSA": {
+   "dex_entry": "teddiursa",
+   "source": "teddiursa",
+   "weight_hg": 88,
+   "dex_lbs_x10": 194
+  },
+  "URSARING": {
+   "dex_entry": "ursaring",
+   "source": "ursaring",
+   "weight_hg": 1258,
+   "dex_lbs_x10": 2773
+  },
+  "SLUGMA": {
+   "dex_entry": "slugma",
+   "source": "slugma",
+   "weight_hg": 350,
+   "dex_lbs_x10": 772
+  },
+  "MAGCARGO": {
+   "dex_entry": "magcargo",
+   "source": "magcargo",
+   "weight_hg": 550,
+   "dex_lbs_x10": 1213
+  },
+  "SWINUB": {
+   "dex_entry": "swinub",
+   "source": "swinub",
+   "weight_hg": 65,
+   "dex_lbs_x10": 143
+  },
+  "PILOSWINE": {
+   "dex_entry": "piloswine",
+   "source": "piloswine",
+   "weight_hg": 558,
+   "dex_lbs_x10": 1230
+  },
+  "CORSOLA": {
+   "dex_entry": "corsola",
+   "source": "corsola",
+   "weight_hg": 50,
+   "dex_lbs_x10": 110
+  },
+  "REMORAID": {
+   "dex_entry": "remoraid",
+   "source": "remoraid",
+   "weight_hg": 120,
+   "dex_lbs_x10": 265
+  },
+  "OCTILLERY": {
+   "dex_entry": "octillery",
+   "source": "octillery",
+   "weight_hg": 285,
+   "dex_lbs_x10": 628
+  },
+  "DELIBIRD": {
+   "dex_entry": "delibird",
+   "source": "delibird",
+   "weight_hg": 160,
+   "dex_lbs_x10": 353
+  },
+  "MANTINE": {
+   "dex_entry": "mantine",
+   "source": "mantine",
+   "weight_hg": 2200,
+   "dex_lbs_x10": 4850
+  },
+  "SKARMORY": {
+   "dex_entry": "skarmory",
+   "source": "skarmory",
+   "weight_hg": 505,
+   "dex_lbs_x10": 1113
+  },
+  "HOUNDOUR": {
+   "dex_entry": "houndour",
+   "source": "houndour",
+   "weight_hg": 108,
+   "dex_lbs_x10": 238
+  },
+  "HOUNDOOM": {
+   "dex_entry": "houndoom",
+   "source": "houndoom",
+   "weight_hg": 350,
+   "dex_lbs_x10": 772
+  },
+  "KINGDRA": {
+   "dex_entry": "kingdra",
+   "source": "kingdra",
+   "weight_hg": 1520,
+   "dex_lbs_x10": 3351
+  },
+  "PHANPY": {
+   "dex_entry": "phanpy",
+   "source": "phanpy",
+   "weight_hg": 335,
+   "dex_lbs_x10": 739
+  },
+  "DONPHAN": {
+   "dex_entry": "donphan",
+   "source": "donphan",
+   "weight_hg": 1200,
+   "dex_lbs_x10": 2646
+  },
+  "PORYGON2": {
+   "dex_entry": "porygon2",
+   "source": "porygon2",
+   "weight_hg": 325,
+   "dex_lbs_x10": 717
+  },
+  "STANTLER": {
+   "dex_entry": "stantler",
+   "source": "stantler",
+   "weight_hg": 712,
+   "dex_lbs_x10": 1570
+  },
+  "SMEARGLE": {
+   "dex_entry": "smeargle",
+   "source": "smeargle",
+   "weight_hg": 580,
+   "dex_lbs_x10": 1279
+  },
+  "TYROGUE": {
+   "dex_entry": "tyrogue",
+   "source": "tyrogue",
+   "weight_hg": 210,
+   "dex_lbs_x10": 463
+  },
+  "HITMONTOP": {
+   "dex_entry": "hitmontop",
+   "source": "hitmontop",
+   "weight_hg": 480,
+   "dex_lbs_x10": 1058
+  },
+  "SMOOCHUM": {
+   "dex_entry": "smoochum",
+   "source": "smoochum",
+   "weight_hg": 60,
+   "dex_lbs_x10": 132
+  },
+  "ELEKID": {
+   "dex_entry": "elekid",
+   "source": "elekid",
+   "weight_hg": 235,
+   "dex_lbs_x10": 518
+  },
+  "MAGBY": {
+   "dex_entry": "magby",
+   "source": "magby",
+   "weight_hg": 214,
+   "dex_lbs_x10": 472
+  },
+  "MILTANK": {
+   "dex_entry": "miltank",
+   "source": "miltank",
+   "weight_hg": 755,
+   "dex_lbs_x10": 1664
+  },
+  "BLISSEY": {
+   "dex_entry": "blissey",
+   "source": "blissey",
+   "weight_hg": 468,
+   "dex_lbs_x10": 1032
+  },
+  "RAIKOU": {
+   "dex_entry": "raikou",
+   "source": "raikou",
+   "weight_hg": 1780,
+   "dex_lbs_x10": 3924
+  },
+  "ENTEI": {
+   "dex_entry": "entei",
+   "source": "entei",
+   "weight_hg": 1980,
+   "dex_lbs_x10": 4365
+  },
+  "SUICUNE": {
+   "dex_entry": "suicune",
+   "source": "suicune",
+   "weight_hg": 1870,
+   "dex_lbs_x10": 4123
+  },
+  "LARVITAR": {
+   "dex_entry": "larvitar",
+   "source": "larvitar",
+   "weight_hg": 720,
+   "dex_lbs_x10": 1587
+  },
+  "PUPITAR": {
+   "dex_entry": "pupitar",
+   "source": "pupitar",
+   "weight_hg": 1520,
+   "dex_lbs_x10": 3351
+  },
+  "TYRANITAR": {
+   "dex_entry": "tyranitar",
+   "source": "tyranitar",
+   "weight_hg": 2020,
+   "dex_lbs_x10": 4453
+  },
+  "LUGIA": {
+   "dex_entry": "lugia",
+   "source": "lugia",
+   "weight_hg": 2160,
+   "dex_lbs_x10": 4762
+  },
+  "HO_OH": {
+   "dex_entry": "ho_oh",
+   "source": "ho-oh",
+   "weight_hg": 1990,
+   "dex_lbs_x10": 4387
+  },
+  "CELEBI": {
+   "dex_entry": "celebi",
+   "source": "celebi",
+   "weight_hg": 50,
+   "dex_lbs_x10": 110
+  },
+  "CHARMANDER_CLONE": {
+   "dex_entry": "charmander",
+   "source": "charmander",
+   "weight_hg": 85,
+   "dex_lbs_x10": 187
+  },
+  "CHARMELEON_CLONE": {
+   "dex_entry": "charmeleon",
+   "source": "charmeleon",
+   "weight_hg": 190,
+   "dex_lbs_x10": 419
+  },
+  "CHARIZARD_CLONE": {
+   "dex_entry": "charizard",
+   "source": "charizard",
+   "weight_hg": 905,
+   "dex_lbs_x10": 1995
+  },
+  "SQUIRTLE_CLONE": {
+   "dex_entry": "squirtle",
+   "source": "squirtle",
+   "weight_hg": 90,
+   "dex_lbs_x10": 198
+  },
+  "WARTORTLE_CLONE": {
+   "dex_entry": "wartortle",
+   "source": "wartortle",
+   "weight_hg": 225,
+   "dex_lbs_x10": 496
+  },
+  "BLASTOISE_CLONE": {
+   "dex_entry": "blastoise",
+   "source": "blastoise",
+   "weight_hg": 855,
+   "dex_lbs_x10": 1885
+  },
+  "BULBASAUR_CLONE": {
+   "dex_entry": "bulbasaur",
+   "source": "bulbasaur",
+   "weight_hg": 69,
+   "dex_lbs_x10": 152
+  },
+  "IVYSAUR_CLONE": {
+   "dex_entry": "ivysaur",
+   "source": "ivysaur",
+   "weight_hg": 130,
+   "dex_lbs_x10": 287
+  },
+  "VENUSAUR_CLONE": {
+   "dex_entry": "venusaur",
+   "source": "venusaur",
+   "weight_hg": 1000,
+   "dex_lbs_x10": 2205
+  },
+  "HONCHKROW": {
+   "dex_entry": "honchkrow",
+   "source": "honchkrow",
+   "weight_hg": 273,
+   "dex_lbs_x10": 602
+  },
+  "AMBIPOM": {
+   "dex_entry": "ambipom",
+   "source": "ambipom",
+   "weight_hg": 203,
+   "dex_lbs_x10": 448
+  },
+  "ANNIHILAPE": {
+   "dex_entry": "annihilape",
+   "source": "annihilape",
+   "weight_hg": 560,
+   "dex_lbs_x10": 1235
+  },
+  "BAGON": {
+   "dex_entry": "bagon",
+   "source": "bagon",
+   "weight_hg": 421,
+   "dex_lbs_x10": 928
+  },
+  "SHELGON": {
+   "dex_entry": "shelgon",
+   "source": "shelgon",
+   "weight_hg": 1105,
+   "dex_lbs_x10": 2436
+  },
+  "SALAMENCE": {
+   "dex_entry": "salamence",
+   "source": "salamence",
+   "weight_hg": 1026,
+   "dex_lbs_x10": 2262
+  },
+  "DUDUNSPARCE": {
+   "dex_entry": "dudunsparce",
+   "source": "dudunsparce-two-segment",
+   "weight_hg": 392,
+   "dex_lbs_x10": 864
+  },
+  "ELECTIVIRE": {
+   "dex_entry": "electivire",
+   "source": "electivire",
+   "weight_hg": 1386,
+   "dex_lbs_x10": 3056
+  },
+  "FARIGIRAF": {
+   "dex_entry": "farigiraf",
+   "source": "farigiraf",
+   "weight_hg": 1600,
+   "dex_lbs_x10": 3527
+  },
+  "RALTS": {
+   "dex_entry": "ralts",
+   "source": "ralts",
+   "weight_hg": 66,
+   "dex_lbs_x10": 146
+  },
+  "KIRLIA": {
+   "dex_entry": "kirlia",
+   "source": "kirlia",
+   "weight_hg": 202,
+   "dex_lbs_x10": 445
+  },
+  "GARDEVOIR": {
+   "dex_entry": "gardevoir",
+   "source": "gardevoir",
+   "weight_hg": 484,
+   "dex_lbs_x10": 1067
+  },
+  "GALLADE": {
+   "dex_entry": "gallade",
+   "source": "gallade",
+   "weight_hg": 520,
+   "dex_lbs_x10": 1146
+  },
+  "GLACEON": {
+   "dex_entry": "glaceon",
+   "source": "glaceon",
+   "weight_hg": 259,
+   "dex_lbs_x10": 571
+  },
+  "LEAFEON": {
+   "dex_entry": "leafeon",
+   "source": "leafeon",
+   "weight_hg": 255,
+   "dex_lbs_x10": 562
+  },
+  "SYLVEON": {
+   "dex_entry": "sylveon",
+   "source": "sylveon",
+   "weight_hg": 235,
+   "dex_lbs_x10": 518
+  },
+  "GLISCOR": {
+   "dex_entry": "gliscor",
+   "source": "gliscor",
+   "weight_hg": 425,
+   "dex_lbs_x10": 937
+  },
+  "LICKILICKY": {
+   "dex_entry": "lickilicky",
+   "source": "lickilicky",
+   "weight_hg": 1400,
+   "dex_lbs_x10": 3086
+  },
+  "MAGMORTAR": {
+   "dex_entry": "magmortar",
+   "source": "magmortar",
+   "weight_hg": 680,
+   "dex_lbs_x10": 1499
+  },
+  "MAGNEZONE": {
+   "dex_entry": "magnezone",
+   "source": "magnezone",
+   "weight_hg": 1800,
+   "dex_lbs_x10": 3968
+  },
+  "MAMOSWINE": {
+   "dex_entry": "mamoswine",
+   "source": "mamoswine",
+   "weight_hg": 2910,
+   "dex_lbs_x10": 6415
+  },
+  "MESMERIA": {
+   "dex_entry": "mesmeria",
+   "source": "custom",
+   "weight_hg": null,
+   "dex_lbs_x10": 1146
+  },
+  "MISMAGIUS": {
+   "dex_entry": "mismagius",
+   "source": "mismagius",
+   "weight_hg": 44,
+   "dex_lbs_x10": 97
+  },
+  "PORYGON_Z": {
+   "dex_entry": "porygon_z",
+   "source": "porygon-z",
+   "weight_hg": 340,
+   "dex_lbs_x10": 750
+  },
+  "RHYPERIOR": {
+   "dex_entry": "rhyperior",
+   "source": "rhyperior",
+   "weight_hg": 2828,
+   "dex_lbs_x10": 6235
+  },
+  "VENIPEDE": {
+   "dex_entry": "venipede",
+   "source": "venipede",
+   "weight_hg": 53,
+   "dex_lbs_x10": 117
+  },
+  "WHIRLIPEDE": {
+   "dex_entry": "whirlipede",
+   "source": "whirlipede",
+   "weight_hg": 585,
+   "dex_lbs_x10": 1290
+  },
+  "SCOLIPEDE": {
+   "dex_entry": "scolipede",
+   "source": "scolipede",
+   "weight_hg": 2005,
+   "dex_lbs_x10": 4420
+  },
+  "TANGROWTH": {
+   "dex_entry": "tangrowth",
+   "source": "tangrowth",
+   "weight_hg": 1286,
+   "dex_lbs_x10": 2835
+  },
+  "TOGEKISS": {
+   "dex_entry": "togekiss",
+   "source": "togekiss",
+   "weight_hg": 380,
+   "dex_lbs_x10": 838
+  },
+  "URSALUNA": {
+   "dex_entry": "ursaluna",
+   "source": "ursaluna",
+   "weight_hg": 2900,
+   "dex_lbs_x10": 6393
+  },
+  "WEAVILE": {
+   "dex_entry": "weavile",
+   "source": "weavile",
+   "weight_hg": 340,
+   "dex_lbs_x10": 750
+  },
+  "WYRDEER": {
+   "dex_entry": "wyrdeer",
+   "source": "wyrdeer",
+   "weight_hg": 951,
+   "dex_lbs_x10": 2097
+  },
+  "YANMEGA": {
+   "dex_entry": "yanmega",
+   "source": "yanmega",
+   "weight_hg": 515,
+   "dex_lbs_x10": 1135
+  },
+  "LILEEP": {
+   "dex_entry": "lileep",
+   "source": "lileep",
+   "weight_hg": 238,
+   "dex_lbs_x10": 525
+  },
+  "CRADILY": {
+   "dex_entry": "cradily",
+   "source": "cradily",
+   "weight_hg": 604,
+   "dex_lbs_x10": 1332
+  },
+  "ANORITH": {
+   "dex_entry": "anorith",
+   "source": "anorith",
+   "weight_hg": 125,
+   "dex_lbs_x10": 276
+  },
+  "ARMALDO": {
+   "dex_entry": "armaldo",
+   "source": "armaldo",
+   "weight_hg": 682,
+   "dex_lbs_x10": 1504
+  },
+  "GOLETT": {
+   "dex_entry": "golett",
+   "source": "golett",
+   "weight_hg": 920,
+   "dex_lbs_x10": 2028
+  },
+  "GOLURK": {
+   "dex_entry": "golurk",
+   "source": "golurk",
+   "weight_hg": 3300,
+   "dex_lbs_x10": 7275
+  },
+  "DUSKULL": {
+   "dex_entry": "duskull",
+   "source": "duskull",
+   "weight_hg": 150,
+   "dex_lbs_x10": 331
+  },
+  "DUSCLOPS": {
+   "dex_entry": "dusclops",
+   "source": "dusclops",
+   "weight_hg": 306,
+   "dex_lbs_x10": 675
+  },
+  "DUSKNOIR": {
+   "dex_entry": "dusknoir",
+   "source": "dusknoir",
+   "weight_hg": 1066,
+   "dex_lbs_x10": 2350
+  },
+  "TIMBURR": {
+   "dex_entry": "timburr",
+   "source": "timburr",
+   "weight_hg": 125,
+   "dex_lbs_x10": 276
+  },
+  "GURDURR": {
+   "dex_entry": "gurdurr",
+   "source": "gurdurr",
+   "weight_hg": 400,
+   "dex_lbs_x10": 882
+  },
+  "CONKELDURR": {
+   "dex_entry": "conkeldurr",
+   "source": "conkeldurr",
+   "weight_hg": 870,
+   "dex_lbs_x10": 1918
+  },
+  "LARVESTA": {
+   "dex_entry": "larvesta",
+   "source": "larvesta",
+   "weight_hg": 288,
+   "dex_lbs_x10": 635
+  },
+  "VOLCARONA": {
+   "dex_entry": "volcarona",
+   "source": "volcarona",
+   "weight_hg": 460,
+   "dex_lbs_x10": 1014
+  },
+  "DEINO": {
+   "dex_entry": "deino",
+   "source": "deino",
+   "weight_hg": 173,
+   "dex_lbs_x10": 381
+  },
+  "ZWEILOUS": {
+   "dex_entry": "zweilous",
+   "source": "zweilous",
+   "weight_hg": 500,
+   "dex_lbs_x10": 1102
+  },
+  "HYDREIGON": {
+   "dex_entry": "hydreigon",
+   "source": "hydreigon",
+   "weight_hg": 1600,
+   "dex_lbs_x10": 3527
+  },
+  "DREEPY": {
+   "dex_entry": "dreepy",
+   "source": "dreepy",
+   "weight_hg": 20,
+   "dex_lbs_x10": 44
+  },
+  "DRAKLOAK": {
+   "dex_entry": "drakloak",
+   "source": "drakloak",
+   "weight_hg": 110,
+   "dex_lbs_x10": 243
+  },
+  "DRAGAPULT": {
+   "dex_entry": "dragapult",
+   "source": "dragapult",
+   "weight_hg": 500,
+   "dex_lbs_x10": 1102
+  },
+  "IMPIDIMP": {
+   "dex_entry": "impidimp",
+   "source": "impidimp",
+   "weight_hg": 55,
+   "dex_lbs_x10": 121
+  },
+  "MORGREM": {
+   "dex_entry": "morgrem",
+   "source": "morgrem",
+   "weight_hg": 125,
+   "dex_lbs_x10": 276
+  },
+  "GRIMMSNARL": {
+   "dex_entry": "grimmsnarl",
+   "source": "grimmsnarl",
+   "weight_hg": 610,
+   "dex_lbs_x10": 1345
+  },
+  "TINKATINK": {
+   "dex_entry": "tinkatink",
+   "source": "tinkatink",
+   "weight_hg": 89,
+   "dex_lbs_x10": 196
+  },
+  "TINKATUFF": {
+   "dex_entry": "tinkatuff",
+   "source": "tinkatuff",
+   "weight_hg": 591,
+   "dex_lbs_x10": 1303
+  },
+  "TINKATON": {
+   "dex_entry": "tinkaton",
+   "source": "tinkaton",
+   "weight_hg": 1128,
+   "dex_lbs_x10": 2487
+  },
+  "FRIGIBAX": {
+   "dex_entry": "frigibax",
+   "source": "frigibax",
+   "weight_hg": 170,
+   "dex_lbs_x10": 375
+  },
+  "ARCTIBAX": {
+   "dex_entry": "arctibax",
+   "source": "arctibax",
+   "weight_hg": 300,
+   "dex_lbs_x10": 661
+  },
+  "BAXCALIBUR": {
+   "dex_entry": "baxcalibur",
+   "source": "baxcalibur",
+   "weight_hg": 2100,
+   "dex_lbs_x10": 4630
+  },
+  "CHARCADET": {
+   "dex_entry": "charcadet",
+   "source": "charcadet",
+   "weight_hg": 105,
+   "dex_lbs_x10": 231
+  },
+  "ARMAROUGE": {
+   "dex_entry": "armarouge",
+   "source": "armarouge",
+   "weight_hg": 850,
+   "dex_lbs_x10": 1874
+  },
+  "CERULEDGE": {
+   "dex_entry": "ceruledge",
+   "source": "ceruledge",
+   "weight_hg": 620,
+   "dex_lbs_x10": 1367
+  },
+  "ROOKIDEE": {
+   "dex_entry": "rookidee",
+   "source": "rookidee",
+   "weight_hg": 18,
+   "dex_lbs_x10": 40
+  },
+  "CORVISQUIRE": {
+   "dex_entry": "corvisquire",
+   "source": "corvisquire",
+   "weight_hg": 160,
+   "dex_lbs_x10": 353
+  },
+  "CORVIKNIGHT": {
+   "dex_entry": "corviknight",
+   "source": "corviknight",
+   "weight_hg": 750,
+   "dex_lbs_x10": 1653
+  },
+  "SNOVER": {
+   "dex_entry": "snover",
+   "source": "snover",
+   "weight_hg": 505,
+   "dex_lbs_x10": 1113
+  },
+  "ABOMASNOW": {
+   "dex_entry": "abomasnow",
+   "source": "abomasnow",
+   "weight_hg": 1355,
+   "dex_lbs_x10": 2987
+  },
+  "SWABLU": {
+   "dex_entry": "swablu",
+   "source": "swablu",
+   "weight_hg": 12,
+   "dex_lbs_x10": 26
+  },
+  "ALTARIA": {
+   "dex_entry": "altaria",
+   "source": "altaria",
+   "weight_hg": 206,
+   "dex_lbs_x10": 454
+  },
+  "APPLIN": {
+   "dex_entry": "applin",
+   "source": "applin",
+   "weight_hg": 5,
+   "dex_lbs_x10": 11
+  },
+  "DIPPLIN": {
+   "dex_entry": "dipplin",
+   "source": "dipplin",
+   "weight_hg": 97,
+   "dex_lbs_x10": 214
+  },
+  "APPLETUN": {
+   "dex_entry": "appletun",
+   "source": "appletun",
+   "weight_hg": 130,
+   "dex_lbs_x10": 287
+  },
+  "FLAPPLE": {
+   "dex_entry": "flapple",
+   "source": "flapple",
+   "weight_hg": 10,
+   "dex_lbs_x10": 22
+  },
+  "HYDRAPPLE": {
+   "dex_entry": "hydrapple",
+   "source": "hydrapple",
+   "weight_hg": 930,
+   "dex_lbs_x10": 2050
+  },
+  "DURALUDON": {
+   "dex_entry": "duraludon",
+   "source": "duraludon",
+   "weight_hg": 400,
+   "dex_lbs_x10": 882
+  },
+  "ARCHALUDON": {
+   "dex_entry": "archaludon",
+   "source": "archaludon",
+   "weight_hg": 600,
+   "dex_lbs_x10": 1323
+  },
+  "SHROOMISH": {
+   "dex_entry": "shroomish",
+   "source": "shroomish",
+   "weight_hg": 45,
+   "dex_lbs_x10": 99
+  },
+  "BRELOOM": {
+   "dex_entry": "breloom",
+   "source": "breloom",
+   "weight_hg": 392,
+   "dex_lbs_x10": 864
+  },
+  "BUNEARY": {
+   "dex_entry": "buneary",
+   "source": "buneary",
+   "weight_hg": 55,
+   "dex_lbs_x10": 121
+  },
+  "LOPUNNY": {
+   "dex_entry": "lopunny",
+   "source": "lopunny",
+   "weight_hg": 333,
+   "dex_lbs_x10": 734
+  },
+  "NUMEL": {
+   "dex_entry": "numel",
+   "source": "numel",
+   "weight_hg": 240,
+   "dex_lbs_x10": 529
+  },
+  "CAMERUPT": {
+   "dex_entry": "camerupt",
+   "source": "camerupt",
+   "weight_hg": 2200,
+   "dex_lbs_x10": 4850
+  },
+  "SIZZLIPEDE": {
+   "dex_entry": "sizzlipede",
+   "source": "sizzlipede",
+   "weight_hg": 10,
+   "dex_lbs_x10": 22
+  },
+  "CENTISKORCH": {
+   "dex_entry": "centiskorch",
+   "source": "centiskorch",
+   "weight_hg": 1200,
+   "dex_lbs_x10": 2646
+  },
+  "GRUBBIN": {
+   "dex_entry": "grubbin",
+   "source": "grubbin",
+   "weight_hg": 44,
+   "dex_lbs_x10": 97
+  },
+  "CHARJABUG": {
+   "dex_entry": "charjabug",
+   "source": "charjabug",
+   "weight_hg": 105,
+   "dex_lbs_x10": 231
+  },
+  "VIKAVOLT": {
+   "dex_entry": "vikavolt",
+   "source": "vikavolt",
+   "weight_hg": 450,
+   "dex_lbs_x10": 992
+  },
+  "CROAGUNK": {
+   "dex_entry": "croagunk",
+   "source": "croagunk",
+   "weight_hg": 230,
+   "dex_lbs_x10": 507
+  },
+  "TOXICROAK": {
+   "dex_entry": "toxicroak",
+   "source": "toxicroak",
+   "weight_hg": 444,
+   "dex_lbs_x10": 979
+  },
+  "DRIFLOON": {
+   "dex_entry": "drifloon",
+   "source": "drifloon",
+   "weight_hg": 12,
+   "dex_lbs_x10": 26
+  },
+  "DRIFBLIM": {
+   "dex_entry": "drifblim",
+   "source": "drifblim",
+   "weight_hg": 150,
+   "dex_lbs_x10": 331
+  },
+  "DRILBUR": {
+   "dex_entry": "drilbur",
+   "source": "drilbur",
+   "weight_hg": 85,
+   "dex_lbs_x10": 187
+  },
+  "EXCADRILL": {
+   "dex_entry": "excadrill",
+   "source": "excadrill",
+   "weight_hg": 404,
+   "dex_lbs_x10": 891
+  },
+  "KOTORA": {
+   "dex_entry": "kotora",
+   "source": "custom",
+   "weight_hg": null,
+   "dex_lbs_x10": 470
+  },
+  "RAITORA": {
+   "dex_entry": "raitora",
+   "source": "custom",
+   "weight_hg": null,
+   "dex_lbs_x10": 1520
+  },
+  "GOROTORA": {
+   "dex_entry": "gorotora",
+   "source": "custom",
+   "weight_hg": null,
+   "dex_lbs_x10": 2460
+  },
+  "FLETCHLING": {
+   "dex_entry": "fletchling",
+   "source": "fletchling",
+   "weight_hg": 17,
+   "dex_lbs_x10": 37
+  },
+  "FLETCHINDER": {
+   "dex_entry": "fletchinder",
+   "source": "fletchinder",
+   "weight_hg": 160,
+   "dex_lbs_x10": 353
+  },
+  "TALONFLAME": {
+   "dex_entry": "talonflame",
+   "source": "talonflame",
+   "weight_hg": 245,
+   "dex_lbs_x10": 540
+  },
+  "TRAPINCH": {
+   "dex_entry": "trapinch",
+   "source": "trapinch",
+   "weight_hg": 150,
+   "dex_lbs_x10": 331
+  },
+  "VIBRAVA": {
+   "dex_entry": "vibrava",
+   "source": "vibrava",
+   "weight_hg": 153,
+   "dex_lbs_x10": 337
+  },
+  "FLYGON": {
+   "dex_entry": "flygon",
+   "source": "flygon",
+   "weight_hg": 820,
+   "dex_lbs_x10": 1808
+  },
+  "SNORUNT": {
+   "dex_entry": "snorunt",
+   "source": "snorunt",
+   "weight_hg": 168,
+   "dex_lbs_x10": 370
+  },
+  "FROSLASS": {
+   "dex_entry": "froslass",
+   "source": "froslass",
+   "weight_hg": 266,
+   "dex_lbs_x10": 586
+  },
+  "WIMPOD": {
+   "dex_entry": "wimpod",
+   "source": "wimpod",
+   "weight_hg": 120,
+   "dex_lbs_x10": 265
+  },
+  "GOLISOPOD": {
+   "dex_entry": "golisopod",
+   "source": "golisopod",
+   "weight_hg": 1080,
+   "dex_lbs_x10": 2381
+  },
+  "SPOINK": {
+   "dex_entry": "spoink",
+   "source": "spoink",
+   "weight_hg": 306,
+   "dex_lbs_x10": 675
+  },
+  "GRUMPIG": {
+   "dex_entry": "grumpig",
+   "source": "grumpig",
+   "weight_hg": 715,
+   "dex_lbs_x10": 1576
+  },
+  "PAWNIARD": {
+   "dex_entry": "pawniard",
+   "source": "pawniard",
+   "weight_hg": 102,
+   "dex_lbs_x10": 225
+  },
+  "BISHARP": {
+   "dex_entry": "bisharp",
+   "source": "bisharp",
+   "weight_hg": 700,
+   "dex_lbs_x10": 1543
+  },
+  "KINGAMBIT": {
+   "dex_entry": "kingambit",
+   "source": "kingambit",
+   "weight_hg": 1200,
+   "dex_lbs_x10": 2646
+  },
+  "LOTAD": {
+   "dex_entry": "lotad",
+   "source": "lotad",
+   "weight_hg": 26,
+   "dex_lbs_x10": 57
+  },
+  "LOMBRE": {
+   "dex_entry": "lombre",
+   "source": "lombre",
+   "weight_hg": 325,
+   "dex_lbs_x10": 717
+  },
+  "LUDICOLO": {
+   "dex_entry": "ludicolo",
+   "source": "ludicolo",
+   "weight_hg": 550,
+   "dex_lbs_x10": 1213
+  },
+  "OVERQWIL": {
+   "dex_entry": "overqwil",
+   "source": "overqwil",
+   "weight_hg": 605,
+   "dex_lbs_x10": 1334
+  },
+  "SCRAGGY": {
+   "dex_entry": "scraggy",
+   "source": "scraggy",
+   "weight_hg": 118,
+   "dex_lbs_x10": 260
+  },
+  "SCRAFTY": {
+   "dex_entry": "scrafty",
+   "source": "scrafty",
+   "weight_hg": 300,
+   "dex_lbs_x10": 661
+  },
+  "SPHEAL": {
+   "dex_entry": "spheal",
+   "source": "spheal",
+   "weight_hg": 395,
+   "dex_lbs_x10": 871
+  },
+  "SEALEO": {
+   "dex_entry": "sealeo",
+   "source": "sealeo",
+   "weight_hg": 876,
+   "dex_lbs_x10": 1931
+  },
+  "WALREIN": {
+   "dex_entry": "walrein",
+   "source": "walrein",
+   "weight_hg": 1506,
+   "dex_lbs_x10": 3320
+  },
+  "TEDDIURSABM": {
+   "dex_entry": "teddiursa",
+   "source": "teddiursa",
+   "weight_hg": 88,
+   "dex_lbs_x10": 194
+  },
+  "URSARINGBM": {
+   "dex_entry": "ursaring",
+   "source": "ursaring",
+   "weight_hg": 1258,
+   "dex_lbs_x10": 2773
+  },
+  "URSALUNABM": {
+   "dex_entry": "ursalunabm",
+   "source": "ursaluna-bloodmoon",
+   "weight_hg": 3330,
+   "dex_lbs_x10": 7341
+  },
+  "AXEW": {
+   "dex_entry": "axew",
+   "source": "axew",
+   "weight_hg": 180,
+   "dex_lbs_x10": 397
+  },
+  "FRAXURE": {
+   "dex_entry": "fraxure",
+   "source": "fraxure",
+   "weight_hg": 360,
+   "dex_lbs_x10": 794
+  },
+  "HAXORUS": {
+   "dex_entry": "haxorus",
+   "source": "haxorus",
+   "weight_hg": 1055,
+   "dex_lbs_x10": 2326
+  },
+  "CRANIDOS": {
+   "dex_entry": "cranidos",
+   "source": "cranidos",
+   "weight_hg": 315,
+   "dex_lbs_x10": 694
+  },
+  "RAMPARDOS": {
+   "dex_entry": "rampardos",
+   "source": "rampardos",
+   "weight_hg": 1025,
+   "dex_lbs_x10": 2260
+  },
+  "SHIELDON": {
+   "dex_entry": "shieldon",
+   "source": "shieldon",
+   "weight_hg": 570,
+   "dex_lbs_x10": 1257
+  },
+  "BASTIODON": {
+   "dex_entry": "bastiodon",
+   "source": "bastiodon",
+   "weight_hg": 1495,
+   "dex_lbs_x10": 3296
+  },
+  "CETODDLE": {
+   "dex_entry": "cetoddle",
+   "source": "cetoddle",
+   "weight_hg": 450,
+   "dex_lbs_x10": 992
+  },
+  "CETITAN": {
+   "dex_entry": "cetitan",
+   "source": "cetitan",
+   "weight_hg": 7000,
+   "dex_lbs_x10": 15432
+  },
+  "FEEBAS": {
+   "dex_entry": "feebas",
+   "source": "feebas",
+   "weight_hg": 74,
+   "dex_lbs_x10": 163
+  },
+  "MILOTIC": {
+   "dex_entry": "milotic",
+   "source": "milotic",
+   "weight_hg": 1620,
+   "dex_lbs_x10": 3571
+  },
+  "MIMIKYU": {
+   "dex_entry": "mimikyu",
+   "source": "mimikyu-disguised",
+   "weight_hg": 7,
+   "dex_lbs_x10": 15
+  },
+  "CORSOLA_GALARIAN": {
+   "dex_entry": "corsola_galarian",
+   "source": "corsola-galar",
+   "weight_hg": 5,
+   "dex_lbs_x10": 11
+  },
+  "CURSOLA": {
+   "dex_entry": "cursola",
+   "source": "cursola",
+   "weight_hg": 4,
+   "dex_lbs_x10": 9
+  },
+  "MR__RIME": {
+   "dex_entry": "mr__rime",
+   "source": "mr-rime",
+   "weight_hg": 582,
+   "dex_lbs_x10": 1283
+  },
+  "SIRFETCH_D": {
+   "dex_entry": "sirfetch_d",
+   "source": "sirfetchd",
+   "weight_hg": 1170,
+   "dex_lbs_x10": 2579
+  },
+  "RIOLU": {
+   "dex_entry": "riolu",
+   "source": "riolu",
+   "weight_hg": 202,
+   "dex_lbs_x10": 445
+  },
+  "LUCARIO": {
+   "dex_entry": "lucario",
+   "source": "lucario",
+   "weight_hg": 540,
+   "dex_lbs_x10": 1190
+  },
+  "TYRUNT": {
+   "dex_entry": "tyrunt",
+   "source": "tyrunt",
+   "weight_hg": 260,
+   "dex_lbs_x10": 573
+  },
+  "TYRANTRUM": {
+   "dex_entry": "tyrantrum",
+   "source": "tyrantrum",
+   "weight_hg": 2700,
+   "dex_lbs_x10": 5952
+  },
+  "AMAURA": {
+   "dex_entry": "amaura",
+   "source": "amaura",
+   "weight_hg": 252,
+   "dex_lbs_x10": 556
+  },
+  "AURORUS": {
+   "dex_entry": "aurorus",
+   "source": "aurorus",
+   "weight_hg": 2250,
+   "dex_lbs_x10": 4960
+  },
+  "MUNCHLAX": {
+   "dex_entry": "munchlax",
+   "source": "munchlax",
+   "weight_hg": 1050,
+   "dex_lbs_x10": 2315
+  },
+  "TORKOAL": {
+   "dex_entry": "torkoal",
+   "source": "torkoal",
+   "weight_hg": 804,
+   "dex_lbs_x10": 1773
+  },
+  "RATTATA_ALOLAN": {
+   "dex_entry": "rattata_alolan",
+   "source": "rattata-alola",
+   "weight_hg": 38,
+   "dex_lbs_x10": 84
+  },
+  "RATICATE_ALOLAN": {
+   "dex_entry": "raticate_alolan",
+   "source": "raticate-alola",
+   "weight_hg": 255,
+   "dex_lbs_x10": 562
+  },
+  "RAICHU_ALOLAN": {
+   "dex_entry": "raichu_alolan",
+   "source": "raichu-alola",
+   "weight_hg": 210,
+   "dex_lbs_x10": 463
+  },
+  "SANDSHREW_ALOLAN": {
+   "dex_entry": "sandshrew_alolan",
+   "source": "sandshrew-alola",
+   "weight_hg": 400,
+   "dex_lbs_x10": 882
+  },
+  "SANDSLASH_ALOLAN": {
+   "dex_entry": "sandslash_alolan",
+   "source": "sandslash-alola",
+   "weight_hg": 550,
+   "dex_lbs_x10": 1213
+  },
+  "VULPIX_ALOLAN": {
+   "dex_entry": "vulpix_alolan",
+   "source": "vulpix-alola",
+   "weight_hg": 99,
+   "dex_lbs_x10": 218
+  },
+  "NINETALES_ALOLAN": {
+   "dex_entry": "ninetales_alolan",
+   "source": "ninetales-alola",
+   "weight_hg": 199,
+   "dex_lbs_x10": 439
+  },
+  "DIGLETT_ALOLAN": {
+   "dex_entry": "diglett_alolan",
+   "source": "diglett-alola",
+   "weight_hg": 10,
+   "dex_lbs_x10": 22
+  },
+  "DUGTRIO_ALOLAN": {
+   "dex_entry": "dugtrio_alolan",
+   "source": "dugtrio-alola",
+   "weight_hg": 666,
+   "dex_lbs_x10": 1468
+  },
+  "MEOWTH_ALOLAN": {
+   "dex_entry": "meowth_alolan",
+   "source": "meowth-alola",
+   "weight_hg": 42,
+   "dex_lbs_x10": 93
+  },
+  "PERSIAN_ALOLAN": {
+   "dex_entry": "persian_alolan",
+   "source": "persian-alola",
+   "weight_hg": 330,
+   "dex_lbs_x10": 728
+  },
+  "GEODUDE_ALOLAN": {
+   "dex_entry": "geodude_alolan",
+   "source": "geodude-alola",
+   "weight_hg": 203,
+   "dex_lbs_x10": 448
+  },
+  "GRAVELER_ALOLAN": {
+   "dex_entry": "graveler_alolan",
+   "source": "graveler-alola",
+   "weight_hg": 1100,
+   "dex_lbs_x10": 2425
+  },
+  "GOLEM_ALOLAN": {
+   "dex_entry": "golem_alolan",
+   "source": "golem-alola",
+   "weight_hg": 3160,
+   "dex_lbs_x10": 6967
+  },
+  "GRIMER_ALOLAN": {
+   "dex_entry": "grimer_alolan",
+   "source": "grimer-alola",
+   "weight_hg": 420,
+   "dex_lbs_x10": 926
+  },
+  "MUK_ALOLAN": {
+   "dex_entry": "muk_alolan",
+   "source": "muk-alola",
+   "weight_hg": 520,
+   "dex_lbs_x10": 1146
+  },
+  "EXEGGUTOR_ALOLAN": {
+   "dex_entry": "exeggutor_alolan",
+   "source": "exeggutor-alola",
+   "weight_hg": 4156,
+   "dex_lbs_x10": 9162
+  },
+  "MAROWAK_ALOLAN": {
+   "dex_entry": "marowak_alolan",
+   "source": "marowak-alola",
+   "weight_hg": 340,
+   "dex_lbs_x10": 750
+  },
+  "MEOWTH_GALARIAN": {
+   "dex_entry": "meowth_galarian",
+   "source": "meowth-galar",
+   "weight_hg": 75,
+   "dex_lbs_x10": 165
+  },
+  "PERRSERKER": {
+   "dex_entry": "perrserker",
+   "source": "perrserker",
+   "weight_hg": 280,
+   "dex_lbs_x10": 617
+  },
+  "PONYTA_GALARIAN": {
+   "dex_entry": "ponyta_galarian",
+   "source": "ponyta-galar",
+   "weight_hg": 240,
+   "dex_lbs_x10": 529
+  },
+  "RAPIDASH_GALARIAN": {
+   "dex_entry": "rapidash_galarian",
+   "source": "rapidash-galar",
+   "weight_hg": 800,
+   "dex_lbs_x10": 1764
+  },
+  "SLOWPOKE_GALARIAN": {
+   "dex_entry": "slowpoke_galarian",
+   "source": "slowpoke-galar",
+   "weight_hg": 360,
+   "dex_lbs_x10": 794
+  },
+  "SLOWBRO_GALARIAN": {
+   "dex_entry": "slowbro_galarian",
+   "source": "slowbro-galar",
+   "weight_hg": 705,
+   "dex_lbs_x10": 1554
+  },
+  "SLOWKING_GALARIAN": {
+   "dex_entry": "slowking_galarian",
+   "source": "slowking-galar",
+   "weight_hg": 795,
+   "dex_lbs_x10": 1753
+  },
+  "WEEZING_GALARIAN": {
+   "dex_entry": "weezing_galarian",
+   "source": "weezing-galar",
+   "weight_hg": 160,
+   "dex_lbs_x10": 353
+  },
+  "GROWLITHE_HISUIAN": {
+   "dex_entry": "growlithe_hisuian",
+   "source": "growlithe-hisui",
+   "weight_hg": 227,
+   "dex_lbs_x10": 500
+  },
+  "ARCANINE_HISUIAN": {
+   "dex_entry": "arcanine_hisuian",
+   "source": "arcanine-hisui",
+   "weight_hg": 1680,
+   "dex_lbs_x10": 3704
+  },
+  "VOLTORB_HISUIAN": {
+   "dex_entry": "voltorb_hisuian",
+   "source": "voltorb-hisui",
+   "weight_hg": 130,
+   "dex_lbs_x10": 287
+  },
+  "ELECTRODE_HISUIAN": {
+   "dex_entry": "electrode_hisuian",
+   "source": "electrode-hisui",
+   "weight_hg": 710,
+   "dex_lbs_x10": 1565
+  },
+  "TYPHLOSION_HISUIAN": {
+   "dex_entry": "typhlosion_hisuian",
+   "source": "typhlosion-hisui",
+   "weight_hg": 698,
+   "dex_lbs_x10": 1539
+  },
+  "SNEASEL_HISUIAN": {
+   "dex_entry": "sneasel_hisuian",
+   "source": "sneasel-hisui",
+   "weight_hg": 270,
+   "dex_lbs_x10": 595
+  },
+  "SNEASLER": {
+   "dex_entry": "sneasler",
+   "source": "sneasler",
+   "weight_hg": 430,
+   "dex_lbs_x10": 948
+  },
+  "WOOPER_PALDEAN": {
+   "dex_entry": "wooper_paldean",
+   "source": "wooper-paldea",
+   "weight_hg": 110,
+   "dex_lbs_x10": 243
+  },
+  "CLODSIRE": {
+   "dex_entry": "clodsire",
+   "source": "clodsire",
+   "weight_hg": 2230,
+   "dex_lbs_x10": 4916
+  },
+  "TAUROS_PALDEAN_FIRE": {
+   "dex_entry": "tauros_paldean_fire",
+   "source": "tauros-paldea-blaze-breed",
+   "weight_hg": 850,
+   "dex_lbs_x10": 1874
+  },
+  "TAUROS_PALDEAN_WATER": {
+   "dex_entry": "tauros_paldean_water",
+   "source": "tauros-paldea-aqua-breed",
+   "weight_hg": 1100,
+   "dex_lbs_x10": 2425
+  },
+  "WATU": {
+   "dex_entry": "watu",
+   "source": "custom",
+   "weight_hg": null,
+   "dex_lbs_x10": 180
+  },
+  "BOUNSWEET": {
+   "dex_entry": "bounsweet",
+   "source": "bounsweet",
+   "weight_hg": 32,
+   "dex_lbs_x10": 71
+  },
+  "STEENEE": {
+   "dex_entry": "steenee",
+   "source": "steenee",
+   "weight_hg": 82,
+   "dex_lbs_x10": 181
+  },
+  "TSAREENA": {
+   "dex_entry": "tsareena",
+   "source": "tsareena",
+   "weight_hg": 214,
+   "dex_lbs_x10": 472
+  },
+  "ARON": {
+   "dex_entry": "aron",
+   "source": "aron",
+   "weight_hg": 600,
+   "dex_lbs_x10": 1323
+  },
+  "LAIRON": {
+   "dex_entry": "lairon",
+   "source": "lairon",
+   "weight_hg": 1200,
+   "dex_lbs_x10": 2646
+  },
+  "AGGRON": {
+   "dex_entry": "aggron",
+   "source": "aggron",
+   "weight_hg": 3600,
+   "dex_lbs_x10": 7937
+  },
+  "KLEAVOR": {
+   "dex_entry": "kleavor",
+   "source": "kleavor",
+   "weight_hg": 890,
+   "dex_lbs_x10": 1962
+  },
+  "GLIMMET": {
+   "dex_entry": "glimmet",
+   "source": "glimmet",
+   "weight_hg": 80,
+   "dex_lbs_x10": 176
+  },
+  "GLIMMORA": {
+   "dex_entry": "glimmora",
+   "source": "glimmora",
+   "weight_hg": 450,
+   "dex_lbs_x10": 992
+  },
+  "MAREANIE": {
+   "dex_entry": "mareanie",
+   "source": "mareanie",
+   "weight_hg": 80,
+   "dex_lbs_x10": 176
+  },
+  "TOXAPEX": {
+   "dex_entry": "toxapex",
+   "source": "toxapex",
+   "weight_hg": 145,
+   "dex_lbs_x10": 320
+  },
+  "ZANGOOSE": {
+   "dex_entry": "zangoose",
+   "source": "zangoose",
+   "weight_hg": 403,
+   "dex_lbs_x10": 888
+  },
+  "SEVIPER": {
+   "dex_entry": "seviper",
+   "source": "seviper",
+   "weight_hg": 525,
+   "dex_lbs_x10": 1157
+  },
+  "SHUPPET": {
+   "dex_entry": "shuppet",
+   "source": "shuppet",
+   "weight_hg": 23,
+   "dex_lbs_x10": 51
+  },
+  "BANETTE": {
+   "dex_entry": "banette",
+   "source": "banette",
+   "weight_hg": 125,
+   "dex_lbs_x10": 276
+  },
+  "ARCHEN": {
+   "dex_entry": "archen",
+   "source": "archen",
+   "weight_hg": 95,
+   "dex_lbs_x10": 209
+  },
+  "ARCHEOPS": {
+   "dex_entry": "archeops",
+   "source": "archeops",
+   "weight_hg": 320,
+   "dex_lbs_x10": 705
+  },
+  "TIRTOUGA": {
+   "dex_entry": "tirtouga",
+   "source": "tirtouga",
+   "weight_hg": 165,
+   "dex_lbs_x10": 364
+  },
+  "CARRACOSTA": {
+   "dex_entry": "carracosta",
+   "source": "carracosta",
+   "weight_hg": 810,
+   "dex_lbs_x10": 1786
+  },
+  "LITWICK": {
+   "dex_entry": "litwick",
+   "source": "litwick",
+   "weight_hg": 31,
+   "dex_lbs_x10": 68
+  },
+  "LAMPENT": {
+   "dex_entry": "lampent",
+   "source": "lampent",
+   "weight_hg": 130,
+   "dex_lbs_x10": 287
+  },
+  "CHANDELURE": {
+   "dex_entry": "chandelure",
+   "source": "chandelure",
+   "weight_hg": 343,
+   "dex_lbs_x10": 756
+  },
+  "JOLTIK": {
+   "dex_entry": "joltik",
+   "source": "joltik",
+   "weight_hg": 6,
+   "dex_lbs_x10": 13
+  },
+  "GALVANTULA": {
+   "dex_entry": "galvantula",
+   "source": "galvantula",
+   "weight_hg": 143,
+   "dex_lbs_x10": 315
+  },
+  "MAWILE": {
+   "dex_entry": "mawile",
+   "source": "mawile",
+   "weight_hg": 115,
+   "dex_lbs_x10": 254
+  },
+  "NOIBAT": {
+   "dex_entry": "noibat",
+   "source": "noibat",
+   "weight_hg": 80,
+   "dex_lbs_x10": 176
+  },
+  "NOIVERN": {
+   "dex_entry": "noivern",
+   "source": "noivern",
+   "weight_hg": 850,
+   "dex_lbs_x10": 1874
+  },
+  "SALANDIT": {
+   "dex_entry": "salandit",
+   "source": "salandit",
+   "weight_hg": 48,
+   "dex_lbs_x10": 106
+  },
+  "SALAZZLE": {
+   "dex_entry": "salazzle",
+   "source": "salazzle",
+   "weight_hg": 222,
+   "dex_lbs_x10": 489
+  },
+  "FLITTLE": {
+   "dex_entry": "flittle",
+   "source": "flittle",
+   "weight_hg": 15,
+   "dex_lbs_x10": 33
+  },
+  "ESPATHRA": {
+   "dex_entry": "espathra",
+   "source": "espathra",
+   "weight_hg": 900,
+   "dex_lbs_x10": 1984
+  },
+  "FINIZEN": {
+   "dex_entry": "finizen",
+   "source": "finizen",
+   "weight_hg": 602,
+   "dex_lbs_x10": 1327
+  },
+  "PALAFIN": {
+   "dex_entry": "palafin",
+   "source": "palafin-hero",
+   "weight_hg": 974,
+   "dex_lbs_x10": 2147
+  },
+  "AZURILL": {
+   "dex_entry": "azurill",
+   "source": "azurill",
+   "weight_hg": 20,
+   "dex_lbs_x10": 44
+  },
+  "WYNAUT": {
+   "dex_entry": "wynaut",
+   "source": "wynaut",
+   "weight_hg": 140,
+   "dex_lbs_x10": 309
+  },
+  "BONSLY": {
+   "dex_entry": "bonsly",
+   "source": "bonsly",
+   "weight_hg": 150,
+   "dex_lbs_x10": 331
+  },
+  "MIME_JR_": {
+   "dex_entry": "mime_jr_",
+   "source": "mime-jr",
+   "weight_hg": 130,
+   "dex_lbs_x10": 287
+  },
+  "HAPPINY": {
+   "dex_entry": "happiny",
+   "source": "happiny",
+   "weight_hg": 244,
+   "dex_lbs_x10": 538
+  },
+  "MANTYKE": {
+   "dex_entry": "mantyke",
+   "source": "mantyke",
+   "weight_hg": 650,
+   "dex_lbs_x10": 1433
+  },
+  "STARLY": {
+   "dex_entry": "starly",
+   "source": "starly",
+   "weight_hg": 20,
+   "dex_lbs_x10": 44
+  },
+  "STARAVIA": {
+   "dex_entry": "staravia",
+   "source": "staravia",
+   "weight_hg": 155,
+   "dex_lbs_x10": 342
+  },
+  "STARAPTOR": {
+   "dex_entry": "staraptor",
+   "source": "staraptor",
+   "weight_hg": 249,
+   "dex_lbs_x10": 549
+  },
+  "SANDILE": {
+   "dex_entry": "sandile",
+   "source": "sandile",
+   "weight_hg": 152,
+   "dex_lbs_x10": 335
+  },
+  "KROKOROK": {
+   "dex_entry": "krokorok",
+   "source": "krokorok",
+   "weight_hg": 334,
+   "dex_lbs_x10": 736
+  },
+  "KROOKODILE": {
+   "dex_entry": "krookodile",
+   "source": "krookodile",
+   "weight_hg": 963,
+   "dex_lbs_x10": 2123
+  },
+  "GOROCHU": {
+   "dex_entry": "gorochu",
+   "source": "custom",
+   "weight_hg": null,
+   "dex_lbs_x10": 1122
+  },
+  "JIRACHI": {
+   "dex_entry": "jirachi",
+   "source": "jirachi",
+   "weight_hg": 11,
+   "dex_lbs_x10": 24
+  },
+  "PHANTUMP": {
+   "dex_entry": "phantump",
+   "source": "phantump",
+   "weight_hg": 70,
+   "dex_lbs_x10": 154
+  },
+  "TREVENANT": {
+   "dex_entry": "trevenant",
+   "source": "trevenant",
+   "weight_hg": 710,
+   "dex_lbs_x10": 1565
+  }
+ }
+}

@@ -102,3 +102,4 @@ AnimObjGFX:
 	anim_obj_gfx 6, AnimObjSmallExplosionGFX
 	anim_obj_gfx 64, AnimObjRecycleGFX
 	anim_obj_gfx 16, AnimObjHornLeechGFX
+	anim_obj_gfx 27, AnimObjGrassKnotGFX

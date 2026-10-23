@@ -1484,6 +1484,7 @@ ForretressEvosAttacks:
 	dbw 42, BODY_PRESS
 	dbw 42, EXPLOSION
 	dbw 50, DOUBLE_EDGE
+	dbw 64, HEAVY_SLAM
 	db 0 ; no more level-up moves
 
 DunsparceEvosAttacks:
@@ -2757,6 +2758,7 @@ LaironEvosAttacks:
 	dbw 38, BODY_PRESS
 	dbw 46, DOUBLE_EDGE
 	dbw 50, STONE_EDGE
+	dbw 64, HEAVY_SLAM
 	db 0 ; no more level-up moves
 
 AggronEvosAttacks:
@@ -2787,6 +2789,7 @@ AggronEvosAttacks:
 	dbw 44, BODY_PRESS
 	dbw 48, DOUBLE_EDGE
 	dbw 50, STONE_EDGE
+	dbw 72, HEAVY_SLAM
 	db 0 ; no more level-up moves
 
 KleavorEvosAttacks:
@@ -5130,6 +5133,7 @@ GolettEvosAttacks:
 	dbw 30, MAGNITUDE
 	dbw 31, PHANTOMFORCE
 	dbw 32, MEGA_PUNCH
+	dbw 40, HEAVY_SLAM
 	dbw 46, EARTHQUAKE
 	dbw 48, HAMMER_ARM
 	dbw 56, DYNAMICPUNCH
@@ -5155,6 +5159,7 @@ GolurkEvosAttacks:
 	dbw 36, PHANTOMFORCE
 	dbw 38, BODY_PRESS
 	dbw 40, CLOSE_COMBAT
+	dbw 40, HEAVY_SLAM
 	dbw 42, HAMMER_ARM
 	dbw 50, EARTHQUAKE
 	dbw 56, DYNAMICPUNCH
@@ -6068,6 +6073,7 @@ CameruptEvosAttacks:
 	dbw 16, ANCIENTPOWER
 	dbw 18, MUD_SHOT
 	dbw 19, AMNESIA
+	dbw 21, HEAVY_SLAM
 	dbw 22, INCINERATE
 	dbw 22, LAVA_PLUME
 	dbw 24, STEALTH_ROCK
@@ -6781,6 +6787,7 @@ NumelEvosAttacks:
 	dbw 16, ANCIENTPOWER
 	dbw 16, MUD_SHOT
 	dbw 19, AMNESIA
+	dbw 21, HEAVY_SLAM
 	dbw 22, INCINERATE
 	dbw 22, LAVA_PLUME
 	dbw 25, EARTH_POWER
@@ -7463,6 +7470,7 @@ ShieldonEvosAttacks:
 	dbw 30, IRON_DEFENSE
 	dbw 32, STEALTH_ROCK
 	dbw 39, EARTH_POWER
+	dbw 46, HEAVY_SLAM
 	db 0 ; no more level-up moves
 
 BastiodonEvosAttacks:
@@ -7483,6 +7491,7 @@ BastiodonEvosAttacks:
 	dbw 36, STEALTH_ROCK
 	dbw 40, IRON_DEFENSE
 	dbw 43, EARTH_POWER
+	dbw 58, HEAVY_SLAM
 	db 0 ; no more level-up moves
 
 PawniardEvosAttacks:
@@ -9223,4 +9232,5 @@ AronEvosAttacks:
 	dbw 32, BODY_PRESS
 	dbw 34, IRON_TAIL
 	dbw 40, DOUBLE_EDGE
+	dbw 52, HEAVY_SLAM
 	db 0 ; no more level-up moves

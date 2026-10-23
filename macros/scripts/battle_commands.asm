@@ -222,6 +222,8 @@ ENDM
 	command threestageboost          ; d6
 	command hpscaledpower            ; d7
 	command recycle                  ; d8
+	command lowkickpower             ; d9
+	command heavyslampower           ; da
 
 	enum_start $fe
 	command endturn                 ; fe

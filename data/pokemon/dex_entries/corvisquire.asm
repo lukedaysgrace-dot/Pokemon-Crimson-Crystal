@@ -1,4 +1,4 @@
-	db "RAVEN@@@@@" ; species name
+	db "RAVEN@" ; species name
 	dw 207, 353 ; height, weight
 
 	db   "Many rough battles"

@@ -231,3 +231,5 @@ MoveEffectsPointers:
 	dw HPScaledHit ; EFFECT_HP_SCALED
 	dw ThreeStageBoost ; EFFECT_SP_ATK_UP_3
 	dw Recycle ; EFFECT_RECYCLE
+	dw LowKick ; EFFECT_LOW_KICK
+	dw HeavySlam ; EFFECT_HEAVY_SLAM

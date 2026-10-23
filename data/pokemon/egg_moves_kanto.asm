@@ -1113,6 +1113,7 @@ CanonicalONIXEggMoves:
 	dw EXPLOSION
 	dw ROCK_SLIDE
 	dw STEALTH_ROCK
+	dw HEAVY_SLAM
 	dw -1 ; end
 
 CanonicalDROWZEEEggMoves:

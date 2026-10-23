@@ -439,3 +439,5 @@ MoveNames::
 	db "POISON TAIL@"
 	db "OMINOUS WIND@"
 	db "HORN LEECH@"
+	db "GRASS KNOT@"
+	db "HEAVY SLAM@"

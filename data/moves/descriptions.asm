@@ -445,6 +445,8 @@ MoveDescriptions1:
 	dw PoisonTailDescription
 	dw OminousWindDescription
 	dw HornLeechDescription
+	dw GrassKnotDescription
+	dw HeavySlamDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -842,8 +844,8 @@ SubmissionDescription:
 	next "so hurts the user.@"
 
 LowKickDescription:
-	db   "An attack that may"
-	next "cause flinching.@"
+	db   "Stronger against"
+	next "heavier targets.@"
 
 CounterDescription:
 	db   "Returns a physical"
@@ -1642,8 +1644,8 @@ BitterBladeDescription:
 	next "fiery slash.@"
 
 HeatCrashDescription:
-	db   "A hot body slam"
-	next "that may burn.@"
+	db   "A fiery body slam."
+	next "More if heavier.@"
 
 IceShardDescription:
 	db   "Strikes first with"
@@ -2172,3 +2174,11 @@ OminousWindDescription:
 HornLeechDescription:
 	db   "Drains half the"
 	next "damage inflicted.@"
+
+GrassKnotDescription:
+	db   "Snares the target."
+	next "Hurts heavy foes.@"
+
+HeavySlamDescription:
+	db   "A heavy body slam."
+	next "More if heavier.@"

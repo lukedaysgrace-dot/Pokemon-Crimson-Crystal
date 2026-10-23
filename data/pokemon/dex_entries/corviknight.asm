@@ -1,4 +1,4 @@
-	db "RAVEN@@@@@" ; species name
+	db "RAVEN@" ; species name
 	dw 703, 1653 ; height, weight
 
 	db   "This #MON rules"

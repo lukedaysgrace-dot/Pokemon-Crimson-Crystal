@@ -1,4 +1,4 @@
-	db "TRANCE@@@@" ; category name
+	db "TRANCE@" ; category name
 	dw 411, 1146 ; height, weight
 
 	db   "Its icy stare"

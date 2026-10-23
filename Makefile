@@ -130,6 +130,13 @@ test-learnsets: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_espathra_evolution_move.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_breeding_moves.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_trainer_move_access.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/weight_move_learnsets.py
+
+.PHONY: test-weight-moves
+test-weight-moves: pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/weight_move_learnsets.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/weight_checks.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render tools/battletest/tests/92-weight-moves.yaml
 
 .PHONY: test-qol
 test-qol: pokecrystal.gbc pokecrystal_debug.gbc

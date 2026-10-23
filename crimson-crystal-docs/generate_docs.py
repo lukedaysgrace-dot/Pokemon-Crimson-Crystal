@@ -1401,7 +1401,9 @@ class Builder:
                    'EFFECT_FLINCH_HIT':'May cause flinching','EFFECT_ACCURACY_DOWN_HIT':'May lower accuracy',
                    'EFFECT_DEF_SPDEF_DOWN_HIT':'May lower Defense and Special Defense together',
                    'EFFECT_MEAN_LOOK':'Prevents switching and fleeing',
-                   'EFFECT_SPIDER_WEB':'Entry hazard: lowers Speed one stage and inflicts regular poison'}
+                   'EFFECT_SPIDER_WEB':'Entry hazard: lowers Speed one stage and inflicts regular poison',
+                   'EFFECT_LOW_KICK':'Power from the target’s weight: 20 to 120',
+                   'EFFECT_HEAVY_SLAM':'Power from the user’s weight compared with the target’s: 40 to 120'}
     for move in moves:
       old=baseline['moves'].get(move['const'])
       changes=[(key,label) for key,label in fields if old and old[key]!=move[key]]
