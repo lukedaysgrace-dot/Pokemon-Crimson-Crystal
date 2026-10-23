@@ -64,6 +64,16 @@ data/pokemon/pre_evolutions.asm: tools/generate_pre_evolutions.py tools/audit_le
 audit-pokemon-back-colors:
 	$(BATTLE_TEST_PYTHON) tools/audit_pokemon_back_colors.py --rgbgfx $(RGBGFX)
 
+.PHONY: test-engine-optimizations
+test-engine-optimizations: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_engine_optimizations.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/engine_optimization_ui_checks.py
+	mkdir -p .tmpbuild/engine-opt-pc
+	PC_UI_OUT=.tmpbuild/engine-opt-pc $(BATTLE_TEST_PYTHON) tools/test_pc_ui.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/trainer_ui_checks.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/wild_ui_checks.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/save_menu_checks.py
+
 debug: pokecrystal_debug.gbc
 
 test: pokecrystal_debug.gbc

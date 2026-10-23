@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pc_harness import Harness, enc  # noqa: E402
 
 PASS = FAIL = 0
-SAVE_FORMAT_VERSION = 3
+SAVE_FORMAT_VERSION = 4
 
 
 def check(cond, msg):
