@@ -1,0 +1,4436 @@
+{
+  "status": "passed",
+  "validation_builds": 1327,
+  "validation_battles": 42464,
+  "ability_groups": 664,
+  "selected_species": 231,
+  "ability_group_sizes": {
+    "2": 663,
+    "1": 1
+  },
+  "exceptions": [
+    {
+      "species": "DITTO",
+      "ability": "IMPOSTER",
+      "builds": 1
+    }
+  ],
+  "errors": 0,
+  "unresolved": 0,
+  "selected_builds": [
+    {
+      "id": "1b77ec9a6cb2786d506e",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "ABOMASNOW",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SNOW_WARNING",
+        "moves": [
+          "LOW_KICK",
+          "BLIZZARD",
+          "WOOD_HAMMER",
+          "BULLET_SEED"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "01fc4ae2451bc363fd2e",
+      "archetype": "recovery-control",
+      "build": {
+        "species": "AERODACTYL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "ROCK_HEAD",
+        "moves": [
+          "STONE_EDGE",
+          "ROOST",
+          "TOXIC",
+          "BRAVE_BIRD"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "522bdb6a3f72ac4dfd15",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "AGGRON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "FILTER",
+        "moves": [
+          "COUNTER",
+          "STONE_EDGE",
+          "BODY_PRESS",
+          "HEAVY_SLAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "7207bb014b0eb48bcfe5",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "ALAKAZAM",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INNER_FOCUS",
+        "moves": [
+          "COUNTER",
+          "PSYCHIC_M",
+          "GRASS_KNOT",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "e4812272deddce7f26da",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "ALTARIA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "CLOUD_NINE",
+        "moves": [
+          "OUTRAGE",
+          "MOONBLAST",
+          "ACROBATICS",
+          "FIRE_BLAST"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1a3f9f92c33ea2509288",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "AMBIPOM",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "PICKUP",
+        "moves": [
+          "FRUSTRATION",
+          "ACROBATICS",
+          "LOW_KICK",
+          "GUNK_SHOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "de2fcd09b7b56e5a721e",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "AMPHAROS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "GALVANIZE",
+        "moves": [
+          "COUNTER",
+          "THUNDERBOLT",
+          "DRAGON_PULSE",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "16461afcb2c68494486b",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "ANNIHILAPE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "DEFIANT",
+        "moves": [
+          "CLOSE_COMBAT",
+          "OUTRAGE",
+          "THRASH",
+          "ACROBATICS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1bbe5f8db7e0abd44dfb",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "APPLETUN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "THICK_FAT",
+        "moves": [
+          "DRACO_METEOR",
+          "SUCKER_PUNCH",
+          "LEAF_STORM",
+          "SUPERPOWER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1a1bd904643235bbd8e0",
+      "archetype": "alternative-1",
+      "build": {
+        "species": "ARBOK",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STRONG_JAW",
+        "moves": [
+          "SUCKER_PUNCH",
+          "DOUBLE_EDGE",
+          "CRUNCH",
+          "SEED_BOMB"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "221cafcade122eb84023",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "ARCANINE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "HEAT_CRASH",
+          "RAGING_FURY",
+          "CLOSE_COMBAT",
+          "OUTRAGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2013e7ecc56aef1bfb40",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "ARCANINE_HISUIAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "RAGING_FURY",
+          "STONE_EDGE",
+          "CLOSE_COMBAT",
+          "OUTRAGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "267c24ab1bd3f9a531de",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "ARCHALUDON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "DRACO_METEOR",
+          "FLASH_CANNON",
+          "THUNDERBOLT",
+          "RETURN"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "d6e7135faff0cdc84afc",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "ARCHEOPS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "UNNERVE",
+        "moves": [
+          "ACROBATICS",
+          "REST",
+          "SLEEP_TALK",
+          "STONE_EDGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0a134c6c809032b8e607",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "ARIADOS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "MERCILESS",
+        "moves": [
+          "MEGAHORN",
+          "SUCKER_PUNCH",
+          "POISON_JAB",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "8354d2edc237234b5cb2",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "ARMALDO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TOUGH_CLAWS",
+        "moves": [
+          "FIRST_IMPRESSION",
+          "ACCELROCK",
+          "STONE_EDGE",
+          "SUPERPOWER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "45bcef5af5987e3b6f24",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "ARMAROUGE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "WEAK_ARMOR",
+        "moves": [
+          "ARMOR_CANNON",
+          "PSYCHIC_M",
+          "ENERGY_BALL",
+          "DRAGON_PULSE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "574412ec278f42d466e6",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "ARTICUNO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SNOW_WARNING",
+        "moves": [
+          "RAZOR_WIND",
+          "ICICLE_SPEAR",
+          "AERIAL_ACE",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2992ae2fccef61fef469",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "AURORUS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SNOW_WARNING",
+        "moves": [
+          "MIRROR_COAT",
+          "ICE_BEAM",
+          "POWER_GEM",
+          "MOONBLAST"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "7bff515d299fb0ea6bea",
+      "archetype": "ability-aware-coverage",
+      "build": {
+        "species": "AZUMARILL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "HUGE_POWER",
+        "moves": [
+          "LIQUIDATION",
+          "PLAY_ROUGH",
+          "SUPERPOWER",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "07fec0e0e791c744193e",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "BANETTE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "CURSED_BODY",
+        "moves": [
+          "FRUSTRATION",
+          "SUCKER_PUNCH",
+          "SHADOW_CLAW",
+          "GUNK_SHOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0280c168ef7abf8d579b",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "BASTIODON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "FILTER",
+        "moves": [
+          "COUNTER",
+          "FLASH_CANNON",
+          "BODY_PRESS",
+          "FOUL_PLAY"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "388814a0a65889420e97",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "BAXCALIBUR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "ICE_BODY",
+        "moves": [
+          "OUTRAGE",
+          "IRON_HEAD",
+          "STRENGTH",
+          "BODY_SLAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "21aea316f6378f822da6",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "BEEDRILL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "ADAPTABILITY",
+        "moves": [
+          "MEGAHORN",
+          "OUTRAGE",
+          "POISON_JAB",
+          "ACROBATICS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2f69200874805461dc49",
+      "archetype": "status-opening",
+      "build": {
+        "species": "BELLOSSOM",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "OWN_TEMPO",
+        "moves": [
+          "SLEEP_POWDER",
+          "PETAL_DANCE",
+          "SYNTHESIS",
+          "MOONBLAST"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "131969b819978be7119b",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "BLISSEY",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "NATURAL_CURE",
+        "moves": [
+          "HYPER_VOICE",
+          "SEISMIC_TOSS",
+          "FIRE_BLAST",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "01df4be2b0751b747aae",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "BRELOOM",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "QUICK_FEET",
+        "moves": [
+          "CLOSE_COMBAT",
+          "MACH_PUNCH",
+          "WOOD_HAMMER",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "37858c1c1183bcccbc88",
+      "archetype": "status-opening",
+      "build": {
+        "species": "BUTTERFREE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "COMPOUND_EYES",
+        "moves": [
+          "SLEEP_POWDER",
+          "BUG_BUZZ",
+          "ROOST",
+          "HURRICANE"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "68ae8134c54dd92d8031",
+      "archetype": "physical-coverage",
+      "build": {
+        "species": "CAMERUPT",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "DROUGHT",
+        "moves": [
+          "RAGING_FURY",
+          "EARTHQUAKE",
+          "FRUSTRATION",
+          "STONE_EDGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0d6c5601fe706d331ce4",
+      "archetype": "physical-setup",
+      "build": {
+        "species": "CARRACOSTA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "SHELL_SMASH",
+          "LIQUIDATION",
+          "STONE_EDGE",
+          "SUPERPOWER"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "7e2b35e7f83056527a86",
+      "archetype": "special-setup",
+      "build": {
+        "species": "CELEBI",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "NATURAL_CURE",
+        "moves": [
+          "NASTY_PLOT",
+          "LEAF_STORM",
+          "PSYCHIC_M",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "c6935d63f712e9297c43",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "CENTISKORCH",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "FLASH_FIRE",
+        "moves": [
+          "RAGING_FURY",
+          "LEECH_LIFE",
+          "POWER_WHIP",
+          "RETURN"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "099fa71364b54a43bdc7",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "CERULEDGE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SHARPNESS",
+        "moves": [
+          "BITTER_BLADE",
+          "REST",
+          "SLEEP_TALK",
+          "CLOSE_COMBAT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "12d52c5e20891eee61da",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "CETITAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SHEER_FORCE",
+        "moves": [
+          "ICICLE_CRASH",
+          "HEAVY_SLAM",
+          "SUPERPOWER",
+          "RETURN"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "f17853c72867298fdb74",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "CHANDELURE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "FLASH_FIRE",
+        "moves": [
+          "OVERHEAT",
+          "SHADOW_BALL",
+          "ENERGY_BALL",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0b5246d5b4f71f6452ce",
+      "archetype": "special-coverage",
+      "build": {
+        "species": "CLEFABLE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "MAGIC_GUARD",
+        "moves": [
+          "MOONBLAST",
+          "NIGHT_SHADE",
+          "FIRE_BLAST",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2fbe7492c128096bff44",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "CLODSIRE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "POISON_POINT",
+        "moves": [
+          "COUNTER",
+          "EARTHQUAKE",
+          "GUNK_SHOT",
+          "MEGAHORN"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "3b3359842ec509dd9b20",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "CLOYSTER",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SHELL_ARMOR",
+        "moves": [
+          "HYDRO_PUMP",
+          "REST",
+          "SLEEP_TALK",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0a88ecb630a339a5bab1",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "CONKELDURR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "IRON_FIST",
+        "moves": [
+          "CLOSE_COMBAT",
+          "FRUSTRATION",
+          "EARTHQUAKE",
+          "STONE_EDGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "c35e3a9b74c4f94143bf",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "CORSOLA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STORM_DRAIN",
+        "moves": [
+          "MIRROR_COAT",
+          "HYDRO_PUMP",
+          "POWER_GEM",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2d1dada4cfa619fef07a",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "CORVIKNIGHT",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "MIRROR_ARMOR",
+        "moves": [
+          "BRAVE_BIRD",
+          "REST",
+          "SLEEP_TALK",
+          "IRON_HEAD"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "003d1f970205948c1902",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "CRADILY",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SUCTION_CUPS",
+        "moves": [
+          "MIRROR_COAT",
+          "LEAF_STORM",
+          "STONE_EDGE",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0950b42c58e77f84b530",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "CROBAT",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "MERCILESS",
+        "moves": [
+          "ACROBATICS",
+          "REST",
+          "SLEEP_TALK",
+          "POISON_JAB"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "184fddf2225186e6cb93",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "CURSOLA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "REGENERATOR",
+        "moves": [
+          "MIRROR_COAT",
+          "SHADOW_BALL",
+          "HYDRO_PUMP",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0ab886aadb48afb4578d",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "DELIBIRD",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "HUSTLE",
+        "moves": [
+          "ICE_BEAM",
+          "ICE_SHARD",
+          "ACROBATICS",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "d71585d953f8c2e9fe23",
+      "archetype": "ability-aware-coverage",
+      "build": {
+        "species": "DEWGONG",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SNOW_WARNING",
+        "moves": [
+          "BLIZZARD",
+          "HYDRO_PUMP",
+          "FRUSTRATION",
+          "MEGAHORN"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "c510df58f654906a2586",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "DITTO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "IMPOSTER",
+        "moves": [
+          "TRANSFORM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "21965eae9ee17f7e7827",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "DODRIO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TANGLED_FEET",
+        "moves": [
+          "LOW_KICK",
+          "THRASH",
+          "ACROBATICS",
+          "HI_JUMP_KICK"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "29c34413d199ef8c4180",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "DONPHAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "EARTHQUAKE",
+          "SUPERPOWER",
+          "FRUSTRATION",
+          "GUNK_SHOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "40cf2924429555686c2e",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "DRAGAPULT",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "CLEAR_BODY",
+        "moves": [
+          "OUTRAGE",
+          "ACROBATICS",
+          "RETURN",
+          "SHADOW_BALL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "6a822c8285389d83d899",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "DRAGONITE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "MULTISCALE",
+        "moves": [
+          "OUTRAGE",
+          "SUPERPOWER",
+          "DUALWINGBEAT",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "114a97f618f2c9417056",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "DRIFBLIM",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "AFTERMATH",
+        "moves": [
+          "ACROBATICS",
+          "SHADOW_BALL",
+          "THUNDERBOLT",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "3999ad67486baaee4fe4",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "DUDUNSPARCE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SERENE_GRACE",
+        "moves": [
+          "COUNTER",
+          "OUTRAGE",
+          "FRUSTRATION",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0fa18a0266aa63988874",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "DUGTRIO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "ARENA_TRAP",
+        "moves": [
+          "EARTHQUAKE",
+          "SUCKER_PUNCH",
+          "FRUSTRATION",
+          "FOUL_PLAY"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "3492ca1cd48156e1562d",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "DUGTRIO_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TANGLING_HAIR",
+        "moves": [
+          "EARTHQUAKE",
+          "REST",
+          "SLEEP_TALK",
+          "IRON_HEAD"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1dcafc45484edbe7200a",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "DUSKNOIR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "PRANKSTER",
+        "moves": [
+          "SHADOW_CLAW",
+          "REST",
+          "SLEEP_TALK",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "331538867641bbdb6075",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "ELECTIVIRE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SHEER_FORCE",
+        "moves": [
+          "CLOSE_COMBAT",
+          "MACH_PUNCH",
+          "WILD_CHARGE",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "04d7850fdbcaa70f8f1b",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "ELECTRODE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SOUNDPROOF",
+        "moves": [
+          "MIRROR_COAT",
+          "THUNDERBOLT",
+          "FOUL_PLAY",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0b2bfc678f995fb32ae0",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "ELECTRODE_HISUIAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SOUNDPROOF",
+        "moves": [
+          "LEAF_STORM",
+          "THUNDERBOLT",
+          "FOUL_PLAY",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "02f0f0b91057c4e778ea",
+      "archetype": "physical-coverage",
+      "build": {
+        "species": "ENTEI",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "FLASH_FIRE",
+        "moves": [
+          "SACRED_FIRE",
+          "FRUSTRATION",
+          "STONE_EDGE",
+          "CRUNCH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1bea456604bfaeb28c9e",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "ESPATHRA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "COMPETITIVE",
+        "moves": [
+          "PSYCHIC_M",
+          "NIGHT_SHADE",
+          "HYPER_BEAM",
+          "FOUL_PLAY"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "5448a6c03a1a67fb0702",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "ESPEON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SYNCHRONIZE",
+        "moves": [
+          "PSYCHIC_M",
+          "REST",
+          "SLEEP_TALK",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "37ed1ba2049b0a90740a",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "EXCADRILL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "EARTHQUAKE",
+          "REST",
+          "SLEEP_TALK",
+          "IRON_HEAD"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "22f35a934b9453c36241",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "EXEGGUTOR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "CHLOROPHYLL",
+        "moves": [
+          "GRASS_KNOT",
+          "LOW_KICK",
+          "LEAF_STORM",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "47ffcb537cd77866d944",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "EXEGGUTOR_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "ROCK_HEAD",
+        "moves": [
+          "GRASS_KNOT",
+          "LOW_KICK",
+          "DRAGON_HAMMER",
+          "POWER_WHIP"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "a2f75a639ba8f848d7a1",
+      "archetype": "physical-coverage",
+      "build": {
+        "species": "FARIGIRAF",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SAP_SIPPER",
+        "moves": [
+          "FRUSTRATION",
+          "ZEN_HEADBUTT",
+          "FOUL_PLAY",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "8377ad74163ecff653d7",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "FEAROW",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "FRUSTRATION",
+          "DRILL_PECK",
+          "DRILL_RUN",
+          "U_TURN"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "005493ac458155b0193d",
+      "archetype": "recovery-control",
+      "build": {
+        "species": "FLAPPLE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "HUSTLE",
+        "moves": [
+          "OUTRAGE",
+          "RECOVER",
+          "TOXIC",
+          "WOOD_HAMMER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2f60fbe8ad058c42ead7",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "FLAREON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "FLASH_FIRE",
+        "moves": [
+          "FLARE_BLITZ",
+          "CLOSE_COMBAT",
+          "FRUSTRATION",
+          "PLAY_ROUGH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "26a2c693419b72a3be22",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "FLYGON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "COMPOUND_EYES",
+        "moves": [
+          "OUTRAGE",
+          "MEGAHORN",
+          "SUPERPOWER",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "76faa898f46c2dd05e39",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "FORRETRESS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "COUNTER",
+          "IRON_HEAD",
+          "BODY_PRESS",
+          "PIN_MISSILE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "23adf03cf8058e335547",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "FROSLASS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "LEVITATE",
+        "moves": [
+          "ICE_BEAM",
+          "SHADOW_BALL",
+          "THUNDERBOLT",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "7712c22ddd4fe025ab10",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "FURRET",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "FUR_COAT",
+        "moves": [
+          "FRUSTRATION",
+          "REST",
+          "SLEEP_TALK",
+          "AQUA_TAIL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "11133ecd293af088d066",
+      "archetype": "alternative-1",
+      "build": {
+        "species": "GALLADE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STEADFAST",
+        "moves": [
+          "X_SCISSOR",
+          "ZEN_HEADBUTT",
+          "STRENGTH",
+          "GIGA_IMPACT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "4c152ebe5e24e8da70a1",
+      "archetype": "ability-aware-coverage",
+      "build": {
+        "species": "GALVANTULA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "COMPOUND_EYES",
+        "moves": [
+          "THUNDER",
+          "BUG_BUZZ",
+          "HYPER_BEAM",
+          "ENERGY_BALL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1334135d7e6e99e5b614",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "GARDEVOIR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SYNCHRONIZE",
+        "moves": [
+          "MOONBLAST",
+          "REST",
+          "SLEEP_TALK",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "07f56261ee6d8a37454c",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "GENGAR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "LEVITATE",
+        "moves": [
+          "SLUDGE_BOMB",
+          "SHADOW_BALL",
+          "THUNDERBOLT",
+          "ENERGY_BALL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "25321c3fceedfed6a3a0",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "GLACEON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SLUSH_RUSH",
+        "moves": [
+          "ICE_BEAM",
+          "HYPER_BEAM",
+          "EARTH_POWER",
+          "WATER_PULSE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0cb40635e03c7c738df5",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "GLIMMORA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "MERCILESS",
+        "moves": [
+          "SLUDGE_BOMB",
+          "POWER_GEM",
+          "EARTH_POWER",
+          "ENERGY_BALL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "64afd7d473ba8a1c68ba",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "GLISCOR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "POISON_HEAL",
+        "moves": [
+          "COUNTER",
+          "ACROBATICS",
+          "EARTHQUAKE",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "032f5bc7d462a3b582d8",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "GOLDUCK",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "CLOUD_NINE",
+        "moves": [
+          "COUNTER",
+          "HYDRO_PUMP",
+          "PSYCHIC_M",
+          "SEISMIC_TOSS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "6b4bfe04b24f113104fd",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "GOLEM",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "EARTHQUAKE",
+          "SUCKER_PUNCH",
+          "STONE_EDGE",
+          "SUPERPOWER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "3dafd3a56214a66f952a",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "GOLEM_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "COUNTER",
+          "WILD_CHARGE",
+          "STONE_EDGE",
+          "SUPERPOWER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2cd11094d7234008ac7c",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "GOLISOPOD",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "WATER_VEIL",
+        "moves": [
+          "FIRST_IMPRESSION",
+          "SUCKER_PUNCH",
+          "LIQUIDATION",
+          "CLOSE_COMBAT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "6d54a90eb68cc0133d82",
+      "archetype": "ability-aware-coverage",
+      "build": {
+        "species": "GOLURK",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "NO_GUARD",
+        "moves": [
+          "EARTHQUAKE",
+          "CLOSE_COMBAT",
+          "MEGA_KICK",
+          "STONE_EDGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "ce096c5af96844b010a5",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "GOROCHU",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "GALVANIZE",
+        "moves": [
+          "FOUL_PLAY",
+          "THUNDERBOLT",
+          "FRUSTRATION",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "07d2703520adaa1c6542",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "GOROTORA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "THRASH",
+          "EXTREMESPEED",
+          "THUNDERBOLT",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "66360530ebf594f127ff",
+      "archetype": "ability-specialist",
+      "build": {
+        "species": "GRANBULL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STRONG_JAW",
+        "moves": [
+          "CRUNCH",
+          "FIRE_FANG",
+          "PLAY_ROUGH",
+          "CLOSE_COMBAT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "49e340b270d81488595d",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "GRIMMSNARL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TOUGH_CLAWS",
+        "moves": [
+          "SPIRIT_BREAK",
+          "SUCKER_PUNCH",
+          "CRUNCH",
+          "SUPERPOWER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "559ca1630bb58e0db1d7",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "GRUMPIG",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "PRANKSTER",
+        "moves": [
+          "COUNTER",
+          "MIRROR_COAT",
+          "PSYCHIC_M",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "07b3b19a854081999f00",
+      "archetype": "alternative-1",
+      "build": {
+        "species": "GYARADOS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "HEADBUTT",
+          "THRASH",
+          "STONE_EDGE",
+          "AQUA_TAIL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "627ca9305edbaa39ab7d",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "HAXORUS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "RIVALRY",
+        "moves": [
+          "OUTRAGE",
+          "CLOSE_COMBAT",
+          "FRUSTRATION",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1fbda580bd82d28021be",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "HERACROSS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "GUTS",
+        "moves": [
+          "LOW_KICK",
+          "CLOSE_COMBAT",
+          "MEGAHORN",
+          "THRASH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2ddd3bf1b3f70fffa1a9",
+      "archetype": "physical-setup",
+      "build": {
+        "species": "HITMONCHAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "IRON_FIST",
+        "moves": [
+          "SWORDS_DANCE",
+          "CLOSE_COMBAT",
+          "FRUSTRATION",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "c568c2ddcd421d30c5a1",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "HITMONLEE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "RECKLESS",
+        "moves": [
+          "LOW_SWEEP",
+          "RETURN",
+          "HI_JUMP_KICK",
+          "SUCKER_PUNCH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "e810c6f517a902f61a93",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "HITMONTOP",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "CLOSE_COMBAT",
+          "SUCKER_PUNCH",
+          "FRUSTRATION",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "50935b6f69539f397e88",
+      "archetype": "recovery-control",
+      "build": {
+        "species": "HONCHKROW",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SUPER_LUCK",
+        "moves": [
+          "ACROBATICS",
+          "ROOST",
+          "TOXIC",
+          "SUCKER_PUNCH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "f9fd6c7822f8130a0d22",
+      "archetype": "special-coverage",
+      "build": {
+        "species": "HOUNDOOM",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "OVERHEAT",
+          "DARK_PULSE",
+          "HYPER_BEAM",
+          "SLUDGE_BOMB"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "10f75c2d34cf08786396",
+      "archetype": "physical-coverage",
+      "build": {
+        "species": "HO_OH",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "PRESSURE",
+        "moves": [
+          "SACRED_FIRE",
+          "BRAVE_BIRD",
+          "FRUSTRATION",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "403c09e2d29fea1c9039",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "HYDRAPPLE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "REGENERATOR",
+        "moves": [
+          "DRACO_METEOR",
+          "SUCKER_PUNCH",
+          "LEAF_STORM",
+          "HYDRO_PUMP"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "74fccff9975ae47c6c79",
+      "archetype": "alternative-1",
+      "build": {
+        "species": "HYDREIGON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "LEVITATE",
+        "moves": [
+          "HYDRO_PUMP",
+          "DARK_PULSE",
+          "OUTRAGE",
+          "ACROBATICS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "23df3ac9dd1a37f44cff",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "HYPNO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INSOMNIA",
+        "moves": [
+          "COUNTER",
+          "PSYCHIC_M",
+          "NIGHT_SHADE",
+          "SEISMIC_TOSS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "88fb945083254ad0c2ff",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "JIRACHI",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SERENE_GRACE",
+        "moves": [
+          "DOOM_DESIRE",
+          "REST",
+          "SLEEP_TALK",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "136704f3a88da1fd8b68",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "JOLTEON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "COMPETITIVE",
+        "moves": [
+          "THUNDERBOLT",
+          "HYPER_BEAM",
+          "EXTRASENSORY",
+          "SHADOW_BALL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "18f53da04b9a294f551c",
+      "archetype": "status-opening",
+      "build": {
+        "species": "JUMPLUFF",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "LEAF_GUARD",
+        "moves": [
+          "SPORE",
+          "LEAF_STORM",
+          "SYNTHESIS",
+          "AIR_SLASH"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "de2e21ddb4ec17cef37c",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "KABUTOPS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "BATTLE_ARMOR",
+        "moves": [
+          "LOW_KICK",
+          "LIQUIDATION",
+          "STONE_EDGE",
+          "SUPERPOWER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "231235bf4a8989ac117f",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "KANGASKHAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "PARENTAL_BOND",
+        "moves": [
+          "FRUSTRATION",
+          "SUCKER_PUNCH",
+          "OUTRAGE",
+          "SEISMIC_TOSS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0950e49b16adb09a556c",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "KINGAMBIT",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "DEFIANT",
+        "moves": [
+          "KOWTOW_CLEAVE",
+          "SUCKER_PUNCH",
+          "IRON_HEAD",
+          "SUPERPOWER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2b8351cd896a964e7628",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "KINGDRA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SWIFT_SWIM",
+        "moves": [
+          "OUTRAGE",
+          "HYDRO_PUMP",
+          "FRUSTRATION",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "3228dd40cb291cc77e0d",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "KINGLER",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "TOUGH_CLAWS",
+        "moves": [
+          "CRABHAMMER",
+          "BIDE",
+          "SUPERPOWER",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "630bbe2a5bdad695e778",
+      "archetype": "ability-aware-coverage",
+      "build": {
+        "species": "KLEAVOR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TECHNICIAN",
+        "moves": [
+          "ROCK_BLAST",
+          "BUG_BITE",
+          "CLOSE_COMBAT",
+          "ACROBATICS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0542d5f759b3bcd4e61b",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "KROOKODILE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "EARTHQUAKE",
+          "REST",
+          "SLEEP_TALK",
+          "FOUL_PLAY"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "6f08d9fad327f3312900",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "LANTURN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "VOLT_ABSORB",
+        "moves": [
+          "HYDRO_PUMP",
+          "SUCKER_PUNCH",
+          "THUNDERBOLT",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2ef5c1c53983c4dd9c5c",
+      "archetype": "alternative-1",
+      "build": {
+        "species": "LAPRAS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "HYDRATION",
+        "moves": [
+          "BLIZZARD",
+          "ICICLE_CRASH",
+          "ICE_BEAM",
+          "LIQUIDATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "47265ab848a79dd6347c",
+      "archetype": "ability-aware-coverage",
+      "build": {
+        "species": "LEAFEON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SHARPNESS",
+        "moves": [
+          "LEAF_BLADE",
+          "X_SCISSOR",
+          "FRUSTRATION",
+          "AERIAL_ACE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "070c6cd53414add3b738",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "LEDIAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "IRON_FIST",
+        "moves": [
+          "COUNTER",
+          "CLOSE_COMBAT",
+          "ACROBATICS",
+          "U_TURN"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2c357e02e8c810eff3b5",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "LICKILICKY",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "CLOUD_NINE",
+        "moves": [
+          "THRASH",
+          "POWER_WHIP",
+          "EARTHQUAKE",
+          "SEISMIC_TOSS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2320d1e54d262446d933",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "LOPUNNY",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "ADAPTABILITY",
+        "moves": [
+          "CLOSE_COMBAT",
+          "FRUSTRATION",
+          "ACROBATICS",
+          "BLAZE_KICK"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "19e0c0aaf0544f0199b6",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "LUCARIO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "ADAPTABILITY",
+        "moves": [
+          "LOW_KICK",
+          "CLOSE_COMBAT",
+          "METEOR_MASH",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0767e6508125331c5898",
+      "archetype": "physical-coverage",
+      "build": {
+        "species": "LUDICOLO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SWIFT_SWIM",
+        "moves": [
+          "SEISMIC_TOSS",
+          "WATERFALL",
+          "WOOD_HAMMER",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "842855754f1a0d3c1901",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "LUGIA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "PRESSURE",
+        "moves": [
+          "ACROBATICS",
+          "REST",
+          "SLEEP_TALK",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "fe59d98986015e225194",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "MACHAMP",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "GUTS",
+        "moves": [
+          "CLOSE_COMBAT",
+          "FRUSTRATION",
+          "EARTHQUAKE",
+          "STONE_EDGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2918c8b1c5bee755877b",
+      "archetype": "status-opening",
+      "build": {
+        "species": "MAGCARGO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SOLID_ROCK",
+        "moves": [
+          "WILL_O_WISP",
+          "OVERHEAT",
+          "RECOVER",
+          "POWER_GEM"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "ae9a0f6dfc0b1392fa48",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "MAGMORTAR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "FLASH_FIRE",
+        "moves": [
+          "LOW_KICK",
+          "HEAT_CRASH",
+          "OVERHEAT",
+          "THUNDERBOLT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "108b9fe662331bb8482b",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "MAGNEZONE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "THUNDERBOLT",
+          "REST",
+          "SLEEP_TALK",
+          "FLASH_CANNON"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "07562b793fcbc5872f36",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "MAMOSWINE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "THICK_FAT",
+        "moves": [
+          "EARTHQUAKE",
+          "REST",
+          "SLEEP_TALK",
+          "ICICLE_CRASH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1c1140e9954162f916a9",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "MANTINE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "WATER_VEIL",
+        "moves": [
+          "MIRROR_COAT",
+          "HYDRO_PUMP",
+          "HURRICANE",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "4e1e83d684292c221754",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "MAROWAK",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TECHNICIAN",
+        "moves": [
+          "DRILL_RUN",
+          "BONEMERANG",
+          "MEGA_KICK",
+          "LOW_KICK"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "9e5c2583829f04fb2bdb",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "MAROWAK_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "ROCK_HEAD",
+        "moves": [
+          "COUNTER",
+          "SHADOW_BONE",
+          "FLARE_BLITZ",
+          "SEISMIC_TOSS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "8933351acb096b581c37",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "MAWILE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "HUGE_POWER",
+        "moves": [
+          "GRASS_KNOT",
+          "PLAY_ROUGH",
+          "SEISMIC_TOSS",
+          "FOUL_PLAY"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0b375d6889a24c4f44d6",
+      "archetype": "status-opening",
+      "build": {
+        "species": "MESMERIA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "BAD_DREAMS",
+        "moves": [
+          "LOVELY_KISS",
+          "ICE_BEAM",
+          "PSYCHIC_M",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "93055cc120820af77fad",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "MEW",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SYNCHRONIZE",
+        "moves": [
+          "PSYCHIC_M",
+          "SUCKER_PUNCH",
+          "CLOSE_COMBAT",
+          "OUTRAGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "100a624be356600f05ca",
+      "archetype": "special-setup",
+      "build": {
+        "species": "MEWTWO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "UNNERVE",
+        "moves": [
+          "NASTY_PLOT",
+          "PSYSTRIKE",
+          "FIRE_BLAST",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "5bb7fb5d703b636e123b",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "MILOTIC",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "MARVEL_SCALE",
+        "moves": [
+          "MIRROR_COAT",
+          "HYDRO_PUMP",
+          "MOONBLAST",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0c6f961798cdcf5aea33",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "MILTANK",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SCRAPPY",
+        "moves": [
+          "COUNTER",
+          "FRUSTRATION",
+          "SEISMIC_TOSS",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1f8ca88590205ba70384",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "MIMIKYU",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "DISGUISE",
+        "moves": [
+          "PLAY_ROUGH",
+          "SUCKER_PUNCH",
+          "SHADOW_CLAW",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "04457b6adb1ca9c443de",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "MISMAGIUS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "PRANKSTER",
+        "moves": [
+          "MOONBLAST",
+          "SHADOW_BALL",
+          "GRASS_KNOT",
+          "THUNDERBOLT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "276dfc3ad2332c303bad",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "MOLTRES",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "FLAME_BODY",
+        "moves": [
+          "OVERHEAT",
+          "ACROBATICS",
+          "ENERGY_BALL",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "647d1b72dd9d3d9361f3",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "MR__RIME",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "ICE_BODY",
+        "moves": [
+          "ICE_BEAM",
+          "SUCKER_PUNCH",
+          "PSYCHIC_M",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "26a3c5f61f5bf391cddb",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "MUK",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STICKY_HOLD",
+        "moves": [
+          "SLUDGE",
+          "GUNK_SHOT",
+          "ZEN_HEADBUTT",
+          "CROSS_POISON"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "41695f0934631949650d",
+      "archetype": "status-opening",
+      "build": {
+        "species": "MUK_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "POISON_PUPPETEER",
+        "moves": [
+          "TOXIC",
+          "GUNK_SHOT",
+          "FOUL_PLAY",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "095e2426acc9bb8f0ece",
+      "archetype": "special-coverage",
+      "build": {
+        "species": "NIDOKING",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SHEER_FORCE",
+        "moves": [
+          "EARTH_POWER",
+          "SLUDGE_BOMB",
+          "FIRE_BLAST",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "4e2aec9059acad89c620",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "NIDOQUEEN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SHEER_FORCE",
+        "moves": [
+          "EARTHQUAKE",
+          "SUCKER_PUNCH",
+          "POISON_TAIL",
+          "OUTRAGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "285d5df6be7ba50f2c8a",
+      "archetype": "special-coverage",
+      "build": {
+        "species": "NINETALES",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "FLASH_FIRE",
+        "moves": [
+          "OVERHEAT",
+          "MOONBLAST",
+          "NIGHT_SHADE",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "38233175271ea9afce89",
+      "archetype": "ability-aware-coverage",
+      "build": {
+        "species": "NINETALES_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SNOW_WARNING",
+        "moves": [
+          "BLIZZARD",
+          "MOONBLAST",
+          "FOUL_PLAY",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0c33f89c82c0bfa1aadb",
+      "archetype": "status-opening",
+      "build": {
+        "species": "NOCTOWL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TINTED_LENS",
+        "moves": [
+          "HYPNOSIS",
+          "PSYCHIC_M",
+          "ROOST",
+          "HURRICANE"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "2ea478246b190786130e",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "NOIVERN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "WIND_RIDER",
+        "moves": [
+          "DRACO_METEOR",
+          "HURRICANE",
+          "FLAMETHROWER",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "6bf991fe033f6e9959c8",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "OCTILLERY",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "ANALYTIC",
+        "moves": [
+          "WATER_SPOUT",
+          "FIRE_BLAST",
+          "FRUSTRATION",
+          "GUNK_SHOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1a2cdc821f160e948fda",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "OMASTAR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SWIFT_SWIM",
+        "moves": [
+          "HYDRO_PUMP",
+          "POWER_GEM",
+          "ICE_BEAM",
+          "EARTH_POWER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "10dd465dcd942d1ebb59",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "OVERQWIL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "POISON_POINT",
+        "moves": [
+          "GUNK_SHOT",
+          "FOUL_PLAY",
+          "FRUSTRATION",
+          "LIQUIDATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "03dc49a636276887c3f5",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "PALAFIN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "DEFIANT",
+        "moves": [
+          "LOW_SWEEP",
+          "AURA_SPHERE",
+          "ACROBATICS",
+          "CLOSE_COMBAT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "60782bdba7693e95d7ac",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "PARASECT",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "EFFECT_SPORE",
+        "moves": [
+          "COUNTER",
+          "LEECH_LIFE",
+          "SEED_BOMB",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "05e1b544ef7d148df8e8",
+      "archetype": "status-opening",
+      "build": {
+        "species": "PERRSERKER",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TOUGH_CLAWS",
+        "moves": [
+          "HYPNOSIS",
+          "IRON_HEAD",
+          "CLOSE_COMBAT",
+          "THRASH"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "1a3ce2a8b437b6cf7a4e",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "PERSIAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SUPER_LUCK",
+        "moves": [
+          "FRUSTRATION",
+          "PETAL_DANCE",
+          "FOUL_PLAY",
+          "GUNK_SHOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "a927bc9cc0e9b7ac4cc4",
+      "archetype": "physical-coverage",
+      "build": {
+        "species": "PERSIAN_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "FUR_COAT",
+        "moves": [
+          "FOUL_PLAY",
+          "FRUSTRATION",
+          "GUNK_SHOT",
+          "PLAY_ROUGH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "fb9864af5fda79d02818",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "PIDGEOT",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "NO_GUARD",
+        "moves": [
+          "HYPER_BEAM",
+          "REST",
+          "SLEEP_TALK",
+          "HURRICANE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0cd9ebd9aef282c024c6",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "PINSIR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "GUTS",
+        "moves": [
+          "MEGAHORN",
+          "CLOSE_COMBAT",
+          "OUTRAGE",
+          "THRASH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "5403db22d53bdce2f0ea",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "POLITOED",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "DRIZZLE",
+        "moves": [
+          "LOW_KICK",
+          "HYDRO_PUMP",
+          "SEISMIC_TOSS",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "41ee6eb38bc8386f79c7",
+      "archetype": "physical-setup",
+      "build": {
+        "species": "POLIWRATH",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "IRON_FIST",
+        "moves": [
+          "BULK_UP",
+          "CLOSE_COMBAT",
+          "LIQUIDATION",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "1a9904641c4217562e1d",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "PORYGON_Z",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "DOWNLOAD",
+        "moves": [
+          "HYPER_BEAM",
+          "ICE_BEAM",
+          "THUNDERBOLT",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0a74f3f7651e02f319bb",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "QUAGSIRE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "UNAWARE",
+        "moves": [
+          "COUNTER",
+          "EARTHQUAKE",
+          "LIQUIDATION",
+          "SEISMIC_TOSS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "b70140c7585509100d28",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "RAICHU_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "GALVANIZE",
+        "moves": [
+          "THUNDERBOLT",
+          "EXTREMESPEED",
+          "PSYCHIC_M",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "7575081af3d8199c0a1a",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "RAIKOU",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "COMPETITIVE",
+        "moves": [
+          "THUNDERBOLT",
+          "AURA_SPHERE",
+          "EXTRASENSORY",
+          "SCALD"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "5bdb6392a8d042676d2a",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "RAMPARDOS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SHEER_FORCE",
+        "moves": [
+          "STONE_EDGE",
+          "OUTRAGE",
+          "SUPERPOWER",
+          "THRASH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "04515e7c5a86efeb550e",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "RAPIDASH",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "FLAME_BODY",
+        "moves": [
+          "RAGING_FURY",
+          "THRASH",
+          "MEGAHORN",
+          "LOW_KICK"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "686d2b2d4d31b122b74b",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "RAPIDASH_GALARIAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "PASTEL_VEIL",
+        "moves": [
+          "LOW_KICK",
+          "BLAZE_KICK",
+          "PLAY_ROUGH",
+          "THRASH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "21b6826713b267568c08",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "RATICATE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "HUSTLE",
+        "moves": [
+          "FRUSTRATION",
+          "SUCKER_PUNCH",
+          "WILD_CHARGE",
+          "CRUNCH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "3fe776c630193b9dfb1f",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "RATICATE_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "HUSTLE",
+        "moves": [
+          "FRUSTRATION",
+          "SUCKER_PUNCH",
+          "CRUNCH",
+          "IRON_HEAD"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0c39be54068fe53dd646",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "RHYPERIOR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SOLID_ROCK",
+        "moves": [
+          "HEAT_CRASH",
+          "HEAVY_SLAM",
+          "EARTHQUAKE",
+          "STONE_EDGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "282c5668a9aaee6d9bbf",
+      "archetype": "alternative-1",
+      "build": {
+        "species": "SALAMENCE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "AERILATE",
+        "moves": [
+          "FIRE_BLAST",
+          "HYDRO_PUMP",
+          "SUPERPOWER",
+          "BODY_SLAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "005ed747bd391d0d2804",
+      "archetype": "alternative-1",
+      "build": {
+        "species": "SALAZZLE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "CORROSION",
+        "moves": [
+          "HYPER_VOICE",
+          "FLAMETHROWER",
+          "FOUL_PLAY",
+          "HEAT_WAVE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2cc8ae93a14980939321",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "SANDSLASH",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SAND_FORCE",
+        "moves": [
+          "COUNTER",
+          "EARTHQUAKE",
+          "FRUSTRATION",
+          "LOW_KICK"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "625f7f318024acd6bf9a",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "SANDSLASH_ALOLAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "TOUGH_CLAWS",
+        "moves": [
+          "LOW_KICK",
+          "ICICLE_CRASH",
+          "IRON_HEAD",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "77e9e978c357d613b337",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "SCIZOR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TECHNICIAN",
+        "moves": [
+          "IRON_HEAD",
+          "BULLET_PUNCH",
+          "CLOSE_COMBAT",
+          "X_SCISSOR"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "09c7616ac8194831b27d",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "SCOLIPEDE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SWARM",
+        "moves": [
+          "MEGAHORN",
+          "POISON_TAIL",
+          "SUPERPOWER",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "8b123f76510fb247f187",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "SCRAFTY",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "MOXIE",
+        "moves": [
+          "COUNTER",
+          "CLOSE_COMBAT",
+          "FOUL_PLAY",
+          "OUTRAGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0819ecf8eb3477e7c52d",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "SEAKING",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "SWIFT_SWIM",
+        "moves": [
+          "HYDRO_PUMP",
+          "ICE_BEAM",
+          "SIGNAL_BEAM",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "a4e24246b8ca4e810c86",
+      "archetype": "alternative-1",
+      "build": {
+        "species": "SEVIPER",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "GUNK_SHOT",
+          "STRENGTH",
+          "NIGHT_SLASH",
+          "POISON_TAIL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "4c2a682d9d45c1d2c136",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "SHUCKLE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "CONTRARY",
+        "moves": [
+          "STONE_EDGE",
+          "BIDE",
+          "BODY_PRESS",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "07141324ca94f91812b0",
+      "archetype": "recovery-control",
+      "build": {
+        "species": "SIRFETCH_D",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SUPER_LUCK",
+        "moves": [
+          "CLOSE_COMBAT",
+          "ROOST",
+          "TOXIC",
+          "ACROBATICS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "52460cb51080d40de081",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "SKARMORY",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "BRAVE_BIRD",
+          "REST",
+          "SLEEP_TALK",
+          "BODY_PRESS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "22a1eee9cad41aeadb6e",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "SLOWBRO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "UNAWARE",
+        "moves": [
+          "COUNTER",
+          "HYDRO_PUMP",
+          "PSYCHIC_M",
+          "FIRE_BLAST"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "13ca2dcf422c463761ea",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "SLOWBRO_GALARIAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "UNAWARE",
+        "moves": [
+          "GRASS_KNOT",
+          "GUNK_SHOT",
+          "PSYCHIC_M",
+          "FIRE_BLAST"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "04ee90f6f83a464750f0",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "SLOWKING",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "UNAWARE",
+        "moves": [
+          "HYDRO_PUMP",
+          "PSYCHIC_M",
+          "FIRE_BLAST",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "745aa583b6852aeff0fc",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "SLOWKING_GALARIAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "OWN_TEMPO",
+        "moves": [
+          "PSYCHIC_M",
+          "SLUDGE_BOMB",
+          "FIRE_BLAST",
+          "GRASS_KNOT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2f60ac08382c0aa6eb45",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "SMEARGLE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "OWN_TEMPO",
+        "moves": [
+          "COUNTER",
+          "MIRROR_COAT",
+          "SUPER_FANG",
+          "NIGHT_SHADE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "d4057714d4449ebbd0ed",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "SNEASLER",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "POISON_TOUCH",
+        "moves": [
+          "CLOSE_COMBAT",
+          "SUCKER_PUNCH",
+          "GUNK_SHOT",
+          "ACROBATICS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "fdd40d72740b33587286",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "SNORLAX",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "THICK_FAT",
+        "moves": [
+          "COUNTER",
+          "FRUSTRATION",
+          "OUTRAGE",
+          "SUPERPOWER"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "3a1b664e52f8b6bd202c",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "STARAPTOR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "ACROBATICS",
+          "QUICK_ATTACK",
+          "FRUSTRATION",
+          "CLOSE_COMBAT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "02bea6b66815b7bafcfc",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "STARMIE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "ANALYTIC",
+        "moves": [
+          "HYDRO_PUMP",
+          "PSYCHIC_M",
+          "GRASS_KNOT",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "4da328879abcda233639",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "STEELIX",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "BODY_PRESS",
+          "EARTHQUAKE",
+          "HEAVY_SLAM",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "d4583d86dbd17f57af62",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "SUDOWOODO",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "STURDY",
+        "moves": [
+          "COUNTER",
+          "STONE_EDGE",
+          "FRUSTRATION",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "a5c2ce1279e63cb36641",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "SUICUNE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "REGENERATOR",
+        "moves": [
+          "MIRROR_COAT",
+          "HYDRO_PUMP",
+          "ICE_BEAM",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "25db653acc1123395296",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "SUNFLORA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "DROUGHT",
+        "moves": [
+          "PETAL_DANCE",
+          "FLAMETHROWER",
+          "EARTH_POWER",
+          "SLUDGE_BOMB"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "041e3b2deb37ec5fdeef",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "SYLVEON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "PIXILATE",
+        "moves": [
+          "MOONBLAST",
+          "REST",
+          "SLEEP_TALK",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "07d01b1672e3ab390622",
+      "archetype": "physical-coverage",
+      "build": {
+        "species": "TALONFLAME",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "GALE_WINGS",
+        "moves": [
+          "ACROBATICS",
+          "FLARE_BLITZ",
+          "FRUSTRATION",
+          "STRENGTH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "036b04898dc0ca9ee8f7",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "TANGROWTH",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "CHLOROPHYLL",
+        "moves": [
+          "LEAF_STORM",
+          "FRUSTRATION",
+          "EARTHQUAKE",
+          "SLUDGE_BOMB"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "5b8392fba5d797065655",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "TAUROS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "THRASH",
+          "CLOSE_COMBAT",
+          "OUTRAGE",
+          "MEGAHORN"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "7fcf17fd4e9b97a7ed0f",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "TAUROS_PALDEAN_FIRE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "CLOSE_COMBAT",
+          "AQUA_JET",
+          "RAGING_FURY",
+          "OUTRAGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "5f36e2a94190c7323712",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "TAUROS_PALDEAN_WATER",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "CLOSE_COMBAT",
+          "LIQUIDATION",
+          "OUTRAGE",
+          "THRASH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "5f123972ddbf2abf3046",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "TENTACRUEL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "MERCILESS",
+        "moves": [
+          "DAZZLING_GLEAM",
+          "SCALD",
+          "GUNK_SHOT",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "12ace93fbaae9da8f757",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "TINKATON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "OWN_TEMPO",
+        "moves": [
+          "HEAVY_SLAM",
+          "GIGA_HAMMER",
+          "FOUL_PLAY",
+          "PLAY_ROUGH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "3582640d8536f1bfec32",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "TOGEKISS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "PIXILATE",
+        "moves": [
+          "HYPER_VOICE",
+          "FLAMETHROWER",
+          "WATER_PULSE",
+          "AURA_SPHERE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "23265a32f567fbd4ce1c",
+      "archetype": "physical-coverage",
+      "build": {
+        "species": "TORKOAL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "DROUGHT",
+        "moves": [
+          "BODY_PRESS",
+          "FLARE_BLITZ",
+          "FRUSTRATION",
+          "EARTHQUAKE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "c6262a43de3830146e21",
+      "archetype": "recovery-control",
+      "build": {
+        "species": "TOXAPEX",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "REGENERATOR",
+        "moves": [
+          "GUNK_SHOT",
+          "RECOVER",
+          "TOXIC",
+          "BODY_PRESS"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "09a79ca8cb15ae377f35",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "TOXICROAK",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "DRY_SKIN",
+        "moves": [
+          "CLOSE_COMBAT",
+          "SUCKER_PUNCH",
+          "GUNK_SHOT",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0571ddf8adaad3f9f189",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "TREVENANT",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "NATURAL_CURE",
+        "moves": [
+          "WOOD_HAMMER",
+          "REST",
+          "SLEEP_TALK",
+          "SHADOW_CLAW"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "1a573ed46cb9ac01f09d",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "TSAREENA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "MOXIE",
+        "moves": [
+          "POWER_WHIP",
+          "HI_JUMP_KICK",
+          "ACROBATICS",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "d0a349ac3513fedad2d8",
+      "archetype": "weight-coverage",
+      "build": {
+        "species": "TYRANITAR",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "LOW_KICK",
+          "HEAVY_SLAM",
+          "STONE_EDGE",
+          "CRUNCH"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "06f96dd2a87ea4765b92",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "TYRANTRUM",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "STRONG_JAW",
+        "moves": [
+          "DRAGON_HAMMER",
+          "REST",
+          "SLEEP_TALK",
+          "STONE_EDGE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2222d89147b1742d1827",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "UMBREON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "MAGIC_GUARD",
+        "moves": [
+          "FOUL_PLAY",
+          "FRUSTRATION",
+          "GUNK_SHOT",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "3db1382c1eb590ba2291",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "UNOWN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "ANALYTIC",
+        "moves": [
+          "SHADOW_BALL",
+          "EARTH_POWER",
+          "ANCIENTPOWER",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "54d49a8ff254b571e798",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "URSALUNA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "GUTS",
+        "moves": [
+          "COUNTER",
+          "HEADLONGRUSH",
+          "THRASH",
+          "CLOSE_COMBAT"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "00b6d41a292c857c45ac",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "URSALUNABM",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "BERSERK",
+        "moves": [
+          "COUNTER",
+          "BLOOD_MOON",
+          "EARTH_POWER",
+          "MOONBLAST"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0bcc354054ddd45d706d",
+      "archetype": "rest-talk",
+      "build": {
+        "species": "VAPOREON",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "WATER_ABSORB",
+        "moves": [
+          "HYDRO_PUMP",
+          "REST",
+          "SLEEP_TALK",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "ff347b662039c5b03013",
+      "archetype": "status-opening",
+      "build": {
+        "species": "VENOMOTH",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "COMPOUND_EYES",
+        "moves": [
+          "SLEEP_POWDER",
+          "BUG_BUZZ",
+          "ROOST",
+          "SLUDGE_BOMB"
+        ]
+      },
+      "opener": [
+        1
+      ]
+    },
+    {
+      "id": "2c0a4154c52fbaf9c0c4",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "VICTREEBEL",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "POISON_PUPPETEER",
+        "moves": [
+          "LEAF_STORM",
+          "SUCKER_PUNCH",
+          "SLUDGE_BOMB",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "f5450d18a5dcdd9d6667",
+      "archetype": "ability-aware-coverage",
+      "build": {
+        "species": "VIKAVOLT",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "COMPOUND_EYES",
+        "moves": [
+          "THUNDER",
+          "BUG_BUZZ",
+          "HYPER_BEAM",
+          "ENERGY_BALL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "4252bb899129e2ed36ca",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "VILEPLUME",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "EFFECT_SPORE",
+        "moves": [
+          "PETAL_DANCE",
+          "SLUDGE_BOMB",
+          "MOONBLAST",
+          "HYPER_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "179c42b488d00b7f8a29",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "VOLCARONA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SWARM",
+        "moves": [
+          "OVERHEAT",
+          "BUG_BUZZ",
+          "ENERGY_BALL",
+          "PSYCHIC_M"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "cee41c46901873658c0e",
+      "archetype": "recovery-control",
+      "build": {
+        "species": "WALREIN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SLUSH_RUSH",
+        "moves": [
+          "HYDRO_PUMP",
+          "SLACK_OFF",
+          "TOXIC",
+          "ICE_BEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "2dfe401fa85b42e2469b",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "WEAVILE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "TECHNICIAN",
+        "moves": [
+          "COUNTER",
+          "ICICLE_CRASH",
+          "CRUNCH",
+          "FRUSTRATION"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "66cf8d75df79fb5d5c36",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "WEEZING",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "NEUTRALIZING_GAS",
+        "moves": [
+          "GUNK_SHOT",
+          "BIDE",
+          "FRUSTRATION",
+          "FIRE_BLAST"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "38f7c481ac2fde2393ae",
+      "archetype": "alternative-2",
+      "build": {
+        "species": "WEEZING_GALARIAN",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "NEUTRALIZING_GAS",
+        "moves": [
+          "LAVA_PLUME",
+          "GUNK_SHOT",
+          "PLAY_ROUGH",
+          "DAZZLING_GLEAM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "0e768bbac0ec75cd842e",
+      "archetype": "sustainable-attacks",
+      "build": {
+        "species": "WIGGLYTUFF",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "COMPETITIVE",
+        "moves": [
+          "MOONBLAST",
+          "HYPER_VOICE",
+          "SEISMIC_TOSS",
+          "FIRE_BLAST"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "267d20db1cd0bf1c8e4f",
+      "archetype": "counter-attacks",
+      "build": {
+        "species": "WOBBUFFET",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "SHADOW_TAG",
+        "moves": [
+          "COUNTER",
+          "MIRROR_COAT",
+          "AMNESIA",
+          "CHARM"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "eab3123d54be29e1c384",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "WYRDEER",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "INTIMIDATE",
+        "moves": [
+          "THRASH",
+          "SUCKER_PUNCH",
+          "ZEN_HEADBUTT",
+          "MEGAHORN"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "6c7992ca8d108c670973",
+      "archetype": "priority-finisher",
+      "build": {
+        "species": "XATU",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "MAGIC_BOUNCE",
+        "moves": [
+          "PSYCHIC_M",
+          "SUCKER_PUNCH",
+          "HURRICANE",
+          "NIGHT_SHADE"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "517da3224e883c10502d",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "YANMEGA",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "TINTED_LENS",
+        "moves": [
+          "BUG_BUZZ",
+          "AIR_SLASH",
+          "HYPER_BEAM",
+          "ENERGY_BALL"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "041b4918e3e346953066",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "ZANGOOSE",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 0,
+        "item": "NO_ITEM",
+        "ability": "IMMUNITY",
+        "moves": [
+          "FRUSTRATION",
+          "CLOSE_COMBAT",
+          "GUNK_SHOT",
+          "SEED_BOMB"
+        ]
+      },
+      "opener": []
+    },
+    {
+      "id": "204c396a207f511b7a35",
+      "archetype": "mixed-coverage",
+      "build": {
+        "species": "ZAPDOS",
+        "level": 100,
+        "dvs": 65535,
+        "happiness": 255,
+        "item": "NO_ITEM",
+        "ability": "PRESSURE",
+        "moves": [
+          "THUNDERBOLT",
+          "ACROBATICS",
+          "HYPER_BEAM",
+          "HEAT_WAVE"
+        ]
+      },
+      "opener": []
+    }
+  ]
+}

@@ -36,6 +36,28 @@ external Pokédex, hosted service, multiplayer account or Showdown server is nee
 
 ## Agent workflow
 
+For a thorough **no-held-items** audit, use the separate driver:
+
+```sh
+.venv/bin/python tools/battle-simulator/no_item_audit.py plan
+.venv/bin/python tools/battle-simulator/no_item_audit.py all --jobs 8
+```
+
+It explicitly forbids items on either side and tests a common moveset portfolio
+under every legal ability. Two distinct sets per ability advance to a separate
+sixteen-opponent validation panel, with sides swapped. Each species' selected
+build then enters a complete round robin against the other eligible species,
+again with sides swapped. Setup/status openings consume real native turns.
+The same exclusions apply: final-stage/single-stage forms only, no starter
+families. This is a substantial multi-hour audit, with resumable checkpoints.
+
+The active database is `/tmp/crimson-no-items-20261024.sqlite` in WSL;
+progress and phase summaries are in `output/no-items-2026-10-24/`.
+The final Markdown tier list and evidence exports go to
+`reports/balance/2026-10-24-no-items/`. These are **internal development
+artifacts**; do not add the laboratory, rankings, reports, or links to them to
+the public website. Keep the earlier item-enabled audit as separate evidence.
+
 For a reproducible non-starter roster search and provisional singles tier list:
 
 ```sh

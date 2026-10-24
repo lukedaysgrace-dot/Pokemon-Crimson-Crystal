@@ -1,0 +1,307 @@
+{
+  "status": "paused at user request",
+  "paused_utc": "2026-10-24T21:23:42.806413+00:00",
+  "database": "/tmp/crimson-no-items-20261024.sqlite",
+  "database_bytes": 896499712,
+  "sqlite_quick_check": "ok",
+  "wal_checkpoint": [
+    0,
+    0,
+    0
+  ],
+  "counts": {
+    "completed": 108262,
+    "pending": 40300
+  },
+  "runs": [
+    {
+      "id": "71c33ccab8a42783a50f",
+      "name": "no-items screen species 1-12",
+      "counts": {
+        "completed": 2832
+      }
+    },
+    {
+      "id": "515877e08120200127ba",
+      "name": "no-items screen species 13-24",
+      "counts": {
+        "completed": 3024
+      }
+    },
+    {
+      "id": "d4bcf1dba58fd9953024",
+      "name": "no-items screen species 25-36",
+      "counts": {
+        "completed": 2784
+      }
+    },
+    {
+      "id": "c33e793aa04042d8169e",
+      "name": "no-items screen species 37-48",
+      "counts": {
+        "completed": 2408
+      }
+    },
+    {
+      "id": "2cd831a3c19a4a050f42",
+      "name": "no-items screen species 49-60",
+      "counts": {
+        "completed": 2832
+      }
+    },
+    {
+      "id": "ecdb771888a165745963",
+      "name": "no-items screen species 61-72",
+      "counts": {
+        "completed": 2896
+      }
+    },
+    {
+      "id": "bcd5c2f3529a23009f4c",
+      "name": "no-items screen species 73-84",
+      "counts": {
+        "completed": 2352
+      }
+    },
+    {
+      "id": "6eb05a6bd28359225370",
+      "name": "no-items screen species 85-96",
+      "counts": {
+        "completed": 2952
+      }
+    },
+    {
+      "id": "bc8dd5db4070aaa753f2",
+      "name": "no-items screen species 97-108",
+      "counts": {
+        "completed": 2344
+      }
+    },
+    {
+      "id": "de0cd547b92fc05dfaf4",
+      "name": "no-items screen species 109-120",
+      "counts": {
+        "completed": 2928
+      }
+    },
+    {
+      "id": "980d27430e10a20c1499",
+      "name": "no-items screen species 121-132",
+      "counts": {
+        "completed": 2744
+      }
+    },
+    {
+      "id": "ec57d380bc3dfc6f1ca5",
+      "name": "no-items screen species 133-144",
+      "counts": {
+        "completed": 2792
+      }
+    },
+    {
+      "id": "17a0eca8e5f1c834a277",
+      "name": "no-items screen species 145-156",
+      "counts": {
+        "completed": 2984
+      }
+    },
+    {
+      "id": "27b5ab1adca77c6f56df",
+      "name": "no-items screen species 157-168",
+      "counts": {
+        "completed": 2584
+      }
+    },
+    {
+      "id": "b9eb40784c7b1b4d02b8",
+      "name": "no-items screen species 169-180",
+      "counts": {
+        "completed": 2928
+      }
+    },
+    {
+      "id": "b404620e50fad267b5c0",
+      "name": "no-items screen species 181-192",
+      "counts": {
+        "completed": 2736
+      }
+    },
+    {
+      "id": "3d9d118e0dbd04f33bcc",
+      "name": "no-items screen species 193-204",
+      "counts": {
+        "completed": 2784
+      }
+    },
+    {
+      "id": "a64eb8fc8884133d945e",
+      "name": "no-items screen species 205-216",
+      "counts": {
+        "completed": 2736
+      }
+    },
+    {
+      "id": "114d9800a0776a301e68",
+      "name": "no-items screen species 217-228",
+      "counts": {
+        "completed": 2760
+      }
+    },
+    {
+      "id": "e4d8adea52979772c858",
+      "name": "no-items screen species 229-231",
+      "counts": {
+        "completed": 568
+      }
+    },
+    {
+      "id": "1fe373149b2d172b94af",
+      "name": "no-items validation species 1-12",
+      "counts": {
+        "completed": 1920
+      }
+    },
+    {
+      "id": "2dee058d3b4113e347cd",
+      "name": "no-items validation species 13-24",
+      "counts": {
+        "completed": 1984
+      }
+    },
+    {
+      "id": "30d9c50cb40fea7e14be",
+      "name": "no-items validation species 25-36",
+      "counts": {
+        "completed": 2176
+      }
+    },
+    {
+      "id": "92302fa207618344ca0e",
+      "name": "no-items validation species 37-48",
+      "counts": {
+        "completed": 2240
+      }
+    },
+    {
+      "id": "4da57a221e489cebf69e",
+      "name": "no-items validation species 49-60",
+      "counts": {
+        "completed": 2240
+      }
+    },
+    {
+      "id": "27335615b1f0d23b0c8e",
+      "name": "no-items validation species 61-72",
+      "counts": {
+        "completed": 2304
+      }
+    },
+    {
+      "id": "5958aaf51dfaf12062d3",
+      "name": "no-items validation species 73-84",
+      "counts": {
+        "completed": 2240
+      }
+    },
+    {
+      "id": "aa681a91c3d5e74616f4",
+      "name": "no-items validation species 85-96",
+      "counts": {
+        "completed": 2304
+      }
+    },
+    {
+      "id": "0f7a1b1b4288bc8df6f1",
+      "name": "no-items validation species 97-108",
+      "counts": {
+        "completed": 2240
+      }
+    },
+    {
+      "id": "25f38af7266f29674000",
+      "name": "no-items validation species 109-120",
+      "counts": {
+        "completed": 2176
+      }
+    },
+    {
+      "id": "3b8f02ee540cbbf330ee",
+      "name": "no-items validation species 121-132",
+      "counts": {
+        "completed": 2304
+      }
+    },
+    {
+      "id": "558626e9be89214bfbfb",
+      "name": "no-items validation species 133-144",
+      "counts": {
+        "completed": 2176
+      }
+    },
+    {
+      "id": "862317050a31df1ca026",
+      "name": "no-items validation species 145-156",
+      "counts": {
+        "completed": 2240
+      }
+    },
+    {
+      "id": "0bcb4274779a15bbd843",
+      "name": "no-items validation species 157-168",
+      "counts": {
+        "completed": 2240
+      }
+    },
+    {
+      "id": "7a5d290bbca082a31009",
+      "name": "no-items validation species 169-180",
+      "counts": {
+        "completed": 2240
+      }
+    },
+    {
+      "id": "2d41e62763c9826587eb",
+      "name": "no-items validation species 181-192",
+      "counts": {
+        "completed": 2240
+      }
+    },
+    {
+      "id": "8f458c85fcbdf97bba43",
+      "name": "no-items validation species 193-204",
+      "counts": {
+        "completed": 2304
+      }
+    },
+    {
+      "id": "10f0a71e45f73926ed86",
+      "name": "no-items validation species 205-216",
+      "counts": {
+        "completed": 2304
+      }
+    },
+    {
+      "id": "f9fc3b6eabb469b4b585",
+      "name": "no-items validation species 217-228",
+      "counts": {
+        "completed": 2176
+      }
+    },
+    {
+      "id": "4a935b2f3edd4dbf675a",
+      "name": "no-items validation species 229-231",
+      "counts": {
+        "completed": 416
+      }
+    },
+    {
+      "id": "da9956e2bfa0bffd1db5",
+      "name": "Complete no-item final-roster league",
+      "counts": {
+        "completed": 12830,
+        "pending": 40300
+      }
+    }
+  ],
+  "remaining_battles": 40300
+}

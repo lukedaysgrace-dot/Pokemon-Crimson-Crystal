@@ -1,0 +1,14 @@
+{
+  "status": "verified",
+  "created_utc": "2026-10-24T21:27:19.435913+00:00",
+  "archive": "tools/battle-simulator/output/no-items-2026-10-24/paused-checkpoint.zip",
+  "archive_bytes": 105775258,
+  "archive_sha256": "45a4e2a246e8e7745cf6324286a92bfc155281724beec1a1a34034bf656408b2",
+  "database_sha256": "e1c214e8548f94469922db711ac28ad85121dfae063784bcfd7fc8a046158c30",
+  "database_bytes": 896499712,
+  "archive_entries": 2054,
+  "crc_check": "passed",
+  "source_manifest_check": "passed",
+  "completed_battles": 108262,
+  "pending_battles": 40300
+}

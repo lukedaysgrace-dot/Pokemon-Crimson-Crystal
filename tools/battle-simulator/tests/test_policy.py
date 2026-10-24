@@ -6,7 +6,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from lab.data import extract
-from lab.policy import choose
+from lab.policy import choose, move_score
 
 
 class AuditChoiceTests(unittest.TestCase):
@@ -35,6 +35,11 @@ class AuditChoiceTests(unittest.TestCase):
         user["pp"][1] = 0
         self.assertNotEqual(choose(self.data, user, foe, "tactical", 1), 2)
 
+    def test_awake_rest_talk_user_does_not_request_sleep_only_moves(self):
+        user = self.combatant("SNORLAX", ["LICK", "SLEEP_TALK", "SNORE", "REST"])
+        foe = self.combatant("MEW", ["PSYCHIC_M"])
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 1)
+
     def test_skill_link_can_choose_native_multi_hit_attack(self):
         user = self.combatant("CLOYSTER", ["ICICLE_SPEAR", "ICE_BEAM"], "SKILL_LINK")
         foe = self.combatant("DRAGONITE", ["OUTRAGE"])
@@ -51,6 +56,54 @@ class AuditChoiceTests(unittest.TestCase):
         self.assertEqual(choose(self.data, user, foe, "tactical", 1), 2)
         user["ability"] = "MOLD_BREAKER"
         self.assertEqual(choose(self.data, user, foe, "tactical", 1), 1)
+
+    def test_sharpness_recognizes_the_games_bitter_blade_membership(self):
+        user = self.combatant("CERULEDGE", ["FIRE_BLAST", "BITTER_BLADE"], "SHARPNESS")
+        foe = self.combatant("MEW", ["PSYCHIC_M"])
+        self.assertIn("slice", self.data["moves"]["BITTER_BLADE"]["traits"])
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 2)
+        user["ability"] = "WEAK_ARMOR"
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 1)
+
+    def test_soundproof_does_not_receive_repeated_sound_attack_requests(self):
+        user = self.combatant("MEW", ["HYPER_VOICE", "PSYCHIC_M"])
+        foe = self.combatant("ELECTRODE", ["THUNDERBOLT"], "SOUNDPROOF")
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 2)
+
+    def test_empty_hands_change_acrobatics_choice(self):
+        user = self.combatant("CROBAT", ["ACROBATICS", "WING_ATTACK"])
+        foe = self.combatant("MEW", ["PSYCHIC_M"])
+        user["item"] = "NO_ITEM"
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 1)
+        user["item"] = "LEFTOVERS"
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 2)
+
+    def test_no_guard_exposes_dynamic_punch_instead_of_discounting_its_accuracy(self):
+        user = self.combatant("MACHAMP", ["DYNAMICPUNCH", "CROSS_CHOP"], "NO_GUARD")
+        foe = self.combatant("MEW", ["PSYCHIC_M"])
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 1)
+        user["ability"] = "GUTS"
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 2)
+
+    def test_hail_changes_blizzard_choice(self):
+        user = self.combatant("ARTICUNO", ["BLIZZARD", "ICE_BEAM"], "SNOW_WARNING")
+        foe = self.combatant("MEW", ["PSYCHIC_M"])
+        user["weather"] = self.data["weather_ids"]["WEATHER_HAIL"]
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 1)
+        user["weather"] = 0
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 2)
+
+    def test_gas_removes_no_guards_selection_advantage(self):
+        user = self.combatant("MACHAMP", ["DYNAMICPUNCH", "CROSS_CHOP"], "NO_GUARD")
+        foe = self.combatant("MEW", ["PSYCHIC_M"], "NEUTRALIZING_GAS")
+        self.assertEqual(choose(self.data, user, foe, "tactical", 1), 2)
+
+    def test_heavy_target_does_not_receive_a_fictitious_technician_weight_boost(self):
+        user = self.combatant("SCIZOR", ["GRASS_KNOT"], "TECHNICIAN")
+        foe = self.combatant("SNORLAX", ["BODY_SLAM"])
+        technician = move_score(self.data, "GRASS_KNOT", user, foe)
+        user["ability"] = "SWARM"
+        self.assertEqual(technician, move_score(self.data, "GRASS_KNOT", user, foe))
 
 
 if __name__ == "__main__":

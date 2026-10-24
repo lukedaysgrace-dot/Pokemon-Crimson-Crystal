@@ -1,0 +1,2 @@
+UserWarning: Using SDL2 binaries from pysdl2-dll 2.32.10
+{"status": "passed", "native_checks": 72, "paired_comparisons": 24, "extra_choice_checks": 64, "ratios": [1.497175141242938, 1.5058823529411764]}

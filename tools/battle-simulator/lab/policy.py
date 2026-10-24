@@ -20,6 +20,20 @@ def move_score(data, move_key, user, target, strategy="tactical"):
     m = data["moves"][move_key]
     effect = m["effect"]
     health = user["hp"] / max(1, user["maxhp"])
+    if effect in {"EFFECT_SLEEP_TALK", "EFFECT_SNORE"} and not (user["status"] & 7):
+        return -1
+    suppressed = "NEUTRALIZING_GAS" in {user.get("ability"), target.get("ability")}
+    ability = None if suppressed else user.get("ability")
+    no_guard = not suppressed and "NO_GUARD" in {user.get("ability"), target.get("ability")}
+    accuracy = m["accuracy"]
+    weather = user.get("weather", 0)
+    rain, sun, hail = (data.get("weather_ids", {}).get(k) for k in ("WEATHER_RAIN", "WEATHER_SUN", "WEATHER_HAIL"))
+    if no_guard or (weather == rain and effect in {"EFFECT_THUNDER", "EFFECT_HURRICANE"}) or (weather == hail and effect == "EFFECT_BLIZZARD"):
+        accuracy = 100
+    elif not suppressed and user.get("ability") == "COMPOUND_EYES":
+        accuracy = min(100, accuracy * 1.3)
+    elif not suppressed and user.get("ability") == "HUSTLE" and m["category"] == "physical":
+        accuracy *= .8
     if effect == "EFFECT_DREAM_EATER" and not (target["status"] & 7):
         return -1
     if effect == "EFFECT_FUTURE_SIGHT" and user.get("future_sight", 0):
@@ -28,22 +42,34 @@ def move_score(data, move_key, user, target, strategy="tactical"):
         physical = m["category"] == "physical"
         offense = user["stats"]["attack" if physical else "spclatk"]
         defense = target["stats"]["defense" if physical else "spcldef"]
+        if effect == "EFFECT_BODY_PRESS":
+            offense = user["stats"]["defense"]
+        elif effect == "EFFECT_FOUL_PLAY":
+            offense = target["stats"]["attack"]
+        elif effect == "EFFECT_PSYSTRIKE":
+            defense = target["stats"]["defense"]
         power = m["power"]
         # These values only order choices. Damage and all ability checks still
         # execute in the ROM. Treating power=1 effects as weak ordinary hits
         # would systematically underplay Counter users and fixed-damage walls.
         if effect in {"EFFECT_COUNTER", "EFFECT_MIRROR_COAT"}:
             category = "physical" if effect == "EFFECT_COUNTER" else "special"
-            threats = [data["moves"][k] for k in target.get("moves", []) if k in data["moves"]
-                       and data["moves"][k]["category"] != "status"]
-            strongest = max(threats, key=lambda x: x["power"], default=None)
+            threats = [k for k in target.get("moves", []) if k in data["moves"]
+                       and data["moves"][k]["category"] != "status"
+                       and data["moves"][k]["effect"] not in {"EFFECT_COUNTER", "EFFECT_MIRROR_COAT"}]
+            # Compare plausible attacks against this opponent, not raw power:
+            # a resisted physical attack need not beat a special STAB move.
+            strongest_key = max(threats, key=lambda k: move_score(data, k, target, user), default=None)
+            strongest = data["moves"][strongest_key] if strongest_key else None
             return 180 if strongest and strongest["category"] == category else 0
         if effect == "EFFECT_LEVEL_DAMAGE":
             return user.get("level", 100) * effectiveness(data, m["type"], target["types"])
         if effect == "EFFECT_SUPER_FANG":
-            return target["hp"] * .5 * m["accuracy"] / 100
+            return target["hp"] * .5 * accuracy / 100
+        if effect == "EFFECT_ACROBATICS" and user.get("item", "NO_ITEM") in {None, "NO_ITEM"}:
+            power *= 2
         if effect == "EFFECT_MULTI_HIT":
-            power *= 5 if user.get("ability") == "SKILL_LINK" else 3
+            power *= 5 if ability == "SKILL_LINK" else 3
         if effect == "EFFECT_DOUBLE_HIT":
             power *= 2
         if effect == "EFFECT_LOW_KICK":
@@ -53,33 +79,56 @@ def move_score(data, move_key, user, target, strategy="tactical"):
             own = data["species"][user["species"]]["weight_hg"] if user.get("species") else 1000
             other = data["species"][target["species"]]["weight_hg"] if target.get("species") else 1000
             power = next(p for factor, p in ((5, 120), (4, 100), (3, 80), (2, 60), (0, 40)) if own >= other * factor)
-        elif effect in {"EFFECT_RETURN", "EFFECT_HIDDEN_POWER", "EFFECT_FRUSTRATION"}:
-            power = 70  # candidate ordering only; native code resolves actual power
+        elif effect in {"EFFECT_RETURN", "EFFECT_FRUSTRATION"}:
+            happiness = user.get("happiness", 255 if effect == "EFFECT_RETURN" else 0)
+            power = max(1, int((happiness if effect == "EFFECT_RETURN" else 255-happiness)*.4))
+        elif effect == "EFFECT_HIDDEN_POWER":
+            power = 70
         typing = m["type"]
-        converted = {"GALVANIZE": "ELECTRIC", "PIXILATE": "FAIRY", "REFRIGERATE": "ICE", "AERILATE": "FLYING"}.get(user.get("ability"))
+        converted = {"GALVANIZE": "ELECTRIC", "PIXILATE": "FAIRY", "REFRIGERATE": "ICE", "AERILATE": "FLYING"}.get(ability)
         if converted and typing == "NORMAL" and move_key not in {"HIDDEN_POWER", "WEATHER_BALL", "STRUGGLE"}:
             typing = converted
             power *= 1.2
-        stab = (2 if user.get("ability") == "ADAPTABILITY" else 1.5) if typing in user["types"] else 1
-        if physical and user.get("ability") == "HUGE_POWER":
+        stab = (2 if ability == "ADAPTABILITY" else 1.5) if typing in user["types"] else 1
+        if physical and ability == "HUGE_POWER":
             power *= 2
-        if physical and user.get("ability") == "GUTS" and user["status"]:
+        if physical and ability == "GUTS" and user["status"]:
             power *= 1.5
-        if user.get("ability") == "TECHNICIAN" and 0 < m["power"] <= 60:
+        technician_power = power if effect in {"EFFECT_LOW_KICK", "EFFECT_HEAVY_SLAM", "EFFECT_RETURN", "EFFECT_FRUSTRATION", "EFFECT_HIDDEN_POWER", "EFFECT_ACROBATICS"} else m["power"]
+        if ability == "TECHNICIAN" and 0 < technician_power <= 60:
             power *= 1.5
-        value = power * offense / max(1, defense) * stab * effectiveness(data, typing, target["types"]) * m["accuracy"] / 100
+        traits = m.get("traits", [])
+        for boost_ability, trait, multiplier in (("SHARPNESS", "slice", 1.5), ("IRON_FIST", "punch", 1.2),
+                                           ("MEGA_LAUNCHER", "pulse", 1.5), ("STRONG_JAW", "bite", 1.5),
+                                           ("TOUGH_CLAWS", "contact", 1.3), ("SHEER_FORCE", "sheer_force", 1.3)):
+            if ability == boost_ability and trait in traits:
+                power *= multiplier
+        if ability == "RECKLESS" and effect in {"EFFECT_RECOIL_HIT", "EFFECT_FLARE_BLITZ", "EFFECT_VOLT_TACKLE", "EFFECT_JUMP_KICK"}:
+            power *= 1.2
+        if ability == "STEELY_SPIRIT" and typing == "STEEL":
+            power *= 1.5
+        if physical and ability == "HUSTLE":
+            power *= 1.5
+        if ability == "TINTED_LENS" and 0 < effectiveness(data, typing, target["types"]) < 1:
+            power *= 2
+        value = power * offense / max(1, defense) * stab * effectiveness(data, typing, target["types"]) * accuracy / 100
         # The same table used by AbilityNullifiesType in abilities_engine.asm.
         # Awareness prevents repeatedly selecting Earthquake into Levitate or
         # feeding an absorb ability. The ROM remains responsible for blocking.
         nullifies = {"VOLT_ABSORB": "ELECTRIC", "LIGHTNING_ROD": "ELECTRIC", "MOTOR_DRIVE": "ELECTRIC",
                      "WATER_ABSORB": "WATER", "STORM_DRAIN": "WATER", "DRY_SKIN": "WATER",
                      "FLASH_FIRE": "FIRE", "SAP_SIPPER": "GRASS", "LEVITATE": "GROUND"}
-        suppressed = "NEUTRALIZING_GAS" in {user.get("ability"), target.get("ability")}
         if not suppressed and user.get("ability") != "MOLD_BREAKER" and nullifies.get(target.get("ability")) == typing:
             return 0
+        if not suppressed and user.get("ability") != "MOLD_BREAKER":
+            if any(target.get("ability") == ability and trait in traits for ability, trait in
+                   (("SOUNDPROOF", "sound"), ("BULLETPROOF", "ball"), ("WIND_RIDER", "wind"))):
+                return 0
         if effect in {"EFFECT_LEECH_HIT", "EFFECT_DRAIN_PUNCH"}:
             value *= 1 + (1 - health) * .5
-        if effect in {"EFFECT_HYPER_BEAM", "EFFECT_SELFDESTRUCT", "EFFECT_EXPLOSION", "EFFECT_RECOIL_HIT"}:
+        if effect == "EFFECT_CONFUSE_HIT" and ability != "SHEER_FORCE":
+            value *= 1 + .2 * m["chance"] / 100
+        if effect in {"EFFECT_HYPER_BEAM", "EFFECT_SELFDESTRUCT", "EFFECT_EXPLOSION"} or (effect in {"EFFECT_RECOIL_HIT", "EFFECT_FLARE_BLITZ", "EFFECT_VOLT_TACKLE"} and ability not in {"ROCK_HEAD", "MAGIC_GUARD"}):
             value *= .7
         if effect in {"EFFECT_FUTURE_SIGHT", "EFFECT_SKULL_BASH", "EFFECT_FLY", "EFFECT_SOLARBEAM", "EFFECT_RAZOR_WIND", "EFFECT_SKY_ATTACK"}:
             value *= .55
@@ -90,12 +139,16 @@ def move_score(data, move_key, user, target, strategy="tactical"):
         return value
     if strategy == "aggressive":
         return 1
+    if "powder" in m.get("traits", []) and ("GRASS" in target["types"] or (not suppressed and target.get("ability") == "OVERCOAT")):
+        return 0
     if any(s in effect for s in ("HEAL", "RECOVER", "MORNING_SUN", "SYNTHESIS", "MOONLIGHT", "ROOST", "REST", "SHORE_UP")):
         return (1 - health) * 250 if health < .65 else 0
     if "SLEEP" in effect and not target["status"]:
-        return 90 * m["accuracy"] / 100
+        return 90 * accuracy / 100
     if any(s in effect for s in ("TOXIC", "POISON", "BURN", "PARALYZE")):
-        return 65 * m["accuracy"] / 100 if not target["status"] else 0
+        if ("BURN" in effect and "FIRE" in target["types"]) or (any(s in effect for s in ("TOXIC", "POISON")) and set(target["types"]) & {"STEEL", "POISON"}):
+            return 0
+        return 65 * accuracy / 100 if not target["status"] else 0
     if any(s in effect for s in ("ATTACK_UP", "SP_ATK_UP", "DRAGON_DANCE", "QUIVER_DANCE", "SHELL_SMASH", "BULK_UP", "CALM_MIND", "WORK_UP", "HONE_CLAWS", "GEOMANCY")):
         boosts = max(user["stages"][0], user["stages"][3]) - 7
         return 85 if boosts < 2 and health > .65 else 0

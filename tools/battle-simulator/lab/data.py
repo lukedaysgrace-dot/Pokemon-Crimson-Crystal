@@ -108,6 +108,26 @@ def extract():
                       "source": f"data/moves/moves.asm:{line}"}
     if len(moves) != con.num_attacks:
         raise ValueError("move table and NUM_ATTACKS disagree")
+    # Policies and candidate search use the game's own move membership tables.
+    # These are selection hints; effects and damage still execute in the ROM.
+    ability_source = read("engine/battle/abilities_engine.asm")
+    for label, trait in (("PunchMoves", "punch"), ("SliceMoves", "slice"),
+                         ("PulseMoves", "pulse"), ("BiteMoves", "bite"),
+                         ("SoundMoves", "sound"), ("BallBombMoves", "ball"),
+                         ("WindMoves", "wind"), ("PowderMoves", "powder")):
+        block = ability_source.split(label + ":", 1)[1].split("dw -1", 1)[0]
+        for key in re.findall(r"^\s*dw\s+(\w+)", block, re.M):
+            if key in moves:
+                moves[key].setdefault("traits", []).append(trait)
+    contact = [number(v) for _, values in rows("data/moves/contact_moves.asm", "db") for v in values]
+    for move in moves.values():
+        if contact[move["id"] >> 3] & (1 << (move["id"] & 7)):
+            move.setdefault("traits", []).append("contact")
+    force_block = ability_source.split("SheerForceEffects:", 1)[1].split("db -1", 1)[0]
+    force_effects = set(re.findall(r"^\s*db\s+(\w+)", force_block, re.M))
+    for move in moves.values():
+        if move["effect"] in force_effects and move["chance"] and move["power"]:
+            move.setdefault("traits", []).append("sheer_force")
     files = re.findall(r'INCLUDE "(data/pokemon/base_stats/[^"]+)"', read("data/pokemon/base_stats.asm"))
     dex_files = dict(re.findall(r'^(\w+)::\s*INCLUDE "([^"]+)"', read("data/pokemon/dex_entries.asm"), re.M))
     dex_labels = [r[0] for _, r in rows("data/pokemon/dex_entry_pointers.asm", "dba")]
@@ -155,6 +175,8 @@ def extract():
     result = {"schema": 1, "species": species, "moves": moves, "items": items,
               "abilities": {k: {"id": i, "name": ability_names[i]} for k, i in ability_ids.items()},
               "type_ids": type_ids, "matchups": matchups,
+              "weather_ids": {k: v for k, v in _parse_constants(ROOT / "constants/battle_constants.asm").items()
+                              if k in {"WEATHER_RAIN", "WEATHER_SUN", "WEATHER_HAIL"}},
               "legality": "Conservative level/evolution access; TM/HM, utility and Blackthorn egg/technical tutors; no unproven event moves."}
     for key in species:
         species[key]["legal_moves"] = legal_pool(result, key, 100)

@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "screened_candidates": 6621,
+  "screening_battles": 52968,
+  "species": 231,
+  "legal_ability_variants": 664,
+  "validation_candidates": 1327,
+  "validation_battles": 42464,
+  "single_set_exceptions": [
+    [
+      "DITTO",
+      "IMPOSTER"
+    ]
+  ],
+  "validation_total_expected": 42464,
+  "final_league_battles": 53130,
+  "total_ranked_expected": 148562
+}

@@ -1,0 +1,14 @@
+{
+  "status": "ready",
+  "checks": {
+    "compiled_moves": 442,
+    "compiled_species": 498,
+    "newer_assembly_files": 0
+  },
+  "pyboy": "2.7.0",
+  "species": 498,
+  "moves": 442,
+  "abilities": 172,
+  "weights": 498,
+  "data_sha256": "9f619806b1c0edd4065a949ed2bb6e14667534f503bf795884e15145e9e624f8"
+}

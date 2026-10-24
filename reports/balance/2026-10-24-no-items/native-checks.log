@@ -1,0 +1,12 @@
+UserWarning: Using SDL2 binaries from pysdl2-dll 2.32.10
+PASS Levitate native immunity: completed / player / 3 turns
+PASS Reproducible replay: completed / player / 3 turns
+PASS Native weight-derived Low Kick: completed / player / 1 turns
+PASS Six native party members and switch slot six: turn-limit / unresolved / 3 turns
+PASS Complete six versus six: completed / enemy / 14 turns
+PASS Two-turn native rollout: turn-limit / unresolved / 2 turns
+PASS Enemy native rollout: turn-limit / unresolved / 2 turns
+PASS Exhausted PP: completed / player / 12 turns
+PASS All four player moves exhausted: turn-limit / unresolved / 2 turns
+PASS Policy avoids pending Future Sight: turn-limit / unresolved / 2 turns
+10 native integration scenarios passed

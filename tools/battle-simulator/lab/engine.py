@@ -295,6 +295,7 @@ class RomEngine:
             result[key] = {"species": side.species, "level": side.level, "hp": side.hp, "maxhp": side.maxhp,
                            "weight_hg": self.data["species"].get(side.species, {}).get("weight_hg"),
                            "status": side.status, "ability": side.ability, "item": side.item,
+                           "weather": result["weather"], "happiness": self.mem.read(prefix + "Happiness"),
                            "moves": side.moves, "pp": side.pp, "stats": side.stats,
                            "stages": side.stat_levels, "substatus": side.substatus, "screens": side.screens,
                            "types": list(dict.fromkeys(reverse_types.get(self.mem.read(prefix + f"Type{i}"), "UNKNOWN") for i in (1, 2))),
