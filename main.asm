@@ -342,6 +342,10 @@ INCLUDE "engine/events/dratini.asm"
 INCLUDE "engine/events/battle_tower/rules.asm"
 INCLUDE "mobile/mobile_22_2.asm"
 
+SECTION "Kurt Bulk Crafting", ROMX
+
+INCLUDE "engine/events/kurt_bulk.asm"
+
 SECTION "Indigo Player Backpic", ROMX
 
 IndigoBackpic:

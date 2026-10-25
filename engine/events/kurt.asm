@@ -23,7 +23,6 @@ SelectApricornForKurt:
 	ld c, $1
 	xor a
 	ld [wMenuScrollPosition], a
-	ld [wKurtApricornQuantity], a
 .loop
 	push bc
 	call Kurt_PrintTextWhichApricorn
@@ -36,16 +35,7 @@ SelectApricornForKurt:
 	and a
 	jr z, .done
 	ld [wCurItem], a
-	ld a, [wMenuCursorY]
-	ld c, a
-	push bc
-	call Kurt_PrintTextHowMany
-	call Kurt_SelectQuantity
-	pop bc
-	jr nc, .loop
-	ld a, [wItemQuantityChangeBuffer]
-	ld [wKurtApricornQuantity], a
-	call Kurt_GiveUpSelectedQuantityOfSelectedApricorn
+	farcall Kurt_TakeAllApricorns
 
 .done
 	call ExitMenu
@@ -79,7 +69,7 @@ Kurt_SelectApricorn:
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 1, 1, 13, 10
+	menu_coords 1, 1, 17, 10
 	dw .MenuData
 	db 1 ; default option
 
@@ -102,14 +92,28 @@ Kurt_SelectApricorn:
 	ret
 
 .Quantity:
+	push de
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
-	call Kurt_GetQuantityOfApricorn
-	ret z
-	ld a, [wItemQuantityChangeBuffer]
-	ld [wMenuSelectionQuantity], a
-	farcall PlaceMenuItemQuantity
+	farcall Kurt_CountAllApricorns
+	ld a, b
+	or c
+	jr nz, .HaveQuantity
+	pop de
 	ret
+.HaveQuantity
+	ld a, b
+	ld [wStringBuffer2], a
+	ld a, c
+	ld [wStringBuffer2 + 1], a
+	pop hl
+	ld de, SCREEN_WIDTH + 3
+	add hl, de
+	ld [hl], "×"
+	inc hl
+	ld de, wStringBuffer2
+	lb bc, 2, 4
+	jp PrintNum
 
 Kurt_SelectQuantity:
 	ld a, [wCurItem]

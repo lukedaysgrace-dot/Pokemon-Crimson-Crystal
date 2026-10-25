@@ -82,6 +82,10 @@ test-battle-weather: pokecrystal.gbc pokecrystal_debug.gbc
 test-cap-fast: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/cap_fast_ui_checks.py
 
+.PHONY: test-kurt-bulk
+test-kurt-bulk: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/kurt_bulk_checks.py
+
 debug: pokecrystal_debug.gbc
 
 test: pokecrystal_debug.gbc

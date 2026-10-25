@@ -1634,6 +1634,21 @@
       "links": []
     },
     {
+      "id": "kurt-full-apricorn-batches",
+      "category": "items",
+      "title": "Kurt crafts full Apricorn batches",
+      "before": "Choose an Apricorn quantity and wait until the next day for the Balls.",
+      "after": "Select a color and Kurt takes every Apricorn of that kind, including multiple stacks. He walks to his workbench; leave his house and return to collect the Balls at his usual spot. If your Ball pocket fills, he keeps the rest for your next visit. The GS Ball story keeps its separate day-long investigation.",
+      "comparison": "Gen 2",
+      "kind": "custom",
+      "sources": [
+        "maps/KurtsHouse.asm",
+        "engine/events/kurt.asm",
+        "engine/events/kurt_bulk.asm"
+      ],
+      "links": []
+    },
+    {
       "id": "new-evolution-items",
       "category": "items",
       "title": "New evolution items",

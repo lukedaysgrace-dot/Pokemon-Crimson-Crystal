@@ -3029,7 +3029,11 @@ wGameplayRules:: db
 ; bit 0: use original Pokemon typings instead of the enhanced typings
 ; bit 1: use original base stats instead of the enhanced base stats
 ; bit 2: Pokemon abilities are turned off (GetAbility returns NO_ABILITY)
-	ds 4
+; Bulk Kurt batches use two saved padding bytes. The marker distinguishes
+; new 16-bit counts from legacy one-byte batches without shifting save data.
+wKurtBatchMarker:: db
+wKurtApricornQuantityHi:: db
+	ds 2
 
 wStepCount:: db ; dc73
 wPoisonStepCount:: db ; dc74
