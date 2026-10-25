@@ -91,13 +91,7 @@ Kurt1:
 	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	iftrue .CanGiveGSBallToKurt
 .NoGSBall:
-	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	iftrue .CheckApricorns
-	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	iftrue .CheckApricorns
-	writetext KurtsHouseKurtBallsFromApricornsText
-	waitbutton
-.CheckApricorns:
+; Also reached right after handing over a batch, so Kurt can start another.
 	checkitem RED_APRICORN
 	iftrue .AskApricorn
 	checkitem BLU_APRICORN
@@ -113,22 +107,28 @@ Kurt1:
 	checkitem PNK_APRICORN
 	iftrue .AskApricorn
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	iftrue .ThatTurnedOutGreat
-	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	iftrue .IMakeBallsFromApricorns
-	closetext
-	end
-
-.IMakeBallsFromApricorns:
+	iftrue .BringMoreApricorns
 	writetext KurtsHouseKurtBallsFromApricornsText
 	waitbutton
 	closetext
 	end
 
+.BringMoreApricorns:
+	writetext KurtsHouseKurtBringMoreApricornsText
+	waitbutton
+	closetext
+	end
+
 .AskApricorn:
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	iftrue .AskForAnotherBatch
 	writetext KurtsHouseKurtAskYouHaveAnApricornText
+	sjump .ChooseApricorn
+
+.AskForAnotherBatch:
+	writetext KurtsHouseKurtAskAnotherBatchText
+.ChooseApricorn:
 	buttonsound
-	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	special SelectApricornForKurt
 	ifequal FALSE, .Cancel
 	ifequal BLU_APRICORN, .Blu
@@ -139,51 +139,70 @@ Kurt1:
 	ifequal PNK_APRICORN, .Pnk
 ; .Red
 	setevent EVENT_GAVE_KURT_RED_APRICORN
+	getitemname STRING_BUFFER_4, LEVEL_BALL
 	sjump .GaveKurtApricorns
 
 .Blu:
 	setevent EVENT_GAVE_KURT_BLU_APRICORN
+	getitemname STRING_BUFFER_4, LURE_BALL
 	sjump .GaveKurtApricorns
 
 .Ylw:
 	setevent EVENT_GAVE_KURT_YLW_APRICORN
+	getitemname STRING_BUFFER_4, MOON_BALL
 	sjump .GaveKurtApricorns
 
 .Grn:
 	setevent EVENT_GAVE_KURT_GRN_APRICORN
+	getitemname STRING_BUFFER_4, FRIEND_BALL
 	sjump .GaveKurtApricorns
 
 .Wht:
 	setevent EVENT_GAVE_KURT_WHT_APRICORN
+	getitemname STRING_BUFFER_4, FAST_BALL
 	sjump .GaveKurtApricorns
 
 .Blk:
 	setevent EVENT_GAVE_KURT_BLK_APRICORN
+	getitemname STRING_BUFFER_4, HEAVY_BALL
 	sjump .GaveKurtApricorns
 
 .Pnk:
 	setevent EVENT_GAVE_KURT_PNK_APRICORN
-	sjump .GaveKurtApricorns
-
+	getitemname STRING_BUFFER_4, LOVE_BALL
 .GaveKurtApricorns:
-	sjump .GotLureBall
+; wScriptVar still holds the chosen Apricorn here.
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	getitemname STRING_BUFFER_3, USE_SCRIPT_VAR
+	callasm Kurt_LoadBatchCountText
+	callasm Kurt_IsBatchCountOne
+	iftrue .GaveOneApricorn
+	writetext KurtsHouseKurtStartBatchText
+	sjump .HeadToWorkbench
+
+.GaveOneApricorn:
+	writetext KurtsHouseKurtStartSingleBallText
+.HeadToWorkbench:
+	waitbutton
+	closetext
+	readvar VAR_FACING
+	ifequal LEFT, .PlayerOnRight
+	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtToWorkbenchMovement
+	end
+
+.PlayerOnRight:
+	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtToWorkbenchFromRightMovement
+	end
 
 .WaitForApricorns:
 	writetext KurtsHouseKurtItWillTakeADayText
 	waitbutton
 	closetext
+	turnobject KURTSHOUSE_KURT1, UP
 	end
 
 .Cancel:
 	writetext KurtsHouseKurtThatsALetdownText
-	waitbutton
-	closetext
-	end
-
-._ThatTurnedOutGreat:
-	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-.ThatTurnedOutGreat:
-	writetext KurtsHouseKurtTurnedOutGreatText
 	waitbutton
 .NoRoomForBall:
 	closetext
@@ -192,72 +211,87 @@ Kurt1:
 .GiveLevelBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
-	writetext KurtsHouseKurtJustFinishedYourBallText
-	buttonsound
-	verbosegiveitemvar LEVEL_BALL, VAR_KURT_APRICORNS
-	iffalse .NoRoomForBall
-	clearevent EVENT_GAVE_KURT_RED_APRICORN
-	sjump ._ThatTurnedOutGreat
+	setval LEVEL_BALL
+	sjump .CollectBalls
 
 .GiveLureBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
-	writetext KurtsHouseKurtJustFinishedYourBallText
-	buttonsound
-	verbosegiveitemvar LURE_BALL, VAR_KURT_APRICORNS
-	iffalse .NoRoomForBall
-	clearevent EVENT_GAVE_KURT_BLU_APRICORN
-	sjump ._ThatTurnedOutGreat
+	setval LURE_BALL
+	sjump .CollectBalls
 
 .GiveMoonBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
-	writetext KurtsHouseKurtJustFinishedYourBallText
-	buttonsound
-	verbosegiveitemvar MOON_BALL, VAR_KURT_APRICORNS
-	iffalse .NoRoomForBall
-	clearevent EVENT_GAVE_KURT_YLW_APRICORN
-	sjump ._ThatTurnedOutGreat
+	setval MOON_BALL
+	sjump .CollectBalls
 
 .GiveFriendBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
-	writetext KurtsHouseKurtJustFinishedYourBallText
-	buttonsound
-	verbosegiveitemvar FRIEND_BALL, VAR_KURT_APRICORNS
-	iffalse .NoRoomForBall
-	clearevent EVENT_GAVE_KURT_GRN_APRICORN
-	sjump ._ThatTurnedOutGreat
+	setval FRIEND_BALL
+	sjump .CollectBalls
 
 .GiveFastBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
-	writetext KurtsHouseKurtJustFinishedYourBallText
-	buttonsound
-	verbosegiveitemvar FAST_BALL, VAR_KURT_APRICORNS
-	iffalse .NoRoomForBall
-	clearevent EVENT_GAVE_KURT_WHT_APRICORN
-	sjump ._ThatTurnedOutGreat
+	setval FAST_BALL
+	sjump .CollectBalls
 
 .GiveHeavyBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
-	writetext KurtsHouseKurtJustFinishedYourBallText
-	buttonsound
-	verbosegiveitemvar HEAVY_BALL, VAR_KURT_APRICORNS
-	iffalse .NoRoomForBall
-	clearevent EVENT_GAVE_KURT_BLK_APRICORN
-	sjump ._ThatTurnedOutGreat
+	setval HEAVY_BALL
+	sjump .CollectBalls
 
 .GiveLoveBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue KurtMakingBallsScript
+	setval LOVE_BALL
+.CollectBalls:
+	getitemname STRING_BUFFER_3, USE_SCRIPT_VAR
+	callasm Kurt_LoadBatchCountText
+	callasm Kurt_CollectCraftedBalls
+	iffalse .BallPocketFull
+	callasm Kurt_LoadCollectedCountText
+	ifequal 2, .PartialBatch
+	callasm Kurt_IsBatchCountOne
+	iftrue .CollectedOneBall
+	writetext KurtsHouseKurtJustFinishedYourBallsText
+	sjump .HandOverBalls
+
+.CollectedOneBall:
 	writetext KurtsHouseKurtJustFinishedYourBallText
-	buttonsound
-	verbosegiveitemvar LOVE_BALL, VAR_KURT_APRICORNS
-	iffalse .NoRoomForBall
+.HandOverBalls:
+	playsound SFX_ITEM
+	waitsfx
+	waitbutton
+	scall KurtsHouse_BallTipScript
+	clearevent EVENT_GAVE_KURT_RED_APRICORN
+	clearevent EVENT_GAVE_KURT_BLU_APRICORN
+	clearevent EVENT_GAVE_KURT_YLW_APRICORN
+	clearevent EVENT_GAVE_KURT_GRN_APRICORN
+	clearevent EVENT_GAVE_KURT_WHT_APRICORN
+	clearevent EVENT_GAVE_KURT_BLK_APRICORN
 	clearevent EVENT_GAVE_KURT_PNK_APRICORN
-	sjump ._ThatTurnedOutGreat
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	sjump .NoGSBall
+
+.PartialBatch:
+	writetext KurtsHouseKurtPartialBatchText
+	playsound SFX_ITEM
+	waitsfx
+	waitbutton
+	writetext KurtsHouseKurtPartialBatchRestText
+	waitbutton
+	closetext
+	end
+
+.BallPocketFull:
+	writetext KurtsHouseKurtBallPocketFullText
+	waitbutton
+	closetext
+	end
 
 .CanGiveGSBallToKurt:
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
@@ -310,6 +344,54 @@ Kurt1:
 	waitsfx
 	special RestartMapMusic
 	setmapscene AZALEA_TOWN, SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL
+	end
+
+KurtsHouse_BallTipScript:
+; Called before the GAVE_KURT_* events are cleared.
+	checkevent EVENT_GAVE_KURT_RED_APRICORN
+	iftrue .Level
+	checkevent EVENT_GAVE_KURT_BLU_APRICORN
+	iftrue .Lure
+	checkevent EVENT_GAVE_KURT_YLW_APRICORN
+	iftrue .Moon
+	checkevent EVENT_GAVE_KURT_GRN_APRICORN
+	iftrue .Friend
+	checkevent EVENT_GAVE_KURT_WHT_APRICORN
+	iftrue .Fast
+	checkevent EVENT_GAVE_KURT_BLK_APRICORN
+	iftrue .Heavy
+	checkevent EVENT_GAVE_KURT_PNK_APRICORN
+	iftrue .Love
+	end
+
+.Level:
+	writetext KurtsHouseKurtLevelBallTipText
+	sjump .Done
+
+.Lure:
+	writetext KurtsHouseKurtLureBallTipText
+	sjump .Done
+
+.Moon:
+	writetext KurtsHouseKurtMoonBallTipText
+	sjump .Done
+
+.Friend:
+	writetext KurtsHouseKurtFriendBallTipText
+	sjump .Done
+
+.Fast:
+	writetext KurtsHouseKurtFastBallTipText
+	sjump .Done
+
+.Heavy:
+	writetext KurtsHouseKurtHeavyBallTipText
+	sjump .Done
+
+.Love:
+	writetext KurtsHouseKurtLoveBallTipText
+.Done:
+	waitbutton
 	end
 
 Kurt2:
@@ -448,6 +530,37 @@ KurtsHouseKurtGoAroundPlayerThenExitHouseMovement:
 	big_step DOWN
 	step_end
 
+KurtsHouseKurtToWorkbenchMovement:
+; Cross above his granddaughter/Slowpoke, then below the workshop wall.
+rept 6
+	step RIGHT
+endr
+rept 3
+	step DOWN
+endr
+rept 5
+	step RIGHT
+endr
+rept 2
+	step UP
+endr
+	turn_head UP
+	step_end
+
+KurtsHouseKurtToWorkbenchFromRightMovement:
+; The player is at (4, 2), so take the southern route around them.
+rept 3
+	step DOWN
+endr
+rept 11
+	step RIGHT
+endr
+rept 2
+	step UP
+endr
+	turn_head UP
+	step_end
+
 KurtsHouseKurtMakingBallsMustWaitText:
 	text "Hm? Who are you?"
 
@@ -512,28 +625,96 @@ KurtsHouseKurtBallsFromApricornsText:
 	text "KURT: I make BALLS"
 	line "from APRICORNS."
 
-	para "Collect them from"
-	line "trees and bring"
-	cont "'em to me."
+	para "Shake the trees on"
+	line "the routes and"
+	cont "bring me whatever"
+	cont "falls out."
 
-	para "I'll make BALLS"
-	line "out of them."
+	para "Each color makes"
+	line "a different BALL."
+
+	para "Bring as many as"
+	line "you like. I'll"
+	cont "turn the whole"
+	cont "pile into BALLS!"
+	done
+
+KurtsHouseKurtBringMoreApricornsText:
+	text "KURT: Out of"
+	line "APRICORNS, eh?"
+
+	para "The trees keep"
+	line "growing more."
+
+	para "Bring me a fresh"
+	line "pile anytime!"
 	done
 
 KurtsHouseKurtAskYouHaveAnApricornText:
-	text "KURT: You have an"
-	line "APRICORN for me?"
+	text "KURT: Oh? Those"
+	line "are APRICORNS!"
 
-	para "Fine! I'll turn it"
-	line "into a BALL."
+	para "Pick a color and"
+	line "I'll turn every"
+	cont "last one into"
+	cont "BALLS."
+	done
+
+KurtsHouseKurtAskAnotherBatchText:
+	text "KURT: Got more"
+	line "APRICORNS? Great!"
+
+	para "Let's keep that"
+	line "fire going!"
+	done
+
+KurtsHouseKurtStartBatchText:
+	text "KURT: Let's see…"
+	line "@"
+	text_decimal wStringBuffer5, 2, 4
+	text " @"
+	text_ram wStringBuffer3
+	text "S"
+
+	para "That's enough for"
+	line "a fine batch of"
+	cont "@"
+	text_ram wStringBuffer4
+	text "S!"
+
+	para "Go get some fresh"
+	line "air. They'll be"
+	cont "done by the time"
+	cont "you're back!"
+	done
+
+KurtsHouseKurtStartSingleBallText:
+	text "KURT: Just one"
+	line "@"
+	text_ram wStringBuffer3
+	text "?"
+
+	para "Ha! Small job, but"
+	line "I'll make it a"
+	cont "fine @"
+	text_ram wStringBuffer4
+	text "!"
+
+	para "Go get some fresh"
+	line "air. It'll be done"
+	cont "by the time you're"
+	cont "back!"
 	done
 
 KurtsHouseKurtItWillTakeADayText:
-	text "KURT: It'll take a"
-	line "day to make you a"
+	text "KURT: Hey, you"
+	line "can't rush good"
+	cont "craftsmanship!"
 
-	para "BALL. Come back"
-	line "for it later."
+	para "Go on outside for"
+	line "a bit. It'll be"
+	cont "ready when you"
+	cont "come back in."
 	done
 
 KurtsHouseKurtThatsALetdownText:
@@ -546,18 +727,115 @@ KurtsHouseKurtDontBotherMeText:
 	line "Don't bother me!"
 	done
 
-KurtsHouseKurtJustFinishedYourBallText:
+KurtsHouseKurtJustFinishedYourBallsText:
 	text "KURT: Ah, <PLAYER>!"
-	line "I just finished"
-	cont "your BALL. Here!"
+	line "Perfect timing!"
+
+	para "Here you go!"
+	line "@"
+	text_decimal wStringBuffer5, 2, 4
+	text " @"
+	text_ram wStringBuffer3
+	text "S!"
 	done
 
-KurtsHouseKurtTurnedOutGreatText:
-	text "KURT: That turned"
-	line "out great."
+KurtsHouseKurtJustFinishedYourBallText:
+	text "KURT: Ah, <PLAYER>!"
+	line "Perfect timing!"
 
-	para "Try catching"
-	line "#MON with it."
+	para "Here you go!"
+	line "One @"
+	text_ram wStringBuffer3
+	text "!"
+	done
+
+KurtsHouseKurtPartialBatchText:
+	text "KURT: Ah, <PLAYER>!"
+	line "Here you go!"
+
+	para "@"
+	text_decimal wStringBuffer5, 2, 4
+	text " @"
+	text_ram wStringBuffer3
+	text "S!"
+	done
+
+KurtsHouseKurtPartialBatchRestText:
+	text "KURT: Whoa, your"
+	line "BALL POCKET is"
+	cont "stuffed full!"
+
+	para "I'll hang on to"
+	line "the other @"
+	text_decimal wStringBuffer5 + 2, 2, 4
+	text "."
+
+	para "Make some room and"
+	line "come see me again!"
+	done
+
+KurtsHouseKurtBallPocketFullText:
+	text "KURT: Your BALLS"
+	line "are ready, but"
+	cont "your BALL POCKET"
+	cont "is stuffed full!"
+
+	para "Make some room and"
+	line "come see me again."
+	done
+
+KurtsHouseKurtLevelBallTipText:
+	text "KURT: LEVEL BALLS"
+	line "work best when"
+	cont "your #MON is a"
+	cont "higher level than"
+	cont "the wild one."
+	done
+
+KurtsHouseKurtLureBallTipText:
+	text "KURT: LURE BALLS"
+	line "are made for"
+	cont "#MON you hook"
+	cont "with a ROD."
+	done
+
+KurtsHouseKurtMoonBallTipText:
+	text "KURT: MOON BALLS"
+	line "work wonders on"
+	cont "#MON that can"
+	cont "evolve with a"
+	cont "MOON STONE."
+	done
+
+KurtsHouseKurtFriendBallTipText:
+	text "KURT: Anything you"
+	line "catch in a FRIEND"
+	cont "BALL will warm up"
+	cont "to you right away!"
+	done
+
+KurtsHouseKurtFastBallTipText:
+	text "KURT: FAST BALLS"
+	line "are perfect for"
+	cont "#MON that like"
+	cont "to run away."
+	done
+
+KurtsHouseKurtHeavyBallTipText:
+	text "KURT: HEAVY BALLS"
+	line "work best on big,"
+	cont "heavy #MON."
+
+	para "On little ones,"
+	line "not so much!"
+	done
+
+KurtsHouseKurtLoveBallTipText:
+	text "KURT: Use LOVE"
+	line "BALLS on the same"
+	cont "kind of #MON as"
+	cont "yours, but of the"
+	cont "opposite gender."
 	done
 
 KurtsHouseKurtGranddaughterHelpingWorkFasterText:
@@ -640,14 +918,18 @@ KurtsGranddaughterHelpText:
 	text "I get to help"
 	line "Grandpa now!"
 
-	para "We'll make good"
-	line "BALLS for you, so"
-	cont "please wait!"
+	para "Go play outside"
+	line "for a bit. Your"
+	cont "BALLS will be"
+	cont "ready soon!"
 	done
 
 KurtsGranddaughterFunText:
-	text "It's fun to make"
-	line "BALLS!"
+	text "Grandpa let me"
+	line "polish the BALLS"
+	cont "this time!"
+
+	para "Aren't they shiny?"
 	done
 
 KurtsGranddaughterGSBallText:
