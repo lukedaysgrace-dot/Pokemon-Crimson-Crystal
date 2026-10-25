@@ -301,6 +301,7 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	call PrintNum
 	pop bc
 	call TrainerCard_Page1_PrintGameTime
+	call TrainerCard_Page1_PrintLevelCap
 	hlcoord 2, 8
 	ld de, .StatusTilemap
 	call TrainerCardSetup_PlaceTilemapString
@@ -472,6 +473,27 @@ TrainerCard_Page1_PrintGameTime:
 	xor " " ^ $2e ; alternate between space and small colon ($2e) tiles
 	ld [hl], a
 	ret
+
+TrainerCard_Page1_PrintLevelCap:
+; Refresh from the same progression rules used by EXP and Rare Candies,
+; including old saves whose cached cap predates their newest badge.
+	ld de, ENGINE_HARD_MODE
+	ld b, CHECK_FLAG
+	farcall EngineFlagAction
+	ld a, c
+	and a
+	ret z
+	farcall UpdateLevelCap
+	hlcoord 2, 14
+	ld de, .Label
+	call PlaceString
+	hlcoord 15, 14
+	ld de, wLevelCap
+	lb bc, 1, 3
+	jp PrintNum
+
+.Label:
+	db "LEVEL CAP@"
 
 TrainerCard_Page2_3_AnimateBadges:
 	ldh a, [hVBlankCounter]
