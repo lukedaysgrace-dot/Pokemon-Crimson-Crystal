@@ -186,6 +186,10 @@ SECTION "Battle Core Overflow", ROMX
 INCLUDE "engine/battle/giga_hammer_core.asm"
 INCLUDE "engine/battle/legacy_core.asm"
 
+SECTION "Battle Weather Indicator", ROMX
+
+INCLUDE "engine/battle/weather_indicator.asm"
+
 
 SECTION "bank10", ROMX
 
