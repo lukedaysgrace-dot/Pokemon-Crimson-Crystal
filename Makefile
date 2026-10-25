@@ -74,6 +74,10 @@ test-engine-optimizations: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/wild_ui_checks.py
 	$(BATTLE_TEST_PYTHON) tools/battletest/save_menu_checks.py
 
+.PHONY: test-battle-weather
+test-battle-weather: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/weather_indicator_checks.py
+
 debug: pokecrystal_debug.gbc
 
 test: pokecrystal_debug.gbc

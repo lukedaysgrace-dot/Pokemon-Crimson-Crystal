@@ -1,0 +1,3163 @@
+# CrystalShireEngine source-history inventory
+
+Captured October 25, 2026. Companion to [the comparison report](crystalshire-engine-2026-10-25.md). This inventory contains experiments, reversions and donor-specific edits as well as improvements. It is evidence for follow-up investigation, not a list of patches safe to apply.
+
+Core development boundary: `7123dd72`. Other branch sections show commits not reachable from reviewed core. Shared commits intentionally appear in multiple branch sections so each section can stand alone.
+
+## core
+
+Revision: `5c747bf0bf925d1d38cff569d39d8cdd3eb076e4`. Non-merge commits in this section: 531.
+
+- 2025-04-01 [41c984453](https://github.com/aaronjeter/CrystalShireEngine/commit/41c9844534ead642885093811ce0d449a4658c54) — Update `.gitignore`
+- 2025-01-22 [0ae2f7b3a](https://github.com/aaronjeter/CrystalShireEngine/commit/0ae2f7b3aa881cdd5df9feaf23b5ebdeb5c5095c) — Bugfix: Fix giving an item to mon via newbox
+- 2024-12-27 [0124a1ea9](https://github.com/aaronjeter/CrystalShireEngine/commit/0124a1ea9eb10913a2e7927dfd474eff52a54d22) — Use exported constants for VC patch (#1161)
+- 2024-12-27 [15187f5d6](https://github.com/aaronjeter/CrystalShireEngine/commit/15187f5d63ea8a641f259dd10704d14670be9df4) — Identify `CHANNEL_FIELD16` as `CHANNEL_NOTE_DURATION_MODIFIER` (#1162)
+- 2024-12-27 [85ddf0e90](https://github.com/aaronjeter/CrystalShireEngine/commit/85ddf0e90a3a23713d838677fc5a9f0f1b352fce) — Don't pass redundant label names to `table_width` and `list_start` (#1160)
+- 2024-12-26 [3f686e67d](https://github.com/aaronjeter/CrystalShireEngine/commit/3f686e67da5999dc111214abb25a87ec2a0ed9f6) — Correct wrong and misleading comments about enemy trainer AI (#1149)
+- 2024-12-25 [61c9ba5f6](https://github.com/aaronjeter/CrystalShireEngine/commit/61c9ba5f6ce93ee1e7c32adf0b9af5c9989250d2) — Use RGBDS 0.9.0 (#1159)
+- 2024-12-25 [13621fae9](https://github.com/aaronjeter/CrystalShireEngine/commit/13621fae937f9abcb38e1c2e9fe7bab50d888c6f) — Bug documentation for Bug Catcher Wayne (#1158)
+- 2024-12-25 [fd64d7eb7](https://github.com/aaronjeter/CrystalShireEngine/commit/fd64d7eb7062af60a37b265a361a91ceaeb25daa) — Add `checkcurl` to legacy macros
+- 2024-12-25 [d323aa83d](https://github.com/aaronjeter/CrystalShireEngine/commit/d323aa83ddcc31fbb07af15898bda9ad52f3711e) — Rename checkcurl to checkrollout
+- 2024-12-21 [cbfd48b8d](https://github.com/aaronjeter/CrystalShireEngine/commit/cbfd48b8d122421a3522d68f343a596083721f3f) — Use `SERIAL_RNS_LENGTH` in `_BattleRandom`
+- 2024-12-16 [26e9de55d](https://github.com/aaronjeter/CrystalShireEngine/commit/26e9de55d6b57385edabeb2fc55cc233e592bc70) — Fix indentation
+- 2024-12-02 [99af3f4f3](https://github.com/aaronjeter/CrystalShireEngine/commit/99af3f4f3b478759d3030d8b793a895ca013b13e) — Identify some missed bit 7 menu flags
+- 2024-12-02 [03a1c6efa](https://github.com/aaronjeter/CrystalShireEngine/commit/03a1c6efadfc33b13404d2e9cf447732c72f7422) — Mobile jumptable exit bits
+- 2024-12-02 [41045d026](https://github.com/aaronjeter/CrystalShireEngine/commit/41045d0266669c20d956797c9d056cf60a686596) — Crystal-only jumptable exit bits
+- 2024-12-02 [e1e7cbd83](https://github.com/aaronjeter/CrystalShireEngine/commit/e1e7cbd838750d6a94e55e805f573c0e6d734132) — Bit 7 of wJumptableIndex is often JUMPTABLE_EXIT_F
+- 2024-11-29 [644bd42fb](https://github.com/aaronjeter/CrystalShireEngine/commit/644bd42fb05ac06b0b621ef539a6f0393742781a) — Identify more bit flags (#1153)
+- 2024-11-28 [8894e29da](https://github.com/aaronjeter/CrystalShireEngine/commit/8894e29da2ed79a78907cbee89a12aadf66e8236) — Add documentation for HideHeadbuttTree (#1152)
+- 2024-10-17 [961fad9e1](https://github.com/aaronjeter/CrystalShireEngine/commit/961fad9e150df324afc9bccd1ce15c3a65d3c124) — Fix `AI_Smart_Curse` labels
+- 2024-10-17 [0abd8a7b3](https://github.com/aaronjeter/CrystalShireEngine/commit/0abd8a7b38b4e78ae8840a34b06ebad1b0bb08e9) — Rename Bill's brother to Bill's older sister (#1132)
+- 2024-10-18 [0ebea8cfe](https://github.com/aaronjeter/CrystalShireEngine/commit/0ebea8cfe131eef2ed6d4e6426adf85bb554325b) — Correct Moon Ball bug documentation (#1133)
+- 2024-10-17 [1febb75bf](https://github.com/aaronjeter/CrystalShireEngine/commit/1febb75bf9b121022bb1656e8b9e48c0ee9451e3) — Update mislabeled sweet_scent.asm subroutine (#1140)
+- 2024-10-17 [2265e53d2](https://github.com/aaronjeter/CrystalShireEngine/commit/2265e53d246bb364c0ee0f1223decc0445320a1c) — Rename `dt` and `dd` to `bigdt` and `bigdd` (#1141)
+- 2024-10-17 [901813a34](https://github.com/aaronjeter/CrystalShireEngine/commit/901813a343dda371d2a35702e5d3f4999e8f97a7) — Refactor gbcpal.c
+- 2024-10-17 [e59624d1f](https://github.com/aaronjeter/CrystalShireEngine/commit/e59624d1f5a3e0ca4e33c250bce3c1937b06b908) — Generate Unown sprite palette based on all front+back sprites (#1146)
+- 2024-10-16 [5a53e297c](https://github.com/aaronjeter/CrystalShireEngine/commit/5a53e297cfef581b4bcdf8fe322b6794c2c110aa) — Sort Pokemon and trainer sprite palettes, with Makefile-specified exceptions (#1137)
+- 2024-10-16 [75f214e59](https://github.com/aaronjeter/CrystalShireEngine/commit/75f214e5944b2c88de7bc0e87c53754a4f378e05) — GitHub Actions needs libpng-dev installed for rgbds
+- 2024-10-09 [4500d4fca](https://github.com/aaronjeter/CrystalShireEngine/commit/4500d4fcab9c5ea5c99191a22866efc22930eca1) — Renamed pokemon-asm-tools to gb-asm-tools
+- 2024-10-07 [fa2e67521](https://github.com/aaronjeter/CrystalShireEngine/commit/fa2e6752104934bc4f3891c3ec8972cc2bcc4339) — Tools depend on common.h by default
+- 2024-10-07 [a69cfb172](https://github.com/aaronjeter/CrystalShireEngine/commit/a69cfb172081d640a373ddf5b7fe977711572e40) — Remove independent tools and link to pokemon-asm-tools
+- 2024-09-26 [87042ce72](https://github.com/aaronjeter/CrystalShireEngine/commit/87042ce7237986bb895e533be53e159cf77aa36c) — Fix tools/sym_comments.py
+- 2024-09-26 [240857994](https://github.com/aaronjeter/CrystalShireEngine/commit/2408579942a970e05bdbaa031b439eac07308235) — Correct European mail documentation (#1142)
+- 2024-09-26 [017bffaef](https://github.com/aaronjeter/CrystalShireEngine/commit/017bffaef95442d583ba30f04e47465be15ee607) — Put front and back pics on a single line (#1139)
+- 2024-09-26 [4d0e928c6](https://github.com/aaronjeter/CrystalShireEngine/commit/4d0e928c6f6575638df7394d0421ec3b958ed2fa) — Label the unused daily flag (#1143)
+- 2024-09-24 [9fe12bfd0](https://github.com/aaronjeter/CrystalShireEngine/commit/9fe12bfd0051ee9f501d46c19537ebac4698c035) — Change `jmp` commands to `jr`
+- 2024-09-24 [7721f9e15](https://github.com/aaronjeter/CrystalShireEngine/commit/7721f9e15e7f3355abc60bbedc3fcd5280397384) — Create `GetEvoLevel` Routine
+- 2024-09-24 [c58f05d2f](https://github.com/aaronjeter/CrystalShireEngine/commit/c58f05d2fbbab960b209863256a32c100716c2ff) — Minor Optimizations for Trade Evolutions
+- 2024-09-23 [81ab38994](https://github.com/aaronjeter/CrystalShireEngine/commit/81ab3899499257554a103b20fca6e95601321f0e) — Create `GetEvoItem` Routine
+- 2024-09-23 [cfd30fdd0](https://github.com/aaronjeter/CrystalShireEngine/commit/cfd30fdd0729964e46c0c6635b354e6287053a44) — Fix Evolution Skips
+- 2024-09-01 [760df2a76](https://github.com/aaronjeter/CrystalShireEngine/commit/760df2a763bc6298eb229da0ab6f69b5703efb38) — Update debug radio
+- 2024-09-01 [7e0b7fd8e](https://github.com/aaronjeter/CrystalShireEngine/commit/7e0b7fd8ec8188b96a63a0ae79d3a18574e556ad) — Fix fishing rod
+- 2024-09-01 [33aacb764](https://github.com/aaronjeter/CrystalShireEngine/commit/33aacb764fc1f74aa03dc2d30727c23ca863a90d) — Only 1 Match is not considered a LuckyNumber Win
+- 2024-09-01 [8fde8e6de](https://github.com/aaronjeter/CrystalShireEngine/commit/8fde8e6deb025de192094575075a157f43607e77) — Delay YesNoBox slightly longer to click sound to complete
+- 2024-08-31 [41796c27a](https://github.com/aaronjeter/CrystalShireEngine/commit/41796c27a4de213b51ce3fadb23950a285713e9c) — Optimization check for cphl16 if value is zero
+- 2024-08-28 [7b5986006](https://github.com/aaronjeter/CrystalShireEngine/commit/7b5986006f6b325e471fee25903c769ce67f5da9) — Use long option flags for rgbgfx, same as tools/gfx
+- 2024-08-10 [5c7e4845c](https://github.com/aaronjeter/CrystalShireEngine/commit/5c7e4845c428d4bfac7c6e949316f1c4aff8d49a) — define NUM_KANTO_POKEMON & NUM_JOHTO_POKEMON
+- 2024-08-08 [24f20a320](https://github.com/aaronjeter/CrystalShireEngine/commit/24f20a32059bdc4ab8c939a0c953cc99d3484b48) — expand-item Fix wrong items withdrawn from PC
+- 2024-08-04 [746a06f1d](https://github.com/aaronjeter/CrystalShireEngine/commit/746a06f1de77dd6ffdba76ea33bb0181773326b6) — Use bankless symbols for VC constants
+- 2024-07-27 [9ae05312d](https://github.com/aaronjeter/CrystalShireEngine/commit/9ae05312d6c039902d885de98d49407ffe3a3c79) — Use NUM_TRAINER_ATTRIBUTES const in AI scoring Layers
+- 2024-07-24 [fed587fc3](https://github.com/aaronjeter/CrystalShireEngine/commit/fed587fc379da90187a06280f044496af912653a) — Refactor the Unown wall word data (#1131)
+- 2024-07-21 [70aeee3ab](https://github.com/aaronjeter/CrystalShireEngine/commit/70aeee3ab1d21fd7c33aadf4ba61817715e06ebc) — Fix palettes for pokemon icons in trade animation
+- 2024-07-17 [ccae2765b](https://github.com/aaronjeter/CrystalShireEngine/commit/ccae2765bbd4bba538bfc5069c1a2e1fa5cf3508) — Fix catch tutorial again...
+- 2024-07-16 [afa8287a3](https://github.com/aaronjeter/CrystalShireEngine/commit/afa8287a34575023c3f6e4d5766d65b07af4e13a) — Fix pokedex "CRY" option playing incorrect cry.
+- 2024-07-03 [239083d43](https://github.com/aaronjeter/CrystalShireEngine/commit/239083d436ecd1309163dc691bd4672faa5fb05e) — Fix TohjoFalls.ablk (#30)
+- 2024-06-28 [cc6bbcf2f](https://github.com/aaronjeter/CrystalShireEngine/commit/cc6bbcf2f07ef7cf643cea68b0b0d56891ffa324) — Fix merge issue; point to vblank7
+- 2024-06-28 [920f2dc0c](https://github.com/aaronjeter/CrystalShireEngine/commit/920f2dc0cf8ec645ec6426928a7c61e6a1ca129f) — Additional after-merge fixes
+- 2024-06-28 [c16543009](https://github.com/aaronjeter/CrystalShireEngine/commit/c16543009c5ca063793b4aa0993db8d902683279) — Bugfix: main items pocket sorting
+- 2024-06-19 [05df4b962](https://github.com/aaronjeter/CrystalShireEngine/commit/05df4b96224b117a7df64cf1b83d9f547a32c2e3) — Fix player still turning after a wild battle
+- 2024-06-19 [c0c9e04cd](https://github.com/aaronjeter/CrystalShireEngine/commit/c0c9e04cdcbc9d037806f7685ed3f728900eb6d2) — Fix jump y vectors.
+- 2024-06-28 [9053e04de](https://github.com/aaronjeter/CrystalShireEngine/commit/9053e04ded54c49f66af422bbbe87dc46c8aeea5) — Move tileset data 11
+- 2024-06-28 [024c8749a](https://github.com/aaronjeter/CrystalShireEngine/commit/024c8749a0e7aa7f72082b0fa17498bf42c5359f) — Build with RGBDS 0.8.0, though it is not yet required
+- 2024-06-13 [956e2841f](https://github.com/aaronjeter/CrystalShireEngine/commit/956e2841f99110b2faf058833d77bfd20f1db94b) — Bug: fix missing dude when crossing Olivine map and Route40 connection (#29)
+- 2024-06-12 [bb572c4c5](https://github.com/aaronjeter/CrystalShireEngine/commit/bb572c4c52bbb571dcdeba2dbe1b00244e52bc72) — Document the Slowpoke Well graphical oversight
+- 2024-06-12 [b26e02355](https://github.com/aaronjeter/CrystalShireEngine/commit/b26e023555b3c607365eefbadadb252a472bfa4e) — Move cosmetic bugs to the Graphics section
+- 2024-06-12 [4f57e96f3](https://github.com/aaronjeter/CrystalShireEngine/commit/4f57e96f31bd733ae3d2fea6a6040cbc6d8e7692) — Consolidate the duplicate stat level data files
+- 2024-06-11 [8819f7b11](https://github.com/aaronjeter/CrystalShireEngine/commit/8819f7b117ffca65496077fa8f452792fb907258) — Identify various "????"s (#1125)
+- 2024-05-30 [ebd6147ca](https://github.com/aaronjeter/CrystalShireEngine/commit/ebd6147cab36cccd62471ab12981500aeefe9173) —  Fix player sprite loading when using _UpdatePlayerSprite
+- 2024-05-29 [2e0925250](https://github.com/aaronjeter/CrystalShireEngine/commit/2e09252509f2f79b9b7015d38297d3d7b6bf1534) — Bugfix: Decompress overflow (it was writing into sram mail)
+- 2024-05-29 [4e0e52949](https://github.com/aaronjeter/CrystalShireEngine/commit/4e0e529490e632e7e30af828a3ab5e99a1e217bb) — Bugfix: Ethers, Max Ethers, Elixers, Max Elixers don't restore PP, either in battle or from the overworld
+- 2024-05-29 [8ff388a9b](https://github.com/aaronjeter/CrystalShireEngine/commit/8ff388a9be9495b03010ed76d6cb8c3e02d95ff0) — Bugfix: Revive acts as a max revive (giving full HP instead of half)
+- 2024-05-27 [f691ace13](https://github.com/aaronjeter/CrystalShireEngine/commit/f691ace130ac874a0932a71849f5bb0ac88ee455) — Fix `ZINC` name
+- 2024-05-22 [23183bb9b](https://github.com/aaronjeter/CrystalShireEngine/commit/23183bb9bb4d3c67c87ccdc4c512b6cd8b069965) — Rename wram_constants.asm to ram_constants.asm
+- 2024-05-22 [de0d5c29e](https://github.com/aaronjeter/CrystalShireEngine/commit/de0d5c29e536101845cb1ecee7055dcd2572cb94) — wPrinterQueueLength values are divisible by 2
+- 2024-05-22 [b81e339f3](https://github.com/aaronjeter/CrystalShireEngine/commit/b81e339f335fed8b4533e70c7a57217b9b1ca8fa) — Use constants for VBlank handlers
+- 2024-05-10 [274d46a4b](https://github.com/aaronjeter/CrystalShireEngine/commit/274d46a4b1cb88921653a6673e98d7d1a8a4a1a8) — Fix Kurt making red apricorns
+- 2024-05-02 [d404fd965](https://github.com/aaronjeter/CrystalShireEngine/commit/d404fd965dfb3f8ddc218e026a56b6c463e96592) — Fix Stats screen at max volume
+- 2024-04-30 [c1ef958ec](https://github.com/aaronjeter/CrystalShireEngine/commit/c1ef958ec1db87522787cb5cfa03cc7b4b491bce) — Add disclaimer and discord link to readme.md
+- 2024-04-27 [538249089](https://github.com/aaronjeter/CrystalShireEngine/commit/538249089f237aefb664a0dfc18a1493ad0b090f) — Restore vanilla Tree palette
+- 2024-04-27 [4432df05c](https://github.com/aaronjeter/CrystalShireEngine/commit/4432df05cbef84a60a7b79b4bbec6bda2a261b6b) — Add more assert cases in the codebase (#1115)
+- 2024-04-28 [b9dce7357](https://github.com/aaronjeter/CrystalShireEngine/commit/b9dce735736222ffd52997ea0540961d39145151) — Rename `MON_ID` to `MON_OT_ID` (#1114)
+- 2024-04-19 [94b369c4e](https://github.com/aaronjeter/CrystalShireEngine/commit/94b369c4e44b1c39589989d2aad895579319be0a) — Revert intro mon back to WOOPER
+- 2024-04-19 [aa32563b8](https://github.com/aaronjeter/CrystalShireEngine/commit/aa32563b8f2de6ba00cb2da65ebd70767f2f87ae) — Resolve crash when level evolving a pokemon
+- 2024-04-14 [b0b5ed2eb](https://github.com/aaronjeter/CrystalShireEngine/commit/b0b5ed2eb8625952f26d01e9ac1642948b3aa10e) — Fix/update sprite y-coord offscreen definitions (#1108)
+- 2024-04-06 [e8079e6d4](https://github.com/aaronjeter/CrystalShireEngine/commit/e8079e6d4849961dc1706b5b9b9f2c9cd693f509) — Use "pkg" in termux instructions instead of "apt" directly
+- 2024-04-05 [43eebad2b](https://github.com/aaronjeter/CrystalShireEngine/commit/43eebad2b0c480c7deb1a6ca04ea4a39d8662824) — Small optimizations
+- 2024-04-05 [1ea6f18c4](https://github.com/aaronjeter/CrystalShireEngine/commit/1ea6f18c4db3325cec9c655294ff1313483e1489) — Check if Tileset has been changed
+- 2024-04-05 [629532955](https://github.com/aaronjeter/CrystalShireEngine/commit/629532955de3618b14ef4d6763cd80f2a9136773) — Implement DeferredLoadMapGraphics
+- 2024-04-05 [a18ffd6c6](https://github.com/aaronjeter/CrystalShireEngine/commit/a18ffd6c6d70f56fae8403471cca4545c6a7259b) — Reload Tileset GFX on connections (slow)
+- 2024-02-19 [2dc0ace3d](https://github.com/aaronjeter/CrystalShireEngine/commit/2dc0ace3d59dbc22f42eef2d35ccd13994d1a97f) — Change file permissions for sub_2bpp.sh
+- 2024-02-19 [e353628c4](https://github.com/aaronjeter/CrystalShireEngine/commit/e353628c405fef61c81e3d2acf593e8f452785cc) — Expand to 384 tilesets
+- 2024-02-18 [f88625e84](https://github.com/aaronjeter/CrystalShireEngine/commit/f88625e845d0bc2930406ab9d21973841a53b796) — No need for GetEmote2bpp
+- 2024-02-18 [4d47c1a7b](https://github.com/aaronjeter/CrystalShireEngine/commit/4d47c1a7bf0853bf6e76bfb39fb14488344e78bb) — Fix emotes by moving them to vBank0
+- 2024-02-18 [53b486cc4](https://github.com/aaronjeter/CrystalShireEngine/commit/53b486cc44d15bcd5e1f757db433f7e5b768b1f9) — Implement Sliding map sign (Polished port)
+- 2024-02-17 [e211ad912](https://github.com/aaronjeter/CrystalShireEngine/commit/e211ad9123c5a2ef105ab1da07556376bb8c5d70) — Sprites start in vTiles0; walking anim in vTiles1
+- 2024-04-05 [cc7fbf084](https://github.com/aaronjeter/CrystalShireEngine/commit/cc7fbf08404cbb907d1023c48855897ee9da1f0d) — Intro timing matches music duration
+- 2024-04-02 [983318950](https://github.com/aaronjeter/CrystalShireEngine/commit/983318950294e6f1bbd5b562759687d2ce5ee456) — Resolve Judder during battle slide
+- 2024-04-02 [1b624d6d5](https://github.com/aaronjeter/CrystalShireEngine/commit/1b624d6d5b9f6a42e91e1ee2411503cd959894fb) — Fix issues with LY Trickery.
+- 2024-04-02 [5d2709ea5](https://github.com/aaronjeter/CrystalShireEngine/commit/5d2709ea5b30d33429dccb331690516dbf23f32c) — Resolve issue with Ecruteak Sage flickering
+- 2024-04-02 [2e6d5f214](https://github.com/aaronjeter/CrystalShireEngine/commit/2e6d5f2143031a1ee8ef039db3910dd5e81a32cb) — `Script_pause` should delay 4 frames in doublespeed
+- 2024-03-04 [c1da20e2f](https://github.com/aaronjeter/CrystalShireEngine/commit/c1da20e2f12f95c935500151d15f455e7e7eb213) — Disable LodePNG auto-encoding the bpp2png image
+- 2024-02-17 [92a1b9eef](https://github.com/aaronjeter/CrystalShireEngine/commit/92a1b9eef9260708460ec46faf1332d1da04d2df) — redundant `xor a`
+- 2024-02-17 [471c589e3](https://github.com/aaronjeter/CrystalShireEngine/commit/471c589e3adb7ad722675169e834da59ff26e335) — Do some `jmp PopBCDEHL`
+- 2024-02-17 [84aa37005](https://github.com/aaronjeter/CrystalShireEngine/commit/84aa3700588da4f091ce1f75c8aa24b0f86c1e41) — Make evening the fourth time of day
+- 2024-02-16 [a1fb10895](https://github.com/aaronjeter/CrystalShireEngine/commit/a1fb1089554a407fed00b45fa749404945d6635f) — Fix Move Screen Overflow
+- 2024-02-16 [ddb3b559e](https://github.com/aaronjeter/CrystalShireEngine/commit/ddb3b559e15429cb25bdb40e8089f3b02f947079) — Various Dynamic Pal Fixes
+- 2024-02-01 [de1ad716d](https://github.com/aaronjeter/CrystalShireEngine/commit/de1ad716dcc93bc66c496b56db1db7eab3badd7e) — Remove some debug stuff.
+- 2024-02-01 [084a29e4a](https://github.com/aaronjeter/CrystalShireEngine/commit/084a29e4a541d5b729d6c1018e1e1beaba09c713) — Delete more mobile code (Mostly Bank 40)
+- 2024-01-31 [61cda49e7](https://github.com/aaronjeter/CrystalShireEngine/commit/61cda49e75e87747776fe32c6f7848b3a8283dd3) — Fix an issue with mom buying items/dolls
+- 2024-01-31 [7992fb4e7](https://github.com/aaronjeter/CrystalShireEngine/commit/7992fb4e73689c99bf5a67c12792f561390cf945) — Fix `DEF BASE_ITEMS` size in base data struct
+- 2024-01-30 [14a8c42aa](https://github.com/aaronjeter/CrystalShireEngine/commit/14a8c42aa5ee78d97d67790eea4ac957af33b9ef) — Some Dynamic Pal Improvements
+- 2024-01-30 [9ea843b8a](https://github.com/aaronjeter/CrystalShireEngine/commit/9ea843b8a4c3720f294541a84431b28720663b75) — Fixed wrong text label (#1107)
+- 2024-01-29 [fdae74276](https://github.com/aaronjeter/CrystalShireEngine/commit/fdae7427667c12f070fb595cc1f07ddd95b87b87) — Legacy support for `refreshscreen` and `reloadmappart`
+- 2024-01-28 [17d3a1a8a](https://github.com/aaronjeter/CrystalShireEngine/commit/17d3a1a8aeddda5d134ea0c9c57e7a7d90ca2a8c) — Address PR suggestions (#1078)
+- 2024-01-28 [1d7f3fd32](https://github.com/aaronjeter/CrystalShireEngine/commit/1d7f3fd324d2be12710848dfca97eee109049a75) — Don't infinite loop and use carry math in finding empty pal slot
+- 2024-01-28 [6d1beae94](https://github.com/aaronjeter/CrystalShireEngine/commit/6d1beae948f9148e480929e5d1ddabc2defb690c) — no-optimize comment in CheckForLuckyNumberWinners
+- 2024-01-22 [1358919ba](https://github.com/aaronjeter/CrystalShireEngine/commit/1358919baee59255b6779dd692f3d664614327cb) — Fixed wrong text_decimal for lucky number
+- 2024-01-27 [968415c61](https://github.com/aaronjeter/CrystalShireEngine/commit/968415c613c0cbc4c56fefaae306237cd4f069b9) — Optimize finding an empty pal slot
+- 2024-01-20 [6625db7b9](https://github.com/aaronjeter/CrystalShireEngine/commit/6625db7b9a082d7e839367335f32311a21ed4483) — Fix Lucky Number Show
+- 2024-01-20 [819fdab73](https://github.com/aaronjeter/CrystalShireEngine/commit/819fdab73457bf81b37bb08cb1fb29a75cbb4e93) — Unowns now display correct frontpic in PC box
+- 2024-01-20 [ea21a48b2](https://github.com/aaronjeter/CrystalShireEngine/commit/ea21a48b296a3c34687b4965452141de8c585e08) — Zapdos/Articuno icons are backwards.
+- 2024-01-20 [37536dad0](https://github.com/aaronjeter/CrystalShireEngine/commit/37536dad05f944025d5c6e7098530333036a4b24) — Revert "Add Erratic and Fluctuating Growth Rates and Remove unused egg pics"
+- 2024-01-18 [cc8e65855](https://github.com/aaronjeter/CrystalShireEngine/commit/cc8e658553c969277c6e4c0cb7dab12387974750) — Add Erratic and Fluctuating Growth Rates and Remove unused egg pics
+- 2024-01-17 [72e48837a](https://github.com/aaronjeter/CrystalShireEngine/commit/72e48837a4ca43e4a3efcfde493bce86bd8e1539) — Remove no longer used mobile files.
+- 2024-01-16 [fb7a76226](https://github.com/aaronjeter/CrystalShireEngine/commit/fb7a7622614ac36e1700d62558253bb342f4a47d) — Minor optimizations
+- 2024-01-14 [4c01f3d00](https://github.com/aaronjeter/CrystalShireEngine/commit/4c01f3d000396a4a67e5cfccdb02eae4ca28af41) — Initial work on 16-bit Battle OAMs
+- 2024-01-14 [fcc4f5069](https://github.com/aaronjeter/CrystalShireEngine/commit/fcc4f506932ffd3f2605a68defd8b2d8cb253806) — 16-bit Framesets
+- 2024-01-13 [a060b3aaf](https://github.com/aaronjeter/CrystalShireEngine/commit/a060b3aaf240a58082bbd2b8760c4715b7b5a675) — Optimize pointless jump
+- 2024-01-13 [432123e6e](https://github.com/aaronjeter/CrystalShireEngine/commit/432123e6ea8df7c6c8e8ae5b4b38acf9ffcd3e48) — Use `xcall` when you need to `farcall` in floating sections
+- 2024-01-13 [47e54f652](https://github.com/aaronjeter/CrystalShireEngine/commit/47e54f652942cff35bf92045f3c481ade9ca08bd) — Removed More Unnecessary Farcalls
+- 2024-01-13 [0039773d6](https://github.com/aaronjeter/CrystalShireEngine/commit/0039773d643600189dec99cdc2ef8db8037771e3) — These farcalls are now unnecessary.
+- 2024-01-13 [137d0f62e](https://github.com/aaronjeter/CrystalShireEngine/commit/137d0f62eb866b2144924b7f0fc57f9ea6951616) — BattleAnims sections should preserve original section context.
+- 2024-01-13 [e88f464f1](https://github.com/aaronjeter/CrystalShireEngine/commit/e88f464f1b001777b8a838060432ae465f1651c3) — home/battle_anim.asm should use farcall for Sine/Cosine
+- 2024-01-13 [9c77d6ea6](https://github.com/aaronjeter/CrystalShireEngine/commit/9c77d6ea60a4990e44dc34f7d563117093c4379d) — Fix start of line whitespace
+- 2024-01-13 [495c9f655](https://github.com/aaronjeter/CrystalShireEngine/commit/495c9f6551ab56f7e31a6d13ed284a0dfd810776) — Couple needed farcall's & uncomment sections
+- 2024-01-13 [ab8dbc1ab](https://github.com/aaronjeter/CrystalShireEngine/commit/ab8dbc1abd2c99a8dbaccce9cdbd78994bd23961) — The BattleAnim functions should farcall Cosine and Sine
+- 2024-01-13 [ef5373fec](https://github.com/aaronjeter/CrystalShireEngine/commit/ef5373fec0ebefce7c3791288c6c4f43ca265160) — Attempt to split battle_anim functions to their own sections
+- 2024-01-13 [de3f76825](https://github.com/aaronjeter/CrystalShireEngine/commit/de3f76825c9f1ee561f73e903f98e9b125957b65) — Store Frameset Data & GetBattleAnimFrame Together
+- 2024-01-15 [381f2daf2](https://github.com/aaronjeter/CrystalShireEngine/commit/381f2daf2a08ee538ee2400ad31a3750f63c2026) — Backport Expand ANIM_OBJ Limit
+- 2023-12-28 [a7671464b](https://github.com/aaronjeter/CrystalShireEngine/commit/a7671464b7b8c26bb06748a5e424bd1dd87808e5) — Clean Up Battle Anim Macros
+- 2024-01-15 [6c690446d](https://github.com/aaronjeter/CrystalShireEngine/commit/6c690446d3ddbc7db623606a79e8b57fcd5b940d) — no-optimize in `MoveSelectionScreen`
+- 2024-01-15 [6552a53f4](https://github.com/aaronjeter/CrystalShireEngine/commit/6552a53f401506e5879e22f09a32da70f8fc1e67) — Port polished's `AnimateHPBar`
+- 2024-01-15 [89a9f3714](https://github.com/aaronjeter/CrystalShireEngine/commit/89a9f37145314771cd079fd356e798a95edf9943) — no-optimize Inefficient WRAM decrement in TossKeyItem
+- 2024-01-15 [92f43bc97](https://github.com/aaronjeter/CrystalShireEngine/commit/92f43bc9747ce1c5988f744eb1616b7fb00fd9c6) — Fix Mon Evolution & Level Up Moves
+- 2024-01-13 [afc3d7f80](https://github.com/aaronjeter/CrystalShireEngine/commit/afc3d7f80d9fd0e1ef9d4cf31709f71322f411c9) — Git rid of extra footprints
+- 2024-01-13 [9cae0139a](https://github.com/aaronjeter/CrystalShireEngine/commit/9cae0139ab5741cd0d61b36e30c0665a7d51909c) — You can now swap last partymon with an alive boxmon
+- 2023-03-24 [0a88ad06e](https://github.com/aaronjeter/CrystalShireEngine/commit/0a88ad06eb00eecfb6e66842b5af1ba450363299) — newbox: Change a label to be more clear
+- 2023-03-24 [771505a2c](https://github.com/aaronjeter/CrystalShireEngine/commit/771505a2c2fb540ceca1ff53b76c692cdc8e422b) — Get rid of a potential bug vector in newbox internals.
+- 2024-01-13 [d415b8740](https://github.com/aaronjeter/CrystalShireEngine/commit/d415b87403e475f44ed23e6146fcd05d3dfaf928) — Fix Non-Full Boxes > 1 in Special_CurBoxFullCheck (Rangi42/polishedcrystal#766)
+- 2024-01-13 [877c7c5f0](https://github.com/aaronjeter/CrystalShireEngine/commit/877c7c5f07ad3c9fd19aab6c581dd540935d5008) — Add some more `ENDSECTION`
+- 2024-01-13 [d6affc280](https://github.com/aaronjeter/CrystalShireEngine/commit/d6affc280ed0ce453688520fbea7b241ae4448fb) — Remove Bug comment for Tackle missing animation (already fixed)
+- 2024-01-13 [bbedf4a86](https://github.com/aaronjeter/CrystalShireEngine/commit/bbedf4a8632de9e64fb6910e92eee60ec3288b8e) — Remove bug comment for confusion damage (already fixed)
+- 2024-01-13 [a80875a58](https://github.com/aaronjeter/CrystalShireEngine/commit/a80875a5894a065349be3aec5879368efcf5bcc1) — Vanilla Bugfix: SFX_RUN does not play correctly when a wild Pokémon flees from battle
+- 2024-01-13 [c2d7b0300](https://github.com/aaronjeter/CrystalShireEngine/commit/c2d7b03000dad0a97a9f670ef4fb758085eddbe2) — Delete more mobile code
+- 2024-01-13 [4adfc3563](https://github.com/aaronjeter/CrystalShireEngine/commit/4adfc3563c5a9e77bb5d6660bc404a838ddc705e) — Inefficient hram load in vblank
+- 2024-01-09 [95e5434ee](https://github.com/aaronjeter/CrystalShireEngine/commit/95e5434eecc44ab45607120bdda93a637818b5e5) — Dumb human; don't infinite loop `GetScriptByte` in header
+- 2024-01-09 [2e9d65952](https://github.com/aaronjeter/CrystalShireEngine/commit/2e9d6595292628517cced0d523ef3ec39edb07c3) — Add a couple more exclusions to farcheck.py
+- 2024-01-09 [2a9f081b4](https://github.com/aaronjeter/CrystalShireEngine/commit/2a9f081b45da1996c5e2f4efd11ed02c2689fd71) — Header `jmp` can be `jr`
+- 2024-01-09 [d60c66529](https://github.com/aaronjeter/CrystalShireEngine/commit/d60c665298ad17306f310747cfe66be996c8cec4) — remove throwaway script
+- 2024-01-09 [aa2b62c4a](https://github.com/aaronjeter/CrystalShireEngine/commit/aa2b62c4af6d1ebcdbb990fc813f0da7635ebb46) — `GetScriptByte` shall use `rst`
+- 2024-01-09 [5bbea8396](https://github.com/aaronjeter/CrystalShireEngine/commit/5bbea839646f32e281e393b5d34cf8266b4acbf5) — `ByteFill` can use `rst`
+- 2024-01-09 [4c8ecf474](https://github.com/aaronjeter/CrystalShireEngine/commit/4c8ecf4747876039a25e56c0335745f90ce1ed1a) — `CopyBytes` can use `rst`
+- 2024-01-09 [8f5085a92](https://github.com/aaronjeter/CrystalShireEngine/commit/8f5085a92c8f41d998972cd0e860caa1fd3c90ca) — `AddNTimes` can use `rst`
+- 2024-01-07 [e0c278a59](https://github.com/aaronjeter/CrystalShireEngine/commit/e0c278a595bdd0b724607e14398a3c340860b449) — Fix inaccurate denotations to the concepts of tile, tile collision, and collision permission (#1078)
+- 2024-01-07 [7f3b87950](https://github.com/aaronjeter/CrystalShireEngine/commit/7f3b87950ac672ac78e3bb7a9836df6712b975f1) — more accurate script names: refreshscreen -> reanchormap, and reloadmappart -> refreshmap (#1078)
+- 2024-01-07 [f72f078c0](https://github.com/aaronjeter/CrystalShireEngine/commit/f72f078c0e68736adf81f6c45c84f0c1e127a231) — Rename wVramState to wStateFlags and use flag constants (#1078)
+- 2024-01-07 [5be9856f3](https://github.com/aaronjeter/CrystalShireEngine/commit/5be9856f3a2ba9554ba24e54514f848624fdb522) — In labels, stick to Place for text without delay, and Print for text with letter delay (#1078)
+- 2024-01-07 [cd28c44ff](https://github.com/aaronjeter/CrystalShireEngine/commit/cd28c44ff35de934799637bd5b00a0892183a864) — Improve some innacurate function names, labels, and comments (#1078)
+- 2024-01-07 [bd6ceec19](https://github.com/aaronjeter/CrystalShireEngine/commit/bd6ceec1934dad1602e04cfa58d7ffaf218ed61c) — Improve some innacurate function names, labels, and comments (#1078)
+- 2024-01-06 [31d0d0bb6](https://github.com/aaronjeter/CrystalShireEngine/commit/31d0d0bb6d3189cf49bb9ee4b6cb67a423d5f5fe) — Move a couple sections around for better gen3 alignment
+- 2024-01-06 [e5c15918c](https://github.com/aaronjeter/CrystalShireEngine/commit/e5c15918cc619f03dde981a4cf230e27c6bde8e4) — Optimize uneccessary farcall/farjp
+- 2024-01-05 [bca25380b](https://github.com/aaronjeter/CrystalShireEngine/commit/bca25380bbf30f2798693d21bb652c242445dad2) — Lock Down floating sections
+- 2024-01-05 [2dba2aef4](https://github.com/aaronjeter/CrystalShireEngine/commit/2dba2aef423fc6e2ef831795fb76cb0ecbf15d4c) — Few minor fixes from vanilla pokecrystal
+- 2024-01-03 [dbf604465](https://github.com/aaronjeter/CrystalShireEngine/commit/dbf6044650f8fb0dff63f042681212bf352eb8e8) — Update to RGBDS 0.7.0 (#1101)
+- 2024-01-01 [30739842a](https://github.com/aaronjeter/CrystalShireEngine/commit/30739842afa2c168e8e5d301a1f3f4778b0d80eb) — Document Tackle is missing part of its hit animation
+- 2024-01-01 [bbfb4ab60](https://github.com/aaronjeter/CrystalShireEngine/commit/bbfb4ab60e8e4450399fa8168c28cd71e837b3ea) — Fix magic numbers in Celebi event code
+- 2024-01-02 [82a89c10a](https://github.com/aaronjeter/CrystalShireEngine/commit/82a89c10abf670a024c23b52960b0df84a9de8db) — Fix overworld whiteout visual issue
+- 2024-01-01 [804fa846e](https://github.com/aaronjeter/CrystalShireEngine/commit/804fa846e0f9c6d70507b0c402e9b3f583030339) — Fix bug doc formatting
+- 2024-01-02 [184c53e8c](https://github.com/aaronjeter/CrystalShireEngine/commit/184c53e8cacfb8fd1fe7963bbfecdfbc387df2da) — Document `SFX_RUN` does not play correctly when a wild Pokemon flees from battle (#1099)
+- 2024-01-01 [738d86bdf](https://github.com/aaronjeter/CrystalShireEngine/commit/738d86bdfa78501debf9b095b66f3594dc9038ab) — Fix issue with link rooms from bad optimization
+- 2024-01-01 [3b031a6e2](https://github.com/aaronjeter/CrystalShireEngine/commit/3b031a6e2db70ed9889c1737beebe8d50a4215a0) — ASM files should end with a newline
+- 2024-01-01 [f7e3f9474](https://github.com/aaronjeter/CrystalShireEngine/commit/f7e3f9474044e4786ed59e43a280d522584a30d4) — Require RGBDS 0.7.0
+- 2024-01-01 [119087128](https://github.com/aaronjeter/CrystalShireEngine/commit/11908712805a52bacba164d3193bdfdd3f1257f2) — Bugfix: Tackle animation sprite limit
+- 2023-12-31 [a34ad9e28](https://github.com/aaronjeter/CrystalShireEngine/commit/a34ad9e283bd6d0e15a5f18460e77dd4d7af1855) — Restore save compatability
+- 2023-12-31 [1f74a40c7](https://github.com/aaronjeter/CrystalShireEngine/commit/1f74a40c7f38d970c46f6ae6337a579ad784638c) — fix NPCTRADE_STRUCT_LENGTH to be 32 bytes in length
+- 2023-12-30 [912b9f3b4](https://github.com/aaronjeter/CrystalShireEngine/commit/912b9f3b4ecc2b0d8820e88ad6cbd130ee8b93cd) — Fix LCD_STAT in vblank
+- 2023-12-29 [1a18edb6c](https://github.com/aaronjeter/CrystalShireEngine/commit/1a18edb6c6ffa7ec06d5efbc9a42ff0450777497) — Silence false positive optimization
+- 2023-12-28 [c09338f65](https://github.com/aaronjeter/CrystalShireEngine/commit/c09338f65bf364702c4d2965122b91bad597b423) — Do what Sylvie said. :)
+- 2023-12-28 [2950e1e0e](https://github.com/aaronjeter/CrystalShireEngine/commit/2950e1e0ea333610567a881ca1f91e225fb0c2ed) — Fix infinite pokeball wobble
+- 2023-12-28 [ee18d7bf8](https://github.com/aaronjeter/CrystalShireEngine/commit/ee18d7bf8eeb5978c586a95587231e56117a021c) — Optimize update_item_descriptions.asm
+- 2023-12-28 [87e3712c5](https://github.com/aaronjeter/CrystalShireEngine/commit/87e3712c57998c94a7ba52d9b027830f9cd2f39f) — Delete some unreferenced/commented palette stuff
+- 2023-12-28 [00bbb74b7](https://github.com/aaronjeter/CrystalShireEngine/commit/00bbb74b7243db142ed9ccf42a083856e2d05126) — Words in comments and strings don't count
+- 2023-12-28 [90d698967](https://github.com/aaronjeter/CrystalShireEngine/commit/90d698967f7471d04c8e41cd65de3c37349b7140) — Allow references to the current scope
+- 2023-12-28 [eecd82558](https://github.com/aaronjeter/CrystalShireEngine/commit/eecd82558f0185b9b5676a5c7ce826b1f6ef4fb5) — Apply Sylvie's feedback on `Optimize a = carry ? P : Q`
+- 2023-12-28 [2d2c40638](https://github.com/aaronjeter/CrystalShireEngine/commit/2d2c40638069e1ddd2e22df027f6ec49ac8d8924) — Update unreferenced.py to print definition locations
+- 2023-12-28 [a137fe525](https://github.com/aaronjeter/CrystalShireEngine/commit/a137fe52525946b37090c42c8d803ae519ac33f0) — Apply optimize.py after mass unreferenced deletions
+- 2023-12-28 [6ce40f055](https://github.com/aaronjeter/CrystalShireEngine/commit/6ce40f055083bab7498324e4ed547a94ea6cba23) — Delete some unused wram
+- 2023-12-28 [83de203fe](https://github.com/aaronjeter/CrystalShireEngine/commit/83de203feaa5d56292cbb8f4819685cc26fd78b9) — Delete unreferenced code
+- 2023-12-28 [f6582fab4](https://github.com/aaronjeter/CrystalShireEngine/commit/f6582fab416d8bca19aa381fc23aea2e0f7e5294) — Update unreferenced.py to Sylvie's unreferenced.py
+- 2023-12-28 [0e1c082ab](https://github.com/aaronjeter/CrystalShireEngine/commit/0e1c082abe63eac75d9dbe4686b1d6821431d591) — unreferenced.py go fast (but unorgranized output)
+- 2023-12-27 [c4867ea29](https://github.com/aaronjeter/CrystalShireEngine/commit/c4867ea297f0558ab4fe7683c2f7143ea07d52fc) — Add revised `unreferenced.py`
+- 2023-12-27 [23e2f1d73](https://github.com/aaronjeter/CrystalShireEngine/commit/23e2f1d730f9adc00b2e7931bf1ac2b3c9215c31) — Optimize `a = carry ? P : Q`
+- 2023-12-27 [5e1fa3e31](https://github.com/aaronjeter/CrystalShireEngine/commit/5e1fa3e31289de3f994fd1f1835309cbcc75a9ae) — Optimize Redundant inc|dec
+- 2023-12-27 [7164d11c8](https://github.com/aaronjeter/CrystalShireEngine/commit/7164d11c8bd2cea49045674b86d98d4d66e0bcfe) — Standardize order of `b|c|d|e = *hl++|*hl--`
+- 2023-12-27 [413daa7c2](https://github.com/aaronjeter/CrystalShireEngine/commit/413daa7c2b710d3a903ee1e97a69ec790a4b9bfc) — Optimize `b|c|d|e = *hl++|*hl--`
+- 2023-12-26 [78476a9b9](https://github.com/aaronjeter/CrystalShireEngine/commit/78476a9b9cadb343e7f70449da969d289c935d44) — no-optimize mobile stub (for now)
+- 2023-12-26 [a833f69ec](https://github.com/aaronjeter/CrystalShireEngine/commit/a833f69ec21ae20734aa2f6b85759cc72e6f7da5) — Optimize `*hl++|*hl--`
+- 2023-12-26 [684faaded](https://github.com/aaronjeter/CrystalShireEngine/commit/684faaded372fce3d1cc0d464037fc07f6085d10) — Optimize `a = *hl++|*hl--`
+- 2023-12-26 [9ba06856b](https://github.com/aaronjeter/CrystalShireEngine/commit/9ba06856b13a77da5bc00b76abbfc7e97a20b31f) — Optimize `hl|bc|de = N / ... / inc|dec hl|bc|de`
+- 2023-12-26 [c841ed2d9](https://github.com/aaronjeter/CrystalShireEngine/commit/c841ed2d9ea9590dead60f2734a52c3442925dce) — Optimize `b|c|d|e|h|l += carry`
+- 2023-12-26 [74085b544](https://github.com/aaronjeter/CrystalShireEngine/commit/74085b544056877d19a9c1118924ef43649f2db0) — Optimize `hl|bc|de += a|N (jump)`
+- 2023-12-26 [2da7445e4](https://github.com/aaronjeter/CrystalShireEngine/commit/2da7445e43ca5ac93c20a74c60f93027d3c3f7c7) — Optimize `hl|bc|de = Foo + a`
+- 2023-12-26 [8cac50240](https://github.com/aaronjeter/CrystalShireEngine/commit/8cac502404f0606b30a7fbed834ced66844b56c0) — Load Player's Palette during intro ShrinkPlayer
+- 2023-12-26 [3e49ce72c](https://github.com/aaronjeter/CrystalShireEngine/commit/3e49ce72c4cb6099b396b8b635fb5f1c5873a22b) — Slow Tileset Animations (Too fast in 60fps)
+- 2023-12-26 [91256b373](https://github.com/aaronjeter/CrystalShireEngine/commit/91256b3736ecc58ddff45ae0ab207a7ead8c6c9e) — Optimize `call hl`
+- 2023-12-26 [5a6957b44](https://github.com/aaronjeter/CrystalShireEngine/commit/5a6957b4451b4f92c0bd3b9251b993b1cc9b8ec8) — Delete some unreferenced code
+- 2023-12-26 [621426231](https://github.com/aaronjeter/CrystalShireEngine/commit/621426231b4110cd7bc486ca6aad0355162b1726) — Optimize `*hl++|*hl-- = N`
+- 2023-12-26 [34d71f1c1](https://github.com/aaronjeter/CrystalShireEngine/commit/34d71f1c1bedeac9c2cca52c28f9a690a6f65c89) — no-optimize *hl = N
+- 2023-12-25 [a4b8b2aeb](https://github.com/aaronjeter/CrystalShireEngine/commit/a4b8b2aebcddbaec9de4de4657dcf3f99cd090c5) — Optimize `hl|bc|de = a * 16 (rept)`
+- 2023-12-25 [dc4b31eeb](https://github.com/aaronjeter/CrystalShireEngine/commit/dc4b31eeb5b5e695e51812d400d362285a64d8c9) — Optimize `a = carry +/- X`
+- 2023-12-25 [9fe942af3](https://github.com/aaronjeter/CrystalShireEngine/commit/9fe942af3a4f7b318b0558c606b2f7ff88565a2e) — Optimize Redundant inc|dec
+- 2023-12-25 [067d05eb1](https://github.com/aaronjeter/CrystalShireEngine/commit/067d05eb11438415acc4df30950c0450a746f048) — Optimize Inefficient prefix opcodes
+- 2023-12-24 [1a2423591](https://github.com/aaronjeter/CrystalShireEngine/commit/1a2423591dd91c607026a3564552b2086d270fb4) — Optimizations (miscellaneous)
+- 2023-12-24 [497baff8f](https://github.com/aaronjeter/CrystalShireEngine/commit/497baff8fb2e477ea7987c94822b7304489eaf11) — optimize `a = a >> 3`
+- 2023-12-23 [0d986a00b](https://github.com/aaronjeter/CrystalShireEngine/commit/0d986a00bbdb5737896b4ee55d3cf523a83857b7) — Optimize Inefficient HRAM store
+- 2023-12-23 [cc0f95a4b](https://github.com/aaronjeter/CrystalShireEngine/commit/cc0f95a4b38a080360ab8d4a720c2455c53488c6) — Optimize Inefficient HRAM load
+- 2023-12-23 [3089571b5](https://github.com/aaronjeter/CrystalShireEngine/commit/3089571b5e015a2bda02fd3094dc5e0657325bd9) — Optimize `a & X == X`
+- 2023-12-23 [390369c8f](https://github.com/aaronjeter/CrystalShireEngine/commit/390369c8f8b455272ea77f7a035a9dd3ddb446fd) — Optimize `*hl++|*hl-- = a`
+- 2023-12-23 [3a4f38b65](https://github.com/aaronjeter/CrystalShireEngine/commit/3a4f38b65279d2fb5450b27f36fabf243d586fd6) — Optimize `*hl++|*hl-- = b|c|d|e`
+- 2023-12-23 [63cfd3850](https://github.com/aaronjeter/CrystalShireEngine/commit/63cfd3850a5a1c92e271d08aecb11bdfd775042a) — Dummy out `lib/mobile/main.asm`
+- 2023-12-23 [431011922](https://github.com/aaronjeter/CrystalShireEngine/commit/431011922e518905aaf0a1a29489a4fa8ae6f7e2) — Remove lib/mobile/mail.asm
+- 2023-12-23 [5b303166f](https://github.com/aaronjeter/CrystalShireEngine/commit/5b303166f6fb05084c401147903af0ee687a13c0) — Optimize Redundant and|or
+- 2023-12-23 [d13e2af9d](https://github.com/aaronjeter/CrystalShireEngine/commit/d13e2af9d1007d6fb718bb3a169d2f35d5474a2f) — Optimize Redundant arguments
+- 2023-12-23 [992e6d7ab](https://github.com/aaronjeter/CrystalShireEngine/commit/992e6d7ab387a56b557a87423f1cb2dc422c6ea2) — Optimize Conditional returns
+- 2023-12-23 [f0ed1f395](https://github.com/aaronjeter/CrystalShireEngine/commit/f0ed1f395ecce0db550f64e6c526412ba522e5ae) — Fix bug with optimization `a = N - a` in `ReadObjectEvents`
+- 2023-12-22 [e89823dd0](https://github.com/aaronjeter/CrystalShireEngine/commit/e89823dd0a92a53783cfe3413103250e809ca503) — Optimize `No-op add|sub`
+- 2023-12-22 [016d9ec66](https://github.com/aaronjeter/CrystalShireEngine/commit/016d9ec6631f5ae896ad09d9d31ea862522e25e0) — Optimize `a++|a--`
+- 2023-12-22 [2235ceaed](https://github.com/aaronjeter/CrystalShireEngine/commit/2235ceaede2694e7cf2cd9cbad9f3e5b9eb411e6) — Optimize Trailing string space
+- 2023-12-22 [a99d580e0](https://github.com/aaronjeter/CrystalShireEngine/commit/a99d580e06d02f317a52f2f6d30b1f4f0142d83b) — Sync Optimize.py with polished crystal
+- 2023-12-22 [d80da5ed0](https://github.com/aaronjeter/CrystalShireEngine/commit/d80da5ed07b369a15ae2f6350e936f71a69180d5) — Optimize `a == 0`
+- 2023-12-22 [30ea83775](https://github.com/aaronjeter/CrystalShireEngine/commit/30ea8377584d3c067018cbf8351c2d982a22a638) — Optimize Stub jump
+- 2023-12-22 [07c01441c](https://github.com/aaronjeter/CrystalShireEngine/commit/07c01441c8a87c9e2f127ff1b7a1ab714e07bcc3) — Optimize Conditional fallthrough
+- 2023-12-22 [d2fc6553c](https://github.com/aaronjeter/CrystalShireEngine/commit/d2fc6553c892864560d906136c42223d30894417) — Optimize `Redundant loads`
+- 2023-12-22 [1090c7b33](https://github.com/aaronjeter/CrystalShireEngine/commit/1090c7b3382f79b622fb46a84af8358b8114a455) — Optimize `a|b|c|d|e|h|l = z|nz|c|nc ? P : Q`
+- 2023-12-21 [fbf10e6fd](https://github.com/aaronjeter/CrystalShireEngine/commit/fbf10e6fd3ea929e294ffb913fd767e5f9fde026) — Optimize Inefficient WRAM increment/decrement
+- 2023-12-21 [607772f0c](https://github.com/aaronjeter/CrystalShireEngine/commit/607772f0cc5dc779d7e3fa7a2dee0da26b9a0ab9) — optimize `a = (a & MASK) | (b|c|d|e|h|l & ~MASK)`
+- 2023-12-21 [2e72e2deb](https://github.com/aaronjeter/CrystalShireEngine/commit/2e72e2debac8a3f28c168f3b2119582a7a630f97) — optimize `a & X == X`
+- 2023-12-21 [7f6b8f493](https://github.com/aaronjeter/CrystalShireEngine/commit/7f6b8f493957de9fbe3927feb764b79643e09302) — Optimize `a = X +/- carry`
+- 2023-12-21 [10c614a73](https://github.com/aaronjeter/CrystalShireEngine/commit/10c614a7380e2c97613c3cd48aa63233734ebae1) — Optimize `a = N - a`
+- 2023-12-21 [340c33d13](https://github.com/aaronjeter/CrystalShireEngine/commit/340c33d139ece36813c22c0130f3e4194c938e59) — optimize Conditional calls
+- 2023-12-21 [48e654f23](https://github.com/aaronjeter/CrystalShireEngine/commit/48e654f23e7ead55c0b3640abce76d7a5976ebeb) — optimize `h,l|b,c|d,e = P,Q`
+- 2023-12-21 [97c6aed3d](https://github.com/aaronjeter/CrystalShireEngine/commit/97c6aed3d3c22e8afe86227c61a3a819b47e571b) — Optimize `Pointless hli|hld`
+- 2023-12-21 [9c498f546](https://github.com/aaronjeter/CrystalShireEngine/commit/9c498f5463a1590399d6abb408a0381b6d695450) — Optimize `a = 0`
+- 2023-12-21 [e2d1cd6e7](https://github.com/aaronjeter/CrystalShireEngine/commit/e2d1cd6e7fa82dc7af535fc2fb8388a78c6a565d) — optimize `ei + ret`
+- 2023-12-21 [7bfdb5bdf](https://github.com/aaronjeter/CrystalShireEngine/commit/7bfdb5bdf534c61009b41d47808bc687974eb204) — Optimize Pointless jumps
+- 2023-12-21 [bbfa86db9](https://github.com/aaronjeter/CrystalShireEngine/commit/bbfa86db9795884c75f07044a7835a84accb67c7) — Optimize Useless loads
+- 2023-12-21 [2bd15a34a](https://github.com/aaronjeter/CrystalShireEngine/commit/2bd15a34a55909c08b3dd0536283b8e0ea8afdf8) — Optimize more tailcalls/tailfarcalls
+- 2023-12-21 [a10546e0a](https://github.com/aaronjeter/CrystalShireEngine/commit/a10546e0abc208d0777835d251d00e34af972135) — Optimize `Tail predef`
+- 2023-12-21 [463aee530](https://github.com/aaronjeter/CrystalShireEngine/commit/463aee5304e428f3e01d658e6cdc3b8a95edf685) — Optimize `*hl = N`
+- 2023-12-09 [8b91f03b6](https://github.com/aaronjeter/CrystalShireEngine/commit/8b91f03b6c43bc6816b77f3764821ea5f7bcc0d4) — Optimize more `jmp` -> `jr`
+- 2023-12-08 [f77e36a76](https://github.com/aaronjeter/CrystalShireEngine/commit/f77e36a7610eb5d150f38fb634f7cf8dcd097d31) — Optimize Stub functions
+- 2023-12-08 [565069843](https://github.com/aaronjeter/CrystalShireEngine/commit/56506984359a31277581e069a7d7249946ac7b85) — Optimize `hl = *Foo`
+- 2023-12-08 [df4527c84](https://github.com/aaronjeter/CrystalShireEngine/commit/df4527c84aae5e0ad60702446ce807cf64fb0588) — optimize tail farcall
+- 2023-12-08 [8d6c31594](https://github.com/aaronjeter/CrystalShireEngine/commit/8d6c31594623b573e1245a8812607c8b683a11ca) — `cp 0` -> `and a`
+- 2023-12-08 [833f98843](https://github.com/aaronjeter/CrystalShireEngine/commit/833f98843ef8437ea2d16fedaf879544907fffac) — `sla l/rl h` -> `add hl, hl`
+- 2023-12-08 [40b0da768](https://github.com/aaronjeter/CrystalShireEngine/commit/40b0da768aea8139292e5f16a655cbd6bd16ab8c) — `xor $ff` -> `cpl`
+- 2023-12-08 [3954b7516](https://github.com/aaronjeter/CrystalShireEngine/commit/3954b75169c57f69326893ea014e061dd460e4d6) — `sla a` -> `add a`
+- 2023-12-08 [f52535902](https://github.com/aaronjeter/CrystalShireEngine/commit/f525359027c42921596abb3ce775365dd8028711) — Remove EOL whitespace
+- 2023-12-08 [268c4a9f4](https://github.com/aaronjeter/CrystalShireEngine/commit/268c4a9f4e1fe095e281590b81945cabd89c522c) — Remove debug room
+- 2023-12-08 [8fea55e99](https://github.com/aaronjeter/CrystalShireEngine/commit/8fea55e9984cdcb05a1b84e902ac75a985b053ff) — optimize `jp` to `jmp`
+- 2023-12-04 [267a49d1d](https://github.com/aaronjeter/CrystalShireEngine/commit/267a49d1dd4e1c9c8f476e062881500cc8569163) — BillsPC should use `wBufferMonEVs - 1` for `CalcMonStats`
+- 2023-12-03 [b60b36add](https://github.com/aaronjeter/CrystalShireEngine/commit/b60b36add3390362802673fbada325b71c11dd90) — Entei/Raikou icons are backwards.
+- 2023-12-02 [367be9657](https://github.com/aaronjeter/CrystalShireEngine/commit/367be9657e3a4142eb341dc2c00246c06c8e186f) — Only enable LCD_STAT when needed.
+- 2023-12-02 [61f41a121](https://github.com/aaronjeter/CrystalShireEngine/commit/61f41a1217701f4f63b589a782b44b6d0aca0bff) — `InitCGBPals` and `InitSGBBorder` before enabling LCD
+- 2023-12-02 [37e1c8c7c](https://github.com/aaronjeter/CrystalShireEngine/commit/37e1c8c7c00dcf28d06f5a0e226a050c3ebab846) — `SafeHDMATransfer` can copy more tiles when in doublespeed
+- 2023-12-02 [4feeff3cc](https://github.com/aaronjeter/CrystalShireEngine/commit/4feeff3cc8677d7c6f0be47c1a019bd276c895e8) — Clear interrupt flags in `SafeHDMATransfer:`
+- 2023-11-26 [9bb72ad18](https://github.com/aaronjeter/CrystalShireEngine/commit/9bb72ad1894d1af2f785a31423e452db97c3189c) — Update debug features with bounce back on map edge.
+- 2023-11-23 [9a917e357](https://github.com/aaronjeter/CrystalShireEngine/commit/9a917e35760210a1f34057ecada2148f1fefc390) — Clarify windows versions in INSTALL.md
+- 2023-11-23 [04e23a8d5](https://github.com/aaronjeter/CrystalShireEngine/commit/04e23a8d56ba60ac75d70493197335ac5b394f00) — Refactor tools/dupeframes.py
+- 2023-11-22 [0fc938c74](https://github.com/aaronjeter/CrystalShireEngine/commit/0fc938c746b862917b198f90fc8f584211e210e3) — charmap.asm should come first so other files can use them
+- 2023-11-21 [c99951b3d](https://github.com/aaronjeter/CrystalShireEngine/commit/c99951b3d84cd85f37c7ba8f2f38e14d0f162837) — Update install instructions for Arch Linux
+- 2023-11-20 [a82dfd81b](https://github.com/aaronjeter/CrystalShireEngine/commit/a82dfd81bb8ca6acb75d04103f5e8163bdbec3bf) — Replace "¯" and "%" (breakable whitespace) with more meaningful charmap names (#1094)
+- 2023-11-17 [05083d6fd](https://github.com/aaronjeter/CrystalShireEngine/commit/05083d6fd232513a544bc55ca10818e4a82539ef) — Move charmap.asm to constants/
+- 2023-11-17 [9cbd6ca5e](https://github.com/aaronjeter/CrystalShireEngine/commit/9cbd6ca5e107b3c1747b61fb04ffb6a8b6b08de6) — Replaced decomp list with pret.github.io link (#1081)
+- 2023-11-17 [2907d65a4](https://github.com/aaronjeter/CrystalShireEngine/commit/2907d65a478da7774d48333c2a8e4281a169a447) — Improve use of palette macro and use PAL_* constants (#1087)
+- 2023-11-18 [75f0ad395](https://github.com/aaronjeter/CrystalShireEngine/commit/75f0ad395576700e57e7c10dbb4a954ea35ba27d) — Correct macro for default Mystery Gift item (#1084)
+- 2023-11-15 [506e73bec](https://github.com/aaronjeter/CrystalShireEngine/commit/506e73beca9528a51afa20101f488f84c1f237e2) — Make some optimizations
+- 2023-11-15 [fb65ab9e8](https://github.com/aaronjeter/CrystalShireEngine/commit/fb65ab9e8b9652355d51e0cf75dae17095c4cf8f) — Make utils scripts executable
+- 2023-11-15 [24bfe3a86](https://github.com/aaronjeter/CrystalShireEngine/commit/24bfe3a86374a518c6e1ca919313560817c669b8) — Update optimize.py from polishedcrystal 9bit
+- 2023-11-12 [96ed5a3d8](https://github.com/aaronjeter/CrystalShireEngine/commit/96ed5a3d8b8d4826746bf8ce810bfd14f6825dc1) — Fix savemon_struct sram labels.
+- 2023-11-08 [d28bdfc97](https://github.com/aaronjeter/CrystalShireEngine/commit/d28bdfc9761b3d8a05b77023cdd5518dfbddd605) — LCD function slowdown fix.
+- 2023-11-12 [cb6c1de9f](https://github.com/aaronjeter/CrystalShireEngine/commit/cb6c1de9f893b9e93c5f00ab7cc28ed0dfbd534a) — Optimize some tailcalls
+- 2023-11-05 [5cd843d2f](https://github.com/aaronjeter/CrystalShireEngine/commit/5cd843d2f542e476e27bb34fa8ebdbb595232513) — another jmp to jr
+- 2023-11-05 [75fd80ef4](https://github.com/aaronjeter/CrystalShireEngine/commit/75fd80ef420d1f79e104eb4aa606c62c5af773f1) — Item pocket can now store up to 40 items instead of 20.
+- 2023-11-05 [2923f3668](https://github.com/aaronjeter/CrystalShireEngine/commit/2923f3668b0850522ac1471bc762b9eaf9e39cbe) — Remove unused wram1 space
+- 2023-11-05 [ede7659d7](https://github.com/aaronjeter/CrystalShireEngine/commit/ede7659d7958a88c07c811c0e2ca67317cb216a9) — Optimize some jmp -> jr
+- 2023-11-05 [6de5abe0e](https://github.com/aaronjeter/CrystalShireEngine/commit/6de5abe0e6ace32f8543a143919e3396bf6b57c7) — Fix readme
+- 2023-10-08 [b3a9cfb5e](https://github.com/aaronjeter/CrystalShireEngine/commit/b3a9cfb5ec86538bc6972cf296cf15d822318a9d) — Swapped pack sprite colors to be on the eyes
+- 2023-10-08 [f133a2f14](https://github.com/aaronjeter/CrystalShireEngine/commit/f133a2f141af33ee01e9958c2c401069807c6487) — Better bag display
+- 2023-10-08 [e3bac0061](https://github.com/aaronjeter/CrystalShireEngine/commit/e3bac0061c99c47416153007c534bb4b1106f3a7) — Update README.md
+- 2023-11-05 [389a84dfd](https://github.com/aaronjeter/CrystalShireEngine/commit/389a84dfd24d53cb8aec25432701af11bc80bc66) — BattleTowerRoom opponent is a variablesprite
+- 2023-11-05 [efe4d73d0](https://github.com/aaronjeter/CrystalShireEngine/commit/efe4d73d03c0863317b68ee7824172e0e9f421df) — Restore some code to fix battle tower.
+- 2023-11-04 [74893119d](https://github.com/aaronjeter/CrystalShireEngine/commit/74893119d480bbe5e501859235ec795bd45a1702) — Delete some unreferenced code.
+- 2022-04-24 [260ba7c7f](https://github.com/aaronjeter/CrystalShireEngine/commit/260ba7c7f05ecdfc8dc5247ef717576fe990c7e8) — Add Bankend support
+- 2023-11-04 [04ba2806b](https://github.com/aaronjeter/CrystalShireEngine/commit/04ba2806bdc0dba1312b3574b7dce6c51245ad8b) — remove get_trainer_class.asm
+- 2023-11-04 [02372440c](https://github.com/aaronjeter/CrystalShireEngine/commit/02372440c0a77bd86bdf2a25c2a36b3f29f7de92) — Delete More Mobile Code
+- 2023-11-04 [785993952](https://github.com/aaronjeter/CrystalShireEngine/commit/7859939526247873b91333f94e7b0748c56c125e) — Delete SRAM Mobile 3 and associated routines
+- 2023-11-04 [f2edc618d](https://github.com/aaronjeter/CrystalShireEngine/commit/f2edc618db37d5c08b85c5d12ee1b10f276a4215) — Delete SRAM Mobile 2 and associated routines
+- 2023-10-29 [9d0d29d4b](https://github.com/aaronjeter/CrystalShireEngine/commit/9d0d29d4bd6522822d04c37ca083cd8411539712) — Delete SRAM Mobile 1 and associated routines
+- 2023-10-29 [054fbb065](https://github.com/aaronjeter/CrystalShireEngine/commit/054fbb0652558708e5f2eaff65e3bf0a1c45306e) — Remove "Mobile RAM" and associated routines
+- 2023-07-14 [d56b98fb5](https://github.com/aaronjeter/CrystalShireEngine/commit/d56b98fb59039e15832f78f149bee0536eddc921) — Fix: The Pokeball's palette changes after a successful catch to that of the pokemon's color palette.
+- 2023-10-29 [aa7430b4e](https://github.com/aaronjeter/CrystalShireEngine/commit/aa7430b4e217c7c3628dede0c9741803081118a1) — Fix Pokegear OB Pals
+- 2023-10-29 [6c667ae05](https://github.com/aaronjeter/CrystalShireEngine/commit/6c667ae05f8fe0a60a46d774c1122e8ac18dfb19) — Fix `BuyMenu` Palettes
+- 2023-10-28 [b1a99cae1](https://github.com/aaronjeter/CrystalShireEngine/commit/b1a99cae1f2fbbd75caa3beef80dcd586bfa61f0) — Restore Battle Tower
+- 2023-10-28 [1d3bba22c](https://github.com/aaronjeter/CrystalShireEngine/commit/1d3bba22cbd0ff0ad4114dec9713b9dca97e7ed1) — Remove Pointless Jumps
+- 2023-10-28 [cfa99cff7](https://github.com/aaronjeter/CrystalShireEngine/commit/cfa99cff79014d0e31db52568ed37a11b4babde8) — Fix newbox item palette & deposit/withdraw/switch palettes
+- 2023-10-10 [db6bd6be1](https://github.com/aaronjeter/CrystalShireEngine/commit/db6bd6be1c8670b042969013cbe6dec6bedeb240) — CGB Battlescreen Layout update
+- 2023-08-27 [03d8d33ca](https://github.com/aaronjeter/CrystalShireEngine/commit/03d8d33ca7f3637e9af47e37b46cf9430bf25941) — Implement Polished HP Bar Fix
+- 2023-03-12 [3056ffa62](https://github.com/aaronjeter/CrystalShireEngine/commit/3056ffa6279a0cb8a0b536269972360504d7d5a3) — Init smooth fading from PolishedCrystal/Prism
+- 2023-09-25 [6cb0be22e](https://github.com/aaronjeter/CrystalShireEngine/commit/6cb0be22eec8782de7a4f5f18e16da6db51a0b10) — Add additional features to README.md
+- 2022-09-10 [5e2da5d9a](https://github.com/aaronjeter/CrystalShireEngine/commit/5e2da5d9afb3c969ffe4b4c4575e19630605fa37) — Replace stat experience with EVs
+- 2022-12-27 [94ab7596a](https://github.com/aaronjeter/CrystalShireEngine/commit/94ab7596a77895c5262ed2d32949ce88b727fb56) — Port Improved Dynamic Pal System
+- 2022-11-12 [9464849d5](https://github.com/aaronjeter/CrystalShireEngine/commit/9464849d5aec94cb17d95c2548994d499065a986) — Dynamic Sprite Reload
+- 2023-05-23 [3ff23d1a7](https://github.com/aaronjeter/CrystalShireEngine/commit/3ff23d1a73e3182cd5c62269780e0b21a7777d8f) — Fix resuming volume when leaving the stats screen.
+- 2023-06-16 [e84096cf3](https://github.com/aaronjeter/CrystalShireEngine/commit/e84096cf377b99b05e42cf11aaa0291945c8a9f4) — Port battle pal changing from Polished Crystal
+- 2023-05-18 [3c1c311d9](https://github.com/aaronjeter/CrystalShireEngine/commit/3c1c311d9fbdd695d14efc9953e5aecb6ba63133) — Port Prism's `LoadMapPart`
+- 2023-05-18 [bc487057f](https://github.com/aaronjeter/CrystalShireEngine/commit/bc487057f053dee9d0ae342a24e0d6a87d176ff0) — Add TypeError exception handling to farcheck.py
+- 2023-05-18 [81c16fded](https://github.com/aaronjeter/CrystalShireEngine/commit/81c16fdedbe879127d64b814701ee1d8fe23e08d) — Port utils/farcheck.py from Polished
+- 2023-03-12 [6caf41676](https://github.com/aaronjeter/CrystalShireEngine/commit/6caf4167600a979949f2984b22359d2b23407a99) — Fix LZCOMP (missed ariscop change)
+- 2023-03-08 [a46b152cc](https://github.com/aaronjeter/CrystalShireEngine/commit/a46b152cc3c429f44e7d187b0924c58f3529a405) — Raise minimum count for iterate to 2 alternate to 3
+- 2023-03-08 [80dd158ae](https://github.com/aaronjeter/CrystalShireEngine/commit/80dd158aecac1d2ce0a4341607f0914f73b31fe3) — Add defines for lz commands
+- 2023-03-09 [df7be87cc](https://github.com/aaronjeter/CrystalShireEngine/commit/df7be87cc25626e26363eb3d34223c13d71fa16c) — Use Meithecatte's optimization of ax6's lzcomp
+- 2023-03-06 [542aea442](https://github.com/aaronjeter/CrystalShireEngine/commit/542aea4427d02a04e7c71ddec4fded6059aa6ef0) — Shorten long lz counts to 9 bits
+- 2023-09-25 [dc02c2e90](https://github.com/aaronjeter/CrystalShireEngine/commit/dc02c2e90440e5d22d41db50e98028d8549b49ff) — Optimize some `rst`'s
+- 2023-03-05 [10dc99a7f](https://github.com/aaronjeter/CrystalShireEngine/commit/10dc99a7ffd6352cd13ffa402a0086585628a656) — Misc Optimizations
+- 2023-09-25 [de002ce8d](https://github.com/aaronjeter/CrystalShireEngine/commit/de002ce8dcaed53c52ec632529b5661ebf17d952) — Copy BillsPC_LCDCode to WRAM0
+- 2023-02-23 [8d626358e](https://github.com/aaronjeter/CrystalShireEngine/commit/8d626358ebc02920d3a975ea487f35057d63a808) — .ablk files are binary
+- 2023-02-20 [1400e5423](https://github.com/aaronjeter/CrystalShireEngine/commit/1400e5423f73d11fe9e211dca2970587f2c420dc) — Fix newbox frontpics
+- 2023-09-25 [89b3e8d03](https://github.com/aaronjeter/CrystalShireEngine/commit/89b3e8d037c66df52c9501c637599b965a20d0d0) — Additional `jp`->`jr` & `jmp`
+- 2023-02-08 [fac22f871](https://github.com/aaronjeter/CrystalShireEngine/commit/fac22f871dde8cd622e3c935d03b5121d2b082a8) — Split section `Maps` to `Map Headers` and `Map Attributes`
+- 2020-05-25 [141a471a7](https://github.com/aaronjeter/CrystalShireEngine/commit/141a471a7ecbfcdd965bf97a7ed3646bc6506e99) — Optimize EnterMapConnection
+- 2020-05-25 [d5c1a8798](https://github.com/aaronjeter/CrystalShireEngine/commit/d5c1a8798b47ad640aeed9c4c80a7f37fb48fae3) — Optimize GetSquareRoot (from Prism)
+- 2020-05-16 [a04d98fc3](https://github.com/aaronjeter/CrystalShireEngine/commit/a04d98fc39eaaebc7dfc4cd37569ee4ed9c682c2) — Optimize VBlank routines
+- 2020-05-16 [6b7cd22e0](https://github.com/aaronjeter/CrystalShireEngine/commit/6b7cd22e0b1a05127d424d89ab968e97082405bc) — Optimize LZ decompression
+- 2020-05-19 [b16d1d26b](https://github.com/aaronjeter/CrystalShireEngine/commit/b16d1d26b8cfa3823c007b827cd0e03ab484c1f5) — Optimize UpdateBGMap (from Prism)
+- 2020-05-25 [79ae3e054](https://github.com/aaronjeter/CrystalShireEngine/commit/79ae3e054bbea501fc7945f737f39f38739e41a5) — Optimize Multiply and Divide (from Prism / Polished Crystal)
+- 2023-09-25 [571851726](https://github.com/aaronjeter/CrystalShireEngine/commit/571851726ddd9709e8057172d57cec3bd6d8d0f9) — Delete lz.mk
+- 2022-12-30 [727d9aa5a](https://github.com/aaronjeter/CrystalShireEngine/commit/727d9aa5a5d058099c48bc82e60c7e9b0630071a) — newbox shouldn't restore normalspeed in CSE
+- 2022-12-29 [8183bb945](https://github.com/aaronjeter/CrystalShireEngine/commit/8183bb9459a6413098127e7b06d79810521f04bf) — Remove Unused Map Buffer
+- 2022-12-28 [165e4aba1](https://github.com/aaronjeter/CrystalShireEngine/commit/165e4aba1003d6505201b5e1860da9d6ff25c347) — Allow tiles to have different attributes in different blocks (including X and Y flip)
+- 2022-12-28 [cfb9c9869](https://github.com/aaronjeter/CrystalShireEngine/commit/cfb9c98697bf207b5ddcde8aaf1f25b2a686a841) — Expand tilesets from 192 to 255 tiles
+- 2022-12-23 [2e2be5ac3](https://github.com/aaronjeter/CrystalShireEngine/commit/2e2be5ac3bfe944f7f702a3733169747a15f7527) — Add a third trainer card page for Kanto badges
+- 2022-12-23 [fa0a40902](https://github.com/aaronjeter/CrystalShireEngine/commit/fa0a40902607300e292368217b639b54f778d0f5) — Colored trainer card badges
+- 2022-12-23 [8e30c6d1a](https://github.com/aaronjeter/CrystalShireEngine/commit/8e30c6d1ac8592a0454be282f347707782f62e5e) — Show the tops of leaders heads on the trainer card
+- 2022-12-23 [baf8e31a6](https://github.com/aaronjeter/CrystalShireEngine/commit/baf8e31a6615ca08ebf1453754e287d492a093ed) — Use unique colors for each thrown Poké Ball
+- 2022-12-22 [b2ae2912b](https://github.com/aaronjeter/CrystalShireEngine/commit/b2ae2912b8d76f18c33c64e301bf71a0e9fb23cd) — Short beeping noise for low hp
+- 2022-12-22 [a866f7834](https://github.com/aaronjeter/CrystalShireEngine/commit/a866f7834dea63ba4c4b53e0710f90dc9268d25d) — Show an icon for the current weather
+- 2023-09-25 [d9b8edfda](https://github.com/aaronjeter/CrystalShireEngine/commit/d9b8edfda13eb94e3e81b8ffd88d1436b45d1663) — Use PopAFBCDEHL and PopBCDEHL
+- 2023-09-25 [2edf5ff15](https://github.com/aaronjeter/CrystalShireEngine/commit/2edf5ff15e48c7f049e2e415ea0976c8bed88efa) — 60fps, running shoes, and link gender README updates.
+- 2022-07-13 [8a8365876](https://github.com/aaronjeter/CrystalShireEngine/commit/8a836587646f6bd886b724e71019f78156db9fbd) — Link Battle/Trade Rooms Genders
+- 2023-01-02 [2f82dac27](https://github.com/aaronjeter/CrystalShireEngine/commit/2f82dac2741734ca30409242a817735ba44b4e55) — Several 60fps bugfixes
+- 2022-12-17 [10ff871d5](https://github.com/aaronjeter/CrystalShireEngine/commit/10ff871d581607ba3dfb6c152b5fb0612adb2e0b) — Run the entire OW in 60fps.
+- 2022-12-11 [f1cdcb2ad](https://github.com/aaronjeter/CrystalShireEngine/commit/f1cdcb2adb422656247c9a012a7d8bbeeac27b7a) — Optional: Can't Run past spinning Trainers
+- 2022-12-11 [e36798b54](https://github.com/aaronjeter/CrystalShireEngine/commit/e36798b545311e5325f8d2cda70b0bcf98ec5443) — Fix 60fps walking, bonking animation, and step_end
+- 2022-12-11 [1cfe672ac](https://github.com/aaronjeter/CrystalShireEngine/commit/1cfe672aca8ac84bb855b6ae1a6c5f506a44c2ea) — 60FPS and running shoes.
+- 2023-09-22 [b23c50122](https://github.com/aaronjeter/CrystalShireEngine/commit/b23c501228934e866587f81a9b6df0662a1345de) — Build a Debug Rom w/ Debug Tools
+- 2023-06-21 [8728c631d](https://github.com/aaronjeter/CrystalShireEngine/commit/8728c631d7b16054fddbcb599a6352f0f9bccf00) — Vanilla Flawfix: Identical sine wave code and data is repeated five times
+- 2022-09-08 [2140b70e3](https://github.com/aaronjeter/CrystalShireEngine/commit/2140b70e32d143f56c27f9c7ebe3317aac8063f3) — Vanilla Flawfix: GetForestTreeFrame works, but it's still bad
+- 2022-09-08 [265ceb705](https://github.com/aaronjeter/CrystalShireEngine/commit/265ceb705a6b7ecf66ccea80e048be1c3010c23d) — Vanilla Flawfix: Music IDs $64 and $80 or above have special behavior
+- 2022-09-08 [8ecb37d84](https://github.com/aaronjeter/CrystalShireEngine/commit/8ecb37d8471b98fb50d5490c582cafe64729ec8e) — Vanilla Bugfix: Options menu fails to clear joypad state on initialization
+- 2022-09-08 [16b7f1773](https://github.com/aaronjeter/CrystalShireEngine/commit/16b7f1773c72f12a6419004931a1040f30a8f48d) — Vanilla Bugfix: ReadObjectEvents overflows into wObjectMasks
+- 2022-09-08 [8d6c1d69c](https://github.com/aaronjeter/CrystalShireEngine/commit/8d6c1d69c83388d8dc79670d81afe2e704a89192) — Vanilla Bugfix: ScriptCall can overflow wScriptStack and crash
+- 2022-09-08 [ffe35cb0c](https://github.com/aaronjeter/CrystalShireEngine/commit/ffe35cb0cfb420d887848abaf621bd9ab7f60c77) — Vanilla Bugfix: Magikarp lengths can be miscalculated
+- 2022-09-08 [87fca6884](https://github.com/aaronjeter/CrystalShireEngine/commit/87fca6884d66ffaf5f71673fe2b42061d4df06cd) — Vanilla Bugfix: Magikarp length limits have a unit conversion error
+- 2022-09-08 [ab4915e0a](https://github.com/aaronjeter/CrystalShireEngine/commit/ab4915e0a73a1aa3adc163d597e0ec39f1a47b88) — Vanilla Bugfix: Magikarp in Lake of Rage are shorter, not longer
+- 2022-09-08 [4c546bb0f](https://github.com/aaronjeter/CrystalShireEngine/commit/4c546bb0f1c908b7bff433410307724e023f85b4) — Vanilla Bugfix: Daisy's grooming doesn't always increase happiness
+- 2022-09-08 [f1d6d7741](https://github.com/aaronjeter/CrystalShireEngine/commit/f1d6d77411a3c66643f9f7da69c462274818c304) — Vanilla Bugfix: Clair can give TM24 Dragonbreath twice
+- 2022-09-08 [c59f0c26d](https://github.com/aaronjeter/CrystalShireEngine/commit/c59f0c26dcbf436c3dd7f43eba40a603d4edcf1b) — Vanilla Bugfix: A "HOF Master!" title for 200-Time Famers is defined but inaccessible
+- 2022-09-08 [b2f78e5b6](https://github.com/aaronjeter/CrystalShireEngine/commit/b2f78e5b6a1cad38cbcf65977ea9aecf22f60929) — Vanilla Bugfix: Five-digit experience gain is printed incorrectly
+- 2022-09-08 [90bab16ce](https://github.com/aaronjeter/CrystalShireEngine/commit/90bab16ce1e4162f9b21230e8d14e6c06e576a7d) — Vanilla Bugfix: Playing Entei's Pokédex cry can distort Raikou's and Suicune's
+- 2022-09-08 [3d6eda93a](https://github.com/aaronjeter/CrystalShireEngine/commit/3d6eda93ad03202f02ab5467cfea1f3c45b922f2) — Vanilla Bugfix: No bump noise if standing on tile $3E
+- 2022-09-08 [960e7d9ef](https://github.com/aaronjeter/CrystalShireEngine/commit/960e7d9ef13a5bb316328402a51442138e9cd11e) — Vanilla Bugfix: Team Rocket battle music is not used for Executives or Scientists
+- 2022-09-08 [5d6ace24d](https://github.com/aaronjeter/CrystalShireEngine/commit/5d6ace24d232f819dbea98597d432e9bb5cde0f9) — Vanilla Bugfix: Slot machine payout sound effects cut each other off
+- 2023-05-04 [e6037d0a9](https://github.com/aaronjeter/CrystalShireEngine/commit/e6037d0a923ace1a21b8462b52c9892bfac495f0) — Vanilla Bugfix: Some trainer NPCs have inconsistent overworld sprites
+- 2022-09-08 [205657bfb](https://github.com/aaronjeter/CrystalShireEngine/commit/205657bfb5f91b7ab421a00f9b9773fc46655b85) — Vanilla Bugfix: Battle transitions fail to account for the enemy's level
+- 2022-09-08 [7268b0050](https://github.com/aaronjeter/CrystalShireEngine/commit/7268b005097503002fa4b5adfa3fd90450275499) — Vanilla Bugfix: Using a Park Ball in non-Contest battles has a corrupt animation
+- 2022-09-08 [88ed531c3](https://github.com/aaronjeter/CrystalShireEngine/commit/88ed531c370fe3942161baf4ea1bf22943d26c50) — Vanilla Bugfix: A hatching Unown egg would not show the right letter
+- 2022-09-08 [3824b30d1](https://github.com/aaronjeter/CrystalShireEngine/commit/3824b30d1c1c461939b882425f14bf98adfedfea) — Vanilla Bugfix: The Ruins of Alph research center's roof color at night looks wrong
+- 2022-09-08 [9f2329e86](https://github.com/aaronjeter/CrystalShireEngine/commit/9f2329e86b5fad8deb5e29065f0734db74d7729d) — Vanilla Bugfix: Two tiles in the port tileset are drawn incorrectly
+- 2022-09-08 [7a5c34ced](https://github.com/aaronjeter/CrystalShireEngine/commit/7a5c34ceda4c671cda441f0b5b57bbf392e4a41d) — Vanilla Bugfix: In-battle “…” ellipsis is too high
+- 2022-09-08 [eab8dc064](https://github.com/aaronjeter/CrystalShireEngine/commit/eab8dc064c8b36b5bb540262ff87631007e49626) — Vanilla Bugfix: Pokémon deposited in the Day-Care might lose experience
+- 2022-09-08 [167c098a3](https://github.com/aaronjeter/CrystalShireEngine/commit/167c098a31bb2a049b927f4ce1d04ae3674b6280) — Vanilla Bugfix: You can fish on top of NPCs
+- 2022-09-08 [88ee8b652](https://github.com/aaronjeter/CrystalShireEngine/commit/88ee8b652ad8972228d702f7d0a3a0941f678352) — Vanilla Bugfix: Swimming NPCs aren't limited by their movement radius
+- 2022-09-08 [4d8fb7aaf](https://github.com/aaronjeter/CrystalShireEngine/commit/4d8fb7aaf2722e0b53498830718e7f78bfe42362) — Vanilla Bugfix: Surfing directly across a map connection does not load the new map
+- 2022-09-08 [5ccb95b70](https://github.com/aaronjeter/CrystalShireEngine/commit/5ccb95b703842e3fa11d12e1484a52c2be7aff2d) — Vanilla Bugfix: LoadMetatiles wraps around past 128 blocks
+- 2022-09-08 [ab6b0cec7](https://github.com/aaronjeter/CrystalShireEngine/commit/ab6b0cec7b3d32a44a597007d850588c942260c9) — Vanilla Bugfix: Credits sequence changes move selection menu behavior
+- 2022-09-08 [1ef10656d](https://github.com/aaronjeter/CrystalShireEngine/commit/1ef10656de54a18adbfcca7f56cd1cc78be7c753) — Vanilla Bugfix: HELD_CATCH_CHANCE has no effect
+- 2022-09-08 [c54e1fd2c](https://github.com/aaronjeter/CrystalShireEngine/commit/c54e1fd2c0c74da1060afea1cd8e3a9ce146f741) — Vanilla Bugfix: RIVAL2 has lower DVs than RIVAL1
+- 2022-09-08 [ed3707e1d](https://github.com/aaronjeter/CrystalShireEngine/commit/ed3707e1d656c672b3df6bdcb29e43f73bb21252) — Vanilla Bugfix: Wild Pokémon can always Teleport regardless of level difference
+- 2023-08-10 [0bde60378](https://github.com/aaronjeter/CrystalShireEngine/commit/0bde60378a3c98c39249d346cd263ed9ae004a45) — Vanilla Bugfix: AI might use its base reward value as an item
+- 2022-09-08 [31219792e](https://github.com/aaronjeter/CrystalShireEngine/commit/31219792ef01aaaad40cd9d38b4d51cb680058be) — Vanilla Bugfix: AI use of Full Heal does not cure confusion status
+- 2022-09-08 [94df9bd28](https://github.com/aaronjeter/CrystalShireEngine/commit/94df9bd289b92ad2b464d3736ad6b8d39ee1fb0d) — Vanilla Bugfix: AI use of Full Heal or Full Restore does not cure Nightmare status
+- 2022-09-08 [e3945d531](https://github.com/aaronjeter/CrystalShireEngine/commit/e3945d5318aafa56ed1d29519dd8f14c64cc5d89) — Vanilla Bugfix: AI makes a false assumption about CheckTypeMatchup
+- 2022-09-08 [6271ee53f](https://github.com/aaronjeter/CrystalShireEngine/commit/6271ee53f9a426fec961c89311aaf2867d6814b5) — Vanilla Bugfix: AI does not discourage Future Sight when it's already been used
+- 2022-09-08 [6769bb1ad](https://github.com/aaronjeter/CrystalShireEngine/commit/6769bb1add1b59dd15216c85e2c57018e04397f7) — Vanilla Bugfix: "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day
+- 2022-09-08 [1b65c3acf](https://github.com/aaronjeter/CrystalShireEngine/commit/1b65c3acf8b8a74b8b5218efd0cfd5875ebbe3b6) — Vanilla Bugfix: "Smart" AI discourages Conversion2 after the first turn
+- 2022-09-08 [8352406d9](https://github.com/aaronjeter/CrystalShireEngine/commit/8352406d9d1df22f7dfe47eecc3d6cbab264e827) — Vanilla Bugfix: "Smart" AI encourages Mean Look if its own Pokémon is badly poisoned
+- 2022-09-08 [61c611bf9](https://github.com/aaronjeter/CrystalShireEngine/commit/61c611bf98b80da02c901aa958a537cf682f6300) — Vanilla Bugfix: Glacier Badge may not boost Special Defense depending on the value of Special Attack
+- 2023-09-22 [95ec09a05](https://github.com/aaronjeter/CrystalShireEngine/commit/95ec09a05de8fa5ac9d731d80c0844e769bfd8b6) — Vanilla Bugfix: PRZ and BRN stat reductions don't apply to switched Pokémon
+- 2023-09-22 [73a6e994d](https://github.com/aaronjeter/CrystalShireEngine/commit/73a6e994d2560a92606c0a99f9b5a05c5a46efe7) — Remove Fast Ball Bug comment (Fixed in pc16)
+- 2022-09-08 [80df8b3f5](https://github.com/aaronjeter/CrystalShireEngine/commit/80df8b3f5c760984b500c4cb726f162dc5fc685b) — Vanilla Bugfix: Love Ball boosts catch rate for the wrong gender
+- 2022-09-08 [0d37c9406](https://github.com/aaronjeter/CrystalShireEngine/commit/0d37c9406fda2e0d0a1eeebc613d32e6f04baec9) — Vanilla Bugfix: BRN/PSN/PAR do not affect catch rate
+- 2022-09-08 [d8b69fbf0](https://github.com/aaronjeter/CrystalShireEngine/commit/d8b69fbf0ce60530c678daf79fc27dee98ec8db6) — Vanilla Bugfix: The Dude's catching tutorial may crash if his Poké Ball can't be used
+- 2022-09-08 [18ada5a05](https://github.com/aaronjeter/CrystalShireEngine/commit/18ada5a0569bf7fb6921e85fb8ba3807b178f7a2) — Vanilla Bugfix: Experience underflow for level 1 Pokémon with Medium-Slow growth rate
+- 2022-09-08 [a36e88e36](https://github.com/aaronjeter/CrystalShireEngine/commit/a36e88e366abc94dbd0b334dd0a52e98a1496a3b) — Vanilla Bugfix: A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves
+- 2022-09-08 [40efa4f04](https://github.com/aaronjeter/CrystalShireEngine/commit/40efa4f04f9d21b90d38314451900db9ead69b9c) — Vanilla Bugfix: HP bar animation off-by-one error for low HP
+- 2022-09-08 [ef23cd5ac](https://github.com/aaronjeter/CrystalShireEngine/commit/ef23cd5acacda2676fed209956a670286b233366) — Vanilla Bugfix: HP bar animation is slow for high HP
+- 2022-09-08 [62857de57](https://github.com/aaronjeter/CrystalShireEngine/commit/62857de57d079a4968874f3f115b9ea538dfca75) — Vanilla Bugfix: Moves that do damage and increase your stats do not increase stats after a KO
+- 2022-09-08 [e4ff941d7](https://github.com/aaronjeter/CrystalShireEngine/commit/e4ff941d7bd64522bba4037a8ebb3004170b2f12) — Vanilla Bugfix: Switching out or switching against a Pokémon with max HP below 4 freezes the game
+- 2022-09-08 [c9ae77669](https://github.com/aaronjeter/CrystalShireEngine/commit/c9ae7766902c66ccdad10fe6ac4cc00aa9ce0f58) — Vanilla Bugfix: Dragon Scale, not Dragon Fang, boosts Dragon-type moves
+- 2022-09-08 [1e7f06531](https://github.com/aaronjeter/CrystalShireEngine/commit/1e7f06531f2be9c1ee8609356db40461d08be441) — Vanilla Bugfix: Return and Frustration deal no damage when the user's happiness is low or high, respectively
+- 2022-09-08 [dbde76b49](https://github.com/aaronjeter/CrystalShireEngine/commit/dbde76b49935f9a503c9e760e3530f31a8b8a797) — Vanilla Bugfix: Present damage is incorrect in link battles
+- 2022-09-08 [2b8c2d106](https://github.com/aaronjeter/CrystalShireEngine/commit/2b8c2d1060e656ac449d63b18e2f1a870c974ae8) — Vanilla Bugfix: Beat Up may trigger King's Rock even if it failed
+- 2022-09-08 [523909c73](https://github.com/aaronjeter/CrystalShireEngine/commit/523909c739a4b17110a134454dd9ec9d6200f0ae) — Vanilla Bugfix: Beat Up may fail to raise Substitute
+- 2022-09-08 [be67fbb84](https://github.com/aaronjeter/CrystalShireEngine/commit/be67fbb842122cd6c889f7579217be2f3f2b9c27) — Vanilla Bugfix: Beat Up works incorrectly with only one Pokémon in the party
+- 2022-08-07 [9e4f84e28](https://github.com/aaronjeter/CrystalShireEngine/commit/9e4f84e28fdc17ef12bf490b4169736b79a31005) — Vanilla Bugfix: Beat Up can desynchronize link battles
+- 2023-09-22 [3ba0c859f](https://github.com/aaronjeter/CrystalShireEngine/commit/3ba0c859f57b8aa3f817c198a731b280b728ed53) — Vanilla Bugfix: Lock-On and Mind Reader don't always bypass Fly and Dig
+- 2022-08-07 [232cc4393](https://github.com/aaronjeter/CrystalShireEngine/commit/232cc43931a0411102e3ad9c12ae72698d049292) — Vanilla Bugfix: A Pokemon that fainted from Pursuit will have its old status condition when revived
+- 2022-08-07 [8b1c44294](https://github.com/aaronjeter/CrystalShireEngine/commit/8b1c4429448b7441335d839fe2c0a02468b880ad) — Vanilla Bugfix: A Disabled by PP Up-enhanced move may not trigger Struggle
+- 2022-08-07 [4c4fe57ef](https://github.com/aaronjeter/CrystalShireEngine/commit/4c4fe57ef5a9d0db58c12874f010195ea058562c) — Vanilla Bugfix: Counter and Mirror Coat still work if the opponent uses an item
+- 2022-08-07 [ab57225df](https://github.com/aaronjeter/CrystalShireEngine/commit/ab57225df66c9f49078da7bfeb6a084f6f29c637) — Vanilla Bugfix: Moves that lower Defense can do so after breaking Substitute
+- 2022-08-07 [37251ba80](https://github.com/aaronjeter/CrystalShireEngine/commit/37251ba807a5321c81c210d95d2f16562892932a) — Vanilla Bugfix: Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling
+- 2022-08-07 [adc23e735](https://github.com/aaronjeter/CrystalShireEngine/commit/adc23e73576b11e731dbfa56a8e2b867bf91e682) — Vanilla Bugfix: Berserk Gene's confusion lasts for 256 turns or the previous Pokemon's confusion count
+- 2022-08-07 [26fa7ef2c](https://github.com/aaronjeter/CrystalShireEngine/commit/26fa7ef2c62e071bb6f961915011f418960a38dc) — Vanilla Bugfix: Belly Drum sharply boosts Attack even with under 50% HP
+- 2022-08-07 [104ceb959](https://github.com/aaronjeter/CrystalShireEngine/commit/104ceb9596c9dceb7794dc977e16100b279dbf0b) — Vanilla Bugfix: Moves with a 100% secondary effect chance will not trigger it in 1/256 uses
+- 2022-08-07 [5a150a6c0](https://github.com/aaronjeter/CrystalShireEngine/commit/5a150a6c0efb3f70ac1ad9901e7aae3c695f921e) — Vanilla Bugfix: Reflect and Light Screen can make (Special) Defense wrap around 1024
+- 2023-05-02 [d260b366d](https://github.com/aaronjeter/CrystalShireEngine/commit/d260b366d38c537397fa49e6e236d40b27259070) — Vanilla Bugfix: Metal Powder can increase damage taken with boosted (Special) Defense
+- 2023-05-02 [4266c4f81](https://github.com/aaronjeter/CrystalShireEngine/commit/4266c4f81b4a84b2b085fda0e74d358ca3c01da5) — Vanilla Bugfix: Thick Club and Light Ball can make (Special) Attack wrap around above 1024
+- 2022-08-07 [afaacb306](https://github.com/aaronjeter/CrystalShireEngine/commit/afaacb30653d70c87a718efda09f4323346c1e24) — Vanilla Bugfix: Perish Song and Spikes can leave a Pokemon with 0 HP and not faint
+- 2023-09-22 [1e5be7b24](https://github.com/aaronjeter/CrystalShireEngine/commit/1e5be7b2494abba14bcc565fcd67583cff990c57) — Create CSE README.md
+- 2023-09-22 [c39a0053b](https://github.com/aaronjeter/CrystalShireEngine/commit/c39a0053b6b97a9fb055356fcf71113251cb762b) — Optimize Redundant ret
+- 2023-09-22 [0b786cbea](https://github.com/aaronjeter/CrystalShireEngine/commit/0b786cbead42375f30139c4f07dbec78eefbdc82) — Optimize Redundant arguments
+- 2023-09-22 [2a6672298](https://github.com/aaronjeter/CrystalShireEngine/commit/2a6672298191cccb7f66d4f8e8c1a1b756c4006e) — Optimize tailfarcalls
+- 2023-09-22 [0cf318332](https://github.com/aaronjeter/CrystalShireEngine/commit/0cf318332e7bd8d39da2ed59882b56e9a6518ba4) — Set up CI workflow
+- 2023-05-18 [6bca22348](https://github.com/aaronjeter/CrystalShireEngine/commit/6bca22348b1f3feee47e3465c3deb481aafd8c44) — Switch to PolishedCrystal's Farcall
+- 2023-09-22 [ecbe06ddc](https://github.com/aaronjeter/CrystalShireEngine/commit/ecbe06ddce79cec12287142d8aade457e90c78a4) — Optimize tailcalls
+- 2023-09-22 [fa3cb3dec](https://github.com/aaronjeter/CrystalShireEngine/commit/fa3cb3dec4e60ae3763f428f1ba19cb522c95190) — Optimize jp -> jr & Add jmp macro
+- 2023-09-22 [d6ba27235](https://github.com/aaronjeter/CrystalShireEngine/commit/d6ba272359e50515ee6ae908c3905f345526608b) — Optimize nops
+- 2023-09-22 [bee5735c6](https://github.com/aaronjeter/CrystalShireEngine/commit/bee5735c664c0f1a709959325ec6bc51ea8e430f) — Import utils/optimize.py from Rangi42/polishedcrystal
+- 2023-09-22 [1cb4a09a1](https://github.com/aaronjeter/CrystalShireEngine/commit/1cb4a09a1828439407181c795522e29eafdbfa5e) — Bug and Flaw Docs not needed
+- 2023-10-23 [fe03dd60a](https://github.com/aaronjeter/CrystalShireEngine/commit/fe03dd60a223797b68c4bc6a72abfb42fe073ee6) — Store 16bit Item Indexes in Bills PC savemon_struct
+- 2023-10-23 [99345b183](https://github.com/aaronjeter/CrystalShireEngine/commit/99345b183fa7aca21c209e93e827a8561cef5e0b) — Remove reference to old box in Garbage Collector
+- 2023-10-23 [a2477d133](https://github.com/aaronjeter/CrystalShireEngine/commit/a2477d133ef9a6f193868b58e02ce252452aac21) — Home Space (Dummy out Some Mobile Code)
+- 2023-10-23 [bbdc48329](https://github.com/aaronjeter/CrystalShireEngine/commit/bbdc48329cfb692b6a87dd0d457c5d184f1c6970) — Minor home back optimizations
+- 2022-12-18 [c83660965](https://github.com/aaronjeter/CrystalShireEngine/commit/c836609658b989af011d8ddaa087ec0cc9341137) — Only copy 3 tiles during `SafeHDMATransfer:`
+- 2022-12-11 [1dc28117a](https://github.com/aaronjeter/CrystalShireEngine/commit/1dc28117a4d19db587c7a2d98587e6e13c67a752) — Remove unused VWF flag behavior
+- 2022-10-23 [cd27081e6](https://github.com/aaronjeter/CrystalShireEngine/commit/cd27081e6ee87ff3067afe2a956779786e0a1ae8) — Simplify Encoder Egg handling.
+- 2022-10-22 [ce4210f0b](https://github.com/aaronjeter/CrystalShireEngine/commit/ce4210f0be535d1fcc1a89998dffd1aa7ecdf689) — Add some comments
+- 2022-10-16 [7281b8057](https://github.com/aaronjeter/CrystalShireEngine/commit/7281b80577ca48889e9a2d25fe771ff69e9995dd) — Savemon Struct redone.
+- 2022-10-16 [f8fbaba6f](https://github.com/aaronjeter/CrystalShireEngine/commit/f8fbaba6f2f1c84f91bdf94b73a9dbd97b0aa6c5) — Fix newbox FrontPics
+- 2022-10-16 [869461944](https://github.com/aaronjeter/CrystalShireEngine/commit/869461944b608733f49cc9ac8aa14c1e3d0db5bb) — Fix party egg icon
+- 2022-10-15 [f68b3241d](https://github.com/aaronjeter/CrystalShireEngine/commit/f68b3241da187e7c5f18056a846b21d174edadf7) — Expand Savemon Struct
+- 2022-10-15 [5be8513ae](https://github.com/aaronjeter/CrystalShireEngine/commit/5be8513aeeb57a461a904ada41c816ea0bb4cd1a) — Fix Stats Screen Frontpic
+- 2022-10-15 [87a615c02](https://github.com/aaronjeter/CrystalShireEngine/commit/87a615c02713e20373f513a4cc7d86016c4917ef) — fix mon icons
+- 2022-10-13 [008aae811](https://github.com/aaronjeter/CrystalShireEngine/commit/008aae81109e3050522c9609ec9ff5ac286f36df) — Newbox
+- 2023-10-23 [386671698](https://github.com/aaronjeter/CrystalShireEngine/commit/38667169809b81eb39990b4341f9919332d27248) — Use proper constant for battle stats (#1088)
+- 2023-07-17 [f54acb152](https://github.com/aaronjeter/CrystalShireEngine/commit/f54acb152cb0318a2412bf3fafcc9cb9d27e456e) — 16bit items
+- 2020-08-07 [f4c5b2f41](https://github.com/aaronjeter/CrystalShireEngine/commit/f4c5b2f41b65f24f31ea2124f118490f5766bde7) — Update link features to send and receive 16-bit move indexes as well
+- 2020-08-04 [0e802355b](https://github.com/aaronjeter/CrystalShireEngine/commit/0e802355b2a5b335c768e0e1106dc4dc60283713) — Use 16-bit move IDs in Bill's PC for boxes other than the current one
+- 2020-07-11 [878b6483a](https://github.com/aaronjeter/CrystalShireEngine/commit/878b6483ac2e9a11b65c890df5fe070669774073) — Save the move conversion table to SRAM, load it when loading the game, and clear it on new game
+- 2020-07-11 [dc20db5f8](https://github.com/aaronjeter/CrystalShireEngine/commit/dc20db5f8e53c327a3b962be6ba34a49a2e021d6) — Create a function to force garbage collection of all tables
+- 2020-06-15 [8e21797f9](https://github.com/aaronjeter/CrystalShireEngine/commit/8e21797f93d2661e21cfc427c918d68dad7c7f0f) — Fix move references in code to properly handle 16-bit indexes
+- 2020-06-13 [a562a77fb](https://github.com/aaronjeter/CrystalShireEngine/commit/a562a77fb466510db1581554a581b5877218da74) — Fix several miscellaneous move lists to use 16-bit indexes
+- 2020-06-13 [526ad6de0](https://github.com/aaronjeter/CrystalShireEngine/commit/526ad6de041dff04404374dc8c0be59fb5af539f) — Update trainer and Battle Tower parties to use 16-bit move indexes
+- 2020-06-13 [4a1d0d3b2](https://github.com/aaronjeter/CrystalShireEngine/commit/4a1d0d3b2fb5a63799cb6a9fe022924ee955c5d0) — Update move animations to use 16-bit move indexes
+- 2020-06-10 [fe9f2ffb5](https://github.com/aaronjeter/CrystalShireEngine/commit/fe9f2ffb5e67a44e95a1eb95be7539465a203f47) — Update the move attribute table and all references to use 16-bit indexes
+- 2020-06-08 [e92c62af7](https://github.com/aaronjeter/CrystalShireEngine/commit/e92c62af7f22bc3da4231b0a7f6c75a9c38818f2) — Update learnsets, egg moves and TMs/HMs to use 16-bit move IDs
+- 2020-06-06 [69774ce66](https://github.com/aaronjeter/CrystalShireEngine/commit/69774ce660c9d0c1cee9644cc5ebab45eaf07673) — Update move names and descriptions to use 16-bit indexes
+- 2020-06-06 [6feaf35a7](https://github.com/aaronjeter/CrystalShireEngine/commit/6feaf35a76d32335c52b1c39581e90eef5b867c4) — Move FarPlaceString to the home bank (where it should be)
+- 2020-06-04 [4b05f19af](https://github.com/aaronjeter/CrystalShireEngine/commit/4b05f19afcf503ad623c2a65134a76a2419e0895) — Add move conversion table functions
+- 2020-06-04 [cb34a07b5](https://github.com/aaronjeter/CrystalShireEngine/commit/cb34a07b540a829aba88cd06e764d93033a6db79) — Create structures for move index table
+- 2020-03-06 [c8f63bbdd](https://github.com/aaronjeter/CrystalShireEngine/commit/c8f63bbdd4e3b399f2b6eb361ccf89fa87925bd6) — Use indirect pointers for some structures (base data, evolutions and moves)
+- 2022-06-14 [a6a576a1a](https://github.com/aaronjeter/CrystalShireEngine/commit/a6a576a1ad7440641a1b2d58f0b16f936b004d95) — Support Building Virtual Console Patches
+- 2022-06-15 [a87fa115f](https://github.com/aaronjeter/CrystalShireEngine/commit/a87fa115f5c5305aa1b7494b5cf762805dbd0507) — Make link features 16-bit aware and send 16-bit indexes
+- 2019-11-21 [c28d0102d](https://github.com/aaronjeter/CrystalShireEngine/commit/c28d0102d705f5a8e360b7647800bbe21330c1dc) — Update the Hall of Fame data to use 16-bit IDs
+- 2019-12-17 [4689fd9f6](https://github.com/aaronjeter/CrystalShireEngine/commit/4689fd9f667eb3310370509e847b2e88c6cb5e4d) — Use 16-bit IDs in Bill's PC for boxes other than the current one
+- 2019-11-09 [5bc7ae985](https://github.com/aaronjeter/CrystalShireEngine/commit/5bc7ae985a8cb65bca9aabd3fd43e29a86d579f2) — Save the conversion table to SRAM, load it when loading the game, and clear it on new game
+- 2019-12-17 [27472cf7b](https://github.com/aaronjeter/CrystalShireEngine/commit/27472cf7b4c4c9665253c68042bcac14680a3179) — Fix Battle Tower parties to use 16-bit Pokémon IDs
+- 2019-11-06 [0131caa86](https://github.com/aaronjeter/CrystalShireEngine/commit/0131caa86a633b9a0655b915f5d48490b456c3db) — Remove 8-bit IDs from base data and rename wBaseDexNo to wBaseSpecies
+- 2019-12-17 [81f70fb32](https://github.com/aaronjeter/CrystalShireEngine/commit/81f70fb32ce5363029cce549b5cc1e573f1f639f) — Convert miscellaneous Pokémon IDs in ROM to 16-bit, 3
+- 2019-11-01 [e8dcbf021](https://github.com/aaronjeter/CrystalShireEngine/commit/e8dcbf0218b81689a3fd453255aeb74ddeea7408) — Convert miscellaneous Pokémon IDs in ROM to 16-bit, 2
+- 2019-09-29 [7239b7d8c](https://github.com/aaronjeter/CrystalShireEngine/commit/7239b7d8cece354025e96d10e14c60704187d741) — Convert miscellaneous Pokémon IDs in ROM to 16-bit, 1
+- 2019-12-17 [761319eb3](https://github.com/aaronjeter/CrystalShireEngine/commit/761319eb30a909fe4ef48470d5f000f58180f20d) — Update the Pokédex to use 16-bit IDs
+- 2022-06-14 [8a6be9055](https://github.com/aaronjeter/CrystalShireEngine/commit/8a6be9055b341b90f8f372839a2061be41d46400) — Update remaining wild-Pokémon-related tables to contain 16-bit IDs
+- 2022-06-14 [7ea53a5ee](https://github.com/aaronjeter/CrystalShireEngine/commit/7ea53a5eebd310b2ec91466c3bc041164f4892ee) — Update wild Pokémon data to contain 16-bit IDs
+- 2019-09-30 [4238b3541](https://github.com/aaronjeter/CrystalShireEngine/commit/4238b3541b434cf373b975b47282b47b455ba8d8) — Modify map scripts to use 16-bit to 8-bit conversions (and vice-versa) when manipulating the script variable
+- 2019-09-28 [eeb87ed95](https://github.com/aaronjeter/CrystalShireEngine/commit/eeb87ed95158f879235c2b4fd6b89a7fc23b8a2f) — Remove dummy constants for dummy Pokémon and set EGG to -3 instead of 253 (for 16-bit extension into $FFFD)
+- 2019-08-25 [50f939ee2](https://github.com/aaronjeter/CrystalShireEngine/commit/50f939ee200de6809f3940634ebc4b0992ca5928) — Use the 16-bit index to load Pokémon cries, dex entries and footprints
+- 2019-08-21 [352a199cd](https://github.com/aaronjeter/CrystalShireEngine/commit/352a199cdc7365db953c9759b618ad6f88e37eb3) — Convert Pokémon species in trainer data to 16-bit and update reading routines
+- 2020-01-23 [4a126e652](https://github.com/aaronjeter/CrystalShireEngine/commit/4a126e6526a9523457db08d3e82d2e8c10762dbf) — Insert a length byte in trainer parties, so they can contain $FF bytes within them
+- 2019-08-14 [a009e45a9](https://github.com/aaronjeter/CrystalShireEngine/commit/a009e45a9590ddecd365e81ee116960d7859f4cd) — Make Pokémon names and palettes use the 16-bit index
+- 2019-08-04 [11bdce768](https://github.com/aaronjeter/CrystalShireEngine/commit/11bdce768b18e6d8d575548151a8112f99f41d07) — Update pic data (pointers, animation frames, bitmasks and scripts) to use 16-bit indexes
+- 2019-08-03 [86c8d83aa](https://github.com/aaronjeter/CrystalShireEngine/commit/86c8d83aabc1a8fec587d088efcbf938466fb30c) — Update references to evolutions, learnsets, base stats and egg moves to use the 16-bit index
+- 2019-08-04 [cc5f95661](https://github.com/aaronjeter/CrystalShireEngine/commit/cc5f956611f4d57b4c87708be461d0e3b9c0eeb9) — Reorganize ROM contents and remove unused parts to make room for future enhancements
+- 2020-01-23 [6140abe4e](https://github.com/aaronjeter/CrystalShireEngine/commit/6140abe4e4883937bbf26e92733946c617fc0bb5) — Add Pokémon conversion table functions
+- 2019-12-19 [9cd8a11f6](https://github.com/aaronjeter/CrystalShireEngine/commit/9cd8a11f66a8bc2a4275c46f198e668e7b2af49f) — Create data structures for Pokémon index table
+- 2020-01-23 [4182403f5](https://github.com/aaronjeter/CrystalShireEngine/commit/4182403f55919c3f4cc0c2825a76cdbe7409e17f) — Add indirection table macros and functions
+- 2020-01-04 [d41a39d05](https://github.com/aaronjeter/CrystalShireEngine/commit/d41a39d054b4c83276cea8c6cce12a4debffafe5) — Add generic 16-bit function macros for home bank calls
+- 2019-08-28 [39e953116](https://github.com/aaronjeter/CrystalShireEngine/commit/39e9531164c484229335bfa0059e9797b3e846ac) — Add generic 16-bit function macros for table operations
+- 2019-07-24 [89ef80d48](https://github.com/aaronjeter/CrystalShireEngine/commit/89ef80d48001c63296c385b5dc6c421f5b96b967) — Add WRAM structures for 16-bit tables
+- 2022-06-14 [7aaee8901](https://github.com/aaronjeter/CrystalShireEngine/commit/7aaee8901a24d437b6062a2a38e3e8ddc9e42e42) — QoL (17): break the dependency between Pokédex entry bank and species ID number
+- 2019-08-14 [3cf9c9711](https://github.com/aaronjeter/CrystalShireEngine/commit/3cf9c97118abe95df51b304fde9389e4eed8e86e) — QoL (16): improve name handling
+- 2022-06-14 [9e84491f4](https://github.com/aaronjeter/CrystalShireEngine/commit/9e84491f4ace6c2295df37805abc3057b6f3d203) — QoL (15): break link between animation frames bank and national dex ID
+- 2022-06-14 [8ab525b7c](https://github.com/aaronjeter/CrystalShireEngine/commit/8ab525b7c4abe0a07507579577eb7e90e6894a72) — QoL (14): remove some unused and debug files
+- 2019-07-30 [e27ada995](https://github.com/aaronjeter/CrystalShireEngine/commit/e27ada995c63b68030cf33a3664fb20876b48e4c) — QoL (13): Faster multiplication (AddNTimes)
+- 2019-07-22 [003b2a229](https://github.com/aaronjeter/CrystalShireEngine/commit/003b2a2291647c685b00dd46f363b079a69e0602) — QoL (12): free up wasted home bank space
+- 2019-07-22 [385a850b7](https://github.com/aaronjeter/CrystalShireEngine/commit/385a850b76fe903aca9e9c469788512694122756) — QoL (11): 255-tile mon animations
+- 2019-07-19 [648c822bd](https://github.com/aaronjeter/CrystalShireEngine/commit/648c822bd916de7c808f9c07b4c2644fa4234e17) — QoL (10): better structuring of trainer data (allowing splitting it into banks)
+- 2019-07-19 [51541943d](https://github.com/aaronjeter/CrystalShireEngine/commit/51541943d88e3b081fa8c9c13580aeb060ecd400) — QoL (9): fast saving (because we'll save a lot during testing here)
+- 2019-07-19 [fcfdad02e](https://github.com/aaronjeter/CrystalShireEngine/commit/fcfdad02e9603cb0261bc15a27d16130fccba833) — Bring back our little replace script
+- 2019-07-19 [5b2d91635](https://github.com/aaronjeter/CrystalShireEngine/commit/5b2d91635fe73be52da4bd71da1dcf48a58df452) — QoL (8): get rid of move grammar table
+- 2019-07-19 [fd1e89212](https://github.com/aaronjeter/CrystalShireEngine/commit/fd1e892121f72ee52566f9f386378d0bdb041f68) — QoL (7): clear all of WRAM, not just banks 0-1
+- 2019-07-19 [38e208747](https://github.com/aaronjeter/CrystalShireEngine/commit/38e2087470b20a9750d115f97f562be18908602c) — Some bug fixes related to sprites and objects
+- 2019-07-19 [a337f1f04](https://github.com/aaronjeter/CrystalShireEngine/commit/a337f1f04391119dd5dcbae00fec4f3cd5de6aba) — QoL (6): allow mixing of EVOLVE_STAT and EVOLVE_ITEM evolutions without breaking anything
+- 2019-07-19 [516ab3693](https://github.com/aaronjeter/CrystalShireEngine/commit/516ab3693191e9ad4a4991b9895c8a71ff76b520) — QoL (5): expand the temporary buffer used to check for stone evolutions from 9 bytes + terminator to 18 bytes + terminator
+- 2019-07-19 [a7382255c](https://github.com/aaronjeter/CrystalShireEngine/commit/a7382255cc7ec69c1605872527be797f7ddf5235) — Fix Ditto assumption bug
+- 2019-07-19 [14b68abfa](https://github.com/aaronjeter/CrystalShireEngine/commit/14b68abfa55b6be4a0f2ee87df985c26aa8bbc4e) — QoL (4): get rid of dummy items between and after TMs/HMs
+- 2019-07-18 [03414e5b0](https://github.com/aaronjeter/CrystalShireEngine/commit/03414e5b0f1af846cfd4168fb7f6ea7e4460f88b) — QoL (3): store footprints normally
+- 2019-07-18 [c3f75f994](https://github.com/aaronjeter/CrystalShireEngine/commit/c3f75f9948ec160df882f7c33b1f21330cea9ace) — QoL (2): unlink PokemonPicPointers and UnownPicPointers
+- 2019-07-18 [b0cb4f50c](https://github.com/aaronjeter/CrystalShireEngine/commit/b0cb4f50cfa3a4a4d8f803c0fa98b6684e501ec2) — QoL (1): pic banks
+- 2019-11-30 [89575c455](https://github.com/aaronjeter/CrystalShireEngine/commit/89575c455735cdba705ad5430c093529c0e0dce5) — Add a Makefile rule to properly build the 'unknown mon' dex pic
+- 2019-11-27 [4b50c6921](https://github.com/aaronjeter/CrystalShireEngine/commit/4b50c69210e7cd87ae8564e88d33bc0bf3409cc8) — Add a README
+
+## LevelScaling
+
+Revision: `d9e2aca05ed71d737d6a4eacbb34478317549ab1`. Non-merge commits in this section: 1151.
+
+- 2026-10-25 [d9e2aca05](https://github.com/aaronjeter/CrystalShireEngine/commit/d9e2aca05ed71d737d6a4eacbb34478317549ab1) — Update title for 10/25 patch
+- 2026-10-25 [7dbdbebf7](https://github.com/aaronjeter/CrystalShireEngine/commit/7dbdbebf7192636812fdada33fe9201219594c38) — Update oldale grass tiling
+- 2026-10-25 [5e6c33a99](https://github.com/aaronjeter/CrystalShireEngine/commit/5e6c33a99037ca07078c45d09c3e0d9d7a481275) — Fix pokecenter roofs
+- 2026-10-25 [d84449ec1](https://github.com/aaronjeter/CrystalShireEngine/commit/d84449ec19e81d8b0c07d9152415cc69e592ef3c) — Add Spheal to the testroom
+- 2026-10-24 [35d692396](https://github.com/aaronjeter/CrystalShireEngine/commit/35d6923962f2f6aa2dffbe4b716b16a17c9a28fe) — Update Marill egg species
+- 2026-10-24 [95fdea38d](https://github.com/aaronjeter/CrystalShireEngine/commit/95fdea38df7ca124e5550e0c9456af604f735a71) — Reorder goldenrod NPCs
+- 2026-10-24 [2a30657a8](https://github.com/aaronjeter/CrystalShireEngine/commit/2a30657a8870e09e0fddef272e99f05cc29cbee8) — fix some follower bugs
+- 2026-10-24 [8561ed571](https://github.com/aaronjeter/CrystalShireEngine/commit/8561ed57140d2748037799d017441f16880ffc52) — Fix some AI switching bugs
+- 2026-10-24 [3243908a8](https://github.com/aaronjeter/CrystalShireEngine/commit/3243908a85ea3678b4c3162c2469fa7cc7a153b8) — Update test trainer to doubles
+- 2026-10-24 [759c4fd91](https://github.com/aaronjeter/CrystalShireEngine/commit/759c4fd91b1bba2b5d36a7dc1058eaf0fce22f89) — Doubles Phase 6 (AI)
+- 2026-10-23 [a2fdb0d6a](https://github.com/aaronjeter/CrystalShireEngine/commit/a2fdb0d6aa02e36c0447e4dd4ba4c76fa68a9a31) — Doubles Phase 5
+- 2026-10-23 [927b385f5](https://github.com/aaronjeter/CrystalShireEngine/commit/927b385f59dd04b2908ce5a3e7172c5742f6628e) — Doubles Phase 4
+- 2026-10-23 [55f599419](https://github.com/aaronjeter/CrystalShireEngine/commit/55f599419688ebc5c2b292b398d02fc711e557a9) — Doubles phase 3
+- 2026-10-23 [bfa5b1010](https://github.com/aaronjeter/CrystalShireEngine/commit/bfa5b10100544467d37422c41f9d143b2e193d6f) — Doubles phase 2
+- 2026-10-22 [4a554935d](https://github.com/aaronjeter/CrystalShireEngine/commit/4a554935dac4f8f7d4f47d25b92b80b703c95538) — Doubles phase 1
+- 2026-10-21 [290f67019](https://github.com/aaronjeter/CrystalShireEngine/commit/290f6701951890618e7302a183a61a9864f88d34) — minor tileset tweaks
+- 2026-10-21 [1abe7bd61](https://github.com/aaronjeter/CrystalShireEngine/commit/1abe7bd611e1b1709d13ec3e401d027c3a07059d) — Pre-Doubles Battle engine refactoring
+- 2026-10-21 [51b4bfeaa](https://github.com/aaronjeter/CrystalShireEngine/commit/51b4bfeaaf1e1f1299e8cd9bba0b223eb796e8cf) — Add more abilities
+- 2026-10-21 [0824a4f98](https://github.com/aaronjeter/CrystalShireEngine/commit/0824a4f98e8775dfdd5b57ca2140d4d6da8bc194) — Add 12 new abilities
+- 2026-10-20 [c5ce8bf8f](https://github.com/aaronjeter/CrystalShireEngine/commit/c5ce8bf8f8cbada50903d95ce3ec353664dfc00e) — Add ability patch and capsule
+- 2026-10-20 [d816ed6c6](https://github.com/aaronjeter/CrystalShireEngine/commit/d816ed6c6db87488101b7f8bcbb68a23ea62e51b) — Ability refactor (phase 2)
+- 2026-10-20 [60b020c38](https://github.com/aaronjeter/CrystalShireEngine/commit/60b020c38d8bc98aaad01b4d1d2c17c204f20d6b) — Ability system refactor (phase 1)
+- 2026-10-20 [d2ac9cc4f](https://github.com/aaronjeter/CrystalShireEngine/commit/d2ac9cc4f8218263ea1d17b50bb7068c74b19825) — Automated Testing harness tools
+- 2026-10-20 [6e1609dcc](https://github.com/aaronjeter/CrystalShireEngine/commit/6e1609dcc48d360c65ebe5e282cb64f2cac7e6ed) — Add a new callback for loading Pokemon Sprites
+- 2026-10-19 [669452981](https://github.com/aaronjeter/CrystalShireEngine/commit/669452981f14d5df6e74cfe79d3a93393f7446de) — Update title for 10/19 hotfix patch
+- 2026-10-19 [c9bc2bdbc](https://github.com/aaronjeter/CrystalShireEngine/commit/c9bc2bdbcf9ccbb83d8efa42a9dbd6b7afb61b57) — Fix follower freeze issue
+- 2026-10-18 [a2d94f7ad](https://github.com/aaronjeter/CrystalShireEngine/commit/a2d94f7ad8d9378aad5b4b5788fe7a92de50ccbf) — Update title for 10/18 release
+- 2026-10-18 [d16036d1f](https://github.com/aaronjeter/CrystalShireEngine/commit/d16036d1fce1dfec7abc29b22aea280e08a52a65) — Refactor Hidden power tutor menus
+- 2026-10-18 [9e048b8de](https://github.com/aaronjeter/CrystalShireEngine/commit/9e048b8dea9da58cd9bb84de9f18fd70f41769c9) — Refactor bridges
+- 2026-10-17 [b4df0d883](https://github.com/aaronjeter/CrystalShireEngine/commit/b4df0d8836aa2270cda7f8fb6325afa94e26bcbb) — Switch to using Rosie's sprites for Hoenn Followers
+- 2026-10-17 [7b973f861](https://github.com/aaronjeter/CrystalShireEngine/commit/7b973f8616e8c35620a69a434f998b0866de47be) — Add Sylveon Follower sprite
+- 2026-10-17 [c7d776781](https://github.com/aaronjeter/CrystalShireEngine/commit/c7d776781926f6a625d11e7abb06bd9a37df9720) — Touch up djinn icons
+- 2026-10-17 [1600877c2](https://github.com/aaronjeter/CrystalShireEngine/commit/1600877c2ee786c33a65d8da8fa4fae2d8fda7ed) — Update sprite mons to face player
+- 2026-10-17 [d2f3264da](https://github.com/aaronjeter/CrystalShireEngine/commit/d2f3264da7e73d4498b970c2f2bf28e6b4ce9a6e) — Convert overworld mons to new system
+- 2026-10-17 [7a20d6564](https://github.com/aaronjeter/CrystalShireEngine/commit/7a20d656401ee21244dfbf7fd9961ac91d140732) — Setup follow sprites as map sprites
+- 2026-10-17 [bf96a9f53](https://github.com/aaronjeter/CrystalShireEngine/commit/bf96a9f536985fa67475cebb33555af014bf31ef) — Switch most overworldmons to new colors
+- 2026-10-17 [d37dc4d86](https://github.com/aaronjeter/CrystalShireEngine/commit/d37dc4d867215c5306ff2acccf7809c10ac3fc47) — Recolor mon icons on other menus
+- 2026-10-17 [709e1bc59](https://github.com/aaronjeter/CrystalShireEngine/commit/709e1bc59a286051aaf04f0697369bb8e3fc5eab) — Add custom colors for follower mons
+- 2026-10-16 [89b686d79](https://github.com/aaronjeter/CrystalShireEngine/commit/89b686d792bf6834b8cca3c263f78dd579d64607) — Follower mons phase 4
+- 2026-10-16 [efa0fe63a](https://github.com/aaronjeter/CrystalShireEngine/commit/efa0fe63ab66a4d45cb73798b67f87dc688573b8) — Follow mons phase 3
+- 2026-10-16 [ebf4461c9](https://github.com/aaronjeter/CrystalShireEngine/commit/ebf4461c9edb9e6651e1c7c06ca2f26194192362) — Following mons phase 2
+- 2026-10-16 [9af1b1c82](https://github.com/aaronjeter/CrystalShireEngine/commit/9af1b1c82203649b5eab77fb869004926a898d49) — Replace menu icons with follower sprites
+- 2026-10-16 [c100cecbc](https://github.com/aaronjeter/CrystalShireEngine/commit/c100cecbc9656c777c5ce94b797c39aa44335176) — Refactor mon icon system
+- 2026-10-16 [6bd5738ee](https://github.com/aaronjeter/CrystalShireEngine/commit/6bd5738ee62d2f034cf695fbe99be9df0a9564ff) — Finish purging random phone system
+- 2026-10-16 [00fbc809f](https://github.com/aaronjeter/CrystalShireEngine/commit/00fbc809f6d85aa73728d9a2c25e8adef576c89a) — Add a new tilestring method for credits
+- 2026-10-16 [663ff856d](https://github.com/aaronjeter/CrystalShireEngine/commit/663ff856d8836397eb7d835002fdd13852da8aa0) — Fix pokedex footprint bug
+- 2026-10-16 [a08688d64](https://github.com/aaronjeter/CrystalShireEngine/commit/a08688d64d8be41ddfc1cd13668b2834eac48ca4) — Apply text compression
+- 2026-10-16 [797091a44](https://github.com/aaronjeter/CrystalShireEngine/commit/797091a44d3b8829048638fc1b9b7297be335869) — Enable Hail weather icon
+- 2026-10-16 [c83ef3ec9](https://github.com/aaronjeter/CrystalShireEngine/commit/c83ef3ec9a2beff2db890f245de1b9fb3b559578) — Add Type Icons
+- 2026-10-15 [6d0784a8d](https://github.com/aaronjeter/CrystalShireEngine/commit/6d0784a8dbfefb78988be95943718635f7dffba8) — Refactor Player Colors
+- 2026-10-15 [2f25f260e](https://github.com/aaronjeter/CrystalShireEngine/commit/2f25f260e2845bd0161e93f8c726145e80eec90e) — Change Green Rival to use new sprite
+- 2026-10-15 [69e66dcb7](https://github.com/aaronjeter/CrystalShireEngine/commit/69e66dcb7721c6842807561788644aad3daa9a9d) — Add Green as a playable character
+- 2026-10-14 [8b2719413](https://github.com/aaronjeter/CrystalShireEngine/commit/8b2719413c581a2a48fa672fa4be41d36ac64804) — Update debug scripts
+- 2026-10-14 [32d21faac](https://github.com/aaronjeter/CrystalShireEngine/commit/32d21faac0e80b9b0c44d1f30d5e05808e79e279) — Add Hall of Fame Splash Page
+- 2026-10-14 [58f72aac3](https://github.com/aaronjeter/CrystalShireEngine/commit/58f72aac3075cc72400c5cd428b138fd6cba132d) — New character select menu
+- 2026-10-12 [96b0626ed](https://github.com/aaronjeter/CrystalShireEngine/commit/96b0626ed2e6ba96e367f1d43285d6c4249f1205) — Rework routes 9 and 10
+- 2026-10-12 [34c61e300](https://github.com/aaronjeter/CrystalShireEngine/commit/34c61e300f74d9390c23c8a47cd28824ee74420e) — Add Freeze Dry
+- 2026-10-12 [5d93fc018](https://github.com/aaronjeter/CrystalShireEngine/commit/5d93fc018522f17a22d1034d08a341b0335356cf) — Add Weather Ball move and animation
+- 2026-10-12 [6e98ff544](https://github.com/aaronjeter/CrystalShireEngine/commit/6e98ff544a96d90c730004829d8d4fa93972ac70) — Fix Switch hit moves
+- 2026-10-11 [add17666d](https://github.com/aaronjeter/CrystalShireEngine/commit/add17666d13082a67f52865d9382688b4b86bd0b) — Update title screen for 10/11 patch
+- 2026-10-11 [be73ea628](https://github.com/aaronjeter/CrystalShireEngine/commit/be73ea628ba14165001c47f4a4123401c4f98fe1) — Fix Pokecenter roof
+- 2026-10-11 [b755891b8](https://github.com/aaronjeter/CrystalShireEngine/commit/b755891b8bab4f7a75faadf8059fcbf1e622b81e) — Update Kanto tileset
+- 2026-10-10 [82badb90c](https://github.com/aaronjeter/CrystalShireEngine/commit/82badb90c5caf06a1bc8b77c03750a7238eb666a) — Johto tileset cleanup
+- 2026-10-10 [7b2bede9f](https://github.com/aaronjeter/CrystalShireEngine/commit/7b2bede9f2d7273827ea7be6514d51f469115f74) — Add new wave animation to Kanto
+- 2026-10-10 [46ec03afc](https://github.com/aaronjeter/CrystalShireEngine/commit/46ec03afc28b261da38b67ab64018a959daa827a) — Apply new water animation to Johto
+- 2026-10-10 [721a98250](https://github.com/aaronjeter/CrystalShireEngine/commit/721a98250029ad319caa0446d9ce0857ae39af93) — Johto Modern tileset cleanup
+- 2026-10-10 [64f0e696a](https://github.com/aaronjeter/CrystalShireEngine/commit/64f0e696a9900a75e69352e0731bcec25908b9d3) — Add Treehouse map and Fortree NPC houses
+- 2026-10-10 [8bce3d582](https://github.com/aaronjeter/CrystalShireEngine/commit/8bce3d5824a294064dba63d0ba4ce29f9f4e734e) — Hoenn Jungle tiling update
+- 2026-10-09 [a72623de5](https://github.com/aaronjeter/CrystalShireEngine/commit/a72623de5cc5916bf9ea074f63e4b95bb816b087) — Hoenn Jungle tileset tweaks
+- 2026-10-09 [b91bdbd85](https://github.com/aaronjeter/CrystalShireEngine/commit/b91bdbd8554c3e7247a3e388aa653581d42f0a79) — Add Johto Jungle tileset
+- 2026-10-09 [450f32b5e](https://github.com/aaronjeter/CrystalShireEngine/commit/450f32b5e6176ec5b21e08b12f4fd45a022a2be0) — Split out Hoenn roof colors by town
+- 2026-10-09 [b46eac0ae](https://github.com/aaronjeter/CrystalShireEngine/commit/b46eac0aee6e9c7e94edd79a353e637b14e18739) — Make the ash weather darker
+- 2026-10-09 [023ae4ca7](https://github.com/aaronjeter/CrystalShireEngine/commit/023ae4ca7953974b4df74b03464b40d20c83b86f) — Hoenn tileset cleanup
+- 2026-10-09 [c5fa240bd](https://github.com/aaronjeter/CrystalShireEngine/commit/c5fa240bd4992320bd4948fccd50d5819a272866) — Hoenn Ocean cleanup
+- 2026-10-09 [fe0f29b3f](https://github.com/aaronjeter/CrystalShireEngine/commit/fe0f29b3fbc0ecb2ca0f5c7e49deaa0c13400142) — Sootopolis tile update
+- 2026-10-08 [e2624d297](https://github.com/aaronjeter/CrystalShireEngine/commit/e2624d297c21e00fe030c3bc4784f1e75561887e) — Sootopolis updates
+- 2026-10-08 [0b6787df4](https://github.com/aaronjeter/CrystalShireEngine/commit/0b6787df4da466454c899c1897528576ebf3c764) — Add stairs to sootopolis
+- 2026-10-08 [e819bf16e](https://github.com/aaronjeter/CrystalShireEngine/commit/e819bf16e107149524f172127168acf5ef6f7413) — Sootopolis tileset refactoring
+- 2026-10-08 [4cca987cf](https://github.com/aaronjeter/CrystalShireEngine/commit/4cca987cf4eca20427d6fe56d5d5117aca681573) — Split Sootopolis off to its own tileset
+- 2026-10-08 [3efc656db](https://github.com/aaronjeter/CrystalShireEngine/commit/3efc656dbf103095795cdf1cd6aa88abf9f57adb) — Update grass around Hoenn
+- 2026-10-08 [19e44b818](https://github.com/aaronjeter/CrystalShireEngine/commit/19e44b8183807a91a781456ab8af039d165f1d7a) — Update Hoenn trees
+- 2026-10-07 [be88add4b](https://github.com/aaronjeter/CrystalShireEngine/commit/be88add4be307022a803d0df65a70070a25e1f4a) — Fix cut/headbutt animation errors
+- 2026-10-07 [ee24d5fb0](https://github.com/aaronjeter/CrystalShireEngine/commit/ee24d5fb028df40d62c4242d346493fcf5cd351b) — Convert Hoenn tileset to use the same deep water animation as the Hoenn Ocean
+- 2026-10-07 [bf81ba09a](https://github.com/aaronjeter/CrystalShireEngine/commit/bf81ba09a27be134f1659668607f48b2d1bc0e04) — Redo Water animations
+- 2026-10-07 [3dffcb07d](https://github.com/aaronjeter/CrystalShireEngine/commit/3dffcb07dd632dd9f444da4f7b8ebbdb8f6e8ac7) — Create Hoenn Ocean tileset
+- 2026-10-07 [3e78dec8a](https://github.com/aaronjeter/CrystalShireEngine/commit/3e78dec8ac465165f571d198df24dcd00a1eee96) — Add Weather zones and ash weather
+- 2026-10-06 [f89f2c1cc](https://github.com/aaronjeter/CrystalShireEngine/commit/f89f2c1cc94c61d7d46bb8987f414b898df387d3) — Johto/Kanto tree tiling updates
+- 2026-10-06 [7a6ae1d1e](https://github.com/aaronjeter/CrystalShireEngine/commit/7a6ae1d1e628dab89a851808949985e4ecb407fe) — Use Lake tiles around Johto
+- 2026-10-06 [177aca31d](https://github.com/aaronjeter/CrystalShireEngine/commit/177aca31dfcfacf9f2fee53199643217bb4d573c) — Add Lake water tiles for Johto
+- 2026-10-06 [04caa67cc](https://github.com/aaronjeter/CrystalShireEngine/commit/04caa67ccdd543169bd48fd6ad3cfe52480d41ff) — Add Hoenn wave tile animation
+- 2026-10-06 [cb2e62e19](https://github.com/aaronjeter/CrystalShireEngine/commit/cb2e62e191811d2a6732834b192f50c0972db556) — Add the lake of rage area to rain maps
+- 2026-10-06 [74028eb88](https://github.com/aaronjeter/CrystalShireEngine/commit/74028eb88f783baa09cb2275ab81f3620baa7e25) — Re-implement weather speed abilities
+- 2026-10-06 [3cf19036d](https://github.com/aaronjeter/CrystalShireEngine/commit/3cf19036d484d21dd9252ca5ed4e13f98dc8d512) — Add automatic battle weather
+- 2026-10-06 [79b0fdf2e](https://github.com/aaronjeter/CrystalShireEngine/commit/79b0fdf2e467173e60a8b03a127c31c5f2f9b869) — Adapt Overworld Weather Effects
+- 2026-10-06 [82b62e211](https://github.com/aaronjeter/CrystalShireEngine/commit/82b62e2119dcb3de8744f15501c92f8729fcbecf) — Add Clear Body ability
+- 2026-10-06 [8964ef668](https://github.com/aaronjeter/CrystalShireEngine/commit/8964ef668de564f7a3c0ccddebc52ed81b3b52ba) — Add Magic Guard ability
+- 2026-10-06 [8361446c5](https://github.com/aaronjeter/CrystalShireEngine/commit/8361446c54bf4ea4a5688c396048d42973c0550b) — Add contact abilities
+- 2026-10-06 [913e06baf](https://github.com/aaronjeter/CrystalShireEngine/commit/913e06baffbab6f797ce1c40cfce476347a80ce7) — Fix shed skin bug
+- 2026-10-06 [56ae78387](https://github.com/aaronjeter/CrystalShireEngine/commit/56ae78387a0af8221b9a6ace6fd4ad1595064aab) — Add Shed Skin ability
+- 2026-10-05 [a1d7e9e8a](https://github.com/aaronjeter/CrystalShireEngine/commit/a1d7e9e8ada5600338650b1dd67f9e8abaa534d6) — Remove some Hoenn mons from Kanto
+- 2026-10-05 [b43aafa3f](https://github.com/aaronjeter/CrystalShireEngine/commit/b43aafa3fa5bbcfb0983748fb2ff07ecec496ea3) — Add Guts ability
+- 2026-10-05 [e74e45030](https://github.com/aaronjeter/CrystalShireEngine/commit/e74e4503064967b82af5a1072dc4d73a93776a2b) — 'nerf' Payday
+- 2026-10-05 [2f2d6f52e](https://github.com/aaronjeter/CrystalShireEngine/commit/2f2d6f52ec74a760d38ed91e3ea6bba16fed0e9a) — Give Scyther flying typing back
+- 2026-10-05 [eba2ee0a3](https://github.com/aaronjeter/CrystalShireEngine/commit/eba2ee0a3031ba80d24a2bc4d137cb3e514a2001) — Implement Technician Ability
+- 2026-10-05 [7c5b9e410](https://github.com/aaronjeter/CrystalShireEngine/commit/7c5b9e41070b849c655284ea8b4895d446c7c3f3) — Roll out new trainer macros
+- 2026-10-05 [8bff3dff0](https://github.com/aaronjeter/CrystalShireEngine/commit/8bff3dff02c5ae07d63e37d3f804f18373a3d3e7) — New Trainer party macros
+- 2026-10-04 [d03d7f44b](https://github.com/aaronjeter/CrystalShireEngine/commit/d03d7f44bdc8fca7776404267f76837dc87028c4) — Title Screen Update 10/2
+- 2026-10-04 [5ad429b81](https://github.com/aaronjeter/CrystalShireEngine/commit/5ad429b8121fc8ba2226131863fd203ebbb4a428) — Soft remove the Leech ability
+- 2026-10-02 [2643e06ab](https://github.com/aaronjeter/CrystalShireEngine/commit/2643e06abf97d2510de0a1c13c573fcf87befa57) — more dialog boxes
+- 2026-10-02 [ee4f37d54](https://github.com/aaronjeter/CrystalShireEngine/commit/ee4f37d54c7bd8cfeb50d9489c436adc559fdd3b) — update safari trainers to use dialog boxes
+- 2026-10-02 [ffec73db1](https://github.com/aaronjeter/CrystalShireEngine/commit/ffec73db16d05d4989e116773509421d9e91c9b7) — trainerafter rollout exceptions
+- 2026-10-02 [3c000fff3](https://github.com/aaronjeter/CrystalShireEngine/commit/3c000fff3803580c7e6e7f8db50ac710abe50663) — trainerafter-Hoenn dungeons
+- 2026-10-02 [0d1bbd2e3](https://github.com/aaronjeter/CrystalShireEngine/commit/0d1bbd2e3bd3826be25a4fdfaf6795d9c8fcaba9) — trainerafter: Hoenn gyms
+- 2026-10-02 [e112e4566](https://github.com/aaronjeter/CrystalShireEngine/commit/e112e45664cc926d00594e4e5e5b6363342b0031) — trainerafter Hoenn routes v2
+- 2026-10-02 [d8c39bcb4](https://github.com/aaronjeter/CrystalShireEngine/commit/d8c39bcb4567b4cfbd2c9052669eb7a5c053138a) — trainerafter Hoenn routes v1
+- 2026-10-02 [88c2dc401](https://github.com/aaronjeter/CrystalShireEngine/commit/88c2dc40170df9e816c877def5893d6d4b692686) — Fix dialog typo
+- 2026-10-02 [d5ee5ced6](https://github.com/aaronjeter/CrystalShireEngine/commit/d5ee5ced6c9bf81944e48df4ee28e0c036039307) — trainerafter rollout: Kanto Inside
+- 2026-10-02 [4d14260b9](https://github.com/aaronjeter/CrystalShireEngine/commit/4d14260b94744bddcdebb922cd745acd892fc9ea) — trainerafter rollout: Kanto Routes
+- 2026-10-02 [9935d93d2](https://github.com/aaronjeter/CrystalShireEngine/commit/9935d93d22a1d996c1b90326e5f9a0f50417c3e1) — trainerafter rollout: Johto Dungeons
+- 2026-10-02 [ffdff72ee](https://github.com/aaronjeter/CrystalShireEngine/commit/ffdff72ee9a611fe3a4124bebd30d898b3372323) — trainerafter rollout-johto gyms
+- 2026-10-02 [336ebbaf0](https://github.com/aaronjeter/CrystalShireEngine/commit/336ebbaf082d77af5e4e703a1bcc55d433a384b6) — Implement trainerafter: Johto Routes and test maps
+- 2026-10-02 [2c81ba5f1](https://github.com/aaronjeter/CrystalShireEngine/commit/2c81ba5f1edac26606cf1069d1317ba69bd33a83) — Add new trainerafter script
+- 2026-10-02 [b5b61374b](https://github.com/aaronjeter/CrystalShireEngine/commit/b5b61374b174863e6ab0cbfd525b1d1e3620fdd7) — Add dialog boxes upon trainer approach
+- 2026-10-02 [f47279463](https://github.com/aaronjeter/CrystalShireEngine/commit/f47279463280d72127b641032c3f9d3d8e0f1fbb) — Trainer Dialog Box Upgrade
+- 2026-10-01 [39db473f3](https://github.com/aaronjeter/CrystalShireEngine/commit/39db473f3733a198d435391f42135e1fd11a22df) — Update wardrobe to scrolling menu
+- 2026-10-01 [4b8f0c3e0](https://github.com/aaronjeter/CrystalShireEngine/commit/4b8f0c3e08df7770b7f6a139cb295bd019708b0b) — Fix intro menu pass-through
+- 2026-10-01 [4fa0e566c](https://github.com/aaronjeter/CrystalShireEngine/commit/4fa0e566c05785aa7675d4b4840585900f2c108b) — Add scrolling menus to intro screen
+- 2026-10-01 [d0ccb2c91](https://github.com/aaronjeter/CrystalShireEngine/commit/d0ccb2c91b816e4dd1021fda940fd4032ecbe2ab) — Add Hail Defense boost for Ice types
+- 2026-10-01 [c28e7bb1d](https://github.com/aaronjeter/CrystalShireEngine/commit/c28e7bb1d4fa867d716d2933eac6134787ac8efb) — Add Sandstorm Sp Def boost
+- 2026-10-01 [1a03118e9](https://github.com/aaronjeter/CrystalShireEngine/commit/1a03118e9242f7e96059faac5c192a639ce64c63) — Fix some minor levelup order bugs
+- 2026-10-01 [2ccd022d7](https://github.com/aaronjeter/CrystalShireEngine/commit/2ccd022d72e536d07b4418d216417e90fe50f8f5) — Prevent mons at or above level cap from gaining xp
+- 2026-10-01 [5d9d6256d](https://github.com/aaronjeter/CrystalShireEngine/commit/5d9d6256d04f48883acb31d4078891e7af38663e) — Animate Rain/Sun Between Turns
+- 2026-10-01 [1b7d2a07f](https://github.com/aaronjeter/CrystalShireEngine/commit/1b7d2a07fc2057a73570450b3f89cced29ca15bb) — Fix select item registering bug
+- 2026-09-30 [bcc259c00](https://github.com/aaronjeter/CrystalShireEngine/commit/bcc259c00710056fb7848c70162e7857e5ac37c8) — Flymap animation color fix
+- 2026-09-30 [2464d7b75](https://github.com/aaronjeter/CrystalShireEngine/commit/2464d7b7524e257e6cb3dbd5515af1557910f0bf) — Fix Birdwhistle animation error
+- 2026-09-30 [2f6022e00](https://github.com/aaronjeter/CrystalShireEngine/commit/2f6022e00f65cbff1487ba50e2d38fff2fcad812) — Update title screen for Sept 30th release
+- 2026-09-30 [bcef6c8d5](https://github.com/aaronjeter/CrystalShireEngine/commit/bcef6c8d5438178c2d3ee451fac1114697438007) — Add Hoenn Victory Road Trainer Dialog
+- 2026-09-30 [27b5803f5](https://github.com/aaronjeter/CrystalShireEngine/commit/27b5803f572509bed5c2ac19b3290ce0e6ab6f2d) — Fix Mewtwo's Type
+- 2026-09-30 [0730c6d5d](https://github.com/aaronjeter/CrystalShireEngine/commit/0730c6d5d53ee366e9332cdca26164f50b0fa384) — Update Lavaridge trainer text
+- 2026-09-30 [ea14b7b95](https://github.com/aaronjeter/CrystalShireEngine/commit/ea14b7b9594a207feee647091471f5e82018c933) — Update WC round three
+- 2026-09-30 [d640792cb](https://github.com/aaronjeter/CrystalShireEngine/commit/d640792cba9666acb7468726c72462313c18c0ab) — Add check for Hoenn Victory Road white-outs
+- 2026-09-30 [b5095ae00](https://github.com/aaronjeter/CrystalShireEngine/commit/b5095ae0089bc8c0413db05569cd188c9b23852f) — Fix Dewford Wally typo
+- 2026-09-30 [238638512](https://github.com/aaronjeter/CrystalShireEngine/commit/238638512c0d096efb44ef8082196b0c2231549d) — Update Evergrande Wally Script
+- 2026-09-30 [a3f7f8a0c](https://github.com/aaronjeter/CrystalShireEngine/commit/a3f7f8a0c6ad37543abf402c72605cee7ffa459c) — Update Lilycove Wally
+- 2026-09-30 [2a039e1a1](https://github.com/aaronjeter/CrystalShireEngine/commit/2a039e1a1008167af7dabc9aa3de4ad5845821df) — Update Lapras
+- 2026-09-30 [f20a9c645](https://github.com/aaronjeter/CrystalShireEngine/commit/f20a9c645e9765657d8e0181b74955b55753fbf9) — Update New Mauville Wally
+- 2026-09-30 [dd8b7fccb](https://github.com/aaronjeter/CrystalShireEngine/commit/dd8b7fccbb56ce4f96a8b58be90be663e2af1263) — Update Mauville Wally
+- 2026-09-30 [f6dead8cb](https://github.com/aaronjeter/CrystalShireEngine/commit/f6dead8cbc77cd9ec010e0826ab34d93e5307131) — Update Dewford wally script
+- 2026-09-30 [5a1edd5ae](https://github.com/aaronjeter/CrystalShireEngine/commit/5a1edd5ae2383aebc9c5bc3715b20b4a9bc0472d) — Update route 103 wally
+- 2026-09-30 [263df2c91](https://github.com/aaronjeter/CrystalShireEngine/commit/263df2c91fd1ccd356fe6b31f3888cf8a2eb28fd) — Update/Fix Green Rival battles
+- 2026-09-29 [78089a94f](https://github.com/aaronjeter/CrystalShireEngine/commit/78089a94ffc8a2a468e11322f5158fd325b34b82) — Update title screen for September 29th update
+- 2026-09-29 [09f9da2da](https://github.com/aaronjeter/CrystalShireEngine/commit/09f9da2da6994f3a34cfd4b5232338c2c2066f28) — Add dialog boxes to the first four rounds of the World Tournament
+- 2026-09-29 [6154bdfbb](https://github.com/aaronjeter/CrystalShireEngine/commit/6154bdfbbfaee099043b09bdece3808da02082c1) — Add Brick Break animation
+- 2026-09-29 [d4048f9e6](https://github.com/aaronjeter/CrystalShireEngine/commit/d4048f9e667a15a1b1415d239cf03fc9dce0fc83) — Add Zen Headbutt animation
+- 2026-09-29 [714bc4a05](https://github.com/aaronjeter/CrystalShireEngine/commit/714bc4a05603b6567bfe1ea6fcea5923c501a9c3) — Add new cutting animations
+- 2026-09-29 [5e821e2ac](https://github.com/aaronjeter/CrystalShireEngine/commit/5e821e2acd9d7c0877fb2c9a40858fc0ed433394) — Add Razor Shell animation
+- 2026-09-29 [f5f525565](https://github.com/aaronjeter/CrystalShireEngine/commit/f5f525565ec2f6aa5920bb5e9bbb72952a2ae562) — Add Eruption Animation
+- 2026-09-29 [1d9b3fa87](https://github.com/aaronjeter/CrystalShireEngine/commit/1d9b3fa871bd2d150a7010f09106fd53f7446f1d) — Add animations for Blast Burn and Hydro Cannon
+- 2026-09-29 [62cac64e4](https://github.com/aaronjeter/CrystalShireEngine/commit/62cac64e48f226c48ec811bfcd8648e962ec564a) — Add Shadow Force animation
+- 2026-09-29 [0ac7f9fd1](https://github.com/aaronjeter/CrystalShireEngine/commit/0ac7f9fd107deaf43b29a84fd0886a8abb90e8d3) — Add Play Rough animation
+- 2026-09-29 [7ae466b7e](https://github.com/aaronjeter/CrystalShireEngine/commit/7ae466b7eee6c4b2982d93e86dc6171e8bafcf61) — Add Poison Jab animation
+- 2026-09-29 [20451c6e8](https://github.com/aaronjeter/CrystalShireEngine/commit/20451c6e8a7a830b4c7eac393e402faa0d805f74) — Add Magical Leaf animation
+- 2026-09-29 [f08ec527c](https://github.com/aaronjeter/CrystalShireEngine/commit/f08ec527cfe2cd3b9e3e61cf19873b2c661fc0af) — Add Frenzy Plant and Nature Power animations
+- 2026-09-29 [e4b6e5600](https://github.com/aaronjeter/CrystalShireEngine/commit/e4b6e5600c77c49b406a0386c93943e25e3a703c) — Add Signal Beam animation
+- 2026-09-29 [eb642ca89](https://github.com/aaronjeter/CrystalShireEngine/commit/eb642ca896d0d77fcaa4cb71d1e563788c33c309) — Add new animation for Extrasensory
+- 2026-09-29 [524c99a0f](https://github.com/aaronjeter/CrystalShireEngine/commit/524c99a0f3713d75a98b72a29bb98828902079e6) — Update Aurora Beam animation
+- 2026-09-29 [8d6f57912](https://github.com/aaronjeter/CrystalShireEngine/commit/8d6f579120a26f1e482be4fdc9e3553a22a585a1) — Redo Silver Wind animation, and fix Icy Wind
+- 2026-09-29 [ac6b2a733](https://github.com/aaronjeter/CrystalShireEngine/commit/ac6b2a73310d7129ecaab2c83d2cfc31ffa4e042) — Add new animations for Snarl and Fae Voice
+- 2026-09-29 [310936957](https://github.com/aaronjeter/CrystalShireEngine/commit/310936957028b604a2fe024aa1d7511b1a1f8674) — Add Hurricane and Pixie Dust animations
+- 2026-09-29 [95d2b0ce8](https://github.com/aaronjeter/CrystalShireEngine/commit/95d2b0ce8c8777e3869af8dbe3fb4cc14ada3bbe) — Add Leaf Blade animation
+- 2026-09-29 [16e650bce](https://github.com/aaronjeter/CrystalShireEngine/commit/16e650bce34c3732114bdaa80c1618bb0963dee1) — Add Poison Tail animation
+- 2026-09-29 [bb0908608](https://github.com/aaronjeter/CrystalShireEngine/commit/bb0908608858cb8a943dd4364cfe60c3eb2633ab) — Redo Sludge Wave animation
+- 2026-09-29 [4a1a787c9](https://github.com/aaronjeter/CrystalShireEngine/commit/4a1a787c939bfc3930c5de82247de876b6af49cc) — Add Aqua Jet animation
+- 2026-09-29 [4492baea9](https://github.com/aaronjeter/CrystalShireEngine/commit/4492baea932e80eedbcc7d111b2ae7e637009fca) — Add new animation for Bullet Punch
+- 2026-09-29 [8e10e2d78](https://github.com/aaronjeter/CrystalShireEngine/commit/8e10e2d780b88b490a465375e0f37aafa9b478c2) — Add Crush Claw animation
+- 2026-09-29 [d9e6b6d85](https://github.com/aaronjeter/CrystalShireEngine/commit/d9e6b6d85e6219e4f0bb83c367804fc838cefb36) — Add Dragon Claw animation
+- 2026-09-29 [82deb4aa1](https://github.com/aaronjeter/CrystalShireEngine/commit/82deb4aa158c2a98aa0eb8939a92daac435639e8) — Update Icy Wind animation
+- 2026-09-29 [4ae56b8e3](https://github.com/aaronjeter/CrystalShireEngine/commit/4ae56b8e3807ee030bd7f9efedd86d99d9c27a5f) — Add Power Gem animation
+- 2026-09-29 [b5e4f5024](https://github.com/aaronjeter/CrystalShireEngine/commit/b5e4f50241c55e47f2b77291e2fde0a395364511) — Add FaerieGleam (Dazzling Gleam) animation
+- 2026-09-29 [f4df31b01](https://github.com/aaronjeter/CrystalShireEngine/commit/f4df31b011a7c87d6b1f80e0c387237daf2c8000) — Add Flash Cannon animation
+- 2026-09-29 [12ec14bd1](https://github.com/aaronjeter/CrystalShireEngine/commit/12ec14bd1955237aa08ad828849a962d9164175e) — Add Icicle Crash animation
+- 2026-09-29 [98863a6d8](https://github.com/aaronjeter/CrystalShireEngine/commit/98863a6d845e903ab15847761590e393be3262e9) — Add ShockSlam animation
+- 2026-09-29 [832f70fa4](https://github.com/aaronjeter/CrystalShireEngine/commit/832f70fa44d31140e35052e7b8cbafe56da37c8d) — Add Mud Shot animation
+- 2026-09-29 [5b0127967](https://github.com/aaronjeter/CrystalShireEngine/commit/5b012796764da050abca5ee137f34deb60dd4f4c) — Add new animation for Scald
+- 2026-09-29 [8d87434ba](https://github.com/aaronjeter/CrystalShireEngine/commit/8d87434baa731bb514afc578301ec81038e8efc9) — Update MeteorMash animation
+- 2026-09-29 [0cc62cfef](https://github.com/aaronjeter/CrystalShireEngine/commit/0cc62cfefc67cfcddc7f80cc2fed1f758f71d723) — Update Muddy Water animation
+- 2026-09-29 [b7f3fa14d](https://github.com/aaronjeter/CrystalShireEngine/commit/b7f3fa14dc77463d8a4ed54d350507bf93ed6325) — Update Blaze Kick animation
+- 2026-09-29 [2b63618b4](https://github.com/aaronjeter/CrystalShireEngine/commit/2b63618b48256c8f5cc112bddb2f08bd856c374d) — Add Heat Wave animation
+- 2026-09-29 [59beba81b](https://github.com/aaronjeter/CrystalShireEngine/commit/59beba81b0bc34c4428e6f5944c5e7bd88f59286) — Add new animation for Water Pulse
+- 2026-09-29 [b89323a2b](https://github.com/aaronjeter/CrystalShireEngine/commit/b89323a2b00be77837ed3d30f48f0c924fd669ca) — Update Mist Ball's animation
+- 2026-09-29 [58a4813dc](https://github.com/aaronjeter/CrystalShireEngine/commit/58a4813dc98525aa4e558bb793dca71561439484) — Add new animation for Aura Sphere
+- 2026-09-29 [6f579477b](https://github.com/aaronjeter/CrystalShireEngine/commit/6f579477bf56abaf01e84037874e1a85f33453d5) — Add new animation for Mist Ball
+- 2026-09-29 [55837b3e7](https://github.com/aaronjeter/CrystalShireEngine/commit/55837b3e7730078fc7cc5c767c30652a05116868) — Add new animation for MoonBlast
+- 2026-09-29 [36f2e4174](https://github.com/aaronjeter/CrystalShireEngine/commit/36f2e4174b1958d44bb312727cc19da57ae596ef) — Add new animations for Willowisp and Sacred Fire
+- 2026-09-28 [8a7667c64](https://github.com/aaronjeter/CrystalShireEngine/commit/8a7667c646119dcd8712972527b9ea98b5ea7a88) — Fix bank switching bug with cgb color switching
+- 2026-09-28 [e06f7bd37](https://github.com/aaronjeter/CrystalShireEngine/commit/e06f7bd37c7695a03eaba286840004b7b8595a85) — Add some new move effects for Shadow moves
+- 2026-09-28 [04f860b92](https://github.com/aaronjeter/CrystalShireEngine/commit/04f860b92386c568ebbd3c2f1bedfcb7c9fd449b) — Add new animations for the elemental Fang moves
+- 2026-09-28 [ecf86244e](https://github.com/aaronjeter/CrystalShireEngine/commit/ecf86244e01c892cbfbe669b62f7ad9e8a7d873c) — Give Volbeat/Illumise Prankster
+- 2026-09-28 [a9af414d9](https://github.com/aaronjeter/CrystalShireEngine/commit/a9af414d92ce000ba187194e865872fdcb47555a) — Distribute Serene Grace ability
+- 2026-09-28 [c53292fb1](https://github.com/aaronjeter/CrystalShireEngine/commit/c53292fb123dc9b2b7fc93ca53e165e85231218b) — Fix some movepool issues for Chansey/Togekiss
+- 2026-09-28 [27955bce9](https://github.com/aaronjeter/CrystalShireEngine/commit/27955bce9a9a8a83646088c99cdd744d3e831942) — Add Serene Grace ability
+- 2026-09-28 [34f9a7f6a](https://github.com/aaronjeter/CrystalShireEngine/commit/34f9a7f6ac2d48e3444aabc2c7d3e51b3c9315d6) — Change PRZ to only halve speed
+- 2026-09-28 [d73a75c33](https://github.com/aaronjeter/CrystalShireEngine/commit/d73a75c338062bda71ef8563680d802b2151e42f) — Fix Underground targeting bug
+- 2026-09-28 [387be412f](https://github.com/aaronjeter/CrystalShireEngine/commit/387be412fd8ee92e6943d25b491942882fdf6ed6) — Distribute Prankster Ability
+- 2026-09-28 [7b7a6df7f](https://github.com/aaronjeter/CrystalShireEngine/commit/7b7a6df7fd367b01f7edd42104490b7d85986d6c) — Add Prankster as an ability
+- 2026-09-28 [38835ad67](https://github.com/aaronjeter/CrystalShireEngine/commit/38835ad6764bdeb5de14d5ab94d0091e55aef31c) — Reshuffle abilities abit
+- 2026-09-28 [4f3911604](https://github.com/aaronjeter/CrystalShireEngine/commit/4f391160496b1e66c86910e949d6aaf0241af296) — Add Durable ability
+- 2026-09-28 [a56303a80](https://github.com/aaronjeter/CrystalShireEngine/commit/a56303a80a352ab5a2e24c3793b07f72af81794c) — Refactor methods to get active mon for abilities
+- 2026-09-28 [f59f4abc3](https://github.com/aaronjeter/CrystalShireEngine/commit/f59f4abc39157a44c1386a1e08645a4fcd823046) — Add abilities to some mons missing them
+- 2026-09-28 [41bda5251](https://github.com/aaronjeter/CrystalShireEngine/commit/41bda52514d6321221b83308c521a3c1342d3e90) — Add thick fat ability
+- 2026-09-27 [9bf33885f](https://github.com/aaronjeter/CrystalShireEngine/commit/9bf33885f3a26fca529d68176bab956c9dc3b64d) — Add dialog boxes for the Hoenn Elite 4
+- 2026-09-27 [2d6b84994](https://github.com/aaronjeter/CrystalShireEngine/commit/2d6b84994a41d8dc8d62565a84a24dc1649dc186) — Add dialog boxes for most of Indigo League
+- 2026-09-27 [50ad21781](https://github.com/aaronjeter/CrystalShireEngine/commit/50ad217817b63c2fe1c742a5e6e6c8603dd63d99) — Close Magnet train until Saffron is Open
+- 2026-09-27 [7cf07ec18](https://github.com/aaronjeter/CrystalShireEngine/commit/7cf07ec181bb54d404202317d6db9a46ebde6f01) — Fix Pewter Rival Event
+- 2026-09-27 [e600a2ebf](https://github.com/aaronjeter/CrystalShireEngine/commit/e600a2ebfa9186b5e3460d3f174dc9a4815a3ec0) — Update Pewter Gym
+- 2026-09-26 [96cf8a3aa](https://github.com/aaronjeter/CrystalShireEngine/commit/96cf8a3aa13cc374e2352397fa758b94333a4c59) — Fix magnet train animation error
+- 2026-09-26 [c9a804b17](https://github.com/aaronjeter/CrystalShireEngine/commit/c9a804b17a28ecf1b41bded1de070e43df074f47) — Fix prof Oak dialog box bugs
+- 2026-09-26 [e8dec7945](https://github.com/aaronjeter/CrystalShireEngine/commit/e8dec7945ecff046cadad0b975f64493c0999624) — Fix Substitute HP underflow bug
+- 2026-09-26 [b17489627](https://github.com/aaronjeter/CrystalShireEngine/commit/b174896277243db9e5b26f7c2d91a757c6f1dee7) — Add Silph Rival Encounter
+- 2026-09-26 [1fa536232](https://github.com/aaronjeter/CrystalShireEngine/commit/1fa5362323d6695856cf3efcb8dcd2db0061ccf7) — Fix Hall of Fame held item corruption bug
+- 2026-09-25 [2243fe490](https://github.com/aaronjeter/CrystalShireEngine/commit/2243fe49081bdd87986512af2bc576559e966d7e) — Update debug scripts
+- 2026-09-25 [019713932](https://github.com/aaronjeter/CrystalShireEngine/commit/0197139321e1a28c2ed25790ad3c5a28f8e8291f) — Add dialog boxes for Kanto gym leaders
+- 2026-09-25 [1a19d62e8](https://github.com/aaronjeter/CrystalShireEngine/commit/1a19d62e8946812ca7cc0f63e525bcc61f5b3cae) — Fix bugged Sand Stream ability
+- 2026-09-25 [eff13d013](https://github.com/aaronjeter/CrystalShireEngine/commit/eff13d013fcd70255a82868d5854b9f464fd0e09) — Give Mr Rime the Invisible Wall ability
+- 2026-09-25 [34e8f0b52](https://github.com/aaronjeter/CrystalShireEngine/commit/34e8f0b523d270d7a37e1722e82f1f1321ea2386) — Entrance ability animation fixes and rework
+- 2026-09-25 [e4dd09986](https://github.com/aaronjeter/CrystalShireEngine/commit/e4dd09986d1b55ef17188928ce067d7c99dfbbf9) — Add dialog pics for Hoenn Gym Leader matches
+- 2026-09-24 [35ae01c8f](https://github.com/aaronjeter/CrystalShireEngine/commit/35ae01c8f9b35ca0647ecfdc4cbafe3513c61dab) — Add dialog portrait to the standard pokecenter nurse script
+- 2026-09-24 [4522dcccf](https://github.com/aaronjeter/CrystalShireEngine/commit/4522dcccfde7bbeb01cf2c167fe5ab95671e8940) — Add Nurse trainer class
+- 2026-09-24 [92f175508](https://github.com/aaronjeter/CrystalShireEngine/commit/92f1755084d88336d719ae7b0e74562d57505e4a) — Add dialog boxes for clair in her gym
+- 2026-09-24 [ac349374c](https://github.com/aaronjeter/CrystalShireEngine/commit/ac349374ce08947b4cab7cd9ad9ac1265949ee91) — Add dialog boxes for the first 7 johto gyms
+- 2026-09-24 [f6c3d3f8c](https://github.com/aaronjeter/CrystalShireEngine/commit/f6c3d3f8cd27b289b1ba592525fa00f58ee3d285) — More decapitalization followup
+- 2026-09-24 [a53488691](https://github.com/aaronjeter/CrystalShireEngine/commit/a534886918ba3900fd0ec0263b52908f669f9307) — Add dialog pics for Elm's lab
+- 2026-09-24 [8d0ea1a8e](https://github.com/aaronjeter/CrystalShireEngine/commit/8d0ea1a8e13d41c5b58fa881d1eda4771dd19450) — Add dialog pics for Birch's Lab
+- 2026-09-24 [e58f56b57](https://github.com/aaronjeter/CrystalShireEngine/commit/e58f56b5789ce652f2a530d6a1eb36eb0a691981) — Add trainer classes for Prof Elm and Birch
+- 2026-09-24 [763f0a631](https://github.com/aaronjeter/CrystalShireEngine/commit/763f0a631e56646c8f94f198492c9989922b615e) — Rename Prof Oak's trainer class constant to OAK
+- 2026-09-24 [789e17ad2](https://github.com/aaronjeter/CrystalShireEngine/commit/789e17ad222a77cc87a9a4dade48f247d61b31db) — Add dialog boxes for Oak and Oak's starter selections
+- 2026-09-24 [5dcc60d30](https://github.com/aaronjeter/CrystalShireEngine/commit/5dcc60d30820c9a0d09f06a8f831eedac35b5d3f) — Update poke/trainer pics to remove some graphical weirdness
+- 2026-09-24 [40fd9490f](https://github.com/aaronjeter/CrystalShireEngine/commit/40fd9490f0597f4cecc4c55776868fc129591aae) — add open/close dialog helper macros
+- 2026-09-24 [cfa559ff6](https://github.com/aaronjeter/CrystalShireEngine/commit/cfa559ff6e957319262ac0086aca10b864320be4) — Add Trainerpic script
+- 2026-09-24 [f4f498e9c](https://github.com/aaronjeter/CrystalShireEngine/commit/f4f498e9c6a95fe7273a9424124cfa270b40ccc5) — Update Oak's starters to use new pokepics
+- 2026-09-24 [0c9fdcb6b](https://github.com/aaronjeter/CrystalShireEngine/commit/0c9fdcb6bf034b5966c43917316ae52b9da9b0d7) — Update pokepics to load into vtiles4
+- 2026-09-23 [0249cbb8f](https://github.com/aaronjeter/CrystalShireEngine/commit/0249cbb8fea89fd8b920c45135839ee89ee515f7) — Lock down Saffron City until the city is safe
+- 2026-09-22 [fd8f604b6](https://github.com/aaronjeter/CrystalShireEngine/commit/fd8f604b6ae6f8374beb59c9c145f08eb164a26c) — Add Rock Tunnel Rival Encounter
+- 2026-09-21 [dca50ba18](https://github.com/aaronjeter/CrystalShireEngine/commit/dca50ba18f20e5bec24d648094eaab3fb5f701fe) — Add Rival encounter at Saffron East Gate
+- 2026-09-21 [97cfeff6e](https://github.com/aaronjeter/CrystalShireEngine/commit/97cfeff6e7224e915d437f751446af045a836e9f) — Update level scaling system
+- 2026-09-20 [4bffe590f](https://github.com/aaronjeter/CrystalShireEngine/commit/4bffe590f16fa7323e6f67ccd23668b7cad0d015) — Rename starter options on intro menu
+- 2026-09-19 [ac7dd394e](https://github.com/aaronjeter/CrystalShireEngine/commit/ac7dd394e395ac605e55233d9ca6a401bec67d72) — Add moonstones to Mt Moon
+- 2026-09-18 [c65b8ce9b](https://github.com/aaronjeter/CrystalShireEngine/commit/c65b8ce9b5050d09cc01fe88336be853b47f0ed4) — Fix Froslass's stats
+- 2026-09-18 [b90aba129](https://github.com/aaronjeter/CrystalShireEngine/commit/b90aba1297bda984d97830d32630d01aba291f70) — Add Saffron North/South gate blocking events
+- 2026-09-18 [9c95edf04](https://github.com/aaronjeter/CrystalShireEngine/commit/9c95edf04b035b4ed8403a108f85a070c37c2fee) — Rename saffron city gate maps
+- 2026-09-18 [d57f08c8e](https://github.com/aaronjeter/CrystalShireEngine/commit/d57f08c8e7e9a89465f446531a9da68e3aacd287) — Rebalance Pursuit and Add Night Slash to learnsets
+- 2026-09-18 [4f9bc6846](https://github.com/aaronjeter/CrystalShireEngine/commit/4f9bc68460d4a805697061cb83d5e945bda16587) — Give Falkner his Skarmory back
+- 2026-09-17 [5aa034fa4](https://github.com/aaronjeter/CrystalShireEngine/commit/5aa034fa4dcb394acc453c35b050ab050f6c28a7) — Add Night Slash as a T3 Dark Move
+- 2026-09-16 [7ea563968](https://github.com/aaronjeter/CrystalShireEngine/commit/7ea563968f9460b8bbfbd37cab7ed6e3a8808bd7) — Replace Totartle with Mega Froslass
+- 2026-09-16 [a6e8a3e3a](https://github.com/aaronjeter/CrystalShireEngine/commit/a6e8a3e3a16884f412926ed68e4d202419c920d3) — Add Lantern to power plant event rewards
+- 2026-09-15 [945dd57cd](https://github.com/aaronjeter/CrystalShireEngine/commit/945dd57cd226d6284d880dd72f8b2a17bf118b4d) — Enable Misty event and gym pre-power plant
+- 2026-09-15 [c40ce33c0](https://github.com/aaronjeter/CrystalShireEngine/commit/c40ce33c0ebcea865c433720ad301e4a605e896c) — Add Pewter City Kanto Rival Event
+- 2026-09-15 [7eb1da989](https://github.com/aaronjeter/CrystalShireEngine/commit/7eb1da98941fe0593a75b2ec56c1765b959279bd) — Update title screen for 9/15 release
+- 2026-09-15 [e3e59b87f](https://github.com/aaronjeter/CrystalShireEngine/commit/e3e59b87f20d5029bb5d797575b30015d7f4b50f) — At Ghost DV service guy
+- 2026-09-15 [889ed65ae](https://github.com/aaronjeter/CrystalShireEngine/commit/889ed65ae773c896dc3e32ed26d8bb011353540b) — Add some recurring Silver/Gold leaves from trees
+- 2026-09-15 [39c43b5a6](https://github.com/aaronjeter/CrystalShireEngine/commit/39c43b5a628db896d6195667fd6249cc54e08784) — Update Gold/Silver leaf values
+- 2026-09-14 [ec9b6345e](https://github.com/aaronjeter/CrystalShireEngine/commit/ec9b6345eba6e6978780e4d9a77677caf07e008c) — Add DV service guy to the Power Plant
+- 2026-09-14 [23ea266a6](https://github.com/aaronjeter/CrystalShireEngine/commit/23ea266a6721aa132b0027fe57e9fd21d093fb75) — Add Diglet DV guy to Diglett Cave
+- 2026-09-14 [a49a74797](https://github.com/aaronjeter/CrystalShireEngine/commit/a49a74797fe3aa2cd012fed1ef41b07077e998f4) — Change Ground color palette to ADiglett
+- 2026-09-14 [8c0c9d489](https://github.com/aaronjeter/CrystalShireEngine/commit/8c0c9d489f10fed64795e1b8050996cfa3e70ca7) — Add Mt Moon Stone Guy
+- 2026-09-14 [c6a9acacc](https://github.com/aaronjeter/CrystalShireEngine/commit/c6a9acacc1f27f6acf4f9280095da13beaa7ddd6) — Change Poison palette to Muk
+- 2026-09-14 [08af7c1ab](https://github.com/aaronjeter/CrystalShireEngine/commit/08af7c1abe33bd5099c2de2093c6c5687e673224) — Add Toxic Rocket to Celadon Game Corner
+- 2026-09-14 [0fc6cc4ed](https://github.com/aaronjeter/CrystalShireEngine/commit/0fc6cc4edf59d377ba8ad3b7b718c36e5dc3fd9f) — Add New Mauville Card Shark
+- 2026-09-14 [6774ffc6c](https://github.com/aaronjeter/CrystalShireEngine/commit/6774ffc6cfb75bd811af141385de9015947ac259) — Change the Dark palette
+- 2026-09-14 [6c55c844b](https://github.com/aaronjeter/CrystalShireEngine/commit/6c55c844ba22acad2bd77c8b203ff934a2b7af9a) — Add Mrs Psychic, who offers the Psychic recolor and dv service
+- 2026-09-14 [1dc49e00b](https://github.com/aaronjeter/CrystalShireEngine/commit/1dc49e00bbfe6789f93828e8a4fe47d71c109d0e) — Update Regis learnsets and base stats
+- 2026-09-13 [2daeba248](https://github.com/aaronjeter/CrystalShireEngine/commit/2daeba248591834e15b6cbf10ebe952ffc2ca8fe) — Add shrine to Ho Oh
+- 2026-09-13 [2a9be8838](https://github.com/aaronjeter/CrystalShireEngine/commit/2a9be8838f1f37df3a8d3d9634c2b8e46356a02c) — Add shrine to Lugia
+- 2026-09-13 [26d160eb4](https://github.com/aaronjeter/CrystalShireEngine/commit/26d160eb44661773cc7589393b401688f2751259) — Add shrine to Mewtwo
+- 2026-09-13 [60c092679](https://github.com/aaronjeter/CrystalShireEngine/commit/60c0926794a21caee69d04004f861b31c128f0fc) — Add Shrine to Mew
+- 2026-09-13 [5b8f4074b](https://github.com/aaronjeter/CrystalShireEngine/commit/5b8f4074babaa0df89519dc122f533be602c77be) — Add shrines to Jirachi and Rayquaza
+- 2026-09-13 [cd1ed2abc](https://github.com/aaronjeter/CrystalShireEngine/commit/cd1ed2abcf9b6703ddeff0107251ac9aa57ffb7c) — Add Mt Moon Pokecenter NPCs
+- 2026-09-13 [22da35235](https://github.com/aaronjeter/CrystalShireEngine/commit/22da35235a8b48521878075345fd47510402235e) — Update Viridian Forest floor items
+- 2026-09-13 [38bdb745e](https://github.com/aaronjeter/CrystalShireEngine/commit/38bdb745e69fb21fc9178311fc80c5ea378757cd) — Add Blocker for pre-pokedex Kanto start
+- 2026-09-13 [7412617e3](https://github.com/aaronjeter/CrystalShireEngine/commit/7412617e3987aa76b01fc5a1b6d10e6b89c3aaa9) — Update Kanto starter script and add first Kanto rival encounter
+- 2026-09-12 [1f8aeecd4](https://github.com/aaronjeter/CrystalShireEngine/commit/1f8aeecd4ba47cc679814c6586d244ffae27bb24) — Update debug script
+- 2026-09-12 [8e5b69bcd](https://github.com/aaronjeter/CrystalShireEngine/commit/8e5b69bcdae83e933bf3d8c9ee0f13a59cd2cd6a) — Reformat Twin and PokefanM parties
+- 2026-09-12 [5cc314594](https://github.com/aaronjeter/CrystalShireEngine/commit/5cc31459491e18a8be4d41026b7a633db27b70b6) — Reformat PokefanF party definitions
+- 2026-09-12 [7dc031628](https://github.com/aaronjeter/CrystalShireEngine/commit/7dc031628b15a03f211941db3e571f617f7d5240) — Fix issue with custom trainer DV loading
+- 2026-09-12 [6014e812f](https://github.com/aaronjeter/CrystalShireEngine/commit/6014e812fa2adc6ea014a748f80f8622bd6a749d) — revert trainer nicknames feature due to bug
+- 2026-09-12 [65a41e1e0](https://github.com/aaronjeter/CrystalShireEngine/commit/65a41e1e0764bdc1ac4a2dae393414a584990ff2) — Revert accidental changes to Falkner's hard party
+- 2026-09-12 [11234a995](https://github.com/aaronjeter/CrystalShireEngine/commit/11234a9950f6fba9327dbf3d4411c2c1a635aaec) — Add new items to Ilex forest
+- 2026-09-12 [f505cca77](https://github.com/aaronjeter/CrystalShireEngine/commit/f505cca77bd2c48064d5cacf3db24b870080a6a0) — Add Gold/Silver leafs to wildmon held item lists
+- 2026-09-12 [2810c17db](https://github.com/aaronjeter/CrystalShireEngine/commit/2810c17dbe7a922ac98a05da6fbddf83a9df3686) — Add Ilex forest shrine blessings
+- 2026-09-12 [1c1a2a397](https://github.com/aaronjeter/CrystalShireEngine/commit/1c1a2a397c1f0796cfb6ade9a71509d4631c8e9b) — Add Kimono Dancer Lily to the Dance Theatre
+- 2026-09-12 [75fc543a5](https://github.com/aaronjeter/CrystalShireEngine/commit/75fc543a58284cb0ac40c3c1eb5d1fa9de0675ce) — Update Kimono Girls
+- 2026-09-11 [a87b12a51](https://github.com/aaronjeter/CrystalShireEngine/commit/a87b12a515e08132da5148861a13a702dd87f338) — Add new macro for adding trainers
+- 2026-09-11 [aa514d3b2](https://github.com/aaronjeter/CrystalShireEngine/commit/aa514d3b26f7f6c914516ccf0b893ca193d140ab) — Add Custom DVs for enemy trainers
+- 2026-09-11 [14c2637ae](https://github.com/aaronjeter/CrystalShireEngine/commit/14c2637aeddf255b7f5115e704aae812ac37eb80) — add nicknames for trainer party mons
+- 2026-09-11 [2775794b1](https://github.com/aaronjeter/CrystalShireEngine/commit/2775794b1ad6ece2709e0936d11941f23ee19526) — Add legendary palettes
+- 2026-09-10 [ded5c461a](https://github.com/aaronjeter/CrystalShireEngine/commit/ded5c461a14e1146b50ed3d72b8f1041bb953553) — Change Shiny Formula
+- 2026-09-10 [9f23e516e](https://github.com/aaronjeter/CrystalShireEngine/commit/9f23e516e063bc6802cf5a621db4acdf02098394) — Add custom colors for certain Hidden Power types
+- 2026-09-09 [c3afd8dd1](https://github.com/aaronjeter/CrystalShireEngine/commit/c3afd8dd19394e973320558f33d5a0ffcd72c34a) — Set Hidden Power move power to be fixed at 70 BP
+- 2026-09-08 [debfbdef0](https://github.com/aaronjeter/CrystalShireEngine/commit/debfbdef0be803418519bbf47e57f4107b4cf0a6) — Finish documenting trainer locations
+- 2026-09-08 [a36a5fa23](https://github.com/aaronjeter/CrystalShireEngine/commit/a36a5fa23683467388aa6438e0fa0abc152b73af) — Buff Rocket Ariana, and document some trainer locations
+- 2026-09-08 [ac4b5f5d3](https://github.com/aaronjeter/CrystalShireEngine/commit/ac4b5f5d3facdebe5f9b81a9faa4b679f9bb4652) — Fix level scaling bug from Cup battle type introduction
+- 2026-09-06 [d68f04a1d](https://github.com/aaronjeter/CrystalShireEngine/commit/d68f04a1d3bd3ec2052afd83574fe1153f9acf28) — Move Snorlaz and open underground path
+- 2026-09-06 [dcf4c6bd9](https://github.com/aaronjeter/CrystalShireEngine/commit/dcf4c6bd9b1c9035e2a49b4022d53dcd3523f123) — Rename 'got pokemon' event flag, and remove some unused text
+- 2026-09-05 [6bbf9df0a](https://github.com/aaronjeter/CrystalShireEngine/commit/6bbf9df0a11c2bd54b47b734988a02aeca303c79) — Remove most of the unused mobile code
+- 2026-09-05 [76e3e26ac](https://github.com/aaronjeter/CrystalShireEngine/commit/76e3e26ac6c857d42cd6606aeb70fc650d2f86d5) — Remove references to trainer ranking mobile code methods
+- 2026-09-04 [b65ed7806](https://github.com/aaronjeter/CrystalShireEngine/commit/b65ed780614dc7cfaae27f4498e286250278e8e9) — Remove the Battle Tower
+- 2026-09-04 [9094f7542](https://github.com/aaronjeter/CrystalShireEngine/commit/9094f7542b8a6290a824e8696967c10ecad72783) — Add initial Singleton Cup mon pool
+- 2026-09-04 [d81a5e944](https://github.com/aaronjeter/CrystalShireEngine/commit/d81a5e944ce3bf5058ae773217b2d4654c89ab19) — Add preleminary level scaling for Cup Battle Type
+- 2026-09-03 [570c7aefd](https://github.com/aaronjeter/CrystalShireEngine/commit/570c7aefd63eb922fdaff87c676962fd9ab30b4b) — Update Player House debug test trainer
+- 2026-09-03 [5abcadae2](https://github.com/aaronjeter/CrystalShireEngine/commit/5abcadae228818719ffd52aa0a90fbed2b0b91e8) — Add default pool for the Standard Cup
+- 2026-09-03 [e06b79fae](https://github.com/aaronjeter/CrystalShireEngine/commit/e06b79faea945856cc7a7915e9f4241ea94924b5) — Add new Battle Type for Cup events
+- 2026-08-31 [05aa16ac7](https://github.com/aaronjeter/CrystalShireEngine/commit/05aa16ac72b4c106d110576035964b7d1a808a70) — Add initial easy cup pool for playtesting
+- 2026-08-30 [caddb5713](https://github.com/aaronjeter/CrystalShireEngine/commit/caddb5713e64ac77696af71aa017d3a0dff268da) — Add cup species lists
+- 2026-08-30 [5e38a3356](https://github.com/aaronjeter/CrystalShireEngine/commit/5e38a3356921908fb06fb913f4a82e992e8b5790) — Add Green's world cup party and test little cup pool
+- 2026-08-30 [ff42a85e6](https://github.com/aaronjeter/CrystalShireEngine/commit/ff42a85e676f70eea3b5651ea71cf1ba00d07216) — Add Green as a trainer class, to serve as the Kanto Rival
+- 2026-08-19 [dbd8d9e38](https://github.com/aaronjeter/CrystalShireEngine/commit/dbd8d9e38487757966a7be9a67335a171c9e52b7) — Update title screen for August 19th release
+- 2026-08-19 [9a5883ed5](https://github.com/aaronjeter/CrystalShireEngine/commit/9a5883ed56e27b69b8afebfd163d6004f41c4dd9) — Hoenn tileset fixes and reorganization
+- 2026-08-19 [8d5d811ad](https://github.com/aaronjeter/CrystalShireEngine/commit/8d5d811ade61e1b1ce685be0fd735742ebf25d54) — Recolor and reorder Hoenn Badges
+- 2026-08-18 [312d5f59b](https://github.com/aaronjeter/CrystalShireEngine/commit/312d5f59b1d9e43932ff6ae2a77889b3e93cd438) — Add abilities to most of the rest of Gen 3
+- 2026-08-18 [9f6b0b1aa](https://github.com/aaronjeter/CrystalShireEngine/commit/9f6b0b1aa7ae4fcd208c900a50e493e0171aa080) — Change Dunsparse typing
+- 2026-08-18 [9571887a3](https://github.com/aaronjeter/CrystalShireEngine/commit/9571887a370c2f29fc1047b9af7b89d31646c224) — Nerf Rapidash2 down to a non-mega BST
+- 2026-08-17 [d7def4f7d](https://github.com/aaronjeter/CrystalShireEngine/commit/d7def4f7d2e8bcd6114eb5df1436eeab6b23931e) — Mt Pyre tileset fixes
+- 2026-08-17 [3f01e02c4](https://github.com/aaronjeter/CrystalShireEngine/commit/3f01e02c474ede1fd58c0ff97f5a8726ab72a411) — Format camper and executivef parties, and add missing Desert Jane Hardmode Party
+- 2026-08-16 [7e5c7642f](https://github.com/aaronjeter/CrystalShireEngine/commit/7e5c7642f1237611673ac48fdf9583e40d65b88b) — Hoenn tiling fixes
+- 2026-08-14 [6f313aeed](https://github.com/aaronjeter/CrystalShireEngine/commit/6f313aeed62c8f42d945466aa8d6b459d606018e) — Update title screen for August 14th release
+- 2026-08-14 [5a38dcde9](https://github.com/aaronjeter/CrystalShireEngine/commit/5a38dcde991fa61e2fa35ad52442139ac4bf455a) — Document some trainer locations
+- 2026-08-14 [e22ca500c](https://github.com/aaronjeter/CrystalShireEngine/commit/e22ca500c57c16efe9776080fa5073ac2b7c97dc) — Reformat some trainers and add a random 'easy birds' pokemon list
+- 2026-08-14 [a62b11646](https://github.com/aaronjeter/CrystalShireEngine/commit/a62b11646a13a0fdb50db1d9b707d3a297cfbd74) — Rebalance Norman
+- 2026-08-14 [6a23e74c2](https://github.com/aaronjeter/CrystalShireEngine/commit/6a23e74c2f63791ebaca533e840385b5dfedcdbf) — Rebalance Dewford and Lavaridge gyms a bit
+- 2026-08-14 [bcffec711](https://github.com/aaronjeter/CrystalShireEngine/commit/bcffec711803dfa37c07fdee82d846e69fd276d2) — Front-shift some of the worldlevel scaling
+- 2026-08-13 [c832ab0eb](https://github.com/aaronjeter/CrystalShireEngine/commit/c832ab0ebabbd343156c3e2f673ea1ba1a468cf0) — Add Hoenn Trainer Card Page
+- 2026-08-12 [0f009f082](https://github.com/aaronjeter/CrystalShireEngine/commit/0f009f082b12f04d6e6e3f78b85d006f8e480849) — Apply custom trainer colors to the Kanto trainer card page
+- 2026-08-12 [91bf97243](https://github.com/aaronjeter/CrystalShireEngine/commit/91bf97243bbef214492ddc53de5c5e5ccdcfb5ab) — Renumber Kanto badges on trainer card
+- 2026-08-10 [1f2f3f7fd](https://github.com/aaronjeter/CrystalShireEngine/commit/1f2f3f7fd6b0961174c873b4d8338b52d3a2dce3) — Tweak Hoenn Water Rock tile
+- 2026-08-10 [fb56427a2](https://github.com/aaronjeter/CrystalShireEngine/commit/fb56427a2057cb4d7513225a2c76d773aa384c2b) — Free up more space in the Hoenn Tileset
+- 2026-08-10 [81c8205a0](https://github.com/aaronjeter/CrystalShireEngine/commit/81c8205a090eac6143f29fccf13465654c1e5961) — Free up some space in the Hoenn tileset
+- 2026-08-10 [2470a1467](https://github.com/aaronjeter/CrystalShireEngine/commit/2470a146729ed0ac0bdfbc184ac2a9f26efbf245) — Hoenn tileset improvments
+- 2026-08-10 [d1945b89e](https://github.com/aaronjeter/CrystalShireEngine/commit/d1945b89e154ebb5dfa098914ba99645bf188dd3) — Update Kanto tiling (Bollards, cliff rock)
+- 2026-08-10 [b22026ea0](https://github.com/aaronjeter/CrystalShireEngine/commit/b22026ea0f1a833d5916c0c0cd69d04ee58b6b65) — Commit updated August 9th title screen
+- 2026-08-09 [cfce3b571](https://github.com/aaronjeter/CrystalShireEngine/commit/cfce3b571b1afe4199c97e8a3f930460289570b8) — Add wardrobe and outfit change to player's room
+- 2026-08-09 [d6f70a31c](https://github.com/aaronjeter/CrystalShireEngine/commit/d6f70a31c5a5f91916a062c13cf69863fc33f8a7) — Add enable bridge scripts for the Nest entrance to Meteor Tunnels East
+- 2026-08-09 [9838fba00](https://github.com/aaronjeter/CrystalShireEngine/commit/9838fba00d7619b51fd6a849db095a5af8d6b23c) — Add more player colors and split color menu to fit
+- 2026-08-09 [c6833d9c3](https://github.com/aaronjeter/CrystalShireEngine/commit/c6833d9c374dc6414582b1615def2d7abea2085f) — Azalea town retiling
+- 2026-08-09 [3516ac2f2](https://github.com/aaronjeter/CrystalShireEngine/commit/3516ac2f2edf1df1c5771180d22996cf32e8b65e) — Decapitalize trainer card
+- 2026-08-09 [489f98c4c](https://github.com/aaronjeter/CrystalShireEngine/commit/489f98c4cf8369ccb9dc8ee0e97cba9d4c5c11f0) — Add player color selection, and decouple player color from gender
+- 2026-08-08 [3153e4e22](https://github.com/aaronjeter/CrystalShireEngine/commit/3153e4e2226f604b78d5eb3ac89633de8e0b6690) — Ad Substitute to the Metronome exception list
+- 2026-08-08 [029959fd4](https://github.com/aaronjeter/CrystalShireEngine/commit/029959fd48a83dac8526826cd22f924c0eb218fe) — Condense World Cup dialog
+- 2026-08-08 [e7b356d3f](https://github.com/aaronjeter/CrystalShireEngine/commit/e7b356d3f475bc33f9404b05790b49d2fd5ae896) — Reformat Wally and Giovanni parties
+- 2026-08-08 [a5c30842f](https://github.com/aaronjeter/CrystalShireEngine/commit/a5c30842f6ab1a95ab01166b91c86e92b0cc426b) — Reformat Scientist and Youngster parties
+- 2026-08-08 [ed849f817](https://github.com/aaronjeter/CrystalShireEngine/commit/ed849f817cb429cb2a5df89b730e0b573ca483a4) — Reformat Whitney and Bugsy parties
+- 2026-08-08 [a2b00998d](https://github.com/aaronjeter/CrystalShireEngine/commit/a2b00998d6aa5e3bb79900cae42bc7c7a2a27ecb) — Clean up Lass trainer data
+- 2026-08-08 [bfbf845bd](https://github.com/aaronjeter/CrystalShireEngine/commit/bfbf845bd82e93f57cff0d6619a81950cdf1cde6) — Apply new party formatting to Falkner
+- 2026-08-08 [3dfda881d](https://github.com/aaronjeter/CrystalShireEngine/commit/3dfda881d47ac065f9c370b4d7b4da6ec24e0f3e) — Implement dbww macro to condense party definitions
+- 2026-08-08 [2c96aa062](https://github.com/aaronjeter/CrystalShireEngine/commit/2c96aa0623647851a1edfe2b466e23f61fe8361b) — Flag unused Cal1 trainer as unused
+- 2026-08-08 [6f4305f45](https://github.com/aaronjeter/CrystalShireEngine/commit/6f4305f45948a0ecbcf3896c050a208ae8ecf8b7) — Purge unused Kimono Girl trainer data
+- 2026-08-08 [6f7049b3d](https://github.com/aaronjeter/CrystalShireEngine/commit/6f7049b3d502696733781ad8796c73a006309ca2) — Purge unused Medium trainer data
+- 2026-08-08 [4085f22e4](https://github.com/aaronjeter/CrystalShireEngine/commit/4085f22e4e1b8692ed9a9fb17b6543abaafde410) — Purge unused Firebreather trainer data
+- 2026-08-08 [0f6bc0ade](https://github.com/aaronjeter/CrystalShireEngine/commit/0f6bc0ade9d3d5a4fd60750516452a57f12c595e) — Purge unused Super Nerd trainer data
+- 2026-08-08 [c8b21b0f5](https://github.com/aaronjeter/CrystalShireEngine/commit/c8b21b0f585891a6519b433431b04401432a44e7) — Purge unused SwimmerM trainer data
+- 2026-08-08 [120aa2189](https://github.com/aaronjeter/CrystalShireEngine/commit/120aa218958f113c3d7233f9467ffed730ebefdf) — Purge unused Gentleman trainer data
+- 2026-08-08 [2f7dc6d3a](https://github.com/aaronjeter/CrystalShireEngine/commit/2f7dc6d3a145c31d77c000c7061fc5612f972feb) — Purge unused Biker trainer data
+- 2026-08-08 [e81ec9535](https://github.com/aaronjeter/CrystalShireEngine/commit/e81ec953575e1600fa5065956d682c5a3cf72023) — Purge unused Camper trainer data
+- 2026-08-08 [910fddfe9](https://github.com/aaronjeter/CrystalShireEngine/commit/910fddfe9b9c340ff8fe78be2889a36ddddc3165) — Purge various unreferenced trainer event flags
+- 2026-08-08 [8f461d478](https://github.com/aaronjeter/CrystalShireEngine/commit/8f461d4788aa0145264ad3d997ec15b84751f269) — Purge unused Beauty trainer data
+- 2026-08-08 [ed46d46a0](https://github.com/aaronjeter/CrystalShireEngine/commit/ed46d46a09a9e8a564bcf8aef6dd932a1aeb350e) — Purge unused CooltrainerM data
+- 2026-08-08 [6034386bc](https://github.com/aaronjeter/CrystalShireEngine/commit/6034386bcb38a6f954d4aa0c8ddef28abc6f915a) — Purge unused SwimmerF parties and events
+- 2026-08-08 [a110ea953](https://github.com/aaronjeter/CrystalShireEngine/commit/a110ea9535a4144a704048f791246035fb80354c) — Remove unused schoolboy and picnicker event flags
+- 2026-08-08 [87014c6fe](https://github.com/aaronjeter/CrystalShireEngine/commit/87014c6fe72293cc772cc7947fbd567a12142bb1) — Remove duplicate twin trainers, constants, and event flags
+- 2026-08-08 [536212454](https://github.com/aaronjeter/CrystalShireEngine/commit/5362124547134a05d2091c302fca51cb984a63b0) — Remove duplicate twin trainer scripts
+- 2026-08-08 [6a691b0a1](https://github.com/aaronjeter/CrystalShireEngine/commit/6a691b0a1cad9fddbab5bbfeedf86876815a569c) — Flag unused event flags for later deletion
+- 2026-08-07 [eb63c91d9](https://github.com/aaronjeter/CrystalShireEngine/commit/eb63c91d90de8ef926b1a36dc3a23606285672f7) — Mark unused trainer constants for future deletion
+- 2026-08-07 [261982f36](https://github.com/aaronjeter/CrystalShireEngine/commit/261982f365d87cab2659647a8f4ae1ba1433a91c) — Johto Grass tile changes
+- 2026-08-07 [9f97e98a0](https://github.com/aaronjeter/CrystalShireEngine/commit/9f97e98a0cccb48879916b4d8e305fa23fd64349) — Update random party lists
+- 2026-08-07 [ad8a011a1](https://github.com/aaronjeter/CrystalShireEngine/commit/ad8a011a1d5705883796be46940a8efb0590e5f1) — Refactor Random list party definitions
+- 2026-08-07 [aa212e737](https://github.com/aaronjeter/CrystalShireEngine/commit/aa212e737fd6c56afd8b7d46276b9a646e793688) — Redo johto modern grass tiles a bit
+- 2026-08-06 [12ff95c20](https://github.com/aaronjeter/CrystalShireEngine/commit/12ff95c206b0463ce8fe4d60eee6524cc8cbaaae) — Update title for August 6th release
+- 2026-08-06 [fcc7a8a17](https://github.com/aaronjeter/CrystalShireEngine/commit/fcc7a8a170789bf731fa3a44ddbe7c2a365f6fcb) — Add Petra to Evergrande Dungeon
+- 2026-08-06 [d9552e4c5](https://github.com/aaronjeter/CrystalShireEngine/commit/d9552e4c5fad9eed413f055db9e165c8bb55f917) — Add Meteor Falls wildmons
+- 2026-08-06 [34567e758](https://github.com/aaronjeter/CrystalShireEngine/commit/34567e75863b6d716b445df8d39dc48f1edf8e3a) — Meteor falls map/warp fixes
+- 2026-08-06 [166c1bda1](https://github.com/aaronjeter/CrystalShireEngine/commit/166c1bda1e4223d274140c7cf0be811193a17abe) — Add some desert fossils
+- 2026-08-06 [91c06bac5](https://github.com/aaronjeter/CrystalShireEngine/commit/91c06bac571f1034c65a22d2a0c2b0303f9d291f) — Add Switch_Hit effect and moves
+- 2026-08-06 [4fd4337be](https://github.com/aaronjeter/CrystalShireEngine/commit/4fd4337be092c71a865eefb03f849bb1f74f08a5) — Fix a couple mon names
+- 2026-08-06 [74a6031c8](https://github.com/aaronjeter/CrystalShireEngine/commit/74a6031c843ee9b3d750d9f98ed8e441b20cbd52) — Move Hoenn Waterfall HM
+- 2026-08-05 [47c6d2438](https://github.com/aaronjeter/CrystalShireEngine/commit/47c6d2438ba68e58c6ae98008406ae67a0d7aad6) — Update debug scripts
+- 2026-08-05 [90d9c9908](https://github.com/aaronjeter/CrystalShireEngine/commit/90d9c9908e3f250389ef7d21d39d083d84fb6c77) — Update Setup AI layer
+- 2026-08-05 [a8222589d](https://github.com/aaronjeter/CrystalShireEngine/commit/a8222589d96aea468cbbc07476a791e37fac8636) — Add remaining meteor falls maps
+- 2026-08-04 [f939e5c49](https://github.com/aaronjeter/CrystalShireEngine/commit/f939e5c49f43005892cc0b142163bd1e69f72bcd) — Hoenn Folder Reorg
+- 2026-08-04 [7e1683dc2](https://github.com/aaronjeter/CrystalShireEngine/commit/7e1683dc2d34904e99edd1c13eac68f82378f669) — Add Meteor Tunnels Eastern section
+- 2026-08-04 [fb1ab0efc](https://github.com/aaronjeter/CrystalShireEngine/commit/fb1ab0efc603d1463edb45e8576e5b618162d617) — Update Johto Blockers
+- 2026-08-03 [9105f9c7f](https://github.com/aaronjeter/CrystalShireEngine/commit/9105f9c7f8fc75a96ba92c0d5299be628acf9ebc) — Moves balance pass
+- 2026-08-03 [a5a920d49](https://github.com/aaronjeter/CrystalShireEngine/commit/a5a920d49244bf408b3e55a3cf5cb93899507f41) — Re-type/shift stats for the Djinn and Venomoth
+- 2026-08-03 [59c610cce](https://github.com/aaronjeter/CrystalShireEngine/commit/59c610ccee7e8e487b38cf7c5fd4e0f31854afe9) — Add Meteor Tunnels West and floor items
+- 2026-08-02 [ab8b002be](https://github.com/aaronjeter/CrystalShireEngine/commit/ab8b002bebf322a8361d1443fdc0c0392f1cd1d5) — Add Meteor Tunnel Center map
+- 2026-08-02 [d2cf5892a](https://github.com/aaronjeter/CrystalShireEngine/commit/d2cf5892a18a76d643200fba7f3a634885ae39c4) — Add Mirage Tower and fossils
+- 2026-08-02 [9c5d442f6](https://github.com/aaronjeter/CrystalShireEngine/commit/9c5d442f69be908decf54c15fbbdfac0336c5e04) — Registeel lair retiling
+- 2026-08-02 [a1f333e0a](https://github.com/aaronjeter/CrystalShireEngine/commit/a1f333e0a1b6ecbdca4596d2b584a6df8a4bfad3) — re-tile regirock's lair
+- 2026-08-02 [fc4c46fe5](https://github.com/aaronjeter/CrystalShireEngine/commit/fc4c46fe56ed343c3c6970bf7067fad3bbd1a306) — Reset legendary mon flags upon beating the elite four
+- 2026-08-02 [d66b34119](https://github.com/aaronjeter/CrystalShireEngine/commit/d66b3411900ecd0b6f5e6a7bc735257b157ec6d9) — Refactor Mew event
+- 2026-08-02 [43c7aaa00](https://github.com/aaronjeter/CrystalShireEngine/commit/43c7aaa007064698971baa454344a0a978677263) — Rewrite Desert latias/latios/Jane event
+- 2026-08-01 [35400a0f3](https://github.com/aaronjeter/CrystalShireEngine/commit/35400a0f3bac89cb4e52e9941ba3918f512b4605) — Add the Rustboro Devon Lab
+- 2026-08-01 [678a4e384](https://github.com/aaronjeter/CrystalShireEngine/commit/678a4e38437eb089cd1b8f2c901fd77bf8c8428e) — Fix issue with Polkadot Bow type boost
+- 2026-08-01 [8ac79c804](https://github.com/aaronjeter/CrystalShireEngine/commit/8ac79c804616ea054a75d7e85abfad86c6f20607) — Retile Evergrande Dungeon (Hoenn Victory Road)
+- 2026-08-01 [0180bcdfc](https://github.com/aaronjeter/CrystalShireEngine/commit/0180bcdfc8c1206372d7fbfc1fb2a40bb2612f1e) — Retile and bugfix Fiery Path
+- 2026-08-01 [dd6dd452a](https://github.com/aaronjeter/CrystalShireEngine/commit/dd6dd452ab37efb60bc0022704949ea018eb3919) — Retile Granite Caves cliffs/rock tiles
+- 2026-08-01 [f05c53a43](https://github.com/aaronjeter/CrystalShireEngine/commit/f05c53a437812266996fee53a9c0686822b33d27) — Partially re-tile fiery path
+- 2026-08-01 [c1abbac09](https://github.com/aaronjeter/CrystalShireEngine/commit/c1abbac09ae36246cf5cde9aafa8aa5250f4acca) — Re-tile rustturf tunnel
+- 2026-08-01 [195c2dca4](https://github.com/aaronjeter/CrystalShireEngine/commit/195c2dca4a237367fdad6d83cecbb403e5c869d4) — Re-tile Meteor Falls
+- 2026-08-01 [bd9c10ed0](https://github.com/aaronjeter/CrystalShireEngine/commit/bd9c10ed0514f131fcb0dd9012cea3fc268bc0fa) — Update some dialog around Mauville
+- 2026-07-29 [407419624](https://github.com/aaronjeter/CrystalShireEngine/commit/407419624e165e35df7318f3547a776a6990f6ee) — - Updating move descriptions
+- 2026-07-29 [cbebc0196](https://github.com/aaronjeter/CrystalShireEngine/commit/cbebc0196f5dc4e1914a461ceb9d441f6c2ed001) — Move Hisuian Voltrob to Ilex forest
+- 2026-07-29 [dfa67153e](https://github.com/aaronjeter/CrystalShireEngine/commit/dfa67153e9a0675946ca48b4118df9dadc44c7c6) — Add fossils to wildmon held item lists
+- 2026-07-29 [3927d8c68](https://github.com/aaronjeter/CrystalShireEngine/commit/3927d8c68dc7ba86aa3fb04c8332929ab772ccdb) — Fossil Mon Buffs
+- 2026-07-29 [d7c1d4fe4](https://github.com/aaronjeter/CrystalShireEngine/commit/d7c1d4fe4126de46e59e3c4f82c169de16a4193b) — Distribute fossils around Kanto and Johto
+- 2026-07-28 [25d197fef](https://github.com/aaronjeter/CrystalShireEngine/commit/25d197fef7a53f532527c624fe1f35d7d95c788c) — Remove fossil mons from 'normal' encounter tables
+- 2026-07-28 [74e227f84](https://github.com/aaronjeter/CrystalShireEngine/commit/74e227f8448700cf87ada093a5c1d0b069ac33c8) — Add Pewter Museum upstairs scripts
+- 2026-07-28 [e4726d038](https://github.com/aaronjeter/CrystalShireEngine/commit/e4726d038d452aef4e5cbf4620278b14f1296b42) — Add Pewter Museum Upstairs
+- 2026-07-28 [dbe08298c](https://github.com/aaronjeter/CrystalShireEngine/commit/dbe08298c79590b2acf99dc77683a94267f5cc71) — Add pewter Museum
+- 2026-07-28 [529997a20](https://github.com/aaronjeter/CrystalShireEngine/commit/529997a20567bcfac404fba440bd64cc0e62577f) — Convert Beta Word Room tileset to Museum
+- 2026-07-28 [5c03bba36](https://github.com/aaronjeter/CrystalShireEngine/commit/5c03bba36ae68e99027f205b643c49b18d24a9d9) — Reserver event flags for Fossils, and add descriptions
+- 2026-07-28 [a7fe86bef](https://github.com/aaronjeter/CrystalShireEngine/commit/a7fe86bef308093af57e1cf179af39a0f25a45d3) — Repurpose unused item constants for fossils
+- 2026-07-27 [5533cd488](https://github.com/aaronjeter/CrystalShireEngine/commit/5533cd4889fa45f40481bf2aef7dc007a9fa0211) — Ad THunderpunch to Hoenn mons tm sets
+- 2026-07-27 [996c552db](https://github.com/aaronjeter/CrystalShireEngine/commit/996c552db24c70ebe9c032136d0781922dc628cf) — Add Fire Punch to hoenn mon tm sets
+- 2026-07-27 [f6e6e2344](https://github.com/aaronjeter/CrystalShireEngine/commit/f6e6e2344960e206b05e51b727ca656398c1af02) — Add Ice punch to Hoenn learnsets
+- 2026-07-26 [2d80b5645](https://github.com/aaronjeter/CrystalShireEngine/commit/2d80b5645858cb29cdd47cfbf3522ed8a6a61078) — Fix verdanturf spawn/flypoint
+- 2026-07-26 [934e40ee7](https://github.com/aaronjeter/CrystalShireEngine/commit/934e40ee741fcdeaa79b28ca80d0aa2268db123d) — Update female psychic trainer sprite
+- 2026-07-26 [1f21523ed](https://github.com/aaronjeter/CrystalShireEngine/commit/1f21523ed55af526e3fc0a7a7ef978de5e9111aa) — Update title screen for 7/26 release
+- 2026-07-26 [5524d2bab](https://github.com/aaronjeter/CrystalShireEngine/commit/5524d2bab2ff42609ed2d1a441141a43be556cc2) — Add held items to some wild Johto mons
+- 2026-07-26 [f2390125c](https://github.com/aaronjeter/CrystalShireEngine/commit/f2390125c21cf7894594ac500cc41fc7654d4cad) — Distribute held items to some wild Hoenn mons
+- 2026-07-26 [905f7fedb](https://github.com/aaronjeter/CrystalShireEngine/commit/905f7fedbf77671af7d99b88a648927d157699ce) — Add some Fluff NPCs around Lilycove Dept Store
+- 2026-07-26 [b6e202344](https://github.com/aaronjeter/CrystalShireEngine/commit/b6e202344f7251a04d237463c3e5ab365550de60) — Customize Lilycove Dept Shop inventories
+- 2026-07-26 [c28eb45c5](https://github.com/aaronjeter/CrystalShireEngine/commit/c28eb45c5f3496d54488e5d254aa543f00be388c) — Add Lilycove Department Store
+- 2026-07-26 [61b732fcd](https://github.com/aaronjeter/CrystalShireEngine/commit/61b732fcd15566c2993602797f9ff93069970e63) — Add Evergrande Wally event
+- 2026-07-26 [f9b164db2](https://github.com/aaronjeter/CrystalShireEngine/commit/f9b164db25295bcd2bf114c1525f2c860344a09c) — Add Lilycove Wally event
+- 2026-07-26 [0cd6e120a](https://github.com/aaronjeter/CrystalShireEngine/commit/0cd6e120a5d4cf184e235f4fd5b0509acc592671) — Add New Mauville Wally event
+- 2026-07-25 [13bb6041d](https://github.com/aaronjeter/CrystalShireEngine/commit/13bb6041d948589e0d3a8ac7f9a67c28f513f92b) — Add Mauville Wally event
+- 2026-07-25 [9ef46fe06](https://github.com/aaronjeter/CrystalShireEngine/commit/9ef46fe069081c21edc4c0773c588cc04008b1d6) — More Hoenn grass tiling tweaks
+- 2026-07-25 [20aa99f72](https://github.com/aaronjeter/CrystalShireEngine/commit/20aa99f72f960bc9121ff3205c288cc586dd020c) — Add some easter eggs
+- 2026-07-24 [ca27d8185](https://github.com/aaronjeter/CrystalShireEngine/commit/ca27d81859893945efc2f9fa1d3273a5b5dfbd29) — Fix bug with Scientist Marc's hard party
+- 2026-07-23 [52bd9236f](https://github.com/aaronjeter/CrystalShireEngine/commit/52bd9236fba6143e75002e462712d58911169a3e) — Remove Substitute from 'natural' levelup sets
+- 2026-07-23 [e47372ab8](https://github.com/aaronjeter/CrystalShireEngine/commit/e47372ab8b424ca4d7084f65a8060ac461bf2fd8) — Add Dewford Wally event
+- 2026-07-23 [be25901ef](https://github.com/aaronjeter/CrystalShireEngine/commit/be25901ef60ee8a170f59efa5ca849a3bddf70f4) — Updating tiling around Dewford town
+- 2026-07-22 [e5d831fee](https://github.com/aaronjeter/CrystalShireEngine/commit/e5d831fee1880342755dc3209722c8e6a3cb6f76) — Add Hoenn starter rival script, and first rival encounter
+- 2026-07-22 [eac8ef173](https://github.com/aaronjeter/CrystalShireEngine/commit/eac8ef173dc07f56c876b051ce611ce51723a70b) — Add Wally trainer class and parties
+- 2026-07-22 [dfd8f805a](https://github.com/aaronjeter/CrystalShireEngine/commit/dfd8f805ae2bc486f55f2fa86d95c6d2f683d2d1) — mark event flags from old phone system for reuse
+- 2026-07-22 [a8c09d0e1](https://github.com/aaronjeter/CrystalShireEngine/commit/a8c09d0e191167df6db886ef8b96045574a40c03) — Reinstate Sudowoodo as a Johto route blocker
+- 2026-07-22 [2a151c004](https://github.com/aaronjeter/CrystalShireEngine/commit/2a151c00412de5e4e2ca06af935291acbf2cc994) — Refactor Johto Rival scripts/parties
+- 2026-07-22 [9c3dedcf2](https://github.com/aaronjeter/CrystalShireEngine/commit/9c3dedcf24fe213835ff386f65cfe0d3d6ac47a1) — Remove Silver's kanto encounters and party data
+- 2026-07-22 [d87a77350](https://github.com/aaronjeter/CrystalShireEngine/commit/d87a773506707659832ff720f481d8e630599589) — Tweak the hoenn grassy/cliff corner tiles
+- 2026-07-21 [7214629e9](https://github.com/aaronjeter/CrystalShireEngine/commit/7214629e9e57b9aab67c144081991c4901f19d9b) — Add Djinn to overworld sprite list
+- 2026-07-21 [049b00e2a](https://github.com/aaronjeter/CrystalShireEngine/commit/049b00e2a991e9ca336ab7b5b9c6feb763d56ec0) — Combine alph tilesets
+- 2026-07-21 [293001721](https://github.com/aaronjeter/CrystalShireEngine/commit/293001721586a3eafb181ace9c28bd1832eb9383) — Add Djinn menu icons
+- 2026-07-21 [d4589fd32](https://github.com/aaronjeter/CrystalShireEngine/commit/d4589fd326aee19c2216c1c0204469a2f235f5c9) — Remove duplicate learnset entry for Venus
+- 2026-07-21 [70821ee07](https://github.com/aaronjeter/CrystalShireEngine/commit/70821ee075ad2100baf508bd071861fda17c5861) — Add Dragon Fang to appropriate wildmons
+- 2026-07-21 [511bf1c33](https://github.com/aaronjeter/CrystalShireEngine/commit/511bf1c33b968fb2c7b71fbea863f6814ad6cf88) — Nerf Luvdisc
+- 2026-07-21 [4a73695da](https://github.com/aaronjeter/CrystalShireEngine/commit/4a73695da37b207b1e5e98013e708c07a865bc67) — Update Djinn stats/learnsets
+- 2026-07-20 [05d528c49](https://github.com/aaronjeter/CrystalShireEngine/commit/05d528c4926f06acbef823ccf0006b69b56deb91) — Add Elemental Djinn, first draft
+- 2026-07-19 [a9afa619f](https://github.com/aaronjeter/CrystalShireEngine/commit/a9afa619fea40f06f4c89dd7a6b8203e03e79847) — Fix issue with picnicker maria's hard party
+- 2026-07-19 [41299a4b9](https://github.com/aaronjeter/CrystalShireEngine/commit/41299a4b9e83514aeedba6e164268b0b1b297fef) — Fix birdwhistle game crash issue
+- 2026-07-19 [1bad44271](https://github.com/aaronjeter/CrystalShireEngine/commit/1bad44271a91ae3cb681b07d7f2656bc3cfa4764) — Update title for July 19th update
+- 2026-07-19 [2d583c99e](https://github.com/aaronjeter/CrystalShireEngine/commit/2d583c99e9b95b1bfcf8ac8584555f3b927a3135) — Birdwhistle refactor
+- 2026-07-18 [d07ae6884](https://github.com/aaronjeter/CrystalShireEngine/commit/d07ae68848684f7c9cdfefb6323d8f21d0de3985) — Base stats folder reorg; alolan
+- 2026-07-18 [2bd74f53f](https://github.com/aaronjeter/CrystalShireEngine/commit/2bd74f53f7c56b04af70497657cf031d5453ef38) — Update Title for July 18th release
+- 2026-07-18 [0e95f27b6](https://github.com/aaronjeter/CrystalShireEngine/commit/0e95f27b6669545cd2937001730cff8b64057f12) — Fix Decidueye's stats
+- 2026-07-18 [be047eb57](https://github.com/aaronjeter/CrystalShireEngine/commit/be047eb57421a59693abb1455b5013dbef9af521) — Add alolan starters to encounter tables
+- 2026-07-18 [519c7b0e9](https://github.com/aaronjeter/CrystalShireEngine/commit/519c7b0e9d853fae4db54f5b83fe4e565d6c9a8e) — Add alolan starters as starter options
+- 2026-07-18 [18cb510e2](https://github.com/aaronjeter/CrystalShireEngine/commit/18cb510e2c1197ca1db9ea17e5f111b2f68def92) — Add Alolan starters
+- 2026-07-17 [e30a2f4b2](https://github.com/aaronjeter/CrystalShireEngine/commit/e30a2f4b2eaf81f434ef0efbe00942f214298f96) — More levelup group changes
+- 2026-07-17 [f2c7d7b8c](https://github.com/aaronjeter/CrystalShireEngine/commit/f2c7d7b8c0b592e68f58b118c49b70b1259dceb2) — More levelup group changes
+- 2026-07-17 [c5b3a3028](https://github.com/aaronjeter/CrystalShireEngine/commit/c5b3a3028f91bfcb2bb1f0bc10edfa7ca047fac1) — Add coins to debug script
+- 2026-07-17 [6135b8d7e](https://github.com/aaronjeter/CrystalShireEngine/commit/6135b8d7e30c609a43b35ecb263a1e329641d601) — Move some mons from Slow to Medium Slow levelup group
+- 2026-07-17 [05f27b0cb](https://github.com/aaronjeter/CrystalShireEngine/commit/05f27b0cbd3571692083b796b7ade9200722254f) — Update Indoor Green color pal
+- 2026-07-17 [a3aca1f30](https://github.com/aaronjeter/CrystalShireEngine/commit/a3aca1f30f6cd814065ed8ebca7fbe4285c70b1f) — Refactor Blue Leader Script, and add TM
+- 2026-07-17 [57279b1bd](https://github.com/aaronjeter/CrystalShireEngine/commit/57279b1bd353e961380147d4c1a0025a4772fb1a) — Refactor Blaine script, and add TM
+- 2026-07-17 [07626f0c0](https://github.com/aaronjeter/CrystalShireEngine/commit/07626f0c0b82801794604055218cff41437bc88e) — Refactor Sabrina script, and add TM
+- 2026-07-17 [1f8bea2b5](https://github.com/aaronjeter/CrystalShireEngine/commit/1f8bea2b516d73e1f8607a95e83491f91ab8ff35) — Refactor Janine Script
+- 2026-07-17 [77e71c006](https://github.com/aaronjeter/CrystalShireEngine/commit/77e71c006003958a4e50d1a2a14d26fd843bb55d) — Swap Psychic for Giga Drain as Celadon Casino Reward
+- 2026-07-17 [8f1655798](https://github.com/aaronjeter/CrystalShireEngine/commit/8f165579888af014f92e6cff0ff85a9df3573d7b) — Refactor Erika script, and change TM
+- 2026-07-17 [3ed92c4f8](https://github.com/aaronjeter/CrystalShireEngine/commit/3ed92c4f8a9d9fc9315def855635cc3aec86b5f8) — Refactor Lt Surge script, and add TM
+- 2026-07-17 [d8ccd3a97](https://github.com/aaronjeter/CrystalShireEngine/commit/d8ccd3a97c33564693441be6a331b7c7867bf4ef) — Add route 115 Poison fang Tm, plus minor block changes
+- 2026-07-17 [baf6d1ee5](https://github.com/aaronjeter/CrystalShireEngine/commit/baf6d1ee5ca97d60c229e7504167560249f04915) — Add the Elemental Fang moves to Mauville Game Corner
+- 2026-07-17 [960b03e09](https://github.com/aaronjeter/CrystalShireEngine/commit/960b03e091dede1e6c8bcbccbfa459fa03c0334d) — Refactor Wallace's script, and add TM
+- 2026-07-16 [1c291f259](https://github.com/aaronjeter/CrystalShireEngine/commit/1c291f2599d05456c2c6b0ba880766211170ffb3) — Update Tate&Liza script, and add TM
+- 2026-07-16 [0394b3aa7](https://github.com/aaronjeter/CrystalShireEngine/commit/0394b3aa72963529dd2ce2bbd1a2cdfa59348ae9) — Add badge check to Lilycove Harbor
+- 2026-07-16 [3f2fcc363](https://github.com/aaronjeter/CrystalShireEngine/commit/3f2fcc363f9b911919617efd1cc4a8702d0e0fdc) — Update Normal script, and add TM
+- 2026-07-16 [c1309a1ad](https://github.com/aaronjeter/CrystalShireEngine/commit/c1309a1ad516ca2fcf7927da0077e32243486deb) — Add new AI Ability Layer
+- 2026-07-16 [760fca762](https://github.com/aaronjeter/CrystalShireEngine/commit/760fca76243e0babde8b2f40e82d222dd736e875) — Add explicit check for Ground Targets to Smart Paralyze AI
+- 2026-07-16 [c4e654928](https://github.com/aaronjeter/CrystalShireEngine/commit/c4e6549284af53a0ee0d9625d144b23f138b889f) — Move some map objects on route 110
+- 2026-07-16 [f655d8405](https://github.com/aaronjeter/CrystalShireEngine/commit/f655d840582b133d756446f96a01c0f78031d64e) — Update Status AI to avoid status effect type immunities
+- 2026-07-16 [45e39784a](https://github.com/aaronjeter/CrystalShireEngine/commit/45e39784af9074baa9476e0cb2c0beae3eea2cab) — First draft of TypeImmunityHandler, unreferenced
+- 2026-07-15 [8587a4dd1](https://github.com/aaronjeter/CrystalShireEngine/commit/8587a4dd18638ce8a5fb66e5e538bde2ea4a7d40) — Add type status immunities
+- 2026-07-15 [2edaf3fd4](https://github.com/aaronjeter/CrystalShireEngine/commit/2edaf3fd42760f6e609c5a2883e6c44483ab2c86) — Distribute Venoshock to move pools
+- 2026-07-15 [1efc86a28](https://github.com/aaronjeter/CrystalShireEngine/commit/1efc86a28d5ad7ea07c6f2f8eca272c86cd5cc53) — Add Hex to learnsets
+- 2026-07-15 [a70d5cf02](https://github.com/aaronjeter/CrystalShireEngine/commit/a70d5cf027d1f5227ca54e06a2cd704338d7c572) — Add Conditional boost move effect, along with Hex and Venoshock
+- 2026-07-15 [47d550cce](https://github.com/aaronjeter/CrystalShireEngine/commit/47d550ccea61b22ec954c6264f1e859eff21bbf8) — Condense Winona's dialog
+- 2026-07-15 [b0f9ff281](https://github.com/aaronjeter/CrystalShireEngine/commit/b0f9ff281f4918e2379de32edddb4dcf255e7f88) — Update Winona script, and add TM
+- 2026-07-15 [dd2a265bf](https://github.com/aaronjeter/CrystalShireEngine/commit/dd2a265bf9ba503a74a8055ebbfb11252cea6409) — Add second Colon for Regeneration Mons list
+- 2026-07-15 [ca33ef2bf](https://github.com/aaronjeter/CrystalShireEngine/commit/ca33ef2bf99cc34e789ed1d0f7bc45c0c8cafde6) — Fix Metang Metagross Palette
+- 2026-07-15 [dc7982c61](https://github.com/aaronjeter/CrystalShireEngine/commit/dc7982c61a64d7a2d05123ff68e7834eef7dda75) — Fix PC load letter issue
+- 2026-07-15 [6f574961e](https://github.com/aaronjeter/CrystalShireEngine/commit/6f574961e94a5b9fe094cdd0ca2908d56666aebb) — Hoenn grass tiling updates
+- 2026-07-14 [13bd45096](https://github.com/aaronjeter/CrystalShireEngine/commit/13bd45096404e9ccc7baf1936faad10b5847a9ff) — Refactor Flannery script, and add TM
+- 2026-07-14 [573457cc4](https://github.com/aaronjeter/CrystalShireEngine/commit/573457cc41fae43986663a8fd410133ab23b7476) — Remove more fishing groups
+- 2026-07-14 [5a1998d0a](https://github.com/aaronjeter/CrystalShireEngine/commit/5a1998d0a2681c928867af648f7385c3c400ec4f) — Refactor Wattson script and add TM
+- 2026-07-14 [5ca68a0d3](https://github.com/aaronjeter/CrystalShireEngine/commit/5ca68a0d37ead102183082871492c60053da01dd) — Remove redundtant fishing time groups
+- 2026-07-14 [3dc0171d0](https://github.com/aaronjeter/CrystalShireEngine/commit/3dc0171d0af03e120d1bb40d5f1d6556ee2fc64b) — Remove Unused Fishing Groups from maps
+- 2026-07-14 [3f135ae04](https://github.com/aaronjeter/CrystalShireEngine/commit/3f135ae04710884d312cce2304cf720772dd42dd) — Refactor Brawly script and give TM
+- 2026-07-14 [4c4ea5f90](https://github.com/aaronjeter/CrystalShireEngine/commit/4c4ea5f905a828af771a1d4664163ad799b2267c) — Refactor Roxanne Script, and add TM
+- 2026-07-14 [2d944912a](https://github.com/aaronjeter/CrystalShireEngine/commit/2d944912a6aa4889a7304e6251e35da12e6f47b7) — Refactor Misty script and add TM
+- 2026-07-14 [53e7f7381](https://github.com/aaronjeter/CrystalShireEngine/commit/53e7f7381503a6139f6d90d62db8902d3b6cde52) — Refactor Brock Script and add TM
+- 2026-07-13 [5ab58d5db](https://github.com/aaronjeter/CrystalShireEngine/commit/5ab58d5db89c2190765af3e58bf1b0fa42eec22b) — Distribute Ancient Power to learnsets
+- 2026-07-13 [1c96d7f7e](https://github.com/aaronjeter/CrystalShireEngine/commit/1c96d7f7e80210f036fb7a712dcfe12d85959005) — Update debug scripts (redo)
+- 2026-07-13 [3b36cbbe9](https://github.com/aaronjeter/CrystalShireEngine/commit/3b36cbbe9518fcd272918b9504ee9126572c081b) — Update debug scripts
+- 2026-07-13 [611fccb52](https://github.com/aaronjeter/CrystalShireEngine/commit/611fccb52a9c9847f2d8cd276737c826257abedd) — Distribute Brick break TM to learnsets
+- 2026-07-13 [d5b386303](https://github.com/aaronjeter/CrystalShireEngine/commit/d5b38630321a808f3023d3f718d6a6de2d8dd5e6) — Distribute Dragon Claw TM to learnsets
+- 2026-07-13 [16af07341](https://github.com/aaronjeter/CrystalShireEngine/commit/16af07341d36dc0835d60859d23a1ca84bf52eff) — Distribute Magical Leaf TM to learnsets
+- 2026-07-13 [c0278fc5f](https://github.com/aaronjeter/CrystalShireEngine/commit/c0278fc5f6629c3cbfc0bb1d5d29b670d95f44e8) — Distribute bubblebeam TM to learnsets
+- 2026-07-13 [abc88fc5f](https://github.com/aaronjeter/CrystalShireEngine/commit/abc88fc5f7c47703100534bdb30565bafc399e91) — Distribute Scald TM to learnsets
+- 2026-07-13 [d91a3813a](https://github.com/aaronjeter/CrystalShireEngine/commit/d91a3813a44cefe12558e2e3e3e2cfd6089ff8ba) — Distribute Calm Mind TM to learnsets
+- 2026-07-13 [51ec5bf02](https://github.com/aaronjeter/CrystalShireEngine/commit/51ec5bf02f01fe90f4f7f79120af54d4483b587d) — Distribute Aerial Ace TM to learnsets
+- 2026-07-12 [111eeeb70](https://github.com/aaronjeter/CrystalShireEngine/commit/111eeeb702302d034de9c5b59a2646ba5a8274b3) — Distribute Willowisp TM to learnsets
+- 2026-07-12 [c531f715f](https://github.com/aaronjeter/CrystalShireEngine/commit/c531f715f3fa57e75f650ee01f0fae3f01f22580) — Add Shock Wave TM to learnsets
+- 2026-07-12 [d329140ed](https://github.com/aaronjeter/CrystalShireEngine/commit/d329140ed00f3bc1d95843e095d6537525dae158) — Distribute Bulk Up TM to learnsets
+- 2026-07-12 [fcf8f3d6c](https://github.com/aaronjeter/CrystalShireEngine/commit/fcf8f3d6c0b4938ed0fc2ba443a82706ccf3298c) — Distribute Rock Tomb TM to learnsets
+- 2026-07-12 [d844ed148](https://github.com/aaronjeter/CrystalShireEngine/commit/d844ed148a6cba26e3160777142a4dc3def92963) — Distribute Poison Fang TM to learnsets
+- 2026-07-12 [b3c18708f](https://github.com/aaronjeter/CrystalShireEngine/commit/b3c18708f2fe3bf9c13a64c2c521dbd7cf4a8aa2) — Distribute Thunder Fang TM to learnsets
+- 2026-07-12 [3a18be2ab](https://github.com/aaronjeter/CrystalShireEngine/commit/3a18be2aba7128517c5d134a57e9d1fa199aa01a) — Distribute Ice Fang TM to learnsets
+- 2026-07-12 [3eac9de8d](https://github.com/aaronjeter/CrystalShireEngine/commit/3eac9de8db551101a9d4e5a5d18484fe90950152) — Give Zangoose and Seviper abilities
+- 2026-07-12 [d51a48d66](https://github.com/aaronjeter/CrystalShireEngine/commit/d51a48d66bd0c1a04408c6ed38a4005bff353b78) — Distribute Fire Fang TM to learnsets
+- 2026-07-12 [61b513202](https://github.com/aaronjeter/CrystalShireEngine/commit/61b51320225642c3753b721920f7c8eeeef7aea6) — distribute hail to TM learnsets
+- 2026-07-12 [2733a9f81](https://github.com/aaronjeter/CrystalShireEngine/commit/2733a9f8183ef5e4e0419cc9468349ce007ce01b) — Reorder TM51-75, and remove Water Pulse/Bullet Seed
+- 2026-07-10 [90ebf76ba](https://github.com/aaronjeter/CrystalShireEngine/commit/90ebf76ba94eef10d427dfc732ef3f69d1516044) — Update alt johto starter stats
+- 2026-07-08 [afe87b6be](https://github.com/aaronjeter/CrystalShireEngine/commit/afe87b6bed8f695b34ee60070e193a893874dad1) — Remove Elm's House debug warp
+- 2026-07-07 [3715ab27b](https://github.com/aaronjeter/CrystalShireEngine/commit/3715ab27b65fd5455bad82419b0d03ebd7a734e7) — Update Goldenrod/route35 connection
+- 2026-07-07 [ac8089406](https://github.com/aaronjeter/CrystalShireEngine/commit/ac8089406f351aef671719ef47a288000d1e5c73) — Update title screen for July 7 release
+- 2026-07-07 [ca4024377](https://github.com/aaronjeter/CrystalShireEngine/commit/ca40243770660b7d5270eaacf9aa5e61e15ef9a7) — Populate Hoenn victory road with generic trainers
+- 2026-07-06 [dd39e2607](https://github.com/aaronjeter/CrystalShireEngine/commit/dd39e2607d058b58c7f2b9e70843bf527dcec6ca) — Update Hoenn grass tiling
+- 2026-07-05 [2fec1a386](https://github.com/aaronjeter/CrystalShireEngine/commit/2fec1a386ee41ceea72dd1abcf5f31dae92bd6f7) — Move Tentacool to the Medium Slow growth rate
+- 2026-07-05 [c2c024699](https://github.com/aaronjeter/CrystalShireEngine/commit/c2c024699da229aa996c7c10e39c4c4161919c53) — Fix barboach's typing
+- 2026-07-05 [97483b20a](https://github.com/aaronjeter/CrystalShireEngine/commit/97483b20a2ee4b9e489b5d64dc2349e7ec6d61c9) — Add a boat to travel to Evergrande City from Lilycove
+- 2026-07-05 [d68b25b9a](https://github.com/aaronjeter/CrystalShireEngine/commit/d68b25b9a2e019c9b38a71515fccda24ff653f4c) — Update alt cyndaquil line to fire/dark
+- 2026-07-05 [1e6406683](https://github.com/aaronjeter/CrystalShireEngine/commit/1e64066830d5d73f5ce3fdfb97d0dbb0494c8fac) — Replace alt starters
+- 2026-07-05 [b6e00056f](https://github.com/aaronjeter/CrystalShireEngine/commit/b6e00056f9ae6f4c34e91aab093103542ccfcaae) — Add alt Chikorita line
+- 2026-07-04 [dd9796841](https://github.com/aaronjeter/CrystalShireEngine/commit/dd97968418b734c7e16bf68a42d432fa16bc5018) — Add new Hoenn Fishing groups
+- 2026-07-04 [fbd93ace5](https://github.com/aaronjeter/CrystalShireEngine/commit/fbd93ace5d6c2a4ff7bc7466101b97ea9c87679b) — Implement some of Sylvie's Hoenn tiles
+- 2026-07-03 [4ea0ae56d](https://github.com/aaronjeter/CrystalShireEngine/commit/4ea0ae56d941a2382f9b63739f3088b774dc3ec1) — Add Hoenn Victory Road
+- 2026-07-03 [11105e854](https://github.com/aaronjeter/CrystalShireEngine/commit/11105e854020751766b473dafdb0e19040f807e6) — Fix Mist ball effect chance
+- 2026-07-03 [db4c36fa1](https://github.com/aaronjeter/CrystalShireEngine/commit/db4c36fa1d395a7399120f4af31926d310b60e63) — Take Scald away from Vaporeon
+- 2026-07-03 [6c37d63fa](https://github.com/aaronjeter/CrystalShireEngine/commit/6c37d63fa1ac500517f2f3fab11ed55d79422fa8) — Fix some tiling issues on route 111
+- 2026-07-03 [433dd6289](https://github.com/aaronjeter/CrystalShireEngine/commit/433dd62892114088b6ee3fedd2ffbd66af72941f) — Fix petalburg mart clerk script
+- 2026-07-02 [3f5744b93](https://github.com/aaronjeter/CrystalShireEngine/commit/3f5744b938f56295de7057c167e846afd9357139) — Update Title screen for July 1st patch
+- 2026-07-01 [4ae04abd1](https://github.com/aaronjeter/CrystalShireEngine/commit/4ae04abd13ea0c5823918f16914c102c9416ba23) — Refactor testroom cheat pokemon
+- 2026-07-01 [411163f56](https://github.com/aaronjeter/CrystalShireEngine/commit/411163f569961e271225984a5b9791312455c483) — Fix issue with Mankey line's level 16 move
+- 2026-06-30 [986d73ca6](https://github.com/aaronjeter/CrystalShireEngine/commit/986d73ca611d013db755e39b473d3107d719bfdf) — Remove generic caller asm files, and decapitalize special caller scripts
+- 2026-06-30 [d25b9ba46](https://github.com/aaronjeter/CrystalShireEngine/commit/d25b9ba46440c859eed4fcbf6bb3e43fe4c08884) — Remove Tully as a phone contact
+- 2026-06-30 [e7ddb3034](https://github.com/aaronjeter/CrystalShireEngine/commit/e7ddb303496ecbc540931f1dcb9dad7cf9d05ece) — Remove Derek as a phone contact
+- 2026-06-30 [92580c579](https://github.com/aaronjeter/CrystalShireEngine/commit/92580c5794c5274ceb4d4adcf37161948c54bcde) — Remove Ralph as a phone contact
+- 2026-06-30 [633e1b835](https://github.com/aaronjeter/CrystalShireEngine/commit/633e1b83532cd42578d437fb947720b58a0c1c75) — Remove Wade as a phone contact
+- 2026-06-30 [2eec376e8](https://github.com/aaronjeter/CrystalShireEngine/commit/2eec376e85bc71c39b77885420f269f553fe846c) — Remove Joey as a phone contact
+- 2026-06-30 [4afae3a3f](https://github.com/aaronjeter/CrystalShireEngine/commit/4afae3a3f80a19b2a67ae4ad30450a030bfcf43e) — Remove Huey as a phone contact
+- 2026-06-30 [01f7502e3](https://github.com/aaronjeter/CrystalShireEngine/commit/01f7502e3b38b753f3700b70beb1ee70479d17e3) — Remove Tiffany as a phone contact
+- 2026-06-30 [25494b32b](https://github.com/aaronjeter/CrystalShireEngine/commit/25494b32b78abe216d1a89091282ac30ebf7383a) — Remove Erin as a phone contact
+- 2026-06-30 [91b9cb6ee](https://github.com/aaronjeter/CrystalShireEngine/commit/91b9cb6ee9377b4560c9a2dd03c20377cee14e97) — Remove Todd and Gina as phone contacts
+- 2026-06-30 [d17c86637](https://github.com/aaronjeter/CrystalShireEngine/commit/d17c86637964bd51674d82f36f3d0485bb64dbc4) — More tiling around Lilycove Coast
+- 2026-06-30 [a36bee7ce](https://github.com/aaronjeter/CrystalShireEngine/commit/a36bee7ce0ccea6a78c5f30a872eb75817a4778a) — Update Lilycove Tiling
+- 2026-06-30 [f625b7bbb](https://github.com/aaronjeter/CrystalShireEngine/commit/f625b7bbbff24ca02e85a2b53e96d66ce582448e) — Add Fancy Rocks mart
+- 2026-06-30 [8cbf07520](https://github.com/aaronjeter/CrystalShireEngine/commit/8cbf0752055356e0a38c6385e91c10d8add5e24a) — Add some floor items to the Desert Ruins
+- 2026-06-30 [7595dc4fc](https://github.com/aaronjeter/CrystalShireEngine/commit/7595dc4fc769abdefe43179b991fda5d3b52da94) — Fix tiling issue on league gatehouse
+- 2026-06-30 [aa3e6acbc](https://github.com/aaronjeter/CrystalShireEngine/commit/aa3e6acbc3717e1ee2c97dae51c074d9c9675fdf) — Remove Jose and Reena as phone contacts
+- 2026-06-30 [ec0dbdf94](https://github.com/aaronjeter/CrystalShireEngine/commit/ec0dbdf9408d6568c0ac8c6e838bf469a82a42f0) — Remove Beth and Gaven as phone contacts
+- 2026-06-30 [8740f2341](https://github.com/aaronjeter/CrystalShireEngine/commit/8740f2341467362f26a47bad4b567effef4b5b78) — Remove Kenji and Parry as phone contacts
+- 2026-06-30 [c1bdadd02](https://github.com/aaronjeter/CrystalShireEngine/commit/c1bdadd0224e5ed31f0a0fa7295f28d4579b21a1) — Remove Vance and Wilton as phone contacts
+- 2026-06-30 [c90b2ba17](https://github.com/aaronjeter/CrystalShireEngine/commit/c90b2ba174a1677dfd820251f0e38e197a985d01) — Remove Anthony as a phone contact
+- 2026-06-30 [bc92a3937](https://github.com/aaronjeter/CrystalShireEngine/commit/bc92a3937578fa0fdf84bb2d126da3db9cbd81f4) — Remove Irwin and Arnie as Phone Contacts
+- 2026-06-30 [e30a0e72e](https://github.com/aaronjeter/CrystalShireEngine/commit/e30a0e72e9ddaa413adf521542f340ba57d06061) — Remove Jack and Beverly as Phone Contacts
+- 2026-06-30 [7ce2a8de8](https://github.com/aaronjeter/CrystalShireEngine/commit/7ce2a8de82d212e18d4a613b7379639f0c96ed90) — Remove Liz as a phone contact
+- 2026-06-30 [073ab1417](https://github.com/aaronjeter/CrystalShireEngine/commit/073ab14174a6a3de787a46ddc7ef190d4e0b2034) — Remove Dana as a phone contact
+- 2026-06-30 [110fcb435](https://github.com/aaronjeter/CrystalShireEngine/commit/110fcb4356590d10a538ebbe25ae9f506a56f0ad) — Remove Chad as a phone contact
+- 2026-06-30 [12d9795df](https://github.com/aaronjeter/CrystalShireEngine/commit/12d9795df6dfe64ab0cd007e584d940e35c236dd) — Remove Brent as a phone contact
+- 2026-06-30 [bc129dc9c](https://github.com/aaronjeter/CrystalShireEngine/commit/bc129dc9c1f0b62fe7bcf3b47983abe6da8288a4) — Remove Alan as a phone contact/caller
+- 2026-06-30 [262e45e78](https://github.com/aaronjeter/CrystalShireEngine/commit/262e45e78c94c3fc6415747fa3cb257d6c251c85) — Add fluff NPCs around Mauville
+- 2026-06-29 [053f18f2c](https://github.com/aaronjeter/CrystalShireEngine/commit/053f18f2cc8bb9af03be1f17323fa69bd2e4a0be) — Add Mauville Rockets level scaling
+- 2026-06-29 [7f3a9b969](https://github.com/aaronjeter/CrystalShireEngine/commit/7f3a9b969e215eea97f79ea8445f88d032c697c0) — Update Lavaridge Desert tiling
+- 2026-06-29 [3386a19eb](https://github.com/aaronjeter/CrystalShireEngine/commit/3386a19eb94ff3aae36be9c381c8d304aacac2fc) — Take Away Birch's Hoennite
+- 2026-06-29 [15e516b9d](https://github.com/aaronjeter/CrystalShireEngine/commit/15e516b9daaf152a4d971a5527d3a444bf1eea9e) — Add Desert Rockets conclusion
+- 2026-06-29 [8947e7dc9](https://github.com/aaronjeter/CrystalShireEngine/commit/8947e7dc9a7b33cc643e19f1cc9289b72544f59d) — Add Desert Shrine Rockets Event
+- 2026-06-29 [bece97019](https://github.com/aaronjeter/CrystalShireEngine/commit/bece97019570f74c8d0c8656d7864c69f617f921) — soft-remove beta Victrebel
+- 2026-06-29 [4e73e8bf6](https://github.com/aaronjeter/CrystalShireEngine/commit/4e73e8bf656bf66cb4a364777d4cf285df093e8b) — Hoenn Tileset changes
+- 2026-06-29 [33b7c3a97](https://github.com/aaronjeter/CrystalShireEngine/commit/33b7c3a97aeafe33ada2ab55b06cd3424bf3358e) — Update title screen for June 29th release
+- 2026-06-29 [fed21c709](https://github.com/aaronjeter/CrystalShireEngine/commit/fed21c709ea8b29413f85223ada5ec8bb9d81786) — Fix Verdantuf map warps
+- 2026-06-29 [9909fc356](https://github.com/aaronjeter/CrystalShireEngine/commit/9909fc3560137edb6ba9dd9af292feb3d6bc3251) — Update World Cup registration logic
+- 2026-06-29 [5ac1a32fe](https://github.com/aaronjeter/CrystalShireEngine/commit/5ac1a32fe88d33aa0777db9d5fd524dc48912e03) — Update WorldLevels script
+- 2026-06-29 [9f072b4dd](https://github.com/aaronjeter/CrystalShireEngine/commit/9f072b4dd3dac893566f4424e9ecf4b4320b6e44) — Tweak World Cup challenge parties
+- 2026-06-29 [a174c68e3](https://github.com/aaronjeter/CrystalShireEngine/commit/a174c68e3dbfd8be39eb2530635c93b45eb02170) — Finish World Cup Challenge first draft
+- 2026-06-27 [e60572f26](https://github.com/aaronjeter/CrystalShireEngine/commit/e60572f26cf601886b4e0e07f34b7bd7de7c691c) — Add WC Round Four
+- 2026-06-27 [9e02f92c1](https://github.com/aaronjeter/CrystalShireEngine/commit/9e02f92c170bf04a101866fc09d288b5a72aa5f8) — Add WC Round Four Room
+- 2026-06-27 [bfb82099d](https://github.com/aaronjeter/CrystalShireEngine/commit/bfb82099d78c6e7a1740e4a07610403388e95538) — Update flygon shiny colors
+- 2026-06-24 [b90adfa6d](https://github.com/aaronjeter/CrystalShireEngine/commit/b90adfa6dbb2bd357164148be1144a1cad0f945e) — Add World Cup Round Three
+- 2026-06-24 [00fecc88f](https://github.com/aaronjeter/CrystalShireEngine/commit/00fecc88f3ac415301f615c8153dd1a0deeaf1f2) — Add the first two World Cup rounds
+- 2026-06-23 [fc4ae6395](https://github.com/aaronjeter/CrystalShireEngine/commit/fc4ae63952c3e9c546adf63e57b23f484e781ea8) — Touch up some Shiny palates
+- 2026-06-22 [da5f58045](https://github.com/aaronjeter/CrystalShireEngine/commit/da5f58045fc546b24f0b977e05f172fe843e9a1f) — Update some shiny menu icon palates
+- 2026-06-21 [e674d5342](https://github.com/aaronjeter/CrystalShireEngine/commit/e674d5342964813b7a4c1bfaa17a3194cd316f51) — Give Charizard Y an ability
+- 2026-06-20 [c790ee0fa](https://github.com/aaronjeter/CrystalShireEngine/commit/c790ee0fa09dfa536a7d9618fdbac55e6a5f4e4e) — Change Mega Gyarados to Water/Dragon
+- 2026-06-16 [26d1ffb89](https://github.com/aaronjeter/CrystalShireEngine/commit/26d1ffb892463943598aa30dce6e6b2a6314c358) — Update Sunkern TM pool
+- 2026-06-15 [55210b537](https://github.com/aaronjeter/CrystalShireEngine/commit/55210b5378acec80e506f2eac0e1dcf2fb4d004f) — Remove Yanma2 from grass encounters
+- 2026-06-15 [9cfaaec12](https://github.com/aaronjeter/CrystalShireEngine/commit/9cfaaec12402b1669ed10f8c00122dd5677c8cd8) — Convert alt Yanma to alt Yanmega
+- 2026-06-15 [3c2f0ec2b](https://github.com/aaronjeter/CrystalShireEngine/commit/3c2f0ec2b53524553795f6c628d9f04ec681fe28) — Fix Sandstorm move name typo
+- 2026-06-15 [7e59e4e1f](https://github.com/aaronjeter/CrystalShireEngine/commit/7e59e4e1f9e0a45efaa9986ac900556e4e036284) — Re-type Drowzee and HootHoot lines
+- 2026-06-15 [19631f06b](https://github.com/aaronjeter/CrystalShireEngine/commit/19631f06b74987180eb29ee2415d63b33da007ae) — Switch Dream Eater to ghost type
+- 2026-06-15 [0511bc4ee](https://github.com/aaronjeter/CrystalShireEngine/commit/0511bc4eea4fc26f84b23d2761ceb83f0438d09f) — Shuffle some abilities around
+- 2026-06-15 [17b154b56](https://github.com/aaronjeter/CrystalShireEngine/commit/17b154b564c75807c0503f9d53d4bc52a495dd42) — Add new trainer classes for some new trainers
+- 2026-06-15 [8c9964bc2](https://github.com/aaronjeter/CrystalShireEngine/commit/8c9964bc28767a6accd32463ea544c76c32f0e67) — Fix goldenrod mart glitch
+- 2026-06-13 [69c90f739](https://github.com/aaronjeter/CrystalShireEngine/commit/69c90f739cfebd0b288013cb87ccfd9ef4ef4259) — More Decapitalization
+- 2026-06-12 [8cd2450c5](https://github.com/aaronjeter/CrystalShireEngine/commit/8cd2450c57db6299482f93791e2bbce03466aa81) — Add Mystic water and some Slateport NPCs
+- 2026-06-12 [66469b1e1](https://github.com/aaronjeter/CrystalShireEngine/commit/66469b1e143e66709dc9d67faa2592996df290f8) — Add Sharp Beak guy to route 103
+- 2026-06-12 [d4e62fedb](https://github.com/aaronjeter/CrystalShireEngine/commit/d4e62fedbe05063a0f2806235b424a3ba33ec549) — Add Hoenn NPCs to give Polkadot Bow and Blackglasses
+- 2026-06-12 [79998ef8a](https://github.com/aaronjeter/CrystalShireEngine/commit/79998ef8acf3f2bbe5673b811f3dec1904a79ca7) — Update title for June 12th release
+- 2026-06-12 [af9410b1c](https://github.com/aaronjeter/CrystalShireEngine/commit/af9410b1c9cfd8eefb1ab899f7eb7ca3ebc8edd1) — Fix Mauville coin case glitch
+- 2026-06-12 [7082acc74](https://github.com/aaronjeter/CrystalShireEngine/commit/7082acc7407b97939fa0b06bfd90477bc09c592f) — Add route 123 items
+- 2026-06-12 [f5029e9cb](https://github.com/aaronjeter/CrystalShireEngine/commit/f5029e9cbc15d9f4f502cf756713d0c92388e202) — Even more decapitalization changes
+- 2026-06-11 [5b5f69ba3](https://github.com/aaronjeter/CrystalShireEngine/commit/5b5f69ba3542febf340de85e811eed8707803cde) — More Decapitalization
+- 2026-06-11 [1a6c0705b](https://github.com/aaronjeter/CrystalShireEngine/commit/1a6c0705b63419d4c17e263725311943c3028b43) — Give Gorochu Intimidate
+- 2026-06-11 [91df3cacf](https://github.com/aaronjeter/CrystalShireEngine/commit/91df3cacfd22a3376bc88cfd7b5bacc338785acb) — Start adding Hoenn floor items
+- 2026-06-11 [3af48cd7a](https://github.com/aaronjeter/CrystalShireEngine/commit/3af48cd7a46abba85d8e64feb52f67c40985de39) — Add Fortree City NPC
+- 2026-06-10 [4b0a0becc](https://github.com/aaronjeter/CrystalShireEngine/commit/4b0a0becc4e9434342b38657b463fa785b69ade2) — Allow Raichu to evolve into Gorochu
+- 2026-06-10 [5cfc38a04](https://github.com/aaronjeter/CrystalShireEngine/commit/5cfc38a04f6124a4da1c1eb36efee7829e14e3a5) — Update Gorochu Backsprite
+- 2026-06-10 [c9e1fb6ce](https://github.com/aaronjeter/CrystalShireEngine/commit/c9e1fb6ce32d1042599e00a6e680090e076c819b) — Add some NPCs around Fallarbor
+- 2026-06-10 [e52d3fd34](https://github.com/aaronjeter/CrystalShireEngine/commit/e52d3fd34589402c844a4535875df427d3e8e2f8) — Update Gorochu Backsprite
+- 2026-06-10 [88ea7647d](https://github.com/aaronjeter/CrystalShireEngine/commit/88ea7647dfbe8ebbf8daf25d283a5e676330bd67) — Add another Rustboro city NPC
+- 2026-06-10 [b8cf234d0](https://github.com/aaronjeter/CrystalShireEngine/commit/b8cf234d0eda945c1b6278c1406df5bf2ef3aee4) — Add NPCs around Petalburg City
+- 2026-06-10 [1e62647aa](https://github.com/aaronjeter/CrystalShireEngine/commit/1e62647aaf8f35242323be687c448640d26a0105) — Add NPCs around lavaridge Town
+- 2026-06-10 [f2dd3f2cd](https://github.com/aaronjeter/CrystalShireEngine/commit/f2dd3f2cddd6fb29e790a0454012760466abbda0) — Update hoenn pokecenter collisions
+- 2026-06-10 [a27b2c186](https://github.com/aaronjeter/CrystalShireEngine/commit/a27b2c1862c000477c965659f65c906bc460c5b3) — Finish Mt Pyre Rockets Event
+- 2026-06-09 [7b73d1e78](https://github.com/aaronjeter/CrystalShireEngine/commit/7b73d1e78ee2c117520ff0d63aea1d9bce2bb478) — Add Mt Pyre Rockets
+- 2026-06-07 [236d3772c](https://github.com/aaronjeter/CrystalShireEngine/commit/236d3772c11d80cc2def483fb2667ae0094f10b4) — Add Route 121 Rockets
+- 2026-06-07 [af2df52bc](https://github.com/aaronjeter/CrystalShireEngine/commit/af2df52bc3409dbbb4d1fb0e43ac98173db2f001) — Merge HoOh word room to use main alph tileset
+- 2026-06-06 [c2cfb15f9](https://github.com/aaronjeter/CrystalShireEngine/commit/c2cfb15f94068c6aa8c52ed22425cacd1e8e6c9e) — Add Held Fairy Boost
+- 2026-06-06 [3b7b85f47](https://github.com/aaronjeter/CrystalShireEngine/commit/3b7b85f4749de1f5c150c115ad32e000420a161e) — Add some held items
+- 2026-06-05 [d8f731f84](https://github.com/aaronjeter/CrystalShireEngine/commit/d8f731f845aafd80cb57f6fc965058a19ad9121c) — Decap followup
+- 2026-06-05 [02ea64c9f](https://github.com/aaronjeter/CrystalShireEngine/commit/02ea64c9f9019913d6816acd72d4b685b3d884cf) — Update Rustboro Tiling
+- 2026-06-05 [e2ac1543c](https://github.com/aaronjeter/CrystalShireEngine/commit/e2ac1543c529daf040f223b1ea17275213cd2a46) — Johto and Oldale tiling updates
+- 2026-06-05 [37c30c26e](https://github.com/aaronjeter/CrystalShireEngine/commit/37c30c26e7c3c1d913e175dea835787e55399070) — Update Title for June 3rd release
+- 2026-06-03 [69d5ea71e](https://github.com/aaronjeter/CrystalShireEngine/commit/69d5ea71e1383e4e31e9e5893796f9720c4ec92a) — Add some NPCs around Mauville
+- 2026-06-03 [d0bfdc8ad](https://github.com/aaronjeter/CrystalShireEngine/commit/d0bfdc8ad6abc0051db3cf6409cfe3ced851fb24) — Add Mauville rocket trainers
+- 2026-06-02 [b1438174a](https://github.com/aaronjeter/CrystalShireEngine/commit/b1438174a0ab9ed8c4e8463543b2a32c72886f2d) — Add Mauville Rocket Event
+- 2026-06-01 [8829e51eb](https://github.com/aaronjeter/CrystalShireEngine/commit/8829e51eb25e4823f462b5c9ba7a9b63a8a92d0c) — Add Mauville Scripts
+- 2026-06-01 [9d96f72e9](https://github.com/aaronjeter/CrystalShireEngine/commit/9d96f72e99572be8c65dfb06ddd953b6bad3888d) — Update Mantine xp growth rate
+- 2026-06-01 [aca3d488d](https://github.com/aaronjeter/CrystalShireEngine/commit/aca3d488d808f8851b96fd989508b7e6a67edd15) — Update Game Corner scripts
+- 2026-05-31 [7d96bddb4](https://github.com/aaronjeter/CrystalShireEngine/commit/7d96bddb49345dc04dc51aa56ddfef1ea2845c1b) — Add New Mauville Maps
+- 2026-05-31 [0562b71f5](https://github.com/aaronjeter/CrystalShireEngine/commit/0562b71f54aabc893eeb16aa53bccfbd7531c8e4) — Remove Unneeded farcalls
+- 2026-05-31 [b339d023b](https://github.com/aaronjeter/CrystalShireEngine/commit/b339d023b1917d21aa18e1166cb694a16c7c36de) — Change route 40-41 swimmer sprite
+- 2026-05-31 [f0a10eb8b](https://github.com/aaronjeter/CrystalShireEngine/commit/f0a10eb8b02ddc39bc79785f61a3538826b2a5a4) — Add more Hoenn Pokecenter NPCs
+- 2026-05-31 [9c5f74e9a](https://github.com/aaronjeter/CrystalShireEngine/commit/9c5f74e9a305726648d13f935cddc8dcce121924) — Add rustboro pokecenter NPCs
+- 2026-05-31 [423279b83](https://github.com/aaronjeter/CrystalShireEngine/commit/423279b8300e9a865ed785eb9868b08f56358c17) — Add Rustturf Rockets and some minor map tweaks
+- 2026-05-27 [fdfa99b04](https://github.com/aaronjeter/CrystalShireEngine/commit/fdfa99b04c24dd6c913fa95028602ba2c002197c) — Add Route 119 fishing house and healer
+- 2026-05-27 [abad0b4c8](https://github.com/aaronjeter/CrystalShireEngine/commit/abad0b4c80f8927c79f4cba66b79ce1288d1637c) — Battle Resort tree tile fix
+- 2026-05-26 [85b8bf891](https://github.com/aaronjeter/CrystalShireEngine/commit/85b8bf891ce18d4205a550b71acd84526343b1e3) — Add Agatha and Lorelei trainer classes
+- 2026-05-22 [f1d9dae6b](https://github.com/aaronjeter/CrystalShireEngine/commit/f1d9dae6b0e47cc10806338c59d1324fc698cc82) — More Johto grass tile updates
+- 2026-05-22 [7f7d2c4da](https://github.com/aaronjeter/CrystalShireEngine/commit/7f7d2c4daf8631a82f019eb0bfbee9b7748d53b3) — Update ponyta forms to allow form switching
+- 2026-05-22 [af51b4e3b](https://github.com/aaronjeter/CrystalShireEngine/commit/af51b4e3b4bab11aa11056be81e82036df5305bf) — Update johto modern grass tiles
+- 2026-05-21 [0366b9300](https://github.com/aaronjeter/CrystalShireEngine/commit/0366b93007fd4e3a64b2398cfe86900bc64f36be) — Hoenn building tile update
+- 2026-05-21 [104f18a43](https://github.com/aaronjeter/CrystalShireEngine/commit/104f18a43698cb8967e3f33ea63352ebd26ba6b6) — Update Johto grass tiles
+- 2026-05-16 [4b1c5f649](https://github.com/aaronjeter/CrystalShireEngine/commit/4b1c5f649ca657e6c5bbd83b4ed7f8f705586630) — Update title screen for May 16th release
+- 2026-05-14 [d6ef26380](https://github.com/aaronjeter/CrystalShireEngine/commit/d6ef2638025bdf5e00a4a8944c62032fbabd8ca2) — Update cries for region variants and later gen evos
+- 2026-05-14 [85c10ea3a](https://github.com/aaronjeter/CrystalShireEngine/commit/85c10ea3a49a01700db0b6e801c9570769fc732e) — Update Hoenn tileset slightly
+- 2026-05-14 [de3386ef6](https://github.com/aaronjeter/CrystalShireEngine/commit/de3386ef6331533a0aa70b479f2ec7d000003f46) — Update title screen for May 14th release
+- 2026-05-14 [320b4859a](https://github.com/aaronjeter/CrystalShireEngine/commit/320b4859a52c027196a3a457c186cdf19ae4d1ac) — Add abilities for new Megas and redo Pidgey learnset
+- 2026-05-14 [0cde2d5db](https://github.com/aaronjeter/CrystalShireEngine/commit/0cde2d5dbeb22a73e79991a70ca5335582fd1cf7) — Tidy up warp animations around the Battle Resort
+- 2026-05-13 [ed800351e](https://github.com/aaronjeter/CrystalShireEngine/commit/ed800351e164b25a7d8a482a0b53fd660bc82244) — Add new Megas
+- 2026-05-12 [21e176fae](https://github.com/aaronjeter/CrystalShireEngine/commit/21e176faefb9b2ea2bcf87fb61b7d0f81481f382) — Update WCQualifier3.asm
+- 2026-05-11 [8dd777668](https://github.com/aaronjeter/CrystalShireEngine/commit/8dd777668608911627262c3beef0f37f2b83b431) — Add World cup qualifiers rough draft
+- 2026-05-09 [6d092565f](https://github.com/aaronjeter/CrystalShireEngine/commit/6d092565fb8592170bf725abd57988e834557c61) — Add world cup qualifier scripts to WC Lobby
+- 2026-05-04 [4c88af9ec](https://github.com/aaronjeter/CrystalShireEngine/commit/4c88af9ec09bdcc55dd580676ee2d922ac6c63bb) — Update Debug script
+- 2026-05-04 [c685ced37](https://github.com/aaronjeter/CrystalShireEngine/commit/c685ced3732716d0fc24c42ee2ef7c300a6a462b) — Remove Exp share from remaining mart
+- 2026-05-02 [35fd6043b](https://github.com/aaronjeter/CrystalShireEngine/commit/35fd6043b3aebf6195f1351908f2ab131d88f7e7) — Add Sootopolis Fisher and Super Rod
+- 2026-05-02 [95df08894](https://github.com/aaronjeter/CrystalShireEngine/commit/95df08894b356d02e905d6a3557491bebf325e96) — Add sailing from Lilycove to Battle Resort
+- 2026-05-02 [92ed7bf46](https://github.com/aaronjeter/CrystalShireEngine/commit/92ed7bf464dfe7341e6620971b2224a3996a59d4) — Add Good Rod guy to Route 119 in Hoenn
+- 2026-05-02 [ee6c1a2ff](https://github.com/aaronjeter/CrystalShireEngine/commit/ee6c1a2ff5707f0e056100ca94a3eea90927c1e3) — Add Lilycove and Battle Resort Harbors
+- 2026-05-02 [b1d9c3dc9](https://github.com/aaronjeter/CrystalShireEngine/commit/b1d9c3dc92db897c0f58bb4065f0bb776c83ceb8) — Move Desert to Cave tileset
+- 2026-04-30 [22f86e43f](https://github.com/aaronjeter/CrystalShireEngine/commit/22f86e43f41ccbb5a65e85ae9976ab8048e0e724) — Add Dewford Fishing Guru
+- 2026-04-30 [9aeb71472](https://github.com/aaronjeter/CrystalShireEngine/commit/9aeb71472d7cc4fd62013dac9cbe1cc78e2f7e42) — Add Oldale town house interiors
+- 2026-04-30 [f513a2334](https://github.com/aaronjeter/CrystalShireEngine/commit/f513a2334dfd66e26c26291360cc336f03046816) — Update bulbasaur line learnsets
+- 2026-04-30 [e28d82ceb](https://github.com/aaronjeter/CrystalShireEngine/commit/e28d82ceb89f103c647f9a6e657c58a48d6cc2d1) — Update title for April 29th release
+- 2026-04-29 [b5e8bf801](https://github.com/aaronjeter/CrystalShireEngine/commit/b5e8bf801b0a7ec971983f8638fa7784841e6fba) — Turn EVs back on for normal mode
+- 2026-04-29 [ea1855ea2](https://github.com/aaronjeter/CrystalShireEngine/commit/ea1855ea29685cdd4d8a7a45839b79a207280e5d) — Decaptitalize trainer names
+- 2026-04-29 [e371d58e0](https://github.com/aaronjeter/CrystalShireEngine/commit/e371d58e0d38096418dbe5d4fe06a98f3d95c0a3) — Decapitalize Kanto and loose maps
+- 2026-04-28 [cceac7625](https://github.com/aaronjeter/CrystalShireEngine/commit/cceac762500cbc05e2f1864be62f3b8b6ebdf5c5) — Decapitalize # Poke Hoenn
+- 2026-04-28 [b2f58c981](https://github.com/aaronjeter/CrystalShireEngine/commit/b2f58c98136d74ff5731c446dfdbfe611df291e4) — Decapitalize # Poke in johto
+- 2026-04-28 [ecc119a5c](https://github.com/aaronjeter/CrystalShireEngine/commit/ecc119a5caa5bbda9d23b2ebe605132df6dd2ab3) — Decapitalization johto first pass
+- 2026-04-27 [53263d421](https://github.com/aaronjeter/CrystalShireEngine/commit/53263d42180c7aa9d80290d4902ba5632cc65e6f) — Decapitalize loose folder maps
+- 2026-04-27 [3513d8982](https://github.com/aaronjeter/CrystalShireEngine/commit/3513d8982bfb73d796ce9d6c83dce14e4f671f91) — Decapitalization Hoenn first pass
+- 2026-04-27 [ea6ec2c1f](https://github.com/aaronjeter/CrystalShireEngine/commit/ea6ec2c1fc141649a07eae5e0dd10de0361550a3) — Decapitalization first pass
+- 2026-04-26 [1672d019c](https://github.com/aaronjeter/CrystalShireEngine/commit/1672d019c848d533c6e9d0e3ffb38f1ad1272dea) — Update Pokecom tileset
+- 2026-04-26 [30662d1b7](https://github.com/aaronjeter/CrystalShireEngine/commit/30662d1b7ccd0c2a9c4a2b75f206f4c0fe780566) — Add World Cup Lobby
+- 2026-04-26 [c79bdf6ff](https://github.com/aaronjeter/CrystalShireEngine/commit/c79bdf6ff31d2c8ba831e6b30c7bcc683961c2a7) — Remove clair's old levelcap code
+- 2026-04-26 [687ea11bc](https://github.com/aaronjeter/CrystalShireEngine/commit/687ea11bcc1163d4dd05c11a2b60a4c04d1bd955) — Add Treetop Trial and Ashen Gauntlet first drafts
+- 2026-04-26 [4a00c7764](https://github.com/aaronjeter/CrystalShireEngine/commit/4a00c77647262be3d643f6f9cec59252e830ccb1) — Update Title for April 25th release
+- 2026-04-24 [05f77b31e](https://github.com/aaronjeter/CrystalShireEngine/commit/05f77b31e988c5eccaca1e2cd762a775eb4d3af2) — Add random party generation to testroom
+- 2026-04-24 [d0bf62d1e](https://github.com/aaronjeter/CrystalShireEngine/commit/d0bf62d1e3ec743438df1296a7189ac3b74c9a6b) — Add Treetop Trial map
+- 2026-04-23 [c9048ec72](https://github.com/aaronjeter/CrystalShireEngine/commit/c9048ec727f4396ba77e1f60d47513dfc0978568) — Update title screen for April 23rd release
+- 2026-04-22 [a52387475](https://github.com/aaronjeter/CrystalShireEngine/commit/a523874751b58e37e35d4787fbd6c89f4db1cf97) — Add battle resort general store
+- 2026-04-22 [2d6f68189](https://github.com/aaronjeter/CrystalShireEngine/commit/2d6f681898888da115de85943cdb36ce393cf7ce) — Battle Resort initial commit
+- 2026-04-22 [2859c570a](https://github.com/aaronjeter/CrystalShireEngine/commit/2859c570ad3db4edcd969e1a9b66caee66352fd4) — Add abilities/moves
+- 2026-04-21 [b78ab6d71](https://github.com/aaronjeter/CrystalShireEngine/commit/b78ab6d712725c4fb05f0ace223b37d349706a9d) — Kanto map folder refiling routes 39-46
+- 2026-04-21 [6eae4e45f](https://github.com/aaronjeter/CrystalShireEngine/commit/6eae4e45ff4d856cabcff2c4b0d23b94e3143112) — map folder refiling routes 28-40
+- 2026-04-21 [ada55b564](https://github.com/aaronjeter/CrystalShireEngine/commit/ada55b56476c5dbcc49050703a2968baa18914eb) — Map reformatting route 21-27
+- 2026-04-21 [cf9b057f2](https://github.com/aaronjeter/CrystalShireEngine/commit/cf9b057f2010831c5387f5ae8f560a42eda6c256) — Route 11-20 map restructuring
+- 2026-04-21 [fc1f1adc2](https://github.com/aaronjeter/CrystalShireEngine/commit/fc1f1adc224235217c74a6047b50f6155117d71b) — Fix Safari Rocket Mew event glitch
+- 2026-04-21 [8e0b259e2](https://github.com/aaronjeter/CrystalShireEngine/commit/8e0b259e2190554cea9210e53249088318722173) — Map folder restructuring
+- 2026-04-19 [49d7f9817](https://github.com/aaronjeter/CrystalShireEngine/commit/49d7f98172693131fb0d8bad6fca99b3b9d7c605) — Update title for April 19th release
+- 2026-04-19 [a353ee5f8](https://github.com/aaronjeter/CrystalShireEngine/commit/a353ee5f80c6c0ac1f2cd8a299d9568f3d97ed50) — Make Indigo plateau available from kanto
+- 2026-04-19 [069886f59](https://github.com/aaronjeter/CrystalShireEngine/commit/069886f594c16afba3854a202d6d246efbe319c4) — Remove unused Beta maps
+- 2026-04-18 [df664ee8b](https://github.com/aaronjeter/CrystalShireEngine/commit/df664ee8b41508f1f0183ede4b3ba3fca3a1e6a3) — fix overworld mon icons
+- 2026-04-17 [6e2ada23e](https://github.com/aaronjeter/CrystalShireEngine/commit/6e2ada23edcee73ea767575eef2480c69d7362e7) — Add radio card to lavender radio station
+- 2026-04-17 [0dda2c5b4](https://github.com/aaronjeter/CrystalShireEngine/commit/0dda2c5b4ed816880b1bac82ad6884a1f0b0af39) — Add Cerulean and Mauville Bike Shops
+- 2026-04-17 [5b353e437](https://github.com/aaronjeter/CrystalShireEngine/commit/5b353e437a443d882f3c2835f13dc8acf829942c) — Make Powerplant accessable without surf
+- 2026-04-17 [590bc2bbc](https://github.com/aaronjeter/CrystalShireEngine/commit/590bc2bbc5e063cc3a6dcb438ab22ad2d4e1ba63) — Add hatchet lady to Vermillion City
+- 2026-04-17 [93c862a5b](https://github.com/aaronjeter/CrystalShireEngine/commit/93c862a5be444d1515373cb7bb604a345e0531f8) — tileset fixes
+- 2026-04-17 [c3fb56a3c](https://github.com/aaronjeter/CrystalShireEngine/commit/c3fb56a3cffcfc4fb9ca9a2e4580690354aa5224) — Remove more unused parties and rematches
+- 2026-04-17 [305d1f34a](https://github.com/aaronjeter/CrystalShireEngine/commit/305d1f34adb7e0899a7a3aa664f46da67f0f5bd6) — Remove more unused rematches
+- 2026-04-17 [c45d93d29](https://github.com/aaronjeter/CrystalShireEngine/commit/c45d93d29e6d1cacb97df9f9240a3d7e4d0528ef) — Remove some trainer rematches
+- 2026-04-17 [61c99951a](https://github.com/aaronjeter/CrystalShireEngine/commit/61c99951a0acc2962da492b53c1859e82b9230b2) — Add trainer difficulty flags and update saffron gym trainers
+- 2026-04-13 [ef2b6e1dc](https://github.com/aaronjeter/CrystalShireEngine/commit/ef2b6e1dc06539c29e73e9db3407100172951b80) — Remove unused beta maps
+- 2026-04-13 [baff68727](https://github.com/aaronjeter/CrystalShireEngine/commit/baff68727d766383958061dcc6f60849864b04da) — Kanto tileset improvements
+- 2026-04-12 [93ad0bc32](https://github.com/aaronjeter/CrystalShireEngine/commit/93ad0bc324b7e343b76d9f0154d62b4347be75a0) — Switch Kanto Vulpix/Ninetales to fire/fairy
+- 2026-04-12 [db8e95eae](https://github.com/aaronjeter/CrystalShireEngine/commit/db8e95eae8c25963359b15feb24669b382dcda73) — trainer updates for kanto start
+- 2026-04-09 [1d967c93e](https://github.com/aaronjeter/CrystalShireEngine/commit/1d967c93ed6f357a1144e5f1cb971ba580877ab0) — Update Hisuian Voltorb learnset
+- 2026-04-09 [530f44c5f](https://github.com/aaronjeter/CrystalShireEngine/commit/530f44c5f6ab0556e0b88a89c623972e7da8e413) — Add Mt Moon pokecenter to Route 3
+- 2026-04-09 [fcc6ddcfd](https://github.com/aaronjeter/CrystalShireEngine/commit/fcc6ddcfd3e6b10fb90cb67efbe41b62f38b3b0e) — Update early kanto shop/wildmons
+- 2026-04-09 [29f04667a](https://github.com/aaronjeter/CrystalShireEngine/commit/29f04667a8dfb0b6d29498eb6a1989554b0c616a) — Change Pewter city NPC trade
+- 2026-04-08 [2114bfeca](https://github.com/aaronjeter/CrystalShireEngine/commit/2114bfeca2189d3eae2244afec6dd0dc3dbf3f67) — Update title screen for April 8th release
+- 2026-04-07 [37f8bbe0a](https://github.com/aaronjeter/CrystalShireEngine/commit/37f8bbe0a07195003fadfa2ea3376b0eca6f167d) — Add abilities to pokemon
+- 2026-04-07 [b730cf267](https://github.com/aaronjeter/CrystalShireEngine/commit/b730cf2674097cc9c1818f5e1a97e244b4da9aea) — Misc support for Kanto Start
+- 2026-04-06 [32bc69268](https://github.com/aaronjeter/CrystalShireEngine/commit/32bc692686bf07af25c5276fd8dff7122d0b2033) — Unlock Saffron for Hoenn start
+- 2026-04-03 [7a333d92e](https://github.com/aaronjeter/CrystalShireEngine/commit/7a333d92e58c6b826851398833d637f004c60417) — Update title screen for April 3rd release
+- 2026-04-03 [31aa8e941](https://github.com/aaronjeter/CrystalShireEngine/commit/31aa8e9413b6b3efd9bb35cc70bbfa173288b5ca) — Add Route 111 and 117 dialog
+- 2026-04-03 [58cdddcd4](https://github.com/aaronjeter/CrystalShireEngine/commit/58cdddcd4edaefe16081e268beec8774aafcd72a) — Add Route 110 dialog
+- 2026-04-03 [ea874c332](https://github.com/aaronjeter/CrystalShireEngine/commit/ea874c3322a2c554d58a90c8eb8363678e8781de) — Add Route 109 dialog
+- 2026-04-03 [e7ff7272f](https://github.com/aaronjeter/CrystalShireEngine/commit/e7ff7272f792d306787921a367d1024af3bd27fd) — Add Sootopolis and Route 108 dialog
+- 2026-04-03 [d229687a8](https://github.com/aaronjeter/CrystalShireEngine/commit/d229687a81c730c98307c4862ff178465e72c1c9) — Add Route 119 and 120 dialog
+- 2026-04-02 [0216e131b](https://github.com/aaronjeter/CrystalShireEngine/commit/0216e131b161d274cc5cd49bb866e9f0fefabb9c) — Add Trainer Sprites for Hoenn Elite 4
+- 2026-04-02 [001ce26dd](https://github.com/aaronjeter/CrystalShireEngine/commit/001ce26dda6370bad65c18fe386389318feb5603) — Add Evergrande City and elite 4
+- 2026-03-30 [f447e39fa](https://github.com/aaronjeter/CrystalShireEngine/commit/f447e39fa3978f1375c1478d5eaef174c4073ed2) — Update Swinub line moveset
+- 2026-03-24 [f79b57bc5](https://github.com/aaronjeter/CrystalShireEngine/commit/f79b57bc5fc66fa84085fcd012c66b4e3019d5ea) — Fix game crash in Birch's lab
+- 2026-03-24 [b9b018b38](https://github.com/aaronjeter/CrystalShireEngine/commit/b9b018b38f36b065f8ea749510ebfc83eeaef9db) — Add Sootopolis and Gym
+- 2026-03-20 [9633374a6](https://github.com/aaronjeter/CrystalShireEngine/commit/9633374a67dd01a4419054a79f917ea4f32ca651) — Update Title Screen for 3/20 release
+- 2026-03-20 [a76e3e297](https://github.com/aaronjeter/CrystalShireEngine/commit/a76e3e2973ff87f9d379ba7c6972a3a44f93d297) — Add Fallarbor Move Reminder
+- 2026-03-20 [c81e055ae](https://github.com/aaronjeter/CrystalShireEngine/commit/c81e055ae48dcc1c217d63d29d923033016362fc) — Add Lilycove paint shop
+- 2026-03-20 [d0e574fae](https://github.com/aaronjeter/CrystalShireEngine/commit/d0e574faebadb501e8256e74f8b25fb8c0fd4f97) — Add Marvel Scale
+- 2026-03-20 [5ce156c8c](https://github.com/aaronjeter/CrystalShireEngine/commit/5ce156c8c2aa4ed1ffc07183ad8b1eb027dce682) — Update Spearow line ability
+- 2026-03-20 [46fb6853f](https://github.com/aaronjeter/CrystalShireEngine/commit/46fb6853fbf0b7a9635c92555b687586c8bad577) — Add new abilities Daunt and Enervate
+- 2026-03-20 [6a65d2ad4](https://github.com/aaronjeter/CrystalShireEngine/commit/6a65d2ad46b12f8bd3c8e75ef682046842f6f22e) — Update Intro Menu origin options
+- 2026-03-20 [466e0ba18](https://github.com/aaronjeter/CrystalShireEngine/commit/466e0ba18ce6187adb4d3bae2787daf3e0ca7945) — Add snarl to npc movesets
+- 2026-03-20 [0c8000959](https://github.com/aaronjeter/CrystalShireEngine/commit/0c80009596403359d56f24564f388afea2c3e362) — Update Lilycove City
+- 2026-03-20 [4211122e7](https://github.com/aaronjeter/CrystalShireEngine/commit/4211122e7ccaa15d172318a598bb7ec5e409cdd2) — Add Snarl move
+- 2026-03-20 [3e7fbca04](https://github.com/aaronjeter/CrystalShireEngine/commit/3e7fbca04c5e69eee8cb6cb28d5b2f29dcc02809) — Final new mons update
+- 2026-03-20 [1b15c58ee](https://github.com/aaronjeter/CrystalShireEngine/commit/1b15c58ee02da19a6cd392a79d73c9a71baa9232) — Add Blaziken line TM compatibility
+- 2026-03-16 [130f7df94](https://github.com/aaronjeter/CrystalShireEngine/commit/130f7df94c3a1bf9a412280025e33fca89c04e17) — Add some new pokemon
+- 2026-03-10 [7e40da32e](https://github.com/aaronjeter/CrystalShireEngine/commit/7e40da32e572b79873bc5fa23b5393e1b31d3e7c) — Add some new Megas
+- 2026-03-10 [15ef8dd13](https://github.com/aaronjeter/CrystalShireEngine/commit/15ef8dd131ffddd51e6f10be54113d2bf08381e3) — Nerf most Megas
+- 2026-03-10 [9abdc2125](https://github.com/aaronjeter/CrystalShireEngine/commit/9abdc2125271e678726327129f2938675338ab24) — Update Rusturf Tunnel and add Mossdeep Flypoint
+- 2026-03-08 [8b7934b27](https://github.com/aaronjeter/CrystalShireEngine/commit/8b7934b27ab06e2686e66db51acc7de8094197d0) — Update later gen shinies
+- 2026-03-05 [9dd53f9e6](https://github.com/aaronjeter/CrystalShireEngine/commit/9dd53f9e67b62e22d0c84a2cd3ff79dddff4524a) — Add Mossdeep NPC dialog
+- 2026-03-04 [19b7065ab](https://github.com/aaronjeter/CrystalShireEngine/commit/19b7065ab204a66536675498c2438d3ee069835e) — Add Mossdeep City and Gym
+- 2026-03-02 [4921697d7](https://github.com/aaronjeter/CrystalShireEngine/commit/4921697d7728c058fb1968725da74291c0cdc09d) — update hoenn tileset
+- 2026-03-01 [2b00a59ac](https://github.com/aaronjeter/CrystalShireEngine/commit/2b00a59ac19e45d329c481ec7effb1eba9df871d) — Update title screen for March 1st release
+- 2026-02-28 [1b755ba54](https://github.com/aaronjeter/CrystalShireEngine/commit/1b755ba54b44b05e0bff1ee5268936ab08afdaed) — Final Hoenn start fixes
+- 2026-02-28 [8b8425930](https://github.com/aaronjeter/CrystalShireEngine/commit/8b8425930d4509e72c5d0baa2ab2dc16ed38e5b1) — Move Granite cave rock smash rock
+- 2026-02-28 [0b40a1f5b](https://github.com/aaronjeter/CrystalShireEngine/commit/0b40a1f5b61513e834e0d3a017632cc01b1780a3) — Add Lanette House and Flippers to Route 114
+- 2026-02-28 [79bb557bb](https://github.com/aaronjeter/CrystalShireEngine/commit/79bb557bbd6e1489c8bb146ffdeabf802f14ac95) — Add Dewford Briney House
+- 2026-02-28 [d1ac65093](https://github.com/aaronjeter/CrystalShireEngine/commit/d1ac65093cf49442237194c65222ddf3dba107d3) — Nerf Dewford Gym trainers
+- 2026-02-28 [dc42dfcd2](https://github.com/aaronjeter/CrystalShireEngine/commit/dc42dfcd2943bf9965fdc2bd9c6756e62f8c1a51) — Add Granite Cave Brawly
+- 2026-02-28 [25d972e60](https://github.com/aaronjeter/CrystalShireEngine/commit/25d972e603bd7918f7fb6c809f9783ab23f6dbcb) — Add Flippers Surf Key Item
+- 2026-02-28 [3109e93ee](https://github.com/aaronjeter/CrystalShireEngine/commit/3109e93eebfbf3673233961d4388e6996f973faa) — Allow using rock smash from owning the TM
+- 2026-02-28 [07b3be977](https://github.com/aaronjeter/CrystalShireEngine/commit/07b3be9773971e032bc9e9b56c5ba73996363898) — Make Pickaxe work on overworld rock smash rocks
+- 2026-02-28 [41248cfb0](https://github.com/aaronjeter/CrystalShireEngine/commit/41248cfb02eb43bc735c46b73a8ba4d7fe3b4063) — Fix Hatchet to prompt cut from Overworld
+- 2026-02-28 [dc15850bd](https://github.com/aaronjeter/CrystalShireEngine/commit/dc15850bd03ef7a9d211e529353deed514063b90) — Add Mr Briney to sail to Dewford
+- 2026-02-28 [5ff52e10e](https://github.com/aaronjeter/CrystalShireEngine/commit/5ff52e10ede240ba332c78bf8f92ecbbd4f5bc25) — Add conditional warp sfx
+- 2026-02-28 [f8b934ceb](https://github.com/aaronjeter/CrystalShireEngine/commit/f8b934ceb0391c968325699785b952d8cff18a2e) — Add key items to Birch's Lab
+- 2026-02-27 [ba0d348d1](https://github.com/aaronjeter/CrystalShireEngine/commit/ba0d348d1c5d31e0fa99504836a9eb1a27a5bdc2) — Add Hoenn alt start beta
+- 2026-02-23 [da973e91f](https://github.com/aaronjeter/CrystalShireEngine/commit/da973e91f4003e58b81dcb0a8e24c04768dabeec) — Add Skitty level evolution
+- 2026-02-23 [d593c2dd0](https://github.com/aaronjeter/CrystalShireEngine/commit/d593c2dd0b886ad17d2ec79f5dd7f154a2835c9a) — Tweak move stats
+- 2026-02-23 [af3106105](https://github.com/aaronjeter/CrystalShireEngine/commit/af31061058e9d511cd5fa1a69d541dc5b6e266cc) — Add new backsprite for alt tentacool
+- 2026-02-23 [ce315fc87](https://github.com/aaronjeter/CrystalShireEngine/commit/ce315fc8792f8f7762f1c6fcc6c6218d1cd03e9e) — Fix glitch with sailor chandler on route 109
+- 2026-02-22 [116c8facc](https://github.com/aaronjeter/CrystalShireEngine/commit/116c8facca8fdc5a7acd34da1be341bd48b45c82) — Edit some overworld brick tiles
+- 2026-02-22 [827c91388](https://github.com/aaronjeter/CrystalShireEngine/commit/827c91388377b42e97aec44547ce524a447e5ab3) — Change route 122 ledges
+- 2026-02-22 [8fcdaf8f8](https://github.com/aaronjeter/CrystalShireEngine/commit/8fcdaf8f84a246d803aa1724723c9a7b69c25186) — Update testroom and title for 2/22 release
+- 2026-02-22 [a4e89bc58](https://github.com/aaronjeter/CrystalShireEngine/commit/a4e89bc58f931a162049fcae998f5c7f598f064c) — Add Hoenn trade pokemon
+- 2026-02-22 [56dcf344e](https://github.com/aaronjeter/CrystalShireEngine/commit/56dcf344e7ae7c0b08d1365d29be11b36e17276f) — Add Petalburg trade and update trade constants
+- 2026-02-21 [cacbcb11b](https://github.com/aaronjeter/CrystalShireEngine/commit/cacbcb11b307c29c345ee60d6ef37c3902805955) — Add stat up berries to hoenn fruit trees
+- 2026-02-21 [eaeb2b3a9](https://github.com/aaronjeter/CrystalShireEngine/commit/eaeb2b3a9c18e3cdcf64e8afe259daf52792500a) — reorder hoenn flypoints
+- 2026-02-21 [6d43aa46e](https://github.com/aaronjeter/CrystalShireEngine/commit/6d43aa46e679a164b1b79ee690a8a5ab34e21c67) — Add Mt Pyre
+- 2026-02-20 [a7b85d943](https://github.com/aaronjeter/CrystalShireEngine/commit/a7b85d9433efa0a54fe7738ca387b4bb51f740ff) — Add route 120 trainers
+- 2026-02-19 [f02d34695](https://github.com/aaronjeter/CrystalShireEngine/commit/f02d34695414b612396562a513ab89b5b9655ce8) — Add Route 119 trainers
+- 2026-02-19 [1e36aaac9](https://github.com/aaronjeter/CrystalShireEngine/commit/1e36aaac911145110501d83a8605600dd978ea88) — More rainforest trees for Hoenn
+- 2026-02-19 [9dbc51fcd](https://github.com/aaronjeter/CrystalShireEngine/commit/9dbc51fcd47330c50d7ba253c151aeae13f740bd) — Apply rainforest tree to hoenn rainforest maps
+- 2026-02-18 [6ea421089](https://github.com/aaronjeter/CrystalShireEngine/commit/6ea421089634119c90ddf39b2cdde00849d83808) — Distribute Earth Power to learnsets
+- 2026-02-18 [f2e5712d5](https://github.com/aaronjeter/CrystalShireEngine/commit/f2e5712d572a3a4c696dbf109b61a20f40a8961e) — Add Lavaridge Desert Trainers
+- 2026-02-18 [13172f77e](https://github.com/aaronjeter/CrystalShireEngine/commit/13172f77e2f712524c85fe20d8a04e1cd295277f) — Add Route 114 trainers
+- 2026-02-17 [44efb4d89](https://github.com/aaronjeter/CrystalShireEngine/commit/44efb4d89f5132c014d4c6e4c3dcbb52b9d6a343) — more pokecenter blocks
+- 2026-02-17 [af6599511](https://github.com/aaronjeter/CrystalShireEngine/commit/af659951197844a3f0cf52379b9b913504c586cf) — Update johto pokecenter blocks
+- 2026-02-17 [2128998a3](https://github.com/aaronjeter/CrystalShireEngine/commit/2128998a34dc2eb0edb558f9a99dde3b84543474) — Add route 113 trainers
+- 2026-02-16 [5654526ce](https://github.com/aaronjeter/CrystalShireEngine/commit/5654526ce86b2c4043a15022a3fda94ef3b78225) — Add route 112 trainers
+- 2026-02-15 [e8295b316](https://github.com/aaronjeter/CrystalShireEngine/commit/e8295b3162e5ddcc791b07921e201a7b2929a720) — Add more hoenn fruit trees to maps
+- 2026-02-14 [9e7b3049c](https://github.com/aaronjeter/CrystalShireEngine/commit/9e7b3049cd99a7df73695f0a009ff9f3efb82330) — Add Regirock/Registeel lairs
+- 2026-02-14 [5fb295f09](https://github.com/aaronjeter/CrystalShireEngine/commit/5fb295f094283190b5d38aa9056e3863aa3d9276) — Update Hoenn water wildmons
+- 2026-02-14 [6c3c11fdb](https://github.com/aaronjeter/CrystalShireEngine/commit/6c3c11fdb7757bdaf6ab1d61635dd74679b47f3f) — Fix Route 122 map connection
+- 2026-02-13 [56a1703bc](https://github.com/aaronjeter/CrystalShireEngine/commit/56a1703bc2b7e74cf4b3f4a075e5981ed32e293d) — Update Grass wildmons for hoenn release
+- 2026-02-13 [366b04639](https://github.com/aaronjeter/CrystalShireEngine/commit/366b04639ee66ef241f33861751a7d3d59624126) — Add Desert Shrine Unown and related scripts
+- 2026-02-13 [58da4711a](https://github.com/aaronjeter/CrystalShireEngine/commit/58da4711ac380a4bcc2ddbf5cef503d47395a612) — Update hoenn dungeon map types and landmarks
+- 2026-02-13 [1f7135845](https://github.com/aaronjeter/CrystalShireEngine/commit/1f713584526046df3796cdf1ef0c023b1e44ee67) — Update Hoenn marts
+- 2026-02-12 [8fc66534a](https://github.com/aaronjeter/CrystalShireEngine/commit/8fc66534a0ecc6bf3fc3244c6b4225d389db6a03) — Update togepi line moves
+- 2026-02-12 [106037ae2](https://github.com/aaronjeter/CrystalShireEngine/commit/106037ae2f700a1c7d12076e9693db6bde05a17f) — Add flypoint callbacks for Hoenn
+- 2026-02-12 [eb61bbf8e](https://github.com/aaronjeter/CrystalShireEngine/commit/eb61bbf8e7f2a81912964dbb8eedcb6c06e4d96c) — Update Hoenn flymap and landmarks
+- 2026-02-11 [ea4b8f05b](https://github.com/aaronjeter/CrystalShireEngine/commit/ea4b8f05becb0a1f1c8710d505183917613e7516) — Add route 118 trainers
+- 2026-02-11 [1fe899b67](https://github.com/aaronjeter/CrystalShireEngine/commit/1fe899b67e4fe3551fb0bd676d17da9b60bf1982) — Update ninetales stone evolution methods
+- 2026-02-11 [0e478e853](https://github.com/aaronjeter/CrystalShireEngine/commit/0e478e85390774474c9b54b40a61d1cc5233e456) — Increase max item storage
+- 2026-02-10 [d6c428dd1](https://github.com/aaronjeter/CrystalShireEngine/commit/d6c428dd1a80a20377a5fb74282731357fc23217) — Add NPC trade placeholders
+- 2026-02-10 [ee77e17d8](https://github.com/aaronjeter/CrystalShireEngine/commit/ee77e17d8a8d8ac6b6bb6bbf520139a0cf47b3a2) — Reserve Fruit Tree flags for future use
+- 2026-02-10 [c64b615d5](https://github.com/aaronjeter/CrystalShireEngine/commit/c64b615d5630ddbd25ecd260e6d4daa16cc800e4) — Add Hoenn as an official Region with Flymap and landmarks
+- 2026-02-07 [491813c3c](https://github.com/aaronjeter/CrystalShireEngine/commit/491813c3c9a74792c7fba0d8b0fb8d5c1d96cb05) — update debug code
+- 2026-02-07 [d34b6b724](https://github.com/aaronjeter/CrystalShireEngine/commit/d34b6b724d15241f3553872957bc35146126b171) — Add Random party list code
+- 2026-02-06 [ebba7e2b2](https://github.com/aaronjeter/CrystalShireEngine/commit/ebba7e2b2cc3aaaa2055e3df2f339d59516c5d26) — Ecruteak city changes
+- 2026-02-06 [0dcbc9ae1](https://github.com/aaronjeter/CrystalShireEngine/commit/0dcbc9ae12304f475a3410cc251a4eb291816a8c) — Add some hoenn parties
+- 2026-02-05 [4629b85c7](https://github.com/aaronjeter/CrystalShireEngine/commit/4629b85c7aaae5c65b0fe1b83922310e4a653b3f) — Add Signs around Hoenn
+- 2026-02-03 [584dc4990](https://github.com/aaronjeter/CrystalShireEngine/commit/584dc4990dc0da57b2914e7f632dc06ddf6eac8b) — Nerf early kanto start trainers
+- 2026-02-01 [b653a9935](https://github.com/aaronjeter/CrystalShireEngine/commit/b653a9935d8d25303a3bb16bdb1eee3e43105021) — Add Lilycove City
+- 2026-02-01 [d16e01054](https://github.com/aaronjeter/CrystalShireEngine/commit/d16e01054e9f292bda722e4d9479510429549367) — Add route 120-123 maps
+- 2026-01-29 [9ceed3f05](https://github.com/aaronjeter/CrystalShireEngine/commit/9ceed3f052bf08cd77ef1f6ffe5721ad9d33230a) — Update title screen for Jan 29 patch
+- 2026-01-29 [c5436e197](https://github.com/aaronjeter/CrystalShireEngine/commit/c5436e197c4e6c249a59e6c8d064e1158cb3b126) — Add Fortree Dialog and Hoenn tile updates
+- 2026-01-29 [05beeb828](https://github.com/aaronjeter/CrystalShireEngine/commit/05beeb8286df54346bbdefc5d36fb924f6542752) — Add Fortree Gym Trainers
+- 2026-01-29 [08e55d81a](https://github.com/aaronjeter/CrystalShireEngine/commit/08e55d81a049e35c08ee86ec8d5d270df7c80f03) — Add Winona and Feather Badge
+- 2026-01-29 [f59051216](https://github.com/aaronjeter/CrystalShireEngine/commit/f59051216317fd0930b162bd47a23eb6a8e299fe) — Add Route 119 and Fortree City Maps
+- 2026-01-29 [8f6823b6d](https://github.com/aaronjeter/CrystalShireEngine/commit/8f6823b6d713149f3e32d7f541195ba9deb0f712) — Map file reorg part 4
+- 2026-01-29 [c543cab35](https://github.com/aaronjeter/CrystalShireEngine/commit/c543cab35e94725a052a7f16ad449a08b9e15885) — Refactor world level updates
+- 2026-01-28 [d607aecfc](https://github.com/aaronjeter/CrystalShireEngine/commit/d607aecfc6a5b14848286c3a494ee120a7f75315) — Add UpdateWorldLevels Script
+- 2026-01-28 [1e09725e8](https://github.com/aaronjeter/CrystalShireEngine/commit/1e09725e8e03998fcb5e9b1379deea520a377c26) — maps folder reorg part 3
+- 2026-01-28 [2ccda4b8e](https://github.com/aaronjeter/CrystalShireEngine/commit/2ccda4b8e129634871fcb33b62deb1f748c1dbf8) — Map folder reorganization pt 2
+- 2026-01-28 [e8d4e8985](https://github.com/aaronjeter/CrystalShireEngine/commit/e8d4e89853a6d2348729689668e690b8030cee67) — Fix Rival 2 trainer moves bug
+- 2026-01-28 [0013d5e1f](https://github.com/aaronjeter/CrystalShireEngine/commit/0013d5e1f1b1cc2cd1332db30a7c1a7bb20e5ee4) — Re-tiling and map folder reorganization
+- 2026-01-25 [adad18ec6](https://github.com/aaronjeter/CrystalShireEngine/commit/adad18ec6f074af3f4c5d877ade44de641242a26) — Update title screen for Jan 24th release
+- 2026-01-24 [3786a5973](https://github.com/aaronjeter/CrystalShireEngine/commit/3786a5973f45eebe58452f4f0163100681f2642c) — Remove Oak's Kantoite X
+- 2026-01-24 [d3e08a37b](https://github.com/aaronjeter/CrystalShireEngine/commit/d3e08a37bbe5b08d02d32d0bf6bb567d1cef607b) — Add Alt Vulpix as Starter Option
+- 2026-01-24 [58e40e4c5](https://github.com/aaronjeter/CrystalShireEngine/commit/58e40e4c5e24e020c3fa3bc6a03c587e49b207e9) — Add Alt Vulpix
+- 2026-01-24 [dd6f13342](https://github.com/aaronjeter/CrystalShireEngine/commit/dd6f13342d063bcd35911fe3becc9f90e1039ab2) — Add Safari Executive, Warden, and Mew event
+- 2026-01-24 [267fd3943](https://github.com/aaronjeter/CrystalShireEngine/commit/267fd3943f4a1c507c4e4cf7cdc7a882587250db) — Add Safari Zone Encounters
+- 2026-01-24 [c8e598c45](https://github.com/aaronjeter/CrystalShireEngine/commit/c8e598c4526514ac87f347d4cb503e103177c3ec) — Add Mt Moon Wildmons
+- 2026-01-24 [6e7d432f8](https://github.com/aaronjeter/CrystalShireEngine/commit/6e7d432f8ce7f722375424d6b888f4040e8c0b68) — Add Safari Zone Trainers
+- 2026-01-22 [5f97fc01d](https://github.com/aaronjeter/CrystalShireEngine/commit/5f97fc01dbdd93228b3d165e9752b7ebb21d976b) — Add Safari Zone Maps
+- 2026-01-21 [cd2b75157](https://github.com/aaronjeter/CrystalShireEngine/commit/cd2b75157551d4f0e504033912f8d82ead1d202a) — Add Johto Games Arena
+- 2026-01-19 [6b85b721c](https://github.com/aaronjeter/CrystalShireEngine/commit/6b85b721c7558316251cb0955ba9afff56e207dc) — Nerf Route 1 Trainers
+- 2026-01-19 [53b4afd5b](https://github.com/aaronjeter/CrystalShireEngine/commit/53b4afd5ba5ec2e452d5c23c4c4e6ae81805be05) — Add Mt Moon trainers
+- 2026-01-19 [35222b408](https://github.com/aaronjeter/CrystalShireEngine/commit/35222b408df01dce6f2149b4836b13c7e274a427) — Add Lunatone as sprite mon
+- 2026-01-19 [aa867d200](https://github.com/aaronjeter/CrystalShireEngine/commit/aa867d200b4d8c2d22c3ffd775e41f2a4f1778ed) — Restore Mt Moon Maps
+- 2026-01-18 [a7f2a0d12](https://github.com/aaronjeter/CrystalShireEngine/commit/a7f2a0d124158bb8cfdfbdbf4239e3a321bbc500) — Remove some trainer healing items
+- 2026-01-18 [4c0ca9b31](https://github.com/aaronjeter/CrystalShireEngine/commit/4c0ca9b31c33c7f401c8570989842fbc5f7dd8e9) — Fix Mega Unown's Menu Icon
+- 2026-01-18 [aa5363baf](https://github.com/aaronjeter/CrystalShireEngine/commit/aa5363baf2d7b619adfddb75ccd6e7e1fefb569f) — Color in Pokepics Popups
+- 2026-01-18 [0d4acb8ef](https://github.com/aaronjeter/CrystalShireEngine/commit/0d4acb8efd424aa01dcbc0e8411a651d10b5b0f4) — Add testroom NPCs to turn off hardmode and level caps
+- 2026-01-18 [c5143b6bc](https://github.com/aaronjeter/CrystalShireEngine/commit/c5143b6bc13b1f35b290b5bb0f6cc563853db22d) — Nerf Normal mode parties for EVs
+- 2026-01-18 [819791c17](https://github.com/aaronjeter/CrystalShireEngine/commit/819791c17dbbc47be7ce3a2984e2dd9992b7a9ed) — Update learnsets to go to 70
+- 2026-01-16 [af12ccf3b](https://github.com/aaronjeter/CrystalShireEngine/commit/af12ccf3b51af5f72e1e26400839b625ff83d827) — Change Aron line growth rate
+- 2026-01-13 [cbd1bbc99](https://github.com/aaronjeter/CrystalShireEngine/commit/cbd1bbc99cc0cb75babe4c8011caa0afd2de9e17) — Update debug radio
+- 2026-01-12 [88fe8a3a0](https://github.com/aaronjeter/CrystalShireEngine/commit/88fe8a3a0e6e3d2351f961507b320e6ea6ebe42c) — Remove Elemental Ability activation Text
+- 2026-01-11 [43e75f04b](https://github.com/aaronjeter/CrystalShireEngine/commit/43e75f04b99df8efbfc02a6cd72a3a286e166757) — Update Title screen date
+- 2026-01-11 [194abcd5d](https://github.com/aaronjeter/CrystalShireEngine/commit/194abcd5d81acccbf1fa5c1f7afae32ba3dd5421) — Fix bug reducing damage by Elemental abilities
+- 2026-01-11 [246c88be1](https://github.com/aaronjeter/CrystalShireEngine/commit/246c88be1da0499ec10f49df6158f14835e0e018) — Add Message when elemental stab abilities trigger
+- 2026-01-11 [b44aecfd0](https://github.com/aaronjeter/CrystalShireEngine/commit/b44aecfd03d5229be16de92352e7c1fc47b17e77) — Add New Mauville
+- 2026-01-10 [55f2b76a6](https://github.com/aaronjeter/CrystalShireEngine/commit/55f2b76a6eac40ff73c63d346b8a47de6f6cfaea) — Add Route 118
+- 2026-01-10 [f8bc61096](https://github.com/aaronjeter/CrystalShireEngine/commit/f8bc61096865466b7aeef4beb5696cc3ec064ca1) — Add Meteor Falls
+- 2026-01-09 [47eaa19f9](https://github.com/aaronjeter/CrystalShireEngine/commit/47eaa19f90eb810c74929aa5aef6b28cb84979bc) — Add move reminder
+- 2026-01-09 [bba6d6980](https://github.com/aaronjeter/CrystalShireEngine/commit/bba6d6980786071264aafc65007d8f0f6555b083) — Add Routes 114 and 115
+- 2026-01-08 [94a219681](https://github.com/aaronjeter/CrystalShireEngine/commit/94a219681d7d5c95825d89a46484c3dfdd1a48d2) — Add Fallarbor Town
+- 2026-01-08 [9a03bd331](https://github.com/aaronjeter/CrystalShireEngine/commit/9a03bd33194f64241e0a39747d5567f44a86397a) — Update Title Screen Version Date
+- 2026-01-08 [bd2c53594](https://github.com/aaronjeter/CrystalShireEngine/commit/bd2c53594d6f881402bf4cf583f1585a4f720f9c) — Alt Exeggcute line changes
+- 2026-01-07 [12870d097](https://github.com/aaronjeter/CrystalShireEngine/commit/12870d09753b70e1f20b7c702b3f547ed7cfa6af) — Update exeggcute2 line shiny palates
+- 2026-01-07 [4e817fc0f](https://github.com/aaronjeter/CrystalShireEngine/commit/4e817fc0ff9bf55dd3c27632020800e6bdc87c52) — Add Hoenn gyms rematch parties
+- 2026-01-06 [d8037f4d5](https://github.com/aaronjeter/CrystalShireEngine/commit/d8037f4d531e4f7c36c0974aa9c419b6b05bbf02) — Update alt sprite backsprites
+- 2026-01-06 [f17775fe5](https://github.com/aaronjeter/CrystalShireEngine/commit/f17775fe50254d68ea6f61b9020e596fc1adbcb5) — Add Unownx
+- 2026-01-04 [fa5e11f61](https://github.com/aaronjeter/CrystalShireEngine/commit/fa5e11f615f5a12ade0bd38cb9b9a89d41d44ddb) — Update weather speed activation text
+- 2026-01-02 [15c916311](https://github.com/aaronjeter/CrystalShireEngine/commit/15c9163110014ef80f68bb04d27e1c1bc2eea792) — Add Weather Speed Abilities
+- 2026-01-02 [08eb72abf](https://github.com/aaronjeter/CrystalShireEngine/commit/08eb72abfc5ac67949250421f48ddbf24043815a) — Simplify clock reset method to Down + B on start menu
+- 2026-01-02 [c36ff0453](https://github.com/aaronjeter/CrystalShireEngine/commit/c36ff04539dcfcfd144c36a81acb99e4134f8493) — Refactor Ability Lookup logic
+- 2026-01-01 [9e08e39ae](https://github.com/aaronjeter/CrystalShireEngine/commit/9e08e39ae74208f8cc2434200e1625f49b74d71b) — Remove Ilex cut tree and Mega Scyther from Bug Contest
+- 2026-01-01 [cb995a545](https://github.com/aaronjeter/CrystalShireEngine/commit/cb995a545337303497c6ca635ad891c9d2610d0c) — Update Sleep Duration and Confuse self-hit chance
+- 2026-01-01 [ec35b33b8](https://github.com/aaronjeter/CrystalShireEngine/commit/ec35b33b88c8a4fa638b5a9b5bd833eee57d0fed) — TEST: max EVs for stat calculation
+- 2026-01-01 [463756c87](https://github.com/aaronjeter/CrystalShireEngine/commit/463756c870573e584c2e8f027f4644c749036cfc) — Update Title screen version number for release
+- 2026-01-01 [783028ba9](https://github.com/aaronjeter/CrystalShireEngine/commit/783028ba99a64c67054ffcd604c4afe67bf80a98) — Fix Focus ability game crash
+- 2025-12-31 [a310b7504](https://github.com/aaronjeter/CrystalShireEngine/commit/a310b7504993b00dc6b5dd760d49ad20a439d661) — Update Title Screen Date for release
+- 2025-12-31 [dd1e3d6fb](https://github.com/aaronjeter/CrystalShireEngine/commit/dd1e3d6fb9864d15d3d7b8db37be99e084cb7a82) — Re-type Mega Chimecho and parasect
+- 2025-12-31 [f2990a627](https://github.com/aaronjeter/CrystalShireEngine/commit/f2990a627688f458d16b55413d96ac98c7e970b3) — Move etb abilities to new bank, add Leech ability
+- 2025-12-31 [7b5858f24](https://github.com/aaronjeter/CrystalShireEngine/commit/7b5858f2448120791dcf8f6d8cd8c719e854dcba) — Update Elite 4 rematch parties
+- 2025-12-31 [ea39f08a1](https://github.com/aaronjeter/CrystalShireEngine/commit/ea39f08a12f336cde4b8e5650bbeeac715f4bcf2) — Enable Mega Raichu/Dragonite
+- 2025-12-31 [f2a5f1e8d](https://github.com/aaronjeter/CrystalShireEngine/commit/f2a5f1e8ddf685baab10c9cb775e11f7b23abdf0) — Enable Kanto Flying from Start
+- 2025-12-31 [a8c0c1d65](https://github.com/aaronjeter/CrystalShireEngine/commit/a8c0c1d6573929786c0aae368b8266c98d1870b6) — Hard Rematches
+- 2025-12-31 [e700f3ae4](https://github.com/aaronjeter/CrystalShireEngine/commit/e700f3ae41a224a51def0524ffde53c68557ff96) — Add Hard Rematches
+- 2025-12-31 [959c46bba](https://github.com/aaronjeter/CrystalShireEngine/commit/959c46bba8dd93a370374c5a008276e49d1ed6d5) — Add Clair Badge Check
+- 2025-12-30 [8d5caf020](https://github.com/aaronjeter/CrystalShireEngine/commit/8d5caf020bc0e76deb692036b4967c545cacebb6) — Add Hard Rematches
+- 2025-12-29 [44cdf7173](https://github.com/aaronjeter/CrystalShireEngine/commit/44cdf717368f4e4dad0a2a7c7f43bead13d954f7) — Add hard rematches
+- 2025-12-29 [6c9f2b1f6](https://github.com/aaronjeter/CrystalShireEngine/commit/6c9f2b1f6256ed38d4d2f0415d55141860a219fd) — Port Testroom into CSE branch of hack
+- 2025-12-12 [682e8bf01](https://github.com/aaronjeter/CrystalShireEngine/commit/682e8bf013d0a942353acad65cbdbef525cf710e) — Fix Imani glitch plus some map redesigns and title screen update
+- 2025-12-03 [95a6189b9](https://github.com/aaronjeter/CrystalShireEngine/commit/95a6189b9cc1bcc8ae27c6ab3b00ab35ad25bb34) — Add Desert and Regirock Lair Maps
+- 2025-11-27 [4d9bc2a84](https://github.com/aaronjeter/CrystalShireEngine/commit/4d9bc2a841d836f85426225d7a033796c7c85fee) — Title screen update
+- 2025-11-22 [e52bf8f6a](https://github.com/aaronjeter/CrystalShireEngine/commit/e52bf8f6a69b900d2fc3c617982834274d319aff) — Title Update and Grass Variety
+- 2025-11-20 [6097f59a5](https://github.com/aaronjeter/CrystalShireEngine/commit/6097f59a5205695bf10a2d791582490f5b8d77a6) — Add 6 more abilities and mass distribute abilities
+- 2025-11-19 [7aa700302](https://github.com/aaronjeter/CrystalShireEngine/commit/7aa700302f658c693b4bac092e08ce3130a82af7) — Remove old Mega name method
+- 2025-11-17 [d52b1b03b](https://github.com/aaronjeter/CrystalShireEngine/commit/d52b1b03b7fcd6b397f77dbf5731f5159c2fe128) — Give Huge power stat boosts
+- 2025-11-14 [8e930dd90](https://github.com/aaronjeter/CrystalShireEngine/commit/8e930dd90a6b4ccc4b95b26950957c9eb6323ef9) — Add Hoenn Fruit Trees
+- 2025-11-14 [ac42eeb05](https://github.com/aaronjeter/CrystalShireEngine/commit/ac42eeb05744f01b77c945f4fc5e3fb8d350cb35) — Add National Park Heracross
+- 2025-11-14 [656a0a85a](https://github.com/aaronjeter/CrystalShireEngine/commit/656a0a85af68b7088200b6ddb8853597bbce9278) — Add Granite Cave Overworld mons
+- 2025-11-14 [80c8801bb](https://github.com/aaronjeter/CrystalShireEngine/commit/80c8801bba5e958933e021e650c30979b84e8725) — Add Fiery Path (route 112)
+- 2025-11-12 [7513db83e](https://github.com/aaronjeter/CrystalShireEngine/commit/7513db83e53a16589fd84974d16ed48823065300) — Add Route 111 trainers
+- 2025-11-12 [8b0d2af96](https://github.com/aaronjeter/CrystalShireEngine/commit/8b0d2af9639071806a4db5ed8a165103da4f3e05) — Add Route 110 trainers
+- 2025-11-12 [17aaa0abc](https://github.com/aaronjeter/CrystalShireEngine/commit/17aaa0abcad6d6b1eeaf444ee4ede2c4e007bba8) — Reduce shared xp until after elite 4
+- 2025-11-12 [0ebfcd210](https://github.com/aaronjeter/CrystalShireEngine/commit/0ebfcd210ce6b5eda488dd57647abdea629f27c8) — Add Route 108 and 109 Trainers
+- 2025-11-12 [fbd8acc16](https://github.com/aaronjeter/CrystalShireEngine/commit/fbd8acc16ae88a55c0bf64e51719f6041e3cd378) — Update potion heal amounts
+- 2025-11-12 [a2ad971b1](https://github.com/aaronjeter/CrystalShireEngine/commit/a2ad971b1ae6987f2df17c4cc371b3b19d068b5f) — Make Kurt craft balls immediately
+- 2025-11-12 [754f1bdd4](https://github.com/aaronjeter/CrystalShireEngine/commit/754f1bdd44f3f732af912e33f72de7110c37bbe4) — Add Lavaridge Gym and Route117 trainers
+- 2025-11-11 [ba5500505](https://github.com/aaronjeter/CrystalShireEngine/commit/ba5500505f6b5f6208d2adf1680fbca576428d1a) — Add Haste ability
+- 2025-11-10 [9885c680d](https://github.com/aaronjeter/CrystalShireEngine/commit/9885c680d78b71416caa8f0847950060cea24844) — Add Healing abilities
+- 2025-11-09 [b16e9ac91](https://github.com/aaronjeter/CrystalShireEngine/commit/b16e9ac91e41c83d42d1f3e67e1f0b54d5243b4c) — Add Stability Ability
+- 2025-11-09 [27de06548](https://github.com/aaronjeter/CrystalShireEngine/commit/27de06548ad371f12d2585e8ff6c405eb5e7e12f) — Buff Cosmic Power
+- 2025-11-09 [a1afe6ae2](https://github.com/aaronjeter/CrystalShireEngine/commit/a1afe6ae2ead176a1a19856f4b86bee6a751ac9a) — Fix Route 37 twins sprites
+- 2025-11-05 [af10ed7ba](https://github.com/aaronjeter/CrystalShireEngine/commit/af10ed7ba9ba2d94bbe802d422267f60b72ef460) — Add STAB abilities
+- 2025-11-05 [7c949e3b6](https://github.com/aaronjeter/CrystalShireEngine/commit/7c949e3b60cbc79acf1794488fefcee76ff2c5ae) — Add ETB ability animations
+- 2025-11-05 [629594da1](https://github.com/aaronjeter/CrystalShireEngine/commit/629594da19f2af06db13227c4723cb4e9bc095fd) — Add Animations for Weather Abilities
+- 2025-11-05 [d5d7bd607](https://github.com/aaronjeter/CrystalShireEngine/commit/d5d7bd607197dc00653c175676d84625dbd61b9a) — Revert Mega name changes
+- 2025-11-04 [df9b59ec8](https://github.com/aaronjeter/CrystalShireEngine/commit/df9b59ec81f658c9bae0725a1ffba848b7fdc6bf) — Add Routes North of Mauville
+- 2025-10-30 [bfb3015d8](https://github.com/aaronjeter/CrystalShireEngine/commit/bfb3015d8c1a10ac01216e7d9d3f5de9ffe405a2) — Implement Luna's new Hoenn tiles
+- 2025-10-30 [f907c7897](https://github.com/aaronjeter/CrystalShireEngine/commit/f907c78977007e80e98fb238da32b6bd2ff6ff94) — Add contest parties
+- 2025-10-23 [0dfafaf1a](https://github.com/aaronjeter/CrystalShireEngine/commit/0dfafaf1a143d1e3080a1db19cbfa07d0b5d019e) — Add Route 105 trainers
+- 2025-10-23 [fdeecb70b](https://github.com/aaronjeter/CrystalShireEngine/commit/fdeecb70b58d1fd6ffa568bfe44a8b9fb6071f24) — Add Route 116 trainer Dialog
+- 2025-10-23 [2268a1e26](https://github.com/aaronjeter/CrystalShireEngine/commit/2268a1e262a6335b428b1941c18d27126b663b6a) — Add Route 116 Trainers
+- 2025-10-23 [4e0a268b9](https://github.com/aaronjeter/CrystalShireEngine/commit/4e0a268b96006a094f0e1ea9d63e6b412be9a731) — Update Mega Ampharos Shiny Palatte
+- 2025-10-22 [27569fda9](https://github.com/aaronjeter/CrystalShireEngine/commit/27569fda963d4a787952d4a194ce3a246bf7a504) — Fix Oak Mount Silve Glitch
+- 2025-10-22 [1c294b62f](https://github.com/aaronjeter/CrystalShireEngine/commit/1c294b62f57f0141bee01c3132950291a1d6e887) — Fix Shiny IV bug
+- 2025-10-22 [1e1f4a453](https://github.com/aaronjeter/CrystalShireEngine/commit/1e1f4a45313c8a706807fee9f070c6d9f0fc235b) — Update mega learnsets and abilities
+- 2025-10-21 [674f3d66a](https://github.com/aaronjeter/CrystalShireEngine/commit/674f3d66a4724072fd9aeb02654710256bb7cc1f) — Reduce weather duration from etb abilities
+- 2025-10-16 [c3d344d89](https://github.com/aaronjeter/CrystalShireEngine/commit/c3d344d89a9fca73e419b87972aa0b3e193cfdf1) — Add ability screen to stats page
+- 2025-10-14 [1df542295](https://github.com/aaronjeter/CrystalShireEngine/commit/1df5422953e4fc1ca518b8e9b87f1da8aafbbe40) — Fix alt form learnset bug
+- 2025-10-13 [d88cfb978](https://github.com/aaronjeter/CrystalShireEngine/commit/d88cfb978316db65618815de9daed9b0a3a28230) — Remove Non-warp doors
+- 2025-10-12 [4a9c0c1f6](https://github.com/aaronjeter/CrystalShireEngine/commit/4a9c0c1f6492eb3ad4633d4aaf66409a9b1ebca7) — Nerf Megas BST
+- 2025-10-12 [18e6f824a](https://github.com/aaronjeter/CrystalShireEngine/commit/18e6f824a29d53db6df8a2b30a9248d7dcd56a15) — Add Oak's Kantoite X
+- 2025-10-12 [13eee2882](https://github.com/aaronjeter/CrystalShireEngine/commit/13eee2882e10498984ed5e2cd5429618af24716d) — Add Birch lab map
+- 2025-10-11 [97d65e172](https://github.com/aaronjeter/CrystalShireEngine/commit/97d65e17281fb4e08bac55bb97f1da83cf99e331) — Convert some alt forms to Megas
+- 2025-10-11 [83113547a](https://github.com/aaronjeter/CrystalShireEngine/commit/83113547a81616c7c12afd780c2750cc7bf6c84c) — Add Mega Mart and Rocket Boss Mega Houndoom
+- 2025-10-10 [35a1bbb06](https://github.com/aaronjeter/CrystalShireEngine/commit/35a1bbb0672fee8d89e46da5b247f77aceb89ca6) — Add Lance and Clair Megas
+- 2025-10-10 [a998a4407](https://github.com/aaronjeter/CrystalShireEngine/commit/a998a4407b0484458988882ff127b3cb61f9a58a) — Add Mega evolution stones
+- 2025-10-10 [ad488b64c](https://github.com/aaronjeter/CrystalShireEngine/commit/ad488b64c5ab575b3b035efc3f02552abb41e87e) — Add 30 Megas
+- 2025-10-05 [0a47e6fec](https://github.com/aaronjeter/CrystalShireEngine/commit/0a47e6fec29c276f3e6e6d18e0a3d5c797be2309) — Add first Mega Pokemon
+- 2025-10-03 [cf8f229b8](https://github.com/aaronjeter/CrystalShireEngine/commit/cf8f229b8a44a3c5784cbd86ed786f7a0935ef9e) — Add Route 104 flower house
+- 2025-10-01 [12118c350](https://github.com/aaronjeter/CrystalShireEngine/commit/12118c350e1143d61880da0de14b0dfefb175ad0) — Add Petalburg house interiors
+- 2025-10-01 [1b15a579e](https://github.com/aaronjeter/CrystalShireEngine/commit/1b15a579ede95f3ee52eb1822b2be496b0bac2b2) — Add Mr briney's House in Route 104
+- 2025-09-29 [8f22b3bb7](https://github.com/aaronjeter/CrystalShireEngine/commit/8f22b3bb7ff4306b45044b56ccdf80d169e0a12b) — Set nonparticipant xp to 50%
+- 2025-09-29 [880612203](https://github.com/aaronjeter/CrystalShireEngine/commit/880612203d315fde739196e8a105568cc0ba2d7f) — Add Pokemon Ranger classes
+- 2025-09-27 [bb0a5fc2a](https://github.com/aaronjeter/CrystalShireEngine/commit/bb0a5fc2a44f2c2b9e31215cbaf38534a14e2670) — Add Slateport Harbor
+- 2025-09-20 [833b35d7c](https://github.com/aaronjeter/CrystalShireEngine/commit/833b35d7ca5875dc83cae640cd9782f79e4ea7f8) — Add 10 more pokemon
+- 2025-09-08 [22358dc6b](https://github.com/aaronjeter/CrystalShireEngine/commit/22358dc6b34fe67ad4e367eed47ba6b7f69d030e) — Add more in game trades
+- 2025-09-08 [dd0e59691](https://github.com/aaronjeter/CrystalShireEngine/commit/dd0e596910cbeb009577b1b7892c48906d6f59df) — Remove trade mon obedience rules
+- 2025-08-30 [f389ead37](https://github.com/aaronjeter/CrystalShireEngine/commit/f389ead373dc5d63a178ccad6cdc3145bfcb4f14) — Add engire/ram flags for Hoenn Badges
+- 2025-08-30 [dd8744412](https://github.com/aaronjeter/CrystalShireEngine/commit/dd874441274efc6f73d2ad47dcde4d336922df8a) — Add Hatchet and Pickaxe
+- 2025-08-30 [c1c19ebc3](https://github.com/aaronjeter/CrystalShireEngine/commit/c1c19ebc32fb27973983a29192cfad81dfe2d04c) — Add Regice Lair
+- 2025-08-30 [9bbdcbb67](https://github.com/aaronjeter/CrystalShireEngine/commit/9bbdcbb677ef125f791a5458c49625bc90d4801e) — Add Granite Cave
+- 2025-08-29 [c71ee2e44](https://github.com/aaronjeter/CrystalShireEngine/commit/c71ee2e4440f1975285b36f982a436693af5f8d2) — Update Route105 and collision
+- 2025-08-29 [499b5d7d2](https://github.com/aaronjeter/CrystalShireEngine/commit/499b5d7d2ddc13e5bdc27ccbc45ed84cfa47065a) — Start adding Hoenn Route trainers
+- 2025-08-24 [8fcbd1e14](https://github.com/aaronjeter/CrystalShireEngine/commit/8fcbd1e1444f9c59aeed9d874a7b9ff454121a9b) — Add new moves to learnsets
+- 2025-08-23 [aa016c2c7](https://github.com/aaronjeter/CrystalShireEngine/commit/aa016c2c75efe3914513f4e39f1e7d2bdbfdce61) — Add more moves
+- 2025-08-21 [b6a695280](https://github.com/aaronjeter/CrystalShireEngine/commit/b6a695280b6e02edaa471621c640ec2969067bc4) — Add Hoenn wildmon encounter data files
+- 2025-08-20 [7f30ece5c](https://github.com/aaronjeter/CrystalShireEngine/commit/7f30ece5cc9a8599c8dd49a42f777984ab594c8a) — Add Hoenn marts
+- 2025-08-18 [d481c4581](https://github.com/aaronjeter/CrystalShireEngine/commit/d481c4581ba1432447376824d26064b10fa5c7cc) — Add Pokecenters
+- 2025-08-18 [e38c3c2fa](https://github.com/aaronjeter/CrystalShireEngine/commit/e38c3c2faf83d66ee2a46407b60d9c62ca906972) — Add Hoenn Pokecenter
+- 2025-08-12 [b2668b4e6](https://github.com/aaronjeter/CrystalShireEngine/commit/b2668b4e6e2c93ba799694769407209d1dffa9ec) — Add Battle Girl class and Dewford gym trainers
+- 2025-08-12 [c14f9fb67](https://github.com/aaronjeter/CrystalShireEngine/commit/c14f9fb676df9c0ba988bdb35adbdd51b422c651) — Add hoenn Trainer sprites
+- 2025-08-12 [1f7dd247a](https://github.com/aaronjeter/CrystalShireEngine/commit/1f7dd247a7b5af99c32746df1c7c5720638ba9dd) — Add Mauvile Gym Trainers
+- 2025-08-11 [0154ee383](https://github.com/aaronjeter/CrystalShireEngine/commit/0154ee3831cb8546f7f5f9db33aa2ccd5a9c1f55) — Add rustboro gym scripts
+- 2025-08-10 [737b2bd38](https://github.com/aaronjeter/CrystalShireEngine/commit/737b2bd383fd2d81ea7a93e46afc2cf07006c54a) — Add Petalburg Gym and Scripts
+- 2025-08-09 [a2aa23eaf](https://github.com/aaronjeter/CrystalShireEngine/commit/a2aa23eafe5a9f80c1c45d5fee55020627c7fc6e) — Add Several hoenn Cities
+- 2025-08-04 [29e2b0474](https://github.com/aaronjeter/CrystalShireEngine/commit/29e2b0474e9a7aa0cba8d84811f241e14612b40f) — Update Route110.ablk
+- 2025-08-04 [db2be13ac](https://github.com/aaronjeter/CrystalShireEngine/commit/db2be13ac8012590bb32eb3cb1933d58eb8d4e74) — Add Mauville and Route110
+- 2025-08-03 [6e827f3b8](https://github.com/aaronjeter/CrystalShireEngine/commit/6e827f3b871d31455b210613a4e31420d487ce2f) — Add Rusturf Tunnel and Verdanturf Town
+- 2025-08-02 [92a5b596a](https://github.com/aaronjeter/CrystalShireEngine/commit/92a5b596a4482aa0355b4919b67dbb47fb23b466) — Add Rustboro City
+- 2025-08-01 [2d4ba263d](https://github.com/aaronjeter/CrystalShireEngine/commit/2d4ba263ddf7bbe76c748e137d6a15ac5beccb4a) — Update Ecuteak city dirt path
+- 2025-07-31 [067f8a0f9](https://github.com/aaronjeter/CrystalShireEngine/commit/067f8a0f97776e2d1bcab003a26ff9663817cacd) — Add Beta Mons and Beta Origin
+- 2025-07-29 [9f94ba9da](https://github.com/aaronjeter/CrystalShireEngine/commit/9f94ba9da0fe23c59a427fecb20f5a8dbf34de03) — Trim alt exeggcute backsprite to 48x48
+- 2025-07-29 [5eec738bb](https://github.com/aaronjeter/CrystalShireEngine/commit/5eec738bb48399f834453343cae3feaaf4a0bf5b) — Add Hoenn Up to Petalburg
+- 2025-07-28 [7c8df2c0d](https://github.com/aaronjeter/CrystalShireEngine/commit/7c8df2c0d1bfaa1c99f975d50b7a46e063a0f7f0) — Add Viridian Forest
+- 2025-07-25 [d6b056848](https://github.com/aaronjeter/CrystalShireEngine/commit/d6b05684823b7ca7b28acd59bd085e98d59c91c3) — More abilities and ability support
+- 2025-07-25 [b110e6f56](https://github.com/aaronjeter/CrystalShireEngine/commit/b110e6f56da544d22e1e87135ee72aaa2d838fc9) — Remove blockers in Dark Cave
+- 2025-07-10 [e87e33a63](https://github.com/aaronjeter/CrystalShireEngine/commit/e87e33a634a33519d5538030cafc7b8239d60ab2) — Minor move rebalance and adding Hail to learnsets
+- 2025-07-08 [f02f199b7](https://github.com/aaronjeter/CrystalShireEngine/commit/f02f199b7b30c11295787437baa54a5b48bbd1a2) — Remove ai status random miss
+- 2025-07-08 [7c0569709](https://github.com/aaronjeter/CrystalShireEngine/commit/7c0569709e80c8c9421bc40f135b41caa95100e9) — Add Hail
+- 2025-07-08 [ff319e257](https://github.com/aaronjeter/CrystalShireEngine/commit/ff319e257dedda75103fe379a7812e6abf9d76fd) — Initial Hoenn maps and tileset commit
+- 2025-07-07 [ea86e4183](https://github.com/aaronjeter/CrystalShireEngine/commit/ea86e4183a4357f3aa7d0d30a20986eef523cc3a) — Add Entrance Weather Abilities
+- 2025-07-06 [208d40b79](https://github.com/aaronjeter/CrystalShireEngine/commit/208d40b792a02f01e1f03bc565147c0f74bcc749) — Add Waterproof and fix target species issue
+- 2025-07-06 [948d3726b](https://github.com/aaronjeter/CrystalShireEngine/commit/948d3726b20dea91d43c27022f0107f9f9015a56) — Add Pseudo Levitate
+- 2025-07-06 [ed11eb2c3](https://github.com/aaronjeter/CrystalShireEngine/commit/ed11eb2c38df8ca212aa4803374f1a63f785e555) — Heal parties after Elite 4 battles
+- 2025-06-29 [d0f72d91d](https://github.com/aaronjeter/CrystalShireEngine/commit/d0f72d91d44c43774cd5d6553bd26a662a5c11e3) — Add Elite 4 rematch
+- 2025-06-29 [8ba6c178d](https://github.com/aaronjeter/CrystalShireEngine/commit/8ba6c178de9919b5abf3159efcd0bbc62ad5ba27) — Add more info on move screen
+- 2025-06-29 [386cc8869](https://github.com/aaronjeter/CrystalShireEngine/commit/386cc88692261604e042407843163bcd90c22dce) — Add exp for catching pokemon
+- 2025-06-29 [658f6e345](https://github.com/aaronjeter/CrystalShireEngine/commit/658f6e34569d24dfbcf0e53f5da0cabd001d99bf) — Fix port and Lighthouse maps
+- 2025-06-29 [6426a16b5](https://github.com/aaronjeter/CrystalShireEngine/commit/6426a16b5d21c43f2f3819c238bf2b8fdd6637c5) — Restore use effect to trade evo items
+- 2025-06-28 [a7543dfef](https://github.com/aaronjeter/CrystalShireEngine/commit/a7543dfef4119ff80abe5416a472da99f1cabb48) — Cut Tile Fix and recolor
+- 2025-06-28 [7d62bc37f](https://github.com/aaronjeter/CrystalShireEngine/commit/7d62bc37feff27df4151851f369a6b4f3c6c32f3) — Update bg_tiles.pal
+- 2025-06-28 [0d1a875f1](https://github.com/aaronjeter/CrystalShireEngine/commit/0d1a875f18b14308b88375c8e077a85c12a5ae4c) — Update bg_tiles.pal
+- 2025-06-27 [221efe2d8](https://github.com/aaronjeter/CrystalShireEngine/commit/221efe2d8954aa36124402b88e3427dbf5727a87) — Move Snorlax
+- 2025-06-26 [703997d82](https://github.com/aaronjeter/CrystalShireEngine/commit/703997d829c759907be473f3551297c7f5c59db8) — Tileset/palate updates
+- 2025-06-25 [883970cbb](https://github.com/aaronjeter/CrystalShireEngine/commit/883970cbb62e3269789693ff3a18d6a5817ca1cc) — Update Alolan Grimer/Muk learnset
+- 2025-06-19 [406e39ded](https://github.com/aaronjeter/CrystalShireEngine/commit/406e39dede9895e6098a872e559a31cb4e5d6c75) — Goldenrod updates
+- 2025-06-19 [ad0641d07](https://github.com/aaronjeter/CrystalShireEngine/commit/ad0641d0760b57a660077cfcfb6cbcace86f2ed2) — Update hard mode parties
+- 2025-06-19 [4bfe3760d](https://github.com/aaronjeter/CrystalShireEngine/commit/4bfe3760d122e88a176e6c642a0307ec9e83d57d) — Update whirl islands
+- 2025-06-19 [8c2ca2bb0](https://github.com/aaronjeter/CrystalShireEngine/commit/8c2ca2bb0006bab6902f801df17530fd2b5dc107) — Update alolan geodude learnset
+- 2025-06-19 [806f7d2fb](https://github.com/aaronjeter/CrystalShireEngine/commit/806f7d2fb2ff230aaceb5cd3606644621c1c8045) — Olivine city visual update
+- 2025-06-19 [9797be1af](https://github.com/aaronjeter/CrystalShireEngine/commit/9797be1afe988d9adde78b2977d7a4b9f66d7cea) — Johto_Modern tileset rework
+- 2025-06-18 [3b8562dcc](https://github.com/aaronjeter/CrystalShireEngine/commit/3b8562dcc030bba825f386a7326c02788b1ae427) — Update Team Rocket Electrodes
+- 2025-06-18 [f55646d58](https://github.com/aaronjeter/CrystalShireEngine/commit/f55646d583de7daad514a46131fc700b5b0ec331) — Increase Weather Duration
+- 2025-06-18 [d4d8864fe](https://github.com/aaronjeter/CrystalShireEngine/commit/d4d8864fe14809ba8ada5f735c84b293ed8e5fb7) — Add IronBundle
+- 2025-06-18 [d8c730d18](https://github.com/aaronjeter/CrystalShireEngine/commit/d8c730d18e723693637fa9ffc19dbdcbca304fab) — Add Kyogre Groudon, and Rayquaza
+- 2025-06-18 [0c4cad1fe](https://github.com/aaronjeter/CrystalShireEngine/commit/0c4cad1fe61113f581edc46048d60039827e7ff7) — Add Latias and latios
+- 2025-06-18 [2753d63f0](https://github.com/aaronjeter/CrystalShireEngine/commit/2753d63f0a5ac0102b7f930f171c19cd89c38f34) — Redo Alolan Vulpix back sprite
+- 2025-06-18 [513257c17](https://github.com/aaronjeter/CrystalShireEngine/commit/513257c172ffdd4d6d833f91418ea0b756c1219a) — Add Kleavor
+- 2025-06-18 [b3b99fc82](https://github.com/aaronjeter/CrystalShireEngine/commit/b3b99fc829db4e6b6474ae16afff8bfc058bb3be) — Add hisuian voltorb and electrode
+- 2025-06-18 [5e09f9e6e](https://github.com/aaronjeter/CrystalShireEngine/commit/5e09f9e6edd5928f6cc16fe5cb4684b6b1ec227b) — Add Tangrowth
+- 2025-06-18 [2344cbd9a](https://github.com/aaronjeter/CrystalShireEngine/commit/2344cbd9a0988a8e9070de664f29008d06d7045f) — Add Annihilape
+- 2025-06-18 [ff3c39f65](https://github.com/aaronjeter/CrystalShireEngine/commit/ff3c39f655670b27ef382665b6bf773be890f61c) — Add Regis and Alolan Geodude Line
+- 2025-06-16 [63c50bd29](https://github.com/aaronjeter/CrystalShireEngine/commit/63c50bd29fe7351f69ab72969987393a8eab24bd) — Add Mewtwo to Silver Cave
+- 2025-06-16 [4a9d21da3](https://github.com/aaronjeter/CrystalShireEngine/commit/4a9d21da316c55b9e80046e9554e6bcfbc997262) — Remove Badge Boosts
+- 2025-06-15 [82ee750da](https://github.com/aaronjeter/CrystalShireEngine/commit/82ee750da7de08414fb7e3d1b3f6017ec3f2b44a) — Buff Surf back to T3
+- 2025-06-14 [cf85e547e](https://github.com/aaronjeter/CrystalShireEngine/commit/cf85e547e1b223fdfe17814103502cfed89640ab) — Switch to hard parties when hard mode is active
+- 2025-06-14 [bdc5a5fc4](https://github.com/aaronjeter/CrystalShireEngine/commit/bdc5a5fc429b82ee1c5aaf44a8b5c1376953fd66) — Update hard parties
+- 2025-06-14 [3f9e64187](https://github.com/aaronjeter/CrystalShireEngine/commit/3f9e64187265b6dbdca1a94c7bc6603acb400922) — Add Hard mode to Trainer Card
+- 2025-06-14 [82a82be17](https://github.com/aaronjeter/CrystalShireEngine/commit/82a82be175b278499772b30ef809a2d14bffa3f4) — Add basic hardmode
+- 2025-06-14 [750eadb0f](https://github.com/aaronjeter/CrystalShireEngine/commit/750eadb0ffedfb83fe327906d6d71cb0e9241e5d) — Make Celebi hatch sooner
+- 2025-06-14 [d18f8db06](https://github.com/aaronjeter/CrystalShireEngine/commit/d18f8db0605bda8c9edbdc81ac713fc0822b4ca0) — Add Ilex East/West wildmons
+- 2025-06-14 [c4ba9dc2f](https://github.com/aaronjeter/CrystalShireEngine/commit/c4ba9dc2fc3ecc8be683c629ede076d97b36b6ef) — Fix Celebi Event
+- 2025-06-14 [b6f65a615](https://github.com/aaronjeter/CrystalShireEngine/commit/b6f65a61539cd99e79a645f24b316fca5ef821c3) — Add Wurmple to bug contest
+- 2025-06-13 [c4f64c3bd](https://github.com/aaronjeter/CrystalShireEngine/commit/c4f64c3bdf6c39065a8b6b565a282a81b9de5b85) — Inc Levelcap when triggering Mahogany Rockets
+- 2025-06-13 [7d787d9b6](https://github.com/aaronjeter/CrystalShireEngine/commit/7d787d9b6a1896ff57f65c4736aac5207a2b0d0a) — Inc Level cap when triggering Golderod Rocket Event
+- 2025-06-13 [316dae21b](https://github.com/aaronjeter/CrystalShireEngine/commit/316dae21b53a92d2479b4ea7e6590ae9da770680) — Add Ilex West trainers
+- 2025-06-13 [4fb8d3543](https://github.com/aaronjeter/CrystalShireEngine/commit/4fb8d35431b8aca3ef198f77548011e8657c1f41) — Add Celebi event
+- 2025-06-13 [25dff13b7](https://github.com/aaronjeter/CrystalShireEngine/commit/25dff13b7285284fb59e4a11200f1bbdb7774c3f) — Add Electabuzz to olivine lighthouse
+- 2025-06-13 [21e097bf2](https://github.com/aaronjeter/CrystalShireEngine/commit/21e097bf233af07ff9336f62ad0b53232535e138) — Add Moltres Lair and Zapdos
+- 2025-06-13 [4aa1f51cf](https://github.com/aaronjeter/CrystalShireEngine/commit/4aa1f51cfee7cf274eb83ed764efd60b47a682c4) — Add Articuno Lair
+- 2025-06-12 [3bddcf131](https://github.com/aaronjeter/CrystalShireEngine/commit/3bddcf131a03ea9159d73e1c10c528b3d4769d94) — Add Route 40 overworld mons
+- 2025-06-12 [48915e689](https://github.com/aaronjeter/CrystalShireEngine/commit/48915e689ad613daf3d2550920fc6bfb40f879e5) — Add Sprout tower overworld mons
+- 2025-06-12 [eda249fdc](https://github.com/aaronjeter/CrystalShireEngine/commit/eda249fdc132e427837b289ceffcd77ee4eb679b) — Early route improvments
+- 2025-06-11 [178929099](https://github.com/aaronjeter/CrystalShireEngine/commit/178929099cebf7bbeff2f0f06bcc0a3de5dfed91) — Fix FaerieGleam description typo
+- 2025-06-11 [9ac19a602](https://github.com/aaronjeter/CrystalShireEngine/commit/9ac19a602145a9902acf78b121e567632f0a6318) — Fix Olivine Lighthouse Ampharos sprite
+- 2025-06-11 [72e5c2b44](https://github.com/aaronjeter/CrystalShireEngine/commit/72e5c2b44ba8ae3722cc8da8acaae05d192035c3) — Fix national park Persian Sprite
+- 2025-06-10 [fedba69fe](https://github.com/aaronjeter/CrystalShireEngine/commit/fedba69fec7b70287b6e59f78f034336fcb437de) — Fix overworld sprites
+- 2025-06-09 [e2f5fbe5f](https://github.com/aaronjeter/CrystalShireEngine/commit/e2f5fbe5f52a18e082c9e49fc45fb08b2e5b40ce) — Add Lex West and East maps
+- 2025-06-09 [3cbcd20a8](https://github.com/aaronjeter/CrystalShireEngine/commit/3cbcd20a897b007419ac280c3b70266409293026) — Update Debug Items and Mons
+- 2025-06-09 [ab42dc784](https://github.com/aaronjeter/CrystalShireEngine/commit/ab42dc784fab42cadb750f2624e8c58332d379d7) — Change bill time machine text
+- 2025-06-09 [f965a3d91](https://github.com/aaronjeter/CrystalShireEngine/commit/f965a3d91d71ecf47c204884dd3058e4dabb86ec) — Update NPC trades
+- 2025-06-09 [aa2dd2ef7](https://github.com/aaronjeter/CrystalShireEngine/commit/aa2dd2ef70f0c1c83829285d2d5e4f26cb2bbb17) — Set Default Text Delay to Fast
+- 2025-06-08 [d616bccae](https://github.com/aaronjeter/CrystalShireEngine/commit/d616bccaec318aff978f883077334f6fa59b17e5) — Add Gen 3 pokedex Height/Weight
+- 2025-06-08 [05abfa13a](https://github.com/aaronjeter/CrystalShireEngine/commit/05abfa13ae522862621a593eb88b421dd52b5866) — Make odd eggs always shiny
+- 2025-06-08 [805bac823](https://github.com/aaronjeter/CrystalShireEngine/commit/805bac8231cdc4c8ef0b8f1f2c2db7758dec155a) — Update Celadon Casino prizes
+- 2025-06-08 [fb64b9d40](https://github.com/aaronjeter/CrystalShireEngine/commit/fb64b9d40b99e688c41819ae513dac02eeee597d) — Add overworld Bagon to Tojo Falls
+- 2025-06-08 [2c11ff787](https://github.com/aaronjeter/CrystalShireEngine/commit/2c11ff787a7f60e598d976ada38f024238767543) — Add Second Pokemon Prize receptionist
+- 2025-06-08 [4f41af334](https://github.com/aaronjeter/CrystalShireEngine/commit/4f41af334274898778464600717e35b2d058c910) — Change goldenrod casino pokemon
+- 2025-06-08 [e83930ff7](https://github.com/aaronjeter/CrystalShireEngine/commit/e83930ff777001d6cfb05e4bbe18a6eb94d42cab) — Buff Luvdisc to 450 BST
+- 2025-06-08 [bfad55a48](https://github.com/aaronjeter/CrystalShireEngine/commit/bfad55a484c3a8dbf905edb60bd5844c84070de5) — Update Gen 3 Learnsets
+- 2025-06-08 [a4f0f2f30](https://github.com/aaronjeter/CrystalShireEngine/commit/a4f0f2f30a369709ff39ff73da352ee7b837aa8a) — Add Jirachi sprites and fix exeggutor front/back pics
+- 2025-06-08 [a66de236a](https://github.com/aaronjeter/CrystalShireEngine/commit/a66de236a7127f7171c01744fa0402f8341be29a) — Add Beldum Family Animations
+- 2025-06-08 [e91867f8d](https://github.com/aaronjeter/CrystalShireEngine/commit/e91867f8d60e32fdf519ca80db64b52d7c6291ca) — Add Bagon line Animations
+- 2025-06-07 [21c84a88e](https://github.com/aaronjeter/CrystalShireEngine/commit/21c84a88efe68d15420f5fcbfd8156170557ecc3) — Add Relicanth and Luvdic animations
+- 2025-06-07 [f34d57405](https://github.com/aaronjeter/CrystalShireEngine/commit/f34d574057bbe2f54327e10cf691938e1ad13069) — Add Clamperl line animations
+- 2025-06-07 [0cbc7e756](https://github.com/aaronjeter/CrystalShireEngine/commit/0cbc7e756c0503ad7c3d0e908bfcad8364fbe50a) — Change Alolan origin starters
+- 2025-06-07 [66e6567ce](https://github.com/aaronjeter/CrystalShireEngine/commit/66e6567ced463f16d043f4601b3a084986e69abd) — Add Alolan Sandshrew and Vulpix lines
+- 2025-06-07 [7ed4e860a](https://github.com/aaronjeter/CrystalShireEngine/commit/7ed4e860a38216d4f86015fe0eebabab0998a145) — Add some later gen 3 mons to trainer parties
+- 2025-06-07 [75f2776f1](https://github.com/aaronjeter/CrystalShireEngine/commit/75f2776f1663c77034a34ac82fc9c8d86ede0a57) — Add move data for Baltoy-Walrein
+- 2025-06-07 [a4b44a6e7](https://github.com/aaronjeter/CrystalShireEngine/commit/a4b44a6e7b2d05f5e6514e4a1002d1199079248f) — Add Wynaut and Spheal Line Animations
+- 2025-06-07 [05d5786b9](https://github.com/aaronjeter/CrystalShireEngine/commit/05d5786b919b45ffc79dfd06e4ab6ac2f2fbead5) — Fix Grimer starter text
+- 2025-06-07 [60da931c8](https://github.com/aaronjeter/CrystalShireEngine/commit/60da931c860c6cbca860423d61136f085f1e3a60) — Add Tropius-Absol
+- 2025-06-07 [4a743a0ee](https://github.com/aaronjeter/CrystalShireEngine/commit/4a743a0ee2156136baa17490ca0d751384d4a3e4) — Add Duskull line Animations
+- 2025-06-07 [d751a2312](https://github.com/aaronjeter/CrystalShireEngine/commit/d751a2312bb2b7c6c974c652da1861a850a8dddc) — Add Kecleon and Shuppet Line Animations
+- 2025-06-06 [be637704e](https://github.com/aaronjeter/CrystalShireEngine/commit/be637704e907c20d3ded8dcc0aaa991b24579ff0) — Add Anorith through Milotic Animations
+- 2025-06-06 [ba45ad28b](https://github.com/aaronjeter/CrystalShireEngine/commit/ba45ad28babfe69f704963febd97abc654a6f9b9) — Add Lileep and Cradily Animations
+- 2025-06-06 [58f4ed287](https://github.com/aaronjeter/CrystalShireEngine/commit/58f4ed287586d52aa9ef5425dacdd79f5808c925) — Change nonparticipant battle xp to 25%
+- 2025-06-06 [2e6e1a0dd](https://github.com/aaronjeter/CrystalShireEngine/commit/2e6e1a0dd42f086b8b8295604a202d743d1eec3e) — Nerf Cooltrainer Quinn
+- 2025-06-06 [1774bcbaf](https://github.com/aaronjeter/CrystalShireEngine/commit/1774bcbafcfc2dd24903f21256d350799facdeef) — Add rest of Gen 3 Icons
+- 2025-06-06 [28bc71175](https://github.com/aaronjeter/CrystalShireEngine/commit/28bc711759c6bff55aad041a58cd6a8df2ed3d96) — Add Icons through Walrein
+- 2025-06-06 [e2fda534d](https://github.com/aaronjeter/CrystalShireEngine/commit/e2fda534d07a4143dad8ae701f76a6ea59317729) — Add Icons through Banette
+- 2025-06-06 [5fbbffba1](https://github.com/aaronjeter/CrystalShireEngine/commit/5fbbffba1811d59bfcb7eecf41f93320f0c27506) — Overworld Mons test
+- 2025-06-06 [13d95fb3f](https://github.com/aaronjeter/CrystalShireEngine/commit/13d95fb3f609450c27ba79564f732d4f4e5a863a) — Add Baltoy and Claydol
+- 2025-06-04 [c830eb432](https://github.com/aaronjeter/CrystalShireEngine/commit/c830eb432151b0402aa6194ae618fa4dbf002dab) — Add HM items
+- 2025-06-04 [b066eff22](https://github.com/aaronjeter/CrystalShireEngine/commit/b066eff2255b0c70004f4756138e2f0aaf69b6de) — Add Lantern
+- 2025-06-04 [69e0e0ba1](https://github.com/aaronjeter/CrystalShireEngine/commit/69e0e0ba1b3ecb404a05b48b1eb9b3c97fe08909) — Make birdwhiste use delibird sprite
+- 2025-06-04 [c102b3381](https://github.com/aaronjeter/CrystalShireEngine/commit/c102b338145f884b197f722706e4fad54885cf45) — Add Birdwhistle
+- 2025-06-03 [c021c5d5e](https://github.com/aaronjeter/CrystalShireEngine/commit/c021c5d5e2d5a9f282c2d6f571a03c6fa010a037) — Fix game crash after beating Blue
+- 2025-05-30 [2e93ca38e](https://github.com/aaronjeter/CrystalShireEngine/commit/2e93ca38e6fdb845b969b24df51091885e4bb35d) — make acid physical
+- 2025-05-30 [84b9f112d](https://github.com/aaronjeter/CrystalShireEngine/commit/84b9f112d4369d484ce78bd550bed0e618adfb1a) — Remove Exp Share
+- 2025-05-30 [1d5f870f5](https://github.com/aaronjeter/CrystalShireEngine/commit/1d5f870f5bc604be2ca3ccb3cb05a4975126da58) — add missing pokedex entries
+- 2025-05-30 [1f1241b9c](https://github.com/aaronjeter/CrystalShireEngine/commit/1f1241b9c34474756720990eecb292d78b550513) — Add alola origin
+- 2025-05-30 [3c63167a6](https://github.com/aaronjeter/CrystalShireEngine/commit/3c63167a639e2ec140e705de5e5030ea41b6b8e9) — Add barboach and corphish
+- 2025-05-30 [83054f791](https://github.com/aaronjeter/CrystalShireEngine/commit/83054f79121ae714d581bb55d9d5c3adb710ece3) — Add alolan grimer to maps
+- 2025-05-30 [fc28144f0](https://github.com/aaronjeter/CrystalShireEngine/commit/fc28144f07e2ebcf9326078635424a1f45666039) — Gen4+ alt moves and evo methods
+- 2025-05-30 [f20a3d2c0](https://github.com/aaronjeter/CrystalShireEngine/commit/f20a3d2c07bcd4eefb65a2f3c586e451fa719f2e) — Add gen4 and alolan pokemon
+- 2025-05-30 [0517a12bb](https://github.com/aaronjeter/CrystalShireEngine/commit/0517a12bbf403c8cfbcc40ec53fa5dc2dffe4acc) — Fix Icons post sealeo
+- 2025-05-30 [11908c63c](https://github.com/aaronjeter/CrystalShireEngine/commit/11908c63cfd33a3e22bb4bd6abad47f24fb02ff9) — Add 64 more pokemon
+- 2025-05-23 [d005a19bc](https://github.com/aaronjeter/CrystalShireEngine/commit/d005a19bca5a4b28c1785084e71901ac4ff9f2bd) — Lower kanto gym scaling
+- 2025-05-23 [3dd1adf1a](https://github.com/aaronjeter/CrystalShireEngine/commit/3dd1adf1a83317432335420acf68cbe8ef3379e8) — Change Reddit Starters
+- 2025-05-23 [445775d43](https://github.com/aaronjeter/CrystalShireEngine/commit/445775d43de48851be9d0044ab2712edebe25ba7) — Add pokemon up to Crawdaunt
+- 2025-05-15 [c555cec8f](https://github.com/aaronjeter/CrystalShireEngine/commit/c555cec8f634c568562e1f8989539910d2ec3634) — Trainer party bugfixes
+- 2025-05-08 [97c7f1622](https://github.com/aaronjeter/CrystalShireEngine/commit/97c7f162243243a9c79476c237b57bddba3b70bd) — Fix Tauros2
+- 2025-05-07 [cdffd8ab9](https://github.com/aaronjeter/CrystalShireEngine/commit/cdffd8ab914ccebfe674aeb2f198062264100722) — Don't increment level caps when they're off
+- 2025-05-07 [ef9a58ac8](https://github.com/aaronjeter/CrystalShireEngine/commit/ef9a58ac8cfb271b9efef700a7d5b935142473d9) — Add level cap to trainer card
+- 2025-05-07 [2d4cb93a0](https://github.com/aaronjeter/CrystalShireEngine/commit/2d4cb93a0cb803c44818b0072e02981873a0fe08) — Port Level Caps
+- 2025-05-07 [82d91a6a7](https://github.com/aaronjeter/CrystalShireEngine/commit/82d91a6a7b087952fd450c1502542d88524c0ad4) — Gen 4 Mons
+- 2025-05-06 [eb6879edf](https://github.com/aaronjeter/CrystalShireEngine/commit/eb6879edfac876f850bb80703867f6c7e6a64f03) — Fix Bugsy Rematch
+- 2025-05-06 [b59ac297a](https://github.com/aaronjeter/CrystalShireEngine/commit/b59ac297a2dc38c18e19bffa8a4e786d4bb3c436) — Give Ralts fairy type
+- 2025-05-05 [697465f31](https://github.com/aaronjeter/CrystalShireEngine/commit/697465f31a555b95f1b866578b37d0caddbe8f91) — Add Gen 3 to wild
+- 2025-05-05 [691de7030](https://github.com/aaronjeter/CrystalShireEngine/commit/691de70308874ff24c79d6c5a72b71756e3ec3a9) — Gen 3 Mon Icons part 2
+- 2025-05-04 [17dd336d8](https://github.com/aaronjeter/CrystalShireEngine/commit/17dd336d8862b69e455a2e6517346758f5431399) — Add gen 3 menu icons
+- 2025-05-04 [4e8cfbd3c](https://github.com/aaronjeter/CrystalShireEngine/commit/4e8cfbd3ce9ff600510a5b6d5318c8a4e40ae364) — Add Gen 3 Moves to learnsets
+- 2025-05-03 [cb520e354](https://github.com/aaronjeter/CrystalShireEngine/commit/cb520e354e7d3b277513d47166243c1a3f0af3ba) — Update Gen 2 learnsets
+- 2025-05-03 [9f352397b](https://github.com/aaronjeter/CrystalShireEngine/commit/9f352397be8894e4726883e41439b8e270349263) — Add some Gen4+ moves
+- 2025-05-03 [68b4e8d56](https://github.com/aaronjeter/CrystalShireEngine/commit/68b4e8d56a55d37573676e2a9408484cd25142f3) — Move pp update
+- 2025-05-02 [5760bb1e0](https://github.com/aaronjeter/CrystalShireEngine/commit/5760bb1e06c0ba06fa55200991e69c590950e3b8) — Gym Leader Rematches
+- 2025-04-29 [54b33f46e](https://github.com/aaronjeter/CrystalShireEngine/commit/54b33f46eb8130102548593810d34317a2567451) — Residual Damage Animation Fix
+- 2025-04-29 [6820324f5](https://github.com/aaronjeter/CrystalShireEngine/commit/6820324f5bb086b70a71b2bf829a0c2d8ade1530) — Fix Intro Menu Text length
+- 2025-04-29 [32fcb66ef](https://github.com/aaronjeter/CrystalShireEngine/commit/32fcb66ef46270ad0da2a92f6c47b2128ea92a47) — Add reddit mons to the wild
+- 2025-04-29 [a51a96b48](https://github.com/aaronjeter/CrystalShireEngine/commit/a51a96b488e08e3ec04a3879af58e51e9a9c8992) — Add Evo Stones to Goldenod Mart
+- 2025-04-29 [820556620](https://github.com/aaronjeter/CrystalShireEngine/commit/82055662000319775d0bfbb5de49bc0082e02eec) — Add Reddit origin to intro menu
+- 2025-04-29 [0ffee9698](https://github.com/aaronjeter/CrystalShireEngine/commit/0ffee969886a8693a98e77ff51c14e8a34880476) — Add reddit mons
+- 2025-04-27 [42499f9c5](https://github.com/aaronjeter/CrystalShireEngine/commit/42499f9c5b88fc92e27f897a7b8c6ef54ed4bbd5) — Fix Broken Icons
+- 2025-04-27 [b1c09fd6f](https://github.com/aaronjeter/CrystalShireEngine/commit/b1c09fd6f3ba8c635014be3a4c35ef30fad32f0d) — Add Gen 3 Moves (firsthalf)
+- 2025-04-25 [ea9f6b205](https://github.com/aaronjeter/CrystalShireEngine/commit/ea9f6b205bd87601299a227129a29a7da4fd495f) — Add gen 3 pokemon Poochyena-Solrock
+- 2025-04-24 [9df1dc279](https://github.com/aaronjeter/CrystalShireEngine/commit/9df1dc279d13662c09f97118ad1bd8d9058db306) — Gen 3 Starters
+- 2025-04-23 [0830032fe](https://github.com/aaronjeter/CrystalShireEngine/commit/0830032fe02659414d7dfe86f495032741d3e0d2) — Add Munchlax
+- 2025-04-23 [d2b64b2cf](https://github.com/aaronjeter/CrystalShireEngine/commit/d2b64b2cf265968b12d30df4a1e22ecc45e083e9) — Add Region Menu
+- 2025-04-21 [5d13bf182](https://github.com/aaronjeter/CrystalShireEngine/commit/5d13bf182445d5101d1819116be7e937f96650c4) — Enable overworld HM use upon owning HM
+- 2025-04-20 [f4e79ed72](https://github.com/aaronjeter/CrystalShireEngine/commit/f4e79ed723b341ee7948ddd1189584379ee0816a) — fix kadabra glitch
+- 2025-04-16 [e3a4e3362](https://github.com/aaronjeter/CrystalShireEngine/commit/e3a4e336200ceca82633357ec28ccb885d99637b) — Allow HM move overwriting
+- 2025-04-15 [176797382](https://github.com/aaronjeter/CrystalShireEngine/commit/176797382580683e491e4da0bbe5af45edd3e203) — loadwildmon scaling
+- 2025-04-15 [0d6ac6160](https://github.com/aaronjeter/CrystalShireEngine/commit/0d6ac61602e3468b723694282b4369d6fb798b4b) — Remove badge hm reqs
+- 2025-04-14 [552e34e76](https://github.com/aaronjeter/CrystalShireEngine/commit/552e34e76644915824c9396b9ef03aee6ad15efe) — Unlock Magnet Train
+- 2025-04-14 [e85df09d6](https://github.com/aaronjeter/CrystalShireEngine/commit/e85df09d6d6abf5b5fb7d9260227e7f4513c7d17) — add elm lab xp share
+- 2025-04-14 [bad40b9e3](https://github.com/aaronjeter/CrystalShireEngine/commit/bad40b9e399e632767d7f0ed647232075a083574) — Remove Sudowoodo roadblock
+- 2025-04-13 [65265cf34](https://github.com/aaronjeter/CrystalShireEngine/commit/65265cf34a237972c79ec6dbff2edfe4eac32720) — add hard parties data
+- 2025-04-11 [2a6035ac8](https://github.com/aaronjeter/CrystalShireEngine/commit/2a6035ac8cf6026939dccf9fbe92b1321ebbaffa) — Machoke learnset fix
+- 2025-04-10 [3fd5e1bac](https://github.com/aaronjeter/CrystalShireEngine/commit/3fd5e1bace87f840eddafadbc4b05cd280b814cc) — fix broken evolution methods
+- 2025-04-10 [fea02f48c](https://github.com/aaronjeter/CrystalShireEngine/commit/fea02f48cdb7ac7ef7d71e219f3667f6d9009a1f) — Change starter
+- 2025-04-10 [fb131966f](https://github.com/aaronjeter/CrystalShireEngine/commit/fb131966f6a3876d05627031b51e7264dbb1b25c) — Remove Item Trade Evos
+- 2025-04-10 [c0c5b8625](https://github.com/aaronjeter/CrystalShireEngine/commit/c0c5b86259f49c05153b1336867191e492c4de2b) — Increase Shiny Rates
+- 2025-04-10 [4b6dd167c](https://github.com/aaronjeter/CrystalShireEngine/commit/4b6dd167cbcff729747b93178bf603df1f4609f5) — remove 510 limit on evs
+- 2025-04-10 [805bb788e](https://github.com/aaronjeter/CrystalShireEngine/commit/805bb788ed82543aa8a5d3029125860636e8c235) — AI scoring update
+- 2025-04-09 [6111de4a8](https://github.com/aaronjeter/CrystalShireEngine/commit/6111de4a8b342d3e356cfc93cb26f56a91019f65) — Move Tutor Availability
+- 2025-04-08 [4c6f3fbd4](https://github.com/aaronjeter/CrystalShireEngine/commit/4c6f3fbd479ff3945f2d69d7f64d9b5618469c35) — Add wildmon level variance
+- 2025-04-08 [9608384a8](https://github.com/aaronjeter/CrystalShireEngine/commit/9608384a89b132d45d3076c69fa0548936b0865a) — Reusable TMs
+- 2025-04-08 [128ad79bc](https://github.com/aaronjeter/CrystalShireEngine/commit/128ad79bced6e82cd14edcfd587bd239f1702b46) — Implement Physical/special split
+- 2025-04-07 [4d12e46db](https://github.com/aaronjeter/CrystalShireEngine/commit/4d12e46dbfd84dd7f059cb3931681d9e1d5e9d49) — Pokemon type porting
+- 2025-04-06 [b3e5e3244](https://github.com/aaronjeter/CrystalShireEngine/commit/b3e5e3244e0715c790846427458ce7811c81bec9) — Levelcap Badge Increments
+- 2025-04-06 [7f9eff2a7](https://github.com/aaronjeter/CrystalShireEngine/commit/7f9eff2a7497a90717828926c07b7179d4e86b2a) — Initial Porting Commit
+
+## Crystal_Lattice
+
+Revision: `8b5eb01a0865b432a8901f52d7ab2b47923e17a2`. Non-merge commits in this section: 349.
+
+- 2026-04-02 [8b5eb01a0](https://github.com/aaronjeter/CrystalShireEngine/commit/8b5eb01a0865b432a8901f52d7ab2b47923e17a2) — Add Trainer Sprites for Hoenn Elite 4
+- 2026-07-15 [0fcd0c659](https://github.com/aaronjeter/CrystalShireEngine/commit/0fcd0c6599b8b9c56b72c718806f6e91332d9e06) — Add Conditional boost move effect, along with Hex and Venoshock
+- 2026-07-15 [4755f8974](https://github.com/aaronjeter/CrystalShireEngine/commit/4755f897412571044fa5f93661f94a8cd2e308a8) — Add type status immunities
+- 2026-08-23 [f40146634](https://github.com/aaronjeter/CrystalShireEngine/commit/f4014663449527cdd17bff0ea291e0763d7ce31a) — Alolan starter merge cleanup
+- 2026-07-18 [06f9f0e36](https://github.com/aaronjeter/CrystalShireEngine/commit/06f9f0e366c8c807e1482614ad19c7609cd93c47) — Add Alolan starters
+- 2026-08-23 [4a039efdc](https://github.com/aaronjeter/CrystalShireEngine/commit/4a039efdc75f4bf29a155fd643ffb08f552bb66d) — Change Eruption to Willowisp for merge conpatibility
+- 2026-07-12 [d59154f04](https://github.com/aaronjeter/CrystalShireEngine/commit/d59154f040e12283e330d7d39682437726271972) — Reorder TM51-75, and remove Water Pulse/Bullet Seed
+- 2026-07-21 [adb45afcd](https://github.com/aaronjeter/CrystalShireEngine/commit/adb45afcde26445d19bdb91390f1e1e36224ee1c) — Add Djinn to overworld sprite list
+- 2026-07-21 [5e3dca16c](https://github.com/aaronjeter/CrystalShireEngine/commit/5e3dca16c04958cb29fbb6afd3e94d5029ae1b3d) — Add Djinn menu icons
+- 2026-07-21 [198fc1638](https://github.com/aaronjeter/CrystalShireEngine/commit/198fc16383483e3375da9dbe34585fb19db981ce) — Remove duplicate learnset entry for Venus
+- 2026-07-21 [65dfe0e14](https://github.com/aaronjeter/CrystalShireEngine/commit/65dfe0e14622695e650b600482734f71c8ce806b) — Nerf Luvdisc
+- 2026-07-21 [44e2b24ef](https://github.com/aaronjeter/CrystalShireEngine/commit/44e2b24ef7215145e19750695b14a1d89bb92fee) — Update Djinn stats/learnsets
+- 2026-08-23 [fa7909a18](https://github.com/aaronjeter/CrystalShireEngine/commit/fa7909a18df0063cec3e9d93fb9f5a0641128503) — Add Ancient Power asa TM move for compatibility
+- 2026-07-20 [e1e6951ab](https://github.com/aaronjeter/CrystalShireEngine/commit/e1e6951ab03069a3e24df946f0ada1411a9c7494) — Add Elemental Djinn, first draft
+- 2026-07-05 [2498a4144](https://github.com/aaronjeter/CrystalShireEngine/commit/2498a41448cd0fd229e692840f746a17281128e7) — Add alt Chikorita line
+- 2026-07-29 [030f2a72a](https://github.com/aaronjeter/CrystalShireEngine/commit/030f2a72a204f560e3637f6999c1a64d1c848ecc) — - Updating move descriptions
+- 2026-05-14 [811b1f002](https://github.com/aaronjeter/CrystalShireEngine/commit/811b1f00243fbfcac6b6cc560a6fe03ba14e931f) — Update cries for region variants and later gen evos
+- 2026-06-29 [6069cb14f](https://github.com/aaronjeter/CrystalShireEngine/commit/6069cb14f6dd3cc15928f0a0194b472565bc92da) — soft-remove beta Victrebel
+- 2026-05-31 [b9e871869](https://github.com/aaronjeter/CrystalShireEngine/commit/b9e8718697e5462898e6eef927217f566b5b1c66) — Remove Unneeded farcalls
+- 2026-02-23 [8eff70481](https://github.com/aaronjeter/CrystalShireEngine/commit/8eff70481a3fd5c5b4f8fec60f094cb3a4c93c99) — Add new backsprite for alt tentacool
+- 2026-08-05 [a1a13f1c3](https://github.com/aaronjeter/CrystalShireEngine/commit/a1a13f1c335e74e17a43d7aea79fabc3da35ffb9) — Update Setup AI layer
+- 2026-07-19 [f877f4bc5](https://github.com/aaronjeter/CrystalShireEngine/commit/f877f4bc5d949be1f296f0757eb1d68fb68e2fa1) — Birdwhistle refactor
+- 2026-05-31 [28480db1c](https://github.com/aaronjeter/CrystalShireEngine/commit/28480db1c114435b4fe6d9117005eb5603cba014) — Remove Unneeded farcalls
+- 2026-07-15 [3c2be84a1](https://github.com/aaronjeter/CrystalShireEngine/commit/3c2be84a11e0689af0f9b205d2f9ec484af025aa) — Add type status immunities
+- 2026-07-15 [72ad3a2fe](https://github.com/aaronjeter/CrystalShireEngine/commit/72ad3a2fe6e0b0022c7c724c8e5675f74b83bd84) — Add second Colon for Regeneration Mons list
+- 2026-06-06 [f46325aa5](https://github.com/aaronjeter/CrystalShireEngine/commit/f46325aa52c36fce25cd3510a2b8acc0dd08fdb1) — Add Held Fairy Boost
+- 2026-07-15 [86201c649](https://github.com/aaronjeter/CrystalShireEngine/commit/86201c649d0e8c2fc5ba55bb98eae81929529578) — Add Conditional boost move effect, along with Hex and Venoshock
+- 2026-07-15 [6208a2bd8](https://github.com/aaronjeter/CrystalShireEngine/commit/6208a2bd817f588d76f3636a6c0490710f51e9d4) — Fix Metang Metagross Palette
+- 2026-06-06 [3c8b7f03d](https://github.com/aaronjeter/CrystalShireEngine/commit/3c8b7f03d7b0452eb2507d4449b99ea764270f35) — Add some held items
+- 2026-06-05 [0b908b8a6](https://github.com/aaronjeter/CrystalShireEngine/commit/0b908b8a62d50d73c54f96c676cea826e74a297f) — even more manual decap followup
+- 2026-06-05 [98f917fb6](https://github.com/aaronjeter/CrystalShireEngine/commit/98f917fb66c312758b1ab5dbda88b94c4a18385e) — Lattice City decapitalization followup
+- 2026-06-05 [985e70655](https://github.com/aaronjeter/CrystalShireEngine/commit/985e706555c959dc657fa37a12c450fae23a1703) — more decapitalization cleanup
+- 2026-05-14 [059de63f8](https://github.com/aaronjeter/CrystalShireEngine/commit/059de63f89e1efc8613c8a035e61074faf2bebf1) — Add abilities for new Megas and redo Pidgey learnset
+- 2026-05-22 [5552f8b28](https://github.com/aaronjeter/CrystalShireEngine/commit/5552f8b2801748f635dc43fdc350720fe8a8e85a) — Update ponyta forms to allow form switching
+- 2026-06-01 [3a53abab0](https://github.com/aaronjeter/CrystalShireEngine/commit/3a53abab0d3c47469b80106da8d9fa866e78cf24) — Update Mantine xp growth rate
+- 2026-05-14 [9c62d6062](https://github.com/aaronjeter/CrystalShireEngine/commit/9c62d606243cc20039a3f0a17e4cd1e72aed3feb) — Update cries for region variants and later gen evos
+- 2026-05-13 [1eaaa67f0](https://github.com/aaronjeter/CrystalShireEngine/commit/1eaaa67f0c5ed3ea3e68512cfa0c8f0352e5d698) — Add new Megas
+- 2026-05-31 [88f24894c](https://github.com/aaronjeter/CrystalShireEngine/commit/88f24894cc5ea7662230775d5b139a7d5b69054e) — Remove Unneeded farcalls
+- 2026-06-05 [5e6bbccd8](https://github.com/aaronjeter/CrystalShireEngine/commit/5e6bbccd87780e27b1f7d9d116d3b76ac8822830) — Decapitalization first pass merge fixes
+- 2026-04-27 [4c0df5d3a](https://github.com/aaronjeter/CrystalShireEngine/commit/4c0df5d3a5c9173628e55f4dcf428fc5faad50c5) — Decapitalization first pass
+- 2026-04-22 [fe05b9f6a](https://github.com/aaronjeter/CrystalShireEngine/commit/fe05b9f6aac22d0e1ccda46d9c76928f0725ef3e) — Add abilities/moves
+- 2026-06-05 [513138799](https://github.com/aaronjeter/CrystalShireEngine/commit/51313879951d49375a5b8562209e4b8cda5a5afe) — Remove extra item description
+- 2026-06-05 [c37c438d9](https://github.com/aaronjeter/CrystalShireEngine/commit/c37c438d979356cf68841baf08267de46fa5584e) — Remove kanto wildmons
+- 2026-04-12 [ce3992174](https://github.com/aaronjeter/CrystalShireEngine/commit/ce3992174f2e61bfcc0f9b8e200e0693bacffe81) — Switch Kanto Vulpix/Ninetales to fire/fairy
+- 2026-04-09 [a38c1ac9b](https://github.com/aaronjeter/CrystalShireEngine/commit/a38c1ac9b81ab9baadc8a952ed174d212e76115c) — Update Hisuian Voltorb learnset
+- 2026-04-07 [b5be88bb3](https://github.com/aaronjeter/CrystalShireEngine/commit/b5be88bb3f8a6b50213b160b06f72fe57e31825d) — Add abilities to pokemon
+- 2026-03-30 [44d9a8f21](https://github.com/aaronjeter/CrystalShireEngine/commit/44d9a8f21d3b869d5237b918c4671301bfe93a5b) — Update Swinub line moveset
+- 2026-03-20 [d932a87dd](https://github.com/aaronjeter/CrystalShireEngine/commit/d932a87dddf7188b494521c0529e150a2a67bcfa) — Add Marvel Scale
+- 2026-03-20 [a512c802f](https://github.com/aaronjeter/CrystalShireEngine/commit/a512c802f171a7b0017b344490687f3ccfba4a04) — Update Spearow line ability
+- 2026-03-20 [259bbd00d](https://github.com/aaronjeter/CrystalShireEngine/commit/259bbd00d45e683f12092b20ad16ae81eec7a84e) — Add new abilities Daunt and Enervate
+- 2026-03-20 [cdb360e85](https://github.com/aaronjeter/CrystalShireEngine/commit/cdb360e85129c631da7868f970ecfff203be099a) — Add snarl to npc movesets
+- 2026-03-20 [6079851c2](https://github.com/aaronjeter/CrystalShireEngine/commit/6079851c2209df49cc54aa0d112ecc5120f68632) — Add Snarl move
+- 2026-03-20 [c4a3e29cc](https://github.com/aaronjeter/CrystalShireEngine/commit/c4a3e29cc8acbbeae7d68e8e79bfbfed86c65827) — Final new mons update
+- 2026-03-20 [65b39bd37](https://github.com/aaronjeter/CrystalShireEngine/commit/65b39bd377f0ecff26d6a7eb96a2de3e9802b695) — Add Blaziken line TM compatibility
+- 2026-03-16 [da9775f03](https://github.com/aaronjeter/CrystalShireEngine/commit/da9775f030e58033ffec14e489d4c3f06a706aff) — Add some new pokemon
+- 2026-03-10 [22944d1be](https://github.com/aaronjeter/CrystalShireEngine/commit/22944d1be450afcdbd36125b01cf21d297632c67) — Add some new Megas
+- 2026-02-11 [3f67d6ce1](https://github.com/aaronjeter/CrystalShireEngine/commit/3f67d6ce12a4174ff3adab07b2812b94b1c6b4f9) — Increase max item storage
+- 2026-02-11 [590b7b8b4](https://github.com/aaronjeter/CrystalShireEngine/commit/590b7b8b498884b16afb29c02f32176025930b45) — Update ninetales stone evolution methods
+- 2026-01-28 [a04ef77bf](https://github.com/aaronjeter/CrystalShireEngine/commit/a04ef77bfc736075095398da192ca44ddc72acfc) — Add UpdateWorldLevels Script
+- 2026-02-11 [0602520f0](https://github.com/aaronjeter/CrystalShireEngine/commit/0602520f00a60085d1fc7b8269a6c08140a4680e) — Increase max item storage
+- 2026-03-08 [f95f6db04](https://github.com/aaronjeter/CrystalShireEngine/commit/f95f6db04863c28a615a8015550eca056d5b09f7) — Update later gen shinies
+- 2026-01-28 [97abf8874](https://github.com/aaronjeter/CrystalShireEngine/commit/97abf887405ae234ec3092568dd81413cb317fea) — Add UpdateWorldLevels Script
+- 2026-01-24 [da1ceae5e](https://github.com/aaronjeter/CrystalShireEngine/commit/da1ceae5e2fe62f4066fa2c4c8495bfabeac3e1d) — Add Alt Vulpix
+- 2026-03-10 [df2d6ce39](https://github.com/aaronjeter/CrystalShireEngine/commit/df2d6ce39f8ab59e36e70de95d7ffc2ede0a1133) — Nerf most Megas
+- 2026-02-07 [997b38072](https://github.com/aaronjeter/CrystalShireEngine/commit/997b38072e46cd982f5b304275bcef3a180ee7d5) — Add Random party list code
+- 2026-01-18 [ab50747d4](https://github.com/aaronjeter/CrystalShireEngine/commit/ab50747d453719d46c6b8656807e948ae37d8034) — Color in Pokepics Popups
+- 2026-02-23 [b23c4aa2f](https://github.com/aaronjeter/CrystalShireEngine/commit/b23c4aa2f7fefaa04fa337450c9de2f6c31cbda9) — Add Skitty level evolution
+- 2026-03-08 [e851c5a6d](https://github.com/aaronjeter/CrystalShireEngine/commit/e851c5a6d6ace4e8892c5840c1550d429f9f8bc0) — Update later gen shinies
+- 2026-01-16 [9111b388a](https://github.com/aaronjeter/CrystalShireEngine/commit/9111b388aa79b21fbd7beae0f023e2042af32c64) — Change Aron line growth rate
+- 2026-01-12 [36bb5fe0e](https://github.com/aaronjeter/CrystalShireEngine/commit/36bb5fe0e016d30a562dc951645a5c15d075726e) — Remove Elemental Ability activation Text
+- 2026-01-11 [8e5308eb6](https://github.com/aaronjeter/CrystalShireEngine/commit/8e5308eb616edfc9f40a17dd094dd9aefaca8b75) — Fix bug reducing damage by Elemental abilities
+- 2026-01-11 [fb8e2807f](https://github.com/aaronjeter/CrystalShireEngine/commit/fb8e2807fc7f4661a7c0295acb225e9ba1234ec8) — Add Message when elemental stab abilities trigger
+- 2026-01-09 [5b6f83186](https://github.com/aaronjeter/CrystalShireEngine/commit/5b6f83186b5e63728320a894ecbb65974842df0b) — Add move reminder
+- 2026-01-07 [733f745a9](https://github.com/aaronjeter/CrystalShireEngine/commit/733f745a9f0ef4dda3ea4115fad5f642a8cfb1be) — Update exeggcute2 line shiny palates
+- 2026-01-06 [156462943](https://github.com/aaronjeter/CrystalShireEngine/commit/156462943a832ac1e89244162ee431c3c1e50dae) — Update alt sprite backsprites
+- 2026-01-06 [17f39a43c](https://github.com/aaronjeter/CrystalShireEngine/commit/17f39a43c732b2be9b81de593cd25199cd3f1ea4) — Add Unownx
+- 2026-01-16 [b95178632](https://github.com/aaronjeter/CrystalShireEngine/commit/b95178632a4d3116ebfaa7456aca84b78dac462e) — Add Central Radio 1F NPCs
+- 2026-01-16 [4f2be595c](https://github.com/aaronjeter/CrystalShireEngine/commit/4f2be595c0d517ace36091bee09acbb91f8ddc8f) — Add Ettern Alley Rockets
+- 2026-01-15 [dd17b2b5f](https://github.com/aaronjeter/CrystalShireEngine/commit/dd17b2b5fd02f251bab67bcbcabcee3035a00101) — Add Ettern Alley and Exotic Pet shops to Central City
+- 2026-01-11 [4395304b1](https://github.com/aaronjeter/CrystalShireEngine/commit/4395304b1ccc6e954d1a6c8f13f824e575802789) — Central District Tile Updates
+- 2026-01-04 [f1475e958](https://github.com/aaronjeter/CrystalShireEngine/commit/f1475e95828def65be10ce1854f3ccc815ae59a1) — Update weather speed activation text
+- 2026-01-02 [4682e5d20](https://github.com/aaronjeter/CrystalShireEngine/commit/4682e5d209d6628d0c4762a85a233468292efe22) — Add Weather Speed Abilities
+- 2026-01-02 [2f3348376](https://github.com/aaronjeter/CrystalShireEngine/commit/2f33483766602139030df053a47bf6ebac314656) — Simplify clock reset method to Down + B on start menu
+- 2026-01-02 [4ca5822a0](https://github.com/aaronjeter/CrystalShireEngine/commit/4ca5822a0eb11dafb9781cd8db4040b6bb41e303) — Refactor Ability Lookup logic
+- 2026-01-01 [f345e9efe](https://github.com/aaronjeter/CrystalShireEngine/commit/f345e9efe26794b08a209ab4388f31aab02b098e) — Update Sleep Duration and Confuse self-hit chance
+- 2025-12-31 [0b14dbc6b](https://github.com/aaronjeter/CrystalShireEngine/commit/0b14dbc6b9b42fc64b982f2f1f00a4d9ce6fd507) — Re-type Mega Chimecho and parasect
+- 2026-01-01 [9fdc8ac4c](https://github.com/aaronjeter/CrystalShireEngine/commit/9fdc8ac4cd105bfc4fee605d7d35138862512f17) — Fix Focus ability game crash
+- 2025-12-31 [a7a7d98b2](https://github.com/aaronjeter/CrystalShireEngine/commit/a7a7d98b218c5a19479ad7b59d9b9f7e9408c68d) — Move etb abilities to new bank, add Leech ability
+- 2026-01-01 [d95886b1c](https://github.com/aaronjeter/CrystalShireEngine/commit/d95886b1cedfa12c5b81fa54eae9af489494d159) — Add Several more central city maps
+- 2025-12-29 [5c468c4f8](https://github.com/aaronjeter/CrystalShireEngine/commit/5c468c4f8e818b525693fafc5405e62b542997ca) — Add Central Radio and Joif Alley
+- 2025-12-28 [e126a7646](https://github.com/aaronjeter/CrystalShireEngine/commit/e126a7646603a766415c45148a4483196f24df1c) — Add Central City and Cafe
+- 2025-12-25 [9bd24aeac](https://github.com/aaronjeter/CrystalShireEngine/commit/9bd24aeacd1547154c1a9da850e6a46af1cab86b) — Finish Southside
+- 2025-12-23 [bb60fde10](https://github.com/aaronjeter/CrystalShireEngine/commit/bb60fde1096f234c60626fba7f031c25ca037592) — Add Plant Market and North Alley
+- 2025-12-22 [3b25e748d](https://github.com/aaronjeter/CrystalShireEngine/commit/3b25e748d565936ec2b74bf60a328148fde47648) — Add Southside Alley Trainers and Petshop bug vendor
+- 2025-12-21 [d9b57fd65](https://github.com/aaronjeter/CrystalShireEngine/commit/d9b57fd65f76fb396d5cf30372001a02c30ae120) — Crystal Lattice Initial Commit
+- 2025-12-12 [682e8bf01](https://github.com/aaronjeter/CrystalShireEngine/commit/682e8bf013d0a942353acad65cbdbef525cf710e) — Fix Imani glitch plus some map redesigns and title screen update
+- 2025-12-03 [95a6189b9](https://github.com/aaronjeter/CrystalShireEngine/commit/95a6189b9cc1bcc8ae27c6ab3b00ab35ad25bb34) — Add Desert and Regirock Lair Maps
+- 2025-11-27 [4d9bc2a84](https://github.com/aaronjeter/CrystalShireEngine/commit/4d9bc2a841d836f85426225d7a033796c7c85fee) — Title screen update
+- 2025-11-22 [e52bf8f6a](https://github.com/aaronjeter/CrystalShireEngine/commit/e52bf8f6a69b900d2fc3c617982834274d319aff) — Title Update and Grass Variety
+- 2025-11-20 [6097f59a5](https://github.com/aaronjeter/CrystalShireEngine/commit/6097f59a5205695bf10a2d791582490f5b8d77a6) — Add 6 more abilities and mass distribute abilities
+- 2025-11-19 [7aa700302](https://github.com/aaronjeter/CrystalShireEngine/commit/7aa700302f658c693b4bac092e08ce3130a82af7) — Remove old Mega name method
+- 2025-11-17 [d52b1b03b](https://github.com/aaronjeter/CrystalShireEngine/commit/d52b1b03b7fcd6b397f77dbf5731f5159c2fe128) — Give Huge power stat boosts
+- 2025-11-14 [8e930dd90](https://github.com/aaronjeter/CrystalShireEngine/commit/8e930dd90a6b4ccc4b95b26950957c9eb6323ef9) — Add Hoenn Fruit Trees
+- 2025-11-14 [ac42eeb05](https://github.com/aaronjeter/CrystalShireEngine/commit/ac42eeb05744f01b77c945f4fc5e3fb8d350cb35) — Add National Park Heracross
+- 2025-11-14 [656a0a85a](https://github.com/aaronjeter/CrystalShireEngine/commit/656a0a85af68b7088200b6ddb8853597bbce9278) — Add Granite Cave Overworld mons
+- 2025-11-14 [80c8801bb](https://github.com/aaronjeter/CrystalShireEngine/commit/80c8801bba5e958933e021e650c30979b84e8725) — Add Fiery Path (route 112)
+- 2025-11-12 [7513db83e](https://github.com/aaronjeter/CrystalShireEngine/commit/7513db83e53a16589fd84974d16ed48823065300) — Add Route 111 trainers
+- 2025-11-12 [8b0d2af96](https://github.com/aaronjeter/CrystalShireEngine/commit/8b0d2af9639071806a4db5ed8a165103da4f3e05) — Add Route 110 trainers
+- 2025-11-12 [17aaa0abc](https://github.com/aaronjeter/CrystalShireEngine/commit/17aaa0abcad6d6b1eeaf444ee4ede2c4e007bba8) — Reduce shared xp until after elite 4
+- 2025-11-12 [0ebfcd210](https://github.com/aaronjeter/CrystalShireEngine/commit/0ebfcd210ce6b5eda488dd57647abdea629f27c8) — Add Route 108 and 109 Trainers
+- 2025-11-12 [fbd8acc16](https://github.com/aaronjeter/CrystalShireEngine/commit/fbd8acc16ae88a55c0bf64e51719f6041e3cd378) — Update potion heal amounts
+- 2025-11-12 [a2ad971b1](https://github.com/aaronjeter/CrystalShireEngine/commit/a2ad971b1ae6987f2df17c4cc371b3b19d068b5f) — Make Kurt craft balls immediately
+- 2025-11-12 [754f1bdd4](https://github.com/aaronjeter/CrystalShireEngine/commit/754f1bdd44f3f732af912e33f72de7110c37bbe4) — Add Lavaridge Gym and Route117 trainers
+- 2025-11-11 [ba5500505](https://github.com/aaronjeter/CrystalShireEngine/commit/ba5500505f6b5f6208d2adf1680fbca576428d1a) — Add Haste ability
+- 2025-11-10 [9885c680d](https://github.com/aaronjeter/CrystalShireEngine/commit/9885c680d78b71416caa8f0847950060cea24844) — Add Healing abilities
+- 2025-11-09 [b16e9ac91](https://github.com/aaronjeter/CrystalShireEngine/commit/b16e9ac91e41c83d42d1f3e67e1f0b54d5243b4c) — Add Stability Ability
+- 2025-11-09 [27de06548](https://github.com/aaronjeter/CrystalShireEngine/commit/27de06548ad371f12d2585e8ff6c405eb5e7e12f) — Buff Cosmic Power
+- 2025-11-09 [a1afe6ae2](https://github.com/aaronjeter/CrystalShireEngine/commit/a1afe6ae2ead176a1a19856f4b86bee6a751ac9a) — Fix Route 37 twins sprites
+- 2025-11-05 [af10ed7ba](https://github.com/aaronjeter/CrystalShireEngine/commit/af10ed7ba9ba2d94bbe802d422267f60b72ef460) — Add STAB abilities
+- 2025-11-05 [7c949e3b6](https://github.com/aaronjeter/CrystalShireEngine/commit/7c949e3b60cbc79acf1794488fefcee76ff2c5ae) — Add ETB ability animations
+- 2025-11-05 [629594da1](https://github.com/aaronjeter/CrystalShireEngine/commit/629594da19f2af06db13227c4723cb4e9bc095fd) — Add Animations for Weather Abilities
+- 2025-11-05 [d5d7bd607](https://github.com/aaronjeter/CrystalShireEngine/commit/d5d7bd607197dc00653c175676d84625dbd61b9a) — Revert Mega name changes
+- 2025-11-04 [df9b59ec8](https://github.com/aaronjeter/CrystalShireEngine/commit/df9b59ec81f658c9bae0725a1ffba848b7fdc6bf) — Add Routes North of Mauville
+- 2025-10-30 [bfb3015d8](https://github.com/aaronjeter/CrystalShireEngine/commit/bfb3015d8c1a10ac01216e7d9d3f5de9ffe405a2) — Implement Luna's new Hoenn tiles
+- 2025-10-30 [f907c7897](https://github.com/aaronjeter/CrystalShireEngine/commit/f907c78977007e80e98fb238da32b6bd2ff6ff94) — Add contest parties
+- 2025-10-23 [0dfafaf1a](https://github.com/aaronjeter/CrystalShireEngine/commit/0dfafaf1a143d1e3080a1db19cbfa07d0b5d019e) — Add Route 105 trainers
+- 2025-10-23 [fdeecb70b](https://github.com/aaronjeter/CrystalShireEngine/commit/fdeecb70b58d1fd6ffa568bfe44a8b9fb6071f24) — Add Route 116 trainer Dialog
+- 2025-10-23 [2268a1e26](https://github.com/aaronjeter/CrystalShireEngine/commit/2268a1e262a6335b428b1941c18d27126b663b6a) — Add Route 116 Trainers
+- 2025-10-23 [4e0a268b9](https://github.com/aaronjeter/CrystalShireEngine/commit/4e0a268b96006a094f0e1ea9d63e6b412be9a731) — Update Mega Ampharos Shiny Palatte
+- 2025-10-22 [27569fda9](https://github.com/aaronjeter/CrystalShireEngine/commit/27569fda963d4a787952d4a194ce3a246bf7a504) — Fix Oak Mount Silve Glitch
+- 2025-10-22 [1c294b62f](https://github.com/aaronjeter/CrystalShireEngine/commit/1c294b62f57f0141bee01c3132950291a1d6e887) — Fix Shiny IV bug
+- 2025-10-22 [1e1f4a453](https://github.com/aaronjeter/CrystalShireEngine/commit/1e1f4a45313c8a706807fee9f070c6d9f0fc235b) — Update mega learnsets and abilities
+- 2025-10-21 [674f3d66a](https://github.com/aaronjeter/CrystalShireEngine/commit/674f3d66a4724072fd9aeb02654710256bb7cc1f) — Reduce weather duration from etb abilities
+- 2025-10-16 [c3d344d89](https://github.com/aaronjeter/CrystalShireEngine/commit/c3d344d89a9fca73e419b87972aa0b3e193cfdf1) — Add ability screen to stats page
+- 2025-10-14 [1df542295](https://github.com/aaronjeter/CrystalShireEngine/commit/1df5422953e4fc1ca518b8e9b87f1da8aafbbe40) — Fix alt form learnset bug
+- 2025-10-13 [d88cfb978](https://github.com/aaronjeter/CrystalShireEngine/commit/d88cfb978316db65618815de9daed9b0a3a28230) — Remove Non-warp doors
+- 2025-10-12 [4a9c0c1f6](https://github.com/aaronjeter/CrystalShireEngine/commit/4a9c0c1f6492eb3ad4633d4aaf66409a9b1ebca7) — Nerf Megas BST
+- 2025-10-12 [18e6f824a](https://github.com/aaronjeter/CrystalShireEngine/commit/18e6f824a29d53db6df8a2b30a9248d7dcd56a15) — Add Oak's Kantoite X
+- 2025-10-12 [13eee2882](https://github.com/aaronjeter/CrystalShireEngine/commit/13eee2882e10498984ed5e2cd5429618af24716d) — Add Birch lab map
+- 2025-10-11 [97d65e172](https://github.com/aaronjeter/CrystalShireEngine/commit/97d65e17281fb4e08bac55bb97f1da83cf99e331) — Convert some alt forms to Megas
+- 2025-10-11 [83113547a](https://github.com/aaronjeter/CrystalShireEngine/commit/83113547a81616c7c12afd780c2750cc7bf6c84c) — Add Mega Mart and Rocket Boss Mega Houndoom
+- 2025-10-10 [35a1bbb06](https://github.com/aaronjeter/CrystalShireEngine/commit/35a1bbb0672fee8d89e46da5b247f77aceb89ca6) — Add Lance and Clair Megas
+- 2025-10-10 [a998a4407](https://github.com/aaronjeter/CrystalShireEngine/commit/a998a4407b0484458988882ff127b3cb61f9a58a) — Add Mega evolution stones
+- 2025-10-10 [ad488b64c](https://github.com/aaronjeter/CrystalShireEngine/commit/ad488b64c5ab575b3b035efc3f02552abb41e87e) — Add 30 Megas
+- 2025-10-05 [0a47e6fec](https://github.com/aaronjeter/CrystalShireEngine/commit/0a47e6fec29c276f3e6e6d18e0a3d5c797be2309) — Add first Mega Pokemon
+- 2025-10-03 [cf8f229b8](https://github.com/aaronjeter/CrystalShireEngine/commit/cf8f229b8a44a3c5784cbd86ed786f7a0935ef9e) — Add Route 104 flower house
+- 2025-10-01 [12118c350](https://github.com/aaronjeter/CrystalShireEngine/commit/12118c350e1143d61880da0de14b0dfefb175ad0) — Add Petalburg house interiors
+- 2025-10-01 [1b15a579e](https://github.com/aaronjeter/CrystalShireEngine/commit/1b15a579ede95f3ee52eb1822b2be496b0bac2b2) — Add Mr briney's House in Route 104
+- 2025-09-29 [8f22b3bb7](https://github.com/aaronjeter/CrystalShireEngine/commit/8f22b3bb7ff4306b45044b56ccdf80d169e0a12b) — Set nonparticipant xp to 50%
+- 2025-09-29 [880612203](https://github.com/aaronjeter/CrystalShireEngine/commit/880612203d315fde739196e8a105568cc0ba2d7f) — Add Pokemon Ranger classes
+- 2025-09-27 [bb0a5fc2a](https://github.com/aaronjeter/CrystalShireEngine/commit/bb0a5fc2a44f2c2b9e31215cbaf38534a14e2670) — Add Slateport Harbor
+- 2025-09-20 [833b35d7c](https://github.com/aaronjeter/CrystalShireEngine/commit/833b35d7ca5875dc83cae640cd9782f79e4ea7f8) — Add 10 more pokemon
+- 2025-09-08 [22358dc6b](https://github.com/aaronjeter/CrystalShireEngine/commit/22358dc6b34fe67ad4e367eed47ba6b7f69d030e) — Add more in game trades
+- 2025-09-08 [dd0e59691](https://github.com/aaronjeter/CrystalShireEngine/commit/dd0e596910cbeb009577b1b7892c48906d6f59df) — Remove trade mon obedience rules
+- 2025-08-30 [f389ead37](https://github.com/aaronjeter/CrystalShireEngine/commit/f389ead373dc5d63a178ccad6cdc3145bfcb4f14) — Add engire/ram flags for Hoenn Badges
+- 2025-08-30 [dd8744412](https://github.com/aaronjeter/CrystalShireEngine/commit/dd874441274efc6f73d2ad47dcde4d336922df8a) — Add Hatchet and Pickaxe
+- 2025-08-30 [c1c19ebc3](https://github.com/aaronjeter/CrystalShireEngine/commit/c1c19ebc32fb27973983a29192cfad81dfe2d04c) — Add Regice Lair
+- 2025-08-30 [9bbdcbb67](https://github.com/aaronjeter/CrystalShireEngine/commit/9bbdcbb677ef125f791a5458c49625bc90d4801e) — Add Granite Cave
+- 2025-08-29 [c71ee2e44](https://github.com/aaronjeter/CrystalShireEngine/commit/c71ee2e4440f1975285b36f982a436693af5f8d2) — Update Route105 and collision
+- 2025-08-29 [499b5d7d2](https://github.com/aaronjeter/CrystalShireEngine/commit/499b5d7d2ddc13e5bdc27ccbc45ed84cfa47065a) — Start adding Hoenn Route trainers
+- 2025-08-24 [8fcbd1e14](https://github.com/aaronjeter/CrystalShireEngine/commit/8fcbd1e1444f9c59aeed9d874a7b9ff454121a9b) — Add new moves to learnsets
+- 2025-08-23 [aa016c2c7](https://github.com/aaronjeter/CrystalShireEngine/commit/aa016c2c75efe3914513f4e39f1e7d2bdbfdce61) — Add more moves
+- 2025-08-21 [b6a695280](https://github.com/aaronjeter/CrystalShireEngine/commit/b6a695280b6e02edaa471621c640ec2969067bc4) — Add Hoenn wildmon encounter data files
+- 2025-08-20 [7f30ece5c](https://github.com/aaronjeter/CrystalShireEngine/commit/7f30ece5cc9a8599c8dd49a42f777984ab594c8a) — Add Hoenn marts
+- 2025-08-18 [d481c4581](https://github.com/aaronjeter/CrystalShireEngine/commit/d481c4581ba1432447376824d26064b10fa5c7cc) — Add Pokecenters
+- 2025-08-18 [e38c3c2fa](https://github.com/aaronjeter/CrystalShireEngine/commit/e38c3c2faf83d66ee2a46407b60d9c62ca906972) — Add Hoenn Pokecenter
+- 2025-08-12 [b2668b4e6](https://github.com/aaronjeter/CrystalShireEngine/commit/b2668b4e6e2c93ba799694769407209d1dffa9ec) — Add Battle Girl class and Dewford gym trainers
+- 2025-08-12 [c14f9fb67](https://github.com/aaronjeter/CrystalShireEngine/commit/c14f9fb676df9c0ba988bdb35adbdd51b422c651) — Add hoenn Trainer sprites
+- 2025-08-12 [1f7dd247a](https://github.com/aaronjeter/CrystalShireEngine/commit/1f7dd247a7b5af99c32746df1c7c5720638ba9dd) — Add Mauvile Gym Trainers
+- 2025-08-11 [0154ee383](https://github.com/aaronjeter/CrystalShireEngine/commit/0154ee3831cb8546f7f5f9db33aa2ccd5a9c1f55) — Add rustboro gym scripts
+- 2025-08-10 [737b2bd38](https://github.com/aaronjeter/CrystalShireEngine/commit/737b2bd383fd2d81ea7a93e46afc2cf07006c54a) — Add Petalburg Gym and Scripts
+- 2025-08-09 [a2aa23eaf](https://github.com/aaronjeter/CrystalShireEngine/commit/a2aa23eafe5a9f80c1c45d5fee55020627c7fc6e) — Add Several hoenn Cities
+- 2025-08-04 [29e2b0474](https://github.com/aaronjeter/CrystalShireEngine/commit/29e2b0474e9a7aa0cba8d84811f241e14612b40f) — Update Route110.ablk
+- 2025-08-04 [db2be13ac](https://github.com/aaronjeter/CrystalShireEngine/commit/db2be13ac8012590bb32eb3cb1933d58eb8d4e74) — Add Mauville and Route110
+- 2025-08-03 [6e827f3b8](https://github.com/aaronjeter/CrystalShireEngine/commit/6e827f3b871d31455b210613a4e31420d487ce2f) — Add Rusturf Tunnel and Verdanturf Town
+- 2025-08-02 [92a5b596a](https://github.com/aaronjeter/CrystalShireEngine/commit/92a5b596a4482aa0355b4919b67dbb47fb23b466) — Add Rustboro City
+- 2025-08-01 [2d4ba263d](https://github.com/aaronjeter/CrystalShireEngine/commit/2d4ba263ddf7bbe76c748e137d6a15ac5beccb4a) — Update Ecuteak city dirt path
+- 2025-07-31 [067f8a0f9](https://github.com/aaronjeter/CrystalShireEngine/commit/067f8a0f97776e2d1bcab003a26ff9663817cacd) — Add Beta Mons and Beta Origin
+- 2025-07-29 [9f94ba9da](https://github.com/aaronjeter/CrystalShireEngine/commit/9f94ba9da0fe23c59a427fecb20f5a8dbf34de03) — Trim alt exeggcute backsprite to 48x48
+- 2025-07-29 [5eec738bb](https://github.com/aaronjeter/CrystalShireEngine/commit/5eec738bb48399f834453343cae3feaaf4a0bf5b) — Add Hoenn Up to Petalburg
+- 2025-07-28 [7c8df2c0d](https://github.com/aaronjeter/CrystalShireEngine/commit/7c8df2c0d1bfaa1c99f975d50b7a46e063a0f7f0) — Add Viridian Forest
+- 2025-07-25 [d6b056848](https://github.com/aaronjeter/CrystalShireEngine/commit/d6b05684823b7ca7b28acd59bd085e98d59c91c3) — More abilities and ability support
+- 2025-07-25 [b110e6f56](https://github.com/aaronjeter/CrystalShireEngine/commit/b110e6f56da544d22e1e87135ee72aaa2d838fc9) — Remove blockers in Dark Cave
+- 2025-07-10 [e87e33a63](https://github.com/aaronjeter/CrystalShireEngine/commit/e87e33a634a33519d5538030cafc7b8239d60ab2) — Minor move rebalance and adding Hail to learnsets
+- 2025-07-08 [f02f199b7](https://github.com/aaronjeter/CrystalShireEngine/commit/f02f199b7b30c11295787437baa54a5b48bbd1a2) — Remove ai status random miss
+- 2025-07-08 [7c0569709](https://github.com/aaronjeter/CrystalShireEngine/commit/7c0569709e80c8c9421bc40f135b41caa95100e9) — Add Hail
+- 2025-07-08 [ff319e257](https://github.com/aaronjeter/CrystalShireEngine/commit/ff319e257dedda75103fe379a7812e6abf9d76fd) — Initial Hoenn maps and tileset commit
+- 2025-07-07 [ea86e4183](https://github.com/aaronjeter/CrystalShireEngine/commit/ea86e4183a4357f3aa7d0d30a20986eef523cc3a) — Add Entrance Weather Abilities
+- 2025-07-06 [208d40b79](https://github.com/aaronjeter/CrystalShireEngine/commit/208d40b792a02f01e1f03bc565147c0f74bcc749) — Add Waterproof and fix target species issue
+- 2025-07-06 [948d3726b](https://github.com/aaronjeter/CrystalShireEngine/commit/948d3726b20dea91d43c27022f0107f9f9015a56) — Add Pseudo Levitate
+- 2025-07-06 [ed11eb2c3](https://github.com/aaronjeter/CrystalShireEngine/commit/ed11eb2c38df8ca212aa4803374f1a63f785e555) — Heal parties after Elite 4 battles
+- 2025-06-29 [d0f72d91d](https://github.com/aaronjeter/CrystalShireEngine/commit/d0f72d91d44c43774cd5d6553bd26a662a5c11e3) — Add Elite 4 rematch
+- 2025-06-29 [8ba6c178d](https://github.com/aaronjeter/CrystalShireEngine/commit/8ba6c178de9919b5abf3159efcd0bbc62ad5ba27) — Add more info on move screen
+- 2025-06-29 [386cc8869](https://github.com/aaronjeter/CrystalShireEngine/commit/386cc88692261604e042407843163bcd90c22dce) — Add exp for catching pokemon
+- 2025-06-29 [658f6e345](https://github.com/aaronjeter/CrystalShireEngine/commit/658f6e34569d24dfbcf0e53f5da0cabd001d99bf) — Fix port and Lighthouse maps
+- 2025-06-29 [6426a16b5](https://github.com/aaronjeter/CrystalShireEngine/commit/6426a16b5d21c43f2f3819c238bf2b8fdd6637c5) — Restore use effect to trade evo items
+- 2025-06-28 [a7543dfef](https://github.com/aaronjeter/CrystalShireEngine/commit/a7543dfef4119ff80abe5416a472da99f1cabb48) — Cut Tile Fix and recolor
+- 2025-06-28 [7d62bc37f](https://github.com/aaronjeter/CrystalShireEngine/commit/7d62bc37feff27df4151851f369a6b4f3c6c32f3) — Update bg_tiles.pal
+- 2025-06-28 [0d1a875f1](https://github.com/aaronjeter/CrystalShireEngine/commit/0d1a875f18b14308b88375c8e077a85c12a5ae4c) — Update bg_tiles.pal
+- 2025-06-27 [221efe2d8](https://github.com/aaronjeter/CrystalShireEngine/commit/221efe2d8954aa36124402b88e3427dbf5727a87) — Move Snorlax
+- 2025-06-26 [703997d82](https://github.com/aaronjeter/CrystalShireEngine/commit/703997d829c759907be473f3551297c7f5c59db8) — Tileset/palate updates
+- 2025-06-25 [883970cbb](https://github.com/aaronjeter/CrystalShireEngine/commit/883970cbb62e3269789693ff3a18d6a5817ca1cc) — Update Alolan Grimer/Muk learnset
+- 2025-06-19 [406e39ded](https://github.com/aaronjeter/CrystalShireEngine/commit/406e39dede9895e6098a872e559a31cb4e5d6c75) — Goldenrod updates
+- 2025-06-19 [ad0641d07](https://github.com/aaronjeter/CrystalShireEngine/commit/ad0641d0760b57a660077cfcfb6cbcace86f2ed2) — Update hard mode parties
+- 2025-06-19 [4bfe3760d](https://github.com/aaronjeter/CrystalShireEngine/commit/4bfe3760d122e88a176e6c642a0307ec9e83d57d) — Update whirl islands
+- 2025-06-19 [8c2ca2bb0](https://github.com/aaronjeter/CrystalShireEngine/commit/8c2ca2bb0006bab6902f801df17530fd2b5dc107) — Update alolan geodude learnset
+- 2025-06-19 [806f7d2fb](https://github.com/aaronjeter/CrystalShireEngine/commit/806f7d2fb2ff230aaceb5cd3606644621c1c8045) — Olivine city visual update
+- 2025-06-19 [9797be1af](https://github.com/aaronjeter/CrystalShireEngine/commit/9797be1afe988d9adde78b2977d7a4b9f66d7cea) — Johto_Modern tileset rework
+- 2025-06-18 [3b8562dcc](https://github.com/aaronjeter/CrystalShireEngine/commit/3b8562dcc030bba825f386a7326c02788b1ae427) — Update Team Rocket Electrodes
+- 2025-06-18 [f55646d58](https://github.com/aaronjeter/CrystalShireEngine/commit/f55646d583de7daad514a46131fc700b5b0ec331) — Increase Weather Duration
+- 2025-06-18 [d4d8864fe](https://github.com/aaronjeter/CrystalShireEngine/commit/d4d8864fe14809ba8ada5f735c84b293ed8e5fb7) — Add IronBundle
+- 2025-06-18 [d8c730d18](https://github.com/aaronjeter/CrystalShireEngine/commit/d8c730d18e723693637fa9ffc19dbdcbca304fab) — Add Kyogre Groudon, and Rayquaza
+- 2025-06-18 [0c4cad1fe](https://github.com/aaronjeter/CrystalShireEngine/commit/0c4cad1fe61113f581edc46048d60039827e7ff7) — Add Latias and latios
+- 2025-06-18 [2753d63f0](https://github.com/aaronjeter/CrystalShireEngine/commit/2753d63f0a5ac0102b7f930f171c19cd89c38f34) — Redo Alolan Vulpix back sprite
+- 2025-06-18 [513257c17](https://github.com/aaronjeter/CrystalShireEngine/commit/513257c172ffdd4d6d833f91418ea0b756c1219a) — Add Kleavor
+- 2025-06-18 [b3b99fc82](https://github.com/aaronjeter/CrystalShireEngine/commit/b3b99fc829db4e6b6474ae16afff8bfc058bb3be) — Add hisuian voltorb and electrode
+- 2025-06-18 [5e09f9e6e](https://github.com/aaronjeter/CrystalShireEngine/commit/5e09f9e6edd5928f6cc16fe5cb4684b6b1ec227b) — Add Tangrowth
+- 2025-06-18 [2344cbd9a](https://github.com/aaronjeter/CrystalShireEngine/commit/2344cbd9a0988a8e9070de664f29008d06d7045f) — Add Annihilape
+- 2025-06-18 [ff3c39f65](https://github.com/aaronjeter/CrystalShireEngine/commit/ff3c39f655670b27ef382665b6bf773be890f61c) — Add Regis and Alolan Geodude Line
+- 2025-06-16 [63c50bd29](https://github.com/aaronjeter/CrystalShireEngine/commit/63c50bd29fe7351f69ab72969987393a8eab24bd) — Add Mewtwo to Silver Cave
+- 2025-06-16 [4a9d21da3](https://github.com/aaronjeter/CrystalShireEngine/commit/4a9d21da316c55b9e80046e9554e6bcfbc997262) — Remove Badge Boosts
+- 2025-06-15 [82ee750da](https://github.com/aaronjeter/CrystalShireEngine/commit/82ee750da7de08414fb7e3d1b3f6017ec3f2b44a) — Buff Surf back to T3
+- 2025-06-14 [cf85e547e](https://github.com/aaronjeter/CrystalShireEngine/commit/cf85e547e1b223fdfe17814103502cfed89640ab) — Switch to hard parties when hard mode is active
+- 2025-06-14 [bdc5a5fc4](https://github.com/aaronjeter/CrystalShireEngine/commit/bdc5a5fc429b82ee1c5aaf44a8b5c1376953fd66) — Update hard parties
+- 2025-06-14 [3f9e64187](https://github.com/aaronjeter/CrystalShireEngine/commit/3f9e64187265b6dbdca1a94c7bc6603acb400922) — Add Hard mode to Trainer Card
+- 2025-06-14 [82a82be17](https://github.com/aaronjeter/CrystalShireEngine/commit/82a82be175b278499772b30ef809a2d14bffa3f4) — Add basic hardmode
+- 2025-06-14 [750eadb0f](https://github.com/aaronjeter/CrystalShireEngine/commit/750eadb0ffedfb83fe327906d6d71cb0e9241e5d) — Make Celebi hatch sooner
+- 2025-06-14 [d18f8db06](https://github.com/aaronjeter/CrystalShireEngine/commit/d18f8db0605bda8c9edbdc81ac713fc0822b4ca0) — Add Ilex East/West wildmons
+- 2025-06-14 [c4ba9dc2f](https://github.com/aaronjeter/CrystalShireEngine/commit/c4ba9dc2fc3ecc8be683c629ede076d97b36b6ef) — Fix Celebi Event
+- 2025-06-14 [b6f65a615](https://github.com/aaronjeter/CrystalShireEngine/commit/b6f65a61539cd99e79a645f24b316fca5ef821c3) — Add Wurmple to bug contest
+- 2025-06-13 [c4f64c3bd](https://github.com/aaronjeter/CrystalShireEngine/commit/c4f64c3bdf6c39065a8b6b565a282a81b9de5b85) — Inc Levelcap when triggering Mahogany Rockets
+- 2025-06-13 [7d787d9b6](https://github.com/aaronjeter/CrystalShireEngine/commit/7d787d9b6a1896ff57f65c4736aac5207a2b0d0a) — Inc Level cap when triggering Golderod Rocket Event
+- 2025-06-13 [316dae21b](https://github.com/aaronjeter/CrystalShireEngine/commit/316dae21b53a92d2479b4ea7e6590ae9da770680) — Add Ilex West trainers
+- 2025-06-13 [4fb8d3543](https://github.com/aaronjeter/CrystalShireEngine/commit/4fb8d35431b8aca3ef198f77548011e8657c1f41) — Add Celebi event
+- 2025-06-13 [25dff13b7](https://github.com/aaronjeter/CrystalShireEngine/commit/25dff13b7285284fb59e4a11200f1bbdb7774c3f) — Add Electabuzz to olivine lighthouse
+- 2025-06-13 [21e097bf2](https://github.com/aaronjeter/CrystalShireEngine/commit/21e097bf233af07ff9336f62ad0b53232535e138) — Add Moltres Lair and Zapdos
+- 2025-06-13 [4aa1f51cf](https://github.com/aaronjeter/CrystalShireEngine/commit/4aa1f51cfee7cf274eb83ed764efd60b47a682c4) — Add Articuno Lair
+- 2025-06-12 [3bddcf131](https://github.com/aaronjeter/CrystalShireEngine/commit/3bddcf131a03ea9159d73e1c10c528b3d4769d94) — Add Route 40 overworld mons
+- 2025-06-12 [48915e689](https://github.com/aaronjeter/CrystalShireEngine/commit/48915e689ad613daf3d2550920fc6bfb40f879e5) — Add Sprout tower overworld mons
+- 2025-06-12 [eda249fdc](https://github.com/aaronjeter/CrystalShireEngine/commit/eda249fdc132e427837b289ceffcd77ee4eb679b) — Early route improvments
+- 2025-06-11 [178929099](https://github.com/aaronjeter/CrystalShireEngine/commit/178929099cebf7bbeff2f0f06bcc0a3de5dfed91) — Fix FaerieGleam description typo
+- 2025-06-11 [9ac19a602](https://github.com/aaronjeter/CrystalShireEngine/commit/9ac19a602145a9902acf78b121e567632f0a6318) — Fix Olivine Lighthouse Ampharos sprite
+- 2025-06-11 [72e5c2b44](https://github.com/aaronjeter/CrystalShireEngine/commit/72e5c2b44ba8ae3722cc8da8acaae05d192035c3) — Fix national park Persian Sprite
+- 2025-06-10 [fedba69fe](https://github.com/aaronjeter/CrystalShireEngine/commit/fedba69fec7b70287b6e59f78f034336fcb437de) — Fix overworld sprites
+- 2025-06-09 [e2f5fbe5f](https://github.com/aaronjeter/CrystalShireEngine/commit/e2f5fbe5f52a18e082c9e49fc45fb08b2e5b40ce) — Add Lex West and East maps
+- 2025-06-09 [3cbcd20a8](https://github.com/aaronjeter/CrystalShireEngine/commit/3cbcd20a897b007419ac280c3b70266409293026) — Update Debug Items and Mons
+- 2025-06-09 [ab42dc784](https://github.com/aaronjeter/CrystalShireEngine/commit/ab42dc784fab42cadb750f2624e8c58332d379d7) — Change bill time machine text
+- 2025-06-09 [f965a3d91](https://github.com/aaronjeter/CrystalShireEngine/commit/f965a3d91d71ecf47c204884dd3058e4dabb86ec) — Update NPC trades
+- 2025-06-09 [aa2dd2ef7](https://github.com/aaronjeter/CrystalShireEngine/commit/aa2dd2ef70f0c1c83829285d2d5e4f26cb2bbb17) — Set Default Text Delay to Fast
+- 2025-06-08 [d616bccae](https://github.com/aaronjeter/CrystalShireEngine/commit/d616bccaec318aff978f883077334f6fa59b17e5) — Add Gen 3 pokedex Height/Weight
+- 2025-06-08 [05abfa13a](https://github.com/aaronjeter/CrystalShireEngine/commit/05abfa13ae522862621a593eb88b421dd52b5866) — Make odd eggs always shiny
+- 2025-06-08 [805bac823](https://github.com/aaronjeter/CrystalShireEngine/commit/805bac8231cdc4c8ef0b8f1f2c2db7758dec155a) — Update Celadon Casino prizes
+- 2025-06-08 [fb64b9d40](https://github.com/aaronjeter/CrystalShireEngine/commit/fb64b9d40b99e688c41819ae513dac02eeee597d) — Add overworld Bagon to Tojo Falls
+- 2025-06-08 [2c11ff787](https://github.com/aaronjeter/CrystalShireEngine/commit/2c11ff787a7f60e598d976ada38f024238767543) — Add Second Pokemon Prize receptionist
+- 2025-06-08 [4f41af334](https://github.com/aaronjeter/CrystalShireEngine/commit/4f41af334274898778464600717e35b2d058c910) — Change goldenrod casino pokemon
+- 2025-06-08 [e83930ff7](https://github.com/aaronjeter/CrystalShireEngine/commit/e83930ff777001d6cfb05e4bbe18a6eb94d42cab) — Buff Luvdisc to 450 BST
+- 2025-06-08 [bfad55a48](https://github.com/aaronjeter/CrystalShireEngine/commit/bfad55a484c3a8dbf905edb60bd5844c84070de5) — Update Gen 3 Learnsets
+- 2025-06-08 [a4f0f2f30](https://github.com/aaronjeter/CrystalShireEngine/commit/a4f0f2f30a369709ff39ff73da352ee7b837aa8a) — Add Jirachi sprites and fix exeggutor front/back pics
+- 2025-06-08 [a66de236a](https://github.com/aaronjeter/CrystalShireEngine/commit/a66de236a7127f7171c01744fa0402f8341be29a) — Add Beldum Family Animations
+- 2025-06-08 [e91867f8d](https://github.com/aaronjeter/CrystalShireEngine/commit/e91867f8d60e32fdf519ca80db64b52d7c6291ca) — Add Bagon line Animations
+- 2025-06-07 [21c84a88e](https://github.com/aaronjeter/CrystalShireEngine/commit/21c84a88efe68d15420f5fcbfd8156170557ecc3) — Add Relicanth and Luvdic animations
+- 2025-06-07 [f34d57405](https://github.com/aaronjeter/CrystalShireEngine/commit/f34d574057bbe2f54327e10cf691938e1ad13069) — Add Clamperl line animations
+- 2025-06-07 [0cbc7e756](https://github.com/aaronjeter/CrystalShireEngine/commit/0cbc7e756c0503ad7c3d0e908bfcad8364fbe50a) — Change Alolan origin starters
+- 2025-06-07 [66e6567ce](https://github.com/aaronjeter/CrystalShireEngine/commit/66e6567ced463f16d043f4601b3a084986e69abd) — Add Alolan Sandshrew and Vulpix lines
+- 2025-06-07 [7ed4e860a](https://github.com/aaronjeter/CrystalShireEngine/commit/7ed4e860a38216d4f86015fe0eebabab0998a145) — Add some later gen 3 mons to trainer parties
+- 2025-06-07 [75f2776f1](https://github.com/aaronjeter/CrystalShireEngine/commit/75f2776f1663c77034a34ac82fc9c8d86ede0a57) — Add move data for Baltoy-Walrein
+- 2025-06-07 [a4b44a6e7](https://github.com/aaronjeter/CrystalShireEngine/commit/a4b44a6e7b2d05f5e6514e4a1002d1199079248f) — Add Wynaut and Spheal Line Animations
+- 2025-06-07 [05d5786b9](https://github.com/aaronjeter/CrystalShireEngine/commit/05d5786b919b45ffc79dfd06e4ab6ac2f2fbead5) — Fix Grimer starter text
+- 2025-06-07 [60da931c8](https://github.com/aaronjeter/CrystalShireEngine/commit/60da931c860c6cbca860423d61136f085f1e3a60) — Add Tropius-Absol
+- 2025-06-07 [4a743a0ee](https://github.com/aaronjeter/CrystalShireEngine/commit/4a743a0ee2156136baa17490ca0d751384d4a3e4) — Add Duskull line Animations
+- 2025-06-07 [d751a2312](https://github.com/aaronjeter/CrystalShireEngine/commit/d751a2312bb2b7c6c974c652da1861a850a8dddc) — Add Kecleon and Shuppet Line Animations
+- 2025-06-06 [be637704e](https://github.com/aaronjeter/CrystalShireEngine/commit/be637704e907c20d3ded8dcc0aaa991b24579ff0) — Add Anorith through Milotic Animations
+- 2025-06-06 [ba45ad28b](https://github.com/aaronjeter/CrystalShireEngine/commit/ba45ad28babfe69f704963febd97abc654a6f9b9) — Add Lileep and Cradily Animations
+- 2025-06-06 [58f4ed287](https://github.com/aaronjeter/CrystalShireEngine/commit/58f4ed287586d52aa9ef5425dacdd79f5808c925) — Change nonparticipant battle xp to 25%
+- 2025-06-06 [2e6e1a0dd](https://github.com/aaronjeter/CrystalShireEngine/commit/2e6e1a0dd42f086b8b8295604a202d743d1eec3e) — Nerf Cooltrainer Quinn
+- 2025-06-06 [1774bcbaf](https://github.com/aaronjeter/CrystalShireEngine/commit/1774bcbafcfc2dd24903f21256d350799facdeef) — Add rest of Gen 3 Icons
+- 2025-06-06 [28bc71175](https://github.com/aaronjeter/CrystalShireEngine/commit/28bc711759c6bff55aad041a58cd6a8df2ed3d96) — Add Icons through Walrein
+- 2025-06-06 [e2fda534d](https://github.com/aaronjeter/CrystalShireEngine/commit/e2fda534d07a4143dad8ae701f76a6ea59317729) — Add Icons through Banette
+- 2025-06-06 [5fbbffba1](https://github.com/aaronjeter/CrystalShireEngine/commit/5fbbffba1811d59bfcb7eecf41f93320f0c27506) — Overworld Mons test
+- 2025-06-06 [13d95fb3f](https://github.com/aaronjeter/CrystalShireEngine/commit/13d95fb3f609450c27ba79564f732d4f4e5a863a) — Add Baltoy and Claydol
+- 2025-06-04 [c830eb432](https://github.com/aaronjeter/CrystalShireEngine/commit/c830eb432151b0402aa6194ae618fa4dbf002dab) — Add HM items
+- 2025-06-04 [b066eff22](https://github.com/aaronjeter/CrystalShireEngine/commit/b066eff2255b0c70004f4756138e2f0aaf69b6de) — Add Lantern
+- 2025-06-04 [69e0e0ba1](https://github.com/aaronjeter/CrystalShireEngine/commit/69e0e0ba1b3ecb404a05b48b1eb9b3c97fe08909) — Make birdwhiste use delibird sprite
+- 2025-06-04 [c102b3381](https://github.com/aaronjeter/CrystalShireEngine/commit/c102b338145f884b197f722706e4fad54885cf45) — Add Birdwhistle
+- 2025-06-03 [c021c5d5e](https://github.com/aaronjeter/CrystalShireEngine/commit/c021c5d5e2d5a9f282c2d6f571a03c6fa010a037) — Fix game crash after beating Blue
+- 2025-05-30 [2e93ca38e](https://github.com/aaronjeter/CrystalShireEngine/commit/2e93ca38e6fdb845b969b24df51091885e4bb35d) — make acid physical
+- 2025-05-30 [84b9f112d](https://github.com/aaronjeter/CrystalShireEngine/commit/84b9f112d4369d484ce78bd550bed0e618adfb1a) — Remove Exp Share
+- 2025-05-30 [1d5f870f5](https://github.com/aaronjeter/CrystalShireEngine/commit/1d5f870f5bc604be2ca3ccb3cb05a4975126da58) — add missing pokedex entries
+- 2025-05-30 [1f1241b9c](https://github.com/aaronjeter/CrystalShireEngine/commit/1f1241b9c34474756720990eecb292d78b550513) — Add alola origin
+- 2025-05-30 [3c63167a6](https://github.com/aaronjeter/CrystalShireEngine/commit/3c63167a639e2ec140e705de5e5030ea41b6b8e9) — Add barboach and corphish
+- 2025-05-30 [83054f791](https://github.com/aaronjeter/CrystalShireEngine/commit/83054f79121ae714d581bb55d9d5c3adb710ece3) — Add alolan grimer to maps
+- 2025-05-30 [fc28144f0](https://github.com/aaronjeter/CrystalShireEngine/commit/fc28144f07e2ebcf9326078635424a1f45666039) — Gen4+ alt moves and evo methods
+- 2025-05-30 [f20a3d2c0](https://github.com/aaronjeter/CrystalShireEngine/commit/f20a3d2c07bcd4eefb65a2f3c586e451fa719f2e) — Add gen4 and alolan pokemon
+- 2025-05-30 [0517a12bb](https://github.com/aaronjeter/CrystalShireEngine/commit/0517a12bbf403c8cfbcc40ec53fa5dc2dffe4acc) — Fix Icons post sealeo
+- 2025-05-30 [11908c63c](https://github.com/aaronjeter/CrystalShireEngine/commit/11908c63cfd33a3e22bb4bd6abad47f24fb02ff9) — Add 64 more pokemon
+- 2025-05-23 [d005a19bc](https://github.com/aaronjeter/CrystalShireEngine/commit/d005a19bca5a4b28c1785084e71901ac4ff9f2bd) — Lower kanto gym scaling
+- 2025-05-23 [3dd1adf1a](https://github.com/aaronjeter/CrystalShireEngine/commit/3dd1adf1a83317432335420acf68cbe8ef3379e8) — Change Reddit Starters
+- 2025-05-23 [445775d43](https://github.com/aaronjeter/CrystalShireEngine/commit/445775d43de48851be9d0044ab2712edebe25ba7) — Add pokemon up to Crawdaunt
+- 2025-05-15 [c555cec8f](https://github.com/aaronjeter/CrystalShireEngine/commit/c555cec8f634c568562e1f8989539910d2ec3634) — Trainer party bugfixes
+- 2025-05-08 [97c7f1622](https://github.com/aaronjeter/CrystalShireEngine/commit/97c7f162243243a9c79476c237b57bddba3b70bd) — Fix Tauros2
+- 2025-05-07 [cdffd8ab9](https://github.com/aaronjeter/CrystalShireEngine/commit/cdffd8ab914ccebfe674aeb2f198062264100722) — Don't increment level caps when they're off
+- 2025-05-07 [ef9a58ac8](https://github.com/aaronjeter/CrystalShireEngine/commit/ef9a58ac8cfb271b9efef700a7d5b935142473d9) — Add level cap to trainer card
+- 2025-05-07 [2d4cb93a0](https://github.com/aaronjeter/CrystalShireEngine/commit/2d4cb93a0cb803c44818b0072e02981873a0fe08) — Port Level Caps
+- 2025-05-07 [82d91a6a7](https://github.com/aaronjeter/CrystalShireEngine/commit/82d91a6a7b087952fd450c1502542d88524c0ad4) — Gen 4 Mons
+- 2025-05-06 [eb6879edf](https://github.com/aaronjeter/CrystalShireEngine/commit/eb6879edfac876f850bb80703867f6c7e6a64f03) — Fix Bugsy Rematch
+- 2025-05-06 [b59ac297a](https://github.com/aaronjeter/CrystalShireEngine/commit/b59ac297a2dc38c18e19bffa8a4e786d4bb3c436) — Give Ralts fairy type
+- 2025-05-05 [697465f31](https://github.com/aaronjeter/CrystalShireEngine/commit/697465f31a555b95f1b866578b37d0caddbe8f91) — Add Gen 3 to wild
+- 2025-05-05 [691de7030](https://github.com/aaronjeter/CrystalShireEngine/commit/691de70308874ff24c79d6c5a72b71756e3ec3a9) — Gen 3 Mon Icons part 2
+- 2025-05-04 [17dd336d8](https://github.com/aaronjeter/CrystalShireEngine/commit/17dd336d8862b69e455a2e6517346758f5431399) — Add gen 3 menu icons
+- 2025-05-04 [4e8cfbd3c](https://github.com/aaronjeter/CrystalShireEngine/commit/4e8cfbd3ce9ff600510a5b6d5318c8a4e40ae364) — Add Gen 3 Moves to learnsets
+- 2025-05-03 [cb520e354](https://github.com/aaronjeter/CrystalShireEngine/commit/cb520e354e7d3b277513d47166243c1a3f0af3ba) — Update Gen 2 learnsets
+- 2025-05-03 [9f352397b](https://github.com/aaronjeter/CrystalShireEngine/commit/9f352397be8894e4726883e41439b8e270349263) — Add some Gen4+ moves
+- 2025-05-03 [68b4e8d56](https://github.com/aaronjeter/CrystalShireEngine/commit/68b4e8d56a55d37573676e2a9408484cd25142f3) — Move pp update
+- 2025-05-02 [5760bb1e0](https://github.com/aaronjeter/CrystalShireEngine/commit/5760bb1e06c0ba06fa55200991e69c590950e3b8) — Gym Leader Rematches
+- 2025-04-29 [54b33f46e](https://github.com/aaronjeter/CrystalShireEngine/commit/54b33f46eb8130102548593810d34317a2567451) — Residual Damage Animation Fix
+- 2025-04-29 [6820324f5](https://github.com/aaronjeter/CrystalShireEngine/commit/6820324f5bb086b70a71b2bf829a0c2d8ade1530) — Fix Intro Menu Text length
+- 2025-04-29 [32fcb66ef](https://github.com/aaronjeter/CrystalShireEngine/commit/32fcb66ef46270ad0da2a92f6c47b2128ea92a47) — Add reddit mons to the wild
+- 2025-04-29 [a51a96b48](https://github.com/aaronjeter/CrystalShireEngine/commit/a51a96b488e08e3ec04a3879af58e51e9a9c8992) — Add Evo Stones to Goldenod Mart
+- 2025-04-29 [820556620](https://github.com/aaronjeter/CrystalShireEngine/commit/82055662000319775d0bfbb5de49bc0082e02eec) — Add Reddit origin to intro menu
+- 2025-04-29 [0ffee9698](https://github.com/aaronjeter/CrystalShireEngine/commit/0ffee969886a8693a98e77ff51c14e8a34880476) — Add reddit mons
+- 2025-04-27 [42499f9c5](https://github.com/aaronjeter/CrystalShireEngine/commit/42499f9c5b88fc92e27f897a7b8c6ef54ed4bbd5) — Fix Broken Icons
+- 2025-04-27 [b1c09fd6f](https://github.com/aaronjeter/CrystalShireEngine/commit/b1c09fd6f3ba8c635014be3a4c35ef30fad32f0d) — Add Gen 3 Moves (firsthalf)
+- 2025-04-25 [ea9f6b205](https://github.com/aaronjeter/CrystalShireEngine/commit/ea9f6b205bd87601299a227129a29a7da4fd495f) — Add gen 3 pokemon Poochyena-Solrock
+- 2025-04-24 [9df1dc279](https://github.com/aaronjeter/CrystalShireEngine/commit/9df1dc279d13662c09f97118ad1bd8d9058db306) — Gen 3 Starters
+- 2025-04-23 [0830032fe](https://github.com/aaronjeter/CrystalShireEngine/commit/0830032fe02659414d7dfe86f495032741d3e0d2) — Add Munchlax
+- 2025-04-23 [d2b64b2cf](https://github.com/aaronjeter/CrystalShireEngine/commit/d2b64b2cf265968b12d30df4a1e22ecc45e083e9) — Add Region Menu
+- 2025-04-21 [5d13bf182](https://github.com/aaronjeter/CrystalShireEngine/commit/5d13bf182445d5101d1819116be7e937f96650c4) — Enable overworld HM use upon owning HM
+- 2025-04-20 [f4e79ed72](https://github.com/aaronjeter/CrystalShireEngine/commit/f4e79ed723b341ee7948ddd1189584379ee0816a) — fix kadabra glitch
+- 2025-04-16 [e3a4e3362](https://github.com/aaronjeter/CrystalShireEngine/commit/e3a4e336200ceca82633357ec28ccb885d99637b) — Allow HM move overwriting
+- 2025-04-15 [176797382](https://github.com/aaronjeter/CrystalShireEngine/commit/176797382580683e491e4da0bbe5af45edd3e203) — loadwildmon scaling
+- 2025-04-15 [0d6ac6160](https://github.com/aaronjeter/CrystalShireEngine/commit/0d6ac61602e3468b723694282b4369d6fb798b4b) — Remove badge hm reqs
+- 2025-04-14 [552e34e76](https://github.com/aaronjeter/CrystalShireEngine/commit/552e34e76644915824c9396b9ef03aee6ad15efe) — Unlock Magnet Train
+- 2025-04-14 [e85df09d6](https://github.com/aaronjeter/CrystalShireEngine/commit/e85df09d6d6abf5b5fb7d9260227e7f4513c7d17) — add elm lab xp share
+- 2025-04-14 [bad40b9e3](https://github.com/aaronjeter/CrystalShireEngine/commit/bad40b9e399e632767d7f0ed647232075a083574) — Remove Sudowoodo roadblock
+- 2025-04-13 [65265cf34](https://github.com/aaronjeter/CrystalShireEngine/commit/65265cf34a237972c79ec6dbff2edfe4eac32720) — add hard parties data
+- 2025-04-11 [2a6035ac8](https://github.com/aaronjeter/CrystalShireEngine/commit/2a6035ac8cf6026939dccf9fbe92b1321ebbaffa) — Machoke learnset fix
+- 2025-04-10 [3fd5e1bac](https://github.com/aaronjeter/CrystalShireEngine/commit/3fd5e1bace87f840eddafadbc4b05cd280b814cc) — fix broken evolution methods
+- 2025-04-10 [fea02f48c](https://github.com/aaronjeter/CrystalShireEngine/commit/fea02f48cdb7ac7ef7d71e219f3667f6d9009a1f) — Change starter
+- 2025-04-10 [fb131966f](https://github.com/aaronjeter/CrystalShireEngine/commit/fb131966f6a3876d05627031b51e7264dbb1b25c) — Remove Item Trade Evos
+- 2025-04-10 [c0c5b8625](https://github.com/aaronjeter/CrystalShireEngine/commit/c0c5b86259f49c05153b1336867191e492c4de2b) — Increase Shiny Rates
+- 2025-04-10 [4b6dd167c](https://github.com/aaronjeter/CrystalShireEngine/commit/4b6dd167cbcff729747b93178bf603df1f4609f5) — remove 510 limit on evs
+- 2025-04-10 [805bb788e](https://github.com/aaronjeter/CrystalShireEngine/commit/805bb788ed82543aa8a5d3029125860636e8c235) — AI scoring update
+- 2025-04-09 [6111de4a8](https://github.com/aaronjeter/CrystalShireEngine/commit/6111de4a8b342d3e356cfc93cb26f56a91019f65) — Move Tutor Availability
+- 2025-04-08 [4c6f3fbd4](https://github.com/aaronjeter/CrystalShireEngine/commit/4c6f3fbd479ff3945f2d69d7f64d9b5618469c35) — Add wildmon level variance
+- 2025-04-08 [9608384a8](https://github.com/aaronjeter/CrystalShireEngine/commit/9608384a89b132d45d3076c69fa0548936b0865a) — Reusable TMs
+- 2025-04-08 [128ad79bc](https://github.com/aaronjeter/CrystalShireEngine/commit/128ad79bced6e82cd14edcfd587bd239f1702b46) — Implement Physical/special split
+- 2025-04-07 [4d12e46db](https://github.com/aaronjeter/CrystalShireEngine/commit/4d12e46dbfd84dd7f059cb3931681d9e1d5e9d49) — Pokemon type porting
+- 2025-04-06 [b3e5e3244](https://github.com/aaronjeter/CrystalShireEngine/commit/b3e5e3244e0715c790846427458ce7811c81bec9) — Levelcap Badge Increments
+- 2025-04-06 [7f9eff2a7](https://github.com/aaronjeter/CrystalShireEngine/commit/7f9eff2a7497a90717828926c07b7179d4e86b2a) — Initial Porting Commit
+
+## gen3
+
+Revision: `f62fab72c16072d149d5b1aaf66090f92991cb58`. Non-merge commits in this section: 436.
+
+- 2025-03-29 [f62fab72c](https://github.com/aaronjeter/CrystalShireEngine/commit/f62fab72c16072d149d5b1aaf66090f92991cb58) — Fix Move Priority
+- 2025-03-29 [8c74c6250](https://github.com/aaronjeter/CrystalShireEngine/commit/8c74c6250c7999c10db787ea2371aaec393d5c03) — Optimize Substitute
+- 2025-03-13 [810ef30b8](https://github.com/aaronjeter/CrystalShireEngine/commit/810ef30b812ad9c17d5401059e971c3a08ffec2b) — better catch tutorial return fix
+- 2025-03-13 [dba527e25](https://github.com/aaronjeter/CrystalShireEngine/commit/dba527e250e9d34389a6bd3585555808f753600b) — Fix Glitch scree/text after returning from catch tutorial
+- 2025-03-13 [bfaa3af6f](https://github.com/aaronjeter/CrystalShireEngine/commit/bfaa3af6f75f69221ef6a3bad984ca50e332506a) — Fix Pokeball wobbles (optimized too much)
+- 2025-03-13 [b165976b1](https://github.com/aaronjeter/CrystalShireEngine/commit/b165976b1b6747f7e5880944dc1635b90ea0b48b) — remove EOL whitespace
+- 2025-03-13 [81d9febde](https://github.com/aaronjeter/CrystalShireEngine/commit/81d9febde011976531150ef5d9db67397a381431) — remove HelloWorldString
+- 2025-03-13 [5018d013c](https://github.com/aaronjeter/CrystalShireEngine/commit/5018d013c731e3e64f2230e4e3ea913ede356f00) — Optimize rst's and fix call->xcall
+- 2025-03-12 [1e4088af6](https://github.com/aaronjeter/CrystalShireEngine/commit/1e4088af646ec74803173564bac85c7639278cc5) — Fix `GetTrainerIVs` (also fixes trainer mon hp bar bug)
+- 2025-03-09 [e5e33ef9a](https://github.com/aaronjeter/CrystalShireEngine/commit/e5e33ef9a9c77a7dc7b5644bcbc52b232f5485aa) — Correct Battle Turn Issues
+- 2024-09-27 [2deeceac5](https://github.com/aaronjeter/CrystalShireEngine/commit/2deeceac50bd20354aa8d9009b9124547b67fdba) — Fix Unown Forms
+- 2024-09-24 [1db5c7c5e](https://github.com/aaronjeter/CrystalShireEngine/commit/1db5c7c5ec6e3497459b6774e521297a0d5f6b69) — Add comment for `EVOLVE_PV`
+- 2024-09-24 [110286be8](https://github.com/aaronjeter/CrystalShireEngine/commit/110286be8e6f22f895a3b3207054028fcefa8d07) — Fix Evo Skips for Gen 3 Personality Evo
+- 2024-09-24 [ec441cb1d](https://github.com/aaronjeter/CrystalShireEngine/commit/ec441cb1d6e80f078c0d854a070bbd430a524799) — Merge branch 'core' into gen3
+- 2024-09-23 [8c979e681](https://github.com/aaronjeter/CrystalShireEngine/commit/8c979e68153710fa96e9e67071bbbe00045aeb32) — Remove Stub Jump from Personality Evolution
+- 2024-09-23 [aba9de152](https://github.com/aaronjeter/CrystalShireEngine/commit/aba9de1522c7905b8a5be7248548ca478f83e08d) — Minor Optimizations for `gen3-pokeballs` Changes
+- 2024-09-23 [44f71f8a8](https://github.com/aaronjeter/CrystalShireEngine/commit/44f71f8a871f0d5946651893b90c64968831ff26) — Small Optimization for `GetSpeciesWeight`
+- 2024-09-23 [bde82c81d](https://github.com/aaronjeter/CrystalShireEngine/commit/bde82c81d25889e0cc581ba9420bfab415f15c0f) — Remove `wBattleHasJustStarted` from WRAM
+- 2024-09-22 [9713e579a](https://github.com/aaronjeter/CrystalShireEngine/commit/9713e579a97622686a0144f4092236121162f132) — Implement Timer Ball
+- 2024-09-20 [ea92d0c5b](https://github.com/aaronjeter/CrystalShireEngine/commit/ea92d0c5bde2f0850064789523aec04f4ad9cd22) — Implement Repeat Ball
+- 2024-09-20 [49ce106a0](https://github.com/aaronjeter/CrystalShireEngine/commit/49ce106a094f97cc0bf42a40a4585d49f8779785) — Implement Nest Ball
+- 2024-09-20 [8397a9d65](https://github.com/aaronjeter/CrystalShireEngine/commit/8397a9d65d884115b71b53406d4d341bac597593) — Implement Dive Ball
+- 2024-09-20 [b4aac1a19](https://github.com/aaronjeter/CrystalShireEngine/commit/b4aac1a19690d922ef08df28d35058161d984694) — Implement Net Ball
+- 2024-09-20 [8934ee0c9](https://github.com/aaronjeter/CrystalShireEngine/commit/8934ee0c9936ae1a74c4325165976225bf1ef9ae) — Rearrange Ball Multipliers
+- 2024-09-19 [1b6c69103](https://github.com/aaronjeter/CrystalShireEngine/commit/1b6c691030cabe58b239a2cc96655a0be978ebef) — Update Pokeball Catch Rate
+- 2024-09-19 [d124427b2](https://github.com/aaronjeter/CrystalShireEngine/commit/d124427b2053c34dc23ea14ecd81b465e1be237d) — Add `MultiplyAndDivide` from Polished Crystal
+- 2024-09-13 [65385375f](https://github.com/aaronjeter/CrystalShireEngine/commit/65385375fadd4ac1d1382cca616e22557ddccc91) — Update Fast Ball Multiplier
+- 2024-09-12 [7320d13df](https://github.com/aaronjeter/CrystalShireEngine/commit/7320d13df289607a16a9cebb3688028760cee2ed) — Add Previously Removed Evolutions Back
+- 2024-09-12 [2cf824f79](https://github.com/aaronjeter/CrystalShireEngine/commit/2cf824f792a7c79237ba33527cabeb6d3bc1d185) — Minor file structure change to assist in Gen III dev
+- 2024-09-12 [95676ff1b](https://github.com/aaronjeter/CrystalShireEngine/commit/95676ff1be47349c2f27f5592f560c50e4b85df7) — Update Level Ball Multiplier
+- 2024-09-12 [0fd2d74d8](https://github.com/aaronjeter/CrystalShireEngine/commit/0fd2d74d8f171459533801cd21d95b23e6c6be17) — Add Colors to Gen 3 Pokeballs
+- 2024-09-11 [f6fd04acf](https://github.com/aaronjeter/CrystalShireEngine/commit/f6fd04acf9344a38b4f68a1fe1a0981f1657cc4e) — Initial Work on Gen 3 Pokeballs
+- 2024-09-10 [87388799c](https://github.com/aaronjeter/CrystalShireEngine/commit/87388799c2ea00149eea0fa78cace728c7c9b836) — Add New Unown Formes
+- 2024-09-10 [272f8cee6](https://github.com/aaronjeter/CrystalShireEngine/commit/272f8cee6a087651ac8e571067629896eda901de) — Add NUM_KANTO_POKEMON Constant Back
+- 2024-09-09 [9fd640885](https://github.com/aaronjeter/CrystalShireEngine/commit/9fd64088518e4d0736ddcc104ba3837b9cb53a87) — Update Gen 3 Mon's TM/HM Lists
+- 2024-09-09 [29d55bc47](https://github.com/aaronjeter/CrystalShireEngine/commit/29d55bc47ef80ec6700f3d060c604b5e01d6c59c) — Update to Gen 3 Egg Moves
+- 2024-09-09 [9db6f0d4f](https://github.com/aaronjeter/CrystalShireEngine/commit/9db6f0d4f5704bc43c1cdd5bace045bf81647a12) — Prepare for Gen 3 Egg Moves
+- 2024-09-09 [970f07b78](https://github.com/aaronjeter/CrystalShireEngine/commit/970f07b78a7143326340e5d669510e63d39f0c9e) — Update to Gen 3 Learnsets
+- 2024-09-05 [0c65b666d](https://github.com/aaronjeter/CrystalShireEngine/commit/0c65b666d73cb8d426b33ff62641ab7c84ed9843) — Add Gen 3 Evolution Data
+- 2024-09-05 [247b4b415](https://github.com/aaronjeter/CrystalShireEngine/commit/247b4b41541411de019e29b124a823e4e84a8766) — Force Shedinja to have 1 HP
+- 2024-09-03 [ccafc12b9](https://github.com/aaronjeter/CrystalShireEngine/commit/ccafc12b91f91edcbb6d7d54c3b5a9b294d7fa72) — Implement Nincada/Shedinja Evolution (Gen 3 Variant)
+- 2024-09-02 [4d689747c](https://github.com/aaronjeter/CrystalShireEngine/commit/4d689747cc2abaa3379a1e003b86fe273277c3b9) — Implement Personality Evolution
+- 2024-09-01 [d0ff6db2b](https://github.com/aaronjeter/CrystalShireEngine/commit/d0ff6db2b6be8455add10d77e38b311fa152e2b3) — Initial Gen 3 Data Commit
+- 2024-09-01 [3e6793909](https://github.com/aaronjeter/CrystalShireEngine/commit/3e67939098d9b2a2a7e996b1e1e188f20864baf8) — Remove Duplicate OAMs
+- 2024-09-01 [4f4f31691](https://github.com/aaronjeter/CrystalShireEngine/commit/4f4f31691f92b31c7d51ae6492b9585d3c53aa64) — Optimized and updated Waterfall and Dive
+- 2024-09-01 [3bbc34b47](https://github.com/aaronjeter/CrystalShireEngine/commit/3bbc34b474b1d0f73a722a2c63b1107a8675014d) — Optimized Poison animations
+- 2024-09-01 [fe0e43289](https://github.com/aaronjeter/CrystalShireEngine/commit/fe0e43289526fe1eb940529352d8fd54984bc612) — whoops
+- 2024-09-01 [577a0da77](https://github.com/aaronjeter/CrystalShireEngine/commit/577a0da772e59a31b14cb25fb12a191cba18706a) — Optimized a few animations
+- 2024-09-01 [f81d6b533](https://github.com/aaronjeter/CrystalShireEngine/commit/f81d6b533062e505f67d345f5fa29c29bd2c5c3e) — Optimized FlameWheel and SacredFire
+- 2024-09-01 [efee6e95e](https://github.com/aaronjeter/CrystalShireEngine/commit/efee6e95e78f5dd81c7871afd201e4f99f3e5566) — Fix some whitespace
+- 2024-09-01 [966e1da13](https://github.com/aaronjeter/CrystalShireEngine/commit/966e1da13b7484a5d6200cfcd79d89dddb1fb7d9) — Delete whitespace
+- 2024-09-01 [718f2d422](https://github.com/aaronjeter/CrystalShireEngine/commit/718f2d422a622fac020652cb50dae3f12962551f) — Updated and fixed all gen1-gen3 animations
+- 2024-08-31 [be2e92a04](https://github.com/aaronjeter/CrystalShireEngine/commit/be2e92a04177f9aa3cf44ba0ac44bc4db1c0c7a4) — Add a routine that allows testing all move animations.
+- 2024-08-31 [9ac31cb2a](https://github.com/aaronjeter/CrystalShireEngine/commit/9ac31cb2ad1eaac3ef21f7cfa125c9c4728596d6) — Implement Erratic & Fluctuating Growth Rates
+- 2024-08-31 [a2407fa59](https://github.com/aaronjeter/CrystalShireEngine/commit/a2407fa59e6471710e589bfb8b6b6ae60b670e16) — Remove Unused Egg Sprite
+- 2024-08-30 [312b19dcf](https://github.com/aaronjeter/CrystalShireEngine/commit/312b19dcfca10b55dfef5496259b0c37d95b20c5) — Move Pokemon Icon Graphics to Region Folders
+- 2024-08-30 [5cb16766e](https://github.com/aaronjeter/CrystalShireEngine/commit/5cb16766e56667426f9b8897f0c265f9f0d29a64) — Move Pokemon Footprint Graphics to Region Folders
+- 2024-08-29 [37f182f88](https://github.com/aaronjeter/CrystalShireEngine/commit/37f182f8838c3a64cbae74a5527fbf3f9e009ac9) — Convert Pokemon Bitmasks to Indirect Table
+- 2024-08-29 [a9e8b0a69](https://github.com/aaronjeter/CrystalShireEngine/commit/a9e8b0a69056c63448e0c24499e1bfd5f45111ea) — Convert Pokemon Bitmasks to Indirect Table
+- 2024-08-29 [1f63b8650](https://github.com/aaronjeter/CrystalShireEngine/commit/1f63b8650b405bff386f5b67e9d8a7fb5b7f154c) — Convert Pokemon Idle Animations to Indirect Table
+- 2024-08-29 [941d6fd1e](https://github.com/aaronjeter/CrystalShireEngine/commit/941d6fd1eb2bf2d97cabedb7d30ecc3458ebb09d) — Adjust Formatting
+- 2024-08-29 [f91a94118](https://github.com/aaronjeter/CrystalShireEngine/commit/f91a94118975da9d76ead72332ffc0445f3366a7) — Convert Pokemon Animations to Indirect Table
+- 2024-08-25 [472761cdb](https://github.com/aaronjeter/CrystalShireEngine/commit/472761cdbd0d254951b1ea0e03265be84f1a5190) — Update to Gen 3 TM/HMs
+- 2024-08-24 [496d303da](https://github.com/aaronjeter/CrystalShireEngine/commit/496d303da20a83be6a545e7ab312ba0bec35e8fe) — Move Pokemon Graphics to Region Folders
+- 2024-08-24 [05cc91959](https://github.com/aaronjeter/CrystalShireEngine/commit/05cc919593c6c17ce3af07cf1114b4ad79e4482c) — Fix Dex Entry Includes
+- 2024-08-24 [3afb53a36](https://github.com/aaronjeter/CrystalShireEngine/commit/3afb53a360fec47fd12db5066f3d903e0d77359b) — Move Base Data and Dex Entries to Region Folders
+- 2024-08-23 [bfb9bd203](https://github.com/aaronjeter/CrystalShireEngine/commit/bfb9bd203e8e554f4df15dbf2699c98f81248ce1) — Optimize Zap Cannon & Volt Tackle Animation
+- 2024-08-20 [f8171f09e](https://github.com/aaronjeter/CrystalShireEngine/commit/f8171f09e71a390dc4770b0becc49c3b139c2758) — Optimize Curse Animation
+- 2024-08-20 [b75400a98](https://github.com/aaronjeter/CrystalShireEngine/commit/b75400a9841fbb676e9021564dec58a538c91bdf) — Optimize Dragon Dance Animation
+- 2024-08-20 [cb07b9468](https://github.com/aaronjeter/CrystalShireEngine/commit/cb07b946842a404e37c28c2779f83374ee0a9518) — Optimize Swallow Animation
+- 2024-08-20 [7abe03dc1](https://github.com/aaronjeter/CrystalShireEngine/commit/7abe03dc19932c3f64f24721216d991858310ca1) — Optimize Spit Up Animation
+- 2024-08-20 [c341a7a55](https://github.com/aaronjeter/CrystalShireEngine/commit/c341a7a5584b9d779177df506e6321baf538851d) — Adjust Ice Beam Animation
+- 2024-08-19 [d9fa59ab7](https://github.com/aaronjeter/CrystalShireEngine/commit/d9fa59ab7a476666a5128fa9e3f08888ca81c746) — Clean Up Animation Branch Names
+- 2024-08-19 [530f50966](https://github.com/aaronjeter/CrystalShireEngine/commit/530f5096693e00bd5e4c08ec6e9c000eb582599b) — Optimize Agility & Future Sight Animations
+- 2024-08-19 [cf5994249](https://github.com/aaronjeter/CrystalShireEngine/commit/cf599424943b4eb9b4308db57321e6ff68398b63) — Optimize Extreme Speed Animartion
+- 2024-08-19 [2099d3ccd](https://github.com/aaronjeter/CrystalShireEngine/commit/2099d3ccda4272aa3b59a83db4eb060fa2e5159c) — Optimize Sunny Day Animation
+- 2024-08-19 [7b009d0e2](https://github.com/aaronjeter/CrystalShireEngine/commit/7b009d0e2af6e28aa47dfb8523e7f5a354da1400) — Optimize Hidden Power Animation
+- 2024-08-19 [8703269c3](https://github.com/aaronjeter/CrystalShireEngine/commit/8703269c3f3feefebe0e51f065fcfe4dde4f6b27) — Optimize Metallic Attacking Animations
+- 2024-08-19 [43072251f](https://github.com/aaronjeter/CrystalShireEngine/commit/43072251f14b62fd1bf42de723c4665814c6e7e0) — Optimize Spark & Superpower Animations
+- 2024-08-19 [9057428cd](https://github.com/aaronjeter/CrystalShireEngine/commit/9057428cd53bf039d189eb841e70bd007e6b349a) — Optimize Charm & Covet Animations
+- 2024-08-19 [6576daef3](https://github.com/aaronjeter/CrystalShireEngine/commit/6576daef31e7490cf9e1d7322a51bb7a4f996365) — Optimize Giga Drain Animation
+- 2024-08-19 [85b0bfd36](https://github.com/aaronjeter/CrystalShireEngine/commit/85b0bfd3616e55b88432da1393a8a8b16a90927f) — Optimize Sandstorm Animation
+- 2024-08-19 [83df88824](https://github.com/aaronjeter/CrystalShireEngine/commit/83df88824181a806fd142df8d812ea4e5a8d137c) — Optimize Rage & Outrage Animations
+- 2024-08-18 [f19bf9107](https://github.com/aaronjeter/CrystalShireEngine/commit/f19bf9107c1d0fa5ea948c475afd5c9a2d1da4d6) — Optimize Mirror Coat & Icy Wind Animations
+- 2024-08-18 [acc46675a](https://github.com/aaronjeter/CrystalShireEngine/commit/acc46675a2fd9bba88193d4facf41dd11ccf6b1a) — Minor Fix to Belly Drum Animation
+- 2024-08-18 [036548a6a](https://github.com/aaronjeter/CrystalShireEngine/commit/036548a6a93b9a449b8ca56db5d3162f76aea980) — Optimize Belly Drum Animation
+- 2024-08-18 [e7e74ac37](https://github.com/aaronjeter/CrystalShireEngine/commit/e7e74ac374a91c0bb5fe40e1ae87ea1c5e697853) — Optimize Quick Attack & Mach Punch Animations
+- 2024-08-18 [106435eb2](https://github.com/aaronjeter/CrystalShireEngine/commit/106435eb2f95650440f4fdb405d9ce5a2196533d) — Optimize Moves using Focused Power Sub Animation
+- 2024-08-18 [a9693ed3e](https://github.com/aaronjeter/CrystalShireEngine/commit/a9693ed3e603f3494a0b1a3439cd386c2c3eacee) — Optimize Flame Wheel & Sacred Fire Animations
+- 2024-08-18 [170fe5ffd](https://github.com/aaronjeter/CrystalShireEngine/commit/170fe5ffd719e0a2ca761c7e3046d321b4a41b33) — Optimize Animations with Pound Endings
+- 2024-08-18 [a1f597987](https://github.com/aaronjeter/CrystalShireEngine/commit/a1f59798733664c761745d90cca05690eea4ad97) — Optimize Substitution Aimation
+- 2024-08-18 [3fb75ea3b](https://github.com/aaronjeter/CrystalShireEngine/commit/3fb75ea3b28b911412c0958db6af76b9163d561f) — Optimize Clamp Animation
+- 2024-08-18 [c434ec539](https://github.com/aaronjeter/CrystalShireEngine/commit/c434ec539271b3bb5eee6cf93b245adc86dec185) — Optimize Waterfall Animation
+- 2024-08-18 [4888162d7](https://github.com/aaronjeter/CrystalShireEngine/commit/4888162d7690a4520a473c0ab6324025c9b53201) — Optimize Absorb Style Animations
+- 2024-08-18 [6932702fe](https://github.com/aaronjeter/CrystalShireEngine/commit/6932702fe95efe6c4950a2688996ade1c5ce791b) — Optimize Strength & Seismic Toss Animations
+- 2024-08-18 [5d21176ca](https://github.com/aaronjeter/CrystalShireEngine/commit/5d21176cab2e37d90d64e6e21030e1a992cb7e9d) — Optimize Low Kick Animation
+- 2024-08-18 [b51545983](https://github.com/aaronjeter/CrystalShireEngine/commit/b51545983122b6e4dc80727bd6b70294d52f9212) — Optimize Beam Sub & Aeroblast Animations
+- 2024-08-18 [d33c88d16](https://github.com/aaronjeter/CrystalShireEngine/commit/d33c88d16ae4ec10f9f73a5e6ba096283b7b6356) — Optimize Beam Sub Animation
+- 2024-08-18 [c13f668f0](https://github.com/aaronjeter/CrystalShireEngine/commit/c13f668f007fec826a4726b682bf3595a09cdbba) — Optimize Ice Beam Animation
+- 2024-08-18 [5dc401842](https://github.com/aaronjeter/CrystalShireEngine/commit/5dc401842a2f6335ff45c5f8470548691c2c8a82) — Optimize Thrash & Counter Animations
+- 2024-08-18 [95d09f31c](https://github.com/aaronjeter/CrystalShireEngine/commit/95d09f31cd1afa8001eba0848c5d94bd081cefae) — Optimize Bite/Clamp Animations
+- 2024-08-18 [4e6dc10ab](https://github.com/aaronjeter/CrystalShireEngine/commit/4e6dc10ab702387d68cb08a2a66856cbcecc4064) — Optimize Needle Move Animations
+- 2024-08-18 [297c4c6b7](https://github.com/aaronjeter/CrystalShireEngine/commit/297c4c6b776326448cc912e757afe9d5f495ae70) — Optimize Jump Kick & Hi Jump Kick Animations
+- 2024-08-18 [d361b40e6](https://github.com/aaronjeter/CrystalShireEngine/commit/d361b40e687a8b614eb6687e7fbced8b1215b9d9) — Optimize Double Kick & Triple Kick Animations
+- 2024-08-18 [457ebd400](https://github.com/aaronjeter/CrystalShireEngine/commit/457ebd400d172df2d73cc8d1b4b496ff302be2ab) — Optimize Karate Chop & Stomp Animations
+- 2024-08-18 [e504c25c2](https://github.com/aaronjeter/CrystalShireEngine/commit/e504c25c2aff95e75fecafcbdbf3d38d76593a3b) — Optimize Wrap & Bind Animations
+- 2024-08-18 [395eb3d29](https://github.com/aaronjeter/CrystalShireEngine/commit/395eb3d297bf319ff9d93926d5d4a7843580bbac) — Optimize Whirlwind & Twister Animations
+- 2024-08-18 [a14d2add7](https://github.com/aaronjeter/CrystalShireEngine/commit/a14d2add75e6107bdfde18af613ff3b2ce0364cc) — Optimize moves with many `anim_incobj` commands
+- 2024-08-18 [fc8150798](https://github.com/aaronjeter/CrystalShireEngine/commit/fc81507980d823c5e493d60bfeaf001cc36833d0) — Optimize Wing Attack & Steel Wing Animations
+- 2024-08-18 [973bc92b2](https://github.com/aaronjeter/CrystalShireEngine/commit/973bc92b231a6384ad2f57196a0fe9a1d0d2c7de) — Optimize Cut Animations
+- 2024-08-18 [72056a8c7](https://github.com/aaronjeter/CrystalShireEngine/commit/72056a8c7f0d98066596271acedc177281f8c17d) — Optimize Thunder Right Move Animations
+- 2024-08-18 [88b66ceeb](https://github.com/aaronjeter/CrystalShireEngine/commit/88b66ceebe4de9e54195fad095f1f63029a11758) — Optimize Mega Punch & Thrash Animations
+- 2024-08-18 [43ec28e46](https://github.com/aaronjeter/CrystalShireEngine/commit/43ec28e4646d4f9722f0b0f624d8cdf82ca2f66a) — Optimize Multi Hit Move Animations
+- 2024-08-18 [9a73848ef](https://github.com/aaronjeter/CrystalShireEngine/commit/9a73848efeaee0c9839f6558ba5694a096769920) — Revert Psycho Boost Optimization
+- 2024-08-18 [718b65dfd](https://github.com/aaronjeter/CrystalShireEngine/commit/718b65dfd77f475828ca5fa600229ab571f72e73) — Revert Doom Desire Optimization
+- 2024-08-18 [91542ced4](https://github.com/aaronjeter/CrystalShireEngine/commit/91542ced4d394c29917aaaf1acd32b942a3493cb) — Revert Water Sport Optimization
+- 2024-08-18 [59da3b84b](https://github.com/aaronjeter/CrystalShireEngine/commit/59da3b84b0fcb127e7bc74edf3bbefc0949b2b0b) — Revert Leaf Move Optimizations
+- 2024-08-18 [790959686](https://github.com/aaronjeter/CrystalShireEngine/commit/7909596863d3262e105f07fd2c7dcc909b2cd730) — Optimize Pin Missile & Icicle Spear Animations
+- 2024-08-18 [f4f93fd20](https://github.com/aaronjeter/CrystalShireEngine/commit/f4f93fd20f6d661212df8eb61d69e5e65397cebd) — Correct Snatch Animation
+- 2024-08-18 [215c0179c](https://github.com/aaronjeter/CrystalShireEngine/commit/215c0179c30d4b4b9f204db47acd38ae5dcb9746) — Optimize Speed Line Animations
+- 2024-08-18 [85400035d](https://github.com/aaronjeter/CrystalShireEngine/commit/85400035d3c8ba4a871a1dc4fd3b5922905c0f3d) — Revert Sheer Cold Optimization
+- 2024-08-18 [fb114bd7c](https://github.com/aaronjeter/CrystalShireEngine/commit/fb114bd7ce9a422eb50662b42cd80357769f010e) — Revert Extrasensory Optimization
+- 2024-08-18 [bd15aad3d](https://github.com/aaronjeter/CrystalShireEngine/commit/bd15aad3d82c67353cad6a71b9861b69ca5ffb10) — Optimize Sing & Grass Whistle Animations
+- 2024-08-18 [224bb4542](https://github.com/aaronjeter/CrystalShireEngine/commit/224bb4542c5f3a7c17eaae5b3d948acf93c5e5f2) — Optimize Screech & Metal Sound Animatios
+- 2024-08-18 [db8497c6c](https://github.com/aaronjeter/CrystalShireEngine/commit/db8497c6cf81e4cbbc2004dbf80d84f90d9dd2e7) — Optimize Imprison & Rock Tomb Animations
+- 2024-08-18 [e2686bb91](https://github.com/aaronjeter/CrystalShireEngine/commit/e2686bb915d1b83a746312a0bf9e9a63b8d024ec) — Optimize Odor Sleuth Animation
+- 2024-08-18 [6d76fb78f](https://github.com/aaronjeter/CrystalShireEngine/commit/6d76fb78ff9f9b3ea3a7012edbfacd7925e316fc) — Revert Air Cutter Optimization
+- 2024-08-18 [c20fcf0b6](https://github.com/aaronjeter/CrystalShireEngine/commit/c20fcf0b6c2524e5f4bc2a40d0a115f5f97480a1) — Revert Meteor Mash Optimization
+- 2024-08-18 [49c3b5b1f](https://github.com/aaronjeter/CrystalShireEngine/commit/49c3b5b1fd01983e9b8dbee942f8a9bc64350220) — Further Optimize Sludge Attacks
+- 2024-08-17 [f6c6998fd](https://github.com/aaronjeter/CrystalShireEngine/commit/f6c6998fdf167ff29ae13766051939d8e945b849) — Optimize Claw Moves
+- 2024-08-17 [f3c0b1ffc](https://github.com/aaronjeter/CrystalShireEngine/commit/f3c0b1ffcec3efc0a8377287c10bcc3ac4a633af) — Optimize Sludge Animations
+- 2024-08-17 [d0f76c373](https://github.com/aaronjeter/CrystalShireEngine/commit/d0f76c373dd4bb1ba5147ac7572901367d480b83) — Remove identical sub animation
+- 2024-08-17 [75e29e191](https://github.com/aaronjeter/CrystalShireEngine/commit/75e29e191c6a96d3bb5351064306873997524897) — Revert Needle Arm Optimization
+- 2024-08-17 [d2c4a76a8](https://github.com/aaronjeter/CrystalShireEngine/commit/d2c4a76a8873f5dba88a8ab27c7eee426956b6be) — Revert Mud Sport Optimization
+- 2024-08-17 [09628bcc9](https://github.com/aaronjeter/CrystalShireEngine/commit/09628bcc9db68c19f4fe8c2e3fe0a9a065ccabfa) — Optimize Mega Kick & Blaze Kick Animations
+- 2024-08-17 [fd5c53fee](https://github.com/aaronjeter/CrystalShireEngine/commit/fd5c53feec5e752c70b4ed9aec804c1baff76390) — Revert Teeter Dance Optimization
+- 2024-08-17 [63513bcaf](https://github.com/aaronjeter/CrystalShireEngine/commit/63513bcaf3d608c388765841d44ef74c67768ab9) — Revert Imprison Optimization
+- 2024-08-17 [42aa73e9f](https://github.com/aaronjeter/CrystalShireEngine/commit/42aa73e9f8b9872cd2754047a22072a0336bc14c) — Optimize Skill Swap Animation
+- 2024-08-17 [377a86a44](https://github.com/aaronjeter/CrystalShireEngine/commit/377a86a44ee464b0ebc70b52d6023d39c890b9a6) — Undo prior reversion...
+- 2024-08-17 [77c36a45a](https://github.com/aaronjeter/CrystalShireEngine/commit/77c36a45aced40923d1af9008f359c550befd626) — Revert Endeavor Optimization
+- 2024-08-17 [e5519dc44](https://github.com/aaronjeter/CrystalShireEngine/commit/e5519dc44af1b94230b96010050e8bee43ecf94a) — Revert Revenge Optimization
+- 2024-08-17 [81c85de2a](https://github.com/aaronjeter/CrystalShireEngine/commit/81c85de2a48ce6006fed95dda6ce4ff316b4131e) — Fix one last screen call
+- 2024-08-17 [a9aae8e3b](https://github.com/aaronjeter/CrystalShireEngine/commit/a9aae8e3b9637f74f37fed64d56945903dbc9899) — Optimize Screen Animations
+- 2024-08-17 [9294a4e52](https://github.com/aaronjeter/CrystalShireEngine/commit/9294a4e52ea0112b6d52291e3bb668662eefd9f8) — Optimize Superpower & Dragon Dance Animations
+- 2024-08-17 [e3adcf73e](https://github.com/aaronjeter/CrystalShireEngine/commit/e3adcf73ec421a4b58e817e1421e4eeec9c47968) — Revert Ingrain Optimization
+- 2024-08-17 [3aad54503](https://github.com/aaronjeter/CrystalShireEngine/commit/3aad54503f1457c7bf5a52798bdfa4a5f0cdd22a) — Fix Taunt Animation
+- 2024-08-17 [52bd61d9b](https://github.com/aaronjeter/CrystalShireEngine/commit/52bd61d9bbc89442f8ac843f3d7103518aad3078) — Optimize Torment & Taunt Animations
+- 2024-08-17 [fc745258f](https://github.com/aaronjeter/CrystalShireEngine/commit/fc745258fc071f4e6ca4357dc463b4e0a3c75b6f) — Update Makefile
+- 2024-08-17 [276041800](https://github.com/aaronjeter/CrystalShireEngine/commit/27604180059f551f83ed15687f22cf1b1e9b02dd) — Revert Torment Optimization
+- 2024-08-17 [cbe3f9477](https://github.com/aaronjeter/CrystalShireEngine/commit/cbe3f9477680885ab04086112381eb8da6c4eaec) — Optimize Mist Ball Animation
+- 2024-08-17 [9f81a6d5d](https://github.com/aaronjeter/CrystalShireEngine/commit/9f81a6d5dbeadab54978ebed4c1e0dead97797b3) — Optimize Shock Wave Animation
+- 2024-08-17 [9b9d71243](https://github.com/aaronjeter/CrystalShireEngine/commit/9b9d71243bcb252fe8d23099ceaa519b43096db5) — Revert Gen 1 Move Optimizations
+- 2024-08-17 [c0d2b1fb1](https://github.com/aaronjeter/CrystalShireEngine/commit/c0d2b1fb1510b3ea69584b9d85ebe5b15b915fa5) — Optimize Horn Moves
+- 2024-08-17 [be275a607](https://github.com/aaronjeter/CrystalShireEngine/commit/be275a607172c45e7f8926ae58f4143d08f54532) — Optimize Razor Wind Animation
+- 2024-08-17 [11db1d01f](https://github.com/aaronjeter/CrystalShireEngine/commit/11db1d01fe6bed0a68fd664af71bf00005b736a6) — Move Data Optimization
+- 2024-08-17 [c59e0e258](https://github.com/aaronjeter/CrystalShireEngine/commit/c59e0e258d334261dc8c61d92eb179646e134c54) — Added Psycho Boost Animation & Description
+- 2024-08-17 [fb9c5940c](https://github.com/aaronjeter/CrystalShireEngine/commit/fb9c5940c4989bbb79ae99b9d026abc6c0987730) — Added Doom Desire Animation & Description
+- 2024-08-17 [c847d7970](https://github.com/aaronjeter/CrystalShireEngine/commit/c847d7970747e51b0670d6108febfadf6b1428ac) — Added Water Pulse Animation & Description
+- 2024-08-17 [98e2356b1](https://github.com/aaronjeter/CrystalShireEngine/commit/98e2356b11210012620ad0b8e64b8089d6adf965) — Added Shock Wave Animation & Description
+- 2024-08-17 [07183772b](https://github.com/aaronjeter/CrystalShireEngine/commit/07183772b56253ec9c594e22ed2bf9d14a4b6f31) — Added Rock Blast Animation & Description
+- 2024-08-17 [69252c0c3](https://github.com/aaronjeter/CrystalShireEngine/commit/69252c0c30525d36128122990d3e9f0cad290b51) — Added Dragon Dance Animation & Description
+- 2024-08-17 [2276ac0c4](https://github.com/aaronjeter/CrystalShireEngine/commit/2276ac0c440d35d5011a1df3af1b8ed6cf8b39ce) — Added Leaf Blade Animation & Description
+- 2024-08-17 [232d8e0e7](https://github.com/aaronjeter/CrystalShireEngine/commit/232d8e0e783755a35a92618edfe45ea291b21300) — Fixed Cosmic Power Description
+- 2024-08-17 [065263410](https://github.com/aaronjeter/CrystalShireEngine/commit/0652634102fb2a612ff5ea2f2e8ee5f4d42e8135) — Added Calm Mind Animation & Description
+- 2024-08-17 [08b73343b](https://github.com/aaronjeter/CrystalShireEngine/commit/08b73343bbef58612e7455fa061b8941a06c7b0a) — Pad a 0 to all OAM entries
+- 2024-08-17 [254dc870e](https://github.com/aaronjeter/CrystalShireEngine/commit/254dc870ed1feb4109c1eb25c16aaab23eca2fb8) — Added Water Sport Animation & Description
+- 2024-08-16 [5246b2e67](https://github.com/aaronjeter/CrystalShireEngine/commit/5246b2e67b37123a3b5c12f0639084e65f8e9a8c) — Added Magical Leaf Animation & Description
+- 2024-08-16 [213626985](https://github.com/aaronjeter/CrystalShireEngine/commit/2136269859b20f72bcb0f45095a5678c08971281) — Added Volt Tackle Animation & Description
+- 2024-08-16 [514576467](https://github.com/aaronjeter/CrystalShireEngine/commit/5145764673b2bd54f0e7b18c69a6883fcfcc9639) — Added Covet Animation & Description
+- 2024-08-16 [e2f7f72c9](https://github.com/aaronjeter/CrystalShireEngine/commit/e2f7f72c90b22f3938c23046174c3622f48f26c3) — Added Poison Tail Animation & Description
+- 2024-08-16 [6ce7d7bc0](https://github.com/aaronjeter/CrystalShireEngine/commit/6ce7d7bc066f2d74215d6ee19172fb30c5b3f775) — Added Mud Shot Animation & Description
+- 2024-08-16 [3364fa885](https://github.com/aaronjeter/CrystalShireEngine/commit/3364fa885636d6c3b2ca3ff3cbbddfb96aa31792) — Actually Add Bounce Description
+- 2024-08-16 [7a8205938](https://github.com/aaronjeter/CrystalShireEngine/commit/7a820593896dc69c9decf972ad15ec8a6eecc989) — Added Bounce Animation & Description
+- 2024-08-16 [88d40883b](https://github.com/aaronjeter/CrystalShireEngine/commit/88d40883b8ff7d4cf25ff4de018754ec2fc03e7b) — Adjust OAM Assert
+- 2024-08-16 [c39cbc279](https://github.com/aaronjeter/CrystalShireEngine/commit/c39cbc27946b458b9d1e0e3e9b1a3197b6560413) — Added Bulk Up Animation & Description
+- 2024-08-16 [8bdf92737](https://github.com/aaronjeter/CrystalShireEngine/commit/8bdf9273758419a3caed293ff4f803503d8d8c2f) — Added Frenzy Plant Animation & Description
+- 2024-08-16 [0b63b2be2](https://github.com/aaronjeter/CrystalShireEngine/commit/0b63b2be2f94428cc6ffbc08e5361b421fb1a1e9) — Added Dragon Claw Animation & Description
+- 2024-08-16 [e9fcfdcc1](https://github.com/aaronjeter/CrystalShireEngine/commit/e9fcfdcc1d069967d1c52398844afeb99f0d9d48) — Added Howl Animation & Description
+- 2024-08-16 [15bf39ee0](https://github.com/aaronjeter/CrystalShireEngine/commit/15bf39ee07ac34bc778941e395f047d9e0b04e9a) — Added Block Animation & Description
+- 2024-08-16 [8bad44f6b](https://github.com/aaronjeter/CrystalShireEngine/commit/8bad44f6bcfd21423f0c5485b4e3df1e2e7631f1) — Added Iron Defense Animation & Description
+- 2024-08-16 [eed705c00](https://github.com/aaronjeter/CrystalShireEngine/commit/eed705c0090b86a7db8ea50752e6c6f370677313) — Added Icicle Spear Animation & Description
+- 2024-08-16 [0d262d3c0](https://github.com/aaronjeter/CrystalShireEngine/commit/0d262d3c09365c29d2e38f62a409f8133b76a769) — Added Aerial Ace Animation & Description
+- 2024-08-16 [f18257157](https://github.com/aaronjeter/CrystalShireEngine/commit/f182571575b303f0353052baefd7ef46060a1abe) — Added Bullet Seed Animation & Description
+- 2024-08-16 [114f2bcb1](https://github.com/aaronjeter/CrystalShireEngine/commit/114f2bcb1f503743d63a53983ba1e4525c0ff762) — Added Muddy Water Animation & Description
+- 2024-08-16 [a57728061](https://github.com/aaronjeter/CrystalShireEngine/commit/a57728061cb8ab24c77892797b304bcef5add6b5) — Added Sheer Cold Animation & Description
+- 2024-08-16 [02e1a88cb](https://github.com/aaronjeter/CrystalShireEngine/commit/02e1a88cb4b50d6513320eed3a6324ed79374817) — Added Sand Tomb Animation & Description
+- 2024-08-16 [41b0a6ba9](https://github.com/aaronjeter/CrystalShireEngine/commit/41b0a6ba9301177d8230065001a3cb5f5ee53ee9) — Added Sky Uppercut Animation & Description
+- 2024-08-16 [0105657eb](https://github.com/aaronjeter/CrystalShireEngine/commit/0105657eb247c9c354528464ce933a3701c4a7b5) — Added Extrasensory Animation & Description
+- 2024-08-16 [f92097889](https://github.com/aaronjeter/CrystalShireEngine/commit/f920978892afaee8e483cc4a8b2a1409c4a81905) — Added Shadow Punch Animation & Description
+- 2024-08-16 [60a459b0c](https://github.com/aaronjeter/CrystalShireEngine/commit/60a459b0c2b58d17983adb6e5ff6f508b906233c) — Added Signal Beam Animation & Description
+- 2024-08-16 [c0f2014d1](https://github.com/aaronjeter/CrystalShireEngine/commit/c0f2014d1404eb021a8fe351946de768e1b5566c) — Added Water Spout Animation & Description
+- 2024-08-16 [537b77cd1](https://github.com/aaronjeter/CrystalShireEngine/commit/537b77cd12f1de41d2e1e8fbb6fd0c00b3797866) — Added Cosmic Power Animation & Description
+- 2024-08-16 [1003a4b1e](https://github.com/aaronjeter/CrystalShireEngine/commit/1003a4b1e4d2afcb58b2e0542a036127dc49ea09) — Added Tickle Animation & Description
+- 2024-08-16 [350b2f9d1](https://github.com/aaronjeter/CrystalShireEngine/commit/350b2f9d160e1d0930c52cda7c1cf18440a58ad2) — Added Grass Whistle Animation, Sfx, & Descriptions
+- 2024-08-16 [8e90de723](https://github.com/aaronjeter/CrystalShireEngine/commit/8e90de723cd3cde7c80321d4048877974337fe9b) — Added Metal Sound Animation & Description
+- 2024-08-16 [5df0abf9e](https://github.com/aaronjeter/CrystalShireEngine/commit/5df0abf9ecf900c811fdc348c21724e757861010) — Fix Sub Branch Calls
+- 2024-08-16 [37e3521d7](https://github.com/aaronjeter/CrystalShireEngine/commit/37e3521d7167a0b9894ef1a9c1404a9c487d178a) — Fix Sub Branch Names
+- 2024-08-16 [84fbe15be](https://github.com/aaronjeter/CrystalShireEngine/commit/84fbe15be37a83c99e7898becef8b173c63c9bfb) — Optimize Air Cutter Animation
+- 2024-08-16 [07c6ef6c4](https://github.com/aaronjeter/CrystalShireEngine/commit/07c6ef6c438398765923643899f7be0ab056dd2b) — Optimize Blast Burn
+- 2024-08-16 [e79e24463](https://github.com/aaronjeter/CrystalShireEngine/commit/e79e2446332531c661648ded3043995607d4bed2) — Add simple comment to Ice Ball
+- 2024-08-16 [c742ef1b7](https://github.com/aaronjeter/CrystalShireEngine/commit/c742ef1b71fccac113f8065563b2fb0f6caba6a7) — Optimize Dive Animation
+- 2024-08-16 [58496943e](https://github.com/aaronjeter/CrystalShireEngine/commit/58496943e455d34c883b55c0c2ff2ef25d36269e) — Optimize Weather Ball Animation
+- 2024-08-16 [f55d48233](https://github.com/aaronjeter/CrystalShireEngine/commit/f55d482330674784f934cfa304da9ec965e3d1c0) — Optimize Poison Bubble Sub Branch
+- 2024-08-16 [e911f1c13](https://github.com/aaronjeter/CrystalShireEngine/commit/e911f1c13e39baee6c00329cbcdea8f75003b9f7) — Optimize Teeter Dance Animation
+- 2024-08-16 [1db636b9e](https://github.com/aaronjeter/CrystalShireEngine/commit/1db636b9e558c21250695d33ef830f98e9b18cca) — Optimize Imprison Animation
+- 2024-08-15 [2a17dd12c](https://github.com/aaronjeter/CrystalShireEngine/commit/2a17dd12c8063e21bd2d9f8e6fde891f03b448f2) — Optimize Revenge Animation
+- 2024-08-15 [065bf7984](https://github.com/aaronjeter/CrystalShireEngine/commit/065bf79840895390fd3a31d31de84c4881b32459) — Optimize Ingrain Animation
+- 2024-08-15 [da4d0bb95](https://github.com/aaronjeter/CrystalShireEngine/commit/da4d0bb95a781121a45f33948a4e4cd714b5d9aa) — Optimize Torment Animation
+- 2024-08-15 [1fb1d5291](https://github.com/aaronjeter/CrystalShireEngine/commit/1fb1d5291c55a4a16f63dd73ba5210a7f0cf6e9d) — Fix Fake Out Animation
+- 2024-08-15 [64b614bde](https://github.com/aaronjeter/CrystalShireEngine/commit/64b614bde99dd20d1672cd514b6e89194a69736a) — Optimize Fake Out Animation
+- 2024-08-15 [6b9c373c2](https://github.com/aaronjeter/CrystalShireEngine/commit/6b9c373c219221b5becf52f3b201ea5a54e35e17) — Optimize Meteor Mash Animation
+- 2024-08-15 [e6b4d1d30](https://github.com/aaronjeter/CrystalShireEngine/commit/e6b4d1d3030c84cd101fde4eb5452d2c57aaec60) — Add simple comment to Blaze Kick
+- 2024-08-15 [3e7f569a2](https://github.com/aaronjeter/CrystalShireEngine/commit/3e7f569a23a6067ceb6fa6df70e29678b8f34984) — Create Radial Flame BattleAnimSub Function
+- 2024-08-15 [9ddc97010](https://github.com/aaronjeter/CrystalShireEngine/commit/9ddc97010d85524a856ba1a117e8813638875587) — Added Silver Wind Animation & Description
+- 2024-08-15 [b2d52f2bf](https://github.com/aaronjeter/CrystalShireEngine/commit/b2d52f2bf545a7b3ee918a6c00a49427cfc8d263) — Fix Odor Sleuth & Rock Tomb Description
+- 2024-08-15 [0feffda32](https://github.com/aaronjeter/CrystalShireEngine/commit/0feffda321a6f457395dc84f5206a76f20eb187e) — Added Rock Tomb Animation & Description
+- 2024-08-15 [42a505bf4](https://github.com/aaronjeter/CrystalShireEngine/commit/42a505bf4be52bc457858b8ed389526fd9270073) — Added Odor Sleuth Animation & Description
+- 2024-08-15 [f58cb9b3f](https://github.com/aaronjeter/CrystalShireEngine/commit/f58cb9b3f1faef947dbb9a572672f558520ca8dd) — Alter Focus Punch Description
+- 2024-08-15 [49d3f6b1f](https://github.com/aaronjeter/CrystalShireEngine/commit/49d3f6b1f90a61cbb0de961c061eb7da7fed7856) — Added Overheat Animation & Description
+- 2024-08-15 [d3075d204](https://github.com/aaronjeter/CrystalShireEngine/commit/d3075d2041374b87f5f298f3365870afc713eda1) — Added Air Cutter Animation & Description
+- 2024-08-15 [bf79a9a6b](https://github.com/aaronjeter/CrystalShireEngine/commit/bf79a9a6b6a85ccb41b870eb3db7e8e1316eeb0f) — Actually Add Fake Tears Description
+- 2024-08-15 [1a135707c](https://github.com/aaronjeter/CrystalShireEngine/commit/1a135707cd1183fb24cf318b1c3d7218ad28ff82) — Added Fake Tears Animation & Description
+- 2024-08-15 [38e03ac86](https://github.com/aaronjeter/CrystalShireEngine/commit/38e03ac8602c579dd2b39ca89f5971fb84810789) — Added Aromatherapy Animation & Description
+- 2024-08-15 [4be37e5fe](https://github.com/aaronjeter/CrystalShireEngine/commit/4be37e5fef1c36f80c44d5578bf2d80a8dd7b642) — Added Weather Ball Animation & Description
+- 2024-08-15 [0944522b7](https://github.com/aaronjeter/CrystalShireEngine/commit/0944522b7e5ba3be09fb65e61f37170619184250) — Added Astonish Animation & Description
+- 2024-08-15 [4e9888a60](https://github.com/aaronjeter/CrystalShireEngine/commit/4e9888a609272966013fd99b36db4e34cea7bb97) — Added Meteor Mash Animation & Description
+- 2024-08-15 [b6e9ba4f9](https://github.com/aaronjeter/CrystalShireEngine/commit/b6e9ba4f9886f351bea968d0ef6c61f2f03c582d) — Added Hydro Blast Animation & Description
+- 2024-08-15 [34bfef6b5](https://github.com/aaronjeter/CrystalShireEngine/commit/34bfef6b5aea6a4ff3ec079329a5f079163eb61b) — Added Blast Burn Animation & Description
+- 2024-08-15 [eec5ee799](https://github.com/aaronjeter/CrystalShireEngine/commit/eec5ee799f0a3442d9eef9ff977fa9da016ea819) — Update BATTLE_ANIM_OBJ_ Comments
+- 2024-08-14 [cdcce47dd](https://github.com/aaronjeter/CrystalShireEngine/commit/cdcce47dde07fa9093b23eaefaf20acebd8ec2c2) — Added Crush Claw Animation & Description
+- 2024-08-14 [2430e321f](https://github.com/aaronjeter/CrystalShireEngine/commit/2430e321fe18821b5af58c38eb41b1d491b26d0a) — Added Poison Fang Animation & Description
+- 2024-08-14 [ce5ae1521](https://github.com/aaronjeter/CrystalShireEngine/commit/ce5ae1521f66b8ef26a1263e3e137a8053db3d2d) — Alter BattleAnimSub Names
+- 2024-08-14 [603f43ac6](https://github.com/aaronjeter/CrystalShireEngine/commit/603f43ac6c307cd20f9748f2dd86129fc00b0e79) — Added Hyper Voice Animation & Description
+- 2024-08-14 [a43125712](https://github.com/aaronjeter/CrystalShireEngine/commit/a43125712e960a4cdb6ef7f20e8a152f58027bb2) — Alter Flame Wheel Description
+- 2024-08-14 [4dee3d0d0](https://github.com/aaronjeter/CrystalShireEngine/commit/4dee3d0d0413a56dcee7b1bbc48e32f9c3ba4568) — Added Slack Off Animation & Description
+- 2024-08-14 [a33718b60](https://github.com/aaronjeter/CrystalShireEngine/commit/a33718b60f3c4c43eb0ba43d5d43baf55baf32b2) — Added Needle Arm Animation & Description
+- 2024-08-14 [28a8da104](https://github.com/aaronjeter/CrystalShireEngine/commit/28a8da104d5c15bc032ab7b3784c8c41bdcde18a) — Remove Unused Assets in Battle Anims
+- 2024-08-14 [92e6f8cfa](https://github.com/aaronjeter/CrystalShireEngine/commit/92e6f8cfaea85dc78c8bb5f9fb6fa93197f0d3de) — Added Ice Ball Animation & Description
+- 2024-08-14 [6b64a1e6b](https://github.com/aaronjeter/CrystalShireEngine/commit/6b64a1e6b4b53d3cd5648831337bb9f11e8d2aac) — Added Mud Sport Animation & Description
+- 2024-08-14 [423eecbef](https://github.com/aaronjeter/CrystalShireEngine/commit/423eecbefd85152e08ac374b55e806d44247abee) — Added Blaze Kick Animation & Description
+- 2024-08-14 [8695ee3d0](https://github.com/aaronjeter/CrystalShireEngine/commit/8695ee3d0e8e104075910ca48bdf51dcfc43ce72) — Added Teeter Dance Animation & Description
+- 2024-08-14 [27e386402](https://github.com/aaronjeter/CrystalShireEngine/commit/27e3864020902596ec5e81ce5e18ae63cd5cba53) — Rename Misc Gfx to Misc1
+- 2024-08-14 [b18b27dce](https://github.com/aaronjeter/CrystalShireEngine/commit/b18b27dcecc7838ebd1b9b3d80bc6727301bdad6) — Fix Frameset_Feather Issue
+- 2024-08-14 [a03cc15ae](https://github.com/aaronjeter/CrystalShireEngine/commit/a03cc15aeae48236ead9811f63bd18c418e21751) — Added Feather Dance Animation & Description
+- 2024-08-14 [b5635e058](https://github.com/aaronjeter/CrystalShireEngine/commit/b5635e058d5c32bc9ec51b17070c672441daaad0) — Added Mist Ball Animation & Description
+- 2024-08-14 [cb1c5e174](https://github.com/aaronjeter/CrystalShireEngine/commit/cb1c5e1740fd2d8f7d4cc15ec810f7de7da4e4ad) — Added Luster Purge Animation & Description
+- 2024-08-14 [cbf2fcc6b](https://github.com/aaronjeter/CrystalShireEngine/commit/cbf2fcc6b9b2ec6e8a99b08d436a6befbf80ba7f) — Adjust Animation Formatting
+- 2024-08-14 [539aa9421](https://github.com/aaronjeter/CrystalShireEngine/commit/539aa94218dc06e3bbfd04bca6c1f10583cceeda) — Added Tail Glow Animation & Description
+- 2024-08-14 [e46fd6847](https://github.com/aaronjeter/CrystalShireEngine/commit/e46fd68479df98b1859f4cd34a41dbcd42848b21) — Added Camouflage Animation & Description
+- 2024-08-14 [2fb4bd651](https://github.com/aaronjeter/CrystalShireEngine/commit/2fb4bd651473194013fde00e4e1b378c95c6419d) — Added Arm Thrust Animation & Description
+- 2024-08-14 [ef6f7c5c6](https://github.com/aaronjeter/CrystalShireEngine/commit/ef6f7c5c662af7e527ddbfb91355606784c056e0) — Added Dive Animation & Description
+- 2024-08-14 [acfd0ff2b](https://github.com/aaronjeter/CrystalShireEngine/commit/acfd0ff2b67b5486b34ae96b8f33f524a95fe72e) — Added Secret Power "Animation" & Description
+- 2024-08-14 [9c477f052](https://github.com/aaronjeter/CrystalShireEngine/commit/9c477f052fd99155befcbee46fb31cb6729dea5e) — Added Snatch Animation & Description
+- 2024-08-14 [9fda5ac2a](https://github.com/aaronjeter/CrystalShireEngine/commit/9fda5ac2a1bad5bb2ff59f4e691af5eaadba038e) — Optimize SetDefaultBattlePalette
+- 2024-08-13 [c493a604d](https://github.com/aaronjeter/CrystalShireEngine/commit/c493a604d3682adfbd8cc348b0cc4abbec502c55) — Added Grudge Animation & Description
+- 2024-08-13 [055003e55](https://github.com/aaronjeter/CrystalShireEngine/commit/055003e55558271b3f762caa834a403a1b707fda) — Optimize Facade Animation
+- 2024-08-13 [3a548759d](https://github.com/aaronjeter/CrystalShireEngine/commit/3a548759dd291738ad7e9dbee43a176e8fe1eae9) — Optimize Uproar Animation
+- 2024-08-13 [9d46df12f](https://github.com/aaronjeter/CrystalShireEngine/commit/9d46df12f68e3c7330fca7fb32f58b75668bed56) — Optimize Endeavor Animation
+- 2024-08-13 [3fb00f220](https://github.com/aaronjeter/CrystalShireEngine/commit/3fb00f220bcfe1e7ffea17eedfcf1dead749762d) — Optimize Skill Swap Animation
+- 2024-08-13 [3ce5c9720](https://github.com/aaronjeter/CrystalShireEngine/commit/3ce5c9720986d39590cd08173afa7f80b374f189) — Optimize Eruption Animation
+- 2024-08-13 [aadcd86f7](https://github.com/aaronjeter/CrystalShireEngine/commit/aadcd86f7e730be72221b91a09a9177195db33ae) — Added Refresh Animation & Description
+- 2024-08-13 [a1912c09b](https://github.com/aaronjeter/CrystalShireEngine/commit/a1912c09baf46be3b01500a3d513acf57076acce) — Added Imprison Animation & Description
+- 2024-08-13 [3f291a004](https://github.com/aaronjeter/CrystalShireEngine/commit/3f291a0047194269be0995540f03f1ec1a4742e0) — Added Skill Swap Animation & Description
+- 2024-08-12 [3a02b8868](https://github.com/aaronjeter/CrystalShireEngine/commit/3a02b8868df885b11466a31e4d9b76d2e545cea5) — Added Eruption Animation & Description
+- 2024-08-12 [cc6db4f46](https://github.com/aaronjeter/CrystalShireEngine/commit/cc6db4f466c8deaa3308e60c6d239c787c4ae992) — Added Endeavor Animation & Description
+- 2024-08-12 [5b50476bf](https://github.com/aaronjeter/CrystalShireEngine/commit/5b50476bf1c06414fd64fccc4caf159914fa3c9d) — Added Knock Off Animation & Description
+- 2024-08-12 [ee400f8a0](https://github.com/aaronjeter/CrystalShireEngine/commit/ee400f8a0f23dbfd7fbee207c9e79aeebace87a0) — Added Yawn Animation & Description
+- 2024-08-12 [c454087e5](https://github.com/aaronjeter/CrystalShireEngine/commit/c454087e55f10c4a67ce8c92ff5937a774a6637a) — Added Brick Break Animation & Description
+- 2024-08-12 [e72311814](https://github.com/aaronjeter/CrystalShireEngine/commit/e72311814ef5226b2d8c28abe4600f93424e356c) — Added Revenge Animation & Description
+- 2024-08-12 [f3141ee34](https://github.com/aaronjeter/CrystalShireEngine/commit/f3141ee34477355ff3fdae927a6b67ba3d8a1c19) — Added Recycle Animation & Description
+- 2024-08-12 [e005b8468](https://github.com/aaronjeter/CrystalShireEngine/commit/e005b84680ea155be622f7563225310762f64eb1) — Update Magic Coat Animation & Description
+- 2024-08-12 [23e04223a](https://github.com/aaronjeter/CrystalShireEngine/commit/23e04223a688518f049aadf583d960a8c4a7e8a1) — Added Superpower Animation & Description
+- 2024-08-12 [a9ee0d2b9](https://github.com/aaronjeter/CrystalShireEngine/commit/a9ee0d2b92e7d48155d7a02fae5726573ed18b8c) — Added Ingrain Animation & Description
+- 2024-08-12 [bd8c67199](https://github.com/aaronjeter/CrystalShireEngine/commit/bd8c67199bab1f7718a943c12cf514ea7d1e9b51) — Added Assist Animation & Description
+- 2024-08-12 [9f2220bb6](https://github.com/aaronjeter/CrystalShireEngine/commit/9f2220bb66b90846552384c97361816d648461b0) — Fixed Wish animation
+- 2024-08-12 [ddf860a37](https://github.com/aaronjeter/CrystalShireEngine/commit/ddf860a37d2d2e4b8367c8401cbcc4e8bfa31d9c) — Added Wish Animation & Description
+- 2024-08-12 [f5e3c31bc](https://github.com/aaronjeter/CrystalShireEngine/commit/f5e3c31bcc35dcf823da15f5efd9e1d25d0b1fa4) — Added Role Play Animation & Description
+- 2024-08-12 [4fba99a55](https://github.com/aaronjeter/CrystalShireEngine/commit/4fba99a55b4f955856ba7823f4a50d9102a70029) — Added Trick Animation & Description
+- 2024-08-12 [4c248554b](https://github.com/aaronjeter/CrystalShireEngine/commit/4c248554b2910aa4d5df165275adf32fbf408639) — Added BattleAnimCmd_ClearEnemyHud
+- 2024-08-12 [e16362334](https://github.com/aaronjeter/CrystalShireEngine/commit/e16362334d15c63f5633b0524ca9f565fb590d49) — Added Taunt Animation & Description
+- 2024-08-12 [87dd60040](https://github.com/aaronjeter/CrystalShireEngine/commit/87dd60040ca30fdf5e844061990fe2e0ad4bab80) — Alter SmellingSalt Description
+- 2024-08-12 [e57527de5](https://github.com/aaronjeter/CrystalShireEngine/commit/e57527de5983ebfb04428e80904cd4fe5896b0a2) — Altered Focus Punch Description
+- 2024-08-12 [386afe979](https://github.com/aaronjeter/CrystalShireEngine/commit/386afe97998f20307793a8f43b214957fb7afa1a) — Alter Facade Description
+- 2024-08-12 [629932fc1](https://github.com/aaronjeter/CrystalShireEngine/commit/629932fc1ed5952bee674b3766329ec88abaa505) — Added Charge Animation & Description
+- 2024-08-12 [479f61e49](https://github.com/aaronjeter/CrystalShireEngine/commit/479f61e49e8869f945a678ef977b80544d430946) — Added Nature Power Animation & Description
+- 2024-08-12 [0828fd69b](https://github.com/aaronjeter/CrystalShireEngine/commit/0828fd69bd12cf5b501f9c68d7cd10e95596944f) — Added SmellingSalt Animation & Description
+- 2024-08-12 [130f7d9db](https://github.com/aaronjeter/CrystalShireEngine/commit/130f7d9dbaf764764932f0bb978c80b97833638b) — Added Focus Punch Animation & Description
+- 2024-08-12 [ecaa0054c](https://github.com/aaronjeter/CrystalShireEngine/commit/ecaa0054c076c9d81a6a17f34f16a4ff82d4ecbc) — Added Facade Animation & Description
+- 2024-08-12 [752406ab6](https://github.com/aaronjeter/CrystalShireEngine/commit/752406ab69084ee5125ec7dace7f41be58d48413) — Fixed Custom pals DEFAULT_PAL
+- 2024-08-12 [44bd7b114](https://github.com/aaronjeter/CrystalShireEngine/commit/44bd7b1149e5999661801257f07181f775f7e1cf) — Added Memento Animation & Description
+- 2024-08-12 [385b1e926](https://github.com/aaronjeter/CrystalShireEngine/commit/385b1e926bef21ddb5ef4d4c921c86d4191a198d) — Added Will O Wisp Animation & Description
+- 2024-08-11 [00ff18642](https://github.com/aaronjeter/CrystalShireEngine/commit/00ff18642be072f9fd15ee211b0b49ad80c28aa1) — Added Flatter Animation & Description
+- 2024-08-11 [ec54da504](https://github.com/aaronjeter/CrystalShireEngine/commit/ec54da504b3f858a339b40b74adc7958e9e835d7) — Updates Torment Description
+- 2024-08-11 [faa10fb3f](https://github.com/aaronjeter/CrystalShireEngine/commit/faa10fb3fd86c4ab638f29279e6cd296d44cff51) — Added Torment Animation & Description
+- 2024-08-11 [a8580f376](https://github.com/aaronjeter/CrystalShireEngine/commit/a8580f37600fc98b39ecf1c844cff3958a92cb4d) — Added Hail Description
+- 2024-08-11 [35ba92552](https://github.com/aaronjeter/CrystalShireEngine/commit/35ba925520912dbca0e1a4bf15381b9f35b9d501) — Updated Weather & Added Hail
+- 2024-08-11 [59d4d14cc](https://github.com/aaronjeter/CrystalShireEngine/commit/59d4d14cc6e6732a892bf4dfdfa7721f81667553) — Added Heat Wave Animation & Description
+- 2024-08-11 [1baaf2da8](https://github.com/aaronjeter/CrystalShireEngine/commit/1baaf2da8acf005b9b21cd1c6ca001fb175bf240) — Added Swallow Animation & Description
+- 2024-08-11 [bdde3f8b1](https://github.com/aaronjeter/CrystalShireEngine/commit/bdde3f8b1453d0fd4258329b5c4d33b2781e6027) — Fix Spit Up Animation
+- 2024-08-11 [04546bf1a](https://github.com/aaronjeter/CrystalShireEngine/commit/04546bf1a557c28329cbcd25e4cb0b0e2af16ee1) — Added Spit Up Animation & Description
+- 2024-08-11 [0961d62df](https://github.com/aaronjeter/CrystalShireEngine/commit/0961d62df730ed23e6270ec6798e89ae6bfd4a52) — Added Stockpile Animation & Description
+- 2024-08-10 [9e3179508](https://github.com/aaronjeter/CrystalShireEngine/commit/9e3179508cc3b180ccb74c7e1aefd9a0e10c7e8a) — Added Uproar Description
+- 2024-08-10 [78a7bda52](https://github.com/aaronjeter/CrystalShireEngine/commit/78a7bda522bb34f0914d2c37cf4755435b28ae3b) — Adjust Fake Out Description
+- 2024-08-10 [82a6c35eb](https://github.com/aaronjeter/CrystalShireEngine/commit/82a6c35eb268917a4d3a2b43966c2b1f9dd32c7c) — Fix a few Object comments
+- 2024-08-11 [22b393958](https://github.com/aaronjeter/CrystalShireEngine/commit/22b393958ea707affc095c5b4ff58729ca0cad8b) — Fixed Uproar's Frameset
+- 2024-08-10 [2a3632646](https://github.com/aaronjeter/CrystalShireEngine/commit/2a3632646582ac307b85ccded5d661504d102ff8) — Broken Uproar Animation
+- 2024-08-10 [b914e7c35](https://github.com/aaronjeter/CrystalShireEngine/commit/b914e7c354e59bbc1b6b18e4c9fe3610f67614a6) — Added Fake Out Animation & Description
+- 2024-08-10 [08e5bcf08](https://github.com/aaronjeter/CrystalShireEngine/commit/08e5bcf08531375cc4304059ef32925b4cf52c64) — Change `call` to `xcall` for Radial Move Functions
+- 2024-08-10 [8d61d70ba](https://github.com/aaronjeter/CrystalShireEngine/commit/8d61d70ba99fc2f7ef9010562b84d024fbc5ef31) — Adjust Radial Move Function Names
+- 2024-08-09 [452f210a4](https://github.com/aaronjeter/CrystalShireEngine/commit/452f210a466046fac5c8b7333b355832f5887b1a) — Add Radial Move In Function
+- 2024-08-09 [8b30db6ce](https://github.com/aaronjeter/CrystalShireEngine/commit/8b30db6ce69d09aa3c04e18c00f7123e3821d64c) — Add Radial Move Out Functions
+- 2024-08-09 [32752d3d0](https://github.com/aaronjeter/CrystalShireEngine/commit/32752d3d0e80a316698256bb04db9e31ecf1550a) — Initial Gen 3 Moves
+- 2024-08-09 [fe4e6a372](https://github.com/aaronjeter/CrystalShireEngine/commit/fe4e6a372c106970bdd2d8e22687a1bbcfa7110c) — Update Explostion Sub Branches to New Palette
+- 2024-08-09 [ba85a67b5](https://github.com/aaronjeter/CrystalShireEngine/commit/ba85a67b5f9dcd8833112ff022890769d914e614) — Remove Old Drain Sub Function
+- 2024-08-09 [d28ced36f](https://github.com/aaronjeter/CrystalShireEngine/commit/d28ced36fafccc1a5840ee92c00cf674fb895e70) — Update Beat Up Animation
+- 2024-08-09 [aba000ac2](https://github.com/aaronjeter/CrystalShireEngine/commit/aba000ac219c3ad310e47efb3ccae7d6c61d7e2a) — Updated Future Sight Animation
+- 2024-08-09 [41559196e](https://github.com/aaronjeter/CrystalShireEngine/commit/41559196ea09ad172ef03cf6b9556ac1fbf6d964) — Update Mirror Coat to New Palette
+- 2024-08-09 [57a3c3835](https://github.com/aaronjeter/CrystalShireEngine/commit/57a3c3835dc11dbc7ea1973e21fc6ed010c76148) — Update Pursuit Animation
+- 2024-08-09 [13bd68c24](https://github.com/aaronjeter/CrystalShireEngine/commit/13bd68c24256f38b7ae74bd97ca584b4f929f6c9) — Update Mean Look Animation
+- 2024-08-09 [80a1fed52](https://github.com/aaronjeter/CrystalShireEngine/commit/80a1fed527eb1a973eeb52c934246b7cdfd3be39) — Update Giga Drain Animation
+- 2024-08-09 [9034527b2](https://github.com/aaronjeter/CrystalShireEngine/commit/9034527b280b1419e911a78bd6abd1882892e43d) — Update Icy Wind Animation
+- 2024-08-09 [80600c140](https://github.com/aaronjeter/CrystalShireEngine/commit/80600c140c1a77563430d2026a3496d67c5a3df8) — Update Octazooka Animation
+- 2024-08-09 [f1824e1a7](https://github.com/aaronjeter/CrystalShireEngine/commit/f1824e1a72b6fe3ff78026b323f66ddd4d52642e) — Update Waterfall Animation
+- 2024-08-08 [b88d62adc](https://github.com/aaronjeter/CrystalShireEngine/commit/b88d62adc834f4e693b5f5ce6c172f8834b53c50) — Update Spark Animation
+- 2024-08-08 [e29dba467](https://github.com/aaronjeter/CrystalShireEngine/commit/e29dba467c61bb8034a2ac81eb3fcdee3f5c2f92) — Update Zap Cannon Animation
+- 2024-08-08 [bf2824d42](https://github.com/aaronjeter/CrystalShireEngine/commit/bf2824d426dd0630cb3fe7ee25da8b85d7390efe) — Update Thunderpunch BG Effect
+- 2024-08-08 [98549cb2a](https://github.com/aaronjeter/CrystalShireEngine/commit/98549cb2a8c12a427fee973597ec0f36d26b09e6) — Updated Tri Attack Animation
+- 2024-08-08 [9898ec6b9](https://github.com/aaronjeter/CrystalShireEngine/commit/9898ec6b9d475d5c7cd61401e4be29415cb3b770) — Update Crabhammer Animation
+- 2024-08-08 [c3d04d2c5](https://github.com/aaronjeter/CrystalShireEngine/commit/c3d04d2c5dc6f199267d1eec8b66713565146244) — Updated Leech Life Animation
+- 2024-08-08 [5d800ecd7](https://github.com/aaronjeter/CrystalShireEngine/commit/5d800ecd7ae9a2632406695927cd6a2457008fa9) — Update Barrage to New Palette
+- 2024-08-08 [2d5e998fa](https://github.com/aaronjeter/CrystalShireEngine/commit/2d5e998fae1195b2e67271669afb60e15b34b07a) — Update Dream Eater Animation
+- 2024-08-08 [74e5b81c4](https://github.com/aaronjeter/CrystalShireEngine/commit/74e5b81c404935922fe147426abf92da3035d37f) — Updated Spike Cannon Animation
+- 2024-08-08 [ffaf5dffe](https://github.com/aaronjeter/CrystalShireEngine/commit/ffaf5dffec47eb128e9cf036ad0e9856358b5d48) — Update Sludge Moves to New Palette
+- 2024-08-08 [d2b106aae](https://github.com/aaronjeter/CrystalShireEngine/commit/d2b106aae0f768199b108a51c62475993d0ed636) — Updated Egg Bomb Animation
+- 2024-08-08 [f256a18ed](https://github.com/aaronjeter/CrystalShireEngine/commit/f256a18ed2038c5f68a9f9fd946ff0cc25ed85d9) — Update Reflect Animation
+- 2024-08-08 [8e366eb78](https://github.com/aaronjeter/CrystalShireEngine/commit/8e366eb7851de539170a7ec8a117ad5fcba19574) — Update Light Screen to New Palette
+- 2024-08-08 [f261573a5](https://github.com/aaronjeter/CrystalShireEngine/commit/f261573a5485f8421d30d6eb6b4a4d2d9b09d712) — Update Minimize Animation
+- 2024-08-08 [66cb72d24](https://github.com/aaronjeter/CrystalShireEngine/commit/66cb72d24dfa16af8f3a51aae88149f375b060b4) — Updated Agility Animation
+- 2024-08-08 [d62f17182](https://github.com/aaronjeter/CrystalShireEngine/commit/d62f17182654dec9ff8ff2928422ffaae8be792d) — Updated Toxic to New Palette
+- 2024-08-08 [025511d66](https://github.com/aaronjeter/CrystalShireEngine/commit/025511d664ac04638e44e126ccb989db879b0797) — Update Electric Moves with New BG Effect
+- 2024-08-07 [d07e7d453](https://github.com/aaronjeter/CrystalShireEngine/commit/d07e7d453df5bf71e15a27aa7773c7e19c77487a) — Update Dragon Moves to New Palettes
+- 2024-08-07 [7ac553067](https://github.com/aaronjeter/CrystalShireEngine/commit/7ac553067e413297591b16420b0b2b2a42db5f25) — Update Petal Dance Animation
+- 2024-08-07 [0a1ea5170](https://github.com/aaronjeter/CrystalShireEngine/commit/0a1ea517073728844b37d330d7a94a2cae59c435) — Update Powder/Spore Move Animations
+- 2024-08-07 [4f5703a1f](https://github.com/aaronjeter/CrystalShireEngine/commit/4f5703a1f7664b25b64dc8ca2119a243758df460) — Update Solarbeam BG Effects
+- 2024-08-07 [a593ab5ba](https://github.com/aaronjeter/CrystalShireEngine/commit/a593ab5baf7f2dc01d3926dceb073a0c4170fc70) — Update Razor Leaf to New Palette
+- 2024-08-07 [6eaa3ce19](https://github.com/aaronjeter/CrystalShireEngine/commit/6eaa3ce19342e1cb315d28f3c78454fc2f0c5c90) — Updated Absorb Moves to New Palette
+- 2024-08-07 [e4ba215ef](https://github.com/aaronjeter/CrystalShireEngine/commit/e4ba215ef8e86971ba962cc0d898f5a8c3fbe001) — Update Seismic Toss Animation
+- 2024-08-07 [d5cdba6ed](https://github.com/aaronjeter/CrystalShireEngine/commit/d5cdba6edf616abe024b3053a5ba76bfd21df26c) — Update Recover Animation
+- 2024-08-07 [036accec4](https://github.com/aaronjeter/CrystalShireEngine/commit/036accec40c4f74dfdb085652529d3aa9933b49d) — Updated Aurora Beam Animation
+- 2024-08-07 [237efe87a](https://github.com/aaronjeter/CrystalShireEngine/commit/237efe87a280c9dcdc3b12c9256a058e3ae41cff) — Update Ice Moves to New Palette
+- 2024-08-07 [b5fc40550](https://github.com/aaronjeter/CrystalShireEngine/commit/b5fc405509b130770f3b1fc9cd02ff226c701099) — Update Bubble Moves to New Palette
+- 2024-08-07 [a651ac4c4](https://github.com/aaronjeter/CrystalShireEngine/commit/a651ac4c41d0bf59310ab64d99e90805a18d2e31) — Update Water Moves to New Palette
+- 2024-08-07 [d384bf6cf](https://github.com/aaronjeter/CrystalShireEngine/commit/d384bf6cfabea162245eedf48f3ebcb3efaf68b4) — Update Fire Moves to New Palette
+- 2024-08-07 [aa1b246c7](https://github.com/aaronjeter/CrystalShireEngine/commit/aa1b246c79cb350969f3d582eff1e64ce1dfc34d) — Update Acid Animation
+- 2024-08-07 [ede58f8c4](https://github.com/aaronjeter/CrystalShireEngine/commit/ede58f8c465bc49bd0a9b68959974a76ba20e525) — Updated Pin Missile Animation
+- 2024-08-07 [46fbbb9db](https://github.com/aaronjeter/CrystalShireEngine/commit/46fbbb9dbfdd7f9e26d958b97477d569d927c65c) — Update Needle Based Moves
+- 2024-08-07 [a7ee92642](https://github.com/aaronjeter/CrystalShireEngine/commit/a7ee92642cc1686a462d0d40d6e26e7d5d4db58d) — Add X_FLIP to BATTLE_ANIM_OBJ_PALM
+- 2024-08-06 [97052233b](https://github.com/aaronjeter/CrystalShireEngine/commit/97052233b6c31591f4906b2b7cfb72a8d07c6d1d) — Update Double Slap Animation
+- 2024-07-28 [96eb0a6c3](https://github.com/aaronjeter/CrystalShireEngine/commit/96eb0a6c3787080e7f6bae2b781cd7e45fd1fb23) — Fix Trademon to use *Shiny instead of *DVs
+- 2024-04-29 [f737d34da](https://github.com/aaronjeter/CrystalShireEngine/commit/f737d34da848941cfea875e4b635ceac868a9cb1) — Actually fix whiteout.asm
+- 2024-02-03 [d035e9cbc](https://github.com/aaronjeter/CrystalShireEngine/commit/d035e9cbc74c37b5c7765d3a09579c8fd27a57bf) — Add a null ability
+- 2024-02-02 [d81909595](https://github.com/aaronjeter/CrystalShireEngine/commit/d81909595524ede4c762f8b22c0dfea752c0fa2f) — Implement wild encounter-affecting field abilities
+- 2024-01-31 [e2f5d78e9](https://github.com/aaronjeter/CrystalShireEngine/commit/e2f5d78e921a07481a6175ebe7edd8d03f25e711) — Fix whitespace issues.
+- 2024-01-31 [fd07d3f41](https://github.com/aaronjeter/CrystalShireEngine/commit/fd07d3f41562dee1e40b0b7352b7a96c0f8f7fb6) — GetFarByte doesn't need `ld a, (hl)`
+- 2024-01-31 [da9125003](https://github.com/aaronjeter/CrystalShireEngine/commit/da9125003e9ec7505d53b551c9b35aa4313ee336) — Fix GetAbility for indirection tables
+- 2024-01-31 [b842c0546](https://github.com/aaronjeter/CrystalShireEngine/commit/b842c054604ab8726c15afbb8c12135781ee045c) — Add GetAbility
+- 2024-01-31 [8462f06d0](https://github.com/aaronjeter/CrystalShireEngine/commit/8462f06d0ae3b3d24f2223c4420757ff389f8c2a) — Fix some indentation
+- 2024-01-31 [1883783b7](https://github.com/aaronjeter/CrystalShireEngine/commit/1883783b75412123a4c9ebe6dc6cded70c383a68) — Abilities: Casing to match natures
+- 2024-01-31 [e05a9b4dd](https://github.com/aaronjeter/CrystalShireEngine/commit/e05a9b4ddce9dc33b895d7482003db9a60b7a5e8) — Natures: Nature print added to 4th page of stat screens
+- 2024-01-31 [033c762aa](https://github.com/aaronjeter/CrystalShireEngine/commit/033c762aa67cf6d9dde9af2ee465804efa4314b9) — Tools: Some useful scraping tools (NOTE: They don't work perfectly and require your intervention)
+- 2024-01-31 [53c80ff2d](https://github.com/aaronjeter/CrystalShireEngine/commit/53c80ff2d2e424afe95a113e0dbcce5d3a4d1ec2) — Abilities: Ability stats screen prints, fix some misses
+- 2024-01-30 [232189768](https://github.com/aaronjeter/CrystalShireEngine/commit/232189768b49e6a20b6b3e06f5c2ee42a92169b6) — Visual: Added 4th stats page
+- 2024-01-29 [af291f1ac](https://github.com/aaronjeter/CrystalShireEngine/commit/af291f1ac15fcc45013aa184c9b7f56047e99750) — Abilities: Fixed <LNBRK>, Base Data updated, WRAM updated
+- 2024-01-29 [f07c7923a](https://github.com/aaronjeter/CrystalShireEngine/commit/f07c7923a8c95ed6fa8719ad402f43d8b1300084) — Abilities: Constants, names, and descriptions
+- 2024-01-19 [8d5bc8440](https://github.com/aaronjeter/CrystalShireEngine/commit/8d5bc8440e478e3532ecc6abe323d41cbc6b3e7a) — float Fade System
+- 2024-01-18 [d64794d10](https://github.com/aaronjeter/CrystalShireEngine/commit/d64794d103ee2b144a2203f608a61f384a34bf01) — Lose money proportional to badges and level
+- 2024-01-14 [b508546cc](https://github.com/aaronjeter/CrystalShireEngine/commit/b508546cc7e7f96cfb8408fcd5ba5194ac4bb7e2) — 16-bit Framesets
+- 2024-01-14 [5ea57b5c5](https://github.com/aaronjeter/CrystalShireEngine/commit/5ea57b5c59e866215e9dff0f725c8fb431e2518a) — Revert "Re-arrange some pointer load for aesthetics" that load into h
+- 2024-01-13 [fd38888a9](https://github.com/aaronjeter/CrystalShireEngine/commit/fd38888a9f26bce1bc3e5ca0d22542fb05f1b380) — Re-arrange some pointer load for aesthetics
+- 2024-01-13 [38be3bf2a](https://github.com/aaronjeter/CrystalShireEngine/commit/38be3bf2af70b78463860304d32268cdb9ee1ba6) — Optimize pointless jump
+- 2024-01-13 [924facecd](https://github.com/aaronjeter/CrystalShireEngine/commit/924facecd0c20974e68bcfb6a2a3bb61c494cf8a) — Use `xcall` when you need to `farcall` in floating sections
+- 2024-01-13 [b07fc98b4](https://github.com/aaronjeter/CrystalShireEngine/commit/b07fc98b4ad3ad389d72620cfdcb91709b23278a) — Removed More Unnecessary Farcalls
+- 2024-01-13 [00c3f6afd](https://github.com/aaronjeter/CrystalShireEngine/commit/00c3f6afdc06c264983e13720fb7ca1b99c578e2) — Minor optimizations
+- 2024-01-13 [c1f1d2ad8](https://github.com/aaronjeter/CrystalShireEngine/commit/c1f1d2ad88a5fcb27eab775d41b085ad49bf5495) — These farcalls are now unnecessary.
+- 2024-01-13 [daaf1629a](https://github.com/aaronjeter/CrystalShireEngine/commit/daaf1629a0975377fd74eaea5661b30768372598) — BattleAnims sections should preserve original section context.
+- 2024-01-13 [f2be7740f](https://github.com/aaronjeter/CrystalShireEngine/commit/f2be7740ff729f5d11a98064fcfdc589a7e44258) — home/battle_anim.asm should use farcall for Sine/Cosine
+- 2024-01-13 [0f89ed046](https://github.com/aaronjeter/CrystalShireEngine/commit/0f89ed046828816be90efd2fba1d13996ed14c6a) — Fix start of line whitespace
+- 2024-01-13 [05fc199da](https://github.com/aaronjeter/CrystalShireEngine/commit/05fc199dabd1f07aa1097ae01872f23e0c660dd0) — Couple needed farcall's & uncomment sections
+- 2024-01-13 [bf0366509](https://github.com/aaronjeter/CrystalShireEngine/commit/bf0366509bdbe2adecd0ca0c030684de5b5a7594) — The BattleAnim functions should farcall Cosine and Sine
+- 2024-01-13 [6348e2809](https://github.com/aaronjeter/CrystalShireEngine/commit/6348e28092ceff5fbd0d729fdcfc1a40c27faf08) — Attempt to split battle_anim functions to their own sections
+- 2024-01-13 [3fbba754e](https://github.com/aaronjeter/CrystalShireEngine/commit/3fbba754e44090f7233b597ed316564c06758461) — Store Frameset Data & GetBattleAnimFrame Together
+- 2024-01-12 [dbc5a2b50](https://github.com/aaronjeter/CrystalShireEngine/commit/dbc5a2b5060332d6dfbe9498f0546664c2f15bd1) — Sky Attack has a increased critical hit ratio
+- 2024-01-12 [4d433a7c6](https://github.com/aaronjeter/CrystalShireEngine/commit/4d433a7c61d6fe720a4d8f1926d52002a6359674) — Gen 3 Item Name updates
+- 2024-01-12 [0375d41c5](https://github.com/aaronjeter/CrystalShireEngine/commit/0375d41c5035627494a513167b9e040a3fc92d91) — Update MoveEffectPriorities to gen 3
+- 2024-01-12 [af3a698be](https://github.com/aaronjeter/CrystalShireEngine/commit/af3a698be7a8acaeebc018ab5489cd202218cbba) — Razor Wind accuracy changes
+- 2024-01-09 [465671431](https://github.com/aaronjeter/CrystalShireEngine/commit/465671431f12547b9535e1b8506e68869e7a21a5) — Gen 3 Pain Split bypasses accuracy
+- 2024-01-09 [fcbaa2c17](https://github.com/aaronjeter/CrystalShireEngine/commit/fcbaa2c17e38d783aea1940573d641b0dd694f9e) — Gen 3 Mimic bypasses accuracy checks
+- 2024-01-09 [e31763622](https://github.com/aaronjeter/CrystalShireEngine/commit/e3176362246cacde83f2319af1d7f30e1da25e54) — Gen 3 Lowkick & Extract Height/Weight From Dex Entries
+- 2024-01-09 [55e3eeada](https://github.com/aaronjeter/CrystalShireEngine/commit/55e3eeada26265c28faf3d6c6d9826160ee5a596) — Create init body_data.asm
+- 2024-01-06 [115192cfa](https://github.com/aaronjeter/CrystalShireEngine/commit/115192cfa20071d6ce0f4e477a4b10a7ceaf42fe) — Lock down `Battle Animation Data`
+- 2024-01-05 [aad659d9f](https://github.com/aaronjeter/CrystalShireEngine/commit/aad659d9f113b8d300f7499b3287fab90f048bf1) — Add Up/Down arrows to Charmap
+- 2024-01-05 [2dfa789fc](https://github.com/aaronjeter/CrystalShireEngine/commit/2dfa789fc5ffd8826af2673215c251475f95f813) — Adjust Bug Contest Caught Location code
+- 2024-01-05 [317863cc1](https://github.com/aaronjeter/CrystalShireEngine/commit/317863cc1d0f65b07f72554875d45fa71f7960d0) — Expand Caught Level and add Caught Ball to data struct
+- 2024-01-05 [b62dde755](https://github.com/aaronjeter/CrystalShireEngine/commit/b62dde7553aced45ff93545822287140c162c6ce) — Init Gen 3 Breeding rework
+- 2024-01-03 [94434546f](https://github.com/aaronjeter/CrystalShireEngine/commit/94434546f1bfdf0220d1d8aabfd1e2b712c2bbf5) — macro `npctrade` should use `ivs` macro
+- 2024-01-03 [fab930475](https://github.com/aaronjeter/CrystalShireEngine/commit/fab9304751df51e03ace970bb7adb7eb2b9ecb63) — Fix `ivs` macro
+- 2024-01-03 [b91b59c14](https://github.com/aaronjeter/CrystalShireEngine/commit/b91b59c14b78baaf53357f00075bd81eab757df5) — Remove `CalcMonStatC` TODO comment
+- 2024-01-03 [65bb8aca4](https://github.com/aaronjeter/CrystalShireEngine/commit/65bb8aca49c14b1bf2eb4bee404e49be53722fe2) — Keep contest logic for max IV points when shiny
+- 2024-01-03 [4a6ff83bd](https://github.com/aaronjeter/CrystalShireEngine/commit/4a6ff83bd7c1e468e9e3e6cc5aeccb3654d4fcaf) — Update `ContestScore` to use IVs
+- 2024-01-03 [198ad675d](https://github.com/aaronjeter/CrystalShireEngine/commit/198ad675d96fb39771103b7517af95f4d6fb0395) — Fix inefficient HRAM load/store
+- 2024-01-02 [2d75f77d5](https://github.com/aaronjeter/CrystalShireEngine/commit/2d75f77d50bd94410b8d097e283f77e95885fc9a) — Add formula comments for HP calculations
+- 2024-01-02 [6af81c992](https://github.com/aaronjeter/CrystalShireEngine/commit/6af81c99295e4dad5fc4a7f74fa52a907ca4f92b) — Update hidden power to use IVs
+- 2024-01-02 [9171f8ab2](https://github.com/aaronjeter/CrystalShireEngine/commit/9171f8ab2f1fbcb015ae81ccf263230741232368) — Optimize `home/ivs.asm` for size
+- 2024-01-02 [8fd8067ec](https://github.com/aaronjeter/CrystalShireEngine/commit/8fd8067ecd441be73b13a94e926b1793184259ee) — Use new IV packing method
+- 2024-01-02 [8766412c7](https://github.com/aaronjeter/CrystalShireEngine/commit/8766412c7ee83c6ef4a2e3d4acb8428c36101db6) — Use Sylvie's `ivs` macro
+- 2024-01-02 [33835283d](https://github.com/aaronjeter/CrystalShireEngine/commit/33835283d811bb436e661e3e8fb937c40432797b) — Create PokemonIVByteConverter.py
+- 2023-12-31 [3d7e5496d](https://github.com/aaronjeter/CrystalShireEngine/commit/3d7e5496d15e1d0506eae4cc48c058246a280b99) — NPCTrades fix for IVs
+- 2023-12-29 [7415f1ba6](https://github.com/aaronjeter/CrystalShireEngine/commit/7415f1ba6e7d5365ee9c31414665ee5b70572245) — Alter Prior Optimization to Fix Animations
+- 2023-12-28 [7f14367d5](https://github.com/aaronjeter/CrystalShireEngine/commit/7f14367d563d617ddabc6fb02c9d0fb23bcbba9a) — Delete TestBerryDesc
+- 2023-12-28 [644ee337b](https://github.com/aaronjeter/CrystalShireEngine/commit/644ee337b8a5a95802f714de009e477f22e07904) — optimize update_item_descriptions.asm (gen3)
+- 2023-12-28 [d07ee2138](https://github.com/aaronjeter/CrystalShireEngine/commit/d07ee213867e7335623bd3e89230b60558483ff0) — `jmp` can be `jr`
+- 2023-12-28 [6d9310117](https://github.com/aaronjeter/CrystalShireEngine/commit/6d9310117c16ef20dffbd61c5b98c1511e857474) — Clean Up Battle Anim Macros
+- 2023-12-28 [dfcad94f1](https://github.com/aaronjeter/CrystalShireEngine/commit/dfcad94f1d945210f17192710b6df93df47a247c) — Rerun optimize.py on gen3 after deletion merge
+- 2023-12-28 [4ebd716ac](https://github.com/aaronjeter/CrystalShireEngine/commit/4ebd716ac250cc32954282ce115d6cb62fb06a85) — Expand ANIM_OBJ Limit
+- 2023-12-08 [8de112668](https://github.com/aaronjeter/CrystalShireEngine/commit/8de112668cd889bdc785d082ee23ce119b104144) — Some minor optimizations
+- 2023-12-08 [cd08e561f](https://github.com/aaronjeter/CrystalShireEngine/commit/cd08e561fa631aebc4465d875e64cf874a98b693) — Accidentally left in print statement when testing
+- 2023-12-07 [08352bef8](https://github.com/aaronjeter/CrystalShireEngine/commit/08352bef88f77d320af5c22e14c23bf237f68a6c) — Initial implementation of Natures
+- 2023-12-04 [0c0110a73](https://github.com/aaronjeter/CrystalShireEngine/commit/0c0110a73a0786b27a34e03d0254e6acbf253dfa) — Make sure `CalcMonStatC` adds (EV / 4) to formula
+- 2023-12-02 [64037af22](https://github.com/aaronjeter/CrystalShireEngine/commit/64037af22c5ca69fd497d20c1873b0c1e302c271) — Further Convert DVs to IVs
+- 2023-11-26 [8e6e64437](https://github.com/aaronjeter/CrystalShireEngine/commit/8e6e644374f1b3114e2f47c432f4c1245dc9a46d) — Init Gen3 Pokemon data struct (not complete)
+- 2023-11-12 [9fd815cfd](https://github.com/aaronjeter/CrystalShireEngine/commit/9fd815cfde20a3921e68819bfec9890e8c4d1c4b) — Expand Pokemon struct by 1 byte.
+- 2023-11-12 [4841a56cf](https://github.com/aaronjeter/CrystalShireEngine/commit/4841a56cfb0e9159cb29711314ea2bf46f1ccb2a) — jmp -> jr
+- 2023-11-12 [6533c1ddc](https://github.com/aaronjeter/CrystalShireEngine/commit/6533c1ddcf6e01cd56dfa0190cd9848f15c391de) — Couple more tailcall optimizations
+- 2023-11-08 [01f88935c](https://github.com/aaronjeter/CrystalShireEngine/commit/01f88935c55d5fcc2897e78a1fc5713451417a43) — Berry pocket graphics
+- 2023-11-05 [0bad697cc](https://github.com/aaronjeter/CrystalShireEngine/commit/0bad697cce85fd996321732ec25377c4cf417597) — Move Berries and Apricorns to Berries Pocket.
+- 2023-11-05 [d1895d584](https://github.com/aaronjeter/CrystalShireEngine/commit/d1895d584a5693749b77171454a0cc83de918b39) — Add Berry Pocket Data Structure
+
+## gen3-abilities
+
+Revision: `5bdc64119d4f639ffb97011b85e43c955e8c19a4`. Non-merge commits in this section: 446.
+
+- 2025-03-21 [5bdc64119](https://github.com/aaronjeter/CrystalShireEngine/commit/5bdc64119d4f639ffb97011b85e43c955e8c19a4) — Proper punctuation
+- 2025-03-21 [1e54b479d](https://github.com/aaronjeter/CrystalShireEngine/commit/1e54b479d1d3570a9b56e8fbfb7f12d32e65a5fa) — Reset traced abilities fully when mons switch/are KO'd
+- 2025-03-21 [825837de4](https://github.com/aaronjeter/CrystalShireEngine/commit/825837de479a423f3024108480ff36b2ffb891b5) — Added TRACE
+- 2025-03-20 [a5b006b63](https://github.com/aaronjeter/CrystalShireEngine/commit/a5b006b63e2ef4ae046bf6413766875a21fc2fc0) — Ability utility functions separated, optimized logic, first inclusions of TRACE
+- 2025-03-19 [d65559544](https://github.com/aaronjeter/CrystalShireEngine/commit/d65559544585863e951ddcb1378489d3a70a8e23) — Intimidate functions as intended
+- 2025-03-19 [f8c542d5b](https://github.com/aaronjeter/CrystalShireEngine/commit/f8c542d5b6a43bbd71d3e470bed9529391178cb8) — Entrance ability battle effects working
+- 2025-03-19 [8ede3de05](https://github.com/aaronjeter/CrystalShireEngine/commit/8ede3de055bbe8d0c97913f2c1c207d6669c0d33) — Sand Stream, Drought, Drizzle animations added
+- 2025-03-19 [04a6c14a4](https://github.com/aaronjeter/CrystalShireEngine/commit/04a6c14a4c2d184af940ed2a21d9fab6abe6107f) — Intimidate and Pressure entrance prints
+- 2025-03-19 [b45885acb](https://github.com/aaronjeter/CrystalShireEngine/commit/b45885acb730e329db1e473b56e82fc119affb52) — Added Sand Stream, Drought, and Drizzle
+- 2025-03-18 [12f52b708](https://github.com/aaronjeter/CrystalShireEngine/commit/12f52b708e084dd5afe3c85a0159cddeb5538f89) — Removing this file, commands are already here. Going to create a new file to handle the ability code.
+- 2025-03-18 [ec0ec2949](https://github.com/aaronjeter/CrystalShireEngine/commit/ec0ec2949231d308f554639053186925db5854d7) — Removing redundant code from Delta
+- 2025-03-18 [0ebd1606b](https://github.com/aaronjeter/CrystalShireEngine/commit/0ebd1606b7444b30518044286306a39a5fd2be88) — Updating the gen3 abilities branch
+- 2025-03-13 [810ef30b8](https://github.com/aaronjeter/CrystalShireEngine/commit/810ef30b812ad9c17d5401059e971c3a08ffec2b) — better catch tutorial return fix
+- 2025-03-13 [dba527e25](https://github.com/aaronjeter/CrystalShireEngine/commit/dba527e250e9d34389a6bd3585555808f753600b) — Fix Glitch scree/text after returning from catch tutorial
+- 2025-03-13 [bfaa3af6f](https://github.com/aaronjeter/CrystalShireEngine/commit/bfaa3af6f75f69221ef6a3bad984ca50e332506a) — Fix Pokeball wobbles (optimized too much)
+- 2025-03-13 [b165976b1](https://github.com/aaronjeter/CrystalShireEngine/commit/b165976b1b6747f7e5880944dc1635b90ea0b48b) — remove EOL whitespace
+- 2025-03-13 [81d9febde](https://github.com/aaronjeter/CrystalShireEngine/commit/81d9febde011976531150ef5d9db67397a381431) — remove HelloWorldString
+- 2025-03-13 [5018d013c](https://github.com/aaronjeter/CrystalShireEngine/commit/5018d013c731e3e64f2230e4e3ea913ede356f00) — Optimize rst's and fix call->xcall
+- 2025-03-12 [1e4088af6](https://github.com/aaronjeter/CrystalShireEngine/commit/1e4088af646ec74803173564bac85c7639278cc5) — Fix `GetTrainerIVs` (also fixes trainer mon hp bar bug)
+- 2025-03-09 [e5e33ef9a](https://github.com/aaronjeter/CrystalShireEngine/commit/e5e33ef9a9c77a7dc7b5644bcbc52b232f5485aa) — Correct Battle Turn Issues
+- 2024-09-27 [2deeceac5](https://github.com/aaronjeter/CrystalShireEngine/commit/2deeceac50bd20354aa8d9009b9124547b67fdba) — Fix Unown Forms
+- 2024-09-24 [1db5c7c5e](https://github.com/aaronjeter/CrystalShireEngine/commit/1db5c7c5ec6e3497459b6774e521297a0d5f6b69) — Add comment for `EVOLVE_PV`
+- 2024-09-24 [110286be8](https://github.com/aaronjeter/CrystalShireEngine/commit/110286be8e6f22f895a3b3207054028fcefa8d07) — Fix Evo Skips for Gen 3 Personality Evo
+- 2024-09-24 [ec441cb1d](https://github.com/aaronjeter/CrystalShireEngine/commit/ec441cb1d6e80f078c0d854a070bbd430a524799) — Merge branch 'core' into gen3
+- 2024-09-23 [8c979e681](https://github.com/aaronjeter/CrystalShireEngine/commit/8c979e68153710fa96e9e67071bbbe00045aeb32) — Remove Stub Jump from Personality Evolution
+- 2024-09-23 [aba9de152](https://github.com/aaronjeter/CrystalShireEngine/commit/aba9de1522c7905b8a5be7248548ca478f83e08d) — Minor Optimizations for `gen3-pokeballs` Changes
+- 2024-09-23 [44f71f8a8](https://github.com/aaronjeter/CrystalShireEngine/commit/44f71f8a871f0d5946651893b90c64968831ff26) — Small Optimization for `GetSpeciesWeight`
+- 2024-09-23 [bde82c81d](https://github.com/aaronjeter/CrystalShireEngine/commit/bde82c81d25889e0cc581ba9420bfab415f15c0f) — Remove `wBattleHasJustStarted` from WRAM
+- 2024-09-22 [9713e579a](https://github.com/aaronjeter/CrystalShireEngine/commit/9713e579a97622686a0144f4092236121162f132) — Implement Timer Ball
+- 2024-09-20 [ea92d0c5b](https://github.com/aaronjeter/CrystalShireEngine/commit/ea92d0c5bde2f0850064789523aec04f4ad9cd22) — Implement Repeat Ball
+- 2024-09-20 [49ce106a0](https://github.com/aaronjeter/CrystalShireEngine/commit/49ce106a094f97cc0bf42a40a4585d49f8779785) — Implement Nest Ball
+- 2024-09-20 [8397a9d65](https://github.com/aaronjeter/CrystalShireEngine/commit/8397a9d65d884115b71b53406d4d341bac597593) — Implement Dive Ball
+- 2024-09-20 [b4aac1a19](https://github.com/aaronjeter/CrystalShireEngine/commit/b4aac1a19690d922ef08df28d35058161d984694) — Implement Net Ball
+- 2024-09-20 [8934ee0c9](https://github.com/aaronjeter/CrystalShireEngine/commit/8934ee0c9936ae1a74c4325165976225bf1ef9ae) — Rearrange Ball Multipliers
+- 2024-09-19 [1b6c69103](https://github.com/aaronjeter/CrystalShireEngine/commit/1b6c691030cabe58b239a2cc96655a0be978ebef) — Update Pokeball Catch Rate
+- 2024-09-19 [d124427b2](https://github.com/aaronjeter/CrystalShireEngine/commit/d124427b2053c34dc23ea14ecd81b465e1be237d) — Add `MultiplyAndDivide` from Polished Crystal
+- 2024-09-13 [65385375f](https://github.com/aaronjeter/CrystalShireEngine/commit/65385375fadd4ac1d1382cca616e22557ddccc91) — Update Fast Ball Multiplier
+- 2024-09-12 [7320d13df](https://github.com/aaronjeter/CrystalShireEngine/commit/7320d13df289607a16a9cebb3688028760cee2ed) — Add Previously Removed Evolutions Back
+- 2024-09-12 [2cf824f79](https://github.com/aaronjeter/CrystalShireEngine/commit/2cf824f792a7c79237ba33527cabeb6d3bc1d185) — Minor file structure change to assist in Gen III dev
+- 2024-09-12 [95676ff1b](https://github.com/aaronjeter/CrystalShireEngine/commit/95676ff1be47349c2f27f5592f560c50e4b85df7) — Update Level Ball Multiplier
+- 2024-09-12 [0fd2d74d8](https://github.com/aaronjeter/CrystalShireEngine/commit/0fd2d74d8f171459533801cd21d95b23e6c6be17) — Add Colors to Gen 3 Pokeballs
+- 2024-09-11 [f6fd04acf](https://github.com/aaronjeter/CrystalShireEngine/commit/f6fd04acf9344a38b4f68a1fe1a0981f1657cc4e) — Initial Work on Gen 3 Pokeballs
+- 2024-09-10 [87388799c](https://github.com/aaronjeter/CrystalShireEngine/commit/87388799c2ea00149eea0fa78cace728c7c9b836) — Add New Unown Formes
+- 2024-09-10 [272f8cee6](https://github.com/aaronjeter/CrystalShireEngine/commit/272f8cee6a087651ac8e571067629896eda901de) — Add NUM_KANTO_POKEMON Constant Back
+- 2024-09-09 [9fd640885](https://github.com/aaronjeter/CrystalShireEngine/commit/9fd64088518e4d0736ddcc104ba3837b9cb53a87) — Update Gen 3 Mon's TM/HM Lists
+- 2024-09-09 [29d55bc47](https://github.com/aaronjeter/CrystalShireEngine/commit/29d55bc47ef80ec6700f3d060c604b5e01d6c59c) — Update to Gen 3 Egg Moves
+- 2024-09-09 [9db6f0d4f](https://github.com/aaronjeter/CrystalShireEngine/commit/9db6f0d4f5704bc43c1cdd5bace045bf81647a12) — Prepare for Gen 3 Egg Moves
+- 2024-09-09 [970f07b78](https://github.com/aaronjeter/CrystalShireEngine/commit/970f07b78a7143326340e5d669510e63d39f0c9e) — Update to Gen 3 Learnsets
+- 2024-09-05 [0c65b666d](https://github.com/aaronjeter/CrystalShireEngine/commit/0c65b666d73cb8d426b33ff62641ab7c84ed9843) — Add Gen 3 Evolution Data
+- 2024-09-05 [247b4b415](https://github.com/aaronjeter/CrystalShireEngine/commit/247b4b41541411de019e29b124a823e4e84a8766) — Force Shedinja to have 1 HP
+- 2024-09-03 [ccafc12b9](https://github.com/aaronjeter/CrystalShireEngine/commit/ccafc12b91f91edcbb6d7d54c3b5a9b294d7fa72) — Implement Nincada/Shedinja Evolution (Gen 3 Variant)
+- 2024-09-02 [4d689747c](https://github.com/aaronjeter/CrystalShireEngine/commit/4d689747cc2abaa3379a1e003b86fe273277c3b9) — Implement Personality Evolution
+- 2024-09-01 [d0ff6db2b](https://github.com/aaronjeter/CrystalShireEngine/commit/d0ff6db2b6be8455add10d77e38b311fa152e2b3) — Initial Gen 3 Data Commit
+- 2024-09-01 [3e6793909](https://github.com/aaronjeter/CrystalShireEngine/commit/3e67939098d9b2a2a7e996b1e1e188f20864baf8) — Remove Duplicate OAMs
+- 2024-09-01 [4f4f31691](https://github.com/aaronjeter/CrystalShireEngine/commit/4f4f31691f92b31c7d51ae6492b9585d3c53aa64) — Optimized and updated Waterfall and Dive
+- 2024-09-01 [3bbc34b47](https://github.com/aaronjeter/CrystalShireEngine/commit/3bbc34b474b1d0f73a722a2c63b1107a8675014d) — Optimized Poison animations
+- 2024-09-01 [fe0e43289](https://github.com/aaronjeter/CrystalShireEngine/commit/fe0e43289526fe1eb940529352d8fd54984bc612) — whoops
+- 2024-09-01 [577a0da77](https://github.com/aaronjeter/CrystalShireEngine/commit/577a0da772e59a31b14cb25fb12a191cba18706a) — Optimized a few animations
+- 2024-09-01 [f81d6b533](https://github.com/aaronjeter/CrystalShireEngine/commit/f81d6b533062e505f67d345f5fa29c29bd2c5c3e) — Optimized FlameWheel and SacredFire
+- 2024-09-01 [efee6e95e](https://github.com/aaronjeter/CrystalShireEngine/commit/efee6e95e78f5dd81c7871afd201e4f99f3e5566) — Fix some whitespace
+- 2024-09-01 [966e1da13](https://github.com/aaronjeter/CrystalShireEngine/commit/966e1da13b7484a5d6200cfcd79d89dddb1fb7d9) — Delete whitespace
+- 2024-09-01 [718f2d422](https://github.com/aaronjeter/CrystalShireEngine/commit/718f2d422a622fac020652cb50dae3f12962551f) — Updated and fixed all gen1-gen3 animations
+- 2024-08-31 [be2e92a04](https://github.com/aaronjeter/CrystalShireEngine/commit/be2e92a04177f9aa3cf44ba0ac44bc4db1c0c7a4) — Add a routine that allows testing all move animations.
+- 2024-08-31 [9ac31cb2a](https://github.com/aaronjeter/CrystalShireEngine/commit/9ac31cb2ad1eaac3ef21f7cfa125c9c4728596d6) — Implement Erratic & Fluctuating Growth Rates
+- 2024-08-31 [a2407fa59](https://github.com/aaronjeter/CrystalShireEngine/commit/a2407fa59e6471710e589bfb8b6b6ae60b670e16) — Remove Unused Egg Sprite
+- 2024-08-30 [312b19dcf](https://github.com/aaronjeter/CrystalShireEngine/commit/312b19dcfca10b55dfef5496259b0c37d95b20c5) — Move Pokemon Icon Graphics to Region Folders
+- 2024-08-30 [5cb16766e](https://github.com/aaronjeter/CrystalShireEngine/commit/5cb16766e56667426f9b8897f0c265f9f0d29a64) — Move Pokemon Footprint Graphics to Region Folders
+- 2024-08-29 [37f182f88](https://github.com/aaronjeter/CrystalShireEngine/commit/37f182f8838c3a64cbae74a5527fbf3f9e009ac9) — Convert Pokemon Bitmasks to Indirect Table
+- 2024-08-29 [a9e8b0a69](https://github.com/aaronjeter/CrystalShireEngine/commit/a9e8b0a69056c63448e0c24499e1bfd5f45111ea) — Convert Pokemon Bitmasks to Indirect Table
+- 2024-08-29 [1f63b8650](https://github.com/aaronjeter/CrystalShireEngine/commit/1f63b8650b405bff386f5b67e9d8a7fb5b7f154c) — Convert Pokemon Idle Animations to Indirect Table
+- 2024-08-29 [941d6fd1e](https://github.com/aaronjeter/CrystalShireEngine/commit/941d6fd1eb2bf2d97cabedb7d30ecc3458ebb09d) — Adjust Formatting
+- 2024-08-29 [f91a94118](https://github.com/aaronjeter/CrystalShireEngine/commit/f91a94118975da9d76ead72332ffc0445f3366a7) — Convert Pokemon Animations to Indirect Table
+- 2024-08-25 [472761cdb](https://github.com/aaronjeter/CrystalShireEngine/commit/472761cdbd0d254951b1ea0e03265be84f1a5190) — Update to Gen 3 TM/HMs
+- 2024-08-24 [496d303da](https://github.com/aaronjeter/CrystalShireEngine/commit/496d303da20a83be6a545e7ab312ba0bec35e8fe) — Move Pokemon Graphics to Region Folders
+- 2024-08-24 [05cc91959](https://github.com/aaronjeter/CrystalShireEngine/commit/05cc919593c6c17ce3af07cf1114b4ad79e4482c) — Fix Dex Entry Includes
+- 2024-08-24 [3afb53a36](https://github.com/aaronjeter/CrystalShireEngine/commit/3afb53a360fec47fd12db5066f3d903e0d77359b) — Move Base Data and Dex Entries to Region Folders
+- 2024-08-23 [bfb9bd203](https://github.com/aaronjeter/CrystalShireEngine/commit/bfb9bd203e8e554f4df15dbf2699c98f81248ce1) — Optimize Zap Cannon & Volt Tackle Animation
+- 2024-08-20 [f8171f09e](https://github.com/aaronjeter/CrystalShireEngine/commit/f8171f09e71a390dc4770b0becc49c3b139c2758) — Optimize Curse Animation
+- 2024-08-20 [b75400a98](https://github.com/aaronjeter/CrystalShireEngine/commit/b75400a9841fbb676e9021564dec58a538c91bdf) — Optimize Dragon Dance Animation
+- 2024-08-20 [cb07b9468](https://github.com/aaronjeter/CrystalShireEngine/commit/cb07b946842a404e37c28c2779f83374ee0a9518) — Optimize Swallow Animation
+- 2024-08-20 [7abe03dc1](https://github.com/aaronjeter/CrystalShireEngine/commit/7abe03dc19932c3f64f24721216d991858310ca1) — Optimize Spit Up Animation
+- 2024-08-20 [c341a7a55](https://github.com/aaronjeter/CrystalShireEngine/commit/c341a7a5584b9d779177df506e6321baf538851d) — Adjust Ice Beam Animation
+- 2024-08-19 [d9fa59ab7](https://github.com/aaronjeter/CrystalShireEngine/commit/d9fa59ab7a476666a5128fa9e3f08888ca81c746) — Clean Up Animation Branch Names
+- 2024-08-19 [530f50966](https://github.com/aaronjeter/CrystalShireEngine/commit/530f5096693e00bd5e4c08ec6e9c000eb582599b) — Optimize Agility & Future Sight Animations
+- 2024-08-19 [cf5994249](https://github.com/aaronjeter/CrystalShireEngine/commit/cf599424943b4eb9b4308db57321e6ff68398b63) — Optimize Extreme Speed Animartion
+- 2024-08-19 [2099d3ccd](https://github.com/aaronjeter/CrystalShireEngine/commit/2099d3ccda4272aa3b59a83db4eb060fa2e5159c) — Optimize Sunny Day Animation
+- 2024-08-19 [7b009d0e2](https://github.com/aaronjeter/CrystalShireEngine/commit/7b009d0e2af6e28aa47dfb8523e7f5a354da1400) — Optimize Hidden Power Animation
+- 2024-08-19 [8703269c3](https://github.com/aaronjeter/CrystalShireEngine/commit/8703269c3f3feefebe0e51f065fcfe4dde4f6b27) — Optimize Metallic Attacking Animations
+- 2024-08-19 [43072251f](https://github.com/aaronjeter/CrystalShireEngine/commit/43072251f14b62fd1bf42de723c4665814c6e7e0) — Optimize Spark & Superpower Animations
+- 2024-08-19 [9057428cd](https://github.com/aaronjeter/CrystalShireEngine/commit/9057428cd53bf039d189eb841e70bd007e6b349a) — Optimize Charm & Covet Animations
+- 2024-08-19 [6576daef3](https://github.com/aaronjeter/CrystalShireEngine/commit/6576daef31e7490cf9e1d7322a51bb7a4f996365) — Optimize Giga Drain Animation
+- 2024-08-19 [85b0bfd36](https://github.com/aaronjeter/CrystalShireEngine/commit/85b0bfd3616e55b88432da1393a8a8b16a90927f) — Optimize Sandstorm Animation
+- 2024-08-19 [83df88824](https://github.com/aaronjeter/CrystalShireEngine/commit/83df88824181a806fd142df8d812ea4e5a8d137c) — Optimize Rage & Outrage Animations
+- 2024-08-18 [f19bf9107](https://github.com/aaronjeter/CrystalShireEngine/commit/f19bf9107c1d0fa5ea948c475afd5c9a2d1da4d6) — Optimize Mirror Coat & Icy Wind Animations
+- 2024-08-18 [acc46675a](https://github.com/aaronjeter/CrystalShireEngine/commit/acc46675a2fd9bba88193d4facf41dd11ccf6b1a) — Minor Fix to Belly Drum Animation
+- 2024-08-18 [036548a6a](https://github.com/aaronjeter/CrystalShireEngine/commit/036548a6a93b9a449b8ca56db5d3162f76aea980) — Optimize Belly Drum Animation
+- 2024-08-18 [e7e74ac37](https://github.com/aaronjeter/CrystalShireEngine/commit/e7e74ac374a91c0bb5fe40e1ae87ea1c5e697853) — Optimize Quick Attack & Mach Punch Animations
+- 2024-08-18 [106435eb2](https://github.com/aaronjeter/CrystalShireEngine/commit/106435eb2f95650440f4fdb405d9ce5a2196533d) — Optimize Moves using Focused Power Sub Animation
+- 2024-08-18 [a9693ed3e](https://github.com/aaronjeter/CrystalShireEngine/commit/a9693ed3e603f3494a0b1a3439cd386c2c3eacee) — Optimize Flame Wheel & Sacred Fire Animations
+- 2024-08-18 [170fe5ffd](https://github.com/aaronjeter/CrystalShireEngine/commit/170fe5ffd719e0a2ca761c7e3046d321b4a41b33) — Optimize Animations with Pound Endings
+- 2024-08-18 [a1f597987](https://github.com/aaronjeter/CrystalShireEngine/commit/a1f59798733664c761745d90cca05690eea4ad97) — Optimize Substitution Aimation
+- 2024-08-18 [3fb75ea3b](https://github.com/aaronjeter/CrystalShireEngine/commit/3fb75ea3b28b911412c0958db6af76b9163d561f) — Optimize Clamp Animation
+- 2024-08-18 [c434ec539](https://github.com/aaronjeter/CrystalShireEngine/commit/c434ec539271b3bb5eee6cf93b245adc86dec185) — Optimize Waterfall Animation
+- 2024-08-18 [4888162d7](https://github.com/aaronjeter/CrystalShireEngine/commit/4888162d7690a4520a473c0ab6324025c9b53201) — Optimize Absorb Style Animations
+- 2024-08-18 [6932702fe](https://github.com/aaronjeter/CrystalShireEngine/commit/6932702fe95efe6c4950a2688996ade1c5ce791b) — Optimize Strength & Seismic Toss Animations
+- 2024-08-18 [5d21176ca](https://github.com/aaronjeter/CrystalShireEngine/commit/5d21176cab2e37d90d64e6e21030e1a992cb7e9d) — Optimize Low Kick Animation
+- 2024-08-18 [b51545983](https://github.com/aaronjeter/CrystalShireEngine/commit/b51545983122b6e4dc80727bd6b70294d52f9212) — Optimize Beam Sub & Aeroblast Animations
+- 2024-08-18 [d33c88d16](https://github.com/aaronjeter/CrystalShireEngine/commit/d33c88d16ae4ec10f9f73a5e6ba096283b7b6356) — Optimize Beam Sub Animation
+- 2024-08-18 [c13f668f0](https://github.com/aaronjeter/CrystalShireEngine/commit/c13f668f007fec826a4726b682bf3595a09cdbba) — Optimize Ice Beam Animation
+- 2024-08-18 [5dc401842](https://github.com/aaronjeter/CrystalShireEngine/commit/5dc401842a2f6335ff45c5f8470548691c2c8a82) — Optimize Thrash & Counter Animations
+- 2024-08-18 [95d09f31c](https://github.com/aaronjeter/CrystalShireEngine/commit/95d09f31cd1afa8001eba0848c5d94bd081cefae) — Optimize Bite/Clamp Animations
+- 2024-08-18 [4e6dc10ab](https://github.com/aaronjeter/CrystalShireEngine/commit/4e6dc10ab702387d68cb08a2a66856cbcecc4064) — Optimize Needle Move Animations
+- 2024-08-18 [297c4c6b7](https://github.com/aaronjeter/CrystalShireEngine/commit/297c4c6b776326448cc912e757afe9d5f495ae70) — Optimize Jump Kick & Hi Jump Kick Animations
+- 2024-08-18 [d361b40e6](https://github.com/aaronjeter/CrystalShireEngine/commit/d361b40e687a8b614eb6687e7fbced8b1215b9d9) — Optimize Double Kick & Triple Kick Animations
+- 2024-08-18 [457ebd400](https://github.com/aaronjeter/CrystalShireEngine/commit/457ebd400d172df2d73cc8d1b4b496ff302be2ab) — Optimize Karate Chop & Stomp Animations
+- 2024-08-18 [e504c25c2](https://github.com/aaronjeter/CrystalShireEngine/commit/e504c25c2aff95e75fecafcbdbf3d38d76593a3b) — Optimize Wrap & Bind Animations
+- 2024-08-18 [395eb3d29](https://github.com/aaronjeter/CrystalShireEngine/commit/395eb3d297bf319ff9d93926d5d4a7843580bbac) — Optimize Whirlwind & Twister Animations
+- 2024-08-18 [a14d2add7](https://github.com/aaronjeter/CrystalShireEngine/commit/a14d2add75e6107bdfde18af613ff3b2ce0364cc) — Optimize moves with many `anim_incobj` commands
+- 2024-08-18 [fc8150798](https://github.com/aaronjeter/CrystalShireEngine/commit/fc81507980d823c5e493d60bfeaf001cc36833d0) — Optimize Wing Attack & Steel Wing Animations
+- 2024-08-18 [973bc92b2](https://github.com/aaronjeter/CrystalShireEngine/commit/973bc92b231a6384ad2f57196a0fe9a1d0d2c7de) — Optimize Cut Animations
+- 2024-08-18 [72056a8c7](https://github.com/aaronjeter/CrystalShireEngine/commit/72056a8c7f0d98066596271acedc177281f8c17d) — Optimize Thunder Right Move Animations
+- 2024-08-18 [88b66ceeb](https://github.com/aaronjeter/CrystalShireEngine/commit/88b66ceebe4de9e54195fad095f1f63029a11758) — Optimize Mega Punch & Thrash Animations
+- 2024-08-18 [43ec28e46](https://github.com/aaronjeter/CrystalShireEngine/commit/43ec28e4646d4f9722f0b0f624d8cdf82ca2f66a) — Optimize Multi Hit Move Animations
+- 2024-08-18 [9a73848ef](https://github.com/aaronjeter/CrystalShireEngine/commit/9a73848efeaee0c9839f6558ba5694a096769920) — Revert Psycho Boost Optimization
+- 2024-08-18 [718b65dfd](https://github.com/aaronjeter/CrystalShireEngine/commit/718b65dfd77f475828ca5fa600229ab571f72e73) — Revert Doom Desire Optimization
+- 2024-08-18 [91542ced4](https://github.com/aaronjeter/CrystalShireEngine/commit/91542ced4d394c29917aaaf1acd32b942a3493cb) — Revert Water Sport Optimization
+- 2024-08-18 [59da3b84b](https://github.com/aaronjeter/CrystalShireEngine/commit/59da3b84b0fcb127e7bc74edf3bbefc0949b2b0b) — Revert Leaf Move Optimizations
+- 2024-08-18 [790959686](https://github.com/aaronjeter/CrystalShireEngine/commit/7909596863d3262e105f07fd2c7dcc909b2cd730) — Optimize Pin Missile & Icicle Spear Animations
+- 2024-08-18 [f4f93fd20](https://github.com/aaronjeter/CrystalShireEngine/commit/f4f93fd20f6d661212df8eb61d69e5e65397cebd) — Correct Snatch Animation
+- 2024-08-18 [215c0179c](https://github.com/aaronjeter/CrystalShireEngine/commit/215c0179c30d4b4b9f204db47acd38ae5dcb9746) — Optimize Speed Line Animations
+- 2024-08-18 [85400035d](https://github.com/aaronjeter/CrystalShireEngine/commit/85400035d3c8ba4a871a1dc4fd3b5922905c0f3d) — Revert Sheer Cold Optimization
+- 2024-08-18 [fb114bd7c](https://github.com/aaronjeter/CrystalShireEngine/commit/fb114bd7ce9a422eb50662b42cd80357769f010e) — Revert Extrasensory Optimization
+- 2024-08-18 [bd15aad3d](https://github.com/aaronjeter/CrystalShireEngine/commit/bd15aad3d82c67353cad6a71b9861b69ca5ffb10) — Optimize Sing & Grass Whistle Animations
+- 2024-08-18 [224bb4542](https://github.com/aaronjeter/CrystalShireEngine/commit/224bb4542c5f3a7c17eaae5b3d948acf93c5e5f2) — Optimize Screech & Metal Sound Animatios
+- 2024-08-18 [db8497c6c](https://github.com/aaronjeter/CrystalShireEngine/commit/db8497c6cf81e4cbbc2004dbf80d84f90d9dd2e7) — Optimize Imprison & Rock Tomb Animations
+- 2024-08-18 [e2686bb91](https://github.com/aaronjeter/CrystalShireEngine/commit/e2686bb915d1b83a746312a0bf9e9a63b8d024ec) — Optimize Odor Sleuth Animation
+- 2024-08-18 [6d76fb78f](https://github.com/aaronjeter/CrystalShireEngine/commit/6d76fb78ff9f9b3ea3a7012edbfacd7925e316fc) — Revert Air Cutter Optimization
+- 2024-08-18 [c20fcf0b6](https://github.com/aaronjeter/CrystalShireEngine/commit/c20fcf0b6c2524e5f4bc2a40d0a115f5f97480a1) — Revert Meteor Mash Optimization
+- 2024-08-18 [49c3b5b1f](https://github.com/aaronjeter/CrystalShireEngine/commit/49c3b5b1fd01983e9b8dbee942f8a9bc64350220) — Further Optimize Sludge Attacks
+- 2024-08-17 [f6c6998fd](https://github.com/aaronjeter/CrystalShireEngine/commit/f6c6998fdf167ff29ae13766051939d8e945b849) — Optimize Claw Moves
+- 2024-08-17 [f3c0b1ffc](https://github.com/aaronjeter/CrystalShireEngine/commit/f3c0b1ffcec3efc0a8377287c10bcc3ac4a633af) — Optimize Sludge Animations
+- 2024-08-17 [d0f76c373](https://github.com/aaronjeter/CrystalShireEngine/commit/d0f76c373dd4bb1ba5147ac7572901367d480b83) — Remove identical sub animation
+- 2024-08-17 [75e29e191](https://github.com/aaronjeter/CrystalShireEngine/commit/75e29e191c6a96d3bb5351064306873997524897) — Revert Needle Arm Optimization
+- 2024-08-17 [d2c4a76a8](https://github.com/aaronjeter/CrystalShireEngine/commit/d2c4a76a8873f5dba88a8ab27c7eee426956b6be) — Revert Mud Sport Optimization
+- 2024-08-17 [09628bcc9](https://github.com/aaronjeter/CrystalShireEngine/commit/09628bcc9db68c19f4fe8c2e3fe0a9a065ccabfa) — Optimize Mega Kick & Blaze Kick Animations
+- 2024-08-17 [fd5c53fee](https://github.com/aaronjeter/CrystalShireEngine/commit/fd5c53feec5e752c70b4ed9aec804c1baff76390) — Revert Teeter Dance Optimization
+- 2024-08-17 [63513bcaf](https://github.com/aaronjeter/CrystalShireEngine/commit/63513bcaf3d608c388765841d44ef74c67768ab9) — Revert Imprison Optimization
+- 2024-08-17 [42aa73e9f](https://github.com/aaronjeter/CrystalShireEngine/commit/42aa73e9f8b9872cd2754047a22072a0336bc14c) — Optimize Skill Swap Animation
+- 2024-08-17 [377a86a44](https://github.com/aaronjeter/CrystalShireEngine/commit/377a86a44ee464b0ebc70b52d6023d39c890b9a6) — Undo prior reversion...
+- 2024-08-17 [77c36a45a](https://github.com/aaronjeter/CrystalShireEngine/commit/77c36a45aced40923d1af9008f359c550befd626) — Revert Endeavor Optimization
+- 2024-08-17 [e5519dc44](https://github.com/aaronjeter/CrystalShireEngine/commit/e5519dc44af1b94230b96010050e8bee43ecf94a) — Revert Revenge Optimization
+- 2024-08-17 [81c85de2a](https://github.com/aaronjeter/CrystalShireEngine/commit/81c85de2a48ce6006fed95dda6ce4ff316b4131e) — Fix one last screen call
+- 2024-08-17 [a9aae8e3b](https://github.com/aaronjeter/CrystalShireEngine/commit/a9aae8e3b9637f74f37fed64d56945903dbc9899) — Optimize Screen Animations
+- 2024-08-17 [9294a4e52](https://github.com/aaronjeter/CrystalShireEngine/commit/9294a4e52ea0112b6d52291e3bb668662eefd9f8) — Optimize Superpower & Dragon Dance Animations
+- 2024-08-17 [e3adcf73e](https://github.com/aaronjeter/CrystalShireEngine/commit/e3adcf73ec421a4b58e817e1421e4eeec9c47968) — Revert Ingrain Optimization
+- 2024-08-17 [3aad54503](https://github.com/aaronjeter/CrystalShireEngine/commit/3aad54503f1457c7bf5a52798bdfa4a5f0cdd22a) — Fix Taunt Animation
+- 2024-08-17 [52bd61d9b](https://github.com/aaronjeter/CrystalShireEngine/commit/52bd61d9bbc89442f8ac843f3d7103518aad3078) — Optimize Torment & Taunt Animations
+- 2024-08-17 [fc745258f](https://github.com/aaronjeter/CrystalShireEngine/commit/fc745258fc071f4e6ca4357dc463b4e0a3c75b6f) — Update Makefile
+- 2024-08-17 [276041800](https://github.com/aaronjeter/CrystalShireEngine/commit/27604180059f551f83ed15687f22cf1b1e9b02dd) — Revert Torment Optimization
+- 2024-08-17 [cbe3f9477](https://github.com/aaronjeter/CrystalShireEngine/commit/cbe3f9477680885ab04086112381eb8da6c4eaec) — Optimize Mist Ball Animation
+- 2024-08-17 [9f81a6d5d](https://github.com/aaronjeter/CrystalShireEngine/commit/9f81a6d5dbeadab54978ebed4c1e0dead97797b3) — Optimize Shock Wave Animation
+- 2024-08-17 [9b9d71243](https://github.com/aaronjeter/CrystalShireEngine/commit/9b9d71243bcb252fe8d23099ceaa519b43096db5) — Revert Gen 1 Move Optimizations
+- 2024-08-17 [c0d2b1fb1](https://github.com/aaronjeter/CrystalShireEngine/commit/c0d2b1fb1510b3ea69584b9d85ebe5b15b915fa5) — Optimize Horn Moves
+- 2024-08-17 [be275a607](https://github.com/aaronjeter/CrystalShireEngine/commit/be275a607172c45e7f8926ae58f4143d08f54532) — Optimize Razor Wind Animation
+- 2024-08-17 [11db1d01f](https://github.com/aaronjeter/CrystalShireEngine/commit/11db1d01fe6bed0a68fd664af71bf00005b736a6) — Move Data Optimization
+- 2024-08-17 [c59e0e258](https://github.com/aaronjeter/CrystalShireEngine/commit/c59e0e258d334261dc8c61d92eb179646e134c54) — Added Psycho Boost Animation & Description
+- 2024-08-17 [fb9c5940c](https://github.com/aaronjeter/CrystalShireEngine/commit/fb9c5940c4989bbb79ae99b9d026abc6c0987730) — Added Doom Desire Animation & Description
+- 2024-08-17 [c847d7970](https://github.com/aaronjeter/CrystalShireEngine/commit/c847d7970747e51b0670d6108febfadf6b1428ac) — Added Water Pulse Animation & Description
+- 2024-08-17 [98e2356b1](https://github.com/aaronjeter/CrystalShireEngine/commit/98e2356b11210012620ad0b8e64b8089d6adf965) — Added Shock Wave Animation & Description
+- 2024-08-17 [07183772b](https://github.com/aaronjeter/CrystalShireEngine/commit/07183772b56253ec9c594e22ed2bf9d14a4b6f31) — Added Rock Blast Animation & Description
+- 2024-08-17 [69252c0c3](https://github.com/aaronjeter/CrystalShireEngine/commit/69252c0c30525d36128122990d3e9f0cad290b51) — Added Dragon Dance Animation & Description
+- 2024-08-17 [2276ac0c4](https://github.com/aaronjeter/CrystalShireEngine/commit/2276ac0c440d35d5011a1df3af1b8ed6cf8b39ce) — Added Leaf Blade Animation & Description
+- 2024-08-17 [232d8e0e7](https://github.com/aaronjeter/CrystalShireEngine/commit/232d8e0e783755a35a92618edfe45ea291b21300) — Fixed Cosmic Power Description
+- 2024-08-17 [065263410](https://github.com/aaronjeter/CrystalShireEngine/commit/0652634102fb2a612ff5ea2f2e8ee5f4d42e8135) — Added Calm Mind Animation & Description
+- 2024-08-17 [08b73343b](https://github.com/aaronjeter/CrystalShireEngine/commit/08b73343bbef58612e7455fa061b8941a06c7b0a) — Pad a 0 to all OAM entries
+- 2024-08-17 [254dc870e](https://github.com/aaronjeter/CrystalShireEngine/commit/254dc870ed1feb4109c1eb25c16aaab23eca2fb8) — Added Water Sport Animation & Description
+- 2024-08-16 [5246b2e67](https://github.com/aaronjeter/CrystalShireEngine/commit/5246b2e67b37123a3b5c12f0639084e65f8e9a8c) — Added Magical Leaf Animation & Description
+- 2024-08-16 [213626985](https://github.com/aaronjeter/CrystalShireEngine/commit/2136269859b20f72bcb0f45095a5678c08971281) — Added Volt Tackle Animation & Description
+- 2024-08-16 [514576467](https://github.com/aaronjeter/CrystalShireEngine/commit/5145764673b2bd54f0e7b18c69a6883fcfcc9639) — Added Covet Animation & Description
+- 2024-08-16 [e2f7f72c9](https://github.com/aaronjeter/CrystalShireEngine/commit/e2f7f72c90b22f3938c23046174c3622f48f26c3) — Added Poison Tail Animation & Description
+- 2024-08-16 [6ce7d7bc0](https://github.com/aaronjeter/CrystalShireEngine/commit/6ce7d7bc066f2d74215d6ee19172fb30c5b3f775) — Added Mud Shot Animation & Description
+- 2024-08-16 [3364fa885](https://github.com/aaronjeter/CrystalShireEngine/commit/3364fa885636d6c3b2ca3ff3cbbddfb96aa31792) — Actually Add Bounce Description
+- 2024-08-16 [7a8205938](https://github.com/aaronjeter/CrystalShireEngine/commit/7a820593896dc69c9decf972ad15ec8a6eecc989) — Added Bounce Animation & Description
+- 2024-08-16 [88d40883b](https://github.com/aaronjeter/CrystalShireEngine/commit/88d40883b8ff7d4cf25ff4de018754ec2fc03e7b) — Adjust OAM Assert
+- 2024-08-16 [c39cbc279](https://github.com/aaronjeter/CrystalShireEngine/commit/c39cbc27946b458b9d1e0e3e9b1a3197b6560413) — Added Bulk Up Animation & Description
+- 2024-08-16 [8bdf92737](https://github.com/aaronjeter/CrystalShireEngine/commit/8bdf9273758419a3caed293ff4f803503d8d8c2f) — Added Frenzy Plant Animation & Description
+- 2024-08-16 [0b63b2be2](https://github.com/aaronjeter/CrystalShireEngine/commit/0b63b2be2f94428cc6ffbc08e5361b421fb1a1e9) — Added Dragon Claw Animation & Description
+- 2024-08-16 [e9fcfdcc1](https://github.com/aaronjeter/CrystalShireEngine/commit/e9fcfdcc1d069967d1c52398844afeb99f0d9d48) — Added Howl Animation & Description
+- 2024-08-16 [15bf39ee0](https://github.com/aaronjeter/CrystalShireEngine/commit/15bf39ee07ac34bc778941e395f047d9e0b04e9a) — Added Block Animation & Description
+- 2024-08-16 [8bad44f6b](https://github.com/aaronjeter/CrystalShireEngine/commit/8bad44f6bcfd21423f0c5485b4e3df1e2e7631f1) — Added Iron Defense Animation & Description
+- 2024-08-16 [eed705c00](https://github.com/aaronjeter/CrystalShireEngine/commit/eed705c0090b86a7db8ea50752e6c6f370677313) — Added Icicle Spear Animation & Description
+- 2024-08-16 [0d262d3c0](https://github.com/aaronjeter/CrystalShireEngine/commit/0d262d3c09365c29d2e38f62a409f8133b76a769) — Added Aerial Ace Animation & Description
+- 2024-08-16 [f18257157](https://github.com/aaronjeter/CrystalShireEngine/commit/f182571575b303f0353052baefd7ef46060a1abe) — Added Bullet Seed Animation & Description
+- 2024-08-16 [114f2bcb1](https://github.com/aaronjeter/CrystalShireEngine/commit/114f2bcb1f503743d63a53983ba1e4525c0ff762) — Added Muddy Water Animation & Description
+- 2024-08-16 [a57728061](https://github.com/aaronjeter/CrystalShireEngine/commit/a57728061cb8ab24c77892797b304bcef5add6b5) — Added Sheer Cold Animation & Description
+- 2024-08-16 [02e1a88cb](https://github.com/aaronjeter/CrystalShireEngine/commit/02e1a88cb4b50d6513320eed3a6324ed79374817) — Added Sand Tomb Animation & Description
+- 2024-08-16 [41b0a6ba9](https://github.com/aaronjeter/CrystalShireEngine/commit/41b0a6ba9301177d8230065001a3cb5f5ee53ee9) — Added Sky Uppercut Animation & Description
+- 2024-08-16 [0105657eb](https://github.com/aaronjeter/CrystalShireEngine/commit/0105657eb247c9c354528464ce933a3701c4a7b5) — Added Extrasensory Animation & Description
+- 2024-08-16 [f92097889](https://github.com/aaronjeter/CrystalShireEngine/commit/f920978892afaee8e483cc4a8b2a1409c4a81905) — Added Shadow Punch Animation & Description
+- 2024-08-16 [60a459b0c](https://github.com/aaronjeter/CrystalShireEngine/commit/60a459b0c2b58d17983adb6e5ff6f508b906233c) — Added Signal Beam Animation & Description
+- 2024-08-16 [c0f2014d1](https://github.com/aaronjeter/CrystalShireEngine/commit/c0f2014d1404eb021a8fe351946de768e1b5566c) — Added Water Spout Animation & Description
+- 2024-08-16 [537b77cd1](https://github.com/aaronjeter/CrystalShireEngine/commit/537b77cd12f1de41d2e1e8fbb6fd0c00b3797866) — Added Cosmic Power Animation & Description
+- 2024-08-16 [1003a4b1e](https://github.com/aaronjeter/CrystalShireEngine/commit/1003a4b1e4d2afcb58b2e0542a036127dc49ea09) — Added Tickle Animation & Description
+- 2024-08-16 [350b2f9d1](https://github.com/aaronjeter/CrystalShireEngine/commit/350b2f9d160e1d0930c52cda7c1cf18440a58ad2) — Added Grass Whistle Animation, Sfx, & Descriptions
+- 2024-08-16 [8e90de723](https://github.com/aaronjeter/CrystalShireEngine/commit/8e90de723cd3cde7c80321d4048877974337fe9b) — Added Metal Sound Animation & Description
+- 2024-08-16 [5df0abf9e](https://github.com/aaronjeter/CrystalShireEngine/commit/5df0abf9ecf900c811fdc348c21724e757861010) — Fix Sub Branch Calls
+- 2024-08-16 [37e3521d7](https://github.com/aaronjeter/CrystalShireEngine/commit/37e3521d7167a0b9894ef1a9c1404a9c487d178a) — Fix Sub Branch Names
+- 2024-08-16 [84fbe15be](https://github.com/aaronjeter/CrystalShireEngine/commit/84fbe15be37a83c99e7898becef8b173c63c9bfb) — Optimize Air Cutter Animation
+- 2024-08-16 [07c6ef6c4](https://github.com/aaronjeter/CrystalShireEngine/commit/07c6ef6c438398765923643899f7be0ab056dd2b) — Optimize Blast Burn
+- 2024-08-16 [e79e24463](https://github.com/aaronjeter/CrystalShireEngine/commit/e79e2446332531c661648ded3043995607d4bed2) — Add simple comment to Ice Ball
+- 2024-08-16 [c742ef1b7](https://github.com/aaronjeter/CrystalShireEngine/commit/c742ef1b71fccac113f8065563b2fb0f6caba6a7) — Optimize Dive Animation
+- 2024-08-16 [58496943e](https://github.com/aaronjeter/CrystalShireEngine/commit/58496943e455d34c883b55c0c2ff2ef25d36269e) — Optimize Weather Ball Animation
+- 2024-08-16 [f55d48233](https://github.com/aaronjeter/CrystalShireEngine/commit/f55d482330674784f934cfa304da9ec965e3d1c0) — Optimize Poison Bubble Sub Branch
+- 2024-08-16 [e911f1c13](https://github.com/aaronjeter/CrystalShireEngine/commit/e911f1c13e39baee6c00329cbcdea8f75003b9f7) — Optimize Teeter Dance Animation
+- 2024-08-16 [1db636b9e](https://github.com/aaronjeter/CrystalShireEngine/commit/1db636b9e558c21250695d33ef830f98e9b18cca) — Optimize Imprison Animation
+- 2024-08-15 [2a17dd12c](https://github.com/aaronjeter/CrystalShireEngine/commit/2a17dd12c8063e21bd2d9f8e6fde891f03b448f2) — Optimize Revenge Animation
+- 2024-08-15 [065bf7984](https://github.com/aaronjeter/CrystalShireEngine/commit/065bf79840895390fd3a31d31de84c4881b32459) — Optimize Ingrain Animation
+- 2024-08-15 [da4d0bb95](https://github.com/aaronjeter/CrystalShireEngine/commit/da4d0bb95a781121a45f33948a4e4cd714b5d9aa) — Optimize Torment Animation
+- 2024-08-15 [1fb1d5291](https://github.com/aaronjeter/CrystalShireEngine/commit/1fb1d5291c55a4a16f63dd73ba5210a7f0cf6e9d) — Fix Fake Out Animation
+- 2024-08-15 [64b614bde](https://github.com/aaronjeter/CrystalShireEngine/commit/64b614bde99dd20d1672cd514b6e89194a69736a) — Optimize Fake Out Animation
+- 2024-08-15 [6b9c373c2](https://github.com/aaronjeter/CrystalShireEngine/commit/6b9c373c219221b5becf52f3b201ea5a54e35e17) — Optimize Meteor Mash Animation
+- 2024-08-15 [e6b4d1d30](https://github.com/aaronjeter/CrystalShireEngine/commit/e6b4d1d3030c84cd101fde4eb5452d2c57aaec60) — Add simple comment to Blaze Kick
+- 2024-08-15 [3e7f569a2](https://github.com/aaronjeter/CrystalShireEngine/commit/3e7f569a23a6067ceb6fa6df70e29678b8f34984) — Create Radial Flame BattleAnimSub Function
+- 2024-08-15 [9ddc97010](https://github.com/aaronjeter/CrystalShireEngine/commit/9ddc97010d85524a856ba1a117e8813638875587) — Added Silver Wind Animation & Description
+- 2024-08-15 [b2d52f2bf](https://github.com/aaronjeter/CrystalShireEngine/commit/b2d52f2bf545a7b3ee918a6c00a49427cfc8d263) — Fix Odor Sleuth & Rock Tomb Description
+- 2024-08-15 [0feffda32](https://github.com/aaronjeter/CrystalShireEngine/commit/0feffda321a6f457395dc84f5206a76f20eb187e) — Added Rock Tomb Animation & Description
+- 2024-08-15 [42a505bf4](https://github.com/aaronjeter/CrystalShireEngine/commit/42a505bf4be52bc457858b8ed389526fd9270073) — Added Odor Sleuth Animation & Description
+- 2024-08-15 [f58cb9b3f](https://github.com/aaronjeter/CrystalShireEngine/commit/f58cb9b3f1faef947dbb9a572672f558520ca8dd) — Alter Focus Punch Description
+- 2024-08-15 [49d3f6b1f](https://github.com/aaronjeter/CrystalShireEngine/commit/49d3f6b1f90a61cbb0de961c061eb7da7fed7856) — Added Overheat Animation & Description
+- 2024-08-15 [d3075d204](https://github.com/aaronjeter/CrystalShireEngine/commit/d3075d2041374b87f5f298f3365870afc713eda1) — Added Air Cutter Animation & Description
+- 2024-08-15 [bf79a9a6b](https://github.com/aaronjeter/CrystalShireEngine/commit/bf79a9a6b6a85ccb41b870eb3db7e8e1316eeb0f) — Actually Add Fake Tears Description
+- 2024-08-15 [1a135707c](https://github.com/aaronjeter/CrystalShireEngine/commit/1a135707cd1183fb24cf318b1c3d7218ad28ff82) — Added Fake Tears Animation & Description
+- 2024-08-15 [38e03ac86](https://github.com/aaronjeter/CrystalShireEngine/commit/38e03ac8602c579dd2b39ca89f5971fb84810789) — Added Aromatherapy Animation & Description
+- 2024-08-15 [4be37e5fe](https://github.com/aaronjeter/CrystalShireEngine/commit/4be37e5fef1c36f80c44d5578bf2d80a8dd7b642) — Added Weather Ball Animation & Description
+- 2024-08-15 [0944522b7](https://github.com/aaronjeter/CrystalShireEngine/commit/0944522b7e5ba3be09fb65e61f37170619184250) — Added Astonish Animation & Description
+- 2024-08-15 [4e9888a60](https://github.com/aaronjeter/CrystalShireEngine/commit/4e9888a609272966013fd99b36db4e34cea7bb97) — Added Meteor Mash Animation & Description
+- 2024-08-15 [b6e9ba4f9](https://github.com/aaronjeter/CrystalShireEngine/commit/b6e9ba4f9886f351bea968d0ef6c61f2f03c582d) — Added Hydro Blast Animation & Description
+- 2024-08-15 [34bfef6b5](https://github.com/aaronjeter/CrystalShireEngine/commit/34bfef6b5aea6a4ff3ec079329a5f079163eb61b) — Added Blast Burn Animation & Description
+- 2024-08-15 [eec5ee799](https://github.com/aaronjeter/CrystalShireEngine/commit/eec5ee799f0a3442d9eef9ff977fa9da016ea819) — Update BATTLE_ANIM_OBJ_ Comments
+- 2024-08-14 [cdcce47dd](https://github.com/aaronjeter/CrystalShireEngine/commit/cdcce47dde07fa9093b23eaefaf20acebd8ec2c2) — Added Crush Claw Animation & Description
+- 2024-08-14 [2430e321f](https://github.com/aaronjeter/CrystalShireEngine/commit/2430e321fe18821b5af58c38eb41b1d491b26d0a) — Added Poison Fang Animation & Description
+- 2024-08-14 [ce5ae1521](https://github.com/aaronjeter/CrystalShireEngine/commit/ce5ae1521f66b8ef26a1263e3e137a8053db3d2d) — Alter BattleAnimSub Names
+- 2024-08-14 [603f43ac6](https://github.com/aaronjeter/CrystalShireEngine/commit/603f43ac6c307cd20f9748f2dd86129fc00b0e79) — Added Hyper Voice Animation & Description
+- 2024-08-14 [a43125712](https://github.com/aaronjeter/CrystalShireEngine/commit/a43125712e960a4cdb6ef7f20e8a152f58027bb2) — Alter Flame Wheel Description
+- 2024-08-14 [4dee3d0d0](https://github.com/aaronjeter/CrystalShireEngine/commit/4dee3d0d0413a56dcee7b1bbc48e32f9c3ba4568) — Added Slack Off Animation & Description
+- 2024-08-14 [a33718b60](https://github.com/aaronjeter/CrystalShireEngine/commit/a33718b60f3c4c43eb0ba43d5d43baf55baf32b2) — Added Needle Arm Animation & Description
+- 2024-08-14 [28a8da104](https://github.com/aaronjeter/CrystalShireEngine/commit/28a8da104d5c15bc032ab7b3784c8c41bdcde18a) — Remove Unused Assets in Battle Anims
+- 2024-08-14 [92e6f8cfa](https://github.com/aaronjeter/CrystalShireEngine/commit/92e6f8cfaea85dc78c8bb5f9fb6fa93197f0d3de) — Added Ice Ball Animation & Description
+- 2024-08-14 [6b64a1e6b](https://github.com/aaronjeter/CrystalShireEngine/commit/6b64a1e6b4b53d3cd5648831337bb9f11e8d2aac) — Added Mud Sport Animation & Description
+- 2024-08-14 [423eecbef](https://github.com/aaronjeter/CrystalShireEngine/commit/423eecbefd85152e08ac374b55e806d44247abee) — Added Blaze Kick Animation & Description
+- 2024-08-14 [8695ee3d0](https://github.com/aaronjeter/CrystalShireEngine/commit/8695ee3d0e8e104075910ca48bdf51dcfc43ce72) — Added Teeter Dance Animation & Description
+- 2024-08-14 [27e386402](https://github.com/aaronjeter/CrystalShireEngine/commit/27e3864020902596ec5e81ce5e18ae63cd5cba53) — Rename Misc Gfx to Misc1
+- 2024-08-14 [b18b27dce](https://github.com/aaronjeter/CrystalShireEngine/commit/b18b27dcecc7838ebd1b9b3d80bc6727301bdad6) — Fix Frameset_Feather Issue
+- 2024-08-14 [a03cc15ae](https://github.com/aaronjeter/CrystalShireEngine/commit/a03cc15aeae48236ead9811f63bd18c418e21751) — Added Feather Dance Animation & Description
+- 2024-08-14 [b5635e058](https://github.com/aaronjeter/CrystalShireEngine/commit/b5635e058d5c32bc9ec51b17070c672441daaad0) — Added Mist Ball Animation & Description
+- 2024-08-14 [cb1c5e174](https://github.com/aaronjeter/CrystalShireEngine/commit/cb1c5e1740fd2d8f7d4cc15ec810f7de7da4e4ad) — Added Luster Purge Animation & Description
+- 2024-08-14 [cbf2fcc6b](https://github.com/aaronjeter/CrystalShireEngine/commit/cbf2fcc6b9b2ec6e8a99b08d436a6befbf80ba7f) — Adjust Animation Formatting
+- 2024-08-14 [539aa9421](https://github.com/aaronjeter/CrystalShireEngine/commit/539aa94218dc06e3bbfd04bca6c1f10583cceeda) — Added Tail Glow Animation & Description
+- 2024-08-14 [e46fd6847](https://github.com/aaronjeter/CrystalShireEngine/commit/e46fd68479df98b1859f4cd34a41dbcd42848b21) — Added Camouflage Animation & Description
+- 2024-08-14 [2fb4bd651](https://github.com/aaronjeter/CrystalShireEngine/commit/2fb4bd651473194013fde00e4e1b378c95c6419d) — Added Arm Thrust Animation & Description
+- 2024-08-14 [ef6f7c5c6](https://github.com/aaronjeter/CrystalShireEngine/commit/ef6f7c5c662af7e527ddbfb91355606784c056e0) — Added Dive Animation & Description
+- 2024-08-14 [acfd0ff2b](https://github.com/aaronjeter/CrystalShireEngine/commit/acfd0ff2b67b5486b34ae96b8f33f524a95fe72e) — Added Secret Power "Animation" & Description
+- 2024-08-14 [9c477f052](https://github.com/aaronjeter/CrystalShireEngine/commit/9c477f052fd99155befcbee46fb31cb6729dea5e) — Added Snatch Animation & Description
+- 2024-08-14 [9fda5ac2a](https://github.com/aaronjeter/CrystalShireEngine/commit/9fda5ac2a1bad5bb2ff59f4e691af5eaadba038e) — Optimize SetDefaultBattlePalette
+- 2024-08-13 [c493a604d](https://github.com/aaronjeter/CrystalShireEngine/commit/c493a604d3682adfbd8cc348b0cc4abbec502c55) — Added Grudge Animation & Description
+- 2024-08-13 [055003e55](https://github.com/aaronjeter/CrystalShireEngine/commit/055003e55558271b3f762caa834a403a1b707fda) — Optimize Facade Animation
+- 2024-08-13 [3a548759d](https://github.com/aaronjeter/CrystalShireEngine/commit/3a548759dd291738ad7e9dbee43a176e8fe1eae9) — Optimize Uproar Animation
+- 2024-08-13 [9d46df12f](https://github.com/aaronjeter/CrystalShireEngine/commit/9d46df12f68e3c7330fca7fb32f58b75668bed56) — Optimize Endeavor Animation
+- 2024-08-13 [3fb00f220](https://github.com/aaronjeter/CrystalShireEngine/commit/3fb00f220bcfe1e7ffea17eedfcf1dead749762d) — Optimize Skill Swap Animation
+- 2024-08-13 [3ce5c9720](https://github.com/aaronjeter/CrystalShireEngine/commit/3ce5c9720986d39590cd08173afa7f80b374f189) — Optimize Eruption Animation
+- 2024-08-13 [aadcd86f7](https://github.com/aaronjeter/CrystalShireEngine/commit/aadcd86f7e730be72221b91a09a9177195db33ae) — Added Refresh Animation & Description
+- 2024-08-13 [a1912c09b](https://github.com/aaronjeter/CrystalShireEngine/commit/a1912c09baf46be3b01500a3d513acf57076acce) — Added Imprison Animation & Description
+- 2024-08-13 [3f291a004](https://github.com/aaronjeter/CrystalShireEngine/commit/3f291a0047194269be0995540f03f1ec1a4742e0) — Added Skill Swap Animation & Description
+- 2024-08-12 [3a02b8868](https://github.com/aaronjeter/CrystalShireEngine/commit/3a02b8868df885b11466a31e4d9b76d2e545cea5) — Added Eruption Animation & Description
+- 2024-08-12 [cc6db4f46](https://github.com/aaronjeter/CrystalShireEngine/commit/cc6db4f466c8deaa3308e60c6d239c787c4ae992) — Added Endeavor Animation & Description
+- 2024-08-12 [5b50476bf](https://github.com/aaronjeter/CrystalShireEngine/commit/5b50476bf1c06414fd64fccc4caf159914fa3c9d) — Added Knock Off Animation & Description
+- 2024-08-12 [ee400f8a0](https://github.com/aaronjeter/CrystalShireEngine/commit/ee400f8a0f23dbfd7fbee207c9e79aeebace87a0) — Added Yawn Animation & Description
+- 2024-08-12 [c454087e5](https://github.com/aaronjeter/CrystalShireEngine/commit/c454087e55f10c4a67ce8c92ff5937a774a6637a) — Added Brick Break Animation & Description
+- 2024-08-12 [e72311814](https://github.com/aaronjeter/CrystalShireEngine/commit/e72311814ef5226b2d8c28abe4600f93424e356c) — Added Revenge Animation & Description
+- 2024-08-12 [f3141ee34](https://github.com/aaronjeter/CrystalShireEngine/commit/f3141ee34477355ff3fdae927a6b67ba3d8a1c19) — Added Recycle Animation & Description
+- 2024-08-12 [e005b8468](https://github.com/aaronjeter/CrystalShireEngine/commit/e005b84680ea155be622f7563225310762f64eb1) — Update Magic Coat Animation & Description
+- 2024-08-12 [23e04223a](https://github.com/aaronjeter/CrystalShireEngine/commit/23e04223a688518f049aadf583d960a8c4a7e8a1) — Added Superpower Animation & Description
+- 2024-08-12 [a9ee0d2b9](https://github.com/aaronjeter/CrystalShireEngine/commit/a9ee0d2b92e7d48155d7a02fae5726573ed18b8c) — Added Ingrain Animation & Description
+- 2024-08-12 [bd8c67199](https://github.com/aaronjeter/CrystalShireEngine/commit/bd8c67199bab1f7718a943c12cf514ea7d1e9b51) — Added Assist Animation & Description
+- 2024-08-12 [9f2220bb6](https://github.com/aaronjeter/CrystalShireEngine/commit/9f2220bb66b90846552384c97361816d648461b0) — Fixed Wish animation
+- 2024-08-12 [ddf860a37](https://github.com/aaronjeter/CrystalShireEngine/commit/ddf860a37d2d2e4b8367c8401cbcc4e8bfa31d9c) — Added Wish Animation & Description
+- 2024-08-12 [f5e3c31bc](https://github.com/aaronjeter/CrystalShireEngine/commit/f5e3c31bcc35dcf823da15f5efd9e1d25d0b1fa4) — Added Role Play Animation & Description
+- 2024-08-12 [4fba99a55](https://github.com/aaronjeter/CrystalShireEngine/commit/4fba99a55b4f955856ba7823f4a50d9102a70029) — Added Trick Animation & Description
+- 2024-08-12 [4c248554b](https://github.com/aaronjeter/CrystalShireEngine/commit/4c248554b2910aa4d5df165275adf32fbf408639) — Added BattleAnimCmd_ClearEnemyHud
+- 2024-08-12 [e16362334](https://github.com/aaronjeter/CrystalShireEngine/commit/e16362334d15c63f5633b0524ca9f565fb590d49) — Added Taunt Animation & Description
+- 2024-08-12 [87dd60040](https://github.com/aaronjeter/CrystalShireEngine/commit/87dd60040ca30fdf5e844061990fe2e0ad4bab80) — Alter SmellingSalt Description
+- 2024-08-12 [e57527de5](https://github.com/aaronjeter/CrystalShireEngine/commit/e57527de5983ebfb04428e80904cd4fe5896b0a2) — Altered Focus Punch Description
+- 2024-08-12 [386afe979](https://github.com/aaronjeter/CrystalShireEngine/commit/386afe97998f20307793a8f43b214957fb7afa1a) — Alter Facade Description
+- 2024-08-12 [629932fc1](https://github.com/aaronjeter/CrystalShireEngine/commit/629932fc1ed5952bee674b3766329ec88abaa505) — Added Charge Animation & Description
+- 2024-08-12 [479f61e49](https://github.com/aaronjeter/CrystalShireEngine/commit/479f61e49e8869f945a678ef977b80544d430946) — Added Nature Power Animation & Description
+- 2024-08-12 [0828fd69b](https://github.com/aaronjeter/CrystalShireEngine/commit/0828fd69bd12cf5b501f9c68d7cd10e95596944f) — Added SmellingSalt Animation & Description
+- 2024-08-12 [130f7d9db](https://github.com/aaronjeter/CrystalShireEngine/commit/130f7d9dbaf764764932f0bb978c80b97833638b) — Added Focus Punch Animation & Description
+- 2024-08-12 [ecaa0054c](https://github.com/aaronjeter/CrystalShireEngine/commit/ecaa0054c076c9d81a6a17f34f16a4ff82d4ecbc) — Added Facade Animation & Description
+- 2024-08-12 [752406ab6](https://github.com/aaronjeter/CrystalShireEngine/commit/752406ab69084ee5125ec7dace7f41be58d48413) — Fixed Custom pals DEFAULT_PAL
+- 2024-08-12 [44bd7b114](https://github.com/aaronjeter/CrystalShireEngine/commit/44bd7b1149e5999661801257f07181f775f7e1cf) — Added Memento Animation & Description
+- 2024-08-12 [385b1e926](https://github.com/aaronjeter/CrystalShireEngine/commit/385b1e926bef21ddb5ef4d4c921c86d4191a198d) — Added Will O Wisp Animation & Description
+- 2024-08-11 [00ff18642](https://github.com/aaronjeter/CrystalShireEngine/commit/00ff18642be072f9fd15ee211b0b49ad80c28aa1) — Added Flatter Animation & Description
+- 2024-08-11 [ec54da504](https://github.com/aaronjeter/CrystalShireEngine/commit/ec54da504b3f858a339b40b74adc7958e9e835d7) — Updates Torment Description
+- 2024-08-11 [faa10fb3f](https://github.com/aaronjeter/CrystalShireEngine/commit/faa10fb3fd86c4ab638f29279e6cd296d44cff51) — Added Torment Animation & Description
+- 2024-08-11 [a8580f376](https://github.com/aaronjeter/CrystalShireEngine/commit/a8580f37600fc98b39ecf1c844cff3958a92cb4d) — Added Hail Description
+- 2024-08-11 [35ba92552](https://github.com/aaronjeter/CrystalShireEngine/commit/35ba925520912dbca0e1a4bf15381b9f35b9d501) — Updated Weather & Added Hail
+- 2024-08-11 [59d4d14cc](https://github.com/aaronjeter/CrystalShireEngine/commit/59d4d14cc6e6732a892bf4dfdfa7721f81667553) — Added Heat Wave Animation & Description
+- 2024-08-11 [1baaf2da8](https://github.com/aaronjeter/CrystalShireEngine/commit/1baaf2da8acf005b9b21cd1c6ca001fb175bf240) — Added Swallow Animation & Description
+- 2024-08-11 [bdde3f8b1](https://github.com/aaronjeter/CrystalShireEngine/commit/bdde3f8b1453d0fd4258329b5c4d33b2781e6027) — Fix Spit Up Animation
+- 2024-08-11 [04546bf1a](https://github.com/aaronjeter/CrystalShireEngine/commit/04546bf1a557c28329cbcd25e4cb0b0e2af16ee1) — Added Spit Up Animation & Description
+- 2024-08-11 [0961d62df](https://github.com/aaronjeter/CrystalShireEngine/commit/0961d62df730ed23e6270ec6798e89ae6bfd4a52) — Added Stockpile Animation & Description
+- 2024-08-10 [9e3179508](https://github.com/aaronjeter/CrystalShireEngine/commit/9e3179508cc3b180ccb74c7e1aefd9a0e10c7e8a) — Added Uproar Description
+- 2024-08-10 [78a7bda52](https://github.com/aaronjeter/CrystalShireEngine/commit/78a7bda522bb34f0914d2c37cf4755435b28ae3b) — Adjust Fake Out Description
+- 2024-08-10 [82a6c35eb](https://github.com/aaronjeter/CrystalShireEngine/commit/82a6c35eb268917a4d3a2b43966c2b1f9dd32c7c) — Fix a few Object comments
+- 2024-08-11 [22b393958](https://github.com/aaronjeter/CrystalShireEngine/commit/22b393958ea707affc095c5b4ff58729ca0cad8b) — Fixed Uproar's Frameset
+- 2024-08-10 [2a3632646](https://github.com/aaronjeter/CrystalShireEngine/commit/2a3632646582ac307b85ccded5d661504d102ff8) — Broken Uproar Animation
+- 2024-08-10 [b914e7c35](https://github.com/aaronjeter/CrystalShireEngine/commit/b914e7c354e59bbc1b6b18e4c9fe3610f67614a6) — Added Fake Out Animation & Description
+- 2024-08-10 [08e5bcf08](https://github.com/aaronjeter/CrystalShireEngine/commit/08e5bcf08531375cc4304059ef32925b4cf52c64) — Change `call` to `xcall` for Radial Move Functions
+- 2024-08-10 [8d61d70ba](https://github.com/aaronjeter/CrystalShireEngine/commit/8d61d70ba99fc2f7ef9010562b84d024fbc5ef31) — Adjust Radial Move Function Names
+- 2024-08-09 [452f210a4](https://github.com/aaronjeter/CrystalShireEngine/commit/452f210a466046fac5c8b7333b355832f5887b1a) — Add Radial Move In Function
+- 2024-08-09 [8b30db6ce](https://github.com/aaronjeter/CrystalShireEngine/commit/8b30db6ce69d09aa3c04e18c00f7123e3821d64c) — Add Radial Move Out Functions
+- 2024-08-09 [32752d3d0](https://github.com/aaronjeter/CrystalShireEngine/commit/32752d3d0e80a316698256bb04db9e31ecf1550a) — Initial Gen 3 Moves
+- 2024-08-09 [fe4e6a372](https://github.com/aaronjeter/CrystalShireEngine/commit/fe4e6a372c106970bdd2d8e22687a1bbcfa7110c) — Update Explostion Sub Branches to New Palette
+- 2024-08-09 [ba85a67b5](https://github.com/aaronjeter/CrystalShireEngine/commit/ba85a67b5f9dcd8833112ff022890769d914e614) — Remove Old Drain Sub Function
+- 2024-08-09 [d28ced36f](https://github.com/aaronjeter/CrystalShireEngine/commit/d28ced36fafccc1a5840ee92c00cf674fb895e70) — Update Beat Up Animation
+- 2024-08-09 [aba000ac2](https://github.com/aaronjeter/CrystalShireEngine/commit/aba000ac219c3ad310e47efb3ccae7d6c61d7e2a) — Updated Future Sight Animation
+- 2024-08-09 [41559196e](https://github.com/aaronjeter/CrystalShireEngine/commit/41559196ea09ad172ef03cf6b9556ac1fbf6d964) — Update Mirror Coat to New Palette
+- 2024-08-09 [57a3c3835](https://github.com/aaronjeter/CrystalShireEngine/commit/57a3c3835dc11dbc7ea1973e21fc6ed010c76148) — Update Pursuit Animation
+- 2024-08-09 [13bd68c24](https://github.com/aaronjeter/CrystalShireEngine/commit/13bd68c24256f38b7ae74bd97ca584b4f929f6c9) — Update Mean Look Animation
+- 2024-08-09 [80a1fed52](https://github.com/aaronjeter/CrystalShireEngine/commit/80a1fed527eb1a973eeb52c934246b7cdfd3be39) — Update Giga Drain Animation
+- 2024-08-09 [9034527b2](https://github.com/aaronjeter/CrystalShireEngine/commit/9034527b280b1419e911a78bd6abd1882892e43d) — Update Icy Wind Animation
+- 2024-08-09 [80600c140](https://github.com/aaronjeter/CrystalShireEngine/commit/80600c140c1a77563430d2026a3496d67c5a3df8) — Update Octazooka Animation
+- 2024-08-09 [f1824e1a7](https://github.com/aaronjeter/CrystalShireEngine/commit/f1824e1a72b6fe3ff78026b323f66ddd4d52642e) — Update Waterfall Animation
+- 2024-08-08 [b88d62adc](https://github.com/aaronjeter/CrystalShireEngine/commit/b88d62adc834f4e693b5f5ce6c172f8834b53c50) — Update Spark Animation
+- 2024-08-08 [e29dba467](https://github.com/aaronjeter/CrystalShireEngine/commit/e29dba467c61bb8034a2ac81eb3fcdee3f5c2f92) — Update Zap Cannon Animation
+- 2024-08-08 [bf2824d42](https://github.com/aaronjeter/CrystalShireEngine/commit/bf2824d426dd0630cb3fe7ee25da8b85d7390efe) — Update Thunderpunch BG Effect
+- 2024-08-08 [98549cb2a](https://github.com/aaronjeter/CrystalShireEngine/commit/98549cb2a8c12a427fee973597ec0f36d26b09e6) — Updated Tri Attack Animation
+- 2024-08-08 [9898ec6b9](https://github.com/aaronjeter/CrystalShireEngine/commit/9898ec6b9d475d5c7cd61401e4be29415cb3b770) — Update Crabhammer Animation
+- 2024-08-08 [c3d04d2c5](https://github.com/aaronjeter/CrystalShireEngine/commit/c3d04d2c5dc6f199267d1eec8b66713565146244) — Updated Leech Life Animation
+- 2024-08-08 [5d800ecd7](https://github.com/aaronjeter/CrystalShireEngine/commit/5d800ecd7ae9a2632406695927cd6a2457008fa9) — Update Barrage to New Palette
+- 2024-08-08 [2d5e998fa](https://github.com/aaronjeter/CrystalShireEngine/commit/2d5e998fae1195b2e67271669afb60e15b34b07a) — Update Dream Eater Animation
+- 2024-08-08 [74e5b81c4](https://github.com/aaronjeter/CrystalShireEngine/commit/74e5b81c404935922fe147426abf92da3035d37f) — Updated Spike Cannon Animation
+- 2024-08-08 [ffaf5dffe](https://github.com/aaronjeter/CrystalShireEngine/commit/ffaf5dffec47eb128e9cf036ad0e9856358b5d48) — Update Sludge Moves to New Palette
+- 2024-08-08 [d2b106aae](https://github.com/aaronjeter/CrystalShireEngine/commit/d2b106aae0f768199b108a51c62475993d0ed636) — Updated Egg Bomb Animation
+- 2024-08-08 [f256a18ed](https://github.com/aaronjeter/CrystalShireEngine/commit/f256a18ed2038c5f68a9f9fd946ff0cc25ed85d9) — Update Reflect Animation
+- 2024-08-08 [8e366eb78](https://github.com/aaronjeter/CrystalShireEngine/commit/8e366eb7851de539170a7ec8a117ad5fcba19574) — Update Light Screen to New Palette
+- 2024-08-08 [f261573a5](https://github.com/aaronjeter/CrystalShireEngine/commit/f261573a5485f8421d30d6eb6b4a4d2d9b09d712) — Update Minimize Animation
+- 2024-08-08 [66cb72d24](https://github.com/aaronjeter/CrystalShireEngine/commit/66cb72d24dfa16af8f3a51aae88149f375b060b4) — Updated Agility Animation
+- 2024-08-08 [d62f17182](https://github.com/aaronjeter/CrystalShireEngine/commit/d62f17182654dec9ff8ff2928422ffaae8be792d) — Updated Toxic to New Palette
+- 2024-08-08 [025511d66](https://github.com/aaronjeter/CrystalShireEngine/commit/025511d664ac04638e44e126ccb989db879b0797) — Update Electric Moves with New BG Effect
+- 2024-08-07 [d07e7d453](https://github.com/aaronjeter/CrystalShireEngine/commit/d07e7d453df5bf71e15a27aa7773c7e19c77487a) — Update Dragon Moves to New Palettes
+- 2024-08-07 [7ac553067](https://github.com/aaronjeter/CrystalShireEngine/commit/7ac553067e413297591b16420b0b2b2a42db5f25) — Update Petal Dance Animation
+- 2024-08-07 [0a1ea5170](https://github.com/aaronjeter/CrystalShireEngine/commit/0a1ea517073728844b37d330d7a94a2cae59c435) — Update Powder/Spore Move Animations
+- 2024-08-07 [4f5703a1f](https://github.com/aaronjeter/CrystalShireEngine/commit/4f5703a1f7664b25b64dc8ca2119a243758df460) — Update Solarbeam BG Effects
+- 2024-08-07 [a593ab5ba](https://github.com/aaronjeter/CrystalShireEngine/commit/a593ab5baf7f2dc01d3926dceb073a0c4170fc70) — Update Razor Leaf to New Palette
+- 2024-08-07 [6eaa3ce19](https://github.com/aaronjeter/CrystalShireEngine/commit/6eaa3ce19342e1cb315d28f3c78454fc2f0c5c90) — Updated Absorb Moves to New Palette
+- 2024-08-07 [e4ba215ef](https://github.com/aaronjeter/CrystalShireEngine/commit/e4ba215ef8e86971ba962cc0d898f5a8c3fbe001) — Update Seismic Toss Animation
+- 2024-08-07 [d5cdba6ed](https://github.com/aaronjeter/CrystalShireEngine/commit/d5cdba6edf616abe024b3053a5ba76bfd21df26c) — Update Recover Animation
+- 2024-08-07 [036accec4](https://github.com/aaronjeter/CrystalShireEngine/commit/036accec40c4f74dfdb085652529d3aa9933b49d) — Updated Aurora Beam Animation
+- 2024-08-07 [237efe87a](https://github.com/aaronjeter/CrystalShireEngine/commit/237efe87a280c9dcdc3b12c9256a058e3ae41cff) — Update Ice Moves to New Palette
+- 2024-08-07 [b5fc40550](https://github.com/aaronjeter/CrystalShireEngine/commit/b5fc405509b130770f3b1fc9cd02ff226c701099) — Update Bubble Moves to New Palette
+- 2024-08-07 [a651ac4c4](https://github.com/aaronjeter/CrystalShireEngine/commit/a651ac4c41d0bf59310ab64d99e90805a18d2e31) — Update Water Moves to New Palette
+- 2024-08-07 [d384bf6cf](https://github.com/aaronjeter/CrystalShireEngine/commit/d384bf6cfabea162245eedf48f3ebcb3efaf68b4) — Update Fire Moves to New Palette
+- 2024-08-07 [aa1b246c7](https://github.com/aaronjeter/CrystalShireEngine/commit/aa1b246c79cb350969f3d582eff1e64ce1dfc34d) — Update Acid Animation
+- 2024-08-07 [ede58f8c4](https://github.com/aaronjeter/CrystalShireEngine/commit/ede58f8c465bc49bd0a9b68959974a76ba20e525) — Updated Pin Missile Animation
+- 2024-08-07 [46fbbb9db](https://github.com/aaronjeter/CrystalShireEngine/commit/46fbbb9dbfdd7f9e26d958b97477d569d927c65c) — Update Needle Based Moves
+- 2024-08-07 [a7ee92642](https://github.com/aaronjeter/CrystalShireEngine/commit/a7ee92642cc1686a462d0d40d6e26e7d5d4db58d) — Add X_FLIP to BATTLE_ANIM_OBJ_PALM
+- 2024-08-06 [97052233b](https://github.com/aaronjeter/CrystalShireEngine/commit/97052233b6c31591f4906b2b7cfb72a8d07c6d1d) — Update Double Slap Animation
+- 2024-07-28 [96eb0a6c3](https://github.com/aaronjeter/CrystalShireEngine/commit/96eb0a6c3787080e7f6bae2b781cd7e45fd1fb23) — Fix Trademon to use *Shiny instead of *DVs
+- 2024-04-29 [f737d34da](https://github.com/aaronjeter/CrystalShireEngine/commit/f737d34da848941cfea875e4b635ceac868a9cb1) — Actually fix whiteout.asm
+- 2024-02-03 [d035e9cbc](https://github.com/aaronjeter/CrystalShireEngine/commit/d035e9cbc74c37b5c7765d3a09579c8fd27a57bf) — Add a null ability
+- 2024-02-02 [d81909595](https://github.com/aaronjeter/CrystalShireEngine/commit/d81909595524ede4c762f8b22c0dfea752c0fa2f) — Implement wild encounter-affecting field abilities
+- 2024-01-31 [e2f5d78e9](https://github.com/aaronjeter/CrystalShireEngine/commit/e2f5d78e921a07481a6175ebe7edd8d03f25e711) — Fix whitespace issues.
+- 2024-01-31 [fd07d3f41](https://github.com/aaronjeter/CrystalShireEngine/commit/fd07d3f41562dee1e40b0b7352b7a96c0f8f7fb6) — GetFarByte doesn't need `ld a, (hl)`
+- 2024-01-31 [da9125003](https://github.com/aaronjeter/CrystalShireEngine/commit/da9125003e9ec7505d53b551c9b35aa4313ee336) — Fix GetAbility for indirection tables
+- 2024-01-31 [b842c0546](https://github.com/aaronjeter/CrystalShireEngine/commit/b842c054604ab8726c15afbb8c12135781ee045c) — Add GetAbility
+- 2024-01-31 [8462f06d0](https://github.com/aaronjeter/CrystalShireEngine/commit/8462f06d0ae3b3d24f2223c4420757ff389f8c2a) — Fix some indentation
+- 2024-01-31 [1883783b7](https://github.com/aaronjeter/CrystalShireEngine/commit/1883783b75412123a4c9ebe6dc6cded70c383a68) — Abilities: Casing to match natures
+- 2024-01-31 [e05a9b4dd](https://github.com/aaronjeter/CrystalShireEngine/commit/e05a9b4ddce9dc33b895d7482003db9a60b7a5e8) — Natures: Nature print added to 4th page of stat screens
+- 2024-01-31 [033c762aa](https://github.com/aaronjeter/CrystalShireEngine/commit/033c762aa67cf6d9dde9af2ee465804efa4314b9) — Tools: Some useful scraping tools (NOTE: They don't work perfectly and require your intervention)
+- 2024-01-31 [53c80ff2d](https://github.com/aaronjeter/CrystalShireEngine/commit/53c80ff2d2e424afe95a113e0dbcce5d3a4d1ec2) — Abilities: Ability stats screen prints, fix some misses
+- 2024-01-30 [232189768](https://github.com/aaronjeter/CrystalShireEngine/commit/232189768b49e6a20b6b3e06f5c2ee42a92169b6) — Visual: Added 4th stats page
+- 2024-01-29 [af291f1ac](https://github.com/aaronjeter/CrystalShireEngine/commit/af291f1ac15fcc45013aa184c9b7f56047e99750) — Abilities: Fixed <LNBRK>, Base Data updated, WRAM updated
+- 2024-01-29 [f07c7923a](https://github.com/aaronjeter/CrystalShireEngine/commit/f07c7923a8c95ed6fa8719ad402f43d8b1300084) — Abilities: Constants, names, and descriptions
+- 2024-01-19 [8d5bc8440](https://github.com/aaronjeter/CrystalShireEngine/commit/8d5bc8440e478e3532ecc6abe323d41cbc6b3e7a) — float Fade System
+- 2024-01-18 [d64794d10](https://github.com/aaronjeter/CrystalShireEngine/commit/d64794d103ee2b144a2203f608a61f384a34bf01) — Lose money proportional to badges and level
+- 2024-01-14 [b508546cc](https://github.com/aaronjeter/CrystalShireEngine/commit/b508546cc7e7f96cfb8408fcd5ba5194ac4bb7e2) — 16-bit Framesets
+- 2024-01-14 [5ea57b5c5](https://github.com/aaronjeter/CrystalShireEngine/commit/5ea57b5c59e866215e9dff0f725c8fb431e2518a) — Revert "Re-arrange some pointer load for aesthetics" that load into h
+- 2024-01-13 [fd38888a9](https://github.com/aaronjeter/CrystalShireEngine/commit/fd38888a9f26bce1bc3e5ca0d22542fb05f1b380) — Re-arrange some pointer load for aesthetics
+- 2024-01-13 [38be3bf2a](https://github.com/aaronjeter/CrystalShireEngine/commit/38be3bf2af70b78463860304d32268cdb9ee1ba6) — Optimize pointless jump
+- 2024-01-13 [924facecd](https://github.com/aaronjeter/CrystalShireEngine/commit/924facecd0c20974e68bcfb6a2a3bb61c494cf8a) — Use `xcall` when you need to `farcall` in floating sections
+- 2024-01-13 [b07fc98b4](https://github.com/aaronjeter/CrystalShireEngine/commit/b07fc98b4ad3ad389d72620cfdcb91709b23278a) — Removed More Unnecessary Farcalls
+- 2024-01-13 [00c3f6afd](https://github.com/aaronjeter/CrystalShireEngine/commit/00c3f6afdc06c264983e13720fb7ca1b99c578e2) — Minor optimizations
+- 2024-01-13 [c1f1d2ad8](https://github.com/aaronjeter/CrystalShireEngine/commit/c1f1d2ad88a5fcb27eab775d41b085ad49bf5495) — These farcalls are now unnecessary.
+- 2024-01-13 [daaf1629a](https://github.com/aaronjeter/CrystalShireEngine/commit/daaf1629a0975377fd74eaea5661b30768372598) — BattleAnims sections should preserve original section context.
+- 2024-01-13 [f2be7740f](https://github.com/aaronjeter/CrystalShireEngine/commit/f2be7740ff729f5d11a98064fcfdc589a7e44258) — home/battle_anim.asm should use farcall for Sine/Cosine
+- 2024-01-13 [0f89ed046](https://github.com/aaronjeter/CrystalShireEngine/commit/0f89ed046828816be90efd2fba1d13996ed14c6a) — Fix start of line whitespace
+- 2024-01-13 [05fc199da](https://github.com/aaronjeter/CrystalShireEngine/commit/05fc199dabd1f07aa1097ae01872f23e0c660dd0) — Couple needed farcall's & uncomment sections
+- 2024-01-13 [bf0366509](https://github.com/aaronjeter/CrystalShireEngine/commit/bf0366509bdbe2adecd0ca0c030684de5b5a7594) — The BattleAnim functions should farcall Cosine and Sine
+- 2024-01-13 [6348e2809](https://github.com/aaronjeter/CrystalShireEngine/commit/6348e28092ceff5fbd0d729fdcfc1a40c27faf08) — Attempt to split battle_anim functions to their own sections
+- 2024-01-13 [3fbba754e](https://github.com/aaronjeter/CrystalShireEngine/commit/3fbba754e44090f7233b597ed316564c06758461) — Store Frameset Data & GetBattleAnimFrame Together
+- 2024-01-12 [dbc5a2b50](https://github.com/aaronjeter/CrystalShireEngine/commit/dbc5a2b5060332d6dfbe9498f0546664c2f15bd1) — Sky Attack has a increased critical hit ratio
+- 2024-01-12 [4d433a7c6](https://github.com/aaronjeter/CrystalShireEngine/commit/4d433a7c61d6fe720a4d8f1926d52002a6359674) — Gen 3 Item Name updates
+- 2024-01-12 [0375d41c5](https://github.com/aaronjeter/CrystalShireEngine/commit/0375d41c5035627494a513167b9e040a3fc92d91) — Update MoveEffectPriorities to gen 3
+- 2024-01-12 [af3a698be](https://github.com/aaronjeter/CrystalShireEngine/commit/af3a698be7a8acaeebc018ab5489cd202218cbba) — Razor Wind accuracy changes
+- 2024-01-09 [465671431](https://github.com/aaronjeter/CrystalShireEngine/commit/465671431f12547b9535e1b8506e68869e7a21a5) — Gen 3 Pain Split bypasses accuracy
+- 2024-01-09 [fcbaa2c17](https://github.com/aaronjeter/CrystalShireEngine/commit/fcbaa2c17e38d783aea1940573d641b0dd694f9e) — Gen 3 Mimic bypasses accuracy checks
+- 2024-01-09 [e31763622](https://github.com/aaronjeter/CrystalShireEngine/commit/e3176362246cacde83f2319af1d7f30e1da25e54) — Gen 3 Lowkick & Extract Height/Weight From Dex Entries
+- 2024-01-09 [55e3eeada](https://github.com/aaronjeter/CrystalShireEngine/commit/55e3eeada26265c28faf3d6c6d9826160ee5a596) — Create init body_data.asm
+- 2024-01-06 [115192cfa](https://github.com/aaronjeter/CrystalShireEngine/commit/115192cfa20071d6ce0f4e477a4b10a7ceaf42fe) — Lock down `Battle Animation Data`
+- 2024-01-05 [aad659d9f](https://github.com/aaronjeter/CrystalShireEngine/commit/aad659d9f113b8d300f7499b3287fab90f048bf1) — Add Up/Down arrows to Charmap
+- 2024-01-05 [2dfa789fc](https://github.com/aaronjeter/CrystalShireEngine/commit/2dfa789fc5ffd8826af2673215c251475f95f813) — Adjust Bug Contest Caught Location code
+- 2024-01-05 [317863cc1](https://github.com/aaronjeter/CrystalShireEngine/commit/317863cc1d0f65b07f72554875d45fa71f7960d0) — Expand Caught Level and add Caught Ball to data struct
+- 2024-01-05 [b62dde755](https://github.com/aaronjeter/CrystalShireEngine/commit/b62dde7553aced45ff93545822287140c162c6ce) — Init Gen 3 Breeding rework
+- 2024-01-03 [94434546f](https://github.com/aaronjeter/CrystalShireEngine/commit/94434546f1bfdf0220d1d8aabfd1e2b712c2bbf5) — macro `npctrade` should use `ivs` macro
+- 2024-01-03 [fab930475](https://github.com/aaronjeter/CrystalShireEngine/commit/fab9304751df51e03ace970bb7adb7eb2b9ecb63) — Fix `ivs` macro
+- 2024-01-03 [b91b59c14](https://github.com/aaronjeter/CrystalShireEngine/commit/b91b59c14b78baaf53357f00075bd81eab757df5) — Remove `CalcMonStatC` TODO comment
+- 2024-01-03 [65bb8aca4](https://github.com/aaronjeter/CrystalShireEngine/commit/65bb8aca49c14b1bf2eb4bee404e49be53722fe2) — Keep contest logic for max IV points when shiny
+- 2024-01-03 [4a6ff83bd](https://github.com/aaronjeter/CrystalShireEngine/commit/4a6ff83bd7c1e468e9e3e6cc5aeccb3654d4fcaf) — Update `ContestScore` to use IVs
+- 2024-01-03 [198ad675d](https://github.com/aaronjeter/CrystalShireEngine/commit/198ad675d96fb39771103b7517af95f4d6fb0395) — Fix inefficient HRAM load/store
+- 2024-01-02 [2d75f77d5](https://github.com/aaronjeter/CrystalShireEngine/commit/2d75f77d50bd94410b8d097e283f77e95885fc9a) — Add formula comments for HP calculations
+- 2024-01-02 [6af81c992](https://github.com/aaronjeter/CrystalShireEngine/commit/6af81c99295e4dad5fc4a7f74fa52a907ca4f92b) — Update hidden power to use IVs
+- 2024-01-02 [9171f8ab2](https://github.com/aaronjeter/CrystalShireEngine/commit/9171f8ab2f1fbcb015ae81ccf263230741232368) — Optimize `home/ivs.asm` for size
+- 2024-01-02 [8fd8067ec](https://github.com/aaronjeter/CrystalShireEngine/commit/8fd8067ecd441be73b13a94e926b1793184259ee) — Use new IV packing method
+- 2024-01-02 [8766412c7](https://github.com/aaronjeter/CrystalShireEngine/commit/8766412c7ee83c6ef4a2e3d4acb8428c36101db6) — Use Sylvie's `ivs` macro
+- 2024-01-02 [33835283d](https://github.com/aaronjeter/CrystalShireEngine/commit/33835283d811bb436e661e3e8fb937c40432797b) — Create PokemonIVByteConverter.py
+- 2023-12-31 [3d7e5496d](https://github.com/aaronjeter/CrystalShireEngine/commit/3d7e5496d15e1d0506eae4cc48c058246a280b99) — NPCTrades fix for IVs
+- 2023-12-29 [7415f1ba6](https://github.com/aaronjeter/CrystalShireEngine/commit/7415f1ba6e7d5365ee9c31414665ee5b70572245) — Alter Prior Optimization to Fix Animations
+- 2023-12-28 [7f14367d5](https://github.com/aaronjeter/CrystalShireEngine/commit/7f14367d563d617ddabc6fb02c9d0fb23bcbba9a) — Delete TestBerryDesc
+- 2023-12-28 [644ee337b](https://github.com/aaronjeter/CrystalShireEngine/commit/644ee337b8a5a95802f714de009e477f22e07904) — optimize update_item_descriptions.asm (gen3)
+- 2023-12-28 [d07ee2138](https://github.com/aaronjeter/CrystalShireEngine/commit/d07ee213867e7335623bd3e89230b60558483ff0) — `jmp` can be `jr`
+- 2023-12-28 [6d9310117](https://github.com/aaronjeter/CrystalShireEngine/commit/6d9310117c16ef20dffbd61c5b98c1511e857474) — Clean Up Battle Anim Macros
+- 2023-12-28 [dfcad94f1](https://github.com/aaronjeter/CrystalShireEngine/commit/dfcad94f1d945210f17192710b6df93df47a247c) — Rerun optimize.py on gen3 after deletion merge
+- 2023-12-28 [4ebd716ac](https://github.com/aaronjeter/CrystalShireEngine/commit/4ebd716ac250cc32954282ce115d6cb62fb06a85) — Expand ANIM_OBJ Limit
+- 2023-12-08 [8de112668](https://github.com/aaronjeter/CrystalShireEngine/commit/8de112668cd889bdc785d082ee23ce119b104144) — Some minor optimizations
+- 2023-12-08 [cd08e561f](https://github.com/aaronjeter/CrystalShireEngine/commit/cd08e561fa631aebc4465d875e64cf874a98b693) — Accidentally left in print statement when testing
+- 2023-12-07 [08352bef8](https://github.com/aaronjeter/CrystalShireEngine/commit/08352bef88f77d320af5c22e14c23bf237f68a6c) — Initial implementation of Natures
+- 2023-12-04 [0c0110a73](https://github.com/aaronjeter/CrystalShireEngine/commit/0c0110a73a0786b27a34e03d0254e6acbf253dfa) — Make sure `CalcMonStatC` adds (EV / 4) to formula
+- 2023-12-02 [64037af22](https://github.com/aaronjeter/CrystalShireEngine/commit/64037af22c5ca69fd497d20c1873b0c1e302c271) — Further Convert DVs to IVs
+- 2023-11-26 [8e6e64437](https://github.com/aaronjeter/CrystalShireEngine/commit/8e6e644374f1b3114e2f47c432f4c1245dc9a46d) — Init Gen3 Pokemon data struct (not complete)
+- 2023-11-12 [9fd815cfd](https://github.com/aaronjeter/CrystalShireEngine/commit/9fd815cfde20a3921e68819bfec9890e8c4d1c4b) — Expand Pokemon struct by 1 byte.
+- 2023-11-12 [4841a56cf](https://github.com/aaronjeter/CrystalShireEngine/commit/4841a56cfb0e9159cb29711314ea2bf46f1ccb2a) — jmp -> jr
+- 2023-11-12 [6533c1ddc](https://github.com/aaronjeter/CrystalShireEngine/commit/6533c1ddcf6e01cd56dfa0190cd9848f15c391de) — Couple more tailcall optimizations
+- 2023-11-08 [01f88935c](https://github.com/aaronjeter/CrystalShireEngine/commit/01f88935c55d5fcc2897e78a1fc5713451417a43) — Berry pocket graphics
+- 2023-11-05 [0bad697cc](https://github.com/aaronjeter/CrystalShireEngine/commit/0bad697cce85fd996321732ec25377c4cf417597) — Move Berries and Apricorns to Berries Pocket.
+- 2023-11-05 [d1895d584](https://github.com/aaronjeter/CrystalShireEngine/commit/d1895d584a5693749b77171454a0cc83de918b39) — Add Berry Pocket Data Structure
+
+## weather-test
+
+Revision: `504cde8c8bc0070266af83e9e6e590aaa3a7236a`. Non-merge commits in this section: 21.
+
+- 2024-02-07 [504cde8c8](https://github.com/aaronjeter/CrystalShireEngine/commit/504cde8c8bc0070266af83e9e6e590aaa3a7236a) — Sandstorm upward
+- 2024-02-04 [8ac47b016](https://github.com/aaronjeter/CrystalShireEngine/commit/8ac47b01683159976e1dfadbf31e65ac1e33aff4) — Sandstorm Init
+- 2024-02-04 [fabef94b5](https://github.com/aaronjeter/CrystalShireEngine/commit/fabef94b542c2967c0839e4bd713b4b762c4ad7d) — Thunderstorm weather condition
+- 2024-02-04 [d65901898](https://github.com/aaronjeter/CrystalShireEngine/commit/d6590189844ca8963975c3fdba2709c5d81897ea) — Create Weather Lightning Effect
+- 2024-02-02 [3398f1fe9](https://github.com/aaronjeter/CrystalShireEngine/commit/3398f1fe96a908edf53adfa426da4b61f600b9ac) — Fix weather + fly. Experiment with backing up sprites
+- 2024-01-31 [8cbb69363](https://github.com/aaronjeter/CrystalShireEngine/commit/8cbb69363e7f9f9f15af2d1deaa341d04b41c5c6) — In progress
+- 2024-01-28 [d3adafd1a](https://github.com/aaronjeter/CrystalShireEngine/commit/d3adafd1a86fc600a5166284424cacf3e57b4f43) — Reorder routines to make use of fallthrough
+- 2024-01-28 [96ffb336b](https://github.com/aaronjeter/CrystalShireEngine/commit/96ffb336ba4359b93e1bce979c4c50e45484b84c) — Some minor weather optimizations
+- 2024-01-28 [20438fa98](https://github.com/aaronjeter/CrystalShireEngine/commit/20438fa98fb88e5fd1e42a09b130814fd8b16615) — Clear weather from windows/menus.
+- 2024-01-28 [3b6ed3f5c](https://github.com/aaronjeter/CrystalShireEngine/commit/3b6ed3f5cbc507be7d9264c2f5a39a7ace48341a) — Tweak cooldown and snowfall PlayerStepVectorX
+- 2024-01-28 [0453e4871](https://github.com/aaronjeter/CrystalShireEngine/commit/0453e4871a3aace027bae049ab43f35b6a6a9dce) — Implement start of random weather, transitions, and battles
+- 2024-01-28 [59f054253](https://github.com/aaronjeter/CrystalShireEngine/commit/59f05425365c1aac6358cfe43b197ae52226b7e6) — Implement Hail in Battles
+- 2024-01-27 [b163b07fe](https://github.com/aaronjeter/CrystalShireEngine/commit/b163b07fe7bc09471fc8fe6bf1d883d2bd979190) — Reverse swap priority values since we are loading things in reverse now.
+- 2024-01-27 [14910ec44](https://github.com/aaronjeter/CrystalShireEngine/commit/14910ec44bead85a5988d4b497f93e5546fba987) — Cleanup more magic numbers.
+- 2024-01-27 [bd2926958](https://github.com/aaronjeter/CrystalShireEngine/commit/bd2926958b8b77661b51f3ee04397bd26479c172) — Some misc weather updates
+- 2024-01-24 [95d17c387](https://github.com/aaronjeter/CrystalShireEngine/commit/95d17c3876fd14d2c0ac98c3a338aeed54800b05) — Weather Conflicts
+- 2024-01-24 [0a7d03f45](https://github.com/aaronjeter/CrystalShireEngine/commit/0a7d03f4548bcf7ec7a8485cc0f2f23d63e96bdd) — Weather particles have sprite priority + tiny rain splashes
+- 2024-01-23 [165e6ade1](https://github.com/aaronjeter/CrystalShireEngine/commit/165e6ade1ce1d665d7be6a85a250cad8f5c340a1) — Replace some magic numbers.
+- 2024-01-23 [ef6bc1b14](https://github.com/aaronjeter/CrystalShireEngine/commit/ef6bc1b144d5ec62dc33b447b3404730a525957b) — Variable Speed, Account for movement, Don't rain indoors.
+- 2024-01-23 [0aed4e9cd](https://github.com/aaronjeter/CrystalShireEngine/commit/0aed4e9cdd34385ed80e37627967796763098a47) — Add snow effect.
+- 2024-01-21 [f37bc0ea9](https://github.com/aaronjeter/CrystalShireEngine/commit/f37bc0ea911e3eb3bf9d458010a7dbbf189ce4e2) — InitWeatherTest
+
+## broke-effects
+
+Revision: `28488561af608cdcf50ca065297eb3c40282e2ee`. Non-merge commits in this section: 183.
+
+- 2024-08-13 [28488561a](https://github.com/aaronjeter/CrystalShireEngine/commit/28488561af608cdcf50ca065297eb3c40282e2ee) — Added Snatch Animation, Description, & Effect
+- 2024-08-13 [c493a604d](https://github.com/aaronjeter/CrystalShireEngine/commit/c493a604d3682adfbd8cc348b0cc4abbec502c55) — Added Grudge Animation & Description
+- 2024-08-13 [055003e55](https://github.com/aaronjeter/CrystalShireEngine/commit/055003e55558271b3f762caa834a403a1b707fda) — Optimize Facade Animation
+- 2024-08-13 [3a548759d](https://github.com/aaronjeter/CrystalShireEngine/commit/3a548759dd291738ad7e9dbee43a176e8fe1eae9) — Optimize Uproar Animation
+- 2024-08-13 [9d46df12f](https://github.com/aaronjeter/CrystalShireEngine/commit/9d46df12f68e3c7330fca7fb32f58b75668bed56) — Optimize Endeavor Animation
+- 2024-08-13 [3fb00f220](https://github.com/aaronjeter/CrystalShireEngine/commit/3fb00f220bcfe1e7ffea17eedfcf1dead749762d) — Optimize Skill Swap Animation
+- 2024-08-13 [3ce5c9720](https://github.com/aaronjeter/CrystalShireEngine/commit/3ce5c9720986d39590cd08173afa7f80b374f189) — Optimize Eruption Animation
+- 2024-08-13 [aadcd86f7](https://github.com/aaronjeter/CrystalShireEngine/commit/aadcd86f7e730be72221b91a09a9177195db33ae) — Added Refresh Animation & Description
+- 2024-08-13 [a1912c09b](https://github.com/aaronjeter/CrystalShireEngine/commit/a1912c09baf46be3b01500a3d513acf57076acce) — Added Imprison Animation & Description
+- 2024-08-13 [3f291a004](https://github.com/aaronjeter/CrystalShireEngine/commit/3f291a0047194269be0995540f03f1ec1a4742e0) — Added Skill Swap Animation & Description
+- 2024-08-12 [3a02b8868](https://github.com/aaronjeter/CrystalShireEngine/commit/3a02b8868df885b11466a31e4d9b76d2e545cea5) — Added Eruption Animation & Description
+- 2024-08-12 [cc6db4f46](https://github.com/aaronjeter/CrystalShireEngine/commit/cc6db4f466c8deaa3308e60c6d239c787c4ae992) — Added Endeavor Animation & Description
+- 2024-08-12 [5b50476bf](https://github.com/aaronjeter/CrystalShireEngine/commit/5b50476bf1c06414fd64fccc4caf159914fa3c9d) — Added Knock Off Animation & Description
+- 2024-08-12 [ee400f8a0](https://github.com/aaronjeter/CrystalShireEngine/commit/ee400f8a0f23dbfd7fbee207c9e79aeebace87a0) — Added Yawn Animation & Description
+- 2024-08-12 [c454087e5](https://github.com/aaronjeter/CrystalShireEngine/commit/c454087e55f10c4a67ce8c92ff5937a774a6637a) — Added Brick Break Animation & Description
+- 2024-08-12 [e72311814](https://github.com/aaronjeter/CrystalShireEngine/commit/e72311814ef5226b2d8c28abe4600f93424e356c) — Added Revenge Animation & Description
+- 2024-08-12 [f3141ee34](https://github.com/aaronjeter/CrystalShireEngine/commit/f3141ee34477355ff3fdae927a6b67ba3d8a1c19) — Added Recycle Animation & Description
+- 2024-08-12 [e005b8468](https://github.com/aaronjeter/CrystalShireEngine/commit/e005b84680ea155be622f7563225310762f64eb1) — Update Magic Coat Animation & Description
+- 2024-08-12 [23e04223a](https://github.com/aaronjeter/CrystalShireEngine/commit/23e04223a688518f049aadf583d960a8c4a7e8a1) — Added Superpower Animation & Description
+- 2024-08-12 [a9ee0d2b9](https://github.com/aaronjeter/CrystalShireEngine/commit/a9ee0d2b92e7d48155d7a02fae5726573ed18b8c) — Added Ingrain Animation & Description
+- 2024-08-12 [bd8c67199](https://github.com/aaronjeter/CrystalShireEngine/commit/bd8c67199bab1f7718a943c12cf514ea7d1e9b51) — Added Assist Animation & Description
+- 2024-08-12 [9f2220bb6](https://github.com/aaronjeter/CrystalShireEngine/commit/9f2220bb66b90846552384c97361816d648461b0) — Fixed Wish animation
+- 2024-08-12 [ddf860a37](https://github.com/aaronjeter/CrystalShireEngine/commit/ddf860a37d2d2e4b8367c8401cbcc4e8bfa31d9c) — Added Wish Animation & Description
+- 2024-08-12 [f5e3c31bc](https://github.com/aaronjeter/CrystalShireEngine/commit/f5e3c31bcc35dcf823da15f5efd9e1d25d0b1fa4) — Added Role Play Animation & Description
+- 2024-08-12 [4fba99a55](https://github.com/aaronjeter/CrystalShireEngine/commit/4fba99a55b4f955856ba7823f4a50d9102a70029) — Added Trick Animation & Description
+- 2024-08-12 [4c248554b](https://github.com/aaronjeter/CrystalShireEngine/commit/4c248554b2910aa4d5df165275adf32fbf408639) — Added BattleAnimCmd_ClearEnemyHud
+- 2024-08-12 [e16362334](https://github.com/aaronjeter/CrystalShireEngine/commit/e16362334d15c63f5633b0524ca9f565fb590d49) — Added Taunt Animation & Description
+- 2024-08-12 [87dd60040](https://github.com/aaronjeter/CrystalShireEngine/commit/87dd60040ca30fdf5e844061990fe2e0ad4bab80) — Alter SmellingSalt Description
+- 2024-08-12 [e57527de5](https://github.com/aaronjeter/CrystalShireEngine/commit/e57527de5983ebfb04428e80904cd4fe5896b0a2) — Altered Focus Punch Description
+- 2024-08-12 [386afe979](https://github.com/aaronjeter/CrystalShireEngine/commit/386afe97998f20307793a8f43b214957fb7afa1a) — Alter Facade Description
+- 2024-08-12 [629932fc1](https://github.com/aaronjeter/CrystalShireEngine/commit/629932fc1ed5952bee674b3766329ec88abaa505) — Added Charge Animation & Description
+- 2024-08-12 [479f61e49](https://github.com/aaronjeter/CrystalShireEngine/commit/479f61e49e8869f945a678ef977b80544d430946) — Added Nature Power Animation & Description
+- 2024-08-12 [0828fd69b](https://github.com/aaronjeter/CrystalShireEngine/commit/0828fd69bd12cf5b501f9c68d7cd10e95596944f) — Added SmellingSalt Animation & Description
+- 2024-08-12 [130f7d9db](https://github.com/aaronjeter/CrystalShireEngine/commit/130f7d9dbaf764764932f0bb978c80b97833638b) — Added Focus Punch Animation & Description
+- 2024-08-12 [ecaa0054c](https://github.com/aaronjeter/CrystalShireEngine/commit/ecaa0054c076c9d81a6a17f34f16a4ff82d4ecbc) — Added Facade Animation & Description
+- 2024-08-12 [752406ab6](https://github.com/aaronjeter/CrystalShireEngine/commit/752406ab69084ee5125ec7dace7f41be58d48413) — Fixed Custom pals DEFAULT_PAL
+- 2024-08-12 [44bd7b114](https://github.com/aaronjeter/CrystalShireEngine/commit/44bd7b1149e5999661801257f07181f775f7e1cf) — Added Memento Animation & Description
+- 2024-08-12 [385b1e926](https://github.com/aaronjeter/CrystalShireEngine/commit/385b1e926bef21ddb5ef4d4c921c86d4191a198d) — Added Will O Wisp Animation & Description
+- 2024-08-11 [00ff18642](https://github.com/aaronjeter/CrystalShireEngine/commit/00ff18642be072f9fd15ee211b0b49ad80c28aa1) — Added Flatter Animation & Description
+- 2024-08-11 [ec54da504](https://github.com/aaronjeter/CrystalShireEngine/commit/ec54da504b3f858a339b40b74adc7958e9e835d7) — Updates Torment Description
+- 2024-08-11 [faa10fb3f](https://github.com/aaronjeter/CrystalShireEngine/commit/faa10fb3fd86c4ab638f29279e6cd296d44cff51) — Added Torment Animation & Description
+- 2024-08-11 [a8580f376](https://github.com/aaronjeter/CrystalShireEngine/commit/a8580f37600fc98b39ecf1c844cff3958a92cb4d) — Added Hail Description
+- 2024-08-11 [35ba92552](https://github.com/aaronjeter/CrystalShireEngine/commit/35ba925520912dbca0e1a4bf15381b9f35b9d501) — Updated Weather & Added Hail
+- 2024-08-11 [59d4d14cc](https://github.com/aaronjeter/CrystalShireEngine/commit/59d4d14cc6e6732a892bf4dfdfa7721f81667553) — Added Heat Wave Animation & Description
+- 2024-08-11 [1baaf2da8](https://github.com/aaronjeter/CrystalShireEngine/commit/1baaf2da8acf005b9b21cd1c6ca001fb175bf240) — Added Swallow Animation & Description
+- 2024-08-11 [bdde3f8b1](https://github.com/aaronjeter/CrystalShireEngine/commit/bdde3f8b1453d0fd4258329b5c4d33b2781e6027) — Fix Spit Up Animation
+- 2024-08-11 [04546bf1a](https://github.com/aaronjeter/CrystalShireEngine/commit/04546bf1a557c28329cbcd25e4cb0b0e2af16ee1) — Added Spit Up Animation & Description
+- 2024-08-11 [0961d62df](https://github.com/aaronjeter/CrystalShireEngine/commit/0961d62df730ed23e6270ec6798e89ae6bfd4a52) — Added Stockpile Animation & Description
+- 2024-08-10 [9e3179508](https://github.com/aaronjeter/CrystalShireEngine/commit/9e3179508cc3b180ccb74c7e1aefd9a0e10c7e8a) — Added Uproar Description
+- 2024-08-10 [78a7bda52](https://github.com/aaronjeter/CrystalShireEngine/commit/78a7bda522bb34f0914d2c37cf4755435b28ae3b) — Adjust Fake Out Description
+- 2024-08-10 [82a6c35eb](https://github.com/aaronjeter/CrystalShireEngine/commit/82a6c35eb268917a4d3a2b43966c2b1f9dd32c7c) — Fix a few Object comments
+- 2024-08-11 [22b393958](https://github.com/aaronjeter/CrystalShireEngine/commit/22b393958ea707affc095c5b4ff58729ca0cad8b) — Fixed Uproar's Frameset
+- 2024-08-10 [2a3632646](https://github.com/aaronjeter/CrystalShireEngine/commit/2a3632646582ac307b85ccded5d661504d102ff8) — Broken Uproar Animation
+- 2024-08-10 [b914e7c35](https://github.com/aaronjeter/CrystalShireEngine/commit/b914e7c354e59bbc1b6b18e4c9fe3610f67614a6) — Added Fake Out Animation & Description
+- 2024-08-10 [08e5bcf08](https://github.com/aaronjeter/CrystalShireEngine/commit/08e5bcf08531375cc4304059ef32925b4cf52c64) — Change `call` to `xcall` for Radial Move Functions
+- 2024-08-10 [8d61d70ba](https://github.com/aaronjeter/CrystalShireEngine/commit/8d61d70ba99fc2f7ef9010562b84d024fbc5ef31) — Adjust Radial Move Function Names
+- 2024-08-09 [452f210a4](https://github.com/aaronjeter/CrystalShireEngine/commit/452f210a466046fac5c8b7333b355832f5887b1a) — Add Radial Move In Function
+- 2024-08-09 [8b30db6ce](https://github.com/aaronjeter/CrystalShireEngine/commit/8b30db6ce69d09aa3c04e18c00f7123e3821d64c) — Add Radial Move Out Functions
+- 2024-08-09 [32752d3d0](https://github.com/aaronjeter/CrystalShireEngine/commit/32752d3d0e80a316698256bb04db9e31ecf1550a) — Initial Gen 3 Moves
+- 2024-08-09 [fe4e6a372](https://github.com/aaronjeter/CrystalShireEngine/commit/fe4e6a372c106970bdd2d8e22687a1bbcfa7110c) — Update Explostion Sub Branches to New Palette
+- 2024-08-09 [ba85a67b5](https://github.com/aaronjeter/CrystalShireEngine/commit/ba85a67b5f9dcd8833112ff022890769d914e614) — Remove Old Drain Sub Function
+- 2024-08-09 [d28ced36f](https://github.com/aaronjeter/CrystalShireEngine/commit/d28ced36fafccc1a5840ee92c00cf674fb895e70) — Update Beat Up Animation
+- 2024-08-09 [aba000ac2](https://github.com/aaronjeter/CrystalShireEngine/commit/aba000ac219c3ad310e47efb3ccae7d6c61d7e2a) — Updated Future Sight Animation
+- 2024-08-09 [41559196e](https://github.com/aaronjeter/CrystalShireEngine/commit/41559196ea09ad172ef03cf6b9556ac1fbf6d964) — Update Mirror Coat to New Palette
+- 2024-08-09 [57a3c3835](https://github.com/aaronjeter/CrystalShireEngine/commit/57a3c3835dc11dbc7ea1973e21fc6ed010c76148) — Update Pursuit Animation
+- 2024-08-09 [13bd68c24](https://github.com/aaronjeter/CrystalShireEngine/commit/13bd68c24256f38b7ae74bd97ca584b4f929f6c9) — Update Mean Look Animation
+- 2024-08-09 [80a1fed52](https://github.com/aaronjeter/CrystalShireEngine/commit/80a1fed527eb1a973eeb52c934246b7cdfd3be39) — Update Giga Drain Animation
+- 2024-08-09 [9034527b2](https://github.com/aaronjeter/CrystalShireEngine/commit/9034527b280b1419e911a78bd6abd1882892e43d) — Update Icy Wind Animation
+- 2024-08-09 [80600c140](https://github.com/aaronjeter/CrystalShireEngine/commit/80600c140c1a77563430d2026a3496d67c5a3df8) — Update Octazooka Animation
+- 2024-08-09 [f1824e1a7](https://github.com/aaronjeter/CrystalShireEngine/commit/f1824e1a72b6fe3ff78026b323f66ddd4d52642e) — Update Waterfall Animation
+- 2024-08-08 [b88d62adc](https://github.com/aaronjeter/CrystalShireEngine/commit/b88d62adc834f4e693b5f5ce6c172f8834b53c50) — Update Spark Animation
+- 2024-08-08 [e29dba467](https://github.com/aaronjeter/CrystalShireEngine/commit/e29dba467c61bb8034a2ac81eb3fcdee3f5c2f92) — Update Zap Cannon Animation
+- 2024-08-08 [bf2824d42](https://github.com/aaronjeter/CrystalShireEngine/commit/bf2824d426dd0630cb3fe7ee25da8b85d7390efe) — Update Thunderpunch BG Effect
+- 2024-08-08 [98549cb2a](https://github.com/aaronjeter/CrystalShireEngine/commit/98549cb2a8c12a427fee973597ec0f36d26b09e6) — Updated Tri Attack Animation
+- 2024-08-08 [9898ec6b9](https://github.com/aaronjeter/CrystalShireEngine/commit/9898ec6b9d475d5c7cd61401e4be29415cb3b770) — Update Crabhammer Animation
+- 2024-08-08 [c3d04d2c5](https://github.com/aaronjeter/CrystalShireEngine/commit/c3d04d2c5dc6f199267d1eec8b66713565146244) — Updated Leech Life Animation
+- 2024-08-08 [5d800ecd7](https://github.com/aaronjeter/CrystalShireEngine/commit/5d800ecd7ae9a2632406695927cd6a2457008fa9) — Update Barrage to New Palette
+- 2024-08-08 [2d5e998fa](https://github.com/aaronjeter/CrystalShireEngine/commit/2d5e998fae1195b2e67271669afb60e15b34b07a) — Update Dream Eater Animation
+- 2024-08-08 [74e5b81c4](https://github.com/aaronjeter/CrystalShireEngine/commit/74e5b81c404935922fe147426abf92da3035d37f) — Updated Spike Cannon Animation
+- 2024-08-08 [ffaf5dffe](https://github.com/aaronjeter/CrystalShireEngine/commit/ffaf5dffec47eb128e9cf036ad0e9856358b5d48) — Update Sludge Moves to New Palette
+- 2024-08-08 [d2b106aae](https://github.com/aaronjeter/CrystalShireEngine/commit/d2b106aae0f768199b108a51c62475993d0ed636) — Updated Egg Bomb Animation
+- 2024-08-08 [f256a18ed](https://github.com/aaronjeter/CrystalShireEngine/commit/f256a18ed2038c5f68a9f9fd946ff0cc25ed85d9) — Update Reflect Animation
+- 2024-08-08 [8e366eb78](https://github.com/aaronjeter/CrystalShireEngine/commit/8e366eb7851de539170a7ec8a117ad5fcba19574) — Update Light Screen to New Palette
+- 2024-08-08 [f261573a5](https://github.com/aaronjeter/CrystalShireEngine/commit/f261573a5485f8421d30d6eb6b4a4d2d9b09d712) — Update Minimize Animation
+- 2024-08-08 [66cb72d24](https://github.com/aaronjeter/CrystalShireEngine/commit/66cb72d24dfa16af8f3a51aae88149f375b060b4) — Updated Agility Animation
+- 2024-08-08 [d62f17182](https://github.com/aaronjeter/CrystalShireEngine/commit/d62f17182654dec9ff8ff2928422ffaae8be792d) — Updated Toxic to New Palette
+- 2024-08-08 [025511d66](https://github.com/aaronjeter/CrystalShireEngine/commit/025511d664ac04638e44e126ccb989db879b0797) — Update Electric Moves with New BG Effect
+- 2024-08-07 [d07e7d453](https://github.com/aaronjeter/CrystalShireEngine/commit/d07e7d453df5bf71e15a27aa7773c7e19c77487a) — Update Dragon Moves to New Palettes
+- 2024-08-07 [7ac553067](https://github.com/aaronjeter/CrystalShireEngine/commit/7ac553067e413297591b16420b0b2b2a42db5f25) — Update Petal Dance Animation
+- 2024-08-07 [0a1ea5170](https://github.com/aaronjeter/CrystalShireEngine/commit/0a1ea517073728844b37d330d7a94a2cae59c435) — Update Powder/Spore Move Animations
+- 2024-08-07 [4f5703a1f](https://github.com/aaronjeter/CrystalShireEngine/commit/4f5703a1f7664b25b64dc8ca2119a243758df460) — Update Solarbeam BG Effects
+- 2024-08-07 [a593ab5ba](https://github.com/aaronjeter/CrystalShireEngine/commit/a593ab5baf7f2dc01d3926dceb073a0c4170fc70) — Update Razor Leaf to New Palette
+- 2024-08-07 [6eaa3ce19](https://github.com/aaronjeter/CrystalShireEngine/commit/6eaa3ce19342e1cb315d28f3c78454fc2f0c5c90) — Updated Absorb Moves to New Palette
+- 2024-08-07 [e4ba215ef](https://github.com/aaronjeter/CrystalShireEngine/commit/e4ba215ef8e86971ba962cc0d898f5a8c3fbe001) — Update Seismic Toss Animation
+- 2024-08-07 [d5cdba6ed](https://github.com/aaronjeter/CrystalShireEngine/commit/d5cdba6edf616abe024b3053a5ba76bfd21df26c) — Update Recover Animation
+- 2024-08-07 [036accec4](https://github.com/aaronjeter/CrystalShireEngine/commit/036accec40c4f74dfdb085652529d3aa9933b49d) — Updated Aurora Beam Animation
+- 2024-08-07 [237efe87a](https://github.com/aaronjeter/CrystalShireEngine/commit/237efe87a280c9dcdc3b12c9256a058e3ae41cff) — Update Ice Moves to New Palette
+- 2024-08-07 [b5fc40550](https://github.com/aaronjeter/CrystalShireEngine/commit/b5fc405509b130770f3b1fc9cd02ff226c701099) — Update Bubble Moves to New Palette
+- 2024-08-07 [a651ac4c4](https://github.com/aaronjeter/CrystalShireEngine/commit/a651ac4c41d0bf59310ab64d99e90805a18d2e31) — Update Water Moves to New Palette
+- 2024-08-07 [d384bf6cf](https://github.com/aaronjeter/CrystalShireEngine/commit/d384bf6cfabea162245eedf48f3ebcb3efaf68b4) — Update Fire Moves to New Palette
+- 2024-08-07 [aa1b246c7](https://github.com/aaronjeter/CrystalShireEngine/commit/aa1b246c79cb350969f3d582eff1e64ce1dfc34d) — Update Acid Animation
+- 2024-08-07 [ede58f8c4](https://github.com/aaronjeter/CrystalShireEngine/commit/ede58f8c465bc49bd0a9b68959974a76ba20e525) — Updated Pin Missile Animation
+- 2024-08-07 [46fbbb9db](https://github.com/aaronjeter/CrystalShireEngine/commit/46fbbb9dbfdd7f9e26d958b97477d569d927c65c) — Update Needle Based Moves
+- 2024-08-07 [a7ee92642](https://github.com/aaronjeter/CrystalShireEngine/commit/a7ee92642cc1686a462d0d40d6e26e7d5d4db58d) — Add X_FLIP to BATTLE_ANIM_OBJ_PALM
+- 2024-08-06 [97052233b](https://github.com/aaronjeter/CrystalShireEngine/commit/97052233b6c31591f4906b2b7cfb72a8d07c6d1d) — Update Double Slap Animation
+- 2024-07-28 [96eb0a6c3](https://github.com/aaronjeter/CrystalShireEngine/commit/96eb0a6c3787080e7f6bae2b781cd7e45fd1fb23) — Fix Trademon to use *Shiny instead of *DVs
+- 2024-04-29 [f737d34da](https://github.com/aaronjeter/CrystalShireEngine/commit/f737d34da848941cfea875e4b635ceac868a9cb1) — Actually fix whiteout.asm
+- 2024-02-03 [d035e9cbc](https://github.com/aaronjeter/CrystalShireEngine/commit/d035e9cbc74c37b5c7765d3a09579c8fd27a57bf) — Add a null ability
+- 2024-02-02 [d81909595](https://github.com/aaronjeter/CrystalShireEngine/commit/d81909595524ede4c762f8b22c0dfea752c0fa2f) — Implement wild encounter-affecting field abilities
+- 2024-01-31 [e2f5d78e9](https://github.com/aaronjeter/CrystalShireEngine/commit/e2f5d78e921a07481a6175ebe7edd8d03f25e711) — Fix whitespace issues.
+- 2024-01-31 [fd07d3f41](https://github.com/aaronjeter/CrystalShireEngine/commit/fd07d3f41562dee1e40b0b7352b7a96c0f8f7fb6) — GetFarByte doesn't need `ld a, (hl)`
+- 2024-01-31 [da9125003](https://github.com/aaronjeter/CrystalShireEngine/commit/da9125003e9ec7505d53b551c9b35aa4313ee336) — Fix GetAbility for indirection tables
+- 2024-01-31 [b842c0546](https://github.com/aaronjeter/CrystalShireEngine/commit/b842c054604ab8726c15afbb8c12135781ee045c) — Add GetAbility
+- 2024-01-31 [8462f06d0](https://github.com/aaronjeter/CrystalShireEngine/commit/8462f06d0ae3b3d24f2223c4420757ff389f8c2a) — Fix some indentation
+- 2024-01-31 [1883783b7](https://github.com/aaronjeter/CrystalShireEngine/commit/1883783b75412123a4c9ebe6dc6cded70c383a68) — Abilities: Casing to match natures
+- 2024-01-31 [e05a9b4dd](https://github.com/aaronjeter/CrystalShireEngine/commit/e05a9b4ddce9dc33b895d7482003db9a60b7a5e8) — Natures: Nature print added to 4th page of stat screens
+- 2024-01-31 [033c762aa](https://github.com/aaronjeter/CrystalShireEngine/commit/033c762aa67cf6d9dde9af2ee465804efa4314b9) — Tools: Some useful scraping tools (NOTE: They don't work perfectly and require your intervention)
+- 2024-01-31 [53c80ff2d](https://github.com/aaronjeter/CrystalShireEngine/commit/53c80ff2d2e424afe95a113e0dbcce5d3a4d1ec2) — Abilities: Ability stats screen prints, fix some misses
+- 2024-01-30 [232189768](https://github.com/aaronjeter/CrystalShireEngine/commit/232189768b49e6a20b6b3e06f5c2ee42a92169b6) — Visual: Added 4th stats page
+- 2024-01-29 [af291f1ac](https://github.com/aaronjeter/CrystalShireEngine/commit/af291f1ac15fcc45013aa184c9b7f56047e99750) — Abilities: Fixed <LNBRK>, Base Data updated, WRAM updated
+- 2024-01-29 [f07c7923a](https://github.com/aaronjeter/CrystalShireEngine/commit/f07c7923a8c95ed6fa8719ad402f43d8b1300084) — Abilities: Constants, names, and descriptions
+- 2024-01-19 [8d5bc8440](https://github.com/aaronjeter/CrystalShireEngine/commit/8d5bc8440e478e3532ecc6abe323d41cbc6b3e7a) — float Fade System
+- 2024-01-18 [d64794d10](https://github.com/aaronjeter/CrystalShireEngine/commit/d64794d103ee2b144a2203f608a61f384a34bf01) — Lose money proportional to badges and level
+- 2024-01-14 [b508546cc](https://github.com/aaronjeter/CrystalShireEngine/commit/b508546cc7e7f96cfb8408fcd5ba5194ac4bb7e2) — 16-bit Framesets
+- 2024-01-14 [5ea57b5c5](https://github.com/aaronjeter/CrystalShireEngine/commit/5ea57b5c59e866215e9dff0f725c8fb431e2518a) — Revert "Re-arrange some pointer load for aesthetics" that load into h
+- 2024-01-13 [fd38888a9](https://github.com/aaronjeter/CrystalShireEngine/commit/fd38888a9f26bce1bc3e5ca0d22542fb05f1b380) — Re-arrange some pointer load for aesthetics
+- 2024-01-13 [38be3bf2a](https://github.com/aaronjeter/CrystalShireEngine/commit/38be3bf2af70b78463860304d32268cdb9ee1ba6) — Optimize pointless jump
+- 2024-01-13 [924facecd](https://github.com/aaronjeter/CrystalShireEngine/commit/924facecd0c20974e68bcfb6a2a3bb61c494cf8a) — Use `xcall` when you need to `farcall` in floating sections
+- 2024-01-13 [b07fc98b4](https://github.com/aaronjeter/CrystalShireEngine/commit/b07fc98b4ad3ad389d72620cfdcb91709b23278a) — Removed More Unnecessary Farcalls
+- 2024-01-13 [00c3f6afd](https://github.com/aaronjeter/CrystalShireEngine/commit/00c3f6afdc06c264983e13720fb7ca1b99c578e2) — Minor optimizations
+- 2024-01-13 [c1f1d2ad8](https://github.com/aaronjeter/CrystalShireEngine/commit/c1f1d2ad88a5fcb27eab775d41b085ad49bf5495) — These farcalls are now unnecessary.
+- 2024-01-13 [daaf1629a](https://github.com/aaronjeter/CrystalShireEngine/commit/daaf1629a0975377fd74eaea5661b30768372598) — BattleAnims sections should preserve original section context.
+- 2024-01-13 [f2be7740f](https://github.com/aaronjeter/CrystalShireEngine/commit/f2be7740ff729f5d11a98064fcfdc589a7e44258) — home/battle_anim.asm should use farcall for Sine/Cosine
+- 2024-01-13 [0f89ed046](https://github.com/aaronjeter/CrystalShireEngine/commit/0f89ed046828816be90efd2fba1d13996ed14c6a) — Fix start of line whitespace
+- 2024-01-13 [05fc199da](https://github.com/aaronjeter/CrystalShireEngine/commit/05fc199dabd1f07aa1097ae01872f23e0c660dd0) — Couple needed farcall's & uncomment sections
+- 2024-01-13 [bf0366509](https://github.com/aaronjeter/CrystalShireEngine/commit/bf0366509bdbe2adecd0ca0c030684de5b5a7594) — The BattleAnim functions should farcall Cosine and Sine
+- 2024-01-13 [6348e2809](https://github.com/aaronjeter/CrystalShireEngine/commit/6348e28092ceff5fbd0d729fdcfc1a40c27faf08) — Attempt to split battle_anim functions to their own sections
+- 2024-01-13 [3fbba754e](https://github.com/aaronjeter/CrystalShireEngine/commit/3fbba754e44090f7233b597ed316564c06758461) — Store Frameset Data & GetBattleAnimFrame Together
+- 2024-01-12 [dbc5a2b50](https://github.com/aaronjeter/CrystalShireEngine/commit/dbc5a2b5060332d6dfbe9498f0546664c2f15bd1) — Sky Attack has a increased critical hit ratio
+- 2024-01-12 [4d433a7c6](https://github.com/aaronjeter/CrystalShireEngine/commit/4d433a7c61d6fe720a4d8f1926d52002a6359674) — Gen 3 Item Name updates
+- 2024-01-12 [0375d41c5](https://github.com/aaronjeter/CrystalShireEngine/commit/0375d41c5035627494a513167b9e040a3fc92d91) — Update MoveEffectPriorities to gen 3
+- 2024-01-12 [af3a698be](https://github.com/aaronjeter/CrystalShireEngine/commit/af3a698be7a8acaeebc018ab5489cd202218cbba) — Razor Wind accuracy changes
+- 2024-01-09 [465671431](https://github.com/aaronjeter/CrystalShireEngine/commit/465671431f12547b9535e1b8506e68869e7a21a5) — Gen 3 Pain Split bypasses accuracy
+- 2024-01-09 [fcbaa2c17](https://github.com/aaronjeter/CrystalShireEngine/commit/fcbaa2c17e38d783aea1940573d641b0dd694f9e) — Gen 3 Mimic bypasses accuracy checks
+- 2024-01-09 [e31763622](https://github.com/aaronjeter/CrystalShireEngine/commit/e3176362246cacde83f2319af1d7f30e1da25e54) — Gen 3 Lowkick & Extract Height/Weight From Dex Entries
+- 2024-01-09 [55e3eeada](https://github.com/aaronjeter/CrystalShireEngine/commit/55e3eeada26265c28faf3d6c6d9826160ee5a596) — Create init body_data.asm
+- 2024-01-06 [115192cfa](https://github.com/aaronjeter/CrystalShireEngine/commit/115192cfa20071d6ce0f4e477a4b10a7ceaf42fe) — Lock down `Battle Animation Data`
+- 2024-01-05 [aad659d9f](https://github.com/aaronjeter/CrystalShireEngine/commit/aad659d9f113b8d300f7499b3287fab90f048bf1) — Add Up/Down arrows to Charmap
+- 2024-01-05 [2dfa789fc](https://github.com/aaronjeter/CrystalShireEngine/commit/2dfa789fc5ffd8826af2673215c251475f95f813) — Adjust Bug Contest Caught Location code
+- 2024-01-05 [317863cc1](https://github.com/aaronjeter/CrystalShireEngine/commit/317863cc1d0f65b07f72554875d45fa71f7960d0) — Expand Caught Level and add Caught Ball to data struct
+- 2024-01-05 [b62dde755](https://github.com/aaronjeter/CrystalShireEngine/commit/b62dde7553aced45ff93545822287140c162c6ce) — Init Gen 3 Breeding rework
+- 2024-01-03 [94434546f](https://github.com/aaronjeter/CrystalShireEngine/commit/94434546f1bfdf0220d1d8aabfd1e2b712c2bbf5) — macro `npctrade` should use `ivs` macro
+- 2024-01-03 [fab930475](https://github.com/aaronjeter/CrystalShireEngine/commit/fab9304751df51e03ace970bb7adb7eb2b9ecb63) — Fix `ivs` macro
+- 2024-01-03 [b91b59c14](https://github.com/aaronjeter/CrystalShireEngine/commit/b91b59c14b78baaf53357f00075bd81eab757df5) — Remove `CalcMonStatC` TODO comment
+- 2024-01-03 [65bb8aca4](https://github.com/aaronjeter/CrystalShireEngine/commit/65bb8aca49c14b1bf2eb4bee404e49be53722fe2) — Keep contest logic for max IV points when shiny
+- 2024-01-03 [4a6ff83bd](https://github.com/aaronjeter/CrystalShireEngine/commit/4a6ff83bd7c1e468e9e3e6cc5aeccb3654d4fcaf) — Update `ContestScore` to use IVs
+- 2024-01-03 [198ad675d](https://github.com/aaronjeter/CrystalShireEngine/commit/198ad675d96fb39771103b7517af95f4d6fb0395) — Fix inefficient HRAM load/store
+- 2024-01-02 [2d75f77d5](https://github.com/aaronjeter/CrystalShireEngine/commit/2d75f77d50bd94410b8d097e283f77e95885fc9a) — Add formula comments for HP calculations
+- 2024-01-02 [6af81c992](https://github.com/aaronjeter/CrystalShireEngine/commit/6af81c99295e4dad5fc4a7f74fa52a907ca4f92b) — Update hidden power to use IVs
+- 2024-01-02 [9171f8ab2](https://github.com/aaronjeter/CrystalShireEngine/commit/9171f8ab2f1fbcb015ae81ccf263230741232368) — Optimize `home/ivs.asm` for size
+- 2024-01-02 [8fd8067ec](https://github.com/aaronjeter/CrystalShireEngine/commit/8fd8067ecd441be73b13a94e926b1793184259ee) — Use new IV packing method
+- 2024-01-02 [8766412c7](https://github.com/aaronjeter/CrystalShireEngine/commit/8766412c7ee83c6ef4a2e3d4acb8428c36101db6) — Use Sylvie's `ivs` macro
+- 2024-01-02 [33835283d](https://github.com/aaronjeter/CrystalShireEngine/commit/33835283d811bb436e661e3e8fb937c40432797b) — Create PokemonIVByteConverter.py
+- 2023-12-31 [3d7e5496d](https://github.com/aaronjeter/CrystalShireEngine/commit/3d7e5496d15e1d0506eae4cc48c058246a280b99) — NPCTrades fix for IVs
+- 2023-12-29 [7415f1ba6](https://github.com/aaronjeter/CrystalShireEngine/commit/7415f1ba6e7d5365ee9c31414665ee5b70572245) — Alter Prior Optimization to Fix Animations
+- 2023-12-28 [7f14367d5](https://github.com/aaronjeter/CrystalShireEngine/commit/7f14367d563d617ddabc6fb02c9d0fb23bcbba9a) — Delete TestBerryDesc
+- 2023-12-28 [644ee337b](https://github.com/aaronjeter/CrystalShireEngine/commit/644ee337b8a5a95802f714de009e477f22e07904) — optimize update_item_descriptions.asm (gen3)
+- 2023-12-28 [d07ee2138](https://github.com/aaronjeter/CrystalShireEngine/commit/d07ee213867e7335623bd3e89230b60558483ff0) — `jmp` can be `jr`
+- 2023-12-28 [6d9310117](https://github.com/aaronjeter/CrystalShireEngine/commit/6d9310117c16ef20dffbd61c5b98c1511e857474) — Clean Up Battle Anim Macros
+- 2023-12-28 [dfcad94f1](https://github.com/aaronjeter/CrystalShireEngine/commit/dfcad94f1d945210f17192710b6df93df47a247c) — Rerun optimize.py on gen3 after deletion merge
+- 2023-12-28 [4ebd716ac](https://github.com/aaronjeter/CrystalShireEngine/commit/4ebd716ac250cc32954282ce115d6cb62fb06a85) — Expand ANIM_OBJ Limit
+- 2023-12-08 [8de112668](https://github.com/aaronjeter/CrystalShireEngine/commit/8de112668cd889bdc785d082ee23ce119b104144) — Some minor optimizations
+- 2023-12-08 [cd08e561f](https://github.com/aaronjeter/CrystalShireEngine/commit/cd08e561fa631aebc4465d875e64cf874a98b693) — Accidentally left in print statement when testing
+- 2023-12-07 [08352bef8](https://github.com/aaronjeter/CrystalShireEngine/commit/08352bef88f77d320af5c22e14c23bf237f68a6c) — Initial implementation of Natures
+- 2023-12-04 [0c0110a73](https://github.com/aaronjeter/CrystalShireEngine/commit/0c0110a73a0786b27a34e03d0254e6acbf253dfa) — Make sure `CalcMonStatC` adds (EV / 4) to formula
+- 2023-12-02 [64037af22](https://github.com/aaronjeter/CrystalShireEngine/commit/64037af22c5ca69fd497d20c1873b0c1e302c271) — Further Convert DVs to IVs
+- 2023-11-26 [8e6e64437](https://github.com/aaronjeter/CrystalShireEngine/commit/8e6e644374f1b3114e2f47c432f4c1245dc9a46d) — Init Gen3 Pokemon data struct (not complete)
+- 2023-11-12 [9fd815cfd](https://github.com/aaronjeter/CrystalShireEngine/commit/9fd815cfde20a3921e68819bfec9890e8c4d1c4b) — Expand Pokemon struct by 1 byte.
+- 2023-11-12 [4841a56cf](https://github.com/aaronjeter/CrystalShireEngine/commit/4841a56cfb0e9159cb29711314ea2bf46f1ccb2a) — jmp -> jr
+- 2023-11-12 [6533c1ddc](https://github.com/aaronjeter/CrystalShireEngine/commit/6533c1ddcf6e01cd56dfa0190cd9848f15c391de) — Couple more tailcall optimizations
+- 2023-11-08 [01f88935c](https://github.com/aaronjeter/CrystalShireEngine/commit/01f88935c55d5fcc2897e78a1fc5713451417a43) — Berry pocket graphics
+- 2023-11-05 [0bad697cc](https://github.com/aaronjeter/CrystalShireEngine/commit/0bad697cce85fd996321732ec25377c4cf417597) — Move Berries and Apricorns to Berries Pocket.
+- 2023-11-05 [d1895d584](https://github.com/aaronjeter/CrystalShireEngine/commit/d1895d584a5693749b77171454a0cc83de918b39) — Add Berry Pocket Data Structure
+
+## SnowflakePort
+
+Revision: `0ae2f7b3aa881cdd5df9feaf23b5ebdeb5c5095c`. Non-merge commits in this section: 0.
+
+No unique commits relative to core.

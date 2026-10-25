@@ -5945,6 +5945,9 @@ MoveSelectionScreen:
 	ret
 
 .use_move
+	; The weather indicator borrows animation OAM while choosing a move.
+	; Clear it on both A and B before any text, ability or move animation.
+	farcall ClearBattleWeatherIndicator
 	pop af
 	ret nz
 
@@ -6005,6 +6008,9 @@ MoveSelectionScreen:
 	ld hl, BattleText_TheresNoPPLeftForThisMove
 
 .place_textbox_start_over
+	push hl
+	farcall ClearBattleWeatherIndicator
+	pop hl
 	call StdBattleTextbox
 	call Call_LoadTempTileMapToTileMap
 	jp MoveSelectionScreen

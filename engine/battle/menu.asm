@@ -1,9 +1,11 @@
 LoadBattleMenu:
 	ld hl, BattleMenuHeader
 	call LoadMenuHeader
+	farcall DrawBattleWeatherIndicator
 	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call InterpretBattleMenu
+	farcall ClearBattleWeatherIndicator
 	ld a, [wMenuCursorBuffer]
 	ld [wBattleMenuCursorBuffer], a
 	call ExitMenu

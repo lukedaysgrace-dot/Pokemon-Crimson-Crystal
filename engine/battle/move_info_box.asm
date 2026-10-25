@@ -103,6 +103,7 @@ BattleMoveInfoStats::
 	jr nz, .attr_vram_loop
 	xor a
 	ldh [rVBK], a
+	farcall DrawBattleWeatherIndicator
 	ret
 
 .PowAcc:
