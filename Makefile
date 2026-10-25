@@ -78,6 +78,10 @@ test-engine-optimizations: pokecrystal.gbc pokecrystal_debug.gbc
 test-battle-weather: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/weather_indicator_checks.py
 
+.PHONY: test-cap-fast
+test-cap-fast: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/cap_fast_ui_checks.py
+
 debug: pokecrystal_debug.gbc
 
 test: pokecrystal_debug.gbc

@@ -4,7 +4,7 @@ Source comparison: October 25, 2026. This is a recommendation and source-history
 
 ## Result
 
-The best immediate candidates are running shoes, a battle-weather indicator, FAST default text, showing the current level cap, instant Kurt crafting, text compression, and additional bank/space analysis tools. Following Pokémon and doubles are the largest new gameplay opportunities. Dynamic overworld palettes, larger tilesets and character customization offer substantial presentation improvements. Team EXP and level scaling need deliberate balance decisions.
+The best immediate candidates are running shoes, a battle-weather indicator, FAST default text, showing the current level cap, text compression, and additional bank/space analysis tools. Following Pokémon and doubles are the largest new gameplay opportunities. Dynamic overworld palettes, larger tilesets and character customization offer substantial presentation improvements. Team EXP and level scaling need deliberate balance decisions.
 
 Crimson already has many headline CSE improvements and, in several areas, a substantially more customized implementation. Port individual ideas into Crimson; replacing the engine would discard or conflict with existing work.
 
@@ -36,7 +36,7 @@ Status meanings: **Add** = a concrete gap identified in the reviewed Crimson sou
 | P03 | Battle weather icon | **Add.** Persistent weather information while choosing moves is especially useful with Crimson's weather abilities. Core's icon covers rain/sun/sand; adapt for Hail and suppressed weather. A remaining-turn counter would be a new extension. Avoid the occupied ability-banner/HUD tiles and OAM. | High / medium | [core implementation](https://github.com/aaronjeter/CrystalShireEngine/commit/a866f7834), [Hail branch change](https://github.com/aaronjeter/CrystalShireEngine/commit/797091a44) |
 | P04 | FAST text as the default | **Add.** Crimson's default options still select MED. This is a small, useful change for new saves. Instant text is an additional design, not established by this donor change. | High / small | [default text change](https://github.com/aaronjeter/CrystalShireEngine/commit/aa2dd2ef7) |
 | P05 | Display the active level cap on the trainer card | **Add/adapt.** Crimson already enforces Hard Mode caps; making the current cap visible explains blocked EXP/candies. Keep Crimson's progression schedule. | High / small-medium | [cap display](https://github.com/aaronjeter/CrystalShireEngine/commit/ef9a58ac8) |
-| P06 | Instant Apricorn crafting | **Adapt.** Removes Kurt's real-time wait. Keep Crimson's existing harvest quantities and reward scripts. A throughput decision, rather than a battle rebalance. | High / small-medium | [Kurt crafting](https://github.com/aaronjeter/CrystalShireEngine/commit/a2ad971b1) |
+| P06 | Instant Apricorn crafting | **Keep.** Crimson already crafts ordinary Apricorn Balls immediately: after selecting a batch, .GaveKurtApricorns jumps straight back to the reward dispatch. The remaining timed flag is set for the GS Ball story event. The earlier recommendation to add instant crafting was incorrect. | Already present | [Kurt crafting](https://github.com/aaronjeter/CrystalShireEngine/commit/a2ad971b1) |
 | P07 | Team EXP for nonparticipants | **Adapt.** Reduces replacement-team grinding. CSE history contains different nonparticipant shares and a progression-dependent adjustment; choose a Crimson toggle and cap behavior rather than adopting a historical percentage blindly. Exclude eggs and define fainted-member behavior. | High / large | [shared EXP](https://github.com/aaronjeter/CrystalShireEngine/commit/8f22b3bb7), [progression adjustment](https://github.com/aaronjeter/CrystalShireEngine/commit/17aaa0abc) |
 | P08 | EXP for catching Pokémon | **Adapt.** Rewards collection. Reuse Crimson's EXP, level-up, evolution and cap paths; account for captures sent directly to storage and contest battles. | Medium / medium-large | [catch EXP](https://github.com/aaronjeter/CrystalShireEngine/commit/386cc8869) |
 | P09 | Clearer bag pocket graphics | **Adapt.** CSE draws pocket indicators and changes the bag layout. Improve pocket recognition; retain Crimson's repeated-use item flow, 16-bit IDs and cursor behavior. | Medium / medium | [bag display](https://github.com/aaronjeter/CrystalShireEngine/commit/f133a2f14) |
@@ -232,7 +232,7 @@ Also inspect these CSE-specific regression families when porting related systems
 
 ## 9. Suggested order for Crimson
 
-1. Small visible improvements: B-running, FAST default text, cap display, Kurt crafting and a properly integrated weather indicator.
+1. Small visible improvements: B-running, FAST default text, cap display and a properly integrated weather indicator.
 2. Development capacity: text compression, adapted farcheck/reference analysis and ROM build CI using the existing test suite.
 3. Graphics infrastructure: dynamic palettes/reload, then character colors, more map art and any needed tileset expansion.
 4. Separate balance decisions: team EXP, catch EXP, scaling, new Balls and additional attacks/species.
