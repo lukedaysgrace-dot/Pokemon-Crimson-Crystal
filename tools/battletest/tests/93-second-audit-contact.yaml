@@ -1,0 +1,109 @@
+# Shell Side Arm is contact only when its resolved category is physical.
+# The static ContactMoves bit is deliberately clear; the runtime category
+# must drive abilities, held items and AI contact-risk scoring.
+
+- name: "Second audit: physical player Shell Side Arm triggers Iron Barbs"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM]}
+  enemy: {species: MEW, level: 100, ability: IRON_BARBS, moves: [SPLASH]}
+  setup_wram: {wBattleMonAttack: [0, 250], wBattleMonSpclAtk: [0, 20]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - wram('wPlayerMoveStructCategory') == 0
+    - player.start_hp - player.hp == player.maxhp // 8
+
+- name: "Second audit: special player Shell Side Arm avoids Iron Barbs"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM]}
+  enemy: {species: MEW, level: 100, ability: IRON_BARBS, moves: [SPLASH]}
+  setup_wram: {wBattleMonAttack: [0, 20], wBattleMonSpclAtk: [0, 250]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - wram('wPlayerMoveStructCategory') == 1
+    - player.hp == player.start_hp
+
+- name: "Second audit: physical enemy Shell Side Arm triggers Iron Barbs"
+  player: {species: MEW, level: 100, ability: IRON_BARBS, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM]}
+  setup_wram: {wEnemyMonAttack: [0, 250], wEnemyMonSpclAtk: [0, 20]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - wram('wEnemyMoveStructCategory') == 0
+    - enemy.start_hp - enemy.hp == enemy.maxhp // 8
+
+- name: "Second audit: special enemy Shell Side Arm avoids Iron Barbs"
+  player: {species: MEW, level: 100, ability: IRON_BARBS, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM]}
+  setup_wram: {wEnemyMonAttack: [0, 20], wEnemyMonSpclAtk: [0, 250]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - wram('wEnemyMoveStructCategory') == 1
+    - enemy.hp == enemy.start_hp
+
+- name: "Second audit: physical player Shell Side Arm triggers Rocky Helmet"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH]}
+  setup_wram: {wBattleMonAttack: [0, 250], wBattleMonSpclAtk: [0, 20]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "player.start_hp - player.hp == player.maxhp // 6"]
+
+- name: "Second audit: special player Shell Side Arm avoids Rocky Helmet"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH]}
+  setup_wram: {wBattleMonAttack: [0, 20], wBattleMonSpclAtk: [0, 250]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "player.hp == player.start_hp"]
+
+- name: "Second audit: physical enemy Shell Side Arm triggers Rocky Helmet"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM]}
+  setup_wram: {wEnemyMonAttack: [0, 250], wEnemyMonSpclAtk: [0, 20]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "enemy.start_hp - enemy.hp == enemy.maxhp // 6"]
+
+- name: "Second audit: special enemy Shell Side Arm avoids Rocky Helmet"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SHELLSIDEARM]}
+  setup_wram: {wEnemyMonAttack: [0, 20], wEnemyMonSpclAtk: [0, 250]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "enemy.hp == enemy.start_hp"]
+
+- name: "Second audit: AI avoids physical Shell Side Arm into Rocky Helmet"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, substatus: [CANT_RUN], moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH, SHELLSIDEARM]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy_class: FALKNER
+  setup_wram: {wEnemyMonAttack: [0, 250], wEnemyMonSpclAtk: [0, 20]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'SPLASH'"]
+
+- name: "Second audit: AI uses special Shell Side Arm into Rocky Helmet"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, item: ROCKY_HELMET, substatus: [CANT_RUN], moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH, SHELLSIDEARM]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy_class: FALKNER
+  setup_wram: {wEnemyMonAttack: [0, 20], wEnemyMonSpclAtk: [0, 250]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'SHELLSIDEARM'", "enemy.hp == enemy.start_hp"]
+
+- name: "Second audit: AI uses physical Shell Side Arm into Klutz Helmet"
+  player: {species: MEW, level: 100, ability: KLUTZ, item: ROCKY_HELMET, substatus: [CANT_RUN], moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH, SHELLSIDEARM]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy_class: FALKNER
+  setup_wram: {wEnemyMonAttack: [0, 250], wEnemyMonSpclAtk: [0, 20]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'SHELLSIDEARM'", "enemy.hp == enemy.start_hp"]

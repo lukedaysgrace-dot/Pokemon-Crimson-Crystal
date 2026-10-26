@@ -87,6 +87,10 @@ def main():
         return script('EcruteakCityWishingWell', accept)
 
     try:
+        # The coin-wish fixture must not contain either quest item; the well
+        # now prioritizes those branches, covered by their own native tests.
+        write('wNumKeyItems', 0)
+        write('wKeyItems', [255])
         for claimed in (False, True):
             for funds in (0, 99, 100, 101, 1000):
                 for accept in (False, True):

@@ -741,7 +741,16 @@ def tileset_files(audit: Audit):
     for constant, prefix in prefixes.items():
         meta = find_file(prefix + "Meta", "INCBIN")
         attr = find_file(prefix + "Attr", "INCBIN")
-        collision = find_file(prefix + "Coll", "INCLUDE")
+        # Most tilesets use tilecoll source, but imported tilesets can keep
+        # the same four collision bytes per metatile in a binary asset.
+        collision_directive = "INCLUDE"
+        collision_label = prefix + "Coll"
+        if collision_label in positions:
+            tail = lines[positions[collision_label] + 1 :]
+            first = next((source(line) for line in tail if source(line)), "")
+            if first.startswith("INCBIN "):
+                collision_directive = "INCBIN"
+        collision = find_file(collision_label, collision_directive)
         if not meta or not attr or not collision:
             continue
         audit.expect(meta.is_file(), f"missing metatile file {meta.relative_to(ROOT)}")
@@ -755,15 +764,32 @@ def tileset_files(audit: Audit):
             f"{attr.relative_to(ROOT)} length does not match {meta.relative_to(ROOT)}",
         )
         metatiles = meta.stat().st_size // 16
-        collision_rows = len(re.findall(r"^\s*tilecoll\b", read(collision), re.MULTILINE))
+        if collision_directive == "INCBIN":
+            collision_names = {
+                number(value): name
+                for name, value in re.findall(
+                    r"^COLL_(\w+)\s+EQU\s+(\$[0-9a-fA-F]+)\b",
+                    read(ROOT / "constants/collision_constants.asm"), re.MULTILINE,
+                )
+            }
+            raw = collision.read_bytes()
+            audit.expect(len(raw) % 4 == 0, f"{collision.relative_to(ROOT)} has an incomplete collision row")
+            unknown = sorted(set(raw) - collision_names.keys())
+            audit.expect(not unknown, f"{collision.relative_to(ROOT)} has unknown collision bytes: {unknown}")
+            collision_data = [
+                [collision_names.get(value, f"UNKNOWN_{value:02X}") for value in raw[offset : offset + 4]]
+                for offset in range(0, len(raw), 4)
+            ]
+        else:
+            collision_data = [
+                args(match.group(1))
+                for match in re.finditer(r"^\s*tilecoll\s+(.+?)(?:\s*;.*)?$", read(collision), re.MULTILINE)
+            ]
+        collision_rows = len(collision_data)
         audit.expect(
             collision_rows >= metatiles,
             f"{collision.relative_to(ROOT)} has {collision_rows} rows for {metatiles} metatiles",
         )
-        collision_data = [
-            args(match.group(1))
-            for match in re.finditer(r"^\s*tilecoll\s+(.+?)(?:\s*;.*)?$", read(collision), re.MULTILINE)
-        ]
         audit.expect(
             all(len(row) == 4 for row in collision_data),
             f"{collision.relative_to(ROOT)} contains a malformed tilecoll row",
@@ -798,7 +824,7 @@ def audit_maps(audit: Audit) -> dict[str, dict]:
                 f"{info['name']} uses block ${invalid[0][1]:02x} at offset {invalid[0][0]}, beyond "
                 f"{meta_path.name}'s {metatiles} blocks" if invalid else "",
             )
-            if not invalid:
+            if not invalid and len(collision_data) >= metatiles and all(len(row) == 4 for row in collision_data):
                 recorded_warps = {(x, y) for _, x, y in warp_coordinates.get(constant, [])}
                 active_warps = set()
                 for y in range(info["height"] * 2):
@@ -831,6 +857,14 @@ def audit_maps(audit: Audit) -> dict[str, dict]:
                         (x, y + 1),
                     }
                     candidates = sorted((neighbors & active_warps) - recorded_warps)
+                    # Route 4's cave mouth is party-gated by a coord script.
+                    # Its return warp deliberately lands on the floor below.
+                    # Require the gate event too, so moving/removing it still
+                    # exposes an accidentally shifted entrance to this audit.
+                    if constant == "ROUTE_4" and (x, y) == (34, 4) and (34, 3) in candidates:
+                        events = directive_rows(read(ROOT / "maps/Route4.asm"), "coord_event")
+                        if any(row == ["34", "3", "-1", "Route4CeruleanCaveEntrance"] for _, row in events):
+                            candidates.remove((34, 3))
                     if candidates:
                         suspect_shifts.append((line_number, x, y, candidates[0]))
                 audit.expect(

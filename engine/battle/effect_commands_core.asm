@@ -622,9 +622,8 @@ BattleRageFistPower_Core:
 BattleShellSideArm_Core:
 ; Become physical or special, whichever would hit harder:
 ; physical if Atk * target SpDef > SpAtk * target Def (ties go special).
-; All four stats are halved together until they fit in 8 bits, which
-; preserves the comparison. Uses the stats as modified by stat stages,
-; like the games do.
+; Compare exact products: halving the stats can round a winning category
+; into a tie or even reverse the comparison. Use the stage-modified stats.
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .enemy_user
@@ -644,7 +643,7 @@ BattleShellSideArm_Core:
 	ld [wCurDamage], a
 	ld a, [wEnemyMonSpclDef + 1]
 	ld [wCurDamage + 1], a
-	jr .shift_loop
+	jr .products
 .enemy_user
 	ld a, [wEnemyMonAttack]
 	ld [wBuffer1], a
@@ -663,73 +662,49 @@ BattleShellSideArm_Core:
 	ld a, [wBattleMonSpclDef + 1]
 	ld [wCurDamage + 1], a
 
-.shift_loop
+.products
 	ld a, [wBuffer1]
 	ld b, a
-	ld a, [wBuffer3]
-	or b
-	ld b, a
-	ld a, [wBuffer5]
-	or b
-	ld b, a
-	ld a, [wCurDamage]
-	or b
-	jr z, .small_enough
-	ld hl, wBuffer1
-	call .halve
-	ld hl, wBuffer3
-	call .halve
-	ld hl, wBuffer5
-	call .halve
-	ld hl, wCurDamage
-	call .halve
-	jr .shift_loop
-
-.halve
-	ld a, [hl]
-	srl a
-	ld [hli], a
-	ld a, [hl]
-	rra
-	ld [hld], a
-	ret
-
-.small_enough
-	; m1 = Atk * target SpDef
-	xor a
-	ldh [hMultiplicand + 0], a
-	ldh [hMultiplicand + 1], a
 	ld a, [wBuffer2]
-	ldh [hMultiplicand + 2], a
-	ld a, [wCurDamage + 1]
-	ldh [hMultiplier], a
-	call Multiply
-	ldh a, [hProduct + 2]
+	ld c, a
+	ld a, [wCurDamage]
 	ld d, a
-	ldh a, [hProduct + 3]
+	ld a, [wCurDamage + 1]
 	ld e, a
-	; m2 = SpAtk * target Def
-	xor a
-	ldh [hMultiplicand + 0], a
-	ldh [hMultiplicand + 1], a
-	ld a, [wBuffer4]
-	ldh [hMultiplicand + 2], a
-	ld a, [wBuffer6]
-	ldh [hMultiplier], a
-	call Multiply
+	call .MultiplyStats ; Atk * target SpDef
+	ldh a, [hProduct]
+	ld b, a
+	ldh a, [hProduct + 1]
+	ld c, a
+	push bc
 	ldh a, [hProduct + 2]
 	ld b, a
 	ldh a, [hProduct + 3]
 	ld c, a
-	; physical iff de > bc
-	ld a, d
-	cp b
-	jr c, .special
-	jr nz, .physical
-	ld a, e
-	cp c
-	jr c, .special
-	jr z, .special
+	push bc
+
+	ld a, [wBuffer3]
+	ld b, a
+	ld a, [wBuffer4]
+	ld c, a
+	ld a, [wBuffer5]
+	ld d, a
+	ld a, [wBuffer6]
+	ld e, a
+	call .MultiplyStats ; SpAtk * target Def
+	pop de
+	pop bc
+	; Subtract the physical product from the special product. A borrow
+	; means physical is strictly larger; equality stays special.
+	ldh a, [hProduct + 3]
+	sub e
+	ldh a, [hProduct + 2]
+	sbc d
+	ldh a, [hProduct + 1]
+	sbc c
+	ldh a, [hProduct]
+	sbc b
+	jr nc, .special
 .physical
 	ld b, CATEGORIZE_PHYSICAL
 	jr .store
@@ -747,6 +722,58 @@ BattleShellSideArm_Core:
 	xor a
 	ld [wCurDamage], a
 	ld [wCurDamage + 1], a
+	ret
+
+.MultiplyStats:
+; Unsigned bc * de -> big-endian hProduct (32 bits). hMathBuffer holds
+; the shifted multiplicand; no WRAM beyond the existing stat scratch is used.
+	xor a
+	ldh [hMathBuffer], a
+	ldh [hMathBuffer + 1], a
+	ldh [hProduct], a
+	ldh [hProduct + 1], a
+	ldh [hProduct + 2], a
+	ldh [hProduct + 3], a
+	ld a, d
+	ldh [hMathBuffer + 2], a
+	ld a, e
+	ldh [hMathBuffer + 3], a
+	ld d, 16
+.multiply_loop
+	srl b
+	rr c
+	jr nc, .shift_product
+	ldh a, [hMathBuffer + 3]
+	ld e, a
+	ldh a, [hProduct + 3]
+	add e
+	ldh [hProduct + 3], a
+	ldh a, [hMathBuffer + 2]
+	ld e, a
+	ldh a, [hProduct + 2]
+	adc e
+	ldh [hProduct + 2], a
+	ldh a, [hMathBuffer + 1]
+	ld e, a
+	ldh a, [hProduct + 1]
+	adc e
+	ldh [hProduct + 1], a
+	ldh a, [hMathBuffer]
+	ld e, a
+	ldh a, [hProduct]
+	adc e
+	ldh [hProduct], a
+.shift_product
+	ld hl, hMathBuffer + 3
+	sla [hl]
+	dec hl
+	rl [hl]
+	dec hl
+	rl [hl]
+	dec hl
+	rl [hl]
+	dec d
+	jr nz, .multiply_loop
 	ret
 
 BattleEerieSpell_Core:

@@ -163,8 +163,9 @@ def main():
             owned(deco, True)
         check(stock(2, 7) == [] and stock(2, 8), 'daily sellout did not refresh tomorrow')
 
-        # Preserve fixed save addresses while adding only scratch menu storage.
-        check(h.s('wCurBox') == 0xdbb9 and h.s('wDecorationShopStock') == h.s('wMartItem1BCD'), 'save layout shifted')
+        # Save offsets stay fixed even if scratch before wGameData moves.
+        check(h.s('wCurBox') - h.s('wGameData') == 0x6f3, 'current-box save offset shifted')
+        check(h.s('wDecorationShopStock') == h.s('wMartItem1BCD'), 'shop scratch no longer aliases mart scratch')
         print(f'DECORATION SHOPS: {checks} checks passed')
     finally:
         h.pyboy.stop(save=False)

@@ -296,9 +296,20 @@ BattleConditionalBoost_Core:
 	; Opponent must have gone first this turn...
 	callfar CheckOpponentWentFirst
 	ret z
-	; ...and used a damaging move.
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call GetBattleVar
+	; ...and actually dealt direct HP damage to the user this round.
+	; LastCounterMove also records status moves and misses. Read only the
+	; hit category: LoadCounterHit_Core would overwrite the damage we are
+	; about to double with the incoming hit's damage.
+	push hl
+	ld hl, wPlayerCounterHitCategory
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .avalanche_hit
+	ld hl, wEnemyCounterHitCategory
+.avalanche_hit
+	ld a, BANK(wPlayerCounterHitCategory)
+	call GetFarWRAMByte
+	pop hl
 	and a
 	ret z
 	; fallthrough

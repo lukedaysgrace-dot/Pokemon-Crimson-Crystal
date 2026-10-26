@@ -5,9 +5,9 @@
 	const CERULEANCAVEB1F_POKE_BALL2
 
 CeruleanCaveB1F_MapScripts:
-	db 0
+	db 0 ; scene scripts
 
-	db 0
+	db 0 ; callbacks
 
 CeruleanCaveMewtwo:
 	faceplayer
@@ -59,16 +59,16 @@ CeruleanCaveB1F_MapEvents:
 	; filler
 	db 0, 0
 
-	db 1
+	db 1 ; warp events
 	warp_event 5, 7, CERULEAN_CAVE_1F, 5
 
-	db 0
+	db 0 ; coord events
 
-	db 2
+	db 2 ; bg events
 	bg_event 8, 6, BGEVENT_ITEM, CeruleanCaveB1FHiddenMaxRevive
 	bg_event 24, 11, BGEVENT_ITEM, CeruleanCaveB1FHiddenUltraBall
 
-	db 3
+	db 3 ; object events
 	object_event 7, 13, SPRITE_MEWTWO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanCaveMewtwo, EVENT_SILVER_CAVE_ROOM_2_MEWTWO
 	object_event 26, 9, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCaveB1FMaxElixer, EVENT_CERULEAN_CAVE_B1F_MAX_ELIXER
 	object_event 26, 3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCaveB1FUltraBall, EVENT_CERULEAN_CAVE_B1F_ULTRA_BALL

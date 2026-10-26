@@ -202,7 +202,10 @@ def main():
         with patch(h, presentation):
             h.call('RestorePPEffect')
         check(read('wPartyMon1PP') == 64 + 42 and quantity('PP_UP') == 1, 'PP UP single boost regression')
-        check(events['NUM_EVENTS'] == 2120 and h.s('wCurBox') == 0xdbb9, 'save layout shifted')
+        # Scratch before wGameData may move without changing serialized data.
+        check(h.s('wCurBox') - h.s('wGameData') == 0x6f3, 'current-box save offset shifted')
+        check((events['NUM_EVENTS'] + 7) // 8 <= h.s('wCurBox') - h.s('wEventFlags'),
+              'event flags overlap the current box')
         check(h.sym['GoldenrodDeptStore6F_Blocks'] != h.sym['CeladonDeptStore6F_Blocks'], 'shared sixth floor blocks')
         bank, start = h.sym['SilphWorkerMSpriteGFX']
         check(h.sym['SilphWorkerMSpriteGFXEnd'][1] - start == 192, 'dad sprite size')

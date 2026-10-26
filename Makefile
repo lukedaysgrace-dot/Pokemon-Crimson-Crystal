@@ -177,8 +177,13 @@ test-overworld-state: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_gs_ball.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_route9_blockers.py
 
-test-audit-state: pokecrystal.gbc
+test-audit-state: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_battle_symbols.py
+	$(BATTLE_TEST_PYTHON) tools/test_map_audit.py
+	$(BATTLE_TEST_PYTHON) tools/test_shell_side_arm.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_shell_side_arm.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_avalanche.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_avalanche.py pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_audit_state_regressions.py pokecrystal.gbc
 
 test-party-usable: pokecrystal.gbc

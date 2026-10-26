@@ -1,0 +1,139 @@
+# Avalanche requires an actual direct HP hit earlier in this round.
+# A sleeping opponent supplies the same damage control without using a move.
+
+- name: "Second audit control: player Avalanche without an incoming hit"
+  id: second_avalanche_player_control
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "player.hp == player.start_hp"]
+
+- name: "Second audit: player Avalanche stays normal after Splash"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp == result('second_avalanche_player_control')['enemy']['damage']"]
+
+- name: "Second audit control: enemy Avalanche without an incoming hit"
+  id: second_avalanche_enemy_control
+  player: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "enemy.hp == enemy.start_hp"]
+
+- name: "Second audit: enemy Avalanche stays normal after Splash"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.start_hp - player.hp == result('second_avalanche_enemy_control')['player']['damage']"]
+
+- name: "Second audit: player Avalanche doubles after direct damage"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - enemy.start_hp - enemy.hp >= 2 * result('second_avalanche_player_control')['enemy']['damage'] - 1
+    - enemy.start_hp - enemy.hp <= 2 * result('second_avalanche_player_control')['enemy']['damage'] + 1
+
+- name: "Second audit: enemy Avalanche doubles after direct damage"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.start_hp - player.hp >= 2 * result('second_avalanche_enemy_control')['player']['damage'] - 1
+    - player.start_hp - player.hp <= 2 * result('second_avalanche_enemy_control')['player']['damage'] + 1
+
+- name: "Second audit: player Avalanche stays normal after a missed attack"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE], stages: {eva: 6}}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE], stages: {acc: -6}}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - enemy.start_hp - enemy.hp == result('second_avalanche_player_control')['enemy']['damage']
+
+- name: "Second audit: enemy Avalanche stays normal after a missed attack"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE], stages: {acc: -6}}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE], stages: {eva: 6}}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - player.start_hp - player.hp == result('second_avalanche_enemy_control')['player']['damage']
+
+- name: "Second audit: player Avalanche stays normal after Substitute damage"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [AVALANCHE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  setup_wram: {wPlayerSubstituteHP: 43}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - wram('wPlayerCounterHitCategory') == 0
+    - enemy.start_hp - enemy.hp == result('second_avalanche_player_control')['enemy']['damage']
+
+- name: "Second audit: enemy Avalanche stays normal after Substitute damage"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [AVALANCHE]}
+  setup_wram: {wEnemySubstituteHP: 43}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - wram('wEnemyCounterHitCategory') == 0
+    - player.start_hp - player.hp == result('second_avalanche_enemy_control')['player']['damage']
+
+- name: "Second audit: player Avalanche stays normal after Water Absorb"
+  player: {species: MEW, level: 50, ability: WATER_ABSORB, moves: [AVALANCHE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [WATER_GUN]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - enemy.start_hp - enemy.hp == result('second_avalanche_player_control')['enemy']['damage']
+
+- name: "Second audit: enemy Avalanche stays normal after Water Absorb"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [WATER_GUN]}
+  enemy: {species: MEW, level: 50, ability: WATER_ABSORB, moves: [AVALANCHE]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - player.start_hp - player.hp == result('second_avalanche_enemy_control')['player']['damage']
+
+- name: "Second audit: player Avalanche does not reuse the previous round's hit"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE, SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  turn_setup_wram: {1: {wEnemyMonMoves: {move: SPLASH}}}
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - "turns_done != 1 or player.hp < player.start_hp"
+    - "turns_done != 1 or wram('wPlayerCounterHitCategory') != 0"
+  assert:
+    - wram('wPlayerCounterHitCategory') == 0
+    - enemy.start_hp - enemy.hp >= 3 * result('second_avalanche_player_control')['enemy']['damage'] - 2
+    - enemy.start_hp - enemy.hp <= 3 * result('second_avalanche_player_control')['enemy']['damage'] + 2
+
+- name: "Second audit: enemy Avalanche does not reuse the previous round's hit"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE, SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [AVALANCHE]}
+  turn_setup_wram: {1: {wBattleMonMoves: {move: SPLASH}}}
+  move_script: [1, 1]
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - "turns_done != 1 or enemy.hp < enemy.start_hp"
+    - "turns_done != 1 or wram('wEnemyCounterHitCategory') != 0"
+  assert:
+    - wram('wEnemyCounterHitCategory') == 0
+    - player.start_hp - player.hp >= 3 * result('second_avalanche_enemy_control')['player']['damage'] - 2
+    - player.start_hp - player.hp <= 3 * result('second_avalanche_enemy_control')['player']['damage'] + 2

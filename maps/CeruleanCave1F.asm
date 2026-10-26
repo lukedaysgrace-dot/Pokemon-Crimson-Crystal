@@ -5,9 +5,9 @@
 	const CERULEANCAVE1F_POKE_BALL3
 
 CeruleanCave1F_MapScripts:
-	db 0
+	db 0 ; scene scripts
 
-	db 0
+	db 0 ; callbacks
 
 CeruleanCave1FNugget:
 	itemball NUGGET
@@ -31,7 +31,7 @@ CeruleanCave1F_MapEvents:
 	; filler
 	db 0, 0
 
-	db 8
+	db 8 ; warp events
 	warp_event 27, 19, ROUTE_4, 2
 	warp_event 9, 3, CERULEAN_CAVE_2F, 1
 	warp_event 29, 3, CERULEAN_CAVE_2F, 2
@@ -41,14 +41,14 @@ CeruleanCave1F_MapEvents:
 	warp_event 20, 11, CERULEAN_CAVE_2F, 5
 	warp_event 5, 13, CERULEAN_CAVE_2F, 6
 
-	db 0
+	db 0 ; coord events
 
-	db 3
+	db 3 ; bg events
 	bg_event 10, 11, BGEVENT_ITEM, CeruleanCave1FHiddenUltraBall
 	bg_event 5, 14, BGEVENT_ITEM, CeruleanCave1FHiddenPPUp
 	bg_event 16, 13, BGEVENT_ITEM, CeruleanCave1FHiddenRareCandy
 
-	db 3
+	db 3 ; object events
 	object_event 7, 4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCave1FNugget, EVENT_CERULEAN_CAVE_1F_NUGGET
 	object_event 9, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCave1FFullRestore, EVENT_CERULEAN_CAVE_1F_FULL_RESTORE
 	object_event 21, 5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCave1FMaxRevive, EVENT_CERULEAN_CAVE_1F_MAX_REVIVE

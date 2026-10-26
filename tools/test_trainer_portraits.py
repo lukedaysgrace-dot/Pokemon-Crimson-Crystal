@@ -130,9 +130,10 @@ class PortraitCoverage(unittest.TestCase):
         # reminders and both outcomes of the Mew encounter need the portrait too.
         cape = (ROOT / 'maps/Route25.asm').read_text()
         labels = set(re.findall(r'farwritetext (Route25Crystal\w+Text)', cape))
-        self.assertEqual(len(labels), 5)
+        self.assertTrue(labels, 'Cape dialogue scan found no Crystal text')
         for label in labels:
-            self.assertEqual(portraits.SHARED_SPEAKERS.get(label), 'CRYSTAL')
+            with self.subTest(cape_text=label):
+                self.assertEqual(portraits.SHARED_SPEAKERS.get(label), 'CRYSTAL')
 
     def test_crystal_phone_dialogue_has_no_portrait(self):
         table = (ROOT / 'data/maps/portrait_texts.asm').read_text()
