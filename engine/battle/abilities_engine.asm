@@ -5108,7 +5108,9 @@ CheckContactMove::
 CheckContactMoveID::
 ; carry if the move whose 8-bit ID is in c makes contact.
 ; Used by the AI (farcalled from AI_Abilities), which scores moves that
-; are not the currently executing one. Preserves hl, de, bc.
+; are not the currently executing one. For Shell Side Arm, the turn holder's
+; move struct must contain its resolved category (live or AI-predicted).
+; Preserves hl, de, bc.
 	push hl
 	push de
 	push bc
@@ -5116,6 +5118,25 @@ CheckContactMoveID::
 	and a
 	jr z, .no ; no move (e.g. confusion self-hit)
 	call GetMoveIndexFromID
+	ld a, h
+	cp HIGH(SHELLSIDEARM)
+	jr nz, .bitfield
+	ld a, l
+	cp LOW(SHELLSIDEARM)
+	jr nz, .bitfield
+	; Its physical arm strike makes contact; its special shot does not.
+	ld hl, wPlayerMoveStructCategory
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .shell_side_arm
+	ld hl, wEnemyMoveStructCategory
+.shell_side_arm
+	ld a, [hl]
+	cp CATEGORIZE_PHYSICAL
+	jr nz, .no
+	scf
+	jr .yes
+.bitfield
 	; bit l&7 of ContactMoves[index >> 3]
 	ld a, l
 	and %111

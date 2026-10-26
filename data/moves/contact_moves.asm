@@ -1,6 +1,8 @@
 ContactMoves::
 ; bitfield indexed by 16-bit move index (bit i&7 of byte i>>3, POUND = 1);
 ; set = the move makes contact (Gen IV contact flags; see CheckContactMove)
+; Shell Side Arm's bit stays clear: CheckContactMoveID resolves contact from
+; its current physical/special category instead.
 
 	db $be, $9f, $fa, $ef, $7f, $10, $00, $00
 	db $7f, $00, $01, $08, $0c, $00, $20, $84
