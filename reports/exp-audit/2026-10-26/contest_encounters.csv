@@ -1,0 +1,23 @@
+map,method,probability,species,min_level,max_level,source,battle_exp
+NationalParkBugContest,bug_contest,0.15,CATERPIE,7,18,data/wild/bug_contest_mons.asm:18,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.15,WEEDLE,7,18,data/wild/bug_contest_mons.asm:19,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.1,METAPOD,10,18,data/wild/bug_contest_mons.asm:20,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.1,KAKUNA,10,18,data/wild/bug_contest_mons.asm:21,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.09,PARAS,10,18,data/wild/bug_contest_mons.asm:22,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.09,VENONAT,10,18,data/wild/bug_contest_mons.asm:23,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.05,BUTTERFREE,16,18,data/wild/bug_contest_mons.asm:24,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.05,BEEDRILL,16,18,data/wild/bug_contest_mons.asm:25,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.06,YANMA,11,18,data/wild/bug_contest_mons.asm:26,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.06,SCYTHER,12,18,data/wild/bug_contest_mons.asm:27,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.06,PINSIR,12,18,data/wild/bug_contest_mons.asm:28,no KO EXP in Safari-style capture-only contest
+NationalParkBugContest,bug_contest,0.04,HERACROSS,12,18,data/wild/bug_contest_mons.asm:29,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.3,MAGIKARP,10,30,data/wild/fishing_contest_mons.asm:5,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.14,KRABBY,10,30,data/wild/fishing_contest_mons.asm:6,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.12,QWILFISH,10,30,data/wild/fishing_contest_mons.asm:7,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.12,HORSEA,10,30,data/wild/fishing_contest_mons.asm:8,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.1,CHINCHOU,10,30,data/wild/fishing_contest_mons.asm:9,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.1,SHELLDER,10,30,data/wild/fishing_contest_mons.asm:10,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.04,REMORAID,10,30,data/wild/fishing_contest_mons.asm:11,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.03,CORSOLA,10,30,data/wild/fishing_contest_mons.asm:12,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.04,MAREANIE,10,30,data/wild/fishing_contest_mons.asm:13,no KO EXP in Safari-style capture-only contest
+OlivineFishingCove,fishing_contest,0.01,FEEBAS,10,30,data/wild/fishing_contest_mons.asm:14,no KO EXP in Safari-style capture-only contest

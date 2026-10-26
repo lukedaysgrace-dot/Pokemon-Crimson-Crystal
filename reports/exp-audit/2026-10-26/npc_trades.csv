@@ -1,0 +1,8 @@
+requested_species,offered_species,held_item,ot_id,level_rule,source
+ABRA,MACHOP,GOLD_BERRY,37460,matches traded-away level (engine/events/npc_trade.asm),data/events/npc_trades.asm:14
+BELLSPROUT,ONIX,BITTER_BERRY,48926,matches traded-away level (engine/events/npc_trade.asm),data/events/npc_trades.asm:15
+KRABBY,VOLTORB,PRZCUREBERRY,29189,matches traded-away level (engine/events/npc_trade.asm),data/events/npc_trades.asm:16
+DRAGONAIR,DODRIO,SMOKE_BALL,00283,matches traded-away level (engine/events/npc_trade.asm),data/events/npc_trades.asm:17
+HAUNTER,XATU,MYSTERYBERRY,15616,matches traded-away level (engine/events/npc_trade.asm),data/events/npc_trades.asm:18
+CHANSEY,AERODACTYL,GOLD_BERRY,26491,matches traded-away level (engine/events/npc_trade.asm),data/events/npc_trades.asm:19
+DUGTRIO,MAGNETON,METAL_COAT,50082,matches traded-away level (engine/events/npc_trade.asm),data/events/npc_trades.asm:20

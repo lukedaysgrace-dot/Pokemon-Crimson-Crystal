@@ -1,0 +1,14 @@
+{
+  "reference_classification": {
+    "selected encounter / shared completion flag": 439,
+    "mutually exclusive starter alternative; cataloged, not stacked": 24,
+    "repeatable/external reference; excluded from unique run": 121,
+    "unspawned trainer script; excluded": 1
+  },
+  "parties_with_direct_reference": 560,
+  "parties_without_direct_reference": 35,
+  "moves_parsed": 442,
+  "evolution_methods": 280,
+  "evolution_growth_changes": [],
+  "npc_trades": 7
+}

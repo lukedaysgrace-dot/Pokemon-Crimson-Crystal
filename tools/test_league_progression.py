@@ -414,7 +414,7 @@ def main():
                 event('EVENT_OPENED_MT_SILVER', opened)
                 write('wSpecialPhoneCallID', [0, 0])
                 script('QueueOakMtSilverCallScript')
-                ready = count == 16 and hall and clair and cape and not opened
+                ready = count == 16 and hall and clair and not opened
                 check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if ready else 0),
                       f'final Oak invitation: {count}, hall={hall}, Clair={clair}, cape={cape}, opened={opened}')
 
@@ -441,8 +441,8 @@ def main():
                     _, texts, _ = script('Route25CrystalBattle')
                 won = result == 0
                 check(event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE') == won, f'cape victory/retry flag, result={result}')
-                check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if won else 0),
-                      f'cape was final condition but Oak invitation was wrong, result={result}')
+                check(read('wSpecialPhoneCallID') == 0,
+                      f'optional cape battle queued an unrelated Oak invitation, result={result}')
                 expected = 'Route25CrystalAfterText' if won else 'Route25CrystalTryAgainText'
                 check(h.sym[expected] in texts, f'cape win/loss after-battle text, result={result}')
 
@@ -531,7 +531,7 @@ def main():
                     for ready in (False, True):
                         event(prerequisite, ready)
                         event(f'EVENT_BEAT_{leader}_REMATCH', False)
-                        event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', True)
+                        event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', False)
                         event('EVENT_OPENED_MT_SILVER', False)
                         write('wSpecialPhoneCallID', [0, 0])
                         load(map_name)
@@ -541,6 +541,23 @@ def main():
                         if leader == 'CLAIR':
                             check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if ready else 0),
                                   'Clair rematch did not queue Oak when Mt. Silver becomes available')
+
+                print('[Lance rematch: Oak invitation and advice are independent of Crystal]', flush=True)
+                for cape, opened in product((False, True), repeat=2):
+                    badges(16)
+                    event('EVENT_BEAT_ELITE_FOUR', True)
+                    event('EVENT_BEAT_CLAIR_REMATCH', True)
+                    event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', cape)
+                    event('EVENT_OPENED_MT_SILVER', opened)
+                    event('EVENT_BEAT_LANCE_REMATCH', False)
+                    write('wSpecialPhoneCallID', [0, 0])
+                    load('LANCES_ROOM')
+                    _, texts, _ = script('LancesRoomLanceScript', ('LancesRoomLanceScript.VictoryTextDone',))
+                    check(event('EVENT_BEAT_LANCE_REMATCH'), 'Lance rematch victory flag was not set')
+                    check(read('wSpecialPhoneCallID') == (0 if opened else phone['SPECIALCALL_OAK_MT_SILVER']),
+                          f'Lance Oak invitation: cape={cape}, Mt. Silver opened={opened}')
+                    expected = 'LanceRematchAfterNoOakText' if opened else 'LanceRematchAfterText'
+                    check(h.sym[expected] in texts, f'Lance rematch advice: cape={cape}, opened={opened}')
 
                 print('[Route 26/27 phone rematches: Surge tier, then League tier, independent of power]', flush=True)
                 for map_name, entry, first_ace in (
@@ -802,7 +819,7 @@ def main():
                       and event('EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1'),
                       f'{destination}: rescue family remains visible')
 
-            print('[Oak: Kanto badges, League, Johto rematches, Crystal and Mt. Silver]', flush=True)
+            print('[Oak: Mt. Silver requires badges, League and Johto rematches, independent of Crystal]', flush=True)
             for count, hall, cape, rematch in product((8, 9, 15, 16), (False, True), (False, True), (False, True)):
                 badges(count)
                 load('OAKS_LAB')
@@ -812,13 +829,13 @@ def main():
                 event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', cape)
                 event('EVENT_BEAT_CLAIR_REMATCH', rematch)
                 _, texts, _ = script('Oak')
-                ready = count == 16 and hall and cape and rematch
+                ready = count == 16 and hall and rematch
                 check(event('EVENT_OPENED_MT_SILVER') == ready, f'Mt. Silver: {count}, hall={hall}, cape={cape}')
                 expected = ('OakNoKantoBadgesText' if count == 8 else
                             'OakYesKantoBadgesText' if count < 16 else
                             'OakLeagueNextText' if not hall else
                             'OakJohtoRematchesText' if not rematch else
-                            'OakOpenMtSilverText' if cape else 'OakFindCrystalText')
+                            'OakOpenMtSilverText')
                 check(texts[0] == h.sym[expected], f'Oak advice: {count}, hall={hall}, cape={cape}')
 
             print('[Clair: Kanto before sixteen badges, League afterwards]', flush=True)
@@ -853,7 +870,7 @@ def main():
                 event('EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME', True)
                 write('wSpecialPhoneCallID', [0, 0])
                 script('HallOfFame_MapScripts.EnterHallOfFameScript')
-                check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if cape and rematch else 0),
+                check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if rematch else 0),
                       f'Hall of Fame queued wrong call, cape={cape}')
                 check(not event('EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME')
                       and event('EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME'),

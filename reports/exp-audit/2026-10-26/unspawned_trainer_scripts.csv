@@ -1,0 +1,2 @@
+map,map_id,kind,trainer_class,trainer_id,party_key,event,script,global_script,objects,global_label_uses,source,reason
+RuinsOfAlphOutside,RUINS_OF_ALPH_OUTSIDE,trainer,SUPER_NERD,STAN,SuperNerd:1,EVENT_BEAT_SUPER_NERD_STAN,TrainerSuperNerdStan,TrainerSuperNerdStan,[],1,maps/RuinsOfAlphOutside.asm:114,trainer macro has no map object or incoming script reference

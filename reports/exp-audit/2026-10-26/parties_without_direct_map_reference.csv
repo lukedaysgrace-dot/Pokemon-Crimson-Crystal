@@ -1,0 +1,36 @@
+party_key,name,label,source,classification,solo_hard_exp
+PKMNTrainer:1,CAL,CAL (1) CAL1 - Trainer House B1F (rematch),data/trainers/parties.asm:601,no direct map reference; not credited,13894
+PKMNTrainer:4,CAL,CAL (4) CAL4 - Trainer House B1F (highest level 60-69),data/trainers/parties.asm:654,dynamic Trainer House tier,17480
+PKMNTrainer:5,CAL,CAL (5) CAL5 - Trainer House B1F (highest level 70-79),data/trainers/parties.asm:678,dynamic Trainer House tier,25500
+PKMNTrainer:6,CAL,CAL (6) CAL6 - Trainer House B1F (highest level 80+),data/trainers/parties.asm:707,dynamic Trainer House tier,34968
+Schoolboy:7,DUDLEY,SCHOOLBOY (7) DUDLEY - Route 25,data/trainers/parties.asm:1424,no direct map reference; not credited,5004
+Schoolboy:8,JOE,SCHOOLBOY (8) JOE - Route 25,data/trainers/parties.asm:1432,no direct map reference; not credited,5584
+Lass:5,LAURA,LASS (5) LAURA - Route 25,data/trainers/parties.asm:1917,no direct map reference; not credited,9962
+Lass:6,SHANNON,LASS (6) SHANNON - Route 25,data/trainers/parties.asm:1930,no direct map reference; not credited,8858
+Lass:9,ELLEN,LASS (9) ELLEN - Route 25,data/trainers/parties.asm:1963,no direct map reference; not credited,5124
+Lass:10,CONNIE,LASS (10) CONNIE2 - Olivine Lighthouse 4F (rematch),data/trainers/parties.asm:1973,no direct map reference; not credited,6922
+Lass:11,CONNIE,LASS (11) CONNIE3 - Olivine Lighthouse 4F (rematch),data/trainers/parties.asm:1983,no direct map reference; not credited,8986
+Sailor:10,HARRY,SAILOR (10) HARRY - Route 38,data/trainers/parties.asm:4249,no direct map reference; not credited,1080
+Juggler:4,IRWIN,JUGGLER (4) IRWIN2 - Route 35 (rematch),data/trainers/parties.asm:4911,no direct map reference; not credited,6338
+Juggler:5,IRWIN,JUGGLER (5) IRWIN3 - Route 35 (rematch),data/trainers/parties.asm:4924,no direct map reference; not credited,11346
+Juggler:6,IRWIN,JUGGLER (6) IRWIN4 - Route 35 (rematch),data/trainers/parties.asm:4940,no direct map reference; not credited,12412
+Blackbelt:1,KENJI,BLACKBELT_T (1) KENJI1 - Route 45 (rematch),data/trainers/parties.asm:5006,no direct map reference; not credited,15312
+Blackbelt:3,KENJI,BLACKBELT_T (3) KENJI2 - Route 45 (rematch),data/trainers/parties.asm:5037,no direct map reference; not credited,17408
+Blackbelt:6,KIYO,"BLACKBELT_T (6) KIYO - legacy Mt. Mortar team, no longer placed",data/trainers/parties.asm:5073,no direct map reference; not credited,1846
+ExecutiveM:1,EXECUTIVE,EXECUTIVEM (1) EXECUTIVEM_1 - not placed on any map,data/trainers/parties.asm:5175,no direct map reference; not credited,5356
+ExecutiveM:2,EXECUTIVE,EXECUTIVEM (2) EXECUTIVEM_2 - not placed on any map,data/trainers/parties.asm:5194,no direct map reference; not credited,3142
+ExecutiveM:3,EXECUTIVE,EXECUTIVEM (3) EXECUTIVEM_3 - not placed on any map,data/trainers/parties.asm:5210,no direct map reference; not credited,5910
+ExecutiveM:4,EXECUTIVE,EXECUTIVEM (4) EXECUTIVEM_4 - not placed on any map,data/trainers/parties.asm:5229,no direct map reference; not credited,1960
+Picnicker:4,CINDY,PICNICKER (4) CINDY - not placed on any map,data/trainers/parties.asm:5415,no direct map reference; not credited,5248
+Camper:5,BARRY,CAMPER (5) BARRY - not placed on any map,data/trainers/parties.asm:5731,no direct map reference; not credited,5350
+Camper:6,LLOYD,CAMPER (6) LLOYD - Route 25,data/trainers/parties.asm:5739,no direct map reference; not credited,5130
+ExecutiveF:1,EXECUTIVE,EXECUTIVEF (1) EXECUTIVEF_1 - not placed on any map,data/trainers/parties.asm:5877,no direct map reference; not credited,6872
+ExecutiveF:2,EXECUTIVE,EXECUTIVEF (2) EXECUTIVEF_2 - not placed on any map,data/trainers/parties.asm:5896,no direct map reference; not credited,2920
+PokefanM:10,DEREK,POKEFANM (10) DEREK2 - Route 39 (rematch),data/trainers/parties.asm:6246,no direct map reference; not credited,3354
+PokefanM:11,DEREK,POKEFANM (11) DEREK3 - Route 39 (rematch),data/trainers/parties.asm:6254,no direct map reference; not credited,4544
+KimonoGirl:1,NAOKO,KIMONO_GIRL (1) NAOKO1 - Dance Theatre (rematch),data/trainers/parties.asm:6311,no direct map reference; not credited,8726
+Twins:10,LEA & PIA,TWINS (10) LEAANDPIA2 - Dragons Den B1F (rematch),data/trainers/parties.asm:6467,no direct map reference; not credited,13920
+PokefanF:3,BEVERLY,POKEFANF (3) BEVERLY2 - National Park (rematch),data/trainers/parties.asm:6498,no direct map reference; not credited,1940
+PokefanF:4,BEVERLY,POKEFANF (4) BEVERLY3 - National Park (rematch),data/trainers/parties.asm:6504,no direct map reference; not credited,2528
+Archer:1,ARCHER,ARCHER (1) ARCHER1 - Radio Tower 5F (rematch),data/trainers/parties.asm:6829,no direct map reference; not credited,14680
+Cosplayer:1,MAYA,"COSPLAYER (1) COSPLAYER1 - Route 3, Route 4 (rematch)",data/trainers/parties.asm:6969,no direct map reference; not credited,8900

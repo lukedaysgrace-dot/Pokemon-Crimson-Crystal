@@ -1,0 +1,89 @@
+{
+  "jasmine_cap32": {
+    "caps": {
+      "5": 32
+    }
+  },
+  "lighthouse_before_chuck": {
+    "event_stage_overrides": {
+      "EVENT_BEAT_GENTLEMAN_ALFRED": 4,
+      "EVENT_BEAT_SAILOR_HUEY": 4,
+      "EVENT_BEAT_BIRD_KEEPER_THEO": 4,
+      "EVENT_BEAT_GENTLEMAN_PRESTON": 4,
+      "EVENT_BEAT_SAILOR_TERRELL": 4,
+      "EVENT_BEAT_LASS_CONNIE": 4,
+      "EVENT_BEAT_SAILOR_KENT": 4,
+      "EVENT_BEAT_AROMA_LADY_DAHLIA": 4,
+      "EVENT_BEAT_BIRD_KEEPER_DENIS": 4,
+      "EVENT_BEAT_SAILOR_ERNEST": 4,
+      "EVENT_BEAT_AROMA_LADY_ROSIE": 4
+    }
+  },
+  "jasmine_trainers_plus3": {
+    "trainer_level_delta": {
+      "OlivineGym": 3
+    }
+  },
+  "surge_trainers_plus3": {
+    "trainer_level_delta": {
+      "Route6": 3,
+      "VermilionGym": 3
+    }
+  },
+  "endgame_level_retarget_trial": {
+    "party_level_delta": {
+      "Falkner:2": -8,
+      "Bugsy:2": -9,
+      "Whitney:2": -9,
+      "Morty:2": -10,
+      "Chuck:2": -11,
+      "Jasmine:2": -11,
+      "Pryce:2": -12,
+      "Clair:2": -12,
+      "Rival2:6": -12,
+      "Will:2": -12,
+      "Koga:2": -12,
+      "Bruno:2": -13,
+      "Karen:2": -12,
+      "Champion:2": -13,
+      "Agatha:1": -12,
+      "Lorelei:1": -12,
+      "Red:1": -13,
+      "Green:1": -7,
+      "BlueCloak:1": -8,
+      "Red2:1": -8
+    }
+  },
+  "combined_trial": {
+    "caps": {
+      "5": 32
+    },
+    "party_level_delta": {
+      "Falkner:2": -8,
+      "Bugsy:2": -9,
+      "Whitney:2": -9,
+      "Morty:2": -10,
+      "Chuck:2": -11,
+      "Jasmine:2": -11,
+      "Pryce:2": -12,
+      "Clair:2": -12,
+      "Rival2:6": -12,
+      "Will:2": -12,
+      "Koga:2": -12,
+      "Bruno:2": -13,
+      "Karen:2": -12,
+      "Champion:2": -13,
+      "Agatha:1": -12,
+      "Lorelei:1": -12,
+      "Red:1": -13,
+      "Green:1": -7,
+      "BlueCloak:1": -8,
+      "Red2:1": -8
+    },
+    "trainer_level_delta": {
+      "OlivineGym": 3,
+      "Route6": 3,
+      "VermilionGym": 3
+    }
+  }
+}

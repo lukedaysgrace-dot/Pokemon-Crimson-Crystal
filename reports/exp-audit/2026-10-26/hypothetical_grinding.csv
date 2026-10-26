@@ -1,0 +1,121 @@
+proposal,playstyle,team_size,method,milestone,original_target,trial_target,wild_map,original_balanced_kos,trial_balanced_kos,original_selected_policy_kos,trial_selected_policy_kos,scope
+jasmine_cap32,typical,1,casual,Jasmine,34,32,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,1,equal_rotation,Jasmine,34,32,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,2,casual,Jasmine,34,32,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,2,equal_rotation,Jasmine,34,32,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,3,casual,Jasmine,34,32,Route41,21,0,72,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,3,equal_rotation,Jasmine,34,32,Route41,11,0,15,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,4,casual,Jasmine,34,32,Route41,70,29,213,112,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,4,equal_rotation,Jasmine,34,32,Route41,44,0,48,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,5,casual,Jasmine,34,32,Route41,132,72,364,284,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,5,equal_rotation,Jasmine,34,32,Route41,78,12,119,49,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,6,casual,Jasmine,34,32,Route41,243,171,791,640,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_cap32,typical,6,equal_rotation,Jasmine,34,32,Route41,176,89,402,300,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,1,casual,Chuck,30,30,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,1,casual,Jasmine,34,34,Route41,0,7,0,7,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,1,equal_rotation,Chuck,30,30,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,1,equal_rotation,Jasmine,34,34,Route41,0,7,0,7,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,2,casual,Chuck,30,30,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,2,casual,Jasmine,34,34,Route41,0,38,0,45,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,2,equal_rotation,Chuck,30,30,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,2,equal_rotation,Jasmine,34,34,Route41,0,38,0,46,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,3,casual,Chuck,30,30,Route41,10,0,60,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,3,casual,Jasmine,34,34,Route41,21,60,72,109,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,3,equal_rotation,Chuck,30,30,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,3,equal_rotation,Jasmine,34,34,Route41,11,60,15,63,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,4,casual,Chuck,30,30,Route41,34,12,144,66,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,4,casual,Jasmine,34,34,Route41,70,97,213,207,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,4,equal_rotation,Chuck,30,30,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,4,equal_rotation,Jasmine,34,34,Route41,44,90,48,104,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,5,casual,Chuck,30,30,Route41,66,49,284,241,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,5,casual,Jasmine,34,34,Route41,132,157,364,423,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,5,equal_rotation,Chuck,30,30,Route41,27,6,84,34,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,5,equal_rotation,Jasmine,34,34,Route41,78,114,119,124,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,6,casual,Chuck,30,30,Route41,148,129,399,399,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,6,casual,Jasmine,34,34,Route41,243,268,791,791,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,6,equal_rotation,Chuck,30,30,Route41,96,51,300,234,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+lighthouse_before_chuck,typical,6,equal_rotation,Jasmine,34,34,Route41,176,188,402,402,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,1,casual,Jasmine,34,34,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,1,equal_rotation,Jasmine,34,34,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,2,casual,Jasmine,34,34,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,2,equal_rotation,Jasmine,34,34,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,3,casual,Jasmine,34,34,Route41,21,19,72,66,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,3,equal_rotation,Jasmine,34,34,Route41,11,10,15,15,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,4,casual,Jasmine,34,34,Route41,70,69,213,210,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,4,equal_rotation,Jasmine,34,34,Route41,44,43,48,48,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,5,casual,Jasmine,34,34,Route41,132,131,364,353,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,5,equal_rotation,Jasmine,34,34,Route41,78,76,119,119,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,6,casual,Jasmine,34,34,Route41,243,241,791,791,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+jasmine_trainers_plus3,typical,6,equal_rotation,Jasmine,34,34,Route41,176,175,402,402,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,1,casual,Surge,58,58,IcePathB3F,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,1,equal_rotation,Surge,58,58,IcePathB3F,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,2,casual,Surge,58,58,IcePathB3F,37,36,43,39,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,2,equal_rotation,Surge,58,58,IcePathB3F,37,36,39,39,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,3,casual,Surge,58,58,IcePathB3F,78,77,135,135,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,3,equal_rotation,Surge,58,58,IcePathB3F,78,77,88,88,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,4,casual,Surge,58,58,IcePathB3F,154,154,319,319,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,4,equal_rotation,Surge,58,58,IcePathB3F,117,117,119,119,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,5,casual,Surge,58,58,IcePathB3F,287,287,681,681,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,5,equal_rotation,Surge,58,58,IcePathB3F,152,152,173,173,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,6,casual,Surge,58,58,IcePathB3F,541,540,1574,1574,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+surge_trainers_plus3,typical,6,equal_rotation,Surge,58,58,IcePathB3F,328,328,654,654,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,1,casual,Clair rematch,84,72,Route15,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,1,casual,Red Mt Silver,90,77,SilverCaveRoom3,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,1,equal_rotation,Clair rematch,84,72,Route15,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,1,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,2,casual,Clair rematch,84,72,Route15,179,0,259,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,2,casual,Red Mt Silver,90,77,SilverCaveRoom3,59,0,85,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,2,equal_rotation,Clair rematch,84,72,Route15,179,0,211,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,2,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,59,0,77,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,3,casual,Clair rematch,84,72,Route15,498,0,717,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,3,casual,Red Mt Silver,90,77,SilverCaveRoom3,243,0,375,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,3,equal_rotation,Clair rematch,84,72,Route15,489,0,520,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,3,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,240,0,262,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,4,casual,Clair rematch,84,72,Route15,872,134,1500,384,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,4,casual,Red Mt Silver,90,77,SilverCaveRoom3,448,99,765,239,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,4,equal_rotation,Clair rematch,84,72,Route15,810,6,883,17,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,4,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,424,20,457,37,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,5,casual,Clair rematch,84,72,Route15,1269,380,2559,995,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,5,casual,Red Mt Silver,90,77,SilverCaveRoom3,654,226,1414,619,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,5,equal_rotation,Clair rematch,84,72,Route15,1071,96,1208,164,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,5,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,573,90,678,133,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,6,casual,Clair rematch,84,72,Route15,1950,815,4132,1922,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,6,casual,Red Mt Silver,90,77,SilverCaveRoom3,997,441,2086,1154,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,6,equal_rotation,Clair rematch,84,72,Route15,1663,443,2460,954,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+endgame_level_retarget_trial,typical,6,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,880,272,1266,516,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,1,casual,Jasmine,34,32,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,1,casual,Blue,69,69,Route15,25,25,25,25,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,1,casual,Red Mt Silver,90,77,SilverCaveRoom3,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,1,equal_rotation,Jasmine,34,32,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,1,equal_rotation,Blue,69,69,Route15,25,25,25,25,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,1,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,2,casual,Jasmine,34,32,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,2,casual,Blue,69,69,Route15,59,59,60,60,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,2,casual,Red Mt Silver,90,77,SilverCaveRoom3,59,0,85,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,2,equal_rotation,Jasmine,34,32,Route41,0,0,0,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,2,equal_rotation,Blue,69,69,Route15,59,59,61,61,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,2,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,59,0,77,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,3,casual,Jasmine,34,32,Route41,21,0,72,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,3,casual,Blue,69,69,Route15,113,113,210,210,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,3,casual,Red Mt Silver,90,77,SilverCaveRoom3,243,0,375,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,3,equal_rotation,Jasmine,34,32,Route41,11,0,15,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,3,equal_rotation,Blue,69,69,Route15,103,103,109,109,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,3,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,240,0,262,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,4,casual,Jasmine,34,32,Route41,70,27,213,109,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,4,casual,Blue,69,69,Route15,244,243,416,416,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,4,casual,Red Mt Silver,90,77,SilverCaveRoom3,448,99,765,239,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,4,equal_rotation,Jasmine,34,32,Route41,44,0,48,0,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,4,equal_rotation,Blue,69,69,Route15,184,184,207,207,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,4,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,424,20,457,37,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,5,casual,Jasmine,34,32,Route41,132,71,364,284,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,5,casual,Blue,69,69,Route15,461,459,1051,1051,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,5,casual,Red Mt Silver,90,77,SilverCaveRoom3,654,226,1414,619,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,5,equal_rotation,Jasmine,34,32,Route41,78,12,119,49,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,5,equal_rotation,Blue,69,69,Route15,253,254,294,294,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,5,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,573,90,678,133,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,6,casual,Jasmine,34,32,Route41,243,170,791,640,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,6,casual,Blue,69,69,Route15,841,841,1861,1861,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,6,casual,Red Mt Silver,90,77,SilverCaveRoom3,997,440,2086,1154,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,6,equal_rotation,Jasmine,34,32,Route41,176,87,402,300,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,6,equal_rotation,Blue,69,69,Route15,557,557,1026,1026,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement
+combined_trial,typical,6,equal_rotation,Red Mt Silver,90,77,SilverCaveRoom3,880,271,1266,516,independent catch-up from unground checkpoint; NEVER add across milestones; target is not a proven win requirement

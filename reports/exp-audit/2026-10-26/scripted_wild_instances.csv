@@ -1,0 +1,44 @@
+map,species,level,source,script,event_id,stage,base_exp,solo_exp,mandatory_ko_scenario,repeatable,baseline
+CeruleanCaveB1F,MEWTWO,70,maps/CeruleanCaveB1F.asm:22,CeruleanCaveMewtwo,static:maps/CeruleanCaveB1F.asm:22,30,255,2550,False,False,capture / no EXP; optional KO alternative cataloged
+EcruteakCity,JIRACHI,50,maps/EcruteakCity.asm:277,EcruteakCityWishingWellWishingStar,static:maps/EcruteakCity.asm:277,3,215,1535,False,False,capture / no EXP; optional KO alternative cataloged
+FireIsland,MOLTRES,60,maps/FireIsland.asm:18,FireIslandMoltres,static:maps/FireIsland.asm:18,14,255,2185,False,False,capture / no EXP; optional KO alternative cataloged
+IceIsland,ARTICUNO,60,maps/IceIsland.asm:18,IceIslandArticuno,static:maps/IceIsland.asm:18,14,255,2185,False,False,capture / no EXP; optional KO alternative cataloged
+IlexForest,CELEBI,30,maps/IlexForest.asm:595,IlexForestShrineScript.CelebiEvent,static:maps/IlexForest.asm:595,2,255,1092,False,False,capture / no EXP; optional KO alternative cataloged
+LakeOfRage,GYARADOS,30,maps/LakeOfRage.asm:104,RedGyarados,static:maps/LakeOfRage.asm:104,6,189,810,True,False,KO
+LakeOfRage,RAIKOU,40,maps/LakeOfRage.asm:523,LakeOfRageRaikou,static:maps/LakeOfRage.asm:523,8,255,1457,False,False,capture / no EXP; optional KO alternative cataloged
+Route12,SNORLAX,50,maps/Route12.asm:30,Route12Snorlax.Awake,static:maps/Route12.asm:30,12,189,1350,False,False,capture / no EXP; optional KO alternative cataloged
+Route25,MEW,60,maps/Route25.asm:300,Route25MewScript,static:maps/Route25.asm:300,9,255,2185,False,False,capture / no EXP; optional KO alternative cataloged
+Route36,SUDOWOODO,20,maps/Route36.asm:82,WateredWeirdTreeScript,static:maps/Route36.asm:82,3,144,411,True,False,KO
+Route41,FINIZEN,30,maps/Route41.asm:232,Route41FinizenScript.Cornered,static:maps/Route41.asm:232,4,63,270,False,False,capture / no EXP; optional KO alternative cataloged
+TeamRocketBaseB2F,ELECTRODE,23,maps/TeamRocketBaseB2F.asm:224,RocketElectrode1,static:maps/TeamRocketBaseB2F.asm:224,6,172,565,True,False,KO
+TeamRocketBaseB2F,ELECTRODE,23,maps/TeamRocketBaseB2F.asm:242,RocketElectrode2,static:maps/TeamRocketBaseB2F.asm:242,6,172,565,True,False,KO
+TeamRocketBaseB2F,ELECTRODE,23,maps/TeamRocketBaseB2F.asm:260,RocketElectrode3,static:maps/TeamRocketBaseB2F.asm:260,6,172,565,True,False,KO
+ThunderIsland,ZAPDOS,60,maps/ThunderIsland.asm:18,ThunderIslandZapdos,static:maps/ThunderIsland.asm:18,14,255,2185,False,False,capture / no EXP; optional KO alternative cataloged
+TinTower1F,ENTEI,40,maps/TinTower1F.asm:129,TinTower1F_MapScripts.Next2,static:maps/TinTower1F.asm:129,7,255,1457,False,False,capture / no EXP; optional KO alternative cataloged
+TinTowerRoof,HO_OH,60,maps/TinTowerRoof.asm:34,TinTowerHoOh,static:maps/TinTowerRoof.asm:34,8,255,2185,False,False,capture / no EXP; optional KO alternative cataloged
+TohjoFalls,SUICUNE,40,maps/TohjoFalls.asm:40,TohjoFallsSuicune,static:maps/TohjoFalls.asm:40,8,255,1457,False,False,capture / no EXP; optional KO alternative cataloged
+UnionCaveB2F,LAPRAS,30,maps/UnionCaveB2F.asm:31,UnionCaveLapras,static:maps/UnionCaveB2F.asm:31,4,187,801,False,True,capture / no EXP; optional KO alternative cataloged
+VermilionCity,SNORLAX,50,maps/VermilionCity.asm:70,VermilionSnorlax.Awake,static:maps/VermilionCity.asm:70,10,189,1350,False,False,capture / no EXP; optional KO alternative cataloged
+WhirlIslandLugiaChamber,LUGIA,60,maps/WhirlIslandLugiaChamber.asm:34,Lugia,static:maps/WhirlIslandLugiaChamber.asm:34,8,255,2185,False,False,capture / no EXP; optional KO alternative cataloged
+TeamRocketBaseB1F,KOFFING,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap1,,floor_trap:1,6,68,204,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,VOLTORB,23,maps/TeamRocketBaseB1F.asm:ExplodingTrap2,,floor_trap:2,6,66,216,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,GEODUDE,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap3,,floor_trap:3,6,60,180,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,VOLTORB,23,maps/TeamRocketBaseB1F.asm:ExplodingTrap4,,floor_trap:4,6,66,216,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,GEODUDE,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap5,,floor_trap:5,6,60,180,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,KOFFING,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap6,,floor_trap:6,6,68,204,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,VOLTORB,23,maps/TeamRocketBaseB1F.asm:ExplodingTrap7,,floor_trap:7,6,66,216,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,KOFFING,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap8,,floor_trap:8,6,68,204,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,KOFFING,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap9,,floor_trap:9,6,68,204,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,VOLTORB,23,maps/TeamRocketBaseB1F.asm:ExplodingTrap10,,floor_trap:10,6,66,216,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,GEODUDE,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap11,,floor_trap:11,6,60,180,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,GEODUDE,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap12,,floor_trap:12,6,60,180,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,GEODUDE,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap13,,floor_trap:13,6,60,180,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,KOFFING,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap14,,floor_trap:14,6,68,204,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,VOLTORB,23,maps/TeamRocketBaseB1F.asm:ExplodingTrap15,,floor_trap:15,6,66,216,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,KOFFING,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap16,,floor_trap:16,6,68,204,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,VOLTORB,23,maps/TeamRocketBaseB1F.asm:ExplodingTrap17,,floor_trap:17,6,66,216,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,GEODUDE,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap18,,floor_trap:18,6,60,180,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,GEODUDE,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap19,,floor_trap:19,6,60,180,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,VOLTORB,23,maps/TeamRocketBaseB1F.asm:ExplodingTrap20,,floor_trap:20,6,66,216,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,KOFFING,21,maps/TeamRocketBaseB1F.asm:ExplodingTrap21,,floor_trap:21,6,68,204,False,False,finite optional floor trap; expected exposure scenario
+TeamRocketBaseB1F,VOLTORB,23,maps/TeamRocketBaseB1F.asm:ExplodingTrap22,,floor_trap:22,6,66,216,False,False,finite optional floor trap; expected exposure scenario

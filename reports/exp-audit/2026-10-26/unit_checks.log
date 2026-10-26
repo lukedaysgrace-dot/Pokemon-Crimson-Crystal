@@ -1,0 +1,25 @@
+test_boss_reward_not_used_to_reach_it (__main__.CoverageTests.test_boss_reward_not_used_to_reach_it) ... ok
+test_delayed_recruitment_and_fresh_catches (__main__.CoverageTests.test_delayed_recruitment_and_fresh_catches) ... ok
+test_every_species_party_reference_resolves (__main__.CoverageTests.test_every_species_party_reference_resolves) ... ok
+test_late_routes_follow_flags (__main__.CoverageTests.test_late_routes_follow_flags) ... ok
+test_lighthouse_medicine_gate_and_default_timing (__main__.CoverageTests.test_lighthouse_medicine_gate_and_default_timing) ... ok
+test_no_double_counting (__main__.CoverageTests.test_no_double_counting) ... ok
+test_object_presence_and_ship_flags (__main__.CoverageTests.test_object_presence_and_ship_flags) ... ok
+test_optional_repeatable_xp_never_awarded (__main__.CoverageTests.test_optional_repeatable_xp_never_awarded) ... ok
+test_shared_corridors_and_clair_shrine (__main__.CoverageTests.test_shared_corridors_and_clair_shrine) ... ok
+test_source_caps_and_permitted_order (__main__.CoverageTests.test_source_caps_and_permitted_order) ... ok
+test_story_boss_order (__main__.CoverageTests.test_story_boss_order) ... ok
+test_surf_access_before_morty (__main__.CoverageTests.test_surf_access_before_morty) ... ok
+test_wild_probabilities_and_surf_runtime (__main__.CoverageTests.test_wild_probabilities_and_surf_runtime) ... ok
+test_all_capped_counts_loss_once (__main__.FormulaTests.test_all_capped_counts_loss_once) ... ok
+test_cap_clipping_discard_and_no_restore (__main__.FormulaTests.test_cap_clipping_discard_and_no_restore) ... ok
+test_capped_participant_does_not_steal_exp (__main__.FormulaTests.test_capped_participant_does_not_steal_exp) ... ok
+test_known_thresholds (__main__.FormulaTests.test_known_thresholds) ... ok
+test_native_receipt (__main__.FormulaTests.test_native_receipt) ... ok
+test_order_of_operations (__main__.FormulaTests.test_order_of_operations) ... ok
+test_share_holder_and_participant_passes (__main__.FormulaTests.test_share_holder_and_participant_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.364s
+
+OK

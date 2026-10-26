@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "verified_at_utc": "2026-10-26T19:41:20.271569+00:00",
+  "checks": [
+    {
+      "check": "source fingerprints unchanged",
+      "records": 2664,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "coverage and simulation matrix",
+      "records": 2928,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "all trainer records recompute exactly",
+      "records": 1822,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "all source trainer references classified",
+      "records": 585,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "individual EXP thresholds, earned totals and shortfalls",
+      "records": 99368,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "team/member reconciliation and 42 primary checkpoints per baseline",
+      "records": 29376,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "one-time trainer ledger has no repeated event per scenario",
+      "records": 24498,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "native verification receipt",
+      "records": 2284,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "audit regression suite",
+      "records": 20,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "public CLI custom roster and invalid-input handling",
+      "records": 2,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "local report links resolve",
+      "records": 426,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "eight raster/vector chart pairs",
+      "records": 8,
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "deliverable artifact fingerprints",
+      "records": 101,
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "note": "The 3,974 repository league checks were separately observed passing during this audit. They are not rerun or added to this verifier count. Native receipt checks execute compiled routines, not a full campaign. Reachability and player behavior limitations remain as documented."
+}

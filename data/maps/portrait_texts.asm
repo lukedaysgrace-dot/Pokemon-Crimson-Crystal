@@ -1248,8 +1248,6 @@ PortraitTexts:
 	dba Text_YourMonIsAdorable
 	db 0
 ; OaksLab
-	dba OakFindCrystalText
-	db PORTRAIT_OAK
 	dba OakJohtoRematchesText
 	db PORTRAIT_OAK
 	dba OakLabDexCheckText

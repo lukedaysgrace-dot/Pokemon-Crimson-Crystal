@@ -268,7 +268,6 @@ Route25CrystalBattle:
 	startbattle
 	ifequal LOSE, .Lost
 	setevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
-	farscall QueueOakMtSilverCallScript
 .Lost:
 	dontrestartmapmusic
 	reloadmapafterbattle

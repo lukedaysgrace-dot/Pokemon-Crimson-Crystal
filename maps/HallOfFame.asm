@@ -47,8 +47,6 @@ HallOfFame_MapScripts:
 	iftrue .SkipPhoneCall
 	checkevent EVENT_BEAT_CLAIR_REMATCH
 	iffalse .SkipPhoneCall
-	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
-	iffalse .SkipPhoneCall
 	specialphonecall SPECIALCALL_OAK_MT_SILVER
 .SkipPhoneCall:
 	halloffame

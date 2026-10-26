@@ -1,0 +1,407 @@
+map,stage,earliest_stage,optional_zone,requirements,access_confidence,source
+AzaleaGym,1,1,False,Falkner and aide egg; Union Cave; well clearance for gym,source-informed itinerary; no exhaustive collision solver,maps/AzaleaGym.asm
+AzaleaMart,1,1,False,Falkner and aide egg; Union Cave; well clearance for gym,source-informed itinerary; no exhaustive collision solver,maps/AzaleaMart.asm
+AzaleaPokecenter1F,1,1,False,Falkner and aide egg; Union Cave; well clearance for gym,source-informed itinerary; no exhaustive collision solver,maps/AzaleaPokecenter1F.asm
+AzaleaTown,1,1,False,Falkner and aide egg; Union Cave; well clearance for gym,source-informed itinerary; no exhaustive collision solver,maps/AzaleaTown.asm
+BattleTower1F,4,4,True,Route40; awards no battle EXP,source-informed itinerary; no exhaustive collision solver,maps/BattleTower1F.asm
+BattleTowerBattleRoom,4,4,True,Route40; awards no battle EXP,source-informed itinerary; no exhaustive collision solver,maps/BattleTowerBattleRoom.asm
+BattleTowerElevator,4,4,True,Route40; awards no battle EXP,source-informed itinerary; no exhaustive collision solver,maps/BattleTowerElevator.asm
+BattleTowerHallway,4,4,True,Route40; awards no battle EXP,source-informed itinerary; no exhaustive collision solver,maps/BattleTowerHallway.asm
+BattleTowerOutside,4,4,True,Route40; awards no battle EXP,source-informed itinerary; no exhaustive collision solver,maps/BattleTowerOutside.asm
+BillsBrothersHouse,12,9,False,Routes12-15 or Cycling Road; Snorlax/Bicycle alternate paths,source-informed itinerary; no exhaustive collision solver,maps/BillsBrothersHouse.asm
+BillsFamilysHouse,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/BillsFamilysHouse.asm
+BillsHouse,9,8,False,Route 25; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/BillsHouse.asm
+BlackthornCity,7,6,False,Ice Path; gym entrance waits for Radio Tower,source-informed itinerary; no exhaustive collision solver,maps/BlackthornCity.asm
+BlackthornDragonSpeechHouse,7,6,False,Ice Path; gym entrance waits for Radio Tower,source-informed itinerary; no exhaustive collision solver,maps/BlackthornDragonSpeechHouse.asm
+BlackthornEmysHouse,7,6,False,Ice Path; gym entrance waits for Radio Tower,source-informed itinerary; no exhaustive collision solver,maps/BlackthornEmysHouse.asm
+BlackthornGym1F,7,7,False,Blackthorn entrance NPC stays until Radio Tower is cleared; city itself can be reached earlier,source-informed itinerary; no exhaustive collision solver,maps/BlackthornGym1F.asm
+BlackthornGym2F,7,7,False,Blackthorn entrance NPC stays until Radio Tower is cleared; city itself can be reached earlier,source-informed itinerary; no exhaustive collision solver,maps/BlackthornGym2F.asm
+BlackthornMart,7,6,False,Ice Path; gym entrance waits for Radio Tower,source-informed itinerary; no exhaustive collision solver,maps/BlackthornMart.asm
+BlackthornPokecenter1F,7,6,False,Ice Path; gym entrance waits for Radio Tower,source-informed itinerary; no exhaustive collision solver,maps/BlackthornPokecenter1F.asm
+BluesHouse,14,14,False,southern Viridian road needs Brock/Misty/Surge/Erika/Janine/Sabrina,source-informed itinerary; no exhaustive collision solver,maps/BluesHouse.asm
+BrunosRoom,16,16,False,16 badges; first League; rematch additionally Clair rematch,source-informed itinerary; no exhaustive collision solver,maps/BrunosRoom.asm
+BurnedTower1F,3,3,False,Ecruteak; Silver and beast release unlock gym,source-informed itinerary; no exhaustive collision solver,maps/BurnedTower1F.asm
+BurnedTowerB1F,3,3,False,Ecruteak; Silver and beast release unlock gym,source-informed itinerary; no exhaustive collision solver,maps/BurnedTowerB1F.asm
+CeladonCafe,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonCafe.asm
+CeladonCity,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonCity.asm
+CeladonDeptStore1F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonDeptStore1F.asm
+CeladonDeptStore2F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonDeptStore2F.asm
+CeladonDeptStore3F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonDeptStore3F.asm
+CeladonDeptStore4F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonDeptStore4F.asm
+CeladonDeptStore5F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonDeptStore5F.asm
+CeladonDeptStore6F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonDeptStore6F.asm
+CeladonDeptStoreElevator,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonDeptStoreElevator.asm
+CeladonDeptStoreRoof,99,99,True,unused/unclassified map (review before adding to campaign),source-informed itinerary; no exhaustive collision solver,maps/CeladonDeptStoreRoof.asm
+CeladonGameCorner,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonGameCorner.asm
+CeladonGameCornerPrizeRoom,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonGameCornerPrizeRoom.asm
+CeladonGym,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonGym.asm
+CeladonMansion1F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonMansion1F.asm
+CeladonMansion2F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonMansion2F.asm
+CeladonMansion3F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonMansion3F.asm
+CeladonMansionRoof,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonMansionRoof.asm
+CeladonMansionRoofHouse,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonMansionRoofHouse.asm
+CeladonPokecenter1F,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonPokecenter1F.asm
+CeladonPokecenter2FBeta,11,9,False,Saffron/Route7,source-informed itinerary; no exhaustive collision solver,maps/CeladonPokecenter2FBeta.asm
+CeruleanCave1F,30,11,True,Route4 entrance requires caught Mew and Mew in party; Mew follows Erika-triggered Cape Crystal event,source-informed itinerary; no exhaustive collision solver,maps/CeruleanCave1F.asm
+CeruleanCave2F,30,11,True,Route4 entrance requires caught Mew and Mew in party; Mew follows Erika-triggered Cape Crystal event,source-informed itinerary; no exhaustive collision solver,maps/CeruleanCave2F.asm
+CeruleanCaveB1F,30,11,True,Route4 entrance requires caught Mew and Mew in party; Mew follows Erika-triggered Cape Crystal event,source-informed itinerary; no exhaustive collision solver,maps/CeruleanCaveB1F.asm
+CeruleanCity,9,8,False,"Mt Moon/Route4; power investigation, Route25 date for Misty",source-informed itinerary; no exhaustive collision solver,maps/CeruleanCity.asm
+CeruleanGym,9,8,False,"Mt Moon/Route4; power investigation, Route25 date for Misty",source-informed itinerary; no exhaustive collision solver,maps/CeruleanGym.asm
+CeruleanGymBadgeSpeechHouse,9,8,False,"Mt Moon/Route4; power investigation, Route25 date for Misty",source-informed itinerary; no exhaustive collision solver,maps/CeruleanGymBadgeSpeechHouse.asm
+CeruleanMart,9,8,False,"Mt Moon/Route4; power investigation, Route25 date for Misty",source-informed itinerary; no exhaustive collision solver,maps/CeruleanMart.asm
+CeruleanPokecenter1F,9,8,False,"Mt Moon/Route4; power investigation, Route25 date for Misty",source-informed itinerary; no exhaustive collision solver,maps/CeruleanPokecenter1F.asm
+CeruleanPokecenter2FBeta,9,8,False,"Mt Moon/Route4; power investigation, Route25 date for Misty",source-informed itinerary; no exhaustive collision solver,maps/CeruleanPokecenter2FBeta.asm
+CeruleanPoliceStation,9,8,False,"Mt Moon/Route4; power investigation, Route25 date for Misty",source-informed itinerary; no exhaustive collision solver,maps/CeruleanPoliceStation.asm
+CeruleanTradeSpeechHouse,9,8,False,"Mt Moon/Route4; power investigation, Route25 date for Misty",source-informed itinerary; no exhaustive collision solver,maps/CeruleanTradeSpeechHouse.asm
+CharcoalKiln,1,1,False,Falkner and aide egg; Union Cave; well clearance for gym,source-informed itinerary; no exhaustive collision solver,maps/CharcoalKiln.asm
+CherrygroveCity,0,0,False,Elm errand; Silver on return,source-informed itinerary; no exhaustive collision solver,maps/CherrygroveCity.asm
+CherrygroveEvolutionSpeechHouse,0,0,False,Elm errand; Silver on return,source-informed itinerary; no exhaustive collision solver,maps/CherrygroveEvolutionSpeechHouse.asm
+CherrygroveGymSpeechHouse,0,0,False,Elm errand; Silver on return,source-informed itinerary; no exhaustive collision solver,maps/CherrygroveGymSpeechHouse.asm
+CherrygroveMart,0,0,False,Elm errand; Silver on return,source-informed itinerary; no exhaustive collision solver,maps/CherrygroveMart.asm
+CherrygrovePokecenter1F,0,0,False,Elm errand; Silver on return,source-informed itinerary; no exhaustive collision solver,maps/CherrygrovePokecenter1F.asm
+CianwoodCity,4,4,False,Morty + all 8 Kimono Girls for Surf; Routes40-41,source-informed itinerary; no exhaustive collision solver,maps/CianwoodCity.asm
+CianwoodGym,4,4,False,Morty + all 8 Kimono Girls for Surf; Routes40-41,source-informed itinerary; no exhaustive collision solver,maps/CianwoodGym.asm
+CianwoodLugiaSpeechHouse,4,4,False,Morty + all 8 Kimono Girls for Surf; Routes40-41,source-informed itinerary; no exhaustive collision solver,maps/CianwoodLugiaSpeechHouse.asm
+CianwoodPharmacy,4,4,False,Morty + all 8 Kimono Girls for Surf; Routes40-41,source-informed itinerary; no exhaustive collision solver,maps/CianwoodPharmacy.asm
+CianwoodPhotoStudio,4,4,False,Morty + all 8 Kimono Girls for Surf; Routes40-41,source-informed itinerary; no exhaustive collision solver,maps/CianwoodPhotoStudio.asm
+CianwoodPokecenter1F,4,4,False,Morty + all 8 Kimono Girls for Surf; Routes40-41,source-informed itinerary; no exhaustive collision solver,maps/CianwoodPokecenter1F.asm
+CinnabarIsland,14,14,False,same six Kanto badges; Surf south routes,source-informed itinerary; no exhaustive collision solver,maps/CinnabarIsland.asm
+CinnabarPokecenter1F,14,14,False,same six Kanto badges; Surf south routes,source-informed itinerary; no exhaustive collision solver,maps/CinnabarPokecenter1F.asm
+CinnabarPokecenter2FBeta,14,14,False,same six Kanto badges; Surf south routes,source-informed itinerary; no exhaustive collision solver,maps/CinnabarPokecenter2FBeta.asm
+Colosseum,99,99,True,cable/mobile/special content; no campaign EXP,source-informed itinerary; no exhaustive collision solver,maps/Colosseum.asm
+CopycatsHouse1F,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/CopycatsHouse1F.asm
+CopycatsHouse2F,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/CopycatsHouse2F.asm
+DanceTheatre,3,3,False,ALL 8 Kimono Girls required to obtain HM Surf; Morty to use it,source-informed itinerary; no exhaustive collision solver,maps/DanceTheatre.asm
+DarkCaveBlackthornEntrance,8,7,True,Violet entrance initially; inner water/rocks need Surf/Rock Smash; Blackthorn side later,source-informed itinerary; no exhaustive collision solver,maps/DarkCaveBlackthornEntrance.asm
+DarkCaveVioletEntrance,4,0,True,Violet entrance initially; inner water/rocks need Surf/Rock Smash; Blackthorn side later,source-informed itinerary; no exhaustive collision solver,maps/DarkCaveVioletEntrance.asm
+DayCare,2,2,False,Route 34; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/DayCare.asm
+DayOfWeekSiblingsHouse,8,8,False,Route 26; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/DayOfWeekSiblingsHouse.asm
+DiglettsCave,11,10,True,Kanto radio/EXPN + Snorlax; alternative access not path-proved,source-informed itinerary; no exhaustive collision solver,maps/DiglettsCave.asm
+DragonsDen1F,8,8,True,Clair opens entrance; Whirlpool for inner trainers,source-informed itinerary; no exhaustive collision solver,maps/DragonsDen1F.asm
+DragonsDenB1F,8,8,True,Clair opens entrance; Whirlpool for inner trainers,source-informed itinerary; no exhaustive collision solver,maps/DragonsDenB1F.asm
+DragonShrine,8,8,True,Clair opens entrance; Whirlpool for inner trainers,source-informed itinerary; no exhaustive collision solver,maps/DragonShrine.asm
+EarlsPokemonAcademy,0,0,False,Routes 30-31,source-informed itinerary; no exhaustive collision solver,maps/EarlsPokemonAcademy.asm
+EcruteakCity,3,3,False,"Whitney, Floria and Squirtbottle/Sudowoodo; Burned Tower for Morty; 8 Kimono Girls for Surf",source-informed itinerary; no exhaustive collision solver,maps/EcruteakCity.asm
+EcruteakGym,3,3,False,"Whitney, Floria and Squirtbottle/Sudowoodo; Burned Tower for Morty; 8 Kimono Girls for Surf",source-informed itinerary; no exhaustive collision solver,maps/EcruteakGym.asm
+EcruteakItemfinderHouse,3,3,False,"Whitney, Floria and Squirtbottle/Sudowoodo; Burned Tower for Morty; 8 Kimono Girls for Surf",source-informed itinerary; no exhaustive collision solver,maps/EcruteakItemfinderHouse.asm
+EcruteakLugiaSpeechHouse,3,3,False,"Whitney, Floria and Squirtbottle/Sudowoodo; Burned Tower for Morty; 8 Kimono Girls for Surf",source-informed itinerary; no exhaustive collision solver,maps/EcruteakLugiaSpeechHouse.asm
+EcruteakMart,3,3,False,"Whitney, Floria and Squirtbottle/Sudowoodo; Burned Tower for Morty; 8 Kimono Girls for Surf",source-informed itinerary; no exhaustive collision solver,maps/EcruteakMart.asm
+EcruteakPokecenter1F,3,3,False,"Whitney, Floria and Squirtbottle/Sudowoodo; Burned Tower for Morty; 8 Kimono Girls for Surf",source-informed itinerary; no exhaustive collision solver,maps/EcruteakPokecenter1F.asm
+EcruteakTinTowerEntrance,3,3,False,"Whitney, Floria and Squirtbottle/Sudowoodo; Burned Tower for Morty; 8 Kimono Girls for Surf",source-informed itinerary; no exhaustive collision solver,maps/EcruteakTinTowerEntrance.asm
+ElmsHouse,0,0,False,starter / Elm errand,source-informed itinerary; no exhaustive collision solver,maps/ElmsHouse.asm
+ElmsLab,0,0,False,starter / Elm errand,source-informed itinerary; no exhaustive collision solver,maps/ElmsLab.asm
+FastShip1F,11,11,True,Surge allows SS Ticket; first rescue voyage distinct from daily trips,source-informed itinerary; no exhaustive collision solver,maps/FastShip1F.asm
+FastShipB1F,11,11,True,Surge allows SS Ticket; first rescue voyage distinct from daily trips,source-informed itinerary; no exhaustive collision solver,maps/FastShipB1F.asm
+FastShipCabins_NNW_NNE_NE,11,11,True,Surge allows SS Ticket; first rescue voyage distinct from daily trips,source-informed itinerary; no exhaustive collision solver,maps/FastShipCabins_NNW_NNE_NE.asm
+FastShipCabins_SE_SSE_CaptainsCabin,11,11,True,Surge allows SS Ticket; first rescue voyage distinct from daily trips,source-informed itinerary; no exhaustive collision solver,maps/FastShipCabins_SE_SSE_CaptainsCabin.asm
+FastShipCabins_SW_SSW_NW,11,11,True,Surge allows SS Ticket; first rescue voyage distinct from daily trips,source-informed itinerary; no exhaustive collision solver,maps/FastShipCabins_SW_SSW_NW.asm
+FightingDojo,13,9,True,Saffron access; Kiyo has no visibility event or progress gate (object flag -1),source-informed itinerary; no exhaustive collision solver,maps/FightingDojo.asm
+FireIsland,14,14,True,Route19 + Elemental Sphere,source-informed itinerary; no exhaustive collision solver,maps/FireIsland.asm
+FuchsiaCity,12,9,False,Routes12-15 or Cycling Road; Snorlax/Bicycle alternate paths,source-informed itinerary; no exhaustive collision solver,maps/FuchsiaCity.asm
+FuchsiaGym,12,9,False,Routes12-15 or Cycling Road; Snorlax/Bicycle alternate paths,source-informed itinerary; no exhaustive collision solver,maps/FuchsiaGym.asm
+FuchsiaMart,12,9,False,Routes12-15 or Cycling Road; Snorlax/Bicycle alternate paths,source-informed itinerary; no exhaustive collision solver,maps/FuchsiaMart.asm
+FuchsiaPokecenter1F,12,9,False,Routes12-15 or Cycling Road; Snorlax/Bicycle alternate paths,source-informed itinerary; no exhaustive collision solver,maps/FuchsiaPokecenter1F.asm
+FuchsiaPokecenter2FBeta,12,9,False,Routes12-15 or Cycling Road; Snorlax/Bicycle alternate paths,source-informed itinerary; no exhaustive collision solver,maps/FuchsiaPokecenter2FBeta.asm
+GoldenrodBikeShop,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodBikeShop.asm
+GoldenrodCity,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodCity.asm
+GoldenrodDeptStore1F,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodDeptStore1F.asm
+GoldenrodDeptStore2F,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodDeptStore2F.asm
+GoldenrodDeptStore3F,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodDeptStore3F.asm
+GoldenrodDeptStore4F,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodDeptStore4F.asm
+GoldenrodDeptStore5F,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodDeptStore5F.asm
+GoldenrodDeptStore6F,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodDeptStore6F.asm
+GoldenrodDeptStoreB1F,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodDeptStoreB1F.asm
+GoldenrodDeptStoreElevator,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodDeptStoreElevator.asm
+GoldenrodDeptStoreRoof,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodDeptStoreRoof.asm
+GoldenrodFlowerShop,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodFlowerShop.asm
+GoldenrodGameCorner,2,2,True,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodGameCorner.asm
+GoldenrodGym,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodGym.asm
+GoldenrodHappinessRater,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodHappinessRater.asm
+GoldenrodMagnetTrainStation,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodMagnetTrainStation.asm
+GoldenrodNameRater,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodNameRater.asm
+GoldenrodPokecenter1F,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodPokecenter1F.asm
+GoldenrodPPSpeechHouse,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodPPSpeechHouse.asm
+GoldenrodUnderground,2,2,True,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodUnderground.asm
+GoldenrodUndergroundSwitchRoomEntrances,7,7,False,Radio Tower fake director gives Basement Key; underground rescue,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodUndergroundSwitchRoomEntrances.asm
+GoldenrodUndergroundWarehouse,7,7,False,Radio Tower fake director gives Basement Key; underground rescue,source-informed itinerary; no exhaustive collision solver,maps/GoldenrodUndergroundWarehouse.asm
+GravekeepersHouse,3,3,True,Route37 side entrance; grave cleaning gives Focus Sash,source-informed itinerary; no exhaustive collision solver,maps/GravekeepersHouse.asm
+GuideGentsHouse,0,0,False,Elm errand; Silver on return,source-informed itinerary; no exhaustive collision solver,maps/GuideGentsHouse.asm
+HallOfFame,16,16,False,16 badges; first League; rematch additionally Clair rematch,source-informed itinerary; no exhaustive collision solver,maps/HallOfFame.asm
+IceIsland,14,14,True,Route19 + Elemental Sphere,source-informed itinerary; no exhaustive collision solver,maps/IceIsland.asm
+IcePath1F,7,6,False,Rocket Hideout clears east road; Waterfall field use needs Clair,source-informed itinerary; no exhaustive collision solver,maps/IcePath1F.asm
+IcePathB1F,7,6,False,Rocket Hideout clears east road; Waterfall field use needs Clair,source-informed itinerary; no exhaustive collision solver,maps/IcePathB1F.asm
+IcePathB2FBlackthornSide,7,6,False,Rocket Hideout clears east road; Waterfall field use needs Clair,source-informed itinerary; no exhaustive collision solver,maps/IcePathB2FBlackthornSide.asm
+IcePathB2FMahoganySide,7,6,False,Rocket Hideout clears east road; Waterfall field use needs Clair,source-informed itinerary; no exhaustive collision solver,maps/IcePathB2FMahoganySide.asm
+IcePathB3F,7,6,False,Rocket Hideout clears east road; Waterfall field use needs Clair,source-informed itinerary; no exhaustive collision solver,maps/IcePathB3F.asm
+IlexForest,2,1,False,Azalea rival; Bugsy for Cut at north exit,source-informed itinerary; no exhaustive collision solver,maps/IlexForest.asm
+IlexForestAzaleaGate,2,2,False,Route 34; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/IlexForestAzaleaGate.asm
+IndigoPlateauPokecenter1F,16,16,False,16 badges; first League; rematch additionally Clair rematch,source-informed itinerary; no exhaustive collision solver,maps/IndigoPlateauPokecenter1F.asm
+KarensRoom,16,16,False,16 badges; first League; rematch additionally Clair rematch,source-informed itinerary; no exhaustive collision solver,maps/KarensRoom.asm
+KogasRoom,16,16,False,16 badges; first League; rematch additionally Clair rematch,source-informed itinerary; no exhaustive collision solver,maps/KogasRoom.asm
+KurtsHouse,1,1,False,Falkner and aide egg; Union Cave; well clearance for gym,source-informed itinerary; no exhaustive collision solver,maps/KurtsHouse.asm
+LakeOfRage,6,5,False,Mahogany/Route43; Gyarados and Lance for Hideout,source-informed itinerary; no exhaustive collision solver,maps/LakeOfRage.asm
+LakeOfRageHiddenPowerHouse,6,5,False,Mahogany/Route43; Gyarados and Lance for Hideout,source-informed itinerary; no exhaustive collision solver,maps/LakeOfRageHiddenPowerHouse.asm
+LakeOfRageMagikarpHouse,6,5,False,Mahogany/Route43; Gyarados and Lance for Hideout,source-informed itinerary; no exhaustive collision solver,maps/LakeOfRageMagikarpHouse.asm
+LancesRoom,16,16,False,16 badges; first League; rematch additionally Clair rematch,source-informed itinerary; no exhaustive collision solver,maps/LancesRoom.asm
+LavenderMart,12,9,False,Route9/10 or Saffron/Route8,source-informed itinerary; no exhaustive collision solver,maps/LavenderMart.asm
+LavenderNameRater,12,9,False,Route9/10 or Saffron/Route8,source-informed itinerary; no exhaustive collision solver,maps/LavenderNameRater.asm
+LavenderPokecenter1F,12,9,False,Route9/10 or Saffron/Route8,source-informed itinerary; no exhaustive collision solver,maps/LavenderPokecenter1F.asm
+LavenderPokecenter2FBeta,12,9,False,Route9/10 or Saffron/Route8,source-informed itinerary; no exhaustive collision solver,maps/LavenderPokecenter2FBeta.asm
+LavenderSpeechHouse,12,9,False,Route9/10 or Saffron/Route8,source-informed itinerary; no exhaustive collision solver,maps/LavenderSpeechHouse.asm
+LavenderTown,12,9,False,Route9/10 or Saffron/Route8,source-informed itinerary; no exhaustive collision solver,maps/LavenderTown.asm
+LavRadioTower1F,10,9,False,restore Power Plant for EXPN Card,source-informed itinerary; no exhaustive collision solver,maps/LavRadioTower1F.asm
+MahoganyGym,6,5,False,Route42 fisherman checks Jasmine; Rocket Hideout story,source-informed itinerary; no exhaustive collision solver,maps/MahoganyGym.asm
+MahoganyMart1F,6,5,False,Route42 fisherman checks Jasmine; Rocket Hideout story,source-informed itinerary; no exhaustive collision solver,maps/MahoganyMart1F.asm
+MahoganyPokecenter1F,6,5,False,Route42 fisherman checks Jasmine; Rocket Hideout story,source-informed itinerary; no exhaustive collision solver,maps/MahoganyPokecenter1F.asm
+MahoganyRedGyaradosSpeechHouse,6,5,False,Route42 fisherman checks Jasmine; Rocket Hideout story,source-informed itinerary; no exhaustive collision solver,maps/MahoganyRedGyaradosSpeechHouse.asm
+MahoganyTown,6,5,False,Route42 fisherman checks Jasmine; Rocket Hideout story,source-informed itinerary; no exhaustive collision solver,maps/MahoganyTown.asm
+ManiasHouse,4,4,False,Morty + all 8 Kimono Girls for Surf; Routes40-41,source-informed itinerary; no exhaustive collision solver,maps/ManiasHouse.asm
+MobileBattleRoom,99,99,True,cable/mobile/special content; no campaign EXP,source-informed itinerary; no exhaustive collision solver,maps/MobileBattleRoom.asm
+MobileTradeRoom,99,99,True,cable/mobile/special content; no campaign EXP,source-informed itinerary; no exhaustive collision solver,maps/MobileTradeRoom.asm
+MountMoon,9,8,False,Route3 east from Pewter; Brock not checked in map script,source-informed itinerary; no exhaustive collision solver,maps/MountMoon.asm
+MountMoonGiftShop,9,8,False,Route3 east from Pewter; Brock not checked in map script,source-informed itinerary; no exhaustive collision solver,maps/MountMoonGiftShop.asm
+MountMoonSquare,9,8,False,Route3 east from Pewter; Brock not checked in map script,source-informed itinerary; no exhaustive collision solver,maps/MountMoonSquare.asm
+MountMortar1FInside,6,5,True,Jasmine opens Route42 approach; Surf to interior trainers; deeper Waterfall route after Clair,source-informed itinerary; no exhaustive collision solver,maps/MountMortar1FInside.asm
+MountMortar1FOutside,6,3,True,Route42 west initially; internal Surf/Waterfall/Strength gates,source-informed itinerary; no exhaustive collision solver,maps/MountMortar1FOutside.asm
+MountMortar2FInside,8,8,True,Waterfall after Clair; Kiyo later moves to Saffron Dojo,source-informed itinerary; no exhaustive collision solver,maps/MountMortar2FInside.asm
+MountMortarB1F,6,3,True,Route42 west initially; internal Surf/Waterfall/Strength gates,source-informed itinerary; no exhaustive collision solver,maps/MountMortarB1F.asm
+MoveDeletersHouse,7,6,False,Ice Path; gym entrance waits for Radio Tower,source-informed itinerary; no exhaustive collision solver,maps/MoveDeletersHouse.asm
+MrFujisHouse,12,9,False,Route9/10 or Saffron/Route8,source-informed itinerary; no exhaustive collision solver,maps/MrFujisHouse.asm
+MrPokemonsHouse,0,0,False,Route 30; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/MrPokemonsHouse.asm
+MrPsychicsHouse,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/MrPsychicsHouse.asm
+NationalPark,3,2,True,"north of Goldenrod, accessible before Whitney",source-informed itinerary; no exhaustive collision solver,maps/NationalPark.asm
+NationalParkBugContest,3,2,True,"north of Goldenrod, accessible before Whitney",source-informed itinerary; no exhaustive collision solver,maps/NationalParkBugContest.asm
+NewBarkTown,0,0,False,starter / Elm errand,source-informed itinerary; no exhaustive collision solver,maps/NewBarkTown.asm
+OaksLab,14,14,False,southern Viridian road needs Brock/Misty/Surge/Erika/Janine/Sabrina,source-informed itinerary; no exhaustive collision solver,maps/OaksLab.asm
+OlivineCafe,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivineCafe.asm
+OlivineCity,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivineCity.asm
+OlivineFishingCove,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivineFishingCove.asm
+OlivineFishingCoveGate,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivineFishingCoveGate.asm
+OlivineGoodRodHouse,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivineGoodRodHouse.asm
+OlivineGym,5,4,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivineGym.asm
+OlivineHouseBeta,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivineHouseBeta.asm
+OlivineLighthouse1F,5,4,False,"Jasmine blocks entrance until Cianwood Secretpotion delivery; default return after Chuck, before Jasmine; Chuck badge is not itself required",source-informed itinerary; no exhaustive collision solver,maps/OlivineLighthouse1F.asm
+OlivineLighthouse2F,5,4,False,"Jasmine blocks entrance until Cianwood Secretpotion delivery; default return after Chuck, before Jasmine; Chuck badge is not itself required",source-informed itinerary; no exhaustive collision solver,maps/OlivineLighthouse2F.asm
+OlivineLighthouse3F,5,4,False,"Jasmine blocks entrance until Cianwood Secretpotion delivery; default return after Chuck, before Jasmine; Chuck badge is not itself required",source-informed itinerary; no exhaustive collision solver,maps/OlivineLighthouse3F.asm
+OlivineLighthouse4F,5,4,False,"Jasmine blocks entrance until Cianwood Secretpotion delivery; default return after Chuck, before Jasmine; Chuck badge is not itself required",source-informed itinerary; no exhaustive collision solver,maps/OlivineLighthouse4F.asm
+OlivineLighthouse5F,5,4,False,"Jasmine blocks entrance until Cianwood Secretpotion delivery; default return after Chuck, before Jasmine; Chuck badge is not itself required",source-informed itinerary; no exhaustive collision solver,maps/OlivineLighthouse5F.asm
+OlivineLighthouse6F,5,4,False,"Jasmine blocks entrance until Cianwood Secretpotion delivery; default return after Chuck, before Jasmine; Chuck badge is not itself required",source-informed itinerary; no exhaustive collision solver,maps/OlivineLighthouse6F.asm
+OlivineMart,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivineMart.asm
+OlivinePokecenter1F,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivinePokecenter1F.asm
+OlivinePort,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivinePort.asm
+OlivinePortPassage,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivinePortPassage.asm
+OlivinePunishmentSpeechHouse,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivinePunishmentSpeechHouse.asm
+OlivineTimsHouse,4,3,False,Routes38-39; accessible before Morty; pharmacy Surf trip for Jasmine,source-informed itinerary; no exhaustive collision solver,maps/OlivineTimsHouse.asm
+PalletTown,14,14,False,southern Viridian road needs Brock/Misty/Surge/Erika/Janine/Sabrina,source-informed itinerary; no exhaustive collision solver,maps/PalletTown.asm
+PewterCity,8,8,False,Route2/forest,source-informed itinerary; no exhaustive collision solver,maps/PewterCity.asm
+PewterGym,8,8,False,Route2/forest,source-informed itinerary; no exhaustive collision solver,maps/PewterGym.asm
+PewterMart,8,8,False,Route2/forest,source-informed itinerary; no exhaustive collision solver,maps/PewterMart.asm
+PewterNidoranSpeechHouse,8,8,False,Route2/forest,source-informed itinerary; no exhaustive collision solver,maps/PewterNidoranSpeechHouse.asm
+PewterPokecenter1F,8,8,False,Route2/forest,source-informed itinerary; no exhaustive collision solver,maps/PewterPokecenter1F.asm
+PewterPokecenter2FBeta,8,8,False,Route2/forest,source-informed itinerary; no exhaustive collision solver,maps/PewterPokecenter2FBeta.asm
+PewterSnoozeSpeechHouse,8,8,False,Route2/forest,source-informed itinerary; no exhaustive collision solver,maps/PewterSnoozeSpeechHouse.asm
+PlayersHouse1F,0,0,False,starter / Elm errand,source-informed itinerary; no exhaustive collision solver,maps/PlayersHouse1F.asm
+PlayersHouse2F,0,0,False,starter / Elm errand,source-informed itinerary; no exhaustive collision solver,maps/PlayersHouse2F.asm
+PlayersNeighborsHouse,0,0,False,starter / Elm errand,source-informed itinerary; no exhaustive collision solver,maps/PlayersNeighborsHouse.asm
+Pokecenter2F,99,99,True,cable/mobile/special content; no campaign EXP,source-informed itinerary; no exhaustive collision solver,maps/Pokecenter2F.asm
+PokecomCenterAdminOfficeMobile,2,2,False,Cut through Ilex Forest,source-informed itinerary; no exhaustive collision solver,maps/PokecomCenterAdminOfficeMobile.asm
+PokemonFanClub,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/PokemonFanClub.asm
+PokeSeersHouse,4,4,False,Morty + all 8 Kimono Girls for Surf; Routes40-41,source-informed itinerary; no exhaustive collision solver,maps/PokeSeersHouse.asm
+PowerPlant,9,8,False,Surf from Route9 river; investigation for Misty date and Route5 opening,source-informed itinerary; no exhaustive collision solver,maps/PowerPlant.asm
+RadioTower1F,7,7,False,7 badges activates Rocket takeover; Basement and Card Keys,source-informed itinerary; no exhaustive collision solver,maps/RadioTower1F.asm
+RadioTower2F,7,7,False,7 badges activates Rocket takeover; Basement and Card Keys,source-informed itinerary; no exhaustive collision solver,maps/RadioTower2F.asm
+RadioTower3F,7,7,False,7 badges activates Rocket takeover; Basement and Card Keys,source-informed itinerary; no exhaustive collision solver,maps/RadioTower3F.asm
+RadioTower4F,7,7,False,7 badges activates Rocket takeover; Basement and Card Keys,source-informed itinerary; no exhaustive collision solver,maps/RadioTower4F.asm
+RadioTower5F,7,7,False,7 badges activates Rocket takeover; Basement and Card Keys,source-informed itinerary; no exhaustive collision solver,maps/RadioTower5F.asm
+RedsHouse1F,14,14,False,southern Viridian road needs Brock/Misty/Surge/Erika/Janine/Sabrina,source-informed itinerary; no exhaustive collision solver,maps/RedsHouse1F.asm
+RedsHouse2F,14,14,False,southern Viridian road needs Brock/Misty/Surge/Erika/Janine/Sabrina,source-informed itinerary; no exhaustive collision solver,maps/RedsHouse2F.asm
+RockTunnel1F,10,9,True,Route9 blocker checks Misty; river power access is distinct,source-informed itinerary; no exhaustive collision solver,maps/RockTunnel1F.asm
+RockTunnelB1F,10,9,True,Route9 blocker checks Misty; river power access is distinct,source-informed itinerary; no exhaustive collision solver,maps/RockTunnelB1F.asm
+Route1,14,14,False,Route 1; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route1.asm
+Route10North,9,8,False,Route 10; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route10North.asm
+Route10Pokecenter1F,10,8,False,Route 10; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route10Pokecenter1F.asm
+Route10Pokecenter2FBeta,10,8,False,Route 10; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route10Pokecenter2FBeta.asm
+Route10South,10,9,False,Route 10; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route10South.asm
+Route11,11,9,False,Route 11; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route11.asm
+Route12,12,9,True,Route 12; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route12.asm
+Route12SuperRodHouse,12,9,True,Route 12; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route12SuperRodHouse.asm
+Route13,12,9,True,Route 13; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route13.asm
+Route14,12,9,True,Route 14; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route14.asm
+Route15,12,9,True,Route 15; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route15.asm
+Route15FuchsiaGate,12,9,True,Route 15; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route15FuchsiaGate.asm
+Route16,12,9,True,Route 16; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route16.asm
+Route16FuchsiaSpeechHouse,12,9,True,Route 16; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route16FuchsiaSpeechHouse.asm
+Route16Gate,12,9,True,Route 16; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route16Gate.asm
+Route17,12,9,True,Route 17; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route17.asm
+Route17Route18Gate,12,9,True,Route 17; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route17Route18Gate.asm
+Route18,12,9,True,Route 18; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route18.asm
+Route19,14,14,False,Route 19; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route19.asm
+Route19FuchsiaGate,14,14,False,Route 19; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route19FuchsiaGate.asm
+Route2,8,8,False,Route 2; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route2.asm
+Route20,14,14,False,Route 20; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route20.asm
+Route21,14,14,False,Route 21; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route21.asm
+Route22,8,8,False,Route 22; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route22.asm
+Route23,16,16,False,Route 23; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route23.asm
+Route24,9,8,False,Route 24; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route24.asm
+Route25,9,8,False,Route 25; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route25.asm
+Route26,8,8,False,Route 26; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route26.asm
+Route26HealHouse,8,8,False,Route 26; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route26HealHouse.asm
+Route27,8,8,False,Route 27; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route27.asm
+Route27SandstormHouse,8,8,False,Route 27; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route27SandstormHouse.asm
+Route28,36,36,False,Route 28; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route28.asm
+Route28SteelWingHouse,36,29,False,Route 28; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route28SteelWingHouse.asm
+Route29,0,0,False,Route 29; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route29.asm
+Route29Route46Gate,0,0,False,Route 29; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route29Route46Gate.asm
+Route2Gate,8,8,False,Route 2; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route2Gate.asm
+Route2NuggetHouse,8,8,False,Route 2; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route2NuggetHouse.asm
+Route3,9,8,False,Route 3; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route3.asm
+Route30,0,0,False,Route 30; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route30.asm
+Route30BerryHouse,0,0,False,Route 30; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route30BerryHouse.asm
+Route31,0,0,False,Route 31; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route31.asm
+Route31VioletGate,0,0,False,Route 31; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route31VioletGate.asm
+Route32,1,1,False,Route 32; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route32.asm
+Route32Pokecenter1F,1,1,False,Route 32; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route32Pokecenter1F.asm
+Route32RuinsOfAlphGate,1,1,False,Route 32; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route32RuinsOfAlphGate.asm
+Route33,1,1,False,Route 33; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route33.asm
+Route34,2,2,False,Route 34; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route34.asm
+Route34IlexForestGate,2,2,False,Route 34; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route34IlexForestGate.asm
+Route35,3,2,False,Route 35; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route35.asm
+Route35GoldenrodGate,3,2,False,Route 35; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route35GoldenrodGate.asm
+Route35NationalParkGate,3,2,False,Route 35; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route35NationalParkGate.asm
+Route36,3,2,True,"trainers are WEST of Sudowoodo, accessible from Goldenrod before Whitney; east wild grass accessible from Violet",source-informed itinerary; no exhaustive collision solver,maps/Route36.asm
+Route36NationalParkGate,3,0,False,Route 36; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route36NationalParkGate.asm
+Route36RuinsOfAlphGate,3,0,False,Route 36; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route36RuinsOfAlphGate.asm
+Route37,3,3,False,Route 37; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route37.asm
+Route38,4,3,False,Route 38; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route38.asm
+Route38EcruteakGate,4,3,False,Route 38; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route38EcruteakGate.asm
+Route39,4,3,False,Route 39; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route39.asm
+Route39Barn,4,3,False,Route 39; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route39Barn.asm
+Route39Farmhouse,4,3,False,Route 39; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route39Farmhouse.asm
+Route4,9,8,False,Route 4; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route4.asm
+Route40,4,3,False,Route 40; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route40.asm
+Route40BattleTowerGate,4,4,True,Route40; awards no battle EXP,source-informed itinerary; no exhaustive collision solver,maps/Route40BattleTowerGate.asm
+Route41,4,4,False,Route 41; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route41.asm
+Route42,6,3,False,Route 42; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route42.asm
+Route42EcruteakGate,6,3,False,Route 42; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route42EcruteakGate.asm
+Route43,6,5,False,Route 43; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route43.asm
+Route43Gate,6,5,False,Route 43; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route43Gate.asm
+Route43MahoganyGate,6,5,False,Route 43; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route43MahoganyGate.asm
+Route44,7,6,False,Route 44; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route44.asm
+Route45,8,7,True,Route 45; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route45.asm
+Route46,8,7,True,Route 46; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route46.asm
+Route5,10,9,False,Route 5; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route5.asm
+Route5CleanseTagHouse,10,9,False,Route 5; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route5CleanseTagHouse.asm
+Route5SaffronGate,10,9,False,Route 5; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route5SaffronGate.asm
+Route5UndergroundPathEntrance,10,9,False,Route 5; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route5UndergroundPathEntrance.asm
+Route6,10,9,False,Route 6; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route6.asm
+Route6SaffronGate,10,9,False,Route 6; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route6SaffronGate.asm
+Route6UndergroundPathEntrance,10,9,False,Route 6; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route6UndergroundPathEntrance.asm
+Route7,11,9,False,Route 7; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route7.asm
+Route7SaffronGate,11,9,False,Route 7; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route7SaffronGate.asm
+Route8,12,9,False,Route 8; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route8.asm
+Route8SaffronGate,12,9,False,Route 8; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route8SaffronGate.asm
+Route9,9,8,False,Route 9; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/Route9.asm
+RuinsOfAlphAerodactylChamber,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphAerodactylChamber.asm
+RuinsOfAlphAerodactylItemRoom,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphAerodactylItemRoom.asm
+RuinsOfAlphAerodactylWordRoom,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphAerodactylWordRoom.asm
+RuinsOfAlphFossilLab,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphFossilLab.asm
+RuinsOfAlphHoOhChamber,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphHoOhChamber.asm
+RuinsOfAlphHoOhItemRoom,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphHoOhItemRoom.asm
+RuinsOfAlphHoOhWordRoom,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphHoOhWordRoom.asm
+RuinsOfAlphInnerChamber,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphInnerChamber.asm
+RuinsOfAlphKabutoChamber,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphKabutoChamber.asm
+RuinsOfAlphKabutoItemRoom,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphKabutoItemRoom.asm
+RuinsOfAlphKabutoWordRoom,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphKabutoWordRoom.asm
+RuinsOfAlphOmanyteChamber,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphOmanyteChamber.asm
+RuinsOfAlphOmanyteItemRoom,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphOmanyteItemRoom.asm
+RuinsOfAlphOmanyteWordRoom,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphOmanyteWordRoom.asm
+RuinsOfAlphOutside,4,4,True,western grass/Nathan sector via Union Cave Surf; public puzzle courtyard accessible earlier,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphOutside.asm
+RuinsOfAlphResearchCenter,1,0,True,Violet/Route32; some chambers need Surf/Strength and Union Cave,source-informed itinerary; no exhaustive collision solver,maps/RuinsOfAlphResearchCenter.asm
+SafariZone,4,3,True,"Route38 paid Safari; capture-only rules, no ordinary KO EXP",source-informed itinerary; no exhaustive collision solver,maps/SafariZone.asm
+SafariZoneBeta,99,99,True,retired Fuchsia Safari beta entrance is explicitly inaccessible,source-informed itinerary; no exhaustive collision solver,maps/SafariZoneBeta.asm
+SafariZoneFuchsiaGateBeta,99,99,True,retired Fuchsia Safari beta entrance is explicitly inaccessible,source-informed itinerary; no exhaustive collision solver,maps/SafariZoneFuchsiaGateBeta.asm
+SafariZoneLobby,4,3,True,"Route38 paid Safari; capture-only rules, no ordinary KO EXP",source-informed itinerary; no exhaustive collision solver,maps/SafariZoneLobby.asm
+SafariZoneMainOffice,12,9,False,Routes12-15 or Cycling Road; Snorlax/Bicycle alternate paths,source-informed itinerary; no exhaustive collision solver,maps/SafariZoneMainOffice.asm
+SafariZoneWardensHome,12,9,False,Routes12-15 or Cycling Road; Snorlax/Bicycle alternate paths,source-informed itinerary; no exhaustive collision solver,maps/SafariZoneWardensHome.asm
+SaffronCity,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/SaffronCity.asm
+SaffronGym,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/SaffronGym.asm
+SaffronMagnetTrainStation,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/SaffronMagnetTrainStation.asm
+SaffronMart,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/SaffronMart.asm
+SaffronPokecenter1F,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/SaffronPokecenter1F.asm
+SaffronPokecenter2FBeta,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/SaffronPokecenter2FBeta.asm
+SeafoamGym,14,14,False,Route20; Blaine gym,source-informed itinerary; no exhaustive collision solver,maps/SeafoamGym.asm
+ShiverIsle,4,4,True,Surf from Route41,source-informed itinerary; no exhaustive collision solver,maps/ShiverIsle.asm
+SilentCrypt,3,3,True,Route37 side entrance; grave cleaning gives Focus Sash,source-informed itinerary; no exhaustive collision solver,maps/SilentCrypt.asm
+SilphCo1F,13,9,False,Route5; road blocker requires Misty + Machine Part,source-informed itinerary; no exhaustive collision solver,maps/SilphCo1F.asm
+SilverCaveItemRooms,38,38,False,Oak opens region after first League + Johto rematches + Cape Crystal; cave floors additionally after Agatha and Lorelei,source-informed itinerary; no exhaustive collision solver,maps/SilverCaveItemRooms.asm
+SilverCaveOutside,36,36,False,Oak opens region after first League + Johto rematches + Cape Crystal; cave floors additionally after Agatha and Lorelei,source-informed itinerary; no exhaustive collision solver,maps/SilverCaveOutside.asm
+SilverCavePokecenter1F,36,36,False,Oak opens region after first League + Johto rematches + Cape Crystal; cave floors additionally after Agatha and Lorelei,source-informed itinerary; no exhaustive collision solver,maps/SilverCavePokecenter1F.asm
+SilverCaveRoom1,38,38,False,Oak opens region after first League + Johto rematches + Cape Crystal; cave floors additionally after Agatha and Lorelei,source-informed itinerary; no exhaustive collision solver,maps/SilverCaveRoom1.asm
+SilverCaveRoom2,38,38,False,Oak opens region after first League + Johto rematches + Cape Crystal; cave floors additionally after Agatha and Lorelei,source-informed itinerary; no exhaustive collision solver,maps/SilverCaveRoom2.asm
+SilverCaveRoom3,38,38,False,Oak opens region after first League + Johto rematches + Cape Crystal; cave floors additionally after Agatha and Lorelei,source-informed itinerary; no exhaustive collision solver,maps/SilverCaveRoom3.asm
+SlowpokeWellB1F,1,1,False,Kurt opens well; B2 needs Surf/Strength,source-informed itinerary; no exhaustive collision solver,maps/SlowpokeWellB1F.asm
+SlowpokeWellB2F,4,4,True,Kurt opens well; B2 needs Surf/Strength,source-informed itinerary; no exhaustive collision solver,maps/SlowpokeWellB2F.asm
+SoulHouse,12,9,False,Route9/10 or Saffron/Route8,source-informed itinerary; no exhaustive collision solver,maps/SoulHouse.asm
+SproutTower1F,0,0,True,"Violet; Flash reward, not required for Falkner",source-informed itinerary; no exhaustive collision solver,maps/SproutTower1F.asm
+SproutTower2F,0,0,True,"Violet; Flash reward, not required for Falkner",source-informed itinerary; no exhaustive collision solver,maps/SproutTower2F.asm
+SproutTower3F,0,0,True,"Violet; Flash reward, not required for Falkner",source-informed itinerary; no exhaustive collision solver,maps/SproutTower3F.asm
+TeamRocketBaseB1F,6,5,False,"Lake of Rage Gyarados, Lance and hideout/passwords; map42 passage model assumes Jasmine",source-informed itinerary; no exhaustive collision solver,maps/TeamRocketBaseB1F.asm
+TeamRocketBaseB2F,6,5,False,"Lake of Rage Gyarados, Lance and hideout/passwords; map42 passage model assumes Jasmine",source-informed itinerary; no exhaustive collision solver,maps/TeamRocketBaseB2F.asm
+TeamRocketBaseB3F,6,5,False,"Lake of Rage Gyarados, Lance and hideout/passwords; map42 passage model assumes Jasmine",source-informed itinerary; no exhaustive collision solver,maps/TeamRocketBaseB3F.asm
+ThunderIsland,14,14,True,Route19 + Elemental Sphere,source-informed itinerary; no exhaustive collision solver,maps/ThunderIsland.asm
+TimeCapsule,99,99,True,cable/mobile/special content; no campaign EXP,source-informed itinerary; no exhaustive collision solver,maps/TimeCapsule.asm
+TinTower1F,7,7,True,"Radio Tower Clear Bell, Wise Trio; upper floors separately Rainbow Wing gated",source-informed itinerary; no exhaustive collision solver,maps/TinTower1F.asm
+TinTower2F,8,8,True,upper stairs require Rainbow Wing; 8 Johto badges + BeastsCheck for wing; first floor after Clear Bell,source-informed itinerary; no exhaustive collision solver,maps/TinTower2F.asm
+TinTower3F,8,8,True,upper stairs require Rainbow Wing; 8 Johto badges + BeastsCheck for wing; first floor after Clear Bell,source-informed itinerary; no exhaustive collision solver,maps/TinTower3F.asm
+TinTower4F,8,8,True,upper stairs require Rainbow Wing; 8 Johto badges + BeastsCheck for wing; first floor after Clear Bell,source-informed itinerary; no exhaustive collision solver,maps/TinTower4F.asm
+TinTower5F,8,8,True,upper stairs require Rainbow Wing; 8 Johto badges + BeastsCheck for wing; first floor after Clear Bell,source-informed itinerary; no exhaustive collision solver,maps/TinTower5F.asm
+TinTower6F,8,8,True,upper stairs require Rainbow Wing; 8 Johto badges + BeastsCheck for wing; first floor after Clear Bell,source-informed itinerary; no exhaustive collision solver,maps/TinTower6F.asm
+TinTower7F,8,8,True,upper stairs require Rainbow Wing; 8 Johto badges + BeastsCheck for wing; first floor after Clear Bell,source-informed itinerary; no exhaustive collision solver,maps/TinTower7F.asm
+TinTower8F,8,8,True,upper stairs require Rainbow Wing; 8 Johto badges + BeastsCheck for wing; first floor after Clear Bell,source-informed itinerary; no exhaustive collision solver,maps/TinTower8F.asm
+TinTower9F,8,8,True,upper stairs require Rainbow Wing; 8 Johto badges + BeastsCheck for wing; first floor after Clear Bell,source-informed itinerary; no exhaustive collision solver,maps/TinTower9F.asm
+TinTowerRoof,8,8,True,upper stairs require Rainbow Wing; 8 Johto badges + BeastsCheck for wing; first floor after Clear Bell,source-informed itinerary; no exhaustive collision solver,maps/TinTowerRoof.asm
+TohjoFalls,8,8,False,Surf + Clair Waterfall,source-informed itinerary; no exhaustive collision solver,maps/TohjoFalls.asm
+TradeCenter,99,99,True,cable/mobile/special content; no campaign EXP,source-informed itinerary; no exhaustive collision solver,maps/TradeCenter.asm
+TrainerHouse1F,8,8,False,Route22 east from gate after 8 Johto badges; southern road needs six Kanto badges,source-informed itinerary; no exhaustive collision solver,maps/TrainerHouse1F.asm
+TrainerHouseB1F,8,8,True,Route22 east from gate after 8 Johto badges; southern road needs six Kanto badges,source-informed itinerary; no exhaustive collision solver,maps/TrainerHouseB1F.asm
+UndergroundPath,10,9,True,Routes5-6; Machine Part roadwork,source-informed itinerary; no exhaustive collision solver,maps/UndergroundPath.asm
+UnionCave1F,1,1,False,Route32; deeper trainers need Surf,source-informed itinerary; no exhaustive collision solver,maps/UnionCave1F.asm
+UnionCaveB1F,4,1,True,Route32; deeper trainers need Surf,source-informed itinerary; no exhaustive collision solver,maps/UnionCaveB1F.asm
+UnionCaveB2F,4,4,True,Route32; deeper trainers need Surf,source-informed itinerary; no exhaustive collision solver,maps/UnionCaveB2F.asm
+VermilionCity,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionCity.asm
+VermilionDiglettsCaveSpeechHouse,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionDiglettsCaveSpeechHouse.asm
+VermilionFishingSpeechHouse,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionFishingSpeechHouse.asm
+VermilionGym,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionGym.asm
+VermilionMagnetTrainSpeechHouse,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionMagnetTrainSpeechHouse.asm
+VermilionMart,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionMart.asm
+VermilionPokecenter1F,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionPokecenter1F.asm
+VermilionPokecenter2FBeta,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionPokecenter2FBeta.asm
+VermilionPort,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionPort.asm
+VermilionPortPassage,10,9,False,Misty + returned Machine Part opens Route5/6,source-informed itinerary; no exhaustive collision solver,maps/VermilionPortPassage.asm
+VictoryRoad,16,16,False,16 badges; VictoryRoadGate guards,source-informed itinerary; no exhaustive collision solver,maps/VictoryRoad.asm
+VictoryRoadGate,8,8,False,Route 26; links in map_edges.csv; script conditions in access_conditions.csv,source-informed itinerary; no exhaustive collision solver,maps/VictoryRoadGate.asm
+VioletCity,0,0,False,Routes 30-31,source-informed itinerary; no exhaustive collision solver,maps/VioletCity.asm
+VioletGym,0,0,False,Routes 30-31,source-informed itinerary; no exhaustive collision solver,maps/VioletGym.asm
+VioletKylesHouse,0,0,False,Routes 30-31,source-informed itinerary; no exhaustive collision solver,maps/VioletKylesHouse.asm
+VioletMart,0,0,False,Routes 30-31,source-informed itinerary; no exhaustive collision solver,maps/VioletMart.asm
+VioletNicknameSpeechHouse,0,0,False,Routes 30-31,source-informed itinerary; no exhaustive collision solver,maps/VioletNicknameSpeechHouse.asm
+VioletPokecenter1F,0,0,False,Routes 30-31,source-informed itinerary; no exhaustive collision solver,maps/VioletPokecenter1F.asm
+ViridianCity,8,8,False,Route22 east from gate after 8 Johto badges; southern road needs six Kanto badges,source-informed itinerary; no exhaustive collision solver,maps/ViridianCity.asm
+ViridianForest,8,8,False,"Route2, restored forest",source-informed itinerary; no exhaustive collision solver,maps/ViridianForest.asm
+ViridianForestNorthGate,8,8,False,"Route2, restored forest",source-informed itinerary; no exhaustive collision solver,maps/ViridianForestNorthGate.asm
+ViridianForestSouthGate,8,8,False,"Route2, restored forest",source-informed itinerary; no exhaustive collision solver,maps/ViridianForestSouthGate.asm
+ViridianGym,15,15,False,Blue AND all 3 gym trainers share EVENT_VIRIDIAN_GYM_BLUE; 15 badges via UpdateBlueReturnScript,source-informed itinerary; no exhaustive collision solver,maps/ViridianGym.asm
+ViridianMart,8,8,False,Route22 east from gate after 8 Johto badges; southern road needs six Kanto badges,source-informed itinerary; no exhaustive collision solver,maps/ViridianMart.asm
+ViridianNicknameSpeechHouse,8,8,False,Route22 east from gate after 8 Johto badges; southern road needs six Kanto badges,source-informed itinerary; no exhaustive collision solver,maps/ViridianNicknameSpeechHouse.asm
+ViridianPokecenter1F,8,8,False,Route22 east from gate after 8 Johto badges; southern road needs six Kanto badges,source-informed itinerary; no exhaustive collision solver,maps/ViridianPokecenter1F.asm
+ViridianPokecenter2FBeta,8,8,False,Route22 east from gate after 8 Johto badges; southern road needs six Kanto badges,source-informed itinerary; no exhaustive collision solver,maps/ViridianPokecenter2FBeta.asm
+WhirlIslandB1F,8,4,True,Surf/Whirlpool; Silver Wing from Pewter for Lugia,source-informed itinerary; no exhaustive collision solver,maps/WhirlIslandB1F.asm
+WhirlIslandB2F,8,4,True,Surf/Whirlpool; Silver Wing from Pewter for Lugia,source-informed itinerary; no exhaustive collision solver,maps/WhirlIslandB2F.asm
+WhirlIslandCave,8,4,True,Surf/Whirlpool; Silver Wing from Pewter for Lugia,source-informed itinerary; no exhaustive collision solver,maps/WhirlIslandCave.asm
+WhirlIslandLugiaChamber,8,4,True,Surf/Whirlpool; Silver Wing from Pewter for Lugia,source-informed itinerary; no exhaustive collision solver,maps/WhirlIslandLugiaChamber.asm
+WhirlIslandNE,8,4,True,Surf/Whirlpool; Silver Wing from Pewter for Lugia,source-informed itinerary; no exhaustive collision solver,maps/WhirlIslandNE.asm
+WhirlIslandNW,8,4,True,Surf/Whirlpool; Silver Wing from Pewter for Lugia,source-informed itinerary; no exhaustive collision solver,maps/WhirlIslandNW.asm
+WhirlIslandSE,8,4,True,Surf/Whirlpool; Silver Wing from Pewter for Lugia,source-informed itinerary; no exhaustive collision solver,maps/WhirlIslandSE.asm
+WhirlIslandSW,8,4,True,Surf/Whirlpool; Silver Wing from Pewter for Lugia,source-informed itinerary; no exhaustive collision solver,maps/WhirlIslandSW.asm
+WillsRoom,16,16,False,16 badges; first League; rematch additionally Clair rematch,source-informed itinerary; no exhaustive collision solver,maps/WillsRoom.asm
+WiseTriosRoom,7,7,True,"Radio Tower rescue, Clear Bell; 3 sages before Suicune",source-informed itinerary; no exhaustive collision solver,maps/WiseTriosRoom.asm

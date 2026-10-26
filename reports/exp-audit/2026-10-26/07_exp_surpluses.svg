@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="1500" height="720" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1500 720" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="1500" height="720"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-720)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="110" y="674.8" style="font-family: Helvetica; font-size: 32px;fill: rgb(15%,20%,26%); stroke:none;" transform="translate(0,1349) scale(1,-1)">EXP already above the current boss target</text>
+			<text x="110" y="643.7" style="font-family: Helvetica; font-size: 18px;fill: rgb(33%,39%,45%); stroke:none;" transform="translate(0,1287) scale(1,-1)">Progression caps prevent gym overshoot; post-badge-16 target is the boss ace, not cap 100</text>
+			<text x="110" y="614.4" style="font-family: Helvetica; font-size: 16px;fill: rgb(33%,39%,45%); stroke:none;" transform="translate(0,1228) scale(1,-1)">Surplus EXP (thousands)</text>
+			<path d="M 110,195 L 1380,195 Z" style="stroke: rgb(86%,88%,90%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="86.104" y="190.4" style="font-family: Helvetica; font-size: 16px;fill: rgb(33%,39%,45%); stroke:none;" transform="translate(0,380) scale(1,-1)">0</text>
+			<path d="M 110,262.5 L 1380,262.5 Z" style="stroke: rgb(86%,88%,90%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="68.312" y="257.9" style="font-family: Helvetica; font-size: 16px;fill: rgb(33%,39%,45%); stroke:none;" transform="translate(0,515) scale(1,-1)">100</text>
+			<path d="M 110,330 L 1380,330 Z" style="stroke: rgb(86%,88%,90%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="68.312" y="325.3999999999999" style="font-family: Helvetica; font-size: 16px;fill: rgb(33%,39%,45%); stroke:none;" transform="translate(0,650) scale(1,-1)">200</text>
+			<path d="M 110,397.5 L 1380,397.5 Z" style="stroke: rgb(86%,88%,90%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="68.312" y="392.9" style="font-family: Helvetica; font-size: 16px;fill: rgb(33%,39%,45%); stroke:none;" transform="translate(0,785) scale(1,-1)">300</text>
+			<path d="M 110,465 L 1380,465 Z" style="stroke: rgb(86%,88%,90%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="68.312" y="460.4" style="font-family: Helvetica; font-size: 16px;fill: rgb(33%,39%,45%); stroke:none;" transform="translate(0,920) scale(1,-1)">400</text>
+			<path d="M 110,532.5 L 1380,532.5 Z" style="stroke: rgb(86%,88%,90%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="68.312" y="527.9" style="font-family: Helvetica; font-size: 16px;fill: rgb(33%,39%,45%); stroke:none;" transform="translate(0,1055) scale(1,-1)">500</text>
+			<path d="M 110,600 L 1380,600 Z" style="stroke: rgb(86%,88%,90%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="68.312" y="595.4" style="font-family: Helvetica; font-size: 16px;fill: rgb(33%,39%,45%); stroke:none;" transform="translate(0,1190) scale(1,-1)">600</text>
+			<path d="M 110,600 L 110,195 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 110,195 L 1380,195 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 125.119048,195 L 125.119048,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,128.119048,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Falkner</text>
+			</g>
+			<path d="M 155.357143,195 L 155.357143,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,158.357143,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Bugsy</text>
+			</g>
+			<path d="M 185.595238,195 L 185.595238,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,188.595238,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Whitney</text>
+			</g>
+			<path d="M 215.833333,195 L 215.833333,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,218.833333,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Morty</text>
+			</g>
+			<path d="M 246.071429,195 L 246.071429,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,249.071429,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Chuck</text>
+			</g>
+			<path d="M 276.309524,195 L 276.309524,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,279.309524,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Jasmine</text>
+			</g>
+			<path d="M 306.547619,195 L 306.547619,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,309.547619,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Pryce</text>
+			</g>
+			<path d="M 336.785714,195 L 336.785714,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,339.785714,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Clair</text>
+			</g>
+			<path d="M 367.02381,195 L 367.02381,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,370.02381,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Brock</text>
+			</g>
+			<path d="M 397.261905,195 L 397.261905,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,400.261905,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Misty</text>
+			</g>
+			<path d="M 427.5,195 L 427.5,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,430.5,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Surge</text>
+			</g>
+			<path d="M 457.738095,195 L 457.738095,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,460.738095,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Erika</text>
+			</g>
+			<path d="M 487.97619,195 L 487.97619,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,490.97619,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Janine</text>
+			</g>
+			<path d="M 518.214286,195 L 518.214286,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,521.214286,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Sabrina</text>
+			</g>
+			<path d="M 548.452381,195 L 548.452381,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,551.452381,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Blaine</text>
+			</g>
+			<path d="M 578.690476,195 L 578.690476,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,581.690476,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Blue</text>
+			</g>
+			<path d="M 608.928571,195 L 608.928571,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,611.928571,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Will</text>
+			</g>
+			<path d="M 639.166667,195 L 639.166667,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,642.166667,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Koga</text>
+			</g>
+			<path d="M 669.404762,195 L 669.404762,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,672.404762,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Bruno</text>
+			</g>
+			<path d="M 699.642857,195 L 699.642857,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,702.642857,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Karen</text>
+			</g>
+			<path d="M 729.880952,195 L 729.880952,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,732.880952,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Lance</text>
+			</g>
+			<path d="M 760.119048,195 L 760.119048,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,763.119048,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Falkner rematch</text>
+			</g>
+			<path d="M 790.357143,195 L 790.357143,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,793.357143,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Bugsy rematch</text>
+			</g>
+			<path d="M 820.595238,195 L 820.595238,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,823.595238,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Whitney rematch</text>
+			</g>
+			<path d="M 850.833333,195 L 850.833333,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,853.833333,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Morty rematch</text>
+			</g>
+			<path d="M 881.071429,195 L 881.071429,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,884.071429,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Chuck rematch</text>
+			</g>
+			<path d="M 911.309524,195 L 911.309524,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,914.309524,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Jasmine rematch</text>
+			</g>
+			<path d="M 941.547619,195 L 941.547619,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,944.547619,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Pryce rematch</text>
+			</g>
+			<path d="M 971.785714,195 L 971.785714,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,974.785714,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Clair rematch</text>
+			</g>
+			<path d="M 1002.02381,195 L 1002.02381,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1005.02381,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Crystal Cape</text>
+			</g>
+			<path d="M 1032.261905,195 L 1032.261905,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1035.261905,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Silver Plateau</text>
+			</g>
+			<path d="M 1062.5,195 L 1062.5,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1065.5,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Will rematch</text>
+			</g>
+			<path d="M 1092.738095,195 L 1092.738095,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1095.738095,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Koga rematch</text>
+			</g>
+			<path d="M 1122.97619,195 L 1122.97619,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1125.97619,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Bruno rematch</text>
+			</g>
+			<path d="M 1153.214286,195 L 1153.214286,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1156.214286,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Karen rematch</text>
+			</g>
+			<path d="M 1183.452381,195 L 1183.452381,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1186.452381,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Lance rematch</text>
+			</g>
+			<path d="M 1213.690476,195 L 1213.690476,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1216.690476,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Agatha</text>
+			</g>
+			<path d="M 1243.928571,195 L 1243.928571,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1246.928571,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Lorelei</text>
+			</g>
+			<path d="M 1274.166667,195 L 1274.166667,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1277.166667,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Red Mt Silver</text>
+			</g>
+			<path d="M 1304.404762,195 L 1304.404762,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1307.404762,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Green</text>
+			</g>
+			<path d="M 1334.642857,195 L 1334.642857,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1337.642857,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Blue Cloak</text>
+			</g>
+			<path d="M 1364.880952,195 L 1364.880952,188 Z" style="stroke: rgb(48%,52%,58%); stroke-linecap: butt; stroke-width: 1;"/>
+			<g transform=" matrix(0.573576,-0.819152,0.819152,0.573576,1367.880952,179)">
+				<text x="0" y="0" style="font-family: Helvetica; font-size: 14px;fill: rgb(25%,32%,40%); stroke:none;" transform="translate(0,0) scale(1,-1)">Red Pallet</text>
+			</g>
+			<rect x="113.62857142857143" y="195.0" width="5.2856190476190505" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="143.86666666666667" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="174.10476190476192" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="204.34285714285716" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="234.5809523809524" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="264.8190476190476" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="295.0571428571429" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="325.29523809523806" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="355.53333333333336" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="385.77142857142854" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="416.0095238095238" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="446.247619047619" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="476.48571428571427" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="506.7238095238095" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="536.9619047619046" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="567.1999999999999" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="597.4380952380952" y="194.99999999999997" width="5.285619047619093" height="36.65452500000001" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="627.6761904761904" y="195.0" width="5.285619047619093" height="41.440274999999986" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="657.9142857142856" y="195.0" width="5.285619047619093" height="46.228049999999996" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="688.1523809523809" y="195.0" width="5.285619047619093" height="63.236699999999985" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="718.3904761904761" y="195.0" width="5.285619047619093" height="68.54489999999998" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="748.6285714285714" y="194.99999999999997" width="5.285619047619093" height="40.59382500000001" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="778.8666666666666" y="195.0" width="5.285619047619093" height="43.49227500000001" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="809.1047619047619" y="194.99999999999997" width="5.285619047619093" height="47.44845000000001" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="839.342857142857" y="195.0" width="5.285619047619093" height="50.587875" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="869.5809523809523" y="195.0" width="5.285619047619093" height="56.738474999999994" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="899.8190476190475" y="195.0" width="5.285619047619093" height="64.12095" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="930.0571428571428" y="195.0" width="5.285619047619093" height="69.42779999999999" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="960.295238095238" y="195.0" width="5.285619047619093" height="72.560475" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="990.5333333333333" y="195.0" width="5.285619047619093" height="275.843475" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1020.7714285714285" y="195.0" width="5.285619047619093" height="95.19524999999999" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1051.0095238095237" y="195.0" width="5.285619047619093" height="117.18675000000002" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1081.247619047619" y="195.0" width="5.285619047619093" height="136.3662" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1111.485714285714" y="195.00000000000003" width="5.285619047619093" height="139.46040000000002" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1141.7238095238095" y="195.0" width="5.285619047619093" height="160.03575" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1171.9619047619046" y="195.00000000000003" width="5.285619047619093" height="163.712475" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1202.1999999999998" y="195.0" width="5.285619047619093" height="195.02235000000002" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1232.4380952380952" y="194.99999999999997" width="5.285619047619093" height="214.0182" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1262.6761904761904" y="195.0" width="5.285619047619093" height="193.69799999999998" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1292.9142857142856" y="194.99999999999994" width="5.285619047619093" height="331.43782500000003" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1323.1523809523808" y="195.0" width="5.285619047619093" height="301.1823" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="1353.3904761904762" y="195.0" width="5.285619047619093" height="285.474375" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<rect x="110" y="27" width="22" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,39%,65%); fill-rule: evenodd;"/>
+			<text x="141" y="30.4" style="font-family: Helvetica; font-size: 16px;fill: rgb(15%,20%,26%); stroke:none;" transform="translate(0,60) scale(1,-1)">1 members, balanced</text>
+			<rect x="119.37380952380953" y="195.0" width="5.2856190476190505" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="149.61190476190478" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="179.85000000000002" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="210.08809523809526" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="240.3261904761905" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="270.5642857142857" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="300.802380952381" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="331.04047619047617" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="361.27857142857147" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="391.51666666666665" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="421.7547619047619" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="451.99285714285713" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="482.2309523809524" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="512.4690476190476" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="542.7071428571427" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="572.945238095238" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="603.1833333333333" y="195.0" width="5.285619047619093" height="2.453624999999988" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="633.4214285714285" y="195.00000000000003" width="5.285619047619093" height="0.2213999999999885" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="663.6595238095236" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="693.897619047619" y="195.00000000000003" width="5.285619047619093" height="6.132374999999996" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="724.1357142857141" y="194.99999999999997" width="5.285619047619093" height="4.908600000000007" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="754.3738095238094" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="784.6119047619046" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="814.8499999999999" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="845.0880952380951" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="875.3261904761904" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="905.5642857142856" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="935.8023809523809" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="966.040476190476" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="996.2785714285714" y="195.00000000000003" width="5.285619047619093" height="238.378275" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1026.5166666666667" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1056.7547619047618" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1086.9928571428572" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1117.2309523809522" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1147.4690476190476" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1177.7071428571428" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1207.945238095238" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1238.1833333333334" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1268.4214285714286" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1298.6595238095238" y="195.0" width="5.285619047619093" height="167.653125" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1328.897619047619" y="195.0" width="5.285619047619093" height="129.26655" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="1359.1357142857144" y="195.0" width="5.285619047619093" height="121.05180000000001" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<rect x="400" y="27" width="22" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(7%,51%,41%); fill-rule: evenodd;"/>
+			<text x="431" y="30.4" style="font-family: Helvetica; font-size: 16px;fill: rgb(15%,20%,26%); stroke:none;" transform="translate(0,60) scale(1,-1)">2 members, balanced</text>
+			<rect x="125.11904761904762" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="155.35714285714286" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="185.5952380952381" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="215.83333333333334" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="246.07142857142858" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="276.3095238095238" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="306.5476190476191" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="336.7857142857143" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="367.0238095238096" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="397.26190476190476" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="427.5" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="457.73809523809524" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="487.9761904761905" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="518.2142857142857" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="548.4523809523808" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="578.6904761904761" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="608.9285714285714" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="639.1666666666666" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="669.4047619047618" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="699.6428571428571" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="729.8809523809523" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="760.1190476190476" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="790.3571428571428" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="820.5952380952381" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="850.8333333333333" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="881.0714285714286" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="911.3095238095237" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="941.547619047619" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="971.7857142857142" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1002.0238095238095" y="195.0" width="5.285619047619093" height="127.80787500000002" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1032.2619047619046" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1062.4999999999998" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1092.7380952380952" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1122.9761904761901" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1153.2142857142856" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1183.4523809523807" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1213.690476190476" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1243.9285714285713" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1274.1666666666665" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1304.4047619047617" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1334.6428571428569" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="1364.8809523809523" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<rect x="690" y="27" width="22" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(86%,49%,9%); fill-rule: evenodd;"/>
+			<text x="721" y="30.4" style="font-family: Helvetica; font-size: 16px;fill: rgb(15%,20%,26%); stroke:none;" transform="translate(0,60) scale(1,-1)">4 members, balanced</text>
+			<rect x="130.86428571428573" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="161.10238095238097" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="191.3404761904762" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="221.57857142857145" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="251.8166666666667" y="195.0" width="5.285619047619065" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="282.05476190476185" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="312.29285714285714" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="342.53095238095233" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="372.7690476190476" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="403.0071428571428" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="433.24523809523805" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="463.4833333333333" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="493.72142857142853" y="195.0" width="5.285619047619036" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="523.9595238095238" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="554.1976190476189" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="584.4357142857142" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="614.6738095238095" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="644.9119047619047" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="675.1499999999999" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="705.3880952380952" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="735.6261904761903" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="765.8642857142856" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="796.1023809523808" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="826.3404761904761" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="856.5785714285713" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="886.8166666666666" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="917.0547619047618" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="947.2928571428571" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="977.5309523809523" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1007.7690476190476" y="195.0" width="5.285619047619093" height="18.623924999999986" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1038.0071428571428" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1068.245238095238" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1098.4833333333333" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1128.7214285714283" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1158.9595238095237" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1189.197619047619" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1219.435714285714" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1249.6738095238095" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1279.9119047619047" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1310.1499999999999" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1340.388095238095" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="1370.6261904761905" y="195.0" width="5.285619047619093" height="0.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<rect x="980" y="27" width="22" height="8" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(58%,29%,61%); fill-rule: evenodd;"/>
+			<text x="1011" y="30.4" style="font-family: Helvetica; font-size: 16px;fill: rgb(15%,20%,26%); stroke:none;" transform="translate(0,60) scale(1,-1)">6 members, balanced</text>
+		</g>
+	</g>
+</svg>
