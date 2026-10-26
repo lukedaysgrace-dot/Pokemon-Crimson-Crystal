@@ -76,7 +76,7 @@ OlivineGymJasmineScript:
 	iffalse .GiveMetalCoat
 	checkevent EVENT_BEAT_JASMINE_REMATCH
 	iftrue .RematchDone
-	checkevent EVENT_BEAT_CHUCK_REMATCH
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .RematchDone
 	writetext JasmineRematchChallengeText
 	yesorno
@@ -300,9 +300,6 @@ JasmineRematchWinText:
 	text "…We gave it our"
 	line "best. Thank you"
 	cont "for the battle."
-
-	para "PRYCE will test"
-	line "you next."
 	done
 
 LassDanielleSeenText:

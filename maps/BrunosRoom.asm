@@ -49,7 +49,7 @@ BrunoScript_Battle:
 	waitbutton
 	closetext
 	winlosstext BrunoScript_BrunoBeatenText, 0
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iftrue .LoadRematchTeam
 	loadtrainer BRUNO, BRUNO1
 	sjump .StartBattle

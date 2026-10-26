@@ -52,7 +52,7 @@ AzaleaGymBugsyScript:
 .GotBugBite:
 	checkevent EVENT_BEAT_BUGSY_REMATCH
 	iftrue .RematchDone
-	checkevent EVENT_BEAT_FALKNER_REMATCH
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .RematchDone
 	writetext BugsyRematchChallengeText
 	yesorno
@@ -388,9 +388,6 @@ BugsyRematchChallengeText:
 BugsyRematchWinText:
 	text "That's a result I"
 	line "need to study!"
-
-	para "WHITNEY is your"
-	line "next challenge."
 	done
 
 AzaleaGym_MapEvents:

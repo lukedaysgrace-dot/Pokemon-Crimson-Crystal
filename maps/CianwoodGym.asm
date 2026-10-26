@@ -69,7 +69,7 @@ CianwoodGymChuckScript:
 .AlreadyGotTM:
 	checkevent EVENT_BEAT_CHUCK_REMATCH
 	iftrue .RematchDone
-	checkevent EVENT_BEAT_MORTY_REMATCH
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .RematchDone
 	writetext ChuckRematchChallengeText
 	yesorno
@@ -334,9 +334,6 @@ ChuckRematchWinText:
 	text "Wha? Huh?"
 	line "I lost?"
 	cont "Again?"
-
-	para "JASMINE is waiting"
-	line "in OLIVINE."
 	done
 
 CianwoodGym_MapEvents:

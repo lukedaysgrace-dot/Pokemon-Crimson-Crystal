@@ -88,7 +88,7 @@ BlackthornGymClairScript:
 .GotTM24:
 	checkevent EVENT_BEAT_CLAIR_REMATCH
 	iftrue .RematchDone
-	checkevent EVENT_BEAT_PRYCE_REMATCH
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .RematchDone
 	writetext ClairRematchChallengeText
 	yesorno
@@ -99,19 +99,20 @@ BlackthornGymClairScript:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR_REMATCH
-	checkevent EVENT_OPENED_MT_SILVER
-	iftrue .RematchFinished
-	specialphonecall SPECIALCALL_OAK_MT_SILVER
-.RematchFinished:
 	end
 
 .RematchDone:
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iftrue .ChampionAdvice
 	readvar VAR_BADGES
 	ifgreater NUM_BADGES - 1, .LeagueReady
 	writetext BlackthornGymClairText_Kanto
 	sjump .FinishAdvice
 .LeagueReady:
 	writetext BlackthornGymClairText_League
+	sjump .FinishAdvice
+.ChampionAdvice:
+	writetext ClairChampionText
 .FinishAdvice:
 	waitbutton
 	closetext
@@ -448,14 +449,15 @@ ClairRematchWinText:
 	text "Again? Hmph. You"
 	line "earned that"
 	cont "victory."
+	done
 
-	para "The ELITE FOUR now"
-	line "await your return."
+ClairChampionText:
+	text "Don't get careless"
+	line "because you're"
+	cont "the CHAMPION."
 
-	para "And visit PROF."
-	line "OAK in PALLET."
-	cont "He may have a new"
-	cont "challenge for you."
+	para "My dragons and I"
+	line "keep on training!"
 	done
 
 BlackthornGym1F_MapEvents:

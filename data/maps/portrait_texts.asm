@@ -125,6 +125,8 @@ PortraitTexts:
 	db 0
 	dba BlackthornGymText_ReceivedTM24
 	db 0
+	dba ClairChampionText
+	db PORTRAIT_CLAIR
 	dba ClairIntroText
 	db PORTRAIT_CLAIR
 	dba ClairRematchChallengeText
@@ -1248,8 +1250,6 @@ PortraitTexts:
 	dba Text_YourMonIsAdorable
 	db 0
 ; OaksLab
-	dba OakJohtoRematchesText
-	db PORTRAIT_OAK
 	dba OakLabDexCheckText
 	db PORTRAIT_OAK
 	dba OakLabGoodbyeText
@@ -1980,8 +1980,6 @@ PortraitTexts:
 	dba LeaderBlueReadyBoyText
 	db PORTRAIT_BLUE
 	dba LeaderBlueReadyGirlText
-	db PORTRAIT_BLUE
-	dba LeaderBlueRematchNextText
 	db PORTRAIT_BLUE
 	dba Text_ReceivedEarthBadge
 	db 0

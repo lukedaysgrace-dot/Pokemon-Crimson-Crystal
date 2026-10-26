@@ -32,14 +32,7 @@ Oak:
 .AllBadges:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .LeagueNext
-	checkevent EVENT_BEAT_CLAIR_REMATCH
-	iffalse .JohtoRematches
 	sjump .OpenMtSilver
-
-.JohtoRematches:
-	farwritetext OakJohtoRematchesText
-	buttonsound
-	sjump .CheckPokedex
 
 .LeagueNext:
 	farwritetext OakLeagueNextText
@@ -219,23 +212,6 @@ OakLeagueNextText:
 	cont "CHAMPION!"
 	done
 
-OakJohtoRematchesText:
-	text "OAK: CHAMPION!"
-	line "Well done!"
-
-	para "JOHTO's GYM"
-	line "LEADERS have been"
-	cont "training hard."
-
-	para "Start with FALKNER"
-	line "in VIOLET CITY,"
-	cont "then challenge"
-	cont "each LEADER again."
-
-	para "Come back after"
-	line "you defeat CLAIR"
-	cont "at full strength."
-	done
 POPS
 
 OaksAssistant1Text:

@@ -69,15 +69,39 @@ UpdateBlueReturnScript::
 	end
 
 QueueOakMtSilverCallScript::
-; Whichever final milestone is completed must be able to invite the player.
+; The first League victory opens Oak's Mt. Silver invitation.
 	checkevent EVENT_OPENED_MT_SILVER
 	iftrue .Done
 	readvar VAR_BADGES
 	ifless NUM_BADGES, .Done
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .Done
-	checkevent EVENT_BEAT_CLAIR_REMATCH
-	iffalse .Done
 	specialphonecall SPECIALCALL_OAK_MT_SILVER
 .Done:
+	end
+
+CheckJohtoRematchesScript::
+; No order is implied: all eight optional rematches unlock the League rematch.
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iffalse .NotReady
+	checkevent EVENT_BEAT_FALKNER_REMATCH
+	iffalse .NotReady
+	checkevent EVENT_BEAT_BUGSY_REMATCH
+	iffalse .NotReady
+	checkevent EVENT_BEAT_WHITNEY_REMATCH
+	iffalse .NotReady
+	checkevent EVENT_BEAT_MORTY_REMATCH
+	iffalse .NotReady
+	checkevent EVENT_BEAT_CHUCK_REMATCH
+	iffalse .NotReady
+	checkevent EVENT_BEAT_JASMINE_REMATCH
+	iffalse .NotReady
+	checkevent EVENT_BEAT_PRYCE_REMATCH
+	iffalse .NotReady
+	checkevent EVENT_BEAT_CLAIR_REMATCH
+	iffalse .NotReady
+	setval TRUE
+	end
+.NotReady:
+	setval FALSE
 	end
