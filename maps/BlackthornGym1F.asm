@@ -101,8 +101,6 @@ BlackthornGymClairScript:
 	setevent EVENT_BEAT_CLAIR_REMATCH
 	checkevent EVENT_OPENED_MT_SILVER
 	iftrue .RematchFinished
-	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
-	iffalse .RematchFinished
 	specialphonecall SPECIALCALL_OAK_MT_SILVER
 .RematchFinished:
 	end

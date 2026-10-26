@@ -78,8 +78,6 @@ QueueOakMtSilverCallScript::
 	iffalse .Done
 	checkevent EVENT_BEAT_CLAIR_REMATCH
 	iffalse .Done
-	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
-	iffalse .Done
 	specialphonecall SPECIALCALL_OAK_MT_SILVER
 .Done:
 	end

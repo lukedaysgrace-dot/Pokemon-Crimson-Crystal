@@ -74,8 +74,6 @@ LancesRoomLanceScript:
 	clearevent EVENT_GREEN_IN_ROUTE20
 	checkevent EVENT_OPENED_MT_SILVER
 	iftrue .RematchNoOakCall
-	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
-	iffalse .RematchNoOakCall
 	specialphonecall SPECIALCALL_OAK_MT_SILVER
 	opentext
 	writetext LanceRematchAfterText

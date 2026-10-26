@@ -34,11 +34,7 @@ Oak:
 	iffalse .LeagueNext
 	checkevent EVENT_BEAT_CLAIR_REMATCH
 	iffalse .JohtoRematches
-	checkevent EVENT_BEAT_CRYSTAL_CERULEAN_CAPE
-	iftrue .OpenMtSilver
-	farwritetext OakFindCrystalText
-	buttonsound
-	sjump .CheckPokedex
+	sjump .OpenMtSilver
 
 .JohtoRematches:
 	farwritetext OakJohtoRematchesText
@@ -221,18 +217,6 @@ OakLeagueNextText:
 	para "Come back after"
 	line "you've become the"
 	cont "CHAMPION!"
-	done
-
-OakFindCrystalText:
-	text "OAK: CHAMPION!"
-	line "Well done!"
-
-	para "CRYSTAL was hoping"
-	line "to see you at"
-	cont "CERULEAN CAPE."
-
-	para "Meet her, then"
-	line "come see me again."
 	done
 
 OakJohtoRematchesText:
