@@ -1,0 +1,176 @@
+# Focused mechanics gaps found by the move/ability audit.
+
+- name: "Moves audit: Heal Bell cures an inactive Soundproof reserve"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 8, moves: [HEAL_BELL]}
+  player2: {species: MR__MIME, level: 50, ability: SOUNDPROOF, status_byte: 16, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.status == 0", "wram('wPartyMon2Status') == 0"]
+
+- name: "Moves audit: Heal Bell cures a reserve without Soundproof"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [HEAL_BELL]}
+  player2: {species: MR__MIME, level: 50, ability: FILTER, status_byte: 16, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPartyMon2Status') == 0"]
+
+- name: "Moves audit: enemy Heal Bell cures an inactive Soundproof reserve"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 8, moves: [HEAL_BELL]}
+  enemy2: {species: MR__MIME, level: 50, ability: SOUNDPROOF, status_byte: 16, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.status == 0", "wram('wOTPartyMon2Status') == 0"]
+
+- name: "Moves audit: a Soundproof Heal Bell user can cure itself"
+  player: {species: MR__MIME, level: 50, ability: SOUNDPROOF, status_byte: 16, moves: [HEAL_BELL]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.status == 0"]
+
+- name: "Moves audit: Sleep Talk cannot call Bounce for the player"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, BOUNCE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - (player.substatus[2] & 0x70) == 0
+    - wram('wCurPlayerMove') == wram('wBattleMonMoves')
+    - textbox_seen('ButItFailedText')
+    - enemy.hp == enemy.start_hp
+    - player.pp[0] == 9 and player.pp[1] == 5
+
+- name: "Moves audit: Sleep Talk cannot call Bounce for the enemy"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, BOUNCE]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy_class: FALKNER
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - (enemy.substatus[2] & 0x70) == 0
+    - enemy_move() == 'SLEEP_TALK'
+    - textbox_seen('ButItFailedText')
+    - player.hp == player.start_hp
+    - enemy.pp[0] == 9 and enemy.pp[1] == 5
+
+- name: "Moves audit: Sleep Talk can still call Tackle"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, TACKLE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "player.pp[0] == 9 and player.pp[1] == 35"]
+
+- name: "Moves audit: player Gyro Ball equal speeds give 26 power"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "wram('wDamageCalcBasePower') == 26"]
+
+- name: "Moves audit: enemy Gyro Ball equal speeds give 26 power"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [GYRO_BALL]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "wram('wDamageCalcBasePower') == 26"]
+
+- name: "Moves audit: player Gyro Ball 50 versus 200 gives 101 power"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 50], wEnemyMonSpeed: [0, 200]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 101"]
+
+- name: "Moves audit: enemy Gyro Ball 50 versus 200 gives 101 power"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [GYRO_BALL]}
+  setup_wram: {wBattleMonSpeed: [0, 200], wEnemyMonSpeed: [0, 50]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 101"]
+
+- name: "Moves audit: Swift Swim lowers the user's Gyro Ball power"
+  player: {species: MEW, level: 50, ability: SWIFT_SWIM, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100]}
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 13"]
+
+- name: "Moves audit: enemy Swift Swim lowers its Gyro Ball power"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: SWIFT_SWIM, moves: [GYRO_BALL]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100]}
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 13"]
+
+- name: "Moves audit: target Swift Swim increases Gyro Ball power"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: SWIFT_SWIM, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100]}
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 51"]
+
+- name: "Moves audit: Gas suppresses Swift Swim for Gyro Ball"
+  player: {species: MEW, level: 50, ability: SWIFT_SWIM, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100]}
+  weather: rain
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 26"]
+
+- name: "Moves audit: Choice Scarf lowers Gyro Ball power"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_SCARF, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 17"]
+
+- name: "Moves audit: Klutz disables the Scarf's Gyro Ball speed change"
+  player: {species: MEW, level: 50, ability: KLUTZ, item: CHOICE_SCARF, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 26"]
+
+- name: "Moves audit: paralyzed Quick Feet changes Gyro Ball's speed ratio"
+  player: {species: MEW, level: 50, ability: QUICK_FEET, status_byte: 64, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 9"]
+
+- name: "Moves audit: consumed-item Unburden changes Gyro Ball's speed ratio"
+  player: {species: MEW, level: 50, ability: UNBURDEN, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100], wPlayerItemStateFlags: 1}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 13"]
+
+- name: "Moves audit: Trick Room changes turn order without changing Gyro Ball power"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [GYRO_BALL]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonSpeed: [0, 100], wEnemyMonSpeed: [0, 100], wTrickRoomTimer: 5}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wDamageCalcBasePower') == 26"]

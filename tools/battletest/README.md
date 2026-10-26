@@ -12,6 +12,7 @@ make test           # run every YAML case in tools/battletest/tests/
 make test-all       # YAML + every effect/move/ability + expanded ability text
 make test-deep      # also ability/class/reflection matrices + 1,024 mixed battles
 make BATTLE_TEST_JOBS=8 test-complete  # full suite with isolated emulator workers
+make BATTLE_TEST_JOBS=8 test-moves-abilities  # focused move/ability audit and regressions
 python3 tools/battletest/runner.py --all-abilities -k "Ability sweep"
 python3 tools/battletest/runner.py --interactions 128 -k "Interaction stress"
 python3 tools/battletest/runner.py --no-render --jobs 6 --all-moves --all-effects --all-abilities
@@ -19,6 +20,14 @@ python3 tools/battletest/runner.py tests/00-smoke.yaml -k levitate -v
 ```
 
 Requires: `pip install pyboy pyyaml pillow` (tested with PyBoy 2.7).
+
+`make test-moves-abilities` builds release and debug ROMs, audits move data and
+ability text, checks exact Gyro Ball power and speed modifiers on both ROMs,
+then runs the YAML suite, every-move/effect/ability sweeps, all interaction
+matrices, long battles and 512 mixed battles. The focused cases in
+`tests/95-moves-abilities-audit.yaml` cover Gyro Ball, Sleep Talk's Bounce
+exclusion, and Heal Bell/Soundproof controls. See
+`reports/moves-abilities-audit.md` at the repository root for results and scope.
 
 `make test-engine-optimizations` verifies the unrolled copy/fill routines against
 the previous ROM loops, measures their CPU cost, and checks scrolling, palettes,

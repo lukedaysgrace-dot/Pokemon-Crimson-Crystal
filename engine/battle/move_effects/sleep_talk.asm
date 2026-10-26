@@ -122,6 +122,8 @@ BattleCommand_SleepTalk:
 	ret z
 	cp EFFECT_FLY
 	ret z
+	cp EFFECT_BOUNCE
+	ret z
 	cp EFFECT_METRONOME
 	ret z
 	cp EFFECT_MIRROR_MOVE

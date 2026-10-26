@@ -95,6 +95,14 @@ test-all: pokecrystal_debug.gbc
 	python3 tools/audit_ability_text.py
 	python3 tools/battletest/runner.py --all-moves --all-effects --all-abilities
 
+.PHONY: test-moves-abilities
+test-moves-abilities: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/audit_moves.py
+	$(BATTLE_TEST_PYTHON) tools/audit_ability_text.py
+	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render --jobs $(BATTLE_TEST_JOBS) --all-moves --all-effects --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --outcome-matrix --item-matrix --reaction-matrix --complex-matrix --long-battles --interactions 512
+
 test-deep: pokecrystal_debug.gbc
 	python3 tools/audit_ability_text.py
 	python3 tools/battletest/runner.py --all-moves --all-effects --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --interactions 1024
@@ -184,6 +192,8 @@ test-audit-state: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_shell_side_arm.py pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_avalanche.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_avalanche.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_audit_state_regressions.py pokecrystal.gbc
 
 test-party-usable: pokecrystal.gbc

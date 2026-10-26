@@ -569,15 +569,8 @@ def audit_move_mechanics(audit: Audit) -> None:
         is not None,
         "simultaneous Yawn expiry must use shared serial-clock ordering in link battles",
     )
-    audit.check(
-        re.search(
-            r"BattleGyroBall_Core:.*?ldh a, \[hMultiplicand \+ 2\]\s+inc a\s+jr z, \.max_power\s+cp 151",
-            core,
-            re.DOTALL,
-        )
-        is not None,
-        "Gyro Ball must add 1 after division and cap its power at 150",
-    )
+    # Exact Gyro Ball power, speed modifiers and its cap are exercised on
+    # compiled ROMs by test_gyro_ball.py; a shape check missed a bad divisor.
     toxic_spikes = global_blocks(core).get("ToxicSpikesPoison")
     audit.check(toxic_spikes is not None, "missing ToxicSpikesPoison")
     if toxic_spikes:
