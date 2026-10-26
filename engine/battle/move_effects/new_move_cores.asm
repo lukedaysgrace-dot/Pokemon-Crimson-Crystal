@@ -332,43 +332,27 @@ BattleGyroBall_Core:
 ; Must preserve b, c (attack/defense) and e (level).
 	push bc
 	push de
+	callfar GetBattleEffectiveSpeeds ; hl = player, de = enemy
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wBattleMonSpeed
-	ld de, wEnemyMonSpeed
-	jr z, .got_speeds
-	ld hl, wEnemyMonSpeed
-	ld de, wBattleMonSpeed
-.got_speeds
-	; user speed -> bc
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-	; target speed -> de
-	ld a, [de]
-	ld h, a
-	inc de
-	ld a, [de]
-	ld e, a
+	jr z, .player_user
+	ld b, d
+	ld c, e
 	ld d, h
+	ld e, l
+	jr .got_speeds
+.player_user
+	ld b, h
+	ld c, l
+.got_speeds
 	; User speed in bc, target speed in de
 	ld a, b
 	or c
 	ld a, 1
 	jr z, .got_power
 
-	; We can't divide by numbers >255, so scale both speeds down
-.scaledown_loop
-	ld a, b
-	and a
-	jr z, .scaledown_ok
-	srl b
-	rr c
-	srl d
-	rr e
-	jr .scaledown_loop
-.scaledown_ok
-	; Base Power = floor(25 * target speed / user speed) + 1, capped at 150
+	; Exact 24/16-bit division, bounded by the 150-power cap. Scaling
+	; speeds down to bytes would lose precision at close ratio boundaries.
 	xor a
 	ldh [hMultiplicand + 0], a
 	ld a, d
@@ -379,27 +363,43 @@ BattleGyroBall_Core:
 	ldh [hMultiplier], a
 	call Multiply
 
-	ld a, c
+	ldh a, [hProduct + 1]
+	ld d, a
+	ldh a, [hProduct + 2]
+	ld h, a
+	ldh a, [hProduct + 3]
+	ld l, a
+	ld e, 0
+.divide
+	ld a, d
 	and a
+	jr nz, .subtract
+	ld a, h
+	cp b
+	jr c, .quotient
+	jr nz, .subtract
+	ld a, l
+	cp c
+	jr c, .quotient
+.subtract
+	ld a, l
+	sub c
+	ld l, a
+	ld a, h
+	sbc b
+	ld h, a
+	ld a, d
+	sbc 0
+	ld d, a
+	inc e
+	ld a, e
+	cp 149
+	jr c, .divide
 	ld a, 150
-	jr z, .got_power ; user speed scaled to 0: treat as max
-	ldh [hDivisor], a
-	ld b, 4
-	call Divide
-
-	; Add the formula's final +1 and cap at 150.
-	ldh a, [hMultiplicand + 0]
-	ld b, a
-	ldh a, [hMultiplicand + 1]
-	or b
-	jr nz, .max_power
-	ldh a, [hMultiplicand + 2]
+	jr .got_power
+.quotient
+	ld a, e
 	inc a
-	jr z, .max_power
-	cp 151
-	jr c, .got_power
-.max_power
-	ld a, 150
 .got_power
 	pop de
 	ld d, a

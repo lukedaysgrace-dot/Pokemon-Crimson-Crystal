@@ -4193,44 +4193,7 @@ CompareSpeedsWithAbilities::
 	push hl
 	push de
 	push bc
-	; player effective speed -> hl
-	call GetPlayerAbilityEffective
-	ld c, a
-	ld a, [wBattleMonStatus]
-	ld b, a
-	ld hl, wBattleMonSpeed
-	call .GetEffectiveSpeed
-	ld a, [wBattleMonItem]
-	ld b, a
-	call GetPlayerAbilityEffective
-	cp KLUTZ
-	ld a, b
-	jr z, .player_no_scarf
-	call .ChoiceScarfBoost
-.player_no_scarf
-	ld d, 0
-	call .UnburdenBoost
-	push hl
-	; enemy effective speed -> hl
-	call GetEnemyAbilityEffective
-	ld c, a
-	ld a, [wEnemyMonStatus]
-	ld b, a
-	ld hl, wEnemyMonSpeed
-	call .GetEffectiveSpeed
-	ld a, [wEnemyMonItem]
-	ld b, a
-	call GetEnemyAbilityEffective
-	cp KLUTZ
-	ld a, b
-	jr z, .enemy_no_scarf
-	call .ChoiceScarfBoost
-.enemy_no_scarf
-	ld d, 1
-	call .UnburdenBoost
-	ld d, h
-	ld e, l
-	pop hl
+	call GetBattleEffectiveSpeeds
 	; compare hl (player) vs de (enemy)
 	ld a, h
 	cp d
@@ -4256,6 +4219,47 @@ CompareSpeedsWithAbilities::
 .finish
 	pop bc
 	pop de
+	pop hl
+	ret
+
+GetBattleEffectiveSpeeds::
+; Return player effective speed in hl, enemy in de. Shared by turn order
+; and Gyro Ball; Trick Room changes ordering, not either actual speed.
+	call GetPlayerAbilityEffective
+	ld c, a
+	ld a, [wBattleMonStatus]
+	ld b, a
+	ld hl, wBattleMonSpeed
+	call .GetEffectiveSpeed
+	ld a, [wBattleMonItem]
+	ld b, a
+	call GetPlayerAbilityEffective
+	cp KLUTZ
+	ld a, b
+	jr z, .player_no_scarf
+	call .ChoiceScarfBoost
+.player_no_scarf
+	ld d, 0
+	call .UnburdenBoost
+	push hl
+	call GetEnemyAbilityEffective
+	ld c, a
+	ld a, [wEnemyMonStatus]
+	ld b, a
+	ld hl, wEnemyMonSpeed
+	call .GetEffectiveSpeed
+	ld a, [wEnemyMonItem]
+	ld b, a
+	call GetEnemyAbilityEffective
+	cp KLUTZ
+	ld a, b
+	jr z, .enemy_no_scarf
+	call .ChoiceScarfBoost
+.enemy_no_scarf
+	ld d, 1
+	call .UnburdenBoost
+	ld d, h
+	ld e, l
 	pop hl
 	ret
 
