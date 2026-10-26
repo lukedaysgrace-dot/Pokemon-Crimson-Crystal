@@ -57,7 +57,7 @@ LancesRoomLanceScript:
 	closetext
 	winlosstext LanceBattleWinText, 0
 	setlasttalked LANCESROOM_LANCE
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iftrue .LoadRematchTeam
 	loadtrainer CHAMPION, LANCE
 	sjump .StartBattle
@@ -68,13 +68,12 @@ LancesRoomLanceScript:
 	dontrestartmapmusic
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHAMPION_LANCE
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iffalse .RegularVictoryText
 	setevent EVENT_BEAT_LANCE_REMATCH
-	clearevent EVENT_GREEN_IN_ROUTE20
 	checkevent EVENT_OPENED_MT_SILVER
 	iftrue .RematchNoOakCall
-	specialphonecall SPECIALCALL_OAK_MT_SILVER
+	farscall QueueOakMtSilverCallScript
 	opentext
 	writetext LanceRematchAfterText
 	sjump .VictoryTextDone
@@ -291,9 +290,8 @@ LanceRematchAfterNoOakText:
 	para "You conquered our"
 	line "strongest teams."
 
-	para "I hear a strong"
-	line "trainer now waits"
-	cont "on ROUTE 20."
+	para "Keep pushing your"
+	line "team even further."
 	done
 
 LanceBattleAfterText:

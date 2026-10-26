@@ -7,7 +7,18 @@
 Route20_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .CheckGreen
+
+.CheckGreen:
+	checkevent EVENT_BEAT_RED
+	iffalse .HideGreen
+	clearevent EVENT_GREEN_IN_ROUTE20
+	return
+
+.HideGreen:
+	setevent EVENT_GREEN_IN_ROUTE20
+	return
 
 TrainerSwimmerfNicole:
 	trainer SWIMMERF, NICOLE, EVENT_BEAT_SWIMMERF_NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, 0, .Script
@@ -43,6 +54,8 @@ TrainerSwimmermCameron:
 	end
 
 Route20GreenScript:
+	checkevent EVENT_BEAT_RED
+	iffalse .NotReady
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_GREEN
@@ -66,6 +79,7 @@ Route20GreenScript:
 	writetext Route20GreenAfterText
 	waitbutton
 	closetext
+.NotReady:
 	end
 
 CinnabarGymSign:
@@ -133,7 +147,8 @@ Route20GreenBeforeText:
 	cont "over KANTO."
 
 	para "Then you went and"
-	line "beat LANCE again."
+	line "beat RED on"
+	cont "MT.SILVER."
 
 	para "That REALLY got"
 	line "my attention."
@@ -163,7 +178,7 @@ Route20GreenAfterText:
 	line "good. REALLY"
 	cont "good."
 
-	para "LANCE doesn't lose"
+	para "RED doesn't lose"
 	line "very often."
 
 	para "Now I know why"

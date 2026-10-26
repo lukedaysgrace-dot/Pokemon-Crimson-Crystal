@@ -75,7 +75,7 @@ GoldenrodGymWhitneyScript:
 .GotAttract:
 	checkevent EVENT_BEAT_WHITNEY_REMATCH
 	iftrue .RematchDone
-	checkevent EVENT_BEAT_BUGSY_REMATCH
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .RematchDone
 	writetext WhitneyRematchChallengeText
 	yesorno
@@ -410,9 +410,9 @@ WhitneyRematchWinText:
 
 	para "Waaaaah!"
 
-	para "…Sniff… MORTY's"
-	line "up next. Now go"
-	cont "away, you meanie!"
+	para "…Sniff… I'll win"
+	line "next time, you"
+	cont "meanie!"
 	done
 
 GoldenrodGym_MapEvents:

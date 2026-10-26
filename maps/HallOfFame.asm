@@ -41,14 +41,7 @@ HallOfFame_MapScripts:
 	clearevent EVENT_RED_IN_MT_SILVER
 	setmapscene SPROUT_TOWER_3F, SCENE_FINISHED
 	special HealParty
-	checkevent EVENT_BEAT_LANCE_REMATCH
-	iftrue .SkipPhoneCall
-	checkevent EVENT_OPENED_MT_SILVER
-	iftrue .SkipPhoneCall
-	checkevent EVENT_BEAT_CLAIR_REMATCH
-	iffalse .SkipPhoneCall
-	specialphonecall SPECIALCALL_OAK_MT_SILVER
-.SkipPhoneCall:
+	farscall QueueOakMtSilverCallScript
 	halloffame
 	end
 
@@ -116,10 +109,15 @@ HallOfFame_LanceText:
 	done
 
 HallOfFame_NextChallengeText:
-	text "Next, JOHTO's GYM"
-	line "LEADERS await a"
-	cont "rematch. Start"
-	cont "with FALKNER."
+	text "You're free to"
+	line "explore, CHAMPION!"
+
+	para "The JOHTO LEADERS"
+	line "will battle again"
+	cont "if you choose."
+
+	para "Face them in any"
+	line "order you like."
 	done
 
 HallOfFame_MapEvents:

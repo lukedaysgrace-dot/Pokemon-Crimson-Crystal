@@ -64,7 +64,7 @@ EcruteakGymMortyScript:
 .GotShadowBall:
 	checkevent EVENT_BEAT_MORTY_REMATCH
 	iftrue .RematchDone
-	checkevent EVENT_BEAT_WHITNEY_REMATCH
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .RematchDone
 	writetext MortyRematchChallengeText
 	yesorno
@@ -424,9 +424,6 @@ MortyRematchWinText:
 
 	para "I envy you for"
 	line "that…"
-
-	para "CHUCK awaits you"
-	line "in CIANWOOD."
 	done
 
 EcruteakGym_MapEvents:

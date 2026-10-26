@@ -14,12 +14,12 @@ Route23_MapScripts:
 
 .GrampsBlock:
 ; Once the ELITE FOUR have been beaten the first time they retreat to train,
-; and GRAMPS guards the POKECENTER doors until the CLAIR rematch is won --
+; and GRAMPS guards the POKECENTER doors until all eight Johto rematches are won --
 ; the same gate that lets SILVER's ambush inside commence (see
 ; PlateauRivalBattle1 in maps/IndigoPlateauPokecenter1F.asm).
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .NoGramps
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iftrue .NoGramps
 	appear ROUTE23_GRAMPS
 	return
@@ -42,7 +42,7 @@ Route23GrampsLeftDoorTrigger:
 ; The player stepped in front of the left door; GRAMPS is already there.
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .DontBlock
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iftrue .DontBlock
 	turnobject PLAYER, UP
 	turnobject ROUTE23_GRAMPS, DOWN
@@ -60,7 +60,7 @@ Route23GrampsRightDoorTrigger:
 ; it, sends them packing, then shuffles back to his post.
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .DontBlock
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iftrue .DontBlock
 	turnobject PLAYER, UP
 	applymovement ROUTE23_GRAMPS, Route23GrampsSlideRightMovement
@@ -81,7 +81,7 @@ Route23GrampsSideTrigger:
 ; doorway tile itself, so GRAMPS calls them out and boots them back east.
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .DontBlock
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iftrue .DontBlock
 	turnobject PLAYER, LEFT
 	turnobject ROUTE23_GRAMPS, RIGHT

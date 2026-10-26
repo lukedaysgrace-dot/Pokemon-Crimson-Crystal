@@ -17,6 +17,8 @@ PalletTown_MapScripts:
 .CheckRed2:
 	checkevent EVENT_BEAT_RED2
 	iftrue .HideRed2
+	checkevent EVENT_BEAT_RED
+	iffalse .HideRed2
 	checkevent EVENT_BEAT_BLUE_CLOAK
 	iffalse .HideRed2
 	clearevent EVENT_RED2_IN_PALLET
@@ -33,6 +35,12 @@ PalletTownFisherScript:
 	jumptextfaceplayer PalletTownFisherText
 
 PalletTownRed2Script:
+	checkevent EVENT_BEAT_RED2
+	iftrue .NotReady
+	checkevent EVENT_BEAT_RED
+	iffalse .NotReady
+	checkevent EVENT_BEAT_BLUE_CLOAK
+	iffalse .NotReady
 	special FadeOutMusic
 	faceplayer
 	opentext
@@ -59,6 +67,7 @@ PalletTownRed2Script:
 	special HealParty
 	refreshscreen
 	credits
+.NotReady:
 	end
 
 PalletTownSign:

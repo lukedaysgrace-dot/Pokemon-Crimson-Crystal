@@ -13,6 +13,8 @@ from battletest.symbols import Constants, _parse_constants
 from pc_harness import Harness, ROOT
 from test_overworld_state import patches
 
+JOHTO_REMATCH_LEADERS = ('FALKNER', 'BUGSY', 'WHITNEY', 'MORTY', 'CHUCK', 'JASMINE', 'PRYCE', 'CLAIR')
+
 
 def main():
     root = Path(ROOT)
@@ -64,6 +66,10 @@ def main():
         write('wJohtoBadges', (1 << min(count, 8)) - 1)
         write('wKantoBadges', (1 << max(count - 8, 0)) - 1)
 
+    def rematch_state(mask):
+        for i, leader in enumerate(JOHTO_REMATCH_LEADERS):
+            event(f'EVENT_BEAT_{leader}_REMATCH', bool(mask & (1 << i)))
+
     def surge(owned):
         h.call('EngineFlagAction', bc=int(owned) << 8, de=flags['ENGINE_THUNDERBADGE'])
 
@@ -74,7 +80,7 @@ def main():
         h.call('LoadMapAttributes')
         h.call('GetCurrentMapSceneID')
 
-    def script(name, stops=(), stop_before_battle=False):
+    def script(name, stops=(), stop_before_battle=False, stop_before_credits=False):
         bank, addr = h.sym[name]
         write('wScriptBank', bank)
         h.wr16(h.s('wScriptPos'), addr)
@@ -89,6 +95,8 @@ def main():
             command = h.mem[bank, addr]
             if stop_before_battle and command == 0x5f:  # startbattle
                 return 'startbattle', texts, movements
+            if stop_before_credits and command == 0xa2:  # credits presentation
+                return 'credits', texts, movements
             pointer = h.mem[bank, addr + 1] | h.mem[bank, addr + 2] << 8
             if command in (0x4c, 0x51, 0x53):  # writetext / jumptextfaceplayer / jumptext
                 texts.append((bank, pointer))
@@ -96,8 +104,12 @@ def main():
                 texts.append((h.mem[bank, addr + 1], h.mem[bank, addr + 2] | h.mem[bank, addr + 3] << 8))
             elif command == 0x69:  # applymovement
                 movements.append(h.mem[bank, addr + 1])
+            # A callback's top-level `return` stops the script runner without
+            # setting wScriptMode to SCRIPT_OFF. Do not fall through into the
+            # next callback/label after executing the native return command.
+            callback_return = command == 0x90 and read('wScriptStackSize') == 0
             h.call('RunScriptCommand')
-            if read('wScriptMode') == 0:
+            if callback_return or read('wScriptMode') == 0:
                 return None, texts, movements
         raise RuntimeError(f'{name}: command budget exceeded')
 
@@ -203,7 +215,7 @@ def main():
                 load('VIRIDIAN_GYM')
                 with patches(h, {'Script_startbattle': b'\xc9', 'Script_reloadmapafterbattle': b'\xc9'}):
                     _, texts, _ = script('ViridianGymBlueScript')
-                expected = 'LeaderBlueRematchNextText' if hall else 'LeaderBlueLeagueNextText'
+                expected = 'LeaderBlueAfterText' if hall else 'LeaderBlueLeagueNextText'
                 check(h.sym[expected] in texts and read('wKantoBadges') == 255, f'Blue badge/advice: old Champion={hall}')
                 check(read('wSpecialPhoneCallID') == 0 and not event('EVENT_CRYSTAL_CAPE_CALL_PENDING'),
                       'Blue still queued Crystal after her invitation moved to Erika')
@@ -414,7 +426,7 @@ def main():
                 event('EVENT_OPENED_MT_SILVER', opened)
                 write('wSpecialPhoneCallID', [0, 0])
                 script('QueueOakMtSilverCallScript')
-                ready = count == 16 and hall and clair and not opened
+                ready = count == 16 and hall and not opened
                 check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if ready else 0),
                       f'final Oak invitation: {count}, hall={hall}, Clair={clair}, cape={cape}, opened={opened}')
 
@@ -506,7 +518,7 @@ def main():
                         check((h.rd(loc) != 0x7a) == (janine and erika and sabrina),
                               f'shoreline block {x},{y}: Janine={janine}, Erika={erika}, Sabrina={sabrina}, old={old_rocks}')
 
-            print('[Johto rematches: League starts Falkner, then each previous leader unlocks the next]', flush=True)
+            print('[Johto rematches: every leader is optional and available first after the League]', flush=True)
             rematches = (
                 ('FALKNER', 'VIOLET_GYM', 'VioletGymFalknerScript', 'EVENT_GOT_TM31_MUD_SLAP'),
                 ('BUGSY', 'AZALEA_GYM', 'AzaleaGymBugsyScript', 'EVENT_GOT_TM49_FURY_CUTTER'),
@@ -524,32 +536,56 @@ def main():
             event('EVENT_BEAT_RED', False)
             event('EVENT_GOT_METAL_COAT_FROM_JASMINE', True)
             with patches(h, battle_ui):
-                for index, (leader, map_name, entry, tm) in enumerate(rematches):
+                for leader, map_name, entry, tm in rematches:
                     event('EVENT_BEAT_' + leader, True)
                     event(tm, True)
-                    prerequisite = 'EVENT_BEAT_ELITE_FOUR' if index == 0 else f'EVENT_BEAT_{rematches[index - 1][0]}_REMATCH'
                     for ready in (False, True):
-                        event(prerequisite, ready)
-                        event(f'EVENT_BEAT_{leader}_REMATCH', False)
+                        rematch_state(0)
+                        event('EVENT_BEAT_ELITE_FOUR', ready)
                         event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', False)
                         event('EVENT_OPENED_MT_SILVER', False)
                         write('wSpecialPhoneCallID', [0, 0])
                         load(map_name)
                         script(entry)
                         check(event(f'EVENT_BEAT_{leader}_REMATCH') == ready,
-                              f'{leader} rematch: prerequisite={ready}, Red not beaten')
-                        if leader == 'CLAIR':
-                            check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if ready else 0),
-                                  'Clair rematch did not queue Oak when Mt. Silver becomes available')
+                              f'{leader} rematch: first League won={ready}, no other rematches beaten')
+                        check(read('wSpecialPhoneCallID') == 0, f'{leader} rematch queued an unrelated Oak call')
+
+                # Reverse and mixed sequences ensure the real leader scripts set
+                # independent flags and do not require the previous gym.
+                for order in (tuple(reversed(range(8))), (5, 2, 7, 0, 6, 3, 1, 4)):
+                    rematch_state(0)
+                    event('EVENT_BEAT_ELITE_FOUR', True)
+                    for i in order:
+                        leader, map_name, entry, tm = rematches[i]
+                        event('EVENT_BEAT_' + leader, True)
+                        event(tm, True)
+                        load(map_name)
+                        script(entry)
+                        check(event(f'EVENT_BEAT_{leader}_REMATCH'), f'{leader} unavailable in rematch order {order}')
+
+                # Declining a gym rematch must leave that optional challenge open.
+                no = bytes([0xaf, 0xea, var & 255, var >> 8, 0xc9])
+                with patches(h, {'Script_yesorno': no}):
+                    for leader, map_name, entry, tm in rematches:
+                        rematch_state(0)
+                        event('EVENT_BEAT_ELITE_FOUR', True)
+                        event('EVENT_BEAT_' + leader, True)
+                        event(tm, True)
+                        load(map_name)
+                        script(entry)
+                        check(not event(f'EVENT_BEAT_{leader}_REMATCH'), f'declining {leader} marked its rematch won')
 
                 print('[Lance rematch: Oak invitation and advice are independent of Crystal]', flush=True)
                 for cape, opened in product((False, True), repeat=2):
                     badges(16)
                     event('EVENT_BEAT_ELITE_FOUR', True)
-                    event('EVENT_BEAT_CLAIR_REMATCH', True)
+                    rematch_state(255)
                     event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', cape)
                     event('EVENT_OPENED_MT_SILVER', opened)
                     event('EVENT_BEAT_LANCE_REMATCH', False)
+                    event('EVENT_BEAT_RED', False)
+                    event('EVENT_GREEN_IN_ROUTE20', True)
                     write('wSpecialPhoneCallID', [0, 0])
                     load('LANCES_ROOM')
                     _, texts, _ = script('LancesRoomLanceScript', ('LancesRoomLanceScript.VictoryTextDone',))
@@ -558,6 +594,7 @@ def main():
                           f'Lance Oak invitation: cape={cape}, Mt. Silver opened={opened}')
                     expected = 'LanceRematchAfterNoOakText' if opened else 'LanceRematchAfterText'
                     check(h.sym[expected] in texts, f'Lance rematch advice: cape={cape}, opened={opened}')
+                    check(event('EVENT_GREEN_IN_ROUTE20'), 'Lance rematch unlocked Green before Mt. Silver Red')
 
                 print('[Route 26/27 phone rematches: Surge tier, then League tier, independent of power]', flush=True)
                 for map_name, entry, first_ace in (
@@ -819,7 +856,7 @@ def main():
                       and event('EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1'),
                       f'{destination}: rescue family remains visible')
 
-            print('[Oak: Mt. Silver requires badges, League and Johto rematches, independent of Crystal]', flush=True)
+            print('[Oak: Mt. Silver opens after the first League, independent of optional rematches and Crystal]', flush=True)
             for count, hall, cape, rematch in product((8, 9, 15, 16), (False, True), (False, True), (False, True)):
                 badges(count)
                 load('OAKS_LAB')
@@ -829,12 +866,11 @@ def main():
                 event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', cape)
                 event('EVENT_BEAT_CLAIR_REMATCH', rematch)
                 _, texts, _ = script('Oak')
-                ready = count == 16 and hall and rematch
+                ready = count == 16 and hall
                 check(event('EVENT_OPENED_MT_SILVER') == ready, f'Mt. Silver: {count}, hall={hall}, cape={cape}')
                 expected = ('OakNoKantoBadgesText' if count == 8 else
                             'OakYesKantoBadgesText' if count < 16 else
                             'OakLeagueNextText' if not hall else
-                            'OakJohtoRematchesText' if not rematch else
                             'OakOpenMtSilverText')
                 check(texts[0] == h.sym[expected], f'Oak advice: {count}, hall={hall}, cape={cape}')
 
@@ -843,38 +879,193 @@ def main():
             event('EVENT_GOT_TM24_DRAGON_CLAW', True)
             event('EVENT_BEAT_CLAIR_REMATCH', False)
             event('EVENT_BEAT_PRYCE_REMATCH', False)
+            event('EVENT_BEAT_ELITE_FOUR', False)
             for count in (8, 9, 15, 16):
                 badges(count)
                 _, texts, _ = script('BlackthornGymClairScript')
                 expected = 'BlackthornGymClairText_League' if count == 16 else 'BlackthornGymClairText_Kanto'
                 check(texts == [h.sym[expected]], f'Clair advice at {count} badges')
 
-            print('[League rematch gate remains after the first championship]', flush=True)
-            load('ROUTE_23')
-            for hall, rematch in product((False, True), repeat=2):
+            print('[All 256 rematch subsets: shared check, outside blocker and inside League entrance]', flush=True)
+            for hall, mask in [(False, m) for m in (0, 128, 255)] + [(True, m) for m in range(256)]:
+                badges(16)
                 event('EVENT_BEAT_ELITE_FOUR', hall)
-                event('EVENT_BEAT_CLAIR_REMATCH', rematch)
+                rematch_state(mask)
+                ready = hall and mask == 255
+                script('CheckJohtoRematchesScript')
+                check(bool(read('wScriptVar')) == ready, f'all-rematch check: hall={hall}, mask={mask:#x}')
+                load('ROUTE_23')
+                script('Route23_MapScripts.GrampsBlock')
+                check(event('EVENT_ROUTE_23_POKECENTER_GRAMPS') == (not hall or ready),
+                      f'Gramps visibility: hall={hall}, mask={mask:#x}')
                 for entry in ('Route23GrampsLeftDoorTrigger', 'Route23GrampsRightDoorTrigger', 'Route23GrampsSideTrigger'):
                     _, _, moves = script(entry)
-                    check(bool(moves) == (hall and not rematch), f'{entry}: hall={hall}, rematch={rematch}')
+                    check(bool(moves) == (hall and not ready), f'{entry}: hall={hall}, mask={mask:#x}')
+                load('INDIGO_PLATEAU_POKECENTER_1F')
+                _, _, moves = script('IndigoPlateauBadgeCheck')
+                check(bool(moves) == (hall and not ready), f'inner League entrance: hall={hall}, mask={mask:#x}')
 
-            print('[Hall of Fame no longer unlocks the ship; Oak calls when Mt. Silver is ready]', flush=True)
+            print('[League teams: no single gym rematch can activate the higher teams]', flush=True)
+            rooms = (
+                ('WILLS_ROOM', 'WillScript_Battle', 'EVENT_BEAT_ELITE_4_WILL', 'WILL', 'WILL_REMATCH'),
+                ('KOGAS_ROOM', 'KogaScript_Battle', 'EVENT_BEAT_ELITE_4_KOGA', 'KOGA', 'KOGA_REMATCH'),
+                ('BRUNOS_ROOM', 'BrunoScript_Battle', 'EVENT_BEAT_ELITE_4_BRUNO', 'BRUNO', 'BRUNO_REMATCH'),
+                ('KARENS_ROOM', 'KarenScript_Battle', 'EVENT_BEAT_ELITE_4_KAREN', 'KAREN', 'KAREN_REMATCH'),
+                ('LANCES_ROOM', 'LancesRoomLanceScript', 'EVENT_BEAT_CHAMPION_LANCE', 'CHAMPION', 'CHAMPION_REMATCH'),
+            )
+            for hall, mask in [(False, 255)] + [(True, m) for m in [0, 128, *[255 ^ (1 << i) for i in range(8)], 255]]:
+                event('EVENT_BEAT_ELITE_FOUR', hall)
+                rematch_state(mask)
+                for map_name, entry, defeated, normal, rematch in rooms:
+                    load(map_name)
+                    event(defeated, False)
+                    end, _, _ = script(entry, stop_before_battle=True)
+                    expected = rematch if hall and mask == 255 else normal
+                    check(end == 'startbattle' and read('wOtherTrainerClass') == con.trainer_classes[expected],
+                          f'{entry}: wrong team for hall={hall}, mask={mask:#x}')
+
+            print('[Silver final fight: automatic once, with repeatable Elite Four rematches afterwards]', flush=True)
+            var = h.s('wScriptVar')
+            no = bytes([0xaf, 0xea, var & 255, var >> 8, 0xc9])
+            rival_ui = {'Script_playmusic': consume(2), 'Script_playmapmusic': b'\xc9',
+                        'Script_showemote': consume(3), 'Script_yesorno': no}
+            with patches(h, rival_ui):
+                for mask, moon, beaten in product((0, 128, 127, 255), (False, True), (False, True)):
+                    event('EVENT_BEAT_ELITE_FOUR', True)
+                    rematch_state(mask)
+                    event('EVENT_BEAT_RIVAL_IN_MT_MOON', moon)
+                    event('EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU', beaten)
+                    load('INDIGO_PLATEAU_POKECENTER_1F')
+                    for entry in ('PlateauRivalBattle1', 'PlateauRivalBattle2'):
+                        end, _, _ = script(entry, stop_before_battle=True)
+                        check((end == 'startbattle') == (mask == 255 and moon and not beaten),
+                              f'{entry}: mask={mask:#x}, Mt. Moon={moon}, already beaten={beaten}')
+                rematch_state(255)
+                event('EVENT_BEAT_RIVAL_IN_MT_MOON', True)
+                for entry in ('PlateauRivalBattle1', 'PlateauRivalBattle2'):
+                    load('INDIGO_PLATEAU_POKECENTER_1F')
+                    event('EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU', False)
+                    script('IndigoPlateauPokecenter1F_MapScripts.PrepareElite4')
+                    with patches(h, {'Script_startbattle': no, 'Script_reloadmapafterbattle': b'\xc9'}):
+                        _, texts, _ = script(entry)
+                    check(event('EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU'), f'{entry}: automatic Silver fight did not complete')
+                    check(h.sym['PlateauRivalText1'] in texts and h.sym['PlateauRivalText2'] in texts,
+                          f'{entry}: Silver original dialogue was not restored')
+                    # A new visit resets League doors/teams, but must not reset
+                    # Silver's permanent completion flag or the rematch unlock.
+                    for visit in range(2):
+                        for _, _, defeated, _, _ in rooms:
+                            event(defeated, True)
+                        load('INDIGO_PLATEAU_POKECENTER_1F')
+                        script('IndigoPlateauPokecenter1F_MapScripts.PrepareElite4')
+                        for _, _, defeated, _, _ in rooms:
+                            check(not event(defeated), f'{defeated}: League opponent did not reset for a repeat challenge')
+                        for trigger in ('PlateauRivalBattle1', 'PlateauRivalBattle2'):
+                            end, texts, moves = script(trigger, stop_before_battle=True)
+                            check(end != 'startbattle' and not texts and not moves,
+                                  f'{trigger}: Silver repeated after completion, visit={visit}')
+                        script('CheckJohtoRematchesScript')
+                        check(bool(read('wScriptVar')), 'League rematch became locked after Silver')
+                        load('WILLS_ROOM')
+                        end, _, _ = script('WillScript_Battle', stop_before_battle=True)
+                        check(end == 'startbattle' and read('wOtherTrainerClass') == con.trainer_classes['WILL_REMATCH'],
+                              'League rematch could not be started again after Silver')
+
+            print('[First Hall of Fame queues Oak without any optional Johto rematches; port state stays independent]', flush=True)
             for cape, rematch in product((False, True), repeat=2):
                 load('HALL_OF_FAME')
                 badges(16)
                 event('EVENT_OPENED_MT_SILVER', False)
                 event('EVENT_BEAT_LANCE_REMATCH', False)
                 event('EVENT_BEAT_CRYSTAL_CERULEAN_CAPE', cape)
-                event('EVENT_BEAT_CLAIR_REMATCH', rematch)
+                rematch_state(255 if rematch else 0)
+                event('EVENT_BEAT_ELITE_FOUR', False)
                 event('EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME', False)
                 event('EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME', True)
                 write('wSpecialPhoneCallID', [0, 0])
                 script('HallOfFame_MapScripts.EnterHallOfFameScript')
-                check(read('wSpecialPhoneCallID') == (phone['SPECIALCALL_OAK_MT_SILVER'] if rematch else 0),
+                check(read('wSpecialPhoneCallID') == phone['SPECIALCALL_OAK_MT_SILVER'],
                       f'Hall of Fame queued wrong call, cape={cape}')
                 check(not event('EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME')
                       and event('EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME'),
                       'Hall of Fame still overrides ticket-controlled port state')
+
+            print('[Superboss visibility and direct challenges: Red first, then Green, Blue Cloak and Red2]', flush=True)
+            badges(16)
+            event('EVENT_BEAT_ELITE_FOUR', True)
+            for red, green, blue, red2, lance, hidden in product((False, True), repeat=6):
+                for flag, value in (
+                        ('EVENT_BEAT_RED', red), ('EVENT_BEAT_GREEN', green),
+                        ('EVENT_BEAT_BLUE_CLOAK', blue), ('EVENT_BEAT_RED2', red2),
+                        ('EVENT_BEAT_LANCE_REMATCH', lance)):
+                    event(flag, value)
+                for map_name, callback, visibility, entry, visible, fight in (
+                        ('ROUTE_20', 'Route20_MapScripts.CheckGreen', 'EVENT_GREEN_IN_ROUTE20',
+                         'Route20GreenScript', red, red and not green),
+                        ('CINNABAR_ISLAND', 'CinnabarIsland_MapScripts.CheckBlueCloak', 'EVENT_BLUE_CLOAK_IN_CINNABAR',
+                         'CinnabarIslandBlueCloakScript', red and green, red and green and not blue),
+                        ('PALLET_TOWN', 'PalletTown_MapScripts.CheckRed2', 'EVENT_RED2_IN_PALLET',
+                         'PalletTownRed2Script', red and blue and not red2, red and blue and not red2)):
+                    event(visibility, hidden)  # Include stale/early visibility from an older save.
+                    load(map_name)
+                    script(callback)
+                    check(event(visibility) == (not visible),
+                          f'{callback}: Red={red}, Green={green}, Blue={blue}, Red2={red2}, Lance={lance}, old hidden={hidden}')
+                    end, _, _ = script(entry, stop_before_battle=True)
+                    check((end == 'startbattle') == fight,
+                          f'{entry}: wrong battle availability after Red={red}, Green={green}, Blue={blue}, Red2={red2}')
+
+            print('[Native Red loss/victory and complete superboss chain, without optional League rematches]', flush=True)
+            var = h.s('wScriptVar')
+            result = h.s('wBattleResult')
+            won = bytes([0xaf, 0xea, result & 255, result >> 8, 0xea, var & 255, var >> 8, 0xc9])
+            lost = bytes([0x3e, 1, 0xea, result & 255, result >> 8, 0xea, var & 255, var >> 8, 0xc9])
+            rematch_state(0)
+            event('EVENT_BEAT_ELITE_FOUR', True)
+            event('EVENT_BEAT_LANCE_REMATCH', False)
+            event('EVENT_OPENED_MT_SILVER', True)
+            for flag in ('EVENT_BEAT_RED', 'EVENT_BEAT_GREEN', 'EVENT_BEAT_BLUE_CLOAK', 'EVENT_BEAT_RED2'):
+                event(flag, False)
+            for flag in ('EVENT_GREEN_IN_ROUTE20', 'EVENT_BLUE_CLOAK_IN_CINNABAR', 'EVENT_RED2_IN_PALLET'):
+                event(flag, True)
+            load('SILVER_CAVE_ROOM_3')
+            with patches(h, {'Script_startbattle': lost}):
+                end, _, _ = script('Red', ('Script_BattleWhiteout',))
+            check(end == 'Script_BattleWhiteout' and not event('EVENT_BEAT_RED') and event('EVENT_GREEN_IN_ROUTE20'),
+                  'losing to Mt. Silver Red unlocked the superbosses')
+            with patches(h, {'Script_startbattle': won, 'Script_reloadmapafterbattle': b'\xc9',
+                             'Script_refreshscreen': consume(1)}):
+                load('SILVER_CAVE_ROOM_3')
+                end, _, _ = script('Red', stop_before_credits=True)
+                check(end == 'credits' and event('EVENT_BEAT_RED') and not event('EVENT_GREEN_IN_ROUTE20'),
+                      'beating Mt. Silver Red did not unlock Green')
+                check(not event('EVENT_BEAT_LANCE_REMATCH'), 'Red unlock unexpectedly required a League rematch')
+                load('ROUTE_20')
+                script('Route20_MapScripts.CheckGreen')
+                script('Route20GreenScript')
+                check(event('EVENT_BEAT_GREEN') and not event('EVENT_BLUE_CLOAK_IN_CINNABAR'),
+                      'Green victory did not unlock Blue Cloak')
+                load('CINNABAR_ISLAND')
+                script('CinnabarIsland_MapScripts.CheckBlueCloak')
+                script('CinnabarIslandBlueCloakScript')
+                check(event('EVENT_BEAT_BLUE_CLOAK') and not event('EVENT_RED2_IN_PALLET'),
+                      'Blue Cloak victory did not unlock Red2')
+                load('PALLET_TOWN')
+                script('PalletTown_MapScripts.CheckRed2')
+                end, _, _ = script('PalletTownRed2Script', stop_before_credits=True)
+                check(end == 'credits' and event('EVENT_BEAT_RED2'), 'Red2 victory was not recorded')
+                script('PalletTown_MapScripts.CheckRed2')
+                check(event('EVENT_RED2_IN_PALLET'), 'defeated Red2 appeared again')
+                rematch_state(255)
+                load('LANCES_ROOM')
+                script('LancesRoomLanceScript', ('LancesRoomLanceScript.VictoryTextDone',))
+                for map_name, entry, flag in (
+                        ('ROUTE_20', 'Route20GreenScript', 'EVENT_BEAT_GREEN'),
+                        ('CINNABAR_ISLAND', 'CinnabarIslandBlueCloakScript', 'EVENT_BEAT_BLUE_CLOAK'),
+                        ('PALLET_TOWN', 'PalletTownRed2Script', 'EVENT_BEAT_RED2')):
+                    load(map_name)
+                    end, _, _ = script(entry, stop_before_battle=True)
+                    check(event(flag) and end != 'startbattle', f'League rematch reset completed superboss {entry}')
 
         print('[Kanto map and Pokédex areas open with Johto badges before Hall of Fame]', flush=True)
         for johto, hall in product((0, 0x7f, 0xff), (False, True)):

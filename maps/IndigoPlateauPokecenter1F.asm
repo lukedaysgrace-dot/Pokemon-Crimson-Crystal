@@ -7,8 +7,9 @@
 	const INDIGOPLATEAUPOKECENTER1F_ABRA
 
 IndigoPlateauPokecenter1F_MapScripts:
-	db 1 ; scene scripts
+	db 2 ; scene scripts
 	scene_script .DummyScene ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .PrepareElite4
@@ -17,6 +18,7 @@ IndigoPlateauPokecenter1F_MapScripts:
 	end
 
 .PrepareElite4:
+	setscene SCENE_DEFAULT
 	setmapscene WILLS_ROOM, SCENE_DEFAULT
 	setmapscene KOGAS_ROOM, SCENE_DEFAULT
 	setmapscene BRUNOS_ROOM, SCENE_DEFAULT
@@ -46,7 +48,7 @@ PlateauRivalBattle1:
 	iffalse PlateauRivalScriptDone
 ; Silver only shows up once the Elite Four rematch is live, so this is the last
 ; fight before Will's room reopens.
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iffalse PlateauRivalScriptDone
 	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
 	iftrue PlateauRivalScriptDone
@@ -66,7 +68,7 @@ PlateauRivalBattle2:
 	iffalse PlateauRivalScriptDone
 ; Silver only shows up once the Elite Four rematch is live, so this is the last
 ; fight before Will's room reopens.
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iffalse PlateauRivalScriptDone
 	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
 	iftrue PlateauRivalScriptDone
@@ -156,7 +158,18 @@ IndigoPlateauBadgeCheck:
 	waitbutton
 	closetext
 	applymovement PLAYER, IndigoPlateauStepDownMovement
+	end
 .Ready:
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iffalse .Done
+	farscall CheckJohtoRematchesScript
+	iftrue .Done
+	opentext
+	farwritetext Route23GrampsText
+	waitbutton
+	closetext
+	applymovement PLAYER, IndigoPlateauStepDownMovement
+.Done:
 	end
 
 IndigoPlateauStepDownMovement:

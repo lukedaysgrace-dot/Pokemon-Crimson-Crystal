@@ -49,7 +49,7 @@ WillScript_Battle:
 	waitbutton
 	closetext
 	winlosstext WillScript_WillBeatenText, 0
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iftrue .LoadRematchTeam
 	loadtrainer WILL, WILL1
 	sjump .StartBattle

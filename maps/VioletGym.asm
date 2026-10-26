@@ -204,15 +204,7 @@ FalknerTMMudSlapText:
 	done
 
 FalknerFightDoneText:
-	text "There are #MON"
-	line "GYMS in cities and"
-	cont "towns ahead."
-
-	para "You should test"
-	line "your skills at"
-	cont "these GYMS."
-
-	para "I'm going to train"
+	text "I'm going to train"
 	line "harder to become"
 
 	para "the greatest bird"
@@ -305,9 +297,6 @@ FalknerRematchWinText:
 	text "You beat me again."
 	line "We have to aim"
 	cont "higher!"
-
-	para "BUGSY is waiting"
-	line "in AZALEA TOWN."
 	done
 
 VioletGym_MapEvents:

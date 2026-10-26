@@ -53,7 +53,7 @@ MahoganyGymPryceScript:
 PryceScript_Defeat:
 	checkevent EVENT_BEAT_PRYCE_REMATCH
 	iftrue .RematchDone
-	checkevent EVENT_BEAT_JASMINE_REMATCH
+	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .RematchDone
 	writetext PryceRematchChallengeText
 	yesorno
@@ -400,9 +400,6 @@ PryceRematchWinText:
 	line "strong. Keep it"
 	cont "through every"
 	cont "challenge."
-
-	para "CLAIR is the final"
-	line "JOHTO rematch."
 	done
 
 MahoganyGym_MapEvents:

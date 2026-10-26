@@ -49,7 +49,7 @@ KarenScript_Battle:
 	waitbutton
 	closetext
 	winlosstext KarenScript_KarenBeatenText, 0
-	checkevent EVENT_BEAT_CLAIR_REMATCH
+	farscall CheckJohtoRematchesScript
 	iftrue .LoadRematchTeam
 	loadtrainer KAREN, KAREN1
 	sjump .StartBattle

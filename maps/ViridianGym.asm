@@ -51,11 +51,8 @@ ViridianGymBlueScript:
 	writetext LeaderBlueAfterText
 	buttonsound
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue .RematchAdvice
+	iftrue .FinishAdvice
 	writetext LeaderBlueLeagueNextText
-	sjump .FinishAdvice
-.RematchAdvice:
-	writetext LeaderBlueRematchNextText
 .FinishAdvice:
 	waitbutton
 	closetext
@@ -334,12 +331,4 @@ LeaderBlueLeagueNextText:
 	para "Go to INDIGO"
 	line "PLATEAU. Show them"
 	cont "what you can do!"
-	done
-
-LeaderBlueRematchNextText:
-	text "The JOHTO LEADERS"
-	line "want rematches."
-
-	para "Start with FALKNER"
-	line "in VIOLET CITY."
 	done

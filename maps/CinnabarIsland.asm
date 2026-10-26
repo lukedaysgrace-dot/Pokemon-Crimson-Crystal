@@ -15,6 +15,8 @@ CinnabarIsland_MapScripts:
 
 .CheckBlueCloak:
 	farscall UpdateBlueReturnScript
+	checkevent EVENT_BEAT_RED
+	iffalse .HideBlueCloak
 	checkevent EVENT_BEAT_GREEN
 	iffalse .HideBlueCloak
 	clearevent EVENT_BLUE_CLOAK_IN_CINNABAR
@@ -46,6 +48,10 @@ CinnabarIslandBlue:
 	end
 
 CinnabarIslandBlueCloakScript:
+	checkevent EVENT_BEAT_RED
+	iffalse .NotReady
+	checkevent EVENT_BEAT_GREEN
+	iffalse .NotReady
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_BLUE_CLOAK
@@ -69,6 +75,7 @@ CinnabarIslandBlueCloakScript:
 	writetext CinnabarIslandBlueCloakAfterText
 	waitbutton
 	closetext
+.NotReady:
 	end
 
 CinnabarIslandGymSign:
@@ -159,8 +166,8 @@ CinnabarIslandBlueCloakBeforeText:
 
 	para "I almost couldn't"
 	line "believe it when I"
-	cont "heard you"
-	cont "beat LANCE again."
+	cont "heard you beat RED"
+	cont "on MT.SILVER."
 
 	para "The last time we"
 	line "fought, I knew"
