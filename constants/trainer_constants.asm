@@ -494,6 +494,8 @@ LYRA EQU __enum__
 	const LYLE
 	const SCORCH
 	const TORCH
+	const DICK
+	const NED
 
 	trainerclass JUGGLER ; 31
 	const IRWIN1

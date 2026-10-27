@@ -1,0 +1,35 @@
+{
+  "audit_date": "2026-10-27",
+  "repositories": {
+    "pokegold": {
+      "commit": "fc702b6d922aecce274782d68bba8639936a1182",
+      "repository": "https://github.com/pret/pokegold"
+    },
+    "pokecrystal": {
+      "commit": "5c877ef55197039c9676e8e3eec6d254b1c40fe8",
+      "repository": "https://github.com/pret/pokecrystal"
+    }
+  },
+  "coverage": {
+    "pokegold": {
+      "parties": 495,
+      "active_parties": 438,
+      "maps": 368,
+      "expanded_maps": 368
+    },
+    "pokecrystal": {
+      "parties": 541,
+      "active_parties": 472,
+      "maps": 388,
+      "expanded_maps": 388
+    }
+  },
+  "notes": [
+    "English retail Gold/Silver versus English retail Crystal.",
+    "Not a comparison against the Crimson Crystal hack.",
+    "Active party means referenced by a map script; removal claims additionally verified against phone callers and map branches.",
+    "Stored but unused trainer parties are excluded from playable party changes.",
+    "Collision comparison expands blocks to 16x16 walk tiles; it is not a raw graphics comparison.",
+    "Japanese mobile features, Australian-only text variants, wild availability, trades/gift species, graphics/music, beta maps, engine bug fixes and balancing unrelated to actual trainer encounters are outside the report."
+  ]
+}

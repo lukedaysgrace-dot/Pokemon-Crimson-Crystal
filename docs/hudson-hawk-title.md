@@ -14,7 +14,8 @@ The matching sequence was recovered from
 
 - `audio/music/hudsonhawktitle.asm`: four synchronized channels and reusable
   phrases, with a 2,688-frame loop (about 45 seconds).
-- `audio/wave_samples.asm`: sample 10 holds the original bass waveform.
+- `audio/wave_samples.asm`: sample 10 holds the bass waveform, expanded from
+  the source's 0–8 sample range to 0–15 for a stronger attack.
 - `audio.asm`, `audio/music_pointers.asm`, and `constants/music_constants.asm`:
   register the new song and place it in its own ROM section.
 
@@ -30,7 +31,11 @@ This is a sequence port, not embedded WAV playback. Existing `togglesfx`,
 frame-level modulation. `tempo 256` and `notetype 1` give one engine frame
 per duration unit. The software envelope levels are rendered into the
 sequence, and repeated phrases share subroutines. Channel 3 uses wave
-sample 10; the low intensity nibble selects that sample.
+sample 10; the low intensity nibble selects that sample. Bass notes lasting
+five or more frames now have a two-frame full-volume attack, a half-volume
+tail, and a one-frame release gap. This gives repeated notes a more percussive
+feel while retaining their pitches and total durations, including the original
+slides and shorter pickup notes.
 
 The port preserves the musical parts and timing, but the engine retriggers
 notes at some pitch or volume changes, so phase and attack behavior can
@@ -40,3 +45,6 @@ by an indefinite synchronized loop.
 The emulator audition is saved locally under
 `_artifacts/hudson-hawk-title/hudson-hawk-title-preview.wav`; its validation
 report is alongside it. These generated files are ignored by Git.
+
+All added tracks, including this song, are available from the bedroom radio's
+scrolling music menu from the start of the game.

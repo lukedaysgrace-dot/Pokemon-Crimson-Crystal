@@ -86,6 +86,10 @@ test-cap-fast: pokecrystal.gbc pokecrystal_debug.gbc
 test-kurt-bulk: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/kurt_bulk_checks.py
 
+.PHONY: test-burned-tower
+test-burned-tower: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/burned_tower_checks.py
+
 debug: pokecrystal_debug.gbc
 
 test: pokecrystal_debug.gbc

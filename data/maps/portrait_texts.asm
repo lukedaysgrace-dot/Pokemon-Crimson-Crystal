@@ -165,6 +165,14 @@ PortraitTexts:
 	db PORTRAIT_SILVER
 	dba BurnedTowerSilver_BeforeText
 	db PORTRAIT_SILVER
+	dba FirebreatherDickAfterText
+	db 0
+	dba FirebreatherDickBeforeText
+	db 0
+	dba FirebreatherNedAfterText
+	db 0
+	dba FirebreatherNedSeenText
+	db 0
 	dba HexManiacWinnieAfterBattleText
 	db 0
 	dba HexManiacWinnieSeenText

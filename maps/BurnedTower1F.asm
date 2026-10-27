@@ -5,6 +5,9 @@
 	const BURNEDTOWER1F_MORTY
 	const BURNEDTOWER1F_POKE_BALL
 	const BURNEDTOWER1F_WINNIE
+	const BURNEDTOWER1F_FIREBREATHER_DICK
+	const BURNEDTOWER1F_FIREBREATHER_NED
+	const BURNEDTOWER1F_FIREBREATHER_DICK_ASHES
 
 BurnedTower1F_MapScripts:
 	db 3 ; scene scripts
@@ -12,8 +15,9 @@ BurnedTower1F_MapScripts:
 	scene_script .DummyScene1 ; SCENE_BURNEDTOWER1F_RIVAL_BATTLE
 	scene_script .DummyScene2 ; SCENE_BURNEDTOWER1F_NOTHING
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_TILES, .HoleAndLadder
+	callback MAPCALLBACK_OBJECTS, .FirebreatherDickAppearance
 
 .EusineScene:
 	prioritysjump .MeetEusine
@@ -34,6 +38,19 @@ BurnedTower1F_MapScripts:
 	iftrue .HideBasement
 	changeblock 6, 14, $09 ; ladder
 .HideBasement:
+	return
+
+.FirebreatherDickAppearance:
+; Derive visibility from the existing battle flag, including on older saves.
+	checkevent EVENT_BEAT_FIREBREATHER_DICK
+	iftrue .DickIsAshes
+	disappear BURNEDTOWER1F_FIREBREATHER_DICK_ASHES
+	appear BURNEDTOWER1F_FIREBREATHER_DICK
+	return
+
+.DickIsAshes:
+	disappear BURNEDTOWER1F_FIREBREATHER_DICK
+	appear BURNEDTOWER1F_FIREBREATHER_DICK_ASHES
 	return
 
 .MeetEusine:
@@ -124,6 +141,53 @@ BurnedTowerRivalBattleScript:
 	warpcheck
 	end
 
+; The original G/S approach scene can run in every tower scene, before or
+; after the rival. Talking to Dick also starts his one-time battle.
+FirebreatherDickFight:
+	checkevent EVENT_BEAT_FIREBREATHER_DICK
+	iftrue .Done
+	playmusic MUSIC_HIKER_ENCOUNTER
+	showemote EMOTE_SHOCK, BURNEDTOWER1F_FIREBREATHER_DICK, 30
+	applymovement BURNEDTOWER1F_FIREBREATHER_DICK, FirebreatherDickMovement
+	turnobject PLAYER, DOWN
+	sjump FirebreatherDickBattle
+.Done:
+	end
+
+FirebreatherDickTalk:
+	faceplayer
+	checkevent EVENT_BEAT_FIREBREATHER_DICK
+	iftrue FirebreatherDickPostBattle
+	playmusic MUSIC_HIKER_ENCOUNTER
+
+FirebreatherDickBattle:
+	opentext
+	writetext FirebreatherDickBeforeText
+	waitbutton
+	closetext
+	winlosstext FirebreatherDickBeatenText, -1
+	setlasttalked BURNEDTOWER1F_FIREBREATHER_DICK
+	loadtrainer FIREBREATHER, DICK
+	startbattle
+	iftrue .Lost
+	setevent EVENT_BEAT_FIREBREATHER_DICK
+	disappear BURNEDTOWER1F_FIREBREATHER_DICK
+	appear BURNEDTOWER1F_FIREBREATHER_DICK_ASHES
+	reloadmapafterbattle
+	end
+.Lost:
+	reloadmapafterbattle
+	end
+
+FirebreatherDickPostBattle:
+	jumptextfaceplayer FirebreatherDickAfterText
+
+TrainerFirebreatherNed:
+	trainer FIREBREATHER, NED, EVENT_BEAT_FIREBREATHER_NED, FirebreatherNedSeenText, FirebreatherNedBeatenText, 0, .Script
+.Script:
+	endifjustbattled
+	jumptextfaceplayer FirebreatherNedAfterText
+
 TrainerHexManiacWinnie:
 	trainer HEX_MANIAC, WINNIE, EVENT_BEAT_HEX_MANIAC_WINNIE, HexManiacWinnieSeenText, HexManiacWinnieBeatenText, 0, .Script
 
@@ -171,6 +235,10 @@ BurnedTower1FEusineMovement:
 	step LEFT
 	step LEFT
 	step DOWN
+	step_end
+
+FirebreatherDickMovement:
+	step UP
 	step_end
 
 BurnedTowerSilver_BeforeText:
@@ -291,6 +359,56 @@ BurnedTower1FMortyText:
 	line "TOWER with him."
 	done
 
+FirebreatherDickBeforeText:
+	text "Hey, I'm training"
+	line "secretly here!"
+
+	para "Don't embarrass me"
+	line "by looking!"
+	done
+
+FirebreatherDickBeatenText:
+	text "I burned down to"
+	line "white ashes…"
+	done
+
+FirebreatherDickAfterText:
+	text "I was so into my"
+	line "training that I"
+
+	para "fell down this"
+	line "hole."
+	done
+
+FirebreatherNedSeenText:
+	text "My soul is on"
+	line "fire. I'll show"
+
+	para "you how hot it"
+	line "burns!"
+	done
+
+FirebreatherNedBeatenText:
+	text "Still not hot"
+	line "enough…"
+	done
+
+FirebreatherNedAfterText:
+	text "In the past, there"
+	line "were these #MON"
+
+	para "that ran through"
+	line "grass at super-"
+	cont "high speed."
+
+	para "They say that they"
+	line "run like the wind."
+
+	para "If you run into"
+	line "one in grass, it"
+	cont "will likely bolt."
+	done
+
 HexManiacWinnieSeenText:
 	text "I put a spell on"
 	line "you and now"
@@ -329,17 +447,21 @@ BurnedTower1F_MapEvents:
 	warp_event 15, 14, BURNED_TOWER_B1F, 5 ; inaccessible, left over from G/S
 	warp_event  7, 15, BURNED_TOWER_B1F, 6 ; inaccessible, left over from G/S
 
-	db 1 ; coord events
+	db 2 ; coord events
 	coord_event 11,  9, SCENE_BURNEDTOWER1F_RIVAL_BATTLE, BurnedTowerRivalBattleScript
+	coord_event  8,  1, -1, FirebreatherDickFight
 
 	db 2 ; bg events
 	bg_event  8,  7, BGEVENT_ITEM, BurnedTower1FHiddenEther
 	bg_event 13, 11, BGEVENT_ITEM, BurnedTower1FHiddenUltraBall
 
-	db 6 ; object events
+	db 9 ; object events
 	object_event 15,  4, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurnedTower1FRock, -1
 	object_event 12, 12, SPRITE_MYSTICALMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, BurnedTower1FEusineScript, EVENT_BURNED_TOWER_1F_EUSINE
 	object_event  8,  9, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
 	object_event 14, 14, SPRITE_MORTY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BurnedTower1FMortyScript, EVENT_BURNED_TOWER_MORTY
 	object_event 14,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BurnedTower1FHPUp, EVENT_BURNED_TOWER_1F_HP_UP
 	object_event  3,  1, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerHexManiacWinnie, -1
+	object_event  8,  3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FirebreatherDickTalk, EVENT_BEAT_FIREBREATHER_DICK
+	object_event 16,  8, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerFirebreatherNed, -1
+	object_event  8,  2, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_SILVER, OBJECTTYPE_SCRIPT, 0, FirebreatherDickPostBattle, EVENT_BURNED_TOWER_FIREBREATHER_DICK_ASHES
