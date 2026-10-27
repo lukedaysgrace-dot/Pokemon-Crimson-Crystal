@@ -1,4 +1,4 @@
-; Layout and item positions adapted from Polished Crystal v2.2.0.
+; Original Red/Blue layout; Crimson Crystal items and save flags retained.
 	object_const_def ; object_event constants
 	const CERULEANCAVE1F_POKE_BALL1
 	const CERULEANCAVE1F_POKE_BALL2
@@ -31,24 +31,25 @@ CeruleanCave1F_MapEvents:
 	; filler
 	db 0, 0
 
-	db 8 ; warp events
-	warp_event 27, 19, ROUTE_4, 2
-	warp_event 9, 3, CERULEAN_CAVE_2F, 1
-	warp_event 29, 3, CERULEAN_CAVE_2F, 2
-	warp_event 3, 5, CERULEAN_CAVE_2F, 3
-	warp_event 2, 8, CERULEAN_CAVE_B1F, 1
-	warp_event 25, 9, CERULEAN_CAVE_2F, 4
-	warp_event 20, 11, CERULEAN_CAVE_2F, 5
-	warp_event 5, 13, CERULEAN_CAVE_2F, 6
+	db 9 ; warp events
+	warp_event 24, 17, ROUTE_4, 2
+	warp_event 25, 17, ROUTE_4, 2
+	warp_event 27, 1, CERULEAN_CAVE_2F, 1
+	warp_event 23, 7, CERULEAN_CAVE_2F, 2
+	warp_event 18, 9, CERULEAN_CAVE_2F, 3
+	warp_event 7, 1, CERULEAN_CAVE_2F, 4
+	warp_event 1, 3, CERULEAN_CAVE_2F, 5
+	warp_event 3, 11, CERULEAN_CAVE_2F, 6
+	warp_event 0, 6, CERULEAN_CAVE_B1F, 1
 
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event 10, 11, BGEVENT_ITEM, CeruleanCave1FHiddenUltraBall
-	bg_event 5, 14, BGEVENT_ITEM, CeruleanCave1FHiddenPPUp
-	bg_event 16, 13, BGEVENT_ITEM, CeruleanCave1FHiddenRareCandy
+	bg_event 21, 13, BGEVENT_ITEM, CeruleanCave1FHiddenUltraBall
+	bg_event 6, 16, BGEVENT_ITEM, CeruleanCave1FHiddenPPUp
+	bg_event 16, 9, BGEVENT_ITEM, CeruleanCave1FHiddenRareCandy
 
 	db 3 ; object events
-	object_event 7, 4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCave1FNugget, EVENT_CERULEAN_CAVE_1F_NUGGET
-	object_event 9, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCave1FFullRestore, EVENT_CERULEAN_CAVE_1F_FULL_RESTORE
-	object_event 21, 5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCave1FMaxRevive, EVENT_CERULEAN_CAVE_1F_MAX_REVIVE
+	object_event 5, 0, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCave1FNugget, EVENT_CERULEAN_CAVE_1F_NUGGET
+	object_event 7, 13, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCave1FFullRestore, EVENT_CERULEAN_CAVE_1F_FULL_RESTORE
+	object_event 19, 3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, CeruleanCave1FMaxRevive, EVENT_CERULEAN_CAVE_1F_MAX_REVIVE

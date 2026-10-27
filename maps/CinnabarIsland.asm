@@ -56,6 +56,7 @@ CinnabarIslandBlueCloakScript:
 	opentext
 	checkevent EVENT_BEAT_BLUE_CLOAK
 	iftrue .Beaten
+	playmusic MUSIC_MEET_BLUE_CLOAK
 	writetext CinnabarIslandBlueCloakBeforeText
 	waitbutton
 	closetext

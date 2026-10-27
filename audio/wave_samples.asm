@@ -13,3 +13,5 @@ WaveSamples:
 	dn  1,  1,  0,  0,  0,  0,  0,  8,  0,  0,  1,  3,  5,  7,  9, 10, 11,  4, 11, 10, 10,  9,  9,  8,  8,  7,  6,  5,  4,  3,  2,  1
 	; 10: Hudson Hawk title screen bass waveform.
 	db $00, $02, $01, $38, $26, $54, $32, $10, $22, $12, $32, $30, $02, $00, $22, $61
+	; 11: Trading Card Game Ronald encounter bass waveform.
+	db $01, $12, $23, $34, $45, $56, $67, $77, $88, $99, $aa, $bb, $cc, $dd, $ee, $ff

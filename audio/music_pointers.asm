@@ -118,3 +118,6 @@ Music:
 	dba Music_PokemonTowerRBY      ; MUSIC_SILENT_CRYPT
 	dba Music_MtLavender           ; MUSIC_UNDERGROUND_PATH
 	dba Music_HudsonHawkTitle       ; MUSIC_HUDSON_HAWK_TITLE
+	dba Music_CeruleanCaveRBY        ; MUSIC_CERULEAN_CAVE_RBY
+	dba Music_GreenEncounter         ; MUSIC_GREEN_ENCOUNTER
+	dba Music_MeetBlueCloak           ; MUSIC_MEET_BLUE_CLOAK
