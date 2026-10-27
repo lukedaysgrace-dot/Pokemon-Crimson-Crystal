@@ -230,6 +230,9 @@ def apply():
 
 
 def audit():
+    from historical_move_access import review as historical_review, removed
+    from attacking_learnsets import check_level
+    history = historical_review()
     receipt = json.loads(RECEIPT.read_text(encoding='utf-8'))
     data = breeding_data()
     order, levels, _, eggs, parents, *_ = data
@@ -252,7 +255,7 @@ def audit():
     pairs = 0
     for c in order:
         for move in MOVES:
-            should = move in receipt['required'].get(c, [])
+            should = move in (history['expected'].get(c, []) if history else receipt['required'].get(c, []))
             if should:
                 assert move in known[c], (c, move, 'modern learner lacks access')
             elif move in known[c]:
@@ -260,19 +263,20 @@ def audit():
                 # evolutions such as Jynx -> Mesmeria) may add other holders.
                 assert c == 'SMEARGLE' or any(move in known[p] for p in parents[c]), \
                     (c, move, 'access beyond the modern learner list')
-            assert (move in canonical['expected'].get(c, [])) == should, (c, move, 'canonical receipt')
+            reference = history if history else canonical
+            assert (move in reference['expected'].get(c, [])) == should, (c, move, 'canonical receipt')
             pairs += should
     for c, moves in receipt['level_up'].items():
         for move, level in moves.items():
-            assert [lv for lv, m in levels[c] if m == move] == [level], (c, move, 'level-up placement')
+            check_level(c, move, level, levels)
     for c, moves in receipt['new_egg_moves'].items():
-        assert set(moves) <= set(eggs[c]), (c, 'egg placement')
+        assert set(moves) - removed(c, 'egg') <= set(eggs[c]), (c, 'egg placement')
     natural = {c: {m for _, m in levels[c]} for c in order}
     for c in order:
         for move in MOVES:
             if move in technical.get(c, []):
                 assert move not in natural[c], (c, move, 'tutor duplicates a level-up move')
-    print(f'WEIGHT MOVE AUDIT PASSED: {pairs} modern learner pairs; '
+    print(f'WEIGHT MOVE AUDIT PASSED: {pairs} sourced learner pairs; '
           f'{sum(map(len, receipt["level_up"].values()))} level-up, '
           f'{sum(map(len, receipt["new_egg_moves"].values()))} breeding placements; '
           'move data and canonical receipt agree.')

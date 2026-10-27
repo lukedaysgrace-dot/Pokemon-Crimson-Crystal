@@ -1,3 +1,3 @@
-# Canonical move access status
+# Move access status
 
-**No verified implemented moves are awaiting placement.** The remaining historical options have been assigned to the Blackthorn tutor. Existing level-up, breeding and machine routes are preserved. Goldenrod retains its original utility moves.
+All verified implemented historical and Lumi moves have an acquisition route. There are no deferred moves. See [the full correction report](historical-move-access.md).

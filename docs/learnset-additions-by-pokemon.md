@@ -1,4719 +1,4649 @@
-# New move additions by Pokémon
+# Historical move access corrections
 
-All 498 roster entries, in alphabetical order. Regional forms, clones and custom forms are listed separately.
+All **498 roster entries** were checked against mainline history (including Red/Blue/Yellow, Gold/Silver/Crystal, Let’s Go, Legends: Arceus and Legends: Z-A) and Luminescent Platinum 3.0 level-up, egg, machine and tutor tables.
 
-**Newly available** lists moves that the Pokémon could not obtain before this pass. The route lists also include new ways to learn moves it already had—for example, Aron, Lairon and Aggron already had Body Press through their custom family egg list and now learn it at levels 32, 38 and 44.
+**1,205 newly obtainable species/move pairs; 1,489 unsupported pairs removed; 35,651 sourced pairs accessible; zero deferred implemented moves.**
 
-**Level-up** gives the added level. **Egg** entries apply to the named family, including evolved Pokémon through breeding/evolution or the family egg tutor. **TM/HM/elemental tutor** means newly enabled compatibility. **Thematic level-up** means an explicitly custom level chosen for a move that fits the Pokémon. **Blackthorn tutor** means the purple tutor in the Move Deleter's House (¥5000). He teaches the verified moves without another suitable route, along with family egg moves. The Goldenrod tutor retains only its original five utility moves. **Evolution access** means a new move retained from a pre-evolution. **Breeding fallback** is the documented level-30 source where this roster has no independent breeding donor.
+Only moves implemented in this ROM are distributed. This is a union of individual historical access, including event moves; it does not claim every four-move combination is transferable between official games.
 
-This lists changes to Pokémon move access; it does not introduce new battle moves to the engine. The comparison baseline is repository commit `b60a01f1dc52bcc8370ee9e2fdcceb045d001f8c`.
+Valid existing levels, machines and breeding routes remain. Missing access uses the existing purple Blackthorn tutor in the Move Deleter’s House for ¥5,000. Goldenrod keeps its five utility moves. Frigibax learns Freeze-Dry at level 30 because removing unsupported donors otherwise leaves no breeding source.
 
-**498 entries; 494 gain moves they previously could not obtain; 13,603 newly available Pokémon/move pairs.**
+The six original custom species retain their authored move access, and Pixie Punch retains its custom rules. Clone tables match their originals. Custom evolution branches necessarily carry the parent’s legitimate moves; these exceptions are listed separately below. Smeargle’s Sketch access is verified against moves obtainable in this roster.
 
-Of these, 13,359 close canonical gaps. The other 244 are additional inherited access through this project's evolution and breeding relationships.
+**129 trainer move slots** were changed to supported alternatives so NPCs follow the corrected pools. All replacements are recorded in the structured receipt.
 
-**Every verified implemented move is available; no historical move candidates remain deferred.** The audit preserves previously expanded movepools except explicitly recorded corrections.
+Sources: [Team Lumi’s Pokédex](https://luminescent.team/pokedex), [pinned Lumi data](https://github.com/TeamLumi/luminescent-team/tree/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0), [pinned Pokémon Showdown data](https://github.com/smogon/pokemon-showdown/tree/1242c1e2d9763ba5b85d33f13aecb89bae19ae3d/data). Exact input URLs, SHA-256 hashes, added-move provenance and final tables are in `tools/testdata/historical_move_access.json`.
 
-## Abomasnow
+## Rechecking
 
-**Newly available (32):** Body Press, Body Slam, Brick Break, Bulldoze, Double Team, Earth Power, Earthquake, Endure, Flash, Focus Blast, Frustration, Giga Impact, Hail, Headbutt, Icicle Spear, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mud-Slap, Outrage, Rain Dance, Rock Slide, Rock Smash, Rock Tomb, Safeguard, Scary Face, Shadow Ball, Snore, Synthesis, Take Down, Water Pulse.
+```sh
+python tools/audit_historical_move_access.py
+python tools/audit_historical_move_access.py --download
+python tools/audit_historical_move_access.py --reference
+make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
+```
 
-- **Thematic level-up (custom):** Low Kick (Lv. 18), Brick Break (Lv. 26).
-- **Egg (Snover family):** Avalanche, Bullet Seed, Leech Seed, Mist, Seed Bomb, Weather Ball.
-- **TM/HM/elemental tutor:** Earthquake, Flash, Headbutt, Mud-Slap, Rain Dance, Rock Smash, Rock Tomb, Shadow Ball.
-- **Blackthorn tutor:** Body Press, Body Slam, Bulldoze, Double Team, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Hail, Icicle Spear, Iron Tail, Mega Kick, Mega Punch, Outrage, Rock Slide, Safeguard, Scary Face, Snore, Synthesis, Take Down, Water Pulse.
+Validation passed: both ROM builds; 10,565 compiled learnset/menu checks per ROM; 11,378 release breeding checks; 1,826 trainer slots; 61 Phantump/Stantler/Wyrdeer checks per ROM; unchanged regeneration for all 498 level-up tables; independent source and move-integrity audits. Generated documentation has zero warnings and zero unparsed rows.
 
-## Abra
+Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
-**Newly available (37):** Bide, Body Slam, Calm Mind, Confusion, Counter, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Energy Ball, Foul Play, Frustration, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psyshock, Psywave, Rage, Recycle, Safeguard, Seismic Toss, Signal Beam, Skull Bash, Snore, Submission, Swift, Take Down, Taunt, Torment, Tri Attack, Trick, Trick Room.
+## Unavoidable custom evolution carryover
 
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Calm Mind (Lv. 32), Trick (Lv. 34), Trick Room (Lv. 36), Dream Eater (Lv. 50).
-- **Egg (Abra family):** Confusion, Fire Punch, Ice Punch, Knock Off, Thunder Punch.
-- **TM/HM/elemental tutor:** Energy Ball, Swift.
-- **Blackthorn tutor:** Bide, Body Slam, Counter, Dazzling Gleam, Double Team, Double-Edge, Dynamic Punch, Endure, Foul Play, Frustration, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psyshock, Psywave, Rage, Recycle, Safeguard, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Torment, Tri Attack.
+- **Xatu:** Energy Ball, Extrasensory, Psybeam, Psycho Cut, Wing Attack.
+- **Mesmeria:** Dazzling Gleam, Dizzy Punch, Petal Dance.
+- **Appletun:** Bug Bite, Dragon Breath, Infestation.
+- **Flapple:** Body Slam, Bug Bite, Dragon Tail, Gyro Ball, Infestation, Recover, Reflect, Sweet Scent.
+- **Overqwil:** Bubble, Defense Curl, Headbutt, Mimic, Whirlpool.
+- **Ursaluna (Bloodmoon):** Attract, Belly Drum, Counter, Curse, Cut, Defense Curl, Double Team, Dynamic Punch, Fury Cutter, Headbutt, Hone Claws, Mega Kick, Mega Punch, Metronome, Mimic, Mud-Slap, Rock Smash, Rollout, Seismic Toss, Stealth Rock, Strength, Superpower, Swagger, Tackle, Thrash, Torment, Work Up, Zap Cannon.
+- **Mr. Rime:** Bide, Counter, Curse, Double-Edge, Dynamic Punch, Magical Leaf, Mind Reader, Nightmare, Play Rough, Psywave, Rage, Skull Bash, Submission, Take Down, Teleport.
+- **Sirfetch'd:** Acrobatics, Air Cutter, Baton Pass, Bide, Double Team, Flail, Foresight, Gust, Headbutt, Heat Wave, Mimic, Mirror Move, Mud-Slap, Ominous Wind, Rage, Razor Leaf, Reflect, Take Down, Thief, Twister, Whirlwind, Wish, Yawn.
+- **Watu:** Safeguard.
+- **Gorochu:** Dazzling Gleam, Dizzy Punch, Ice Punch, Petal Dance, Psychic, Scary Face.
 
-## Aerodactyl
+## Every Pokémon
 
-**Newly available (31):** Aerial Ace, Air Cutter, Aqua Tail, Bide, Bulldoze, Defog, Detect, Double Team, Double-Edge, Dragon Rage, Earth Power, Endure, Frustration, Head Smash, Heat Wave, Hurricane, Incinerate, Iron Tail, Mimic, Ominous Wind, Rage, Razor Wind, Reflect, Rock Blast, Rock Throw, Snore, Strength, Sunny Day, Thief, Torment, Twister.
+“Added” and “removed” describe net obtainable access in this correction pass. The route rows also show removals where another legitimate route still exists.
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Rock Blast (Lv. 38), Defog (Lv. 40).
-- **Egg (Aerodactyl family):** Curse, Steel Wing.
-- **TM/HM/elemental tutor:** Strength, Sunny Day, Thief.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Ancient Power, Aqua Tail, Bide, Detect, Double Team, Double-Edge, Dragon Rage, Earth Power, Endure, Frustration, Heat Wave, Hurricane, Incinerate, Iron Tail, Mimic, Ominous Wind, Rage, Razor Wind, Reflect, Rock Throw, Snore, Torment, Twister.
-- **Evolution access:** Head Smash.
+### Abomasnow
 
-## Aggron
+**Added:** Seismic Toss.
 
-**Newly available (49):** Aerial Ace, Ancient Power, Aqua Tail, Avalanche, Blizzard, Brick Break, Bulldoze, Counter, Crunch, Cut, Dark Pulse, Defense Curl, Double Team, Dragon Tail, Dynamic Punch, Earth Power, Endure, Flamethrower, Focus Blast, Frustration, Fury Cutter, Giga Impact, Hydro Pump, Icy Wind, Incinerate, Low Kick, Mega Kick, Mega Punch, Mimic, Outrage, Rain Dance, Rock Blast, Rock Polish, Rollout, Scary Face, Seismic Toss, Shadow Claw, Snore, Solar Beam, Spite, Stomp, Stone Edge, Sunny Day, Superpower, Surf, Taunt, Thunder, Water Pulse, Whirlpool.
+**Removed:** Freeze-Dry, Sunny Day.
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Low Kick (Lv. 24), Brick Break (Lv. 28), Rock Polish (Lv. 32), Rock Blast (Lv. 34), Dragon Tail (Lv. 36), Aqua Tail (Lv. 42), Body Press (Lv. 44), Stone Edge (Lv. 50).
-- **Egg (Aron family):** Curse, Iron Head, Mud-Slap, Stealth Rock, Stomp, Superpower.
-- **TM/HM/elemental tutor:** Blizzard, Cut, Flamethrower, Fury Cutter, Rain Dance, Solar Beam, Sunny Day, Surf, Thunder, Whirlpool.
-- **Blackthorn tutor:** Aerial Ace, Ancient Power, Avalanche, Counter, Crunch, Dark Pulse, Defense Curl, Double Team, Dynamic Punch, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Hydro Pump, Icy Wind, Incinerate, Mega Kick, Mega Punch, Mimic, Outrage, Rollout, Scary Face, Seismic Toss, Shadow Claw, Snore, Spite, Taunt, Water Pulse.
+- **Removed natural entries:** Freeze-Dry.
+- **Removed machine flags:** Sunny Day.
+- **Added Blackthorn lessons:** Seismic Toss.
 
-## Aipom
+### Abra
 
-**Newly available (35):** Acrobatics, Aerial Ace, Body Slam, Brick Break, Defense Curl, Detect, Dig, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Fake Out, Foul Play, Frustration, Gunk Shot, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Nightmare, Rain Dance, Seed Bomb, Seismic Toss, Shadow Claw, Snore, Solar Beam, Take Down, Taunt, U-turn, Water Pulse.
+**Added:** Foresight.
 
-- **Thematic level-up (custom):** Take Down (Lv. 42), Body Slam (Lv. 46), Double-Edge (Lv. 56).
-- **Egg (Aipom family):** Agility, Bounce, Fake Out, Iron Tail, Screech, Slam.
-- **TM/HM/elemental tutor:** Dig, Rain Dance, Solar Beam.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Brick Break, Defense Curl, Detect, Double Team, Dream Eater, Dynamic Punch, Endure, Foul Play, Frustration, Gunk Shot, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Nightmare, Seed Bomb, Seismic Toss, Shadow Claw, Snore, Taunt, U-turn, Water Pulse.
+**Removed:** None.
 
-## Alakazam
+- **Added Blackthorn lessons:** Foresight.
 
-**Newly available (33):** Bide, Body Slam, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Energy Ball, Foul Play, Frustration, Giga Impact, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psyshock, Psywave, Rage, Recycle, Safeguard, Seismic Toss, Signal Beam, Skull Bash, Snore, Submission, Swift, Take Down, Torment, Tri Attack, Trick Room.
+### Aerodactyl
 
-- **Natural/restored level-up:** Psyshock (Lv. 30).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Trick Room (Lv. 36), Dream Eater (Lv. 50).
-- **Egg (Abra family):** Confusion, Fire Punch, Ice Punch, Knock Off, Thunder Punch.
-- **TM/HM/elemental tutor:** Energy Ball, Swift.
-- **Blackthorn tutor:** Bide, Body Slam, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Foul Play, Frustration, Giga Impact, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psycho Cut, Psywave, Rage, Recycle, Safeguard, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Torment, Tri Attack.
+**Added:** None.
 
-## Altaria
+**Removed:** Head Smash.
 
-**Newly available (37):** Acrobatics, Aerial Ace, Air Cutter, Body Slam, Bulldoze, Cotton Guard, Dazzling Gleam, Double Team, Double-Edge, Draco Meteor, Dream Eater, Endure, False Swipe, Fire Spin, Frustration, Giga Impact, Hurricane, Ice Beam, Incinerate, Iron Tail, Mimic, Mirror Move, Mud-Slap, Ominous Wind, Outrage, Play Rough, Psych Up, Pursuit, Rage, Rain Dance, Roar, Rock Smash, Snore, Solar Beam, Sunny Day, Thief, Twister.
+- **Removed natural entries:** Head Smash.
 
-- **Natural/restored level-up:** Cotton Guard (Lv. 32).
-- **Thematic level-up (custom):** Dazzling Gleam (Lv. 44), Draco Meteor (Lv. 56), Outrage (Lv. 58).
-- **Egg (Swablu family):** Astonish, Defog, Play Rough, Pursuit, Rage, Steel Wing.
-- **TM/HM/elemental tutor:** Ice Beam, Mud-Slap, Rain Dance, Roar, Rock Smash, Solar Beam, Sunny Day, Thief.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Body Slam, Bulldoze, Double Team, Double-Edge, Dream Eater, Endure, False Swipe, Fire Spin, Frustration, Giga Impact, Incinerate, Iron Tail, Mimic, Ominous Wind, Psych Up, Snore, Twister.
-- **Evolution access:** Hurricane, Mirror Move.
+### Aggron
 
-## Amaura
+**Added:** False Swipe, Mud Shot.
 
-**Newly available (29):** Aqua Tail, Avalanche, Body Slam, Bulldoze, Calm Mind, Dark Pulse, Discharge, Double Team, Dragon Tail, Dream Eater, Endure, Flash, Frustration, Hyper Voice, Iron Defense, Iron Tail, Mud Shot, Outrage, Psych Up, Rain Dance, Rock Blast, Rock Polish, Rock Slide, Rock Throw, Safeguard, Snore, Stone Edge, Take Down, Water Pulse.
+**Removed:** Drain Punch, Hammer Arm, Power Gem.
 
-- **Natural/restored level-up:** Rock Throw (Lv. 10), Take Down (Lv. 15), Avalanche (Lv. 34).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Rock Slide (Lv. 26), Iron Defense (Lv. 36), Rock Blast (Lv. 38), Rock Polish (Lv. 42), Stone Edge (Lv. 50).
-- **Egg (Amaura family):** Discharge, Rock Throw, Take Down.
-- **TM/HM/elemental tutor:** Flash, Rain Dance.
-- **Blackthorn tutor:** Aqua Tail, Body Slam, Calm Mind, Dark Pulse, Double Team, Dragon Tail, Dream Eater, Endure, Frustration, Hyper Voice, Iron Tail, Mud Shot, Outrage, Psych Up, Safeguard, Snore, Water Pulse.
+- **Removed natural entries:** Hammer Arm.
+- **Removed machine flags:** Drain Punch, Power Gem.
+- **Added Blackthorn lessons:** False Swipe, Mud Shot.
 
-## Ambipom
+### Aipom
 
-**Newly available (34):** Acrobatics, Aerial Ace, Brick Break, Defense Curl, Detect, Dig, Dizzy Punch, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Foul Play, Frustration, Giga Impact, Gunk Shot, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Nightmare, Rain Dance, Seed Bomb, Seismic Toss, Shadow Claw, Snore, Solar Beam, Take Down, Taunt, Water Pulse.
+**Added:** Quick Attack.
 
-- **Thematic level-up (custom):** Take Down (Lv. 42), Double-Edge (Lv. 56), Giga Impact (Lv. 58).
-- **Egg (Aipom family):** Agility, Bounce, Fake Out, Iron Tail, Screech, Slam.
-- **TM/HM/elemental tutor:** Dig, Rain Dance, Solar Beam.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Brick Break, Defense Curl, Detect, Double Team, Dream Eater, Dynamic Punch, Endure, Foul Play, Frustration, Gunk Shot, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Nightmare, Seed Bomb, Seismic Toss, Shadow Claw, Snore, Taunt, Water Pulse.
-- **Evolution access:** Dizzy Punch.
+**Removed:** Drain Punch, Iron Head.
 
-## Ampharos
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Quick Attack.
 
-**Newly available (29):** Brick Break, Bulldoze, Cotton Guard, Counter, Defense Curl, Dig, Discharge, Double Team, Double-Edge, Dragon Tail, Dynamic Punch, Endure, Frustration, Giga Impact, Ice Punch, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Outrage, Roar, Sand Attack, Seismic Toss, Signal Beam, Snore, Sunny Day, Tail Glow, Wild Charge.
+### Alakazam
 
-- **Natural/restored level-up:** Tail Glow (Lv. 1), Discharge (Lv. 29), Cotton Guard (Lv. 46), Signal Beam (Lv. 51).
-- **Egg (Mareep family):** Iron Tail, Sand Attack, Take Down.
-- **TM/HM/elemental tutor:** Dig, Ice Punch, Roar, Sunny Day.
-- **Blackthorn tutor:** Brick Break, Bulldoze, Counter, Defense Curl, Double Team, Double-Edge, Dragon Tail, Dynamic Punch, Endure, Frustration, Giga Impact, Low Kick, Mega Kick, Mega Punch, Mimic, Outrage, Seismic Toss, Snore, Wild Charge.
+**Added:** Foresight, Hypnosis.
 
-## Annihilape
+**Removed:** None.
 
-**Newly available (41):** Acrobatics, Aerial Ace, Bide, Body Slam, Bulldoze, Defense Curl, Detect, Double Team, Double-Edge, Dynamic Punch, Earthquake, Encore, Endure, Focus Blast, Frustration, Giga Impact, Gunk Shot, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Overheat, Pay Day, Poison Jab, Psych Up, Pursuit, Rage, Rain Dance, Rock Tomb, Scary Face, Seed Bomb, Shadow Claw, Snore, Spite, Stealth Rock, Stone Edge, Submission, Take Down, Vacuum Wave.
+- **Added Blackthorn lessons:** Foresight, Hypnosis.
 
-- **Thematic level-up (custom):** Shadow Claw (Lv. 28).
-- **Egg (Mankey family):** Close Combat, Curse, Encore, Night Slash, Sleep Talk, Spite.
-- **TM/HM/elemental tutor:** Earthquake, Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bide, Body Slam, Bulldoze, Defense Curl, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Gunk Shot, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Overheat, Pay Day, Poison Jab, Psych Up, Scary Face, Seed Bomb, Snore, Stealth Rock, Stone Edge, Take Down, Vacuum Wave.
-- **Evolution access:** Pursuit, Rage, Submission.
+### Alolan Diglett
 
-## Anorith
+**Added:** Taunt.
 
-**Newly available (21):** Aerial Ace, Body Slam, Brick Break, Crush Claw, Cut, Double Team, Double-Edge, Earth Power, Endure, False Swipe, Frustration, Headbutt, Mimic, Mud Shot, Mud-Slap, Rock Polish, Snore, String Shot, Struggle Bug, Sunny Day, Swords Dance.
+**Removed:** Curse, Cut, Rock Smash.
 
-- **Natural/restored level-up:** Crush Claw (Lv. 32).
-- **Thematic level-up (custom):** Rock Polish (Lv. 34).
-- **Egg (Anorith family):** Aqua Jet, Curse, Knock Off, Rock Slide, Swords Dance, Water Pulse.
-- **TM/HM/elemental tutor:** Cut, Headbutt, Mud-Slap, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Double Team, Double-Edge, Earth Power, Endure, False Swipe, Frustration, Mimic, Mud Shot, Snore, String Shot, Struggle Bug.
+- **Removed machine flags:** Curse, Cut, Rock Smash.
+- **Added Blackthorn lessons:** Taunt.
 
-## Appletun
+### Alolan Dugtrio
 
-**Newly available (18):** Amnesia, Bug Bite, Bulldoze, Bullet Seed, Draco Meteor, Earthquake, Endure, Giga Impact, Gyro Ball, Magical Leaf, Outrage, Rain Dance, Recycle, Safeguard, Seed Bomb, Snore, Superpower, Take Down.
+**Added:** Taunt.
 
-- **Natural/restored level-up:** Recycle (Lv. 1), Bullet Seed (Lv. 20).
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Seed Bomb (Lv. 42), Draco Meteor (Lv. 56), Outrage (Lv. 60).
-- **Egg (Applin family):** Defense Curl, Recycle, Rollout.
-- **TM/HM/elemental tutor:** Earthquake, Rain Dance.
-- **Blackthorn tutor:** Amnesia, Bulldoze, Endure, Giga Impact, Gyro Ball, Safeguard, Snore, Superpower, Take Down.
-- **Evolution access:** Bug Bite.
+**Removed:** Cut, Drill Run, Rock Smash, Strength.
 
-## Applin
+- **Removed natural entries:** Drill Run.
+- **Removed machine flags:** Cut, Rock Smash, Strength.
+- **Added Blackthorn lessons:** Taunt.
 
-**Newly available (3):** Draco Meteor, Growth, Recycle.
+### Alolan Exeggutor
 
-- **Thematic level-up (custom):** Draco Meteor (Lv. 56).
-- **Egg (Applin family):** Defense Curl, Recycle, Rollout.
-- **Evolution access:** Growth.
+**Added:** Bulk Up.
 
-## Arbok
+**Removed:** Dragon Claw, Rock Smash, Rock Tomb.
 
-**Newly available (34):** Aqua Tail, Bide, Bind, Body Slam, Bulldoze, Dark Pulse, Disable, Double Team, Double-Edge, Endure, Fissure, Frustration, Giga Drain, Giga Impact, Infestation, Iron Tail, Mega Drain, Mimic, Mud Shot, Mud-Slap, Pain Split, Poison Tail, Rage, Rain Dance, Rock Tomb, Scale Shot, Scary Face, Seed Bomb, Skull Bash, Snarl, Snore, Take Down, Torment, Venoshock.
+- **Removed machine flags:** Dragon Claw, Rock Smash, Rock Tomb.
+- **Removed family egg entries:** Magical Leaf.
+- **Added Blackthorn lessons:** Bulk Up, Magical Leaf.
 
-- **Natural/restored level-up:** Poison Tail (Lv. 31).
-- **Thematic level-up (custom):** Aqua Tail (Lv. 42).
-- **Egg (Ekans family):** Disable, Iron Tail, Poison Fang, Poison Tail, Scary Face, Sucker Punch.
-- **TM/HM/elemental tutor:** Mud-Slap, Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bulldoze, Dark Pulse, Double Team, Double-Edge, Endure, Fissure, Frustration, Giga Drain, Giga Impact, Infestation, Mega Drain, Mimic, Mud Shot, Pain Split, Rage, Scale Shot, Seed Bomb, Skull Bash, Snarl, Snore, Take Down, Torment.
-- **Evolution access:** Venoshock.
+### Alolan Geodude
 
-## Arcanine
+**Added:** Ancient Power, Hammer Arm, Scary Face, Sucker Punch.
 
-**Newly available (30):** Aerial Ace, Bide, Bulldoze, Charm, Double Kick, Double Team, Double-Edge, Dragon Breath, Dragon Rage, Endure, Flame Charge, Frustration, Giga Impact, Heat Crash, Hyper Voice, Iron Tail, Mimic, Mud-Slap, Rage, Reflect, Scary Face, Skull Bash, Snarl, Snore, Solar Beam, Strength, Superpower, Teleport, Thief, Thunder Fang.
+**Removed:** Drain Punch, Magnitude, Power Gem, Rain Dance.
 
-- **Natural/restored level-up:** Thunder Fang (Lv. 1).
-- **Thematic level-up (custom):** Heat Crash (Lv. 42).
-- **Egg (Growlithe family):** Close Combat, Crunch, Double Kick, Double-Edge, Flare Blitz, Heat Wave, Iron Tail, Raging Fury.
-- **TM/HM/elemental tutor:** Mud-Slap, Solar Beam, Strength, Thief.
-- **Blackthorn tutor:** Aerial Ace, Bide, Bulldoze, Charm, Double Team, Dragon Breath, Dragon Rage, Endure, Flame Charge, Frustration, Giga Impact, Hyper Voice, Mimic, Rage, Reflect, Scary Face, Skull Bash, Snarl, Snore, Superpower, Teleport.
+- **Removed machine flags:** Drain Punch, Power Gem, Rain Dance.
+- **Removed family egg entries:** Magnitude.
+- **Added Blackthorn lessons:** Ancient Power, Hammer Arm, Scary Face, Sucker Punch.
 
-## Arcanine (Hisuian)
+### Alolan Golem
 
-**Newly available (17):** Aerial Ace, Agility, Bulldoze, Double Kick, Endure, Flame Charge, Flame Wheel, Giga Impact, Heat Crash, Hyper Voice, Rock Blast, Rock Throw, Scary Face, Snarl, Stealth Rock, Take Down, Thunder Fang.
+**Added:** Ancient Power, Fury Cutter, Spikes, Sucker Punch.
 
-- **Natural/restored level-up:** Agility (Lv. 1), Flame Wheel (Lv. 1), Leer (Lv. 1), Rock Throw (Lv. 1), Take Down (Lv. 1).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Rock Blast (Lv. 38), Stealth Rock (Lv. 42), Heat Crash (Lv. 44).
-- **Egg (Growlithe (Hisuian) family):** Double Kick, Double-Edge.
-- **Blackthorn tutor:** Aerial Ace, Endure, Flame Charge, Giga Impact, Hyper Voice, Scary Face, Snarl, Thunder Fang.
+**Removed:** Drain Punch, Head Smash, Magnitude, Power Gem, Rain Dance.
 
-## Archaludon
+- **Removed natural entries:** Head Smash.
+- **Removed machine flags:** Drain Punch, Power Gem, Rain Dance.
+- **Removed family egg entries:** Magnitude.
+- **Added Blackthorn lessons:** Ancient Power, Fury Cutter, Spikes, Sucker Punch.
 
-**Newly available (20):** Aura Sphere, Body Slam, Brick Break, Dark Pulse, Double-Edge, Endure, Foul Play, Giga Impact, Gyro Ball, Mirror Coat, Roar, Rock Tomb, Scary Face, Slash, Snarl, Snore, Solar Beam, Stone Edge, Swords Dance, Take Down.
+### Alolan Graveler
 
-- **Thematic level-up (custom):** Swords Dance (Lv. 32).
-- **Egg (Duraludon family):** Mirror Coat, Night Slash, Slash.
-- **TM/HM/elemental tutor:** Roar, Rock Tomb, Solar Beam.
-- **Blackthorn tutor:** Aura Sphere, Body Slam, Brick Break, Dark Pulse, Double-Edge, Endure, Foul Play, Giga Impact, Gyro Ball, Scary Face, Snarl, Snore, Stone Edge, Take Down.
+**Added:** Ancient Power, Body Press, Giga Impact, Hammer Arm, Heavy Slam, Sucker Punch.
 
-## Archen
+**Removed:** Drain Punch, Magnitude, Power Gem, Rain Dance.
 
-**Newly available (16):** Aerial Ace, Aqua Tail, Bounce, Bulldoze, Cut, Frustration, Heat Wave, Iron Defense, Iron Tail, Rock Blast, Roost, Shadow Claw, Snore, Stone Edge, Taunt, Torment.
+- **Removed machine flags:** Drain Punch, Power Gem, Rain Dance.
+- **Removed family egg entries:** Magnitude.
+- **Added Blackthorn lessons:** Ancient Power, Body Press, Giga Impact, Hammer Arm, Heavy Slam, Sucker Punch.
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Iron Defense (Lv. 36), Rock Blast (Lv. 38), Roost (Lv. 40), Bounce (Lv. 44), Stone Edge (Lv. 50).
-- **Egg (Archen family):** Double Team, Dragon Pulse, Knock Off, Steel Wing.
-- **TM/HM/elemental tutor:** Cut.
-- **Blackthorn tutor:** Aerial Ace, Aqua Tail, Dragon Breath, Frustration, Heat Wave, Iron Tail, Shadow Claw, Snore, Taunt, Torment.
+### Alolan Grimer
 
-## Archeops
+**Added:** Lick, Shadow Punch, Zap Cannon.
 
-**Newly available (21):** Aerial Ace, Air Slash, Aqua Tail, Bounce, Bulldoze, Cut, Dragon Tail, Focus Blast, Frustration, Giga Impact, Heat Wave, Iron Defense, Iron Tail, Outrage, Rock Blast, Shadow Claw, Sky Attack, Snore, Taunt, Torment, X-Scissor.
+**Removed:** Energy Ball, Night Slash, Strength.
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Air Slash (Lv. 28), Iron Defense (Lv. 38), Rock Blast (Lv. 40), Heat Wave (Lv. 42), Bounce (Lv. 44), Sky Attack (Lv. 56), Outrage (Lv. 58).
-- **Egg (Archen family):** Double Team, Dragon Pulse, Knock Off, Steel Wing.
-- **TM/HM/elemental tutor:** Cut.
-- **Blackthorn tutor:** Aerial Ace, Aqua Tail, Dragon Tail, Focus Blast, Frustration, Giga Impact, Iron Tail, Shadow Claw, Snore, Taunt, Torment, X-Scissor.
+- **Removed machine flags:** Energy Ball, Night Slash, Strength.
+- **Added Blackthorn lessons:** Lick, Shadow Punch, Zap Cannon.
 
-## Arctibax
+### Alolan Marowak
 
-**Newly available (11):** Aerial Ace, Aqua Tail, Avalanche, Body Slam, Brick Break, Dig, Draco Meteor, Endure, Rain Dance, Scary Face, Swords Dance.
+**Added:** Fury Attack, Tackle.
 
-- **Thematic level-up (custom):** Avalanche (Lv. 20).
-- **Egg (Frigibax family):** Aqua Tail, Freeze-Dry.
-- **TM/HM/elemental tutor:** Dig, Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Draco Meteor, Endure, Scary Face.
-- **Evolution access:** Swords Dance.
+**Removed:** Drain Punch, Drill Run, Ice Punch, Mud Shot, Phantom Force.
 
-## Ariados
+- **Removed natural entries:** Drill Run, Mud Shot, Phantom Force.
+- **Removed machine flags:** Drain Punch, Ice Punch.
+- **Added Blackthorn lessons:** Fury Attack, Tackle.
 
-**Newly available (20):** Body Slam, Bounce, Bug Buzz, Double Team, Double-Edge, Endure, Foul Play, Frustration, Giga Drain, Giga Impact, Hex, Mimic, Screech, Snore, Sonic Boom, Spite, Struggle Bug, Twineedle, Venoshock, X-Scissor.
+### Alolan Meowth
 
-- **Thematic level-up (custom):** X-Scissor (Lv. 42).
-- **Egg (Spinarak family):** Megahorn, Night Slash, Poison Jab, Signal Beam, Sonic Boom, Toxic Spikes, Twineedle.
-- **Blackthorn tutor:** Body Slam, Bounce, Bug Buzz, Double Team, Double-Edge, Endure, Foul Play, Frustration, Giga Drain, Giga Impact, Hex, Mimic, Screech, Snore, Spite, Struggle Bug, Venoshock.
+**Added:** False Swipe, Metronome, Mimic, Mud-Slap, Roar, Spikes, Tail Whip.
 
-## Armaldo
+**Removed:** Crush Claw, Flash, Iron Head.
 
-**Newly available (28):** Aerial Ace, Aqua Tail, Body Slam, Brick Break, Bulldoze, Crush Claw, Cut, Double Team, Double-Edge, Earth Power, Endure, False Swipe, Frustration, Giga Impact, Headbutt, Iron Tail, Low Kick, Mimic, Mud Shot, Mud-Slap, Rock Polish, Seismic Toss, Shadow Claw, Snore, String Shot, Struggle Bug, Sunny Day, Superpower.
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Flash, Iron Head.
+- **Added Blackthorn lessons:** False Swipe, Metronome, Mimic, Mud-Slap, Roar, Spikes, Tail Whip.
 
-- **Natural/restored level-up:** Crush Claw (Lv. 32).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Rock Polish (Lv. 40).
-- **Egg (Anorith family):** Aqua Jet, Curse, Knock Off, Rock Slide, Swords Dance, Water Pulse.
-- **TM/HM/elemental tutor:** Cut, Headbutt, Mud-Slap, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Aqua Tail, Body Slam, Brick Break, Double Team, Double-Edge, Earth Power, Endure, False Swipe, Frustration, Giga Impact, Iron Tail, Low Kick, Mimic, Mud Shot, Seismic Toss, Shadow Claw, Signal Beam, Snore, String Shot, Struggle Bug, Superpower.
+### Alolan Muk
 
-## Armarouge
+**Added:** Lick, Shadow Punch, Zap Cannon.
 
-**Newly available (14):** Dark Pulse, Disable, Endure, Flare Blitz, Focus Blast, Iron Defense, Lava Plume, Psych Up, Psyshock, Shadow Ball, Solar Beam, Take Down, Taunt, Trick.
+**Removed:** Cross Poison, Energy Ball, Night Slash, Rock Smash, Strength.
 
-- **Natural/restored level-up:** Psyshock (Lv. 1), Lava Plume (Lv. 32).
-- **Thematic level-up (custom):** Trick (Lv. 34).
-- **Egg (Charcadet family):** Disable.
-- **TM/HM/elemental tutor:** Shadow Ball, Solar Beam.
-- **Blackthorn tutor:** Dark Pulse, Endure, Focus Blast, Iron Defense, Psych Up, Take Down, Taunt.
-- **Evolution access:** Flare Blitz.
+- **Removed natural entries:** Cross Poison.
+- **Removed machine flags:** Energy Ball, Night Slash, Rock Smash, Strength.
+- **Added Blackthorn lessons:** Lick, Shadow Punch, Zap Cannon.
 
-## Aron
+### Alolan Ninetales
 
-**Newly available (21):** Aerial Ace, Ancient Power, Bulldoze, Cut, Defense Curl, Double Team, Earth Power, Endure, Frustration, Fury Cutter, Mimic, Rain Dance, Rock Polish, Rollout, Shadow Claw, Snore, Spite, Stomp, Sunny Day, Superpower, Water Pulse.
+**Added:** Bulk Up, Energy Ball, Giga Drain, Ice Fang, Psychic, Rock Slide, Snarl, Thief.
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Body Press (Lv. 32), Rock Polish (Lv. 32).
-- **Egg (Aron family):** Curse, Iron Head, Mud-Slap, Stealth Rock, Stomp, Superpower.
-- **TM/HM/elemental tutor:** Cut, Fury Cutter, Rain Dance, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Ancient Power, Defense Curl, Double Team, Earth Power, Endure, Frustration, Mimic, Rollout, Shadow Claw, Snore, Spite, Water Pulse.
+**Removed:** Curse, Iron Head, Shadow Ball.
 
-## Articuno
+- **Removed machine flags:** Curse, Iron Head, Shadow Ball.
+- **Added Blackthorn lessons:** Bulk Up, Energy Ball, Giga Drain, Ice Fang, Psychic, Rock Slide, Snarl, Thief.
 
-**Newly available (33):** Aerial Ace, Air Cutter, Air Slash, Avalanche, Bide, Brave Bird, Bubble Beam, Detect, Double Team, Double-Edge, Endure, Extrasensory, Frustration, Giga Impact, Headbutt, Heal Bell, Icicle Spear, Leer, Mimic, Mirror Coat, Ominous Wind, Peck, Rage, Razor Wind, Signal Beam, Sky Attack, Snore, Take Down, Triple Axel, Twister, Water Gun, Water Pulse, Whirlwind.
+### Alolan Persian
 
-- **Thematic level-up (custom):** Avalanche (Lv. 20), Air Slash (Lv. 28), Brave Bird (Lv. 56), Sky Attack (Lv. 58).
-- **TM/HM/elemental tutor:** Headbutt.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Bide, Bubble Beam, Detect, Double Team, Double-Edge, Endure, Extrasensory, Frustration, Giga Impact, Heal Bell, Icicle Spear, Leer, Mimic, Mirror Coat, Ominous Wind, Peck, Rage, Razor Wind, Signal Beam, Snore, Take Down, Triple Axel, Twister, Water Gun, Water Pulse, Whirlwind.
+**Added:** False Swipe, Metronome, Mimic, Mud-Slap, Spikes, Tail Whip, Toxic Spikes.
 
-## Aurorus
+**Removed:** Crush Claw, Flash, Iron Head.
 
-**Newly available (32):** Aqua Tail, Avalanche, Body Slam, Bulldoze, Dark Pulse, Discharge, Double Team, Dragon Tail, Dream Eater, Earthquake, Endure, Flash, Frustration, Giga Impact, Icicle Spear, Iron Defense, Iron Tail, Mud Shot, Outrage, Psych Up, Psychic, Rain Dance, Rock Blast, Rock Polish, Rock Slide, Rock Throw, Safeguard, Snore, Stone Edge, Take Down, Thunder, Water Pulse.
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Flash, Iron Head.
+- **Added Blackthorn lessons:** False Swipe, Metronome, Mimic, Mud-Slap, Spikes, Tail Whip, Toxic Spikes.
 
-- **Natural/restored level-up:** Rock Throw (Lv. 1), Take Down (Lv. 15), Avalanche (Lv. 34).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Rock Slide (Lv. 26), Iron Defense (Lv. 38), Rock Blast (Lv. 42), Rock Polish (Lv. 46), Stone Edge (Lv. 50).
-- **Egg (Amaura family):** Discharge, Rock Throw, Take Down.
-- **TM/HM/elemental tutor:** Earthquake, Flash, Psychic, Rain Dance, Thunder.
-- **Blackthorn tutor:** Aqua Tail, Body Slam, Dark Pulse, Double Team, Dragon Tail, Dream Eater, Endure, Frustration, Giga Impact, Icicle Spear, Iron Tail, Mud Shot, Outrage, Psych Up, Safeguard, Snore, Water Pulse.
+### Alolan Raichu
 
-## Axew
+**Added:** Dazzling Gleam, Dizzy Punch, Ice Punch, Petal Dance, Scary Face.
 
-**Newly available (25):** Aerial Ace, Aqua Tail, Brick Break, Bulldoze, Counter, Cut, Dig, Double Team, Double-Edge, Draco Meteor, Dragon Rage, First Impression, Frustration, Incinerate, Poison Jab, Rain Dance, Shadow Claw, Snarl, Snore, Sunny Day, Surf, Swift, Take Down, Taunt, X-Scissor.
+**Removed:** Drain Punch, Iron Head, Rock Tomb, Zen Headbutt.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 10), Taunt (Lv. 12).
-- **Egg (Axew family):** Aqua Tail, Counter, Dragon Pulse, First Impression, Focus Energy, Night Slash.
-- **TM/HM/elemental tutor:** Cut, Dig, Rain Dance, Sunny Day, Surf, Swift.
-- **Blackthorn tutor:** Aerial Ace, Brick Break, Bulldoze, Double Team, Double-Edge, Draco Meteor, Frustration, Incinerate, Poison Jab, Shadow Claw, Snarl, Snore, Take Down, X-Scissor.
+- **Removed machine flags:** Drain Punch, Iron Head, Rock Tomb, Zen Headbutt.
+- **Added Blackthorn lessons:** Dazzling Gleam, Dizzy Punch, Ice Punch, Petal Dance, Scary Face.
 
-## Azumarill
+### Alolan Raticate
 
-**Newly available (26):** Brick Break, Bulldoze, Dig, Disarming Voice, Double Team, Draining Kiss, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Hail, Hyper Voice, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Present, Scald, Seismic Toss, Snore, Take Down, Water Pulse.
+**Added:** Endure, False Swipe, Mud-Slap, Nasty Plot, Thunder, Thunder Wave, Thunderbolt, Wild Charge.
 
-- **Thematic level-up (custom):** Draining Kiss (Lv. 20), Water Pulse (Lv. 42), Scald (Lv. 44).
-- **Egg (Azurill family):** Aqua Jet, Body Slam, Encore, Present, Sing, Slam, Substitute, Superpower.
-- **TM/HM/elemental tutor:** Dig.
-- **Blackthorn tutor:** Brick Break, Bulldoze, Disarming Voice, Double Team, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Seismic Toss, Snore.
-- **Evolution access:** Hyper Voice, Take Down.
+**Removed:** Beat Up, Curse, Iron Head, Night Slash, Screech.
 
-## Azurill
+- **Removed machine flags:** Curse, Iron Head, Night Slash.
+- **Removed family egg entries:** Beat Up, Screech.
+- **Added Blackthorn lessons:** Endure, False Swipe, Mud-Slap, Nasty Plot, Thunder, Thunder Wave, Thunderbolt, Wild Charge.
 
-**Newly available (24):** Bounce, Bubble, Defense Curl, Double Team, Double-Edge, Draining Kiss, Encore, Endure, Frustration, Hail, Hyper Voice, Icy Wind, Iron Tail, Mimic, Mud Shot, Mud-Slap, Present, Scald, Slam, Snore, Superpower, Tail Whip, Take Down, Water Pulse.
+### Alolan Rattata
 
-- **Natural/restored level-up:** Tail Whip (Lv. 1), Bubble (Lv. 7), Slam (Lv. 12), Bounce (Lv. 15).
-- **Thematic level-up (custom):** Draining Kiss (Lv. 18), Hyper Voice (Lv. 42), Take Down (Lv. 44), Double-Edge (Lv. 56).
-- **Egg (Azurill family):** Aqua Jet, Body Slam, Encore, Present, Sing, Slam, Substitute, Superpower.
-- **TM/HM/elemental tutor:** Mud-Slap.
-- **Blackthorn tutor:** Defense Curl, Double Team, Endure, Frustration, Hail, Icy Wind, Iron Tail, Mimic, Mud Shot, Scald, Snore, Water Pulse.
+**Added:** Endure, False Swipe, Mud-Slap, Nasty Plot, Scary Face, Strength, Swords Dance, Thunder, Thunder Wave, Thunderbolt, Venoshock, Wild Charge, Work Up.
 
-## Bagon
+**Removed:** Beat Up, Curse, Iron Head, Knock Off, Night Slash, Screech.
 
-**Newly available (28):** Aerial Ace, Body Slam, Brick Break, Cut, Double Team, Draco Meteor, Dragon Rage, Endure, Fire Spin, Frustration, Fury Cutter, Hyper Voice, Incinerate, Iron Defense, Iron Head, Mimic, Mud-Slap, Rage, Rain Dance, Roar, Rock Slide, Rock Tomb, Shadow Claw, Snore, Strength, Sunny Day, Take Down, Wish.
+- **Removed machine flags:** Curse, Iron Head, Knock Off, Night Slash.
+- **Removed family egg entries:** Beat Up, Screech.
+- **Added Blackthorn lessons:** Endure, False Swipe, Mud-Slap, Nasty Plot, Scary Face, Strength, Swords Dance, Thunder, Thunder Wave, Thunderbolt, Venoshock, Wild Charge, Work Up.
 
-- **Natural/restored level-up:** Rage (Lv. 1).
-- **Egg (Bagon family):** Dragon Dance, Dragon Pulse, Dragon Rage, Endure, Hydro Pump, Shadow Claw.
-- **TM/HM/elemental tutor:** Cut, Fury Cutter, Iron Head, Mud-Slap, Rain Dance, Roar, Rock Tomb, Strength, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Double Team, Draco Meteor, Fire Spin, Frustration, Hyper Voice, Incinerate, Iron Defense, Mimic, Rock Slide, Snore, Take Down, Wish.
+### Alolan Sandshrew
 
-## Banette
+**Added:** False Swipe, Giga Impact, Hyper Beam, Mud-Slap.
 
-**Newly available (31):** Astonish, Body Slam, Calm Mind, Cotton Guard, Dark Pulse, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Endure, Flash, Foresight, Frustration, Giga Impact, Icy Wind, Infestation, Metronome, Mimic, Mud-Slap, Nightmare, Ominous Wind, Pain Split, Psybeam, Psych Up, Pursuit, Rain Dance, Scary Face, Skill Swap, Snore, Torment, Trick Room.
+**Removed:** Drain Punch.
 
-- **Thematic level-up (custom):** Trick Room (Lv. 34), Dark Pulse (Lv. 42), Body Slam (Lv. 46), Giga Impact (Lv. 56), Double-Edge (Lv. 58).
-- **Egg (Shuppet family):** Astonish, Confuse Ray, Destiny Bond, Foresight, Ominous Wind, Phantom Force, Pursuit, Shadow Sneak.
-- **TM/HM/elemental tutor:** Flash, Mud-Slap, Rain Dance.
-- **Blackthorn tutor:** Calm Mind, Cotton Guard, Dazzling Gleam, Double Team, Dream Eater, Endure, Frustration, Icy Wind, Infestation, Metronome, Mimic, Nightmare, Pain Split, Psybeam, Psych Up, Scary Face, Skill Swap, Snore, Torment.
+- **Removed machine flags:** Drain Punch.
+- **Added Blackthorn lessons:** False Swipe, Giga Impact, Hyper Beam, Mud-Slap.
 
-## Bastiodon
+### Alolan Sandslash
 
-**Newly available (24):** Avalanche, Blizzard, Bulldoze, Counter, Dig, Double Team, Double-Edge, Fire Blast, Frustration, Giga Impact, Ice Beam, Incinerate, Iron Tail, Outrage, Rain Dance, Reversal, Roar, Rock Slide, Scary Face, Snore, Sunny Day, Thunder, Thunderbolt, Torment.
+**Added:** Mud-Slap.
 
-- **Natural/restored level-up:** Taunt (Lv. 1).
-- **Egg (Shieldon family):** Counter, Curse, Double-Edge, Headbutt, Scary Face, Stealth Rock.
-- **TM/HM/elemental tutor:** Blizzard, Dig, Fire Blast, Ice Beam, Rain Dance, Roar, Sunny Day, Thunder, Thunderbolt.
-- **Blackthorn tutor:** Avalanche, Bulldoze, Double Team, Frustration, Giga Impact, Head Smash, Incinerate, Iron Tail, Outrage, Reversal, Rock Slide, Snore, Stone Edge, Torment.
+**Removed:** Drain Punch, Freeze-Dry.
 
-## Baxcalibur
+- **Removed machine flags:** Drain Punch.
+- **Removed fallback lessons:** Freeze-Dry.
+- **Added Blackthorn lessons:** Mud-Slap.
 
-**Newly available (15):** Aerial Ace, Aqua Tail, Avalanche, Body Press, Body Slam, Brick Break, Bulldoze, Dig, Draco Meteor, Endure, False Swipe, Giga Impact, Rain Dance, Scary Face, Thunder Fang.
+### Alolan Vulpix
 
-- **Thematic level-up (custom):** Avalanche (Lv. 20), Body Press (Lv. 38).
-- **Egg (Frigibax family):** Aqua Tail, Freeze-Dry.
-- **TM/HM/elemental tutor:** Dig, Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Bulldoze, Draco Meteor, Endure, False Swipe, Giga Impact, Scary Face, Thunder Fang.
+**Added:** Bulk Up, Energy Ball, Giga Drain, Ice Fang, Psychic, Rock Slide, Snarl, Thief.
 
-## Bayleef
+**Removed:** Curse, Iron Head, Shadow Ball.
 
-**Newly available (16):** Charm, Detect, Double Team, Double-Edge, Encore, Endure, Frustration, Iron Tail, Leaf Storm, Magical Leaf, Mega Drain, Mimic, Seed Bomb, Snore, Solar Blade, Take Down.
+- **Removed machine flags:** Curse, Iron Head, Shadow Ball.
+- **Added Blackthorn lessons:** Bulk Up, Energy Ball, Giga Drain, Ice Fang, Psychic, Rock Slide, Snarl, Thief.
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 22).
-- **Thematic level-up (custom):** Seed Bomb (Lv. 44), Solar Blade (Lv. 56).
-- **Egg (Chikorita family):** Body Slam, Leaf Storm, Leech Seed.
-- **Blackthorn tutor:** Charm, Detect, Double Team, Double-Edge, Encore, Endure, Frustration, Iron Tail, Mimic, Snore, Take Down.
-- **Evolution access:** Mega Drain.
+### Altaria
 
-## Beedrill
+**Added:** Petal Dance.
 
-**Newly available (31):** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Brick Break, Defog, Double Team, Double-Edge, Endure, False Swipe, Flash, Frustration, Giga Drain, Giga Impact, Headbutt, Infestation, Iron Defense, Mega Drain, Mimic, Ominous Wind, Peck, Reflect, Rock Smash, Roost, Skull Bash, Snore, Solar Beam, Struggle Bug, Take Down, Thief.
+**Removed:** Bounce, Curse, Dragon Tail, Draining Kiss, Scale Shot, Strength.
 
-- **TM/HM/elemental tutor:** Flash, Headbutt, Rock Smash, Solar Beam, Thief.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Brick Break, Defog, Double Team, Double-Edge, Endure, False Swipe, Frustration, Giga Drain, Giga Impact, Infestation, Iron Defense, Mega Drain, Mimic, Ominous Wind, Peck, Reflect, Roost, Skull Bash, Snore, Struggle Bug, Take Down, Venoshock.
+- **Removed natural entries:** Bounce, Dragon Tail, Draining Kiss, Scale Shot.
+- **Removed machine flags:** Curse, Strength.
+- **Added Blackthorn lessons:** Petal Dance.
 
-## Bellossom
+### Amaura
 
-**Newly available (25):** Baton Pass, Bide, Charm, Double Team, Double-Edge, Drain Punch, Endure, Frustration, Giga Impact, Headbutt, Infestation, Leech Seed, Magical Leaf, Mimic, Petal Blizzard, Play Rough, Rage, Reflect, Safeguard, Seed Bomb, Snore, Solar Blade, Take Down, Triple Axel, Venoshock.
+**Added:** Tackle.
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 1), Petal Blizzard (Lv. 1), Sunny Day (Lv. 1).
-- **Thematic level-up (custom):** Seed Bomb (Lv. 42), Play Rough (Lv. 44), Solar Blade (Lv. 56).
-- **Egg (Oddish family):** Charm, Leech Seed.
-- **TM/HM/elemental tutor:** Drain Punch.
-- **Blackthorn tutor:** Baton Pass, Bide, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Infestation, Mimic, Rage, Reflect, Safeguard, Snore, Take Down, Triple Axel.
-- **Evolution access:** Headbutt, Venoshock.
+**Removed:** Curse, Headbutt, Moonblast, Mud-Slap, Power Gem.
 
-## Bellsprout
+- **Removed machine flags:** Curse, Headbutt, Mud-Slap, Power Gem.
+- **Removed family egg entries:** Moonblast.
+- **Added Blackthorn lessons:** Tackle.
 
-**Newly available (20):** Bide, Bind, Double Team, Double-Edge, Endure, Frustration, Giga Drain, Headbutt, Infestation, Leaf Storm, Lunge, Magical Leaf, Mega Drain, Mimic, Rage, Snore, Sucker Punch, Take Down, Thief, Venoshock.
+### Ambipom
 
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Leaf Storm (Lv. 56).
-- **Egg (Bellsprout family):** Bullet Seed, Giga Drain, Leech Life, Magical Leaf, Power Whip, Sucker Punch, Weather Ball.
-- **TM/HM/elemental tutor:** Headbutt, Thief.
-- **Blackthorn tutor:** Bide, Bind, Double Team, Double-Edge, Endure, Frustration, Infestation, Lunge, Mega Drain, Mimic, Rage, Snore, Take Down.
+**Added:** Quick Attack.
 
-## Bisharp
+**Removed:** Dizzy Punch, Drain Punch, Iron Head.
 
-**Newly available (31):** Aerial Ace, Air Slash, Beat Up, Dark Pulse, Double Team, Endure, False Swipe, Feint Attack, Focus Blast, Frustration, Giga Impact, Headbutt, Hyper Beam, Low Kick, Poison Jab, Rain Dance, Reversal, Rock Polish, Rock Smash, Rock Tomb, Sandstorm, Screech, Shadow Claw, Snore, Spite, Stealth Rock, Stone Edge, Take Down, Taunt, Torment, X-Scissor.
+- **Removed natural entries:** Dizzy Punch.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Quick Attack.
 
-- **Natural/restored level-up:** Torment (Lv. 15), Feint Attack (Lv. 17).
-- **Thematic level-up (custom):** Rock Polish (Lv. 32), Spite (Lv. 36).
-- **Egg (Pawniard family):** Headbutt, Stealth Rock.
-- **TM/HM/elemental tutor:** Hyper Beam, Rain Dance, Rock Smash, Rock Tomb, Sandstorm.
-- **Blackthorn tutor:** Aerial Ace, Air Slash, Beat Up, Dark Pulse, Double Team, Endure, False Swipe, Focus Blast, Frustration, Giga Impact, Low Kick, Poison Jab, Reversal, Screech, Shadow Claw, Snore, Stone Edge, Take Down, Taunt, X-Scissor.
+### Ampharos
 
-## Blastoise
+**Added:** Comet Punch, Flash Cannon.
 
-**Newly available (47):** Aqua Jet, Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Confusion, Counter, Crunch, Defense Curl, Double Team, Double-Edge, Dragon Tail, Dynamic Punch, Endure, Fake Out, False Swipe, Fissure, Flail, Focus Blast, Foresight, Frustration, Giga Impact, Gyro Ball, Hail, Icy Wind, Iron Tail, Liquidation, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Scald, Scary Face, Seismic Toss, Signal Beam, Snore, Submission, Take Down, Water Spout, Yawn.
+**Removed:** Drain Punch, Hyper Voice, Iron Head, Nuzzle.
 
-- **Natural/restored level-up:** Water Spout (Lv. 59).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Dragon Tail (Lv. 24), Scald (Lv. 42), Liquidation (Lv. 46), Iron Tail (Lv. 50).
-- **Egg (Squirtle family):** Aqua Jet, Aura Sphere, Dragon Pulse, Fake Out, Flail, Foresight, Water Spout, Yawn.
-- **Blackthorn tutor:** Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Crunch, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Fissure, Focus Blast, Frustration, Giga Impact, Gyro Ball, Hail, Icy Wind, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Scary Face, Seismic Toss, Signal Beam, Snore, Submission, Take Down.
+- **Removed natural entries:** Hyper Voice, Nuzzle.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Comet Punch, Flash Cannon.
 
-## Blastoise (Clone)
+### Annihilape
 
-**Newly available (47):** Aqua Jet, Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Confusion, Counter, Crunch, Defense Curl, Double Team, Double-Edge, Dragon Tail, Dynamic Punch, Endure, Fake Out, False Swipe, Fissure, Flail, Focus Blast, Foresight, Frustration, Giga Impact, Gyro Ball, Hail, Icy Wind, Iron Tail, Liquidation, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Scald, Scary Face, Seismic Toss, Signal Beam, Snore, Submission, Take Down, Water Spout, Yawn.
+**Added:** Comet Punch, Knock Off, Light Screen, Roar, Rock Throw, Tackle, Torment.
 
-- **Natural/restored level-up:** Water Spout (Lv. 59).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Dragon Tail (Lv. 24), Scald (Lv. 42), Liquidation (Lv. 46), Iron Tail (Lv. 50).
-- **Egg (Squirtle (Clone) family):** Aqua Jet, Aura Sphere, Dragon Pulse, Fake Out, Flail, Foresight, Water Spout, Yawn.
-- **Blackthorn tutor:** Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Crunch, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Fissure, Focus Blast, Frustration, Giga Impact, Gyro Ball, Hail, Icy Wind, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Scary Face, Seismic Toss, Signal Beam, Snore, Submission, Take Down.
+**Removed:** Foul Play, Iron Head, Snarl, Superpower, Will-O-Wisp.
 
-## Blissey
+- **Removed natural entries:** Foul Play, Snarl, Superpower.
+- **Removed machine flags:** Iron Head, Will-O-Wisp.
+- **Added Blackthorn lessons:** Comet Punch, Knock Off, Light Screen, Roar, Rock Throw, Tackle, Torment.
 
-**Newly available (46):** Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Calm Mind, Dazzling Gleam, Double Team, Dream Eater, Dynamic Punch, Earthquake, Endure, Fire Punch, Focus Blast, Frustration, Giga Impact, Hail, Ice Punch, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Present, Psych Up, Psywave, Rage, Recycle, Reflect, Rock Slide, Safeguard, Skill Swap, Skull Bash, Snore, Submission, Sweet Scent, Teleport, Thief, Thunder Punch, Tri Attack, Trick, Water Gun, Water Pulse, Wild Charge.
+### Anorith
 
-- **Thematic level-up (custom):** Tri Attack (Lv. 44).
-- **Egg (Happiny family):** Counter, Endure, Metronome, Present, Substitute.
-- **TM/HM/elemental tutor:** Earthquake, Fire Punch, Ice Punch, Thief, Thunder Punch.
-- **Blackthorn tutor:** Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Calm Mind, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Egg Bomb, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Psych Up, Psywave, Rage, Recycle, Reflect, Rock Slide, Safeguard, Skill Swap, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Teleport, Trick, Water Gun, Water Pulse, Wild Charge.
+**Added:** Bug Buzz.
 
-## Bonsly
+**Removed:** Earthquake, Power Gem, Strength.
 
-**Newly available (22):** Body Slam, Brick Break, Bulldoze, Calm Mind, Double Team, Earth Power, Earthquake, Endure, Flail, Foul Play, Frustration, Mimic, Mud Shot, Mud-Slap, Psych Up, Rock Blast, Rock Polish, Slam, Snore, Spikes, Stone Edge, Take Down.
+- **Removed machine flags:** Earthquake, Power Gem, Strength.
+- **Added Blackthorn lessons:** Bug Buzz.
 
-- **Natural/restored level-up:** Flail (Lv. 4), Slam (Lv. 15), Mimic (Lv. 16).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Rock Blast (Lv. 34), Spikes (Lv. 38), Stone Edge (Lv. 50).
-- **Egg (Bonsly family):** Curse, Endure, Headbutt, Rock Polish.
-- **TM/HM/elemental tutor:** Earthquake, Mud-Slap.
-- **Blackthorn tutor:** Ancient Power, Body Slam, Brick Break, Calm Mind, Double Team, Earth Power, Foul Play, Frustration, Mud Shot, Psych Up, Snore, Take Down.
+### Appletun
 
-## Bounsweet
+**Added:** Frustration.
 
-**Newly available (12):** Bounce, Dazzling Gleam, Double Team, Frustration, Giga Drain, Leaf Storm, Play Rough, Safeguard, Seed Bomb, Snore, Swift, Take Down.
+**Removed:** Dragon Claw, Rock Smash, Rock Tomb, Scale Shot, Strength, Swagger, Thief, Twister, Wood Hammer.
 
-- **Thematic level-up (custom):** Giga Drain (Lv. 26), Seed Bomb (Lv. 42), Leaf Storm (Lv. 56).
-- **Egg (Bounsweet family):** Play Rough.
-- **TM/HM/elemental tutor:** Swift.
-- **Blackthorn tutor:** Bounce, Dazzling Gleam, Double Team, Frustration, Safeguard, Snore, Take Down.
+- **Removed natural entries:** Scale Shot, Wood Hammer.
+- **Removed machine flags:** Dragon Claw, Rock Smash, Rock Tomb, Strength, Swagger, Thief.
+- **Removed family egg entries:** Dragon Tail, Giga Drain, Leech Seed.
+- **Added Blackthorn lessons:** Frustration, Giga Drain.
 
-## Breloom
+### Applin
 
-**Newly available (39):** Aerial Ace, Body Slam, Bulldoze, Close Combat, Cut, Dig, Double Team, Double-Edge, Endure, Flash, Focus Blast, Force Palm, Frustration, Fury Cutter, Giga Impact, Gunk Shot, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Mud Shot, Mud-Slap, Poison Jab, Rain Dance, Reversal, Rock Tomb, Safeguard, Seismic Toss, Sky Uppercut, Sludge Bomb, Snore, Stone Edge, Superpower, Swift, Take Down, Thunder Punch, Vacuum Wave, Venoshock.
+**Added:** None.
 
-- **Natural/restored level-up:** Force Palm (Lv. 28), Sky Uppercut (Lv. 38).
-- **Thematic level-up (custom):** Low Kick (Lv. 18), Superpower (Lv. 56), Close Combat (Lv. 58).
-- **Egg (Shroomish family):** Bullet Seed, Charm, Drain Punch, Seed Bomb, Swagger.
-- **TM/HM/elemental tutor:** Cut, Dig, Flash, Fury Cutter, Mud-Slap, Rain Dance, Rock Tomb, Sludge Bomb, Swift, Thunder Punch.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Bulldoze, Double Team, Double-Edge, Endure, Focus Blast, Frustration, Giga Impact, Gunk Shot, Iron Tail, Leaf Storm, Mega Kick, Mega Punch, Mimic, Mud Shot, Poison Jab, Reversal, Safeguard, Seismic Toss, Snore, Stone Edge, Take Down, Vacuum Wave, Venoshock.
+**Removed:** Absorb, Curse, Dragon Breath, Dragon Claw, Dragon Pulse, Dragon Tail, Energy Ball, Facade, Giga Drain, Growth, Hidden Power, Leech Seed, Mega Drain, Protect, Rest, Return, Solar Beam, Sunny Day, Swagger, Toxic, Twister.
 
-## Bulbasaur
+- **Removed natural entries:** Absorb, Dragon Breath, Growth, Mega Drain, Twister.
+- **Removed machine flags:** Curse, Dragon Claw, Dragon Pulse, Energy Ball, Facade, Hidden Power, Protect, Rest, Return, Solar Beam, Sunny Day, Swagger, Toxic.
+- **Removed family egg entries:** Dragon Tail, Giga Drain, Leech Seed.
 
-**Newly available (25):** Amnesia, Bide, Bind, Body Slam, Bullet Seed, Charm, Defense Curl, Double Team, Endure, False Swipe, Frustration, Giga Drain, Leaf Storm, Magical Leaf, Mega Drain, Mimic, Outrage, Rage, Reflect, Rock Smash, Snore, Strength, String Shot, Swords Dance, Venoshock.
+### Arbok
 
-- **Thematic level-up (custom):** Venoshock (Lv. 18).
-- **Egg (Bulbasaur family):** Amnesia, Charm, Curse, Endure, Giga Drain, Leaf Storm, Magical Leaf, Power Whip, Sludge, Toxic.
-- **TM/HM/elemental tutor:** Rock Smash, Strength.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bullet Seed, Defense Curl, Double Team, False Swipe, Frustration, Mega Drain, Mimic, Outrage, Rage, Reflect, Snore, String Shot, Swords Dance.
+**Added:** Tackle.
 
-## Bulbasaur (Clone)
+**Removed:** Energy Ball.
 
-**Newly available (25):** Amnesia, Bide, Bind, Body Slam, Bullet Seed, Charm, Defense Curl, Double Team, Endure, False Swipe, Frustration, Giga Drain, Leaf Storm, Magical Leaf, Mega Drain, Mimic, Outrage, Rage, Reflect, Rock Smash, Snore, Strength, String Shot, Swords Dance, Venoshock.
+- **Removed machine flags:** Energy Ball.
+- **Added Blackthorn lessons:** Tackle.
 
-- **Thematic level-up (custom):** Venoshock (Lv. 18).
-- **Egg (Bulbasaur (Clone) family):** Amnesia, Charm, Curse, Endure, Giga Drain, Leaf Storm, Magical Leaf, Power Whip, Sludge, Toxic.
-- **TM/HM/elemental tutor:** Rock Smash, Strength.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bullet Seed, Defense Curl, Double Team, False Swipe, Frustration, Mega Drain, Mimic, Outrage, Rage, Reflect, Snore, String Shot, Swords Dance.
+### Arcanine
 
-## Buneary
+**Added:** None.
 
-**Newly available (25):** Cosmic Power, Cut, Dig, Double Team, Drain Punch, Heal Bell, Hyper Voice, Ice Beam, Iron Tail, Karate Chop, Low Sweep, Mega Kick, Mega Punch, Mud-Slap, Play Rough, Rain Dance, Rock Smash, Shadow Ball, Sky Uppercut, Snore, Solar Beam, Sunny Day, Thunderbolt, Triple Axel, Water Pulse.
+**Removed:** Crush Claw.
 
-- **Egg (Buneary family):** Attract, Cosmic Power, Fire Punch, Flail, Ice Punch, Sky Uppercut, Thunder Punch.
-- **TM/HM/elemental tutor:** Cut, Dig, Drain Punch, Ice Beam, Mud-Slap, Rain Dance, Rock Smash, Shadow Ball, Solar Beam, Sunny Day, Thunderbolt.
-- **Blackthorn tutor:** Double Team, Heal Bell, Hyper Voice, Iron Tail, Low Sweep, Mega Kick, Mega Punch, Play Rough, Snore, Triple Axel, Water Pulse.
-- **Evolution access:** Karate Chop.
+- **Removed natural entries:** Crush Claw.
 
-## Butterfree
+### Archaludon
 
-**Newly available (36):** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Defog, Double Team, Double-Edge, Draining Kiss, Dream Eater, Endure, Frustration, Giga Drain, Giga Impact, Headbutt, Infestation, Iron Defense, Mega Drain, Mimic, Morning Sun, Nightmare, Ominous Wind, Psych Up, Psywave, Rage, Rain Dance, Razor Wind, Reflect, Shadow Ball, Skill Swap, Snore, Struggle Bug, Take Down, Thief, Twister, Venoshock.
+**Added:** None.
 
-- **Thematic level-up (custom):** Infestation (Lv. 18), Defog (Lv. 34).
-- **TM/HM/elemental tutor:** Headbutt, Rain Dance, Shadow Ball, Thief.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Double Team, Double-Edge, Draining Kiss, Dream Eater, Dual Wingbeat, Endure, Frustration, Giga Drain, Giga Impact, Iron Defense, Mega Drain, Mimic, Morning Sun, Nightmare, Ominous Wind, Psych Up, Psywave, Rage, Razor Wind, Reflect, Skill Swap, Snore, Struggle Bug, Take Down, Twister, Venoshock.
+**Removed:** Curse, Dig, Dragon Breath, Hammer Arm, Hidden Power, Return, Sandstorm, Scale Shot, Strength, Swagger, Toxic.
 
-## Camerupt
+- **Removed natural entries:** Dragon Breath, Hammer Arm, Scale Shot.
+- **Removed machine flags:** Curse, Dig, Hidden Power, Return, Sandstorm, Strength, Swagger, Toxic.
 
-**Newly available (24):** Body Press, Charm, Defense Curl, Double Team, Endure, Eruption, Explosion, Fire Spin, Flame Charge, Flare Blitz, Frustration, Giga Impact, Growth, Headbutt, Iron Head, Lava Plume, Mimic, Rain Dance, Roar, Rock Polish, Self-Destruct, Snore, Solar Beam, Stone Edge.
+### Archen
 
-- **Natural/restored level-up:** Lava Plume (Lv. 22), Yawn (Lv. 39), Eruption (Lv. 51).
-- **Thematic level-up (custom):** Flare Blitz (Lv. 56).
-- **Egg (Numel family):** Ancient Power, Defense Curl, Endure, Growth, Iron Head.
-- **TM/HM/elemental tutor:** Headbutt, Iron Head, Rain Dance, Roar, Solar Beam.
-- **Blackthorn tutor:** Body Press, Charm, Double Team, Explosion, Fire Spin, Flame Charge, Frustration, Giga Impact, Mimic, Rock Polish, Self-Destruct, Snore, Stone Edge.
+**Added:** Air Slash.
 
-## Carracosta
+**Removed:** Curse, Fly, Focus Energy, Headbutt, Mud-Slap, Sunny Day, Take Down, Thief.
 
-**Newly available (16):** Bide, Bulldoze, Double Team, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Icy Wind, Iron Tail, Low Kick, Mud Shot, Rock Blast, Rock Throw, Scald, Snore.
+- **Removed natural entries:** Take Down.
+- **Removed machine flags:** Curse, Fly, Headbutt, Mud-Slap, Sunny Day, Thief.
+- **Removed family egg entries:** Focus Energy.
+- **Added Blackthorn lessons:** Air Slash.
 
-- **Natural/restored level-up:** Bide (Lv. 1).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Rock Blast (Lv. 34), Earth Power (Lv. 42), Scald (Lv. 46).
-- **Egg (Tirtouga family):** Bide, Iron Defense, Knock Off, Liquidation, Rock Throw, Rollout, Water Pulse, Whirlpool.
-- **Blackthorn tutor:** Double Team, Endure, Focus Blast, Frustration, Giga Impact, Icy Wind, Iron Tail, Low Kick, Mud Shot, Snore.
+### Archeops
 
-## Caterpie
+**Added:** Drill Peck.
 
-**Newly available (1):** Snore.
+**Removed:** Curse, Drain Punch, Focus Energy, Headbutt, Mud-Slap, Strength, Sunny Day, Take Down, Thief, X-Scissor.
 
-- **Blackthorn tutor:** Snore.
+- **Removed machine flags:** Curse, Drain Punch, Headbutt, Mud-Slap, Strength, Sunny Day, Thief.
+- **Removed family egg entries:** Focus Energy.
+- **Removed fallback lessons:** X-Scissor.
+- **Added Blackthorn lessons:** Drill Peck.
 
-## Celebi
+### Arctibax
 
-**Newly available (35):** Aerial Ace, Aura Sphere, Calm Mind, Cut, Dazzling Gleam, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Endure, Frustration, Giga Drain, Giga Impact, Leaf Blade, Leaf Storm, Magical Leaf, Metronome, Mimic, Nightmare, Psych Up, Psycho Cut, Seed Bomb, Signal Beam, Skill Swap, Snore, Solar Blade, Stealth Rock, Sucker Punch, Swords Dance, Synthesis, Trick, Trick Room, Water Pulse.
+**Added:** None.
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 10), Leaf Storm (Lv. 90).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Calm Mind (Lv. 32), Skill Swap (Lv. 36), Trick (Lv. 40), Aura Sphere (Lv. 42), Seed Bomb (Lv. 44), Trick Room (Lv. 48), Solar Blade (Lv. 56).
-- **TM/HM/elemental tutor:** Cut.
-- **Blackthorn tutor:** Aerial Ace, Dazzling Gleam, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Endure, Frustration, Giga Drain, Giga Impact, Leaf Blade, Metronome, Mimic, Nightmare, Psych Up, Psycho Cut, Snore, Stealth Rock, Sucker Punch, Swords Dance, Synthesis, Water Pulse.
+**Removed:** Attract, Curse, Double-Edge, Earthquake, Hidden Power, Ice Shard, Mist, Return, Scale Shot, Swagger, Toxic.
 
-## Centiskorch
+- **Removed natural entries:** Scale Shot.
+- **Removed machine flags:** Attract, Curse, Earthquake, Hidden Power, Return, Swagger, Toxic.
+- **Removed family egg entries:** Double-Edge, Ice Shard, Mist.
 
-**Newly available (9):** Bug Buzz, Defense Curl, Endure, Giga Impact, Rollout, Scald, Snore, Solar Beam, Venoshock.
+### Ariados
 
-- **Egg (Sizzlipede family):** Defense Curl, Knock Off, Rollout, Struggle Bug.
-- **TM/HM/elemental tutor:** Solar Beam.
-- **Blackthorn tutor:** Bug Buzz, Endure, Giga Impact, Heat Wave, Overheat, Scald, Snore, Venoshock.
+**Added:** False Swipe, First Impression, Growth, Headbutt.
 
-## Ceruledge
+**Removed:** Energy Ball, Fury Cutter.
 
-**Newly available (14):** Brick Break, Disable, Endure, False Swipe, Iron Defense, Iron Head, Lava Plume, Overheat, Poison Jab, Psych Up, Take Down, Taunt, Vacuum Wave, X-Scissor.
+- **Removed machine flags:** Energy Ball, Fury Cutter.
+- **Added Blackthorn lessons:** False Swipe, First Impression, Growth, Headbutt.
 
-- **Egg (Charcadet family):** Disable.
-- **TM/HM/elemental tutor:** Iron Head.
-- **Blackthorn tutor:** Brick Break, Endure, False Swipe, Iron Defense, Poison Jab, Psych Up, Take Down, Taunt, Vacuum Wave, X-Scissor.
-- **Evolution access:** Lava Plume, Overheat.
+### Armaldo
 
-## Cetitan
+**Added:** Bug Buzz.
 
-**Newly available (12):** Body Press, Bounce, Bulldoze, Charm, Endure, Giga Impact, Hyper Voice, Ice Fang, Ice Punch, Icy Wind, Superpower, Water Pulse.
+**Removed:** Power Gem, Signal Beam.
 
-- **Natural/restored level-up:** Bounce (Lv. 31).
-- **Thematic level-up (custom):** Ice Fang (Lv. 18).
-- **Egg (Cetoddle family):** Icicle Crash, Superpower.
-- **TM/HM/elemental tutor:** Ice Punch.
-- **Blackthorn tutor:** Body Press, Bulldoze, Charm, Endure, Freeze-Dry, Giga Impact, Hyper Voice, Icy Wind, Water Pulse.
+- **Removed machine flags:** Power Gem.
+- **Removed fallback lessons:** Signal Beam.
+- **Added Blackthorn lessons:** Bug Buzz.
 
-## Cetoddle
+### Armarouge
 
-**Newly available (13):** Body Press, Bounce, Bulldoze, Charm, Endure, Hyper Beam, Hyper Voice, Ice Fang, Icy Wind, Liquidation, Play Rough, Superpower, Water Pulse.
+**Added:** Double Team, Future Sight, Ominous Wind, Rock Tomb, Smokescreen.
 
-- **Natural/restored level-up:** Bounce (Lv. 31).
-- **Thematic level-up (custom):** Ice Fang (Lv. 18).
-- **Egg (Cetoddle family):** Icicle Crash, Superpower.
-- **TM/HM/elemental tutor:** Hyper Beam.
-- **Blackthorn tutor:** Body Press, Bulldoze, Charm, Endure, Freeze-Dry, Hyper Voice, Icy Wind, Liquidation, Play Rough, Water Pulse.
+**Removed:** Curse, Extrasensory, Fire Fang, Flash, Hex, Hidden Power, Mean Look, Return, Swagger, Swords Dance, Zen Headbutt.
 
-## Chandelure
+- **Removed natural entries:** Extrasensory, Hex.
+- **Removed machine flags:** Curse, Flash, Hidden Power, Return, Swagger, Zen Headbutt.
+- **Removed family egg entries:** Calm Mind, Mean Look, Swords Dance.
+- **Added Blackthorn lessons:** Double Team, Future Sight, Ominous Wind, Rock Tomb, Smokescreen.
 
-**Newly available (14):** Acid, Dark Pulse, Double Team, Dream Eater, Flame Charge, Flare Blitz, Frustration, Giga Impact, Psych Up, Safeguard, Snore, Spite, Taunt, Trick.
+### Aron
 
-- **Natural/restored level-up:** Minimize (Lv. 1), Smog (Lv. 1).
-- **Thematic level-up (custom):** Spite (Lv. 34), Trick (Lv. 38), Dark Pulse (Lv. 42).
-- **Egg (Litwick family):** Acid.
-- **Blackthorn tutor:** Double Team, Dream Eater, Flame Charge, Flame Wheel, Flare Blitz, Frustration, Giga Impact, Phantom Force, Psych Up, Safeguard, Snore, Taunt.
+**Added:** False Swipe, Mud Shot.
 
-## Chansey
+**Removed:** Fire Blast, Fire Punch, Flash Cannon, Ice Beam, Ice Punch, Power Gem, Thunder Punch, Thunderbolt.
 
-**Newly available (44):** Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Calm Mind, Dazzling Gleam, Double Team, Dream Eater, Dynamic Punch, Earthquake, Endure, Fire Punch, Focus Blast, Frustration, Giga Impact, Hail, Ice Punch, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Present, Psych Up, Psywave, Rage, Recycle, Reflect, Rock Slide, Safeguard, Skill Swap, Skull Bash, Snore, Submission, Sweet Scent, Teleport, Thief, Thunder Punch, Tri Attack, Water Gun, Water Pulse, Wild Charge.
+- **Removed machine flags:** Fire Blast, Fire Punch, Flash Cannon, Ice Beam, Ice Punch, Power Gem, Thunder Punch, Thunderbolt.
+- **Added Blackthorn lessons:** False Swipe, Mud Shot.
 
-- **Thematic level-up (custom):** Tri Attack (Lv. 42).
-- **Egg (Happiny family):** Counter, Endure, Metronome, Present, Substitute.
-- **TM/HM/elemental tutor:** Earthquake, Fire Punch, Ice Punch, Thief, Thunder Punch.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Calm Mind, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Egg Bomb, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Psych Up, Psywave, Rage, Recycle, Reflect, Rock Slide, Safeguard, Skill Swap, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Teleport, Water Gun, Water Pulse, Wild Charge.
+### Articuno
 
-## Charcadet
+**Added:** None.
 
-**Newly available (7):** Disable, Endure, Flare Blitz, Heat Wave, Lava Plume, Overheat, Take Down.
+**Removed:** None.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 32).
-- **Thematic level-up (custom):** Heat Wave (Lv. 42), Flare Blitz (Lv. 56), Overheat (Lv. 58).
-- **Egg (Charcadet family):** Disable.
-- **Blackthorn tutor:** Endure, Take Down.
 
-## Charizard
+### Aurorus
 
-**Newly available (46):** Acrobatics, Aerial Ace, Air Cutter, Bide, Blaze Kick, Body Slam, Brick Break, Bulldoze, Counter, Defense Curl, Defog, Double Team, Double-Edge, Draco Meteor, Dragon Rage, Dual Wingbeat, Dynamic Punch, Endure, False Swipe, Fissure, Flame Charge, Frustration, Fury Swipes, Giga Impact, Heat Crash, Hurricane, Iron Tail, Leer, Mega Kick, Mega Punch, Mimic, Ominous Wind, Quick Attack, Rage, Reflect, Rock Tomb, Scale Shot, Seismic Toss, Skull Bash, Snore, Solar Beam, Submission, Swords Dance, Take Down, Thunder Punch, Twister.
+**Added:** Tackle.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 17), Rage (Lv. 20).
-- **Thematic level-up (custom):** Heat Crash (Lv. 42).
-- **Egg (Charmander family):** Air Cutter, Belly Drum, Bite, Counter, Crunch, Dragon Dance, Dragon Pulse, Dragon Tail, Flare Blitz, Iron Tail, Metal Claw, Swords Dance, Wing Attack.
-- **TM/HM/elemental tutor:** Rock Tomb, Solar Beam, Thunder Punch.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bide, Blaze Kick, Body Slam, Brick Break, Bulldoze, Defense Curl, Defog, Double Team, Double-Edge, Dual Wingbeat, Dynamic Punch, Endure, False Swipe, Fissure, Flame Charge, Frustration, Fury Swipes, Giga Impact, Hurricane, Leer, Mega Kick, Mega Punch, Mimic, Ominous Wind, Quick Attack, Reflect, Scale Shot, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Twister.
-- **Evolution access:** Draco Meteor.
+**Removed:** Curse, Headbutt, Moonblast, Mud-Slap.
 
-## Charizard (Clone)
+- **Removed machine flags:** Curse, Headbutt, Mud-Slap.
+- **Removed family egg entries:** Moonblast.
+- **Added Blackthorn lessons:** Tackle.
 
-**Newly available (46):** Acrobatics, Aerial Ace, Air Cutter, Bide, Blaze Kick, Body Slam, Brick Break, Bulldoze, Counter, Defense Curl, Defog, Double Team, Double-Edge, Draco Meteor, Dragon Rage, Dual Wingbeat, Dynamic Punch, Endure, False Swipe, Fissure, Flame Charge, Frustration, Fury Swipes, Giga Impact, Heat Crash, Hurricane, Iron Tail, Leer, Mega Kick, Mega Punch, Mimic, Ominous Wind, Quick Attack, Rage, Reflect, Rock Tomb, Scale Shot, Seismic Toss, Skull Bash, Snore, Solar Beam, Submission, Swords Dance, Take Down, Thunder Punch, Twister.
+### Axew
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 17), Rage (Lv. 20).
-- **Thematic level-up (custom):** Heat Crash (Lv. 42).
-- **Egg (Charmander (Clone) family):** Air Cutter, Belly Drum, Bite, Counter, Crunch, Dragon Dance, Dragon Pulse, Dragon Tail, Flare Blitz, Iron Tail, Metal Claw, Swords Dance, Wing Attack.
-- **TM/HM/elemental tutor:** Rock Tomb, Solar Beam, Thunder Punch.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bide, Blaze Kick, Body Slam, Brick Break, Bulldoze, Defense Curl, Defog, Double Team, Double-Edge, Dual Wingbeat, Dynamic Punch, Endure, False Swipe, Fissure, Flame Charge, Frustration, Fury Swipes, Giga Impact, Hurricane, Leer, Mega Kick, Mega Punch, Mimic, Ominous Wind, Quick Attack, Reflect, Scale Shot, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Twister.
-- **Evolution access:** Draco Meteor.
+**Added:** None.
 
-## Charjabug
+**Removed:** Curse, Earthquake, Headbutt, Hyper Beam.
 
-**Newly available (14):** Acrobatics, Baton Pass, Discharge, Double Team, Endure, Frustration, Harden, Iron Defense, Lunge, Poison Jab, Screech, Snore, Struggle Bug, Take Down.
+- **Removed machine flags:** Curse, Earthquake, Headbutt, Hyper Beam.
 
-- **Natural/restored level-up:** Acrobatics (Lv. 19), Iron Defense (Lv. 57).
-- **Egg (Grubbin family):** Discharge, Endure, Harden.
-- **Blackthorn tutor:** Baton Pass, Double Team, Frustration, Lunge, Poison Jab, Screech, Snore, Struggle Bug, Take Down.
+### Azumarill
 
-## Charmander
+**Added:** Dizzy Punch, Scary Face.
 
-**Newly available (40):** Acrobatics, Aerial Ace, Air Cutter, Bide, Body Slam, Brick Break, Counter, Defense Curl, Double Team, Double-Edge, Dragon Rage, Dragon Tail, Dynamic Punch, Endure, False Swipe, Flame Charge, Focus Blast, Frustration, Fury Swipes, Heat Wave, Iron Tail, Leer, Mega Kick, Mega Punch, Mimic, Overheat, Quick Attack, Rage, Reflect, Roar, Rock Tomb, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Swords Dance, Take Down, Thunder Punch, Wing Attack.
+**Removed:** Calm Mind, Growl, Iron Head, Rock Tomb.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 16), Rage (Lv. 19).
-- **Thematic level-up (custom):** Heat Wave (Lv. 42), Overheat (Lv. 56).
-- **Egg (Charmander family):** Air Cutter, Belly Drum, Bite, Counter, Crunch, Dragon Dance, Dragon Pulse, Dragon Tail, Flare Blitz, Iron Tail, Metal Claw, Swords Dance, Wing Attack.
-- **TM/HM/elemental tutor:** Roar, Rock Tomb, Thunder Punch.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bide, Body Slam, Brick Break, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Flame Charge, Focus Blast, Frustration, Fury Swipes, Leer, Mega Kick, Mega Punch, Mimic, Quick Attack, Reflect, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Take Down.
+- **Removed machine flags:** Iron Head, Rock Tomb.
+- **Removed family egg entries:** Amnesia, Calm Mind, Future Sight, Superpower.
+- **Added Blackthorn lessons:** Amnesia, Dizzy Punch, Future Sight, Scary Face.
 
-## Charmander (Clone)
+### Azurill
 
-**Newly available (40):** Acrobatics, Aerial Ace, Air Cutter, Bide, Body Slam, Brick Break, Counter, Defense Curl, Double Team, Double-Edge, Dragon Rage, Dragon Tail, Dynamic Punch, Endure, False Swipe, Flame Charge, Focus Blast, Frustration, Fury Swipes, Heat Wave, Iron Tail, Leer, Mega Kick, Mega Punch, Mimic, Overheat, Quick Attack, Rage, Reflect, Roar, Rock Tomb, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Swords Dance, Take Down, Thunder Punch, Wing Attack.
+**Added:** None.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 16), Rage (Lv. 19).
-- **Thematic level-up (custom):** Heat Wave (Lv. 42), Overheat (Lv. 56).
-- **Egg (Charmander (Clone) family):** Air Cutter, Belly Drum, Bite, Counter, Crunch, Dragon Dance, Dragon Pulse, Dragon Tail, Flare Blitz, Iron Tail, Metal Claw, Swords Dance, Wing Attack.
-- **TM/HM/elemental tutor:** Roar, Rock Tomb, Thunder Punch.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bide, Body Slam, Brick Break, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Flame Charge, Focus Blast, Frustration, Fury Swipes, Leer, Mega Kick, Mega Punch, Mimic, Quick Attack, Reflect, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Take Down.
+**Removed:** Amnesia, Calm Mind, Curse, Future Sight, Growl, Iron Head, Rock Tomb, Superpower.
 
-## Charmeleon
+- **Removed natural entries:** Growl.
+- **Removed machine flags:** Curse, Iron Head, Rock Tomb.
+- **Removed family egg entries:** Amnesia, Calm Mind, Future Sight, Superpower.
 
-**Newly available (40):** Acrobatics, Aerial Ace, Air Cutter, Bide, Body Slam, Brick Break, Counter, Defense Curl, Double Team, Double-Edge, Dragon Rage, Dragon Tail, Dynamic Punch, Endure, False Swipe, Flame Charge, Focus Blast, Frustration, Fury Swipes, Heat Wave, Iron Tail, Leer, Mega Kick, Mega Punch, Mimic, Overheat, Quick Attack, Rage, Reflect, Roar, Rock Tomb, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Swords Dance, Take Down, Thunder Punch, Wing Attack.
+### Bagon
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 17), Rage (Lv. 20).
-- **Thematic level-up (custom):** Heat Wave (Lv. 44), Overheat (Lv. 56).
-- **Egg (Charmander family):** Air Cutter, Belly Drum, Bite, Counter, Crunch, Dragon Dance, Dragon Pulse, Dragon Tail, Flare Blitz, Iron Tail, Metal Claw, Swords Dance, Wing Attack.
-- **TM/HM/elemental tutor:** Roar, Rock Tomb, Thunder Punch.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bide, Body Slam, Brick Break, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Flame Charge, Focus Blast, Frustration, Fury Swipes, Leer, Mega Kick, Mega Punch, Mimic, Quick Attack, Reflect, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Take Down.
+**Added:** None.
 
-## Charmeleon (Clone)
+**Removed:** Curse, Earthquake, Scale Shot, Superpower.
 
-**Newly available (40):** Acrobatics, Aerial Ace, Air Cutter, Bide, Body Slam, Brick Break, Counter, Defense Curl, Double Team, Double-Edge, Dragon Rage, Dragon Tail, Dynamic Punch, Endure, False Swipe, Flame Charge, Focus Blast, Frustration, Fury Swipes, Heat Wave, Iron Tail, Leer, Mega Kick, Mega Punch, Mimic, Overheat, Quick Attack, Rage, Reflect, Roar, Rock Tomb, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Swords Dance, Take Down, Thunder Punch, Wing Attack.
+- **Removed natural entries:** Scale Shot.
+- **Removed machine flags:** Curse, Earthquake.
+- **Removed family egg entries:** Superpower.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 17), Rage (Lv. 20).
-- **Thematic level-up (custom):** Heat Wave (Lv. 44), Overheat (Lv. 56).
-- **Egg (Charmander (Clone) family):** Air Cutter, Belly Drum, Bite, Counter, Crunch, Dragon Dance, Dragon Pulse, Dragon Tail, Flare Blitz, Iron Tail, Metal Claw, Swords Dance, Wing Attack.
-- **TM/HM/elemental tutor:** Roar, Rock Tomb, Thunder Punch.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bide, Body Slam, Brick Break, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Flame Charge, Focus Blast, Frustration, Fury Swipes, Leer, Mega Kick, Mega Punch, Mimic, Quick Attack, Reflect, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Take Down.
+### Banette
 
-## Chikorita
+**Added:** Crush Claw, Icicle Spear, Lick, Razor Wind, Shadow Punch, Slash, Vacuum Wave, Zen Headbutt.
 
-**Newly available (17):** Charm, Detect, Double Team, Double-Edge, Encore, Endure, Frustration, Fury Cutter, Iron Tail, Leaf Storm, Magical Leaf, Mega Drain, Mimic, Seed Bomb, Snore, Solar Blade, Take Down.
+**Removed:** Drain Punch, Fire Punch, Ice Punch, Strength, Swift, Thunder Punch.
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 20).
-- **Thematic level-up (custom):** Seed Bomb (Lv. 44), Solar Blade (Lv. 56).
-- **Egg (Chikorita family):** Body Slam, Leaf Storm, Leech Seed.
-- **TM/HM/elemental tutor:** Fury Cutter.
-- **Blackthorn tutor:** Charm, Detect, Double Team, Double-Edge, Encore, Endure, Frustration, Iron Tail, Mimic, Snore, Take Down.
-- **Evolution access:** Mega Drain.
+- **Removed machine flags:** Drain Punch, Fire Punch, Ice Punch, Strength, Swift, Thunder Punch.
+- **Added Blackthorn lessons:** Crush Claw, Icicle Spear, Lick, Razor Wind, Shadow Punch, Slash, Vacuum Wave, Zen Headbutt.
 
-## Chinchou
+### Bastiodon
 
-**Newly available (19):** Blizzard, Bounce, Dazzling Gleam, Discharge, Double Team, Double-Edge, Endure, Flip Turn, Frustration, Hail, Icy Wind, Liquidation, Mimic, Mist, Psybeam, Screech, Snore, Sucker Punch, Wild Charge.
+**Added:** Self-Destruct.
 
-- **Natural/restored level-up:** Discharge (Lv. 27).
-- **Breeding fallback:** Sucker Punch (Lv. 30).
-- **Egg (Chinchou family):** Flail, Mist, Psybeam, Screech, Sucker Punch, Whirlpool.
-- **TM/HM/elemental tutor:** Blizzard.
-- **Blackthorn tutor:** Bounce, Dazzling Gleam, Double Team, Double-Edge, Endure, Flip Turn, Frustration, Hail, Icy Wind, Liquidation, Mimic, Snore, Take Down, Wild Charge.
+**Removed:** Head Smash.
 
-## Clefable
+- **Removed fallback lessons:** Head Smash.
+- **Added Blackthorn lessons:** Self-Destruct.
 
-**Newly available (56):** Baton Pass, Bide, Bounce, Brick Break, Bubble Beam, Cosmic Power, Counter, Dazzling Gleam, Detect, Dig, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Dynamic Punch, Endure, Fairy Wind, Focus Blast, Frustration, Future Sight, Giga Impact, Hyper Voice, Icy Wind, Incinerate, Iron Tail, Magical Leaf, Mega Kick, Mega Punch, Meteor Mash, Mimic, Night Shade, Nightmare, Play Rough, Present, Psybeam, Psych Up, Psyshock, Psywave, Rage, Recycle, Rock Smash, Rollout, Safeguard, Seismic Toss, Signal Beam, Skill Swap, Skull Bash, Snore, Submission, Swift, Take Down, Thief, Tri Attack, Trick, Water Gun, Water Pulse.
+### Baxcalibur
 
-- **Natural/restored level-up:** Disarming Voice (Lv. 1), Cosmic Power (Lv. 44), Meteor Mash (Lv. 64).
-- **Thematic level-up (custom):** Play Rough (Lv. 42), Dazzling Gleam (Lv. 44).
-- **Egg (Cleffa family):** Mimic, Present, Splash, Substitute.
-- **TM/HM/elemental tutor:** Dig, Rock Smash, Swift, Thief.
-- **Blackthorn tutor:** Baton Pass, Bide, Bounce, Brick Break, Bubble Beam, Counter, Detect, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Dynamic Punch, Endure, Focus Blast, Frustration, Future Sight, Giga Impact, Hyper Voice, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Night Shade, Nightmare, Psybeam, Psych Up, Psyshock, Psywave, Rage, Recycle, Rollout, Safeguard, Seismic Toss, Signal Beam, Skill Swap, Skull Bash, Snore, Submission, Take Down, Tri Attack, Trick, Water Gun, Water Pulse.
-- **Evolution access:** Fairy Wind, Magical Leaf.
+**Added:** None.
 
-## Clefairy
+**Removed:** Attract, Curse, Hidden Power, Mist, Return, Strength, Swagger, Toxic.
 
-**Newly available (55):** Baton Pass, Bide, Bounce, Brick Break, Bubble Beam, Cosmic Power, Counter, Dazzling Gleam, Detect, Dig, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Dynamic Punch, Endure, Fairy Wind, Frustration, Hyper Voice, Icy Wind, Incinerate, Iron Tail, Magical Leaf, Mega Kick, Mega Punch, Meteor Mash, Mimic, Night Shade, Nightmare, Play Rough, Present, Psybeam, Psych Up, Psyshock, Psywave, Rage, Recycle, Rock Smash, Rollout, Safeguard, Seismic Toss, Signal Beam, Skill Swap, Skull Bash, Snore, Soft-Boiled, Stealth Rock, Submission, Swift, Take Down, Thief, Tri Attack, Trick, Water Gun, Water Pulse.
+- **Removed machine flags:** Attract, Curse, Hidden Power, Return, Strength, Swagger, Toxic.
+- **Removed family egg entries:** Double-Edge, Ice Shard, Mist.
+- **Added Blackthorn lessons:** Double-Edge.
 
-- **Natural/restored level-up:** Cosmic Power (Lv. 25), Meteor Mash (Lv. 35).
-- **Thematic level-up (custom):** Play Rough (Lv. 42), Dazzling Gleam (Lv. 44).
-- **Egg (Cleffa family):** Mimic, Present, Splash, Substitute.
-- **TM/HM/elemental tutor:** Dig, Rock Smash, Swift, Thief.
-- **Blackthorn tutor:** Baton Pass, Bide, Bounce, Brick Break, Bubble Beam, Counter, Detect, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Dynamic Punch, Endure, Frustration, Hyper Voice, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Night Shade, Nightmare, Psybeam, Psych Up, Psyshock, Psywave, Rage, Recycle, Rollout, Safeguard, Seismic Toss, Signal Beam, Skill Swap, Skull Bash, Snore, Soft-Boiled, Stealth Rock, Submission, Take Down, Tri Attack, Trick, Water Gun, Water Pulse.
-- **Evolution access:** Fairy Wind, Magical Leaf.
+### Bayleef
 
-## Cleffa
+**Added:** Bulldoze, Dazzling Gleam, Disarming Voice, Earth Power, Petal Dance, Tail Whip.
 
-**Newly available (37):** Body Slam, Calm Mind, Counter, Dazzling Gleam, Defense Curl, Detect, Dig, Double Team, Double-Edge, Dream Eater, Endure, Fairy Wind, Frustration, Hyper Voice, Icy Wind, Incinerate, Iron Tail, Magical Leaf, Mega Kick, Mega Punch, Mimic, Nightmare, Play Rough, Present, Psybeam, Psych Up, Psyshock, Recycle, Rollout, Safeguard, Seismic Toss, Signal Beam, Snore, Soft-Boiled, Swift, Trick, Water Pulse.
+**Removed:** Iron Head, Mega Drain.
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 16).
-- **Thematic level-up (custom):** Calm Mind (Lv. 30), Dazzling Gleam (Lv. 42).
-- **Egg (Cleffa family):** Mimic, Present, Splash, Substitute.
-- **TM/HM/elemental tutor:** Dig, Swift.
-- **Blackthorn tutor:** Body Slam, Counter, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Hyper Voice, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Nightmare, Play Rough, Psybeam, Psych Up, Psyshock, Recycle, Rollout, Safeguard, Seismic Toss, Signal Beam, Snore, Soft-Boiled, Trick, Water Pulse.
-- **Evolution access:** Fairy Wind.
+- **Removed natural entries:** Mega Drain.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Bulldoze, Dazzling Gleam, Disarming Voice, Earth Power, Petal Dance, Tail Whip.
 
-## Clodsire
+### Beedrill
 
-**Newly available (19):** Body Press, Counter, Double Kick, Double-Edge, Earth Power, Endure, Giga Impact, Gunk Shot, Hydro Pump, Liquidation, Low Kick, Poison Tail, Rain Dance, Rock Slide, Stone Edge, Take Down, Venoshock, Water Pulse, Waterfall.
+**Added:** Bug Buzz, Fly, Lunge.
 
-- **Natural/restored level-up:** Poison Tail (Lv. 23).
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Earth Power (Lv. 42), Gunk Shot (Lv. 56).
-- **Egg (Wooper (Paldean) family):** Counter, Curse, Double Kick, Haze, Mist, Recover.
-- **TM/HM/elemental tutor:** Rain Dance, Waterfall.
-- **Blackthorn tutor:** Body Press, Double-Edge, Endure, Giga Impact, Hydro Pump, Liquidation, Low Kick, Rock Slide, Stone Edge, Take Down, Water Pulse.
+**Removed:** Energy Ball.
 
-## Cloyster
+- **Removed machine flags:** Energy Ball.
+- **Added Blackthorn lessons:** Bug Buzz, Fly, Lunge.
 
-**Newly available (28):** Avalanche, Bide, Body Slam, Double Team, Double-Edge, Drill Run, Endure, Explosion, Frustration, Giga Impact, Hail, Headbutt, Icy Wind, Iron Defense, Mimic, Mud Shot, Poison Jab, Rage, Reflect, Scary Face, Self-Destruct, Signal Beam, Snore, Teleport, Torment, Tri Attack, Water Pulse, Waterfall.
+### Bellossom
 
-- **Natural/restored level-up:** Iron Defense (Lv. 1).
-- **Egg (Shellder family):** Avalanche, Bubble Beam, Icicle Spear, Mud Shot, Rock Blast, Twineedle, Water Pulse.
-- **TM/HM/elemental tutor:** Headbutt, Waterfall.
-- **Blackthorn tutor:** Bide, Body Slam, Double Team, Double-Edge, Drill Run, Endure, Explosion, Frustration, Giga Impact, Hail, Icy Wind, Mimic, Poison Jab, Rage, Reflect, Scary Face, Self-Destruct, Signal Beam, Snore, Teleport, Torment, Tri Attack.
+**Added:** None.
 
-## Conkeldurr
+**Removed:** Draining Kiss, Wood Hammer.
 
-**Newly available (24):** Bide, Body Slam, Bulldoze, Comet Punch, Defog, Dig, Double Team, Double-Edge, Earthquake, Focus Blast, Foresight, Frustration, Giga Impact, Mega Kick, Mega Punch, Poison Jab, Rain Dance, Reversal, Rock Blast, Snore, Sunny Day, Take Down, Taunt, Thief.
+- **Removed natural entries:** Draining Kiss, Wood Hammer.
 
-- **Natural/restored level-up:** Bide (Lv. 1).
-- **Egg (Timburr family):** Comet Punch, Defog, Drain Punch, Force Palm, Foresight, Reversal.
-- **TM/HM/elemental tutor:** Dig, Earthquake, Rain Dance, Sunny Day, Thief.
-- **Blackthorn tutor:** Body Slam, Bulldoze, Double Team, Double-Edge, Focus Blast, Frustration, Giga Impact, Mega Kick, Mega Punch, Poison Jab, Rock Blast, Snore, Take Down, Taunt.
+### Bellsprout
 
-## Corsola
+**Added:** Lovely Kiss, Sweet Kiss, Toxic Spikes.
 
-**Newly available (26):** Barrier, Bide, Blizzard, Body Slam, Bulldoze, Confuse Ray, Defense Curl, Dig, Double Team, Double-Edge, Explosion, Frustration, Hail, Head Smash, Hydro Pump, Icy Wind, Iron Defense, Liquidation, Mimic, Rock Polish, Rollout, Self-Destruct, Shadow Ball, Snore, Stone Edge, Sucker Punch.
+**Removed:** None.
 
-- **Natural/restored level-up:** Iron Defense (Lv. 29).
-- **Thematic level-up (custom):** Rock Polish (Lv. 36), Hydro Pump (Lv. 56).
-- **Egg (Corsola family):** Amnesia, Barrier, Bide, Confuse Ray, Curse, Head Smash, Icicle Spear, Liquidation, Water Pulse.
-- **TM/HM/elemental tutor:** Blizzard, Dig, Shadow Ball.
-- **Blackthorn tutor:** Body Slam, Bulldoze, Defense Curl, Double Team, Double-Edge, Explosion, Frustration, Hail, Icy Wind, Mimic, Rock Blast, Rollout, Self-Destruct, Snore, Spike Cannon, Stone Edge, Sucker Punch.
+- **Added Blackthorn lessons:** Lovely Kiss, Sweet Kiss, Toxic Spikes.
 
-## Corsola (Galarian)
+### Bisharp
 
-**Newly available (20):** Body Slam, Bulldoze, Giga Drain, Hail, Hydro Pump, Icicle Spear, Icy Wind, Iron Defense, Liquidation, Ominous Wind, Psychic, Rock Blast, Rock Slide, Safeguard, Scald, Screech, Self-Destruct, Snore, Stone Edge, Water Pulse.
+**Added:** None.
 
-- **Egg (Corsola (Galarian) family):** Destiny Bond, Water Pulse.
-- **TM/HM/elemental tutor:** Psychic.
-- **Blackthorn tutor:** Body Slam, Bulldoze, Giga Drain, Hail, Hydro Pump, Icicle Spear, Icy Wind, Iron Defense, Liquidation, Ominous Wind, Rock Blast, Rock Slide, Safeguard, Scald, Screech, Self-Destruct, Snore, Stone Edge.
+**Removed:** Curse, Focus Energy, Sacred Sword, Strength, Superpower.
 
-## Corviknight
+- **Removed natural entries:** Sacred Sword.
+- **Removed machine flags:** Curse, Strength.
+- **Removed family egg entries:** Focus Energy, Superpower.
 
-**Newly available (17):** Aerial Ace, Air Cutter, Air Slash, Body Slam, Double-Edge, Endure, Focus Energy, Giga Impact, Hurricane, Metal Claw, Rain Dance, Reversal, Rock Smash, Sand Attack, Snore, Spite, Take Down.
+### Blastoise
 
-- **Egg (Rookidee family):** Defog, Rock Smash, Sand Attack, Spite.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Air Slash, Body Slam, Double-Edge, Endure, Focus Energy, Giga Impact, Hurricane, Metal Claw, Reversal, Snore, Take Down.
+**Added:** Heavy Slam, Zap Cannon.
 
-## Corvisquire
+**Removed:** Drain Punch.
 
-**Newly available (14):** Aerial Ace, Air Cutter, Air Slash, Endure, Focus Energy, Hurricane, Reversal, Rock Smash, Sand Attack, Snore, Spite, Take Down, Taunt, U-turn.
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Dark Pulse.
+- **Added Blackthorn lessons:** Dark Pulse, Heavy Slam, Zap Cannon.
 
-- **Natural/restored level-up:** Taunt (Lv. 22).
-- **Egg (Rookidee family):** Defog, Rock Smash, Sand Attack, Spite.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Air Slash, Endure, Focus Energy, Hurricane, Reversal, Snore, Take Down, U-turn.
+### Blastoise (Clone)
 
-## Cradily
+**Added:** Heavy Slam, Zap Cannon.
 
-**Newly available (22):** Bind, Body Slam, Bulldoze, Dig, Double Team, Double-Edge, Flash, Frustration, Giga Impact, Headbutt, Infestation, Mimic, Mud Shot, Mud-Slap, Pain Split, Psych Up, Rock Blast, Rock Polish, Snore, Stone Edge, String Shot, Synthesis.
+**Removed:** Drain Punch.
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Rock Polish (Lv. 32), Rock Blast (Lv. 34), Stone Edge (Lv. 52).
-- **Egg (Lileep family):** Bind, Curse, Mega Drain, Mirror Coat, Recover, Rock Slide, Stealth Rock.
-- **TM/HM/elemental tutor:** Dig, Flash, Headbutt, Mud-Slap.
-- **Blackthorn tutor:** Body Slam, Double Team, Double-Edge, Frustration, Giga Impact, Infestation, Mimic, Mud Shot, Pain Split, Psych Up, Snore, String Shot, Synthesis.
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Dark Pulse.
+- **Added Blackthorn lessons:** Dark Pulse, Heavy Slam, Zap Cannon.
 
-## Cranidos
+### Blissey
 
-**Newly available (23):** Blizzard, Body Slam, Bulldoze, Dig, Double Team, Earth Power, Endure, Fire Blast, Flamethrower, Frustration, Ice Beam, Incinerate, Pursuit, Rain Dance, Roar, Rock Blast, Snore, Spite, Sunny Day, Superpower, Thief, Thunder, Thunderbolt.
+**Added:** Draining Kiss, Fairy Wind.
 
-- **Natural/restored level-up:** Pursuit (Lv. 10).
-- **Thematic level-up (custom):** Bulldoze (Lv. 22), Rock Blast (Lv. 34).
-- **Egg (Cranidos family):** Crunch, Curse, Iron Head, Leer, Slam.
-- **TM/HM/elemental tutor:** Blizzard, Dig, Fire Blast, Flamethrower, Ice Beam, Rain Dance, Roar, Sunny Day, Thief, Thunder, Thunderbolt.
-- **Blackthorn tutor:** Ancient Power, Body Slam, Double Team, Earth Power, Endure, Frustration, Incinerate, Snore, Spite, Superpower.
+**Removed:** Encore, Iron Head.
 
-## Croagunk
+- **Removed machine flags:** Iron Head.
+- **Removed family egg entries:** Encore, Wish.
+- **Added Blackthorn lessons:** Draining Kiss, Fairy Wind, Wish.
 
-**Newly available (38):** Aerial Ace, Baton Pass, Bounce, Bulldoze, Dark Pulse, Double Team, Earthquake, Encore, Endure, Fake Out, Focus Blast, Foul Play, Frustration, Fury Cutter, Headbutt, Icy Wind, Mega Kick, Mega Punch, Mud Shot, Pursuit, Rain Dance, Reversal, Rock Slide, Rock Tomb, Scary Face, Screech, Shadow Ball, Shadow Claw, Snore, Spite, Sunny Day, Super Fang, Take Down, Taunt, Thief, Torment, Vacuum Wave, X-Scissor.
+### Bonsly
 
-- **Natural/restored level-up:** Taunt (Lv. 8), Pursuit (Lv. 15).
-- **Thematic level-up (custom):** Focus Blast (Lv. 56).
-- **Egg (Croagunk family):** Cross Chop, Drain Punch, Fake Out, Headbutt, Vacuum Wave.
-- **TM/HM/elemental tutor:** Earthquake, Fury Cutter, Headbutt, Rain Dance, Rock Tomb, Shadow Ball, Sunny Day, Thief.
-- **Blackthorn tutor:** Aerial Ace, Baton Pass, Bounce, Bulldoze, Dark Pulse, Double Team, Encore, Endure, Foul Play, Frustration, Icy Wind, Mega Kick, Mega Punch, Mud Shot, Reversal, Rock Slide, Scary Face, Screech, Shadow Claw, Snore, Spite, Super Fang, Take Down, Torment, X-Scissor.
+**Added:** Head Smash, Iron Defense, Seismic Toss, Tackle.
 
-## Crobat
+**Removed:** Ancient Power, Charm, Leer, Reversal, Rock Smash.
 
-**Newly available (32):** Acrobatics, Aerial Ace, Agility, Air Cutter, Bide, Dark Pulse, Detect, Double Team, Double-Edge, Endure, Frustration, Giga Drain, Giga Impact, Headbutt, Heat Wave, Hex, Hurricane, Mega Drain, Mimic, Ominous Wind, Rage, Rain Dance, Razor Wind, Shadow Ball, Sky Attack, Sludge Bomb, Snore, Super Fang, Take Down, Torment, Twister, X-Scissor.
+- **Removed natural entries:** Charm, Leer, Reversal.
+- **Removed machine flags:** Rock Smash.
+- **Removed fallback lessons:** Ancient Power.
+- **Added Blackthorn lessons:** Head Smash, Iron Defense, Seismic Toss, Tackle.
 
-- **Natural/restored level-up:** Air Cutter (Lv. 27), Acrobatics (Lv. 33).
-- **Thematic level-up (custom):** Heat Wave (Lv. 42), Hurricane (Lv. 50), Sky Attack (Lv. 56).
-- **Egg (Zubat family):** Brave Bird, Curse, Defog, Giga Drain, Hypnosis, Nasty Plot, Steel Wing, Wing Attack, Zen Headbutt.
-- **TM/HM/elemental tutor:** Rain Dance, Shadow Ball, Sludge Bomb.
-- **Blackthorn tutor:** Aerial Ace, Agility, Bide, Dark Pulse, Detect, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Hex, Mega Drain, Mimic, Ominous Wind, Rage, Razor Wind, Snore, Super Fang, Take Down, Torment, Twister, X-Scissor.
-- **Evolution access:** Headbutt.
+### Bounsweet
 
-## Croconaw
+**Added:** Growth, Power Whip.
 
-**Newly available (29):** Aerial Ace, Body Slam, Brick Break, Counter, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Flip Turn, Frustration, Hail, Icy Wind, Iron Tail, Liquidation, Mega Kick, Mega Punch, Mimic, Rage, Rock Tomb, Scald, Seismic Toss, Shadow Claw, Snore, Spite, Superpower, Swords Dance, Take Down, Thief.
+**Removed:** Curse, Leech Seed.
 
-- **Natural/restored level-up:** Rage (Lv. 8), Superpower (Lv. 50).
-- **Thematic level-up (custom):** Flip Turn (Lv. 18), Spite (Lv. 34), Swords Dance (Lv. 38), Liquidation (Lv. 44).
-- **Egg (Totodile family):** Counter, Crunch, Dragon Claw, Dragon Dance, Hydro Pump, Ice Punch, Thrash.
-- **TM/HM/elemental tutor:** Rock Tomb, Thief.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Frustration, Hail, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Mimic, Scald, Seismic Toss, Shadow Claw, Snore, Take Down.
+- **Removed machine flags:** Curse.
+- **Removed family egg entries:** Leech Seed.
+- **Added Blackthorn lessons:** Growth, Power Whip.
 
-## Cubone
+### Breloom
 
-**Newly available (33):** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Counter, Detect, Double Kick, Double Team, Dynamic Punch, Earth Power, Endure, Fissure, Frustration, Fury Cutter, Icy Wind, Incinerate, Iron Defense, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Rage, Rock Tomb, Seismic Toss, Snore, Stealth Rock, Submission, Swift, Take Down, Water Gun.
+**Added:** None.
 
-- **Natural/restored level-up:** Rage (Lv. 23).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Stealth Rock (Lv. 36).
-- **Breeding fallback:** Detect (Lv. 30).
-- **Egg (Cubone family):** Belly Drum, Curse, Detect, Double Kick, Endure, Iron Head, Leer.
-- **TM/HM/elemental tutor:** Fury Cutter, Rock Tomb, Swift.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Counter, Double Team, Dynamic Punch, Earth Power, Fissure, Frustration, Icy Wind, Incinerate, Iron Defense, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Seismic Toss, Snore, Submission, Take Down, Water Gun.
+**Removed:** Curse, Wood Hammer.
 
-## Cursola
+- **Removed natural entries:** Wood Hammer.
+- **Removed machine flags:** Curse.
 
-**Newly available (22):** Body Slam, Bulldoze, Giga Drain, Giga Impact, Hail, Hydro Pump, Icicle Spear, Icy Wind, Iron Defense, Leech Life, Liquidation, Ominous Wind, Pin Missile, Rock Blast, Rock Slide, Safeguard, Scald, Screech, Self-Destruct, Snore, Stone Edge, Water Pulse.
+### Bulbasaur
 
-- **Egg (Corsola (Galarian) family):** Destiny Bond, Water Pulse.
-- **Blackthorn tutor:** Body Slam, Bulldoze, Giga Drain, Giga Impact, Hail, Hydro Pump, Icicle Spear, Icy Wind, Iron Defense, Leech Life, Liquidation, Ominous Wind, Pin Missile, Rock Blast, Rock Slide, Safeguard, Scald, Screech, Self-Destruct, Snore, Stone Edge.
+**Added:** Ancient Power.
 
-## Cyndaquil
+**Removed:** None.
 
-**Newly available (21):** Aerial Ace, Body Slam, Crush Claw, Detect, Double Kick, Double Team, Endure, Eruption, Fire Fang, Fire Spin, Frustration, Heat Wave, Iron Tail, Lava Plume, Mimic, Overheat, Play Rough, Roar, Snore, Take Down, Wild Charge.
+- **Added Blackthorn lessons:** Ancient Power.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 23), Eruption (Lv. 44), Overheat (Lv. 58).
-- **Thematic level-up (custom):** Fire Fang (Lv. 18), Heat Wave (Lv. 42).
-- **Egg (Cyndaquil family):** Crush Claw, Curse, Double Kick, Double-Edge, Extrasensory, Flare Blitz, Quick Attack, Reversal.
-- **TM/HM/elemental tutor:** Roar.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Detect, Double Team, Endure, Fire Spin, Frustration, Iron Tail, Mimic, Play Rough, Snore, Take Down, Wild Charge.
+### Bulbasaur (Clone)
 
-## Deino
+**Added:** Ancient Power.
 
-**Newly available (20):** Aqua Tail, Astonish, Double Team, Draco Meteor, Dragon Rage, Endure, Frustration, Head Smash, Incinerate, Psych Up, Rain Dance, Rock Smash, Snore, Spite, Strength, Sunny Day, Superpower, Take Down, Taunt, Torment.
+**Removed:** None.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 1).
-- **Thematic level-up (custom):** Spite (Lv. 34), Aqua Tail (Lv. 42), Draco Meteor (Lv. 58).
-- **Egg (Deino family):** Astonish, Head Smash.
-- **TM/HM/elemental tutor:** Rain Dance, Rock Smash, Strength, Sunny Day.
-- **Blackthorn tutor:** Double Team, Endure, Frustration, Incinerate, Psych Up, Snore, Superpower, Take Down, Taunt, Torment.
+- **Added Blackthorn lessons:** Ancient Power.
 
-## Delibird
+### Buneary
 
-**Newly available (35):** Acrobatics, Aerial Ace, Air Cutter, Avalanche, Baton Pass, Body Slam, Brave Bird, Brick Break, Counter, Detect, Double Team, Double-Edge, Drill Run, Endure, Foul Play, Frustration, Giga Impact, Gunk Shot, Hyper Beam, Ice Punch, Mega Kick, Mega Punch, Mimic, Recycle, Reversal, Rollout, Seed Bomb, Seismic Toss, Signal Beam, Sky Attack, Snore, Steel Wing, Take Down, Triple Axel, Water Pulse.
+**Added:** Close Combat, Cotton Guard, Double-Edge, Draining Kiss, Dynamic Punch, Seismic Toss, Tackle.
 
-- **Natural/restored level-up:** Recycle (Lv. 27).
-- **Thematic level-up (custom):** Avalanche (Lv. 18), Brave Bird (Lv. 56), Sky Attack (Lv. 58).
-- **Egg (Delibird family):** Aurora Beam, Counter, Destiny Bond, Freeze-Dry, Future Sight, Ice Punch, Ice Shard, Icy Wind, Quick Attack, Rapid Spin, Spikes, Splash.
-- **TM/HM/elemental tutor:** Hyper Beam, Ice Punch, Steel Wing.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Body Slam, Brick Break, Detect, Double Team, Double-Edge, Drill Run, Endure, Foul Play, Frustration, Giga Impact, Gunk Shot, Mega Kick, Mega Punch, Mimic, Reversal, Rollout, Seed Bomb, Seismic Toss, Signal Beam, Snore, Take Down, Triple Axel, Water Pulse.
+**Removed:** Curse, Karate Chop.
 
-## Dewgong
+- **Removed machine flags:** Curse.
+- **Removed family egg entries:** Karate Chop.
+- **Added Blackthorn lessons:** Close Combat, Cotton Guard, Double-Edge, Draining Kiss, Dynamic Punch, Seismic Toss, Tackle.
 
-**Newly available (25):** Avalanche, Bide, Body Slam, Double Team, Double-Edge, Drill Run, Endure, Fake Out, Frustration, Giga Impact, Horn Drill, Hydro Pump, Iron Tail, Liquidation, Mimic, Pay Day, Play Rough, Rage, Signal Beam, Skull Bash, Snore, Strength, Thief, Triple Axel, Water Pulse.
+### Butterfree
 
-- **Natural/restored level-up:** Signal Beam (Lv. 1).
-- **Thematic level-up (custom):** Avalanche (Lv. 22), Liquidation (Lv. 42), Hydro Pump (Lv. 56).
-- **Egg (Seel family):** Encore, Fake Out, Horn Drill, Icicle Spear, Iron Tail, Signal Beam, Sleep Talk, Water Pulse.
-- **TM/HM/elemental tutor:** Strength, Thief.
-- **Blackthorn tutor:** Bide, Body Slam, Double Team, Double-Edge, Drill Run, Endure, Frustration, Giga Impact, Mimic, Pay Day, Play Rough, Rage, Skull Bash, Snore, Triple Axel.
+**Added:** Fly.
 
-## Diglett
+**Removed:** Fury Cutter.
 
-**Newly available (23):** Aerial Ace, Agility, Bide, Body Slam, Charm, Double Team, Double-Edge, Endure, Foul Play, Frustration, Fury Swipes, Headbutt, Mimic, Rage, Reversal, Rock Blast, Rock Tomb, Shadow Claw, Snore, Stealth Rock, Stone Edge, Swords Dance, Take Down.
+- **Removed machine flags:** Fury Cutter.
+- **Added Blackthorn lessons:** Fly.
 
-- **Natural/restored level-up:** Fury Swipes (Lv. 21).
-- **Thematic level-up (custom):** Stealth Rock (Lv. 36).
-- **Egg (Diglett family):** Astonish, Endure, Headbutt, Hone Claws, Reversal, Rock Slide.
-- **TM/HM/elemental tutor:** Headbutt, Rock Tomb.
-- **Blackthorn tutor:** Aerial Ace, Agility, Bide, Body Slam, Charm, Double Team, Double-Edge, Earth Power, Foul Play, Frustration, Mimic, Rage, Rock Blast, Shadow Claw, Snore, Stone Edge, Swords Dance, Take Down.
+### Camerupt
 
-## Diglett (Alolan)
+**Added:** None.
 
-**Newly available (22):** Aerial Ace, Agility, Body Slam, Charm, Double Team, Feint Attack, Foul Play, Frustration, Fury Swipes, Iron Defense, Mud Shot, Pursuit, Rock Blast, Scary Face, Screech, Shadow Claw, Slash, Snore, Stealth Rock, Stone Edge, Swords Dance, Take Down.
+**Removed:** Raging Fury.
 
-- **Thematic level-up (custom):** Iron Defense (Lv. 36), Stealth Rock (Lv. 38).
-- **Egg (Diglett (Alolan) family):** Feint Attack, Headbutt, Hone Claws, Pursuit.
-- **Blackthorn tutor:** Aerial Ace, Agility, Body Slam, Charm, Double Team, Earth Power, Foul Play, Frustration, Fury Swipes, Mud Shot, Rock Blast, Scary Face, Screech, Shadow Claw, Slash, Snore, Stone Edge, Swords Dance, Take Down.
+- **Removed natural entries:** Raging Fury.
 
-## Dipplin
+### Carracosta
 
-**Newly available (11):** Body Slam, Bug Bite, Bullet Seed, Draco Meteor, Endure, Giga Impact, Gyro Ball, Outrage, Recycle, Seed Bomb, Take Down.
+**Added:** Heavy Slam.
 
-- **Natural/restored level-up:** Recycle (Lv. 1), Dragon Tail (Lv. 4), Bullet Seed (Lv. 20).
-- **Thematic level-up (custom):** Seed Bomb (Lv. 42), Draco Meteor (Lv. 56), Outrage (Lv. 58).
-- **Egg (Applin family):** Defense Curl, Recycle, Rollout.
-- **Blackthorn tutor:** Body Slam, Bug Bite, Endure, Giga Impact, Gyro Ball, Take Down.
+**Removed:** Drain Punch, Head Smash, Headbutt, Ice Punch, Mud-Slap, Power Gem, Roar.
 
-## Ditto
+- **Removed natural entries:** Head Smash.
+- **Removed machine flags:** Drain Punch, Headbutt, Ice Punch, Mud-Slap, Power Gem, Roar.
+- **Removed family egg entries:** Head Smash.
+- **Added Blackthorn lessons:** Heavy Slam.
 
-**Newly available:** None.
+### Caterpie
 
-No new acquisition routes were added.
+**Added:** None.
 
-## Dodrio
+**Removed:** None.
 
-**Newly available (25):** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Body Slam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Headbutt, Low Kick, Mimic, Mirror Move, Pursuit, Rage, Rain Dance, Reflect, Scary Face, Skull Bash, Sky Attack, Snore, Torment, Whirlwind.
 
-- **Natural/restored level-up:** Rage (Lv. 1), Pursuit (Lv. 15).
-- **Thematic level-up (custom):** Body Slam (Lv. 42), Double-Edge (Lv. 56), Giga Impact (Lv. 58), Skull Bash (Lv. 60).
-- **Egg (Doduo family):** Brave Bird, Mirror Move, Quick Attack, Sky Attack, Whirlwind.
-- **TM/HM/elemental tutor:** Headbutt, Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Double Team, Endure, Frustration, Low Kick, Mimic, Reflect, Scary Face, Snore, Torment.
+### Celebi
 
-## Doduo
+**Added:** None.
 
-**Newly available (24):** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Body Slam, Double Team, Double-Edge, Endure, Frustration, Headbutt, Low Kick, Mimic, Mirror Move, Pursuit, Rage, Rain Dance, Reflect, Roost, Skull Bash, Sky Attack, Snore, Tri Attack, Whirlwind.
+**Removed:** None.
 
-- **Natural/restored level-up:** Rage (Lv. 8), Pursuit (Lv. 15).
-- **Thematic level-up (custom):** Roost (Lv. 34), Body Slam (Lv. 42), Double-Edge (Lv. 56), Skull Bash (Lv. 58).
-- **Egg (Doduo family):** Brave Bird, Mirror Move, Quick Attack, Sky Attack, Whirlwind.
-- **TM/HM/elemental tutor:** Headbutt, Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Double Team, Endure, Frustration, Low Kick, Mimic, Reflect, Snore, Tri Attack.
 
-## Donphan
+### Centiskorch
 
-**Newly available (25):** Bounce, Counter, Dig, Double Team, Earth Power, Encore, Fissure, Frustration, Gunk Shot, Gyro Ball, Head Smash, Hyper Voice, Ice Fang, Iron Defense, Iron Head, Iron Tail, Mimic, Poison Jab, Rain Dance, Rock Polish, Rock Slide, Seed Bomb, Snore, Superpower, Thief.
+**Added:** Frustration, Gyro Ball, U-turn.
 
-- **Egg (Phanpy family):** Counter, Fissure, Head Smash, Ice Shard, Mud-Slap, Play Rough, Snore.
-- **TM/HM/elemental tutor:** Dig, Iron Head, Rain Dance, Thief.
-- **Blackthorn tutor:** Bounce, Double Team, Earth Power, Encore, Frustration, Gunk Shot, Gyro Ball, Hyper Voice, Ice Fang, Iron Defense, Iron Tail, Mimic, Poison Jab, Rock Polish, Rock Slide, Seed Bomb, Superpower.
+**Removed:** Agility, Curse, Fury Cutter, Raging Fury, Scary Face, Strength, Swagger.
 
-## Dragapult
+- **Removed natural entries:** Raging Fury.
+- **Removed machine flags:** Curse, Fury Cutter, Strength, Swagger.
+- **Removed family egg entries:** Agility, Flame Charge, Scary Face, X-Scissor.
+- **Added Blackthorn lessons:** Flame Charge, Frustration, Gyro Ball, U-turn, X-Scissor.
 
-**Newly available (21):** Acrobatics, Baton Pass, Beat Up, Body Slam, Crunch, Endure, Fly, Giga Impact, Hydro Pump, Night Shade, Outrage, Scald, Snore, Solar Beam, Steel Wing, Sunny Day, Surf, Swift, Thief, Thunder, Tri Attack.
+### Ceruledge
 
-- **Thematic level-up (custom):** Outrage (Lv. 56).
-- **Egg (Dreepy family):** Curse, Dragon Tail.
-- **TM/HM/elemental tutor:** Fly, Solar Beam, Steel Wing, Sunny Day, Surf, Swift, Thief, Thunder.
-- **Blackthorn tutor:** Acrobatics, Baton Pass, Beat Up, Body Slam, Endure, Giga Impact, Hydro Pump, Night Shade, Scald, Snore, Tri Attack.
-- **Evolution access:** Crunch.
+**Added:** Cut, Giga Impact, Ominous Wind, Razor Wind, Smokescreen, Stone Edge.
 
-## Dragonair
+**Removed:** Attract, Calm Mind, Fire Fang, Hyper Beam, Mean Look, Return, Strength.
 
-**Newly available (29):** Bide, Bind, Body Slam, Bubble Beam, Detect, Double Team, Double-Edge, Draco Meteor, Dragon Rage, Endure, Fire Spin, Frustration, Giga Impact, Hail, Horn Drill, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Mimic, Rage, Reflect, Skull Bash, Snore, Sunny Day, Take Down, Water Gun, Water Pulse, Whirlpool.
+- **Removed natural entries:** Fire Fang.
+- **Removed machine flags:** Attract, Hyper Beam, Return, Strength.
+- **Removed family egg entries:** Calm Mind, Mean Look, Swords Dance.
+- **Added Blackthorn lessons:** Cut, Giga Impact, Hex, Ominous Wind, Razor Wind, Smokescreen, Stone Edge.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 15).
-- **Thematic level-up (custom):** Draco Meteor (Lv. 56).
-- **Egg (Dratini family):** Aqua Jet, Dragon Breath, Dragon Dance, Dragon Pulse, Extreme Speed, Iron Tail, Water Pulse.
-- **TM/HM/elemental tutor:** Sunny Day, Whirlpool.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bubble Beam, Detect, Double Team, Double-Edge, Endure, Fire Spin, Frustration, Giga Impact, Hail, Horn Drill, Hydro Pump, Icy Wind, Incinerate, Mimic, Rage, Reflect, Skull Bash, Snore, Take Down, Water Gun.
+### Cetitan
 
-## Dragonite
+**Added:** None.
 
-**Newly available (52):** Aerial Ace, Air Cutter, Air Slash, Barrier, Bide, Bind, Body Press, Body Slam, Brick Break, Bubble Beam, Bulldoze, Cut, Defog, Detect, Double Team, Double-Edge, Dragon Rage, Dynamic Punch, Earthquake, Endure, Fire Spin, Focus Blast, Frustration, Giga Impact, Hail, Heal Bell, Horn Drill, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Ominous Wind, Rage, Razor Wind, Reflect, Roar, Rock Slide, Rock Tomb, Scary Face, Skull Bash, Snore, Stone Edge, Sunny Day, Superpower, Take Down, Water Gun, Water Pulse.
+**Removed:** Attract, Freeze-Dry, Hammer Arm, Headbutt, Hidden Power, Return, Slack Off, Strength, Surf, Swagger, Toxic, Work Up.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 15).
-- **Thematic level-up (custom):** Air Slash (Lv. 26), Defog (Lv. 34), Body Press (Lv. 38).
-- **Egg (Dratini family):** Aqua Jet, Dragon Breath, Dragon Dance, Dragon Pulse, Extreme Speed, Iron Tail, Water Pulse.
-- **TM/HM/elemental tutor:** Cut, Earthquake, Roar, Rock Tomb, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Barrier, Bide, Bind, Body Slam, Brick Break, Bubble Beam, Bulldoze, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Fire Spin, Focus Blast, Frustration, Giga Impact, Hail, Heal Bell, Horn Drill, Hydro Pump, Icy Wind, Incinerate, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Ominous Wind, Rage, Razor Wind, Reflect, Rock Slide, Scary Face, Skull Bash, Snore, Stone Edge, Superpower, Take Down, Water Gun.
+- **Removed natural entries:** Hammer Arm, Work Up.
+- **Removed machine flags:** Attract, Headbutt, Hidden Power, Return, Strength, Surf, Swagger, Toxic, Work Up.
+- **Removed family egg entries:** Slack Off.
+- **Removed fallback lessons:** Freeze-Dry.
 
-## Drakloak
+### Cetoddle
 
-**Newly available (16):** Acrobatics, Baton Pass, Beat Up, Draco Meteor, Endure, Hydro Pump, Night Shade, Outrage, Scald, Snore, Steel Wing, Sunny Day, Surf, Swift, Thief, Thunder.
+**Added:** None.
 
-- **Thematic level-up (custom):** Draco Meteor (Lv. 56), Outrage (Lv. 58).
-- **Egg (Dreepy family):** Curse, Dragon Tail.
-- **TM/HM/elemental tutor:** Steel Wing, Sunny Day, Surf, Swift, Thief, Thunder.
-- **Blackthorn tutor:** Acrobatics, Baton Pass, Beat Up, Endure, Hydro Pump, Night Shade, Scald, Snore.
+**Removed:** Attract, Freeze-Dry, Headbutt, Hidden Power, Return, Slack Off, Strength, Surf, Swagger, Toxic, Work Up.
 
-## Dratini
+- **Removed natural entries:** Work Up.
+- **Removed machine flags:** Attract, Headbutt, Hidden Power, Return, Strength, Surf, Swagger, Toxic, Work Up.
+- **Removed family egg entries:** Slack Off.
+- **Removed fallback lessons:** Freeze-Dry.
 
-**Newly available (28):** Bide, Bind, Body Slam, Bubble Beam, Detect, Double Team, Double-Edge, Draco Meteor, Dragon Rage, Endure, Fire Spin, Frustration, Giga Impact, Hail, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Mimic, Rage, Reflect, Skull Bash, Snore, Sunny Day, Take Down, Water Gun, Water Pulse, Whirlpool.
+### Chandelure
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 15).
-- **Thematic level-up (custom):** Draco Meteor (Lv. 56).
-- **Egg (Dratini family):** Aqua Jet, Dragon Breath, Dragon Dance, Dragon Pulse, Extreme Speed, Iron Tail, Water Pulse.
-- **TM/HM/elemental tutor:** Sunny Day, Whirlpool.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bubble Beam, Detect, Double Team, Double-Edge, Endure, Fire Spin, Frustration, Giga Impact, Hail, Hydro Pump, Icy Wind, Incinerate, Mimic, Rage, Reflect, Skull Bash, Snore, Take Down, Water Gun.
+**Added:** Ominous Wind, Smokescreen.
 
-## Dreepy
+**Removed:** Infestation, Phantom Force, Swift.
 
-**Newly available (5):** Baton Pass, Draco Meteor, Endure, Snore, Swift.
+- **Removed natural entries:** Infestation.
+- **Removed machine flags:** Swift.
+- **Removed fallback lessons:** Phantom Force.
+- **Added Blackthorn lessons:** Ominous Wind, Smokescreen.
 
-- **Thematic level-up (custom):** Draco Meteor (Lv. 56).
-- **Egg (Dreepy family):** Curse, Dragon Tail.
-- **TM/HM/elemental tutor:** Swift.
-- **Blackthorn tutor:** Baton Pass, Endure, Snore.
+### Chansey
 
-## Drifblim
+**Added:** Draining Kiss, Fairy Wind.
 
-**Newly available (28):** Acrobatics, Aerial Ace, Air Cutter, Bind, Cut, Double Team, Dream Eater, Endure, Flash, Frustration, Giga Impact, Gyro Ball, Icy Wind, Mud-Slap, Night Shade, Ominous Wind, Psybeam, Psych Up, Rain Dance, Recycle, Rollout, Skill Swap, Snore, Sucker Punch, Sunny Day, Thief, Thunder, Trick.
+**Removed:** Encore, Iron Head.
 
-- **Natural/restored level-up:** Ominous Wind (Lv. 20).
-- **Thematic level-up (custom):** Trick (Lv. 38).
-- **Egg (Drifloon family):** Defog, Destiny Bond, Hypnosis, Weather Ball.
-- **TM/HM/elemental tutor:** Cut, Flash, Mud-Slap, Rain Dance, Sunny Day, Thief, Thunder.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Bind, Double Team, Dream Eater, Endure, Frustration, Giga Impact, Gyro Ball, Icy Wind, Night Shade, Psybeam, Psych Up, Recycle, Rollout, Skill Swap, Snore, Sucker Punch.
+- **Removed machine flags:** Iron Head.
+- **Removed family egg entries:** Encore, Wish.
+- **Added Blackthorn lessons:** Draining Kiss, Fairy Wind, Wish.
 
-## Drifloon
+### Charcadet
 
-**Newly available (29):** Acrobatics, Aerial Ace, Air Cutter, Bind, Calm Mind, Cut, Double Team, Dream Eater, Endure, Flash, Frustration, Gyro Ball, Icy Wind, Mud-Slap, Night Shade, Ominous Wind, Psybeam, Psych Up, Rain Dance, Recycle, Rollout, Skill Swap, Snore, Sucker Punch, Sunny Day, Thief, Thunder, Trick, Trick Room.
+**Added:** Ominous Wind, Smokescreen.
 
-- **Natural/restored level-up:** Ominous Wind (Lv. 20).
-- **Thematic level-up (custom):** Trick (Lv. 36), Trick Room (Lv. 38).
-- **Egg (Drifloon family):** Defog, Destiny Bond, Hypnosis, Weather Ball.
-- **TM/HM/elemental tutor:** Cut, Flash, Mud-Slap, Rain Dance, Sunny Day, Thief, Thunder.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Bind, Calm Mind, Double Team, Dream Eater, Endure, Frustration, Gyro Ball, Icy Wind, Night Shade, Psybeam, Psych Up, Recycle, Rollout, Skill Swap, Snore, Sucker Punch.
+**Removed:** Attract, Calm Mind, Curse, Fire Fang, Hex, Hidden Power, Mean Look, Return, Swagger, Swords Dance, Toxic.
 
-## Drilbur
+- **Removed natural entries:** Fire Fang, Hex, Mean Look.
+- **Removed machine flags:** Attract, Curse, Hidden Power, Return, Swagger, Toxic.
+- **Removed family egg entries:** Calm Mind, Mean Look, Swords Dance.
+- **Added Blackthorn lessons:** Ominous Wind, Smokescreen.
 
-**Newly available (18):** Aerial Ace, Brick Break, Bulldoze, Cut, Double Team, Double-Edge, Earth Power, Endure, Frustration, Iron Defense, Poison Jab, Shadow Claw, Slash, Sludge Bomb, Snore, Sunny Day, Take Down, X-Scissor.
+### Charizard
 
-- **Natural/restored level-up:** Crush Claw (Lv. 24), Slash (Lv. 26).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18).
-- **Egg (Drilbur family):** Earth Power, Iron Defense, Rapid Spin, Slash.
-- **TM/HM/elemental tutor:** Cut, Sludge Bomb, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Brick Break, Double Team, Double-Edge, Endure, Frustration, Poison Jab, Shadow Claw, Snore, Take Down, X-Scissor.
+**Added:** Tackle.
 
-## Drowzee
+**Removed:** Draco Meteor, Drain Punch, Iron Head, Raging Fury.
 
-**Newly available (45):** Belly Drum, Bide, Body Slam, Brick Break, Calm Mind, Counter, Dazzling Gleam, Double Team, Double-Edge, Draining Kiss, Dream Eater, Encore, Endure, Focus Blast, Foul Play, Frustration, Haze, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Nightmare, Psyshock, Psywave, Rage, Recycle, Safeguard, Seismic Toss, Signal Beam, Skull Bash, Snore, Submission, Swift, Take Down, Taunt, Teleport, Thief, Torment, Tri Attack, Trick, Trick Room, Wish.
+- **Removed natural entries:** Draco Meteor, Raging Fury.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Tackle.
 
-- **Natural/restored level-up:** Psyshock (Lv. 57).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Calm Mind (Lv. 32), Trick (Lv. 34), Trick Room (Lv. 38), Dream Eater (Lv. 50).
-- **Egg (Drowzee family):** Fire Punch, Ice Punch, Nasty Plot, Thunder Punch.
-- **TM/HM/elemental tutor:** Swift, Thief.
-- **Blackthorn tutor:** Belly Drum, Bide, Body Slam, Brick Break, Counter, Dazzling Gleam, Double Team, Double-Edge, Draining Kiss, Encore, Endure, Focus Blast, Foul Play, Frustration, Haze, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Nightmare, Psywave, Rage, Recycle, Safeguard, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Torment, Tri Attack, Wish.
+### Charizard (Clone)
 
-## Dudunsparce
+**Added:** Tackle.
 
-**Newly available (42):** Amnesia, Aqua Tail, Baton Pass, Bide, Bind, Blizzard, Body Press, Bulldoze, Calm Mind, Counter, Double Team, Dream Eater, Drill Run, Dual Wingbeat, Earth Power, Earthquake, Fire Blast, Frustration, Giga Impact, Gyro Ball, Hyper Voice, Ice Beam, Incinerate, Iron Tail, Lunge, Mimic, Mud Shot, Nightmare, Pain Split, Poison Jab, Poison Tail, Psych Up, Pursuit, Rage, Sandstorm, Scary Face, Shadow Ball, Snore, Stone Edge, Water Pulse, Wild Charge, Yawn.
+**Removed:** Draco Meteor, Drain Punch, Iron Head, Raging Fury.
 
-- **Natural/restored level-up:** Drill Run (Lv. 24), Yawn (Lv. 28).
-- **Thematic level-up (custom):** Body Press (Lv. 44), Hyper Voice (Lv. 46), Giga Impact (Lv. 58).
-- **Egg (Dunsparce family):** Ancient Power, Aqua Tail, Bide, Curse, Headbutt, Snore.
-- **TM/HM/elemental tutor:** Blizzard, Earthquake, Fire Blast, Ice Beam, Sandstorm, Shadow Ball.
-- **Blackthorn tutor:** Amnesia, Baton Pass, Bind, Bulldoze, Calm Mind, Counter, Double Team, Dream Eater, Dual Wingbeat, Earth Power, Frustration, Gyro Ball, Incinerate, Iron Tail, Lunge, Mimic, Mud Shot, Nightmare, Pain Split, Poison Jab, Poison Tail, Psych Up, Scary Face, Stone Edge, Water Pulse, Wild Charge.
-- **Evolution access:** Pursuit, Rage.
+- **Removed natural entries:** Draco Meteor, Raging Fury.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Tackle.
 
-## Dugtrio
+### Charjabug
 
-**Newly available (23):** Aerial Ace, Agility, Bide, Body Slam, Charm, Double Team, Double-Edge, Endure, Foul Play, Frustration, Fury Swipes, Giga Impact, Headbutt, Mimic, Rage, Reversal, Rock Blast, Rock Tomb, Scary Face, Shadow Claw, Snore, Swords Dance, Take Down.
+**Added:** None.
 
-- **Natural/restored level-up:** Fury Swipes (Lv. 21).
-- **Thematic level-up (custom):** Swords Dance (Lv. 32).
-- **Egg (Diglett family):** Astonish, Endure, Headbutt, Hone Claws, Reversal, Rock Slide.
-- **TM/HM/elemental tutor:** Headbutt, Rock Tomb.
-- **Blackthorn tutor:** Aerial Ace, Agility, Bide, Body Slam, Charm, Double Team, Double-Edge, Earth Power, Foul Play, Frustration, Giga Impact, Mimic, Rage, Rock Blast, Scary Face, Shadow Claw, Snore, Take Down, Tri Attack.
+**Removed:** Agility, Curse, Flash, Fury Cutter, Nuzzle, Signal Beam, Zap Cannon.
 
-## Dugtrio (Alolan)
+- **Removed natural entries:** Nuzzle.
+- **Removed machine flags:** Curse, Flash, Fury Cutter, Zap Cannon.
+- **Removed family egg entries:** Agility.
 
-**Newly available (22):** Aerial Ace, Agility, Body Slam, Charm, Double Team, Double-Edge, Feint Attack, Foul Play, Frustration, Fury Swipes, Giga Impact, Iron Defense, Mud Shot, Pursuit, Rock Blast, Scary Face, Screech, Shadow Claw, Slash, Snore, Swords Dance, Take Down.
+### Charmander
 
-- **Thematic level-up (custom):** Swords Dance (Lv. 32), Iron Defense (Lv. 34).
-- **Egg (Diglett (Alolan) family):** Feint Attack, Headbutt, Hone Claws, Pursuit.
-- **Blackthorn tutor:** Aerial Ace, Agility, Body Slam, Charm, Double Team, Double-Edge, Earth Power, Foul Play, Frustration, Fury Swipes, Giga Impact, Mud Shot, Rock Blast, Scary Face, Screech, Shadow Claw, Slash, Snore, Take Down, Tri Attack.
+**Added:** Tackle.
 
-## Dunsparce
+**Removed:** Drain Punch, Iron Head.
 
-**Newly available (44):** Amnesia, Aqua Tail, Baton Pass, Bide, Bind, Blizzard, Bulldoze, Calm Mind, Counter, Double Team, Dream Eater, Drill Run, Dual Wingbeat, Earth Power, Earthquake, Fire Blast, Frustration, Giga Impact, Gyro Ball, Hyper Beam, Hyper Voice, Ice Beam, Incinerate, Iron Tail, Lunge, Mimic, Mud Shot, Nightmare, Pain Split, Poison Jab, Poison Tail, Psych Up, Pursuit, Rage, Sandstorm, Scale Shot, Scary Face, Shadow Ball, Snore, Stealth Rock, Stone Edge, Water Pulse, Wild Charge, Yawn.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Tackle.
 
-- **Natural/restored level-up:** Rage (Lv. 1), Pursuit (Lv. 8), Drill Run (Lv. 24), Yawn (Lv. 28).
-- **Thematic level-up (custom):** Giga Impact (Lv. 56).
-- **Egg (Dunsparce family):** Ancient Power, Aqua Tail, Bide, Curse, Headbutt, Snore.
-- **TM/HM/elemental tutor:** Blizzard, Earthquake, Fire Blast, Hyper Beam, Ice Beam, Sandstorm, Shadow Ball.
-- **Blackthorn tutor:** Amnesia, Baton Pass, Bind, Bulldoze, Calm Mind, Counter, Double Team, Dream Eater, Dual Wingbeat, Earth Power, Frustration, Gyro Ball, Hyper Voice, Incinerate, Iron Tail, Lunge, Mimic, Mud Shot, Nightmare, Pain Split, Poison Jab, Poison Tail, Psych Up, Scale Shot, Scary Face, Stealth Rock, Stone Edge, Water Pulse, Wild Charge.
+### Charmander (Clone)
 
-## Duraludon
+**Added:** Tackle.
 
-**Newly available (19):** Body Slam, Brick Break, Dark Pulse, Double-Edge, Endure, Foul Play, Giga Impact, Gyro Ball, Mirror Coat, Roar, Rock Tomb, Scary Face, Slash, Snarl, Snore, Solar Beam, Stone Edge, Swords Dance, Take Down.
+**Removed:** Drain Punch, Iron Head.
 
-- **Thematic level-up (custom):** Swords Dance (Lv. 32).
-- **Breeding fallback:** Mirror Coat (Lv. 30).
-- **Egg (Duraludon family):** Mirror Coat, Night Slash, Slash.
-- **TM/HM/elemental tutor:** Roar, Rock Tomb, Solar Beam.
-- **Blackthorn tutor:** Body Slam, Brick Break, Dark Pulse, Double-Edge, Endure, Foul Play, Giga Impact, Gyro Ball, Scary Face, Snarl, Snore, Stone Edge, Take Down.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Tackle.
 
-## Dusclops
+### Charmeleon
 
-**Newly available (42):** Blizzard, Body Slam, Brick Break, Bulldoze, Calm Mind, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Earthquake, Endure, Feint Attack, Flash, Frustration, Giga Impact, Headbutt, Hyper Beam, Icy Wind, Infestation, Leech Life, Mega Kick, Mega Punch, Metronome, Mimic, Mud-Slap, Ominous Wind, Psych Up, Pursuit, Rain Dance, Rock Slide, Rock Smash, Rock Tomb, Seismic Toss, Snore, Spite, Strength, Sucker Punch, Sunny Day, Thief, Torment, Trick.
+**Added:** Tackle.
 
-- **Natural/restored level-up:** Pursuit (Lv. 22).
-- **Thematic level-up (custom):** Spite (Lv. 34), Trick (Lv. 38).
-- **Egg (Duskull family):** Destiny Bond, Feint Attack, Ominous Wind.
-- **TM/HM/elemental tutor:** Blizzard, Earthquake, Flash, Headbutt, Hyper Beam, Mud-Slap, Rain Dance, Rock Smash, Rock Tomb, Strength, Sunny Day, Thief.
-- **Blackthorn tutor:** Body Slam, Brick Break, Bulldoze, Calm Mind, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Frustration, Giga Impact, Icy Wind, Infestation, Leech Life, Mega Kick, Mega Punch, Metronome, Mimic, Psych Up, Rock Slide, Seismic Toss, Snore, Sucker Punch, Torment.
+**Removed:** Drain Punch, Iron Head.
 
-## Dusknoir
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Tackle.
 
-**Newly available (42):** Blizzard, Body Slam, Brick Break, Bulldoze, Calm Mind, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Earthquake, Endure, Feint Attack, Flash, Focus Blast, Frustration, Giga Impact, Headbutt, Icy Wind, Infestation, Leech Life, Mega Kick, Mega Punch, Metronome, Mimic, Mud-Slap, Ominous Wind, Psych Up, Pursuit, Rain Dance, Rock Slide, Rock Smash, Rock Tomb, Seismic Toss, Snore, Spite, Sucker Punch, Sunny Day, Swift, Thief, Torment, Trick.
+### Charmeleon (Clone)
 
-- **Natural/restored level-up:** Pursuit (Lv. 22).
-- **Thematic level-up (custom):** Spite (Lv. 34), Trick (Lv. 38).
-- **Egg (Duskull family):** Destiny Bond, Feint Attack, Ominous Wind.
-- **TM/HM/elemental tutor:** Blizzard, Earthquake, Flash, Headbutt, Mud-Slap, Rain Dance, Rock Smash, Rock Tomb, Sunny Day, Swift, Thief.
-- **Blackthorn tutor:** Body Slam, Brick Break, Bulldoze, Calm Mind, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Icy Wind, Infestation, Leech Life, Mega Kick, Mega Punch, Metronome, Mimic, Psych Up, Rock Slide, Seismic Toss, Snore, Sucker Punch, Torment.
+**Added:** Tackle.
 
-## Duskull
+**Removed:** Drain Punch, Iron Head.
 
-**Newly available (28):** Blizzard, Body Slam, Calm Mind, Double Team, Double-Edge, Dream Eater, Endure, Feint Attack, Flash, Frustration, Headbutt, Icy Wind, Infestation, Leech Life, Mimic, Ominous Wind, Psych Up, Pursuit, Rain Dance, Snore, Spite, Sucker Punch, Sunny Day, Taunt, Thief, Torment, Trick, Trick Room.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Tackle.
 
-- **Natural/restored level-up:** Pursuit (Lv. 22).
-- **Thematic level-up (custom):** Spite (Lv. 36), Trick (Lv. 38), Trick Room (Lv. 42).
-- **Egg (Duskull family):** Destiny Bond, Feint Attack, Ominous Wind.
-- **TM/HM/elemental tutor:** Blizzard, Flash, Headbutt, Rain Dance, Sunny Day, Thief.
-- **Blackthorn tutor:** Body Slam, Calm Mind, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Future Sight, Hex, Icy Wind, Infestation, Leech Life, Mimic, Psych Up, Snore, Sucker Punch, Taunt, Torment.
+### Chikorita
 
-## Eevee
+**Added:** Bulldoze, Dazzling Gleam, Disarming Voice, Earth Power, Knock Off, Petal Dance, Tail Whip.
 
-**Newly available (18):** Bide, Body Slam, Calm Mind, Dig, Double Kick, Double Team, Focus Energy, Frustration, Hyper Voice, Iron Tail, Mimic, Pay Day, Rage, Reflect, Roar, Sing, Skull Bash, Snore.
+**Removed:** Iron Head, Mega Drain.
 
-- **Thematic level-up (custom):** Hyper Voice (Lv. 42), Body Slam (Lv. 44), Skull Bash (Lv. 56).
-- **Egg (Eevee family):** Charm, Curse, Double Kick, Mud-Slap.
-- **TM/HM/elemental tutor:** Dig, Roar.
-- **Blackthorn tutor:** Bide, Calm Mind, Double Team, Focus Energy, Frustration, Iron Tail, Mimic, Pay Day, Rage, Reflect, Sing, Snore.
+- **Removed natural entries:** Mega Drain.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Bulldoze, Dazzling Gleam, Disarming Voice, Earth Power, Knock Off, Petal Dance, Tail Whip.
 
-## Ekans
+### Chinchou
 
-**Newly available (35):** Aqua Tail, Bide, Bind, Body Slam, Bulldoze, Dark Pulse, Disable, Double Team, Double-Edge, Endure, Fire Fang, Fissure, Frustration, Giga Drain, Infestation, Iron Tail, Mega Drain, Mimic, Mud Shot, Mud-Slap, Poison Tail, Rage, Rain Dance, Rock Slide, Rock Tomb, Scale Shot, Scary Face, Seed Bomb, Skull Bash, Snarl, Snore, Take Down, Torment, Toxic Spikes, Venoshock.
+**Added:** Light Screen.
 
-- **Natural/restored level-up:** Poison Tail (Lv. 28).
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Toxic Spikes (Lv. 38), Aqua Tail (Lv. 42).
-- **Egg (Ekans family):** Disable, Iron Tail, Poison Fang, Poison Tail, Scary Face, Sucker Punch.
-- **TM/HM/elemental tutor:** Mud-Slap, Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bulldoze, Dark Pulse, Double Team, Double-Edge, Endure, Fire Fang, Fissure, Frustration, Giga Drain, Infestation, Mega Drain, Mimic, Mud Shot, Rage, Rock Slide, Scale Shot, Seed Bomb, Skull Bash, Snarl, Snore, Take Down, Torment.
+**Removed:** Nuzzle.
 
-## Electabuzz
+- **Removed natural entries:** Nuzzle.
+- **Added Blackthorn lessons:** Light Screen.
 
-**Newly available (30):** Bide, Body Slam, Brick Break, Counter, Crunch, Detect, Discharge, Double Team, Double-Edge, Dynamic Punch, Endure, Frustration, Hammer Arm, Iron Tail, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Psywave, Rage, Reflect, Seismic Toss, Signal Beam, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport.
+### Clefable
 
-- **Natural/restored level-up:** Discharge (Lv. 28).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26).
-- **Egg (Elekid family):** Cross Chop, Dynamic Punch, Fire Punch, Hammer Arm, Ice Punch.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Counter, Detect, Double Team, Double-Edge, Endure, Frustration, Iron Tail, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Psywave, Rage, Reflect, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport.
-- **Evolution access:** Crunch.
+**Added:** Air Slash, Dizzy Punch, Petal Dance, Scary Face, Tackle.
 
-## Electivire
+**Removed:** Iron Head, Rock Tomb.
 
-**Newly available (35):** Bide, Body Slam, Brick Break, Bulldoze, Counter, Crunch, Detect, Dig, Discharge, Double Team, Double-Edge, Dynamic Punch, Earthquake, Endure, Frustration, Hammer Arm, Iron Tail, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Psywave, Rage, Rock Slide, Rock Tomb, Seismic Toss, Signal Beam, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Torment.
+- **Removed machine flags:** Iron Head, Rock Tomb.
+- **Removed family egg entries:** Heal Bell.
+- **Added Blackthorn lessons:** Air Slash, Dizzy Punch, Heal Bell, Petal Dance, Scary Face, Tackle.
 
-- **Natural/restored level-up:** Discharge (Lv. 28).
-- **Thematic level-up (custom):** Low Sweep (Lv. 18), Signal Beam (Lv. 26), Brick Break (Lv. 28), Focus Blast (Lv. 56).
-- **Egg (Elekid family):** Cross Chop, Dynamic Punch, Fire Punch, Hammer Arm, Ice Punch.
-- **TM/HM/elemental tutor:** Dig, Earthquake, Rock Tomb.
-- **Blackthorn tutor:** Bide, Body Slam, Bulldoze, Counter, Detect, Double Team, Double-Edge, Endure, Frustration, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Psywave, Rage, Rock Slide, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Torment.
-- **Evolution access:** Crunch.
+### Clefairy
 
-## Electrode
+**Added:** Dizzy Punch, Petal Dance, Scary Face, Tackle.
 
-**Newly available (19):** Bide, Discharge, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Mimic, Rage, Recycle, Scary Face, Skull Bash, Snore, Sucker Punch, Take Down, Teleport, Thief, Torment, Wild Charge.
+**Removed:** Iron Head, Rock Tomb.
 
-- **Natural/restored level-up:** Sonic Boom (Lv. 1), Discharge (Lv. 27).
-- **Egg (Voltorb family):** Recycle.
-- **TM/HM/elemental tutor:** Thief.
-- **Blackthorn tutor:** Bide, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Gyro Ball, Mimic, Rage, Scary Face, Skull Bash, Snore, Sucker Punch, Take Down, Teleport, Torment, Wild Charge.
+- **Removed machine flags:** Iron Head, Rock Tomb.
+- **Removed family egg entries:** Heal Bell.
+- **Added Blackthorn lessons:** Dizzy Punch, Heal Bell, Petal Dance, Scary Face, Tackle.
 
-## Electrode (Hisuian)
+### Cleffa
 
-**Newly available (13):** Agility, Bullet Seed, Discharge, Double-Edge, Endure, Foul Play, Giga Impact, Leaf Storm, Recycle, Scary Face, Seed Bomb, Take Down, Wild Charge.
+**Added:** Blizzard, Bubble Beam, Dizzy Punch, Ice Beam, Moonblast, Moonlight, Petal Dance, Scary Face, Stealth Rock, Tackle, Thunder, Thunderbolt.
 
-- **Natural/restored level-up:** Stun Spore (Lv. 6), Bullet Seed (Lv. 9), Discharge (Lv. 34).
-- **Thematic level-up (custom):** Leaf Storm (Lv. 56).
-- **Egg (Voltorb (Hisuian) family):** Recycle.
-- **Blackthorn tutor:** Agility, Double-Edge, Endure, Foul Play, Giga Impact, Gyro Ball, Scary Face, Seed Bomb, Take Down, Wild Charge.
+**Removed:** Heal Bell, Iron Head, Rock Tomb.
 
-## Elekid
+- **Removed machine flags:** Iron Head, Rock Tomb.
+- **Removed family egg entries:** Heal Bell.
+- **Added Blackthorn lessons:** Blizzard, Bubble Beam, Dizzy Punch, Ice Beam, Moonblast, Moonlight, Petal Dance, Scary Face, Stealth Rock, Tackle, Thunder, Thunderbolt.
 
-**Newly available (23):** Body Slam, Brick Break, Counter, Crunch, Detect, Discharge, Double Team, Double-Edge, Dynamic Punch, Endure, Focus Blast, Frustration, Hammer Arm, Mega Kick, Mega Punch, Mimic, Rock Smash, Seismic Toss, Signal Beam, Snore, Take Down, Taunt, Volt Switch.
+### Clodsire
 
-- **Natural/restored level-up:** Discharge (Lv. 28).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Volt Switch (Lv. 38).
-- **Egg (Elekid family):** Cross Chop, Dynamic Punch, Fire Punch, Hammer Arm, Ice Punch.
-- **TM/HM/elemental tutor:** Rock Smash.
-- **Blackthorn tutor:** Body Slam, Brick Break, Counter, Detect, Double Team, Double-Edge, Endure, Focus Blast, Frustration, Mega Kick, Mega Punch, Mimic, Seismic Toss, Snore, Take Down, Taunt.
-- **Evolution access:** Crunch.
+**Added:** Flip Turn, Frustration, Weather Ball, Whirlpool.
 
-## Entei
+**Removed:** Acid Armor, Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Rock Smash, Safeguard, Strength, Swagger, Thief.
 
-**Newly available (23):** Agility, Body Slam, Bulldoze, Crush Claw, Detect, Double Team, Double-Edge, Endure, Eruption, Flame Charge, Frustration, Giga Impact, Heat Wave, Iron Tail, Lava Plume, Mimic, Overheat, Psych Up, Reversal, Shadow Ball, Snarl, Snore, Take Down.
+- **Removed machine flags:** Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Rock Smash, Strength, Swagger, Thief.
+- **Removed family egg entries:** Acid Armor, Safeguard.
+- **Added Blackthorn lessons:** Flip Turn, Frustration, Weather Ball, Whirlpool.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 30), Eruption (Lv. 46).
-- **Thematic level-up (custom):** Heat Wave (Lv. 44), Overheat (Lv. 56).
-- **TM/HM/elemental tutor:** Shadow Ball.
-- **Blackthorn tutor:** Agility, Body Slam, Bulldoze, Crush Claw, Detect, Double Team, Double-Edge, Endure, Flame Charge, Frustration, Giga Impact, Iron Tail, Mimic, Psych Up, Reversal, Snarl, Snore, Take Down.
+### Cloyster
 
-## Espathra
+**Added:** None.
 
-**Newly available (25):** Aerial Ace, Baton Pass, Body Slam, Brave Bird, Double-Edge, Drill Peck, Endure, Energy Ball, Foul Play, Giga Impact, Hex, Hypnosis, Low Kick, Mud-Slap, Night Shade, Peck, Psych Up, Psyshock, Rain Dance, Sandstorm, Seed Bomb, Skill Swap, Take Down, Trick, Trick Room.
+**Removed:** Freeze-Dry.
 
-- **Removed incorrect move access:** Psystrike.
-- **On evolution:** Lumina Crash when Flittle evolves into Espathra.
-- **Natural/restored level-up:** Drill Peck (Lv. 1), Peck (Lv. 1), Disarming Voice (Lv. 11).
-- **Thematic level-up (custom):** Skill Swap (Lv. 34), Trick (Lv. 36), Trick Room (Lv. 38).
-- **Egg (Flittle family):** Hypnosis.
-- **TM/HM/elemental tutor:** Energy Ball, Mud-Slap, Rain Dance, Sandstorm.
-- **Blackthorn tutor:** Aerial Ace, Baton Pass, Body Slam, Brave Bird, Double-Edge, Endure, Foul Play, Giga Impact, Hex, Low Kick, Night Shade, Psych Up, Psyshock, Seed Bomb, Take Down.
+- **Removed natural entries:** Freeze-Dry.
 
-## Espeon
+### Conkeldurr
 
-**Newly available (26):** Bide, Body Slam, Confuse Ray, Dig, Double Kick, Double Team, Draining Kiss, Dream Eater, Focus Energy, Frustration, Giga Impact, Hyper Voice, Iron Tail, Magical Leaf, Mimic, Nightmare, Pay Day, Psyshock, Rage, Roar, Sing, Skill Swap, Skull Bash, Snore, Trick, Trick Room.
+**Added:** None.
 
-- **Thematic level-up (custom):** Skill Swap (Lv. 36), Trick (Lv. 42), Trick Room (Lv. 44), Dream Eater (Lv. 50).
-- **Egg (Eevee family):** Charm, Curse, Double Kick, Mud-Slap.
-- **TM/HM/elemental tutor:** Dig, Roar.
-- **Blackthorn tutor:** Bide, Confuse Ray, Double Team, Draining Kiss, Focus Energy, Frustration, Giga Impact, Iron Tail, Magical Leaf, Mimic, Nightmare, Pay Day, Psycho Cut, Psyshock, Rage, Sing, Snore.
-- **Evolution access:** Body Slam, Hyper Voice, Skull Bash.
+**Removed:** Body Press, Cross Chop.
 
-## Excadrill
+- **Removed natural entries:** Body Press.
+- **Removed family egg entries:** Cross Chop.
 
-**Newly available (22):** Aerial Ace, Body Slam, Brick Break, Bulldoze, Cut, Double Team, Double-Edge, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Iron Defense, Poison Jab, Rock Blast, Scary Face, Slash, Sludge Bomb, Snore, Sunny Day, Take Down, X-Scissor.
+### Corsola
 
-- **Natural/restored level-up:** Crush Claw (Lv. 24), Slash (Lv. 26).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18).
-- **Egg (Drilbur family):** Earth Power, Iron Defense, Rapid Spin, Slash.
-- **TM/HM/elemental tutor:** Cut, Sludge Bomb, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Double Team, Double-Edge, Endure, Focus Blast, Frustration, Giga Impact, Poison Jab, Rock Blast, Scary Face, Snore, Take Down, X-Scissor.
+**Added:** None.
 
-## Exeggcute
+**Removed:** None.
 
-**Newly available (28):** Bide, Double Team, Double-Edge, Dream Eater, Egg Bomb, Endure, Explosion, Frustration, Headbutt, Infestation, Mimic, Nightmare, Psybeam, Psych Up, Psyshock, Psywave, Rage, Rollout, Seed Bomb, Self-Destruct, Snore, Sweet Scent, Swords Dance, Take Down, Teleport, Trick, Trick Room, Wish.
 
-- **Thematic level-up (custom):** Psybeam (Lv. 18), Trick (Lv. 34), Trick Room (Lv. 36), Dream Eater (Lv. 50).
-- **Egg (Exeggcute family):** Ancient Power, Curse, Giga Drain, Poison Powder, Psych Up, Reflect, Sleep Powder, Stun Spore, Synthesis.
-- **TM/HM/elemental tutor:** Headbutt.
-- **Blackthorn tutor:** Bide, Double Team, Double-Edge, Egg Bomb, Endure, Explosion, Frustration, Infestation, Mimic, Nightmare, Psyshock, Psywave, Rage, Rollout, Seed Bomb, Self-Destruct, Snore, Sweet Scent, Swords Dance, Take Down, Teleport, Wish.
+### Corviknight
 
-## Exeggutor
+**Added:** Frustration, Gust, Ominous Wind, Razor Wind, Slash.
 
-**Newly available (34):** Bide, Body Slam, Bulldoze, Double Team, Double-Edge, Dream Eater, Earthquake, Egg Bomb, Endure, Explosion, Frustration, Future Sight, Giga Impact, Growth, Infestation, Low Kick, Mimic, Nightmare, Power Whip, Psybeam, Psych Up, Psycho Cut, Psyshock, Psywave, Rage, Rollout, Self-Destruct, Snore, Sweet Scent, Swords Dance, Take Down, Teleport, Trick, Wish.
+**Removed:** Cut, Mud-Slap, Pursuit, Sandstorm, Strength, Whirlwind.
 
-- **Natural/restored level-up:** Bullet Seed (Lv. 1), Growth (Lv. 1), Psyshock (Lv. 1), Egg Bomb (Lv. 27).
-- **Thematic level-up (custom):** Psybeam (Lv. 18), Psycho Cut (Lv. 26), Trick (Lv. 34), Dream Eater (Lv. 52), Power Whip (Lv. 56), Future Sight (Lv. 58).
-- **Egg (Exeggcute family):** Ancient Power, Curse, Giga Drain, Poison Powder, Psych Up, Reflect, Sleep Powder, Stun Spore, Synthesis.
-- **TM/HM/elemental tutor:** Earthquake.
-- **Blackthorn tutor:** Bide, Body Slam, Bulldoze, Double Team, Double-Edge, Endure, Explosion, Frustration, Giga Impact, Infestation, Low Kick, Mimic, Nightmare, Psywave, Rage, Rollout, Self-Destruct, Snore, Sweet Scent, Swords Dance, Take Down, Teleport, Wish.
+- **Removed machine flags:** Cut, Mud-Slap, Sandstorm, Strength.
+- **Removed family egg entries:** Pursuit, Whirlwind.
+- **Added Blackthorn lessons:** Frustration, Gust, Ominous Wind, Razor Wind, Slash.
 
-## Exeggutor (Alolan)
+### Corvisquire
 
-**Newly available (38):** Bide, Body Slam, Brick Break, Bulldoze, Calm Mind, Double Team, Double-Edge, Draco Meteor, Dragon Hammer, Dream Eater, Egg Bomb, Endure, Explosion, Frustration, Giga Impact, Growth, Infestation, Iron Head, Iron Tail, Low Kick, Mimic, Nightmare, Power Whip, Psybeam, Psych Up, Psyshock, Psywave, Rage, Rollout, Self-Destruct, Snore, Superpower, Sweet Scent, Swords Dance, Take Down, Teleport, Trick, Wish.
+**Added:** Frustration, Gust, Razor Wind, Slash.
 
-- **Natural/restored level-up:** Bullet Seed (Lv. 1), Growth (Lv. 1), Leaf Storm (Lv. 1), Psyshock (Lv. 1), Egg Bomb (Lv. 27), Dragon Hammer (Lv. 52).
-- **Thematic level-up (custom):** Swords Dance (Lv. 30), Power Whip (Lv. 56), Draco Meteor (Lv. 58).
-- **Egg (Exeggcute family):** Ancient Power, Curse, Giga Drain, Poison Powder, Psych Up, Reflect, Sleep Powder, Stun Spore, Synthesis.
-- **TM/HM/elemental tutor:** Iron Head.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Bulldoze, Calm Mind, Double Team, Double-Edge, Endure, Explosion, Frustration, Giga Impact, Infestation, Iron Tail, Low Kick, Mimic, Nightmare, Psywave, Rage, Rollout, Self-Destruct, Snore, Superpower, Sweet Scent, Take Down, Teleport, Wish.
-- **Evolution access:** Dream Eater, Psybeam, Trick.
+**Removed:** Curse, Mud-Slap, Pursuit, Steel Wing, Whirlwind.
 
-## Farfetch'd
+- **Removed machine flags:** Curse, Mud-Slap, Steel Wing.
+- **Removed family egg entries:** Pursuit, Whirlwind.
+- **Added Blackthorn lessons:** Frustration, Gust, Razor Wind, Slash.
 
-**Newly available (32):** Acrobatics, Air Cutter, Baton Pass, Bide, Body Slam, Defog, Detect, Double Team, Endure, First Impression, Focus Energy, Frustration, Heat Wave, Iron Tail, Mimic, Ominous Wind, Psych Up, Rage, Razor Leaf, Razor Wind, Reflect, Roost, Skull Bash, Sky Attack, Snore, Solar Blade, Take Down, Twister, U-turn, Whirlwind, Wish, Yawn.
+### Cradily
 
-- **Natural/restored level-up:** Acrobatics (Lv. 37).
-- **Thematic level-up (custom):** Defog (Lv. 36), Take Down (Lv. 42), Body Slam (Lv. 44), Skull Bash (Lv. 56).
-- **Egg (Farfetch'd family):** Curse, First Impression, Leaf Blade, Mud-Slap, Night Slash, Roost, Sky Attack, Steel Wing.
-- **TM/HM/elemental tutor:** Fury Cutter.
-- **Blackthorn tutor:** Air Cutter, Air Slash, Baton Pass, Bide, Detect, Double Team, Endure, Focus Energy, Frustration, Heat Wave, Iron Tail, Mimic, Ominous Wind, Psych Up, Rage, Razor Leaf, Razor Wind, Reflect, Snore, Solar Blade, Twister, U-turn, Whirlwind, Wish, Yawn.
+**Added:** None.
 
-## Farigiraf
+**Removed:** Leaf Storm, Power Gem, Stun Spore, Wood Hammer.
 
-**Newly available (31):** Body Slam, Bulldoze, Confuse Ray, Dazzling Gleam, Double Kick, Double Team, Double-Edge, Dream Eater, Endure, Energy Ball, Foul Play, Frustration, Giga Impact, Iron Tail, Low Kick, Mean Look, Mimic, Mirror Coat, Night Shade, Nightmare, Psych Up, Psyshock, Rain Dance, Razor Wind, Recycle, Roar, Signal Beam, Skill Swap, Snore, Sucker Punch, Trick.
+- **Removed natural entries:** Leaf Storm, Wood Hammer.
+- **Removed machine flags:** Power Gem.
+- **Removed family egg entries:** Leech Seed, Stun Spore.
 
-- **Thematic level-up (custom):** Trick (Lv. 34), Body Slam (Lv. 44), Double-Edge (Lv. 56), Giga Impact (Lv. 58).
-- **Egg (Girafarig family):** Double Kick, Mean Look, Mirror Coat, Psych Up, Razor Wind, Skill Swap.
-- **TM/HM/elemental tutor:** Energy Ball, Rain Dance, Roar.
-- **Blackthorn tutor:** Bulldoze, Confuse Ray, Dazzling Gleam, Double Team, Endure, Foul Play, Frustration, Iron Tail, Low Kick, Mimic, Night Shade, Nightmare, Psyshock, Recycle, Snore, Sucker Punch.
-- **Evolution access:** Dream Eater, Signal Beam.
+### Cranidos
 
-## Fearow
+**Added:** Bite, Seismic Toss, Tackle.
 
-**Newly available (21):** Air Cutter, Astonish, Baton Pass, Bide, Defog, Detect, Double Team, Endure, Frustration, Giga Impact, Headbutt, Heat Wave, Mimic, Ominous Wind, Rage, Rain Dance, Razor Wind, Sky Attack, Snore, Twister, Whirlwind.
+**Removed:** Power Gem.
 
-- **Thematic level-up (custom):** Defog (Lv. 36), Giga Impact (Lv. 56).
-- **Egg (Spearow family):** Astonish, Razor Wind, Sky Attack, Steel Wing, Whirlwind.
-- **TM/HM/elemental tutor:** Headbutt, Rain Dance.
-- **Blackthorn tutor:** Air Cutter, Baton Pass, Bide, Detect, Double Team, Endure, Frustration, Heat Wave, Mimic, Ominous Wind, Rage, Snore, Twister.
+- **Removed machine flags:** Power Gem.
+- **Added Blackthorn lessons:** Bite, Seismic Toss, Tackle.
 
-## Feebas
+### Croagunk
 
-**Newly available (13):** Double Team, Double-Edge, Endure, Frustration, Hail, Icy Wind, Iron Tail, Mimic, Mud Shot, Scald, Scale Shot, Snore, Swift.
+**Added:** Close Combat, Earth Power, Seismic Toss.
 
-- **Thematic level-up (custom):** Scald (Lv. 42).
-- **Egg (Feebas family):** Dragon Pulse, Iron Tail, Light Screen.
-- **TM/HM/elemental tutor:** Swift.
-- **Blackthorn tutor:** Double Team, Double-Edge, Endure, Frustration, Hail, Icy Wind, Mimic, Mud Shot, Scale Shot, Snore.
+**Removed:** Acid Armor, Curse, Force Palm.
 
-## Feraligatr
+- **Removed natural entries:** Acid Armor, Force Palm.
+- **Removed machine flags:** Curse.
+- **Removed family egg entries:** Acid Armor.
+- **Added Blackthorn lessons:** Close Combat, Earth Power, Seismic Toss.
 
-**Newly available (34):** Aerial Ace, Avalanche, Body Slam, Brick Break, Bulldoze, Counter, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Flip Turn, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Mimic, Outrage, Rage, Rock Tomb, Scald, Scale Shot, Seismic Toss, Shadow Claw, Snarl, Snore, Spite, Superpower, Take Down, Thief.
+### Crobat
 
-- **Natural/restored level-up:** Rage (Lv. 1), Superpower (Lv. 65).
-- **Thematic level-up (custom):** Flip Turn (Lv. 18), Brick Break (Lv. 26), Spite (Lv. 36), Outrage (Lv. 56).
-- **Egg (Totodile family):** Counter, Crunch, Dragon Claw, Dragon Dance, Hydro Pump, Ice Punch, Thrash.
-- **TM/HM/elemental tutor:** Rock Tomb, Thief.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Body Slam, Bulldoze, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Mimic, Scald, Scale Shot, Seismic Toss, Shadow Claw, Snarl, Snore, Take Down.
+**Added:** Flail, Knock Off, Night Slash.
 
-## Finizen
+**Removed:** Energy Ball, Poison Jab.
 
-**Newly available (14):** Acrobatics, Agility, Astonish, Body Slam, Bounce, Counter, Disarming Voice, Draining Kiss, Endure, Icy Wind, Liquidation, Psych Up, Take Down, Water Pulse.
+- **Removed natural entries:** Poison Jab.
+- **Removed machine flags:** Energy Ball.
+- **Added Blackthorn lessons:** Flail, Knock Off, Night Slash.
 
-- **Natural/restored level-up:** Astonish (Lv. 7), Acrobatics (Lv. 29), Encore (Lv. 34), Mist (Lv. 44), Hydro Pump (Lv. 50).
-- **Thematic level-up (custom):** Water Pulse (Lv. 42), Liquidation (Lv. 46).
-- **Egg (Finizen family):** Bounce, Counter, Haze.
-- **Blackthorn tutor:** Agility, Body Slam, Disarming Voice, Draining Kiss, Endure, Icy Wind, Psych Up, Take Down.
+### Croconaw
 
-## Flaaffy
+**Added:** Bubble Beam, Bulldoze, Dark Pulse, False Swipe, Outrage, Submission, Tackle.
 
-**Newly available (24):** Brick Break, Cotton Guard, Counter, Defense Curl, Dig, Discharge, Double Team, Double-Edge, Dynamic Punch, Endure, Frustration, Ice Punch, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Roar, Sand Attack, Seismic Toss, Signal Beam, Snore, Sunny Day, Wild Charge.
+**Removed:** Agility, Flash, Fly, Iron Head.
 
-- **Natural/restored level-up:** Discharge (Lv. 29), Cotton Guard (Lv. 43), Signal Beam (Lv. 47).
-- **Egg (Mareep family):** Iron Tail, Sand Attack, Take Down.
-- **TM/HM/elemental tutor:** Dig, Ice Punch, Roar, Sunny Day.
-- **Blackthorn tutor:** Brick Break, Counter, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, Frustration, Low Kick, Mega Kick, Mega Punch, Mimic, Seismic Toss, Snore, Wild Charge.
+- **Removed machine flags:** Flash, Fly, Iron Head.
+- **Added Blackthorn lessons:** Bubble Beam, Bulldoze, Dark Pulse, False Swipe, Outrage, Submission, Tackle.
 
-## Flapple
+### Cubone
 
-**Newly available (17):** Aerial Ace, Body Slam, Bug Bite, Bullet Seed, Draco Meteor, Dual Wingbeat, Endure, Focus Energy, Giga Impact, Gyro Ball, Iron Defense, Magical Leaf, Outrage, Recycle, Scary Face, Snore, Take Down.
+**Added:** Fury Attack, Tackle.
 
-- **Natural/restored level-up:** Recycle (Lv. 1), Iron Defense (Lv. 36).
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Draco Meteor (Lv. 56), Outrage (Lv. 58).
-- **Egg (Applin family):** Defense Curl, Recycle, Rollout.
-- **Blackthorn tutor:** Aerial Ace, Dual Wingbeat, Endure, Focus Energy, Giga Impact, Scary Face, Snore, Take Down.
-- **Evolution access:** Body Slam, Bug Bite, Bullet Seed, Gyro Ball.
+**Removed:** Drain Punch, Drill Run, Mud Shot.
 
-## Flareon
+- **Removed natural entries:** Drill Run, Mud Shot.
+- **Removed machine flags:** Drain Punch.
+- **Added Blackthorn lessons:** Fury Attack, Tackle.
 
-**Newly available (25):** Bide, Body Slam, Calm Mind, Dig, Double Kick, Double Team, Flame Charge, Focus Energy, Frustration, Giga Impact, Heat Wave, Hyper Voice, Incinerate, Iron Tail, Lava Plume, Leer, Mimic, Pay Day, Rage, Reflect, Rock Smash, Sing, Skull Bash, Snore, Strength.
+### Cursola
 
-- **Natural/restored level-up:** Leer (Lv. 47).
-- **Egg (Eevee family):** Charm, Curse, Double Kick, Mud-Slap.
-- **TM/HM/elemental tutor:** Dig, Rock Smash, Strength.
-- **Blackthorn tutor:** Bide, Calm Mind, Double Team, Flame Charge, Focus Energy, Frustration, Giga Impact, Heat Wave, Incinerate, Iron Tail, Lava Plume, Mimic, Overheat, Pay Day, Rage, Reflect, Sing, Snore.
-- **Evolution access:** Body Slam, Hyper Voice, Skull Bash.
+**Added:** Double Team, Explosion, Frustration, Heal Bell, Pain Split, Rock Polish, Rollout.
 
-## Fletchinder
+**Removed:** Barrier, Energy Ball, Foul Play, Headbutt, Phantom Force, Waterfall.
 
-**Newly available (19):** Air Cutter, Air Slash, Double Team, Double-Edge, Endure, Fire Spin, Flare Blitz, Frustration, Heat Wave, Hurricane, Overheat, Rain Dance, Razor Wind, Snore, Swords Dance, Tackle, Take Down, Taunt, Thief.
+- **Removed natural entries:** Foul Play.
+- **Removed machine flags:** Energy Ball, Headbutt, Waterfall.
+- **Removed family egg entries:** Barrier.
+- **Added Blackthorn lessons:** Double Team, Explosion, Frustration, Heal Bell, Pain Split, Rock Polish, Rollout.
 
-- **Natural/restored level-up:** Tackle (Lv. 1), Razor Wind (Lv. 27).
-- **Thematic level-up (custom):** Air Slash (Lv. 26), Heat Wave (Lv. 42), Hurricane (Lv. 52), Flare Blitz (Lv. 56), Overheat (Lv. 58).
-- **Egg (Fletchling family):** Defog, Flame Charge.
-- **TM/HM/elemental tutor:** Rain Dance, Thief.
-- **Blackthorn tutor:** Air Cutter, Double Team, Endure, Fire Spin, Frustration, Snore, Swords Dance, Taunt.
-- **Evolution access:** Double-Edge, Take Down.
+### Cyndaquil
 
-## Fletchling
+**Added:** None.
 
-**Newly available (22):** Air Cutter, Air Slash, Defog, Double Team, Double-Edge, Dual Wingbeat, Endure, Flame Charge, Flare Blitz, Frustration, Heat Wave, Hurricane, Overheat, Rain Dance, Razor Wind, Snore, Sunny Day, Swords Dance, Tackle, Take Down, Taunt, Thief.
+**Removed:** Rock Tomb.
 
-- **Natural/restored level-up:** Tackle (Lv. 1), Razor Wind (Lv. 25), Flame Charge (Lv. 34).
-- **Thematic level-up (custom):** Air Slash (Lv. 26), Heat Wave (Lv. 42), Take Down (Lv. 44), Hurricane (Lv. 52), Double-Edge (Lv. 56).
-- **Egg (Fletchling family):** Defog, Flame Charge.
-- **TM/HM/elemental tutor:** Rain Dance, Sunny Day, Thief.
-- **Blackthorn tutor:** Air Cutter, Double Team, Dual Wingbeat, Endure, Flare Blitz, Frustration, Overheat, Snore, Swords Dance, Taunt.
+- **Removed machine flags:** Rock Tomb.
 
-## Flittle
+### Deino
 
-**Newly available (15):** Baton Pass, Endure, Foul Play, Hypnosis, Mud-Slap, Peck, Psyshock, Rain Dance, Sandstorm, Seed Bomb, Skill Swap, Take Down, Trick, Trick Room, U-turn.
+**Added:** Dragon Dance.
 
-- **Natural/restored level-up:** Peck (Lv. 1), Disarming Voice (Lv. 11).
-- **Thematic level-up (custom):** Skill Swap (Lv. 34), Trick (Lv. 36), Trick Room (Lv. 38).
-- **Egg (Flittle family):** Hypnosis.
-- **TM/HM/elemental tutor:** Mud-Slap, Rain Dance, Sandstorm.
-- **Blackthorn tutor:** Baton Pass, Endure, Foul Play, Psyshock, Seed Bomb, Take Down, U-turn.
+**Removed:** Curse, Dragon Claw, Fire Blast, Flamethrower, Knock Off, Night Slash, Scale Shot, Surf.
 
-## Flygon
+- **Removed natural entries:** Scale Shot.
+- **Removed machine flags:** Curse, Dragon Claw, Fire Blast, Flamethrower, Knock Off, Night Slash, Surf.
+- **Added Blackthorn lessons:** Dragon Dance.
 
-**Newly available (43):** Aerial Ace, Agility, Air Cutter, Air Slash, Bide, Body Slam, Defog, Double Team, Double-Edge, Dual Wingbeat, Endure, Fire Punch, Fire Spin, First Impression, Flail, Fly, Frustration, Giga Drain, Giga Impact, Gust, Headbutt, Heat Wave, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Ominous Wind, Scale Shot, Snore, Solar Beam, Sonic Boom, Stealth Rock, Steel Wing, Stone Edge, Struggle Bug, Sunny Day, Superpower, Swift, Take Down, Thunder Punch, Twister, Vacuum Wave.
+### Delibird
 
-- **Natural/restored level-up:** Bide (Lv. 1), Sonic Boom (Lv. 1), Superpower (Lv. 1), Hyper Beam (Lv. 43).
-- **Egg (Trapinch family):** Bug Bite, Earth Power, Endure, First Impression, Flail, Fury Cutter, Gust, Mud Shot.
-- **TM/HM/elemental tutor:** Fire Punch, Fly, Headbutt, Solar Beam, Steel Wing, Sunny Day, Swift, Thunder Punch.
-- **Blackthorn tutor:** Aerial Ace, Agility, Air Cutter, Air Slash, Body Slam, Defog, Double Team, Double-Edge, Dual Wingbeat, Fire Spin, Frustration, Giga Drain, Giga Impact, Heat Wave, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Ominous Wind, Scale Shot, Snore, Stone Edge, Struggle Bug, Take Down, Twister, Vacuum Wave.
-- **Evolution access:** Stealth Rock.
+**Added:** Pay Day, Peck, Razor Wind, U-turn.
 
-## Forretress
+**Removed:** Mist.
 
-**Newly available (31):** Bide, Body Slam, Bug Buzz, Bulldoze, Counter, Defense Curl, Dig, Double Team, Drill Run, Earth Power, Earthquake, Frustration, Giga Drain, Giga Impact, Iron Head, Lunge, Mimic, Pain Split, Poison Jab, Rain Dance, Reversal, Rock Blast, Rock Polish, Rock Slide, Seed Bomb, Signal Beam, Snore, Stone Edge, String Shot, Struggle Bug, Venoshock.
+- **Removed family egg entries:** Mist.
+- **Added Blackthorn lessons:** Pay Day, Peck, Razor Wind, U-turn.
 
-- **Natural/restored level-up:** Bide (Lv. 20).
-- **Thematic level-up (custom):** Bulldoze (Lv. 22), Rock Polish (Lv. 32).
-- **Egg (Pineco family):** Counter, Double-Edge, Pin Missile, Swift, Toxic Spikes.
-- **TM/HM/elemental tutor:** Dig, Earthquake, Iron Head, Rain Dance.
-- **Blackthorn tutor:** Body Slam, Bug Buzz, Defense Curl, Double Team, Drill Run, Earth Power, Frustration, Giga Drain, Giga Impact, Lunge, Mimic, Pain Split, Poison Jab, Reversal, Rock Blast, Rock Slide, Seed Bomb, Signal Beam, Snore, Stone Edge, String Shot, Struggle Bug, Venoshock.
+### Dewgong
 
-## Fraxure
+**Added:** Flail.
 
-**Newly available (26):** Aerial Ace, Aqua Tail, Brick Break, Bulldoze, Counter, Cut, Dig, Double Team, Double-Edge, Draco Meteor, Dragon Rage, First Impression, Frustration, Incinerate, Low Kick, Poison Jab, Rain Dance, Shadow Claw, Snarl, Snore, Sunny Day, Surf, Swift, Take Down, Taunt, X-Scissor.
+**Removed:** Freeze-Dry.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 1), Taunt (Lv. 12).
-- **Egg (Axew family):** Aqua Tail, Counter, Dragon Pulse, First Impression, Focus Energy, Night Slash.
-- **TM/HM/elemental tutor:** Cut, Dig, Rain Dance, Sunny Day, Surf, Swift.
-- **Blackthorn tutor:** Aerial Ace, Brick Break, Bulldoze, Double Team, Double-Edge, Draco Meteor, Frustration, Incinerate, Low Kick, Poison Jab, Shadow Claw, Snarl, Snore, Take Down, X-Scissor.
+- **Removed natural entries:** Freeze-Dry.
+- **Added Blackthorn lessons:** Flail.
 
-## Frigibax
+### Diglett
 
-**Newly available (8):** Aqua Tail, Avalanche, Body Slam, Dig, Draco Meteor, Endure, Rain Dance, Swords Dance.
+**Added:** False Swipe.
 
-- **Thematic level-up (custom):** Avalanche (Lv. 20), Swords Dance (Lv. 38).
-- **Egg (Frigibax family):** Aqua Tail, Freeze-Dry.
-- **TM/HM/elemental tutor:** Dig, Rain Dance.
-- **Blackthorn tutor:** Body Slam, Draco Meteor, Endure.
+**Removed:** None.
 
-## Froslass
+- **Added Blackthorn lessons:** False Swipe.
 
-**Newly available (34):** Bide, Body Slam, Charm, Double-Edge, Dream Eater, Endure, Flash, Frustration, Giga Impact, Haze, Ice Punch, Icicle Spear, Mimic, Mud-Slap, Night Shade, Ominous Wind, Pain Split, Psych Up, Psychic, Rain Dance, Safeguard, Scary Face, Signal Beam, Sing, Snore, Spite, Sucker Punch, Take Down, Thunder, Thunderbolt, Torment, Trick, Triple Axel, Water Pulse.
+### Dipplin
 
-- **Natural/restored level-up:** Ominous Wind (Lv. 1).
-- **Thematic level-up (custom):** Spite (Lv. 36), Trick (Lv. 40).
-- **Egg (Snorunt family):** Avalanche, Bide, Disable, Hex, Icicle Crash, Weather Ball.
-- **TM/HM/elemental tutor:** Flash, Ice Punch, Mud-Slap, Psychic, Rain Dance, Thunder, Thunderbolt.
-- **Blackthorn tutor:** Body Slam, Charm, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Haze, Icicle Spear, Mimic, Night Shade, Pain Split, Phantom Force, Psych Up, Safeguard, Scary Face, Signal Beam, Sing, Snore, Sucker Punch, Take Down, Torment, Triple Axel, Water Pulse.
+**Added:** None.
 
-## Furret
+**Removed:** Absorb, Apple Acid, Curse, Dragon Claw, Hidden Power, Iron Head, Leech Seed, Mega Drain, Return, Rock Smash, Rock Tomb, Swagger, Thief, Toxic, Twister.
 
-**Newly available (29):** Aqua Tail, Blizzard, Body Slam, Brick Break, Detect, Double Team, Dynamic Punch, Endure, Flamethrower, Focus Blast, Frustration, Giga Impact, Ice Beam, Iron Tail, Mimic, Rain Dance, Rock Smash, Rollout, Seed Bomb, Shadow Claw, Snore, Solar Beam, Super Fang, Tackle, Take Down, Thunder, Thunderbolt, Water Pulse, Whirlpool.
+- **Removed natural entries:** Apple Acid.
+- **Removed machine flags:** Curse, Dragon Claw, Hidden Power, Iron Head, Return, Rock Smash, Rock Tomb, Swagger, Thief, Toxic.
+- **Removed family egg entries:** Dragon Tail, Giga Drain, Leech Seed.
+- **Added Blackthorn lessons:** Giga Drain.
 
-- **Thematic level-up (custom):** Take Down (Lv. 44), Body Slam (Lv. 46), Giga Impact (Lv. 56).
-- **Egg (Sentret family):** Double-Edge, Iron Tail, Reversal, Substitute.
-- **TM/HM/elemental tutor:** Blizzard, Flamethrower, Ice Beam, Rain Dance, Rock Smash, Solar Beam, Thunder, Thunderbolt, Whirlpool.
-- **Blackthorn tutor:** Aqua Tail, Brick Break, Detect, Double Team, Dynamic Punch, Endure, Focus Blast, Frustration, Hyper Voice, Mimic, Rollout, Seed Bomb, Shadow Claw, Snore, Super Fang, Tackle, Water Pulse.
+### Ditto
 
-## Gallade
+**Added:** None.
 
-**Newly available (54):** Agility, Air Slash, Aura Sphere, Body Slam, Bulldoze, Dazzling Gleam, Defense Curl, Double-Edge, Earthquake, Endure, Fire Punch, Focus Blast, Frustration, Giga Impact, Hex, Hyper Voice, Ice Punch, Icy Wind, Low Kick, Magical Leaf, Mega Kick, Mega Punch, Metronome, Mimic, Mud-Slap, Night Shade, Nightmare, Pain Split, Poison Jab, Psych Up, Psyshock, Rain Dance, Recycle, Reversal, Rock Slide, Rock Tomb, Safeguard, Shadow Claw, Signal Beam, Sing, Skill Swap, Snore, Solar Blade, Stone Edge, Sunny Day, Take Down, Taunt, Thunder Punch, Torment, Trick, Trick Room, Vacuum Wave, Wish, X-Scissor.
+**Removed:** None.
 
-- **Thematic level-up (custom):** Low Kick (Lv. 18), Trick (Lv. 34), Trick Room (Lv. 42).
-- **Egg (Ralts family):** Knock Off, Skill Swap, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Earthquake, Fire Punch, Fury Cutter, Ice Punch, Mud-Slap, Rain Dance, Rock Tomb, Sunny Day, Thunder Punch.
-- **Blackthorn tutor:** Agility, Air Slash, Aura Sphere, Body Slam, Bulldoze, Defense Curl, Double-Edge, Endure, Focus Blast, Frustration, Giga Impact, Hex, Hyper Voice, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Nightmare, Pain Split, Poison Jab, Psych Up, Psyshock, Recycle, Reversal, Rock Slide, Safeguard, Shadow Claw, Sing, Snore, Solar Blade, Stone Edge, Take Down, Taunt, Torment, Vacuum Wave, Wish, X-Scissor.
-- **Evolution access:** Dazzling Gleam, Magical Leaf, Signal Beam.
 
-## Galvantula
+### Dodrio
 
-**Newly available (17):** Absorb, Bounce, Cross Poison, Cut, Discharge, Double Team, Endure, Feint Attack, Frustration, Giga Impact, Infestation, Lunge, Pin Missile, Poison Sting, Pursuit, Slash, Snore.
+**Added:** None.
 
-- **Natural/restored level-up:** Absorb (Lv. 1), Sucker Punch (Lv. 28), Discharge (Lv. 39).
-- **Egg (Joltik family):** Cross Poison, Double Team, Feint Attack, Infestation, Lunge, Pin Missile, Poison Sting, Pursuit, Struggle Bug.
-- **TM/HM/elemental tutor:** Cut.
-- **Blackthorn tutor:** Bounce, Endure, Frustration, Giga Impact, Snore.
-- **Evolution access:** Slash.
+**Removed:** Bounce, Dual Wingbeat.
 
-## Gardevoir
+- **Removed natural entries:** Bounce, Dual Wingbeat.
 
-**Newly available (39):** Body Slam, Defense Curl, Double-Edge, Endure, Fire Punch, Frustration, Giga Impact, Headbutt, Heal Bell, Ice Punch, Icy Wind, Magical Leaf, Mega Kick, Mega Punch, Metronome, Mimic, Mud-Slap, Night Shade, Nightmare, Pain Split, Psych Up, Psyshock, Rain Dance, Recycle, Safeguard, Signal Beam, Sing, Skill Swap, Snore, Sunny Day, Swift, Taunt, Thief, Thunder Punch, Torment, Trick, Trick Room, Triple Axel, Vacuum Wave.
+### Doduo
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 17).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Trick (Lv. 34), Trick Room (Lv. 38).
-- **Egg (Ralts family):** Knock Off, Skill Swap, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Fire Punch, Headbutt, Ice Punch, Mud-Slap, Rain Dance, Sunny Day, Swift, Thief, Thunder Punch.
-- **Blackthorn tutor:** Body Slam, Defense Curl, Double-Edge, Endure, Frustration, Giga Impact, Heal Bell, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Nightmare, Pain Split, Psych Up, Psyshock, Recycle, Safeguard, Sing, Snore, Taunt, Torment, Triple Axel, Vacuum Wave.
+**Added:** None.
 
-## Gastly
+**Removed:** Drill Run, Dual Wingbeat.
 
-**Newly available (32):** Bide, Dazzling Gleam, Double Team, Endure, Explosion, Fire Punch, Foul Play, Frustration, Giga Drain, Gunk Shot, Headbutt, Ice Punch, Icy Wind, Infestation, Mega Drain, Mimic, Ominous Wind, Pain Split, Poison Jab, Psych Up, Psywave, Rage, Self-Destruct, Skill Swap, Sludge, Snore, Taunt, Thunder Punch, Torment, Trick, Trick Room, Venoshock.
+- **Removed natural entries:** Drill Run, Dual Wingbeat.
 
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Trick (Lv. 36), Trick Room (Lv. 40).
-- **Egg (Gastly family):** Explosion, Fire Punch, Ice Punch, Psywave, Smog, Thunder Punch, Toxic, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Fire Punch, Headbutt, Ice Punch, Thunder Punch.
-- **Blackthorn tutor:** Bide, Dazzling Gleam, Double Team, Endure, Foul Play, Frustration, Giga Drain, Gunk Shot, Icy Wind, Infestation, Mega Drain, Mimic, Ominous Wind, Pain Split, Phantom Force, Poison Jab, Psych Up, Rage, Self-Destruct, Skill Swap, Snore, Taunt, Torment.
-- **Evolution access:** Sludge.
+### Donphan
 
-## Gengar
+**Added:** Absorb, Spikes.
 
-**Newly available (42):** Bide, Body Slam, Brick Break, Counter, Dazzling Gleam, Double Team, Double-Edge, Dynamic Punch, Endure, Explosion, Foul Play, Frustration, Giga Drain, Giga Impact, Gunk Shot, Icy Wind, Infestation, Mega Drain, Mega Kick, Mega Punch, Metronome, Mimic, Ominous Wind, Pain Split, Poison Jab, Psych Up, Psywave, Rage, Seismic Toss, Self-Destruct, Shadow Claw, Skill Swap, Skull Bash, Sludge, Snore, Submission, Take Down, Torment, Toxic Spikes, Trick, Trick Room, Venoshock.
+**Removed:** Drill Run.
 
-- **Natural/restored level-up:** Nightmare (Lv. 61).
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Toxic Spikes (Lv. 36), Trick (Lv. 44), Trick Room (Lv. 48).
-- **Egg (Gastly family):** Explosion, Fire Punch, Ice Punch, Psywave, Smog, Thunder Punch, Toxic, Will-O-Wisp.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Counter, Dazzling Gleam, Double Team, Double-Edge, Dynamic Punch, Endure, Foul Play, Frustration, Giga Drain, Giga Impact, Gunk Shot, Icy Wind, Infestation, Mega Drain, Mega Kick, Mega Punch, Metronome, Mimic, Ominous Wind, Pain Split, Phantom Force, Poison Jab, Psych Up, Rage, Seismic Toss, Self-Destruct, Shadow Claw, Shadow Punch, Skill Swap, Skull Bash, Snore, Submission, Take Down, Torment.
-- **Evolution access:** Sludge.
+- **Removed natural entries:** Drill Run.
+- **Added Blackthorn lessons:** Absorb, Spikes.
 
-## Geodude
+### Dragapult
 
-**Newly available (26):** Ancient Power, Bide, Body Slam, Brick Break, Counter, Double Team, Dynamic Punch, Earth Power, Endure, Fissure, Flail, Frustration, Gyro Ball, Incinerate, Metronome, Mimic, Rage, Sand Attack, Scary Face, Seismic Toss, Snore, Submission, Sucker Punch, Superpower, Take Down, Thunder Punch.
+**Added:** Frustration, Shadow Claw.
 
-- **Breeding fallback:** Dynamic Punch (Lv. 30).
-- **Egg (Geodude family):** Curse, Dynamic Punch, Endure, Flail, Rock Slide.
-- **TM/HM/elemental tutor:** Thunder Punch.
-- **Blackthorn tutor:** Ancient Power, Bide, Body Slam, Brick Break, Counter, Double Team, Earth Power, Fissure, Frustration, Gyro Ball, Incinerate, Metronome, Mimic, Rage, Sand Attack, Scary Face, Seismic Toss, Snore, Submission, Sucker Punch, Superpower, Take Down.
+**Removed:** Crunch, Defog, Dual Wingbeat, Scale Shot, Taunt, Twister.
 
-## Geodude (Alolan)
+- **Removed natural entries:** Crunch, Defog, Dual Wingbeat, Scale Shot.
+- **Removed family egg entries:** Taunt.
+- **Added Blackthorn lessons:** Frustration, Shadow Claw.
 
-**Newly available (21):** Bide, Body Slam, Brick Break, Bulldoze, Counter, Discharge, Double Team, Earth Power, Flail, Frustration, Gyro Ball, Mud Shot, Mud-Slap, Screech, Seismic Toss, Snore, Superpower, Take Down, Thunder Shock, Volt Switch, Wild Charge.
+### Dragonair
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Wild Charge (Lv. 42).
-- **Egg (Geodude (Alolan) family):** Counter, Curse, Flail, Screech, Zap Cannon.
-- **TM/HM/elemental tutor:** Mud-Slap.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Discharge, Double Team, Earth Power, Frustration, Gyro Ball, Mud Shot, Seismic Toss, Snore, Superpower, Take Down, Thunder Shock, Volt Switch.
+**Added:** Fly, Tackle.
 
-## Girafarig
+**Removed:** None.
 
-**Newly available (31):** Body Slam, Bulldoze, Confuse Ray, Dazzling Gleam, Double Kick, Double Team, Double-Edge, Dream Eater, Endure, Energy Ball, Flash, Foul Play, Frustration, Giga Impact, Hyper Beam, Iron Tail, Low Kick, Mean Look, Mimic, Mirror Coat, Nightmare, Psych Up, Psyshock, Rain Dance, Razor Wind, Recycle, Signal Beam, Skill Swap, Snore, Sucker Punch, Trick.
+- **Added Blackthorn lessons:** Fly, Tackle.
 
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Trick (Lv. 34), Body Slam (Lv. 44), Dream Eater (Lv. 50), Double-Edge (Lv. 56), Giga Impact (Lv. 58).
-- **Egg (Girafarig family):** Double Kick, Mean Look, Mirror Coat, Psych Up, Razor Wind, Skill Swap.
-- **TM/HM/elemental tutor:** Energy Ball, Flash, Hyper Beam, Rain Dance.
-- **Blackthorn tutor:** Bulldoze, Confuse Ray, Dazzling Gleam, Double Team, Endure, Foul Play, Frustration, Iron Tail, Low Kick, Mimic, Nightmare, Psyshock, Recycle, Snore, Sucker Punch.
+### Dragonite
 
-## Glaceon
+**Added:** Tackle, Vacuum Wave, Whirlwind.
 
-**Newly available (28):** Aqua Tail, Avalanche, Bide, Body Slam, Dig, Double Kick, Double Team, Focus Energy, Frustration, Giga Impact, Hail, Haze, Icicle Spear, Iron Tail, Mimic, Mud Shot, Pay Day, Rage, Reflect, Roar, Rock Smash, Signal Beam, Sing, Skull Bash, Snore, Strength, Triple Axel, Water Pulse.
+**Removed:** Drain Punch.
 
-- **Natural/restored level-up:** Hail (Lv. 35).
-- **Egg (Eevee family):** Charm, Curse, Double Kick, Mud-Slap.
-- **TM/HM/elemental tutor:** Dig, Roar, Rock Smash, Strength.
-- **Blackthorn tutor:** Aqua Tail, Avalanche, Bide, Double Team, Focus Energy, Frustration, Giga Impact, Haze, Ice Fang, Icicle Spear, Iron Tail, Mimic, Mud Shot, Pay Day, Rage, Reflect, Signal Beam, Sing, Snore, Triple Axel, Water Pulse.
-- **Evolution access:** Body Slam, Skull Bash.
+- **Removed machine flags:** Drain Punch.
+- **Added Blackthorn lessons:** Tackle, Vacuum Wave, Whirlwind.
 
-## Gligar
+### Drakloak
 
-**Newly available (41):** Aerial Ace, Aqua Tail, Brick Break, Bug Bite, Crunch, Dark Pulse, Detect, Dig, Double Team, Dream Eater, Earth Power, Endure, False Swipe, Fire Fang, Frustration, Gunk Shot, Ice Fang, Iron Tail, Lunge, Mimic, Poison Jab, Poison Tail, Rain Dance, Rock Polish, Rock Slide, Rock Tomb, Scale Shot, Scary Face, Sky Uppercut, Snore, Spikes, Stealth Rock, Steel Wing, Stone Edge, Struggle Bug, Take Down, Taunt, Thunder Fang, Torment, Toxic Spikes, Venoshock.
+**Added:** Frustration.
 
-- **Natural/restored level-up:** Poison Tail (Lv. 19), Sky Uppercut (Lv. 45).
-- **Thematic level-up (custom):** Spikes (Lv. 38), Stealth Rock (Lv. 40).
-- **Egg (Gligar family):** Night Slash, Poison Tail, Wing Attack.
-- **TM/HM/elemental tutor:** Dig, Rain Dance, Rock Tomb, Steel Wing.
-- **Blackthorn tutor:** Aerial Ace, Aqua Tail, Brick Break, Bug Bite, Crunch, Dark Pulse, Detect, Double Team, Dream Eater, Earth Power, Endure, False Swipe, Fire Fang, Frustration, Gunk Shot, Ice Fang, Iron Tail, Lunge, Mimic, Poison Jab, Rock Polish, Rock Slide, Scale Shot, Scary Face, Snore, Stone Edge, Struggle Bug, Take Down, Taunt, Thunder Fang, Torment, Toxic Spikes, Venoshock.
+**Removed:** Defog, Dragon Breath, Dragon Claw, Dual Wingbeat, Scale Shot, Swagger, Taunt, Twister.
 
-## Glimmet
+- **Removed natural entries:** Defog, Dragon Breath, Dual Wingbeat, Scale Shot.
+- **Removed machine flags:** Dragon Claw, Swagger.
+- **Removed family egg entries:** Taunt.
+- **Added Blackthorn lessons:** Frustration.
 
-**Newly available (9):** Confuse Ray, Dazzling Gleam, Endure, Explosion, Gunk Shot, Iron Defense, Rain Dance, Stone Edge, Sunny Day.
+### Dratini
 
-- **Thematic level-up (custom):** Iron Defense (Lv. 34).
-- **Egg (Glimmet family):** Explosion, Toxic.
-- **TM/HM/elemental tutor:** Rain Dance, Sunny Day.
-- **Blackthorn tutor:** Confuse Ray, Dazzling Gleam, Endure, Gunk Shot, Rock Slide, Stone Edge.
+**Added:** Tackle.
 
-## Glimmora
+**Removed:** None.
 
-**Newly available (11):** Confuse Ray, Dazzling Gleam, Endure, Explosion, Giga Impact, Gunk Shot, Iron Defense, Rain Dance, Solar Beam, Stone Edge, Sunny Day.
+- **Added Blackthorn lessons:** Tackle.
 
-- **Thematic level-up (custom):** Iron Defense (Lv. 38).
-- **Egg (Glimmet family):** Explosion, Toxic.
-- **TM/HM/elemental tutor:** Rain Dance, Solar Beam, Sunny Day.
-- **Blackthorn tutor:** Confuse Ray, Dazzling Gleam, Endure, Giga Impact, Gunk Shot, Head Smash, Rock Slide, Stone Edge.
+### Dreepy
 
-## Gliscor
+**Added:** None.
 
-**Newly available (34):** Aerial Ace, Aqua Tail, Brick Break, Bug Bite, Crunch, Dark Pulse, Detect, Double Team, Dream Eater, Earth Power, Endure, False Swipe, Frustration, Giga Impact, Gunk Shot, Iron Tail, Lunge, Mimic, Poison Tail, Rain Dance, Rock Polish, Rock Slide, Scale Shot, Scary Face, Sky Attack, Sky Uppercut, Snore, Spikes, Stone Edge, Struggle Bug, Take Down, Torment, Toxic Spikes, Venoshock.
+**Removed:** Agility, Dragon Breath, Dragon Claw, Dragon Pulse, Dual Wingbeat, Fire Blast, Flamethrower, Hex, Hidden Power, Phantom Force, Return, Scale Shot, Shadow Ball, Swagger, Taunt, Thunderbolt, Twister, Will-O-Wisp.
 
-- **Natural/restored level-up:** Sky Uppercut (Lv. 45).
-- **Thematic level-up (custom):** Spikes (Lv. 38), Sky Attack (Lv. 56).
-- **Egg (Gligar family):** Night Slash, Poison Tail, Wing Attack.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Aqua Tail, Brick Break, Bug Bite, Crunch, Dark Pulse, Detect, Double Team, Dream Eater, Earth Power, Endure, False Swipe, Frustration, Giga Impact, Gunk Shot, Iron Tail, Lunge, Mimic, Rock Polish, Rock Slide, Scale Shot, Scary Face, Snore, Stone Edge, Struggle Bug, Take Down, Torment, Toxic Spikes, Venoshock.
+- **Removed natural entries:** Agility, Dragon Breath, Dual Wingbeat, Hex, Phantom Force, Scale Shot, Twister.
+- **Removed machine flags:** Dragon Claw, Dragon Pulse, Fire Blast, Flamethrower, Hidden Power, Return, Shadow Ball, Swagger, Thunderbolt, Will-O-Wisp.
+- **Removed family egg entries:** Taunt.
 
-## Gloom
+### Drifblim
 
-**Newly available (21):** Bide, Charm, Dazzling Gleam, Double Team, Double-Edge, Drain Punch, Endure, Frustration, Headbutt, Infestation, Leaf Storm, Leech Seed, Magical Leaf, Mimic, Petal Blizzard, Rage, Reflect, Seed Bomb, Snore, Take Down, Venoshock.
+**Added:** Confusion, Extrasensory, Flamethrower, Seismic Toss.
 
-- **Natural/restored level-up:** Petal Blizzard (Lv. 49).
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Venoshock (Lv. 20), Seed Bomb (Lv. 42), Leaf Storm (Lv. 56).
-- **Egg (Oddish family):** Charm, Leech Seed.
-- **TM/HM/elemental tutor:** Drain Punch, Headbutt.
-- **Blackthorn tutor:** Bide, Dazzling Gleam, Double Team, Double-Edge, Endure, Frustration, Infestation, Mimic, Rage, Reflect, Snore, Take Down.
+**Removed:** Bounce, Dual Wingbeat, Steel Wing, Strength.
 
-## Golbat
+- **Removed natural entries:** Bounce, Dual Wingbeat.
+- **Removed machine flags:** Steel Wing, Strength.
+- **Added Blackthorn lessons:** Confusion, Extrasensory, Flamethrower, Seismic Toss.
 
-**Newly available (32):** Acrobatics, Aerial Ace, Agility, Air Cutter, Bide, Defog, Detect, Double Team, Double-Edge, Endure, Fly, Frustration, Giga Drain, Giga Impact, Headbutt, Heat Wave, Mega Drain, Mimic, Ominous Wind, Rage, Rain Dance, Razor Wind, Roost, Shadow Ball, Sludge Bomb, Snore, Super Fang, Take Down, Taunt, Torment, Twister, U-turn.
+### Drifloon
 
-- **Natural/restored level-up:** Air Cutter (Lv. 27), Acrobatics (Lv. 33).
-- **Thematic level-up (custom):** Roost (Lv. 34), Heat Wave (Lv. 42).
-- **Egg (Zubat family):** Brave Bird, Curse, Defog, Giga Drain, Hypnosis, Nasty Plot, Steel Wing, Wing Attack, Zen Headbutt.
-- **TM/HM/elemental tutor:** Fly, Headbutt, Rain Dance, Shadow Ball, Sludge Bomb.
-- **Blackthorn tutor:** Aerial Ace, Agility, Bide, Detect, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Mega Drain, Mimic, Ominous Wind, Rage, Razor Wind, Snore, Super Fang, Take Down, Taunt, Torment, Twister, U-turn.
+**Added:** Confusion, Extrasensory, Seismic Toss.
 
-## Goldeen
+**Removed:** Bounce, Steel Wing.
 
-**Newly available (24):** Bide, Bounce, Bubble Beam, Double Team, Double-Edge, Drill Run, Endure, Flip Turn, Frustration, Fury Cutter, Hail, Headbutt, Icy Wind, Mimic, Mud-Slap, Poison Jab, Rage, Scald, Scale Shot, Snore, Swords Dance, Take Down, Water Gun, Whirlpool.
+- **Removed natural entries:** Bounce.
+- **Removed machine flags:** Steel Wing.
+- **Added Blackthorn lessons:** Confusion, Extrasensory, Seismic Toss.
 
-- **Thematic level-up (custom):** Flip Turn (Lv. 18), Scald (Lv. 42).
-- **Egg (Goldeen family):** Aqua Tail, Body Slam, Hydro Pump, Mud-Slap.
-- **TM/HM/elemental tutor:** Fury Cutter, Headbutt, Mud-Slap, Whirlpool.
-- **Blackthorn tutor:** Bide, Bounce, Bubble Beam, Double Team, Double-Edge, Drill Run, Endure, Frustration, Hail, Icy Wind, Mimic, Poison Jab, Rage, Scale Shot, Snore, Swords Dance, Take Down, Water Gun.
+### Drilbur
 
-## Golduck
+**Added:** Agility, Leer, Tackle.
 
-**Newly available (41):** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Calm Mind, Charm, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Hail, Haze, Icy Wind, Iron Tail, Liquidation, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Pay Day, Psyshock, Rage, Seismic Toss, Shadow Claw, Signal Beam, Skill Swap, Skull Bash, Snore, Submission, Take Down, Taunt, Thief, Vacuum Wave.
+**Removed:** Superpower, Thrash.
 
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Calm Mind (Lv. 36), Skill Swap (Lv. 40), Liquidation (Lv. 44).
-- **Egg (Psyduck family):** Cross Chop, Future Sight, Hypnosis, Psychic.
-- **TM/HM/elemental tutor:** Thief.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Charm, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Hail, Haze, Icy Wind, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Pay Day, Psyshock, Rage, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Take Down, Taunt, Vacuum Wave.
+- **Removed family egg entries:** Superpower, Thrash.
+- **Added Blackthorn lessons:** Agility, Leer, Tackle.
 
-## Golem
+### Drowzee
 
-**Newly available (26):** Ancient Power, Bide, Body Slam, Brick Break, Counter, Double Team, Dynamic Punch, Earth Power, Endure, Fissure, Flail, Focus Blast, Frustration, Giga Impact, Incinerate, Mega Kick, Metronome, Mimic, Rage, Sand Attack, Scary Face, Seismic Toss, Snore, Submission, Sucker Punch, Take Down.
+**Added:** Amnesia.
 
-- **Egg (Geodude family):** Curse, Dynamic Punch, Endure, Flail, Rock Slide.
-- **Blackthorn tutor:** Ancient Power, Bide, Body Slam, Brick Break, Counter, Double Team, Earth Power, Fissure, Focus Blast, Frustration, Giga Impact, Incinerate, Mega Kick, Metronome, Mimic, Rage, Sand Attack, Scary Face, Seismic Toss, Snore, Submission, Sucker Punch, Take Down.
+**Removed:** None.
 
-## Golem (Alolan)
+- **Added Blackthorn lessons:** Amnesia.
 
-**Newly available (22):** Bide, Brick Break, Bulldoze, Counter, Discharge, Double Team, Earth Power, Flail, Focus Blast, Frustration, Giga Impact, Iron Head, Metronome, Mud Shot, Mud-Slap, Scary Face, Screech, Seismic Toss, Snore, Superpower, Take Down, Thunder Shock.
+### Dudunsparce
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 18).
-- **Egg (Geodude (Alolan) family):** Counter, Curse, Flail, Screech, Zap Cannon.
-- **TM/HM/elemental tutor:** Iron Head, Mud-Slap.
-- **Blackthorn tutor:** Bide, Brick Break, Discharge, Double Team, Earth Power, Focus Blast, Frustration, Giga Impact, Metronome, Mud Shot, Scary Face, Seismic Toss, Snore, Superpower, Take Down, Thunder Shock.
+**Added:** Dazzling Gleam, Draco Meteor, Fury Attack, Horn Drill.
 
-## Golett
+**Removed:** Cross Poison, Dragon Breath, Dragon Claw, Foul Play, Iron Head, Swift, Work Up.
 
-**Newly available (33):** Body Slam, Brick Break, Confuse Ray, Double Team, Double-Edge, Earth Power, Endure, Flash, Focus Blast, Frustration, Gyro Ball, Hammer Arm, Hex, Ice Beam, Icy Wind, Low Kick, Low Sweep, Magnitude, Psych Up, Psychic, Rain Dance, Rock Polish, Rock Slide, Rock Smash, Safeguard, Self-Destruct, Signal Beam, Snore, Strength, Sunny Day, Superpower, Take Down, Thief.
+- **Removed natural entries:** Cross Poison, Dragon Breath, Foul Play, Work Up.
+- **Removed machine flags:** Dragon Claw, Iron Head, Swift, Work Up.
+- **Added Blackthorn lessons:** Dazzling Gleam, Draco Meteor, Fury Attack, Horn Drill.
 
-- **Natural/restored level-up:** Magnitude (Lv. 30), Hammer Arm (Lv. 48).
-- **TM/HM/elemental tutor:** Flash, Ice Beam, Psychic, Rain Dance, Rock Smash, Strength, Sunny Day, Thief.
-- **Blackthorn tutor:** Body Slam, Brick Break, Confuse Ray, Double Team, Double-Edge, Earth Power, Endure, Focus Blast, Frustration, Gyro Ball, Hex, Icy Wind, Low Kick, Low Sweep, Psych Up, Rock Polish, Rock Slide, Safeguard, Self-Destruct, Signal Beam, Snore, Superpower, Take Down.
+### Dugtrio
 
-## Golisopod
+**Added:** False Swipe.
 
-**Newly available (35):** Aerial Ace, Blizzard, Bug Buzz, Close Combat, Dark Pulse, Double Team, Drill Run, False Swipe, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Iron Defense, Iron Head, Leech Life, Metal Claw, Mud Shot, Pain Split, Poison Jab, Psych Up, Rock Slide, Rock Tomb, Rollout, Scald, Screech, Shadow Claw, Sludge Bomb, Snarl, Snore, Swift, Taunt, Venoshock, Water Pulse, X-Scissor.
+**Removed:** Drill Run.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 12), Iron Defense (Lv. 20).
-- **Thematic level-up (custom):** Leech Life (Lv. 42), X-Scissor (Lv. 46).
-- **Egg (Wimpod family):** Aqua Jet, Metal Claw, Rollout, Spikes.
-- **TM/HM/elemental tutor:** Blizzard, Iron Head, Rock Tomb, Sludge Bomb, Swift.
-- **Blackthorn tutor:** Aerial Ace, Bug Buzz, Close Combat, Dark Pulse, Double Team, Drill Run, False Swipe, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Pain Split, Poison Jab, Psych Up, Rock Slide, Scald, Screech, Shadow Claw, Snarl, Snore, Taunt, Venoshock, Water Pulse.
+- **Removed natural entries:** Drill Run.
+- **Added Blackthorn lessons:** False Swipe.
 
-## Golurk
+### Dunsparce
 
-**Newly available (38):** Body Press, Body Slam, Brick Break, Confuse Ray, Double Team, Double-Edge, Earth Power, Endure, Flash, Focus Blast, Frustration, Giga Impact, Gyro Ball, Heat Crash, Hex, Ice Beam, Icy Wind, Low Kick, Low Sweep, Magnitude, Psych Up, Psychic, Rain Dance, Rock Polish, Rock Slide, Rock Smash, Safeguard, Self-Destruct, Signal Beam, Snore, Solar Beam, Stone Edge, Sunny Day, Superpower, Take Down, Thief, Thunderbolt, Trick.
+**Added:** Draco Meteor, Fury Attack, Horn Drill.
 
-- **Natural/restored level-up:** Rollout (Lv. 9), Iron Defense (Lv. 28), Magnitude (Lv. 30).
-- **Thematic level-up (custom):** Trick (Lv. 34), Body Press (Lv. 38).
-- **TM/HM/elemental tutor:** Flash, Ice Beam, Psychic, Rain Dance, Rock Smash, Solar Beam, Sunny Day, Thief, Thunderbolt.
-- **Blackthorn tutor:** Body Slam, Brick Break, Confuse Ray, Double Team, Double-Edge, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Gyro Ball, Heat Crash, Hex, Icy Wind, Low Kick, Low Sweep, Psych Up, Rock Polish, Rock Slide, Safeguard, Self-Destruct, Signal Beam, Snore, Stone Edge, Superpower, Take Down.
+**Removed:** Dragon Breath, Iron Head, Work Up.
 
-## Gorochu
+- **Removed natural entries:** Dragon Breath, Work Up.
+- **Removed machine flags:** Iron Head, Work Up.
+- **Added Blackthorn lessons:** Draco Meteor, Fury Attack, Horn Drill.
 
-**Newly available (36):** Bide, Body Slam, Brick Break, Calm Mind, Counter, Defense Curl, Detect, Dig, Discharge, Double-Edge, Draining Kiss, Dynamic Punch, Endure, Flail, Frustration, Giga Impact, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Present, Rage, Rock Smash, Rollout, Safeguard, Seismic Toss, Signal Beam, Sing, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Yawn.
+### Duraludon
 
-- **Thematic level-up (custom):** Discharge (Lv. 44).
-- **Egg (Pichu family):** Bide, Disarming Voice, Endure, Flail, Present, Thunder Punch.
-- **Evolution access:** Body Slam, Brick Break, Calm Mind, Counter, Defense Curl, Detect, Dig, Double-Edge, Draining Kiss, Dynamic Punch, Frustration, Giga Impact, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Rage, Rock Smash, Rollout, Safeguard, Seismic Toss, Signal Beam, Sing, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Yawn.
+**Added:** None.
 
-## Gorotora
+**Removed:** Curse, Dig, Dragon Breath, Earthquake, Hammer Arm, Hidden Power, Return, Sandstorm, Scale Shot, Strength, Swagger, Toxic.
 
-**Newly available (2):** Discharge, Slack Off.
+- **Removed natural entries:** Dragon Breath, Hammer Arm, Scale Shot.
+- **Removed machine flags:** Curse, Dig, Earthquake, Hidden Power, Return, Sandstorm, Strength, Swagger, Toxic.
 
-- **Thematic level-up (custom):** Discharge (Lv. 44).
-- **Evolution access:** Slack Off.
+### Dusclops
 
-## Granbull
+**Added:** Absorb.
 
-**Newly available (44):** Body Slam, Brick Break, Bulldoze, Counter, Dazzling Gleam, Defense Curl, Detect, Dig, Double Team, Dynamic Punch, Earthquake, Encore, Endure, Fire Blast, Flamethrower, Focus Blast, Frustration, Giga Impact, Hyper Voice, Incinerate, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Mimic, Overheat, Present, Rage, Reversal, Rock Slide, Rock Tomb, Seismic Toss, Snarl, Snore, Solar Beam, Spite, Stone Edge, Superpower, Take Down, Taunt, Torment, Water Pulse, Wild Charge.
+**Removed:** Shadow Claw.
 
-- **Natural/restored level-up:** Rage (Lv. 35), Take Down (Lv. 43).
-- **Egg (Snubbull family):** Close Combat, Counter, Crunch, Double-Edge, Fire Fang, Heal Bell, Ice Fang, Mimic, Present, Snore, Thunder Fang.
-- **TM/HM/elemental tutor:** Dig, Earthquake, Fire Blast, Flamethrower, Rock Tomb, Solar Beam.
-- **Blackthorn tutor:** Body Slam, Brick Break, Bulldoze, Dazzling Gleam, Defense Curl, Detect, Double Team, Dynamic Punch, Encore, Endure, Focus Blast, Frustration, Giga Impact, Hyper Voice, Incinerate, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Overheat, Reversal, Rock Slide, Seismic Toss, Snarl, Spite, Stone Edge, Superpower, Taunt, Torment, Water Pulse, Wild Charge.
+- **Removed natural entries:** Shadow Claw.
+- **Added Blackthorn lessons:** Absorb.
 
-## Graveler
+### Dusknoir
 
-**Newly available (28):** Ancient Power, Bide, Body Press, Body Slam, Brick Break, Counter, Double Team, Dynamic Punch, Earth Power, Endure, Fissure, Flail, Focus Blast, Frustration, Incinerate, Iron Head, Metronome, Mimic, Rage, Sand Attack, Scary Face, Seismic Toss, Snore, Submission, Sucker Punch, Superpower, Take Down, Thunder Punch.
+**Added:** Absorb, Drain Punch.
 
-- **Thematic level-up (custom):** Body Press (Lv. 40).
-- **Egg (Geodude family):** Curse, Dynamic Punch, Endure, Flail, Rock Slide.
-- **TM/HM/elemental tutor:** Iron Head, Thunder Punch.
-- **Blackthorn tutor:** Ancient Power, Bide, Body Slam, Brick Break, Counter, Double Team, Earth Power, Fissure, Focus Blast, Frustration, Incinerate, Metronome, Mimic, Rage, Sand Attack, Scary Face, Seismic Toss, Snore, Submission, Sucker Punch, Superpower, Take Down.
+**Removed:** Shadow Claw.
 
-## Graveler (Alolan)
+- **Removed natural entries:** Shadow Claw.
+- **Added Blackthorn lessons:** Absorb, Drain Punch.
 
-**Newly available (21):** Bide, Brick Break, Bulldoze, Counter, Discharge, Double Team, Earth Power, Flail, Focus Blast, Frustration, Metronome, Mud Shot, Mud-Slap, Scary Face, Screech, Seismic Toss, Snore, Superpower, Take Down, Thunder Shock, Volt Switch.
+### Duskull
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 18).
-- **Egg (Geodude (Alolan) family):** Counter, Curse, Flail, Screech, Zap Cannon.
-- **TM/HM/elemental tutor:** Mud-Slap.
-- **Blackthorn tutor:** Bide, Brick Break, Discharge, Double Team, Earth Power, Focus Blast, Frustration, Metronome, Mud Shot, Scary Face, Seismic Toss, Snore, Superpower, Take Down, Thunder Shock, Volt Switch.
+**Added:** Absorb.
 
-## Grimer
+**Removed:** Shadow Punch.
 
-**Newly available (31):** Bide, Body Slam, Confuse Ray, Dig, Double Team, Dynamic Punch, Endure, Frustration, Giga Drain, Headbutt, Hex, Incinerate, Infestation, Mega Drain, Metronome, Mimic, Mud Shot, Pain Split, Rage, Rain Dance, Rock Slide, Rock Tomb, Sandstorm, Self-Destruct, Shadow Ball, Snore, Strength, Take Down, Taunt, Torment, Venoshock.
+- **Removed natural entries:** Shadow Punch.
+- **Added Blackthorn lessons:** Absorb.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 18).
-- **Egg (Grimer family):** Curse, Shadow Sneak.
-- **TM/HM/elemental tutor:** Dig, Headbutt, Rain Dance, Rock Tomb, Sandstorm, Shadow Ball, Strength.
-- **Blackthorn tutor:** Bide, Body Slam, Confuse Ray, Double Team, Dynamic Punch, Endure, Frustration, Giga Drain, Hex, Incinerate, Infestation, Mega Drain, Metronome, Mimic, Pain Split, Rage, Rock Slide, Self-Destruct, Snore, Take Down, Taunt, Torment, Venoshock.
+### Eevee
 
-## Grimer (Alolan)
+**Added:** Disarming Voice, Grass Knot, Growth.
 
-**Newly available (36):** Body Slam, Brick Break, Dark Pulse, Double Team, Endure, Explosion, Frustration, Giga Drain, Giga Impact, Headbutt, Hex, Hyper Beam, Infestation, Mega Drain, Metronome, Mud Shot, Mud-Slap, Pain Split, Poison Jab, Pursuit, Recycle, Rock Polish, Rock Slide, Rock Tomb, Sandstorm, Self-Destruct, Snarl, Snore, Stone Edge, Swift, Take Down, Taunt, Thunder, Thunderbolt, Torment, Venoshock.
+**Removed:** Iron Head.
 
-- **Thematic level-up (custom):** Poison Jab (Lv. 42).
-- **Egg (Grimer (Alolan) family):** Curse, Pursuit, Recycle, Shadow Sneak.
-- **TM/HM/elemental tutor:** Headbutt, Hyper Beam, Mud-Slap, Rock Tomb, Sandstorm, Swift, Thunder, Thunderbolt.
-- **Blackthorn tutor:** Body Slam, Brick Break, Dark Pulse, Double Team, Endure, Explosion, Frustration, Giga Drain, Giga Impact, Hex, Infestation, Mega Drain, Metronome, Mud Shot, Pain Split, Rock Polish, Rock Slide, Self-Destruct, Snarl, Snore, Stone Edge, Take Down, Taunt, Torment, Venoshock.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Disarming Voice, Grass Knot, Growth.
 
-## Grimmsnarl
+### Ekans
 
-**Newly available (20):** Body Press, Body Slam, Crunch, Dazzling Gleam, Endure, Focus Blast, Focus Energy, Giga Impact, Leech Life, Low Kick, Mega Kick, Mega Punch, Metronome, Power Whip, Scary Face, Shadow Claw, Snore, Superpower, Take Down, Trick.
+**Added:** Ice Fang, Tackle, Thunder Fang.
 
-- **Natural/restored level-up:** Fake Out (Lv. 1), Torment (Lv. 28).
-- **Thematic level-up (custom):** Crunch (Lv. 44).
-- **Blackthorn tutor:** Body Press, Body Slam, Endure, Focus Blast, Focus Energy, Giga Impact, Leech Life, Low Kick, Mega Kick, Mega Punch, Metronome, Power Whip, Scary Face, Shadow Claw, Snore, Superpower, Take Down, Trick.
-- **Evolution access:** Dazzling Gleam.
+**Removed:** Dragon Tail, Energy Ball.
 
-## Growlithe
+- **Removed natural entries:** Dragon Tail.
+- **Removed machine flags:** Energy Ball.
+- **Added Blackthorn lessons:** Ice Fang, Tackle, Thunder Fang.
 
-**Newly available (28):** Aerial Ace, Bide, Charm, Close Combat, Double Kick, Double Team, Double-Edge, Dragon Breath, Dragon Rage, Endure, Flame Charge, Frustration, Heat Wave, Iron Tail, Mimic, Mud-Slap, Overheat, Rage, Raging Fury, Reflect, Scary Face, Skull Bash, Snarl, Snore, Strength, Thief, Thunder Fang, Wild Charge.
+### Electabuzz
 
-- **Natural/restored level-up:** Heat Wave (Lv. 41).
-- **Thematic level-up (custom):** Overheat (Lv. 56).
-- **Egg (Growlithe family):** Close Combat, Crunch, Double Kick, Double-Edge, Flare Blitz, Heat Wave, Iron Tail, Raging Fury.
-- **TM/HM/elemental tutor:** Mud-Slap, Strength, Thief.
-- **Blackthorn tutor:** Aerial Ace, Bide, Charm, Double Team, Dragon Breath, Dragon Rage, Endure, Flame Charge, Frustration, Mimic, Rage, Reflect, Scary Face, Skull Bash, Snarl, Snore, Thunder Fang, Wild Charge.
+**Added:** Dizzy Punch, Pursuit, Spark.
 
-## Growlithe (Hisuian)
+**Removed:** Crunch, Drain Punch, Iron Head, Nuzzle.
 
-**Newly available (14):** Agility, Close Combat, Double Kick, Endure, Flame Charge, Flame Wheel, Heat Wave, Overheat, Rock Blast, Scary Face, Stealth Rock, Take Down, Thunder Fang, Wild Charge.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Removed family egg entries:** Crunch.
+- **Added Blackthorn lessons:** Dizzy Punch, Pursuit, Spark.
 
-- **Natural/restored level-up:** Flame Wheel (Lv. 12), Take Down (Lv. 36).
-- **Thematic level-up (custom):** Rock Blast (Lv. 34), Stealth Rock (Lv. 38), Heat Wave (Lv. 42), Overheat (Lv. 56).
-- **Egg (Growlithe (Hisuian) family):** Double Kick, Double-Edge.
-- **Blackthorn tutor:** Agility, Close Combat, Endure, Flame Charge, Scary Face, Thunder Fang, Wild Charge.
+### Electivire
 
-## Grubbin
+**Added:** Dizzy Punch, Pursuit, Spark.
 
-**Newly available (16):** Acrobatics, Baton Pass, Discharge, Double Team, Endure, Frustration, Harden, Lunge, Poison Jab, Rain Dance, Screech, Snore, Struggle Bug, Take Down, Thunderbolt, Wild Charge.
+**Removed:** Crunch, Iron Head, Nuzzle.
 
-- **Natural/restored level-up:** Acrobatics (Lv. 19), Sticky Web (Lv. 25).
-- **Egg (Grubbin family):** Discharge, Endure, Harden.
-- **TM/HM/elemental tutor:** Rain Dance, Thunderbolt.
-- **Blackthorn tutor:** Baton Pass, Double Team, Frustration, Lunge, Poison Jab, Screech, Snore, Struggle Bug, Take Down, Wild Charge.
+- **Removed machine flags:** Iron Head.
+- **Removed family egg entries:** Crunch.
+- **Added Blackthorn lessons:** Dizzy Punch, Pursuit, Spark.
 
-## Grumpig
+### Electrode
 
-**Newly available (50):** Body Press, Body Slam, Brick Break, Bulldoze, Counter, Dazzling Gleam, Dig, Double Team, Double-Edge, Drain Punch, Dream Eater, Dynamic Punch, Earth Power, Endure, Energy Ball, Fire Punch, Focus Blast, Frustration, Giga Impact, Headbutt, Heal Bell, Hyper Voice, Ice Punch, Icy Wind, Iron Tail, Low Kick, Low Sweep, Lunge, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Mud-Slap, Night Shade, Psyshock, Rain Dance, Recycle, Seed Bomb, Seismic Toss, Signal Beam, Snarl, Sunny Day, Swift, Take Down, Thief, Thunder Punch, Thunderbolt, Torment, Trick Room.
+**Added:** Bug Buzz, Energy Ball.
 
-- **Natural/restored level-up:** Psyshock (Lv. 42).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Trick Room (Lv. 34), Dream Eater (Lv. 50).
-- **Egg (Spoink family):** Endure, Extrasensory, Future Sight, Mirror Coat, Substitute, Trick, Zen Headbutt.
-- **TM/HM/elemental tutor:** Dig, Drain Punch, Energy Ball, Fire Punch, Headbutt, Ice Punch, Mud-Slap, Rain Dance, Sunny Day, Swift, Thief, Thunder Punch.
-- **Blackthorn tutor:** Body Press, Body Slam, Bounce, Brick Break, Bulldoze, Counter, Dazzling Gleam, Double Team, Double-Edge, Dynamic Punch, Earth Power, Focus Blast, Frustration, Giga Impact, Heal Bell, Hyper Voice, Icy Wind, Iron Tail, Low Kick, Low Sweep, Lunge, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Night Shade, Recycle, Seed Bomb, Seismic Toss, Snarl, Take Down, Thunderbolt, Torment.
+**Removed:** Nuzzle, Recover, Rock Tomb.
 
-## Gurdurr
+- **Removed machine flags:** Rock Tomb.
+- **Removed family egg entries:** Nuzzle, Recover.
+- **Added Blackthorn lessons:** Bug Buzz, Energy Ball.
 
-**Newly available (20):** Bide, Close Combat, Comet Punch, Defog, Dig, Double Team, Double-Edge, Focus Blast, Foresight, Frustration, Mega Kick, Mega Punch, Poison Jab, Rain Dance, Reversal, Snore, Sunny Day, Take Down, Taunt, Thief.
+### Elekid
 
-- **Natural/restored level-up:** Bide (Lv. 1).
-- **Thematic level-up (custom):** Close Combat (Lv. 56).
-- **Egg (Timburr family):** Comet Punch, Defog, Drain Punch, Force Palm, Foresight, Reversal.
-- **TM/HM/elemental tutor:** Dig, Rain Dance, Sunny Day, Thief.
-- **Blackthorn tutor:** Double Team, Double-Edge, Focus Blast, Frustration, Mega Kick, Mega Punch, Poison Jab, Snore, Take Down, Taunt.
+**Added:** Dizzy Punch, Pursuit, Spark.
 
-## Gyarados
+**Removed:** Crunch, Drain Punch, Nuzzle.
 
-**Newly available (33):** Avalanche, Bide, Body Slam, Bubble Beam, Bulldoze, Dark Pulse, Double Team, Double-Edge, Dragon Breath, Dragon Rage, Earthquake, Endure, Frustration, Giga Impact, Hail, Icy Wind, Incinerate, Iron Head, Iron Tail, Mimic, Power Whip, Rage, Reflect, Scald, Skull Bash, Snore, Spite, Stone Edge, Sunny Day, Take Down, Torment, Water Gun, Water Pulse.
+- **Removed natural entries:** Nuzzle.
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Crunch.
+- **Added Blackthorn lessons:** Dizzy Punch, Pursuit, Spark.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 36).
-- **TM/HM/elemental tutor:** Earthquake, Iron Head, Sunny Day.
-- **Blackthorn tutor:** Avalanche, Bide, Body Slam, Bubble Beam, Bulldoze, Dark Pulse, Double Team, Double-Edge, Dragon Breath, Endure, Frustration, Giga Impact, Hail, Hurricane, Icy Wind, Incinerate, Iron Tail, Mimic, Power Whip, Rage, Reflect, Scald, Skull Bash, Snore, Spite, Stone Edge, Take Down, Torment, Water Gun, Water Pulse.
+### Entei
 
-## Happiny
+**Added:** None.
 
-**Newly available (20):** Counter, Disarming Voice, Double Team, Drain Punch, Dream Eater, Endure, Frustration, Hail, Hyper Voice, Icy Wind, Incinerate, Mud-Slap, Pound, Present, Psych Up, Recycle, Safeguard, Snore, Take Down, Water Pulse.
+**Removed:** None.
 
-- **Natural/restored level-up:** Pound (Lv. 1), Disarming Voice (Lv. 12).
-- **Thematic level-up (custom):** Hyper Voice (Lv. 42).
-- **Egg (Happiny family):** Counter, Endure, Metronome, Present, Substitute.
-- **TM/HM/elemental tutor:** Drain Punch, Mud-Slap.
-- **Blackthorn tutor:** Double Team, Dream Eater, Frustration, Hail, Icy Wind, Incinerate, Psych Up, Recycle, Safeguard, Snore, Take Down, Water Pulse.
 
-## Haunter
+### Espathra
 
-**Newly available (37):** Bide, Dazzling Gleam, Double Team, Encore, Endure, Explosion, Fire Punch, Focus Blast, Foul Play, Frustration, Giga Drain, Gunk Shot, Headbutt, Ice Punch, Icy Wind, Infestation, Mega Drain, Metronome, Mimic, Ominous Wind, Pain Split, Poison Jab, Psych Up, Psywave, Rage, Self-Destruct, Shadow Claw, Skill Swap, Sludge, Snore, Taunt, Thunder Punch, Torment, Toxic Spikes, Trick, Trick Room, Venoshock.
+**Added:** None.
 
-- **Natural/restored level-up:** Nightmare (Lv. 61).
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Toxic Spikes (Lv. 36), Trick (Lv. 40), Trick Room (Lv. 44).
-- **Egg (Gastly family):** Explosion, Fire Punch, Ice Punch, Psywave, Smog, Thunder Punch, Toxic, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Fire Punch, Headbutt, Ice Punch, Thunder Punch.
-- **Blackthorn tutor:** Bide, Dazzling Gleam, Double Team, Encore, Endure, Focus Blast, Foul Play, Frustration, Giga Drain, Gunk Shot, Icy Wind, Infestation, Mega Drain, Metronome, Mimic, Ominous Wind, Pain Split, Phantom Force, Poison Jab, Psych Up, Rage, Self-Destruct, Shadow Claw, Shadow Punch, Skill Swap, Snore, Taunt, Torment.
-- **Evolution access:** Sludge.
+**Removed:** Air Cutter, Attract, Charm, Curse, Flash, Future Sight, Haze, Hidden Power, Magical Leaf, Return, Swagger, Toxic.
 
-## Haxorus
+- **Removed natural entries:** Air Cutter, Charm.
+- **Removed machine flags:** Attract, Curse, Flash, Hidden Power, Return, Swagger, Toxic.
+- **Removed family egg entries:** Future Sight, Haze, Magical Leaf.
 
-**Newly available (30):** Aerial Ace, Aqua Tail, Body Slam, Brick Break, Bulldoze, Counter, Cut, Dig, Double Team, Double-Edge, Draco Meteor, Dragon Rage, First Impression, Focus Blast, Frustration, Incinerate, Low Kick, Low Sweep, Psycho Cut, Rain Dance, Rock Slide, Shadow Claw, Snarl, Snore, Sunny Day, Surf, Swift, Take Down, Taunt, X-Scissor.
+### Espeon
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 1), Taunt (Lv. 12).
-- **Thematic level-up (custom):** Low Kick (Lv. 20), Brick Break (Lv. 26).
-- **Egg (Axew family):** Aqua Tail, Counter, Dragon Pulse, First Impression, Focus Energy, Night Slash.
-- **TM/HM/elemental tutor:** Cut, Dig, Rain Dance, Sunny Day, Surf, Swift.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Bulldoze, Double Team, Double-Edge, Draco Meteor, Focus Blast, Frustration, Incinerate, Low Sweep, Psycho Cut, Rock Slide, Shadow Claw, Snarl, Snore, Take Down, X-Scissor.
+**Added:** Disarming Voice, Growth, Rock Smash, Safeguard.
 
-## Heracross
+**Removed:** Iron Head, Psycho Cut.
 
-**Newly available (25):** Bide, Body Slam, Bug Buzz, Bulldoze, Detect, Dig, Double Team, False Swipe, Focus Blast, Frustration, Giga Impact, Hyper Beam, Iron Defense, Low Kick, Lunge, Mimic, Rain Dance, Rock Slide, Rock Tomb, Shadow Claw, Snore, Spikes, Struggle Bug, Vacuum Wave, Venoshock.
+- **Removed machine flags:** Iron Head.
+- **Removed fallback lessons:** Psycho Cut.
+- **Added Blackthorn lessons:** Disarming Voice, Growth, Rock Smash, Safeguard.
 
-- **Natural/restored level-up:** Night Slash (Lv. 1).
-- **Thematic level-up (custom):** Low Kick (Lv. 18).
-- **Egg (Heracross family):** Bide, False Swipe, Megahorn, Night Slash, Rock Blast, Take Down.
-- **TM/HM/elemental tutor:** Dig, Hyper Beam, Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Body Slam, Bug Buzz, Bulldoze, Detect, Double Team, Focus Blast, Frustration, Giga Impact, Iron Defense, Lunge, Mimic, Rock Slide, Shadow Claw, Snore, Spikes, Struggle Bug, Vacuum Wave, Venoshock.
+### Excadrill
 
-## Hitmonchan
+**Added:** Agility, Leer, Megahorn, Tackle.
 
-**Newly available (33):** Aura Sphere, Baton Pass, Bide, Body Slam, Bulldoze, Double Team, Double-Edge, Dynamic Punch, Earthquake, Encore, Focus Blast, Frustration, Giga Impact, Leer, Mega Kick, Metronome, Mimic, Poison Jab, Pursuit, Rage, Rain Dance, Rock Slide, Rock Tomb, Scary Face, Seismic Toss, Skull Bash, Sky Uppercut, Snore, Submission, Swords Dance, Take Down, Taunt, Vacuum Wave.
+**Removed:** Flash Cannon, Superpower, Thrash.
 
-- **Natural/restored level-up:** Fake Out (Lv. 1), Pursuit (Lv. 1), Sky Uppercut (Lv. 41), Vacuum Wave (Lv. 41).
-- **Thematic level-up (custom):** Low Kick (Lv. 18), Submission (Lv. 42).
-- **Egg (Tyrogue family):** Endure, Mach Punch, Pursuit, Rapid Spin, Vacuum Wave.
-- **TM/HM/elemental tutor:** Earthquake, Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Aura Sphere, Baton Pass, Bide, Body Slam, Bulldoze, Double Team, Double-Edge, Dynamic Punch, Encore, Focus Blast, Frustration, Giga Impact, Leer, Mega Kick, Metronome, Mimic, Poison Jab, Rage, Rock Slide, Scary Face, Seismic Toss, Skull Bash, Snore, Swords Dance, Take Down, Taunt.
+- **Removed machine flags:** Flash Cannon.
+- **Removed family egg entries:** Superpower, Thrash.
+- **Added Blackthorn lessons:** Agility, Leer, Megahorn, Tackle.
 
-## Hitmonlee
+### Exeggcute
 
-**Newly available (33):** Aura Sphere, Baton Pass, Bide, Blaze Kick, Body Slam, Bounce, Bulldoze, Detect, Double Team, Dynamic Punch, Earthquake, Focus Blast, Frustration, Giga Impact, Lunge, Mega Punch, Metronome, Mimic, Poison Jab, Pursuit, Rage, Rain Dance, Rock Slide, Rock Tomb, Scary Face, Seismic Toss, Skull Bash, Snore, Submission, Swords Dance, Take Down, Taunt, Vacuum Wave.
+**Added:** None.
 
-- **Natural/restored level-up:** Fake Out (Lv. 1), Blaze Kick (Lv. 43).
-- **Thematic level-up (custom):** Submission (Lv. 42).
-- **Egg (Tyrogue family):** Endure, Mach Punch, Pursuit, Rapid Spin, Vacuum Wave.
-- **TM/HM/elemental tutor:** Earthquake, Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Aura Sphere, Baton Pass, Bide, Body Slam, Bounce, Bulldoze, Detect, Double Team, Dynamic Punch, Focus Blast, Frustration, Giga Impact, Lunge, Mega Punch, Metronome, Mimic, Poison Jab, Rage, Rock Slide, Scary Face, Seismic Toss, Skull Bash, Snore, Swords Dance, Take Down, Taunt.
+**Removed:** Magical Leaf, Rock Tomb.
 
-## Hitmontop
+- **Removed natural entries:** Magical Leaf.
+- **Removed machine flags:** Rock Tomb.
+- **Removed family egg entries:** Magical Leaf.
 
-**Newly available (26):** Aerial Ace, Baton Pass, Body Slam, Bulldoze, Double Team, Double-Edge, Drill Run, Earthquake, Focus Blast, Frustration, Giga Impact, Mega Kick, Mega Punch, Mimic, Pursuit, Rain Dance, Reversal, Rock Slide, Rollout, Sandstorm, Seismic Toss, Snore, Take Down, Triple Axel, Twister, Vacuum Wave.
+### Exeggutor
 
-- **Natural/restored level-up:** Fake Out (Lv. 1), Pursuit (Lv. 1).
-- **Thematic level-up (custom):** Low Kick (Lv. 18).
-- **Egg (Tyrogue family):** Endure, Mach Punch, Pursuit, Rapid Spin, Vacuum Wave.
-- **TM/HM/elemental tutor:** Earthquake, Rain Dance, Sandstorm.
-- **Blackthorn tutor:** Aerial Ace, Baton Pass, Body Slam, Bulldoze, Double Team, Double-Edge, Drill Run, Focus Blast, Frustration, Giga Impact, Mega Kick, Mega Punch, Mimic, Reversal, Rock Slide, Rollout, Seismic Toss, Snore, Take Down, Triple Axel, Twister.
+**Added:** None.
 
-## Ho-Oh
+**Removed:** Rock Tomb.
 
-**Newly available (32):** Aerial Ace, Air Cutter, Air Slash, Body Slam, Bulldoze, Detect, Double Team, Double-Edge, Dragon Breath, Dream Eater, Earth Power, Endure, Fire Spin, Flame Charge, Flare Blitz, Frustration, Giga Drain, Giga Impact, Heat Wave, Hurricane, Hyper Voice, Iron Head, Mimic, Nightmare, Ominous Wind, Overheat, Psych Up, Roost, Signal Beam, Snore, Take Down, Twister.
+- **Removed machine flags:** Rock Tomb.
+- **Removed family egg entries:** Magical Leaf.
+- **Added Blackthorn lessons:** Magical Leaf.
 
-- **Natural/restored level-up:** Overheat (Lv. 99).
-- **Thematic level-up (custom):** Air Slash (Lv. 32), Roost (Lv. 36), Earth Power (Lv. 48), Heat Wave (Lv. 52), Hurricane (Lv. 54), Flare Blitz (Lv. 56).
-- **TM/HM/elemental tutor:** Iron Head.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Body Slam, Bulldoze, Detect, Double Team, Double-Edge, Dragon Breath, Dream Eater, Endure, Fire Spin, Flame Charge, Frustration, Giga Drain, Giga Impact, Hyper Voice, Mimic, Nightmare, Ominous Wind, Psych Up, Signal Beam, Snore, Take Down, Twister.
+### Farfetch'd
 
-## Honchkrow
+**Added:** Brick Break, Focus Blast, Hurricane.
 
-**Newly available (32):** Acrobatics, Aerial Ace, Air Cutter, Air Slash, Calm Mind, Confuse Ray, Detect, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Hex, Hurricane, Icy Wind, Incinerate, Mimic, Nightmare, Ominous Wind, Perish Song, Psych Up, Psychic, Pursuit, Rain Dance, Scary Face, Screech, Snore, Spite, Take Down, Twister, U-turn.
+**Removed:** Iron Head.
 
-- **Natural/restored level-up:** Pursuit (Lv. 1).
-- **Thematic level-up (custom):** Air Slash (Lv. 26), Spite (Lv. 38), Hurricane (Lv. 50).
-- **Egg (Murkrow family):** Brave Bird, Confuse Ray, Drill Peck, Feint Attack, Perish Song, Roost, Screech, Wing Attack.
-- **TM/HM/elemental tutor:** Psychic, Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Calm Mind, Detect, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Hex, Icy Wind, Incinerate, Mimic, Nightmare, Ominous Wind, Psych Up, Scary Face, Snore, Take Down, Twister, U-turn.
+- **Removed machine flags:** Iron Head.
+- **Removed family egg entries:** Flail, Foresight, Gust, Mirror Move, Mud-Slap.
+- **Added Blackthorn lessons:** Brick Break, Flail, Focus Blast, Foresight, Gust, Hurricane, Mirror Move.
 
-## Hoothoot
+### Farigiraf
 
-**Newly available (33):** Acrobatics, Aerial Ace, Agility, Air Cutter, Amnesia, Brave Bird, Calm Mind, Confuse Ray, Defog, Detect, Double Team, Double-Edge, Dual Wingbeat, Endure, Frustration, Haze, Heat Wave, Hyper Voice, Mean Look, Mimic, Night Shade, Nightmare, Ominous Wind, Psybeam, Psych Up, Psychic, Rain Dance, Recycle, Screech, Skill Swap, Snore, Spite, Twister.
+**Added:** None.
 
-- **Natural/restored level-up:** Defog (Lv. 15).
-- **Thematic level-up (custom):** Heat Wave (Lv. 44), Hyper Voice (Lv. 46), Brave Bird (Lv. 56), Double-Edge (Lv. 58).
-- **Egg (Hoothoot family):** Agility, Defog, Hurricane, Mean Look, Night Shade.
-- **TM/HM/elemental tutor:** Psychic, Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Amnesia, Calm Mind, Confuse Ray, Detect, Double Team, Dual Wingbeat, Endure, Frustration, Haze, Mimic, Nightmare, Ominous Wind, Psybeam, Psych Up, Recycle, Screech, Skill Swap, Snore, Spite, Twister.
+**Removed:** Psycho Cut.
 
-## Hoppip
+- **Removed natural entries:** Psycho Cut.
 
-**Newly available (21):** Aerial Ace, Baton Pass, Charm, Cotton Guard, Dazzling Gleam, Defense Curl, Double Team, Endure, Frustration, Infestation, Leaf Storm, Lunge, Magical Leaf, Mimic, Psych Up, Rain Dance, Seed Bomb, Snore, Swords Dance, Take Down, Thief.
+### Fearow
 
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Leaf Storm (Lv. 56).
-- **Breeding fallback:** Cotton Guard (Lv. 30).
-- **Egg (Hoppip family):** Cotton Guard, Endure, Psych Up, Seed Bomb.
-- **TM/HM/elemental tutor:** Rain Dance, Thief.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Baton Pass, Bounce, Charm, Dazzling Gleam, Defense Curl, Double Team, Frustration, Infestation, Lunge, Mimic, Snore, Swords Dance, Take Down.
+**Added:** Hurricane, Pay Day, Sonic Boom.
 
-## Horsea
+**Removed:** None.
 
-**Newly available (19):** Bide, Bounce, Double Team, Double-Edge, Dragon Rage, Endure, Flip Turn, Frustration, Hail, Icy Wind, Liquidation, Mimic, Rage, Razor Wind, Scald, Skull Bash, Snore, Splash, Take Down.
+- **Added Blackthorn lessons:** Hurricane, Pay Day, Sonic Boom.
 
-- **Thematic level-up (custom):** Scald (Lv. 42).
-- **Egg (Horsea family):** Aurora Beam, Dragon Breath, Dragon Rage, Octazooka, Outrage, Razor Wind, Splash, Water Pulse.
-- **Blackthorn tutor:** Bide, Bounce, Double Team, Double-Edge, Endure, Flip Turn, Frustration, Hail, Icy Wind, Liquidation, Mimic, Rage, Skull Bash, Snore, Take Down.
+### Feebas
 
-## Houndoom
+**Added:** None.
 
-**Newly available (23):** Body Slam, Charm, Destiny Bond, Detect, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Hyper Voice, Iron Tail, Mimic, Mud Shot, Nightmare, Pain Split, Rage, Rain Dance, Scary Face, Snore, Super Fang, Take Down, Torment.
+**Removed:** Curse, Headbutt.
 
-- **Natural/restored level-up:** Torment (Lv. 35).
-- **Egg (Houndour family):** Beat Up, Destiny Bond, Fire Fang, Nasty Plot, Rage, Sucker Punch, Thunder Fang, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Body Slam, Charm, Detect, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Hyper Voice, Iron Tail, Mimic, Mud Shot, Nightmare, Pain Split, Scary Face, Snore, Super Fang, Take Down.
+- **Removed machine flags:** Curse, Headbutt.
 
-## Houndour
+### Feraligatr
 
-**Newly available (26):** Body Slam, Charm, Destiny Bond, Detect, Double Team, Double-Edge, Dream Eater, Endure, Foul Play, Frustration, Heat Wave, Hyper Voice, Iron Tail, Mimic, Mud Shot, Nightmare, Overheat, Pain Split, Rage, Rain Dance, Scary Face, Snore, Super Fang, Take Down, Taunt, Torment.
+**Added:** Bubble Beam, Dark Pulse, False Swipe, Icicle Spear, Submission, Tackle.
 
-- **Natural/restored level-up:** Torment (Lv. 32), Foul Play (Lv. 40).
-- **Thematic level-up (custom):** Heat Wave (Lv. 42), Overheat (Lv. 58).
-- **Egg (Houndour family):** Beat Up, Destiny Bond, Fire Fang, Nasty Plot, Rage, Sucker Punch, Thunder Fang, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Body Slam, Charm, Detect, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Hyper Voice, Iron Tail, Mimic, Mud Shot, Nightmare, Pain Split, Scary Face, Snore, Super Fang, Take Down, Taunt.
+**Removed:** Flash, Fly, Iron Head.
 
-## Hydrapple
+- **Removed machine flags:** Flash, Fly, Iron Head.
+- **Added Blackthorn lessons:** Bubble Beam, Dark Pulse, False Swipe, Icicle Spear, Submission, Tackle.
 
-**Newly available (17):** Body Press, Body Slam, Bug Bite, Bullet Seed, Double-Edge, Earthquake, Endure, Giga Impact, Gyro Ball, Hydro Pump, Magical Leaf, Outrage, Rain Dance, Recycle, Seed Bomb, Take Down, Yawn.
+### Finizen
 
-- **Natural/restored level-up:** Recycle (Lv. 1), Yawn (Lv. 1), Dragon Tail (Lv. 4).
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Body Press (Lv. 38).
-- **Egg (Applin family):** Defense Curl, Recycle, Rollout.
-- **TM/HM/elemental tutor:** Earthquake, Rain Dance.
-- **Blackthorn tutor:** Body Slam, Bug Bite, Double-Edge, Endure, Giga Impact, Gyro Ball, Hydro Pump, Power Whip, Take Down, Wood Hammer.
-- **Evolution access:** Bullet Seed, Outrage, Seed Bomb.
+**Added:** None.
 
-## Hydreigon
+**Removed:** Attract, Curse, Double Slap, Fake Out, Flip Turn, Headbutt, Hidden Power, Mud-Slap, Play Rough, Return, Super Fang, Swagger, Tackle, Toxic, Whirlpool.
 
-**Newly available (36):** Acrobatics, Aqua Tail, Astonish, Beat Up, Bulldoze, Defog, Double Team, Dragon Rage, Dual Wingbeat, Earthquake, Endure, Fire Spin, Fly, Focus Blast, Frustration, Giga Impact, Head Smash, Hydro Pump, Incinerate, Iron Tail, Psych Up, Rain Dance, Rock Slide, Rock Smash, Rock Tomb, Signal Beam, Snore, Spite, Stealth Rock, Steel Wing, Stone Edge, Sunny Day, Superpower, Take Down, Taunt, Torment.
+- **Removed natural entries:** Double Slap, Flip Turn, Play Rough, Tackle, Whirlpool.
+- **Removed machine flags:** Attract, Curse, Headbutt, Hidden Power, Mud-Slap, Return, Swagger, Toxic, Whirlpool.
+- **Removed family egg entries:** Fake Out, Super Fang.
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 1).
-- **Thematic level-up (custom):** Spite (Lv. 34), Aqua Tail (Lv. 50).
-- **Egg (Deino family):** Astonish, Head Smash.
-- **TM/HM/elemental tutor:** Earthquake, Fly, Rain Dance, Rock Smash, Rock Tomb, Steel Wing, Sunny Day.
-- **Blackthorn tutor:** Acrobatics, Beat Up, Bulldoze, Defog, Double Team, Dual Wingbeat, Endure, Fire Spin, Focus Blast, Frustration, Giga Impact, Hydro Pump, Incinerate, Iron Tail, Psych Up, Rock Slide, Signal Beam, Snore, Stealth Rock, Stone Edge, Superpower, Take Down, Taunt, Torment.
+### Flaaffy
 
-## Hypno
+**Added:** None.
 
-**Newly available (49):** Baton Pass, Belly Drum, Bide, Body Press, Body Slam, Brick Break, Calm Mind, Confuse Ray, Counter, Dazzling Gleam, Double Team, Double-Edge, Draining Kiss, Endure, Focus Blast, Foul Play, Frustration, Giga Impact, Haze, Hex, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Nightmare, Psyshock, Psywave, Rage, Recycle, Safeguard, Scary Face, Seismic Toss, Signal Beam, Skull Bash, Snore, Submission, Swift, Take Down, Taunt, Teleport, Thief, Torment, Tri Attack, Trick, Trick Room, Wish.
+**Removed:** Drain Punch, Iron Head, Nuzzle.
 
-- **Natural/restored level-up:** Nightmare (Lv. 1), Psyshock (Lv. 57).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Calm Mind (Lv. 32), Trick (Lv. 34), Trick Room (Lv. 38).
-- **Egg (Drowzee family):** Fire Punch, Ice Punch, Nasty Plot, Thunder Punch.
-- **TM/HM/elemental tutor:** Swift, Thief.
-- **Blackthorn tutor:** Baton Pass, Belly Drum, Bide, Body Press, Body Slam, Brick Break, Confuse Ray, Counter, Dazzling Gleam, Double Team, Double-Edge, Draining Kiss, Endure, Focus Blast, Foul Play, Frustration, Giga Impact, Haze, Hex, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Psywave, Rage, Recycle, Safeguard, Scary Face, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Torment, Tri Attack, Wish.
+- **Removed natural entries:** Nuzzle.
+- **Removed machine flags:** Drain Punch, Iron Head.
 
-## Igglybuff
+### Flapple
 
-**Newly available (33):** Body Slam, Counter, Dazzling Gleam, Detect, Dig, Double Team, Double-Edge, Dream Eater, Encore, Endure, Frustration, Heal Bell, Hyper Voice, Icy Wind, Incinerate, Mega Kick, Mega Punch, Mimic, Nightmare, Pain Split, Play Rough, Present, Psych Up, Recycle, Rollout, Safeguard, Screech, Seismic Toss, Snore, Swift, Take Down, Water Pulse, Wild Charge.
+**Added:** Frustration.
 
-- **Thematic level-up (custom):** Hyper Voice (Lv. 42), Dazzling Gleam (Lv. 50).
-- **Egg (Igglybuff family):** Present, Rollout.
-- **TM/HM/elemental tutor:** Dig, Swift.
-- **Blackthorn tutor:** Body Slam, Bounce, Counter, Detect, Double Team, Double-Edge, Dream Eater, Encore, Endure, Frustration, Heal Bell, Icy Wind, Incinerate, Mega Kick, Mega Punch, Mimic, Nightmare, Pain Split, Play Rough, Psych Up, Recycle, Safeguard, Screech, Seismic Toss, Snore, Take Down, Water Pulse, Wild Charge.
+**Removed:** Absorb, Apple Acid, Curse, Dragon Claw, Iron Head, Mega Drain, Rock Smash, Rock Tomb, Scale Shot, Strength, Swagger, Swift, Thief, Wood Hammer.
 
-## Impidimp
+- **Removed natural entries:** Recover, Scale Shot, Wood Hammer.
+- **Removed machine flags:** Curse, Dragon Claw, Iron Head, Rock Smash, Rock Tomb, Strength, Swagger, Sweet Scent, Swift, Thief.
+- **Removed family egg entries:** Dragon Tail, Giga Drain, Leech Seed.
+- **Added Blackthorn lessons:** Frustration, Giga Drain.
 
-**Newly available (11):** Dazzling Gleam, Endure, Leech Life, Low Kick, Mega Kick, Mega Punch, Metronome, Scary Face, Snore, Take Down, Trick.
+### Flareon
 
-- **Thematic level-up (custom):** Dazzling Gleam (Lv. 44).
-- **Blackthorn tutor:** Endure, Leech Life, Low Kick, Mega Kick, Mega Punch, Metronome, Scary Face, Snore, Take Down, Trick.
+**Added:** Disarming Voice, Grass Knot, Growth, Rock Slide, Smokescreen, Swords Dance, Taunt, Wild Charge.
 
-## Ivysaur
+**Removed:** Iron Head.
 
-**Newly available (26):** Amnesia, Bide, Bind, Body Slam, Bullet Seed, Charm, Defense Curl, Double Team, Endure, False Swipe, Frustration, Giga Drain, Leaf Storm, Magical Leaf, Mega Drain, Mimic, Outrage, Rage, Reflect, Roar, Rock Smash, Snore, Strength, String Shot, Swords Dance, Venoshock.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Disarming Voice, Grass Knot, Growth, Rock Slide, Smokescreen, Swords Dance, Taunt, Wild Charge.
 
-- **Thematic level-up (custom):** Venoshock (Lv. 24).
-- **Egg (Bulbasaur family):** Amnesia, Charm, Curse, Endure, Giga Drain, Leaf Storm, Magical Leaf, Power Whip, Sludge, Toxic.
-- **TM/HM/elemental tutor:** Roar, Rock Smash, Strength.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bullet Seed, Defense Curl, Double Team, False Swipe, Frustration, Mega Drain, Mimic, Outrage, Rage, Reflect, Snore, String Shot, Swords Dance.
+### Fletchinder
 
-## Ivysaur (Clone)
+**Added:** Vacuum Wave, Wing Attack.
 
-**Newly available (26):** Amnesia, Bide, Bind, Body Slam, Bullet Seed, Charm, Defense Curl, Double Team, Endure, False Swipe, Frustration, Giga Drain, Leaf Storm, Magical Leaf, Mega Drain, Mimic, Outrage, Rage, Reflect, Roar, Rock Smash, Snore, Strength, String Shot, Swords Dance, Venoshock.
+**Removed:** Curse, Headbutt, Pursuit, Sky Attack.
 
-- **Thematic level-up (custom):** Venoshock (Lv. 24).
-- **Egg (Bulbasaur (Clone) family):** Amnesia, Charm, Curse, Endure, Giga Drain, Leaf Storm, Magical Leaf, Power Whip, Sludge, Toxic.
-- **TM/HM/elemental tutor:** Roar, Rock Smash, Strength.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bullet Seed, Defense Curl, Double Team, False Swipe, Frustration, Mega Drain, Mimic, Outrage, Rage, Reflect, Snore, String Shot, Swords Dance.
+- **Removed machine flags:** Curse, Headbutt.
+- **Removed family egg entries:** Pursuit, Sky Attack.
+- **Added Blackthorn lessons:** Vacuum Wave, Wing Attack.
 
-## Jigglypuff
+### Fletchling
 
-**Newly available (53):** Amnesia, Baton Pass, Bide, Body Press, Brick Break, Bubble Beam, Calm Mind, Counter, Dark Pulse, Dazzling Gleam, Detect, Dig, Double Team, Dream Eater, Dynamic Punch, Encore, Endure, Energy Ball, Frustration, Heal Bell, Icy Wind, Incinerate, Magical Leaf, Mega Kick, Mega Punch, Metronome, Nightmare, Pain Split, Present, Psych Up, Psyshock, Psywave, Rage, Recycle, Safeguard, Sandstorm, Screech, Seismic Toss, Self-Destruct, Skill Swap, Skull Bash, Snore, Stealth Rock, Submission, Swift, Take Down, Taunt, Teleport, Thief, Tri Attack, Water Gun, Water Pulse, Wild Charge.
+**Added:** Flame Wheel.
 
-- **Thematic level-up (custom):** Calm Mind (Lv. 30), Take Down (Lv. 42), Dazzling Gleam (Lv. 44), Tri Attack (Lv. 46), Self-Destruct (Lv. 56), Skull Bash (Lv. 58).
-- **Egg (Igglybuff family):** Present, Rollout.
-- **TM/HM/elemental tutor:** Dig, Energy Ball, Sandstorm, Swift, Thief.
-- **Blackthorn tutor:** Amnesia, Baton Pass, Bide, Body Press, Brick Break, Bubble Beam, Counter, Dark Pulse, Detect, Double Team, Dream Eater, Dynamic Punch, Encore, Endure, Frustration, Heal Bell, Icy Wind, Incinerate, Magical Leaf, Mega Kick, Mega Punch, Metronome, Nightmare, Pain Split, Psych Up, Psyshock, Psywave, Rage, Recycle, Safeguard, Screech, Seismic Toss, Skill Swap, Snore, Stealth Rock, Submission, Taunt, Teleport, Water Gun, Water Pulse, Wild Charge.
+**Removed:** Curse, Headbutt, Pursuit, Sky Attack.
 
-## Jirachi
+- **Removed machine flags:** Curse, Headbutt.
+- **Removed family egg entries:** Pursuit, Sky Attack.
+- **Added Blackthorn lessons:** Flame Wheel.
 
-**Newly available (81):** Aerial Ace, Amnesia, Ancient Power, Aura Sphere, Baton Pass, Body Slam, Calm Mind, Charm, Confuse Ray, Confusion, Cosmic Power, Dazzling Gleam, Defense Curl, Doom Desire, Double Team, Double-Edge, Draco Meteor, Drain Punch, Dream Eater, Dynamic Punch, Encore, Endure, Energy Ball, Facade, Fire Punch, Flash, Flash Cannon, Frustration, Future Sight, Giga Impact, Headbutt, Hidden Power, Hyper Beam, Ice Punch, Icy Wind, Iron Defense, Iron Head, Light Screen, Mega Kick, Mega Punch, Meteor Mash, Metronome, Mimic, Moonblast, Mud-Slap, Nightmare, Play Rough, Protect, Psybeam, Psych Up, Psychic, Psyshock, Rain Dance, Recycle, Reflect, Rest, Return, Safeguard, Sandstorm, Shadow Ball, Signal Beam, Skill Swap, Sleep Talk, Snore, Stealth Rock, Substitute, Sunny Day, Swagger, Swift, Thunder, Thunder Punch, Thunder Wave, Thunderbolt, Toxic, Trick, Trick Room, U-turn, Water Pulse, Wish, Zap Cannon, Zen Headbutt.
+### Flittle
 
-- **Natural/restored level-up:** Confusion (Lv. 1), Draco Meteor (Lv. 1), Swift (Lv. 1), Wish (Lv. 1), Psychic (Lv. 10), Zen Headbutt (Lv. 22), Cosmic Power (Lv. 26), Iron Head (Lv. 34), Future Sight (Lv. 38), Double-Edge (Lv. 42), Meteor Mash (Lv. 49), Doom Desire (Lv. 50), Rest (Lv. 63).
-- **TM/HM/elemental tutor:** Drain Punch, Energy Ball, Facade, Fire Punch, Flash, Flash Cannon, Headbutt, Hidden Power, Hyper Beam, Ice Punch, Iron Head, Mud-Slap, Protect, Psychic, Rain Dance, Rest, Return, Sandstorm, Shadow Ball, Sunny Day, Swagger, Swift, Thunder, Thunder Punch, Thunderbolt, Toxic, Zap Cannon, Zen Headbutt.
-- **Goldenrod utility tutor:** Light Screen, Reflect, Sleep Talk, Substitute, Thunder Wave.
-- **Blackthorn tutor:** Aerial Ace, Amnesia, Ancient Power, Aura Sphere, Baton Pass, Body Slam, Calm Mind, Charm, Confuse Ray, Dazzling Gleam, Defense Curl, Double Team, Dream Eater, Dynamic Punch, Encore, Endure, Frustration, Giga Impact, Icy Wind, Iron Defense, Mega Kick, Mega Punch, Metronome, Mimic, Moonblast, Nightmare, Play Rough, Psybeam, Psych Up, Psyshock, Recycle, Safeguard, Signal Beam, Skill Swap, Snore, Stealth Rock, Trick, Trick Room, U-turn, Water Pulse.
+**Added:** None.
 
-## Jolteon
+**Removed:** Air Cutter, Attract, Charm, Curse, Dazzling Gleam, Flash, Future Sight, Haze, Hidden Power, Hyper Voice, Magical Leaf, Return, Shadow Ball, Swagger, Toxic.
 
-**Newly available (22):** Bide, Body Slam, Dig, Discharge, Double Team, False Swipe, Focus Energy, Frustration, Giga Impact, Hyper Voice, Iron Tail, Mimic, Pay Day, Rage, Reflect, Rock Smash, Signal Beam, Sing, Skull Bash, Snore, Strength, Wild Charge.
+- **Removed natural entries:** Air Cutter, Charm, Dazzling Gleam, Hyper Voice, Magical Leaf.
+- **Removed machine flags:** Attract, Curse, Flash, Hidden Power, Return, Shadow Ball, Swagger, Toxic.
+- **Removed family egg entries:** Future Sight, Haze, Magical Leaf.
 
-- **Natural/restored level-up:** Discharge (Lv. 25).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26).
-- **Egg (Eevee family):** Charm, Curse, Double Kick, Mud-Slap.
-- **TM/HM/elemental tutor:** Dig, Rock Smash, Strength.
-- **Blackthorn tutor:** Bide, Double Team, False Swipe, Focus Energy, Frustration, Giga Impact, Iron Tail, Mimic, Pay Day, Pin Missile, Rage, Reflect, Sing, Snore, Thunder Fang, Wild Charge.
-- **Evolution access:** Body Slam, Hyper Voice, Skull Bash.
+### Flygon
 
-## Joltik
+**Added:** Hurricane, Hyper Voice, Quiver Dance.
 
-**Newly available (18):** Absorb, Bounce, Cross Poison, Cut, Discharge, Double Team, Endure, Feint Attack, Frustration, Infestation, Lunge, Pin Missile, Poison Sting, Pursuit, Slash, Snore, Volt Switch, Wild Charge.
+**Removed:** Curse.
 
-- **Natural/restored level-up:** Absorb (Lv. 1), Slash (Lv. 32), Discharge (Lv. 37).
-- **Thematic level-up (custom):** Volt Switch (Lv. 38), Wild Charge (Lv. 42).
-- **Egg (Joltik family):** Cross Poison, Double Team, Feint Attack, Infestation, Lunge, Pin Missile, Poison Sting, Pursuit, Struggle Bug.
-- **TM/HM/elemental tutor:** Cut.
-- **Blackthorn tutor:** Bounce, Endure, Frustration, Snore.
+- **Removed machine flags:** Curse.
+- **Removed family egg entries:** Roost, U-turn.
+- **Added Blackthorn lessons:** Hurricane, Hyper Voice, Quiver Dance, Roost, U-turn.
 
-## Jumpluff
+### Forretress
 
-**Newly available (22):** Aerial Ace, Baton Pass, Charm, Cotton Guard, Dazzling Gleam, Defense Curl, Double Team, Endure, False Swipe, Frustration, Giga Impact, Infestation, Lunge, Magical Leaf, Mimic, Psych Up, Rain Dance, Seed Bomb, Snore, Swords Dance, Take Down, Thief.
+**Added:** None.
 
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18).
-- **Egg (Hoppip family):** Cotton Guard, Endure, Psych Up, Seed Bomb.
-- **TM/HM/elemental tutor:** Rain Dance, Thief.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Baton Pass, Bounce, Charm, Dazzling Gleam, Defense Curl, Double Team, False Swipe, Frustration, Giga Impact, Infestation, Lunge, Mimic, Snore, Swords Dance, Take Down.
+**Removed:** Energy Ball, Fury Cutter.
 
-## Jynx
+- **Removed machine flags:** Energy Ball, Fury Cutter.
 
-**Newly available (48):** Avalanche, Bide, Brick Break, Bubble Beam, Charm, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Energy Ball, Flash, Frustration, Future Sight, Giga Impact, Hail, Heal Bell, Hyper Voice, Icicle Spear, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psych Up, Psycho Cut, Psyshock, Psywave, Rage, Recycle, Screech, Seismic Toss, Signal Beam, Skill Swap, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Thrash, Torment, Trick, Trick Room, Triple Axel, Water Gun, Water Pulse.
+### Fraxure
 
-- **Natural/restored level-up:** Psyshock (Lv. 59).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Skill Swap (Lv. 36), Trick (Lv. 42), Trick Room (Lv. 44), Dream Eater (Lv. 50), Future Sight (Lv. 56).
-- **Egg (Smoochum family):** Ice Punch, Nasty Plot, Psych Up.
-- **TM/HM/elemental tutor:** Energy Ball, Flash.
-- **Blackthorn tutor:** Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Charm, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Frustration, Giga Impact, Hail, Heal Bell, Hyper Voice, Icicle Spear, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psycho Cut, Psywave, Rage, Recycle, Screech, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Thrash, Torment, Triple Axel, Water Gun, Water Pulse.
+**Added:** None.
 
-## Kabuto
+**Removed:** Curse, Earthquake, Headbutt, Hyper Beam.
 
-**Newly available (31):** Aerial Ace, Bide, Body Slam, Confuse Ray, Double Team, Double-Edge, Earth Power, Foresight, Frustration, Giga Drain, Hail, Headbutt, Hydro Pump, Icy Wind, Iron Defense, Mimic, Mud Shot, Mud-Slap, Rage, Reflect, Rock Blast, Rock Polish, Rock Throw, Scald, Screech, Slash, Snore, Take Down, Water Gun, Water Pulse, Whirlpool.
+- **Removed machine flags:** Curse, Earthquake, Headbutt, Hyper Beam.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 25).
-- **Thematic level-up (custom):** Rock Polish (Lv. 30), Iron Defense (Lv. 36), Rock Blast (Lv. 38).
-- **Egg (Kabuto family):** Confuse Ray, Dig, Foresight, Giga Drain, Icy Wind, Knock Off, Mega Drain, Mud Shot, Screech, Take Down.
-- **TM/HM/elemental tutor:** Headbutt, Mud-Slap, Whirlpool.
-- **Blackthorn tutor:** Aerial Ace, Ancient Power, Bide, Body Slam, Double Team, Double-Edge, Earth Power, Frustration, Hail, Hydro Pump, Mimic, Rage, Reflect, Rock Throw, Scald, Slash, Snore, Water Gun, Water Pulse.
+### Frigibax
 
-## Kabutops
+**Added:** None.
 
-**Newly available (41):** Aerial Ace, Aqua Tail, Bide, Body Slam, Brick Break, Confuse Ray, Cross Poison, Double Team, Double-Edge, Earth Power, Foresight, Frustration, Giga Drain, Giga Impact, Hail, Hydro Pump, Icy Wind, Iron Defense, Low Kick, Mega Kick, Mimic, Mud Shot, Mud-Slap, Psycho Cut, Rage, Razor Wind, Reflect, Rock Blast, Rock Polish, Rock Throw, Scald, Screech, Seismic Toss, Skull Bash, Snore, Submission, Superpower, Take Down, Water Gun, Water Pulse, X-Scissor.
+**Removed:** Attract, Curse, Double-Edge, Earthquake, Hidden Power, Ice Shard, Iron Head, Mist, Return, Scale Shot, Swagger, Toxic.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 25).
-- **Thematic level-up (custom):** Iron Defense (Lv. 34), Rock Blast (Lv. 38), Rock Polish (Lv. 42), Aqua Tail (Lv. 44).
-- **Egg (Kabuto family):** Confuse Ray, Dig, Foresight, Giga Drain, Icy Wind, Knock Off, Mega Drain, Mud Shot, Screech, Take Down.
-- **TM/HM/elemental tutor:** Mud-Slap.
-- **Blackthorn tutor:** Aerial Ace, Ancient Power, Bide, Body Slam, Brick Break, Cross Poison, Double Team, Double-Edge, Earth Power, Frustration, Giga Impact, Hail, Hydro Pump, Low Kick, Mega Kick, Mimic, Psycho Cut, Rage, Razor Wind, Reflect, Rock Throw, Scald, Seismic Toss, Skull Bash, Snore, Submission, Superpower, Water Gun, Water Pulse, X-Scissor.
+- **Removed natural entries:** Scale Shot.
+- **Removed machine flags:** Attract, Curse, Earthquake, Hidden Power, Iron Head, Return, Swagger, Toxic.
+- **Removed family egg entries:** Double-Edge, Ice Shard, Mist.
 
-## Kadabra
+### Froslass
 
-**Newly available (34):** Bide, Body Slam, Counter, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Energy Ball, Foul Play, Frustration, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psyshock, Psywave, Rage, Recycle, Safeguard, Seismic Toss, Signal Beam, Skull Bash, Snore, Submission, Swift, Take Down, Taunt, Torment, Tri Attack, Trick Room.
+**Added:** Nasty Plot, Petal Dance.
 
-- **Natural/restored level-up:** Psyshock (Lv. 30).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Trick Room (Lv. 38), Dream Eater (Lv. 52).
-- **Egg (Abra family):** Confusion, Fire Punch, Ice Punch, Knock Off, Thunder Punch.
-- **TM/HM/elemental tutor:** Energy Ball, Swift.
-- **Blackthorn tutor:** Bide, Body Slam, Counter, Dazzling Gleam, Double Team, Double-Edge, Dynamic Punch, Endure, Foul Play, Frustration, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psycho Cut, Psywave, Rage, Recycle, Safeguard, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Torment, Tri Attack.
+**Removed:** Freeze-Dry.
 
-## Kakuna
+- **Removed natural entries:** Freeze-Dry.
+- **Removed family egg entries:** Confuse Ray, Destiny Bond.
+- **Added Blackthorn lessons:** Nasty Plot, Petal Dance.
 
-**Newly available (1):** Iron Defense.
+### Furret
 
-- **Thematic level-up (custom):** Bug Bite (Lv. 18).
-- **Blackthorn tutor:** Iron Defense.
+**Added:** Dizzy Punch.
 
-## Kangaskhan
+**Removed:** Drain Punch, Iron Head, Rock Tomb.
 
-**Newly available (42):** Aerial Ace, Aqua Tail, Avalanche, Beat Up, Bide, Bubble Beam, Bulldoze, Circle Throw, Counter, Cut, Dig, Double Team, Dynamic Punch, Fissure, Focus Blast, Frustration, Giga Impact, Hail, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Low Kick, Mega Kick, Mimic, Rage, Rock Tomb, Seismic Toss, Shadow Claw, Sing, Skull Bash, Snore, Solar Beam, Spite, Submission, Take Down, Thief, Water Gun, Water Pulse, Whirlpool, Wish, Yawn.
+- **Removed machine flags:** Drain Punch, Iron Head, Rock Tomb.
+- **Added Blackthorn lessons:** Dizzy Punch.
 
-- **Natural/restored level-up:** Fake Out (Lv. 8), Rage (Lv. 22).
-- **Thematic level-up (custom):** Low Kick (Lv. 18), Take Down (Lv. 42), Aqua Tail (Lv. 44), Giga Impact (Lv. 56), Skull Bash (Lv. 58).
-- **Breeding fallback:** Circle Throw (Lv. 30).
-- **Egg (Kangaskhan family):** Circle Throw, Counter, Crush Claw, Double-Edge, Focus Energy, Stomp, Substitute.
-- **TM/HM/elemental tutor:** Cut, Dig, Rock Tomb, Solar Beam, Thief, Whirlpool.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Beat Up, Bide, Bubble Beam, Bulldoze, Double Team, Dynamic Punch, Fissure, Focus Blast, Frustration, Hail, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mimic, Seismic Toss, Shadow Claw, Sing, Snore, Spite, Submission, Water Gun, Water Pulse, Wish, Yawn.
+### Galarian Corsola
 
-## Kingambit
+**Added:** Double Team, Explosion, Frustration, Heal Bell, Mud-Slap, Pain Split, Rock Polish, Rock Smash, Rollout, Strength.
 
-**Newly available (27):** Aerial Ace, Air Slash, Beat Up, Dark Pulse, Double Team, Endure, False Swipe, Feint Attack, Focus Blast, Frustration, Giga Impact, Headbutt, Low Kick, Poison Jab, Rain Dance, Reversal, Rock Polish, Rock Tomb, Screech, Shadow Claw, Snore, Spite, Stealth Rock, Stone Edge, Take Down, Torment, X-Scissor.
+**Removed:** Barrier, Energy Ball, Headbutt, Phantom Force, Waterfall.
 
-- **Natural/restored level-up:** Torment (Lv. 15).
-- **Thematic level-up (custom):** Spite (Lv. 34).
-- **Egg (Pawniard family):** Headbutt, Stealth Rock.
-- **TM/HM/elemental tutor:** Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Aerial Ace, Air Slash, Beat Up, Dark Pulse, Double Team, Endure, False Swipe, Focus Blast, Frustration, Giga Impact, Low Kick, Poison Jab, Reversal, Screech, Shadow Claw, Snore, Stone Edge, Take Down, X-Scissor.
-- **Evolution access:** Feint Attack, Rock Polish.
+- **Removed natural entries:** Phantom Force.
+- **Removed machine flags:** Energy Ball, Headbutt, Waterfall.
+- **Removed family egg entries:** Barrier.
+- **Added Blackthorn lessons:** Double Team, Explosion, Frustration, Heal Bell, Mud-Slap, Pain Split, Rock Polish, Rock Smash, Rollout, Strength.
 
-## Kingdra
+### Galarian Meowth
 
-**Newly available (23):** Bide, Body Slam, Bounce, Double Team, Double-Edge, Dragon Rage, Endure, Frustration, Giga Impact, Hail, Hurricane, Icy Wind, Iron Head, Mimic, Rage, Razor Wind, Scald, Scary Face, Skull Bash, Snore, Splash, Take Down, Yawn.
+**Added:** Bite, Bulk Up, Close Combat, Frustration, Icy Wind, Mimic, Mud-Slap, Outrage, Roar, Spikes, Swift, Tail Whip, Thunder Wave, Torment, Water Pulse.
 
-- **Natural/restored level-up:** Yawn (Lv. 1).
-- **Thematic level-up (custom):** Scald (Lv. 46).
-- **Egg (Horsea family):** Aurora Beam, Dragon Breath, Dragon Rage, Octazooka, Outrage, Razor Wind, Splash, Water Pulse.
-- **TM/HM/elemental tutor:** Iron Head.
-- **Blackthorn tutor:** Bide, Body Slam, Bounce, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Hail, Hurricane, Icy Wind, Mimic, Rage, Scary Face, Skull Bash, Snore, Take Down.
+**Removed:** Crush Claw, Flash.
 
-## Kingler
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Flash.
+- **Added Blackthorn lessons:** Bite, Bulk Up, Close Combat, Frustration, Icy Wind, Mimic, Mud-Slap, Outrage, Roar, Spikes, Swift, Tail Whip, Thunder Wave, Torment, Water Pulse.
 
-**Newly available (24):** Bide, Body Slam, Brick Break, Double Team, Double-Edge, Endure, False Swipe, Frustration, Giga Impact, Hail, Hammer Arm, Headbutt, Hydro Pump, Icy Wind, Iron Defense, Mimic, Mud Shot, Rage, Rock Tomb, Scald, Slash, Snore, Take Down, Water Pulse.
+### Galarian Ponyta
 
-- **Natural/restored level-up:** Hammer Arm (Lv. 1), Mud Shot (Lv. 12).
-- **Egg (Krabby family):** Agility, Bide, Dig, Endure, Flail, Hammer Arm, Knock Off, Night Slash, Slam, Slash, Swords Dance.
-- **TM/HM/elemental tutor:** Headbutt, Rock Tomb.
-- **Blackthorn tutor:** Body Slam, Brick Break, Double Team, Double-Edge, False Swipe, Frustration, Giga Impact, Hail, Hydro Pump, Icy Wind, Iron Defense, Mimic, Rage, Scald, Snore, Take Down, Water Pulse.
+**Added:** Double Team, Flame Charge, Frustration, Heat Wave, Sunny Day.
 
-## Kirlia
+**Removed:** Curse, Headbutt, Iron Head.
 
-**Newly available (39):** Body Slam, Dazzling Gleam, Defense Curl, Double-Edge, Endure, Fire Punch, Frustration, Headbutt, Hyper Beam, Hyper Voice, Ice Punch, Icy Wind, Magical Leaf, Mega Kick, Mega Punch, Metronome, Mimic, Mud-Slap, Nightmare, Pain Split, Psych Up, Psyshock, Rain Dance, Recycle, Safeguard, Signal Beam, Sing, Skill Swap, Snore, Sunny Day, Swift, Taunt, Thief, Thunder Punch, Torment, Trick, Trick Room, Triple Axel, Wish.
+- **Removed machine flags:** Curse, Headbutt, Iron Head.
+- **Added Blackthorn lessons:** Double Team, Flame Charge, Frustration, Heat Wave, Sunny Day.
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 17).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Trick (Lv. 34), Trick Room (Lv. 36), Dazzling Gleam (Lv. 42).
-- **Egg (Ralts family):** Knock Off, Skill Swap, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Fire Punch, Headbutt, Hyper Beam, Ice Punch, Mud-Slap, Rain Dance, Sunny Day, Swift, Thief, Thunder Punch.
-- **Blackthorn tutor:** Body Slam, Defense Curl, Double-Edge, Endure, Frustration, Hyper Voice, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Pain Split, Psych Up, Psyshock, Recycle, Safeguard, Sing, Snore, Taunt, Torment, Triple Axel, Wish.
+### Galarian Rapidash
 
-## Kleavor
+**Added:** Double Team, Flame Charge, Frustration, Heat Crash, Heat Wave, Overheat, Solar Beam.
 
-**Newly available (26):** Acrobatics, Air Cutter, Bide, Brick Break, Cross Poison, Detect, Double-Edge, Endure, Frustration, Giga Impact, Lunge, Mimic, Morning Sun, Ominous Wind, Psycho Cut, Pursuit, Rage, Rain Dance, Rock Blast, Scary Face, Skull Bash, Snore, Stone Edge, Struggle Bug, Take Down, Vacuum Wave.
+**Removed:** Curse, Headbutt, Incinerate, Iron Head, Moonblast.
 
-- **Thematic level-up (custom):** Rock Blast (Lv. 38), Stone Edge (Lv. 52).
-- **Egg (Scyther family):** Baton Pass, Endure, Night Slash, Razor Wind, Reversal, Steel Wing.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Air Cutter, Bide, Brick Break, Cross Poison, Detect, Double-Edge, Frustration, Giga Impact, Lunge, Mimic, Morning Sun, Ominous Wind, Psycho Cut, Rage, Scary Face, Skull Bash, Snore, Struggle Bug, Take Down.
-- **Evolution access:** Pursuit, Vacuum Wave.
+- **Removed natural entries:** Incinerate, Moonblast.
+- **Removed machine flags:** Curse, Headbutt, Iron Head.
+- **Added Blackthorn lessons:** Double Team, Flame Charge, Frustration, Heat Crash, Heat Wave, Overheat, Solar Beam.
 
-## Koffing
+### Galarian Slowbro
 
-**Newly available (22):** Bide, Body Slam, Double Team, Endure, Flash, Frustration, Headbutt, Incinerate, Infestation, Lava Plume, Mimic, Psywave, Rage, Rain Dance, Rollout, Scary Face, Shadow Ball, Snore, Take Down, Taunt, Torment, Venoshock.
+**Added:** Ancient Power, Aqua Tail, Dazzling Gleam, Dream Eater, Fire Punch, Frustration, Fury Cutter, Mud-Slap, Seismic Toss, Signal Beam, Skull Bash, Thunder, Thunder Punch, Thunderbolt, Toxic Spikes.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 31).
-- **Thematic level-up (custom):** Venoshock (Lv. 18).
-- **Egg (Koffing family):** Curse, Destiny Bond, Pain Split, Psywave, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Flash, Headbutt, Rain Dance, Shadow Ball.
-- **Blackthorn tutor:** Bide, Body Slam, Double Team, Endure, Frustration, Incinerate, Infestation, Mimic, Rage, Rollout, Scary Face, Snore, Take Down, Taunt, Torment.
+**Removed:** Flash, Iron Head, Rock Smash, Strength, Swagger.
 
-## Kotora
+- **Removed machine flags:** Flash, Iron Head, Rock Smash, Strength, Swagger.
+- **Added Blackthorn lessons:** Ancient Power, Aqua Tail, Dazzling Gleam, Dream Eater, Fire Punch, Frustration, Fury Cutter, Mud-Slap, Seismic Toss, Signal Beam, Skull Bash, Thunder, Thunder Punch, Thunderbolt, Toxic Spikes.
 
-**Newly available (2):** Discharge, Slack Off.
+### Galarian Slowking
 
-- **Thematic level-up (custom):** Discharge (Lv. 36).
-- **Evolution access:** Slack Off.
+**Added:** Ancient Power, Aqua Tail, Dream Eater, Frustration, Ice Fang, Mud-Slap, Ominous Wind, Signal Beam, Skull Bash, Thunder, Thunderbolt, Water Gun.
 
-## Krabby
+**Removed:** Flash, Iron Head, Psycho Cut, Recover, Rock Smash, Strength.
 
-**Newly available (24):** Bide, Body Slam, Brick Break, Double Team, Double-Edge, Endure, False Swipe, Frustration, Hail, Hammer Arm, Headbutt, Icy Wind, Iron Defense, Liquidation, Mimic, Mud Shot, Rage, Rock Slide, Rock Tomb, Scald, Slash, Snore, Take Down, Water Pulse.
+- **Removed natural entries:** Recover.
+- **Removed machine flags:** Flash, Iron Head, Rock Smash, Strength.
+- **Removed fallback lessons:** Psycho Cut.
+- **Added Blackthorn lessons:** Ancient Power, Aqua Tail, Dream Eater, Frustration, Ice Fang, Mud-Slap, Ominous Wind, Signal Beam, Skull Bash, Thunder, Thunderbolt, Water Gun.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 12).
-- **Thematic level-up (custom):** Liquidation (Lv. 42).
-- **Breeding fallback:** Hammer Arm (Lv. 30).
-- **Egg (Krabby family):** Agility, Bide, Dig, Endure, Flail, Hammer Arm, Knock Off, Night Slash, Slam, Slash, Swords Dance.
-- **TM/HM/elemental tutor:** Headbutt, Rock Tomb.
-- **Blackthorn tutor:** Body Slam, Brick Break, Double Team, Double-Edge, False Swipe, Frustration, Hail, Icy Wind, Iron Defense, Mimic, Rage, Rock Slide, Scald, Snore, Take Down, Water Pulse.
+### Galarian Slowpoke
 
-## Krokorok
+**Added:** Aqua Tail, Dream Eater, Frustration, Ice Fang, Mud-Slap, Nasty Plot, Scary Face, Signal Beam, Skull Bash, Sludge Bomb, Thunder, Thunderbolt, Water Gun.
 
-**Newly available (33):** Aerial Ace, Beat Up, Body Slam, Brick Break, Bulldoze, Dark Pulse, Double Team, Dragon Tail, Earth Power, Endure, Fire Fang, Focus Energy, Frustration, Incinerate, Iron Tail, Low Kick, Low Sweep, Mean Look, Mega Kick, Mega Punch, Mud Shot, Pursuit, Rage, Rock Slide, Scale Shot, Shadow Claw, Snarl, Snore, Stealth Rock, Stone Edge, Take Down, Taunt, Thunder Fang.
+**Removed:** Flash, Iron Head, Strength, Swagger.
 
-- **Natural/restored level-up:** Rage (Lv. 1), Mud-Slap (Lv. 19).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Stealth Rock (Lv. 34).
-- **Egg (Sandile family):** Beat Up, Fire Fang, Focus Energy, Mean Look, Pursuit, Thunder Fang.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Dark Pulse, Double Team, Dragon Tail, Earth Power, Endure, Frustration, Incinerate, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Mud Shot, Rock Slide, Scale Shot, Shadow Claw, Snarl, Snore, Stone Edge, Take Down, Taunt.
+- **Removed machine flags:** Flash, Iron Head, Strength, Swagger.
+- **Added Blackthorn lessons:** Aqua Tail, Dream Eater, Frustration, Ice Fang, Mud-Slap, Nasty Plot, Scary Face, Signal Beam, Skull Bash, Sludge Bomb, Thunder, Thunderbolt, Water Gun.
 
-## Krookodile
+### Galarian Weezing
 
-**Newly available (35):** Aerial Ace, Beat Up, Body Slam, Brick Break, Bulldoze, Close Combat, Dark Pulse, Double Team, Dragon Tail, Earth Power, Endure, Fire Fang, Focus Blast, Focus Energy, Frustration, Giga Impact, Gunk Shot, Incinerate, Iron Tail, Low Kick, Low Sweep, Mean Look, Mega Kick, Mega Punch, Mud Shot, Pursuit, Rage, Rock Slide, Scale Shot, Shadow Claw, Snarl, Snore, Superpower, Take Down, Thunder Fang.
+**Added:** Snarl.
 
-- **Natural/restored level-up:** Rage (Lv. 1), Mud-Slap (Lv. 19).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20).
-- **Egg (Sandile family):** Beat Up, Fire Fang, Focus Energy, Mean Look, Pursuit, Thunder Fang.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Close Combat, Dark Pulse, Double Team, Dragon Tail, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Gunk Shot, Incinerate, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Mud Shot, Rock Slide, Scale Shot, Shadow Claw, Snarl, Snore, Superpower, Take Down.
+**Removed:** Rock Tomb, Strength.
 
-## Lairon
+- **Removed machine flags:** Rock Tomb, Strength.
+- **Added Blackthorn lessons:** Snarl.
 
-**Newly available (23):** Aerial Ace, Ancient Power, Bulldoze, Cut, Defense Curl, Double Team, Earth Power, Endure, Frustration, Fury Cutter, Mimic, Rain Dance, Rock Blast, Rock Polish, Rollout, Shadow Claw, Snore, Spite, Stomp, Stone Edge, Sunny Day, Superpower, Water Pulse.
+### Gallade
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Rock Polish (Lv. 32), Rock Blast (Lv. 36), Body Press (Lv. 38), Stone Edge (Lv. 50).
-- **Egg (Aron family):** Curse, Iron Head, Mud-Slap, Stealth Rock, Stomp, Superpower.
-- **TM/HM/elemental tutor:** Cut, Fury Cutter, Rain Dance, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Ancient Power, Defense Curl, Double Team, Earth Power, Endure, Frustration, Mimic, Rollout, Shadow Claw, Snore, Spite, Water Pulse.
+**Added:** Comet Punch, Focus Energy, Ice Beam, Razor Wind, Seismic Toss.
 
-## Lampent
+**Removed:** Circle Throw, Curse, Force Palm.
 
-**Newly available (17):** Acid, Calm Mind, Dark Pulse, Double Team, Dream Eater, Flame Charge, Flare Blitz, Frustration, Overheat, Psych Up, Safeguard, Snore, Solar Beam, Spite, Taunt, Trick, Trick Room.
+- **Removed natural entries:** Circle Throw, Force Palm.
+- **Removed machine flags:** Curse.
+- **Added Blackthorn lessons:** Comet Punch, Focus Energy, Ice Beam, Razor Wind, Seismic Toss.
 
-- **Natural/restored level-up:** Overheat (Lv. 58).
-- **Thematic level-up (custom):** Spite (Lv. 34), Trick (Lv. 36), Trick Room (Lv. 38), Dark Pulse (Lv. 46).
-- **Egg (Litwick family):** Acid.
-- **TM/HM/elemental tutor:** Solar Beam.
-- **Blackthorn tutor:** Calm Mind, Double Team, Dream Eater, Flame Charge, Flame Wheel, Flare Blitz, Frustration, Phantom Force, Psych Up, Safeguard, Snore, Taunt.
+### Galvantula
 
-## Lanturn
+**Added:** None.
 
-**Newly available (23):** Aqua Tail, Blizzard, Bounce, Dazzling Gleam, Discharge, Double Team, Double-Edge, Endure, Flash Cannon, Flip Turn, Frustration, Giga Impact, Hail, Icy Wind, Liquidation, Mimic, Mist, Psybeam, Screech, Snore, Sucker Punch, Tail Glow, Wild Charge.
+**Removed:** Curse, Nuzzle, Spark, Sunny Day, Thunder Shock, Zap Cannon.
 
-- **Natural/restored level-up:** Discharge (Lv. 29).
-- **Thematic level-up (custom):** Tail Glow (Lv. 40).
-- **Egg (Chinchou family):** Flail, Mist, Psybeam, Screech, Sucker Punch, Whirlpool.
-- **TM/HM/elemental tutor:** Blizzard.
-- **Blackthorn tutor:** Aqua Tail, Bounce, Dazzling Gleam, Double Team, Double-Edge, Endure, Flash Cannon, Flip Turn, Frustration, Giga Impact, Hail, Icy Wind, Liquidation, Mimic, Snore, Take Down, Wild Charge.
+- **Removed natural entries:** Nuzzle, Thunder Shock.
+- **Removed machine flags:** Curse, Sunny Day, Zap Cannon.
+- **Removed family egg entries:** Sticky Web.
 
-## Lapras
+### Gardevoir
 
-**Newly available (34):** Aqua Tail, Bide, Bulldoze, Charm, Disarming Voice, Double Team, Double-Edge, Dragon Breath, Dragon Rage, Dream Eater, Drill Run, Earthquake, Endure, Frustration, Giga Impact, Hail, Haze, Hyper Voice, Icicle Spear, Icy Wind, Iron Tail, Mimic, Nightmare, Outrage, Psywave, Rage, Roar, Safeguard, Signal Beam, Skull Bash, Snore, Solar Beam, Take Down, Waterfall.
+**Added:** Ice Beam, Recover.
 
-- **Natural/restored level-up:** Safeguard (Lv. 43).
-- **Thematic level-up (custom):** Aqua Tail (Lv. 42).
-- **Egg (Lapras family):** Avalanche, Curse, Dragon Dance, Dragon Pulse, Freeze-Dry, Future Sight, Substitute, Whirlpool.
-- **TM/HM/elemental tutor:** Earthquake, Roar, Solar Beam, Waterfall.
-- **Blackthorn tutor:** Bide, Bulldoze, Charm, Disarming Voice, Double Team, Double-Edge, Dragon Breath, Dragon Rage, Dream Eater, Drill Run, Endure, Frustration, Giga Impact, Hail, Haze, Hyper Voice, Icicle Spear, Icy Wind, Iron Tail, Mimic, Nightmare, Outrage, Psywave, Rage, Signal Beam, Skull Bash, Snore, Take Down.
+**Removed:** Curse.
 
-## Larvesta
+- **Removed machine flags:** Curse.
+- **Added Blackthorn lessons:** Ice Beam, Recover.
 
-**Newly available (15):** Absorb, Acrobatics, Body Slam, Calm Mind, Double Team, Fire Spin, Frustration, Giga Drain, Heat Wave, Lunge, Overheat, Safeguard, Snore, Thrash, Wild Charge.
+### Gastly
 
-- **Natural/restored level-up:** Absorb (Lv. 10), Thrash (Lv. 90).
-- **Egg (Larvesta family):** Absorb, String Shot, Thrash, Zen Headbutt.
-- **Blackthorn tutor:** Acrobatics, Body Slam, Bug Buzz, Calm Mind, Double Team, Fiery Dance, Fire Spin, Frustration, Giga Drain, Heat Wave, Incinerate, Lunge, Overheat, Quiver Dance, Safeguard, Signal Beam, Snore, Wild Charge.
+**Added:** Confusion, Shadow Sneak.
 
-## Larvitar
+**Removed:** Phantom Force, Sludge.
 
-**Newly available (22):** Body Slam, Brick Break, Detect, Double Team, Double-Edge, Earth Power, Endure, Frustration, Giga Impact, Iron Defense, Iron Head, Iron Tail, Mimic, Rock Blast, Rock Polish, Rock Smash, Snarl, Snore, Spite, Take Down, Taunt, Torment.
+- **Removed natural entries:** Sludge.
+- **Removed fallback lessons:** Phantom Force.
+- **Added Blackthorn lessons:** Confusion, Shadow Sneak.
 
-- **Thematic level-up (custom):** Rock Polish (Lv. 30), Rock Blast (Lv. 36), Earth Power (Lv. 42).
-- **Egg (Larvitar family):** Curse, Dragon Dance, Iron Defense, Iron Head, Iron Tail, Outrage, Stealth Rock.
-- **TM/HM/elemental tutor:** Iron Head, Rock Smash.
-- **Blackthorn tutor:** Body Slam, Brick Break, Detect, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Mimic, Snarl, Snore, Spite, Take Down, Taunt, Torment.
+### Gengar
 
-## Leafeon
+**Added:** Confusion, Shadow Sneak.
 
-**Newly available (27):** Aerial Ace, Bide, Body Slam, Bullet Seed, Calm Mind, Dig, Double Kick, Double Team, Flash, Focus Energy, Frustration, Fury Cutter, Giga Impact, Hyper Voice, Iron Tail, Magical Leaf, Mimic, Mud Shot, Pay Day, Rage, Reflect, Roar, Rock Smash, Sing, Skull Bash, Snore, Solar Blade.
+**Removed:** Sludge.
 
-- **Thematic level-up (custom):** Solar Blade (Lv. 56).
-- **Egg (Eevee family):** Charm, Curse, Double Kick, Mud-Slap.
-- **TM/HM/elemental tutor:** Dig, Flash, Fury Cutter, Roar, Rock Smash.
-- **Blackthorn tutor:** Aerial Ace, Bide, Bullet Seed, Calm Mind, Double Team, Focus Energy, Frustration, Giga Drain, Giga Impact, Iron Tail, Leaf Storm, Magical Leaf, Mimic, Mud Shot, Pay Day, Rage, Reflect, Sing, Snore.
-- **Evolution access:** Body Slam, Hyper Voice, Skull Bash.
+- **Removed natural entries:** Sludge.
+- **Added Blackthorn lessons:** Confusion, Shadow Sneak.
 
-## Ledian
+### Geodude
 
-**Newly available (23):** Acrobatics, Air Cutter, Bide, Brick Break, Counter, Defog, Double Team, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Drain, Giga Impact, Infestation, Mega Punch, Meteor Mash, Mimic, Ominous Wind, Rock Smash, Rollout, Snore, Strength, String Shot.
+**Added:** Rapid Spin.
 
-- **Natural/restored level-up:** Meteor Mash (Lv. 51).
-- **Thematic level-up (custom):** Brick Break (Lv. 26).
-- **Egg (Ledyba family):** Bide, Bug Bite, Bug Buzz, Counter, Drain Punch, Endure, Knock Off.
-- **TM/HM/elemental tutor:** Rock Smash, Strength.
-- **Blackthorn tutor:** Acrobatics, Air Cutter, Air Slash, Defog, Double Team, Dynamic Punch, Focus Blast, Frustration, Giga Drain, Giga Impact, Infestation, Mega Punch, Mimic, Ominous Wind, Quiver Dance, Rollout, Signal Beam, Snore, String Shot.
+**Removed:** Drain Punch, Screech.
 
-## Ledyba
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Screech.
+- **Added Blackthorn lessons:** Rapid Spin.
 
-**Newly available (19):** Acrobatics, Air Cutter, Bide, Brick Break, Counter, Double Team, Dynamic Punch, Endure, Frustration, Giga Drain, Infestation, Mega Punch, Meteor Mash, Mimic, Ominous Wind, Rollout, Snore, String Shot, Swords Dance.
+### Girafarig
 
-- **Natural/restored level-up:** Meteor Mash (Lv. 42).
-- **Thematic level-up (custom):** Brick Break (Lv. 26).
-- **Egg (Ledyba family):** Bide, Bug Bite, Bug Buzz, Counter, Drain Punch, Endure, Knock Off.
-- **Blackthorn tutor:** Acrobatics, Air Cutter, Air Slash, Double Team, Dynamic Punch, Frustration, Giga Drain, Infestation, Mega Punch, Mimic, Ominous Wind, Rollout, Snore, String Shot, Swords Dance.
+**Added:** None.
 
-## Lickilicky
+**Removed:** Iron Head, Psycho Cut.
 
-**Newly available (41):** Acid, Aqua Tail, Bide, Bind, Brick Break, Bubble Beam, Bulldoze, Counter, Dig, Double Team, Double-Edge, Dragon Tail, Dream Eater, Dynamic Punch, Endure, Explosion, Fissure, Focus Blast, Frustration, Giga Impact, Heal Bell, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Nightmare, Psych Up, Rage, Rock Slide, Seismic Toss, Self-Destruct, Skull Bash, Solar Beam, Submission, Take Down, Water Gun, Water Pulse, Whirlpool.
+- **Removed natural entries:** Psycho Cut.
+- **Removed machine flags:** Iron Head.
 
-- **Thematic level-up (custom):** Brick Break (Lv. 26), Giga Impact (Lv. 56), Self-Destruct (Lv. 62), Explosion (Lv. 64).
-- **Egg (Lickitung family):** Amnesia, Belly Drum, Body Slam, Curse, Substitute, Thrash, Zen Headbutt.
-- **TM/HM/elemental tutor:** Dig, Solar Beam, Whirlpool.
-- **Blackthorn tutor:** Acid, Aqua Tail, Bide, Bind, Bubble Beam, Bulldoze, Counter, Double Team, Dragon Tail, Dream Eater, Dynamic Punch, Endure, Fissure, Focus Blast, Frustration, Heal Bell, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Nightmare, Psych Up, Rage, Rock Slide, Seismic Toss, Submission, Water Gun, Water Pulse.
-- **Evolution access:** Double-Edge, Skull Bash, Take Down.
+### Glaceon
 
-## Lickitung
+**Added:** Dazzling Gleam, Disarming Voice, Grass Knot, Growth, Mist, Taunt, Zap Cannon.
 
-**Newly available (41):** Acid, Aqua Tail, Bide, Bind, Body Press, Brick Break, Bubble Beam, Bulldoze, Counter, Dig, Double Team, Double-Edge, Dragon Tail, Dream Eater, Dynamic Punch, Endure, Fissure, Frustration, Giga Impact, Heal Bell, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Nightmare, Psych Up, Rage, Rock Slide, Seismic Toss, Skull Bash, Solar Beam, Submission, Swords Dance, Take Down, Water Gun, Water Pulse, Whirlpool, Wish.
+**Removed:** Iron Head.
 
-- **Thematic level-up (custom):** Take Down (Lv. 42), Giga Impact (Lv. 56), Double-Edge (Lv. 58), Skull Bash (Lv. 62).
-- **Egg (Lickitung family):** Amnesia, Belly Drum, Body Slam, Curse, Substitute, Thrash, Zen Headbutt.
-- **TM/HM/elemental tutor:** Dig, Solar Beam, Whirlpool.
-- **Blackthorn tutor:** Acid, Aqua Tail, Bide, Bind, Body Press, Brick Break, Bubble Beam, Bulldoze, Counter, Double Team, Dragon Tail, Dream Eater, Dynamic Punch, Endure, Fissure, Frustration, Heal Bell, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Nightmare, Psych Up, Rage, Rock Slide, Seismic Toss, Submission, Swords Dance, Water Gun, Water Pulse, Wish.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Dazzling Gleam, Disarming Voice, Grass Knot, Growth, Mist, Taunt, Zap Cannon.
 
-## Lileep
+### Gligar
 
-**Newly available (18):** Bind, Body Slam, Double Team, Double-Edge, Flash, Frustration, Infestation, Mimic, Mud Shot, Mud-Slap, Pain Split, Psych Up, Rock Blast, Rock Polish, Snore, String Shot, Swords Dance, Synthesis.
+**Added:** Bug Buzz.
 
-- **Thematic level-up (custom):** Rock Polish (Lv. 34).
-- **Egg (Lileep family):** Bind, Curse, Mega Drain, Mirror Coat, Recover, Rock Slide, Stealth Rock.
-- **TM/HM/elemental tutor:** Flash, Mud-Slap.
-- **Blackthorn tutor:** Body Slam, Double Team, Double-Edge, Frustration, Infestation, Mimic, Mud Shot, Pain Split, Psych Up, Rock Blast, Snore, String Shot, Swords Dance, Synthesis.
+**Removed:** Bounce, Drill Run, Iron Head.
 
-## Litwick
+- **Removed natural entries:** Bounce, Drill Run.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Bug Buzz.
 
-**Newly available (17):** Acid, Calm Mind, Dark Pulse, Double Team, Dream Eater, Flame Charge, Flare Blitz, Frustration, Overheat, Psych Up, Safeguard, Snore, Solar Beam, Spite, Taunt, Trick, Trick Room.
+### Glimmet
 
-- **Natural/restored level-up:** Overheat (Lv. 52).
-- **Thematic level-up (custom):** Spite (Lv. 34), Trick (Lv. 36), Trick Room (Lv. 40), Dark Pulse (Lv. 42).
-- **Breeding fallback:** Acid (Lv. 30).
-- **Egg (Litwick family):** Acid.
-- **TM/HM/elemental tutor:** Solar Beam.
-- **Blackthorn tutor:** Calm Mind, Double Team, Dream Eater, Flame Charge, Flame Wheel, Flare Blitz, Frustration, Phantom Force, Psych Up, Safeguard, Snore, Taunt.
+**Added:** None.
 
-## Lombre
+**Removed:** Attract, Curse, Earth Power, Hidden Power, Mortal Spin, Return, Rock Smash, Swagger.
 
-**Newly available (36):** Blizzard, Body Slam, Brick Break, Counter, Disarming Voice, Double Team, Double-Edge, Drain Punch, Dynamic Punch, Encore, Endure, Fire Punch, Flash, Frustration, Hail, Headbutt, Hyper Voice, Ice Punch, Icy Wind, Magical Leaf, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Mud-Slap, Rock Smash, Scald, Seed Bomb, Snore, Strength, Sweet Scent, Swords Dance, Take Down, Thief, Thunder Punch.
+- **Removed natural entries:** Earth Power.
+- **Removed machine flags:** Attract, Curse, Hidden Power, Return, Rock Smash, Swagger.
+- **Removed family egg entries:** Earth Power, Mortal Spin.
 
-- **Natural/restored level-up:** Fake Out (Lv. 1).
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Seed Bomb (Lv. 42), Scald (Lv. 46).
-- **Egg (Lotad family):** Counter, Flail, Giga Drain, Leech Seed, Sweet Scent, Water Gun.
-- **TM/HM/elemental tutor:** Blizzard, Drain Punch, Fire Punch, Flash, Headbutt, Ice Punch, Mud-Slap, Rock Smash, Strength, Thief, Thunder Punch.
-- **Blackthorn tutor:** Body Slam, Brick Break, Disarming Voice, Double Team, Double-Edge, Dynamic Punch, Encore, Endure, Frustration, Hail, Hyper Voice, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Snore, Swords Dance, Take Down.
+### Glimmora
 
-## Lopunny
+**Added:** None.
 
-**Newly available (30):** Acrobatics, Aura Sphere, Blaze Kick, Blizzard, Cosmic Power, Cut, Dig, Double Team, Focus Blast, Fury Cutter, Giga Impact, Heal Bell, Hyper Voice, Ice Beam, Iron Tail, Karate Chop, Mega Punch, Mud-Slap, Play Rough, Rain Dance, Reversal, Shadow Ball, Sky Uppercut, Snore, Solar Beam, Sunny Day, Thunder, Thunderbolt, Triple Axel, Water Pulse.
+**Removed:** Attract, Curse, Head Smash, Hidden Power, Return, Rock Smash, Swagger.
 
-- **Natural/restored level-up:** Blaze Kick (Lv. 1).
-- **Thematic level-up (custom):** Giga Impact (Lv. 56).
-- **Egg (Buneary family):** Attract, Cosmic Power, Fire Punch, Flail, Ice Punch, Sky Uppercut, Thunder Punch.
-- **TM/HM/elemental tutor:** Blizzard, Cut, Dig, Fury Cutter, Ice Beam, Mud-Slap, Rain Dance, Shadow Ball, Solar Beam, Sunny Day, Thunder, Thunderbolt.
-- **Blackthorn tutor:** Acrobatics, Aura Sphere, Double Team, Focus Blast, Heal Bell, Hyper Voice, Iron Tail, Mega Punch, Play Rough, Reversal, Snore, Triple Axel, Water Pulse.
-- **Evolution access:** Karate Chop.
+- **Removed machine flags:** Attract, Curse, Hidden Power, Return, Rock Smash, Swagger.
+- **Removed family egg entries:** Earth Power, Mortal Spin.
+- **Removed fallback lessons:** Head Smash.
+- **Added Blackthorn lessons:** Earth Power.
 
-## Lotad
+### Gliscor
 
-**Newly available (21):** Blizzard, Body Slam, Counter, Disarming Voice, Double Team, Double-Edge, Endure, Flash, Frustration, Hail, Headbutt, Icy Wind, Magical Leaf, Mimic, Scald, Seed Bomb, Snore, Sweet Scent, Swords Dance, Take Down, Thief.
+**Added:** Bug Buzz, Pin Missile.
 
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Seed Bomb (Lv. 42), Scald (Lv. 44).
-- **Egg (Lotad family):** Counter, Flail, Giga Drain, Leech Seed, Sweet Scent, Water Gun.
-- **TM/HM/elemental tutor:** Blizzard, Flash, Headbutt, Thief.
-- **Blackthorn tutor:** Body Slam, Disarming Voice, Double Team, Double-Edge, Endure, Frustration, Hail, Icy Wind, Mimic, Snore, Swords Dance, Take Down.
+**Removed:** Bounce, Drill Run, Iron Head.
 
-## Lucario
+- **Removed natural entries:** Bounce, Drill Run.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Bug Buzz, Pin Missile.
 
-**Newly available (33):** Aerial Ace, Blaze Kick, Body Slam, Bulldoze, Dark Pulse, Dig, Double Team, Focus Blast, Focus Energy, Frustration, Fury Cutter, Giga Impact, Iron Tail, Mega Kick, Mega Punch, Meteor Mash, Metronome, Mind Reader, Poison Jab, Psych Up, Psychic, Rain Dance, Roar, Rock Slide, Rock Tomb, Scary Face, Shadow Claw, Sky Uppercut, Snore, Stone Edge, Take Down, Vacuum Wave, Water Pulse.
+### Gloom
 
-- **Natural/restored level-up:** Dark Pulse (Lv. 1), Vacuum Wave (Lv. 1), Blaze Kick (Lv. 41), Meteor Mash (Lv. 49).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Iron Tail (Lv. 50), Focus Blast (Lv. 56).
-- **Egg (Riolu family):** Bite, Blaze Kick, Circle Throw, Cross Chop, Crunch, Low Kick, Meteor Mash, Mind Reader, Sky Uppercut, Vacuum Wave.
-- **TM/HM/elemental tutor:** Dig, Fury Cutter, Psychic, Rain Dance, Roar, Rock Tomb.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Double Team, Focus Energy, Frustration, Giga Impact, Mega Kick, Mega Punch, Metronome, Poison Jab, Psych Up, Rock Slide, Scary Face, Shadow Claw, Snore, Stone Edge, Take Down, Water Pulse.
+**Added:** None.
 
-## Ludicolo
+**Removed:** None.
 
-**Newly available (40):** Amnesia, Blizzard, Body Slam, Brick Break, Counter, Disarming Voice, Double Team, Double-Edge, Drain Punch, Dynamic Punch, Encore, Endure, Fire Punch, Flash, Frustration, Giga Impact, Hail, Headbutt, Hyper Voice, Ice Punch, Icy Wind, Magical Leaf, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Mud-Slap, Rock Smash, Scald, Seed Bomb, Seismic Toss, Snore, Strength, Sweet Scent, Swift, Swords Dance, Take Down, Thief, Thunder Punch.
 
-- **Natural/restored level-up:** Fake Out (Lv. 1).
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Seed Bomb (Lv. 42), Scald (Lv. 46).
-- **Egg (Lotad family):** Counter, Flail, Giga Drain, Leech Seed, Sweet Scent, Water Gun.
-- **TM/HM/elemental tutor:** Blizzard, Drain Punch, Fire Punch, Flash, Headbutt, Ice Punch, Mud-Slap, Rock Smash, Strength, Swift, Thief, Thunder Punch.
-- **Blackthorn tutor:** Amnesia, Body Slam, Brick Break, Disarming Voice, Double Team, Double-Edge, Dynamic Punch, Encore, Endure, Frustration, Giga Impact, Hail, Hyper Voice, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Seismic Toss, Snore, Swords Dance, Take Down.
+### Golbat
 
-## Lugia
+**Added:** Flail, Hurricane, Sky Attack, X-Scissor.
 
-**Newly available (42):** Acrobatics, Aerial Ace, Air Cutter, Air Slash, Aqua Tail, Avalanche, Body Slam, Brave Bird, Bulldoze, Detect, Double Team, Double-Edge, Dragon Breath, Dragon Tail, Dream Eater, Earth Power, Endure, Flash, Frustration, Giga Drain, Giga Impact, Hail, Hurricane, Hyper Voice, Icy Wind, Iron Tail, Liquidation, Mimic, Nightmare, Ominous Wind, Psych Up, Psyshock, Roost, Scale Shot, Scary Face, Signal Beam, Skill Swap, Snore, Take Down, Trick, Twister, Water Pulse.
+**Removed:** Energy Ball, Poison Jab.
 
-- **Thematic level-up (custom):** Signal Beam (Lv. 28), Air Slash (Lv. 32), Skill Swap (Lv. 36), Trick (Lv. 40), Roost (Lv. 42), Hurricane (Lv. 52), Dream Eater (Lv. 54), Brave Bird (Lv. 56).
-- **TM/HM/elemental tutor:** Flash.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Aqua Tail, Avalanche, Body Slam, Bulldoze, Detect, Double Team, Double-Edge, Dragon Breath, Dragon Tail, Earth Power, Endure, Frustration, Giga Drain, Giga Impact, Hail, Hyper Voice, Icy Wind, Iron Tail, Liquidation, Mimic, Nightmare, Ominous Wind, Psych Up, Psyshock, Scale Shot, Scary Face, Snore, Take Down, Twister, Water Pulse.
+- **Removed natural entries:** Poison Jab.
+- **Removed machine flags:** Energy Ball.
+- **Added Blackthorn lessons:** Flail, Hurricane, Sky Attack, X-Scissor.
 
-## Machamp
+### Goldeen
 
-**Newly available (28):** Bide, Body Slam, Bulldoze, Cross Poison, Detect, Double Team, Endure, Fissure, Focus Blast, Frustration, Giga Impact, Incinerate, Mega Kick, Mega Punch, Metronome, Mimic, Poison Jab, Rage, Rain Dance, Reversal, Rock Blast, Rock Slide, Rock Tomb, Skull Bash, Snore, Submission, Take Down, Vacuum Wave.
+**Added:** Thunderbolt.
 
-- **Natural/restored level-up:** Submission (Lv. 37).
-- **Egg (Machop family):** Bullet Punch, Close Combat, Counter, Fire Punch, Ice Punch, Knock Off, Rock Slide, Submission, Thunder Punch.
-- **TM/HM/elemental tutor:** Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Bide, Body Slam, Bulldoze, Cross Poison, Detect, Double Team, Endure, Fissure, Focus Blast, Frustration, Giga Impact, Incinerate, Mega Kick, Mega Punch, Metronome, Mimic, Poison Jab, Rage, Reversal, Rock Blast, Skull Bash, Snore, Take Down, Vacuum Wave.
+**Removed:** None.
 
-## Machoke
+- **Added Blackthorn lessons:** Thunderbolt.
 
-**Newly available (27):** Bide, Body Slam, Bulldoze, Bullet Punch, Detect, Double Team, Endure, Fissure, Focus Blast, Frustration, Incinerate, Mega Kick, Mega Punch, Metronome, Mimic, Poison Jab, Rage, Rain Dance, Reversal, Rock Slide, Rock Tomb, Skull Bash, Snore, Submission, Superpower, Take Down, Vacuum Wave.
+### Golduck
 
-- **Natural/restored level-up:** Submission (Lv. 37).
-- **Thematic level-up (custom):** Superpower (Lv. 56).
-- **Egg (Machop family):** Bullet Punch, Close Combat, Counter, Fire Punch, Ice Punch, Knock Off, Rock Slide, Submission, Thunder Punch.
-- **TM/HM/elemental tutor:** Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Bide, Body Slam, Bulldoze, Detect, Double Team, Endure, Fissure, Focus Blast, Frustration, Incinerate, Mega Kick, Mega Punch, Metronome, Mimic, Poison Jab, Rage, Reversal, Skull Bash, Snore, Take Down, Vacuum Wave.
+**Added:** Dazzling Gleam, Petal Dance, Tri Attack.
 
-## Machop
+**Removed:** Drain Punch, Iron Head.
 
-**Newly available (27):** Bide, Body Slam, Bulldoze, Bullet Punch, Detect, Double Team, Endure, Fissure, Focus Blast, Frustration, Incinerate, Mega Kick, Mega Punch, Metronome, Mimic, Poison Jab, Rage, Rain Dance, Reversal, Rock Slide, Rock Tomb, Skull Bash, Snore, Submission, Superpower, Take Down, Vacuum Wave.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Dazzling Gleam, Petal Dance, Tri Attack.
 
-- **Natural/restored level-up:** Submission (Lv. 33).
-- **Thematic level-up (custom):** Superpower (Lv. 56).
-- **Egg (Machop family):** Bullet Punch, Close Combat, Counter, Fire Punch, Ice Punch, Knock Off, Rock Slide, Submission, Thunder Punch.
-- **TM/HM/elemental tutor:** Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Bide, Body Slam, Bulldoze, Detect, Double Team, Endure, Fissure, Focus Blast, Frustration, Incinerate, Mega Kick, Mega Punch, Metronome, Mimic, Poison Jab, Rage, Reversal, Skull Bash, Snore, Take Down, Vacuum Wave.
+### Golem
 
-## Magby
+**Added:** Rapid Spin, Spikes, Wild Charge.
 
-**Newly available (22):** Body Slam, Brick Break, Counter, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Flame Charge, Focus Energy, Frustration, Heat Wave, Iron Tail, Lava Plume, Mega Kick, Mimic, Overheat, Poison Jab, Rock Smash, Seismic Toss, Snore, Take Down.
+**Removed:** Drain Punch, Head Smash, Screech.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 28).
-- **Thematic level-up (custom):** Heat Wave (Lv. 42), Overheat (Lv. 56).
-- **Egg (Magby family):** Cross Chop, Dynamic Punch, Flare Blitz, Focus Energy, Iron Tail, Thunder Punch.
-- **TM/HM/elemental tutor:** Rock Smash.
-- **Blackthorn tutor:** Body Slam, Brick Break, Counter, Detect, Double Team, Double-Edge, Endure, Flame Charge, Frustration, Mega Kick, Mimic, Poison Jab, Seismic Toss, Snore, Take Down.
+- **Removed natural entries:** Head Smash.
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Screech.
+- **Added Blackthorn lessons:** Rapid Spin, Spikes, Wild Charge.
 
-## Magcargo
+### Golett
 
-**Newly available (26):** Bulldoze, Defense Curl, Double Team, Double-Edge, Endure, Explosion, Fire Spin, Flame Charge, Flare Blitz, Frustration, Giga Impact, Gyro Ball, Heat Crash, Infestation, Lava Plume, Mimic, Mud Shot, Pain Split, Rock Blast, Sandstorm, Self-Destruct, Snore, Solar Beam, Stone Edge, Take Down, Yawn.
+**Added:** Comet Punch, Harden, Headlong Rush, Iron Head, Tackle.
 
-- **Natural/restored level-up:** Yawn (Lv. 1), Lava Plume (Lv. 21).
-- **Egg (Slugma family):** Curse, Earth Power.
-- **TM/HM/elemental tutor:** Sandstorm, Solar Beam.
-- **Blackthorn tutor:** Body Slam, Bulldoze, Defense Curl, Double Team, Double-Edge, Endure, Explosion, Fire Spin, Flame Charge, Flare Blitz, Frustration, Giga Impact, Gyro Ball, Heat Crash, Infestation, Mimic, Mud Shot, Pain Split, Rock Blast, Rock Slide, Self-Destruct, Snore, Stone Edge, Take Down.
+**Removed:** Will-O-Wisp.
 
-## Magikarp
+- **Removed machine flags:** Will-O-Wisp.
+- **Added Blackthorn lessons:** Comet Punch, Harden, Headlong Rush, Iron Head, Tackle.
 
-**Newly available (2):** Bounce, Hydro Pump.
+### Golisopod
 
-- **Thematic level-up (custom):** Hydro Pump (Lv. 56).
-- **Blackthorn tutor:** Bounce.
+**Added:** Agility, Cut, Gunk Shot, Night Slash, Stone Edge, U-turn.
 
-## Magmar
+**Removed:** Aqua Tail, Bubble, Curse, Low Sweep, Strength, Superpower, Whirlpool.
 
-**Newly available (33):** Bide, Body Slam, Brick Break, Counter, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Flame Charge, Focus Blast, Focus Energy, Frustration, Giga Impact, Heat Crash, Iron Tail, Lava Plume, Low Sweep, Mega Kick, Metronome, Mimic, Overheat, Poison Jab, Psywave, Rage, Roar, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport.
+- **Removed natural entries:** Low Sweep.
+- **Removed machine flags:** Curse, Strength, Whirlpool.
+- **Removed family egg entries:** Aqua Tail, Superpower.
+- **Added Blackthorn lessons:** Agility, Cut, Gunk Shot, Night Slash, Stone Edge, U-turn.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 28).
-- **Thematic level-up (custom):** Heat Crash (Lv. 42), Overheat (Lv. 56).
-- **Egg (Magby family):** Cross Chop, Dynamic Punch, Flare Blitz, Focus Energy, Iron Tail, Thunder Punch.
-- **TM/HM/elemental tutor:** Roar.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Counter, Detect, Double Team, Double-Edge, Endure, Flame Charge, Focus Blast, Frustration, Giga Impact, Low Sweep, Mega Kick, Metronome, Mimic, Poison Jab, Psywave, Rage, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport.
+### Golurk
 
-## Magmortar
+**Added:** Comet Punch, Fissure, Harden, Headlong Rush, Iron Head, Skull Bash, Tackle.
 
-**Newly available (39):** Bide, Body Slam, Brick Break, Bulldoze, Counter, Dark Pulse, Detect, Double Team, Double-Edge, Dynamic Punch, Earthquake, Endure, Flame Charge, Focus Energy, Frustration, Giga Impact, Heat Crash, Hyper Voice, Iron Tail, Lava Plume, Low Sweep, Mega Kick, Metronome, Mimic, Poison Jab, Psywave, Rage, Roar, Rock Slide, Rock Tomb, Seismic Toss, Skull Bash, Snore, Solar Beam, Submission, Take Down, Taunt, Teleport, Torment.
+**Removed:** Will-O-Wisp.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 28).
-- **Thematic level-up (custom):** Heat Crash (Lv. 42).
-- **Egg (Magby family):** Cross Chop, Dynamic Punch, Flare Blitz, Focus Energy, Iron Tail, Thunder Punch.
-- **TM/HM/elemental tutor:** Earthquake, Roar, Rock Tomb, Solar Beam.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Bulldoze, Counter, Detect, Double Team, Double-Edge, Endure, Flame Charge, Frustration, Giga Impact, Hyper Voice, Low Sweep, Mega Kick, Metronome, Mimic, Poison Jab, Psywave, Rage, Rock Slide, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Torment.
-- **Evolution access:** Dark Pulse.
+- **Removed machine flags:** Will-O-Wisp.
+- **Added Blackthorn lessons:** Comet Punch, Fissure, Harden, Headlong Rush, Iron Head, Skull Bash, Tackle.
 
-## Magnemite
+### Gorochu
 
-**Newly available (22):** Bide, Confuse Ray, Discharge, Double Team, Double-Edge, Endure, Frustration, Headbutt, Iron Head, Mimic, Psych Up, Rage, Recycle, Rollout, Sandstorm, Signal Beam, Snore, Sonic Boom, Sunny Day, Take Down, Teleport, Wild Charge.
+**Added:** Dazzling Gleam, Dizzy Punch, Ice Punch, Petal Dance, Psychic, Scary Face.
 
-- **Natural/restored level-up:** Sonic Boom (Lv. 17), Discharge (Lv. 28).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26).
-- **TM/HM/elemental tutor:** Headbutt, Iron Head, Sandstorm, Sunny Day.
-- **Blackthorn tutor:** Bide, Confuse Ray, Double Team, Double-Edge, Endure, Frustration, Gyro Ball, Mimic, Psych Up, Rage, Recycle, Rollout, Snore, Take Down, Teleport, Wild Charge.
+**Removed:** None.
 
-## Magneton
+- **Added Blackthorn lessons:** Body Slam, Brick Break, Calm Mind, Counter, Defense Curl, Detect, Double-Edge, Draining Kiss, Dynamic Punch, Frustration, Giga Impact, Grass Knot, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Rage, Rollout, Safeguard, Seismic Toss, Sing, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Yawn.
 
-**Newly available (22):** Bide, Confuse Ray, Discharge, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Headbutt, Iron Head, Mimic, Psych Up, Rage, Recycle, Rollout, Sandstorm, Snore, Sonic Boom, Sunny Day, Take Down, Teleport, Wild Charge.
+### Gorotora
 
-- **Natural/restored level-up:** Sonic Boom (Lv. 17), Discharge (Lv. 28).
-- **TM/HM/elemental tutor:** Headbutt, Iron Head, Sandstorm, Sunny Day.
-- **Blackthorn tutor:** Bide, Confuse Ray, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Gyro Ball, Mimic, Psych Up, Rage, Recycle, Rollout, Snore, Take Down, Teleport, Wild Charge.
+**Added:** None.
 
-## Magnezone
+**Removed:** None.
 
-**Newly available (23):** Bide, Body Slam, Confuse Ray, Discharge, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Headbutt, Mimic, Psych Up, Rage, Recycle, Rollout, Sandstorm, Self-Destruct, Snore, Sonic Boom, Sunny Day, Take Down, Teleport, Wild Charge.
 
-- **Natural/restored level-up:** Sonic Boom (Lv. 17), Discharge (Lv. 28).
-- **TM/HM/elemental tutor:** Sandstorm, Sunny Day.
-- **Blackthorn tutor:** Bide, Body Slam, Confuse Ray, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Gyro Ball, Mimic, Psych Up, Rage, Recycle, Rollout, Self-Destruct, Snore, Take Down, Teleport, Wild Charge.
-- **Evolution access:** Headbutt.
+### Granbull
 
-## Mamoswine
+**Added:** None.
 
-**Newly available (21):** Body Press, Charm, Defense Curl, Detect, Double Team, Double-Edge, Earth Power, Fissure, Frustration, Fury Cutter, Giga Impact, Hail, Haze, Horn Attack, Icicle Spear, Iron Head, Mimic, Reversal, Rock Blast, Snore, Stone Edge.
+**Removed:** Drain Punch.
 
-- **Natural/restored level-up:** Hail (Lv. 21).
-- **Thematic level-up (custom):** Body Press (Lv. 38).
-- **Egg (Swinub family):** Avalanche, Curse, Double-Edge, Fissure, Freeze-Dry, Icicle Crash, Icicle Spear, Mud Shot, Stealth Rock, Take Down.
-- **TM/HM/elemental tutor:** Fury Cutter, Iron Head.
-- **Blackthorn tutor:** Charm, Defense Curl, Detect, Double Team, Earth Power, Frustration, Giga Impact, Haze, Mimic, Reversal, Rock Blast, Snore, Stone Edge.
-- **Evolution access:** Horn Attack.
+- **Removed machine flags:** Drain Punch.
 
-## Mankey
+### Graveler
 
-**Newly available (39):** Acrobatics, Aerial Ace, Bide, Body Slam, Bulldoze, Defense Curl, Detect, Double Team, Double-Edge, Dynamic Punch, Earthquake, Encore, Endure, Focus Blast, Frustration, Gunk Shot, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Overheat, Pay Day, Poison Jab, Psych Up, Pursuit, Rage, Rain Dance, Rock Tomb, Scary Face, Seed Bomb, Shadow Claw, Snore, Spite, Stone Edge, Submission, Take Down, Taunt, Vacuum Wave.
+**Added:** Rapid Spin.
 
-- **Natural/restored level-up:** Pursuit (Lv. 12).
-- **Thematic level-up (custom):** Submission (Lv. 42).
-- **Egg (Mankey family):** Close Combat, Curse, Encore, Night Slash, Sleep Talk, Spite.
-- **TM/HM/elemental tutor:** Earthquake, Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bide, Body Slam, Bulldoze, Defense Curl, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Focus Blast, Frustration, Gunk Shot, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Overheat, Pay Day, Poison Jab, Psych Up, Rage, Scary Face, Seed Bomb, Shadow Claw, Snore, Stone Edge, Take Down, Taunt, Vacuum Wave.
+**Removed:** Drain Punch, Screech.
 
-## Mantine
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Screech.
+- **Added Blackthorn lessons:** Rapid Spin.
 
-**Newly available (29):** Acrobatics, Aerial Ace, Air Cutter, Amnesia, Aqua Tail, Body Press, Body Slam, Bulldoze, Bullet Seed, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Hail, Hurricane, Hyper Beam, Icy Wind, Iron Head, Liquidation, Mimic, Rock Blast, Rock Slide, Rock Tomb, Seed Bomb, Signal Beam, Snore, Splash, String Shot.
+### Grimer
 
-- **Natural/restored level-up:** Bullet Seed (Lv. 1), Signal Beam (Lv. 1).
-- **Thematic level-up (custom):** Hurricane (Lv. 50).
-- **Egg (Mantyke family):** Amnesia, Confuse Ray, Hydro Pump, Mirror Coat, Rock Slide, Signal Beam, Splash.
-- **TM/HM/elemental tutor:** Hyper Beam, Iron Head, Rock Tomb.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Aqua Tail, Body Press, Body Slam, Bounce, Bulldoze, Double Team, Double-Edge, Dual Wingbeat, Endure, Frustration, Giga Impact, Hail, Icy Wind, Liquidation, Mimic, Rock Blast, Seed Bomb, Snore, String Shot, Take Down.
+**Added:** None.
 
-## Mantyke
+**Removed:** Energy Ball.
 
-**Newly available (18):** Acrobatics, Aerial Ace, Air Cutter, Amnesia, Bounce, Bubble, Bulldoze, Double Team, Endure, Frustration, Hail, Icy Wind, Mud-Slap, Rock Slide, Scald, Signal Beam, Snore, Splash.
+- **Removed machine flags:** Energy Ball.
 
-- **Natural/restored level-up:** Bubble (Lv. 1).
-- **Thematic level-up (custom):** Scald (Lv. 42).
-- **Egg (Mantyke family):** Amnesia, Confuse Ray, Hydro Pump, Mirror Coat, Rock Slide, Signal Beam, Splash.
-- **TM/HM/elemental tutor:** Mud-Slap.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Bounce, Bulldoze, Double Team, Endure, Frustration, Hail, Icy Wind, Snore, Take Down.
+### Grimmsnarl
 
-## Mareanie
+**Added:** Frustration.
 
-**Newly available (18):** Blizzard, Double Team, Endure, Frustration, Gunk Shot, Hail, Hydro Pump, Icy Wind, Iron Defense, Lunge, Mud Shot, Pain Split, Safeguard, Scald, Snore, Spike Cannon, Spite, Water Pulse.
+**Removed:** Charm, Circle Throw, Curse, Disarming Voice, Encore, Force Palm, Knock Off, Mean Look, Night Slash, Strength, Sweet Kiss.
 
-- **Natural/restored level-up:** Spike Cannon (Lv. 29).
-- **Thematic level-up (custom):** Water Pulse (Lv. 42), Scald (Lv. 44), Gunk Shot (Lv. 56), Hydro Pump (Lv. 58).
-- **TM/HM/elemental tutor:** Blizzard.
-- **Blackthorn tutor:** Double Team, Endure, Frustration, Hail, Icy Wind, Iron Defense, Lunge, Mud Shot, Pain Split, Safeguard, Snore, Spite.
+- **Removed natural entries:** Circle Throw, Force Palm.
+- **Removed machine flags:** Curse, Knock Off, Night Slash, Strength.
+- **Removed family egg entries:** Charm, Encore, Mean Look.
+- **Added Blackthorn lessons:** Frustration.
 
-## Mareep
+### Growlithe
 
-**Newly available (15):** Cotton Guard, Defense Curl, Dig, Discharge, Double Team, Double-Edge, Endure, Frustration, Iron Tail, Mimic, Sand Attack, Signal Beam, Snore, Sunny Day, Wild Charge.
+**Added:** None.
 
-- **Natural/restored level-up:** Discharge (Lv. 25), Cotton Guard (Lv. 36), Signal Beam (Lv. 39).
-- **Egg (Mareep family):** Iron Tail, Sand Attack, Take Down.
-- **TM/HM/elemental tutor:** Dig, Sunny Day.
-- **Blackthorn tutor:** Defense Curl, Double Team, Double-Edge, Endure, Frustration, Mimic, Snore, Wild Charge.
+**Removed:** Iron Head.
 
-## Marill
+- **Removed machine flags:** Iron Head.
 
-**Newly available (29):** Brick Break, Bulldoze, Dig, Disarming Voice, Double Team, Draining Kiss, Dynamic Punch, Encore, Endure, Frustration, Hail, Hyper Voice, Icy Wind, Iron Tail, Liquidation, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Present, Rock Smash, Scald, Seismic Toss, Snore, Strength, Superpower, Take Down, Water Pulse.
+### Grubbin
 
-- **Natural/restored level-up:** Superpower (Lv. 36).
-- **Thematic level-up (custom):** Draining Kiss (Lv. 18), Water Pulse (Lv. 44), Scald (Lv. 46).
-- **Egg (Azurill family):** Aqua Jet, Body Slam, Encore, Present, Sing, Slam, Substitute, Superpower.
-- **TM/HM/elemental tutor:** Dig, Rock Smash, Strength.
-- **Blackthorn tutor:** Brick Break, Bulldoze, Disarming Voice, Double Team, Dynamic Punch, Endure, Frustration, Hail, Icy Wind, Iron Tail, Liquidation, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Seismic Toss, Snore.
-- **Evolution access:** Hyper Voice, Take Down.
+**Added:** None.
 
-## Marowak
+**Removed:** Agility, Curse, Fury Cutter, Nuzzle, Signal Beam.
 
-**Newly available (35):** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Counter, Detect, Double Kick, Double Team, Dynamic Punch, Earth Power, Endure, Fissure, Focus Blast, Frustration, Fury Cutter, Giga Impact, Icy Wind, Incinerate, Iron Defense, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Outrage, Rage, Rock Tomb, Seismic Toss, Snore, Submission, Swift, Take Down, Water Gun.
+- **Removed natural entries:** Nuzzle, Signal Beam.
+- **Removed machine flags:** Curse, Fury Cutter.
+- **Removed family egg entries:** Agility.
 
-- **Natural/restored level-up:** Rage (Lv. 23).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20).
-- **Egg (Cubone family):** Belly Drum, Curse, Detect, Double Kick, Endure, Iron Head, Leer.
-- **TM/HM/elemental tutor:** Fury Cutter, Rock Tomb, Swift.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Counter, Double Team, Dynamic Punch, Earth Power, Fissure, Focus Blast, Frustration, Giga Impact, Icy Wind, Incinerate, Iron Defense, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Outrage, Seismic Toss, Snore, Submission, Take Down, Water Gun.
+### Grumpig
 
-## Marowak (Alolan)
+**Added:** Hypnosis, Ominous Wind, Pay Day, Shadow Punch, Will-O-Wisp.
 
-**Newly available (42):** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Counter, Dark Pulse, Detect, Double Kick, Double Team, Dream Eater, Dynamic Punch, Earth Power, Endure, Fissure, Flame Charge, Focus Blast, Frustration, Fury Cutter, Giga Impact, Heat Wave, Icy Wind, Incinerate, Iron Defense, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Outrage, Rage, Rock Tomb, Seismic Toss, Snore, Spite, Stealth Rock, Stone Edge, Submission, Swift, Take Down, Water Gun.
+**Removed:** Curse, Slack Off, Thunderbolt.
 
-- **Thematic level-up (custom):** Spite (Lv. 34).
-- **Egg (Cubone family):** Belly Drum, Curse, Detect, Double Kick, Endure, Iron Head, Leer.
-- **TM/HM/elemental tutor:** Rock Tomb, Swift.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Counter, Dark Pulse, Double Team, Dream Eater, Dynamic Punch, Earth Power, Fissure, Flame Charge, Focus Blast, Frustration, Giga Impact, Heat Wave, Icy Wind, Incinerate, Iron Defense, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Outrage, Seismic Toss, Snore, Stone Edge, Submission, Take Down, Water Gun.
-- **Evolution access:** Bulldoze, Fury Cutter, Rage, Stealth Rock.
+- **Removed natural entries:** Slack Off.
+- **Removed machine flags:** Curse.
+- **Removed fallback lessons:** Thunderbolt.
+- **Added Blackthorn lessons:** Hypnosis, Ominous Wind, Pay Day, Shadow Punch, Will-O-Wisp.
 
-## Mawile
+### Gurdurr
 
-**Newly available (39):** Body Slam, Brick Break, Counter, Dark Pulse, Double Team, Double-Edge, Draining Kiss, Dynamic Punch, Endure, False Swipe, Fire Blast, Flamethrower, Focus Blast, Foul Play, Frustration, Giga Impact, Growl, Ice Beam, Icy Wind, Incinerate, Mega Kick, Mega Punch, Mimic, Pain Split, Psych Up, Rain Dance, Rock Slide, Rock Tomb, Sandstorm, Seismic Toss, Sing, Slam, Sludge Bomb, Snore, Solar Beam, Stealth Rock, Stone Edge, Super Fang, Torment.
+**Added:** Rock Blast.
 
-- **Natural/restored level-up:** Growl (Lv. 1), Sucker Punch (Lv. 20).
-- **Thematic level-up (custom):** Draining Kiss (Lv. 18).
-- **Egg (Mawile family):** False Swipe, Psych Up, Seismic Toss, Slam, Swords Dance.
-- **TM/HM/elemental tutor:** Fire Blast, Flamethrower, Ice Beam, Rain Dance, Rock Tomb, Sandstorm, Sludge Bomb, Solar Beam.
-- **Blackthorn tutor:** Body Slam, Brick Break, Counter, Dark Pulse, Double Team, Double-Edge, Dynamic Punch, Endure, Focus Blast, Foul Play, Frustration, Giga Impact, Icy Wind, Incinerate, Mega Kick, Mega Punch, Mimic, Pain Split, Rock Slide, Sing, Snore, Stealth Rock, Stone Edge, Super Fang, Torment.
+**Removed:** Body Press, Cross Chop.
 
-## Meganium
+- **Removed natural entries:** Body Press.
+- **Removed family egg entries:** Cross Chop.
+- **Added Blackthorn lessons:** Rock Blast.
 
-**Newly available (19):** Bulldoze, Charm, Detect, Double Team, Double-Edge, Dragon Tail, Endure, Frustration, Giga Impact, Iron Tail, Magical Leaf, Mega Drain, Mimic, Outrage, Petal Blizzard, Seed Bomb, Snore, Solar Blade, Take Down.
+### Gyarados
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 22), Petal Blizzard (Lv. 70).
-- **Thematic level-up (custom):** Seed Bomb (Lv. 42), Solar Blade (Lv. 56).
-- **Egg (Chikorita family):** Body Slam, Leaf Storm, Leech Seed.
-- **Blackthorn tutor:** Bulldoze, Charm, Detect, Double Team, Double-Edge, Dragon Tail, Endure, Frustration, Giga Impact, Iron Tail, Mimic, Outrage, Snore, Take Down.
-- **Evolution access:** Mega Drain.
+**Added:** Bubble, Focus Energy, Reversal.
 
-## Meowth
+**Removed:** None.
 
-**Newly available (41):** Aerial Ace, Agility, Bide, Body Slam, Bubble Beam, Cut, Dark Pulse, Defense Curl, Detect, Dig, Double Team, Dream Eater, Endure, False Swipe, Flail, Flash, Frustration, Gunk Shot, Hyper Voice, Icy Wind, Metal Claw, Mimic, Nightmare, Pain Split, Petal Dance, Psych Up, Rage, Rain Dance, Seed Bomb, Shadow Claw, Sing, Skull Bash, Snarl, Snore, Tail Whip, Take Down, Taunt, Torment, U-turn, Water Gun, Water Pulse.
+- **Added Blackthorn lessons:** Bubble, Focus Energy, Reversal.
 
-- **Natural/restored level-up:** Taunt (Lv. 20), Night Slash (Lv. 49).
-- **Thematic level-up (custom):** Hyper Voice (Lv. 42), Take Down (Lv. 44), Body Slam (Lv. 46), Skull Bash (Lv. 56).
-- **Egg (Meowth family):** Flail, Hypnosis, Psych Up, Tail Whip.
-- **TM/HM/elemental tutor:** Cut, Dig, Flash, Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Agility, Bide, Bubble Beam, Dark Pulse, Defense Curl, Detect, Double Team, Dream Eater, Endure, False Swipe, Frustration, Gunk Shot, Icy Wind, Metal Claw, Mimic, Nightmare, Pain Split, Petal Dance, Rage, Seed Bomb, Shadow Claw, Sing, Snarl, Snore, Torment, U-turn, Water Gun, Water Pulse.
+### Happiny
 
-## Meowth (Alolan)
+**Added:** Calm Mind, Double-Edge, Draining Kiss, Fairy Wind, Soft-Boiled, Zap Cannon.
 
-**Newly available (23):** Aerial Ace, Agility, Body Slam, Confuse Ray, Double Team, Dream Eater, Endure, Flail, Frustration, Gunk Shot, Hyper Voice, Icy Wind, Iron Tail, Metal Claw, Psych Up, Seed Bomb, Shadow Claw, Snore, Take Down, Taunt, Torment, U-turn, Water Pulse.
+**Removed:** Blizzard, Curse, Encore, Ice Beam, Rock Tomb, Swift, Wish.
 
-- **Natural/restored level-up:** Fake Out (Lv. 1), Taunt (Lv. 20).
-- **Egg (Meowth (Alolan) family):** Flail, Foul Play, Hypnosis.
-- **Blackthorn tutor:** Aerial Ace, Agility, Body Slam, Confuse Ray, Double Team, Dream Eater, Endure, Frustration, Gunk Shot, Hyper Voice, Icy Wind, Iron Tail, Metal Claw, Psych Up, Seed Bomb, Shadow Claw, Snore, Take Down, Torment, U-turn, Water Pulse.
+- **Removed machine flags:** Blizzard, Curse, Ice Beam, Rock Tomb, Swift.
+- **Removed family egg entries:** Encore, Wish.
+- **Added Blackthorn lessons:** Calm Mind, Double-Edge, Draining Kiss, Fairy Wind, Soft-Boiled, Zap Cannon.
 
-## Meowth (Galarian)
+### Haunter
 
-**Newly available (25):** Aerial Ace, Amnesia, Body Slam, Brick Break, Charm, Crunch, Dark Pulse, Endure, False Swipe, Flail, Foul Play, Gunk Shot, Gyro Ball, Hyper Voice, Iron Tail, Metronome, Seed Bomb, Shadow Claw, Snore, Stealth Rock, Swords Dance, Take Down, Taunt, U-turn, X-Scissor.
+**Added:** Confusion, Shadow Sneak.
 
-- **Natural/restored level-up:** Fake Out (Lv. 1), Taunt (Lv. 20).
-- **Thematic level-up (custom):** Iron Tail (Lv. 52).
-- **Egg (Meowth (Galarian) family):** Curse, Flail, Night Slash.
-- **Blackthorn tutor:** Aerial Ace, Amnesia, Body Slam, Brick Break, Charm, Crunch, Dark Pulse, Endure, False Swipe, Foul Play, Gunk Shot, Gyro Ball, Hyper Voice, Metronome, Seed Bomb, Shadow Claw, Snore, Stealth Rock, Swords Dance, Take Down, U-turn, X-Scissor.
+**Removed:** Sludge.
 
-## Mesmeria
+- **Removed natural entries:** Sludge.
+- **Added Blackthorn lessons:** Confusion, Shadow Sneak.
 
-**Newly available (42):** Avalanche, Bide, Brick Break, Bubble Beam, Charm, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Energy Ball, Frustration, Giga Impact, Hail, Heal Bell, Hyper Voice, Icicle Spear, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psyshock, Psywave, Rage, Recycle, Screech, Seismic Toss, Skill Swap, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Thrash, Torment, Trick, Trick Room, Triple Axel, Water Gun, Water Pulse.
+### Haxorus
 
-- **Thematic level-up (custom):** Psyshock (Lv. 40).
-- **Egg (Smoochum family):** Ice Punch, Nasty Plot, Psych Up.
-- **Blackthorn tutor:** Avalanche.
-- **Evolution access:** Bide, Brick Break, Bubble Beam, Charm, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Energy Ball, Frustration, Giga Impact, Hail, Heal Bell, Hyper Voice, Icicle Spear, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psywave, Rage, Recycle, Screech, Seismic Toss, Skill Swap, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Thrash, Torment, Trick, Trick Room, Triple Axel, Water Gun, Water Pulse.
+**Added:** None.
 
-## Metapod
+**Removed:** Curse, Headbutt.
 
-**Newly available (2):** Iron Defense, Snore.
+- **Removed machine flags:** Curse, Headbutt.
 
-- **Thematic level-up (custom):** Bug Bite (Lv. 18).
-- **Blackthorn tutor:** Iron Defense, Snore.
+### Heracross
 
-## Mew
+**Added:** Calm Mind, Mud Shot, Outrage, Skull Bash, Slash.
 
-**Newly available (175):** Acrobatics, Aerial Ace, Agility, Air Cutter, Air Slash, Aqua Tail, Attract, Avalanche, Beat Up, Bide, Bind, Blaze Kick, Body Press, Body Slam, Bounce, Brave Bird, Brick Break, Bubble Beam, Bug Bite, Bug Buzz, Bulldoze, Bullet Seed, Charm, Close Combat, Confuse Ray, Confusion, Cosmic Power, Counter, Cross Poison, Crunch, Dark Pulse, Dazzling Gleam, Defense Curl, Defog, Detect, Disarming Voice, Double Team, Double-Edge, Draco Meteor, Dragon Breath, Dragon Rage, Dragon Tail, Draining Kiss, Dream Eater, Drill Run, Dual Wingbeat, Dynamic Punch, Earth Power, Egg Bomb, Encore, Endure, Explosion, Fake Out, False Swipe, Feint Attack, Fire Fang, Fire Spin, Fissure, Flame Charge, Flare Blitz, Flip Turn, Focus Blast, Focus Energy, Foul Play, Frustration, Future Sight, Giga Drain, Giga Impact, Gunk Shot, Gyro Ball, Hail, Haze, Heal Bell, Heat Crash, Heat Wave, Hex, Horn Drill, Hurricane, Hydro Pump, Hyper Voice, Ice Fang, Icicle Spear, Icy Wind, Incinerate, Infestation, Iron Defense, Iron Tail, Leaf Blade, Leaf Storm, Leech Life, Liquidation, Low Kick, Low Sweep, Lunge, Magical Leaf, Mega Drain, Mega Kick, Megahorn, Metal Claw, Mimic, Mud Shot, Night Shade, Nightmare, Ominous Wind, Outrage, Overheat, Pain Split, Pay Day, Petal Blizzard, Phantom Force, Pin Missile, Play Rough, Poison Jab, Poison Tail, Power Whip, Psybeam, Psych Up, Psycho Cut, Psyshock, Psywave, Rage, Razor Wind, Recycle, Reversal, Rock Blast, Rock Polish, Rock Slide, Rollout, Roost, Safeguard, Scald, Scale Shot, Scary Face, Screech, Seed Bomb, Seismic Toss, Self-Destruct, Shadow Claw, Signal Beam, Skill Swap, Skull Bash, Sky Attack, Snarl, Snore, Soft-Boiled, Solar Blade, Spikes, Spite, Stone Edge, String Shot, Struggle Bug, Submission, Sucker Punch, Super Fang, Superpower, Synthesis, Take Down, Taunt, Teleport, Thunder Fang, Torment, Toxic Spikes, Tri Attack, Trick, Trick Room, Triple Axel, Twister, Vacuum Wave, Venoshock, Volt Switch, Water Gun, Water Pulse, Whirlwind, Wild Charge, X-Scissor.
+**Removed:** Feint Attack, Hammer Arm, Low Sweep, Superpower.
 
-- **Thematic level-up (custom):** Psybeam (Lv. 18), Signal Beam (Lv. 28), Psycho Cut (Lv. 32), Skill Swap (Lv. 36), Trick (Lv. 40), Trick Room (Lv. 48), Dream Eater (Lv. 52), Future Sight (Lv. 56).
-- **TM/HM/elemental tutor:** Attract.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Agility, Air Cutter, Air Slash, Aqua Tail, Avalanche, Beat Up, Bide, Bind, Blaze Kick, Body Press, Body Slam, Bounce, Brave Bird, Brick Break, Bubble Beam, Bug Bite, Bug Buzz, Bulldoze, Bullet Seed, Charm, Close Combat, Confuse Ray, Confusion, Cosmic Power, Counter, Cross Poison, Crunch, Dark Pulse, Dazzling Gleam, Defense Curl, Defog, Detect, Disarming Voice, Double Team, Double-Edge, Draco Meteor, Dragon Breath, Dragon Rage, Dragon Tail, Draining Kiss, Drill Run, Dual Wingbeat, Dynamic Punch, Earth Power, Egg Bomb, Encore, Endure, Explosion, Fake Out, False Swipe, Feint Attack, Fire Fang, Fire Spin, Fissure, Flame Charge, Flare Blitz, Flip Turn, Focus Blast, Focus Energy, Foul Play, Frustration, Giga Drain, Giga Impact, Gunk Shot, Gyro Ball, Hail, Haze, Heal Bell, Heat Crash, Heat Wave, Hex, Horn Drill, Hurricane, Hydro Pump, Hyper Voice, Ice Fang, Icicle Spear, Icy Wind, Incinerate, Infestation, Iron Defense, Iron Tail, Leaf Blade, Leaf Storm, Leech Life, Liquidation, Low Kick, Low Sweep, Lunge, Magical Leaf, Mega Drain, Mega Kick, Megahorn, Metal Claw, Mimic, Mud Shot, Night Shade, Nightmare, Ominous Wind, Outrage, Overheat, Pain Split, Pay Day, Petal Blizzard, Phantom Force, Pin Missile, Play Rough, Poison Jab, Poison Tail, Power Whip, Psych Up, Psyshock, Psywave, Rage, Razor Wind, Recycle, Reversal, Rock Blast, Rock Polish, Rock Slide, Rollout, Roost, Safeguard, Scald, Scale Shot, Scary Face, Screech, Seed Bomb, Seismic Toss, Self-Destruct, Shadow Claw, Skull Bash, Sky Attack, Snarl, Snore, Soft-Boiled, Solar Blade, Spikes, Spite, Stone Edge, String Shot, Struggle Bug, Submission, Sucker Punch, Super Fang, Superpower, Synthesis, Take Down, Taunt, Teleport, Thunder Fang, Torment, Toxic Spikes, Tri Attack, Triple Axel, Twister, Vacuum Wave, Venoshock, Volt Switch, Water Gun, Water Pulse, Whirlwind, Wild Charge, X-Scissor.
+- **Removed natural entries:** Hammer Arm, Low Sweep, Superpower.
+- **Removed family egg entries:** Feint Attack.
+- **Added Blackthorn lessons:** Calm Mind, Mud Shot, Outrage, Skull Bash, Slash.
 
-## Mewtwo
+### Hisuian Arcanine
 
-**Newly available (66):** Aerial Ace, Agility, Aqua Tail, Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Confuse Ray, Counter, Dark Pulse, Detect, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Earth Power, Earthquake, Endure, Energy Ball, Focus Blast, Foul Play, Frustration, Giga Impact, Hail, Hex, Hurricane, Icy Wind, Incinerate, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Nightmare, Pay Day, Poison Jab, Psybeam, Psyshock, Psywave, Rage, Recycle, Reversal, Rock Slide, Rock Tomb, Sandstorm, Scary Face, Seismic Toss, Self-Destruct, Skill Swap, Skull Bash, Snore, Spite, Stone Edge, Submission, Take Down, Torment, Tri Attack, Trick, Trick Room, Water Gun, Water Pulse.
+**Added:** Ancient Power, Double Team, Flash Cannon, Frustration, Iron Tail, Mud-Slap, Snore.
 
-- **Natural/restored level-up:** Psywave (Lv. 1).
-- **Thematic level-up (custom):** Psybeam (Lv. 18), Skill Swap (Lv. 36), Trick (Lv. 40), Trick Room (Lv. 44), Dream Eater (Lv. 52).
-- **TM/HM/elemental tutor:** Earthquake, Energy Ball, Rock Tomb, Sandstorm.
-- **Blackthorn tutor:** Aerial Ace, Agility, Aqua Tail, Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Confuse Ray, Counter, Dark Pulse, Detect, Double Team, Double-Edge, Dynamic Punch, Earth Power, Endure, Focus Blast, Foul Play, Frustration, Giga Impact, Hail, Hex, Hurricane, Icy Wind, Incinerate, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Night Shade, Nightmare, Pay Day, Poison Jab, Psyshock, Rage, Recycle, Reversal, Rock Slide, Scary Face, Seismic Toss, Self-Destruct, Skull Bash, Snore, Spite, Stone Edge, Submission, Take Down, Torment, Tri Attack, Water Gun, Water Pulse.
+**Removed:** Crush Claw, Curse, Headbutt, Incinerate.
 
-## Milotic
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Curse, Headbutt.
+- **Added Blackthorn lessons:** Ancient Power, Double Team, Flash Cannon, Frustration, Iron Tail, Mud-Slap, Snore.
 
-**Newly available (24):** Avalanche, Bind, Body Slam, Bulldoze, Calm Mind, Double Team, Double-Edge, Draining Kiss, Endure, Frustration, Giga Impact, Hail, Icy Wind, Iron Head, Iron Tail, Mimic, Mud Shot, Mud-Slap, Psych Up, Scale Shot, Snore, Swift, Take Down, Triple Axel.
+### Hisuian Electrode
 
-- **Thematic level-up (custom):** Draining Kiss (Lv. 18).
-- **Egg (Feebas family):** Dragon Pulse, Iron Tail, Light Screen.
-- **TM/HM/elemental tutor:** Iron Head, Mud-Slap, Swift.
-- **Blackthorn tutor:** Aqua Tail, Avalanche, Bind, Body Slam, Bulldoze, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Hail, Icy Wind, Mimic, Mud Shot, Psych Up, Scale Shot, Snore, Take Down, Triple Axel.
-- **Evolution access:** Calm Mind.
+**Added:** Attract, Bug Buzz, Frustration, Safeguard, Snore, Sucker Punch, Torment.
 
-## Miltank
+**Removed:** Headbutt, Rock Tomb, Sunny Day.
 
-**Newly available (22):** Bide, Brick Break, Bulldoze, Counter, Double Team, Dynamic Punch, Focus Blast, Frustration, Giga Impact, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Present, Psych Up, Rock Slide, Snore, Solar Beam, Water Pulse, Whirlpool.
+- **Removed machine flags:** Headbutt, Rock Tomb, Sunny Day.
+- **Added Blackthorn lessons:** Attract, Bug Buzz, Frustration, Safeguard, Snore, Sucker Punch, Torment.
 
-- **Natural/restored level-up:** Bide (Lv. 15).
-- **Thematic level-up (custom):** Giga Impact (Lv. 56).
-- **Egg (Miltank family):** Curse, Double-Edge, Present, Psych Up.
-- **TM/HM/elemental tutor:** Solar Beam, Whirlpool.
-- **Blackthorn tutor:** Brick Break, Bulldoze, Counter, Double Team, Dynamic Punch, Focus Blast, Frustration, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Rock Slide, Snore, Water Pulse.
+### Hisuian Growlithe
 
-## Mime Jr.
+**Added:** Aerial Ace, Ancient Power, Bulldoze, Double Team, Flash Cannon, Frustration, Iron Tail, Mud-Slap, Snarl, Snore.
 
-**Newly available (21):** Brick Break, Dazzling Gleam, Double Team, Drain Punch, Dream Eater, Endure, Frustration, Infestation, Meditate, Mimic, Mud-Slap, Pound, Psych Up, Psyshock, Recycle, Signal Beam, Snore, Sucker Punch, Taunt, Torment, Trick Room.
+**Removed:** Curse, Headbutt, Incinerate, Iron Head.
 
-- **Natural/restored level-up:** Pound (Lv. 1), Meditate (Lv. 8), Recycle (Lv. 24), Mimic (Lv. 32), Sucker Punch (Lv. 40), Dazzling Gleam (Lv. 44).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Trick Room (Lv. 34), Dream Eater (Lv. 52).
-- **Egg (Mime Jr. family):** Confuse Ray, Future Sight, Hypnosis, Mimic, Nasty Plot, Psych Up, Trick.
-- **TM/HM/elemental tutor:** Drain Punch, Mud-Slap.
-- **Blackthorn tutor:** Brick Break, Double Team, Endure, Frustration, Infestation, Psyshock, Snore, Taunt, Torment.
+- **Removed natural entries:** Incinerate.
+- **Removed machine flags:** Curse, Headbutt, Iron Head.
+- **Added Blackthorn lessons:** Aerial Ace, Ancient Power, Bulldoze, Double Team, Flash Cannon, Frustration, Iron Tail, Mud-Slap, Snarl, Snore.
 
-## Mimikyu
+### Hisuian Sneasel
 
-**Newly available (28):** Beat Up, Dark Pulse, Dazzling Gleam, Draining Kiss, Dream Eater, Endure, Feint Attack, Frustration, Giga Drain, Giga Impact, Hex, Infestation, Leech Life, Night Shade, Nightmare, Psych Up, Psychic, Rain Dance, Safeguard, Screech, Snore, Sunny Day, Take Down, Taunt, Thunder, Trick, Wood Hammer, X-Scissor.
+**Added:** Bulldoze, Crush Claw, Dark Pulse, Foresight, Frustration, Fury Cutter, Hail, Iron Tail, Knock Off, Mud-Slap, Psych Up, Seismic Toss, Snore, Sucker Punch, Superpower, Thunder Punch, Torment.
 
-- **Natural/restored level-up:** Wood Hammer (Lv. 1), Feint Attack (Lv. 23).
-- **Thematic level-up (custom):** Trick (Lv. 38).
-- **Egg (Mimikyu family):** Curse, Nightmare.
-- **TM/HM/elemental tutor:** Psychic, Rain Dance, Sunny Day, Thunder.
-- **Blackthorn tutor:** Beat Up, Dark Pulse, Dazzling Gleam, Draining Kiss, Dream Eater, Endure, Frustration, Giga Drain, Giga Impact, Hex, Infestation, Leech Life, Night Shade, Psych Up, Safeguard, Screech, Snore, Take Down, Taunt, X-Scissor.
+**Removed:** Curse, Headbutt, Iron Head, Pursuit, Surf, Whirlpool.
 
-## Misdreavus
+- **Removed machine flags:** Curse, Headbutt, Iron Head, Surf, Whirlpool.
+- **Removed family egg entries:** Pursuit.
+- **Added Blackthorn lessons:** Bulldoze, Crush Claw, Dark Pulse, Foresight, Frustration, Fury Cutter, Hail, Iron Tail, Knock Off, Mud-Slap, Psych Up, Seismic Toss, Snore, Sucker Punch, Superpower, Thunder Punch, Torment.
 
-**Newly available (32):** Aerial Ace, Calm Mind, Charm, Dark Pulse, Dazzling Gleam, Defense Curl, Double Team, Double-Edge, Dream Eater, Endure, Energy Ball, Fairy Wind, Frustration, Future Sight, Giga Impact, Heal Bell, Hyper Beam, Hyper Voice, Icy Wind, Magical Leaf, Mimic, Night Shade, Nightmare, Ominous Wind, Psyshock, Psywave, Scary Face, Snore, Taunt, Torment, Trick, Trick Room.
+### Hisuian Typhlosion
 
-- **Natural/restored level-up:** Psywave (Lv. 1).
-- **Thematic level-up (custom):** Calm Mind (Lv. 32), Trick (Lv. 34), Trick Room (Lv. 38), Dark Pulse (Lv. 44), Dazzling Gleam (Lv. 46).
-- **Egg (Misdreavus family):** Curse, Destiny Bond, Nasty Plot, Ominous Wind, Shadow Sneak, Spite.
-- **TM/HM/elemental tutor:** Energy Ball, Hyper Beam.
-- **Blackthorn tutor:** Aerial Ace, Charm, Defense Curl, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Future Sight, Giga Impact, Heal Bell, Hyper Voice, Icy Wind, Magical Leaf, Mimic, Night Shade, Nightmare, Phantom Force, Psyshock, Scary Face, Snore, Taunt, Torment.
-- **Evolution access:** Fairy Wind.
+**Added:** Seismic Toss, Thunderbolt.
 
-## Mismagius
+**Removed:** Phantom Force, Raging Fury.
 
-**Newly available (29):** Aerial Ace, Calm Mind, Charm, Dark Pulse, Dazzling Gleam, Defense Curl, Double Team, Double-Edge, Dream Eater, Endure, Energy Ball, Fairy Wind, Frustration, Future Sight, Giga Impact, Heal Bell, Icy Wind, Magical Leaf, Mimic, Night Shade, Nightmare, Ominous Wind, Psyshock, Psywave, Scary Face, Snore, Torment, Trick, Trick Room.
+- **Removed natural entries:** Phantom Force, Raging Fury.
+- **Added Blackthorn lessons:** Seismic Toss, Thunderbolt.
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 1), Psywave (Lv. 1).
-- **Thematic level-up (custom):** Calm Mind (Lv. 30), Trick (Lv. 34), Trick Room (Lv. 38), Dark Pulse (Lv. 44), Dazzling Gleam (Lv. 46).
-- **Egg (Misdreavus family):** Curse, Destiny Bond, Nasty Plot, Ominous Wind, Shadow Sneak, Spite.
-- **TM/HM/elemental tutor:** Energy Ball.
-- **Blackthorn tutor:** Aerial Ace, Charm, Defense Curl, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Future Sight, Giga Impact, Heal Bell, Icy Wind, Mimic, Night Shade, Nightmare, Phantom Force, Psyshock, Scary Face, Snore, Torment.
-- **Evolution access:** Fairy Wind.
+### Hisuian Voltorb
 
-## Moltres
+**Added:** Attract, Bug Buzz, Frustration, Safeguard, Scary Face, Signal Beam, Snore, Sucker Punch, Synthesis.
 
-**Newly available (26):** Acrobatics, Aerial Ace, Air Cutter, Bide, Brave Bird, Defog, Detect, Double Team, Double-Edge, Extrasensory, Flame Charge, Flare Blitz, Frustration, Giga Impact, Headbutt, Mimic, Morning Sun, Ominous Wind, Peck, Rage, Razor Wind, Reflect, Snore, Take Down, Twister, Whirlwind.
+**Removed:** Curse, Headbutt, Rock Tomb, Sunny Day.
 
-- **Thematic level-up (custom):** Defog (Lv. 36), Brave Bird (Lv. 56), Flare Blitz (Lv. 58).
-- **TM/HM/elemental tutor:** Headbutt.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Bide, Detect, Double Team, Double-Edge, Extrasensory, Flame Charge, Frustration, Giga Impact, Mimic, Morning Sun, Ominous Wind, Peck, Rage, Razor Wind, Reflect, Snore, Take Down, Twister, Whirlwind.
+- **Removed machine flags:** Curse, Headbutt, Rock Tomb, Sunny Day.
+- **Added Blackthorn lessons:** Attract, Bug Buzz, Frustration, Safeguard, Scary Face, Signal Beam, Snore, Sucker Punch, Synthesis.
 
-## Morgrem
+### Hitmonchan
 
-**Newly available (12):** Dazzling Gleam, Endure, Leech Life, Low Kick, Mega Kick, Mega Punch, Metronome, Scary Face, Shadow Claw, Snore, Take Down, Trick.
+**Added:** None.
 
-- **Natural/restored level-up:** Torment (Lv. 28).
-- **Blackthorn tutor:** Endure, Leech Life, Low Kick, Mega Kick, Mega Punch, Metronome, Scary Face, Shadow Claw, Snore, Take Down, Trick.
-- **Evolution access:** Dazzling Gleam.
+**Removed:** Force Palm, Hammer Arm.
 
-## Mr. Mime
+- **Removed natural entries:** Force Palm, Hammer Arm.
 
-**Newly available (36):** Aerial Ace, Bide, Body Slam, Brick Break, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Energy Ball, Focus Blast, Foul Play, Frustration, Giga Impact, Infestation, Iron Defense, Magical Leaf, Mega Kick, Mega Punch, Nightmare, Psych Up, Psyshock, Psywave, Rage, Recycle, Seismic Toss, Signal Beam, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Torment, Trick Room.
+### Hitmonlee
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 1), Psywave (Lv. 15), Recycle (Lv. 24).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Trick Room (Lv. 34), Dream Eater (Lv. 50).
-- **Egg (Mime Jr. family):** Confuse Ray, Future Sight, Hypnosis, Mimic, Nasty Plot, Psych Up, Trick.
-- **TM/HM/elemental tutor:** Energy Ball.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Brick Break, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Focus Blast, Foul Play, Frustration, Giga Impact, Infestation, Iron Defense, Mega Kick, Mega Punch, Nightmare, Psycho Cut, Psyshock, Rage, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Torment.
+**Added:** Dizzy Punch.
 
-## Mr. Rime
+**Removed:** Circle Throw, Drain Punch.
 
-**Newly available (40):** Aerial Ace, Avalanche, Bide, Body Slam, Brick Break, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Energy Ball, Focus Blast, Foul Play, Frustration, Giga Impact, Hail, Icicle Spear, Infestation, Iron Defense, Magical Leaf, Mega Kick, Mega Punch, Nightmare, Psych Up, Psyshock, Psywave, Rage, Recycle, Screech, Seismic Toss, Signal Beam, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Torment, Triple Axel.
+- **Removed natural entries:** Circle Throw.
+- **Removed machine flags:** Drain Punch.
+- **Added Blackthorn lessons:** Dizzy Punch.
 
-- **Natural/restored level-up:** Recycle (Lv. 1), Psyshock (Lv. 56).
-- **Egg (Mime Jr. family):** Confuse Ray, Future Sight, Hypnosis, Mimic, Nasty Plot, Psych Up, Trick.
-- **TM/HM/elemental tutor:** Energy Ball.
-- **Blackthorn tutor:** Avalanche, Body Slam, Brick Break, Double Team, Endure, Focus Blast, Foul Play, Frustration, Giga Impact, Hail, Icicle Spear, Infestation, Iron Defense, Mega Kick, Mega Punch, Psycho Cut, Screech, Snore, Taunt, Torment, Triple Axel.
-- **Evolution access:** Aerial Ace, Bide, Counter, Double-Edge, Dream Eater, Dynamic Punch, Magical Leaf, Nightmare, Psywave, Rage, Seismic Toss, Signal Beam, Skull Bash, Submission, Take Down, Teleport.
+### Hitmontop
 
-## Muk
+**Added:** Dizzy Punch, Rage.
 
-**Newly available (38):** Bide, Body Slam, Brick Break, Confuse Ray, Dark Pulse, Dig, Double Team, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Drain, Giga Impact, Headbutt, Hex, Incinerate, Infestation, Lunge, Mega Drain, Metronome, Mimic, Mud Shot, Pain Split, Rage, Rain Dance, Rock Slide, Rock Smash, Rock Tomb, Sandstorm, Self-Destruct, Shadow Ball, Snore, Spite, Strength, Swift, Take Down, Torment, Venoshock.
+**Removed:** Body Press, Circle Throw.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 18).
-- **Egg (Grimer family):** Curse, Shadow Sneak.
-- **TM/HM/elemental tutor:** Dig, Headbutt, Rain Dance, Rock Smash, Rock Tomb, Sandstorm, Shadow Ball, Strength, Swift.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Confuse Ray, Dark Pulse, Double Team, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Drain, Giga Impact, Hex, Incinerate, Infestation, Lunge, Mega Drain, Metronome, Mimic, Pain Split, Rage, Rock Slide, Self-Destruct, Snore, Spite, Take Down, Torment, Venoshock.
+- **Removed natural entries:** Body Press, Circle Throw.
+- **Added Blackthorn lessons:** Dizzy Punch, Rage.
 
-## Muk (Alolan)
+### Ho-Oh
 
-**Newly available (36):** Body Slam, Brick Break, Dark Pulse, Double Team, Endure, Explosion, Focus Blast, Foul Play, Frustration, Giga Drain, Giga Impact, Headbutt, Hex, Infestation, Mega Drain, Metronome, Moonblast, Mud Shot, Mud-Slap, Pain Split, Pursuit, Recycle, Rock Polish, Rock Slide, Rock Tomb, Sandstorm, Self-Destruct, Snarl, Snore, Stone Edge, Swift, Take Down, Thunder, Thunderbolt, Torment, Venoshock.
+**Added:** None.
 
-- **Thematic level-up (custom):** Foul Play (Lv. 40).
-- **Egg (Grimer (Alolan) family):** Curse, Pursuit, Recycle, Shadow Sneak.
-- **TM/HM/elemental tutor:** Headbutt, Mud-Slap, Rock Tomb, Sandstorm, Swift, Thunder, Thunderbolt.
-- **Blackthorn tutor:** Body Slam, Brick Break, Dark Pulse, Double Team, Endure, Explosion, Focus Blast, Frustration, Giga Drain, Giga Impact, Hex, Infestation, Mega Drain, Metronome, Moonblast, Mud Shot, Pain Split, Rock Polish, Rock Slide, Self-Destruct, Snarl, Snore, Stone Edge, Take Down, Torment, Venoshock.
+**Removed:** Energy Ball.
 
-## Munchlax
+- **Removed machine flags:** Energy Ball.
 
-**Newly available (36):** Brick Break, Bulldoze, Counter, Crunch, Dig, Double Team, Encore, Endure, Fire Blast, Fire Punch, Frustration, Giga Impact, Gunk Shot, Hydro Pump, Hyper Voice, Ice Punch, Icy Wind, Incinerate, Mega Kick, Mega Punch, Pay Day, Psychic, Pursuit, Recycle, Rock Slide, Sandstorm, Seed Bomb, Self-Destruct, Shadow Ball, Solar Beam, Superpower, Take Down, Thunder, Thunder Punch, Water Pulse, Whirlpool.
+### Honchkrow
 
-- **Natural/restored level-up:** Recycle (Lv. 15).
-- **Thematic level-up (custom):** Take Down (Lv. 46), Giga Impact (Lv. 56).
-- **Egg (Munchlax family):** Counter, Curse, Double-Edge, Lick, Pursuit, Self-Destruct, Substitute, Zen Headbutt.
-- **TM/HM/elemental tutor:** Dig, Fire Blast, Fire Punch, Ice Punch, Psychic, Sandstorm, Shadow Ball, Solar Beam, Thunder, Thunder Punch, Whirlpool.
-- **Blackthorn tutor:** Brick Break, Bulldoze, Crunch, Double Team, Encore, Endure, Frustration, Gunk Shot, Hydro Pump, Hyper Voice, Icy Wind, Incinerate, Mega Kick, Mega Punch, Pay Day, Rock Slide, Seed Bomb, Superpower, Water Pulse.
+**Added:** Beat Up, Drill Run.
 
-## Murkrow
+**Removed:** Knock Off, Strength.
 
-**Newly available (34):** Acrobatics, Aerial Ace, Air Cutter, Air Slash, Calm Mind, Confuse Ray, Defog, Detect, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Heat Wave, Hex, Hurricane, Hyper Beam, Icy Wind, Mimic, Nightmare, Ominous Wind, Perish Song, Psych Up, Psychic, Pursuit, Rain Dance, Scary Face, Screech, Snore, Spite, Take Down, Twister, U-turn.
+- **Removed machine flags:** Knock Off, Strength.
+- **Added Blackthorn lessons:** Beat Up, Drill Run.
 
-- **Natural/restored level-up:** Pursuit (Lv. 5).
-- **Thematic level-up (custom):** Air Slash (Lv. 32), Spite (Lv. 34), Defog (Lv. 38), Heat Wave (Lv. 42), Hurricane (Lv. 50).
-- **Egg (Murkrow family):** Brave Bird, Confuse Ray, Drill Peck, Feint Attack, Perish Song, Roost, Screech, Wing Attack.
-- **TM/HM/elemental tutor:** Hyper Beam, Psychic, Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Calm Mind, Detect, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Hex, Icy Wind, Mimic, Nightmare, Ominous Wind, Psych Up, Scary Face, Snore, Take Down, Twister, U-turn.
+### Hoothoot
 
-## Natu
+**Added:** None.
 
-**Newly available (35):** Aerial Ace, Air Cutter, Air Slash, Baton Pass, Calm Mind, Cosmic Power, Dazzling Gleam, Detect, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Endure, Frustration, Giga Drain, Heat Wave, Mimic, Nightmare, Ominous Wind, Pain Split, Psych Up, Psyshock, Rain Dance, Roost, Shadow Ball, Signal Beam, Skill Swap, Sky Attack, Snore, Sucker Punch, Trick, Trick Room, Twister, U-turn, Wish.
+**Removed:** None.
 
-- **Natural/restored level-up:** Ominous Wind (Lv. 20), Wish (Lv. 40).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Calm Mind (Lv. 32), Trick (Lv. 34), Trick Room (Lv. 36), Air Slash (Lv. 38), Heat Wave (Lv. 42), Dream Eater (Lv. 50).
-- **Egg (Natu family):** Psych Up, Roost, Skill Swap, Steel Wing, Sucker Punch, Zen Headbutt.
-- **TM/HM/elemental tutor:** Rain Dance, Shadow Ball.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Baton Pass, Cosmic Power, Dazzling Gleam, Detect, Double Team, Double-Edge, Dual Wingbeat, Endure, Frustration, Giga Drain, Mimic, Nightmare, Pain Split, Psyshock, Sky Attack, Snore, Twister, U-turn.
 
-## Nidoking
+### Hoppip
 
-**Newly available (55):** Aqua Tail, Avalanche, Bide, Body Press, Body Slam, Brick Break, Bubble Beam, Bulldoze, Cut, Defense Curl, Detect, Dig, Double Team, Double-Edge, Dragon Tail, Dynamic Punch, Endure, Fissure, Focus Blast, Frustration, Giga Impact, Head Smash, Hex, Horn Drill, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Pay Day, Poison Tail, Rage, Reflect, Rock Blast, Rock Slide, Rock Tomb, Seismic Toss, Shadow Claw, Skull Bash, Snore, Stealth Rock, Stone Edge, Submission, Super Fang, Superpower, Tackle, Taunt, Torment, Venoshock, Water Gun, Water Pulse, Whirlpool.
+**Added:** Agility, Air Cutter.
 
-- **Natural/restored level-up:** Poison Tail (Lv. 56).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Venoshock (Lv. 20), Brick Break (Lv. 26), Stealth Rock (Lv. 34), Superpower (Lv. 56), Outrage (Lv. 60).
-- **Egg (Nidoran♂ family):** Endure, Head Smash, Horn Drill, Iron Tail, Poison Tail, Sucker Punch, Thrash.
-- **TM/HM/elemental tutor:** Cut, Dig, Rock Tomb, Whirlpool.
-- **Blackthorn tutor:** Aqua Tail, Avalanche, Bide, Body Press, Body Slam, Bubble Beam, Defense Curl, Detect, Double Team, Double-Edge, Dragon Tail, Dynamic Punch, Fissure, Focus Blast, Frustration, Giga Impact, Hex, Icy Wind, Incinerate, Mega Kick, Mega Punch, Mimic, Mud Shot, Pay Day, Rage, Reflect, Rock Blast, Rock Slide, Seismic Toss, Shadow Claw, Skull Bash, Snore, Stone Edge, Submission, Super Fang, Tackle, Taunt, Torment, Water Gun, Water Pulse.
+**Removed:** None.
 
-## Nidoqueen
+- **Added Blackthorn lessons:** Agility, Air Cutter.
 
-**Newly available (55):** Aerial Ace, Aqua Tail, Avalanche, Bide, Body Press, Brick Break, Bubble Beam, Bulldoze, Cut, Defense Curl, Detect, Dig, Double Team, Double-Edge, Dragon Tail, Dynamic Punch, Endure, Fissure, Focus Blast, Frustration, Giga Impact, Hex, Horn Drill, Icy Wind, Incinerate, Iron Tail, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Pay Day, Poison Tail, Pursuit, Rage, Reflect, Rock Blast, Rock Slide, Rock Tomb, Seismic Toss, Shadow Claw, Skull Bash, Snore, Stealth Rock, Stone Edge, Submission, Sucker Punch, Superpower, Tackle, Taunt, Torment, Venoshock, Water Gun, Water Pulse, Whirlpool.
+### Horsea
 
-- **Natural/restored level-up:** Superpower (Lv. 1), Poison Tail (Lv. 56).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Dragon Tail (Lv. 20), Venoshock (Lv. 22), Stealth Rock (Lv. 34), Body Press (Lv. 38), Aqua Tail (Lv. 46).
-- **Egg (Nidoran♀ family):** Endure, Iron Tail, Poison Fang, Poison Tail, Pursuit, Skull Bash.
-- **TM/HM/elemental tutor:** Cut, Dig, Rock Tomb, Whirlpool.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Bide, Brick Break, Bubble Beam, Defense Curl, Detect, Double Team, Double-Edge, Dynamic Punch, Fissure, Focus Blast, Frustration, Giga Impact, Hex, Horn Drill, Icy Wind, Incinerate, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Pay Day, Rage, Reflect, Rock Blast, Rock Slide, Seismic Toss, Shadow Claw, Snore, Stone Edge, Submission, Sucker Punch, Tackle, Taunt, Torment, Water Gun, Water Pulse.
+**Added:** None.
 
-## Nidoran♀
+**Removed:** Dragon Tail.
 
-**Newly available (27):** Aerial Ace, Bide, Body Slam, Cut, Defense Curl, Detect, Dig, Double Team, Double-Edge, Endure, Frustration, Ice Beam, Iron Tail, Mimic, Poison Tail, Pursuit, Rage, Reflect, Rock Smash, Shadow Claw, Skull Bash, Snore, Strength, Sucker Punch, Tackle, Venoshock, Water Pulse.
+- **Removed natural entries:** Dragon Tail.
 
-- **Natural/restored level-up:** Poison Tail (Lv. 33).
-- **Thematic level-up (custom):** Venoshock (Lv. 18).
-- **Egg (Nidoran♀ family):** Endure, Iron Tail, Poison Fang, Poison Tail, Pursuit, Skull Bash.
-- **TM/HM/elemental tutor:** Cut, Dig, Ice Beam, Rock Smash, Strength.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Defense Curl, Detect, Double Team, Double-Edge, Frustration, Mimic, Rage, Reflect, Shadow Claw, Snore, Sucker Punch, Tackle, Water Pulse.
+### Houndoom
 
-## Nidoran♂
+**Added:** Tackle.
 
-**Newly available (29):** Bide, Body Slam, Cut, Defense Curl, Detect, Dig, Double Team, Double-Edge, Drill Run, Endure, Frustration, Head Smash, Horn Drill, Ice Beam, Iron Tail, Mimic, Poison Tail, Rage, Reflect, Rock Smash, Shadow Claw, Skull Bash, Snore, Strength, Super Fang, Tackle, Thrash, Venoshock, Water Pulse.
+**Removed:** Iron Head, Raging Fury.
 
-- **Natural/restored level-up:** Poison Tail (Lv. 33), Horn Drill (Lv. 45).
-- **Thematic level-up (custom):** Venoshock (Lv. 18).
-- **Egg (Nidoran♂ family):** Endure, Head Smash, Horn Drill, Iron Tail, Poison Tail, Sucker Punch, Thrash.
-- **TM/HM/elemental tutor:** Cut, Dig, Ice Beam, Rock Smash, Strength.
-- **Blackthorn tutor:** Bide, Body Slam, Defense Curl, Detect, Double Team, Double-Edge, Drill Run, Frustration, Mimic, Rage, Reflect, Shadow Claw, Skull Bash, Snore, Super Fang, Tackle, Water Pulse.
+- **Removed natural entries:** Raging Fury.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Tackle.
 
-## Nidorina
+### Houndour
 
-**Newly available (27):** Aerial Ace, Bide, Body Slam, Bubble Beam, Cut, Defense Curl, Detect, Dig, Double Team, Double-Edge, Endure, Frustration, Horn Drill, Iron Tail, Mimic, Poison Tail, Pursuit, Rage, Reflect, Shadow Claw, Skull Bash, Snore, Sucker Punch, Tackle, Venoshock, Water Gun, Water Pulse.
+**Added:** Tackle.
 
-- **Natural/restored level-up:** Poison Tail (Lv. 39).
-- **Thematic level-up (custom):** Venoshock (Lv. 18).
-- **Egg (Nidoran♀ family):** Endure, Iron Tail, Poison Fang, Poison Tail, Pursuit, Skull Bash.
-- **TM/HM/elemental tutor:** Cut, Dig.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Bubble Beam, Defense Curl, Detect, Double Team, Double-Edge, Frustration, Horn Drill, Mimic, Rage, Reflect, Shadow Claw, Snore, Sucker Punch, Tackle, Water Gun, Water Pulse.
+**Removed:** Iron Head.
 
-## Nidorino
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Tackle.
 
-**Newly available (28):** Bide, Body Slam, Bubble Beam, Cut, Defense Curl, Detect, Dig, Double Team, Double-Edge, Drill Run, Endure, Frustration, Head Smash, Horn Drill, Iron Tail, Mimic, Poison Tail, Rage, Reflect, Shadow Claw, Skull Bash, Snore, Super Fang, Tackle, Thrash, Venoshock, Water Gun, Water Pulse.
+### Hydrapple
 
-- **Natural/restored level-up:** Poison Tail (Lv. 39), Horn Drill (Lv. 58).
-- **Thematic level-up (custom):** Venoshock (Lv. 18).
-- **Egg (Nidoran♂ family):** Endure, Head Smash, Horn Drill, Iron Tail, Poison Tail, Sucker Punch, Thrash.
-- **TM/HM/elemental tutor:** Cut, Dig.
-- **Blackthorn tutor:** Bide, Body Slam, Bubble Beam, Defense Curl, Detect, Double Team, Double-Edge, Drill Run, Frustration, Mimic, Rage, Reflect, Shadow Claw, Skull Bash, Snore, Super Fang, Tackle, Water Gun, Water Pulse.
+**Added:** None.
 
-## Ninetales
+**Removed:** Absorb, Apple Acid, Dragon Claw, Hidden Power, Iron Head, Leech Seed, Mega Drain, Return, Rock Smash, Rock Tomb, Scale Shot, Swagger, Thief, Toxic, Twister, Wood Hammer.
 
-**Newly available (30):** Agility, Baton Pass, Bide, Body Slam, Calm Mind, Charm, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Endure, Flame Charge, Foul Play, Frustration, Giga Impact, Iron Tail, Mimic, Night Shade, Ominous Wind, Pain Split, Psyshock, Rage, Reflect, Shadow Ball, Skull Bash, Snarl, Snore, Solar Beam, Tackle, Take Down.
+- **Removed natural entries:** Apple Acid, Scale Shot.
+- **Removed machine flags:** Dragon Claw, Hidden Power, Iron Head, Return, Rock Smash, Rock Tomb, Swagger, Thief, Toxic.
+- **Removed family egg entries:** Dragon Tail, Giga Drain, Leech Seed.
+- **Removed fallback lessons:** Wood Hammer.
+- **Added Blackthorn lessons:** Giga Drain.
 
-- **Thematic level-up (custom):** Calm Mind (Lv. 30).
-- **Egg (Vulpix family):** Disable, Energy Ball, Extrasensory, Feint Attack, Flame Charge, Heat Wave, Hypnosis, Roar, Spite.
-- **TM/HM/elemental tutor:** Shadow Ball, Solar Beam.
-- **Blackthorn tutor:** Agility, Baton Pass, Bide, Body Slam, Charm, Double Team, Double-Edge, Dream Eater, Endure, Foul Play, Frustration, Giga Impact, Iron Tail, Mimic, Night Shade, Ominous Wind, Pain Split, Psyshock, Rage, Reflect, Skull Bash, Snarl, Snore, Tackle, Take Down.
-- **Evolution access:** Dazzling Gleam.
+### Hydreigon
 
-## Ninetales (Alolan)
+**Added:** None.
 
-**Newly available (26):** Aqua Tail, Avalanche, Body Slam, Disarming Voice, Double Team, Double-Edge, Dream Eater, Endure, Flail, Foul Play, Frustration, Giga Impact, Hail, Heal Bell, Icicle Spear, Iron Tail, Ominous Wind, Pain Split, Play Rough, Psych Up, Psyshock, Reflect, Snore, Tackle, Take Down, Triple Axel.
+**Removed:** Curse, Dragon Claw, Foul Play, Knock Off, Night Slash.
 
-- **Natural/restored level-up:** Mist (Lv. 1).
-- **Thematic level-up (custom):** Avalanche (Lv. 20), Draining Kiss (Lv. 22), Play Rough (Lv. 44), Aqua Tail (Lv. 46).
-- **Egg (Vulpix (Alolan) family):** Disable, Extrasensory, Flail, Freeze-Dry, Hypnosis, Moonblast, Roar, Spite.
-- **Blackthorn tutor:** Body Slam, Disarming Voice, Double Team, Double-Edge, Dream Eater, Endure, Foul Play, Frustration, Giga Impact, Hail, Heal Bell, Icicle Spear, Iron Tail, Ominous Wind, Pain Split, Psych Up, Psyshock, Reflect, Snore, Tackle, Take Down, Triple Axel.
+- **Removed natural entries:** Foul Play.
+- **Removed machine flags:** Curse, Dragon Claw, Knock Off, Night Slash.
 
-## Noctowl
+### Hypno
 
-**Newly available (32):** Acrobatics, Aerial Ace, Agility, Air Cutter, Amnesia, Body Slam, Brave Bird, Calm Mind, Confuse Ray, Detect, Double Team, Double-Edge, Endure, Frustration, Future Sight, Giga Impact, Haze, Hyper Voice, Mimic, Night Shade, Nightmare, Ominous Wind, Psybeam, Psych Up, Rain Dance, Recycle, Scary Face, Screech, Skill Swap, Snore, Spite, Twister.
+**Added:** Amnesia.
 
-- **Thematic level-up (custom):** Psybeam (Lv. 20), Calm Mind (Lv. 32), Skill Swap (Lv. 40), Future Sight (Lv. 56).
-- **Egg (Hoothoot family):** Agility, Defog, Hurricane, Mean Look, Night Shade.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Amnesia, Body Slam, Confuse Ray, Detect, Double Team, Dual Wingbeat, Endure, Frustration, Giga Impact, Haze, Mimic, Nightmare, Ominous Wind, Psych Up, Recycle, Scary Face, Screech, Snore, Spite, Twister.
-- **Evolution access:** Brave Bird, Double-Edge, Hyper Voice.
+**Removed:** None.
 
-## Noibat
+- **Added Blackthorn lessons:** Amnesia.
 
-**Newly available (26):** Acrobatics, Aerial Ace, Air Cutter, Brick Break, Cut, Dark Pulse, Draco Meteor, Dream Eater, Endure, Frustration, Heat Wave, Iron Tail, Leech Life, Razor Wind, Shadow Claw, Sky Attack, Snore, Solar Beam, Super Fang, Tackle, Take Down, Taunt, Torment, Water Pulse, Wild Charge, X-Scissor.
+### Igglybuff
 
-- **Natural/restored level-up:** Tackle (Lv. 1), Leech Life (Lv. 5), Double Team (Lv. 12), Air Cutter (Lv. 24), Razor Wind (Lv. 31), Super Fang (Lv. 32).
-- **Thematic level-up (custom):** Heat Wave (Lv. 42), Draco Meteor (Lv. 56).
-- **Egg (Noibat family):** Defog.
-- **TM/HM/elemental tutor:** Cut, Solar Beam.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bite, Brick Break, Dark Pulse, Dream Eater, Dual Wingbeat, Endure, Frustration, Iron Tail, Shadow Claw, Sky Attack, Snore, Take Down, Taunt, Torment, Water Pulse, Wild Charge, X-Scissor.
+**Added:** Brick Break, Calm Mind, Confusion, Dizzy Punch, Energy Ball, Nasty Plot, Petal Dance, Psyshock, Scary Face, Stealth Rock, Tackle, Taunt, Zen Headbutt.
 
-## Noivern
+**Removed:** Rock Tomb.
 
-**Newly available (28):** Acrobatics, Aerial Ace, Air Cutter, Body Slam, Brick Break, Cut, Dark Pulse, Double-Edge, Dream Eater, Endure, Focus Blast, Frustration, Giga Impact, Iron Tail, Leech Life, Moonlight, Razor Wind, Scary Face, Shadow Claw, Sky Attack, Snore, Super Fang, Tackle, Take Down, Torment, Water Pulse, Wild Charge, X-Scissor.
+- **Removed machine flags:** Rock Tomb.
+- **Added Blackthorn lessons:** Brick Break, Calm Mind, Confusion, Dizzy Punch, Energy Ball, Nasty Plot, Petal Dance, Psyshock, Scary Face, Stealth Rock, Tackle, Taunt, Zen Headbutt.
 
-- **Natural/restored level-up:** Moonlight (Lv. 1), Tackle (Lv. 1), Leech Life (Lv. 5), Double Team (Lv. 12), Air Cutter (Lv. 24), Razor Wind (Lv. 31), Super Fang (Lv. 32).
-- **Egg (Noibat family):** Defog.
-- **TM/HM/elemental tutor:** Cut.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bite, Body Slam, Brick Break, Dark Pulse, Double-Edge, Dream Eater, Dual Wingbeat, Endure, Focus Blast, Frustration, Giga Impact, Iron Tail, Scary Face, Shadow Claw, Sky Attack, Snore, Take Down, Torment, Water Pulse, Wild Charge, X-Scissor.
+### Impidimp
 
-## Numel
+**Added:** Frustration.
 
-**Newly available (22):** Body Press, Charm, Defense Curl, Double Team, Endure, Fire Spin, Flame Charge, Flare Blitz, Frustration, Growth, Headbutt, Heat Crash, Iron Head, Lava Plume, Mimic, Overheat, Rain Dance, Roar, Rock Slide, Snore, Stealth Rock, Stone Edge.
+**Removed:** Charm, Curse, Disarming Voice, Encore, Fire Punch, Ice Punch, Knock Off, Low Sweep, Mean Look, Snarl, Sweet Kiss, Thunder Punch.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 22), Yawn (Lv. 36).
-- **Thematic level-up (custom):** Stealth Rock (Lv. 38), Heat Crash (Lv. 42), Flare Blitz (Lv. 56), Overheat (Lv. 58).
-- **Egg (Numel family):** Ancient Power, Defense Curl, Endure, Growth, Iron Head.
-- **TM/HM/elemental tutor:** Headbutt, Iron Head, Rain Dance, Roar.
-- **Blackthorn tutor:** Body Press, Charm, Double Team, Fire Spin, Flame Charge, Frustration, Mimic, Rock Slide, Snore, Stone Edge.
+- **Removed natural entries:** Charm, Disarming Voice, Encore, Low Sweep, Mean Look, Snarl, Sweet Kiss.
+- **Removed machine flags:** Curse, Fire Punch, Ice Punch, Knock Off, Thunder Punch.
+- **Removed family egg entries:** Charm, Encore, Mean Look.
+- **Added Blackthorn lessons:** Frustration.
 
-## Octillery
+### Ivysaur
 
-**Newly available (24):** Bind, Blizzard, Bounce, Bullet Seed, Defense Curl, Double Team, Double-Edge, Endure, Fire Blast, Flail, Frustration, Giga Impact, Icy Wind, Liquidation, Mimic, Mud Shot, Scald, Seismic Toss, Signal Beam, Snore, String Shot, Sunny Day, Water Spout, Waterfall.
+**Added:** Ancient Power.
 
-- **Natural/restored level-up:** Bullet Seed (Lv. 30), Signal Beam (Lv. 34), Water Spout (Lv. 56).
-- **Thematic level-up (custom):** Scald (Lv. 42), Liquidation (Lv. 46).
-- **Egg (Remoraid family):** Aurora Beam, Flail, Mud Shot, Rock Blast, Snore, Swift, Thunder Wave, Water Pulse, Water Spout.
-- **TM/HM/elemental tutor:** Blizzard, Fire Blast, Sunny Day, Waterfall.
-- **Blackthorn tutor:** Bind, Bounce, Defense Curl, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Icy Wind, Mimic, Seismic Toss, String Shot.
+**Removed:** None.
 
-## Oddish
+- **Added Blackthorn lessons:** Ancient Power.
 
-**Newly available (19):** Bide, Charm, Dazzling Gleam, Double Team, Double-Edge, Endure, Frustration, Headbutt, Infestation, Leaf Storm, Leech Seed, Magical Leaf, Mimic, Rage, Reflect, Seed Bomb, Snore, Take Down, Venoshock.
+### Ivysaur (Clone)
 
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Venoshock (Lv. 20), Leaf Storm (Lv. 56).
-- **Egg (Oddish family):** Charm, Leech Seed.
-- **TM/HM/elemental tutor:** Headbutt.
-- **Blackthorn tutor:** Bide, Dazzling Gleam, Double Team, Double-Edge, Endure, Frustration, Infestation, Mimic, Rage, Reflect, Seed Bomb, Snore, Take Down.
+**Added:** Ancient Power.
 
-## Omanyte
+**Removed:** None.
 
-**Newly available (24):** Bide, Body Slam, Double Team, Double-Edge, Endure, Frustration, Gyro Ball, Hail, Horn Attack, Icy Wind, Iron Defense, Mimic, Mud Shot, Rage, Reflect, Rock Polish, Rock Slide, Rock Throw, Scald, Snore, Spike Cannon, Take Down, Water Pulse, Waterfall.
+- **Added Blackthorn lessons:** Ancient Power.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 25).
-- **Thematic level-up (custom):** Rock Polish (Lv. 30), Iron Defense (Lv. 36), Scald (Lv. 42).
-- **Egg (Omanyte family):** Aurora Beam, Bide, Bite, Bubble Beam, Knock Off, Rock Slide, Water Pulse, Whirlpool.
-- **TM/HM/elemental tutor:** Waterfall.
-- **Blackthorn tutor:** Body Slam, Double Team, Double-Edge, Endure, Frustration, Gyro Ball, Hail, Horn Attack, Icy Wind, Mimic, Rage, Reflect, Rock Blast, Rock Throw, Snore, Spike Cannon, Take Down.
+### Jigglypuff
 
-## Omastar
+**Added:** Confusion, Dizzy Punch, Fake Out, Petal Dance, Scary Face, Tackle.
 
-**Newly available (30):** Bide, Body Slam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Gyro Ball, Hail, Horn Attack, Horn Drill, Icy Wind, Iron Defense, Liquidation, Mimic, Mud Shot, Pin Missile, Rage, Reflect, Rock Polish, Rock Slide, Rock Throw, Seismic Toss, Skull Bash, Snore, Stone Edge, Submission, Take Down, Water Pulse, Waterfall.
+**Removed:** Rock Tomb.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 25).
-- **Thematic level-up (custom):** Rock Polish (Lv. 30), Iron Defense (Lv. 34).
-- **Egg (Omanyte family):** Aurora Beam, Bide, Bite, Bubble Beam, Knock Off, Rock Slide, Water Pulse, Whirlpool.
-- **TM/HM/elemental tutor:** Waterfall.
-- **Blackthorn tutor:** Body Slam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Gyro Ball, Hail, Horn Attack, Horn Drill, Icy Wind, Liquidation, Mimic, Pin Missile, Rage, Reflect, Rock Blast, Rock Throw, Seismic Toss, Skull Bash, Snore, Stone Edge, Submission, Take Down.
+- **Removed machine flags:** Rock Tomb.
+- **Added Blackthorn lessons:** Confusion, Dizzy Punch, Fake Out, Petal Dance, Scary Face, Tackle.
 
-## Onix
+### Jirachi
 
-**Newly available (21):** Ancient Power, Bide, Body Slam, Double Team, Earth Power, Endure, Explosion, Fissure, Frustration, Gyro Ball, Mimic, Psych Up, Rage, Scary Face, Self-Destruct, Skull Bash, Snore, Take Down, Taunt, Torment, Twister.
+**Added:** None.
 
-- **Natural/restored level-up:** Rage (Lv. 13), Gyro Ball (Lv. 20).
-- **Egg (Onix family):** Dragon Tail, Explosion, Rock Slide, Stealth Rock.
-- **Blackthorn tutor:** Ancient Power, Bide, Body Slam, Double Team, Earth Power, Endure, Fissure, Frustration, Mimic, Psych Up, Scary Face, Self-Destruct, Skull Bash, Snore, Take Down, Taunt, Torment, Twister.
+**Removed:** None.
 
-## Overqwil
 
-**Newly available (30):** Agility, Astonish, Bounce, Dark Pulse, Defense Curl, Double Team, Endure, Flip Turn, Frustration, Giga Impact, Gyro Ball, Hail, Hex, Icy Wind, Mimic, Mud Shot, Pain Split, Poison Tail, Reversal, Scald, Scale Shot, Scary Face, Self-Destruct, Shadow Ball, Signal Beam, Snore, Spite, Taunt, Venoshock, Water Pulse.
+### Jolteon
 
-- **Natural/restored level-up:** Poison Tail (Lv. 16).
-- **Thematic level-up (custom):** Spite (Lv. 36).
-- **Egg (Qwilfish family):** Aqua Jet, Aqua Tail, Astonish, Barb Barrage, Poison Jab, Self-Destruct, Signal Beam, Water Pulse.
-- **TM/HM/elemental tutor:** Shadow Ball.
-- **Blackthorn tutor:** Agility, Dark Pulse, Endure, Giga Impact, Gyro Ball, Hex, Hydro Pump, Icy Wind, Mud Shot, Pain Split, Reversal, Scale Shot, Scary Face, Taunt, Venoshock.
-- **Evolution access:** Bounce, Defense Curl, Double Team, Flip Turn, Frustration, Hail, Mimic, Scald, Snore.
+**Added:** Disarming Voice, Grass Knot, Growth.
 
-## Palafin
+**Removed:** Iron Head, Nuzzle.
 
-**Newly available (19):** Acrobatics, Agility, Astonish, Aura Sphere, Body Slam, Bounce, Counter, Disarming Voice, Draining Kiss, Endure, Focus Blast, Giga Impact, Hyper Voice, Icy Wind, Outrage, Psych Up, Reversal, Take Down, Water Pulse.
+- **Removed natural entries:** Nuzzle.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Disarming Voice, Grass Knot, Growth.
 
-- **Natural/restored level-up:** Astonish (Lv. 7), Acrobatics (Lv. 29), Encore (Lv. 34), Mist (Lv. 44), Hydro Pump (Lv. 50).
-- **Thematic level-up (custom):** Aura Sphere (Lv. 46), Water Pulse (Lv. 52), Focus Blast (Lv. 58).
-- **Egg (Finizen family):** Bounce, Counter, Haze.
-- **Blackthorn tutor:** Agility, Body Slam, Disarming Voice, Draining Kiss, Endure, Giga Impact, Hyper Voice, Icy Wind, Outrage, Psych Up, Reversal, Take Down.
+### Joltik
 
-## Paras
+**Added:** None.
 
-**Newly available (26):** Aerial Ace, Agility, Bide, Body Slam, Brick Break, Cross Poison, Double Team, Double-Edge, Endure, Frustration, Fury Swipes, Headbutt, Leech Seed, Mega Drain, Metal Claw, Mimic, Rage, Reflect, Skull Bash, Sleep Powder, Snore, String Shot, Struggle Bug, Swords Dance, Synthesis, Take Down.
+**Removed:** Curse, Nuzzle, Spark, Sticky Web, Sunny Day, Thunder Shock, Zap Cannon.
 
-- **Thematic level-up (custom):** Swords Dance (Lv. 30).
-- **Egg (Paras family):** Agility, Bug Bite, Cross Poison, Endure, Leech Seed, Metal Claw, Sweet Scent.
-- **TM/HM/elemental tutor:** Headbutt.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Brick Break, Double Team, Double-Edge, Frustration, Fury Swipes, Giga Drain, Mega Drain, Mimic, Rage, Reflect, Skull Bash, Sleep Powder, Snore, String Shot, Struggle Bug, Synthesis, Take Down.
+- **Removed natural entries:** Nuzzle, Spark, Thunder Shock.
+- **Removed machine flags:** Curse, Sunny Day, Zap Cannon.
+- **Removed family egg entries:** Sticky Web.
 
-## Parasect
+### Jumpluff
 
-**Newly available (24):** Aerial Ace, Agility, Bide, Body Slam, Brick Break, Cross Poison, Double Team, Double-Edge, Endure, Frustration, Fury Swipes, Giga Impact, Headbutt, Mega Drain, Metal Claw, Mimic, Rage, Reflect, Skull Bash, Sleep Powder, Snore, String Shot, Struggle Bug, Take Down.
+**Added:** Agility, Air Cutter, Fly, Hurricane.
 
-- **Natural/restored level-up:** Cross Poison (Lv. 1).
-- **Egg (Paras family):** Agility, Bug Bite, Cross Poison, Endure, Leech Seed, Metal Claw, Sweet Scent.
-- **TM/HM/elemental tutor:** Headbutt.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Brick Break, Double Team, Double-Edge, Frustration, Fury Swipes, Giga Drain, Giga Impact, Mega Drain, Mimic, Rage, Reflect, Skull Bash, Sleep Powder, Snore, String Shot, Struggle Bug, Take Down.
+**Removed:** None.
 
-## Pawniard
+- **Added Blackthorn lessons:** Agility, Air Cutter, Fly, Hurricane.
 
-**Newly available (30):** Aerial Ace, Air Slash, Beat Up, Brick Break, Dark Pulse, Double Team, Endure, False Swipe, Feint Attack, Foul Play, Frustration, Headbutt, Iron Defense, Low Kick, Poison Jab, Rain Dance, Rock Polish, Rock Smash, Rock Tomb, Sandstorm, Screech, Shadow Claw, Snore, Spite, Stealth Rock, Stone Edge, Take Down, Taunt, Torment, X-Scissor.
+### Jynx
 
-- **Natural/restored level-up:** Torment (Lv. 15), Feint Attack (Lv. 17), Iron Defense (Lv. 45).
-- **Thematic level-up (custom):** Rock Polish (Lv. 32), Spite (Lv. 34), Foul Play (Lv. 38).
-- **Breeding fallback:** Stealth Rock (Lv. 30).
-- **Egg (Pawniard family):** Headbutt, Stealth Rock.
-- **TM/HM/elemental tutor:** Rain Dance, Rock Smash, Rock Tomb, Sandstorm.
-- **Blackthorn tutor:** Aerial Ace, Air Slash, Beat Up, Brick Break, Dark Pulse, Double Team, Endure, False Swipe, Frustration, Low Kick, Poison Jab, Screech, Shadow Claw, Snore, Stone Edge, Take Down, Taunt, X-Scissor.
+**Added:** Dazzling Gleam, Dizzy Punch, Petal Dance.
 
-## Perrserker
+**Removed:** None.
 
-**Newly available (23):** Aerial Ace, Amnesia, Baton Pass, Body Slam, Charm, Crunch, Dark Pulse, Endure, False Swipe, Flail, Foul Play, Giga Impact, Gunk Shot, Gyro Ball, Hyper Voice, Iron Tail, Metronome, Shadow Claw, Snore, Stealth Rock, Take Down, Taunt, X-Scissor.
+- **Removed family egg entries:** Lovely Kiss.
+- **Added Blackthorn lessons:** Dazzling Gleam, Dizzy Punch, Petal Dance.
 
-- **Natural/restored level-up:** Fake Out (Lv. 1), Taunt (Lv. 20).
-- **Thematic level-up (custom):** Iron Tail (Lv. 50).
-- **Egg (Meowth (Galarian) family):** Curse, Flail, Night Slash.
-- **Blackthorn tutor:** Aerial Ace, Amnesia, Baton Pass, Body Slam, Charm, Crunch, Dark Pulse, Endure, False Swipe, Foul Play, Giga Impact, Gunk Shot, Gyro Ball, Hyper Voice, Metronome, Shadow Claw, Snore, Stealth Rock, Take Down, X-Scissor.
+### Kabuto
 
-## Persian
+**Added:** None.
 
-**Newly available (39):** Aerial Ace, Agility, Bide, Body Slam, Bubble Beam, Cut, Dark Pulse, Defense Curl, Detect, Dig, Double Team, Dream Eater, Endure, False Swipe, Flail, Flash, Frustration, Giga Impact, Gunk Shot, Icy Wind, Metal Claw, Mimic, Nightmare, Pain Split, Petal Dance, Psych Up, Rage, Rain Dance, Seed Bomb, Shadow Claw, Sing, Skull Bash, Snarl, Snore, Tail Whip, Take Down, Torment, Water Gun, Water Pulse.
+**Removed:** Energy Ball.
 
-- **Natural/restored level-up:** Night Slash (Lv. 61).
-- **Thematic level-up (custom):** Take Down (Lv. 44), Body Slam (Lv. 46), Giga Impact (Lv. 56), Skull Bash (Lv. 58).
-- **Egg (Meowth family):** Flail, Hypnosis, Psych Up, Tail Whip.
-- **TM/HM/elemental tutor:** Cut, Dig, Flash, Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Agility, Bide, Bubble Beam, Dark Pulse, Defense Curl, Detect, Double Team, Dream Eater, Endure, False Swipe, Frustration, Gunk Shot, Icy Wind, Metal Claw, Mimic, Nightmare, Pain Split, Petal Dance, Rage, Seed Bomb, Shadow Claw, Sing, Snarl, Snore, Torment, Water Gun, Water Pulse.
+- **Removed machine flags:** Energy Ball.
 
-## Persian (Alolan)
+### Kabutops
 
-**Newly available (23):** Aerial Ace, Agility, Beat Up, Body Slam, Confuse Ray, Double Team, Dream Eater, Endure, Flail, Frustration, Giga Impact, Gunk Shot, Hyper Voice, Icy Wind, Iron Tail, Metal Claw, Psych Up, Seed Bomb, Shadow Claw, Snore, Take Down, Torment, Water Pulse.
+**Added:** None.
 
-- **Natural/restored level-up:** Fake Out (Lv. 1).
-- **Egg (Meowth (Alolan) family):** Flail, Foul Play, Hypnosis.
-- **Blackthorn tutor:** Aerial Ace, Agility, Beat Up, Body Slam, Confuse Ray, Double Team, Dream Eater, Endure, Frustration, Giga Impact, Gunk Shot, Hyper Voice, Icy Wind, Iron Tail, Metal Claw, Psych Up, Seed Bomb, Shadow Claw, Snore, Take Down, Torment, Water Pulse.
+**Removed:** Energy Ball.
 
-## Phanpy
+- **Removed machine flags:** Energy Ball.
 
-**Newly available (21):** Counter, Dig, Double Team, Earth Power, Encore, Fissure, Frustration, Gunk Shot, Head Smash, Hyper Voice, Iron Head, Iron Tail, Mimic, Rain Dance, Rock Slide, Seed Bomb, Snore, Stealth Rock, Stone Edge, Superpower, Thief.
+### Kadabra
 
-- **Thematic level-up (custom):** Stealth Rock (Lv. 34).
-- **Egg (Phanpy family):** Counter, Fissure, Head Smash, Ice Shard, Mud-Slap, Play Rough, Snore.
-- **TM/HM/elemental tutor:** Dig, Iron Head, Rain Dance, Thief.
-- **Blackthorn tutor:** Double Team, Earth Power, Encore, Frustration, Gunk Shot, Hyper Voice, Iron Tail, Mimic, Rock Slide, Seed Bomb, Stone Edge, Superpower.
+**Added:** Foresight, Hypnosis.
 
-## Phantump
+**Removed:** None.
 
-**Newly available (59):** Astonish, Attract, Bulldoze, Confuse Ray, Curse, Cut, Dark Pulse, Destiny Bond, Dig, Disable, Double Team, Dream Eater, Endure, Energy Ball, Facade, Feint Attack, Foul Play, Frustration, Giga Drain, Growth, Hex, Hidden Power, Horn Leech, Leech Seed, Magical Leaf, Night Shade, Pain Split, Phantom Force, Poison Jab, Protect, Psych Up, Psychic, Rain Dance, Reflect, Rest, Return, Rock Slide, Rock Smash, Safeguard, Seed Bomb, Shadow Ball, Shadow Claw, Skill Swap, Sleep Talk, Snore, Solar Beam, Spite, Strength, Substitute, Sucker Punch, Sunny Day, Swagger, Tackle, Thief, Toxic, Trick, Trick Room, Will-O-Wisp, Wood Hammer.
+- **Added Blackthorn lessons:** Foresight, Hypnosis.
 
-- **Natural/restored level-up:** Astonish (Lv. 1), Tackle (Lv. 1), Leech Seed (Lv. 8), Confuse Ray (Lv. 12), Will-O-Wisp (Lv. 16), Feint Attack (Lv. 19), Growth (Lv. 24), Horn Leech (Lv. 28), Curse (Lv. 32), Phantom Force (Lv. 36), Wood Hammer (Lv. 44), Destiny Bond (Lv. 48).
-- **Egg (Phantump family):** Disable, Sucker Punch.
-- **TM/HM/elemental tutor:** Attract, Curse, Cut, Dig, Energy Ball, Facade, Hidden Power, Protect, Psychic, Rain Dance, Rest, Return, Rock Smash, Shadow Ball, Solar Beam, Strength, Sunny Day, Swagger, Thief, Toxic, Will-O-Wisp.
-- **Goldenrod utility tutor:** Reflect, Sleep Talk, Substitute.
-- **Blackthorn tutor:** Bulldoze, Dark Pulse, Double Team, Dream Eater, Endure, Foul Play, Frustration, Giga Drain, Hex, Magical Leaf, Night Shade, Pain Split, Poison Jab, Psych Up, Rock Slide, Safeguard, Seed Bomb, Shadow Claw, Skill Swap, Snore, Spite, Trick, Trick Room.
+### Kakuna
 
-## Pichu
+**Added:** Facade.
 
-**Newly available (24):** Bide, Body Slam, Counter, Defense Curl, Detect, Double Team, Double-Edge, Endure, Flail, Frustration, Iron Tail, Mega Kick, Mega Punch, Mimic, Play Rough, Present, Rollout, Seismic Toss, Signal Beam, Snore, Take Down, Thunder Punch, Volt Switch, Wild Charge.
+**Removed:** None.
 
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Volt Switch (Lv. 38), Wild Charge (Lv. 42).
-- **Egg (Pichu family):** Bide, Disarming Voice, Endure, Flail, Present, Thunder Punch.
-- **TM/HM/elemental tutor:** Thunder Punch.
-- **Blackthorn tutor:** Body Slam, Counter, Defense Curl, Detect, Double Team, Double-Edge, Frustration, Iron Tail, Mega Kick, Mega Punch, Mimic, Play Rough, Rollout, Seismic Toss, Snore, Take Down.
+- **Added Blackthorn lessons:** Facade.
 
-## Pidgeot
+### Kangaskhan
 
-**Newly available (17):** Bide, Detect, Double Team, Endure, Frustration, Giga Impact, Headbutt, Hyper Voice, Mimic, Ominous Wind, Rage, Rain Dance, Reflect, Signal Beam, Sky Attack, Snore, Take Down.
+**Added:** Feint Attack, Tackle.
 
-- **Egg (Pidgey family):** Air Slash, Brave Bird, Steel Wing.
-- **TM/HM/elemental tutor:** Headbutt, Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Bide, Detect, Double Team, Double-Edge, Dual Wingbeat, Endure, Frustration, Giga Impact, Mimic, Ominous Wind, Rage, Reflect, Signal Beam, Sky Attack, Snore, Take Down.
-- **Evolution access:** Hyper Voice.
+**Removed:** Iron Head.
 
-## Pidgeotto
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Feint Attack, Tackle.
 
-**Newly available (17):** Bide, Detect, Double Team, Double-Edge, Endure, Frustration, Headbutt, Heat Wave, Mimic, Ominous Wind, Rage, Rain Dance, Reflect, Sky Attack, Snore, Take Down, U-turn.
+### Kingambit
 
-- **Thematic level-up (custom):** Heat Wave (Lv. 42).
-- **Egg (Pidgey family):** Air Slash, Brave Bird, Steel Wing.
-- **TM/HM/elemental tutor:** Headbutt, Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Bide, Detect, Double Team, Double-Edge, Dual Wingbeat, Endure, Frustration, Mimic, Ominous Wind, Rage, Reflect, Sky Attack, Snore, Take Down, U-turn.
+**Added:** None.
 
-## Pidgey
+**Removed:** Body Press, Curse, Earthquake, Focus Energy, Hammer Arm, Sacred Sword, Strength, Superpower.
 
-**Newly available (17):** Bide, Detect, Double Team, Double-Edge, Endure, Frustration, Headbutt, Heat Wave, Mimic, Ominous Wind, Rage, Rain Dance, Reflect, Sky Attack, Snore, Take Down, U-turn.
+- **Removed natural entries:** Body Press, Hammer Arm, Sacred Sword.
+- **Removed machine flags:** Curse, Earthquake, Strength.
+- **Removed family egg entries:** Focus Energy, Superpower.
 
-- **Thematic level-up (custom):** Heat Wave (Lv. 44).
-- **Egg (Pidgey family):** Air Slash, Brave Bird, Steel Wing.
-- **TM/HM/elemental tutor:** Headbutt, Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Bide, Detect, Double Team, Double-Edge, Endure, Frustration, Mimic, Ominous Wind, Rage, Reflect, Sky Attack, Snore, Take Down, U-turn.
+### Kingdra
 
-## Pikachu
+**Added:** None.
 
-**Newly available (37):** Bide, Body Slam, Brick Break, Calm Mind, Counter, Defense Curl, Detect, Dig, Discharge, Double-Edge, Draining Kiss, Dynamic Punch, Endure, Extreme Speed, Flail, Frustration, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Present, Rage, Rock Smash, Rollout, Seismic Toss, Signal Beam, Sing, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Thief, Volt Switch, Yawn.
+**Removed:** Dragon Tail.
 
-- **Natural/restored level-up:** Discharge (Lv. 31).
-- **Thematic level-up (custom):** Signal Beam (Lv. 30), Volt Switch (Lv. 38).
-- **Egg (Pichu family):** Bide, Disarming Voice, Endure, Flail, Present, Thunder Punch.
-- **TM/HM/elemental tutor:** Dig, Rock Smash, Thief.
-- **Blackthorn tutor:** Body Slam, Brick Break, Calm Mind, Counter, Defense Curl, Detect, Double-Edge, Draining Kiss, Dynamic Punch, Extreme Speed, Frustration, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Rage, Rollout, Seismic Toss, Sing, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Yawn.
+- **Removed natural entries:** Dragon Tail.
 
-## Piloswine
+### Kingler
 
-**Newly available (21):** Charm, Defense Curl, Detect, Dig, Double Team, Double-Edge, Earth Power, Fissure, Frustration, Giga Impact, Hail, Haze, Horn Attack, Icicle Spear, Mimic, Reversal, Rock Tomb, Sandstorm, Scary Face, Snore, Stone Edge.
+**Added:** Shadow Claw, Waterfall.
 
-- **Natural/restored level-up:** Horn Attack (Lv. 1).
-- **Egg (Swinub family):** Avalanche, Curse, Double-Edge, Fissure, Freeze-Dry, Icicle Crash, Icicle Spear, Mud Shot, Stealth Rock, Take Down.
-- **TM/HM/elemental tutor:** Dig, Rock Tomb, Sandstorm.
-- **Blackthorn tutor:** Charm, Defense Curl, Detect, Double Team, Earth Power, Frustration, Giga Impact, Hail, Haze, Mimic, Reversal, Scary Face, Snore, Stone Edge.
+**Removed:** None.
 
-## Pineco
+- **Added Blackthorn lessons:** Shadow Claw, Waterfall.
 
-**Newly available (26):** Bide, Body Slam, Bug Buzz, Bulldoze, Counter, Defense Curl, Dig, Double Team, Drill Run, Earthquake, Frustration, Giga Drain, Lunge, Mimic, Pain Split, Poison Jab, Rain Dance, Reversal, Rock Blast, Rock Slide, Sandstorm, Seed Bomb, Snore, String Shot, Struggle Bug, Venoshock.
+### Kirlia
 
-- **Natural/restored level-up:** Bide (Lv. 20).
-- **Egg (Pineco family):** Counter, Double-Edge, Pin Missile, Swift, Toxic Spikes.
-- **TM/HM/elemental tutor:** Dig, Earthquake, Rain Dance, Sandstorm.
-- **Blackthorn tutor:** Body Slam, Bug Buzz, Bulldoze, Defense Curl, Double Team, Drill Run, Frustration, Giga Drain, Lunge, Mimic, Pain Split, Poison Jab, Reversal, Rock Blast, Rock Slide, Seed Bomb, Snore, String Shot, Struggle Bug, Venoshock.
+**Added:** Ice Beam, Vacuum Wave.
 
-## Pinsir
+**Removed:** Curse, Energy Ball.
 
-**Newly available (27):** Bide, Body Slam, Brick Break, Bulldoze, Dig, Double Team, Double-Edge, Earthquake, Endure, False Swipe, Feint Attack, Focus Blast, Frustration, Giga Impact, Iron Defense, Mimic, Outrage, Rage, Rain Dance, Rock Slide, Rock Tomb, Slash, Snore, Stealth Rock, String Shot, Struggle Bug, Take Down.
+- **Removed machine flags:** Curse, Energy Ball.
+- **Added Blackthorn lessons:** Ice Beam, Vacuum Wave.
 
-- **Natural/restored level-up:** Brick Break (Lv. 26), Superpower (Lv. 52).
-- **Thematic level-up (custom):** Outrage (Lv. 56).
-- **Egg (Pinsir family):** Bug Bite, Close Combat, False Swipe, Feint Attack, Quick Attack, Thrash.
-- **TM/HM/elemental tutor:** Dig, Earthquake, Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Bide, Body Slam, Bulldoze, Double Team, Double-Edge, Endure, Focus Blast, Frustration, Giga Impact, Iron Defense, Mimic, Rage, Rock Slide, Slash, Snore, Stealth Rock, String Shot, Struggle Bug, Take Down.
+### Kleavor
 
-## Politoed
+**Added:** Ancient Power, Calm Mind, Sonic Boom.
 
-**Newly available (34):** Amnesia, Bide, Brick Break, Bulldoze, Counter, Defense Curl, Detect, Dig, Double Team, Dynamic Punch, Fissure, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Liquidation, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Psych Up, Psywave, Rage, Screech, Seismic Toss, Skull Bash, Snore, Splash, Submission, Sweet Kiss, Swift, Take Down.
+**Removed:** Low Sweep, Power Gem, Rock Polish, Sacred Sword, Work Up.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 1).
-- **Thematic level-up (custom):** Liquidation (Lv. 42).
-- **Egg (Poliwag family):** Bubble Beam, Mud Shot, Splash.
-- **TM/HM/elemental tutor:** Dig, Swift.
-- **Blackthorn tutor:** Amnesia, Bide, Brick Break, Bulldoze, Counter, Defense Curl, Detect, Double Team, Dynamic Punch, Fissure, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Psych Up, Psywave, Rage, Screech, Seismic Toss, Skull Bash, Snore, Submission, Sweet Kiss, Take Down.
+- **Removed natural entries:** Low Sweep, Rock Polish, Sacred Sword.
+- **Removed machine flags:** Power Gem, Work Up.
+- **Added Blackthorn lessons:** Ancient Power, Calm Mind, Sonic Boom.
 
-## Poliwag
+### Koffing
 
-**Newly available (22):** Amnesia, Bide, Bulldoze, Defense Curl, Dig, Double Team, Frustration, Hail, Icy Wind, Liquidation, Mimic, Mud Shot, Mud-Slap, Psywave, Rage, Scald, Skull Bash, Snore, Splash, Sweet Kiss, Swift, Take Down.
+**Added:** Snarl, Strange Steam.
 
-- **Natural/restored level-up:** Mud Shot (Lv. 12).
-- **Thematic level-up (custom):** Scald (Lv. 42), Liquidation (Lv. 44).
-- **Egg (Poliwag family):** Bubble Beam, Mud Shot, Splash.
-- **TM/HM/elemental tutor:** Dig, Mud-Slap, Swift.
-- **Blackthorn tutor:** Amnesia, Bide, Bulldoze, Defense Curl, Double Team, Frustration, Hail, Icy Wind, Mimic, Psywave, Rage, Skull Bash, Snore, Sweet Kiss, Take Down.
+**Removed:** Fairy Wind, Rock Tomb.
 
-## Poliwhirl
+- **Removed natural entries:** Fairy Wind.
+- **Removed machine flags:** Rock Tomb.
+- **Added Blackthorn lessons:** Snarl, Strange Steam.
 
-**Newly available (31):** Amnesia, Bide, Brick Break, Bulldoze, Counter, Defense Curl, Detect, Dig, Double Team, Fissure, Frustration, Hail, Icy Wind, Liquidation, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Psych Up, Psywave, Rage, Scald, Seismic Toss, Skull Bash, Snore, Splash, Submission, Sweet Kiss, Swift, Take Down.
+### Kotora
 
-- **Natural/restored level-up:** Mud Shot (Lv. 1).
-- **Thematic level-up (custom):** Scald (Lv. 42), Liquidation (Lv. 46).
-- **Egg (Poliwag family):** Bubble Beam, Mud Shot, Splash.
-- **TM/HM/elemental tutor:** Dig, Swift.
-- **Blackthorn tutor:** Amnesia, Bide, Brick Break, Bulldoze, Counter, Defense Curl, Detect, Double Team, Fissure, Frustration, Hail, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Psych Up, Psywave, Rage, Seismic Toss, Skull Bash, Snore, Submission, Sweet Kiss, Take Down.
+**Added:** None.
 
-## Poliwrath
+**Removed:** None.
 
-**Newly available (38):** Amnesia, Baton Pass, Bide, Bulldoze, Counter, Defense Curl, Detect, Dig, Double Team, Fissure, Focus Blast, Frustration, Giga Impact, Hail, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Poison Jab, Psych Up, Psywave, Rage, Reversal, Rock Slide, Rock Tomb, Scald, Scary Face, Seismic Toss, Skull Bash, Snore, Splash, Sweet Kiss, Swift, Take Down, Taunt, Vacuum Wave.
 
-- **Natural/restored level-up:** Mind Reader (Lv. 1), Mud Shot (Lv. 1), Vacuum Wave (Lv. 1).
-- **Thematic level-up (custom):** Scald (Lv. 42), Focus Blast (Lv. 56).
-- **Egg (Poliwag family):** Bubble Beam, Mud Shot, Splash.
-- **TM/HM/elemental tutor:** Dig, Rock Tomb, Swift.
-- **Blackthorn tutor:** Amnesia, Baton Pass, Bide, Bulldoze, Counter, Defense Curl, Detect, Double Team, Fissure, Frustration, Giga Impact, Hail, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Poison Jab, Psych Up, Psywave, Rage, Reversal, Rock Slide, Scary Face, Seismic Toss, Skull Bash, Snore, Sweet Kiss, Take Down, Taunt.
+### Krabby
 
-## Ponyta
+**Added:** Shadow Claw, Waterfall.
 
-**Newly available (19):** Bide, Body Slam, Bounce, Double Team, Endure, Frustration, Heat Wave, Iron Tail, Mimic, Overheat, Play Rough, Rage, Reflect, Skull Bash, Snore, Solar Beam, Solar Blade, Strength, Wild Charge.
+**Removed:** None.
 
-- **Natural/restored level-up:** Bounce (Lv. 45).
-- **Thematic level-up (custom):** Heat Wave (Lv. 42), Overheat (Lv. 56).
-- **Egg (Ponyta family):** Double Kick, Double-Edge, Flame Wheel, Hypnosis, Low Kick.
-- **TM/HM/elemental tutor:** Solar Beam, Strength.
-- **Blackthorn tutor:** Bide, Body Slam, Double Team, Endure, Frustration, Iron Tail, Mimic, Play Rough, Rage, Reflect, Skull Bash, Snore, Solar Blade, Wild Charge.
+- **Added Blackthorn lessons:** Shadow Claw, Waterfall.
 
-## Ponyta (Galarian)
+### Krokorok
 
-**Newly available (10):** Body Slam, Bounce, Calm Mind, Charm, Endure, Future Sight, Horn Drill, Iron Tail, Snore, Wild Charge.
+**Added:** Tackle.
 
-- **Egg (Ponyta (Galarian) family):** Horn Drill.
-- **Blackthorn tutor:** Body Slam, Bounce, Calm Mind, Charm, Endure, Future Sight, Iron Tail, Snore, Wild Charge.
+**Removed:** Night Slash, Scratch, Swift, Work Up.
 
-## Porygon
+- **Removed natural entries:** Scratch.
+- **Removed machine flags:** Night Slash, Swift, Work Up.
+- **Added Blackthorn lessons:** Tackle.
 
-**Newly available (28):** Aerial Ace, Bide, Defense Curl, Discharge, Double Team, Dream Eater, Endure, Foul Play, Frustration, Giga Impact, Headbutt, Icy Wind, Iron Tail, Mimic, Nightmare, Pain Split, Psych Up, Psyshock, Psywave, Rage, Recycle, Reflect, Skull Bash, Snore, Solar Beam, Take Down, Teleport, Trick.
+### Krookodile
 
-- **Natural/restored level-up:** Recycle (Lv. 22), Discharge (Lv. 28).
-- **TM/HM/elemental tutor:** Headbutt, Solar Beam.
-- **Blackthorn tutor:** Aerial Ace, Bide, Defense Curl, Double Team, Double-Edge, Dream Eater, Endure, Foul Play, Frustration, Giga Impact, Icy Wind, Iron Tail, Mimic, Nightmare, Pain Split, Psych Up, Psyshock, Psywave, Rage, Reflect, Skull Bash, Snore, Take Down, Teleport, Trick.
+**Added:** Fissure, Iron Head, Tackle.
 
-## Porygon-Z
+**Removed:** Night Slash, Scratch, Swift, Work Up.
 
-**Newly available (25):** Aerial Ace, Bide, Discharge, Double Team, Dream Eater, Endure, Frustration, Giga Impact, Icy Wind, Iron Tail, Mimic, Nightmare, Pain Split, Psych Up, Psyshock, Psywave, Rage, Recycle, Reflect, Skull Bash, Snore, Solar Beam, Take Down, Teleport, Trick.
+- **Removed natural entries:** Scratch.
+- **Removed machine flags:** Night Slash, Swift, Work Up.
+- **Added Blackthorn lessons:** Fissure, Iron Head, Tackle.
 
-- **Natural/restored level-up:** Recycle (Lv. 1), Discharge (Lv. 28).
-- **TM/HM/elemental tutor:** Solar Beam.
-- **Blackthorn tutor:** Aerial Ace, Bide, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Icy Wind, Iron Tail, Mimic, Nightmare, Pain Split, Psych Up, Psyshock, Psywave, Rage, Reflect, Skull Bash, Snore, Take Down, Teleport, Trick.
+### Lairon
 
-## Porygon2
+**Added:** False Swipe, Mud Shot.
 
-**Newly available (26):** Aerial Ace, Bide, Discharge, Double Team, Dream Eater, Endure, Frustration, Giga Impact, Headbutt, Icy Wind, Iron Tail, Mimic, Nightmare, Pain Split, Psych Up, Psyshock, Psywave, Rage, Recycle, Reflect, Skull Bash, Snore, Solar Beam, Take Down, Teleport, Trick.
+**Removed:** Fire Blast, Fire Punch, Flash Cannon, Ice Beam, Ice Punch, Power Gem, Thunder Punch, Thunderbolt.
 
-- **Natural/restored level-up:** Recycle (Lv. 22), Discharge (Lv. 28).
-- **TM/HM/elemental tutor:** Solar Beam.
-- **Blackthorn tutor:** Aerial Ace, Bide, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Icy Wind, Iron Tail, Mimic, Nightmare, Pain Split, Psych Up, Psyshock, Psywave, Rage, Reflect, Skull Bash, Snore, Take Down, Teleport, Trick.
-- **Evolution access:** Headbutt.
+- **Removed machine flags:** Fire Blast, Fire Punch, Flash Cannon, Ice Beam, Ice Punch, Power Gem, Thunder Punch, Thunderbolt.
+- **Added Blackthorn lessons:** False Swipe, Mud Shot.
 
-## Primeape
+### Lampent
 
-**Newly available (41):** Acrobatics, Aerial Ace, Bide, Body Slam, Bulldoze, Defense Curl, Detect, Double Team, Double-Edge, Dynamic Punch, Earthquake, Encore, Endure, Focus Blast, Frustration, Giga Impact, Gunk Shot, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Overheat, Pay Day, Poison Jab, Psych Up, Pursuit, Rage, Rain Dance, Rock Tomb, Scary Face, Seed Bomb, Shadow Claw, Snore, Spite, Stealth Rock, Stone Edge, Submission, Take Down, Taunt, Vacuum Wave.
+**Added:** Ominous Wind, Smokescreen.
 
-- **Natural/restored level-up:** Rage (Lv. 1), Pursuit (Lv. 12).
-- **Thematic level-up (custom):** Submission (Lv. 44).
-- **Egg (Mankey family):** Close Combat, Curse, Encore, Night Slash, Sleep Talk, Spite.
-- **TM/HM/elemental tutor:** Earthquake, Rain Dance, Rock Tomb.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Bide, Body Slam, Bulldoze, Defense Curl, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Gunk Shot, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Overheat, Pay Day, Poison Jab, Psych Up, Scary Face, Seed Bomb, Shadow Claw, Snore, Stealth Rock, Stone Edge, Take Down, Taunt, Vacuum Wave.
+**Removed:** Hyper Beam, Phantom Force, Swift.
 
-## Psyduck
+- **Removed machine flags:** Hyper Beam, Swift.
+- **Removed fallback lessons:** Phantom Force.
+- **Added Blackthorn lessons:** Ominous Wind, Smokescreen.
 
-**Newly available (40):** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Calm Mind, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Flip Turn, Frustration, Hail, Haze, Icy Wind, Iron Tail, Liquidation, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Pay Day, Psyshock, Rage, Scald, Seismic Toss, Shadow Claw, Signal Beam, Skill Swap, Skull Bash, Snore, Submission, Take Down, Taunt, Thief, Vacuum Wave.
+### Lanturn
 
-- **Thematic level-up (custom):** Flip Turn (Lv. 20), Scald (Lv. 44), Liquidation (Lv. 46).
-- **Egg (Psyduck family):** Cross Chop, Future Sight, Hypnosis, Psychic.
-- **TM/HM/elemental tutor:** Thief.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Brick Break, Bubble Beam, Calm Mind, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Frustration, Hail, Haze, Icy Wind, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Pay Day, Psyshock, Rage, Seismic Toss, Shadow Claw, Signal Beam, Skill Swap, Skull Bash, Snore, Submission, Take Down, Taunt, Vacuum Wave.
+**Added:** Light Screen.
 
-## Pupitar
+**Removed:** Flash Cannon, Nuzzle, Tail Glow.
 
-**Newly available (23):** Aerial Ace, Body Slam, Brick Break, Detect, Double Team, Double-Edge, Earth Power, Endure, Frustration, Giga Impact, Iron Defense, Iron Head, Iron Tail, Mimic, Rock Blast, Rock Polish, Rock Smash, Snarl, Snore, Spite, Take Down, Taunt, Torment.
+- **Removed natural entries:** Nuzzle, Tail Glow.
+- **Removed fallback lessons:** Flash Cannon.
+- **Added Blackthorn lessons:** Light Screen.
 
-- **Natural/restored level-up:** Iron Defense (Lv. 1).
-- **Thematic level-up (custom):** Rock Polish (Lv. 30), Rock Blast (Lv. 40), Earth Power (Lv. 42).
-- **Egg (Larvitar family):** Curse, Dragon Dance, Iron Defense, Iron Head, Iron Tail, Outrage, Stealth Rock.
-- **TM/HM/elemental tutor:** Iron Head, Rock Smash.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Detect, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Mimic, Snarl, Snore, Spite, Take Down, Taunt, Torment.
+### Lapras
 
-## Quagsire
+**Added:** Bite.
 
-**Newly available (34):** Avalanche, Blizzard, Body Press, Brick Break, Bulldoze, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Hail, Hydro Pump, Icy Wind, Infestation, Iron Tail, Liquidation, Mega Kick, Mega Punch, Mimic, Rock Slide, Rollout, Seismic Toss, Snore, Spikes, Stone Edge, Take Down, Thief, Toxic Spikes, Water Pulse, Waterfall.
+**Removed:** None.
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 22), Spikes (Lv. 34), Body Press (Lv. 38), Liquidation (Lv. 48).
-- **Egg (Wooper family):** Body Slam, Counter, Curse, Double Kick, Recover.
-- **TM/HM/elemental tutor:** Blizzard, Thief, Waterfall.
-- **Blackthorn tutor:** Avalanche, Brick Break, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Hail, Hydro Pump, Icy Wind, Infestation, Iron Tail, Mega Kick, Mega Punch, Mimic, Rock Slide, Rollout, Seismic Toss, Snore, Stone Edge, Take Down, Toxic Spikes, Water Pulse.
+- **Added Blackthorn lessons:** Bite.
 
-## Quilava
+### Larvesta
 
-**Newly available (20):** Aerial Ace, Body Slam, Brick Break, Crush Claw, Detect, Double Team, Endure, Eruption, Fire Fang, Fire Spin, Frustration, Heat Wave, Iron Tail, Lava Plume, Mimic, Overheat, Play Rough, Snore, Take Down, Wild Charge.
+**Added:** None.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 27), Eruption (Lv. 55), Overheat (Lv. 68).
-- **Thematic level-up (custom):** Fire Fang (Lv. 18), Heat Wave (Lv. 42).
-- **Egg (Cyndaquil family):** Crush Claw, Curse, Double Kick, Double-Edge, Extrasensory, Flare Blitz, Quick Attack, Reversal.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Detect, Double Team, Endure, Fire Spin, Frustration, Iron Tail, Mimic, Play Rough, Snore, Take Down, Wild Charge.
+**Removed:** Curse, Energy Ball, Fiery Dance, Fury Cutter, Quiver Dance.
 
-## Qwilfish
+- **Removed machine flags:** Curse, Energy Ball, Fury Cutter.
+- **Removed fallback lessons:** Fiery Dance, Quiver Dance.
 
-**Newly available (34):** Agility, Astonish, Barb Barrage, Bounce, Crunch, Defense Curl, Double Team, Double-Edge, Endure, Explosion, Flip Turn, Frustration, Giga Impact, Gyro Ball, Hail, Hex, Icy Wind, Mimic, Mud Shot, Pain Split, Poison Tail, Reversal, Scald, Scale Shot, Scary Face, Self-Destruct, Shadow Ball, Signal Beam, Snore, Spite, Swords Dance, Taunt, Venoshock, Water Pulse.
+### Larvitar
 
-- **Thematic level-up (custom):** Flip Turn (Lv. 20).
-- **Breeding fallback:** Self-Destruct (Lv. 30).
-- **Egg (Qwilfish family):** Aqua Jet, Aqua Tail, Astonish, Barb Barrage, Poison Jab, Self-Destruct, Signal Beam, Water Pulse.
-- **TM/HM/elemental tutor:** Shadow Ball.
-- **Blackthorn tutor:** Agility, Bounce, Crunch, Defense Curl, Double Team, Double-Edge, Endure, Explosion, Frustration, Giga Impact, Gyro Ball, Hail, Hex, Hydro Pump, Icy Wind, Mimic, Mud Shot, Pain Split, Poison Tail, Reversal, Scald, Scale Shot, Scary Face, Snore, Spite, Swords Dance, Taunt, Venoshock.
+**Added:** Rage.
 
-## Raichu
+**Removed:** None.
 
-**Newly available (37):** Bide, Body Slam, Brick Break, Calm Mind, Counter, Defense Curl, Detect, Dig, Discharge, Double-Edge, Draining Kiss, Dynamic Punch, Endure, Extreme Speed, Flail, Frustration, Giga Impact, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Present, Rage, Rock Smash, Rollout, Safeguard, Seismic Toss, Signal Beam, Sing, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Yawn.
+- **Added Blackthorn lessons:** Rage.
 
-- **Natural/restored level-up:** Discharge (Lv. 60).
-- **Thematic level-up (custom):** Signal Beam (Lv. 28).
-- **Egg (Pichu family):** Bide, Disarming Voice, Endure, Flail, Present, Thunder Punch.
-- **TM/HM/elemental tutor:** Dig, Rock Smash.
-- **Blackthorn tutor:** Body Slam, Brick Break, Calm Mind, Counter, Defense Curl, Detect, Double-Edge, Draining Kiss, Dynamic Punch, Extreme Speed, Frustration, Giga Impact, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Rage, Rollout, Safeguard, Seismic Toss, Sing, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Yawn.
+### Leafeon
 
-## Raichu (Alolan)
+**Added:** Cut, Disarming Voice, Growth, Night Slash, Petal Dance, Psycho Cut, Taunt, Zap Cannon.
 
-**Newly available (40):** Bide, Body Slam, Brick Break, Calm Mind, Counter, Defense Curl, Detect, Discharge, Double-Edge, Draining Kiss, Dynamic Punch, Endure, Extreme Speed, Flail, Frustration, Future Sight, Giga Impact, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Present, Psyshock, Rage, Recycle, Rollout, Safeguard, Seismic Toss, Signal Beam, Sing, Skill Swap, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Teleport, Yawn.
+**Removed:** Iron Head.
 
-- **Natural/restored level-up:** Psyshock (Lv. 43), Discharge (Lv. 56).
-- **Thematic level-up (custom):** Signal Beam (Lv. 28), Calm Mind (Lv. 30), Skill Swap (Lv. 34), Future Sight (Lv. 56).
-- **Egg (Pichu family):** Bide, Disarming Voice, Endure, Flail, Present, Thunder Punch.
-- **Blackthorn tutor:** Body Slam, Brick Break, Counter, Defense Curl, Detect, Double-Edge, Draining Kiss, Dynamic Punch, Extreme Speed, Frustration, Giga Impact, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Rage, Recycle, Rollout, Safeguard, Seismic Toss, Sing, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Teleport, Yawn.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Cut, Disarming Voice, Growth, Night Slash, Petal Dance, Psycho Cut, Taunt, Zap Cannon.
 
-## Raikou
+### Ledian
 
-**Newly available (19):** Agility, Body Slam, Bulldoze, Detect, Discharge, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Iron Tail, Mimic, Psych Up, Scary Face, Signal Beam, Snarl, Snore, Take Down, Wild Charge.
+**Added:** Barrier, Fly.
 
-- **Natural/restored level-up:** Discharge (Lv. 30).
-- **Thematic level-up (custom):** Signal Beam (Lv. 28), Wild Charge (Lv. 44).
-- **Blackthorn tutor:** Agility, Body Slam, Bulldoze, Detect, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Iron Tail, Mimic, Psych Up, Scary Face, Snarl, Snore, Take Down.
+**Removed:** Energy Ball, Fury Cutter, Quiver Dance, Rock Tomb, Signal Beam.
 
-## Raitora
+- **Removed machine flags:** Energy Ball, Fury Cutter, Rock Tomb.
+- **Removed fallback lessons:** Quiver Dance, Signal Beam.
+- **Added Blackthorn lessons:** Barrier, Fly.
 
-**Newly available (2):** Discharge, Slack Off.
+### Ledyba
 
-- **Thematic level-up (custom):** Discharge (Lv. 40).
-- **Evolution access:** Slack Off.
+**Added:** Barrier, Dual Wingbeat.
 
-## Ralts
+**Removed:** Energy Ball, Fury Cutter, Rock Tomb.
 
-**Newly available (37):** Body Slam, Dazzling Gleam, Defense Curl, Double-Edge, Endure, Fire Punch, Frustration, Headbutt, Hyper Voice, Ice Punch, Icy Wind, Magical Leaf, Mega Kick, Mega Punch, Metronome, Mimic, Mud-Slap, Nightmare, Pain Split, Psych Up, Psyshock, Rain Dance, Recycle, Safeguard, Signal Beam, Sing, Skill Swap, Snore, Sunny Day, Swift, Taunt, Thief, Thunder Punch, Torment, Trick, Trick Room, Wish.
+- **Removed machine flags:** Energy Ball, Fury Cutter, Rock Tomb.
+- **Added Blackthorn lessons:** Barrier, Dual Wingbeat.
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 17).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Trick (Lv. 34), Trick Room (Lv. 36), Dazzling Gleam (Lv. 42).
-- **Egg (Ralts family):** Knock Off, Skill Swap, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Fire Punch, Headbutt, Ice Punch, Mud-Slap, Rain Dance, Sunny Day, Swift, Thief, Thunder Punch.
-- **Blackthorn tutor:** Body Slam, Defense Curl, Double-Edge, Endure, Frustration, Hyper Voice, Icy Wind, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Pain Split, Psych Up, Psyshock, Recycle, Safeguard, Sing, Snore, Taunt, Torment, Wish.
+### Lickilicky
 
-## Rampardos
+**Added:** Double Slap, Tackle.
 
-**Newly available (33):** Avalanche, Blizzard, Body Press, Body Slam, Brick Break, Bulldoze, Cut, Dig, Double Team, Dragon Tail, Earth Power, Endure, Fire Blast, Flamethrower, Focus Blast, Frustration, Giga Impact, Ice Beam, Incinerate, Outrage, Pain Split, Pursuit, Rain Dance, Roar, Rock Blast, Snore, Spite, Sunny Day, Surf, Thief, Thunder, Thunderbolt, Whirlpool.
+**Removed:** Drain Punch, Iron Head, Swift.
 
-- **Natural/restored level-up:** Pursuit (Lv. 1).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Brick Break (Lv. 26), Body Press (Lv. 38), Rock Blast (Lv. 42).
-- **Egg (Cranidos family):** Crunch, Curse, Iron Head, Leer, Slam.
-- **TM/HM/elemental tutor:** Blizzard, Cut, Dig, Fire Blast, Flamethrower, Ice Beam, Rain Dance, Roar, Sunny Day, Surf, Thief, Thunder, Thunderbolt, Whirlpool.
-- **Blackthorn tutor:** Ancient Power, Avalanche, Body Slam, Double Team, Dragon Tail, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Incinerate, Outrage, Pain Split, Snore, Spite.
+- **Removed machine flags:** Drain Punch, Iron Head, Swift.
+- **Added Blackthorn lessons:** Double Slap, Tackle.
 
-## Rapidash
+### Lickitung
 
-**Newly available (20):** Baton Pass, Bide, Body Slam, Bounce, Double Team, Drill Run, Endure, Frustration, Giga Impact, Iron Tail, Mimic, Pay Day, Play Rough, Rage, Reflect, Skull Bash, Snore, Solar Beam, Solar Blade, Strength.
+**Added:** Double Slap, Tackle.
 
-- **Natural/restored level-up:** Bounce (Lv. 45).
-- **Egg (Ponyta family):** Double Kick, Double-Edge, Flame Wheel, Hypnosis, Low Kick.
-- **TM/HM/elemental tutor:** Solar Beam, Strength.
-- **Blackthorn tutor:** Baton Pass, Bide, Body Slam, Double Team, Drill Run, Endure, Frustration, Giga Impact, Iron Tail, Mimic, Pay Day, Play Rough, Rage, Reflect, Skull Bash, Snore, Solar Blade.
+**Removed:** Drain Punch, Iron Head.
 
-## Rapidash (Galarian)
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Double Slap, Tackle.
 
-**Newly available (17):** Baton Pass, Blaze Kick, Body Slam, Bounce, Calm Mind, Charm, Drill Run, Endure, Future Sight, Giga Impact, Horn Drill, Iron Tail, Moonblast, Pay Day, Psycho Cut, Snore, Trick Room.
+### Lileep
 
-- **Natural/restored level-up:** Blaze Kick (Lv. 1), Psycho Cut (Lv. 1).
-- **Egg (Ponyta (Galarian) family):** Horn Drill.
-- **Blackthorn tutor:** Baton Pass, Body Slam, Bounce, Calm Mind, Charm, Drill Run, Endure, Future Sight, Giga Impact, Iron Tail, Pay Day, Snore, Trick Room.
-- **Evolution access:** Moonblast.
+**Added:** None.
 
-## Raticate
+**Removed:** Earthquake, Leech Seed, Power Gem, Rock Smash, Stun Spore.
 
-**Newly available (16):** Bide, Body Slam, Bubble Beam, Defense Curl, Double Team, Frustration, Giga Impact, Icy Wind, Iron Tail, Mimic, Rage, Rain Dance, Skull Bash, Snore, Water Gun, Wild Charge.
+- **Removed machine flags:** Earthquake, Power Gem, Rock Smash.
+- **Removed family egg entries:** Leech Seed, Stun Spore.
 
-- **Thematic level-up (custom):** Body Slam (Lv. 42), Giga Impact (Lv. 56), Skull Bash (Lv. 58).
-- **Egg (Rattata family):** Bite, Flame Wheel, Reversal, Swagger.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Bide, Bubble Beam, Defense Curl, Double Team, Frustration, Icy Wind, Iron Tail, Mimic, Rage, Snore, Water Gun, Wild Charge.
+### Litwick
 
-## Raticate (Alolan)
+**Added:** Smokescreen.
 
-**Newly available (12):** Counter, Dark Pulse, Double Team, Frustration, Giga Impact, Icy Wind, Iron Tail, Shadow Claw, Snarl, Snore, Torment, Venoshock.
+**Removed:** Phantom Force, Swift.
 
-- **Thematic level-up (custom):** Giga Impact (Lv. 56).
-- **Egg (Rattata (Alolan) family):** Counter, Reversal.
-- **Blackthorn tutor:** Dark Pulse, Double Team, Frustration, Icy Wind, Iron Tail, Shadow Claw, Snarl, Snore, Torment, Venoshock.
+- **Removed machine flags:** Swift.
+- **Removed fallback lessons:** Phantom Force.
+- **Added Blackthorn lessons:** Smokescreen.
 
-## Rattata
+### Lombre
 
-**Newly available (19):** Bide, Body Slam, Bubble Beam, Cut, Defense Curl, Double Team, Frustration, Ice Beam, Icy Wind, Iron Tail, Mimic, Rage, Rain Dance, Skull Bash, Snore, Thunderbolt, U-turn, Water Gun, Wild Charge.
+**Added:** None.
 
-- **Thematic level-up (custom):** Body Slam (Lv. 42), Skull Bash (Lv. 56).
-- **Egg (Rattata family):** Bite, Flame Wheel, Reversal, Swagger.
-- **TM/HM/elemental tutor:** Cut, Ice Beam, Rain Dance, Thunderbolt.
-- **Blackthorn tutor:** Bide, Bubble Beam, Defense Curl, Double Team, Frustration, Icy Wind, Iron Tail, Mimic, Rage, Snore, U-turn, Water Gun, Wild Charge.
+**Removed:** Curse.
 
-## Rattata (Alolan)
+- **Removed machine flags:** Curse.
+- **Removed family egg entries:** Fake Out.
 
-**Newly available (11):** Counter, Dark Pulse, Double Team, Frustration, Icy Wind, Iron Tail, Shadow Claw, Snarl, Snore, Torment, U-turn.
+### Lopunny
 
-- **Egg (Rattata (Alolan) family):** Counter, Reversal.
-- **Blackthorn tutor:** Dark Pulse, Double Team, Frustration, Icy Wind, Iron Tail, Shadow Claw, Snarl, Snore, Torment, U-turn.
+**Added:** Comet Punch, Cotton Guard, Double-Edge, Draining Kiss, Dynamic Punch, Mach Punch, Seismic Toss, Swords Dance, Tackle.
 
-## Remoraid
+**Removed:** Brick Break, Bulk Up, Curse, Karate Chop.
 
-**Newly available (22):** Blizzard, Bounce, Bullet Seed, Defense Curl, Double Team, Double-Edge, Endure, Fire Blast, Flail, Frustration, Icy Wind, Incinerate, Mimic, Mud Shot, Rock Blast, Scald, Signal Beam, Snore, String Shot, Sunny Day, Water Spout, Waterfall.
+- **Removed natural entries:** Brick Break.
+- **Removed machine flags:** Bulk Up, Curse.
+- **Removed family egg entries:** Karate Chop.
+- **Added Blackthorn lessons:** Comet Punch, Cotton Guard, Double-Edge, Draining Kiss, Dynamic Punch, Mach Punch, Seismic Toss, Swords Dance, Tackle.
 
-- **Natural/restored level-up:** Bullet Seed (Lv. 28), Signal Beam (Lv. 30), Water Spout (Lv. 48).
-- **Thematic level-up (custom):** Scald (Lv. 44).
-- **Egg (Remoraid family):** Aurora Beam, Flail, Mud Shot, Rock Blast, Snore, Swift, Thunder Wave, Water Pulse, Water Spout.
-- **TM/HM/elemental tutor:** Blizzard, Fire Blast, Sunny Day, Waterfall.
-- **Blackthorn tutor:** Bounce, Defense Curl, Double Team, Double-Edge, Endure, Frustration, Icy Wind, Incinerate, Mimic, String Shot.
+### Lotad
 
-## Rhydon
+**Added:** None.
 
-**Newly available (48):** Ancient Power, Aqua Tail, Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Crush Claw, Cut, Double Team, Dragon Tail, Dynamic Punch, Earth Power, Endure, Fire Fang, Fissure, Focus Blast, Frustration, Giga Impact, Hammer Arm, Heat Crash, Hydro Pump, Ice Fang, Icy Wind, Incinerate, Iron Defense, Iron Tail, Leer, Mega Kick, Mega Punch, Mimic, Outrage, Pay Day, Poison Jab, Rage, Rain Dance, Rock Throw, Rollout, Sand Attack, Seismic Toss, Shadow Claw, Skull Bash, Snore, Spite, Submission, Thief, Water Gun, Whirlpool.
+**Removed:** Curse, Fake Out, Waterfall.
 
-- **Natural/restored level-up:** Hammer Arm (Lv. 1).
-- **Thematic level-up (custom):** Dragon Tail (Lv. 18), Brick Break (Lv. 26), Iron Defense (Lv. 40), Aqua Tail (Lv. 46).
-- **Egg (Rhyhorn family):** Crunch, Crush Claw, Curse, Fire Fang, Ice Fang, Iron Tail, Rock Polish, Rock Slide, Skull Bash, Swords Dance, Thunder Fang.
-- **TM/HM/elemental tutor:** Cut, Rain Dance, Thief, Whirlpool.
-- **Blackthorn tutor:** Ancient Power, Avalanche, Bide, Body Slam, Bubble Beam, Double Team, Dynamic Punch, Earth Power, Endure, Fissure, Focus Blast, Frustration, Giga Impact, Heat Crash, Hydro Pump, Icy Wind, Incinerate, Leer, Mega Kick, Mega Punch, Mimic, Outrage, Pay Day, Poison Jab, Rage, Rock Throw, Rollout, Sand Attack, Seismic Toss, Shadow Claw, Snore, Spite, Submission, Water Gun.
+- **Removed machine flags:** Curse, Waterfall.
+- **Removed family egg entries:** Fake Out.
 
-## Rhyhorn
+### Lucario
 
-**Newly available (31):** Ancient Power, Aqua Tail, Bide, Body Press, Body Slam, Crush Claw, Double Team, Drill Run, Earth Power, Endure, Fire Fang, Fissure, Frustration, Ice Fang, Icy Wind, Incinerate, Iron Tail, Leer, Mimic, Poison Jab, Rage, Rain Dance, Rock Throw, Rollout, Sand Attack, Skull Bash, Snore, Spite, Swords Dance, Thief, Thunder Fang.
+**Added:** Mach Punch, Seismic Toss.
 
-- **Natural/restored level-up:** Drill Run (Lv. 35).
-- **Thematic level-up (custom):** Body Press (Lv. 38), Aqua Tail (Lv. 42).
-- **Egg (Rhyhorn family):** Crunch, Crush Claw, Curse, Fire Fang, Ice Fang, Iron Tail, Rock Polish, Rock Slide, Skull Bash, Swords Dance, Thunder Fang.
-- **TM/HM/elemental tutor:** Rain Dance, Thief.
-- **Blackthorn tutor:** Ancient Power, Bide, Body Slam, Double Team, Earth Power, Endure, Fissure, Frustration, Icy Wind, Incinerate, Leer, Mimic, Poison Jab, Rage, Rock Throw, Rollout, Sand Attack, Snore, Spite.
+**Removed:** Curse, Iron Head, Sacred Sword.
 
-## Rhyperior
+- **Removed natural entries:** Sacred Sword.
+- **Removed machine flags:** Curse, Iron Head.
+- **Added Blackthorn lessons:** Mach Punch, Seismic Toss.
 
-**Newly available (48):** Ancient Power, Aqua Tail, Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Crush Claw, Cut, Double Team, Dragon Tail, Dynamic Punch, Earth Power, Endure, Fire Fang, Fissure, Focus Blast, Frustration, Giga Impact, Heat Crash, Hydro Pump, Ice Fang, Icy Wind, Incinerate, Iron Defense, Iron Tail, Leer, Mega Kick, Mega Punch, Metal Claw, Mimic, Outrage, Pay Day, Poison Jab, Rage, Rain Dance, Rock Throw, Rollout, Sand Attack, Seismic Toss, Shadow Claw, Skull Bash, Snore, Spite, Submission, Thief, Water Gun, Whirlpool.
+### Ludicolo
 
-- **Natural/restored level-up:** Poison Jab (Lv. 1).
-- **Thematic level-up (custom):** Dragon Tail (Lv. 18), Brick Break (Lv. 26), Iron Defense (Lv. 36), Aqua Tail (Lv. 48).
-- **Egg (Rhyhorn family):** Crunch, Crush Claw, Curse, Fire Fang, Ice Fang, Iron Tail, Rock Polish, Rock Slide, Skull Bash, Swords Dance, Thunder Fang.
-- **TM/HM/elemental tutor:** Cut, Rain Dance, Thief, Whirlpool.
-- **Blackthorn tutor:** Ancient Power, Avalanche, Bide, Body Slam, Bubble Beam, Double Team, Dynamic Punch, Earth Power, Endure, Fissure, Focus Blast, Frustration, Giga Impact, Heat Crash, Hydro Pump, Icy Wind, Incinerate, Leer, Mega Kick, Mega Punch, Metal Claw, Mimic, Outrage, Pay Day, Rage, Rock Throw, Rollout, Sand Attack, Seismic Toss, Shadow Claw, Snore, Spite, Submission, Water Gun.
+**Added:** None.
 
-## Riolu
+**Removed:** Curse, Wood Hammer.
 
-**Newly available (29):** Aerial Ace, Blaze Kick, Bulldoze, Circle Throw, Close Combat, Dig, Double Team, Earthquake, Focus Blast, Frustration, Fury Cutter, Ice Punch, Iron Tail, Mega Kick, Mega Punch, Meteor Mash, Mind Reader, Poison Jab, Psych Up, Rain Dance, Roar, Rock Slide, Rock Tomb, Shadow Claw, Sky Uppercut, Snore, Take Down, Thunder Punch, Vacuum Wave.
+- **Removed natural entries:** Wood Hammer.
+- **Removed machine flags:** Curse.
+- **Removed family egg entries:** Fake Out.
 
-- **Natural/restored level-up:** Vacuum Wave (Lv. 24).
-- **Thematic level-up (custom):** Close Combat (Lv. 56).
-- **Egg (Riolu family):** Bite, Blaze Kick, Circle Throw, Cross Chop, Crunch, Low Kick, Meteor Mash, Mind Reader, Sky Uppercut, Vacuum Wave.
-- **TM/HM/elemental tutor:** Dig, Earthquake, Fury Cutter, Ice Punch, Rain Dance, Roar, Rock Tomb, Thunder Punch.
-- **Blackthorn tutor:** Aerial Ace, Bulldoze, Double Team, Focus Blast, Frustration, Iron Tail, Mega Kick, Mega Punch, Poison Jab, Psych Up, Rock Slide, Shadow Claw, Snore, Take Down.
+### Lugia
 
-## Rookidee
+**Added:** None.
 
-**Newly available (13):** Aerial Ace, Air Cutter, Air Slash, Endure, Focus Energy, Reversal, Rock Smash, Sand Attack, Snore, Spite, Take Down, Taunt, U-turn.
+**Removed:** Energy Ball.
 
-- **Natural/restored level-up:** Taunt (Lv. 20).
-- **Egg (Rookidee family):** Defog, Rock Smash, Sand Attack, Spite.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Air Slash, Endure, Focus Energy, Reversal, Snore, Take Down, U-turn.
+- **Removed machine flags:** Energy Ball.
 
-## Salamence
+### Machamp
 
-**Newly available (37):** Aerial Ace, Air Cutter, Air Slash, Aqua Tail, Body Slam, Brick Break, Bulldoze, Cut, Defog, Double Team, Dragon Rage, Endure, Fire Spin, Frustration, Fury Cutter, Giga Impact, Heat Wave, Hurricane, Incinerate, Iron Defense, Iron Head, Iron Tail, Mimic, Mud-Slap, Ominous Wind, Rage, Rain Dance, Roar, Rock Slide, Rock Tomb, Rollout, Shadow Claw, Snore, Stone Edge, Sunny Day, Take Down, Wish.
+**Added:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
 
-- **Natural/restored level-up:** Rage (Lv. 1).
-- **Thematic level-up (custom):** Air Slash (Lv. 26), Defog (Lv. 34), Heat Wave (Lv. 42), Hurricane (Lv. 52), Aqua Tail (Lv. 56).
-- **Egg (Bagon family):** Dragon Dance, Dragon Pulse, Dragon Rage, Endure, Hydro Pump, Shadow Claw.
-- **TM/HM/elemental tutor:** Cut, Fury Cutter, Iron Head, Mud-Slap, Rain Dance, Roar, Rock Tomb, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Body Slam, Brick Break, Bulldoze, Double Team, Fire Spin, Frustration, Giga Impact, Incinerate, Iron Defense, Iron Tail, Mimic, Ominous Wind, Rock Slide, Rollout, Snore, Stone Edge, Take Down, Wish.
+**Removed:** Body Press, Circle Throw, Force Palm, Hammer Arm.
 
-## Salandit
+- **Removed natural entries:** Body Press, Circle Throw, Force Palm, Hammer Arm.
+- **Added Blackthorn lessons:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
 
-**Newly available (22):** Agility, Double Team, Endure, Fire Fang, Flare Blitz, Foul Play, Frustration, Gunk Shot, Heat Wave, Iron Tail, Leech Life, Overheat, Poison Jab, Poison Tail, Scale Shot, Scary Face, Shadow Claw, Snore, Take Down, Taunt, Torment, Toxic Spikes.
+### Machoke
 
-- **Thematic level-up (custom):** Toxic Spikes (Lv. 34), Heat Wave (Lv. 42), Overheat (Lv. 56).
-- **Egg (Salandit family):** Knock Off, Mud-Slap.
-- **Blackthorn tutor:** Agility, Double Team, Endure, Fire Fang, Flare Blitz, Foul Play, Frustration, Gunk Shot, Iron Tail, Leech Life, Poison Fang, Poison Jab, Poison Tail, Scale Shot, Scary Face, Shadow Claw, Snore, Take Down, Taunt, Torment.
+**Added:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
 
-## Salazzle
+**Removed:** Circle Throw, Force Palm.
 
-**Newly available (26):** Acrobatics, Agility, Body Slam, Disable, Double Team, Dragon Tail, Endure, Fire Fang, Flare Blitz, Foul Play, Frustration, Giga Impact, Gunk Shot, Hyper Voice, Iron Tail, Leech Life, Poison Jab, Poison Tail, Pound, Scale Shot, Scary Face, Shadow Claw, Snore, Take Down, Torment, Toxic Spikes.
+- **Removed natural entries:** Circle Throw, Force Palm.
+- **Added Blackthorn lessons:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
 
-- **Natural/restored level-up:** Disable (Lv. 1), Pound (Lv. 1), Torment (Lv. 1).
-- **Thematic level-up (custom):** Toxic Spikes (Lv. 34).
-- **Egg (Salandit family):** Knock Off, Mud-Slap.
-- **Blackthorn tutor:** Acrobatics, Agility, Body Slam, Cross Poison, Double Team, Dragon Tail, Endure, Fire Fang, Flare Blitz, Foul Play, Frustration, Giga Impact, Gunk Shot, Hyper Voice, Iron Tail, Leech Life, Poison Fang, Poison Jab, Poison Tail, Scale Shot, Scary Face, Shadow Claw, Snore, Take Down.
+### Machop
 
-## Sandile
+**Added:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
 
-**Newly available (26):** Beat Up, Body Slam, Brick Break, Bulldoze, Dark Pulse, Double Team, Earth Power, Endure, Fire Fang, Focus Energy, Frustration, Incinerate, Iron Tail, Mean Look, Mud Shot, Pursuit, Rage, Rock Slide, Shadow Claw, Snarl, Snore, Stealth Rock, Stone Edge, Take Down, Taunt, Thunder Fang.
+**Removed:** Force Palm.
 
-- **Natural/restored level-up:** Rage (Lv. 1), Mud-Slap (Lv. 19).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Stealth Rock (Lv. 34).
-- **Egg (Sandile family):** Beat Up, Fire Fang, Focus Energy, Mean Look, Pursuit, Thunder Fang.
-- **Blackthorn tutor:** Body Slam, Brick Break, Dark Pulse, Double Team, Earth Power, Endure, Frustration, Incinerate, Iron Tail, Mud Shot, Rock Slide, Shadow Claw, Snarl, Snore, Stone Edge, Take Down, Taunt.
+- **Removed natural entries:** Force Palm.
+- **Added Blackthorn lessons:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
 
-## Sandshrew
+### Magby
 
-**Newly available (31):** Aerial Ace, Amnesia, Bide, Body Slam, Brick Break, Crush Claw, Detect, Double Team, Double-Edge, Dynamic Punch, Earth Power, Endure, False Swipe, Frustration, Iron Tail, Leech Life, Low Kick, Mimic, Rage, Rock Slide, Seismic Toss, Shadow Claw, Skull Bash, Snore, Spikes, Stealth Rock, Stone Edge, Submission, Super Fang, Take Down, X-Scissor.
+**Added:** Dark Pulse, Dizzy Punch, Poison Gas, Scald, Tackle.
 
-- **Thematic level-up (custom):** Spikes (Lv. 38), Stealth Rock (Lv. 40).
-- **Egg (Sandshrew family):** Crush Claw, Endure, Hone Claws, Mud Shot, Mud-Slap, Night Slash, Rapid Spin, Rock Slide, Swords Dance.
-- **Blackthorn tutor:** Aerial Ace, Amnesia, Bide, Body Slam, Brick Break, Detect, Double Team, Double-Edge, Dynamic Punch, Earth Power, False Swipe, Frustration, Iron Tail, Leech Life, Low Kick, Mimic, Rage, Seismic Toss, Shadow Claw, Skull Bash, Snore, Stone Edge, Submission, Super Fang, Take Down, X-Scissor.
+**Removed:** Drain Punch, Iron Head.
 
-## Sandshrew (Alolan)
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Dark Pulse, Dizzy Punch, Poison Gas, Scald, Tackle.
 
-**Newly available (26):** Aerial Ace, Aqua Tail, Bide, Body Slam, Brick Break, Bulldoze, Counter, Double Team, Double-Edge, Flail, Frustration, Icy Wind, Iron Defense, Iron Tail, Leech Life, Low Kick, Mirror Coat, Rock Slide, Safeguard, Seismic Toss, Snore, Stealth Rock, Super Fang, Take Down, Triple Axel, X-Scissor.
+### Magcargo
 
-- **Natural/restored level-up:** Bide (Lv. 3), Iron Defense (Lv. 27).
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Iron Tail (Lv. 50).
-- **Egg (Sandshrew (Alolan) family):** Counter, Curse, Flail, Hone Claws, Ice Shard, Icicle Crash, Icicle Spear, Metal Claw, Mirror Coat, Night Slash.
-- **Blackthorn tutor:** Aerial Ace, Aqua Tail, Body Slam, Brick Break, Double Team, Double-Edge, Frustration, Icy Wind, Leech Life, Low Kick, Rock Slide, Safeguard, Seismic Toss, Snore, Stealth Rock, Super Fang, Take Down, Triple Axel, X-Scissor.
+**Added:** None.
 
-## Sandslash
+**Removed:** None.
 
-**Newly available (32):** Aerial Ace, Amnesia, Bide, Body Slam, Brick Break, Detect, Double Team, Double-Edge, Dynamic Punch, Earth Power, Endure, False Swipe, Focus Blast, Frustration, Giga Impact, Gunk Shot, Iron Tail, Leech Life, Low Kick, Mimic, Pin Missile, Rage, Rock Slide, Seismic Toss, Shadow Claw, Skull Bash, Snore, Spikes, Submission, Super Fang, Take Down, X-Scissor.
 
-- **Thematic level-up (custom):** Spikes (Lv. 34).
-- **Egg (Sandshrew family):** Crush Claw, Endure, Hone Claws, Mud Shot, Mud-Slap, Night Slash, Rapid Spin, Rock Slide, Swords Dance.
-- **Blackthorn tutor:** Aerial Ace, Amnesia, Bide, Body Slam, Brick Break, Detect, Double Team, Double-Edge, Dynamic Punch, Earth Power, False Swipe, Focus Blast, Frustration, Giga Impact, Gunk Shot, Iron Tail, Leech Life, Low Kick, Mimic, Pin Missile, Rage, Seismic Toss, Shadow Claw, Skull Bash, Snore, Submission, Super Fang, Take Down, X-Scissor.
+### Magikarp
 
-## Sandslash (Alolan)
+**Added:** Bubble, Dragon Rage, Facade, Reversal.
 
-**Newly available (29):** Aerial Ace, Aqua Tail, Bide, Body Slam, Brick Break, Bulldoze, Counter, Double Team, Double-Edge, False Swipe, Flail, Focus Blast, Frustration, Giga Impact, Icy Wind, Iron Defense, Iron Tail, Leech Life, Low Kick, Mirror Coat, Pin Missile, Rock Slide, Safeguard, Seismic Toss, Snore, Spikes, Super Fang, Take Down, X-Scissor.
+**Removed:** None.
 
-- **Natural/restored level-up:** Iron Defense (Lv. 1), Mist (Lv. 1), Rollout (Lv. 1).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Spikes (Lv. 44), Iron Tail (Lv. 50).
-- **Egg (Sandshrew (Alolan) family):** Counter, Curse, Flail, Hone Claws, Ice Shard, Icicle Crash, Icicle Spear, Metal Claw, Mirror Coat, Night Slash.
-- **Blackthorn tutor:** Aerial Ace, Aqua Tail, Body Slam, Brick Break, Double Team, Double-Edge, False Swipe, Focus Blast, Freeze-Dry, Frustration, Giga Impact, Icy Wind, Leech Life, Low Kick, Pin Missile, Rock Slide, Safeguard, Seismic Toss, Snore, Super Fang, Take Down, X-Scissor.
-- **Evolution access:** Bide.
+- **Added Blackthorn lessons:** Bubble, Dragon Rage, Facade, Reversal.
 
-## Scizor
+### Magmar
 
-**Newly available (27):** Acrobatics, Aerial Ace, Air Cutter, Bide, Brick Break, Cross Poison, Detect, Double-Edge, Endure, Frustration, Giga Impact, Lunge, Mimic, Morning Sun, Ominous Wind, Psycho Cut, Pursuit, Rage, Rain Dance, Scary Face, Skull Bash, Snore, Struggle Bug, Superpower, Take Down, Vacuum Wave, Venoshock.
+**Added:** Dark Pulse, Dizzy Punch, Poison Gas, Scald, Tackle.
 
-- **Natural/restored level-up:** Pursuit (Lv. 9).
-- **Egg (Scyther family):** Baton Pass, Endure, Night Slash, Razor Wind, Reversal, Steel Wing.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Bide, Brick Break, Cross Poison, Detect, Double-Edge, Frustration, Giga Impact, Lunge, Mimic, Morning Sun, Ominous Wind, Psycho Cut, Rage, Scary Face, Skull Bash, Snore, Struggle Bug, Superpower, Take Down, Venoshock.
-- **Evolution access:** Vacuum Wave.
+**Removed:** Drain Punch, Iron Head.
 
-## Scolipede
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Dark Pulse, Dizzy Punch, Poison Gas, Scald, Tackle.
 
-**Newly available (25):** Aqua Tail, Bite, Bulldoze, Cut, Dig, Double Team, Earthquake, Endure, Frustration, Giga Impact, Gyro Ball, Hex, Infestation, Iron Defense, Iron Tail, Poison Tail, Pursuit, Rock Smash, Rock Tomb, Signal Beam, Snore, Solar Beam, Struggle Bug, Sunny Day, X-Scissor.
+### Magmortar
 
-- **Natural/restored level-up:** Iron Defense (Lv. 1), Pursuit (Lv. 12), Poison Tail (Lv. 44).
-- **Thematic level-up (custom):** X-Scissor (Lv. 44).
-- **Egg (Venipede family):** Bite, Fury Cutter, Take Down.
-- **TM/HM/elemental tutor:** Cut, Dig, Earthquake, Rock Smash, Rock Tomb, Solar Beam, Sunny Day.
-- **Blackthorn tutor:** Aqua Tail, Bulldoze, Double Team, Endure, Frustration, Giga Impact, Gyro Ball, Hex, Iron Tail, Signal Beam, Snore, Struggle Bug, Venoshock.
-- **Evolution access:** Infestation.
+**Added:** Armor Cannon, Dizzy Punch, Dragon Pulse, Poison Gas, Scald, Tackle, Zap Cannon.
 
-## Scrafty
+**Removed:** Drain Punch, Iron Head, Raging Fury.
 
-**Newly available (35):** Amnesia, Body Slam, Dark Pulse, Dig, Double Team, Double-Edge, Encore, Endure, Focus Blast, Frustration, Giga Impact, Head Smash, Incinerate, Iron Defense, Iron Head, Iron Tail, Mega Kick, Mega Punch, Metronome, Outrage, Rain Dance, Reversal, Roar, Rock Slide, Rock Tomb, Sludge Bomb, Snore, Spite, Stone Edge, Sunny Day, Super Fang, Swords Dance, Take Down, Taunt, Torment.
+- **Removed natural entries:** Raging Fury.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Armor Cannon, Dizzy Punch, Dragon Pulse, Poison Gas, Scald, Tackle, Zap Cannon.
 
-- **Natural/restored level-up:** Feint Attack (Lv. 1), Torment (Lv. 20), Head Smash (Lv. 60).
-- **Thematic level-up (custom):** Spite (Lv. 38).
-- **Egg (Scraggy family):** Amnesia, Dragon Dance, Drain Punch, Fire Punch, Ice Punch, Thunder Punch, Zen Headbutt.
-- **TM/HM/elemental tutor:** Dig, Iron Head, Rain Dance, Roar, Rock Tomb, Sludge Bomb, Sunny Day.
-- **Blackthorn tutor:** Body Slam, Dark Pulse, Double Team, Double-Edge, Encore, Endure, Focus Blast, Frustration, Giga Impact, Incinerate, Iron Defense, Iron Tail, Mega Kick, Mega Punch, Metronome, Outrage, Reversal, Rock Slide, Snore, Stone Edge, Super Fang, Swords Dance, Take Down, Taunt.
+### Magnemite
 
-## Scraggy
+**Added:** Agility, Bug Buzz.
 
-**Newly available (32):** Amnesia, Close Combat, Dark Pulse, Dig, Double Team, Double-Edge, Encore, Endure, Focus Blast, Foul Play, Frustration, Head Smash, Incinerate, Iron Defense, Iron Head, Iron Tail, Mega Kick, Mega Punch, Poison Jab, Rain Dance, Roar, Rock Slide, Rock Tomb, Sludge Bomb, Snore, Spite, Stone Edge, Sunny Day, Super Fang, Take Down, Taunt, Torment.
+**Removed:** Mirror Coat, Rock Tomb.
 
-- **Natural/restored level-up:** Feint Attack (Lv. 9), Torment (Lv. 20), Head Smash (Lv. 52).
-- **Thematic level-up (custom):** Spite (Lv. 34), Foul Play (Lv. 38), Close Combat (Lv. 56).
-- **Egg (Scraggy family):** Amnesia, Dragon Dance, Drain Punch, Fire Punch, Ice Punch, Thunder Punch, Zen Headbutt.
-- **TM/HM/elemental tutor:** Dig, Iron Head, Rain Dance, Roar, Rock Tomb, Sludge Bomb, Sunny Day.
-- **Blackthorn tutor:** Dark Pulse, Double Team, Double-Edge, Encore, Endure, Focus Blast, Frustration, Incinerate, Iron Defense, Iron Tail, Mega Kick, Mega Punch, Poison Jab, Rock Slide, Snore, Stone Edge, Super Fang, Take Down, Taunt.
+- **Removed machine flags:** Rock Tomb.
+- **Removed family egg entries:** Mirror Coat.
+- **Added Blackthorn lessons:** Agility, Bug Buzz.
 
-## Scyther
+### Magneton
 
-**Newly available (27):** Acrobatics, Aerial Ace, Air Cutter, Bide, Brick Break, Bug Bite, Close Combat, Cross Poison, Detect, Double-Edge, Endure, Frustration, Giga Impact, Lunge, Mimic, Morning Sun, Ominous Wind, Psycho Cut, Pursuit, Rage, Rain Dance, Scary Face, Skull Bash, Snore, Struggle Bug, Take Down, Vacuum Wave.
+**Added:** Agility, Bug Buzz.
 
-- **Natural/restored level-up:** Vacuum Wave (Lv. 1), Pursuit (Lv. 9).
-- **Egg (Scyther family):** Baton Pass, Endure, Night Slash, Razor Wind, Reversal, Steel Wing.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Air Slash, Bide, Brick Break, Bug Bite, Close Combat, Cross Poison, Detect, Double-Edge, Frustration, Giga Impact, Lunge, Mimic, Morning Sun, Ominous Wind, Psycho Cut, Rage, Scary Face, Skull Bash, Snore, Struggle Bug, Take Down.
+**Removed:** Mirror Coat, Rock Tomb.
 
-## Seadra
+- **Removed machine flags:** Rock Tomb.
+- **Removed family egg entries:** Mirror Coat.
+- **Added Blackthorn lessons:** Agility, Bug Buzz.
 
-**Newly available (21):** Bide, Bounce, Double Team, Double-Edge, Dragon Rage, Endure, Flip Turn, Frustration, Giga Impact, Hail, Icy Wind, Liquidation, Mimic, Rage, Razor Wind, Scald, Scary Face, Skull Bash, Snore, Splash, Take Down.
+### Magnezone
 
-- **Thematic level-up (custom):** Scald (Lv. 42).
-- **Egg (Horsea family):** Aurora Beam, Dragon Breath, Dragon Rage, Octazooka, Outrage, Razor Wind, Splash, Water Pulse.
-- **Blackthorn tutor:** Bide, Bounce, Double Team, Double-Edge, Endure, Flip Turn, Frustration, Giga Impact, Hail, Icy Wind, Liquidation, Mimic, Rage, Scary Face, Skull Bash, Snore, Take Down.
+**Added:** Agility, Bug Buzz.
 
-## Seaking
+**Removed:** Rock Tomb.
 
-**Newly available (23):** Bide, Bounce, Bubble Beam, Double Team, Double-Edge, Drill Run, Endure, Frustration, Fury Cutter, Giga Impact, Hail, Headbutt, Icy Wind, Mimic, Mud-Slap, Poison Jab, Rage, Scale Shot, Snore, Swords Dance, Take Down, Water Gun, Whirlpool.
+- **Removed machine flags:** Rock Tomb.
+- **Removed family egg entries:** Mirror Coat.
+- **Added Blackthorn lessons:** Agility, Bug Buzz.
 
-- **Natural/restored level-up:** Poison Jab (Lv. 1).
-- **Egg (Goldeen family):** Aqua Tail, Body Slam, Hydro Pump, Mud-Slap.
-- **TM/HM/elemental tutor:** Fury Cutter, Headbutt, Mud-Slap, Whirlpool.
-- **Blackthorn tutor:** Bide, Bounce, Bubble Beam, Double Team, Double-Edge, Drill Run, Endure, Frustration, Giga Impact, Hail, Icy Wind, Mimic, Rage, Scale Shot, Snore, Swords Dance, Take Down, Water Gun.
+### Mamoswine
 
-## Sealeo
+**Added:** Whirlwind.
 
-**Newly available (18):** Bulldoze, Charm, Double Team, Double-Edge, Earthquake, Endure, Frustration, Headbutt, Icicle Spear, Icy Wind, Iron Tail, Mimic, Mud-Slap, Roar, Rock Smash, Rock Tomb, Strength, Super Fang.
+**Removed:** None.
 
-- **Egg (Spheal family):** Belly Drum, Curse, Rollout, Water Pulse.
-- **TM/HM/elemental tutor:** Earthquake, Headbutt, Mud-Slap, Roar, Rock Smash, Rock Tomb, Strength.
-- **Blackthorn tutor:** Bulldoze, Charm, Double Team, Double-Edge, Endure, Frustration, Icicle Spear, Icy Wind, Iron Tail, Mimic, Super Fang.
+- **Added Blackthorn lessons:** Whirlwind.
 
-## Seel
+### Mankey
 
-**Newly available (24):** Avalanche, Bide, Body Slam, Double Team, Double-Edge, Drill Run, Endure, Fake Out, Flip Turn, Frustration, Haze, Horn Drill, Hydro Pump, Iron Tail, Mimic, Pay Day, Rage, Signal Beam, Skull Bash, Snore, Strength, Thief, Triple Axel, Water Pulse.
+**Added:** Circle Throw, Comet Punch, Knock Off, Roar, Rock Throw, Tackle, Torment.
 
-- **Thematic level-up (custom):** Flip Turn (Lv. 20), Hydro Pump (Lv. 56).
-- **Egg (Seel family):** Encore, Fake Out, Horn Drill, Icicle Spear, Iron Tail, Signal Beam, Sleep Talk, Water Pulse.
-- **TM/HM/elemental tutor:** Strength, Thief.
-- **Blackthorn tutor:** Avalanche, Bide, Body Slam, Double Team, Double-Edge, Drill Run, Endure, Frustration, Haze, Mimic, Pay Day, Rage, Skull Bash, Snore, Triple Axel.
+**Removed:** Iron Head, Rage Fist.
 
-## Sentret
+- **Removed natural entries:** Rage Fist.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Circle Throw, Comet Punch, Knock Off, Roar, Rock Throw, Tackle, Torment.
 
-**Newly available (27):** Aqua Tail, Blizzard, Body Slam, Brick Break, Detect, Double Team, Dynamic Punch, Endure, Flamethrower, Frustration, Ice Beam, Iron Tail, Mimic, Rain Dance, Rollout, Seed Bomb, Shadow Claw, Snore, Solar Beam, Super Fang, Tackle, Take Down, Thunder, Thunderbolt, U-turn, Water Pulse, Whirlpool.
+### Mantine
 
-- **Thematic level-up (custom):** Take Down (Lv. 42), Body Slam (Lv. 46).
-- **Egg (Sentret family):** Double-Edge, Iron Tail, Reversal, Substitute.
-- **TM/HM/elemental tutor:** Blizzard, Flamethrower, Ice Beam, Rain Dance, Solar Beam, Thunder, Thunderbolt, Whirlpool.
-- **Blackthorn tutor:** Aqua Tail, Brick Break, Detect, Double Team, Dynamic Punch, Endure, Frustration, Hyper Voice, Mimic, Rollout, Seed Bomb, Shadow Claw, Snore, Super Fang, Tackle, U-turn, Water Pulse.
+**Added:** U-turn.
 
-## Seviper
+**Removed:** Aqua Jet.
 
-**Newly available (26):** Aqua Tail, Bind, Brick Break, Bulldoze, Double Team, Double-Edge, Endure, Fire Fang, Frustration, Giga Drain, Giga Impact, Infestation, Iron Head, Mimic, Poison Tail, Rain Dance, Reversal, Rock Smash, Seed Bomb, Snore, Sucker Punch, Swift, Take Down, Taunt, Thunder Fang, X-Scissor.
+- **Removed natural entries:** Aqua Jet.
+- **Removed family egg entries:** Gunk Shot.
+- **Added Blackthorn lessons:** Gunk Shot, Gust, U-turn.
 
-- **Natural/restored level-up:** Poison Tail (Lv. 22).
-- **Thematic level-up (custom):** Sucker Punch (Lv. 42), Aqua Tail (Lv. 44).
-- **Egg (Seviper family):** Night Slash.
-- **TM/HM/elemental tutor:** Iron Head, Rain Dance, Rock Smash, Swift.
-- **Blackthorn tutor:** Bind, Brick Break, Bulldoze, Double Team, Double-Edge, Endure, Fire Fang, Frustration, Giga Drain, Giga Impact, Infestation, Mimic, Reversal, Seed Bomb, Snore, Take Down, Taunt, Thunder Fang, X-Scissor.
+### Mantyke
 
-## Shelgon
+**Added:** Double-Edge, U-turn.
 
-**Newly available (29):** Aerial Ace, Body Slam, Brick Break, Cut, Double Team, Draco Meteor, Dragon Rage, Endure, Fire Spin, Frustration, Fury Cutter, Hyper Voice, Incinerate, Iron Defense, Iron Head, Mimic, Mud-Slap, Rage, Rain Dance, Roar, Rock Slide, Rock Tomb, Rollout, Shadow Claw, Snore, Strength, Sunny Day, Take Down, Wish.
+**Removed:** Aqua Jet, Curse, Fly, Gunk Shot, Gust.
 
-- **Natural/restored level-up:** Rage (Lv. 1).
-- **Egg (Bagon family):** Dragon Dance, Dragon Pulse, Dragon Rage, Endure, Hydro Pump, Shadow Claw.
-- **TM/HM/elemental tutor:** Cut, Fury Cutter, Iron Head, Mud-Slap, Rain Dance, Roar, Rock Tomb, Strength, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Double Team, Draco Meteor, Fire Spin, Frustration, Hyper Voice, Incinerate, Iron Defense, Mimic, Rock Slide, Rollout, Snore, Take Down, Wish.
+- **Removed natural entries:** Aqua Jet, Gust.
+- **Removed machine flags:** Curse, Fly.
+- **Removed family egg entries:** Gunk Shot.
+- **Added Blackthorn lessons:** Double-Edge, U-turn.
 
-## Shellder
+### Mareanie
 
-**Newly available (26):** Avalanche, Bide, Double Team, Double-Edge, Endure, Explosion, Frustration, Hail, Headbutt, Icy Wind, Iron Defense, Liquidation, Mimic, Mud Shot, Rage, Reflect, Rock Blast, Self-Destruct, Snore, Spikes, Teleport, Toxic Spikes, Tri Attack, Twineedle, Water Pulse, Waterfall.
+**Added:** None.
 
-- **Natural/restored level-up:** Iron Defense (Lv. 36).
-- **Thematic level-up (custom):** Liquidation (Lv. 42).
-- **Breeding fallback:** Avalanche (Lv. 30).
-- **Egg (Shellder family):** Avalanche, Bubble Beam, Icicle Spear, Mud Shot, Rock Blast, Twineedle, Water Pulse.
-- **TM/HM/elemental tutor:** Headbutt, Waterfall.
-- **Blackthorn tutor:** Bide, Double Team, Double-Edge, Endure, Explosion, Frustration, Hail, Icy Wind, Mimic, Rage, Reflect, Self-Destruct, Snore, Spikes, Teleport, Toxic Spikes, Tri Attack.
+**Removed:** Baneful Bunker, Cross Poison, Curse, Sludge, Spikes, Waterfall, Whirlpool.
 
-## Shieldon
+- **Removed natural entries:** Baneful Bunker, Cross Poison.
+- **Removed machine flags:** Curse, Waterfall, Whirlpool.
+- **Removed family egg entries:** Sludge, Spikes.
 
-**Newly available (20):** Blizzard, Bulldoze, Counter, Dig, Double Team, Double-Edge, Fire Blast, Frustration, Ice Beam, Incinerate, Iron Tail, Rain Dance, Roar, Rock Slide, Scary Face, Snore, Sunny Day, Thunder, Thunderbolt, Torment.
+### Mareep
 
-- **Egg (Shieldon family):** Counter, Curse, Double-Edge, Headbutt, Scary Face, Stealth Rock.
-- **TM/HM/elemental tutor:** Blizzard, Dig, Fire Blast, Ice Beam, Rain Dance, Roar, Sunny Day, Thunder, Thunderbolt.
-- **Blackthorn tutor:** Bulldoze, Double Team, Frustration, Incinerate, Iron Tail, Rock Slide, Snore, Stone Edge, Torment.
+**Added:** None.
 
-## Shroomish
+**Removed:** Iron Head, Nuzzle.
 
-**Newly available (16):** Body Slam, Double Team, Double-Edge, Drain Punch, Endure, Flash, Frustration, Gunk Shot, Mimic, Rain Dance, Safeguard, Sludge Bomb, Snore, Swift, Take Down, Venoshock.
+- **Removed natural entries:** Nuzzle.
+- **Removed machine flags:** Iron Head.
 
-- **Egg (Shroomish family):** Bullet Seed, Charm, Drain Punch, Seed Bomb, Swagger.
-- **TM/HM/elemental tutor:** Drain Punch, Flash, Rain Dance, Sludge Bomb, Swift.
-- **Blackthorn tutor:** Body Slam, Double Team, Double-Edge, Endure, Frustration, Gunk Shot, Mimic, Safeguard, Snore, Take Down, Venoshock.
+### Marill
 
-## Shuckle
+**Added:** Dizzy Punch, Scary Face.
 
-**Newly available (18):** Acid, Ancient Power, Bind, Body Slam, Bulldoze, Defense Curl, Double Team, Double-Edge, Frustration, Gyro Ball, Infestation, Mimic, Mud Shot, Reversal, Rock Polish, Snore, String Shot, Venoshock.
+**Removed:** Calm Mind, Drain Punch, Growl, Iron Head, Rock Tomb.
 
-- **Thematic level-up (custom):** Bulldoze (Lv. 20), Ancient Power (Lv. 22), Rock Polish (Lv. 32).
-- **Breeding fallback:** Acid (Lv. 30).
-- **Egg (Shuckle family):** Acid, Defense Curl, Infestation, Knock Off, Mud-Slap, Rock Blast, Sweet Scent, Toxic.
-- **Blackthorn tutor:** Bind, Body Slam, Double Team, Double-Edge, Frustration, Gyro Ball, Mimic, Mud Shot, Reversal, Snore, String Shot, Venoshock.
+- **Removed machine flags:** Drain Punch, Iron Head, Rock Tomb.
+- **Removed family egg entries:** Amnesia, Calm Mind, Future Sight, Superpower.
+- **Added Blackthorn lessons:** Amnesia, Dizzy Punch, Future Sight, Scary Face.
 
-## Shuppet
+### Marowak
 
-**Newly available (28):** Astonish, Body Slam, Calm Mind, Dark Pulse, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Endure, Flash, Foresight, Foul Play, Frustration, Icy Wind, Metronome, Mimic, Nightmare, Ominous Wind, Pain Split, Psybeam, Psych Up, Pursuit, Rain Dance, Scary Face, Skill Swap, Snore, Torment, Trick Room.
+**Added:** Fury Attack, Tackle.
 
-- **Natural/restored level-up:** Astonish (Lv. 1).
-- **Thematic level-up (custom):** Trick Room (Lv. 34), Dark Pulse (Lv. 42).
-- **Egg (Shuppet family):** Astonish, Confuse Ray, Destiny Bond, Foresight, Ominous Wind, Phantom Force, Pursuit, Shadow Sneak.
-- **TM/HM/elemental tutor:** Flash, Rain Dance.
-- **Blackthorn tutor:** Body Slam, Calm Mind, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Endure, Foul Play, Frustration, Icy Wind, Metronome, Mimic, Nightmare, Pain Split, Psybeam, Psych Up, Scary Face, Skill Swap, Snore, Torment.
+**Removed:** Drain Punch, Drill Run, Mud Shot.
 
-## Sirfetch'd
+- **Removed natural entries:** Drill Run, Mud Shot.
+- **Removed machine flags:** Drain Punch.
+- **Added Blackthorn lessons:** Fury Attack, Tackle.
 
-**Newly available (30):** Acrobatics, Air Cutter, Baton Pass, Bide, Body Slam, Double Team, Endure, Focus Energy, Frustration, Heat Wave, Iron Defense, Iron Tail, Mimic, Ominous Wind, Psych Up, Rage, Razor Leaf, Razor Wind, Reflect, Roost, Skull Bash, Sky Attack, Snore, Solar Blade, Take Down, Twister, U-turn, Whirlwind, Wish, Yawn.
+### Mawile
 
-- **Natural/restored level-up:** Iron Defense (Lv. 1).
-- **Egg (Farfetch'd family):** Curse, First Impression, Leaf Blade, Mud-Slap, Night Slash, Roost, Sky Attack, Steel Wing.
-- **Blackthorn tutor:** Air Cutter, Air Slash, Endure, Focus Energy, Ominous Wind, Snore, Solar Blade.
-- **Evolution access:** Acrobatics, Baton Pass, Bide, Body Slam, Double Team, Frustration, Heat Wave, Iron Tail, Mimic, Psych Up, Rage, Razor Leaf, Razor Wind, Reflect, Skull Bash, Take Down, Twister, U-turn, Whirlwind, Wish, Yawn.
+**Added:** Charm, Dazzling Gleam.
 
-## Sizzlipede
+**Removed:** Curse, Cut, Dig, Disable, Drain Punch, Fire Punch, Fury Cutter, Hammer Arm, Metal Claw, Steel Wing, Tail Whip, Thief.
 
-**Newly available (8):** Bug Buzz, Defense Curl, Endure, Heat Crash, Rollout, Scald, Snore, Venoshock.
+- **Removed natural entries:** Fury Cutter, Hammer Arm, Metal Claw, Tail Whip.
+- **Removed machine flags:** Curse, Cut, Dig, Drain Punch, Fire Punch, Steel Wing, Thief.
+- **Removed family egg entries:** Disable.
+- **Added Blackthorn lessons:** Charm, Dazzling Gleam.
 
-- **Thematic level-up (custom):** Heat Crash (Lv. 46).
-- **Egg (Sizzlipede family):** Defense Curl, Knock Off, Rollout, Struggle Bug.
-- **Blackthorn tutor:** Bug Buzz, Endure, Heat Wave, Scald, Snore, Venoshock.
+### Meganium
 
-## Skarmory
+**Added:** Dazzling Gleam, Disarming Voice, Leaf Blade, Play Rough, Tail Whip.
 
-**Newly available (29):** Aerial Ace, Air Cutter, Dark Pulse, Detect, Double Team, Double-Edge, Drill Run, Endure, Flash, Frustration, Fury Cutter, Giga Impact, Hurricane, Hyper Beam, Icy Wind, Mimic, Ominous Wind, Reversal, Roar, Rock Slide, Rock Smash, Rock Tomb, Snore, Swords Dance, Take Down, Torment, Twister, U-turn, X-Scissor.
+**Removed:** Iron Head, Mega Drain, Wood Hammer.
 
-- **Natural/restored level-up:** Air Cutter (Lv. 12), Night Slash (Lv. 53).
-- **Thematic level-up (custom):** Swords Dance (Lv. 30).
-- **Egg (Skarmory family):** Air Cutter, Brave Bird, Curse, Drill Peck, Endure, Night Slash, Stealth Rock.
-- **TM/HM/elemental tutor:** Flash, Fury Cutter, Hyper Beam, Roar, Rock Smash, Rock Tomb.
-- **Blackthorn tutor:** Aerial Ace, Air Slash, Dark Pulse, Detect, Double Team, Double-Edge, Drill Run, Frustration, Giga Impact, Hurricane, Icy Wind, Mimic, Ominous Wind, Reversal, Rock Slide, Snore, Take Down, Torment, Twister, U-turn, X-Scissor.
+- **Removed natural entries:** Mega Drain, Wood Hammer.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Dazzling Gleam, Disarming Voice, Leaf Blade, Play Rough, Tail Whip.
 
-## Skiploom
+### Meowth
 
-**Newly available (21):** Aerial Ace, Baton Pass, Charm, Cotton Guard, Dazzling Gleam, Defense Curl, Double Team, Endure, Frustration, Infestation, Leaf Storm, Lunge, Magical Leaf, Mimic, Psych Up, Rain Dance, Seed Bomb, Snore, Swords Dance, Take Down, Thief.
+**Added:** Metronome, Spikes, Swords Dance.
 
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Leaf Storm (Lv. 56).
-- **Egg (Hoppip family):** Cotton Guard, Endure, Psych Up, Seed Bomb.
-- **TM/HM/elemental tutor:** Rain Dance, Thief.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Baton Pass, Bounce, Charm, Dazzling Gleam, Defense Curl, Double Team, Frustration, Infestation, Lunge, Mimic, Snore, Swords Dance, Take Down.
+**Removed:** Crush Claw, Iron Head.
 
-## Slowbro
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Metronome, Spikes, Swords Dance.
 
-**Newly available (48):** Aerial Ace, Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Fissure, Focus Blast, Foul Play, Frustration, Giga Impact, Hail, Hydro Pump, Icy Wind, Incinerate, Iron Defense, Iron Tail, Liquidation, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Nightmare, Pay Day, Psybeam, Psyshock, Psywave, Rage, Recycle, Reflect, Seismic Toss, Signal Beam, Skill Swap, Skull Bash, Submission, Take Down, Tri Attack, Trick, Waterfall, Whirlpool.
+### Mesmeria
 
-- **Natural/restored level-up:** Yawn (Lv. 9).
-- **Thematic level-up (custom):** Psybeam (Lv. 18), Signal Beam (Lv. 26), Skill Swap (Lv. 34), Trick (Lv. 36), Liquidation (Lv. 42), Dream Eater (Lv. 50), Hydro Pump (Lv. 56).
-- **Egg (Slowpoke family):** Future Sight, Zen Headbutt.
-- **TM/HM/elemental tutor:** Waterfall, Whirlpool.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Fissure, Focus Blast, Foul Play, Frustration, Giga Impact, Hail, Icy Wind, Incinerate, Iron Defense, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Nightmare, Pay Day, Psyshock, Psywave, Rage, Recycle, Reflect, Seismic Toss, Skull Bash, Submission, Take Down, Tri Attack.
+**Added:** Dazzling Gleam, Dizzy Punch, Petal Dance.
 
-## Slowbro (Galarian)
+**Removed:** None.
 
-**Newly available (36):** Avalanche, Body Slam, Brick Break, Bulldoze, Double-Edge, Endure, Focus Blast, Foul Play, Giga Impact, Gunk Shot, Hail, Haze, Hydro Pump, Ice Fang, Icy Wind, Iron Defense, Iron Tail, Liquidation, Mega Kick, Mega Punch, Metronome, Mud Shot, Pay Day, Poison Jab, Psyshock, Rock Blast, Sandstorm, Scald, Scary Face, Skill Swap, Snore, Take Down, Tri Attack, Trick, Venoshock, Water Gun.
+- **Removed family egg entries:** Lovely Kiss.
+- **Added Blackthorn lessons:** Bide, Body Slam, Brick Break, Bubble Beam, Charm, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Frustration, Giga Impact, Grass Knot, Hail, Heal Bell, Hyper Voice, Icicle Spear, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psycho Cut, Psywave, Rage, Recycle, Screech, Seismic Toss, Skull Bash, Snore, Submission, Take Down, Taunt, Teleport, Thrash, Torment, Triple Axel, Water Gun, Water Pulse.
 
-- **Natural/restored level-up:** Water Gun (Lv. 1), Yawn (Lv. 9).
-- **Thematic level-up (custom):** Psybeam (Lv. 18), Venoshock (Lv. 20), Brick Break (Lv. 26), Skill Swap (Lv. 34), Trick (Lv. 36), Poison Jab (Lv. 42), Gunk Shot (Lv. 56).
-- **TM/HM/elemental tutor:** Sandstorm.
-- **Blackthorn tutor:** Avalanche, Body Slam, Bulldoze, Double-Edge, Endure, Focus Blast, Foul Play, Giga Impact, Hail, Haze, Hydro Pump, Ice Fang, Icy Wind, Iron Defense, Iron Tail, Liquidation, Mega Kick, Mega Punch, Metronome, Mud Shot, Pay Day, Psyshock, Rock Blast, Scald, Scary Face, Snore, Take Down, Tri Attack.
+### Metapod
 
-## Slowking
+**Added:** None.
 
-**Newly available (50):** Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Counter, Double Team, Double-Edge, Dragon Tail, Dream Eater, Dynamic Punch, Endure, Fire Punch, Fissure, Focus Blast, Foul Play, Frustration, Giga Impact, Hail, Hydro Pump, Icy Wind, Incinerate, Iron Defense, Iron Tail, Liquidation, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Nightmare, Pay Day, Psybeam, Psyshock, Psywave, Rage, Recover, Recycle, Rock Slide, Rock Tomb, Seismic Toss, Signal Beam, Skill Swap, Skull Bash, Take Down, Thunder Punch, Tri Attack, Trick, Waterfall.
+**Removed:** None.
 
-- **Natural/restored level-up:** Hidden Power (Lv. 1), Yawn (Lv. 9).
-- **Thematic level-up (custom):** Psybeam (Lv. 18), Dragon Tail (Lv. 20), Signal Beam (Lv. 26), Skill Swap (Lv. 36), Trick (Lv. 38), Liquidation (Lv. 44), Dream Eater (Lv. 50), Hydro Pump (Lv. 56).
-- **Egg (Slowpoke family):** Future Sight, Zen Headbutt.
-- **TM/HM/elemental tutor:** Fire Punch, Rock Tomb, Thunder Punch, Waterfall.
-- **Blackthorn tutor:** Avalanche, Bide, Body Slam, Brick Break, Bubble Beam, Bulldoze, Counter, Double Team, Double-Edge, Dynamic Punch, Endure, Fissure, Focus Blast, Foul Play, Frustration, Giga Impact, Hail, Icy Wind, Incinerate, Iron Defense, Iron Tail, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Nightmare, Pay Day, Psyshock, Psywave, Rage, Recycle, Rock Slide, Seismic Toss, Skull Bash, Take Down, Tri Attack.
-- **Evolution access:** Recover.
 
-## Slowking (Galarian)
+### Mew
 
-**Newly available (37):** Avalanche, Body Slam, Brick Break, Bulldoze, Endure, Fire Punch, Focus Blast, Foul Play, Giga Impact, Gunk Shot, Hail, Hex, Hydro Pump, Icy Wind, Iron Defense, Iron Tail, Liquidation, Low Sweep, Mega Kick, Mega Punch, Metronome, Mud Shot, Pay Day, Poison Jab, Psyshock, Recover, Scald, Scary Face, Skill Swap, Snarl, Snore, Take Down, Taunt, Thunder Punch, Tri Attack, Trick, Venoshock.
+**Added:** None.
 
-- **Natural/restored level-up:** Toxic (Lv. 1), Waterfall (Lv. 1), Yawn (Lv. 9).
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Skill Swap (Lv. 34), Trick (Lv. 36).
-- **TM/HM/elemental tutor:** Fire Punch, Thunder Punch.
-- **Blackthorn tutor:** Avalanche, Body Slam, Brick Break, Bulldoze, Endure, Focus Blast, Foul Play, Giga Impact, Gunk Shot, Hail, Hex, Hydro Pump, Icy Wind, Iron Defense, Iron Tail, Liquidation, Low Sweep, Mega Kick, Mega Punch, Metronome, Mud Shot, Pay Day, Poison Jab, Psycho Cut, Psyshock, Scald, Scary Face, Snarl, Snore, Take Down, Taunt, Tri Attack.
-- **Evolution access:** Recover.
+**Removed:** None.
 
-## Slowpoke
 
-**Newly available (38):** Avalanche, Bide, Body Slam, Bubble Beam, Bulldoze, Calm Mind, Double Team, Double-Edge, Dream Eater, Endure, Fissure, Foul Play, Frustration, Hail, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Liquidation, Mimic, Mud Shot, Nightmare, Pay Day, Psybeam, Psyshock, Psywave, Rage, Recycle, Reflect, Scald, Signal Beam, Skill Swap, Skull Bash, Take Down, Tri Attack, Trick, Waterfall, Whirlpool.
+### Mewtwo
 
-- **Thematic level-up (custom):** Skill Swap (Lv. 36), Trick (Lv. 38), Liquidation (Lv. 42).
-- **Egg (Slowpoke family):** Future Sight, Zen Headbutt.
-- **TM/HM/elemental tutor:** Waterfall, Whirlpool.
-- **Blackthorn tutor:** Avalanche, Bide, Body Slam, Bubble Beam, Bulldoze, Calm Mind, Double Team, Double-Edge, Dream Eater, Endure, Fissure, Foul Play, Frustration, Hail, Hydro Pump, Icy Wind, Incinerate, Iron Tail, Mimic, Mud Shot, Nightmare, Pay Day, Psybeam, Psyshock, Psywave, Rage, Recycle, Reflect, Scald, Signal Beam, Skull Bash, Take Down, Tri Attack.
+**Added:** Comet Punch, Discharge, Vacuum Wave.
 
-## Slowpoke (Galarian)
+**Removed:** Iron Head.
 
-**Newly available (20):** Avalanche, Body Slam, Bulldoze, Calm Mind, Endure, Foul Play, Hail, Hydro Pump, Icy Wind, Iron Tail, Liquidation, Mud Shot, Pay Day, Psyshock, Scald, Skill Swap, Snore, Take Down, Tri Attack, Trick.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Comet Punch, Discharge, Vacuum Wave.
 
-- **Natural/restored level-up:** Yawn (Lv. 9).
-- **Thematic level-up (custom):** Skill Swap (Lv. 36), Trick (Lv. 38).
-- **Blackthorn tutor:** Avalanche, Body Slam, Bulldoze, Calm Mind, Endure, Foul Play, Hail, Hydro Pump, Icy Wind, Iron Tail, Liquidation, Mud Shot, Pay Day, Psyshock, Scald, Snore, Take Down, Tri Attack.
+### Milotic
 
-## Slugma
+**Added:** Dazzling Gleam, Liquidation.
 
-**Newly available (25):** Bulldoze, Defense Curl, Double Team, Double-Edge, Earthquake, Endure, Fire Spin, Flame Charge, Frustration, Heat Crash, Infestation, Iron Defense, Lava Plume, Mimic, Mud Shot, Overheat, Pain Split, Rock Blast, Sandstorm, Self-Destruct, Snore, Stealth Rock, Stone Edge, Take Down, Yawn.
+**Removed:** Curse, Headbutt.
 
-- **Natural/restored level-up:** Yawn (Lv. 1), Lava Plume (Lv. 21).
-- **Thematic level-up (custom):** Overheat (Lv. 56).
-- **Egg (Slugma family):** Curse, Earth Power.
-- **TM/HM/elemental tutor:** Earthquake, Sandstorm.
-- **Blackthorn tutor:** Body Slam, Bulldoze, Defense Curl, Double Team, Double-Edge, Endure, Fire Spin, Flame Charge, Frustration, Heat Crash, Infestation, Iron Defense, Mimic, Mud Shot, Pain Split, Rock Blast, Rock Slide, Self-Destruct, Snore, Stealth Rock, Stone Edge, Take Down.
+- **Removed machine flags:** Curse, Headbutt.
+- **Added Blackthorn lessons:** Dazzling Gleam, Liquidation.
 
-## Smeargle
+### Miltank
 
-**Newly available (19):** Blaze Kick, Cosmic Power, Cotton Guard, Discharge, Doom Desire, Dragon Hammer, Eruption, Horn Leech, Lava Plume, Meteor Mash, Ominous Wind, Petal Blizzard, Poison Tail, Psyshock, Recycle, Sky Uppercut, Tail Glow, Vacuum Wave, Water Spout.
+**Added:** None.
 
-- **Evolution access:** Blaze Kick, Cosmic Power, Cotton Guard, Discharge, Doom Desire, Dragon Hammer, Eruption, Horn Leech, Lava Plume, Meteor Mash, Ominous Wind, Petal Blizzard, Poison Tail, Psyshock, Recycle, Sky Uppercut, Tail Glow, Vacuum Wave, Water Spout.
+**Removed:** Drain Punch.
 
-## Smoochum
+- **Removed machine flags:** Drain Punch.
 
-**Newly available (29):** Avalanche, Body Slam, Charm, Counter, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Encore, Endure, Flash, Frustration, Hail, Heal Bell, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psych Up, Psyshock, Recycle, Seismic Toss, Signal Beam, Skill Swap, Snore, Trick, Trick Room, Water Pulse.
+### Mime Jr.
 
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Skill Swap (Lv. 34), Trick (Lv. 38), Trick Room (Lv. 40), Dream Eater (Lv. 50).
-- **Egg (Smoochum family):** Ice Punch, Nasty Plot, Psych Up.
-- **TM/HM/elemental tutor:** Flash.
-- **Blackthorn tutor:** Avalanche, Body Slam, Charm, Counter, Double Team, Double-Edge, Dynamic Punch, Encore, Endure, Frustration, Hail, Heal Bell, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Psyshock, Recycle, Seismic Toss, Snore, Water Pulse.
+**Added:** Energy Ball, First Impression, Haze, Iron Defense, Mist, Seismic Toss, Smokescreen, Stealth Rock, Zap Cannon.
 
-## Sneasel
+**Removed:** Curse, Metronome, Rock Smash.
 
-**Newly available (41):** Aerial Ace, Avalanche, Brick Break, Calm Mind, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Fake Out, False Swipe, Frustration, Giga Impact, Hail, Icicle Spear, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Mimic, Nightmare, Poison Jab, Psych Up, Psycho Cut, Pursuit, Reversal, Scary Face, Shadow Claw, Snore, Sunny Day, Swords Dance, Take Down, Taunt, Torment, Triple Axel, Water Pulse, Whirlpool, X-Scissor.
+- **Removed natural entries:** Metronome.
+- **Removed machine flags:** Curse, Rock Smash.
+- **Added Blackthorn lessons:** Energy Ball, First Impression, Haze, Iron Defense, Mist, Seismic Toss, Smokescreen, Stealth Rock, Zap Cannon.
 
-- **Natural/restored level-up:** Taunt (Lv. 6).
-- **Thematic level-up (custom):** Swords Dance (Lv. 32).
-- **Egg (Sneasel family):** Avalanche, Crush Claw, Fake Out, Ice Punch, Ice Shard, Icicle Crash, Pursuit.
-- **TM/HM/elemental tutor:** Sunny Day, Whirlpool.
-- **Blackthorn tutor:** Aerial Ace, Brick Break, Calm Mind, Dark Pulse, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, False Swipe, Freeze-Dry, Frustration, Giga Impact, Hail, Icicle Spear, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Mimic, Nightmare, Poison Jab, Psych Up, Psycho Cut, Reversal, Scary Face, Shadow Claw, Snore, Take Down, Torment, Triple Axel, Water Pulse, X-Scissor.
+### Mimikyu
 
-## Sneasel (Hisuian)
+**Added:** Tackle.
 
-**Newly available (19):** Aerial Ace, Brick Break, Calm Mind, Endure, False Swipe, Focus Blast, Giga Impact, Gunk Shot, Low Kick, Low Sweep, Poison Tail, Reversal, Scratch, Shadow Claw, Spite, Take Down, Toxic Spikes, Vacuum Wave, Venoshock.
+**Removed:** Flash, Foul Play, Headbutt, Snarl, Strength, Sucker Punch.
 
-- **Natural/restored level-up:** Scratch (Lv. 1), Taunt (Lv. 6), Brick Break (Lv. 30), Agility (Lv. 48).
-- **Thematic level-up (custom):** Low Kick (Lv. 20), Low Sweep (Lv. 24), Toxic Spikes (Lv. 40), Gunk Shot (Lv. 56).
-- **Egg (Sneasel (Hisuian) family):** Counter, Night Slash.
-- **Blackthorn tutor:** Aerial Ace, Calm Mind, Endure, False Swipe, Focus Blast, Giga Impact, Poison Tail, Reversal, Shadow Claw, Spite, Take Down, Vacuum Wave, Venoshock.
+- **Removed natural entries:** Foul Play, Snarl.
+- **Removed machine flags:** Flash, Headbutt, Strength.
+- **Removed family egg entries:** Sucker Punch.
+- **Added Blackthorn lessons:** Tackle.
 
-## Sneasler
+### Misdreavus
 
-**Newly available (20):** Acrobatics, Calm Mind, Endure, False Swipe, Fire Punch, Focus Blast, Giga Impact, Gunk Shot, Low Kick, Poison Tail, Reversal, Rock Slide, Rock Tomb, Shadow Claw, Spite, Take Down, Toxic Spikes, Triple Axel, Vacuum Wave, Venoshock.
+**Added:** Extrasensory.
 
-- **Natural/restored level-up:** Taunt (Lv. 6).
-- **Thematic level-up (custom):** Low Kick (Lv. 26), Toxic Spikes (Lv. 38), Gunk Shot (Lv. 56).
-- **Egg (Sneasel (Hisuian) family):** Counter, Night Slash.
-- **TM/HM/elemental tutor:** Fire Punch, Rock Tomb.
-- **Blackthorn tutor:** Acrobatics, Calm Mind, Endure, False Swipe, Focus Blast, Giga Impact, Poison Tail, Reversal, Rock Slide, Shadow Claw, Spite, Take Down, Triple Axel, Vacuum Wave, Venoshock.
+**Removed:** Fairy Wind.
 
-## Snorlax
+- **Removed natural entries:** Fairy Wind.
+- **Added Blackthorn lessons:** Extrasensory.
 
-**Newly available (44):** Bide, Brick Break, Bubble Beam, Bulldoze, Counter, Dig, Double Team, Dynamic Punch, Encore, Endure, Focus Blast, Frustration, Gunk Shot, Harden, Heat Crash, Hydro Pump, Hyper Voice, Icy Wind, Incinerate, Iron Head, Mega Kick, Mega Punch, Mimic, Outrage, Pay Day, Psych Up, Psywave, Pursuit, Rage, Recycle, Reflect, Rock Slide, Seed Bomb, Seismic Toss, Self-Destruct, Skull Bash, Submission, Superpower, Take Down, Water Gun, Water Pulse, Whirlpool, Wild Charge, Yawn.
+### Mismagius
 
-- **Natural/restored level-up:** Yawn (Lv. 12), Recycle (Lv. 15).
-- **Thematic level-up (custom):** Take Down (Lv. 46), Skull Bash (Lv. 56).
-- **Egg (Munchlax family):** Counter, Curse, Double-Edge, Lick, Pursuit, Self-Destruct, Substitute, Zen Headbutt.
-- **TM/HM/elemental tutor:** Dig, Iron Head, Whirlpool.
-- **Blackthorn tutor:** Bide, Brick Break, Bubble Beam, Bulldoze, Double Team, Dynamic Punch, Encore, Endure, Focus Blast, Frustration, Gunk Shot, Harden, Heat Crash, Hydro Pump, Hyper Voice, Icy Wind, Incinerate, Mega Kick, Mega Punch, Mimic, Outrage, Pay Day, Psych Up, Psywave, Rage, Reflect, Rock Slide, Seed Bomb, Seismic Toss, Submission, Superpower, Water Gun, Water Pulse, Wild Charge.
+**Added:** Extrasensory.
 
-## Snorunt
+**Removed:** Fairy Wind.
 
-**Newly available (17):** Bide, Body Slam, Double-Edge, Endure, Flash, Frustration, Hex, Icicle Spear, Mimic, Rain Dance, Safeguard, Shadow Ball, Sing, Snore, Spite, Take Down, Water Pulse.
+- **Removed natural entries:** Fairy Wind.
+- **Added Blackthorn lessons:** Extrasensory.
 
-- **Egg (Snorunt family):** Avalanche, Bide, Disable, Hex, Icicle Crash, Weather Ball.
-- **TM/HM/elemental tutor:** Flash, Rain Dance, Shadow Ball.
-- **Blackthorn tutor:** Body Slam, Double-Edge, Endure, Frustration, Icicle Spear, Mimic, Safeguard, Sing, Snore, Spite, Take Down, Water Pulse.
+### Moltres
 
-## Snover
+**Added:** None.
 
-**Newly available (21):** Body Slam, Double Team, Endure, Flash, Frustration, Giga Drain, Hail, Headbutt, Ice Punch, Icicle Spear, Iron Tail, Mega Punch, Mud-Slap, Rain Dance, Safeguard, Shadow Ball, Snore, Swords Dance, Synthesis, Take Down, Water Pulse.
+**Removed:** None.
 
-- **Thematic level-up (custom):** Giga Drain (Lv. 26).
-- **Egg (Snover family):** Avalanche, Bullet Seed, Leech Seed, Mist, Seed Bomb, Weather Ball.
-- **TM/HM/elemental tutor:** Flash, Headbutt, Ice Punch, Mud-Slap, Rain Dance, Shadow Ball.
-- **Blackthorn tutor:** Body Slam, Double Team, Endure, Frustration, Hail, Icicle Spear, Iron Tail, Mega Punch, Safeguard, Snore, Swords Dance, Synthesis, Take Down, Water Pulse.
 
-## Snubbull
+### Morgrem
 
-**Newly available (37):** Body Slam, Brick Break, Bulldoze, Counter, Dazzling Gleam, Defense Curl, Detect, Dig, Double Team, Dynamic Punch, Earthquake, Encore, Endure, Fire Blast, Flamethrower, Frustration, Hyper Voice, Incinerate, Low Kick, Mega Kick, Mega Punch, Mimic, Overheat, Present, Rage, Reversal, Seismic Toss, Snarl, Snore, Solar Beam, Spite, Superpower, Take Down, Taunt, Torment, Water Pulse, Wild Charge.
+**Added:** Frustration.
 
-- **Natural/restored level-up:** Rage (Lv. 31), Take Down (Lv. 37).
-- **Egg (Snubbull family):** Close Combat, Counter, Crunch, Double-Edge, Fire Fang, Heal Bell, Ice Fang, Mimic, Present, Snore, Thunder Fang.
-- **TM/HM/elemental tutor:** Dig, Earthquake, Fire Blast, Flamethrower, Solar Beam.
-- **Blackthorn tutor:** Body Slam, Brick Break, Bulldoze, Dazzling Gleam, Defense Curl, Detect, Double Team, Dynamic Punch, Encore, Endure, Frustration, Hyper Voice, Incinerate, Low Kick, Mega Kick, Mega Punch, Overheat, Reversal, Seismic Toss, Snarl, Spite, Superpower, Taunt, Torment, Water Pulse, Wild Charge.
+**Removed:** Charm, Curse, Disarming Voice, Encore, Fire Punch, Ice Punch, Knock Off, Low Sweep, Mean Look, Snarl, Sweet Kiss, Thunder Punch.
 
-## Spearow
+- **Removed natural entries:** Disarming Voice, Low Sweep, Snarl, Sweet Kiss.
+- **Removed machine flags:** Curse, Fire Punch, Ice Punch, Knock Off, Thunder Punch.
+- **Removed family egg entries:** Charm, Encore, Mean Look.
+- **Added Blackthorn lessons:** Frustration.
 
-**Newly available (22):** Air Cutter, Astonish, Baton Pass, Bide, Defog, Detect, Double Team, Drill Run, Endure, Frustration, Headbutt, Heat Wave, Mimic, Ominous Wind, Rage, Rain Dance, Razor Wind, Sky Attack, Snore, Twister, U-turn, Whirlwind.
+### Mr. Mime
 
-- **Thematic level-up (custom):** Defog (Lv. 36).
-- **Egg (Spearow family):** Astonish, Razor Wind, Sky Attack, Steel Wing, Whirlwind.
-- **TM/HM/elemental tutor:** Headbutt, Rain Dance.
-- **Blackthorn tutor:** Air Cutter, Baton Pass, Bide, Detect, Double Team, Drill Run, Endure, Frustration, Heat Wave, Mimic, Ominous Wind, Rage, Snore, Twister, U-turn.
+**Added:** Comet Punch, First Impression, Haze, Mind Reader, Mist, Play Rough, Smokescreen, Stealth Rock, Triple Axel.
 
-## Spheal
+**Removed:** Psycho Cut, Rock Smash.
 
-**Newly available (16):** Bulldoze, Charm, Double Team, Double-Edge, Earthquake, Endure, Frustration, Headbutt, Icy Wind, Iron Tail, Mimic, Mud-Slap, Rock Smash, Rock Tomb, Strength, Super Fang.
+- **Removed machine flags:** Rock Smash.
+- **Removed fallback lessons:** Psycho Cut.
+- **Added Blackthorn lessons:** Comet Punch, First Impression, Haze, Metronome, Mind Reader, Mist, Play Rough, Smokescreen, Stealth Rock, Triple Axel.
 
-- **Egg (Spheal family):** Belly Drum, Curse, Rollout, Water Pulse.
-- **TM/HM/elemental tutor:** Earthquake, Headbutt, Mud-Slap, Rock Smash, Rock Tomb, Strength.
-- **Blackthorn tutor:** Bulldoze, Charm, Double Team, Double-Edge, Endure, Frustration, Icy Wind, Iron Tail, Mimic, Super Fang.
+### Mr. Rime
 
-## Spinarak
+**Added:** Comet Punch, First Impression, Haze, Mind Reader, Mist, Play Rough, Smokescreen, Stealth Rock.
 
-**Newly available (22):** Body Slam, Bounce, Bug Buzz, Cross Poison, Double Team, Double-Edge, Endure, Foul Play, Frustration, Giga Drain, Hex, Mimic, Screech, Signal Beam, Snore, Sonic Boom, Spite, Struggle Bug, Toxic Spikes, Twineedle, Venoshock, X-Scissor.
+**Removed:** Psycho Cut, Rock Smash.
 
-- **Natural/restored level-up:** Cross Poison (Lv. 44).
-- **Thematic level-up (custom):** X-Scissor (Lv. 42).
-- **Egg (Spinarak family):** Megahorn, Night Slash, Poison Jab, Signal Beam, Sonic Boom, Toxic Spikes, Twineedle.
-- **Blackthorn tutor:** Body Slam, Bounce, Bug Buzz, Double Team, Double-Edge, Endure, Foul Play, Frustration, Giga Drain, Hex, Mimic, Screech, Snore, Spite, Struggle Bug, Venoshock.
+- **Removed machine flags:** Curse, Rock Smash.
+- **Removed fallback lessons:** Psycho Cut.
+- **Added Blackthorn lessons:** Aerial Ace, Comet Punch, First Impression, Haze, Metronome, Mist, Seismic Toss, Smokescreen, Stealth Rock.
 
-## Spoink
+### Muk
 
-**Newly available (28):** Body Slam, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Encore, Endure, Frustration, Headbutt, Heal Bell, Icy Wind, Iron Tail, Lunge, Mimic, Night Shade, Psyshock, Psywave, Rain Dance, Recycle, Signal Beam, Snarl, Sunny Day, Swift, Take Down, Taunt, Thief, Torment, Trick Room.
+**Added:** None.
 
-- **Natural/restored level-up:** Psywave (Lv. 7), Psyshock (Lv. 38).
-- **Thematic level-up (custom):** Signal Beam (Lv. 28), Trick Room (Lv. 36), Dream Eater (Lv. 50).
-- **Egg (Spoink family):** Endure, Extrasensory, Future Sight, Mirror Coat, Substitute, Trick, Zen Headbutt.
-- **TM/HM/elemental tutor:** Headbutt, Rain Dance, Sunny Day, Swift, Thief.
-- **Blackthorn tutor:** Body Slam, Bounce, Dazzling Gleam, Double Team, Double-Edge, Encore, Frustration, Heal Bell, Icy Wind, Iron Tail, Lunge, Mimic, Night Shade, Recycle, Snarl, Take Down, Taunt, Torment.
+**Removed:** Cross Poison, Energy Ball.
 
-## Squirtle
+- **Removed natural entries:** Cross Poison.
+- **Removed machine flags:** Energy Ball.
 
-**Newly available (40):** Aqua Jet, Aura Sphere, Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, Fake Out, False Swipe, Flail, Foresight, Frustration, Gyro Ball, Hail, Icy Wind, Iron Defense, Iron Tail, Liquidation, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Scald, Seismic Toss, Snore, Submission, Take Down, Water Spout, Yawn.
+### Munchlax
 
-- **Natural/restored level-up:** Iron Defense (Lv. 30), Water Spout (Lv. 44).
-- **Thematic level-up (custom):** Scald (Lv. 42), Liquidation (Lv. 44).
-- **Egg (Squirtle family):** Aqua Jet, Aura Sphere, Dragon Pulse, Fake Out, Flail, Foresight, Water Spout, Yawn.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Frustration, Gyro Ball, Hail, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Seismic Toss, Snore, Submission, Take Down.
+**Added:** Seismic Toss, Zap Cannon.
 
-## Squirtle (Clone)
+**Removed:** Drain Punch, Slack Off, Swift.
 
-**Newly available (40):** Aqua Jet, Aura Sphere, Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, Fake Out, False Swipe, Flail, Foresight, Frustration, Gyro Ball, Hail, Icy Wind, Iron Defense, Iron Tail, Liquidation, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Scald, Seismic Toss, Snore, Submission, Take Down, Water Spout, Yawn.
+- **Removed natural entries:** Slack Off.
+- **Removed machine flags:** Drain Punch, Swift.
+- **Added Blackthorn lessons:** Seismic Toss, Zap Cannon.
 
-- **Natural/restored level-up:** Iron Defense (Lv. 30), Water Spout (Lv. 44).
-- **Thematic level-up (custom):** Scald (Lv. 42), Liquidation (Lv. 44).
-- **Egg (Squirtle (Clone) family):** Aqua Jet, Aura Sphere, Dragon Pulse, Fake Out, Flail, Foresight, Water Spout, Yawn.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Frustration, Gyro Ball, Hail, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Seismic Toss, Snore, Submission, Take Down.
+### Murkrow
 
-## Stantler
+**Added:** Beat Up, Drill Run.
 
-**Newly available (35):** Agility, Body Slam, Bounce, Bulldoze, Detect, Dig, Double Kick, Double Team, Dream Eater, Earth Power, Endure, Energy Ball, Extrasensory, Frustration, Future Sight, Giga Impact, Horn Leech, Hyper Beam, Iron Tail, Jump Kick, Mimic, Nightmare, Psybeam, Psych Up, Psyshock, Rage, Scary Face, Signal Beam, Skill Swap, Snore, Solar Beam, Sucker Punch, Thunder, Thunderbolt, Trick.
+**Removed:** None.
 
-- **Natural/restored level-up:** Jump Kick (Lv. 43).
-- **Thematic level-up (custom):** Body Slam (Lv. 42), Giga Impact (Lv. 56).
-- **Egg (Stantler family):** Double Kick, Extrasensory, Megahorn, Psych Up, Rage, Swagger, Thrash, Zen Headbutt.
-- **TM/HM/elemental tutor:** Dig, Energy Ball, Hyper Beam, Solar Beam, Thunder, Thunderbolt.
-- **Blackthorn tutor:** Agility, Bounce, Bulldoze, Calm Mind, Detect, Double Team, Dream Eater, Earth Power, Endure, Frustration, Future Sight, Iron Tail, Mimic, Nightmare, Psybeam, Psyshock, Scary Face, Signal Beam, Skill Swap, Snore, Sucker Punch, Trick.
-- **Evolution access:** Horn Leech.
+- **Added Blackthorn lessons:** Beat Up, Drill Run.
 
-## Staraptor
+### Natu
 
-**Newly available (17):** Acrobatics, Air Cutter, Air Slash, Defog, Dual Wingbeat, Endure, Frustration, Giga Impact, Heat Wave, Hurricane, Mirror Move, Ominous Wind, Pursuit, Sky Attack, Snore, Struggle Bug, Twister.
+**Added:** Safeguard.
 
-- **Thematic level-up (custom):** Defog (Lv. 36), Giga Impact (Lv. 56), Sky Attack (Lv. 58).
-- **Egg (Starly family):** Double-Edge, Mirror Move, Pursuit, Roost, Steel Wing.
-- **Blackthorn tutor:** Acrobatics, Air Cutter, Air Slash, Dual Wingbeat, Endure, Frustration, Heat Wave, Hurricane, Ominous Wind, Snore, Struggle Bug, Twister.
+**Removed:** Energy Ball, Psycho Cut.
 
-## Staravia
+- **Removed natural entries:** Psycho Cut.
+- **Removed machine flags:** Energy Ball.
+- **Added Blackthorn lessons:** Safeguard.
 
-**Newly available (15):** Acrobatics, Air Cutter, Air Slash, Defog, Dual Wingbeat, Endure, Frustration, Heat Wave, Hurricane, Mirror Move, Ominous Wind, Pursuit, Snore, Twister, U-turn.
+### Nidoking
 
-- **Thematic level-up (custom):** Defog (Lv. 36).
-- **Egg (Starly family):** Double-Edge, Mirror Move, Pursuit, Roost, Steel Wing.
-- **Blackthorn tutor:** Acrobatics, Air Cutter, Air Slash, Dual Wingbeat, Endure, Frustration, Heat Wave, Hurricane, Ominous Wind, Snore, Twister, U-turn.
+**Added:** Lovely Kiss, Morning Sun, Sweet Kiss.
 
-## Starly
+**Removed:** Cross Poison, Drain Punch, Iron Head.
 
-**Newly available (15):** Acrobatics, Air Cutter, Air Slash, Defog, Dual Wingbeat, Endure, Frustration, Heat Wave, Hurricane, Mirror Move, Ominous Wind, Pursuit, Snore, Twister, U-turn.
+- **Removed natural entries:** Cross Poison.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Lovely Kiss, Morning Sun, Sweet Kiss.
 
-- **Thematic level-up (custom):** Defog (Lv. 34).
-- **Egg (Starly family):** Double-Edge, Mirror Move, Pursuit, Roost, Steel Wing.
-- **Blackthorn tutor:** Acrobatics, Air Cutter, Air Slash, Dual Wingbeat, Endure, Frustration, Heat Wave, Hurricane, Ominous Wind, Snore, Twister, U-turn.
+### Nidoqueen
 
-## Starmie
+**Added:** Lovely Kiss, Moonlight, Sweet Kiss.
 
-**Newly available (35):** Agility, Attract, Avalanche, Bide, Cosmic Power, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Hail, Headbutt, Icy Wind, Mimic, Nightmare, Pain Split, Psych Up, Psycho Cut, Psyshock, Psywave, Rage, Recycle, Rollout, Signal Beam, Skill Swap, Skull Bash, Snore, Take Down, Teleport, Tri Attack, Trick, Trick Room, Twister.
+**Removed:** Cross Poison, Drain Punch, Iron Head.
 
-- **Natural/restored level-up:** Cosmic Power (Lv. 64).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26), Psycho Cut (Lv. 28), Skill Swap (Lv. 34), Trick (Lv. 36), Trick Room (Lv. 38), Dream Eater (Lv. 50).
-- **TM/HM/elemental tutor:** Attract, Headbutt.
-- **Blackthorn tutor:** Agility, Avalanche, Bide, Dazzling Gleam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Hail, Icy Wind, Mimic, Nightmare, Pain Split, Psych Up, Psyshock, Rage, Recycle, Rollout, Skull Bash, Snore, Take Down, Teleport, Tri Attack, Twister.
-- **Evolution access:** Psywave.
+- **Removed natural entries:** Cross Poison.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Lovely Kiss, Moonlight, Sweet Kiss.
 
-## Staryu
+### Nidoran♀
 
-**Newly available (27):** Attract, Bide, Cosmic Power, Dazzling Gleam, Double Team, Double-Edge, Endure, Flip Turn, Frustration, Hail, Headbutt, Icy Wind, Mimic, Pain Split, Psych Up, Psywave, Rage, Recycle, Rollout, Scald, Signal Beam, Skull Bash, Snore, Take Down, Teleport, Tri Attack, Twister.
+**Added:** Lovely Kiss, Moonlight, Sweet Kiss.
 
-- **Natural/restored level-up:** Psywave (Lv. 13), Cosmic Power (Lv. 37).
-- **Thematic level-up (custom):** Scald (Lv. 42).
-- **TM/HM/elemental tutor:** Attract, Headbutt.
-- **Blackthorn tutor:** Bide, Dazzling Gleam, Double Team, Double-Edge, Endure, Flip Turn, Frustration, Hail, Icy Wind, Mimic, Pain Split, Psych Up, Rage, Recycle, Rollout, Signal Beam, Skull Bash, Snore, Take Down, Teleport, Tri Attack, Twister.
+**Removed:** Iron Head.
 
-## Steelix
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Lovely Kiss, Moonlight, Sweet Kiss.
 
-**Newly available (23):** Ancient Power, Aqua Tail, Bide, Body Slam, Dark Pulse, Double Team, Earth Power, Endure, Explosion, Fissure, Frustration, Giga Impact, Mimic, Psych Up, Rage, Scary Face, Self-Destruct, Skull Bash, Snore, Take Down, Taunt, Torment, Twister.
+### Nidoran♂
 
-- **Natural/restored level-up:** Rage (Lv. 13).
-- **Thematic level-up (custom):** Aqua Tail (Lv. 46).
-- **Egg (Onix family):** Dragon Tail, Explosion, Rock Slide, Stealth Rock.
-- **Blackthorn tutor:** Ancient Power, Bide, Body Slam, Dark Pulse, Double Team, Earth Power, Endure, Fissure, Frustration, Giga Impact, Mimic, Psych Up, Scary Face, Self-Destruct, Skull Bash, Snore, Take Down, Taunt, Torment, Twister.
+**Added:** Lovely Kiss, Morning Sun, Sweet Kiss.
 
-## Steenee
+**Removed:** Iron Head.
 
-**Newly available (15):** Bounce, Dazzling Gleam, Double Team, Frustration, Giga Drain, Leaf Storm, Low Sweep, Petal Blizzard, Play Rough, Safeguard, Seed Bomb, Snore, Swift, Take Down, Triple Axel.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Lovely Kiss, Morning Sun, Sweet Kiss.
 
-- **Natural/restored level-up:** Leaf Storm (Lv. 46).
-- **Thematic level-up (custom):** Giga Drain (Lv. 26), Seed Bomb (Lv. 42).
-- **Egg (Bounsweet family):** Play Rough.
-- **TM/HM/elemental tutor:** Swift.
-- **Blackthorn tutor:** Bounce, Dazzling Gleam, Double Team, Frustration, Low Sweep, Petal Blizzard, Safeguard, Snore, Take Down, Triple Axel.
+### Nidorina
 
-## Sudowoodo
+**Added:** Lovely Kiss, Moonlight, Sweet Kiss.
 
-**Newly available (25):** Body Slam, Brick Break, Bulldoze, Calm Mind, Double Team, Dynamic Punch, Earth Power, Endure, Foul Play, Frustration, Giga Impact, Hammer Arm, Hyper Beam, Low Sweep, Mega Kick, Mega Punch, Mud Shot, Psych Up, Rock Blast, Seismic Toss, Snore, Spikes, Take Down, Taunt, Torment.
+**Removed:** Iron Head.
 
-- **Natural/restored level-up:** Hammer Arm (Lv. 1).
-- **Thematic level-up (custom):** Bulldoze (Lv. 22), Rock Blast (Lv. 34), Spikes (Lv. 38).
-- **Egg (Bonsly family):** Curse, Endure, Headbutt, Rock Polish.
-- **TM/HM/elemental tutor:** Hyper Beam.
-- **Blackthorn tutor:** Ancient Power, Body Slam, Brick Break, Calm Mind, Double Team, Dynamic Punch, Earth Power, Foul Play, Frustration, Giga Impact, Low Sweep, Mega Kick, Mega Punch, Mud Shot, Psych Up, Seismic Toss, Snore, Take Down, Taunt, Torment.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Lovely Kiss, Moonlight, Sweet Kiss.
 
-## Suicune
+### Nidorino
 
-**Newly available (22):** Agility, Avalanche, Body Slam, Bulldoze, Detect, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Hail, Icy Wind, Iron Tail, Liquidation, Mimic, Ominous Wind, Psych Up, Shadow Ball, Signal Beam, Snarl, Snore, Take Down.
+**Added:** Lovely Kiss, Morning Sun, Sweet Kiss.
 
-- **Thematic level-up (custom):** Liquidation (Lv. 44).
-- **TM/HM/elemental tutor:** Shadow Ball.
-- **Blackthorn tutor:** Agility, Avalanche, Body Slam, Bulldoze, Detect, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Hail, Icy Wind, Iron Tail, Mimic, Ominous Wind, Psych Up, Signal Beam, Snarl, Snore, Take Down.
+**Removed:** Iron Head.
 
-## Sunflora
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Lovely Kiss, Morning Sun, Sweet Kiss.
 
-**Newly available (11):** Bide, Double Team, Frustration, Giga Impact, Magical Leaf, Mimic, Petal Blizzard, Rain Dance, Snore, Swords Dance, Take Down.
+### Ninetales
 
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18).
-- **Egg (Sunkern family):** Bide, Curse, Leech Seed, Morning Sun, Sweet Scent.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Double Team, Frustration, Giga Impact, Mimic, Petal Blizzard, Snore, Swords Dance, Take Down, Wood Hammer.
+**Added:** Flame Wheel, Heal Bell, Psychic.
 
-## Sunkern
+**Removed:** Iron Head.
 
-**Newly available (9):** Bide, Double Team, Frustration, Magical Leaf, Mimic, Rain Dance, Snore, Swords Dance, Take Down.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Flame Wheel, Heal Bell, Psychic.
 
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18).
-- **Breeding fallback:** Bide (Lv. 30).
-- **Egg (Sunkern family):** Bide, Curse, Leech Seed, Morning Sun, Sweet Scent.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Double Team, Frustration, Mimic, Snore, Swords Dance, Take Down.
+### Noctowl
 
-## Swablu
+**Added:** None.
 
-**Newly available (32):** Acrobatics, Aerial Ace, Air Cutter, Body Slam, Cotton Guard, Dazzling Gleam, Double Team, Double-Edge, Dream Eater, Endure, False Swipe, Frustration, Heal Bell, Heat Wave, Hurricane, Ice Beam, Mimic, Mirror Move, Mud-Slap, Ominous Wind, Outrage, Play Rough, Psych Up, Pursuit, Rage, Rain Dance, Sky Attack, Snore, Solar Beam, Sunny Day, Thief, Twister.
+**Removed:** None.
 
-- **Natural/restored level-up:** Mirror Move (Lv. 30), Cotton Guard (Lv. 35).
-- **Thematic level-up (custom):** Heat Wave (Lv. 42), Dazzling Gleam (Lv. 44), Hurricane (Lv. 50), Sky Attack (Lv. 56).
-- **Breeding fallback:** Play Rough (Lv. 30).
-- **Egg (Swablu family):** Astonish, Defog, Play Rough, Pursuit, Rage, Steel Wing.
-- **TM/HM/elemental tutor:** Ice Beam, Mud-Slap, Rain Dance, Solar Beam, Sunny Day, Thief.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Body Slam, Double Team, Double-Edge, Dream Eater, Endure, False Swipe, Frustration, Heal Bell, Mimic, Ominous Wind, Outrage, Psych Up, Snore, Twister.
 
-## Swinub
+### Noibat
 
-**Newly available (21):** Charm, Defense Curl, Detect, Dig, Double Team, Double-Edge, Earth Power, Fissure, Freeze-Dry, Frustration, Hail, Haze, Icicle Spear, Mimic, Reversal, Rock Tomb, Sandstorm, Scary Face, Snore, Stealth Rock, Stone Edge.
+**Added:** None.
 
-- **Egg (Swinub family):** Avalanche, Curse, Double-Edge, Fissure, Freeze-Dry, Icicle Crash, Icicle Spear, Mud Shot, Stealth Rock, Take Down.
-- **TM/HM/elemental tutor:** Dig, Rock Tomb, Sandstorm.
-- **Blackthorn tutor:** Charm, Defense Curl, Detect, Double Team, Earth Power, Frustration, Hail, Haze, Mimic, Reversal, Scary Face, Snore, Stone Edge.
+**Removed:** Astonish, Curse, Dragon Tail, Flamethrower, Flash, Scale Shot.
 
-## Sylveon
+- **Removed natural entries:** Astonish, Dragon Tail, Scale Shot.
+- **Removed machine flags:** Curse, Flamethrower, Flash.
 
-**Newly available (22):** Bide, Body Slam, Cut, Dig, Double Kick, Double Team, Flash, Focus Energy, Frustration, Giga Impact, Iron Tail, Magical Leaf, Mimic, Pay Day, Play Rough, Psyshock, Rage, Roar, Safeguard, Sing, Skull Bash, Snore.
+### Noivern
 
-- **Egg (Eevee family):** Charm, Curse, Double Kick, Mud-Slap.
-- **TM/HM/elemental tutor:** Cut, Dig, Flash, Roar.
-- **Blackthorn tutor:** Bide, Double Team, Focus Energy, Frustration, Giga Impact, Iron Tail, Magical Leaf, Mimic, Pay Day, Play Rough, Psyshock, Rage, Safeguard, Sing, Snore.
-- **Evolution access:** Body Slam, Skull Bash.
+**Added:** None.
 
-## Talonflame
+**Removed:** Astonish, Curse, Flash, Roar.
 
-**Newly available (18):** Air Cutter, Air Slash, Double Team, Double-Edge, Endure, Fire Spin, Frustration, Giga Impact, Hurricane, Overheat, Rain Dance, Razor Wind, Snore, Solar Beam, Swords Dance, Tackle, Take Down, Thief.
+- **Removed natural entries:** Astonish.
+- **Removed machine flags:** Curse, Flash, Roar.
 
-- **Natural/restored level-up:** Tackle (Lv. 1), Razor Wind (Lv. 27).
-- **Thematic level-up (custom):** Air Slash (Lv. 26), Hurricane (Lv. 52), Overheat (Lv. 56).
-- **Egg (Fletchling family):** Defog, Flame Charge.
-- **TM/HM/elemental tutor:** Rain Dance, Solar Beam, Thief.
-- **Blackthorn tutor:** Air Cutter, Double Team, Endure, Fire Spin, Frustration, Giga Impact, Snore, Swords Dance.
-- **Evolution access:** Double-Edge, Take Down.
+### Numel
 
-## Tangela
+**Added:** None.
 
-**Newly available (20):** Bide, Body Slam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Infestation, Leaf Storm, Mimic, Morning Sun, Pain Split, Psych Up, Rage, Rock Smash, Skull Bash, Snore, Swords Dance, Synthesis, Take Down.
+**Removed:** None.
 
-- **Egg (Tangela family):** Giga Drain, Leaf Storm, Mega Drain.
-- **TM/HM/elemental tutor:** Rock Smash.
-- **Blackthorn tutor:** Bide, Body Slam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Infestation, Mimic, Morning Sun, Pain Split, Power Whip, Psych Up, Rage, Seed Bomb, Skull Bash, Slam, Snore, Swords Dance, Synthesis, Take Down.
 
-## Tangrowth
+### Octillery
 
-**Newly available (27):** Aerial Ace, Bide, Body Slam, Brick Break, Bulldoze, Double Team, Double-Edge, Earthquake, Endure, Frustration, Giga Impact, Infestation, Mimic, Morning Sun, Mud-Slap, Pain Split, Poison Jab, Psych Up, Rage, Rock Slide, Rock Smash, Rock Tomb, Skull Bash, Snore, Solar Blade, Swords Dance, Take Down.
+**Added:** Amnesia, Bubble, Mist.
 
-- **Thematic level-up (custom):** Solar Blade (Lv. 56).
-- **Egg (Tangela family):** Giga Drain, Leaf Storm, Mega Drain.
-- **TM/HM/elemental tutor:** Earthquake, Mud-Slap, Rock Smash, Rock Tomb.
-- **Blackthorn tutor:** Aerial Ace, Bide, Body Slam, Brick Break, Bulldoze, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Infestation, Mimic, Morning Sun, Pain Split, Poison Jab, Psych Up, Rage, Rock Slide, Skull Bash, Snore, Swords Dance, Take Down.
+**Removed:** None.
 
-## Tauros
+- **Added Blackthorn lessons:** Amnesia, Bubble, Mist.
 
-**Newly available (27):** Bide, Dig, Double Team, Fissure, Focus Energy, Frustration, Horn Drill, Icy Wind, Incinerate, Iron Tail, Leer, Mimic, Pursuit, Rage, Rain Dance, Rock Tomb, Sandstorm, Shadow Ball, Skull Bash, Snore, Solar Beam, Spite, Stone Edge, Superpower, Thief, Water Pulse, Whirlpool.
+### Oddish
 
-- **Natural/restored level-up:** Rage (Lv. 5), Pursuit (Lv. 15).
-- **Thematic level-up (custom):** Skull Bash (Lv. 56).
-- **Egg (Tauros family):** Curse.
-- **TM/HM/elemental tutor:** Dig, Rain Dance, Rock Tomb, Sandstorm, Shadow Ball, Solar Beam, Thief, Whirlpool.
-- **Blackthorn tutor:** Bide, Double Team, Fissure, Focus Energy, Frustration, Horn Drill, Icy Wind, Incinerate, Iron Tail, Leer, Mimic, Snore, Spite, Stone Edge, Water Pulse.
-- **Evolution access:** Superpower.
+**Added:** None.
 
-## Tauros (Paldean Aqua Breed)
+**Removed:** None.
 
-**Newly available (12):** Body Press, Dig, Drill Run, Giga Impact, Hydro Pump, Outrage, Rock Tomb, Sandstorm, Stone Edge, Take Down, Thief, Water Pulse.
 
-- **Thematic level-up (custom):** Body Press (Lv. 38), Outrage (Lv. 56).
-- **Egg (Tauros (Paldean Aqua Breed) family):** Curse.
-- **TM/HM/elemental tutor:** Dig, Rock Tomb, Sandstorm, Thief.
-- **Blackthorn tutor:** Drill Run, Giga Impact, Hydro Pump, Stone Edge, Take Down, Water Pulse.
+### Omanyte
 
-## Tauros (Paldean Blaze Breed)
+**Added:** None.
 
-**Newly available (14):** Aqua Jet, Blaze Kick, Body Press, Dig, Drill Run, Fire Spin, Giga Impact, Outrage, Rain Dance, Rock Tomb, Sandstorm, Stone Edge, Take Down, Thief.
+**Removed:** None.
 
-- **Natural/restored level-up:** Blaze Kick (Lv. 28).
-- **Thematic level-up (custom):** Body Press (Lv. 38), Outrage (Lv. 56).
-- **Egg (Tauros (Paldean Blaze Breed) family):** Curse.
-- **TM/HM/elemental tutor:** Dig, Rain Dance, Rock Tomb, Sandstorm, Thief.
-- **Blackthorn tutor:** Aqua Jet, Drill Run, Fire Spin, Giga Impact, Heat Wave, Overheat, Stone Edge, Take Down.
 
-## Teddiursa
+### Omastar
 
-**Newly available (27):** Aerial Ace, Avalanche, Belly Drum, Body Slam, Brick Break, Defense Curl, Double Team, Dynamic Punch, Endure, Frustration, Gunk Shot, Hyper Voice, Leer, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rain Dance, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Swords Dance, Taunt, Torment, Yawn.
+**Added:** None.
 
-- **Natural/restored level-up:** Leer (Lv. 1).
-- **Thematic level-up (custom):** Swords Dance (Lv. 32), Body Slam (Lv. 44).
-- **Egg (Teddiursa family):** Belly Drum, Close Combat, Cross Chop, Crunch, Double-Edge, Fury Cutter, Metal Claw, Night Slash, Play Rough, Sleep Talk, Yawn.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Brick Break, Defense Curl, Double Team, Dynamic Punch, Endure, Frustration, Gunk Shot, Hyper Voice, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Taunt, Torment.
+**Removed:** None.
 
-## Teddiursa (Bloodmoon)
 
-**Newly available (34):** Aerial Ace, Avalanche, Belly Drum, Body Slam, Brick Break, Bulldoze, Close Combat, Counter, Cross Chop, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, Feint Attack, Frustration, Gunk Shot, Hyper Voice, Leer, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rain Dance, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Superpower, Swords Dance, Taunt, Torment, Yawn.
+### Onix
 
-- **Natural/restored level-up:** Leer (Lv. 1), Feint Attack (Lv. 15).
-- **Thematic level-up (custom):** Swords Dance (Lv. 30), Body Slam (Lv. 42).
-- **Egg (Teddiursa (Bloodmoon) family):** Belly Drum, Close Combat, Counter, Cross Chop, Double-Edge, Fury Cutter, Night Slash, Play Rough, Sleep Talk, Yawn.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Brick Break, Bulldoze, Defense Curl, Double Team, Dynamic Punch, Endure, Frustration, Gunk Shot, Hyper Voice, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Superpower, Taunt, Torment.
+**Added:** Sharpen.
 
-## Tentacool
+**Removed:** Iron Defense, Mud Shot.
 
-**Newly available (30):** Bide, Bind, Bubble, Confuse Ray, Cross Poison, Dazzling Gleam, Double Team, Double-Edge, Endure, Flip Turn, Frustration, Gunk Shot, Hail, Headbutt, Icy Wind, Infestation, Liquidation, Mimic, Mud Shot, Rage, Reflect, Scald, Skull Bash, Snore, Swift, Swords Dance, Take Down, Thief, Venoshock, Waterfall.
+- **Removed natural entries:** Iron Defense, Mud Shot.
+- **Added Blackthorn lessons:** Sharpen.
 
-- **Thematic level-up (custom):** Flip Turn (Lv. 18), Venoshock (Lv. 20), Cross Poison (Lv. 26), Scald (Lv. 42), Liquidation (Lv. 44), Gunk Shot (Lv. 56).
-- **Egg (Tentacool family):** Bubble, Confuse Ray, Knock Off.
-- **TM/HM/elemental tutor:** Headbutt, Swift, Thief, Waterfall.
-- **Blackthorn tutor:** Bide, Bind, Dazzling Gleam, Double Team, Double-Edge, Endure, Frustration, Hail, Icy Wind, Infestation, Mimic, Mud Shot, Rage, Reflect, Skull Bash, Snore, Swords Dance, Take Down.
+### Overqwil
 
-## Tentacruel
+**Added:** Mortal Spin, Rock Slide.
 
-**Newly available (29):** Bide, Bind, Bubble, Confuse Ray, Dazzling Gleam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Gunk Shot, Hail, Headbutt, Icy Wind, Infestation, Liquidation, Mimic, Mud Shot, Rage, Reflect, Scary Face, Skull Bash, Snore, Swift, Swords Dance, Take Down, Thief, Venoshock, Waterfall.
+**Removed:** Cross Poison, Knock Off, Rock Tomb, Strength, Thief.
 
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Liquidation (Lv. 42), Gunk Shot (Lv. 56).
-- **Egg (Tentacool family):** Bubble, Confuse Ray, Knock Off.
-- **TM/HM/elemental tutor:** Headbutt, Swift, Thief, Waterfall.
-- **Blackthorn tutor:** Bide, Bind, Dazzling Gleam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Hail, Icy Wind, Infestation, Mimic, Mud Shot, Rage, Reflect, Scary Face, Skull Bash, Snore, Swords Dance, Take Down.
+- **Removed natural entries:** Cross Poison.
+- **Removed machine flags:** Headbutt, Knock Off, Rock Tomb, Strength, Thief, Whirlpool.
+- **Added Blackthorn lessons:** Bounce, Double Team, Frustration, Hail, Mortal Spin, Rock Slide, Scald, Snore.
 
-## Timburr
+### Palafin
 
-**Newly available (21):** Bide, Close Combat, Comet Punch, Defog, Dig, Double Team, Double-Edge, Focus Blast, Foresight, Frustration, Mega Kick, Mega Punch, Poison Jab, Rain Dance, Reversal, Snore, Sunny Day, Superpower, Take Down, Taunt, Thief.
+**Added:** None.
 
-- **Natural/restored level-up:** Bide (Lv. 8), Superpower (Lv. 44).
-- **Thematic level-up (custom):** Close Combat (Lv. 56).
-- **Breeding fallback:** Defog (Lv. 30).
-- **Egg (Timburr family):** Comet Punch, Defog, Drain Punch, Force Palm, Foresight, Reversal.
-- **TM/HM/elemental tutor:** Dig, Rain Dance, Sunny Day, Thief.
-- **Blackthorn tutor:** Double Team, Double-Edge, Focus Blast, Frustration, Mega Kick, Mega Punch, Poison Jab, Snore, Take Down, Taunt.
+**Removed:** Attract, Brick Break, Circle Throw, Cross Chop, Curse, Dig, Double Slap, Earthquake, Fake Out, Fire Punch, Force Palm, Hammer Arm, Headbutt, Hidden Power, Low Sweep, Mach Punch, Mud-Slap, Play Rough, Return, Rock Smash, Strength, Super Fang, Superpower, Swagger, Tackle, Thief, Thunder Punch, Toxic, Work Up.
 
-## Tinkatink
+- **Removed natural entries:** Brick Break, Circle Throw, Cross Chop, Force Palm, Hammer Arm, Low Sweep, Mach Punch, Superpower, Tackle, Work Up.
+- **Removed machine flags:** Attract, Curse, Dig, Earthquake, Fire Punch, Headbutt, Hidden Power, Mud-Slap, Return, Rock Smash, Strength, Swagger, Thief, Thunder Punch, Toxic, Work Up.
+- **Removed family egg entries:** Fake Out, Super Fang.
 
-**Newly available (8):** Endure, Foul Play, Metronome, Rock Slide, Skill Swap, Stone Edge, Swords Dance, Thief.
+### Paldean Aqua Tauros
 
-- **Natural/restored level-up:** Fake Out (Lv. 39).
-- **TM/HM/elemental tutor:** Thief.
-- **Blackthorn tutor:** Endure, Foul Play, Metronome, Rock Slide, Skill Swap, Stone Edge, Swords Dance.
+**Added:** Aerial Ace, Avalanche, Bullet Seed, Frustration, Iron Tail, Light Screen, Low Sweep, Reflect, Scald, Taunt.
 
-## Tinkaton
+**Removed:** Attract, Blizzard, Drain Punch, Horn Attack, Ice Beam.
 
-**Newly available (9):** Brick Break, Bulldoze, Endure, Foul Play, Metronome, Rock Slide, Skill Swap, Stone Edge, Thief.
+- **Removed natural entries:** Horn Attack.
+- **Removed machine flags:** Attract, Blizzard, Drain Punch, Ice Beam.
+- **Removed family egg entries:** Horn Attack.
+- **Added Blackthorn lessons:** Aerial Ace, Avalanche, Bullet Seed, Frustration, Iron Tail, Light Screen, Low Sweep, Reflect, Scald, Taunt.
 
-- **Natural/restored level-up:** Fake Out (Lv. 39).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18).
-- **TM/HM/elemental tutor:** Thief.
-- **Blackthorn tutor:** Brick Break, Endure, Foul Play, Metronome, Rock Slide, Skill Swap, Stone Edge.
+### Paldean Blaze Tauros
 
-## Tinkatuff
+**Added:** Aerial Ace, Bullet Seed, Frustration, Heat Crash, Iron Tail, Light Screen, Low Sweep, Reflect, Taunt.
 
-**Newly available (9):** Brick Break, Endure, Foul Play, Metronome, Rock Slide, Skill Swap, Stone Edge, Swords Dance, Thief.
+**Removed:** Aqua Jet, Attract, Drain Punch, Flame Wheel, Heat Wave, Hidden Power, Horn Attack, Raging Fury, Solar Beam.
 
-- **Natural/restored level-up:** Fake Out (Lv. 39).
-- **TM/HM/elemental tutor:** Thief.
-- **Blackthorn tutor:** Brick Break, Endure, Foul Play, Metronome, Rock Slide, Skill Swap, Stone Edge, Swords Dance.
+- **Removed natural entries:** Flame Wheel, Horn Attack, Raging Fury.
+- **Removed machine flags:** Attract, Drain Punch, Hidden Power, Solar Beam.
+- **Removed family egg entries:** Horn Attack.
+- **Removed fallback lessons:** Aqua Jet, Heat Wave.
+- **Added Blackthorn lessons:** Aerial Ace, Bullet Seed, Frustration, Heat Crash, Iron Tail, Light Screen, Low Sweep, Reflect, Taunt.
 
-## Tirtouga
+### Paldean Wooper
 
-**Newly available (16):** Bide, Bulldoze, Double Team, Earth Power, Endure, Frustration, Icy Wind, Iron Tail, Liquidation, Mud Shot, Rock Blast, Rock Throw, Scald, Snore, Stone Edge, Strength.
+**Added:** Flip Turn, Frustration, Weather Ball, Whirlpool.
 
-- **Natural/restored level-up:** Bide (Lv. 1).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Rock Blast (Lv. 36), Stone Edge (Lv. 50).
-- **Egg (Tirtouga family):** Bide, Iron Defense, Knock Off, Liquidation, Rock Throw, Rollout, Water Pulse, Whirlpool.
-- **TM/HM/elemental tutor:** Strength.
-- **Blackthorn tutor:** Double Team, Earth Power, Endure, Frustration, Hydro Pump, Icy Wind, Iron Tail, Mud Shot, Scald, Snore.
+**Removed:** Acid Armor, Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Iron Head, Rock Smash, Safeguard, Swagger.
 
-## Togekiss
+- **Removed machine flags:** Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Iron Head, Rock Smash, Swagger.
+- **Removed family egg entries:** Acid Armor, Safeguard.
+- **Added Blackthorn lessons:** Flip Turn, Frustration, Weather Ball, Whirlpool.
 
-**Newly available (37):** Aerial Ace, Air Cutter, Amnesia, Body Slam, Brick Break, Counter, Dazzling Gleam, Defense Curl, Detect, Double Team, Drain Punch, Dream Eater, Endure, Frustration, Giga Impact, Heal Bell, Heat Wave, Incinerate, Magical Leaf, Mega Kick, Mega Punch, Mimic, Morning Sun, Ominous Wind, Play Rough, Present, Psych Up, Psyshock, Rollout, Roost, Seismic Toss, Signal Beam, Snore, Trick, Twister, Water Pulse, Yawn.
+### Paras
 
-- **Natural/restored level-up:** Yawn (Lv. 1).
-- **Thematic level-up (custom):** Roost (Lv. 38), Heat Wave (Lv. 44), Dazzling Gleam (Lv. 46).
-- **Egg (Togepi family):** Aerial Ace, Extrasensory, Morning Sun, Nasty Plot, Present, Psych Up, Substitute.
-- **TM/HM/elemental tutor:** Drain Punch.
-- **Blackthorn tutor:** Air Cutter, Amnesia, Body Slam, Bounce, Brick Break, Counter, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Endure, Frustration, Giga Impact, Heal Bell, Incinerate, Mega Kick, Mega Punch, Mimic, Ominous Wind, Play Rough, Psyshock, Rollout, Seismic Toss, Signal Beam, Sky Attack, Snore, Trick, Twister, Water Pulse.
-- **Evolution access:** Magical Leaf.
+**Added:** Bug Buzz, U-turn.
 
-## Togepi
+**Removed:** None.
 
-**Newly available (29):** Aerial Ace, Body Slam, Counter, Dazzling Gleam, Defense Curl, Detect, Double Team, Dream Eater, Endure, Frustration, Heal Bell, Hyper Voice, Incinerate, Mega Kick, Mega Punch, Mimic, Morning Sun, Play Rough, Present, Psych Up, Psyshock, Rollout, Seismic Toss, Signal Beam, Snore, Tri Attack, Trick, Water Pulse, Yawn.
+- **Added Blackthorn lessons:** Bug Buzz, U-turn.
 
-- **Natural/restored level-up:** Yawn (Lv. 20).
-- **Thematic level-up (custom):** Dazzling Gleam (Lv. 42).
-- **Breeding fallback:** Morning Sun (Lv. 30).
-- **Egg (Togepi family):** Aerial Ace, Extrasensory, Morning Sun, Nasty Plot, Present, Psych Up, Substitute.
-- **Blackthorn tutor:** Body Slam, Counter, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Heal Bell, Hyper Voice, Incinerate, Mega Kick, Mega Punch, Mimic, Play Rough, Psyshock, Rollout, Seismic Toss, Signal Beam, Snore, Tri Attack, Trick, Water Pulse.
+### Parasect
 
-## Togetic
+**Added:** Bug Buzz, U-turn.
 
-**Newly available (38):** Aerial Ace, Air Cutter, Body Slam, Brick Break, Counter, Dazzling Gleam, Defense Curl, Detect, Double Team, Drain Punch, Dream Eater, Endure, Frustration, Giga Impact, Heal Bell, Heat Wave, Incinerate, Magical Leaf, Mega Kick, Mega Punch, Mimic, Morning Sun, Ominous Wind, Play Rough, Present, Psych Up, Psyshock, Rollout, Roost, Seismic Toss, Signal Beam, Sky Attack, Snore, Tri Attack, Trick, Twister, Water Pulse, Yawn.
+**Removed:** Shadow Claw, Shadow Sneak.
 
-- **Natural/restored level-up:** Magical Leaf (Lv. 1), Yawn (Lv. 20), Wish (Lv. 52).
-- **Thematic level-up (custom):** Roost (Lv. 38), Heat Wave (Lv. 42), Dazzling Gleam (Lv. 44).
-- **Egg (Togepi family):** Aerial Ace, Extrasensory, Morning Sun, Nasty Plot, Present, Psych Up, Substitute.
-- **TM/HM/elemental tutor:** Drain Punch.
-- **Blackthorn tutor:** Air Cutter, Body Slam, Bounce, Brick Break, Counter, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Endure, Frustration, Giga Impact, Heal Bell, Incinerate, Mega Kick, Mega Punch, Mimic, Ominous Wind, Play Rough, Psyshock, Rollout, Seismic Toss, Signal Beam, Sky Attack, Snore, Tri Attack, Trick, Twister, Water Pulse.
+- **Removed natural entries:** Shadow Claw, Shadow Sneak.
+- **Added Blackthorn lessons:** Bug Buzz, U-turn.
 
-## Torkoal
+### Pawniard
 
-**Newly available (24):** Ancient Power, Bulldoze, Double Team, Double-Edge, Earth Power, Eruption, Flame Charge, Flare Blitz, Frustration, Giga Impact, Gyro Ball, Headbutt, Iron Tail, Lava Plume, Mimic, Rock Slide, Rollout, Self-Destruct, Shell Smash, Sludge Bomb, Snore, Stone Edge, Superpower, Take Down.
+**Added:** None.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 25), Flail (Lv. 42), Eruption (Lv. 49), Shell Smash (Lv. 60).
-- **Thematic level-up (custom):** Earth Power (Lv. 44), Flare Blitz (Lv. 56).
-- **Egg (Torkoal family):** Ancient Power, Earthquake, Eruption, Superpower.
-- **TM/HM/elemental tutor:** Headbutt, Sludge Bomb.
-- **Blackthorn tutor:** Bulldoze, Double Team, Double-Edge, Flame Charge, Frustration, Giga Impact, Gyro Ball, Iron Tail, Mimic, Rock Slide, Rollout, Self-Destruct, Snore, Stone Edge, Take Down.
+**Removed:** Curse, Focus Energy, Strength, Superpower.
 
-## Totodile
+- **Removed machine flags:** Curse, Strength.
+- **Removed family egg entries:** Focus Energy, Superpower.
 
-**Newly available (29):** Aerial Ace, Body Slam, Brick Break, Counter, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Flip Turn, Frustration, Hail, Icy Wind, Iron Tail, Liquidation, Mega Kick, Mega Punch, Mimic, Rage, Rock Tomb, Scald, Seismic Toss, Shadow Claw, Snore, Spite, Superpower, Swords Dance, Take Down, Thief.
+### Perrserker
 
-- **Natural/restored level-up:** Rage (Lv. 8), Superpower (Lv. 45).
-- **Thematic level-up (custom):** Flip Turn (Lv. 18), Liquidation (Lv. 46).
-- **Egg (Totodile family):** Counter, Crunch, Dragon Claw, Dragon Dance, Hydro Pump, Ice Punch, Thrash.
-- **TM/HM/elemental tutor:** Rock Tomb, Thief.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Detect, Double Team, Double-Edge, Dynamic Punch, Endure, Frustration, Hail, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Mimic, Scald, Seismic Toss, Shadow Claw, Snore, Spite, Swords Dance, Take Down.
+**Added:** Bite, Bulk Up, Frustration, Icy Wind, Liquidation, Mimic, Mud-Slap, Outrage, Roar, Skull Bash, Spikes, Swift, Tail Whip, Thunder Wave, Torment, Water Pulse.
 
-## Toxapex
+**Removed:** Crush Claw, Flash, Low Sweep, Strength.
 
-**Newly available (21):** Blizzard, Body Slam, Double Team, Endure, Frustration, Giga Impact, Gunk Shot, Hail, Hex, Hydro Pump, Icy Wind, Iron Defense, Lunge, Mud Shot, Pain Split, Safeguard, Scary Face, Snore, Spike Cannon, Spite, Water Pulse.
+- **Removed natural entries:** Crush Claw, Low Sweep.
+- **Removed machine flags:** Flash, Strength.
+- **Added Blackthorn lessons:** Bite, Bulk Up, Frustration, Icy Wind, Liquidation, Mimic, Mud-Slap, Outrage, Roar, Skull Bash, Spikes, Swift, Tail Whip, Thunder Wave, Torment, Water Pulse.
 
-- **Natural/restored level-up:** Spike Cannon (Lv. 29).
-- **Thematic level-up (custom):** Water Pulse (Lv. 46), Gunk Shot (Lv. 58), Hydro Pump (Lv. 60).
-- **TM/HM/elemental tutor:** Blizzard.
-- **Blackthorn tutor:** Body Slam, Double Team, Endure, Frustration, Giga Impact, Hail, Hex, Icy Wind, Iron Defense, Lunge, Mud Shot, Pain Split, Safeguard, Scary Face, Snore, Spite.
+### Persian
 
-## Toxicroak
+**Added:** Metronome, Spikes, Swords Dance.
 
-**Newly available (41):** Aerial Ace, Baton Pass, Bounce, Bulldoze, Close Combat, Cut, Dark Pulse, Double Team, Earthquake, Encore, Endure, Fake Out, Focus Blast, Foul Play, Frustration, Fury Cutter, Giga Impact, Headbutt, Icy Wind, Mega Kick, Mega Punch, Mud Shot, Pursuit, Rain Dance, Reversal, Rock Slide, Rock Tomb, Scary Face, Screech, Shadow Ball, Shadow Claw, Snore, Spite, Stone Edge, Sunny Day, Super Fang, Take Down, Thief, Torment, Vacuum Wave, X-Scissor.
+**Removed:** Crush Claw, Iron Head.
 
-- **Natural/restored level-up:** Vacuum Wave (Lv. 1), Pursuit (Lv. 15).
-- **Thematic level-up (custom):** Focus Blast (Lv. 56), Close Combat (Lv. 58).
-- **Egg (Croagunk family):** Cross Chop, Drain Punch, Fake Out, Headbutt, Vacuum Wave.
-- **TM/HM/elemental tutor:** Cut, Earthquake, Fury Cutter, Headbutt, Rain Dance, Rock Tomb, Shadow Ball, Sunny Day, Thief.
-- **Blackthorn tutor:** Aerial Ace, Baton Pass, Bounce, Bulldoze, Dark Pulse, Double Team, Encore, Endure, Foul Play, Frustration, Giga Impact, Icy Wind, Mega Kick, Mega Punch, Mud Shot, Reversal, Rock Slide, Scary Face, Screech, Shadow Claw, Snore, Spite, Stone Edge, Super Fang, Take Down, Torment, X-Scissor.
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Metronome, Spikes, Swords Dance.
 
-## Trapinch
+### Phanpy
 
-**Newly available (21):** Bide, Body Slam, Double Team, Double-Edge, Endure, First Impression, Flail, Frustration, Giga Drain, Gust, Headbutt, Hyper Beam, Mimic, Snore, Solar Beam, Stealth Rock, Stone Edge, Struggle Bug, Sunny Day, Superpower, Take Down.
+**Added:** Absorb, Spikes.
 
-- **Natural/restored level-up:** Bide (Lv. 1), Superpower (Lv. 44).
-- **Thematic level-up (custom):** Stealth Rock (Lv. 34).
-- **Egg (Trapinch family):** Bug Bite, Earth Power, Endure, First Impression, Flail, Fury Cutter, Gust, Mud Shot.
-- **TM/HM/elemental tutor:** Headbutt, Hyper Beam, Solar Beam, Sunny Day.
-- **Blackthorn tutor:** Body Slam, Double Team, Double-Edge, Frustration, Giga Drain, Mimic, Snore, Stone Edge, Struggle Bug, Take Down.
+**Removed:** Drill Run.
 
-## Trevenant
+- **Removed natural entries:** Drill Run.
+- **Added Blackthorn lessons:** Absorb, Spikes.
 
-**Newly available (72):** Astonish, Attract, Bulldoze, Calm Mind, Confuse Ray, Curse, Cut, Dark Pulse, Destiny Bond, Dig, Disable, Double Team, Drain Punch, Dream Eater, Earthquake, Endure, Energy Ball, Facade, Feint Attack, Focus Blast, Foul Play, Frustration, Giga Drain, Giga Impact, Growth, Haze, Hex, Hidden Power, Hone Claws, Horn Leech, Hyper Beam, Knock Off, Leaf Storm, Leech Seed, Magical Leaf, Night Shade, Pain Split, Phantom Force, Poison Jab, Protect, Psych Up, Psychic, Rain Dance, Reflect, Rest, Return, Rock Slide, Rock Smash, Safeguard, Scary Face, Seed Bomb, Shadow Ball, Shadow Claw, Skill Swap, Sleep Talk, Snore, Solar Beam, Spite, Strength, Substitute, Sucker Punch, Sunny Day, Swagger, Tackle, Take Down, Thief, Toxic, Trick, Trick Room, Will-O-Wisp, Wood Hammer, X-Scissor.
+### Phantump
 
-- **On evolution:** Shadow Claw when Phantump evolves into Trevenant.
-- **Natural/restored level-up:** Astonish (Lv. 1), Leech Seed (Lv. 1), Shadow Claw (Lv. 1), Tackle (Lv. 1), Confuse Ray (Lv. 12), Will-O-Wisp (Lv. 16), Feint Attack (Lv. 19), Hex (Lv. 20), Growth (Lv. 24), Horn Leech (Lv. 28), Curse (Lv. 32), Phantom Force (Lv. 36), Wood Hammer (Lv. 44), Destiny Bond (Lv. 48).
-- **Egg (Phantump family):** Disable, Sucker Punch.
-- **TM/HM/elemental tutor:** Attract, Curse, Cut, Dig, Drain Punch, Earthquake, Energy Ball, Facade, Hidden Power, Hone Claws, Hyper Beam, Knock Off, Protect, Psychic, Rain Dance, Rest, Return, Rock Smash, Shadow Ball, Solar Beam, Strength, Sunny Day, Swagger, Thief, Toxic, Will-O-Wisp.
-- **Goldenrod utility tutor:** Reflect, Sleep Talk, Substitute.
-- **Blackthorn tutor:** Bulldoze, Calm Mind, Dark Pulse, Double Team, Dream Eater, Endure, Focus Blast, Foul Play, Frustration, Giga Drain, Giga Impact, Haze, Leaf Storm, Magical Leaf, Night Shade, Pain Split, Poison Jab, Psych Up, Rock Slide, Safeguard, Scary Face, Seed Bomb, Skill Swap, Snore, Spite, Take Down, Trick, Trick Room, X-Scissor.
+**Added:** None.
 
-## Tsareena
+**Removed:** None.
 
-**Newly available (18):** Acrobatics, Bounce, Dazzling Gleam, Double Team, Frustration, Giga Drain, Giga Impact, Iron Tail, Low Kick, Mega Kick, Petal Blizzard, Safeguard, Seed Bomb, Snore, Solar Blade, Swords Dance, Take Down, Taunt.
 
-- **Natural/restored level-up:** Double Slap (Lv. 1).
-- **Thematic level-up (custom):** Seed Bomb (Lv. 42), Solar Blade (Lv. 56).
-- **Egg (Bounsweet family):** Play Rough.
-- **Blackthorn tutor:** Acrobatics, Bounce, Dazzling Gleam, Double Team, Frustration, Giga Impact, Iron Tail, Low Kick, Mega Kick, Petal Blizzard, Safeguard, Snore, Take Down, Taunt.
-- **Evolution access:** Giga Drain, Swords Dance.
+### Pichu
 
-## Typhlosion
+**Added:** Brick Break, Dig, Discharge, Dizzy Punch, Extreme Speed, Growl, Hyper Voice, Ice Punch, Petal Dance, Quick Attack, Scary Face, Sing, Spark.
 
-**Newly available (29):** Aerial Ace, Body Slam, Brick Break, Bulldoze, Counter, Crush Claw, Detect, Double Team, Dynamic Punch, Endure, Eruption, Fire Fang, Fire Spin, Frustration, Giga Impact, Iron Tail, Lava Plume, Low Kick, Mega Kick, Mega Punch, Mimic, Play Rough, Rock Slide, Seismic Toss, Shadow Claw, Snore, Solar Beam, Take Down, Wild Charge.
+**Removed:** Fly, Iron Head, Rock Tomb.
 
-- **Natural/restored level-up:** Lava Plume (Lv. 27), Eruption (Lv. 60).
-- **Egg (Cyndaquil family):** Crush Claw, Curse, Double Kick, Double-Edge, Extrasensory, Flare Blitz, Quick Attack, Reversal.
-- **TM/HM/elemental tutor:** Solar Beam.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Bulldoze, Counter, Detect, Double Team, Dynamic Punch, Endure, Fire Spin, Frustration, Giga Impact, Gyro Ball, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Play Rough, Rock Slide, Seismic Toss, Shadow Claw, Snore, Take Down, Wild Charge.
-- **Evolution access:** Fire Fang.
+- **Removed machine flags:** Fly, Iron Head, Rock Tomb.
+- **Added Blackthorn lessons:** Brick Break, Dig, Discharge, Dizzy Punch, Extreme Speed, Growl, Hyper Voice, Ice Punch, Petal Dance, Quick Attack, Scary Face, Sing, Spark.
 
-## Typhlosion (Hisuian)
+### Pidgeot
 
-**Newly available (29):** Aerial Ace, Body Slam, Brick Break, Bulldoze, Confuse Ray, Crush Claw, Detect, Double Team, Earthquake, Endure, Eruption, Fire Fang, Fire Spin, Frustration, Giga Impact, Gyro Ball, Iron Tail, Lava Plume, Low Kick, Mimic, Night Shade, Ominous Wind, Play Rough, Rock Slide, Shadow Claw, Snore, Spite, Take Down, Wild Charge.
+**Added:** Growl.
 
-- **Natural/restored level-up:** Eruption (Lv. 1), Gyro Ball (Lv. 1), Ominous Wind (Lv. 25), Lava Plume (Lv. 29).
-- **Thematic level-up (custom):** Spite (Lv. 36).
-- **Egg (Cyndaquil family):** Crush Claw, Curse, Double Kick, Double-Edge, Extrasensory, Flare Blitz, Quick Attack, Reversal.
-- **TM/HM/elemental tutor:** Earthquake.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Bulldoze, Confuse Ray, Detect, Double Team, Endure, Fire Spin, Frustration, Giga Impact, Iron Tail, Low Kick, Mimic, Night Shade, Play Rough, Rock Slide, Shadow Claw, Snore, Take Down, Wild Charge.
-- **Evolution access:** Fire Fang.
+**Removed:** Signal Beam.
 
-## Tyranitar
+- **Removed fallback lessons:** Signal Beam.
+- **Added Blackthorn lessons:** Growl.
 
-**Newly available (41):** Aerial Ace, Aqua Tail, Avalanche, Blizzard, Body Press, Body Slam, Brick Break, Counter, Detect, Double Team, Double-Edge, Dragon Breath, Dynamic Punch, Earth Power, Endure, Focus Blast, Frustration, Hydro Pump, Ice Punch, Icy Wind, Incinerate, Iron Defense, Iron Tail, Low Kick, Mega Kick, Mega Punch, Mimic, Nightmare, Rock Blast, Rock Polish, Seismic Toss, Shadow Claw, Snore, Spite, Take Down, Taunt, Thunder, Thunder Punch, Torment, Water Pulse, Whirlpool.
+### Pidgeotto
 
-- **Natural/restored level-up:** Iron Defense (Lv. 1).
-- **Thematic level-up (custom):** Low Kick (Lv. 18), Brick Break (Lv. 26), Rock Polish (Lv. 30), Rock Blast (Lv. 36), Body Press (Lv. 42), Earth Power (Lv. 46), Spite (Lv. 50), Aqua Tail (Lv. 52).
-- **Egg (Larvitar family):** Curse, Dragon Dance, Iron Defense, Iron Head, Iron Tail, Outrage, Stealth Rock.
-- **TM/HM/elemental tutor:** Blizzard, Ice Punch, Thunder, Thunder Punch, Whirlpool.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Body Slam, Counter, Detect, Double Team, Double-Edge, Dragon Breath, Dynamic Punch, Endure, Focus Blast, Frustration, Hydro Pump, Icy Wind, Incinerate, Mega Kick, Mega Punch, Mimic, Nightmare, Seismic Toss, Shadow Claw, Snore, Take Down, Taunt, Torment, Water Pulse.
+**Added:** Growl, Hyper Voice.
 
-## Tyrantrum
+**Removed:** None.
 
-**Newly available (24):** Aerial Ace, Bide, Body Slam, Brick Break, Bulldoze, Dark Pulse, Dig, Double Team, Draco Meteor, Dragon Hammer, Earth Power, Endure, Frustration, Hyper Voice, Iron Defense, Iron Tail, Play Rough, Rock Blast, Rock Throw, Scary Face, Snore, Stone Edge, Sunny Day, Superpower.
+- **Added Blackthorn lessons:** Growl, Hyper Voice.
 
-- **Natural/restored level-up:** Bide (Lv. 12), Dragon Hammer (Lv. 60).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Brick Break (Lv. 26), Iron Defense (Lv. 34), Rock Blast (Lv. 38), Stone Edge (Lv. 50), Superpower (Lv. 56).
-- **Egg (Tyrunt family):** Curse, Dragon Dance, Rock Throw.
-- **TM/HM/elemental tutor:** Dig, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Dark Pulse, Double Team, Draco Meteor, Earth Power, Endure, Frustration, Hyper Voice, Iron Tail, Play Rough, Scary Face, Snore.
+### Pidgey
 
-## Tyrogue
+**Added:** Dual Wingbeat, Growl, Hyper Voice.
 
-**Newly available (17):** Body Slam, Bulldoze, Detect, Double Team, Double-Edge, Earthquake, Frustration, Mega Kick, Mega Punch, Mimic, Pursuit, Rain Dance, Rock Slide, Seismic Toss, Snore, Take Down, Vacuum Wave.
+**Removed:** None.
 
-- **Egg (Tyrogue family):** Endure, Mach Punch, Pursuit, Rapid Spin, Vacuum Wave.
-- **TM/HM/elemental tutor:** Earthquake, Rain Dance.
-- **Blackthorn tutor:** Body Slam, Bulldoze, Detect, Double Team, Double-Edge, Frustration, Mega Kick, Mega Punch, Mimic, Rock Slide, Seismic Toss, Snore, Take Down.
+- **Added Blackthorn lessons:** Dual Wingbeat, Growl, Hyper Voice.
 
-## Tyrunt
+### Pikachu
 
-**Newly available (24):** Aerial Ace, Bide, Body Slam, Brick Break, Bulldoze, Close Combat, Dark Pulse, Dig, Double Team, Draco Meteor, Earth Power, Endure, Frustration, Hyper Voice, Iron Defense, Iron Tail, Play Rough, Rock Blast, Rock Throw, Scary Face, Snore, Stone Edge, Sunny Day, Superpower.
+**Added:** Dizzy Punch, Ice Punch, Petal Dance, Scary Face.
 
-- **Natural/restored level-up:** Bide (Lv. 12).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Iron Defense (Lv. 34), Rock Blast (Lv. 42), Stone Edge (Lv. 50).
-- **Egg (Tyrunt family):** Curse, Dragon Dance, Rock Throw.
-- **TM/HM/elemental tutor:** Dig, Sunny Day.
-- **Blackthorn tutor:** Aerial Ace, Body Slam, Brick Break, Close Combat, Dark Pulse, Double Team, Draco Meteor, Earth Power, Endure, Frustration, Hyper Voice, Iron Tail, Play Rough, Scary Face, Snore, Superpower.
+**Removed:** Drain Punch, Iron Head, Rock Tomb.
 
-## Umbreon
+- **Removed machine flags:** Drain Punch, Iron Head, Rock Tomb.
+- **Added Blackthorn lessons:** Dizzy Punch, Ice Punch, Petal Dance, Scary Face.
 
-**Newly available (27):** Bide, Body Slam, Calm Mind, Dig, Double Kick, Double Team, Dream Eater, Focus Energy, Frustration, Giga Impact, Hyper Voice, Iron Tail, Mimic, Nightmare, Pay Day, Psych Up, Pursuit, Rage, Roar, Scary Face, Sing, Skill Swap, Skull Bash, Snore, Spite, Thief, Torment.
+### Piloswine
 
-- **Natural/restored level-up:** Pursuit (Lv. 1).
-- **Thematic level-up (custom):** Spite (Lv. 36).
-- **Egg (Eevee family):** Charm, Curse, Double Kick, Mud-Slap.
-- **TM/HM/elemental tutor:** Dig, Roar, Thief.
-- **Blackthorn tutor:** Bide, Calm Mind, Double Team, Dream Eater, Focus Energy, Frustration, Giga Impact, Iron Tail, Mimic, Nightmare, Pay Day, Psych Up, Rage, Scary Face, Sing, Skill Swap, Snore, Torment.
-- **Evolution access:** Body Slam, Hyper Voice, Skull Bash.
+**Added:** Whirlwind.
 
-## Unown
+**Removed:** None.
 
-**Newly available (1):** Cosmic Power.
+- **Added Blackthorn lessons:** Whirlwind.
 
-- **Natural/restored level-up:** Cosmic Power (Lv. 1).
-- **TM/HM/elemental tutor:** Hidden Power.
+### Pineco
 
-## Ursaluna
+**Added:** None.
 
-**Newly available (29):** Aerial Ace, Avalanche, Belly Drum, Body Press, Body Slam, Defense Curl, Double Team, Dynamic Punch, Earth Power, Endure, Focus Blast, Frustration, Giga Impact, Gunk Shot, Hyper Voice, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rain Dance, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Stone Edge, Taunt, Torment, Yawn.
+**Removed:** Energy Ball, Fury Cutter.
 
-- **Thematic level-up (custom):** Body Press (Lv. 44), Body Slam (Lv. 48), Giga Impact (Lv. 58).
-- **Egg (Teddiursa family):** Belly Drum, Close Combat, Cross Chop, Crunch, Double-Edge, Fury Cutter, Metal Claw, Night Slash, Play Rough, Sleep Talk, Yawn.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Defense Curl, Double Team, Dynamic Punch, Earth Power, Endure, Focus Blast, Frustration, Gunk Shot, Hyper Voice, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Stone Edge, Taunt, Torment.
+- **Removed machine flags:** Energy Ball, Fury Cutter.
 
-## Ursaluna (Bloodmoon)
+### Pinsir
 
-**Newly available (38):** Aerial Ace, Avalanche, Belly Drum, Body Press, Body Slam, Bulldoze, Close Combat, Counter, Cross Chop, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, Feint Attack, Focus Blast, Frustration, Giga Impact, Gunk Shot, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Mud Shot, Rain Dance, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Snarl, Stone Edge, Superpower, Swords Dance, Taunt, Torment, Vacuum Wave, Yawn.
+**Added:** Aerial Ace, Bug Buzz, Circle Throw, Detect, Dual Wingbeat, Lunge, Rock Throw, Tackle, U-turn.
 
-- **Thematic level-up (custom):** Body Press (Lv. 38).
-- **Egg (Teddiursa (Bloodmoon) family):** Belly Drum, Close Combat, Counter, Cross Chop, Double-Edge, Fury Cutter, Night Slash, Play Rough, Sleep Talk, Yawn.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Avalanche, Brick Break, Bulldoze, Endure, Focus Blast, Giga Impact, Gunk Shot, Hammer Arm, Headlong Rush, Low Kick, Mud Shot, Rock Slide, Seed Bomb, Shadow Claw, Snarl, Stone Edge, Taunt, Vacuum Wave.
-- **Evolution access:** Aerial Ace, Body Slam, Defense Curl, Double Team, Dynamic Punch, Feint Attack, Frustration, Mega Kick, Mega Punch, Metronome, Mimic, Rollout, Superpower, Swords Dance, Torment.
+**Removed:** None.
 
-## Ursaring
+- **Added Blackthorn lessons:** Aerial Ace, Bug Buzz, Circle Throw, Detect, Dual Wingbeat, Lunge, Rock Throw, Tackle, U-turn.
 
-**Newly available (28):** Aerial Ace, Avalanche, Belly Drum, Body Slam, Defense Curl, Double Team, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Gunk Shot, Hyper Voice, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rain Dance, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Stone Edge, Swords Dance, Taunt, Torment, Yawn.
+### Politoed
 
-- **Thematic level-up (custom):** Swords Dance (Lv. 32), Body Slam (Lv. 44), Giga Impact (Lv. 56).
-- **Egg (Teddiursa family):** Belly Drum, Close Combat, Cross Chop, Crunch, Double-Edge, Fury Cutter, Metal Claw, Night Slash, Play Rough, Sleep Talk, Yawn.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Defense Curl, Double Team, Dynamic Punch, Endure, Focus Blast, Frustration, Gunk Shot, Hyper Voice, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Stone Edge, Taunt, Torment.
+**Added:** Growth, Lovely Kiss.
 
-## Ursaring (Bloodmoon)
+**Removed:** Drain Punch.
 
-**Newly available (34):** Aerial Ace, Avalanche, Belly Drum, Body Slam, Bulldoze, Close Combat, Counter, Cross Chop, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, Feint Attack, Focus Blast, Frustration, Giga Impact, Gunk Shot, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rain Dance, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Stone Edge, Superpower, Swords Dance, Taunt, Torment, Yawn.
+- **Removed machine flags:** Drain Punch.
+- **Added Blackthorn lessons:** Growth, Lovely Kiss.
 
-- **Natural/restored level-up:** Feint Attack (Lv. 15).
-- **Egg (Teddiursa (Bloodmoon) family):** Belly Drum, Close Combat, Counter, Cross Chop, Double-Edge, Fury Cutter, Night Slash, Play Rough, Sleep Talk, Yawn.
-- **TM/HM/elemental tutor:** Rain Dance.
-- **Blackthorn tutor:** Aerial Ace, Avalanche, Brick Break, Bulldoze, Defense Curl, Double Team, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Impact, Gunk Shot, Hammer Arm, Low Kick, Mega Kick, Mega Punch, Metronome, Mimic, Rock Slide, Rollout, Seed Bomb, Shadow Claw, Stone Edge, Superpower, Taunt, Torment.
-- **Evolution access:** Body Slam, Swords Dance.
+### Poliwag
 
-## Vaporeon
+**Added:** Growth, Lovely Kiss.
 
-**Newly available (26):** Aqua Tail, Bide, Body Slam, Bubble Beam, Dig, Double Kick, Double Team, Focus Energy, Frustration, Giga Impact, Hail, Hyper Voice, Icy Wind, Iron Tail, Liquidation, Mimic, Mist, Pay Day, Rage, Reflect, Rock Smash, Signal Beam, Sing, Skull Bash, Snore, Strength.
+**Removed:** None.
 
-- **Egg (Eevee family):** Charm, Curse, Double Kick, Mud-Slap.
-- **TM/HM/elemental tutor:** Dig, Rock Smash, Strength.
-- **Blackthorn tutor:** Aqua Tail, Bide, Bubble Beam, Double Team, Focus Energy, Frustration, Giga Impact, Hail, Icy Wind, Iron Tail, Liquidation, Mimic, Mist, Pay Day, Rage, Reflect, Signal Beam, Sing, Snore.
-- **Evolution access:** Body Slam, Hyper Voice, Skull Bash.
+- **Added Blackthorn lessons:** Growth, Lovely Kiss.
 
-## Venipede
+### Poliwhirl
 
-**Newly available (17):** Bite, Double Team, Endure, Frustration, Gyro Ball, Hex, Infestation, Iron Defense, Poison Jab, Poison Tail, Pursuit, Rock Smash, Signal Beam, Snore, Solar Beam, Struggle Bug, Sunny Day.
+**Added:** Growth, Lovely Kiss.
 
-- **Natural/restored level-up:** Pursuit (Lv. 12), Poison Tail (Lv. 40).
-- **Thematic level-up (custom):** Infestation (Lv. 18), Poison Jab (Lv. 42).
-- **Egg (Venipede family):** Bite, Fury Cutter, Take Down.
-- **TM/HM/elemental tutor:** Rock Smash, Solar Beam, Sunny Day.
-- **Blackthorn tutor:** Double Team, Endure, Frustration, Gyro Ball, Hex, Iron Defense, Signal Beam, Snore, Struggle Bug, Venoshock.
+**Removed:** None.
 
-## Venomoth
+- **Added Blackthorn lessons:** Growth, Lovely Kiss.
 
-**Newly available (29):** Acrobatics, Aerial Ace, Air Cutter, Bide, Confuse Ray, Defog, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Headbutt, Infestation, Lunge, Mimic, Night Shade, Ominous Wind, Psywave, Rage, Razor Wind, Reflect, Roost, Snore, String Shot, Take Down, Teleport, Twister, Venoshock.
+### Poliwrath
 
-- **Thematic level-up (custom):** Infestation (Lv. 18).
-- **Egg (Venonat family):** Baton Pass, Bug Bite, Morning Sun, Venoshock.
-- **TM/HM/elemental tutor:** Headbutt.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Bide, Confuse Ray, Defog, Double Team, Double-Edge, Dream Eater, Endure, Frustration, Giga Impact, Lunge, Mimic, Night Shade, Ominous Wind, Psywave, Rage, Razor Wind, Reflect, Roost, Snore, String Shot, Take Down, Teleport, Twister.
+**Added:** Growth, Lovely Kiss.
 
-## Venonat
+**Removed:** None.
 
-**Newly available (19):** Bide, Confuse Ray, Double Team, Double-Edge, Endure, Flash, Frustration, Headbutt, Infestation, Lunge, Mimic, Night Shade, Psywave, Rage, Reflect, Snore, String Shot, Take Down, Venoshock.
+- **Added Blackthorn lessons:** Growth, Lovely Kiss.
 
-- **Natural/restored level-up:** Signal Beam (Lv. 25).
-- **Thematic level-up (custom):** Infestation (Lv. 18).
-- **Egg (Venonat family):** Baton Pass, Bug Bite, Morning Sun, Venoshock.
-- **TM/HM/elemental tutor:** Flash, Headbutt.
-- **Blackthorn tutor:** Bide, Confuse Ray, Double Team, Double-Edge, Endure, Frustration, Lunge, Mimic, Night Shade, Psywave, Rage, Reflect, Snore, String Shot, Take Down.
+### Ponyta
 
-## Venusaur
+**Added:** None.
 
-**Newly available (28):** Amnesia, Bide, Bind, Body Slam, Bulldoze, Bullet Seed, Charm, Defense Curl, Double Team, Earthquake, Endure, False Swipe, Frustration, Giga Impact, Magical Leaf, Mega Drain, Mimic, Outrage, Petal Blizzard, Poison Jab, Rage, Reflect, Rock Smash, Scary Face, Snore, Strength, String Shot, Venoshock.
+**Removed:** Iron Head.
 
-- **Natural/restored level-up:** Petal Blizzard (Lv. 1).
-- **Thematic level-up (custom):** Venoshock (Lv. 24), Poison Jab (Lv. 42).
-- **Egg (Bulbasaur family):** Amnesia, Charm, Curse, Endure, Giga Drain, Leaf Storm, Magical Leaf, Power Whip, Sludge, Toxic.
-- **TM/HM/elemental tutor:** Earthquake, Rock Smash, Strength.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bulldoze, Bullet Seed, Defense Curl, Double Team, False Swipe, Frustration, Giga Impact, Mega Drain, Mimic, Outrage, Rage, Reflect, Scary Face, Snore, String Shot.
+- **Removed machine flags:** Iron Head.
 
-## Venusaur (Clone)
+### Porygon
 
-**Newly available (28):** Amnesia, Bide, Bind, Body Slam, Bulldoze, Bullet Seed, Charm, Defense Curl, Double Team, Earthquake, Endure, False Swipe, Frustration, Giga Impact, Magical Leaf, Mega Drain, Mimic, Outrage, Petal Blizzard, Poison Jab, Rage, Reflect, Rock Smash, Scary Face, Snore, Strength, String Shot, Venoshock.
+**Added:** Confuse Ray, Flash Cannon, Self-Destruct, Spark, Volt Switch.
 
-- **Natural/restored level-up:** Petal Blizzard (Lv. 1).
-- **Thematic level-up (custom):** Venoshock (Lv. 24), Poison Jab (Lv. 42).
-- **Egg (Bulbasaur (Clone) family):** Amnesia, Charm, Curse, Endure, Giga Drain, Leaf Storm, Magical Leaf, Power Whip, Sludge, Toxic.
-- **TM/HM/elemental tutor:** Earthquake, Rock Smash, Strength.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bulldoze, Bullet Seed, Defense Curl, Double Team, False Swipe, Frustration, Giga Impact, Mega Drain, Mimic, Outrage, Rage, Reflect, Scary Face, Snore, String Shot.
+**Removed:** Disable, Foresight, Iron Head, Mind Reader.
 
-## Vibrava
+- **Removed natural entries:** Disable, Foresight, Mind Reader.
+- **Removed machine flags:** Iron Head.
+- **Removed family egg entries:** Disable, Foresight, Mind Reader.
+- **Added Blackthorn lessons:** Confuse Ray, Flash Cannon, Self-Destruct, Spark, Volt Switch.
 
-**Newly available (36):** Aerial Ace, Air Cutter, Air Slash, Bide, Body Slam, Defog, Double Team, Double-Edge, Draco Meteor, Dual Wingbeat, Endure, First Impression, Flail, Fly, Frustration, Giga Drain, Giga Impact, Gust, Headbutt, Heat Wave, Hyper Beam, Mimic, Ominous Wind, Outrage, Snore, Solar Beam, Sonic Boom, Stealth Rock, Steel Wing, Stone Edge, Struggle Bug, Sunny Day, Superpower, Swift, Take Down, Twister.
+### Porygon-Z
 
-- **Natural/restored level-up:** Bide (Lv. 1), Sonic Boom (Lv. 1), Superpower (Lv. 1), Hyper Beam (Lv. 43).
-- **Thematic level-up (custom):** Draco Meteor (Lv. 56), Outrage (Lv. 58).
-- **Egg (Trapinch family):** Bug Bite, Earth Power, Endure, First Impression, Flail, Fury Cutter, Gust, Mud Shot.
-- **TM/HM/elemental tutor:** Fly, Headbutt, Hyper Beam, Solar Beam, Steel Wing, Sunny Day, Swift.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Air Slash, Body Slam, Defog, Double Team, Double-Edge, Dual Wingbeat, Frustration, Giga Drain, Giga Impact, Heat Wave, Mimic, Ominous Wind, Snore, Stone Edge, Struggle Bug, Take Down, Twister.
-- **Evolution access:** Stealth Rock.
+**Added:** Confuse Ray, Fire Blast, Flamethrower, Flash Cannon, Ominous Wind, Self-Destruct, Spark, Volt Switch.
 
-## Victreebel
+**Removed:** Disable, Foresight, Iron Head, Mind Reader.
 
-**Newly available (23):** Bide, Bind, Body Slam, Bug Bite, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Headbutt, Infestation, Lunge, Magical Leaf, Mega Drain, Mimic, Morning Sun, Rage, Scary Face, Snore, Swift, Take Down, Thief, Venoshock.
+- **Removed machine flags:** Iron Head.
+- **Removed family egg entries:** Disable, Foresight, Mind Reader.
+- **Added Blackthorn lessons:** Confuse Ray, Fire Blast, Flamethrower, Flash Cannon, Ominous Wind, Self-Destruct, Spark, Volt Switch.
 
-- **Thematic level-up (custom):** Venoshock (Lv. 18).
-- **Egg (Bellsprout family):** Bullet Seed, Giga Drain, Leech Life, Magical Leaf, Power Whip, Sucker Punch, Weather Ball.
-- **TM/HM/elemental tutor:** Headbutt, Swift, Thief.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bug Bite, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Infestation, Lunge, Mega Drain, Mimic, Morning Sun, Rage, Scary Face, Snore, Take Down.
+### Porygon2
 
-## Vikavolt
+**Added:** Confuse Ray, Flash Cannon, Self-Destruct, Spark, Volt Switch.
 
-**Newly available (21):** Acrobatics, Air Slash, Baton Pass, Bulldoze, Discharge, Double Team, Dual Wingbeat, Endure, Frustration, Giga Impact, Harden, Iron Defense, Lunge, Poison Jab, Roost, Screech, Snore, Solar Beam, Struggle Bug, Swift, Take Down.
+**Removed:** Disable, Foresight, Iron Head, Mind Reader.
 
-- **Natural/restored level-up:** Air Slash (Lv. 1), Discharge (Lv. 1), Iron Defense (Lv. 1), Acrobatics (Lv. 19).
-- **Egg (Grubbin family):** Discharge, Endure, Harden.
-- **TM/HM/elemental tutor:** Solar Beam, Swift.
-- **Blackthorn tutor:** Baton Pass, Bulldoze, Double Team, Dual Wingbeat, Frustration, Giga Impact, Lunge, Poison Jab, Roost, Screech, Snore, Struggle Bug, Take Down.
+- **Removed machine flags:** Iron Head.
+- **Removed family egg entries:** Disable, Foresight, Mind Reader.
+- **Added Blackthorn lessons:** Confuse Ray, Flash Cannon, Self-Destruct, Spark, Volt Switch.
 
-## Vileplume
+### Primeape
 
-**Newly available (24):** Bide, Body Slam, Charm, Dazzling Gleam, Double Team, Double-Edge, Drain Punch, Endure, Frustration, Giga Impact, Headbutt, Infestation, Leech Seed, Magical Leaf, Mimic, Petal Blizzard, Rage, Reflect, Safeguard, Seed Bomb, Snore, Solar Blade, Take Down, Venoshock.
+**Added:** Circle Throw, Comet Punch, Knock Off, Roar, Rock Throw, Tackle, Torment.
 
-- **Natural/restored level-up:** Petal Blizzard (Lv. 1).
-- **Thematic level-up (custom):** Magical Leaf (Lv. 18), Venoshock (Lv. 20).
-- **Egg (Oddish family):** Charm, Leech Seed.
-- **TM/HM/elemental tutor:** Drain Punch, Headbutt.
-- **Blackthorn tutor:** Bide, Body Slam, Dazzling Gleam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Infestation, Leaf Blade, Mimic, Rage, Reflect, Safeguard, Snore, Solar Blade, Take Down.
-- **Evolution access:** Seed Bomb.
+**Removed:** Iron Head, Superpower.
 
-## Volcarona
+- **Removed natural entries:** Superpower.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Circle Throw, Comet Punch, Knock Off, Roar, Rock Throw, Tackle, Torment.
 
-**Newly available (20):** Absorb, Acrobatics, Aerial Ace, Air Cutter, Air Slash, Body Slam, Calm Mind, Defog, Double Team, Fly, Frustration, Giga Impact, Lunge, Poison Jab, Rain Dance, Roost, Safeguard, Snore, Thrash, Wild Charge.
+### Psyduck
 
-- **Natural/restored level-up:** Absorb (Lv. 1), Thrash (Lv. 1).
-- **Egg (Larvesta family):** Absorb, String Shot, Thrash, Zen Headbutt.
-- **TM/HM/elemental tutor:** Fly, Rain Dance.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Air Slash, Body Slam, Calm Mind, Defog, Double Team, Dual Wingbeat, Frustration, Giga Impact, Lunge, Poison Jab, Roost, Safeguard, Snore, Wild Charge.
+**Added:** Petal Dance, Tri Attack.
 
-## Voltorb
+**Removed:** Drain Punch, Iron Head.
 
-**Newly available (19):** Bide, Discharge, Double Team, Double-Edge, Endure, Foul Play, Frustration, Mimic, Rage, Recycle, Signal Beam, Snore, Sucker Punch, Take Down, Taunt, Teleport, Thief, Torment, Wild Charge.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Petal Dance, Tri Attack.
 
-- **Natural/restored level-up:** Discharge (Lv. 27).
-- **Thematic level-up (custom):** Signal Beam (Lv. 26).
-- **Breeding fallback:** Recycle (Lv. 30).
-- **Egg (Voltorb family):** Recycle.
-- **TM/HM/elemental tutor:** Thief.
-- **Blackthorn tutor:** Bide, Double Team, Double-Edge, Endure, Foul Play, Frustration, Gyro Ball, Mimic, Rage, Snore, Sucker Punch, Take Down, Taunt, Teleport, Torment, Wild Charge.
+### Pupitar
 
-## Voltorb (Hisuian)
+**Added:** Rage.
 
-**Newly available (13):** Agility, Bullet Seed, Discharge, Double-Edge, Endure, Foul Play, Leaf Storm, Recycle, Seed Bomb, Take Down, Taunt, Volt Switch, Wild Charge.
+**Removed:** None.
 
-- **Natural/restored level-up:** Bullet Seed (Lv. 9), Discharge (Lv. 34).
-- **Thematic level-up (custom):** Volt Switch (Lv. 38), Leaf Storm (Lv. 56).
-- **Breeding fallback:** Recycle (Lv. 30).
-- **Egg (Voltorb (Hisuian) family):** Recycle.
-- **Blackthorn tutor:** Agility, Double-Edge, Endure, Foul Play, Gyro Ball, Seed Bomb, Take Down, Taunt, Wild Charge.
+- **Added Blackthorn lessons:** Rage.
 
-## Vulpix
+### Quagsire
 
-**Newly available (24):** Agility, Baton Pass, Bide, Body Slam, Charm, Double Team, Double-Edge, Encore, Endure, Flame Charge, Foul Play, Frustration, Iron Tail, Mimic, Ominous Wind, Overheat, Pain Split, Rage, Reflect, Skull Bash, Snarl, Snore, Tackle, Take Down.
+**Added:** Belly Drum, Flip Turn, Scary Face.
 
-- **Natural/restored level-up:** Hex (Lv. 26).
-- **Thematic level-up (custom):** Overheat (Lv. 56).
-- **Egg (Vulpix family):** Disable, Energy Ball, Extrasensory, Feint Attack, Flame Charge, Heat Wave, Hypnosis, Roar, Spite.
-- **Blackthorn tutor:** Agility, Baton Pass, Bide, Body Slam, Charm, Double Team, Double-Edge, Encore, Endure, Foul Play, Frustration, Iron Tail, Mimic, Ominous Wind, Pain Split, Rage, Reflect, Skull Bash, Snarl, Snore, Tackle, Take Down.
+**Removed:** Acid Armor, Iron Head.
 
-## Vulpix (Alolan)
+- **Removed machine flags:** Iron Head.
+- **Removed family egg entries:** Acid Armor.
+- **Added Blackthorn lessons:** Belly Drum, Flip Turn, Scary Face.
 
-**Newly available (23):** Aqua Tail, Body Slam, Disarming Voice, Double Team, Double-Edge, Endure, Flail, Foul Play, Frustration, Hail, Heal Bell, Hex, Icicle Spear, Iron Tail, Ominous Wind, Pain Split, Play Rough, Psych Up, Psyshock, Reflect, Snore, Tackle, Take Down.
+### Quilava
 
-- **Natural/restored level-up:** Hex (Lv. 26).
-- **Thematic level-up (custom):** Aqua Tail (Lv. 42).
-- **Egg (Vulpix (Alolan) family):** Disable, Extrasensory, Flail, Freeze-Dry, Hypnosis, Moonblast, Roar, Spite.
-- **Blackthorn tutor:** Body Slam, Disarming Voice, Double Team, Double-Edge, Endure, Foul Play, Frustration, Hail, Heal Bell, Icicle Spear, Iron Tail, Ominous Wind, Pain Split, Play Rough, Psych Up, Psyshock, Reflect, Snore, Tackle, Take Down.
+**Added:** None.
 
-## Walrein
+**Removed:** Rock Tomb.
 
-**Newly available (24):** Avalanche, Bulldoze, Charm, Double Team, Double-Edge, Earthquake, Endure, Frustration, Fury Cutter, Giga Impact, Headbutt, Hydro Pump, Icicle Spear, Icy Wind, Iron Head, Iron Tail, Liquidation, Mimic, Mud-Slap, Roar, Rock Smash, Rock Tomb, Super Fang, Swords Dance.
+- **Removed machine flags:** Rock Tomb.
 
-- **Thematic level-up (custom):** Avalanche (Lv. 18), Liquidation (Lv. 46), Hydro Pump (Lv. 56).
-- **Egg (Spheal family):** Belly Drum, Curse, Rollout, Water Pulse.
-- **TM/HM/elemental tutor:** Earthquake, Fury Cutter, Headbutt, Iron Head, Mud-Slap, Roar, Rock Smash, Rock Tomb.
-- **Blackthorn tutor:** Bulldoze, Charm, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Icicle Spear, Icy Wind, Iron Tail, Mimic, Super Fang, Swords Dance.
+### Qwilfish
 
-## Wartortle
+**Added:** None.
 
-**Newly available (40):** Aqua Jet, Aura Sphere, Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, Fake Out, False Swipe, Flail, Foresight, Frustration, Gyro Ball, Hail, Icy Wind, Iron Defense, Iron Tail, Liquidation, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Scald, Seismic Toss, Snore, Submission, Take Down, Water Spout, Yawn.
+**Removed:** Cross Poison, Rock Tomb.
 
-- **Natural/restored level-up:** Iron Defense (Lv. 40), Water Spout (Lv. 54).
-- **Thematic level-up (custom):** Scald (Lv. 44), Liquidation (Lv. 48).
-- **Egg (Squirtle family):** Aqua Jet, Aura Sphere, Dragon Pulse, Fake Out, Flail, Foresight, Water Spout, Yawn.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Frustration, Gyro Ball, Hail, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Seismic Toss, Snore, Submission, Take Down.
+- **Removed natural entries:** Cross Poison.
+- **Removed machine flags:** Rock Tomb.
 
-## Wartortle (Clone)
+### Raichu
 
-**Newly available (40):** Aqua Jet, Aura Sphere, Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, Fake Out, False Swipe, Flail, Foresight, Frustration, Gyro Ball, Hail, Icy Wind, Iron Defense, Iron Tail, Liquidation, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Scald, Seismic Toss, Snore, Submission, Take Down, Water Spout, Yawn.
+**Added:** Dazzling Gleam, Dizzy Punch, Ice Punch, Petal Dance, Psychic, Scary Face.
 
-- **Natural/restored level-up:** Iron Defense (Lv. 40), Water Spout (Lv. 54).
-- **Thematic level-up (custom):** Scald (Lv. 44), Liquidation (Lv. 48).
-- **Egg (Squirtle (Clone) family):** Aqua Jet, Aura Sphere, Dragon Pulse, Fake Out, Flail, Foresight, Water Spout, Yawn.
-- **Blackthorn tutor:** Bide, Body Slam, Brick Break, Bubble Beam, Confusion, Counter, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Endure, False Swipe, Frustration, Gyro Ball, Hail, Icy Wind, Iron Tail, Mega Kick, Mega Punch, Mimic, Mud Shot, Outrage, Rage, Reflect, Rock Slide, Rollout, Seismic Toss, Snore, Submission, Take Down.
+**Removed:** Iron Head, Rock Tomb.
 
-## Watu
+- **Removed machine flags:** Iron Head, Rock Tomb.
+- **Added Blackthorn lessons:** Dazzling Gleam, Dizzy Punch, Ice Punch, Petal Dance, Psychic, Scary Face.
 
-**Newly available (33):** Aerial Ace, Air Cutter, Baton Pass, Calm Mind, Cosmic Power, Dazzling Gleam, Detect, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Endure, Frustration, Giga Drain, Heat Wave, Mimic, Nightmare, Ominous Wind, Pain Split, Psych Up, Psyshock, Rain Dance, Shadow Ball, Signal Beam, Skill Swap, Sky Attack, Snore, Sucker Punch, Trick, Trick Room, Twister, U-turn, Wish.
+### Raikou
 
-- **Thematic level-up (custom):** Psyshock (Lv. 35), Cosmic Power (Lv. 40).
-- **Egg (Natu family):** Psych Up, Roost, Skill Swap, Steel Wing, Sucker Punch, Zen Headbutt.
-- **Evolution access:** Aerial Ace, Air Cutter, Baton Pass, Calm Mind, Dazzling Gleam, Detect, Double Team, Double-Edge, Dream Eater, Dual Wingbeat, Endure, Frustration, Giga Drain, Heat Wave, Mimic, Nightmare, Ominous Wind, Pain Split, Rain Dance, Shadow Ball, Signal Beam, Sky Attack, Snore, Trick, Trick Room, Twister, U-turn, Wish.
+**Added:** None.
 
-## Weavile
+**Removed:** None.
 
-**Newly available (40):** Aerial Ace, Avalanche, Baton Pass, Brick Break, Calm Mind, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, Fake Out, False Swipe, Focus Blast, Frustration, Giga Impact, Hail, Icicle Spear, Iron Tail, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Poison Jab, Psych Up, Psycho Cut, Pursuit, Reversal, Scary Face, Shadow Claw, Snore, Sunny Day, Take Down, Torment, Water Pulse, Whirlpool, X-Scissor.
 
-- **Egg (Sneasel family):** Avalanche, Crush Claw, Fake Out, Ice Punch, Ice Shard, Icicle Crash, Pursuit.
-- **TM/HM/elemental tutor:** Sunny Day, Whirlpool.
-- **Blackthorn tutor:** Aerial Ace, Baton Pass, Brick Break, Calm Mind, Dark Pulse, Defense Curl, Detect, Double Team, Double-Edge, Dream Eater, Dynamic Punch, Endure, False Swipe, Focus Blast, Freeze-Dry, Frustration, Giga Impact, Hail, Icicle Spear, Iron Tail, Low Sweep, Mega Kick, Mega Punch, Metronome, Mimic, Nightmare, Poison Jab, Psych Up, Psycho Cut, Reversal, Scary Face, Shadow Claw, Snore, Take Down, Torment, Water Pulse, X-Scissor.
+### Raitora
 
-## Weedle
+**Added:** None.
 
-**Newly available:** None.
+**Removed:** None.
 
-No new acquisition routes were added.
 
-## Weepinbell
+### Ralts
 
-**Newly available (24):** Bide, Bind, Body Slam, Bug Bite, Double Team, Double-Edge, Endure, Frustration, Giga Drain, Headbutt, Infestation, Leaf Storm, Lunge, Magical Leaf, Mega Drain, Mimic, Morning Sun, Rage, Snore, Sucker Punch, Swift, Take Down, Thief, Venoshock.
+**Added:** Ice Beam.
 
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Leaf Storm (Lv. 56).
-- **Egg (Bellsprout family):** Bullet Seed, Giga Drain, Leech Life, Magical Leaf, Power Whip, Sucker Punch, Weather Ball.
-- **TM/HM/elemental tutor:** Headbutt, Swift, Thief.
-- **Blackthorn tutor:** Bide, Bind, Body Slam, Bug Bite, Double Team, Double-Edge, Endure, Frustration, Infestation, Lunge, Mega Drain, Mimic, Morning Sun, Rage, Snore, Take Down.
+**Removed:** Curse, Energy Ball.
 
-## Weezing
+- **Removed machine flags:** Curse, Energy Ball.
+- **Added Blackthorn lessons:** Ice Beam.
 
-**Newly available (23):** Bide, Body Slam, Double Team, Endure, Flash, Frustration, Giga Impact, Headbutt, Heat Wave, Incinerate, Infestation, Lava Plume, Mimic, Psywave, Rage, Rain Dance, Rollout, Scary Face, Shadow Ball, Snore, Take Down, Torment, Venoshock.
+### Rampardos
 
-- **Natural/restored level-up:** Heat Wave (Lv. 1), Lava Plume (Lv. 31).
-- **Thematic level-up (custom):** Venoshock (Lv. 18).
-- **Egg (Koffing family):** Curse, Destiny Bond, Pain Split, Psywave, Will-O-Wisp.
-- **TM/HM/elemental tutor:** Flash, Headbutt, Rain Dance, Shadow Ball.
-- **Blackthorn tutor:** Bide, Body Slam, Double Team, Endure, Frustration, Giga Impact, Incinerate, Infestation, Mimic, Rage, Rollout, Scary Face, Snore, Take Down, Torment.
+**Added:** Bite, Seismic Toss, Tackle.
 
-## Weezing (Galarian)
+**Removed:** Power Gem.
 
-**Newly available (23):** Bide, Body Slam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Headbutt, Heat Wave, Incinerate, Infestation, Lava Plume, Mimic, Overheat, Play Rough, Psywave, Rage, Rollout, Scary Face, Snore, Take Down, Torment, Venoshock.
+- **Removed machine flags:** Power Gem.
+- **Added Blackthorn lessons:** Bite, Seismic Toss, Tackle.
 
-- **Natural/restored level-up:** Heat Wave (Lv. 1).
-- **Thematic level-up (custom):** Venoshock (Lv. 18), Play Rough (Lv. 44).
-- **Egg (Koffing family):** Curse, Destiny Bond, Pain Split, Psywave, Will-O-Wisp.
-- **Blackthorn tutor:** Bide, Body Slam, Double Team, Double-Edge, Endure, Frustration, Giga Impact, Incinerate, Infestation, Mimic, Overheat, Rage, Rollout, Scary Face, Snore, Take Down, Torment.
-- **Evolution access:** Headbutt, Lava Plume.
+### Rapidash
 
-## Whirlipede
+**Added:** None.
 
-**Newly available (16):** Bite, Double Team, Endure, Frustration, Gyro Ball, Hex, Infestation, Iron Defense, Poison Tail, Pursuit, Rock Smash, Signal Beam, Snore, Solar Beam, Struggle Bug, Sunny Day.
+**Removed:** Iron Head, Raging Fury.
 
-- **Natural/restored level-up:** Iron Defense (Lv. 1), Pursuit (Lv. 12), Poison Tail (Lv. 42).
-- **Thematic level-up (custom):** Infestation (Lv. 18).
-- **Egg (Venipede family):** Bite, Fury Cutter, Take Down.
-- **TM/HM/elemental tutor:** Rock Smash, Solar Beam, Sunny Day.
-- **Blackthorn tutor:** Double Team, Endure, Frustration, Gyro Ball, Hex, Signal Beam, Snore, Struggle Bug, Venoshock.
+- **Removed natural entries:** Raging Fury.
+- **Removed machine flags:** Iron Head.
 
-## Wigglytuff
+### Raticate
 
-**Newly available (56):** Amnesia, Baton Pass, Bide, Body Press, Brick Break, Bubble Beam, Calm Mind, Counter, Dark Pulse, Dazzling Gleam, Detect, Dig, Double Team, Dream Eater, Dynamic Punch, Encore, Endure, Energy Ball, Focus Blast, Frustration, Giga Impact, Heal Bell, Icy Wind, Incinerate, Magical Leaf, Mega Kick, Mega Punch, Metronome, Minimize, Nightmare, Pain Split, Present, Psych Up, Psyshock, Psywave, Rage, Recycle, Safeguard, Sandstorm, Screech, Seismic Toss, Self-Destruct, Skill Swap, Skull Bash, Snore, Stealth Rock, Submission, Swift, Take Down, Taunt, Teleport, Thief, Tri Attack, Water Gun, Water Pulse, Wild Charge.
+**Added:** Aerial Ace, False Swipe, Sludge Bomb.
 
-- **Thematic level-up (custom):** Calm Mind (Lv. 30), Dazzling Gleam (Lv. 44), Tri Attack (Lv. 46), Self-Destruct (Lv. 58).
-- **Egg (Igglybuff family):** Present, Rollout.
-- **TM/HM/elemental tutor:** Dig, Energy Ball, Sandstorm, Swift, Thief.
-- **Blackthorn tutor:** Amnesia, Baton Pass, Bide, Body Press, Brick Break, Bubble Beam, Counter, Dark Pulse, Detect, Double Team, Dream Eater, Dynamic Punch, Encore, Endure, Focus Blast, Frustration, Giga Impact, Heal Bell, Icy Wind, Incinerate, Magical Leaf, Mega Kick, Mega Punch, Metronome, Minimize, Nightmare, Pain Split, Psych Up, Psyshock, Psywave, Rage, Recycle, Safeguard, Screech, Seismic Toss, Skill Swap, Snore, Stealth Rock, Submission, Taunt, Teleport, Water Gun, Water Pulse, Wild Charge.
-- **Evolution access:** Skull Bash, Take Down.
+**Removed:** Dizzy Punch, Iron Head.
 
-## Wimpod
+- **Removed natural entries:** Dizzy Punch.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Aerial Ace, False Swipe, Sludge Bomb.
 
-**Newly available (14):** Bug Buzz, Double Team, Frustration, Hail, Leech Life, Metal Claw, Mud Shot, Rollout, Scald, Screech, Snore, Spikes, Swift, Taunt.
+### Rattata
 
-- **Thematic level-up (custom):** Leech Life (Lv. 42).
-- **Egg (Wimpod family):** Aqua Jet, Metal Claw, Rollout, Spikes.
-- **TM/HM/elemental tutor:** Swift.
-- **Blackthorn tutor:** Bug Buzz, Double Team, Frustration, Hail, Mud Shot, Scald, Screech, Snore, Taunt.
+**Added:** Aerial Ace, False Swipe, Sludge Bomb.
 
-## Wobbuffet
+**Removed:** Iron Head.
 
-**Newly available:** None.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Aerial Ace, False Swipe, Sludge Bomb.
 
-No new acquisition routes were added.
+### Remoraid
 
-## Wooper
+**Added:** Amnesia, Bubble, Mist.
 
-**Newly available (28):** Avalanche, Blizzard, Bulldoze, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Earth Power, Endure, Frustration, Hail, Hydro Pump, Icy Wind, Infestation, Iron Tail, Liquidation, Mimic, Rock Slide, Rollout, Scald, Snore, Spikes, Stealth Rock, Stone Edge, Take Down, Water Pulse, Waterfall, Yawn.
+**Removed:** None.
 
-- **Natural/restored level-up:** Yawn (Lv. 21).
-- **Thematic level-up (custom):** Bulldoze (Lv. 18), Spikes (Lv. 38), Stealth Rock (Lv. 40), Liquidation (Lv. 42).
-- **Egg (Wooper family):** Body Slam, Counter, Curse, Double Kick, Recover.
-- **TM/HM/elemental tutor:** Blizzard, Waterfall.
-- **Blackthorn tutor:** Avalanche, Defense Curl, Double Team, Double-Edge, Dynamic Punch, Earth Power, Endure, Frustration, Hail, Hydro Pump, Icy Wind, Infestation, Iron Tail, Mimic, Rock Slide, Rollout, Scald, Snore, Stone Edge, Take Down, Water Pulse.
+- **Added Blackthorn lessons:** Amnesia, Bubble, Mist.
 
-## Wooper (Paldean)
+### Rhydon
 
-**Newly available (20):** Body Press, Counter, Double Kick, Double-Edge, Earth Power, Endure, Gunk Shot, Hydro Pump, Liquidation, Low Kick, Poison Tail, Rain Dance, Rock Slide, Stealth Rock, Stone Edge, Take Down, Venoshock, Water Pulse, Waterfall, Yawn.
+**Added:** Head Smash, Wild Charge.
 
-- **Natural/restored level-up:** Yawn (Lv. 21), Poison Tail (Lv. 22).
-- **Thematic level-up (custom):** Stealth Rock (Lv. 38), Gunk Shot (Lv. 56).
-- **Egg (Wooper (Paldean) family):** Counter, Curse, Double Kick, Haze, Mist, Recover.
-- **TM/HM/elemental tutor:** Rain Dance, Waterfall.
-- **Blackthorn tutor:** Body Press, Double-Edge, Earth Power, Endure, Hydro Pump, Liquidation, Low Kick, Rock Slide, Stone Edge, Take Down, Venoshock, Water Pulse.
+**Removed:** Drain Punch, Iron Head.
 
-## Wynaut
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Added Blackthorn lessons:** Head Smash, Wild Charge.
 
-**Newly available:** None.
+### Rhyhorn
 
-No new acquisition routes were added.
+**Added:** Giga Impact, Head Smash, Wild Charge.
 
-## Wyrdeer
+**Removed:** Iron Head.
 
-**Newly available (32):** Body Slam, Bounce, Detect, Dig, Double Kick, Double Team, Dream Eater, Earth Power, Endure, Energy Ball, Extrasensory, Frustration, Future Sight, Giga Impact, Horn Leech, Iron Tail, Jump Kick, Mimic, Nightmare, Psybeam, Psych Up, Psyshock, Rage, Scary Face, Signal Beam, Skill Swap, Snore, Solar Beam, Sucker Punch, Thunder, Thunderbolt, Trick.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Giga Impact, Head Smash, Wild Charge.
 
-- **Thematic level-up (custom):** Skill Swap (Lv. 40), Trick (Lv. 42), Body Slam (Lv. 44), Giga Impact (Lv. 58).
-- **Egg (Stantler family):** Double Kick, Extrasensory, Megahorn, Psych Up, Rage, Swagger, Thrash, Zen Headbutt.
-- **TM/HM/elemental tutor:** Dig, Energy Ball, Solar Beam, Thunder, Thunderbolt.
-- **Blackthorn tutor:** Bounce, Calm Mind, Detect, Double Team, Dream Eater, Earth Power, Endure, Frustration, Future Sight, Iron Tail, Mimic, Nightmare, Psybeam, Psyshock, Scary Face, Signal Beam, Snore, Sucker Punch.
-- **Evolution access:** Horn Leech, Jump Kick.
+### Rhyperior
 
-## Xatu
+**Added:** Wild Charge.
 
-**Newly available (31):** Aerial Ace, Air Cutter, Baton Pass, Calm Mind, Cosmic Power, Dazzling Gleam, Detect, Double Team, Double-Edge, Dream Eater, Endure, Foul Play, Frustration, Giga Drain, Giga Impact, Mimic, Nightmare, Ominous Wind, Pain Split, Psych Up, Psyshock, Rain Dance, Shadow Ball, Skill Swap, Sky Attack, Snore, Sucker Punch, Trick, Trick Room, Twister, Wish.
+**Removed:** Drain Punch, Power Gem.
 
-- **Natural/restored level-up:** Ominous Wind (Lv. 20), Wish (Lv. 48).
-- **Thematic level-up (custom):** Calm Mind (Lv. 40), Trick (Lv. 44), Trick Room (Lv. 46), Dream Eater (Lv. 50), Sky Attack (Lv. 56).
-- **Egg (Natu family):** Psych Up, Roost, Skill Swap, Steel Wing, Sucker Punch, Zen Headbutt.
-- **TM/HM/elemental tutor:** Rain Dance, Shadow Ball.
-- **Blackthorn tutor:** Aerial Ace, Air Cutter, Baton Pass, Dazzling Gleam, Detect, Double Team, Double-Edge, Endure, Foul Play, Frustration, Giga Drain, Giga Impact, Mimic, Nightmare, Pain Split, Snore, Twister.
-- **Evolution access:** Cosmic Power, Psyshock.
+- **Removed machine flags:** Drain Punch, Power Gem.
+- **Added Blackthorn lessons:** Wild Charge.
 
-## Yanma
+### Riolu
 
-**Newly available (20):** Air Cutter, Defog, Dream Eater, Endure, Feint Attack, Frustration, Giga Drain, Lunge, Mimic, Ominous Wind, Psych Up, Psychic, Roost, Shadow Ball, Snore, Sonic Boom, Steel Wing, Struggle Bug, Swords Dance, Take Down.
+**Added:** Focus Energy, Seismic Toss.
 
-- **Natural/restored level-up:** Air Cutter (Lv. 14), Sonic Boom (Lv. 14), Pursuit (Lv. 30).
-- **Thematic level-up (custom):** Defog (Lv. 34), Roost (Lv. 38).
-- **Egg (Yanma family):** Feint Attack, Signal Beam.
-- **TM/HM/elemental tutor:** Psychic, Shadow Ball, Steel Wing.
-- **Blackthorn tutor:** Dream Eater, Endure, Frustration, Giga Drain, Lunge, Mimic, Ominous Wind, Psych Up, Snore, Struggle Bug, Swords Dance, Take Down.
+**Removed:** Curse.
 
-## Yanmega
+- **Removed machine flags:** Curse.
+- **Added Blackthorn lessons:** Focus Energy, Seismic Toss.
 
-**Newly available (21):** Air Cutter, Crunch, Dream Eater, Endure, Feint Attack, Frustration, Giga Impact, Lunge, Mimic, Mud-Slap, Ominous Wind, Psych Up, Psychic, Scary Face, Shadow Ball, Snore, Sonic Boom, Steel Wing, Struggle Bug, Swords Dance, Take Down.
+### Rookidee
 
-- **Natural/restored level-up:** Sonic Boom (Lv. 14), Pursuit (Lv. 30).
-- **Egg (Yanma family):** Feint Attack, Signal Beam.
-- **TM/HM/elemental tutor:** Mud-Slap, Psychic, Shadow Ball, Steel Wing.
-- **Blackthorn tutor:** Crunch, Dream Eater, Endure, Frustration, Giga Impact, Lunge, Mimic, Ominous Wind, Psych Up, Scary Face, Snore, Struggle Bug, Swords Dance, Take Down.
-- **Evolution access:** Air Cutter.
+**Added:** Frustration, Gust, Razor Wind, Slash.
 
-## Zangoose
+**Removed:** Curse, Mud-Slap, Pursuit, Steel Wing, Sunny Day, Whirlwind.
 
-**Newly available (43):** Agility, Aura Sphere, Baton Pass, Blizzard, Body Slam, Brick Break, Defense Curl, Double Team, Dynamic Punch, Endure, Fire Blast, Flamethrower, Focus Blast, Frustration, Giga Drain, Giga Impact, Gunk Shot, Ice Beam, Icy Wind, Incinerate, Iron Tail, Low Kick, Low Sweep, Mega Kick, Mega Punch, Mimic, Poison Jab, Pursuit, Rain Dance, Reversal, Rock Slide, Rock Tomb, Rollout, Seed Bomb, Seismic Toss, Shadow Claw, Snore, Solar Beam, Surf, Take Down, Taunt, Thunderbolt, Water Pulse.
+- **Removed machine flags:** Curse, Mud-Slap, Steel Wing, Sunny Day.
+- **Removed family egg entries:** Pursuit, Whirlwind.
+- **Added Blackthorn lessons:** Frustration, Gust, Razor Wind, Slash.
 
-- **Natural/restored level-up:** Counter (Lv. 1), Curse (Lv. 1), Disable (Lv. 1), Double Kick (Lv. 1), Flail (Lv. 1), Fury Swipes (Lv. 1), Night Slash (Lv. 1), Pursuit (Lv. 12), Taunt (Lv. 43).
-- **Thematic level-up (custom):** Take Down (Lv. 42), Body Slam (Lv. 44), Giga Impact (Lv. 56).
-- **Egg (Zangoose family):** Belly Drum, Curse, Iron Tail, Metal Claw, Night Slash, Roar.
-- **TM/HM/elemental tutor:** Blizzard, Fire Blast, Flamethrower, Ice Beam, Rain Dance, Rock Tomb, Solar Beam, Surf, Thunderbolt.
-- **Blackthorn tutor:** Agility, Aura Sphere, Baton Pass, Brick Break, Defense Curl, Double Team, Dynamic Punch, Endure, Focus Blast, Frustration, Giga Drain, Gunk Shot, Icy Wind, Incinerate, Low Kick, Low Sweep, Mega Kick, Mega Punch, Mimic, Poison Jab, Reversal, Rock Slide, Rollout, Seed Bomb, Seismic Toss, Shadow Claw, Snore, Water Pulse.
+### Salamence
 
-## Zapdos
+**Added:** Flame Charge, Skull Bash.
 
-**Newly available (30):** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Brave Bird, Defog, Discharge, Double Team, Double-Edge, Endure, Extrasensory, Frustration, Giga Impact, Hail, Headbutt, Leer, Mimic, Ominous Wind, Rage, Razor Wind, Reflect, Signal Beam, Sky Attack, Snore, Take Down, Twister, U-turn, Whirlwind, Wild Charge.
+**Removed:** Curse, Superpower.
 
-- **Natural/restored level-up:** Discharge (Lv. 22).
-- **Thematic level-up (custom):** Signal Beam (Lv. 28), Defog (Lv. 48), Wild Charge (Lv. 50), Brave Bird (Lv. 56), Sky Attack (Lv. 58).
-- **TM/HM/elemental tutor:** Headbutt.
-- **Blackthorn tutor:** Acrobatics, Aerial Ace, Air Cutter, Baton Pass, Bide, Double Team, Double-Edge, Endure, Extrasensory, Frustration, Giga Impact, Hail, Leer, Mimic, Ominous Wind, Rage, Razor Wind, Reflect, Snore, Take Down, Twister, U-turn, Whirlwind.
+- **Removed machine flags:** Curse.
+- **Removed family egg entries:** Superpower.
+- **Added Blackthorn lessons:** Flame Charge, Skull Bash.
 
-## Zubat
+### Salandit
 
-**Newly available (33):** Acrobatics, Aerial Ace, Agility, Air Cutter, Bide, Crunch, Defog, Detect, Double Team, Double-Edge, Dual Wingbeat, Endure, Fly, Frustration, Giga Drain, Headbutt, Heat Wave, Mega Drain, Mimic, Ominous Wind, Rage, Rain Dance, Razor Wind, Roost, Shadow Ball, Sludge Bomb, Snore, Super Fang, Take Down, Taunt, Torment, Twister, U-turn.
+**Added:** None.
 
-- **Natural/restored level-up:** Air Cutter (Lv. 25), Acrobatics (Lv. 30).
-- **Thematic level-up (custom):** Roost (Lv. 36), Heat Wave (Lv. 42).
-- **Breeding fallback:** Giga Drain (Lv. 30).
-- **Egg (Zubat family):** Brave Bird, Curse, Defog, Giga Drain, Hypnosis, Nasty Plot, Steel Wing, Wing Attack, Zen Headbutt.
-- **TM/HM/elemental tutor:** Fly, Headbutt, Rain Dance, Shadow Ball, Sludge Bomb.
-- **Blackthorn tutor:** Aerial Ace, Agility, Bide, Crunch, Detect, Double Team, Double-Edge, Dual Wingbeat, Endure, Frustration, Mega Drain, Mimic, Ominous Wind, Rage, Razor Wind, Snore, Super Fang, Take Down, Taunt, Torment, Twister, U-turn.
+**Removed:** Curse, Dig, Fire Spin, Flame Wheel, Headbutt, Shadow Ball.
 
-## Zweilous
+- **Removed natural entries:** Fire Spin, Flame Wheel.
+- **Removed machine flags:** Curse, Dig, Headbutt, Shadow Ball.
 
-**Newly available (21):** Aqua Tail, Astonish, Beat Up, Double Team, Draco Meteor, Dragon Rage, Endure, Frustration, Head Smash, Incinerate, Psych Up, Rain Dance, Rock Smash, Snore, Spite, Strength, Sunny Day, Superpower, Take Down, Taunt, Torment.
+### Salazzle
 
-- **Natural/restored level-up:** Dragon Rage (Lv. 1).
-- **Thematic level-up (custom):** Spite (Lv. 34), Aqua Tail (Lv. 46), Draco Meteor (Lv. 56).
-- **Egg (Deino family):** Astonish, Head Smash.
-- **TM/HM/elemental tutor:** Rain Dance, Rock Smash, Strength, Sunny Day.
-- **Blackthorn tutor:** Beat Up, Double Team, Endure, Frustration, Incinerate, Psych Up, Snore, Superpower, Take Down, Taunt, Torment.
+**Added:** None.
+
+**Removed:** Curse, Dig, Fire Spin, Flame Wheel, Headbutt, Shadow Ball.
+
+- **Removed natural entries:** Fire Spin, Flame Wheel.
+- **Removed machine flags:** Curse, Dig, Headbutt, Shadow Ball.
+
+### Sandile
+
+**Added:** Aerial Ace, Dragon Claw, Tackle.
+
+**Removed:** Knock Off, Night Slash, Scratch, Swift, Work Up.
+
+- **Removed natural entries:** Scratch.
+- **Removed machine flags:** Knock Off, Night Slash, Swift, Work Up.
+- **Added Blackthorn lessons:** Aerial Ace, Dragon Claw, Tackle.
+
+### Sandshrew
+
+**Added:** None.
+
+**Removed:** Drain Punch, Drill Run, Iron Head.
+
+- **Removed natural entries:** Drill Run.
+- **Removed machine flags:** Drain Punch, Iron Head.
+
+### Sandslash
+
+**Added:** None.
+
+**Removed:** Drain Punch, Iron Head.
+
+- **Removed machine flags:** Drain Punch, Iron Head.
+
+### Scizor
+
+**Added:** Calm Mind, Sonic Boom.
+
+**Removed:** Work Up.
+
+- **Removed natural entries:** Work Up.
+- **Removed machine flags:** Work Up.
+- **Added Blackthorn lessons:** Calm Mind, Sonic Boom.
+
+### Scolipede
+
+**Added:** First Impression, Gunk Shot, Leer, Mortal Spin, Skull Bash, U-turn.
+
+**Removed:** Curse.
+
+- **Removed machine flags:** Curse.
+- **Added Blackthorn lessons:** First Impression, Gunk Shot, Leer, Mortal Spin, Skull Bash, U-turn.
+
+### Scrafty
+
+**Added:** Dynamic Punch, Skull Bash, Tackle.
+
+**Removed:** Circle Throw, Night Slash, Superpower.
+
+- **Removed natural entries:** Circle Throw, Superpower.
+- **Removed machine flags:** Night Slash.
+- **Added Blackthorn lessons:** Dynamic Punch, Skull Bash, Tackle.
+
+### Scraggy
+
+**Added:** Dynamic Punch, Tackle.
+
+**Removed:** Night Slash.
+
+- **Removed machine flags:** Night Slash.
+- **Added Blackthorn lessons:** Dynamic Punch, Tackle.
+
+### Scyther
+
+**Added:** Calm Mind, Sonic Boom.
+
+**Removed:** Work Up.
+
+- **Removed natural entries:** Work Up.
+- **Removed machine flags:** Work Up.
+- **Added Blackthorn lessons:** Calm Mind, Sonic Boom.
+
+### Seadra
+
+**Added:** None.
+
+**Removed:** Dragon Tail.
+
+- **Removed natural entries:** Dragon Tail.
+
+### Seaking
+
+**Added:** Thunderbolt.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Thunderbolt.
+
+### Sealeo
+
+**Added:** Liquidation.
+
+**Removed:** Freeze-Dry.
+
+- **Removed natural entries:** Freeze-Dry.
+- **Added Blackthorn lessons:** Liquidation.
+
+### Seel
+
+**Added:** Flail.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Flail.
+
+### Sentret
+
+**Added:** Dizzy Punch.
+
+**Removed:** Drain Punch, Iron Head, Rock Tomb.
+
+- **Removed machine flags:** Drain Punch, Iron Head, Rock Tomb.
+- **Added Blackthorn lessons:** Dizzy Punch.
+
+### Seviper
+
+**Added:** Dragon Pulse, Leer, Scale Shot.
+
+**Removed:** Cross Poison, Foul Play, Pursuit, Spite.
+
+- **Removed natural entries:** Cross Poison, Foul Play.
+- **Removed family egg entries:** Pursuit, Spite.
+- **Added Blackthorn lessons:** Dragon Pulse, Leer, Scale Shot.
+
+### Shelgon
+
+**Added:** None.
+
+**Removed:** Curse, Earthquake, Scale Shot, Superpower.
+
+- **Removed natural entries:** Scale Shot.
+- **Removed machine flags:** Curse, Earthquake.
+- **Removed family egg entries:** Superpower.
+
+### Shellder
+
+**Added:** None.
+
+**Removed:** None.
+
+
+### Shieldon
+
+**Added:** Body Press, Self-Destruct.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Body Press, Self-Destruct.
+
+### Shroomish
+
+**Added:** None.
+
+**Removed:** Curse.
+
+- **Removed machine flags:** Curse.
+
+### Shuckle
+
+**Added:** Bug Buzz.
+
+**Removed:** Body Press, Fury Cutter.
+
+- **Removed natural entries:** Body Press.
+- **Removed machine flags:** Fury Cutter.
+- **Added Blackthorn lessons:** Bug Buzz.
+
+### Shuppet
+
+**Added:** Lick, Zen Headbutt.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Lick, Zen Headbutt.
+
+### Sirfetch'd
+
+**Added:** Focus Blast, Hurricane, Vacuum Wave.
+
+**Removed:** Bulk Up, Circle Throw, Drain Punch, Force Palm, Hyper Beam, Iron Head, Low Sweep, Sacred Sword.
+
+- **Removed natural entries:** Circle Throw, Force Palm, Low Sweep, Sacred Sword.
+- **Removed machine flags:** Bulk Up, Drain Punch, Headbutt, Hyper Beam, Iron Head, Mud-Slap, Thief.
+- **Removed family egg entries:** Flail, Foresight, Gust, Mirror Move, Mud-Slap.
+- **Removed fallback lessons:** Air Cutter, Ominous Wind.
+- **Added Blackthorn lessons:** Focus Blast, Frustration, Hurricane, Iron Tail, Psych Up, Razor Wind, U-turn, Vacuum Wave.
+
+### Sizzlipede
+
+**Added:** Frustration, Gyro Ball.
+
+**Removed:** Agility, Curse, Fire Blast, Flame Charge, Flamethrower, Fury Cutter, Scary Face, Swagger, Will-O-Wisp, X-Scissor.
+
+- **Removed machine flags:** Curse, Fire Blast, Flamethrower, Fury Cutter, Swagger, Will-O-Wisp.
+- **Removed family egg entries:** Agility, Flame Charge, Scary Face, X-Scissor.
+- **Added Blackthorn lessons:** Frustration, Gyro Ball.
+
+### Skarmory
+
+**Added:** Razor Wind, Scale Shot, Skull Bash.
+
+**Removed:** U-turn.
+
+- **Removed fallback lessons:** U-turn.
+- **Added Blackthorn lessons:** Razor Wind, Scale Shot, Skull Bash.
+
+### Skiploom
+
+**Added:** Agility, Air Cutter.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Agility, Air Cutter.
+
+### Slowbro
+
+**Added:** Ancient Power, Power Gem.
+
+**Removed:** Iron Head.
+
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Ancient Power, Power Gem.
+
+### Slowking
+
+**Added:** Ancient Power.
+
+**Removed:** Iron Head, Psycho Cut, Recover.
+
+- **Removed natural entries:** Psycho Cut, Recover.
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Ancient Power.
+
+### Slowpoke
+
+**Added:** None.
+
+**Removed:** Iron Head.
+
+- **Removed machine flags:** Iron Head.
+
+### Slugma
+
+**Added:** None.
+
+**Removed:** None.
+
+
+### Smeargle
+
+**Added:** None.
+
+**Removed:** None.
+
+
+### Smoochum
+
+**Added:** Dazzling Gleam, Dizzy Punch, Petal Dance.
+
+**Removed:** Drain Punch, Lovely Kiss.
+
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Lovely Kiss.
+- **Added Blackthorn lessons:** Dazzling Gleam, Dizzy Punch, Petal Dance.
+
+### Sneasel
+
+**Added:** Moonlight.
+
+**Removed:** Drain Punch, Freeze-Dry, Ice Fang, Iron Head.
+
+- **Removed natural entries:** Ice Fang.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Removed fallback lessons:** Freeze-Dry.
+- **Added Blackthorn lessons:** Moonlight.
+
+### Sneasler
+
+**Added:** Bulldoze, Dark Pulse, Foresight, Frustration, Fury Cutter, Hail, Hex, Iron Tail, Knock Off, Mud-Slap, Psych Up, Seismic Toss, Snore, Superpower, Thunder Punch, Torment.
+
+**Removed:** Cross Poison, Curse, Headbutt, Iron Head, Pursuit, Surf, Triple Axel, Whirlpool.
+
+- **Removed natural entries:** Cross Poison.
+- **Removed machine flags:** Curse, Headbutt, Iron Head, Surf, Whirlpool.
+- **Removed family egg entries:** Pursuit.
+- **Removed fallback lessons:** Triple Axel.
+- **Added Blackthorn lessons:** Bulldoze, Dark Pulse, Foresight, Frustration, Fury Cutter, Hail, Hex, Iron Tail, Knock Off, Mud-Slap, Psych Up, Seismic Toss, Snore, Superpower, Thunder Punch, Torment.
+
+### Snorlax
+
+**Added:** Lovely Kiss, Splash, Sweet Kiss.
+
+**Removed:** Drain Punch, Swift.
+
+- **Removed machine flags:** Drain Punch, Swift.
+- **Added Blackthorn lessons:** Lovely Kiss, Splash, Sweet Kiss.
+
+### Snorunt
+
+**Added:** None.
+
+**Removed:** Confuse Ray, Curse, Destiny Bond, Freeze-Dry.
+
+- **Removed natural entries:** Freeze-Dry.
+- **Removed machine flags:** Curse.
+- **Removed family egg entries:** Confuse Ray, Destiny Bond.
+
+### Snover
+
+**Added:** Seismic Toss.
+
+**Removed:** Freeze-Dry, Sunny Day.
+
+- **Removed natural entries:** Freeze-Dry.
+- **Removed machine flags:** Sunny Day.
+- **Added Blackthorn lessons:** Seismic Toss.
+
+### Snubbull
+
+**Added:** None.
+
+**Removed:** Drain Punch.
+
+- **Removed machine flags:** Drain Punch.
+
+### Spearow
+
+**Added:** Hurricane, Sonic Boom.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Hurricane, Sonic Boom.
+
+### Spheal
+
+**Added:** Liquidation.
+
+**Removed:** Freeze-Dry.
+
+- **Removed natural entries:** Freeze-Dry.
+- **Added Blackthorn lessons:** Liquidation.
+
+### Spinarak
+
+**Added:** False Swipe, Growth, Headbutt.
+
+**Removed:** Energy Ball, Fury Cutter.
+
+- **Removed machine flags:** Energy Ball, Fury Cutter.
+- **Added Blackthorn lessons:** False Swipe, Growth, Headbutt.
+
+### Spoink
+
+**Added:** Hypnosis, Mud Shot, Pay Day, Shadow Punch, Will-O-Wisp.
+
+**Removed:** Curse.
+
+- **Removed machine flags:** Curse.
+- **Added Blackthorn lessons:** Hypnosis, Mud Shot, Pay Day, Shadow Punch, Will-O-Wisp.
+
+### Squirtle
+
+**Added:** Zap Cannon.
+
+**Removed:** Dark Pulse, Drain Punch.
+
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Dark Pulse.
+- **Added Blackthorn lessons:** Zap Cannon.
+
+### Squirtle (Clone)
+
+**Added:** Zap Cannon.
+
+**Removed:** Dark Pulse, Drain Punch.
+
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Dark Pulse.
+- **Added Blackthorn lessons:** Zap Cannon.
+
+### Stantler
+
+**Added:** Confusion, Psyshield Bash, Safeguard.
+
+**Removed:** Horn Leech.
+
+- **Removed natural entries:** Horn Leech.
+- **Added Blackthorn lessons:** Confusion, Psyshield Bash, Safeguard.
+
+### Staraptor
+
+**Added:** Blaze Kick, Brick Break, Bulk Up, Focus Blast, Focus Energy, Gust, Knock Off, Low Sweep, Outrage, Peck, Razor Wind, Seismic Toss, Skull Bash, Torment, Vacuum Wave.
+
+**Removed:** Curse, Headbutt, Strength.
+
+- **Removed machine flags:** Curse, Headbutt, Strength.
+- **Added Blackthorn lessons:** Blaze Kick, Brick Break, Bulk Up, Focus Blast, Focus Energy, Gust, Knock Off, Low Sweep, Outrage, Peck, Razor Wind, Seismic Toss, Skull Bash, Torment, Vacuum Wave.
+
+### Staravia
+
+**Added:** Giga Impact, Gust, Knock Off, Peck, Skull Bash, Sky Attack, Vacuum Wave.
+
+**Removed:** Curse, Headbutt.
+
+- **Removed machine flags:** Curse, Headbutt.
+- **Added Blackthorn lessons:** Giga Impact, Gust, Knock Off, Peck, Skull Bash, Sky Attack, Vacuum Wave.
+
+### Starly
+
+**Added:** Giga Impact, Gust, Knock Off, Peck.
+
+**Removed:** Curse, Headbutt.
+
+- **Removed machine flags:** Curse, Headbutt.
+- **Added Blackthorn lessons:** Giga Impact, Gust, Knock Off, Peck.
+
+### Starmie
+
+**Added:** Ancient Power, Aqua Jet, Bulk Up, Liquidation, Safeguard, Self-Destruct, Triple Axel, Zen Headbutt.
+
+**Removed:** Aurora Beam, Barrier, Supersonic.
+
+- **Removed family egg entries:** Aurora Beam, Barrier, Supersonic.
+- **Added Blackthorn lessons:** Ancient Power, Aqua Jet, Bulk Up, Liquidation, Safeguard, Self-Destruct, Triple Axel, Zen Headbutt.
+
+### Staryu
+
+**Added:** Aqua Jet, Safeguard, Self-Destruct.
+
+**Removed:** Aurora Beam, Barrier, Supersonic.
+
+- **Removed natural entries:** Aurora Beam, Barrier, Supersonic.
+- **Removed family egg entries:** Aurora Beam, Barrier, Supersonic.
+- **Added Blackthorn lessons:** Aqua Jet, Safeguard, Self-Destruct.
+
+### Steelix
+
+**Added:** Sharpen.
+
+**Removed:** Mud Shot.
+
+- **Removed natural entries:** Mud Shot.
+- **Added Blackthorn lessons:** Sharpen.
+
+### Steenee
+
+**Added:** Growth, Power Whip.
+
+**Removed:** Curse, Cut, Flash, Leech Seed.
+
+- **Removed machine flags:** Curse, Cut, Flash.
+- **Removed family egg entries:** Leech Seed.
+- **Added Blackthorn lessons:** Growth, Power Whip.
+
+### Sudowoodo
+
+**Added:** Tackle.
+
+**Removed:** Ancient Power, Bounce, Charm, Leer, Reversal.
+
+- **Removed natural entries:** Bounce.
+- **Removed fallback lessons:** Ancient Power.
+- **Added Blackthorn lessons:** Tackle.
+
+### Suicune
+
+**Added:** Hurricane.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Hurricane.
+
+### Sunflora
+
+**Added:** Splash.
+
+**Removed:** Flamethrower, Incinerate, Wood Hammer.
+
+- **Removed natural entries:** Flamethrower, Incinerate.
+- **Removed fallback lessons:** Wood Hammer.
+- **Added Blackthorn lessons:** Splash.
+
+### Sunkern
+
+**Added:** Splash.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Splash.
+
+### Swablu
+
+**Added:** None.
+
+**Removed:** Bounce, Curse, Draining Kiss, Earthquake, Fire Blast, Flamethrower.
+
+- **Removed natural entries:** Bounce, Draining Kiss.
+- **Removed machine flags:** Curse, Earthquake, Fire Blast, Flamethrower.
+
+### Swinub
+
+**Added:** Whirlwind.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Whirlwind.
+
+### Sylveon
+
+**Added:** Grass Knot, Growth, Rock Smash, Taunt.
+
+**Removed:** Iron Head.
+
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Grass Knot, Growth, Rock Smash, Taunt.
+
+### Talonflame
+
+**Added:** Blaze Kick, Vacuum Wave, Wing Attack.
+
+**Removed:** Curse, Headbutt, Pursuit, Strength.
+
+- **Removed machine flags:** Curse, Headbutt, Strength.
+- **Removed family egg entries:** Pursuit, Sky Attack.
+- **Added Blackthorn lessons:** Blaze Kick, Sky Attack, Vacuum Wave, Wing Attack.
+
+### Tangela
+
+**Added:** None.
+
+**Removed:** None.
+
+
+### Tangrowth
+
+**Added:** None.
+
+**Removed:** Wood Hammer.
+
+- **Removed natural entries:** Wood Hammer.
+
+### Tauros
+
+**Added:** Quick Attack.
+
+**Removed:** Brick Break, Crush Claw, Superpower.
+
+- **Removed natural entries:** Brick Break, Crush Claw, Superpower.
+- **Added Blackthorn lessons:** Quick Attack.
+
+### Teddiursa
+
+**Added:** Tackle.
+
+**Removed:** Crush Claw, Drain Punch.
+
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Drain Punch.
+- **Added Blackthorn lessons:** Tackle.
+
+### Teddiursa (Bloodmoon)
+
+**Added:** Tackle.
+
+**Removed:** Crush Claw, Drain Punch.
+
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Belly Drum, Counter, Fury Cutter, Seismic Toss.
+- **Added Blackthorn lessons:** Belly Drum, Counter, Seismic Toss, Tackle.
+
+### Tentacool
+
+**Added:** None.
+
+**Removed:** Energy Ball.
+
+- **Removed machine flags:** Energy Ball.
+
+### Tentacruel
+
+**Added:** None.
+
+**Removed:** Energy Ball.
+
+- **Removed machine flags:** Energy Ball.
+
+### Timburr
+
+**Added:** None.
+
+**Removed:** Cross Chop.
+
+- **Removed family egg entries:** Cross Chop.
+
+### Tinkatink
+
+**Added:** Brick Break, Bulldoze, False Swipe, Rock Throw, Screech, Tackle.
+
+**Removed:** Attract, Bullet Punch, Charm, Curse, Hidden Power, Iron Head, Return, Strength, Swagger, Toxic.
+
+- **Removed natural entries:** Bullet Punch.
+- **Removed machine flags:** Attract, Curse, Hidden Power, Iron Head, Return, Strength, Swagger, Toxic.
+- **Removed family egg entries:** Bullet Punch, Charm.
+- **Added Blackthorn lessons:** Brick Break, Bulldoze, False Swipe, Rock Throw, Screech, Tackle.
+
+### Tinkaton
+
+**Added:** Bulk Up, False Swipe, Rock Throw, Screech, Tackle, Wood Hammer.
+
+**Removed:** Attract, Bullet Punch, Charm, Curse, Hammer Arm, Hidden Power, Iron Defense, Iron Head, Return, Strength, Swagger, Toxic.
+
+- **Removed natural entries:** Hammer Arm, Iron Defense, Iron Head.
+- **Removed machine flags:** Attract, Curse, Hidden Power, Iron Head, Return, Strength, Swagger, Toxic.
+- **Removed family egg entries:** Bullet Punch, Charm.
+- **Added Blackthorn lessons:** Bulk Up, False Swipe, Rock Throw, Screech, Tackle, Wood Hammer.
+
+### Tinkatuff
+
+**Added:** Bulk Up, Bulldoze, False Swipe, Rock Throw, Screech, Tackle.
+
+**Removed:** Attract, Bullet Punch, Charm, Curse, Hammer Arm, Hidden Power, Iron Defense, Iron Head, Return, Strength, Swagger, Toxic.
+
+- **Removed natural entries:** Hammer Arm, Iron Defense.
+- **Removed machine flags:** Attract, Curse, Hidden Power, Iron Head, Return, Strength, Swagger, Toxic.
+- **Removed family egg entries:** Bullet Punch, Charm.
+- **Added Blackthorn lessons:** Bulk Up, Bulldoze, False Swipe, Rock Throw, Screech, Tackle.
+
+### Tirtouga
+
+**Added:** None.
+
+**Removed:** Head Smash, Headbutt, Iron Head, Mud-Slap, Power Gem, Roar.
+
+- **Removed machine flags:** Headbutt, Iron Head, Mud-Slap, Power Gem, Roar.
+- **Removed family egg entries:** Head Smash.
+
+### Togekiss
+
+**Added:** Hurricane, Tackle.
+
+**Removed:** Bounce, Rock Tomb.
+
+- **Removed machine flags:** Rock Tomb.
+- **Removed fallback lessons:** Bounce.
+- **Added Blackthorn lessons:** Hurricane, Tackle.
+
+### Togepi
+
+**Added:** Fairy Wind, Tackle.
+
+**Removed:** Rock Tomb.
+
+- **Removed machine flags:** Rock Tomb.
+- **Added Blackthorn lessons:** Fairy Wind, Tackle.
+
+### Togetic
+
+**Added:** Air Slash, Hurricane, Tackle.
+
+**Removed:** Aura Sphere, Bounce, Rock Tomb.
+
+- **Removed natural entries:** Aura Sphere.
+- **Removed machine flags:** Rock Tomb.
+- **Removed fallback lessons:** Bounce.
+- **Added Blackthorn lessons:** Air Slash, Hurricane, Tackle.
+
+### Torkoal
+
+**Added:** None.
+
+**Removed:** Dig, Iron Head, Roar, Shadow Ball.
+
+- **Removed natural entries:** Iron Head.
+- **Removed machine flags:** Dig, Iron Head, Roar, Shadow Ball.
+
+### Totodile
+
+**Added:** Bubble Beam, Bulldoze, Dark Pulse, False Swipe, Night Slash, Outrage, Submission, Tackle.
+
+**Removed:** Agility, Flash, Fly, Iron Head, Strength.
+
+- **Removed natural entries:** Agility.
+- **Removed machine flags:** Flash, Fly, Iron Head, Strength.
+- **Added Blackthorn lessons:** Bubble Beam, Bulldoze, Dark Pulse, False Swipe, Night Slash, Outrage, Submission, Tackle.
+
+### Toxapex
+
+**Added:** None.
+
+**Removed:** Body Press, Curse, Sludge, Spikes, Waterfall, Whirlpool.
+
+- **Removed natural entries:** Body Press.
+- **Removed machine flags:** Curse, Waterfall, Whirlpool.
+- **Removed family egg entries:** Sludge, Spikes.
+
+### Toxicroak
+
+**Added:** Earth Power, Seismic Toss.
+
+**Removed:** Acid Armor, Curse, Force Palm, Superpower.
+
+- **Removed natural entries:** Force Palm, Superpower.
+- **Removed machine flags:** Curse.
+- **Removed family egg entries:** Acid Armor.
+- **Added Blackthorn lessons:** Earth Power, Seismic Toss.
+
+### Trapinch
+
+**Added:** Hyper Voice.
+
+**Removed:** Curse, Fire Blast, Flamethrower, Roost, U-turn.
+
+- **Removed machine flags:** Curse, Fire Blast, Flamethrower.
+- **Removed family egg entries:** Roost, U-turn.
+- **Added Blackthorn lessons:** Hyper Voice.
+
+### Trevenant
+
+**Added:** Shadow Punch, Shadow Sneak.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Shadow Punch, Shadow Sneak.
+
+### Tsareena
+
+**Added:** Growth.
+
+**Removed:** Brick Break, Circle Throw, Curse, Cut, Dig, Flash, Iron Head, Iron Tail, Leaf Blade, Leech Seed, Rock Smash, Strength, Swords Dance, Thief, Wood Hammer.
+
+- **Removed natural entries:** Brick Break, Circle Throw, Leaf Blade, Swords Dance, Wood Hammer.
+- **Removed machine flags:** Curse, Cut, Dig, Flash, Iron Head, Rock Smash, Strength, Thief.
+- **Removed family egg entries:** Leech Seed.
+- **Removed fallback lessons:** Iron Tail.
+- **Added Blackthorn lessons:** Growth.
+
+### Typhlosion
+
+**Added:** None.
+
+**Removed:** Drain Punch.
+
+- **Removed machine flags:** Drain Punch.
+
+### Tyranitar
+
+**Added:** Rage, Scale Shot.
+
+**Removed:** Drain Punch.
+
+- **Removed machine flags:** Drain Punch.
+- **Added Blackthorn lessons:** Rage, Scale Shot.
+
+### Tyrantrum
+
+**Added:** None.
+
+**Removed:** Headbutt, Mud-Slap, Power Gem.
+
+- **Removed machine flags:** Headbutt, Mud-Slap, Power Gem.
+
+### Tyrogue
+
+**Added:** Dizzy Punch, Rage.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Dizzy Punch, Rage.
+
+### Tyrunt
+
+**Added:** None.
+
+**Removed:** Headbutt, Mud-Slap, Power Gem.
+
+- **Removed machine flags:** Headbutt, Mud-Slap, Power Gem.
+
+### Umbreon
+
+**Added:** Disarming Voice, Grass Knot, Growth, Knock Off, Ominous Wind, Razor Wind, Rock Smash.
+
+**Removed:** Iron Head.
+
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Disarming Voice, Grass Knot, Growth, Knock Off, Ominous Wind, Razor Wind, Rock Smash.
+
+### Unown
+
+**Added:** None.
+
+**Removed:** Calm Mind, Psychic, Shadow Ball, Trick.
+
+- **Removed natural entries:** Calm Mind, Psychic, Trick.
+- **Removed machine flags:** Shadow Ball.
+
+### Ursaluna
+
+**Added:** Stealth Rock, Tackle.
+
+**Removed:** Crush Claw, Sandstorm.
+
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Sandstorm.
+- **Added Blackthorn lessons:** Stealth Rock, Tackle.
+
+### Ursaluna (Bloodmoon)
+
+**Added:** Stealth Rock, Tackle.
+
+**Removed:** Crush Claw, Sandstorm.
+
+- **Removed natural entries:** Work Up.
+- **Removed machine flags:** Attract, Curse, Cut, Fury Cutter, Headbutt, Hone Claws, Mud-Slap, Rock Smash, Sandstorm, Strength, Swagger, Work Up, Zap Cannon.
+- **Removed family egg entries:** Belly Drum, Counter, Fury Cutter, Seismic Toss.
+- **Added Blackthorn lessons:** Aerial Ace, Frustration.
+
+### Ursaring
+
+**Added:** Stealth Rock, Tackle.
+
+**Removed:** Crush Claw, Drain Punch.
+
+- **Removed natural entries:** Crush Claw.
+- **Removed machine flags:** Drain Punch.
+- **Added Blackthorn lessons:** Stealth Rock, Tackle.
+
+### Ursaring (Bloodmoon)
+
+**Added:** Stealth Rock, Tackle.
+
+**Removed:** Calm Mind, Crush Claw, Drain Punch, Earth Power, Sandstorm.
+
+- **Removed natural entries:** Calm Mind, Earth Power.
+- **Removed machine flags:** Drain Punch, Sandstorm.
+- **Removed family egg entries:** Belly Drum, Counter, Fury Cutter, Seismic Toss.
+- **Added Blackthorn lessons:** Belly Drum, Counter, Seismic Toss, Stealth Rock, Tackle.
+
+### Vaporeon
+
+**Added:** Bubble, Disarming Voice, Grass Knot, Growth, Taunt.
+
+**Removed:** Iron Head.
+
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Bubble, Disarming Voice, Grass Knot, Growth, Taunt.
+
+### Venipede
+
+**Added:** Leer, Rock Tomb.
+
+**Removed:** Cross Poison, Curse.
+
+- **Removed natural entries:** Cross Poison.
+- **Removed machine flags:** Curse.
+- **Added Blackthorn lessons:** Leer, Rock Tomb.
+
+### Venomoth
+
+**Added:** Fly, Hurricane.
+
+**Removed:** Fury Cutter.
+
+- **Removed machine flags:** Fury Cutter.
+- **Added Blackthorn lessons:** Fly, Hurricane.
+
+### Venonat
+
+**Added:** None.
+
+**Removed:** Fury Cutter.
+
+- **Removed machine flags:** Fury Cutter.
+
+### Venusaur
+
+**Added:** Ancient Power.
+
+**Removed:** Wood Hammer.
+
+- **Removed natural entries:** Wood Hammer.
+- **Added Blackthorn lessons:** Ancient Power.
+
+### Venusaur (Clone)
+
+**Added:** Ancient Power.
+
+**Removed:** Wood Hammer.
+
+- **Removed natural entries:** Wood Hammer.
+- **Added Blackthorn lessons:** Ancient Power.
+
+### Vibrava
+
+**Added:** Hurricane, Hyper Voice.
+
+**Removed:** Curse, Fire Blast, Flamethrower.
+
+- **Removed machine flags:** Curse, Fire Blast, Flamethrower.
+- **Removed family egg entries:** Roost, U-turn.
+- **Added Blackthorn lessons:** Hurricane, Hyper Voice, Roost, U-turn.
+
+### Victreebel
+
+**Added:** Lovely Kiss, Sweet Kiss, Toxic Spikes.
+
+**Removed:** Wood Hammer.
+
+- **Removed natural entries:** Wood Hammer.
+- **Added Blackthorn lessons:** Lovely Kiss, Sweet Kiss, Toxic Spikes.
+
+### Vikavolt
+
+**Added:** Hurricane.
+
+**Removed:** Curse, Flash, Fury Cutter, Nuzzle.
+
+- **Removed natural entries:** Nuzzle.
+- **Removed machine flags:** Curse, Flash, Fury Cutter.
+- **Removed family egg entries:** Agility.
+- **Added Blackthorn lessons:** Hurricane.
+
+### Vileplume
+
+**Added:** Quiver Dance.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Quiver Dance.
+
+### Volcarona
+
+**Added:** None.
+
+**Removed:** Curse, Energy Ball, Fury Cutter.
+
+- **Removed machine flags:** Curse, Energy Ball, Fury Cutter.
+
+### Voltorb
+
+**Added:** Bug Buzz.
+
+**Removed:** Nuzzle, Recover, Rock Tomb.
+
+- **Removed natural entries:** Nuzzle, Recover.
+- **Removed machine flags:** Rock Tomb.
+- **Removed family egg entries:** Nuzzle, Recover.
+- **Added Blackthorn lessons:** Bug Buzz.
+
+### Vulpix
+
+**Added:** Flame Wheel, Heal Bell.
+
+**Removed:** Iron Head.
+
+- **Removed machine flags:** Iron Head.
+- **Added Blackthorn lessons:** Flame Wheel, Heal Bell.
+
+### Walrein
+
+**Added:** None.
+
+**Removed:** Freeze-Dry, Slack Off.
+
+- **Removed natural entries:** Freeze-Dry, Slack Off.
+
+### Wartortle
+
+**Added:** Zap Cannon.
+
+**Removed:** Dark Pulse, Drain Punch.
+
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Dark Pulse.
+- **Added Blackthorn lessons:** Zap Cannon.
+
+### Wartortle (Clone)
+
+**Added:** Zap Cannon.
+
+**Removed:** Dark Pulse, Drain Punch.
+
+- **Removed machine flags:** Drain Punch.
+- **Removed family egg entries:** Dark Pulse.
+- **Added Blackthorn lessons:** Zap Cannon.
+
+### Watu
+
+**Added:** Safeguard.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Aerial Ace, Air Cutter, Baton Pass, Dazzling Gleam, Detect, Double Team, Double-Edge, Dual Wingbeat, Endure, Frustration, Giga Drain, Grass Knot, Mimic, Nightmare, Pain Split, Sky Attack, Snore, Twister, U-turn.
+
+### Weavile
+
+**Added:** Moonlight.
+
+**Removed:** Drain Punch, Freeze-Dry, Ice Fang, Iron Head.
+
+- **Removed natural entries:** Ice Fang.
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Removed fallback lessons:** Freeze-Dry.
+- **Added Blackthorn lessons:** Moonlight.
+
+### Weedle
+
+**Added:** Facade.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Facade.
+
+### Weepinbell
+
+**Added:** Lovely Kiss, Sweet Kiss, Toxic Spikes.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Lovely Kiss, Sweet Kiss, Toxic Spikes.
+
+### Weezing
+
+**Added:** Snarl, Strange Steam.
+
+**Removed:** Fairy Wind, Rock Tomb.
+
+- **Removed machine flags:** Rock Tomb.
+- **Added Blackthorn lessons:** Snarl, Strange Steam.
+
+### Whirlipede
+
+**Added:** Leer, Mortal Spin, Rock Tomb.
+
+**Removed:** Cross Poison, Curse.
+
+- **Removed natural entries:** Cross Poison.
+- **Removed machine flags:** Curse.
+- **Added Blackthorn lessons:** Leer, Mortal Spin, Rock Tomb.
+
+### Wigglytuff
+
+**Added:** Confusion, Dizzy Punch, Fake Out, Petal Dance, Scary Face, Tackle.
+
+**Removed:** Rock Tomb.
+
+- **Removed machine flags:** Rock Tomb.
+- **Added Blackthorn lessons:** Confusion, Dizzy Punch, Fake Out, Petal Dance, Scary Face, Tackle.
+
+### Wimpod
+
+**Added:** None.
+
+**Removed:** Aqua Tail, Bubble, Bug Bite, Curse, Fury Cutter, Ice Beam, Superpower, Whirlpool.
+
+- **Removed natural entries:** Bubble, Bug Bite, Fury Cutter.
+- **Removed machine flags:** Curse, Fury Cutter, Ice Beam, Whirlpool.
+- **Removed family egg entries:** Aqua Tail, Superpower.
+
+### Wobbuffet
+
+**Added:** Mimic.
+
+**Removed:** None.
+
+- **Added Blackthorn lessons:** Mimic.
+
+### Wooper
+
+**Added:** Belly Drum, Scary Face.
+
+**Removed:** Acid Armor, Drain Punch, Iron Head.
+
+- **Removed machine flags:** Drain Punch, Iron Head.
+- **Removed family egg entries:** Acid Armor.
+- **Added Blackthorn lessons:** Belly Drum, Scary Face.
+
+### Wynaut
+
+**Added:** None.
+
+**Removed:** None.
+
+
+### Wyrdeer
+
+**Added:** Confusion, Safeguard.
+
+**Removed:** Horn Leech, Strength.
+
+- **Removed natural entries:** Horn Leech.
+- **Removed machine flags:** Strength.
+- **Added Blackthorn lessons:** Confusion, Safeguard.
+
+### Xatu
+
+**Added:** Safeguard.
+
+**Removed:** None.
+
+- **Removed natural entries:** Psycho Cut.
+- **Removed machine flags:** Energy Ball.
+- **Added Blackthorn lessons:** Safeguard.
+
+### Yanma
+
+**Added:** Hurricane, Sweet Kiss.
+
+**Removed:** Energy Ball, Fury Cutter.
+
+- **Removed machine flags:** Energy Ball, Fury Cutter.
+- **Added Blackthorn lessons:** Hurricane, Sweet Kiss.
+
+### Yanmega
+
+**Added:** Hurricane, Sweet Kiss.
+
+**Removed:** Energy Ball, Fury Cutter.
+
+- **Removed machine flags:** Energy Ball, Fury Cutter.
+- **Added Blackthorn lessons:** Hurricane, Sweet Kiss.
+
+### Zangoose
+
+**Added:** Comet Punch, Fake Out, Skull Bash, Tackle.
+
+**Removed:** Cut, Drain Punch.
+
+- **Removed machine flags:** Cut, Drain Punch.
+- **Added Blackthorn lessons:** Comet Punch, Fake Out, Skull Bash, Tackle.
+
+### Zapdos
+
+**Added:** None.
+
+**Removed:** None.
+
+
+### Zubat
+
+**Added:** Cross Poison, Flail, Hurricane.
+
+**Removed:** Energy Ball.
+
+- **Removed machine flags:** Energy Ball.
+- **Added Blackthorn lessons:** Cross Poison, Flail, Hurricane.
+
+### Zweilous
+
+**Added:** Dragon Dance.
+
+**Removed:** Curse, Dragon Claw, Fire Blast, Flamethrower, Foul Play, Knock Off, Night Slash, Scale Shot, Surf.
+
+- **Removed natural entries:** Foul Play, Scale Shot.
+- **Removed machine flags:** Curse, Dragon Claw, Fire Blast, Flamethrower, Knock Off, Night Slash, Surf.
+- **Added Blackthorn lessons:** Dragon Dance.

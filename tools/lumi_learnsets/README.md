@@ -1,3 +1,32 @@
+# Current move-access authority
+
+The full-history correction in `tools/testdata/historical_move_access.json`
+supersedes the older preservation and SV-only policies described below. It
+covers all 498 roster entries, mainline games including both Legends titles,
+and Lumi 3.0 level-up, egg, machine and tutor tables. Only implemented moves
+are distributed. Unsupported direct assignments are removed; six custom
+species, Pixie Punch and unavoidable custom-evolution carryover are explicit.
+
+```bash
+python tools/audit_historical_move_access.py              # offline verification
+python tools/audit_historical_move_access.py --download   # restore pinned inputs
+python tools/audit_historical_move_access.py --reference  # independent source recheck
+python tools/generate_learnset_additions_report.py
+make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
+```
+
+The receipt pins immutable upstream URLs and SHA-256 hashes. The ignored
+`cache/historical/` directory can be restored with `--download`. Exact source
+codes are recorded for added access. The full correction report is
+`docs/historical-move-access.md`. Missing access uses Blackthorn's existing
+tutor, while valid levels, machines and egg routes remain. Frigibax's
+level-30 Freeze-Dry fallback supplies an independently obtainable egg move.
+
+Level-up regeneration applies the final reconciled placements after older
+project layers, so those layers cannot restore unsupported moves. Blackthorn
+regeneration likewise uses the current receipt. Older receipts remain design
+history; their conflicting preservation requirements are superseded.
+
 # Luminescent 3.0 generators
 
 Two scripts, same approach and shared download cache:

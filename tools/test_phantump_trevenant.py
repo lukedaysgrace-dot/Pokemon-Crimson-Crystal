@@ -108,11 +108,11 @@ def main():
                     for level in (27,28):
                         start=party(species=species,level=level)
                         h.call('LearnLevelMoves',max_frames=300)
-                        check(('HORN_LEECH' in moves(start))==(level==28),
-                              f'{species}: Horn Leech level {level}, rules {rules}')
-                        if level==28:
-                            slot=moves(start).index('HORN_LEECH')
-                            check(h.rd(start+23+slot)==10,species+': Horn Leech PP')
+                        check('HORN_LEECH' not in moves(start),
+                              f'{species}: unsupported Horn Leech at level {level}, rules {rules}')
+                start=party(species='WYRDEER',level=31)
+                h.call('LearnLevelMoves',max_frames=300)
+                check('PSYSHIELD' in moves(start),f'Wyrdeer: Psyshield Bash retained, rules {rules}')
         print(f'PHANTUMP/TREVENANT PASSED: {checks} checks in {rom.name}',flush=True)
     finally:
         h.pyboy.stop(save=False)

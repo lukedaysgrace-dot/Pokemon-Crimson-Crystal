@@ -1,6 +1,9 @@
 # Python virtual environment
 .venv/
 
+# Pinned upstream inputs; compact provenance is checked in with the audit receipt.
+/tools/lumi_learnsets/cache/historical/
+
 # Python cache
 __pycache__/
 *.pyc

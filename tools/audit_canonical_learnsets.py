@@ -317,6 +317,11 @@ def apply(data, canonical, mapping, changes, unsupported):
 
 
 def verify_receipt():
+    from historical_move_access import PATH
+    if PATH.exists():
+        from audit_historical_move_access import verify
+        verify()
+        return
     receipt = json.loads(RECEIPT.read_text(encoding='utf-8'))
     data = breeding_data()
     order, levels, tms, eggs, parents, utility, *_ = data
@@ -390,6 +395,11 @@ def main():
     parser.add_argument('--apply', action='store_true')
     parser.add_argument('--reference', action='store_true', help='Recompare against downloaded pinned source instead of the offline receipt')
     args = parser.parse_args()
+    from historical_move_access import PATH
+    if PATH.exists() and args.reference and not (args.apply or args.plan):
+        from audit_historical_move_access import verify, source_reference
+        verify(source_reference())
+        return
     if args.apply or args.plan:
         parser.error('The catch-all tutor import is retired. Use curated placements in the receipt and tools/redistribute_canonical_moves.py.')
     if RECEIPT.exists() and not (args.plan or args.apply or args.reference):

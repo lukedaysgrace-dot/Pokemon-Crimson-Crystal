@@ -9,6 +9,13 @@ from audit_learnset_variety import ROOT
 
 
 def main():
+    from historical_move_access import PATH, review
+    if PATH.exists():
+        from audit_historical_move_access import verify, write_tutors
+        history = review()
+        write_tutors(breeding_data()[0], history['final_tutors'])
+        verify()
+        return
     receipt = json.loads(RECEIPT.read_text(encoding='utf-8'))
     project = json.loads((ROOT/'tools/testdata/trainer_move_access.json').read_text(encoding='utf-8'))
     data = breeding_data()

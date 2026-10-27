@@ -18,6 +18,11 @@ BASELINE = 'b60a01f1dc52bcc8370ee9e2fdcceb045d001f8c'
 
 
 def main():
+    from historical_move_access import PATH
+    if PATH.exists():
+        from audit_historical_move_access import generate_report
+        generate_report()
+        return
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--git', default=shutil.which('git'))
     args = parser.parse_args()

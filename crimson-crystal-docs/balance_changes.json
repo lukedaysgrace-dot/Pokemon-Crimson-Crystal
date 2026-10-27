@@ -345,16 +345,7 @@
           90
         ]
       },
-      "moves": [
-        {
-          "const": "SHADOW_CLAW",
-          "level": 24
-        },
-        {
-          "const": "SHADOW_SNEAK",
-          "level": 32
-        }
-      ]
+      "moves": []
     },
     "PERSIAN": {
       "moves": [
@@ -467,12 +458,7 @@
           "after": "ANALYTIC"
         }
       ],
-      "moves": [
-        {
-          "const": "TRICK",
-          "level": 35
-        }
-      ]
+      "moves": []
     },
     "VIKAVOLT": {
       "abilities": [
@@ -508,16 +494,7 @@
       }
     },
     "SUNFLORA": {
-      "moves": [
-        {
-          "const": "INCINERATE",
-          "level": 28
-        },
-        {
-          "const": "FLAMETHROWER",
-          "level": 40
-        }
-      ]
+      "moves": []
     },
     "KINGLER": {
       "stats": {
@@ -826,20 +803,10 @@
           100
         ]
       },
-      "moves": [
-        {
-          "const": "SLACK_OFF",
-          "level": 40
-        }
-      ]
+      "moves": []
     },
     "WALREIN": {
-      "moves": [
-        {
-          "const": "SLACK_OFF",
-          "level": 45
-        }
-      ]
+      "moves": []
     },
     "RAITORA": {
       "moves": [
@@ -901,19 +868,10 @@
       }
     },
     "STANTLER": {
-      "moves": [
-        {
-          "const": "HORN_LEECH",
-          "level": 28
-        }
-      ]
+      "moves": []
     },
     "WYRDEER": {
       "moves": [
-        {
-          "const": "HORN_LEECH",
-          "level": 28
-        },
         {
           "const": "PSYSHIELD",
           "level": 31,

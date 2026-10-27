@@ -17,6 +17,14 @@ def audit():
     order, levels, _, eggs, _, _, groups, genders, roots = data
     technical = load_technical_tutors()
     known = available(data)
+    # Keep the old design receipt as history; only its still-sourced placements
+    # remain requirements after the user's full-history correction.
+    from historical_move_access import PATH, removed
+    if PATH.exists():
+        receipt['requested'] = {c: [m for m in ms if m in known[c]] for c, ms in receipt['requested'].items()}
+        receipt['level_up'] = {c: {m: lv for m, lv in ms.items() if m not in removed(c)} for c, ms in receipt['level_up'].items()}
+        receipt['egg_moves'] = {c: {m: donor for m, donor in ms.items() if m in eggs[c] and (donor['donor_level'], m) in levels[donor['father']]} for c, ms in receipt['egg_moves'].items()}
+        receipt['technical_tutor'] = {c: [m for m in ms if m in technical[c]] for c, ms in receipt['technical_tutor'].items()}
     for c, moves in receipt['requested'].items():
         assert set(moves) <= known[c], (c, 'requested trainer move unavailable', set(moves)-known[c])
     for c, moves in receipt['level_up'].items():

@@ -12,6 +12,9 @@ def review():
 
 
 def final_level(species, move, previous):
+    from historical_move_access import removed
+    if move in removed(species):
+        return None
     return review().get('changes', {}).get(species, {}).get(move, {}).get('after', previous)
 
 

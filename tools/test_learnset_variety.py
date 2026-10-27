@@ -124,10 +124,18 @@ try:
  for c,row in receipt['tm_changes'].items():
   sid=party(c)
   for move in set(row['after'])-set(row['before']):
+   if move not in tms[c]:continue # Superseded unsupported TM-slot assignments.
    mid=h.move_id(con.move_index(move))
    h.wr(h.s('wCurPartySpecies'),sid)
    h.wr(h.s('wPutativeTMHMMove'),mid)
    check(h.call('CanLearnTMHMMove')['c']!=0,c+' compatibility '+move)
+ from historical_move_access import review as historical_review
+ for c,moves in historical_review().get('changes',{}).get('tmhm_removals',{}).items():
+  sid=party(c)
+  for move in moves:
+   h.wr(h.s('wCurPartySpecies'),sid)
+   h.wr(h.s('wPutativeTMHMMove'),h.move_id(con.move_index(move)))
+   check(h.call('CanLearnTMHMMove')['c']==0,c+' removed unsupported compatibility '+move)
  canonical=json.loads((ROOT/'tools/testdata/canonical_learnsets.json').read_text())
  for c,moves in canonical['changes']['tmhm'].items():
   sid=party(c)

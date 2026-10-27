@@ -1,3 +1,5 @@
+> Historical design record: the [full-history source correction](historical-move-access.md) supersedes unsupported additions below. Current Pokémon pages and that report show the final move access.
+
 # Player access to reviewed trainer moves
 
 Implemented 20 October 2026. All **29 distinct species/move combinations across the 47 flagged trainer slots** now have a player acquisition route. These are deliberate project additions; they are recorded separately from the pinned historical canonical compatibility reference.

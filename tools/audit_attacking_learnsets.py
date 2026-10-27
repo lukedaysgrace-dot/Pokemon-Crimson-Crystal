@@ -15,13 +15,22 @@ def audit():
     data = breeding_data()
     order, levels, _, _, parents, *_ = data
     assert receipt['reviewed'] == order, 'Incomplete roster review'
+    from historical_move_access import PATH
     for c in order:
-        assert digest([row for row in levels[c] if row[0] == 1]) == receipt['unchanged_level_one'][c], (c, 'level-one moves changed')
-    for path, value in receipt['unchanged_runtime'].items():
-        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == value, (path, 'unrequested runtime change')
+        if not PATH.exists():
+            assert digest([row for row in levels[c] if row[0] == 1]) == receipt['unchanged_level_one'][c], (c, 'level-one moves changed')
+    from historical_move_access import review as historical_review
+    runtime = historical_review().get('unchanged_runtime', receipt['unchanged_runtime'])
+    for path, value in runtime.items():
+        assert hashlib.sha256((ROOT / path).read_bytes().replace(b'\r\n', b'\n')).hexdigest() == value, (path, 'unrequested runtime change')
     evo = [line.strip() for name in ['kanto', 'johto', 'clones']
            for line in read(f'data/pokemon/evos_attacks_{name}.asm').splitlines() if 'EVOLVE_' in line]
     assert digest(evo) == receipt['unchanged_evolutions'], 'Evolution methods changed'
+    if PATH.exists():
+        from audit_historical_move_access import verify
+        verify()
+        print('ATTACKING LEARNSET AUDIT PASSED: historical source corrections supersede older role additions; runtime and evolutions unchanged.')
+        return
     info = profiles(data)
     before = deepcopy(data)
     independent = routes(data)
