@@ -1442,6 +1442,7 @@ SaveScreen_LoadNeighbor::
 	ret
 
 GetMovementPermissions::
+	EXPORT GetMovementPermissions.CheckHiNybble
 	xor a
 	ld [wTilePermissions], a
 	call .LeftRight
@@ -1453,7 +1454,7 @@ GetMovementPermissions::
 	ld e, a
 	call GetCoordTile
 	ld [wPlayerStandingTile], a
-	call .CheckHiNybble
+	call CeruleanCaveCollisionHook
 	ret nz
 
 	ld a, [wPlayerStandingTile]

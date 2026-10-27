@@ -120,6 +120,9 @@
 	const MUSIC_SILENT_CRYPT                  ; 6f
 	const MUSIC_UNDERGROUND_PATH              ; 70
 	const MUSIC_HUDSON_HAWK_TITLE              ; 71
+	const MUSIC_CERULEAN_CAVE_RBY              ; 72
+	const MUSIC_GREEN_ENCOUNTER                ; 73
+	const MUSIC_MEET_BLUE_CLOAK                ; 74
 
 ; GetMapMusic picks music for this value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $64

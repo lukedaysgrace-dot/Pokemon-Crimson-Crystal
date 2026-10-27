@@ -195,6 +195,20 @@ SECTION "Extra Songs 13", ROMX
 
 INCLUDE "audio/music/hudsonhawktitle.asm"
 
+SECTION "Red Blue Cerulean Cave Music", ROMX
+
+INCLUDE "audio/music/ceruleancaverby.asm"
+
+
+SECTION "Green Encounter Music", ROMX
+
+INCLUDE "audio/music/greenow.asm"
+
+
+SECTION "Blue Cloak Encounter Music", ROMX
+
+INCLUDE "audio/music/meetbluecloak.asm"
+
 
 SECTION "Sound Effects", ROMX
 

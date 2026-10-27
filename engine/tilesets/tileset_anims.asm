@@ -281,12 +281,20 @@ TilesetHoOhWordRoomAnim:
 TilesetKabutoWordRoomAnim:
 TilesetOmanyteWordRoomAnim:
 TilesetAerodactylWordRoomAnim:
-TilesetCeruleanCaveAnim:
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  DoneTileAnimation
+
+TilesetCeruleanCaveAnim:
+; Red/Blue rotates its original water tile every 21 frames, reversing
+; after four rotations. Keep that graphic instead of Crystal's water frames.
+rept 19
+	dw NULL, WaitTileAnimation
+endr
+	dw vTiles2 tile $14, ScrollTileRightLeft
+	dw NULL, DoneTileAnimation
 
 DoneTileAnimation:
 ; Reset the animation command loop.

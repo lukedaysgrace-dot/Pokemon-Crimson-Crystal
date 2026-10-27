@@ -60,6 +60,7 @@ Route20GreenScript:
 	opentext
 	checkevent EVENT_BEAT_GREEN
 	iftrue .Beaten
+	playmusic MUSIC_GREEN_ENCOUNTER
 	writetext Route20GreenBeforeText
 	waitbutton
 	closetext

@@ -159,6 +159,10 @@ def main():
         sounds.clear()
         airborne_frames.clear()
         check(c.map_id() == maps[map_name] and c.position() == position, 'initial native map load: '+map_name)
+        if map_name.startswith('CERULEAN_CAVE_'):
+            music = _parse_constants(ROOT / 'constants/music_constants.asm')['MUSIC_CERULEAN_CAVE_RBY']
+            check(m.read_bytes('wMusicID',2) == bytes((music,0)), 'original Red/Blue Dungeon1 music is playing on '+map_name)
+            check(m.read_bytes('wChannel1Tempo',2) == bytes((144,0)), 'original Dungeon1 tempo 144 is preserved')
 
     def approach():
         c.press('up',hold=4,wait=36)
@@ -262,16 +266,16 @@ def main():
         for name in floors:
             blocks = (ROOT / f'maps/{sources[name]}.ablk').read_bytes()
             def collision(x,y):
-                if not (0 <= x < 34 and 0 <= y < 22):
+                if not (0 <= x < 30 and 0 <= y < 18):
                     return 7
-                block = blocks[(y//2)*17+x//2]
+                block = blocks[(y//2)*15+x//2]
                 return collisions[block*4+(y&1)*2+(x&1)]
             for number,(x,y,target,destination) in enumerate(warps[name],1):
                 if target not in floors:
                     continue # Route 4 exit was exercised above.
                 check(collision(x,y) >> 4 == 7,f'{name} warp {number} is on a warp collision')
                 candidates = [(x,y+1,'up'),(x-1,y,'right'),(x+1,y,'left'),(x,y-1,'down')]
-                adjacent = next((entry for entry in candidates if collision(entry[0],entry[1]) in (0,0x18)),None)
+                adjacent = next((entry for entry in candidates if collision(entry[0],entry[1]) in (0,1,3,4)),None)
                 check(adjacent is not None,f'{name} warp {number} has a walkable approach')
                 sx,sy,button = adjacent
                 stage(['MEW'],True,position=(sx,sy),map_name=name)
@@ -285,8 +289,35 @@ def main():
                 check(back == name and back_number == number,f'{name} warp {number} has a reciprocal destination')
                 check(c.position() == (tx,ty),f'{name} warp {number} reaches {target} at ({tx},{ty})')
                 h.pb.screen.image.save(str(OUTPUT / f'{name.lower()}-warp-{number}.png'))
-        stage(['MEW'],True,position=(7,14),map_name='CERULEAN_CAVE_B1F')
-        check(any(obj['map_object'] == 1 and obj['next'] == [7,13] for obj in c.objects()),'existing Mewtwo encounter is visible on the bottom floor')
+
+        # The original cave separates raised paths from low ground and water.
+        # Ordinary movement must respect those edges, while stairs connect them.
+        stage(['MEW'],True,position=(7,14),map_name='CERULEAN_CAVE_1F')
+        for _ in range(2):
+            c.press('up',hold=4,wait=36)
+        check(c.position() == (7,14), 'raised platform cannot step directly onto low ground')
+        stage(['MEW'],True,position=(7,6),map_name='CERULEAN_CAVE_1F')
+        for _ in range(2):
+            c.press('right',hold=4,wait=36)
+        check(c.position() == (7,6), 'raised platform cannot walk directly into water')
+        stage(['MEW'],True,position=(13,2),map_name='CERULEAN_CAVE_B1F')
+        for _ in range(2):
+            if c.position() == (13,3):
+                break
+            c.press('down',hold=4,wait=36)
+        check(c.position() == (13,3), 'original stairs connect raised floor to the lower paths')
+        water_frames = set()
+        for _ in range(180):
+            # Read bank 0 explicitly, independent of the engine's current VBK.
+            water_frames.add(bytes(h.pb.memory[0,0x9140:0x9150]))
+            h.tick(1)
+        original_water = (ROOT / 'gfx/tilesets/cerulean_cave.2bpp').read_bytes()[0x140:0x150]
+        rotations = {bytes(((b << n) | (b >> (8-n))) & 255 for b in original_water)
+                     for n in range(8)}
+        check(len(water_frames) > 1 and water_frames <= rotations,
+              'water animates by rotating the original Red/Blue graphic')
+        stage(['MEW'],True,position=(27,14),map_name='CERULEAN_CAVE_B1F')
+        check(any(obj['map_object'] == 1 and obj['next'] == [27,13] for obj in c.objects()),'Mewtwo is visible at its original Red/Blue position (27,13)')
         h.pb.screen.image.save(str(OUTPUT / 'mewtwo-bottom-floor.png'))
         c.press('up',hold=4,wait=36)
         c.press('a',hold=4,wait=36)
@@ -308,7 +339,7 @@ def main():
         check(h.battle.enemy.species == 'MEWTWO' and m.read('wEnemyMonLevel') == 70,'Mewtwo dialogue starts the existing level-70 battle')
         check(not h.text_overflows,'Mewtwo dialogue fits the textbox')
         h.pb.screen.image.save(str(OUTPUT / 'mewtwo-battle-after-dialogue.png'))
-        stage(['MEW'],True,position=(7,14),map_name='CERULEAN_CAVE_B1F',mewtwo_gone=True)
+        stage(['MEW'],True,position=(27,14),map_name='CERULEAN_CAVE_B1F',mewtwo_gone=True)
         check(not any(obj['map_object'] == 1 for obj in c.objects()),'an existing save with Mewtwo gone keeps it gone after relocation')
         (OUTPUT / 'checks.json').write_text(json.dumps(dict(checks=checks, count=len(checks)),indent=2))
         print(f'CERULEAN CAVE: {len(checks)} checks passed',flush=True)

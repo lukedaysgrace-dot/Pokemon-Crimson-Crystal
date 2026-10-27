@@ -47,7 +47,7 @@ Route4CeruleanCaveEntrance:
 	disappear ROUTE4_MEW
 	applymovement PLAYER, Route4CaveStepIn
 	warpsound
-	warpfacing UP, CERULEAN_CAVE_1F, 27, 19
+	warpfacing UP, CERULEAN_CAVE_1F, 24, 17
 	end
 
 .Blocked:
