@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  85, 110, 100,  50,  50,  80
+	db  85, 110, 100,  50,  50,  95
 	;  hp  atk  def  spd  sat  sdf
 
 	db STEEL, STEEL ; type

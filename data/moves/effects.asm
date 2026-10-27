@@ -1243,10 +1243,10 @@ Rage:
 	endmove
 
 Mimic:
+; Gen 1 style: no checkhit, so Mimic never misses.
 	checkobedience
 	usedmovetext
 	doturn
-	checkhit
 	mimic
 	endmove
 

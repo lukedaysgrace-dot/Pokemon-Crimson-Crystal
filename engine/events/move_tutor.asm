@@ -44,8 +44,11 @@ MoveTutor:
 	cp MOVETUTOR_ICE_BEAM
 	ld hl, ICE_BEAM
 	jr z, .ok
-	; MOVETUTOR_EXTREMESPEED
+	cp MOVETUTOR_EXTREMESPEED
 	ld hl, EXTREMESPEED
+	jr z, .ok
+	; MOVETUTOR_MIMIC (any #MON can learn it; see CanLearnTMHMMove)
+	ld hl, MIMIC
 .ok
 	jp GetMoveIDFromIndex
 
@@ -139,3 +142,30 @@ CheckCanLearnMoveTutorMove:
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+
+CopycatUsePlayerPalette:
+; The Copycat (the object being talked to) takes the player's overworld
+; palette while she is disguised as the player.
+	ld a, [wPlayerStruct + OBJECT_PALETTE]
+	and PALETTE_MASK
+	jr SetLastTalkedObjectPalette
+
+CopycatUseOwnPalette:
+; Back to her own look: purple.
+	ld a, PAL_OW_PURPLE
+	; fallthrough
+
+SetLastTalkedObjectPalette:
+; a = PAL_OW_* palette for the last talked-to object's sprite.
+	push af
+	ldh a, [hLastTalked]
+	call CheckObjectVisibility
+	pop de ; d = palette
+	ret c
+	ld hl, OBJECT_PALETTE
+	add hl, bc
+	ld a, [hl]
+	and $ff ^ PALETTE_MASK
+	or d
+	ld [hl], a
+	ret

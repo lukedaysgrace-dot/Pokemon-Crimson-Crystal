@@ -14,6 +14,9 @@ CopycatsHouse2F_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .Callback
 
 .Callback:
+	; Her own look is a purple School Girl (also fixes older saves that
+	; still have the old Lass default stored).
+	variablesprite SPRITE_COPYCAT, SPRITE_SCHOOL_GIRL
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Female
 	disappear COPYCATSHOUSE2F_COPYCAT2
@@ -38,12 +41,14 @@ Copycat:
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinAroundMovementData
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_GOLD
+	special CopycatUsePlayerPalette
 	sjump .Default_Merge_1
 
 .Default_Female_1:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinAroundMovementData
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LYRA
+	special CopycatUsePlayerPalette
 .Default_Merge_1:
 	special RefreshSprites
 	checkevent EVENT_RETURNED_MACHINE_PART
@@ -68,7 +73,8 @@ Copycat:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinAroundMovementData
 .Default_Merge_3a:
 	faceplayer
-	variablesprite SPRITE_COPYCAT, SPRITE_LASS
+	variablesprite SPRITE_COPYCAT, SPRITE_SCHOOL_GIRL
+	special CopycatUseOwnPalette
 	special RefreshSprites
 	opentext
 	writetext CopycatText_QuickMimicking
@@ -97,7 +103,8 @@ Copycat:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinAroundMovementData
 .Default_Merge_3b:
 	faceplayer
-	variablesprite SPRITE_COPYCAT, SPRITE_LASS
+	variablesprite SPRITE_COPYCAT, SPRITE_SCHOOL_GIRL
+	special CopycatUseOwnPalette
 	special RefreshSprites
 	opentext
 	writetext CopycatText_Worried
@@ -139,8 +146,7 @@ Copycat:
 .ScarfPermission:
 	waitbutton
 	setevent EVENT_COPYCAT_SCARF_PERMISSION
-	closetext
-	end
+	sjump .OfferMimic
 
 .GotPass:
 	checkevent EVENT_COPYCAT_SCARF_PERMISSION
@@ -150,12 +156,14 @@ Copycat:
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinAroundMovementData
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_GOLD
+	special CopycatUsePlayerPalette
 	sjump .GotPass_Merge_1
 
 .GotPass_Female_1:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinAroundMovementData
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LYRA
+	special CopycatUsePlayerPalette
 .GotPass_Merge_1:
 	special RefreshSprites
 	opentext
@@ -178,10 +186,29 @@ Copycat:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinAroundMovementData
 .GotPass_Merge_3:
 	faceplayer
-	variablesprite SPRITE_COPYCAT, SPRITE_LASS
+	variablesprite SPRITE_COPYCAT, SPRITE_SCHOOL_GIRL
+	special CopycatUseOwnPalette
 	special RefreshSprites
 	opentext
 	writetext CopycatText_ItsAScream
+	waitbutton
+	; fallthrough
+.OfferMimic:
+; After the lost doll is returned, the Copycat teaches MIMIC anytime.
+	writetext CopycatText_OfferMimic
+	yesorno
+	iffalse .DeclinedMimic
+	setval MOVETUTOR_MIMIC
+	writetext CopycatText_MoveTutorBlank
+	special MoveTutor
+	ifnotequal FALSE, .DeclinedMimic
+	writetext CopycatText_MimicTaught
+	waitbutton
+	closetext
+	end
+
+.DeclinedMimic:
+	writetext CopycatText_MimicDeclined
 	waitbutton
 .Cancel:
 	closetext
@@ -375,6 +402,35 @@ CopycatText_ItsAScream:
 	line "It's a scream!"
 	done
 
+CopycatText_OfferMimic:
+	text "COPYCAT: Hey! Want"
+	line "me to teach one of"
+
+	para "your #MON how"
+	line "to use MIMIC?"
+
+	para "Copying is my"
+	line "specialty!"
+	done
+
+CopycatText_MoveTutorBlank:
+	text_start
+	done
+
+CopycatText_MimicTaught:
+	text "COPYCAT: Ta-da!"
+	line "Now it can copy"
+	cont "just like me!"
+	done
+
+CopycatText_MimicDeclined:
+	text "COPYCAT: Aww…"
+	line "Come back anytime"
+	cont "you want me to"
+	cont "teach your #MON"
+	cont "how to MIMIC!"
+	done
+
 CopycatText_Female_1:
 	text "<PLAYER>: Hi. You"
 	line "must like #MON."
@@ -450,10 +506,10 @@ CopycatsHouse2F_MapEvents:
 	bg_event  1,  1, BGEVENT_READ, CopycatsHouse2FBookshelf
 
 	db 7 ; object events
-	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_1
+	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_1
 	object_event  6,  4, SPRITE_DODRIO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CopycatsDodrio, -1
 	object_event  6,  1, SPRITE_CLEFAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL
 	object_event  2,  1, SPRITE_RHYDON, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
 	object_event  7,  1, SPRITE_PIDGEY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
-	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_2
+	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_2
 	object_event  3,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FChoiceScarf, EVENT_GOT_CHOICE_SCARF_FROM_COPYCAT
