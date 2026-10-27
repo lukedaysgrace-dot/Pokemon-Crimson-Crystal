@@ -3,7 +3,9 @@
 ; Source rip: kingshriek, https://snesmusic.org/hoot/kingshriek/
 ; One loop: 2688 frames (about 45 seconds). All channels share this length.
 ; Existing raw sound/noise commands preserve the original pitch modulation.
-; Wave channel uses sample 10 in audio/wave_samples.asm.
+; Wave channel uses the full-range bass sample 10 in audio/wave_samples.asm.
+; Longer bass notes use a two-frame attack, half-volume tail, and
+; one-frame release gap; phrase lengths and pitches are unchanged.
 ; Available as a separate track; not assigned to the title screen.
 
 Music_HudsonHawkTitle:
@@ -3635,42 +3637,58 @@ Music_HudsonHawkTitle_Ch3_Loop:
 	loopchannel 0, Music_HudsonHawkTitle_Ch3_Loop
 
 Music_HudsonHawkTitle_Ch3_Phrase1:
-	sound 0, 12, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 9, $2a, $03da
+	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase2:
-	sound 0, 5, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 2, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $03da
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase3:
-	sound 0, 11, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 8, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $039b
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase4:
-	sound 0, 5, $1a, $039b
+	sound 0, 2, $1a, $039b
+	sound 0, 2, $2a, $039b
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $039b
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase5:
-	sound 0, 12, $1a, $039b
+	sound 0, 2, $1a, $039b
+	sound 0, 9, $2a, $039b
+	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase6:
-	sound 0, 11, $1a, $039b
+	sound 0, 2, $1a, $039b
+	sound 0, 8, $2a, $039b
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $03da
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase7:
-	sound 0, 11, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 8, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $0223
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase8:
-	sound 0, 12, $1a, $0223
+	sound 0, 2, $1a, $0223
+	sound 0, 9, $2a, $0223
+	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase9:
@@ -3689,13 +3707,17 @@ Music_HudsonHawkTitle_Ch3_Phrase9:
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase10:
-	sound 0, 11, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 8, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase11:
 	sound 0, 5, $0a, $0000
-	sound 0, 7, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 4, $2a, $03da
+	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase12:
@@ -3705,24 +3727,32 @@ Music_HudsonHawkTitle_Ch3_Phrase12:
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase13:
-	sound 0, 7, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 4, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 5, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase14:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 3, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $0483
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase15:
-	sound 0, 5, $1a, $0483
+	sound 0, 2, $1a, $0483
+	sound 0, 2, $2a, $0483
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $04e5
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase16:
-	sound 0, 5, $1a, $04e5
+	sound 0, 2, $1a, $04e5
+	sound 0, 2, $2a, $04e5
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $04e1
 	endchannel
@@ -3743,48 +3773,64 @@ Music_HudsonHawkTitle_Ch3_Phrase17:
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase18:
-	sound 0, 5, $1a, $04e5
+	sound 0, 2, $1a, $04e5
+	sound 0, 2, $2a, $04e5
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $0483
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase19:
-	sound 0, 5, $1a, $0483
+	sound 0, 2, $1a, $0483
+	sound 0, 2, $2a, $0483
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase20:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 3, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $05ac
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase21:
-	sound 0, 5, $1a, $05ac
+	sound 0, 2, $1a, $05ac
+	sound 0, 2, $2a, $05ac
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $05ed
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase22:
-	sound 0, 5, $1a, $05ed
+	sound 0, 2, $1a, $05ed
+	sound 0, 2, $2a, $05ed
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $0483
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase23:
-	sound 0, 5, $1a, $0483
+	sound 0, 2, $1a, $0483
+	sound 0, 2, $2a, $0483
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $0483
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase24:
-	sound 0, 7, $1a, $0483
+	sound 0, 2, $1a, $0483
+	sound 0, 4, $2a, $0483
+	sound 0, 1, $0a, $0000
 	sound 0, 5, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase25:
 	sound 0, 5, $0a, $0000
-	sound 0, 7, $1a, $0483
+	sound 0, 2, $1a, $0483
+	sound 0, 4, $2a, $0483
+	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase26:
@@ -3794,30 +3840,40 @@ Music_HudsonHawkTitle_Ch3_Phrase26:
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase27:
-	sound 0, 5, $1a, $04e5
+	sound 0, 2, $1a, $04e5
+	sound 0, 2, $2a, $04e5
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $0511
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase28:
-	sound 0, 5, $1a, $0511
+	sound 0, 2, $1a, $0511
+	sound 0, 2, $2a, $0511
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $04e5
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase29:
-	sound 0, 5, $1a, $04e5
+	sound 0, 2, $1a, $04e5
+	sound 0, 2, $2a, $04e5
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase30:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 3, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $0383
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase31:
-	sound 0, 11, $1a, $039b
+	sound 0, 2, $1a, $039b
+	sound 0, 8, $2a, $039b
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $0a, $0000
 	endchannel
 
@@ -3828,23 +3884,31 @@ Music_HudsonHawkTitle_Ch3_Phrase32:
 
 Music_HudsonHawkTitle_Ch3_Phrase33:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $039b
+	sound 0, 2, $1a, $039b
+	sound 0, 3, $2a, $039b
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase34:
 	sound 0, 5, $0a, $0000
-	sound 0, 7, $1a, $039b
+	sound 0, 2, $1a, $039b
+	sound 0, 4, $2a, $039b
+	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase35:
-	sound 0, 5, $1a, $039b
+	sound 0, 2, $1a, $039b
+	sound 0, 2, $2a, $039b
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $0312
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase36:
-	sound 0, 5, $1a, $0312
+	sound 0, 2, $1a, $0312
+	sound 0, 2, $2a, $0312
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
@@ -3855,29 +3919,39 @@ Music_HudsonHawkTitle_Ch3_Phrase37:
 
 Music_HudsonHawkTitle_Ch3_Phrase38:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $0277
+	sound 0, 2, $1a, $0277
+	sound 0, 3, $2a, $0277
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase39:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $0277
+	sound 0, 2, $1a, $0277
+	sound 0, 3, $2a, $0277
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $053b
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase40:
-	sound 0, 5, $1a, $053b
+	sound 0, 2, $1a, $053b
+	sound 0, 2, $2a, $053b
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $053b
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase41:
-	sound 0, 5, $1a, $053b
+	sound 0, 2, $1a, $053b
+	sound 0, 2, $2a, $053b
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase42:
-	sound 0, 5, $1a, $039b
+	sound 0, 2, $1a, $039b
+	sound 0, 2, $2a, $039b
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
@@ -3886,13 +3960,17 @@ Music_HudsonHawkTitle_Ch3_Phrase43:
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase44:
-	sound 0, 5, $1a, $039b
+	sound 0, 2, $1a, $039b
+	sound 0, 2, $2a, $039b
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $044e
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase45:
-	sound 0, 5, $1a, $044e
+	sound 0, 2, $1a, $044e
+	sound 0, 2, $2a, $044e
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
@@ -3903,24 +3981,32 @@ Music_HudsonHawkTitle_Ch3_Phrase46:
 
 Music_HudsonHawkTitle_Ch3_Phrase47:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $044e
+	sound 0, 2, $1a, $044e
+	sound 0, 3, $2a, $044e
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase48:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $044e
+	sound 0, 2, $1a, $044e
+	sound 0, 3, $2a, $044e
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $0627
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase49:
-	sound 0, 5, $1a, $0627
+	sound 0, 2, $1a, $0627
+	sound 0, 2, $2a, $0627
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $04b5
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase50:
-	sound 0, 5, $1a, $04b5
+	sound 0, 2, $1a, $04b5
+	sound 0, 2, $2a, $04b5
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $044e
 	endchannel
@@ -3932,18 +4018,24 @@ Music_HudsonHawkTitle_Ch3_Phrase51:
 
 Music_HudsonHawkTitle_Ch3_Phrase52:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 3, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase53:
-	sound 0, 5, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 2, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $0358
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase54:
-	sound 0, 5, $1a, $0358
+	sound 0, 2, $1a, $0358
+	sound 0, 2, $2a, $0358
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
@@ -3954,34 +4046,46 @@ Music_HudsonHawkTitle_Ch3_Phrase55:
 
 Music_HudsonHawkTitle_Ch3_Phrase56:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $02c7
+	sound 0, 2, $1a, $02c7
+	sound 0, 3, $2a, $02c7
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase57:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $02c7
+	sound 0, 2, $1a, $02c7
+	sound 0, 3, $2a, $02c7
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $0563
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase58:
-	sound 0, 5, $1a, $0563
+	sound 0, 2, $1a, $0563
+	sound 0, 2, $2a, $0563
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $0563
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase59:
-	sound 0, 5, $1a, $0563
+	sound 0, 2, $1a, $0563
+	sound 0, 2, $2a, $0563
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase60:
-	sound 0, 5, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 2, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase61:
-	sound 0, 5, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 2, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $0483
 	endchannel
@@ -3993,36 +4097,48 @@ Music_HudsonHawkTitle_Ch3_Phrase62:
 
 Music_HudsonHawkTitle_Ch3_Phrase63:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $0483
+	sound 0, 2, $1a, $0483
+	sound 0, 3, $2a, $0483
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $0a, $0000
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase64:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $0483
+	sound 0, 2, $1a, $0483
+	sound 0, 3, $2a, $0483
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $0641
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase65:
-	sound 0, 5, $1a, $0641
+	sound 0, 2, $1a, $0641
+	sound 0, 2, $2a, $0641
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $04e5
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase66:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $03da
+	sound 0, 2, $1a, $03da
+	sound 0, 3, $2a, $03da
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $0511
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase67:
-	sound 0, 5, $1a, $0483
+	sound 0, 2, $1a, $0483
+	sound 0, 2, $2a, $0483
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $02c7
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase68:
-	sound 0, 5, $1a, $02c7
+	sound 0, 2, $1a, $02c7
+	sound 0, 2, $2a, $02c7
+	sound 0, 1, $0a, $0000
 	sound 0, 7, $0a, $0000
 	endchannel
 
@@ -4033,24 +4149,32 @@ Music_HudsonHawkTitle_Ch3_Phrase69:
 
 Music_HudsonHawkTitle_Ch3_Phrase70:
 	sound 0, 5, $0a, $0000
-	sound 0, 6, $1a, $02c7
+	sound 0, 2, $1a, $02c7
+	sound 0, 3, $2a, $02c7
+	sound 0, 1, $0a, $0000
 	sound 0, 1, $1a, $0483
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase71:
-	sound 0, 5, $1a, $0483
+	sound 0, 2, $1a, $0483
+	sound 0, 2, $2a, $0483
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $044e
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase72:
-	sound 0, 5, $1a, $044e
+	sound 0, 2, $1a, $044e
+	sound 0, 2, $2a, $044e
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $0358
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Phrase73:
-	sound 0, 5, $1a, $0358
+	sound 0, 2, $1a, $0358
+	sound 0, 2, $2a, $0358
+	sound 0, 1, $0a, $0000
 	sound 0, 6, $0a, $0000
 	sound 0, 1, $1a, $03da
 	endchannel

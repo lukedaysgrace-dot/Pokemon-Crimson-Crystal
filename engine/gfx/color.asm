@@ -1422,6 +1422,7 @@ LoadMapPals:
 	call LoadDanceTheatreObjectPalette
 	call LoadRoute4MewPalette
 	call LoadApricornTreeObjectPalette
+	farcall LoadBurnedTowerAshesPalette
 	farcall LoadRoute42ApricornTreeBackgroundPalette
 
 	ld a, [wEnvironment]

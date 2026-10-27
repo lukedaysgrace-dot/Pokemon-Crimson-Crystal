@@ -979,3 +979,6 @@ INCLUDE "engine/events/cerulean_cave.asm"
 INCLUDE "engine/events/wishing_star.asm"
 
 INCLUDE "data/pokemon/technical_tutor.asm"
+
+SECTION "Burned Tower Ashes Palette", ROMX
+INCLUDE "engine/gfx/burned_tower_palette.asm"

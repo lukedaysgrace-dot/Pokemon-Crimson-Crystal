@@ -4866,6 +4866,22 @@ FirebreatherGroup:
 	dw FLARE_BLITZ, MEGAHORN, AGILITY, QUICK_ATTACK
 	db -1 ; end
 
+	next_list_item ; FIREBREATHER (9) DICK - Burned Tower 1F (restored G/S)
+	db "DICK@", TRAINERTYPE_NORMAL
+	db 17
+	dw CHARMELEON
+	db -1 ; end
+
+	next_list_item ; FIREBREATHER (10) NED - Burned Tower 1F (restored G/S)
+	db "NED@", TRAINERTYPE_NORMAL
+	db 15
+	dw KOFFING
+	db 16
+	dw GROWLITHE
+	db 15
+	dw KOFFING
+	db -1 ; end
+
 	end_list_items
 
 JugglerGroup:
