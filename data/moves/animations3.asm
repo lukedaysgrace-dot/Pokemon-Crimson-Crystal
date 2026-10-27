@@ -3217,13 +3217,14 @@ BattleAnim_Rollout_PC3:
 	anim_ret
 
 BattleAnim_SacredFire_PC3:
-	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_FIRE
-	anim_1gfx ANIM_GFX_FIRE
+	; Keep the reference's blue flames outside the gray/yellow palette cycle.
+	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_SACRED_FIRE
+	anim_2gfx ANIM_GFX_FIRE, ANIM_GFX_SACRED_FIRE_CENTER
 	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
 	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
 .loop
 	anim_sound 0, 0, SFX_EMBER
-	anim_obj ANIM_OBJ_SACRED_FIRE,   6, 0,  13, 0, $0
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE,   6, 0,  13, 0, $0
 	anim_wait 8
 	anim_loop 8, .loop
 	anim_wait 96
@@ -3231,14 +3232,28 @@ BattleAnim_SacredFire_PC3:
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
 	anim_wait 4
 	anim_sound 0, 1, SFX_EMBER
-	anim_obj ANIM_OBJ_FIRE_BLAST, -15, 0,   6, 0, $1
-	anim_obj ANIM_OBJ_FIRE_BLAST, -15, 0,   6, 0, $4
-	anim_obj ANIM_OBJ_FIRE_BLAST, -15, 0,   6, 0, $5
-	anim_wait 8
+	anim_obj ANIM_OBJ_SACRED_FIRE_CENTER, -15, 0,   7, 0, $0
+.burst
+	; Reference pairs travel six pixels per tick, at seven-tick intervals.
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $38
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $10
+	anim_wait 6
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $2a
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $04
+	anim_wait 6
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $3b
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $18
+	anim_wait 6
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $1a
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $0a
+	anim_wait 6
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $1e
+	anim_obj ANIM_OBJ_SACRED_FIRE_BLUE_BURST, 136, 56, $30
+	anim_wait 6
+	anim_loop 2, .burst
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
-	anim_wait 4
 	anim_incobj 9
-	anim_wait 8
+	anim_wait 12
 	anim_ret
 
 BattleAnim_Safeguard_PC3:

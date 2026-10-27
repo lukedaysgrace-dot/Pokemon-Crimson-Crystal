@@ -307,3 +307,9 @@ INCLUDE "gfx/battle_anims/battle_anims.pal"
 	RGB 28, 28, 28
 	RGB 00, 00, 00
 	RGB 00, 00, 00
+
+; Sacred Fire: blue flame core/edge from the supplied SameBoy recording.
+	RGB 31, 31, 31
+	RGB 08, 20, 31
+	RGB 02, 14, 25
+	RGB 00, 00, 00
