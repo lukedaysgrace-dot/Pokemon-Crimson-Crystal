@@ -99,6 +99,7 @@ def routes(data, excluded=None, technical=None):
 
 
 def audit():
+    from historical_move_access import removed as historically_removed
     receipt = json.loads(RECEIPT.read_text(encoding='utf-8'))
     data = breeding_data()
     order, levels, _, eggs, _, _, _, _, roots = data
@@ -109,13 +110,19 @@ def audit():
     for c, moves in receipt['level_up_removals'].items():
         for move in moves:
             assert move not in dict((m, lv) for lv, m in levels[c]), (c, move, 'restored egg-only row')
+            if move in historically_removed(c, 'egg'):
+                continue
             assert move in independent[roots[c]], (c, move, 'no independent breeding route')
     for c, moves in receipt['fallbacks'].items():
         for move, level in moves.items():
             check_level(c, move, level, levels)
+            if move in historically_removed(c):
+                continue
             assert move in known[c], (c, move, 'lost independent donor access')
     for c, moves in receipt['natural_level_up'].items():
         for move in moves:
+            if move in historically_removed(c):
+                continue
             if move in removed(c):
                 assert move in known[c], (c, move, 'lost alternate acquisition')
             else:

@@ -105,6 +105,12 @@ def main():
    original=c[:-6]
    assert levels[c]==levels[original] and tm[c]==tm[original] and eggs[c]==eggs[original] and utility[c]==utility[original] and technical.get(c)==technical.get(original),(c,'clone mismatch')
  for c in ['DITTO','WOBBUFFET','WYNAUT','SMEARGLE']:assert utility[c]==0,(c,'restricted identity')
+ from historical_move_access import PATH
+ if PATH.exists():
+  from audit_historical_move_access import verify
+  verify()
+  print('LEARNSET VARIETY AUDIT PASSED: source-backed reconciliation supersedes older protected additions; structure, Pixie Punch and clone mirrors checked.')
+  return
  review=json.loads(read('tools/testdata/learnset_variety_review.json'))
  receipt=json.loads(read('tools/testdata/learnset_variety_implementation.json'))
  breeding=json.loads(read('tools/testdata/breeding_moves.json'))

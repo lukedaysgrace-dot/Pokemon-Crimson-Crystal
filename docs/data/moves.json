@@ -1215,7 +1215,7 @@
     "const": "MIMIC",
     "name": "Mimic",
     "rom_name": "MIMIC",
-    "description": "Copies a move used by the foe.",
+    "description": "Copies one of the foe's moves.",
     "power": 0,
     "type": "Normal",
     "category": "Status",

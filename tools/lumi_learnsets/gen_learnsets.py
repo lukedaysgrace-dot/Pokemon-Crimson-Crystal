@@ -156,6 +156,7 @@ def norm_move(name):
 # Built from constants/move_constants.asm; only moves that exist in the ROM
 # are listed, so anything not here is automatically dropped.
 MOVE_MAP = {
+    "psyshieldbash": "PSYSHIELD",
     # October 2026 supported moves.
     "psyshock": "PSYSHOCK",
     "vacuumwave": "VACUUM_WAVE",
@@ -397,6 +398,10 @@ def load_rom_moves():
             if m:
                 moves.add(m.group(1))
     moves.discard("NO_MOVE")
+    # Most added engine constants normalize directly to their official names.
+    # Explicit aliases above handle abbreviations and renamed moves.
+    for const in moves:
+        MOVE_MAP.setdefault(norm_move(const), const)
     return moves
 
 # --------------------------------------------------------------------------
@@ -739,6 +744,17 @@ def resolve_learnset(label_base, lumi, rom_moves, report):
                         merged.append((edit['after'], move))
                 merged.sort(key=lambda row: row[0])
 
+    # The full-history reconciliation is the final authority after older
+    # project layers. This also preserves its independent breeding fallbacks.
+    history_path = os.path.join(REPO, 'tools', 'testdata', 'historical_move_access.json')
+    if os.path.exists(history_path):
+        with open(history_path, encoding='utf-8') as f:
+            history = json.load(f)
+        for species, rows in history['final_level_up'].items():
+            if norm_name(species) == norm_name(label_base):
+                merged = [tuple(row) for row in rows]
+                source = source or 'history'
+                break
     return (source, merged or None)
 
 # --------------------------------------------------------------------------

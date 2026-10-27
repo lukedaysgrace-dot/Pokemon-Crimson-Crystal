@@ -1,3 +1,5 @@
+> Historical design record: the [full-history source correction](historical-move-access.md) supersedes unsupported additions below. Current Pokémon pages and that report show the final move access.
+
 # Attacking learnset review
 
 498 roster entries reviewed. 179 have edits: 356 attacks/setup options moved out of natural progression; 13 delayed moves.

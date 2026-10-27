@@ -385,7 +385,6 @@ MagnemiteEggMoves:
 	dw EXPLOSION
 	dw IRON_DEFENSE
 	dw REFLECT
-	dw MIRROR_COAT
 	dw -1 ; end
 
 FarfetchDEggMoves:
@@ -537,9 +536,6 @@ GoldeenEggMoves:
 	dw -1 ; end
 
 StaryuEggMoves:
-	dw AURORA_BEAM
-	dw BARRIER
-	dw SUPERSONIC
 	dw REFLECT
 	dw -1 ; end
 
@@ -584,9 +580,6 @@ EeveeEggMoves:
 	dw -1 ; end
 
 PorygonEggMoves:
-	dw DISABLE
-	dw FORESIGHT
-	dw MIND_READER
 	dw THUNDER_WAVE
 	dw -1 ; end
 
@@ -986,7 +979,6 @@ CanonicalGEODUDEEggMoves:
 	dw MEGA_PUNCH
 	dw HAMMER_ARM
 	dw IRON_DEFENSE
-	dw SCREECH
 	dw CURSE
 	dw DYNAMICPUNCH
 	dw ENDURE
@@ -1018,15 +1010,10 @@ CanonicalSLOWPOKEEggMoves:
 	dw -1 ; end
 
 CanonicalFARFETCH_DEggMoves:
-	dw FORESIGHT
-	dw MIRROR_MOVE
-	dw GUST
 	dw QUICK_ATTACK
-	dw FLAIL
 	dw CURSE
 	dw FIRST_IMPRESSION
 	dw LEAF_BLADE
-	dw MUD_SLAP
 	dw NIGHT_SLASH
 	dw ROOST
 	dw SKY_ATTACK
@@ -1149,7 +1136,6 @@ CanonicalEXEGGCUTEEggMoves:
 	dw MOONLIGHT
 	dw LEAF_STORM
 	dw SKILL_SWAP
-	dw MAGICAL_LEAF
 	dw ANCIENTPOWER
 	dw CURSE
 	dw GIGA_DRAIN
@@ -1401,7 +1387,6 @@ CanonicalDRATINIEggMoves:
 
 ; October 2026: source-verified breeding routes.
 CanonicalSQUIRTLEEggMoves2:
-	dw DARK_PULSE
 	dw FLIP_TURN
 	dw HAZE
 	dw MIRROR_COAT
@@ -1465,8 +1450,6 @@ CanonicalNIDORAN_MEggMoves2:
 
 CanonicalVOLTORBEggMoves2:
 	dw AGILITY
-	dw RECOVER
 	dw REFLECT
-	dw NUZZLE
 	dw RECYCLE
 	dw -1 ; end
