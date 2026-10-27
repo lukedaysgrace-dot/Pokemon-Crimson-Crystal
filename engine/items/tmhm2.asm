@@ -16,6 +16,18 @@ CanLearnTMHMMove:
 	ld b, 0
 	ld c, d
 .have_index
+	; MIMIC is taught by the Copycat to any #MON (Gen 1 TM31 style).
+	ld a, b
+	cp HIGH(MIMIC)
+	jr nz, .not_mimic
+	ld a, c
+	cp LOW(MIMIC)
+	jr nz, .not_mimic
+	pop hl
+	ld c, TRUE
+	ret
+
+.not_mimic
 	ld hl, TMHMMoves
 .loop
 	ld a, [hli]

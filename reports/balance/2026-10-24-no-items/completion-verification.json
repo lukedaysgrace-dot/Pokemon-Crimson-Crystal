@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "completed_utc": "2026-10-27T15:24:11.544435+00:00",
+  "ranked_battles": 148562,
+  "league_battles": 53130,
+  "species": 231,
+  "games_per_species": 460,
+  "ability_combinations": 664,
+  "screened_builds": 6621,
+  "validated_builds": 1327,
+  "action_requests_checked": 603718,
+  "native_item_observations": {
+    "NO_ITEM": 900842
+  },
+  "flags": 0,
+  "sqlite_quick_check": "ok",
+  "gzip_roundtrip_sha256": "passed",
+  "database_sha256": "d2355f8ddd0ac3bed36a7fe5a202270a2bd20040cd1d7479bffb7409c1692216",
+  "database_bytes": 1148907520,
+  "archive_sha256": "a4d9ec65fa001cbbd4eff49401ba90cd3d5354fbafff53932847b25b1c343a8b",
+  "archive_bytes": 79556344,
+  "archive": "tools/battle-simulator/output/no-items-2026-10-24/battles.sqlite.gz",
+  "source_build_date": "2026-10-24",
+  "completion_date": "2026-10-27",
+  "rom_sha256": "7abd0bd922776ec7aadd8706d1c378bf22583005b914b5b247cacceedcb66499",
+  "tier_counts": {
+    "S": 1,
+    "A": 6,
+    "B": 28,
+    "C": 73,
+    "D": 92,
+    "E": 28,
+    "F": 3
+  }
+}

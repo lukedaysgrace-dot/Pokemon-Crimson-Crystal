@@ -293,3 +293,4 @@ NUM_UNOWN_PUZZLES EQU const_value
 	const MOVETUTOR_THUNDERBOLT  ; 2
 	const MOVETUTOR_ICE_BEAM     ; 3
 	const MOVETUTOR_EXTREMESPEED ; 4
+	const MOVETUTOR_MIMIC        ; 5 (Copycat, Saffron City)

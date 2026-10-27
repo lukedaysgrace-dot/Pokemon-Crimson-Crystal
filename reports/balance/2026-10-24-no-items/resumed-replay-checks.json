@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "battle": "df12e6f7ebcd66b9f39c615b04bbf7749cbb72d4eea76c1117fb33e4bd2a3a12",
+      "status": "identical replay",
+      "turns": 1,
+      "winner": "player"
+    },
+    {
+      "battle": "6de18af18d135ae5fbcbec25d40e5786c19f571b20b1dac072c2b90ab9f3c405",
+      "status": "identical replay",
+      "turns": 1,
+      "winner": "enemy"
+    },
+    {
+      "battle": "f92775c9a4728c6f17a8e8a98cd689ac6f290cf3400e6680bdf04bfae8fba6b6",
+      "status": "identical replay",
+      "turns": 3,
+      "winner": "player"
+    },
+    {
+      "battle": "e0bec3ee6875308c96dc3180c51acc37d73f3c5cd6819064a784e2cbb13eeddd",
+      "status": "identical replay",
+      "turns": 3,
+      "winner": "enemy"
+    }
+  ],
+  "excluded_comparison_field": "wall-clock seconds"
+}

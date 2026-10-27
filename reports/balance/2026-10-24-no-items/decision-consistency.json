@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "complete_required": true,
+  "battles_checked": 148562,
+  "action_requests_checked": 603718,
+  "problems": [],
+  "expected_laboratory_sha256": "5b218e566f01e57eb1baed9d03293439afd2362280776d717b39a0b0b1d7c5e7",
+  "expected_data_sha256": "9f619806b1c0edd4065a949ed2bb6e14667534f503bf795884e15145e9e624f8",
+  "expected_rom_sha256": "7abd0bd922776ec7aadd8706d1c378bf22583005b914b5b247cacceedcb66499"
+}

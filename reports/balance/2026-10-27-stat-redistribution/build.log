@@ -1,0 +1,11 @@
+
+/home/luke/opt/rgbds-0.5.2/bin/rgbasm  -o main.o main.asm
+/home/luke/opt/rgbds-0.5.2/bin/rgbasm -DDEBUG_BATTLE=1 -o main_debug.o main.asm
+/home/luke/opt/rgbds-0.5.2/bin/rgblink -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o pokecrystal.gbc audio.o home.o main.o wram.o data/text/common.o data/maps/map_data.o data/pokemon/dex_entries.o data/pokemon/egg_moves.o data/pokemon/evos_attacks.o engine/movie/credits.o engine/overworld/events.o gfx/pics.o gfx/sprites.o lib/mobile/main.o
+/home/luke/opt/rgbds-0.5.2/bin/rgblink -n pokecrystal_debug.sym -m pokecrystal_debug.map -l pokecrystal.link -o pokecrystal_debug.gbc audio_debug.o home_debug.o main_debug.o wram_debug.o data/text/common_debug.o data/maps/map_data_debug.o data/pokemon/dex_entries_debug.o data/pokemon/egg_moves_debug.o data/pokemon/evos_attacks_debug.o engine/movie/credits_debug.o engine/overworld/events_debug.o gfx/pics_debug.o gfx/sprites_debug.o lib/mobile/main_debug.o
+/home/luke/opt/rgbds-0.5.2/bin/rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 5 -t PM_CRYSTAL pokecrystal.gbc
+sh tools/sort_symfile.sh pokecrystal.sym
+python3 tools/generate_cheats.py
+Wrote /mnt/c/Users/luked/OneDrive/Documents/GitHub/Pokemon-Crimson-Crystal/pokecrystal.cheats
+/home/luke/opt/rgbds-0.5.2/bin/rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 5 -t PM_CRYSTAL pokecrystal_debug.gbc
+sh tools/sort_symfile.sh pokecrystal_debug.sym

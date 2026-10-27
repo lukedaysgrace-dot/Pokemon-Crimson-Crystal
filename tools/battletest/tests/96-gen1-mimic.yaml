@@ -1,0 +1,79 @@
+# Gen 1 (Red/Blue) Mimic. In the battle tester's auto mode the player's
+# Mimic copies the foe's FIRST move (the real game opens a menu instead).
+
+- name: Gen1 Mimic copies a foe move and keeps Mimic's PP
+  player: { species: MR__MIME, level: 50, moves: [MIMIC] }
+  enemy:  { species: MACHAMP, level: 5, moves: [KARATE_CHOP, SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.moves[0] == 'KARATE_CHOP'
+    - player.pp[0] == 9                       # Mimic's 10 PP minus this use
+    - (wram('wPartyMon1PP') & 63) == 9        # party Mimic charged too
+
+- name: Gen1 Mimic copied move draws from Mimic's PP
+  player: { species: MR__MIME, level: 50, moves: [MIMIC] }
+  enemy:  { species: SNORLAX, level: 60, moves: [SPLASH, KARATE_CHOP] }
+  rng: forced_high
+  move_script: [1, 1]
+  turns: 2
+  assert:
+    - player.moves[0] == 'SPLASH'
+    - player.pp[0] == 8
+    - (wram('wPartyMon1PP') & 63) == 8
+
+- name: Gen1 Mimic never misses against +6 evasion
+  player: { species: MR__MIME, level: 50, moves: [MIMIC] }
+  enemy:  { species: MACHAMP, level: 5, moves: [KARATE_CHOP], stages: { eva: +6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.moves[0] == 'KARATE_CHOP'
+
+- name: Gen1 Mimic hits a target in the air (Fly)
+  player: { species: MR__MIME, level: 5, moves: [MIMIC] }
+  enemy:  { species: PIDGEOT, level: 80, moves: [FLY] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.moves[0] == 'FLY'
+
+- name: Gen1 Mimic may copy a move the user already knows
+  player: { species: MR__MIME, level: 50, moves: [MIMIC, KARATE_CHOP] }
+  enemy:  { species: MACHAMP, level: 5, moves: [KARATE_CHOP] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.moves[0] == 'KARATE_CHOP'
+    - player.moves[1] == 'KARATE_CHOP'
+
+- name: Gen1 Mimic used by a wild foe copies a random player move
+  player: { species: MACHAMP, level: 50, moves: [SPLASH, KARATE_CHOP] }
+  enemy:  { species: MR__MIME, level: 50, moves: [MIMIC] }
+  rng: seeded
+  rng_value: 7
+  turns: 1
+  assert:
+    - enemy.moves[0] in ('SPLASH', 'KARATE_CHOP')
+    - enemy.pp[0] == 9
+    - (wram('wWildMonPP') & 63) == 9
+
+- name: Gen1 Mimic used by a trainer foe charges its party PP
+  player: { species: MACHAMP, level: 50, moves: [SPLASH] }
+  enemy:  { species: MR__MIME, level: 50, moves: [MIMIC] }
+  enemy2: { species: MACHAMP, level: 5, moves: [SPLASH] }
+  rng: seeded
+  rng_value: 3
+  turns: 1
+  assert:
+    - enemy.moves[0] == 'SPLASH'
+    - enemy.pp[0] == 9
+    - (wram('wOTPartyMon1PP') & 63) == 9
+
+- name: Gen1 Mimic refuses Sketch (it would overwrite Mimic permanently)
+  player: { species: MR__MIME, level: 50, moves: [MIMIC] }
+  enemy:  { species: SMEARGLE, level: 5, moves: [SKETCH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.moves[0] == 'MIMIC'

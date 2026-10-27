@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "changes": {
+    "VENOMOTH": {
+      "before": [
+        70,
+        55,
+        60,
+        90,
+        100,
+        75
+      ],
+      "after": [
+        70,
+        55,
+        60,
+        90,
+        115,
+        75
+      ]
+    },
+    "ARIADOS": {
+      "before": [
+        80,
+        110,
+        75,
+        80,
+        50,
+        70
+      ],
+      "after": [
+        80,
+        110,
+        75,
+        100,
+        50,
+        70
+      ]
+    },
+    "LUDICOLO": {
+      "before": [
+        80,
+        70,
+        70,
+        70,
+        90,
+        100
+      ],
+      "after": [
+        80,
+        90,
+        70,
+        70,
+        90,
+        100
+      ]
+    },
+    "ZANGOOSE": {
+      "before": [
+        75,
+        115,
+        60,
+        100,
+        60,
+        60
+      ],
+      "after": [
+        75,
+        125,
+        60,
+        110,
+        60,
+        60
+      ]
+    }
+  },
+  "compiled_checks": {
+    "pokecrystal.gbc": {
+      "compiled_moves": 442,
+      "compiled_species": 498,
+      "newer_assembly_files": 0
+    },
+    "pokecrystal_debug.gbc": {
+      "compiled_moves": 442,
+      "compiled_species": 498,
+      "newer_assembly_files": 0
+    }
+  },
+  "balance_metadata": "all entries validated against source; no website generated",
+  "release_sha256": "868b3ab357f8b38a1930ddd2812172d8fc8ea3c87c23072c33d33ab469a8286c",
+  "debug_sha256": "e0536881886a928a4a276d35666439459641df0d7f6c077a053249e4d344b6de",
+  "old_tier_list": "historical October 24 build; no post-buff rankings claimed"
+}

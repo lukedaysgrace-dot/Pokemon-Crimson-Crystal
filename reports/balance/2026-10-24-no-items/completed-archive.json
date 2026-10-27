@@ -1,0 +1,18 @@
+{
+  "status": "verified",
+  "created_utc": "2026-10-27T15:26:35.516625+00:00",
+  "archive": "tools/battle-simulator/output/no-items-2026-10-24/completed-checkpoint.zip",
+  "bytes": 86965593,
+  "sha256": "a00ee6ebf864d3fa86c300f26e652942bdaba7109b420dcd31f05c9c09112c5a",
+  "entries": 2073,
+  "crc_check": "passed",
+  "includes": [
+    "all 148562 ranked battles",
+    "all final reports",
+    "all phase data",
+    "pinned source and debug ROM/symbols",
+    "matching native fixture",
+    "test evidence and resume logs"
+  ],
+  "source_timestamps": "preserved from original checkpoint"
+}

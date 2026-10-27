@@ -1,0 +1,9 @@
+{
+  "status": "verified",
+  "archive": "tools/battle-simulator/output/focused-review-20261027/reproducibility.zip",
+  "bytes": 11158896,
+  "sha256": "0a917a4985ef4d6896db0585dc96a04dc111a8fb2bb251682279661d7e0b765f",
+  "entries": 2045,
+  "crc_check": "passed",
+  "includes": "exact game/source/driver/fixture; complete database and review evidence"
+}

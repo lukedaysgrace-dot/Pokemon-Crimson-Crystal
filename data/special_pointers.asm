@@ -199,3 +199,5 @@ SpecialsPointers::
 	add_special MtMoonOverworldWishingStar
 	add_special EcruteakWellJirachiRise
 	add_special EcruteakWellJirachiCircle
+	add_special CopycatUsePlayerPalette
+	add_special CopycatUseOwnPalette

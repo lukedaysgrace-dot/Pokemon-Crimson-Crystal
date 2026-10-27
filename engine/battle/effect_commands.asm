@@ -1142,10 +1142,8 @@ BattleCommand_DoTurn:
 
 .player
 	call GetPartyLocation
-	push hl
-	call CheckMimicUsed
-	pop hl
-	jr c, .check_target_block
+	; Gen 1 Mimic: a mimicked move draws from Mimic's own PP, so the party
+	; copy is always charged.
 	call .consume_pp
 	ld a, b
 	and a
@@ -1183,22 +1181,8 @@ BattleCommand_DoTurn:
 	ret
 
 .wild
-	ld hl, wEnemyMonMoves
-	ld a, [wCurEnemyMoveNum]
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hl]
-	ld bc, MIMIC
-	call CompareMove
-	jr z, .mimic
-	ld hl, wWildMonMoves
-	add hl, de
-	ld a, [hl]
-	call CompareMove
-	jr z, .check_target_block
-
-.mimic
+	; Gen 1 Mimic: always charge the wild mon's backing PP too, even when
+	; the move in this slot was copied by Mimic.
 	ld hl, wWildMonPP
 	call .consume_pp
 	ld a, b
@@ -1243,37 +1227,6 @@ BattleCommand_DoTurn:
 	db EFFECT_BIDE
 	db EFFECT_RAMPAGE
 	db -1
-
-CheckMimicUsed:
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [wCurMoveNum]
-	jr z, .player
-	ld a, [wCurEnemyMoveNum]
-
-.player
-	ld c, a
-	ld a, MON_MOVES
-	call UserPartyAttr
-
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	ld bc, MIMIC
-	call CompareMove
-	jr nz, .mimic
-
-	ld a, BATTLE_VARS_MOVE
-	call GetBattleVar
-	call CompareMove
-	jr z, .mimic
-
-	scf
-	ret
-
-.mimic
-	and a
-	ret
 
 BattleCommand_Critical:
 ; critical

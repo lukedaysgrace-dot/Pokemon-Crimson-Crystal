@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "issue": "Friendship now mirrors historical audit: 0 for Frustration-only, otherwise 255; declared and initial native friendship asserted",
+  "imported_exact_matches": 2520,
+  "corrected_battles": 3456,
+  "battles_to_rerun": 936,
+  "run": "168b3cb89d9f1661d792",
+  "draft_database": "/tmp/crimson-focused-review-draft-happiness-20261027.sqlite",
+  "other_draft_results": "excluded",
+  "repetitions": "explicit 1; original 4-repetition draft excluded"
+}

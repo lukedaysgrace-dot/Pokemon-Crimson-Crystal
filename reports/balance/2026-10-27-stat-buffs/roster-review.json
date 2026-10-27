@@ -1,0 +1,117 @@
+{
+  "reviewed_species": 231,
+  "reviewed_ability_combinations": 664,
+  "reference_battles": 148562,
+  "new_battles_in_this_review": 0,
+  "current_data_sha256": "dc4a6e262d0a6ab51088b3e176f2bc7b4dfc447bbca4fa2ef684f7295e20a182",
+  "applied_changes": {
+    "VENOMOTH": {
+      "before": [
+        70,
+        55,
+        60,
+        90,
+        100,
+        75
+      ],
+      "after": [
+        70,
+        55,
+        60,
+        90,
+        115,
+        75
+      ]
+    },
+    "ARIADOS": {
+      "before": [
+        80,
+        110,
+        75,
+        80,
+        50,
+        70
+      ],
+      "after": [
+        80,
+        110,
+        75,
+        100,
+        50,
+        70
+      ]
+    },
+    "LUDICOLO": {
+      "before": [
+        80,
+        70,
+        70,
+        70,
+        90,
+        100
+      ],
+      "after": [
+        80,
+        90,
+        70,
+        70,
+        90,
+        100
+      ]
+    },
+    "ZANGOOSE": {
+      "before": [
+        75,
+        115,
+        60,
+        100,
+        60,
+        60
+      ],
+      "after": [
+        75,
+        125,
+        60,
+        110,
+        60,
+        60
+      ]
+    }
+  },
+  "categories": {
+    "Nerf watch; format check": 1,
+    "Hold intended exceptional strength": 12,
+    "Conditional learnset nerf": 1,
+    "Hold intended high-end strength": 7,
+    "Weather-role retest": 25,
+    "Hold successful defensive identity": 4,
+    "Interaction watch": 1,
+    "Hold current baseline": 108,
+    "Keep defensive/support role": 4,
+    "Hold intended power band": 9,
+    "Team-sweeper retest": 3,
+    "Team-role retest": 10,
+    "Keep damage multiplier in view": 2,
+    "Ability/set retest": 6,
+    "Preserve slow-powerful identity": 2,
+    "Item/role retest": 2,
+    "Support/set retest": 6,
+    "Support/defensive retest": 3,
+    "Hold custom niche": 1,
+    "Weather/set retest": 1,
+    "Retest before any buff": 4,
+    "Targeted set retest": 3,
+    "Item/weather-role retest": 2,
+    "Retest; secondary buff": 2,
+    "Buff candidate": 2,
+    "Status/weather-role retest": 2,
+    "Conditional buff candidate": 1,
+    "Keep specialist identity": 1,
+    "Requested buff applied; hold": 2,
+    "Role retest; no stat buff": 1,
+    "Requested buff applied; setup retest": 1,
+    "Requested buff applied; rain retest": 1,
+    "Team-role retest; no stat buff": 1
+  },
+  "status": "review completed; further changes are proposals only"
+}

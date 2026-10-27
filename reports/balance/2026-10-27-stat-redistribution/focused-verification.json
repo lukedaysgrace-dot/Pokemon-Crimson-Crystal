@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "battles_checked": 3456,
+  "action_requests_checked": 14422,
+  "species": 12,
+  "builds": 108,
+  "games_per_build": 32,
+  "native_items": [
+    "NO_ITEM"
+  ],
+  "unresolved": 0,
+  "friendship_check": "Every declared build and initial native state matched the Frustration/Return friendship rule",
+  "database_sha256": "7690860400dcead8cc075c9957bdb665fff2e694bfb585495d73f3be19c5f876",
+  "archive": "tools/battle-simulator/output/focused-review-20261027/battles.sqlite.gz",
+  "archive_sha256": "cef48edf021062fabda8c58fc0ef1ac877018749be03505287192c8cf9b27385",
+  "archive_bytes": 1658087,
+  "gzip_roundtrip": "passed",
+  "data_sha256": "490ccf1e7a35d83820276f2a7fbb6878e1b0b551f119b906b86fc8b99a40fabd",
+  "laboratory_sha256": "5b218e566f01e57eb1baed9d03293439afd2362280776d717b39a0b0b1d7c5e7",
+  "rom_sha256": "a17a4c93648261e58b5bec3640d6458cdc8463871f958599cb1189c171687e15"
+}

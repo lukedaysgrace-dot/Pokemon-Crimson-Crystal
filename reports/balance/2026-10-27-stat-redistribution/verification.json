@@ -1,0 +1,144 @@
+{
+  "status": "passed",
+  "changes": {
+    "PERSIAN": {
+      "before": [
+        70,
+        90,
+        60,
+        115,
+        80,
+        65
+      ],
+      "after": [
+        70,
+        100,
+        60,
+        115,
+        80,
+        65
+      ],
+      "bst_before": 480,
+      "bst_after": 490
+    },
+    "HITMONLEE": {
+      "before": [
+        65,
+        120,
+        63,
+        92,
+        35,
+        110
+      ],
+      "after": [
+        65,
+        130,
+        63,
+        92,
+        35,
+        100
+      ],
+      "bst_before": 485,
+      "bst_after": 485
+    },
+    "HITMONCHAN": {
+      "before": [
+        75,
+        105,
+        79,
+        81,
+        35,
+        110
+      ],
+      "after": [
+        75,
+        115,
+        79,
+        81,
+        35,
+        100
+      ],
+      "bst_before": 485,
+      "bst_after": 485
+    },
+    "HITMONTOP": {
+      "before": [
+        70,
+        95,
+        95,
+        80,
+        35,
+        110
+      ],
+      "after": [
+        70,
+        105,
+        95,
+        80,
+        35,
+        100
+      ],
+      "bst_before": 485,
+      "bst_after": 485
+    },
+    "PERSIAN_ALOLAN": {
+      "before": [
+        65,
+        70,
+        60,
+        115,
+        90,
+        65
+      ],
+      "after": [
+        70,
+        70,
+        60,
+        115,
+        100,
+        65
+      ],
+      "bst_before": 465,
+      "bst_after": 480
+    },
+    "PERRSERKER": {
+      "before": [
+        85,
+        110,
+        100,
+        50,
+        50,
+        80
+      ],
+      "after": [
+        85,
+        110,
+        100,
+        50,
+        50,
+        95
+      ],
+      "bst_before": 475,
+      "bst_after": 490
+    }
+  },
+  "compiled_checks": {
+    "pokecrystal.gbc": {
+      "compiled_moves": 442,
+      "compiled_species": 498,
+      "newer_assembly_files": 0
+    },
+    "pokecrystal_debug.gbc": {
+      "compiled_moves": 442,
+      "compiled_species": 498,
+      "newer_assembly_files": 0
+    }
+  },
+  "scope_check": "Only the six requested species stat records differ from the saved source-data baseline",
+  "balance_metadata": "All entries validated; no website generated",
+  "rom_sha256": {
+    "pokecrystal.gbc": "1d67ede66de53d9967c24cadaaabd37d158bcfe8cd96e47852d2ecf19e1c4238",
+    "pokecrystal_debug.gbc": "a17a4c93648261e58b5bec3640d6458cdc8463871f958599cb1189c171687e15"
+  },
+  "historical_league": "October 24 build; no updated league rankings claimed"
+}

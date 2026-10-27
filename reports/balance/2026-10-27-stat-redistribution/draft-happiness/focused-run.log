@@ -1,0 +1,28 @@
+UserWarning: Using SDL2 binaries from pysdl2-dll 2.32.10
+{"completed":557,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":623,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":746,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":863,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":993,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":1127,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":1249,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":1369,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":1484,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":1611,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":1741,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":1894,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":2026,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":2135,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":2264,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":2393,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":2513,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":2658,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":2787,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":2898,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":2971,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":3062,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":3147,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":3268,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":3395,"run":"56cd937ca47530c3ad6d","total":3456}
+{"completed":3456,"run":"56cd937ca47530c3ad6d","total":3456}
+{"best":{"BRELOOM":{"ability":"TECHNICIAN","draws":0,"games":32,"id":"c82bfce4fa26b596b3a0","label":"spore-setup","losses":18,"moves":"SPORE / SWORDS_DANCE / BULLET_SEED / MACH_PUNCH","opener":"[1,2]","score":0.4375,"score_upper":0.4375,"species":"BRELOOM","unresolved":0,"wins":14},"CLOYSTER":{"ability":"SKILL_LINK","draws":0,"games":32,"id":"23f7c311bf926c8245b3","label":"smash-priority","losses":19,"moves":"SHELL_SMASH / ICICLE_SPEAR / ROCK_BLAST / ICE_SHARD","opener":"[1]","score":0.40625,"score_upper":0.40625,"species":"CLOYSTER","unresolved":0,"wins":13},"EXEGGUTOR_ALOLAN":{"ability":"FRISK","draws":0,"games":32,"id":"1c5ba62f45912934dfcd","label":"historical-selected-set","losses":24,"moves":"GRASS_KNOT / LOW_KICK / DRAGON_HAMMER / POWER_WHIP","opener":"[]","score":0.25,"score_upper":0.25,"species":"EXEGGUTOR_ALOLAN","unresolved":0,"wins":8},"GALLADE":{"ability":"SHARPNESS","draws":0,"games":32,"id":"d70a08ffe3a1f192ec3e","label":"sharpness-priority","losses":18,"moves":"SACRED_SWORD / PSYCHO_CUT / LEAF_BLADE / SHADOW_SNEAK","opener":"[]","score":0.4375,"score_upper":0.4375,"species":"GALLADE","unresolved":0,"wins":14},"HITMONCHAN":{"ability":"INNER_FOCUS","draws":0,"games":32,"id":"2163be0567e48420dce4","label":"historical-selected-set","losses":22,"moves":"SWORDS_DANCE / CLOSE_COMBAT / FRUSTRATION / EARTHQUAKE","opener":"[1]","score":0.3125,"score_upper":0.3125,"species":"HITMONCHAN","unresolved":0,"wins":10},"HITMONLEE":{"ability":"LIMBER","draws":0,"games":32,"id":"3b23c4afd1e1d960796f","label":"historical-selected-set","losses":22,"moves":"LOW_SWEEP / RETURN / HI_JUMP_KICK / SUCKER_PUNCH","opener":"[]","score":0.3125,"score_upper":0.3125,"species":"HITMONLEE","unresolved":0,"wins":10},"HITMONTOP":{"ability":"INTIMIDATE","draws":0,"games":32,"id":"1846ba47844f6cdd6b7a","label":"historical-selected-set","losses":20,"moves":"CLOSE_COMBAT / SUCKER_PUNCH / FRUSTRATION / EARTHQUAKE","opener":"[]","score":0.375,"score_upper":0.375,"species":"HITMONTOP","unresolved":0,"wins":12},"HYPNO":{"ability":"BAD_DREAMS","draws":0,"games":32,"id":"f7aba1db6b863887f3f6","label":"sleep-recovery","losses":18,"moves":"HYPNOSIS / PSYCHIC_M / SHADOW_BALL / WISH","opener":"[1]","score":0.4375,"score_upper":0.4375,"species":"HYPNO","unresolved":0,"wins":14},"PERRSERKER":{"ability":"BATTLE_ARMOR","draws":0,"games":32,"id":"83222e24d0e8e855b9c4","label":"steel-priority","losses":18,"moves":"IRON_HEAD / CLOSE_COMBAT / BULLET_PUNCH / SEED_BOMB","opener":"[]","score":0.4375,"score_upper":0.4375,"species":"PERRSERKER","unresolved":0,"wins":14},"PERSIAN":{"ability":"LIMBER","draws":0,"games":32,"id":"bfd747c80982f297db48","label":"historical-selected-set","losses":25,"moves":"FRUSTRATION / PETAL_DANCE / FOUL_PLAY / GUNK_SHOT","opener":"[]","score":0.21875,"score_upper":0.21875,"species":"PERSIAN","unresolved":0,"wins":7},"PERSIAN_ALOLAN":{"ability":"FUR_COAT","draws":0,"games":32,"id":"2157ff280aa060363a0e","label":"special-setup","losses":13,"moves":"NASTY_PLOT / DARK_PULSE / THUNDERBOLT / POWER_GEM","opener":"[1]","score":0.59375,"score_upper":0.59375,"species":"PERSIAN_ALOLAN","unresolved":0,"wins":19},"PINSIR":{"ability":"GUTS","draws":0,"games":32,"id":"158c48ad191c38cb8416","label":"historical-selected-set","losses":18,"moves":"MEGAHORN / CLOSE_COMBAT / OUTRAGE / THRASH","opener":"[]","score":0.4375,"score_upper":0.4375,"species":"PINSIR","unresolved":0,"wins":14}},"counts":{"completed":3456},"done":true}

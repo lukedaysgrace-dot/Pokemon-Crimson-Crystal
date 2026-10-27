@@ -984,8 +984,8 @@ NightShadeDescription:
 	next "equals damage HP.@"
 
 MimicDescription:
-	db   "Copies a move used"
-	next "by the foe.@"
+	db   "Copies one of the"
+	next "foe's moves.@"
 
 ScreechDescription:
 	db   "Sharply reduces"

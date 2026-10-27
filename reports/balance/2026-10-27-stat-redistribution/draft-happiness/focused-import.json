@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "issue": "Store default repetitions=4; corrected to explicit 1 with total-count assertion",
+  "imported_exact_matches": 557,
+  "corrected_battles": 3456,
+  "run": "56cd937ca47530c3ad6d",
+  "draft_database": "/tmp/crimson-focused-review-draft-4reps-20261027.sqlite",
+  "other_draft_trials": "excluded"
+}
