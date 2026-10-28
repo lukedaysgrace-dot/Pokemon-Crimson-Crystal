@@ -385,6 +385,7 @@ MagnemiteEggMoves:
 	dw EXPLOSION
 	dw IRON_DEFENSE
 	dw REFLECT
+	dw MIRROR_COAT
 	dw -1 ; end
 
 FarfetchDEggMoves:

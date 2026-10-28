@@ -821,7 +821,9 @@ DreepyEggMoves:
 	dw -1 ; end
 
 ImpidimpEggMoves:
+	dw CHARM
 	dw LIGHT_SCREEN
+	dw MEAN_LOOK
 	dw REFLECT
 	dw THUNDER_WAVE
 	dw TORMENT
@@ -1283,6 +1285,7 @@ GlimmetEggMoves:
 MareanieEggMoves:
 	dw HAZE
 	dw INFESTATION
+	dw SPIKES
 	dw -1 ; end
 
 ZangooseEggMoves:
@@ -1790,6 +1793,7 @@ CanonicalYANMAEggMoves:
 CanonicalWOOPEREggMoves:
 	dw ANCIENTPOWER
 	dw SAFEGUARD
+	dw ACID_ARMOR
 	dw ENCORE
 	dw SLEEP_TALK
 	dw BODY_SLAM
@@ -2244,6 +2248,8 @@ CanonicalVENIPEDEEggMoves:
 CanonicalLILEEPEggMoves:
 	dw BARRIER
 	dw ENDURE
+	dw STUN_SPORE
+	dw LEECH_SEED
 	dw SEED_BOMB
 	dw BIND
 	dw CURSE
@@ -2283,6 +2289,7 @@ CanonicalTIMBURREggMoves:
 	dw COUNTER
 	dw DETECT
 	dw ENDURE
+	dw CROSS_CHOP
 	dw COMET_PUNCH
 	dw DEFOG
 	dw DRAIN_PUNCH
@@ -2325,6 +2332,7 @@ CanonicalDREEPYEggMoves:
 
 CanonicalFRIGIBAXEggMoves:
 	dw ICICLE_SPEAR
+	dw ICE_SHARD
 	dw OUTRAGE
 	dw AQUA_TAIL
 	dw FREEZE_DRY
@@ -2334,10 +2342,13 @@ CanonicalCHARCADETEggMoves:
 	dw CONFUSE_RAY
 	dw DESTINY_BOND
 	dw SPITE
+	dw MEAN_LOOK
 	dw DISABLE
 	dw -1 ; end
 
 CanonicalROOKIDEEEggMoves:
+	dw PURSUIT
+	dw WHIRLWIND
 	dw SKY_ATTACK
 	dw ROOST
 	dw AGILITY
@@ -2496,6 +2507,7 @@ CanonicalTRAPINCHEggMoves:
 	dw FOCUS_ENERGY
 	dw QUICK_ATTACK
 	dw SIGNAL_BEAM
+	dw U_TURN
 	dw BUG_BITE
 	dw EARTH_POWER
 	dw ENDURE
@@ -2520,6 +2532,8 @@ CanonicalSNORUNTEggMoves:
 CanonicalWIMPODEggMoves:
 	dw HARDEN
 	dw ENDURE
+	dw AQUA_TAIL
+	dw SUPERPOWER
 	dw AQUA_JET
 	dw METAL_CLAW
 	dw ROLLOUT
@@ -2545,6 +2559,7 @@ CanonicalPAWNIARDEggMoves:
 	dw PSYCHO_CUT
 	dw PURSUIT
 	dw SUCKER_PUNCH
+	dw SUPERPOWER
 	dw HEADBUTT
 	dw STEALTH_ROCK
 	dw -1 ; end
@@ -2649,6 +2664,7 @@ CanonicalCETODDLEEggMoves:
 	dw YAWN
 	dw ICICLE_SPEAR
 	dw BELLY_DRUM
+	dw SLACK_OFF
 	dw ICICLE_CRASH
 	dw SUPERPOWER
 	dw -1 ; end
@@ -2669,6 +2685,7 @@ CanonicalMIMIKYUEggMoves:
 	dw DESTINY_BOND
 	dw SPITE
 	dw CONFUSE_RAY
+	dw SUCKER_PUNCH
 	dw CURSE
 	dw NIGHTMARE
 	dw -1 ; end
@@ -2794,6 +2811,7 @@ CanonicalMEOWTH_ALOLANEggMoves:
 
 CanonicalGEODUDE_ALOLANEggMoves:
 	dw ENDURE
+	dw MAGNITUDE
 	dw MEGA_PUNCH
 	dw IRON_DEFENSE
 	dw COUNTER
@@ -2846,6 +2864,7 @@ CanonicalGROWLITHE_HISUIANEggMoves:
 
 CanonicalSNEASEL_HISUIANEggMoves:
 	dw FAKE_OUT
+	dw PURSUIT
 	dw TAUNT
 	dw AGILITY
 	dw COUNTER
@@ -2855,6 +2874,7 @@ CanonicalSNEASEL_HISUIANEggMoves:
 CanonicalWOOPER_PALDEANEggMoves:
 	dw ANCIENTPOWER
 	dw SPIKES
+	dw ACID_ARMOR
 	dw COUNTER
 	dw CURSE
 	dw DOUBLE_KICK
@@ -2876,6 +2896,7 @@ CanonicalTAUROS_PALDEAN_WATEREggMoves:
 	dw ENDURE
 	dw ROCK_SLIDE
 	dw BODY_SLAM
+	dw HORN_ATTACK
 	dw CURSE
 	dw -1 ; end
 
@@ -2928,6 +2949,8 @@ CanonicalSEVIPEREggMoves:
 	dw BODY_SLAM
 	dw IRON_TAIL
 	dw SCARY_FACE
+	dw SPITE
+	dw PURSUIT
 	dw NIGHT_SLASH
 	dw -1 ; end
 
@@ -2961,6 +2984,7 @@ CanonicalTIRTOUGAEggMoves:
 	dw BODY_SLAM
 	dw FLAIL
 	dw SLAM
+	dw HEAD_SMASH
 	dw BIDE
 	dw IRON_DEFENSE
 	dw KNOCK_OFF
@@ -2983,6 +3007,7 @@ CanonicalJOLTIKEggMoves:
 	dw DISABLE
 	dw GIGA_DRAIN
 	dw POISON_JAB
+	dw STICKY_WEB
 	dw CROSS_POISON
 	dw DOUBLE_TEAM
 	dw FAINT_ATTACK
@@ -3181,6 +3206,7 @@ CanonicalBUNEARYEggMoves2:
 	dw THUNDERPUNCH
 	dw COSMIC_POWER
 	dw SKY_UPPERCUT
+	dw KARATE_CHOP
 	dw -1 ; end
 
 CanonicalGRUBBINEggMoves2:
@@ -3227,6 +3253,7 @@ CanonicalAMAURAEggMoves2:
 	dw BARRIER
 	dw HAZE
 	dw MIRROR_COAT
+	dw MOONBLAST
 	dw EARTH_POWER
 	dw ROCK_THROW
 	dw TAKE_DOWN

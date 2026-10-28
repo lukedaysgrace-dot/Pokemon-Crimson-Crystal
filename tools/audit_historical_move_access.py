@@ -20,6 +20,7 @@ from lumi_learnsets.gen_learnsets import MOVE_MAP, norm_move
 
 CACHE = ROOT / 'tools/lumi_learnsets/cache/historical'
 RECEIPT = ROOT / 'tools/testdata/historical_move_access.json'
+RESTORATIONS = ROOT / 'tools/testdata/authored_move_restorations.json'
 PS_FILES = ['ps_learnsets.ts', 'gen2_learnsets.ts',
             'gen7letsgo_learnsets.ts', 'gen8legends_learnsets.ts',
             'gen9legends_learnsets.ts']
@@ -27,6 +28,17 @@ PS_FILES = ['ps_learnsets.ts', 'gen2_learnsets.ts',
 
 def load_json(path):
     return json.loads(path.read_text(encoding='utf-8'))
+
+
+def authored_access(data):
+    """Keep deliberate project restorations separate from upstream evidence."""
+    order, levels, tms, eggs, _, _, _, _, roots = data
+    edits = load_json(RESTORATIONS) if RESTORATIONS.exists() else {}
+    allowed = {c: {m for _, m in edits.get('level_up', {}).get(c, [])}
+               | set(edits.get('tmhm', {}).get(c, []))
+               | set(edits.get('tutors', {}).get(c, []))
+               | set(edits.get('egg_moves', {}).get(roots[c], [])) for c in order}
+    return edits, allowed
 
 
 def source_reference():
@@ -212,7 +224,9 @@ def reconcile(reference):
     order, levels, tms, eggs, parents, utility, _, _, roots = data
     before = available(data)
     old_technical = load_technical_tutors()
-    allowed = {c: set(reference['expected'].get(c, before[c])) | (before[c] & {'PIXIE_PUNCH'}) for c in order}
+    restorations, authored = authored_access(data)
+    allowed = {c: set(reference['expected'].get(c, before[c])) | authored[c]
+               | (before[c] & {'PIXIE_PUNCH'}) for c in order}
     changes = {route: {} for route in ['level_up_removals', 'tmhm_removals', 'egg_removals', 'utility_removals', 'tutor_removals', 'tutor_additions']}
     for c in order:
         for field, old in [('level_up_removals', {m for _, m in levels[c]}), ('tmhm_removals', set(tms[c])),
@@ -294,6 +308,9 @@ def reconcile(reference):
                          'Remove unsupported direct assignments; preserve six custom species and authored Pixie Punch. '
                          'Retain valid acquisition levels and machine/egg routes. Missing access uses Blackthorn. '
                          'Custom evolution carryover is reported explicitly, never treated as official compatibility.')
+    if restorations:
+        receipt['authored_restorations'] = str(RESTORATIONS.relative_to(ROOT)).replace('\\', '/')
+        receipt['policy'] += ' User-approved restorations are recorded separately in ' + receipt['authored_restorations'] + '.'
     receipt['custom_entries'] = sorted(CUSTOM)
     receipt['custom_moves'] = ['PIXIE_PUNCH']
     receipt['baseline_access'] = {c: sorted(before[c]) for c in order}
@@ -329,6 +346,7 @@ def verify(reference=None):
     assert set(technical) == set(order), 'Missing species tutor pointers'
     capacity = int(re.search(r'MOVE_TUTOR_LIST_CAPACITY EQU (\d+)', read('constants/wram_constants.asm'))[1])
     known = available(data)
+    restorations, authored = authored_access(data)
     for c in order:
         assert [list(row) for row in levels[c]] == receipt['final_level_up'][c], (c, 'natural placements changed')
         assert tms[c] == receipt['final_tmhm'][c], (c, 'machine compatibility changed')
@@ -346,7 +364,7 @@ def verify(reference=None):
             # moves; it does not authorize direct TM/tutor/natural assignments.
             direct = {m for _, m in levels[c]} | set(tms[c]) | set(eggs[c]) | set(technical[c])
             direct |= {m for i, m in enumerate(UTILITY) if utility[c] & (1 << i)}
-            assert direct <= expected | {'PIXIE_PUNCH'}, (c, 'unsupported direct access', direct - expected - {'PIXIE_PUNCH'})
+            assert direct <= expected | authored[c] | {'PIXIE_PUNCH'}, (c, 'unsupported direct access', direct - expected - authored[c] - {'PIXIE_PUNCH'})
         assert known[c] <= implemented, (c, 'unimplemented move')
         assert len(set(eggs[c]) | set(technical[c])) <= capacity, (c, 'Blackthorn overflow')
         assert len({m for _, m in levels[c]}) <= capacity, (c, 'reminder overflow')
@@ -357,6 +375,19 @@ def verify(reference=None):
         if c.endswith('_CLONE'):
             original = c[:-6]
             assert (levels[c], tms[c], eggs[c], utility[c], technical[c]) == (levels[original], tms[original], eggs[original], utility[original], technical[original]), (c, 'clone mismatch')
+    for c, rows in restorations.get('level_up', {}).items():
+        assert all(tuple(row) in levels[c] for row in rows), (c, 'authored level changed')
+    for field, actual in [('tmhm', tms), ('egg_moves', eggs), ('tutors', technical)]:
+        for c, moves in restorations.get(field, {}).items():
+            assert set(moves) <= set(actual[c]), (c, field, 'authored route changed')
+    for c, moves in restorations.get('requested', {}).items():
+        assert set(moves) <= known[c], (c, 'requested restoration missing')
+    for c, moves in restorations.get('excluded', {}).items():
+        direct = {m for _, m in levels[c]} | set(tms[c]) | set(eggs[c]) | set(technical[c])
+        assert not direct & set(moves), (c, 'excluded move restored')
+    if restorations:
+        for c in ['SLOWBRO', 'SLOWKING', 'SLOWBRO_GALARIAN', 'SLOWKING_GALARIAN']:
+            assert 'SLACK_OFF' in known[c] and 'RECOVER' not in known[c], (c, 'recovery choice')
     for c, ms in receipt['evolution_carryover'].items():
         assert all(any(m in known[p] for p in parents[c]) for m in ms), (c, 'unproved evolution carryover')
     assert set(receipt['sketch_access']) == known['SMEARGLE'] - set(receipt['expected']['SMEARGLE']), 'Sketch receipt mismatch'
@@ -366,7 +397,8 @@ def verify(reference=None):
     assert 'jp BlackthornMoveTutor_AddTeachableMoves' in read('engine/events/move_deleter.asm')
     assert 'TechnicalTutor' not in read('engine/events/utility_tutor.asm')
     print(f'HISTORICAL MOVE ACCESS AUDIT PASSED: {len(order)} species/forms; '
-          f'{sum(map(len, receipt["expected"].values()))} sourced pairs; no missing moves or unsupported direct assignments.')
+          f'{sum(map(len, receipt["expected"].values()))} sourced pairs; '
+          'no missing moves or unapproved direct assignments; authored restorations checked separately.')
     return receipt
 
 
@@ -518,6 +550,7 @@ def download_sources():
 
 def generate_report():
     receipt = verify()
+    restorations, _ = authored_access(breeding_data())
     pokemon = {p['const']: p['name'] for p in load_json(ROOT / 'docs/data/pokemon.json')}
     names = {m['const']: m['name'] for m in load_json(ROOT / 'docs/data/moves.json')}
     def name(c):
@@ -539,7 +572,7 @@ def generate_report():
              f'All **{len(receipt["final_access"])} roster entries** were checked against mainline history '
              '(including Red/Blue/Yellow, Gold/Silver/Crystal, Let’s Go, Legends: Arceus and Legends: Z-A) '
              'and Luminescent Platinum 3.0 level-up, egg, machine and tutor tables.', '',
-             f'**{added:,} newly obtainable species/move pairs; {removed:,} unsupported pairs removed; '
+             f'**{added:,} newly obtainable species/move pairs; {removed:,} pairs remain removed after authored restorations; '
              f'{sum(map(len, receipt["expected"].values())):,} sourced pairs accessible; zero deferred implemented moves.**', '',
              'Only moves implemented in this ROM are distributed. This is a union of individual historical access, '
              'including event moves; it does not claim every four-move combination is transferable between official games.', '',
@@ -561,6 +594,23 @@ def generate_report():
              'python tools/audit_historical_move_access.py --reference',
              'make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python', '```', '',
              '## Unavoidable custom evolution carryover', '']
+    if restorations:
+        index = lines.index('## Rechecking')
+        counts = {field: sum(map(len, restorations[field].values()))
+                  for field in ['level_up', 'tmhm', 'egg_moves', 'tutors']}
+        lines[index:index] = [
+            '## Authored restorations', '',
+            f'The project restores {counts["level_up"]} level-up entries at their previous levels, '
+            f'{counts["tmhm"]} machine flags, {counts["egg_moves"]} family egg entries and '
+            f'{counts["tutors"]} Blackthorn lessons from before `{restorations["removed_commit"][:8]}`. '
+            'These are deliberate design choices, recorded separately from official and Lumi source evidence.', '',
+            'Crobat regains Poison Jab. Duskull does not regain Shadow Punch; Chandelure, Cursola and Galarian '
+            'Corsola do not regain Phantom Force; Mankey does not regain Rage Fist; Victreebel and Tangrowth '
+            'do not regain Wood Hammer; Altaria does not regain Scale Shot. '
+            'All four Slowbro/Slowking forms retain Slack Off instead of Recover. '
+            'Normal pre-evolution inheritance and shared family egg lists still apply.', '',
+            'Exact restored routes and the requested and excluded pairs are in '
+            '`tools/testdata/authored_move_restorations.json`.', '']
     if receipt.get('validation'):
         index = lines.index('## Unavoidable custom evolution carryover')
         lines[index:index] = ['Validation passed: both ROM builds; 10,565 compiled learnset/menu checks per ROM; '
@@ -583,6 +633,13 @@ def generate_report():
                              ('Added Blackthorn lessons', 'tutor_additions')]:
             if changes[field].get(c):
                 lines += [f'- **{label}:** {move_names(changes[field][c])}.']
+        for label, field in [('Restored natural entries', 'level_up'), ('Restored machine flags', 'tmhm'),
+                             ('Restored family egg entries', 'egg_moves'), ('Restored Blackthorn lessons', 'tutors')]:
+            restored = restorations.get(field, {}).get(c, [])
+            if field == 'level_up':
+                restored = [m for _, m in restored]
+            if restored:
+                lines += [f'- **{label}:** {move_names(restored)}.']
         lines.append('')
         records.append({'species': c, 'name': name(c), 'newly_available': added_moves, 'removed_moves': removed_moves,
                         'new_tutor_routes': changes['tutor_additions'].get(c, []),

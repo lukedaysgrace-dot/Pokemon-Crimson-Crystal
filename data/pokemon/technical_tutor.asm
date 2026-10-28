@@ -10149,6 +10149,7 @@ TechnicalTutor_BASTIODON:
 	dw SNORE
 	dw STONE_EDGE
 	dw TORMENT
+	dw HEAD_SMASH
 	dw 0
 
 TechnicalTutor_CETODDLE:
@@ -10647,6 +10648,7 @@ TechnicalTutor_SANDSLASH_ALOLAN:
 	dw SUPER_FANG
 	dw TAKE_DOWN
 	dw X_SCISSOR
+	dw FREEZE_DRY
 	dw 0
 
 TechnicalTutor_VULPIX_ALOLAN:
@@ -11471,6 +11473,7 @@ TechnicalTutor_SNEASLER:
 	dw TORMENT
 	dw VACUUM_WAVE
 	dw VENOSHOCK
+	dw TRIPLE_AXEL
 	dw 0
 
 TechnicalTutor_WOOPER_PALDEAN:
@@ -11713,6 +11716,7 @@ TechnicalTutor_GLIMMORA:
 	dw GUNK_SHOT
 	dw ROCK_SLIDE
 	dw STONE_EDGE
+	dw HEAD_SMASH
 	dw 0
 
 TechnicalTutor_MAREANIE:
