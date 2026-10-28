@@ -8,7 +8,7 @@ before the generic Rocket classes.
 
 ## Sound
 
-The song is in E minor. The Phrygian F and tritone Bb add tension. It runs
+The song is in B minor. The Phrygian C and tritone F add tension. It runs
 at 149 BPM, using `tempo 256` and `notetype 6`, so one 16th note is six
 frames.
 
@@ -16,9 +16,9 @@ frames.
 | --- | --- | --- |
 | 4 | Intro | Tritone hits, chromatic bass climbs, diminished cascade, dominant hits, tom fill |
 | 8 | A | Pumping octave bass riff, tresillo stabs, and a creeping chromatic line |
-| 8 | B | Main theme (Em C Am B, Em C F B) with ch1 parallel harmony |
-| 8 | C | Descending gallop bass (E to B), sustained lead, and ch1 arpeggios |
-| 8 | D | Half-time breakdown with E1/F1 chugs, tremolo, and a swelling build |
+| 8 | B | Main theme (Bm G Em F#, Bm G C F#) with ch1 parallel harmony |
+| 8 | C | Descending gallop bass (B to F#), sustained lead, and ch1 arpeggios |
+| 8 | D | Half-time breakdown with B1/C2 chugs, tremolo, and a swelling build |
 | 8 | B' | Theme reprise; ch1 doubles the lead an octave lower |
 
 The intro plays once. The 40-bar section then loops (3,840 frames, about
@@ -27,18 +27,20 @@ The intro plays once. The 40-bar section then loops (3,840 frames, about
 - Ch1: Harmony, octave doubling, arpeggios, and tremolo. It is panned left
   when the Stereo option is on.
 - Ch2: Lead with vibrato.
-- Ch3: Bass on wave sample 12. Strong 16ths play at full volume and weak
-  16ths at half volume.
-- Ch4: Drumkit 6.
+- Ch3: Bass on the sawtooth wave (sample 11), the same bass waveform as
+  `greenow.asm`. Every note plays at full volume and is clipped short,
+  leaving 2 silent frames before the next note.
+- Ch4: Drumkit 6. Its kick, snares, and off-beat "tss" are modeled on
+  drumkit 3, the kit `greenow.asm` uses.
 
 ## Files
 
 - `audio/music/rocketexecutivebattle.asm`: song data. Each channel calls
   reusable phrases, and every bar is commented.
-- `audio/drumkits.asm`: `Drumkit6` contains the kick, snare, ghost snare,
-  closed/soft/open hats, crash, three 7-bit toms, a roll snare, and a clap.
-- `audio/wave_samples.asm`: sample 12 is a 37.5% pulse with sloped edges. Its
-  strong fundamental and clear second harmonic make low notes audible.
+- `audio/drumkits.asm`: `Drumkit6` contains a tonal 7-bit kick, snare, ghost
+  snare, off-beat "tss", soft and open hats, crash, three 7-bit toms, a roll
+  snare, and a clap. The kick, snares, and "tss" are louder takes on drumkit
+  3's Kick1, Snare12–14, and Crash2.
 - `audio.asm`, `audio/music_pointers.asm`, and
   `constants/music_constants.asm`: register the song in its own ROM
   section.
@@ -46,7 +48,7 @@ The intro plays once. The 40-bar section then loops (3,840 frames, about
 - `maps/PlayersHouse2F.asm`: adds "ROCKET EXECUTIVE" to the bedroom radio's
   Extra music menu.
 
-The new drumkit and wave sample live in the "Audio" section with the sound
+The new drumkit lives in the "Audio" section with the sound
 engine. The floating "Tileset Data 17" section moves to another bank to make
 room.
 

@@ -278,10 +278,9 @@ Kick2:
 	endchannel
 
 RocketKick:
-	noise C#, 1, $f1, $55
-	noise C#, 1, $d1, $66
-	noise C#, 2, $a1, $77
-	noise C#, 1, $00, $00
+; tonal 7-bit thump with a noise click tail, as in drumkit 3's kicks
+	noise C#, 1, $c8, $6b
+	noise C#, 1, $71, $00
 	endchannel
 
 RocketHatSoft:
@@ -289,16 +288,16 @@ RocketHatSoft:
 	endchannel
 
 RocketSnare:
-	noise C#, 1, $f1, $52
-	noise C#, 1, $d2, $22
+; crisp short snare, a louder take on drumkit 3's Snare12
+	noise C#, 1, $c1, $33
 	endchannel
 
 RocketGhost:
-	noise C#, 1, $61, $22
+	noise C#, 1, $51, $32
 	endchannel
 
 RocketRoll:
-	noise C#, 1, $a1, $32
+	noise C#, 1, $81, $31
 	endchannel
 
 RocketClap:
@@ -308,7 +307,8 @@ RocketClap:
 	endchannel
 
 RocketHat:
-	noise C#, 1, $71, $00
+; off-beat "tss", as drumkit 3's Crash2
+	noise C#, 1, $84, $12
 	endchannel
 
 RocketOpen:
@@ -316,7 +316,7 @@ RocketOpen:
 	endchannel
 
 RocketCrash:
-	noise C#, 1, $f1, $55
+	noise C#, 1, $a8, $6b
 	noise C#, 1, $f5, $12
 	endchannel
 
