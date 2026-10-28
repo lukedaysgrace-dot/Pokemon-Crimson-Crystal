@@ -3,10 +3,13 @@
 ; (kingshriek, https://snesmusic.org/hoot/kingshriek/). Same melody, bass
 ; line, harmony and groove, re-voiced for the Crystal sound engine:
 ; - Ch1: duty 3 "oom-pah" backing (low root + short chord-tone stab),
-;   replacing the per-frame arpeggio chords.
+;   each stab wobbles through its chord tones frame by frame for its
+;   first frames, like the original's arpeggios.
 ; - Ch2: duty-2 lead with Crystal vibrato and envelopes (duty 1 on the
 ;   answer phrase that used octave shimmer in the original).
-; - Ch3: standard Crystal bass wave ($14).
+; - Ch3: Hudson Hawk bass wave (sample 10) with a full-volume attack and
+;   half-volume tail on each note; lighter, longer notes in bars 7-12;
+;   bars 21-28 bounce between octaves.
 ; - Ch4: drumkit 3 (kick/snare/hi-hat/crash) on the original kick/snare
 ;   pattern, with off-beat hats and section crashes.
 ; Tempo 128 = 150 BPM; one loop is 28 bars (2688 frames, ~45 seconds).
@@ -26,14 +29,14 @@ Music_HudsonHawkTitle_Ch1_Loop:
 	callchannel Music_HudsonHawkTitle_Ch1_Bar1
 	callchannel Music_HudsonHawkTitle_Ch1_Bar2
 	callchannel Music_HudsonHawkTitle_Ch1_Bar1
-	callchannel Music_HudsonHawkTitle_Ch1_Bar2
+	callchannel Music_HudsonHawkTitle_Ch1_Bar4
+	callchannel Music_HudsonHawkTitle_Ch1_Bar1
+	callchannel Music_HudsonHawkTitle_Ch1_Bar6
 	callchannel Music_HudsonHawkTitle_Ch1_Bar1
 	callchannel Music_HudsonHawkTitle_Ch1_Bar2
-	callchannel Music_HudsonHawkTitle_Ch1_Bar1
-	callchannel Music_HudsonHawkTitle_Ch1_Bar2
-	callchannel Music_HudsonHawkTitle_Ch1_Bar1
-	callchannel Music_HudsonHawkTitle_Ch1_Bar2
-	callchannel Music_HudsonHawkTitle_Ch1_Bar1
+	callchannel Music_HudsonHawkTitle_Ch1_Bar9
+	callchannel Music_HudsonHawkTitle_Ch1_Bar10
+	callchannel Music_HudsonHawkTitle_Ch1_Bar11
 	callchannel Music_HudsonHawkTitle_Ch1_Bar2
 	callchannel Music_HudsonHawkTitle_Ch1_Bar13_14
 	callchannel Music_HudsonHawkTitle_Ch1_Bar15
@@ -43,12 +46,12 @@ Music_HudsonHawkTitle_Ch1_Loop:
 	callchannel Music_HudsonHawkTitle_Ch1_Bar20
 	callchannel Music_HudsonHawkTitle_Ch1_Bar21
 	callchannel Music_HudsonHawkTitle_Ch1_Bar22
-	callchannel Music_HudsonHawkTitle_Ch1_Bar21
-	callchannel Music_HudsonHawkTitle_Ch1_Bar22
-	callchannel Music_HudsonHawkTitle_Ch1_Bar21
-	callchannel Music_HudsonHawkTitle_Ch1_Bar22
-	callchannel Music_HudsonHawkTitle_Ch1_Bar21
-	callchannel Music_HudsonHawkTitle_Ch1_Bar22
+	callchannel Music_HudsonHawkTitle_Ch1_Bar23
+	callchannel Music_HudsonHawkTitle_Ch1_Bar24
+	callchannel Music_HudsonHawkTitle_Ch1_Bar25
+	callchannel Music_HudsonHawkTitle_Ch1_Bar26
+	callchannel Music_HudsonHawkTitle_Ch1_Bar27
+	callchannel Music_HudsonHawkTitle_Ch1_Bar26
 	loopchannel 0, Music_HudsonHawkTitle_Ch1_Loop
 
 Music_HudsonHawkTitle_Ch1_Bar1:
@@ -56,31 +59,118 @@ Music_HudsonHawkTitle_Ch1_Bar1:
 	notetype $c, $62
 	octave 1
 	note B_, 2
-	intensity $91
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
 	octave 4
 	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $41
 	note __, 1
+	notetype $2, $91
+	note B_, 2
+	intensity $71
+	octave 4
 	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $41
 	note __, 1
 	intensity $62
 	octave 1
 	note B_, 2
-	intensity $91
-	octave 4
-	note D_, 2
-	intensity $62
-	octave 1
-	note B_, 1
-	intensity $91
-	octave 4
-	note D_, 2
-	intensity $62
-	octave 1
-	note B_, 1
-	intensity $91
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
 	octave 4
 	note D_, 1
-	intensity $62
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $62
 	octave 2
 	note B_, 1
 	endchannel
@@ -90,57 +180,1033 @@ Music_HudsonHawkTitle_Ch1_Bar2:
 	notetype $c, $62
 	octave 2
 	note F_, 2
-	intensity $91
+	notetype $2, $91
 	octave 3
 	note B_, 2
-	note B_, 2
-	intensity $62
-	octave 2
-	note F_, 2
-	intensity $91
-	octave 3
-	note B_, 2
-	intensity $62
-	octave 2
-	note F_, 1
-	intensity $91
-	octave 3
-	note B_, 2
-	intensity $62
-	octave 2
-	note F_, 1
-	intensity $91
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
 	octave 3
 	note B_, 1
-	intensity $62
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	intensity $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
 	octave 2
 	note F_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar4:
+	dutycycle 3
+	notetype $c, $62
+	octave 2
+	note F_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	intensity $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	note __, 3
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar6:
+	dutycycle 3
+	notetype $c, $62
+	octave 2
+	note F_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	intensity $91
+	note B_, 1
+	intensity $81
+	octave 4
+	note D_, 1
+	intensity $71
+	octave 3
+	note B_, 1
+	intensity $61
+	octave 4
+	note F_, 1
+	intensity $51
+	octave 3
+	note B_, 1
+	intensity $41
+	octave 4
+	note D_, 1
+	intensity $31
+	octave 3
+	note B_, 1
+	intensity $21
+	octave 4
+	note F_, 1
+	note __, 4
+	notetype $c, $62
+	octave 2
+	note F_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	note __, 3
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar9:
+	dutycycle 3
+	notetype $c, $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $41
+	note __, 1
+	notetype $2, $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $41
+	note __, 1
+	intensity $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 1
+	intensity $81
+	octave 4
+	note D_, 1
+	intensity $71
+	octave 3
+	note B_, 1
+	intensity $61
+	octave 4
+	note F#, 1
+	intensity $51
+	octave 3
+	note B_, 1
+	note __, 1
+	notetype $c, $62
+	octave 2
+	note B_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar10:
+	dutycycle 3
+	notetype $c, $62
+	octave 2
+	note F_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	intensity $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 1
+	intensity $81
+	octave 4
+	note D_, 1
+	intensity $71
+	octave 3
+	note B_, 1
+	intensity $61
+	octave 4
+	note F_, 1
+	intensity $51
+	octave 3
+	note B_, 1
+	intensity $41
+	octave 4
+	note D_, 1
+	intensity $31
+	octave 3
+	note B_, 1
+	intensity $21
+	octave 4
+	note F_, 1
+	intensity $11
+	octave 3
+	note B_, 1
+	note __, 3
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar11:
+	dutycycle 3
+	notetype $c, $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $41
+	note __, 1
+	notetype $2, $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $41
+	note __, 1
+	intensity $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	note __, 3
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $62
+	octave 2
+	note B_, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch1_Bar13_14:
 	notetype $c, $91
 	note __, 2
 	dutycycle 3
-	octave 4
-	note C#, 1
-	note __, 1
-	note C#, 1
-	note __, 3
-	note C#, 2
-	note __, 1
-	note C#, 2
-	note __, 1
-	note C#, 1
-	note __, 3
+	notetype $2, $91
 	octave 3
 	note A#, 2
-	note A#, 2
-	note __, 2
-	note A#, 2
-	note __, 1
-	note A#, 2
-	note __, 1
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
 	note A#, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	notetype $c, $41
+	note __, 1
+	notetype $2, $91
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	notetype $c, $41
+	note __, 3
+	notetype $2, $91
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note A#, 1
+	note __, 2
+	notetype $c, $11
+	note __, 1
+	notetype $2, $91
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note A#, 1
+	note __, 2
+	notetype $c, $11
+	note __, 1
+	notetype $2, $91
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	notetype $c, $41
+	note __, 3
+	notetype $2, $91
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note E_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note E_, 1
+	octave 3
+	note A#, 1
+	note __, 2
+	intensity $91
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note E_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note E_, 1
+	note __, 3
+	notetype $c, $11
+	note __, 2
+	notetype $2, $91
+	octave 3
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note E_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note E_, 1
+	octave 3
+	note A#, 1
+	note __, 2
+	notetype $c, $11
+	note __, 1
+	notetype $2, $91
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note E_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note E_, 1
+	note __, 3
+	notetype $c, $11
+	note __, 1
+	notetype $2, $91
+	octave 3
+	note A#, 1
+	intensity $81
+	octave 4
+	note C#, 1
+	intensity $71
+	octave 3
+	note A#, 1
+	intensity $61
+	octave 4
+	note E_, 1
+	intensity $51
+	octave 3
+	note A#, 2
+	notetype $c, $51
 	note __, 1
 	endchannel
 
@@ -149,31 +1215,119 @@ Music_HudsonHawkTitle_Ch1_Bar15:
 	notetype $c, $62
 	octave 1
 	note A#, 2
-	intensity $91
+	notetype $2, $91
+	octave 3
+	note A#, 2
+	intensity $71
 	octave 4
 	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	notetype $c, $41
 	note __, 1
+	notetype $2, $91
+	note A#, 1
+	intensity $81
+	octave 4
 	note C#, 1
+	intensity $71
+	octave 3
+	note A#, 1
+	intensity $61
+	octave 4
+	note F_, 1
+	intensity $51
+	octave 3
+	note A#, 2
+	notetype $c, $51
 	note __, 1
 	intensity $62
 	octave 1
 	note A#, 2
-	intensity $91
-	octave 4
-	note C#, 2
-	intensity $62
-	octave 1
+	notetype $2, $91
+	octave 3
 	note A#, 1
-	intensity $91
-	octave 4
-	note C#, 2
-	intensity $62
-	octave 1
-	note A#, 1
-	intensity $91
+	intensity $81
 	octave 4
 	note C#, 1
-	intensity $62
+	intensity $71
+	octave 3
+	note A#, 1
+	intensity $61
+	octave 4
+	note F_, 1
+	intensity $51
+	octave 3
+	note A#, 1
+	intensity $41
+	octave 4
+	note C#, 1
+	intensity $31
+	octave 3
+	note A#, 1
+	intensity $21
+	octave 4
+	note F_, 1
+	intensity $11
+	octave 3
+	note A#, 1
+	note __, 3
+	notetype $c, $62
+	octave 1
+	note A#, 1
+	notetype $2, $91
+	octave 3
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note A#, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note A#, 1
+	notetype $2, $91
+	octave 3
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	notetype $c, $62
 	octave 2
 	note A#, 1
 	endchannel
@@ -183,29 +1337,139 @@ Music_HudsonHawkTitle_Ch1_Bar16:
 	notetype $c, $62
 	octave 2
 	note E_, 2
-	intensity $91
+	notetype $2, $91
 	octave 3
 	note A#, 2
-	note A#, 2
-	intensity $62
-	octave 2
-	note E_, 2
-	intensity $91
-	octave 3
-	note A#, 2
-	intensity $62
-	octave 2
-	note E_, 1
-	intensity $91
-	octave 3
-	note A#, 2
-	intensity $62
-	octave 2
-	note E_, 1
-	intensity $91
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
 	octave 3
 	note A#, 1
-	intensity $62
+	intensity $51
+	octave 4
+	note E_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note E_, 1
+	octave 3
+	note A#, 1
+	note __, 2
+	intensity $91
+	note A#, 1
+	intensity $81
+	octave 4
+	note C#, 1
+	intensity $71
+	octave 3
+	note A#, 1
+	intensity $61
+	octave 4
+	note E_, 1
+	intensity $51
+	octave 3
+	note A#, 1
+	intensity $41
+	octave 4
+	note C#, 1
+	intensity $31
+	octave 3
+	note A#, 1
+	intensity $21
+	octave 4
+	note E_, 1
+	intensity $11
+	octave 3
+	note A#, 1
+	note __, 3
+	notetype $c, $62
+	octave 2
+	note E_, 2
+	notetype $2, $91
+	octave 3
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note E_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note E_, 1
+	octave 3
+	note A#, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note E_, 1
+	notetype $2, $91
+	octave 3
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note E_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note A#, 1
+	intensity $11
+	octave 4
+	note E_, 1
+	octave 3
+	note A#, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note E_, 1
+	notetype $2, $91
+	octave 3
+	note A#, 2
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note A#, 1
+	intensity $51
+	octave 4
+	note E_, 1
+	intensity $41
+	octave 3
+	note A#, 1
+	notetype $c, $62
 	octave 2
 	note E_, 1
 	endchannel
@@ -214,26 +1478,237 @@ Music_HudsonHawkTitle_Ch1_Bar17_18:
 	notetype $c, $91
 	note __, 2
 	dutycycle 3
-	octave 4
-	note D_, 1
-	note __, 1
-	note D_, 1
-	note __, 3
-	note D_, 2
-	note __, 1
-	note D_, 2
-	note __, 1
-	note D_, 1
-	note __, 3
+	notetype $2, $91
 	octave 3
 	note B_, 2
-	note B_, 2
-	note __, 2
-	note B_, 2
-	note __, 1
-	note B_, 2
-	note __, 1
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
 	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $41
+	note __, 1
+	notetype $2, $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $41
+	note __, 3
+	notetype $2, $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $11
+	note __, 1
+	notetype $2, $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $11
+	note __, 1
+	notetype $2, $91
+	note B_, 1
+	intensity $81
+	octave 4
+	note D_, 1
+	intensity $71
+	octave 3
+	note B_, 1
+	intensity $61
+	octave 4
+	note F#, 1
+	intensity $51
+	octave 3
+	note B_, 2
+	notetype $c, $51
+	note __, 3
+	notetype $2, $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	intensity $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $11
+	note __, 2
+	notetype $2, $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F_, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $11
+	note __, 1
+	notetype $2, $91
+	note B_, 1
+	intensity $81
+	octave 4
+	note D_, 1
+	intensity $71
+	octave 3
+	note B_, 1
+	intensity $61
+	octave 4
+	note F_, 1
+	intensity $51
+	octave 3
+	note B_, 1
+	intensity $41
+	octave 4
+	note D_, 1
+	intensity $31
+	octave 3
+	note B_, 1
+	intensity $21
+	octave 4
+	note F_, 1
+	intensity $11
+	octave 3
+	note B_, 1
+	note __, 3
+	notetype $c, $11
+	note __, 1
+	notetype $2, $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F_, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $41
 	note __, 1
 	endchannel
 
@@ -242,29 +1717,136 @@ Music_HudsonHawkTitle_Ch1_Bar19:
 	notetype $c, $62
 	octave 2
 	note B_, 2
-	intensity $91
-	octave 4
-	note D_, 2
-	note D_, 2
-	intensity $62
-	octave 1
+	notetype $2, $91
+	octave 3
 	note B_, 2
-	intensity $91
-	octave 4
-	note D_, 2
-	intensity $62
-	octave 1
-	note B_, 1
-	intensity $91
-	octave 4
-	note D_, 2
-	intensity $62
-	octave 1
-	note B_, 1
-	intensity $91
+	intensity $71
 	octave 4
 	note D_, 1
-	intensity $62
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	intensity $91
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	note __, 3
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note B_, 1
+	intensity $11
+	octave 4
+	note F#, 1
+	octave 3
+	note B_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note B_, 2
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note B_, 1
+	intensity $51
+	octave 4
+	note F#, 1
+	intensity $41
+	octave 3
+	note B_, 1
+	notetype $c, $62
 	octave 1
 	note B_, 1
 	endchannel
@@ -274,29 +1856,102 @@ Music_HudsonHawkTitle_Ch1_Bar20:
 	notetype $c, $62
 	octave 2
 	note F_, 2
-	intensity $91
+	notetype $2, $91
 	octave 4
-	note F#, 2
-	note F#, 2
-	intensity $62
+	note D_, 2
+	intensity $71
+	note F#, 1
+	intensity $61
+	note A_, 1
+	intensity $51
+	note D_, 1
+	intensity $41
+	note F#, 1
+	intensity $31
+	note A_, 1
+	intensity $21
+	note D_, 1
+	intensity $11
+	note F#, 1
+	note A_, 1
+	note __, 2
+	intensity $91
+	note D_, 2
+	intensity $71
+	note F#, 1
+	intensity $61
+	note A_, 1
+	intensity $51
+	note D_, 1
+	intensity $41
+	note F#, 1
+	intensity $31
+	note A_, 1
+	intensity $21
+	note D_, 1
+	intensity $11
+	note F#, 1
+	note A_, 1
+	note __, 2
+	notetype $c, $62
 	octave 2
 	note F_, 2
-	intensity $91
+	notetype $2, $91
 	octave 4
-	note F#, 2
-	intensity $62
-	octave 2
-	note F_, 1
-	intensity $91
-	octave 4
-	note F#, 2
-	intensity $62
-	octave 2
-	note F_, 1
-	intensity $91
-	octave 4
+	note D_, 2
+	intensity $71
 	note F#, 1
-	intensity $62
+	intensity $61
+	note A_, 1
+	intensity $51
+	note D_, 1
+	intensity $41
+	note F#, 1
+	intensity $31
+	note A_, 1
+	intensity $21
+	note D_, 1
+	intensity $11
+	note F#, 1
+	note A_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 4
+	note D_, 2
+	intensity $71
+	note F#, 1
+	intensity $61
+	note A_, 1
+	intensity $51
+	note D_, 1
+	intensity $41
+	note F#, 1
+	intensity $31
+	note A_, 1
+	intensity $21
+	note D_, 1
+	intensity $11
+	note F#, 1
+	note A_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 4
+	note D_, 2
+	intensity $71
+	note F#, 1
+	intensity $61
+	note B_, 1
+	intensity $51
+	note D_, 1
+	intensity $41
+	note F#, 1
+	notetype $c, $62
 	octave 2
 	note F_, 1
 	endchannel
@@ -306,29 +1961,121 @@ Music_HudsonHawkTitle_Ch1_Bar21:
 	notetype $c, $62
 	octave 1
 	note B_, 2
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
 	intensity $91
 	octave 3
-	note B_, 2
-	note B_, 2
-	intensity $62
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	note __, 3
+	notetype $c, $62
 	octave 1
 	note B_, 2
-	intensity $91
+	notetype $2, $91
 	octave 3
-	note B_, 2
-	intensity $62
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
 	octave 1
 	note B_, 1
-	intensity $91
+	notetype $2, $91
 	octave 3
-	note B_, 2
-	intensity $62
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	note __, 3
+	notetype $c, $62
 	octave 1
 	note B_, 1
-	intensity $91
+	notetype $2, $91
 	octave 3
+	note F#, 2
+	intensity $71
 	note B_, 1
-	intensity $62
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	notetype $c, $62
 	octave 1
 	note B_, 1
 	endchannel
@@ -338,31 +2085,770 @@ Music_HudsonHawkTitle_Ch1_Bar22:
 	notetype $c, $62
 	octave 2
 	note G_, 2
-	intensity $91
+	notetype $2, $91
 	octave 3
-	note A_, 2
-	note A_, 2
-	intensity $62
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note C#, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note E_, 1
+	intensity $11
+	note A_, 1
+	note __, 3
+	intensity $91
+	note E_, 1
+	intensity $81
+	note A_, 1
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note E_, 1
+	intensity $51
+	note A_, 1
+	intensity $41
+	octave 4
+	note C#, 1
+	intensity $31
+	octave 3
+	note E_, 1
+	intensity $21
+	note A_, 1
+	intensity $11
+	octave 4
+	note C#, 1
+	note __, 3
+	notetype $c, $62
 	octave 2
 	note G_, 2
-	intensity $91
+	notetype $2, $91
 	octave 3
-	note A_, 2
-	intensity $62
+	note E_, 1
+	intensity $81
+	note A_, 1
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note E_, 1
+	intensity $51
+	note A_, 1
+	intensity $41
+	octave 4
+	note C#, 1
+	intensity $31
+	octave 3
+	note E_, 1
+	intensity $21
+	note A_, 1
+	intensity $11
+	octave 4
+	note C#, 1
+	note __, 3
+	notetype $c, $62
 	octave 2
 	note F_, 1
-	intensity $91
+	notetype $2, $91
 	octave 3
-	note A_, 2
-	intensity $62
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note E_, 1
+	intensity $11
+	note A_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
 	octave 2
 	note G_, 1
-	intensity $91
+	notetype $2, $91
 	octave 3
+	note E_, 2
+	intensity $71
 	note A_, 1
-	intensity $62
+	intensity $61
+	octave 4
+	note C#, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	notetype $c, $62
 	octave 2
 	note F_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar23:
+	dutycycle 3
+	notetype $c, $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	intensity $91
+	octave 3
+	note F#, 1
+	intensity $81
+	note B_, 1
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note F#, 1
+	intensity $51
+	note B_, 1
+	intensity $41
+	octave 4
+	note D_, 1
+	intensity $31
+	octave 3
+	note F#, 1
+	intensity $21
+	note B_, 1
+	intensity $11
+	octave 4
+	note D_, 1
+	note __, 3
+	notetype $c, $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note F#, 1
+	intensity $81
+	note B_, 1
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note F#, 1
+	intensity $51
+	note B_, 1
+	intensity $41
+	octave 4
+	note D_, 1
+	intensity $31
+	octave 3
+	note F#, 1
+	intensity $21
+	note B_, 1
+	intensity $11
+	octave 4
+	note D_, 1
+	note __, 3
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar24:
+	dutycycle 3
+	notetype $c, $62
+	octave 2
+	note G_, 2
+	notetype $2, $91
+	octave 3
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note C#, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note E_, 1
+	intensity $11
+	note A_, 1
+	octave 4
+	note C#, 1
+	note __, 2
+	intensity $91
+	octave 3
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note C#, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note E_, 1
+	intensity $11
+	note A_, 1
+	octave 4
+	note C#, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note G_, 2
+	notetype $2, $91
+	octave 3
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note C#, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note E_, 1
+	intensity $11
+	note A_, 1
+	octave 4
+	note C#, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 3
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note E_, 1
+	intensity $11
+	note A_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note G_, 1
+	notetype $2, $91
+	octave 3
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note C#, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar25:
+	dutycycle 3
+	notetype $c, $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note F#, 1
+	intensity $81
+	note B_, 1
+	intensity $71
+	octave 4
+	note D_, 1
+	intensity $61
+	octave 3
+	note F#, 1
+	intensity $51
+	note B_, 1
+	intensity $41
+	octave 4
+	note D_, 1
+	intensity $31
+	octave 3
+	note F#, 1
+	intensity $21
+	note B_, 1
+	intensity $11
+	octave 4
+	note D_, 1
+	note __, 3
+	intensity $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar26:
+	dutycycle 3
+	notetype $c, $62
+	octave 2
+	note G_, 2
+	notetype $2, $91
+	octave 3
+	note E_, 1
+	intensity $81
+	note A_, 1
+	intensity $71
+	octave 4
+	note C#, 1
+	intensity $61
+	octave 3
+	note E_, 1
+	intensity $51
+	note A_, 1
+	intensity $41
+	octave 4
+	note C#, 1
+	intensity $31
+	octave 3
+	note E_, 1
+	intensity $21
+	note A_, 1
+	intensity $11
+	octave 4
+	note C#, 1
+	note __, 3
+	intensity $91
+	octave 3
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note C#, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note E_, 1
+	intensity $11
+	note A_, 1
+	octave 4
+	note C#, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note G_, 2
+	notetype $2, $91
+	octave 3
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note C#, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	intensity $31
+	octave 4
+	note C#, 1
+	intensity $21
+	octave 3
+	note E_, 1
+	intensity $11
+	note A_, 1
+	octave 4
+	note C#, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	notetype $2, $91
+	octave 3
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note E_, 1
+	intensity $11
+	note A_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
+	octave 2
+	note G_, 1
+	notetype $2, $91
+	octave 3
+	note E_, 2
+	intensity $71
+	note A_, 1
+	intensity $61
+	octave 4
+	note C#, 1
+	intensity $51
+	octave 3
+	note E_, 1
+	intensity $41
+	note A_, 1
+	notetype $c, $62
+	octave 2
+	note F_, 1
+	endchannel
+
+Music_HudsonHawkTitle_Ch1_Bar27:
+	dutycycle 3
+	notetype $c, $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	intensity $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 2
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	intensity $31
+	octave 4
+	note D_, 1
+	intensity $21
+	octave 3
+	note F#, 1
+	intensity $11
+	note B_, 1
+	octave 4
+	note D_, 1
+	note __, 2
+	notetype $c, $62
+	octave 1
+	note B_, 1
+	notetype $2, $91
+	octave 3
+	note F#, 2
+	intensity $71
+	note B_, 1
+	intensity $61
+	octave 4
+	note D_, 1
+	intensity $51
+	octave 3
+	note F#, 1
+	intensity $41
+	note B_, 1
+	notetype $c, $62
+	octave 1
+	note B_, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch2:
@@ -652,7 +3138,7 @@ Music_HudsonHawkTitle_Ch3_Loop:
 	callchannel Music_HudsonHawkTitle_Ch3_Bar6
 	callchannel Music_HudsonHawkTitle_Ch3_Bar7
 	callchannel Music_HudsonHawkTitle_Ch3_Bar8
-	callchannel Music_HudsonHawkTitle_Ch3_Bar5
+	callchannel Music_HudsonHawkTitle_Ch3_Bar9
 	callchannel Music_HudsonHawkTitle_Ch3_Bar10
 	callchannel Music_HudsonHawkTitle_Ch3_Bar7
 	callchannel Music_HudsonHawkTitle_Ch3_Bar8
@@ -666,374 +3152,871 @@ Music_HudsonHawkTitle_Ch3_Loop:
 	callchannel Music_HudsonHawkTitle_Ch3_Bar20
 	callchannel Music_HudsonHawkTitle_Ch3_Bar21
 	callchannel Music_HudsonHawkTitle_Ch3_Bar22
-	callchannel Music_HudsonHawkTitle_Ch3_Bar23
+	callchannel Music_HudsonHawkTitle_Ch3_Bar21
 	callchannel Music_HudsonHawkTitle_Ch3_Bar22
 	callchannel Music_HudsonHawkTitle_Ch3_Bar21
 	callchannel Music_HudsonHawkTitle_Ch3_Bar22
-	callchannel Music_HudsonHawkTitle_Ch3_Bar23
+	callchannel Music_HudsonHawkTitle_Ch3_Bar21
 	callchannel Music_HudsonHawkTitle_Ch3_Bar22
 	loopchannel 0, Music_HudsonHawkTitle_Ch3_Loop
 
 Music_HudsonHawkTitle_Ch3_Bar1:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
-	note B_, 2
-	note B_, 2
 	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 1
-	note B_, 2
-	note B_, 2
-	note B_, 2
-	note B_, 2
-	note B_, 2
+	notetype $6, $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar2:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
 	note A#, 1
-	note __, 1
+	intensity $2a
 	note A#, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note A#, 1
+	intensity $2a
+	note A#, 1
+	notetype $c, $2a
 	note __, 1
-	note A#, 2
-	note A#, 2
-	note A#, 2
-	note A#, 2
-	note A#, 2
+	notetype $6, $1a
+	note A#, 1
+	intensity $2a
+	note A#, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	note A#, 1
+	intensity $2a
+	note A#, 3
+	intensity $1a
+	note A#, 1
+	intensity $2a
+	note A#, 3
+	intensity $1a
+	note A#, 1
+	intensity $2a
+	note A#, 3
+	intensity $1a
+	note A#, 1
+	intensity $2a
+	note A#, 3
+	intensity $1a
+	note A#, 1
+	intensity $2a
+	note A#, 3
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar3:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
-	note B_, 2
 	note B_, 1
-	note __, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 1
-	note B_, 2
-	note B_, 2
-	note B_, 2
-	note B_, 2
-	note B_, 2
+	notetype $6, $1a
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar4:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
-	note F_, 2
 	note F_, 1
+	intensity $2a
+	note F_, 3
+	intensity $1a
+	note F_, 1
+	intensity $2a
+	note F_, 1
+	intensity $1a
 	note F#, 1
-	note F_, 1
-	note E_, 1
-	note F_, 1
+	intensity $2a
 	note F#, 1
+	intensity $1a
 	note F_, 1
+	intensity $2a
+	note F_, 1
+	intensity $1a
 	note E_, 1
+	intensity $2a
+	note E_, 1
+	intensity $1a
 	note F_, 1
+	intensity $2a
+	note F_, 1
+	intensity $1a
 	note F#, 1
+	intensity $2a
+	note F#, 1
+	intensity $1a
 	note F_, 1
+	intensity $2a
+	note F_, 1
+	intensity $1a
 	note E_, 1
-	note F_, 2
+	intensity $2a
+	note E_, 1
+	intensity $1a
+	note F_, 1
+	intensity $2a
+	note F_, 1
+	intensity $1a
+	note F#, 1
+	intensity $2a
+	note F#, 1
+	intensity $1a
+	note F_, 1
+	intensity $2a
+	note F_, 1
+	intensity $1a
+	note E_, 1
+	intensity $2a
+	note E_, 1
+	intensity $1a
+	note F_, 1
+	intensity $2a
+	note F_, 3
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar5:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
-	note B_, 2
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
 	note B_, 1
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	intensity $1a
 	octave 2
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note E_, 1
+	intensity $2a
+	note E_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note E_, 1
+	intensity $2a
+	note E_, 1
+	intensity $1a
+	note F_, 1
+	intensity $2a
 	note F_, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar6:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
 	note B_, 1
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	intensity $1a
 	octave 2
 	note D_, 1
-	note __, 1
-	note E_, 1
-	note __, 1
+	intensity $2a
 	note D_, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	note E_, 1
+	intensity $2a
+	note E_, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	note D_, 1
+	intensity $2a
+	note D_, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar7:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
 	note B_, 1
-	note __, 2
-	note B_, 1
-	note B_, 1
+	intensity $2a
+	note B_, 5
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note B_, 1
-	note __, 2
+	intensity $2a
+	note B_, 3
+	notetype $c, $2a
+	note __, 3
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	intensity $1a
 	octave 2
 	note A_, 1
-	note __, 1
+	intensity $2a
+	note A_, 3
+	intensity $1a
 	note B_, 1
-	note __, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
 	note D_, 1
-	note __, 1
+	intensity $2a
+	note D_, 3
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar8:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 2
 	note D_, 1
-	note __, 2
-	note D_, 1
-	note D_, 1
+	intensity $2a
+	note D_, 5
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note D_, 1
-	note __, 2
+	intensity $2a
+	note D_, 3
+	notetype $c, $2a
+	note __, 3
+	notetype $6, $1a
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	intensity $1a
 	note E_, 1
-	note __, 1
+	intensity $2a
+	note E_, 3
+	intensity $1a
 	note F_, 1
-	note __, 1
+	intensity $2a
+	note F_, 3
+	intensity $1a
 	note E_, 1
+	intensity $2a
+	note E_, 3
+	endchannel
+
+Music_HudsonHawkTitle_Ch3_Bar9:
+	notetype $6, $1a
+	octave 1
+	note B_, 1
+	intensity $2a
+	note B_, 5
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	notetype $c, $2a
+	note __, 3
+	notetype $6, $1a
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	intensity $1a
+	octave 2
+	note D_, 1
+	intensity $2a
+	note D_, 3
+	intensity $1a
+	note E_, 1
+	intensity $2a
+	note E_, 3
+	intensity $1a
+	note E_, 1
+	intensity $2a
+	note E_, 1
+	intensity $1a
+	note F_, 1
+	intensity $2a
+	note F_, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar10:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
 	note B_, 1
-	note __, 2
-	note B_, 1
-	note B_, 1
+	intensity $2a
+	note B_, 5
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note B_, 1
-	note __, 2
+	intensity $2a
+	note B_, 3
+	notetype $c, $2a
+	note __, 3
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	intensity $1a
 	note A#, 1
-	note __, 1
+	intensity $2a
+	note A#, 3
+	intensity $1a
 	octave 2
 	note E_, 1
-	note __, 1
+	intensity $2a
+	note E_, 3
+	intensity $1a
 	note D_, 1
-	note __, 1
+	intensity $2a
+	note D_, 3
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar13:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
-	note A#, 2
+	note A#, 1
+	intensity $2a
+	note A#, 3
+	notetype $c, $2a
 	note __, 2
-	note A#, 2
-	note __, 1
+	notetype $6, $1a
 	note A#, 1
+	intensity $2a
+	note A#, 3
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note A#, 1
-	note A#, 2
+	intensity $2a
+	note A#, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	note A#, 1
+	intensity $2a
+	note A#, 1
+	intensity $1a
+	note A#, 1
+	intensity $2a
+	note A#, 3
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note A#, 1
+	intensity $2a
+	note A#, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar14:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
 	note G#, 1
-	note __, 3
+	intensity $2a
 	note G#, 1
+	notetype $c, $2a
+	note __, 3
+	notetype $6, $1a
+	note G#, 1
+	intensity $2a
+	note G#, 1
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note F#, 1
+	intensity $2a
+	note F#, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note F#, 1
+	intensity $2a
+	note F#, 1
+	intensity $1a
 	octave 2
 	note F#, 1
-	note __, 1
+	intensity $2a
 	note F#, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note F#, 1
+	intensity $2a
+	note F#, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	note F#, 1
+	intensity $2a
+	note F#, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar15:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
 	note A#, 1
+	intensity $2a
+	note A#, 1
+	notetype $c, $2a
 	note __, 3
+	notetype $6, $1a
 	note A#, 1
+	intensity $2a
+	note A#, 1
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note A#, 1
+	intensity $2a
+	note A#, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note A#, 1
-	note A#, 2
+	intensity $2a
+	note A#, 1
+	intensity $1a
+	note A#, 1
+	intensity $2a
+	note A#, 3
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note A#, 1
+	intensity $2a
+	note A#, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar16:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 2
 	note C#, 1
+	intensity $2a
+	note C#, 1
+	notetype $c, $2a
 	note __, 3
+	notetype $6, $1a
 	note C#, 1
+	intensity $2a
+	note C#, 1
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note C#, 1
+	intensity $2a
+	note C#, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note C#, 1
+	intensity $2a
+	note C#, 1
+	intensity $1a
 	octave 3
 	note C#, 1
+	intensity $2a
+	note C#, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	octave 2
 	note D#, 1
+	intensity $2a
+	note D#, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note C#, 1
+	intensity $2a
+	note C#, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar17:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
-	note B_, 2
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	notetype $c, $2a
 	note __, 2
-	note B_, 2
-	note __, 1
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 3
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note B_, 1
-	note B_, 2
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar18:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
 	note A_, 1
-	note __, 3
+	intensity $2a
 	note A_, 1
+	notetype $c, $2a
+	note __, 3
+	notetype $6, $1a
+	note A_, 1
+	intensity $2a
+	note A_, 1
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note G_, 1
+	intensity $2a
+	note G_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note G_, 1
+	intensity $2a
+	note G_, 1
+	intensity $1a
 	octave 2
 	note G_, 1
-	note __, 1
+	intensity $2a
 	note G_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note G_, 1
+	intensity $2a
+	note G_, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	note G_, 1
+	intensity $2a
+	note G_, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar19:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 3
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note B_, 1
-	note B_, 2
+	intensity $2a
+	note B_, 1
+	intensity $1a
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar20:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 2
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	notetype $c, $2a
 	note __, 3
+	notetype $6, $1a
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	notetype $c, $2a
 	note __, 2
+	notetype $6, $1a
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	intensity $1a
 	octave 3
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	octave 2
 	note E_, 1
+	intensity $2a
+	note E_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar21:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
-	note B_, 2
-	note __, 2
-	note B_, 2
-	note __, 1
 	note B_, 1
-	note __, 1
-	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
 	octave 2
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	octave 1
+	note B_, 1
+	intensity $2a
+	note B_, 3
+	intensity $1a
+	octave 2
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	intensity $1a
+	octave 1
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	octave 2
+	note B_, 1
+	intensity $2a
+	note B_, 1
+	intensity $1a
 	note F_, 1
+	intensity $2a
+	note F_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note E_, 1
+	intensity $2a
+	note E_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
 Music_HudsonHawkTitle_Ch3_Bar22:
-	notetype $c, $14
+	notetype $6, $1a
 	octave 1
 	note G_, 1
-	note __, 3
-	note G_, 1
-	note __, 2
-	note G_, 1
-	note __, 1
-	note G_, 1
+	intensity $2a
+	note G_, 3
+	intensity $1a
 	octave 2
+	note G_, 1
+	intensity $2a
+	note G_, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	octave 1
+	note G_, 1
+	intensity $2a
+	note G_, 3
+	intensity $1a
+	octave 2
+	note G_, 1
+	intensity $2a
+	note G_, 1
+	intensity $1a
+	octave 1
+	note G_, 1
+	intensity $2a
+	note G_, 1
+	notetype $c, $2a
+	note __, 1
+	notetype $6, $1a
+	octave 2
+	note G_, 1
+	intensity $2a
+	note G_, 1
+	intensity $1a
 	note D_, 1
+	intensity $2a
+	note D_, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	note C#, 1
+	intensity $2a
+	note C#, 1
+	notetype $c, $2a
 	note __, 1
+	notetype $6, $1a
 	octave 1
 	note A_, 1
-	note __, 1
-	endchannel
-
-Music_HudsonHawkTitle_Ch3_Bar23:
-	notetype $c, $14
-	octave 1
-	note B_, 1
-	note __, 3
-	note B_, 1
-	note __, 2
-	note B_, 1
-	note __, 1
-	note B_, 1
-	octave 2
-	note F_, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-	note D_, 1
+	intensity $2a
+	note A_, 1
+	notetype $c, $2a
 	note __, 1
 	endchannel
 
