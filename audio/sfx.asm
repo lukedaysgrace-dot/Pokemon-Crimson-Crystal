@@ -5147,6 +5147,23 @@ Sfx_Gravity_Ch8:
 	noise __, 12, $e1, $6c
 	endchannel
 
+; A quieter version of Toxic's rising poison-bubble sweep, with a second,
+; softer burble so the sound lingers while the bubbles rise and pop.
+Sfx_DireClawBubbles:
+	musicheader 1, 5, Sfx_DireClawBubbles_Ch5
+
+Sfx_DireClawBubbles_Ch5:
+	dutycycle $2
+	soundinput $95
+	sound __, 3, $89, $03b3
+	sound __, 4, $a8, $0463
+	sound __, 4, $91, $0543
+	sound __, 3, $78, $03f3
+	sound __, 4, $87, $04a3
+	sound __, 6, $61, $0583
+	soundinput $8
+	endchannel
+
 Sfx_Gen1Glare:
 	musicheader 1, 8, Sfx_Gen1Glare_Ch8
 

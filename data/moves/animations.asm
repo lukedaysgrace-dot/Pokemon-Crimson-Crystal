@@ -418,7 +418,7 @@ BattleAnimations::
 	banim BattleAnim_PhantomForce_CC ; PHANTOMFORCE
 	banim BattleAnim_HeadlongRush_CC ; HEADLONGRUSH
 	banim BattleAnim_ShadowBone_CC ; SHADOW_BONE
-	banim BattleAnim_DireClaw_CC ; DIRE_CLAW
+	banim BattleAnim_DireClaw_Custom ; DIRE_CLAW
 	banim BattleAnim_BarbBarrage_CC ; BARB_BARRAGE
 	banim BattleAnim_InfernalParade_CC ; INFERNAL_PARADE
 	banim BattleAnim_KowtowCleave_CC ; KOWTOW_CLEAVE

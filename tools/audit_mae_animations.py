@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / 'tools/battletest/mae_animation_manifest.json'
 UPSTREAM_SHA = '41a44630a3f712f3f45a157874361234e13e68ca'
 SUPPORT_FILES = [
+    'constants/sfx_constants.asm', 'audio/sfx.asm', 'audio/sfx_pointers.asm',
     'constants/battle_anim_constants.asm', 'macros/scripts/battle_anims.asm',
     'data/battle_anims/objects.asm', 'data/battle_anims/framesets.asm',
     'data/battle_anims/oam.asm', 'data/battle_anims/object_gfx.asm',

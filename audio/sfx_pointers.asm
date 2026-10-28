@@ -215,3 +215,4 @@ SFX:
 	dba Sfx_Thunderbolt
 	dba Sfx_RainDanceFast
 	dba Sfx_Gen1Glare
+	dba Sfx_DireClawBubbles

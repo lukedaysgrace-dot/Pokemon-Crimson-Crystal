@@ -30,6 +30,16 @@ The subsequent purple-teeth revision is shown in `_artifacts/poison-fang-and-sur
 
 Both recordings predate the final clarification restoring overworld Surf speed and Trick Room's original sound. The current ROM preserves the purple teeth and Surf battle animation; the updated Surf checks require the original 16-frame overworld step.
 
+Slack Off's temporary Swagger variant was subsequently reverted to its original withdrawal/recovery animation and healing glimmers. Dire Claw uses Crush Claw's exact `ANIM_OBJ_CLAW_TEAR` graphics instead of the regular long Slash cuts. Its latest sequence is purple gashes and purple bubbles, followed by an acid-green strike with the same gashes mirrored horizontally, then green bubbles. Both palettes change only after the first phase's objects have been cleared. The reverse object and frameset are appended without altering Crush Claw or existing animation IDs. Earlier two-move videos record preceding versions.
+
+The revised video is `_artifacts/slack-off-dire-claw/revised/video/slack-off-and-dire-claw.mp4`. Both ROM builds, both move-execution checks, all four graphics/cleanup captures and full video/audio decoding passed for this revision.
+
+The subsequent two-strike Dire Claw video is `_artifacts/dire-claw-two-strikes/video/dire-claw-two-strikes.mp4`, showing the purple strike/bubbles and opposite-direction green strike/bubbles from both attacking sides. The reverse strike compensates for the tear graphic's off-center origin so both directions cover the same target area.
+
+Dire Claw's latest refinement draws each deep slash across the target through eight reveal stages before holding the complete claw-tear detail. The second reveal is mirrored. Each strike plays the original Slash `SFX_CUT` through to its end, followed by one quieter, eight-frame version of Toxic's bubble sweep for the small bubble burst. The former sword-dance, scratch and burn sounds are removed from this animation. Crush Claw's original static object and other moves' sound effects are unchanged.
+
+The current video is `_artifacts/dire-claw-drawn-slashes/video/dire-claw-drawn-slashes.mp4` (4.22 seconds), with the player and opponent using the revised move side by side and native game audio. Release/debug builds, Dire Claw's battle-execution check, both native graphics/cleanup captures, all eight reveal stages and mirrored layouts, complete Slash playback before each bubble cue, the 360-move dependency audit, and full video/audio decoding passed. `results.json` records the capture checks and debug ROM hash `f06d75db9ec8`.
+
 Reproduce the current checks with the project's Python/emulator environment:
 
 ```sh

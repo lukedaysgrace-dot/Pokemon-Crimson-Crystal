@@ -3336,11 +3336,14 @@
     "WORK_UP"
   ],
   "support_file_sha256": {
-    "constants/battle_anim_constants.asm": "225cbc85435aff43bc4453b71fe24565078bd939fdd0823edd912a6231ccf0e0",
+    "constants/sfx_constants.asm": "adc88f6e9794243586a184bc9fbef1643543eb0d3fa81076b78d6928070061d4",
+    "audio/sfx.asm": "8c742c8d109490e44840121678716c9a96ea6b66a52fe6f291dcdbbd696c4c54",
+    "audio/sfx_pointers.asm": "833e8eef56ef0124a323168f9ee39c5befa6cba9f3d2b125819509c05e9ac880",
+    "constants/battle_anim_constants.asm": "286d95053b29b94c044d6344accb7a86ea35cfaae61fd31f5cfa0f63ccec8a74",
     "macros/scripts/battle_anims.asm": "58ad390e02afe1cd39028ebd644ffae6f6b88d02ba47a90dded6473e6c849d20",
-    "data/battle_anims/objects.asm": "14ac5a40c30d9f135373dbd0c03ab8ea7a35e538dc0269c04c90618f0b243717",
-    "data/battle_anims/framesets.asm": "da4f28de9842ab1cef4dd69afec30e2c81aa27c437c6529cd0cc4584629cf510",
-    "data/battle_anims/oam.asm": "edb1bae68a04539038d2f1610834f0c9c73b54d41dac9b5bfcf34439da201f79",
+    "data/battle_anims/objects.asm": "0de60fca3586fe73e2ea2ad2fff69e685832bcd27433812ad51666269cd034af",
+    "data/battle_anims/framesets.asm": "3905c50b19647501c1708a8c48c98358c852e3dcb3df5e96658ca66d993681d9",
+    "data/battle_anims/oam.asm": "ee2efbcfaaa9e796f1db15af8cda2edb602d084b09fa85f63e4cb9136caa2a97",
     "data/battle_anims/object_gfx.asm": "186455272248ffc1913e8238ca5a03a81bf3b4f7ee65d7bc5d2abff5a5d1e910",
     "engine/battle_anims/anim_commands.asm": "b7a0038b9413834c03c75eac7aaae2efa4f7c8ce43f96cae1bafd06e0e9d5a58",
     "engine/battle_anims/core.asm": "db9ede2ae5ab5dbfc370331f3847029b7ab65481e06a8119913e7552f475e46a",
@@ -3357,12 +3360,12 @@
     "gfx/battle_anims/smokepuffbig_sour_apple.png": "5ac5a0b572c4a5dc2f4e79d58f843371cc7cb6f9cfe7fbbc18f47c4e33e429ff",
     "gfx/battle_anims/swirl_sour_apple.png": "4ae0d2b04b66002996d61f2aabdbff3c9b51313a4d80927393196dfd249e8959",
     "gfx/battle_anims/vortex_sour_apple.png": "ca14cc1e12276e97ffa5cab1ce0eb75abd3c657f204224615b44cebdff6f817f",
-    "data/moves/animations.asm": "2a4409691545c0ffcdfa5505a845b6cc3a0e0b0cb33f86d7b0e84f69da36227a",
+    "data/moves/animations.asm": "9370b5c3700961581a2f480120a3b04dc724fe08490dbedbc21e91e54f76f0dd",
     "data/moves/animations2.asm": "a38de20819ebe926f03533a99b3f8e570f0183e3ee1071321d64d723bd338543",
     "data/moves/animations3.asm": "6ef9396f71f57a3a7ee299382c06301be0fc191bb9f9adbf6b1073f08418458a",
     "data/moves/animations4.asm": "713eff2d6bf83b385efe65fa7067ad428c220502de93b88840bccdc05087d5ce",
     "data/moves/animations5.asm": "5414fe4a3d602f1363d35757fe3fbf95acdc2cbf5d22b4fc6866d3a41d8e17f4",
     "data/moves/animations6.asm": "baf45aae47a2168c0f4075018023583310b0f527ecef7a07fa77384cd53b07af",
-    "data/moves/animations7.asm": "77a783037f3857585882f6691f839f14882394434594a9578b85aaaa64974250"
+    "data/moves/animations7.asm": "10b2ce4ae1a092667b451825557b2b35ced09c93dea69b458f0b3f1d1614230c"
   }
 }
