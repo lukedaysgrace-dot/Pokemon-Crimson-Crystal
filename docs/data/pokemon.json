@@ -970,6 +970,11 @@
         "move": "Solar Beam"
       },
       {
+        "level": 55,
+        "const": "WOOD_HAMMER",
+        "move": "Wood Hammer"
+      },
+      {
         "level": 56,
         "const": "SOLAR_BLADE",
         "move": "Solar Blade"
@@ -14781,6 +14786,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "FURY_CUTTER",
       "FLASH"
     ],
     "info": {
@@ -15012,6 +15018,11 @@
         "move": "Thief"
       },
       {
+        "tm": "TM49",
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
         "tm": "HM05",
         "const": "FLASH",
         "move": "Flash"
@@ -15212,6 +15223,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "FURY_CUTTER",
       "STRENGTH",
       "FLASH"
     ],
@@ -15495,6 +15507,11 @@
         "tm": "TM46",
         "const": "THIEF",
         "move": "Thief"
+      },
+      {
+        "tm": "TM49",
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "tm": "HM04",
@@ -17459,6 +17476,11 @@
         "move": "Stone Edge"
       },
       {
+        "level": 52,
+        "const": "HEAD_SMASH",
+        "move": "Head Smash"
+      },
+      {
         "level": 60,
         "const": "HEAVY_SLAM",
         "move": "Heavy Slam"
@@ -18348,6 +18370,11 @@
         "move": "Haze"
       },
       {
+        "level": 40,
+        "const": "POISON_JAB",
+        "move": "Poison Jab"
+      },
+      {
         "level": 42,
         "const": "HEAT_WAVE",
         "move": "Heat Wave"
@@ -18840,6 +18867,11 @@
         "level": 39,
         "const": "HAZE",
         "move": "Haze"
+      },
+      {
+        "level": 40,
+        "const": "POISON_JAB",
+        "move": "Poison Jab"
       },
       {
         "level": 42,
@@ -24949,6 +24981,7 @@
       "ATTRACT",
       "THIEF",
       "HONE_CLAWS",
+      "NIGHT_SLASH",
       "CUT"
     ],
     "info": {
@@ -25176,6 +25209,11 @@
         "move": "Hone Claws"
       },
       {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
         "tm": "HM01",
         "const": "CUT",
         "move": "Cut"
@@ -25350,6 +25388,7 @@
       "ATTRACT",
       "THIEF",
       "HONE_CLAWS",
+      "NIGHT_SLASH",
       "CUT",
       "STRENGTH"
     ],
@@ -25603,6 +25642,11 @@
         "move": "Hone Claws"
       },
       {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
         "tm": "HM01",
         "const": "CUT",
         "move": "Cut"
@@ -25789,6 +25833,7 @@
       "ATTRACT",
       "THIEF",
       "HONE_CLAWS",
+      "NIGHT_SLASH",
       "CUT",
       "STRENGTH"
     ],
@@ -26060,6 +26105,11 @@
         "tm": "TM50",
         "const": "HONE_CLAWS",
         "move": "Hone Claws"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
         "tm": "HM01",
@@ -27150,6 +27200,11 @@
       },
       {
         "level": 25,
+        "const": "DRAGONBREATH",
+        "move": "Dragon Breath"
+      },
+      {
+        "level": 25,
         "const": "ROOST",
         "move": "Roost"
       },
@@ -27660,6 +27715,11 @@
       },
       {
         "level": 25,
+        "const": "DRAGONBREATH",
+        "move": "Dragon Breath"
+      },
+      {
+        "level": 25,
         "const": "ROOST",
         "move": "Roost"
       },
@@ -27770,6 +27830,7 @@
       "RAIN_DANCE",
       "FACADE",
       "SOLARBEAM",
+      "DRAGON_CLAW",
       "THUNDER",
       "EARTHQUAKE",
       "RETURN",
@@ -28007,6 +28068,11 @@
         "tm": "TM22",
         "const": "SOLARBEAM",
         "move": "Solar Beam"
+      },
+      {
+        "tm": "TM24",
+        "const": "DRAGON_CLAW",
+        "move": "Dragon Claw"
       },
       {
         "tm": "TM25",
@@ -28977,6 +29043,11 @@
         "move": "Cotton Spore"
       },
       {
+        "level": 10,
+        "const": "NUZZLE",
+        "move": "Nuzzle"
+      },
+      {
         "level": 17,
         "const": "VOLT_SWITCH",
         "move": "Volt Switch"
@@ -29005,6 +29076,11 @@
         "level": 36,
         "const": "THUNDERBOLT",
         "move": "Thunderbolt"
+      },
+      {
+        "level": 36,
+        "const": "HYPER_VOICE",
+        "move": "Hyper Voice"
       },
       {
         "level": 40,
@@ -29506,6 +29582,7 @@
     "egg_moves": [
       "ANCIENTPOWER",
       "SAFEGUARD",
+      "ACID_ARMOR",
       "ENCORE",
       "SLEEP_TALK",
       "BODY_SLAM",
@@ -29949,6 +30026,7 @@
     "egg_moves": [
       "ANCIENTPOWER",
       "SAFEGUARD",
+      "ACID_ARMOR",
       "ENCORE",
       "SLEEP_TALK",
       "BODY_SLAM",
@@ -31909,6 +31987,11 @@
         "level": 28,
         "const": "SLAM",
         "move": "Slam"
+      },
+      {
+        "level": 30,
+        "const": "IRON_DEFENSE",
+        "move": "Iron Defense"
       },
       {
         "level": 31,
@@ -43247,6 +43330,11 @@
         "move": "Earth Power"
       },
       {
+        "level": 28,
+        "const": "DRAINING_KISS",
+        "move": "Draining Kiss"
+      },
+      {
         "level": 35,
         "const": "QUIVER_DANCE",
         "move": "Quiver Dance"
@@ -51299,6 +51387,11 @@
         "move": "Energy Ball"
       },
       {
+        "level": 28,
+        "const": "INCINERATE",
+        "move": "Incinerate"
+      },
+      {
         "level": 34,
         "const": "DAZZLING_GLEAM",
         "move": "Dazzling Gleam"
@@ -51307,6 +51400,11 @@
         "level": 35,
         "const": "EARTH_POWER",
         "move": "Earth Power"
+      },
+      {
+        "level": 40,
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
       },
       {
         "level": 41,
@@ -56744,6 +56842,11 @@
       },
       {
         "level": 40,
+        "const": "HAMMER_ARM",
+        "move": "Hammer Arm"
+      },
+      {
+        "level": 40,
         "const": "STONE_EDGE",
         "move": "Stone Edge"
       },
@@ -56766,6 +56869,11 @@
         "level": 47,
         "const": "COUNTER",
         "move": "Counter"
+      },
+      {
+        "level": 48,
+        "const": "SUPERPOWER",
+        "move": "Superpower"
       },
       {
         "level": 50,
@@ -58501,6 +58609,11 @@
         "move": "Acid Armor"
       },
       {
+        "level": 42,
+        "const": "CROSS_POISON",
+        "move": "Cross Poison"
+      },
+      {
         "level": 46,
         "const": "GUNK_SHOT",
         "move": "Gunk Shot"
@@ -58993,7 +59106,8 @@
     "egg_moves": [
       "EXPLOSION",
       "IRON_DEFENSE",
-      "REFLECT"
+      "REFLECT",
+      "MIRROR_COAT"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -59373,7 +59487,8 @@
     "egg_moves": [
       "EXPLOSION",
       "IRON_DEFENSE",
-      "REFLECT"
+      "REFLECT",
+      "MIRROR_COAT"
     ],
     "tmhm": [
       "HEADBUTT",
@@ -59777,7 +59892,8 @@
     "egg_moves": [
       "EXPLOSION",
       "IRON_DEFENSE",
-      "REFLECT"
+      "REFLECT",
+      "MIRROR_COAT"
     ],
     "tmhm": [
       "CURSE",
@@ -64629,6 +64745,11 @@
         "move": "Zen Headbutt"
       },
       {
+        "level": 28,
+        "const": "HORN_LEECH",
+        "move": "Horn Leech"
+      },
+      {
         "level": 34,
         "const": "THRASH",
         "move": "Thrash"
@@ -65094,6 +65215,11 @@
         "level": 27,
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
+      },
+      {
+        "level": 28,
+        "const": "HORN_LEECH",
+        "move": "Horn Leech"
       },
       {
         "level": 30,
@@ -68955,6 +69081,11 @@
       },
       {
         "level": 46,
+        "const": "SUPERPOWER",
+        "move": "Superpower"
+      },
+      {
+        "level": 46,
         "const": "U_TURN",
         "move": "U-turn"
       },
@@ -71423,6 +71554,11 @@
         "move": "Knock Off"
       },
       {
+        "level": 22,
+        "const": "FORCE_PALM",
+        "move": "Force Palm"
+      },
+      {
         "level": 23,
         "const": "VITAL_THROW",
         "move": "Vital Throw"
@@ -71890,6 +72026,11 @@
         "move": "Vital Throw"
       },
       {
+        "level": 24,
+        "const": "FORCE_PALM",
+        "move": "Force Palm"
+      },
+      {
         "level": 26,
         "const": "STRENGTH",
         "move": "Strength"
@@ -71908,6 +72049,11 @@
         "level": 34,
         "const": "COUNTER",
         "move": "Counter"
+      },
+      {
+        "level": 36,
+        "const": "CIRCLE_THROW",
+        "move": "Circle Throw"
       },
       {
         "level": 37,
@@ -72371,6 +72517,11 @@
         "move": "Vital Throw"
       },
       {
+        "level": 24,
+        "const": "FORCE_PALM",
+        "move": "Force Palm"
+      },
+      {
         "level": 26,
         "const": "STRENGTH",
         "move": "Strength"
@@ -72401,6 +72552,11 @@
         "move": "Bulk Up"
       },
       {
+        "level": 38,
+        "const": "CIRCLE_THROW",
+        "move": "Circle Throw"
+      },
+      {
         "level": 40,
         "const": "STONE_EDGE",
         "move": "Stone Edge"
@@ -72409,6 +72565,11 @@
         "level": 42,
         "const": "CROSS_CHOP",
         "move": "Cross Chop"
+      },
+      {
+        "level": 42,
+        "const": "HAMMER_ARM",
+        "move": "Hammer Arm"
       },
       {
         "level": 46,
@@ -73352,6 +73513,7 @@
       "VACUUM_WAVE"
     ],
     "tmhm": [
+      "DRAIN_PUNCH",
       "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
@@ -73526,6 +73688,11 @@
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM01",
+        "const": "DRAIN_PUNCH",
+        "move": "Drain Punch"
+      },
       {
         "tm": "TM02",
         "const": "HEADBUTT",
@@ -73729,6 +73896,11 @@
         "move": "Dizzy Punch"
       },
       {
+        "level": 26,
+        "const": "FORCE_PALM",
+        "move": "Force Palm"
+      },
+      {
         "level": 27,
         "const": "BULLET_PUNCH",
         "move": "Bullet Punch"
@@ -73772,6 +73944,11 @@
         "level": 39,
         "const": "MEGA_PUNCH",
         "move": "Mega Punch"
+      },
+      {
+        "level": 40,
+        "const": "HAMMER_ARM",
+        "move": "Hammer Arm"
       },
       {
         "level": 40,
@@ -74286,6 +74463,16 @@
         "level": 37,
         "const": "COUNTER",
         "move": "Counter"
+      },
+      {
+        "level": 38,
+        "const": "CIRCLE_THROW",
+        "move": "Circle Throw"
+      },
+      {
+        "level": 40,
+        "const": "BODY_PRESS",
+        "move": "Body Press"
       },
       {
         "level": 40,
@@ -77637,6 +77824,11 @@
         "level": 46,
         "const": "DARK_PULSE",
         "move": "Dark Pulse"
+      },
+      {
+        "level": 48,
+        "const": "RAGING_FURY",
+        "move": "Raging Fury"
       },
       {
         "level": 49,
@@ -85115,6 +85307,11 @@
         "move": "Pin Missile"
       },
       {
+        "level": 38,
+        "const": "CROSS_POISON",
+        "move": "Cross Poison"
+      },
+      {
         "level": 39,
         "const": "TAKE_DOWN",
         "move": "Take Down"
@@ -85541,6 +85738,11 @@
         "move": "Spite"
       },
       {
+        "level": 38,
+        "const": "CROSS_POISON",
+        "move": "Cross Poison"
+      },
+      {
         "level": 39,
         "const": "TAKE_DOWN",
         "move": "Take Down"
@@ -85613,6 +85815,7 @@
       "RETURN",
       "SHADOW_BALL",
       "SWAGGER",
+      "KNOCK_OFF",
       "SLUDGE_BOMB",
       "SWIFT",
       "REST",
@@ -85829,6 +86032,11 @@
         "tm": "TM32",
         "const": "SWAGGER",
         "move": "Swagger"
+      },
+      {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
       },
       {
         "tm": "TM36",
@@ -89645,6 +89853,11 @@
         "move": "Pin Missile"
       },
       {
+        "level": 40,
+        "const": "FREEZE_DRY",
+        "move": "Freeze-Dry"
+      },
+      {
         "level": 44,
         "const": "SHELL_SMASH",
         "move": "Shell Smash"
@@ -91754,6 +91967,11 @@
         "move": "Thunderbolt"
       },
       {
+        "level": 40,
+        "const": "TAIL_GLOW",
+        "move": "Tail Glow"
+      },
+      {
         "level": 49,
         "const": "HYDRO_PUMP",
         "move": "Hydro Pump"
@@ -92573,6 +92791,11 @@
         "level": 35,
         "const": "SAFEGUARD",
         "move": "Safeguard"
+      },
+      {
+        "level": 38,
+        "const": "FREEZE_DRY",
+        "move": "Freeze-Dry"
       },
       {
         "level": 42,
@@ -100411,6 +100634,11 @@
       },
       {
         "level": 36,
+        "const": "DRILL_RUN",
+        "move": "Drill Run"
+      },
+      {
+        "level": 36,
         "const": "ROOST",
         "move": "Roost"
       },
@@ -100992,6 +101220,11 @@
         "level": 38,
         "const": "SPIKES",
         "move": "Spikes"
+      },
+      {
+        "level": 42,
+        "const": "DRILL_RUN",
+        "move": "Drill Run"
       },
       {
         "level": 43,
@@ -103742,6 +103975,11 @@
         "move": "Swords Dance"
       },
       {
+        "level": 34,
+        "const": "CRUSH_CLAW",
+        "move": "Crush Claw"
+      },
+      {
         "level": 35,
         "const": "EARTHQUAKE",
         "move": "Earthquake"
@@ -103833,6 +104071,7 @@
       "YAWN"
     ],
     "tmhm": [
+      "DRAIN_PUNCH",
       "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
@@ -104040,6 +104279,11 @@
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM01",
+        "const": "DRAIN_PUNCH",
+        "move": "Drain Punch"
+      },
       {
         "tm": "TM02",
         "const": "HEADBUTT",
@@ -104320,6 +104564,11 @@
       },
       {
         "level": 38,
+        "const": "CRUSH_CLAW",
+        "move": "Crush Claw"
+      },
+      {
+        "level": 38,
         "const": "EARTHQUAKE",
         "move": "Earthquake"
       },
@@ -104426,6 +104675,7 @@
       "MUD_SLAP",
       "SWAGGER",
       "ICE_PUNCH",
+      "SANDSTORM",
       "SWIFT",
       "BULK_UP",
       "THUNDERPUNCH",
@@ -104710,6 +104960,11 @@
         "move": "Ice Punch"
       },
       {
+        "tm": "TM37",
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
         "tm": "TM39",
         "const": "SWIFT",
         "move": "Swift"
@@ -104870,6 +105125,11 @@
         "level": 31,
         "const": "CHARM",
         "move": "Charm"
+      },
+      {
+        "level": 32,
+        "const": "DRILL_RUN",
+        "move": "Drill Run"
       },
       {
         "level": 34,
@@ -105337,6 +105597,11 @@
         "level": 42,
         "const": "BODY_PRESS",
         "move": "Body Press"
+      },
+      {
+        "level": 42,
+        "const": "DRILL_RUN",
+        "move": "Drill Run"
       },
       {
         "level": 42,
@@ -107013,6 +107278,11 @@
       },
       {
         "level": 36,
+        "const": "DRILL_RUN",
+        "move": "Drill Run"
+      },
+      {
+        "level": 36,
         "const": "SWORDS_DANCE",
         "move": "Swords Dance"
       },
@@ -108288,6 +108558,11 @@
         "level": 45,
         "const": "BOUNCE",
         "move": "Bounce"
+      },
+      {
+        "level": 46,
+        "const": "RAGING_FURY",
+        "move": "Raging Fury"
       },
       {
         "level": 48,
@@ -112634,6 +112909,7 @@
       "SHADOW_BALL",
       "MUD_SLAP",
       "SWAGGER",
+      "KNOCK_OFF",
       "SWIFT",
       "NASTY_PLOT",
       "REST",
@@ -112827,6 +113103,11 @@
         "tm": "TM32",
         "const": "SWAGGER",
         "move": "Swagger"
+      },
+      {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
       },
       {
         "tm": "TM39",
@@ -117180,6 +117461,11 @@
         "move": "Protect"
       },
       {
+        "level": 26,
+        "const": "FORCE_PALM",
+        "move": "Force Palm"
+      },
+      {
         "level": 27,
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
@@ -117208,6 +117494,11 @@
         "level": 37,
         "const": "CLOSE_COMBAT",
         "move": "Close Combat"
+      },
+      {
+        "level": 38,
+        "const": "CIRCLE_THROW",
+        "move": "Circle Throw"
       },
       {
         "level": 40,
@@ -118273,6 +118564,11 @@
         "move": "Close Combat"
       },
       {
+        "level": 46,
+        "const": "SACRED_SWORD",
+        "move": "Sacred Sword"
+      },
+      {
         "level": 49,
         "const": "METEOR_MASH",
         "move": "Meteor Mash"
@@ -118326,6 +118622,7 @@
       "PROTECT",
       "RAIN_DANCE",
       "FACADE",
+      "IRON_HEAD",
       "EARTHQUAKE",
       "RETURN",
       "DIG",
@@ -118596,6 +118893,11 @@
         "move": "Facade"
       },
       {
+        "tm": "TM23",
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
         "tm": "TM26",
         "const": "EARTHQUAKE",
         "move": "Earthquake"
@@ -118742,6 +119044,11 @@
         "level": 5,
         "const": "SPITE",
         "move": "Spite"
+      },
+      {
+        "level": 7,
+        "const": "FAIRY_WIND",
+        "move": "Fairy Wind"
       },
       {
         "level": 9,
@@ -119226,6 +119533,11 @@
         "level": 5,
         "const": "SPITE",
         "move": "Spite"
+      },
+      {
+        "level": 7,
+        "const": "FAIRY_WIND",
+        "move": "Fairy Wind"
       },
       {
         "level": 9,
@@ -119777,6 +120089,11 @@
       },
       {
         "level": 40,
+        "const": "FOUL_PLAY",
+        "move": "Foul Play"
+      },
+      {
+        "level": 40,
         "const": "PHANTOMFORCE",
         "move": "Phantom Force"
       },
@@ -119796,6 +120113,7 @@
       "DESTINY_BOND",
       "SPITE",
       "CONFUSE_RAY",
+      "SUCKER_PUNCH",
       "CURSE",
       "NIGHTMARE"
     ],
@@ -121423,6 +121741,11 @@
         "move": "Agility"
       },
       {
+        "level": 32,
+        "const": "CROSS_POISON",
+        "move": "Cross Poison"
+      },
+      {
         "level": 36,
         "const": "TOXIC",
         "move": "Toxic"
@@ -121750,6 +122073,11 @@
         "level": 34,
         "const": "AGILITY",
         "move": "Agility"
+      },
+      {
+        "level": 36,
+        "const": "CROSS_POISON",
+        "move": "Cross Poison"
       },
       {
         "level": 38,
@@ -122581,6 +122909,11 @@
         "move": "Beat Up"
       },
       {
+        "level": 28,
+        "const": "ICE_FANG",
+        "move": "Ice Fang"
+      },
+      {
         "level": 30,
         "const": "CRUSH_CLAW",
         "move": "Crush Claw"
@@ -123049,6 +123382,11 @@
         "level": 24,
         "const": "TAUNT",
         "move": "Taunt"
+      },
+      {
+        "level": 28,
+        "const": "ICE_FANG",
+        "move": "Ice Fang"
       },
       {
         "level": 30,
@@ -123609,6 +123947,8 @@
     "egg_moves": [
       "BARRIER",
       "ENDURE",
+      "STUN_SPORE",
+      "LEECH_SEED",
       "SEED_BOMB",
       "BIND",
       "CURSE",
@@ -123635,6 +123975,7 @@
       "SANDSTORM",
       "REST",
       "ATTRACT",
+      "POWER_GEM",
       "FLASH"
     ],
     "info": {
@@ -123843,6 +124184,11 @@
         "move": "Attract"
       },
       {
+        "tm": "TM53",
+        "const": "POWER_GEM",
+        "move": "Power Gem"
+      },
+      {
         "tm": "HM05",
         "const": "FLASH",
         "move": "Flash"
@@ -124010,6 +124356,8 @@
     "egg_moves": [
       "BARRIER",
       "ENDURE",
+      "STUN_SPORE",
+      "LEECH_SEED",
       "SEED_BOMB",
       "BIND",
       "CURSE",
@@ -124041,6 +124389,7 @@
       "SANDSTORM",
       "REST",
       "ATTRACT",
+      "POWER_GEM",
       "STRENGTH",
       "FLASH"
     ],
@@ -124273,6 +124622,11 @@
         "tm": "TM45",
         "const": "ATTRACT",
         "move": "Attract"
+      },
+      {
+        "tm": "TM53",
+        "const": "POWER_GEM",
+        "move": "Power Gem"
       },
       {
         "tm": "HM04",
@@ -124893,6 +125247,7 @@
       "ATTRACT",
       "FURY_CUTTER",
       "HONE_CLAWS",
+      "POWER_GEM",
       "CUT",
       "STRENGTH"
     ],
@@ -125184,6 +125539,11 @@
         "move": "Hone Claws"
       },
       {
+        "tm": "TM53",
+        "const": "POWER_GEM",
+        "move": "Power Gem"
+      },
+      {
         "tm": "HM01",
         "const": "CUT",
         "move": "Cut"
@@ -125396,6 +125756,7 @@
       "THIEF",
       "FIRE_PUNCH",
       "ZEN_HEADBUTT",
+      "POWER_GEM",
       "STRENGTH",
       "FLAMETHROWER",
       "THUNDERBOLT",
@@ -125691,6 +126052,11 @@
         "move": "Zen Headbutt"
       },
       {
+        "tm": "TM53",
+        "const": "POWER_GEM",
+        "move": "Power Gem"
+      },
+      {
         "tm": "HM04",
         "const": "STRENGTH",
         "move": "Strength"
@@ -125914,6 +126280,7 @@
       "THIEF",
       "FIRE_PUNCH",
       "ZEN_HEADBUTT",
+      "POWER_GEM",
       "CUT",
       "SURF",
       "STRENGTH",
@@ -126227,6 +126594,11 @@
         "tm": "TM52",
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
+      },
+      {
+        "tm": "TM53",
+        "const": "POWER_GEM",
+        "move": "Power Gem"
       },
       {
         "tm": "HM01",
@@ -126910,7 +127282,8 @@
       "SELFDESTRUCT",
       "SNORE",
       "STONE_EDGE",
-      "TORMENT"
+      "TORMENT",
+      "HEAD_SMASH"
     ],
     "evolves_from": {
       "const": "SHIELDON",
@@ -127344,6 +127717,7 @@
       "ROCK_THROW"
     ],
     "tmhm": [
+      "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
       "ROAR",
@@ -127482,6 +127856,11 @@
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
       {
         "tm": "TM03",
         "const": "CURSE",
@@ -127789,6 +128168,7 @@
       "ROCK_THROW"
     ],
     "tmhm": [
+      "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
       "ROAR",
@@ -127950,6 +128330,11 @@
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
       {
         "tm": "TM03",
         "const": "CURSE",
@@ -128255,6 +128640,7 @@
       "BARRIER",
       "HAZE",
       "MIRROR_COAT",
+      "MOONBLAST",
       "EARTH_POWER",
       "ROCK_THROW",
       "TAKE_DOWN",
@@ -128279,6 +128665,7 @@
       "REST",
       "ATTRACT",
       "ZEN_HEADBUTT",
+      "POWER_GEM",
       "WEATHER_BALL",
       "FLASH",
       "THUNDERBOLT",
@@ -128561,6 +128948,11 @@
         "move": "Zen Headbutt"
       },
       {
+        "tm": "TM53",
+        "const": "POWER_GEM",
+        "move": "Power Gem"
+      },
+      {
         "tm": "TM54",
         "const": "WEATHER_BALL",
         "move": "Weather Ball"
@@ -128764,6 +129156,7 @@
       "BARRIER",
       "HAZE",
       "MIRROR_COAT",
+      "MOONBLAST",
       "EARTH_POWER",
       "ROCK_THROW",
       "TAKE_DOWN",
@@ -129294,6 +129687,7 @@
       "SUNNY_DAY",
       "PROTECT",
       "RAIN_DANCE",
+      "WILL_O_WISP",
       "FACADE",
       "EARTHQUAKE",
       "RETURN",
@@ -129492,6 +129886,11 @@
         "tm": "TM18",
         "const": "RAIN_DANCE",
         "move": "Rain Dance"
+      },
+      {
+        "tm": "TM20",
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
       },
       {
         "tm": "TM21",
@@ -129750,6 +130149,7 @@
       "HYPER_BEAM",
       "PROTECT",
       "RAIN_DANCE",
+      "WILL_O_WISP",
       "FACADE",
       "SOLARBEAM",
       "EARTHQUAKE",
@@ -129996,6 +130396,11 @@
         "tm": "TM18",
         "const": "RAIN_DANCE",
         "move": "Rain Dance"
+      },
+      {
+        "tm": "TM20",
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
       },
       {
         "tm": "TM21",
@@ -131403,6 +131808,11 @@
         "move": "Curse"
       },
       {
+        "level": 30,
+        "const": "SHADOW_CLAW",
+        "move": "Shadow Claw"
+      },
+      {
         "level": 31,
         "const": "SHADOW_BALL",
         "move": "Shadow Ball"
@@ -131906,6 +132316,11 @@
         "level": 28,
         "const": "CURSE",
         "move": "Curse"
+      },
+      {
+        "level": 30,
+        "const": "SHADOW_CLAW",
+        "move": "Shadow Claw"
       },
       {
         "level": 32,
@@ -132509,6 +132924,7 @@
       "COUNTER",
       "DETECT",
       "ENDURE",
+      "CROSS_CHOP",
       "COMET_PUNCH",
       "DEFOG",
       "DRAIN_PUNCH",
@@ -132923,6 +133339,11 @@
         "move": "Hammer Arm"
       },
       {
+        "level": 40,
+        "const": "BODY_PRESS",
+        "move": "Body Press"
+      },
+      {
         "level": 46,
         "const": "SUPERPOWER",
         "move": "Superpower"
@@ -132955,6 +133376,7 @@
       "COUNTER",
       "DETECT",
       "ENDURE",
+      "CROSS_CHOP",
       "COMET_PUNCH",
       "DEFOG",
       "DRAIN_PUNCH",
@@ -133424,6 +133846,11 @@
         "move": "Hammer Arm"
       },
       {
+        "level": 44,
+        "const": "BODY_PRESS",
+        "move": "Body Press"
+      },
+      {
         "level": 48,
         "const": "STONE_EDGE",
         "move": "Stone Edge"
@@ -133440,6 +133867,7 @@
       "COUNTER",
       "DETECT",
       "ENDURE",
+      "CROSS_CHOP",
       "COMET_PUNCH",
       "DEFOG",
       "DRAIN_PUNCH",
@@ -134706,6 +135134,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "STRENGTH"
     ],
@@ -134900,6 +135329,11 @@
         "move": "Thief"
       },
       {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
         "tm": "TM52",
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
@@ -135077,12 +135511,14 @@
       "PROTECT",
       "RAIN_DANCE",
       "FACADE",
+      "DRAGON_CLAW",
       "RETURN",
       "SWAGGER",
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
       "THIEF",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "STRENGTH"
     ],
@@ -135253,6 +135689,11 @@
         "move": "Facade"
       },
       {
+        "tm": "TM24",
+        "const": "DRAGON_CLAW",
+        "move": "Dragon Claw"
+      },
+      {
         "tm": "TM27",
         "const": "RETURN",
         "move": "Return"
@@ -135281,6 +135722,11 @@
         "tm": "TM46",
         "const": "THIEF",
         "move": "Thief"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
         "tm": "TM52",
@@ -135426,6 +135872,11 @@
         "move": "Dragon Tail"
       },
       {
+        "level": 46,
+        "const": "FOUL_PLAY",
+        "move": "Foul Play"
+      },
+      {
         "level": 48,
         "const": "HYPER_VOICE",
         "move": "Hyper Voice"
@@ -135486,6 +135937,7 @@
       "PROTECT",
       "RAIN_DANCE",
       "FACADE",
+      "DRAGON_CLAW",
       "EARTHQUAKE",
       "RETURN",
       "SWAGGER",
@@ -135497,6 +135949,7 @@
       "ATTRACT",
       "THIEF",
       "STEEL_WING",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "FLY",
       "SURF",
@@ -135693,6 +136146,11 @@
         "move": "Facade"
       },
       {
+        "tm": "TM24",
+        "const": "DRAGON_CLAW",
+        "move": "Dragon Claw"
+      },
+      {
         "tm": "TM26",
         "const": "EARTHQUAKE",
         "move": "Earthquake"
@@ -135746,6 +136204,11 @@
         "tm": "TM47",
         "const": "STEEL_WING",
         "move": "Steel Wing"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
         "tm": "TM52",
@@ -135831,9 +136294,19 @@
         "move": "Quick Attack"
       },
       {
+        "level": 18,
+        "const": "DRAGONBREATH",
+        "move": "Dragon Breath"
+      },
+      {
         "level": 30,
         "const": "DRAGON_TAIL",
         "move": "Dragon Tail"
+      },
+      {
+        "level": 40,
+        "const": "PHANTOMFORCE",
+        "move": "Phantom Force"
       },
       {
         "level": 56,
@@ -136088,6 +136561,11 @@
         "move": "Lock-On"
       },
       {
+        "level": 12,
+        "const": "DRAGONBREATH",
+        "move": "Dragon Breath"
+      },
+      {
         "level": 18,
         "const": "HEX",
         "move": "Hex"
@@ -136111,6 +136589,11 @@
         "level": 36,
         "const": "U_TURN",
         "move": "U-turn"
+      },
+      {
+        "level": 38,
+        "const": "SCALE_SHOT",
+        "move": "Scale Shot"
       },
       {
         "level": 42,
@@ -136941,9 +137424,24 @@
         "move": "Draining Kiss"
       },
       {
+        "level": 28,
+        "const": "SNARL",
+        "move": "Snarl"
+      },
+      {
+        "level": 30,
+        "const": "CHARM",
+        "move": "Charm"
+      },
+      {
         "level": 30,
         "const": "TORMENT",
         "move": "Torment"
+      },
+      {
+        "level": 30,
+        "const": "MEAN_LOOK",
+        "move": "Mean Look"
       },
       {
         "level": 34,
@@ -136984,7 +137482,9 @@
       }
     ],
     "egg_moves": [
+      "CHARM",
       "LIGHT_SCREEN",
+      "MEAN_LOOK",
       "REFLECT",
       "THUNDER_WAVE",
       "TORMENT"
@@ -136997,6 +137497,7 @@
       "FACADE",
       "RETURN",
       "SWAGGER",
+      "KNOCK_OFF",
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
@@ -137190,6 +137691,11 @@
         "move": "Swagger"
       },
       {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
         "tm": "TM42",
         "const": "NASTY_PLOT",
         "move": "Nasty Plot"
@@ -137288,6 +137794,11 @@
         "move": "Foul Play"
       },
       {
+        "level": 32,
+        "const": "SNARL",
+        "move": "Snarl"
+      },
+      {
         "level": 47,
         "const": "PLAY_ROUGH",
         "move": "Play Rough"
@@ -137306,7 +137817,9 @@
       }
     ],
     "egg_moves": [
+      "CHARM",
       "LIGHT_SCREEN",
+      "MEAN_LOOK",
       "REFLECT",
       "THUNDER_WAVE",
       "TORMENT"
@@ -137319,6 +137832,7 @@
       "FACADE",
       "RETURN",
       "SWAGGER",
+      "KNOCK_OFF",
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
@@ -137518,6 +138032,11 @@
         "move": "Swagger"
       },
       {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
         "tm": "TM42",
         "const": "NASTY_PLOT",
         "move": "Nasty Plot"
@@ -137653,7 +138172,9 @@
     ],
     "evolutions": [],
     "egg_moves": [
+      "CHARM",
       "LIGHT_SCREEN",
+      "MEAN_LOOK",
       "REFLECT",
       "THUNDER_WAVE",
       "TORMENT"
@@ -137668,13 +138189,15 @@
       "RETURN",
       "SWAGGER",
       "ICE_PUNCH",
+      "KNOCK_OFF",
       "BULK_UP",
       "THUNDERPUNCH",
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
       "THIEF",
-      "FIRE_PUNCH"
+      "FIRE_PUNCH",
+      "NIGHT_SLASH"
     ],
     "info": {
       "catch_rate": 45,
@@ -137875,6 +138398,11 @@
         "move": "Ice Punch"
       },
       {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
         "tm": "TM40",
         "const": "BULK_UP",
         "move": "Bulk Up"
@@ -137908,6 +138436,11 @@
         "tm": "TM48",
         "const": "FIRE_PUNCH",
         "move": "Fire Punch"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       }
     ]
   },
@@ -138030,6 +138563,7 @@
       "ROCK_SMASH",
       "PROTECT",
       "FACADE",
+      "IRON_HEAD",
       "FLASH_CANNON",
       "KNOCK_OFF",
       "REST",
@@ -138229,6 +138763,11 @@
         "move": "Facade"
       },
       {
+        "tm": "TM23",
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
         "tm": "TM34",
         "const": "FLASH_CANNON",
         "move": "Flash Cannon"
@@ -138332,9 +138871,19 @@
         "move": "Flash Cannon"
       },
       {
+        "level": 32,
+        "const": "IRON_DEFENSE",
+        "move": "Iron Defense"
+      },
+      {
         "level": 35,
         "const": "PLAY_ROUGH",
         "move": "Play Rough"
+      },
+      {
+        "level": 38,
+        "const": "HAMMER_ARM",
+        "move": "Hammer Arm"
       },
       {
         "level": 39,
@@ -138693,9 +139242,19 @@
         "move": "Play Rough"
       },
       {
+        "level": 38,
+        "const": "IRON_DEFENSE",
+        "move": "Iron Defense"
+      },
+      {
         "level": 39,
         "const": "FAKE_OUT",
         "move": "Fake Out"
+      },
+      {
+        "level": 42,
+        "const": "HAMMER_ARM",
+        "move": "Hammer Arm"
       },
       {
         "level": 48,
@@ -139053,6 +139612,7 @@
     ],
     "egg_moves": [
       "ICICLE_SPEAR",
+      "ICE_SHARD",
       "OUTRAGE",
       "AQUA_TAIL",
       "FREEZE_DRY"
@@ -139350,6 +139910,11 @@
         "move": "Ice Fang"
       },
       {
+        "level": 38,
+        "const": "SCALE_SHOT",
+        "move": "Scale Shot"
+      },
+      {
         "level": 40,
         "const": "DRAGON_TAIL",
         "move": "Dragon Tail"
@@ -139384,6 +139949,7 @@
     ],
     "egg_moves": [
       "ICICLE_SPEAR",
+      "ICE_SHARD",
       "OUTRAGE",
       "AQUA_TAIL",
       "FREEZE_DRY"
@@ -139728,6 +140294,7 @@
     "evolutions": [],
     "egg_moves": [
       "ICICLE_SPEAR",
+      "ICE_SHARD",
       "OUTRAGE",
       "AQUA_TAIL",
       "FREEZE_DRY"
@@ -140103,6 +140670,7 @@
       "CONFUSE_RAY",
       "DESTINY_BOND",
       "SPITE",
+      "MEAN_LOOK",
       "DISABLE"
     ],
     "tmhm": [
@@ -140415,6 +140983,7 @@
       "CONFUSE_RAY",
       "DESTINY_BOND",
       "SPITE",
+      "MEAN_LOOK",
       "DISABLE"
     ],
     "tmhm": [
@@ -140786,6 +141355,7 @@
       "CONFUSE_RAY",
       "DESTINY_BOND",
       "SPITE",
+      "MEAN_LOOK",
       "DISABLE"
     ],
     "tmhm": [
@@ -141246,6 +141816,8 @@
       }
     ],
     "egg_moves": [
+      "PURSUIT",
+      "WHIRLWIND",
       "SKY_ATTACK",
       "ROOST",
       "AGILITY",
@@ -141607,6 +142179,8 @@
       }
     ],
     "egg_moves": [
+      "PURSUIT",
+      "WHIRLWIND",
       "SKY_ATTACK",
       "ROOST",
       "AGILITY",
@@ -141629,6 +142203,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "STEEL_WING",
       "HONE_CLAWS",
       "FLY"
     ],
@@ -141864,6 +142439,11 @@
         "move": "Thief"
       },
       {
+        "tm": "TM47",
+        "const": "STEEL_WING",
+        "move": "Steel Wing"
+      },
+      {
         "tm": "TM50",
         "const": "HONE_CLAWS",
         "move": "Hone Claws"
@@ -141999,6 +142579,8 @@
     ],
     "evolutions": [],
     "egg_moves": [
+      "PURSUIT",
+      "WHIRLWIND",
       "SKY_ATTACK",
       "ROOST",
       "AGILITY",
@@ -142920,6 +143502,11 @@
         "level": 46,
         "const": "NASTY_PLOT",
         "move": "Nasty Plot"
+      },
+      {
+        "level": 46,
+        "const": "RAGING_FURY",
+        "move": "Raging Fury"
       },
       {
         "level": 50,
@@ -147969,6 +148556,11 @@
         "move": "Brave Bird"
       },
       {
+        "level": 60,
+        "const": "HEAD_SMASH",
+        "move": "Head Smash"
+      },
+      {
         "level": 61,
         "const": "GIGA_IMPACT",
         "move": "Giga Impact"
@@ -152201,6 +152793,11 @@
         "move": "Solar Beam"
       },
       {
+        "level": 55,
+        "const": "WOOD_HAMMER",
+        "move": "Wood Hammer"
+      },
+      {
         "level": 62,
         "const": "LEAF_STORM",
         "move": "Leaf Storm"
@@ -152683,6 +153280,11 @@
             "move": "Solar Beam"
           },
           {
+            "level": 55,
+            "const": "WOOD_HAMMER",
+            "move": "Wood Hammer"
+          },
+          {
             "level": 62,
             "const": "LEAF_STORM",
             "move": "Leaf Storm"
@@ -153163,6 +153765,11 @@
             "level": 55,
             "const": "SOLARBEAM",
             "move": "Solar Beam"
+          },
+          {
+            "level": 55,
+            "const": "WOOD_HAMMER",
+            "move": "Wood Hammer"
           },
           {
             "level": 62,
@@ -156761,6 +157368,11 @@
         "move": "Fire Spin"
       },
       {
+        "level": 50,
+        "const": "RAGING_FURY",
+        "move": "Raging Fury"
+      },
+      {
         "level": 54,
         "const": "BELLY_DRUM",
         "move": "Belly Drum"
@@ -156779,6 +157391,11 @@
         "level": 62,
         "const": "OVERHEAT",
         "move": "Overheat"
+      },
+      {
+        "level": 64,
+        "const": "DRACO_METEOR",
+        "move": "Draco Meteor"
       }
     ],
     "evolutions": [],
@@ -157348,6 +157965,11 @@
             "move": "Fire Spin"
           },
           {
+            "level": 50,
+            "const": "RAGING_FURY",
+            "move": "Raging Fury"
+          },
+          {
             "level": 54,
             "const": "BELLY_DRUM",
             "move": "Belly Drum"
@@ -157366,6 +157988,11 @@
             "level": 62,
             "const": "OVERHEAT",
             "move": "Overheat"
+          },
+          {
+            "level": 64,
+            "const": "DRACO_METEOR",
+            "move": "Draco Meteor"
           }
         ],
         "evolutions": [],
@@ -157935,6 +158562,11 @@
             "move": "Fire Spin"
           },
           {
+            "level": 50,
+            "const": "RAGING_FURY",
+            "move": "Raging Fury"
+          },
+          {
             "level": 54,
             "const": "BELLY_DRUM",
             "move": "Belly Drum"
@@ -157953,6 +158585,11 @@
             "level": 62,
             "const": "OVERHEAT",
             "move": "Overheat"
+          },
+          {
+            "level": 64,
+            "const": "DRACO_METEOR",
+            "move": "Draco Meteor"
           }
         ],
         "evolutions": [],
@@ -171671,6 +172308,11 @@
         "move": "Magical Leaf"
       },
       {
+        "level": 34,
+        "const": "FREEZE_DRY",
+        "move": "Freeze-Dry"
+      },
+      {
         "level": 37,
         "const": "MIST",
         "move": "Mist"
@@ -172071,6 +172713,11 @@
         "move": "Mist"
       },
       {
+        "level": 40,
+        "const": "FREEZE_DRY",
+        "move": "Freeze-Dry"
+      },
+      {
         "level": 41,
         "const": "ICICLE_CRASH",
         "move": "Icicle Crash"
@@ -172443,6 +173090,11 @@
         "level": 15,
         "const": "SAFEGUARD",
         "move": "Safeguard"
+      },
+      {
+        "level": 18,
+        "const": "DRAINING_KISS",
+        "move": "Draining Kiss"
       },
       {
         "level": 19,
@@ -172856,6 +173508,11 @@
         "move": "Safeguard"
       },
       {
+        "level": 18,
+        "const": "DRAINING_KISS",
+        "move": "Draining Kiss"
+      },
+      {
         "level": 19,
         "const": "MIST",
         "move": "Mist"
@@ -172904,6 +173561,11 @@
         "level": 42,
         "const": "DRAGON_PULSE",
         "move": "Dragon Pulse"
+      },
+      {
+        "level": 42,
+        "const": "DRAGON_TAIL",
+        "move": "Dragon Tail"
       },
       {
         "level": 44,
@@ -176730,7 +177392,8 @@
       "ICE_PUNCH",
       "THUNDERPUNCH",
       "COSMIC_POWER",
-      "SKY_UPPERCUT"
+      "SKY_UPPERCUT",
+      "KARATE_CHOP"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -177143,6 +177806,11 @@
       },
       {
         "level": 32,
+        "const": "BRICK_BREAK",
+        "move": "Brick Break"
+      },
+      {
+        "level": 32,
         "const": "HEADBUTT",
         "move": "Headbutt"
       },
@@ -177185,7 +177853,8 @@
       "ICE_PUNCH",
       "THUNDERPUNCH",
       "COSMIC_POWER",
-      "SKY_UPPERCUT"
+      "SKY_UPPERCUT",
+      "KARATE_CHOP"
     ],
     "tmhm": [
       "DRAIN_PUNCH",
@@ -177209,6 +177878,7 @@
       "SWAGGER",
       "ICE_PUNCH",
       "SWIFT",
+      "BULK_UP",
       "THUNDERPUNCH",
       "REST",
       "ATTRACT",
@@ -177477,6 +178147,11 @@
         "tm": "TM39",
         "const": "SWIFT",
         "move": "Swift"
+      },
+      {
+        "tm": "TM40",
+        "const": "BULK_UP",
+        "move": "Bulk Up"
       },
       {
         "tm": "TM41",
@@ -179197,6 +179872,11 @@
         "move": "X-Scissor"
       },
       {
+        "level": 32,
+        "const": "SIGNAL_BEAM",
+        "move": "Signal Beam"
+      },
+      {
         "level": 35,
         "const": "CRUNCH",
         "move": "Crunch"
@@ -179481,6 +180161,11 @@
         "level": 1,
         "const": "VICEGRIP",
         "move": "Vise Grip"
+      },
+      {
+        "level": 10,
+        "const": "NUZZLE",
+        "move": "Nuzzle"
       },
       {
         "level": 15,
@@ -180299,6 +180984,11 @@
         "move": "Swagger"
       },
       {
+        "level": 24,
+        "const": "FORCE_PALM",
+        "move": "Force Palm"
+      },
+      {
         "level": 28,
         "const": "BRICK_BREAK",
         "move": "Brick Break"
@@ -180769,6 +181459,11 @@
         "move": "Taunt"
       },
       {
+        "level": 26,
+        "const": "FORCE_PALM",
+        "move": "Force Palm"
+      },
+      {
         "level": 28,
         "const": "POISON_JAB",
         "move": "Poison Jab"
@@ -180812,6 +181507,11 @@
         "level": 43,
         "const": "CROSS_CHOP",
         "move": "Cross Chop"
+      },
+      {
+        "level": 44,
+        "const": "SUPERPOWER",
+        "move": "Superpower"
       },
       {
         "level": 47,
@@ -185787,6 +186487,7 @@
       "FOCUS_ENERGY",
       "QUICK_ATTACK",
       "SIGNAL_BEAM",
+      "U_TURN",
       "BUG_BITE",
       "EARTH_POWER",
       "ENDURE",
@@ -186221,6 +186922,7 @@
       "FOCUS_ENERGY",
       "QUICK_ATTACK",
       "SIGNAL_BEAM",
+      "U_TURN",
       "BUG_BITE",
       "EARTH_POWER",
       "ENDURE",
@@ -186730,6 +187432,7 @@
       "FOCUS_ENERGY",
       "QUICK_ATTACK",
       "SIGNAL_BEAM",
+      "U_TURN",
       "BUG_BITE",
       "EARTH_POWER",
       "ENDURE",
@@ -187614,6 +188317,11 @@
         "move": "Taunt"
       },
       {
+        "level": 28,
+        "const": "FREEZE_DRY",
+        "move": "Freeze-Dry"
+      },
+      {
         "level": 32,
         "const": "SHADOW_BALL",
         "move": "Shadow Ball"
@@ -188019,6 +188727,11 @@
         "move": "Struggle Bug"
       },
       {
+        "level": 18,
+        "const": "BUG_BITE",
+        "move": "Bug Bite"
+      },
+      {
         "level": 24,
         "const": "AQUA_JET",
         "move": "Aqua Jet"
@@ -188044,6 +188757,8 @@
     "egg_moves": [
       "HARDEN",
       "ENDURE",
+      "AQUA_TAIL",
+      "SUPERPOWER",
       "AQUA_JET",
       "METAL_CLAW",
       "ROLLOUT",
@@ -188397,6 +189112,8 @@
     "egg_moves": [
       "HARDEN",
       "ENDURE",
+      "AQUA_TAIL",
+      "SUPERPOWER",
       "AQUA_JET",
       "METAL_CLAW",
       "ROLLOUT",
@@ -189794,6 +190511,7 @@
       "PSYCHO_CUT",
       "PURSUIT",
       "SUCKER_PUNCH",
+      "SUPERPOWER",
       "HEADBUTT",
       "STEALTH_ROCK"
     ],
@@ -190180,6 +190898,11 @@
         "move": "Iron Head"
       },
       {
+        "level": 46,
+        "const": "SACRED_SWORD",
+        "move": "Sacred Sword"
+      },
+      {
         "level": 52,
         "const": "SWORDS_DANCE",
         "move": "Swords Dance"
@@ -190207,6 +190930,7 @@
       "PSYCHO_CUT",
       "PURSUIT",
       "SUCKER_PUNCH",
+      "SUPERPOWER",
       "HEADBUTT",
       "STEALTH_ROCK"
     ],
@@ -190590,6 +191314,11 @@
       },
       {
         "level": 52,
+        "const": "SACRED_SWORD",
+        "move": "Sacred Sword"
+      },
+      {
+        "level": 52,
         "const": "SWORDS_DANCE",
         "move": "Swords Dance"
       },
@@ -190605,6 +191334,7 @@
       "PSYCHO_CUT",
       "PURSUIT",
       "SUCKER_PUNCH",
+      "SUPERPOWER",
       "HEADBUTT",
       "STEALTH_ROCK"
     ],
@@ -192528,6 +193258,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "STRENGTH"
     ],
@@ -192801,6 +193532,11 @@
         "move": "Fire Punch"
       },
       {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
         "tm": "TM52",
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
@@ -192920,6 +193656,11 @@
       },
       {
         "level": 36,
+        "const": "CIRCLE_THROW",
+        "move": "Circle Throw"
+      },
+      {
+        "level": 36,
         "const": "SWAGGER",
         "move": "Swagger"
       },
@@ -192942,6 +193683,11 @@
         "level": 42,
         "const": "CRUNCH",
         "move": "Crunch"
+      },
+      {
+        "level": 46,
+        "const": "SUPERPOWER",
+        "move": "Superpower"
       },
       {
         "level": 48,
@@ -193411,6 +194157,11 @@
         "move": "Aqua Tail"
       },
       {
+        "level": 34,
+        "const": "FREEZE_DRY",
+        "move": "Freeze-Dry"
+      },
+      {
         "level": 37,
         "const": "BELLY_DRUM",
         "move": "Belly Drum"
@@ -193834,6 +194585,11 @@
         "level": 38,
         "const": "AQUA_TAIL",
         "move": "Aqua Tail"
+      },
+      {
+        "level": 38,
+        "const": "FREEZE_DRY",
+        "move": "Freeze-Dry"
       },
       {
         "level": 42,
@@ -194276,6 +195032,11 @@
         "level": 44,
         "const": "BELLY_DRUM",
         "move": "Belly Drum"
+      },
+      {
+        "level": 45,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       },
       {
         "level": 46,
@@ -196046,10 +196807,12 @@
       "YAWN",
       "ICICLE_SPEAR",
       "BELLY_DRUM",
+      "SLACK_OFF",
       "ICICLE_CRASH",
       "SUPERPOWER"
     ],
     "tmhm": [
+      "HEADBUTT",
       "CURSE",
       "BLIZZARD",
       "HYPER_BEAM",
@@ -196224,6 +196987,11 @@
     },
     "tmhm_labeled": [
       {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
         "tm": "TM03",
         "const": "CURSE",
         "move": "Curse"
@@ -196391,6 +197159,11 @@
         "move": "Play Rough"
       },
       {
+        "level": 42,
+        "const": "HAMMER_ARM",
+        "move": "Hammer Arm"
+      },
+      {
         "level": 49,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
@@ -196401,10 +197174,12 @@
       "YAWN",
       "ICICLE_SPEAR",
       "BELLY_DRUM",
+      "SLACK_OFF",
       "ICICLE_CRASH",
       "SUPERPOWER"
     ],
     "tmhm": [
+      "HEADBUTT",
       "CURSE",
       "BLIZZARD",
       "HYPER_BEAM",
@@ -196555,6 +197330,11 @@
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
       {
         "tm": "TM03",
         "const": "CURSE",
@@ -197662,11 +198442,13 @@
       "DIG",
       "SHADOW_BALL",
       "SWAGGER",
+      "KNOCK_OFF",
       "SLUDGE_BOMB",
       "SWIFT",
       "REST",
       "ATTRACT",
       "THIEF",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "CUT",
       "ICE_BEAM"
@@ -197882,6 +198664,11 @@
         "move": "Swagger"
       },
       {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
         "tm": "TM36",
         "const": "SLUDGE_BOMB",
         "move": "Sludge Bomb"
@@ -197905,6 +198692,11 @@
         "tm": "TM46",
         "const": "THIEF",
         "move": "Thief"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
         "tm": "TM52",
@@ -198091,6 +198883,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "CUT",
       "STRENGTH",
@@ -198351,6 +199144,11 @@
         "tm": "TM46",
         "const": "THIEF",
         "move": "Thief"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
         "tm": "TM52",
@@ -199688,7 +200486,8 @@
       "SNORE",
       "SUPER_FANG",
       "TAKE_DOWN",
-      "X_SCISSOR"
+      "X_SCISSOR",
+      "FREEZE_DRY"
     ],
     "evolves_from": {
       "const": "SANDSHREW_ALOLAN",
@@ -200132,6 +200931,7 @@
       "FACADE",
       "RETURN",
       "DIG",
+      "SHADOW_BALL",
       "SWAGGER",
       "SWIFT",
       "NASTY_PLOT",
@@ -200329,6 +201129,11 @@
         "tm": "TM28",
         "const": "DIG",
         "move": "Dig"
+      },
+      {
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
       },
       {
         "tm": "TM32",
@@ -200572,6 +201377,7 @@
       "SOLARBEAM",
       "RETURN",
       "DIG",
+      "SHADOW_BALL",
       "SWAGGER",
       "SWIFT",
       "NASTY_PLOT",
@@ -200772,6 +201578,11 @@
         "tm": "TM28",
         "const": "DIG",
         "move": "Dig"
+      },
+      {
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
       },
       {
         "tm": "TM32",
@@ -202737,6 +203548,7 @@
     ],
     "egg_moves": [
       "ENDURE",
+      "MAGNITUDE",
       "MEGA_PUNCH",
       "IRON_DEFENSE",
       "COUNTER",
@@ -203178,6 +203990,7 @@
     ],
     "egg_moves": [
       "ENDURE",
+      "MAGNITUDE",
       "MEGA_PUNCH",
       "IRON_DEFENSE",
       "COUNTER",
@@ -203667,6 +204480,11 @@
         "move": "Stone Edge"
       },
       {
+        "level": 52,
+        "const": "HEAD_SMASH",
+        "move": "Head Smash"
+      },
+      {
         "level": 57,
         "const": "WILD_CHARGE",
         "move": "Wild Charge"
@@ -203675,6 +204493,7 @@
     "evolutions": [],
     "egg_moves": [
       "ENDURE",
+      "MAGNITUDE",
       "MEGA_PUNCH",
       "IRON_DEFENSE",
       "COUNTER",
@@ -204587,6 +205406,11 @@
         "move": "Acid Armor"
       },
       {
+        "level": 42,
+        "const": "CROSS_POISON",
+        "move": "Cross Poison"
+      },
+      {
         "level": 46,
         "const": "GUNK_SHOT",
         "move": "Gunk Shot"
@@ -204632,6 +205456,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "FLAMETHROWER",
       "THUNDERBOLT"
@@ -204906,6 +205731,11 @@
         "tm": "TM48",
         "const": "FIRE_PUNCH",
         "move": "Fire Punch"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
         "tm": "TM52",
@@ -205597,6 +206427,11 @@
         "level": 42,
         "const": "SHADOW_BONE",
         "move": "Shadow Bone"
+      },
+      {
+        "level": 44,
+        "const": "PHANTOMFORCE",
+        "move": "Phantom Force"
       },
       {
         "level": 45,
@@ -207438,6 +208273,11 @@
         "level": 43,
         "const": "TAKE_DOWN",
         "move": "Take Down"
+      },
+      {
+        "level": 48,
+        "const": "MOONBLAST",
+        "move": "Moonblast"
       },
       {
         "level": 52,
@@ -209984,6 +210824,7 @@
       "DOUBLE_KICK"
     ],
     "tmhm": [
+      "HEADBUTT",
       "ROCK_TOMB",
       "ROAR",
       "TOXIC",
@@ -210120,6 +210961,11 @@
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
       {
         "tm": "TM04",
         "const": "ROCK_TOMB",
@@ -210406,6 +211252,7 @@
       "DOUBLE_KICK"
     ],
     "tmhm": [
+      "HEADBUTT",
       "ROCK_TOMB",
       "ROAR",
       "TOXIC",
@@ -210573,6 +211420,11 @@
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
       {
         "tm": "TM04",
         "const": "ROCK_TOMB",
@@ -211759,6 +212611,11 @@
         "move": "Flamethrower"
       },
       {
+        "level": 46,
+        "const": "PHANTOMFORCE",
+        "move": "Phantom Force"
+      },
+      {
         "level": 47,
         "const": "DOUBLE_EDGE",
         "move": "Double-Edge"
@@ -212358,6 +213215,7 @@
     ],
     "egg_moves": [
       "FAKE_OUT",
+      "PURSUIT",
       "TAUNT",
       "AGILITY",
       "COUNTER",
@@ -212888,6 +213746,11 @@
         "move": "Double Team"
       },
       {
+        "level": 42,
+        "const": "CROSS_POISON",
+        "move": "Cross Poison"
+      },
+      {
         "level": 43,
         "const": "CLOSE_COMBAT",
         "move": "Close Combat"
@@ -212926,6 +213789,7 @@
     "evolutions": [],
     "egg_moves": [
       "FAKE_OUT",
+      "PURSUIT",
       "TAUNT",
       "AGILITY",
       "COUNTER",
@@ -213010,7 +213874,8 @@
       "THUNDERPUNCH",
       "TORMENT",
       "VACUUM_WAVE",
-      "VENOSHOCK"
+      "VENOSHOCK",
+      "TRIPLE_AXEL"
     ],
     "evolves_from": {
       "const": "SNEASEL_HISUIAN",
@@ -213408,6 +214273,7 @@
     "egg_moves": [
       "ANCIENTPOWER",
       "SPIKES",
+      "ACID_ARMOR",
       "COUNTER",
       "CURSE",
       "DOUBLE_KICK",
@@ -213784,6 +214650,7 @@
     "egg_moves": [
       "ANCIENTPOWER",
       "SPIKES",
+      "ACID_ARMOR",
       "COUNTER",
       "CURSE",
       "DOUBLE_KICK",
@@ -214108,6 +214975,11 @@
       },
       {
         "level": 28,
+        "const": "FLAME_WHEEL",
+        "move": "Flame Wheel"
+      },
+      {
+        "level": 28,
         "const": "BLAZE_KICK",
         "move": "Blaze Kick"
       },
@@ -214170,6 +215042,11 @@
         "level": 44,
         "const": "SUBMISSION",
         "move": "Submission"
+      },
+      {
+        "level": 46,
+        "const": "RAGING_FURY",
+        "move": "Raging Fury"
       },
       {
         "level": 48,
@@ -214629,6 +215506,11 @@
         "move": "Body Slam"
       },
       {
+        "level": 30,
+        "const": "HORN_ATTACK",
+        "move": "Horn Attack"
+      },
+      {
         "level": 32,
         "const": "BRICK_BREAK",
         "move": "Brick Break"
@@ -214695,6 +215577,7 @@
       "ENDURE",
       "ROCK_SLIDE",
       "BODY_SLAM",
+      "HORN_ATTACK",
       "CURSE"
     ],
     "tmhm": [
@@ -215772,6 +216655,11 @@
       },
       {
         "level": 40,
+        "const": "LEAF_BLADE",
+        "move": "Leaf Blade"
+      },
+      {
+        "level": 40,
         "const": "PLAY_ROUGH",
         "move": "Play Rough"
       },
@@ -215779,6 +216667,11 @@
         "level": 42,
         "const": "SEED_BOMB",
         "move": "Seed Bomb"
+      },
+      {
+        "level": 46,
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
       },
       {
         "level": 52,
@@ -217058,6 +217951,11 @@
       },
       {
         "level": 44,
+        "const": "HAMMER_ARM",
+        "move": "Hammer Arm"
+      },
+      {
+        "level": 44,
         "const": "BODY_PRESS",
         "move": "Body Press"
       },
@@ -217125,6 +218023,7 @@
       "FIRE_PUNCH",
       "FURY_CUTTER",
       "HONE_CLAWS",
+      "POWER_GEM",
       "CUT",
       "SURF",
       "STRENGTH",
@@ -217427,6 +218326,11 @@
         "tm": "TM50",
         "const": "HONE_CLAWS",
         "move": "Hone Claws"
+      },
+      {
+        "tm": "TM53",
+        "const": "POWER_GEM",
+        "move": "Power Gem"
       },
       {
         "tm": "HM01",
@@ -217937,7 +218841,8 @@
       "GIGA_IMPACT",
       "GUNK_SHOT",
       "ROCK_SLIDE",
-      "STONE_EDGE"
+      "STONE_EDGE",
+      "HEAD_SMASH"
     ],
     "evolves_from": {
       "const": "GLIMMET",
@@ -218191,6 +219096,16 @@
         "move": "Liquidation"
       },
       {
+        "level": 36,
+        "const": "CROSS_POISON",
+        "move": "Cross Poison"
+      },
+      {
+        "level": 40,
+        "const": "BANEFUL_BUNKER",
+        "move": "Baneful Bunker"
+      },
+      {
         "level": 42,
         "const": "WATER_PULSE",
         "move": "Water Pulse"
@@ -218235,7 +219150,8 @@
     ],
     "egg_moves": [
       "HAZE",
-      "INFESTATION"
+      "INFESTATION",
+      "SPIKES"
     ],
     "tmhm": [
       "TOXIC",
@@ -218522,6 +219438,11 @@
       },
       {
         "level": 42,
+        "const": "BODY_PRESS",
+        "move": "Body Press"
+      },
+      {
+        "level": 42,
         "const": "CROSS_POISON",
         "move": "Cross Poison"
       },
@@ -218559,7 +219480,8 @@
     "evolutions": [],
     "egg_moves": [
       "HAZE",
-      "INFESTATION"
+      "INFESTATION",
+      "SPIKES"
     ],
     "tmhm": [
       "TOXIC",
@@ -219498,6 +220420,11 @@
       },
       {
         "level": 40,
+        "const": "FOUL_PLAY",
+        "move": "Foul Play"
+      },
+      {
+        "level": 40,
         "const": "HAZE",
         "move": "Haze"
       },
@@ -219527,6 +220454,8 @@
       "BODY_SLAM",
       "IRON_TAIL",
       "SCARY_FACE",
+      "SPITE",
+      "PURSUIT",
       "NIGHT_SLASH"
     ],
     "tmhm": [
@@ -221838,6 +222767,7 @@
       "BODY_SLAM",
       "FLAIL",
       "SLAM",
+      "HEAD_SMASH",
       "BIDE",
       "IRON_DEFENSE",
       "KNOCK_OFF",
@@ -221848,6 +222778,7 @@
       "WHIRLPOOL"
     ],
     "tmhm": [
+      "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
       "TOXIC",
@@ -221992,6 +222923,11 @@
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
       {
         "tm": "TM03",
         "const": "CURSE",
@@ -222276,6 +223212,11 @@
         "move": "Liquidation"
       },
       {
+        "level": 52,
+        "const": "HEAD_SMASH",
+        "move": "Head Smash"
+      },
+      {
         "level": 53,
         "const": "STONE_EDGE",
         "move": "Stone Edge"
@@ -222291,6 +223232,7 @@
       "BODY_SLAM",
       "FLAIL",
       "SLAM",
+      "HEAD_SMASH",
       "BIDE",
       "IRON_DEFENSE",
       "KNOCK_OFF",
@@ -222301,6 +223243,7 @@
       "WHIRLPOOL"
     ],
     "tmhm": [
+      "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
       "TOXIC",
@@ -222437,6 +223380,11 @@
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
       {
         "tm": "TM03",
         "const": "CURSE",
@@ -223894,6 +224842,11 @@
         "move": "Spider Web"
       },
       {
+        "level": 8,
+        "const": "NUZZLE",
+        "move": "Nuzzle"
+      },
+      {
         "level": 12,
         "const": "THUNDER_WAVE",
         "move": "Thunder Wave"
@@ -223917,6 +224870,11 @@
         "level": 24,
         "const": "BUG_BITE",
         "move": "Bug Bite"
+      },
+      {
+        "level": 28,
+        "const": "SPARK",
+        "move": "Spark"
       },
       {
         "level": 29,
@@ -223985,6 +224943,7 @@
       "DISABLE",
       "GIGA_DRAIN",
       "POISON_JAB",
+      "STICKY_WEB",
       "CROSS_POISON",
       "DOUBLE_TEAM",
       "FAINT_ATTACK",
@@ -224273,6 +225232,11 @@
         "move": "Spider Web"
       },
       {
+        "level": 8,
+        "const": "NUZZLE",
+        "move": "Nuzzle"
+      },
+      {
         "level": 12,
         "const": "THUNDER_WAVE",
         "move": "Thunder Wave"
@@ -224333,6 +225297,7 @@
       "DISABLE",
       "GIGA_DRAIN",
       "POISON_JAB",
+      "STICKY_WEB",
       "CROSS_POISON",
       "DOUBLE_TEAM",
       "FAINT_ATTACK",
@@ -226023,6 +226988,11 @@
         "move": "Flame Charge"
       },
       {
+        "level": 32,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
         "level": 34,
         "const": "TOXIC_SPIKES",
         "move": "Toxic Spikes"
@@ -226485,6 +227455,11 @@
         "move": "Venoshock"
       },
       {
+        "level": 32,
+        "const": "FIRE_SPIN",
+        "move": "Fire Spin"
+      },
+      {
         "level": 34,
         "const": "TOXIC_SPIKES",
         "move": "Toxic Spikes"
@@ -226546,6 +227521,7 @@
       "FACADE",
       "DRAGON_CLAW",
       "RETURN",
+      "SHADOW_BALL",
       "MUD_SLAP",
       "SWAGGER",
       "KNOCK_OFF",
@@ -226793,6 +227769,11 @@
         "tm": "TM27",
         "const": "RETURN",
         "move": "Return"
+      },
+      {
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
       },
       {
         "tm": "TM31",
@@ -227960,6 +228941,11 @@
     "learnset": [
       {
         "level": 1,
+        "const": "MACH_PUNCH",
+        "move": "Mach Punch"
+      },
+      {
+        "level": 1,
         "const": "WATER_GUN",
         "move": "Water Gun"
       },
@@ -228010,6 +228996,11 @@
       },
       {
         "level": 30,
+        "const": "BRICK_BREAK",
+        "move": "Brick Break"
+      },
+      {
+        "level": 30,
         "const": "WHIRLPOOL",
         "move": "Whirlpool"
       },
@@ -228047,6 +229038,16 @@
         "level": 46,
         "const": "AURA_SPHERE",
         "move": "Aura Sphere"
+      },
+      {
+        "level": 48,
+        "const": "SUPERPOWER",
+        "move": "Superpower"
+      },
+      {
+        "level": 50,
+        "const": "CROSS_CHOP",
+        "move": "Cross Chop"
       },
       {
         "level": 50,

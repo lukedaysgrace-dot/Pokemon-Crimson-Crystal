@@ -144,6 +144,15 @@ try:
    h.wr(h.s('wCurPartySpecies'),sid)
    h.wr(h.s('wPutativeTMHMMove'),mid)
    check(h.call('CanLearnTMHMMove')['c']!=0,c+' canonical compatibility '+move)
+ restoration_path=ROOT/'tools/testdata/authored_move_restorations.json'
+ if restoration_path.exists():
+  restorations=json.loads(restoration_path.read_text())
+  for c,moves in restorations['tmhm'].items():
+   sid=party(c)
+   for move in moves:
+    h.wr(h.s('wCurPartySpecies'),sid)
+    h.wr(h.s('wPutativeTMHMMove'),h.move_id(con.move_index(move)))
+    check(h.call('CanLearnTMHMMove')['c']!=0,c+' restored compatibility '+move)
  print('Family tutors and every added TM/elemental tutor flag passed.',flush=True)
 
  # Exercise the actual 16-bit egg-list inheritance scan, not only the tutor.

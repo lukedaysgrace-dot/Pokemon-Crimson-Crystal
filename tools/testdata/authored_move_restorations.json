@@ -1,0 +1,1479 @@
+{
+  "removed_commit": "de9c06cf98b567091b59946e38dde5f5440decb0",
+  "policy": "Restore only the requested entries at their pre-trimming levels and acquisition routes. Exclusions apply to direct species assignments; normal evolution and shared family breeding still apply. All four Slowbro/Slowking forms retain Slack Off instead of Recover.",
+  "requested": {
+    "CHARIZARD": [
+      "DRACO_METEOR",
+      "RAGING_FURY"
+    ],
+    "ALTARIA": [
+      "DRAGON_TAIL",
+      "DRAINING_KISS"
+    ],
+    "SWABLU": [
+      "DRAINING_KISS"
+    ],
+    "AMPHAROS": [
+      "HYPER_VOICE",
+      "NUZZLE"
+    ],
+    "MEGANIUM": [
+      "WOOD_HAMMER"
+    ],
+    "BELLOSSOM": [
+      "DRAINING_KISS"
+    ],
+    "MISDREAVUS": [
+      "FAIRY_WIND"
+    ],
+    "MISMAGIUS": [
+      "FAIRY_WIND"
+    ],
+    "DUNSPARCE": [
+      "DRAGONBREATH"
+    ],
+    "DUDUNSPARCE": [
+      "DRAGONBREATH",
+      "DRAGON_CLAW"
+    ],
+    "TRAPINCH": [
+      "U_TURN"
+    ],
+    "LEDIAN": [
+      "FURY_CUTTER"
+    ],
+    "LEDYBA": [
+      "FURY_CUTTER"
+    ],
+    "LOPUNNY": [
+      "BRICK_BREAK",
+      "BULK_UP",
+      "KARATE_CHOP"
+    ],
+    "PALAFIN": [
+      "BRICK_BREAK",
+      "CROSS_CHOP",
+      "MACH_PUNCH",
+      "SUPERPOWER"
+    ],
+    "SEVIPER": [
+      "FOUL_PLAY",
+      "PURSUIT",
+      "SPITE"
+    ],
+    "URSARING": [
+      "CRUSH_CLAW",
+      "DRAIN_PUNCH"
+    ],
+    "URSALUNA": [
+      "CRUSH_CLAW",
+      "SANDSTORM"
+    ],
+    "SUNFLORA": [
+      "FLAMETHROWER",
+      "INCINERATE"
+    ],
+    "TINKATON": [
+      "HAMMER_ARM",
+      "IRON_DEFENSE"
+    ],
+    "TINKATUFF": [
+      "HAMMER_ARM",
+      "IRON_DEFENSE"
+    ],
+    "TINKATINK": [
+      "IRON_HEAD"
+    ],
+    "AGGRON": [
+      "HAMMER_ARM",
+      "POWER_GEM"
+    ],
+    "AERODACTYL": [
+      "HEAD_SMASH"
+    ],
+    "GOLEM_ALOLAN": [
+      "HEAD_SMASH",
+      "MAGNITUDE"
+    ],
+    "ARMALDO": [
+      "POWER_GEM"
+    ],
+    "BASTIODON": [
+      "HEAD_SMASH"
+    ],
+    "CARRACOSTA": [
+      "HEADBUTT",
+      "HEAD_SMASH"
+    ],
+    "CRANIDOS": [
+      "POWER_GEM"
+    ],
+    "RAMPARDOS": [
+      "POWER_GEM"
+    ],
+    "GLIMMORA": [
+      "HEAD_SMASH"
+    ],
+    "TYRANTRUM": [
+      "HEADBUTT"
+    ],
+    "TYRUNT": [
+      "HEADBUTT"
+    ],
+    "TIRTOUGA": [
+      "HEADBUTT",
+      "HEAD_SMASH"
+    ],
+    "ONIX": [
+      "IRON_DEFENSE"
+    ],
+    "CRADILY": [
+      "POWER_GEM",
+      "STUN_SPORE"
+    ],
+    "LILEEP": [
+      "LEECH_SEED",
+      "POWER_GEM",
+      "STUN_SPORE"
+    ],
+    "SNEASEL": [
+      "ICE_FANG"
+    ],
+    "WEAVILE": [
+      "ICE_FANG"
+    ],
+    "CETITAN": [
+      "HAMMER_ARM",
+      "HEADBUTT",
+      "SLACK_OFF"
+    ],
+    "CETODDLE": [
+      "HEADBUTT",
+      "SLACK_OFF"
+    ],
+    "WALREIN": [
+      "SLACK_OFF"
+    ],
+    "CLODSIRE": [
+      "ACID_ARMOR"
+    ],
+    "WOOPER": [
+      "ACID_ARMOR"
+    ],
+    "QUAGSIRE": [
+      "ACID_ARMOR"
+    ],
+    "GOLBAT": [
+      "POISON_JAB"
+    ],
+    "MUK": [
+      "CROSS_POISON"
+    ],
+    "MUK_ALOLAN": [
+      "CROSS_POISON",
+      "NIGHT_SLASH"
+    ],
+    "QWILFISH": [
+      "CROSS_POISON"
+    ],
+    "OVERQWIL": [
+      "CROSS_POISON",
+      "KNOCK_OFF"
+    ],
+    "MAREANIE": [
+      "BANEFUL_BUNKER",
+      "CROSS_POISON",
+      "SPIKES"
+    ],
+    "TOXAPEX": [
+      "BODY_PRESS",
+      "SPIKES"
+    ],
+    "GLISCOR": [
+      "DRILL_RUN"
+    ],
+    "GLIGAR": [
+      "DRILL_RUN"
+    ],
+    "DONPHAN": [
+      "DRILL_RUN"
+    ],
+    "PHANPY": [
+      "DRILL_RUN"
+    ],
+    "DODUO": [
+      "DRILL_RUN"
+    ],
+    "GOLEM": [
+      "HEAD_SMASH"
+    ],
+    "MAGNEMITE": [
+      "MIRROR_COAT"
+    ],
+    "MAGNETON": [
+      "MIRROR_COAT"
+    ],
+    "GRIMMSNARL": [
+      "CHARM",
+      "KNOCK_OFF",
+      "MEAN_LOOK",
+      "NIGHT_SLASH"
+    ],
+    "MORGREM": [
+      "CHARM",
+      "KNOCK_OFF",
+      "MEAN_LOOK",
+      "SNARL"
+    ],
+    "IMPIDIMP": [
+      "CHARM",
+      "KNOCK_OFF",
+      "SNARL"
+    ],
+    "HYDREIGON": [
+      "DRAGON_CLAW",
+      "FOUL_PLAY",
+      "NIGHT_SLASH"
+    ],
+    "ZWEILOUS": [
+      "DRAGON_CLAW",
+      "NIGHT_SLASH"
+    ],
+    "DEINO": [
+      "NIGHT_SLASH"
+    ],
+    "KINGAMBIT": [
+      "SACRED_SWORD",
+      "SUPERPOWER"
+    ],
+    "BISHARP": [
+      "SACRED_SWORD",
+      "SUPERPOWER"
+    ],
+    "PAWNIARD": [
+      "SUPERPOWER"
+    ],
+    "HONCHKROW": [
+      "KNOCK_OFF"
+    ],
+    "SCRAFTY": [
+      "CIRCLE_THROW",
+      "SUPERPOWER"
+    ],
+    "SCRAGGY": [
+      "NIGHT_SLASH"
+    ],
+    "KROOKODILE": [
+      "NIGHT_SLASH"
+    ],
+    "KROKOROK": [
+      "NIGHT_SLASH"
+    ],
+    "SANDILE": [
+      "NIGHT_SLASH"
+    ],
+    "LUCARIO": [
+      "IRON_HEAD",
+      "SACRED_SWORD"
+    ],
+    "GALLADE": [
+      "CIRCLE_THROW",
+      "FORCE_PALM"
+    ],
+    "MACHAMP": [
+      "CIRCLE_THROW",
+      "FORCE_PALM",
+      "HAMMER_ARM"
+    ],
+    "MACHOKE": [
+      "CIRCLE_THROW",
+      "FORCE_PALM"
+    ],
+    "MACHOP": [
+      "FORCE_PALM"
+    ],
+    "HITMONCHAN": [
+      "FORCE_PALM",
+      "HAMMER_ARM"
+    ],
+    "HITMONLEE": [
+      "DRAIN_PUNCH"
+    ],
+    "HITMONTOP": [
+      "BODY_PRESS",
+      "CIRCLE_THROW"
+    ],
+    "HERACROSS": [
+      "HAMMER_ARM",
+      "SUPERPOWER"
+    ],
+    "CONKELDURR": [
+      "BODY_PRESS"
+    ],
+    "GURDURR": [
+      "BODY_PRESS"
+    ],
+    "TIMBURR": [
+      "CROSS_CHOP"
+    ],
+    "TOXICROAK": [
+      "FORCE_PALM",
+      "SUPERPOWER"
+    ],
+    "CROAGUNK": [
+      "FORCE_PALM"
+    ],
+    "GOLETT": [
+      "WILL_O_WISP"
+    ],
+    "GOLURK": [
+      "WILL_O_WISP"
+    ],
+    "DUSCLOPS": [
+      "SHADOW_CLAW"
+    ],
+    "DUSKNOIR": [
+      "SHADOW_CLAW"
+    ],
+    "MIMIKYU": [
+      "FOUL_PLAY",
+      "SUCKER_PUNCH"
+    ],
+    "CERULEDGE": [
+      "MEAN_LOOK"
+    ],
+    "ABOMASNOW": [
+      "FREEZE_DRY"
+    ],
+    "SNOVER": [
+      "FREEZE_DRY"
+    ],
+    "AURORUS": [
+      "MOONBLAST",
+      "POWER_GEM"
+    ],
+    "AMAURA": [
+      "MOONBLAST",
+      "POWER_GEM"
+    ],
+    "FROSLASS": [
+      "FREEZE_DRY"
+    ],
+    "DEWGONG": [
+      "FREEZE_DRY"
+    ],
+    "SEALEO": [
+      "FREEZE_DRY"
+    ],
+    "SPHEAL": [
+      "FREEZE_DRY"
+    ],
+    "CLOYSTER": [
+      "FREEZE_DRY"
+    ],
+    "CHARJABUG": [
+      "NUZZLE",
+      "SIGNAL_BEAM"
+    ],
+    "GALVANTULA": [
+      "NUZZLE",
+      "SPARK"
+    ],
+    "JOLTIK": [
+      "NUZZLE",
+      "SPARK",
+      "STICKY_WEB"
+    ],
+    "LANTURN": [
+      "TAIL_GLOW"
+    ],
+    "HOUNDOOM": [
+      "RAGING_FURY"
+    ],
+    "MAGMORTAR": [
+      "RAGING_FURY"
+    ],
+    "RAPIDASH": [
+      "RAGING_FURY"
+    ],
+    "TYPHLOSION_HISUIAN": [
+      "PHANTOMFORCE"
+    ],
+    "SALAZZLE": [
+      "FIRE_SPIN",
+      "SHADOW_BALL"
+    ],
+    "SALANDIT": [
+      "FIRE_SPIN"
+    ],
+    "RAPIDASH_GALARIAN": [
+      "MOONBLAST"
+    ],
+    "WYRDEER": [
+      "HORN_LEECH"
+    ],
+    "STANTLER": [
+      "HORN_LEECH"
+    ],
+    "ANNIHILAPE": [
+      "SUPERPOWER"
+    ],
+    "VENUSAUR": [
+      "WOOD_HAMMER"
+    ],
+    "TSAREENA": [
+      "LEAF_BLADE",
+      "SWORDS_DANCE"
+    ],
+    "GOLISOPOD": [
+      "AQUA_TAIL",
+      "SUPERPOWER"
+    ],
+    "WIMPOD": [
+      "BUG_BITE"
+    ],
+    "SCOLIPEDE": [
+      "CROSS_POISON"
+    ],
+    "VENIPEDE": [
+      "CROSS_POISON"
+    ],
+    "WHIRLIPEDE": [
+      "CROSS_POISON"
+    ],
+    "ARCTIBAX": [
+      "ICE_SHARD",
+      "SCALE_SHOT"
+    ],
+    "FRIGIBAX": [
+      "ICE_SHARD"
+    ],
+    "DRAKLOAK": [
+      "DRAGONBREATH",
+      "SCALE_SHOT"
+    ],
+    "ROOKIDEE": [
+      "WHIRLWIND"
+    ],
+    "CORVISQUIRE": [
+      "STEEL_WING",
+      "WHIRLWIND"
+    ],
+    "CORVIKNIGHT": [
+      "PURSUIT",
+      "WHIRLWIND"
+    ],
+    "MAROWAK_ALOLAN": [
+      "PHANTOMFORCE"
+    ],
+    "SANDSLASH_ALOLAN": [
+      "FREEZE_DRY"
+    ],
+    "NINETALES_ALOLAN": [
+      "SHADOW_BALL"
+    ],
+    "VULPIX_ALOLAN": [
+      "SHADOW_BALL"
+    ],
+    "RATTATA_ALOLAN": [
+      "KNOCK_OFF",
+      "NIGHT_SLASH"
+    ],
+    "RATICATE_ALOLAN": [
+      "NIGHT_SLASH"
+    ],
+    "SLOWKING_GALARIAN": [
+      "SLACK_OFF"
+    ],
+    "SNEASEL_HISUIAN": [
+      "PURSUIT"
+    ],
+    "SNEASLER": [
+      "CROSS_POISON",
+      "TRIPLE_AXEL"
+    ],
+    "ARCANINE_HISUIAN": [
+      "HEADBUTT"
+    ],
+    "GROWLITHE_HISUIAN": [
+      "HEADBUTT"
+    ],
+    "TAUROS_PALDEAN_FIRE": [
+      "FLAME_WHEEL",
+      "RAGING_FURY"
+    ],
+    "TAUROS_PALDEAN_WATER": [
+      "HORN_ATTACK"
+    ],
+    "DREEPY": [
+      "DRAGONBREATH",
+      "PHANTOMFORCE"
+    ],
+    "GRUBBIN": [
+      "SIGNAL_BEAM"
+    ],
+    "CROBAT": [
+      "POISON_JAB"
+    ]
+  },
+  "excluded": {
+    "DUSKULL": [
+      "SHADOW_PUNCH"
+    ],
+    "CHANDELURE": [
+      "PHANTOMFORCE"
+    ],
+    "CURSOLA": [
+      "PHANTOMFORCE"
+    ],
+    "MANKEY": [
+      "RAGE_FIST"
+    ],
+    "VICTREEBEL": [
+      "WOOD_HAMMER"
+    ],
+    "TANGROWTH": [
+      "WOOD_HAMMER"
+    ],
+    "ALTARIA": [
+      "SCALE_SHOT"
+    ],
+    "CORSOLA_GALARIAN": [
+      "PHANTOMFORCE"
+    ]
+  },
+  "level_up": {
+    "VENUSAUR": [
+      [
+        55,
+        "WOOD_HAMMER"
+      ]
+    ],
+    "CHARIZARD": [
+      [
+        50,
+        "RAGING_FURY"
+      ],
+      [
+        64,
+        "DRACO_METEOR"
+      ]
+    ],
+    "GOLBAT": [
+      [
+        40,
+        "POISON_JAB"
+      ]
+    ],
+    "MACHOP": [
+      [
+        22,
+        "FORCE_PALM"
+      ]
+    ],
+    "MACHOKE": [
+      [
+        24,
+        "FORCE_PALM"
+      ],
+      [
+        36,
+        "CIRCLE_THROW"
+      ]
+    ],
+    "MACHAMP": [
+      [
+        24,
+        "FORCE_PALM"
+      ],
+      [
+        38,
+        "CIRCLE_THROW"
+      ],
+      [
+        42,
+        "HAMMER_ARM"
+      ]
+    ],
+    "GOLEM": [
+      [
+        52,
+        "HEAD_SMASH"
+      ]
+    ],
+    "RAPIDASH": [
+      [
+        46,
+        "RAGING_FURY"
+      ]
+    ],
+    "DODUO": [
+      [
+        36,
+        "DRILL_RUN"
+      ]
+    ],
+    "DEWGONG": [
+      [
+        38,
+        "FREEZE_DRY"
+      ]
+    ],
+    "MUK": [
+      [
+        42,
+        "CROSS_POISON"
+      ]
+    ],
+    "CLOYSTER": [
+      [
+        40,
+        "FREEZE_DRY"
+      ]
+    ],
+    "ONIX": [
+      [
+        30,
+        "IRON_DEFENSE"
+      ]
+    ],
+    "HITMONCHAN": [
+      [
+        26,
+        "FORCE_PALM"
+      ],
+      [
+        40,
+        "HAMMER_ARM"
+      ]
+    ],
+    "AERODACTYL": [
+      [
+        60,
+        "HEAD_SMASH"
+      ]
+    ],
+    "MEGANIUM": [
+      [
+        55,
+        "WOOD_HAMMER"
+      ]
+    ],
+    "LANTURN": [
+      [
+        40,
+        "TAIL_GLOW"
+      ]
+    ],
+    "AMPHAROS": [
+      [
+        10,
+        "NUZZLE"
+      ],
+      [
+        36,
+        "HYPER_VOICE"
+      ]
+    ],
+    "BELLOSSOM": [
+      [
+        28,
+        "DRAINING_KISS"
+      ]
+    ],
+    "SUNFLORA": [
+      [
+        28,
+        "INCINERATE"
+      ],
+      [
+        40,
+        "FLAMETHROWER"
+      ]
+    ],
+    "MISDREAVUS": [
+      [
+        7,
+        "FAIRY_WIND"
+      ]
+    ],
+    "DUNSPARCE": [
+      [
+        25,
+        "DRAGONBREATH"
+      ]
+    ],
+    "GLIGAR": [
+      [
+        36,
+        "DRILL_RUN"
+      ]
+    ],
+    "QWILFISH": [
+      [
+        38,
+        "CROSS_POISON"
+      ]
+    ],
+    "HERACROSS": [
+      [
+        40,
+        "HAMMER_ARM"
+      ],
+      [
+        48,
+        "SUPERPOWER"
+      ]
+    ],
+    "SNEASEL": [
+      [
+        28,
+        "ICE_FANG"
+      ]
+    ],
+    "URSARING": [
+      [
+        34,
+        "CRUSH_CLAW"
+      ]
+    ],
+    "HOUNDOOM": [
+      [
+        46,
+        "RAGING_FURY"
+      ]
+    ],
+    "PHANPY": [
+      [
+        32,
+        "DRILL_RUN"
+      ]
+    ],
+    "DONPHAN": [
+      [
+        42,
+        "DRILL_RUN"
+      ]
+    ],
+    "STANTLER": [
+      [
+        28,
+        "HORN_LEECH"
+      ]
+    ],
+    "HITMONTOP": [
+      [
+        38,
+        "CIRCLE_THROW"
+      ],
+      [
+        40,
+        "BODY_PRESS"
+      ]
+    ],
+    "CHARIZARD_CLONE": [
+      [
+        50,
+        "RAGING_FURY"
+      ],
+      [
+        64,
+        "DRACO_METEOR"
+      ]
+    ],
+    "VENUSAUR_CLONE": [
+      [
+        55,
+        "WOOD_HAMMER"
+      ]
+    ],
+    "ANNIHILAPE": [
+      [
+        46,
+        "SUPERPOWER"
+      ]
+    ],
+    "DUDUNSPARCE": [
+      [
+        25,
+        "DRAGONBREATH"
+      ]
+    ],
+    "GALLADE": [
+      [
+        26,
+        "FORCE_PALM"
+      ],
+      [
+        38,
+        "CIRCLE_THROW"
+      ]
+    ],
+    "GLISCOR": [
+      [
+        42,
+        "DRILL_RUN"
+      ]
+    ],
+    "MAGMORTAR": [
+      [
+        48,
+        "RAGING_FURY"
+      ]
+    ],
+    "MISMAGIUS": [
+      [
+        7,
+        "FAIRY_WIND"
+      ]
+    ],
+    "VENIPEDE": [
+      [
+        32,
+        "CROSS_POISON"
+      ]
+    ],
+    "WHIRLIPEDE": [
+      [
+        36,
+        "CROSS_POISON"
+      ]
+    ],
+    "URSALUNA": [
+      [
+        38,
+        "CRUSH_CLAW"
+      ]
+    ],
+    "WEAVILE": [
+      [
+        28,
+        "ICE_FANG"
+      ]
+    ],
+    "WYRDEER": [
+      [
+        28,
+        "HORN_LEECH"
+      ]
+    ],
+    "DUSCLOPS": [
+      [
+        30,
+        "SHADOW_CLAW"
+      ]
+    ],
+    "DUSKNOIR": [
+      [
+        30,
+        "SHADOW_CLAW"
+      ]
+    ],
+    "GURDURR": [
+      [
+        40,
+        "BODY_PRESS"
+      ]
+    ],
+    "CONKELDURR": [
+      [
+        44,
+        "BODY_PRESS"
+      ]
+    ],
+    "HYDREIGON": [
+      [
+        46,
+        "FOUL_PLAY"
+      ]
+    ],
+    "DREEPY": [
+      [
+        18,
+        "DRAGONBREATH"
+      ],
+      [
+        40,
+        "PHANTOMFORCE"
+      ]
+    ],
+    "DRAKLOAK": [
+      [
+        12,
+        "DRAGONBREATH"
+      ],
+      [
+        38,
+        "SCALE_SHOT"
+      ]
+    ],
+    "IMPIDIMP": [
+      [
+        28,
+        "SNARL"
+      ],
+      [
+        30,
+        "CHARM"
+      ],
+      [
+        30,
+        "MEAN_LOOK"
+      ]
+    ],
+    "MORGREM": [
+      [
+        32,
+        "SNARL"
+      ]
+    ],
+    "TINKATUFF": [
+      [
+        32,
+        "IRON_DEFENSE"
+      ],
+      [
+        38,
+        "HAMMER_ARM"
+      ]
+    ],
+    "TINKATON": [
+      [
+        38,
+        "IRON_DEFENSE"
+      ],
+      [
+        42,
+        "HAMMER_ARM"
+      ]
+    ],
+    "ARCTIBAX": [
+      [
+        38,
+        "SCALE_SHOT"
+      ]
+    ],
+    "SNOVER": [
+      [
+        34,
+        "FREEZE_DRY"
+      ]
+    ],
+    "ABOMASNOW": [
+      [
+        40,
+        "FREEZE_DRY"
+      ]
+    ],
+    "SWABLU": [
+      [
+        18,
+        "DRAINING_KISS"
+      ]
+    ],
+    "ALTARIA": [
+      [
+        18,
+        "DRAINING_KISS"
+      ],
+      [
+        42,
+        "DRAGON_TAIL"
+      ]
+    ],
+    "LOPUNNY": [
+      [
+        32,
+        "BRICK_BREAK"
+      ]
+    ],
+    "GRUBBIN": [
+      [
+        32,
+        "SIGNAL_BEAM"
+      ]
+    ],
+    "CHARJABUG": [
+      [
+        10,
+        "NUZZLE"
+      ]
+    ],
+    "CROAGUNK": [
+      [
+        24,
+        "FORCE_PALM"
+      ]
+    ],
+    "TOXICROAK": [
+      [
+        26,
+        "FORCE_PALM"
+      ],
+      [
+        44,
+        "SUPERPOWER"
+      ]
+    ],
+    "FROSLASS": [
+      [
+        28,
+        "FREEZE_DRY"
+      ]
+    ],
+    "WIMPOD": [
+      [
+        18,
+        "BUG_BITE"
+      ]
+    ],
+    "BISHARP": [
+      [
+        46,
+        "SACRED_SWORD"
+      ]
+    ],
+    "KINGAMBIT": [
+      [
+        52,
+        "SACRED_SWORD"
+      ]
+    ],
+    "OVERQWIL": [
+      [
+        38,
+        "CROSS_POISON"
+      ]
+    ],
+    "SCRAFTY": [
+      [
+        36,
+        "CIRCLE_THROW"
+      ],
+      [
+        46,
+        "SUPERPOWER"
+      ]
+    ],
+    "SPHEAL": [
+      [
+        34,
+        "FREEZE_DRY"
+      ]
+    ],
+    "SEALEO": [
+      [
+        38,
+        "FREEZE_DRY"
+      ]
+    ],
+    "WALREIN": [
+      [
+        45,
+        "SLACK_OFF"
+      ]
+    ],
+    "CETITAN": [
+      [
+        42,
+        "HAMMER_ARM"
+      ]
+    ],
+    "MIMIKYU": [
+      [
+        40,
+        "FOUL_PLAY"
+      ]
+    ],
+    "LUCARIO": [
+      [
+        46,
+        "SACRED_SWORD"
+      ]
+    ],
+    "GOLEM_ALOLAN": [
+      [
+        52,
+        "HEAD_SMASH"
+      ]
+    ],
+    "MUK_ALOLAN": [
+      [
+        42,
+        "CROSS_POISON"
+      ]
+    ],
+    "MAROWAK_ALOLAN": [
+      [
+        44,
+        "PHANTOMFORCE"
+      ]
+    ],
+    "RAPIDASH_GALARIAN": [
+      [
+        48,
+        "MOONBLAST"
+      ]
+    ],
+    "TYPHLOSION_HISUIAN": [
+      [
+        46,
+        "PHANTOMFORCE"
+      ]
+    ],
+    "SNEASLER": [
+      [
+        42,
+        "CROSS_POISON"
+      ]
+    ],
+    "TAUROS_PALDEAN_FIRE": [
+      [
+        28,
+        "FLAME_WHEEL"
+      ],
+      [
+        46,
+        "RAGING_FURY"
+      ]
+    ],
+    "TAUROS_PALDEAN_WATER": [
+      [
+        30,
+        "HORN_ATTACK"
+      ]
+    ],
+    "TSAREENA": [
+      [
+        40,
+        "LEAF_BLADE"
+      ],
+      [
+        46,
+        "SWORDS_DANCE"
+      ]
+    ],
+    "AGGRON": [
+      [
+        44,
+        "HAMMER_ARM"
+      ]
+    ],
+    "MAREANIE": [
+      [
+        36,
+        "CROSS_POISON"
+      ],
+      [
+        40,
+        "BANEFUL_BUNKER"
+      ]
+    ],
+    "TOXAPEX": [
+      [
+        42,
+        "BODY_PRESS"
+      ]
+    ],
+    "SEVIPER": [
+      [
+        40,
+        "FOUL_PLAY"
+      ]
+    ],
+    "CARRACOSTA": [
+      [
+        52,
+        "HEAD_SMASH"
+      ]
+    ],
+    "JOLTIK": [
+      [
+        8,
+        "NUZZLE"
+      ],
+      [
+        28,
+        "SPARK"
+      ]
+    ],
+    "GALVANTULA": [
+      [
+        8,
+        "NUZZLE"
+      ]
+    ],
+    "SALANDIT": [
+      [
+        32,
+        "FIRE_SPIN"
+      ]
+    ],
+    "SALAZZLE": [
+      [
+        32,
+        "FIRE_SPIN"
+      ]
+    ],
+    "PALAFIN": [
+      [
+        1,
+        "MACH_PUNCH"
+      ],
+      [
+        30,
+        "BRICK_BREAK"
+      ],
+      [
+        48,
+        "SUPERPOWER"
+      ],
+      [
+        50,
+        "CROSS_CHOP"
+      ]
+    ],
+    "CROBAT": [
+      [
+        40,
+        "POISON_JAB"
+      ]
+    ]
+  },
+  "tmhm": {
+    "HITMONLEE": [
+      "DRAIN_PUNCH"
+    ],
+    "LEDYBA": [
+      "FURY_CUTTER"
+    ],
+    "LEDIAN": [
+      "FURY_CUTTER"
+    ],
+    "URSARING": [
+      "DRAIN_PUNCH"
+    ],
+    "HONCHKROW": [
+      "KNOCK_OFF"
+    ],
+    "DUDUNSPARCE": [
+      "DRAGON_CLAW"
+    ],
+    "URSALUNA": [
+      "SANDSTORM"
+    ],
+    "LILEEP": [
+      "POWER_GEM"
+    ],
+    "CRADILY": [
+      "POWER_GEM"
+    ],
+    "ARMALDO": [
+      "POWER_GEM"
+    ],
+    "GOLETT": [
+      "WILL_O_WISP"
+    ],
+    "GOLURK": [
+      "WILL_O_WISP"
+    ],
+    "DEINO": [
+      "NIGHT_SLASH"
+    ],
+    "ZWEILOUS": [
+      "DRAGON_CLAW",
+      "NIGHT_SLASH"
+    ],
+    "HYDREIGON": [
+      "DRAGON_CLAW",
+      "NIGHT_SLASH"
+    ],
+    "IMPIDIMP": [
+      "KNOCK_OFF"
+    ],
+    "MORGREM": [
+      "KNOCK_OFF"
+    ],
+    "GRIMMSNARL": [
+      "KNOCK_OFF",
+      "NIGHT_SLASH"
+    ],
+    "TINKATINK": [
+      "IRON_HEAD"
+    ],
+    "CORVISQUIRE": [
+      "STEEL_WING"
+    ],
+    "LOPUNNY": [
+      "BULK_UP"
+    ],
+    "OVERQWIL": [
+      "KNOCK_OFF"
+    ],
+    "SCRAGGY": [
+      "NIGHT_SLASH"
+    ],
+    "CRANIDOS": [
+      "POWER_GEM"
+    ],
+    "RAMPARDOS": [
+      "POWER_GEM"
+    ],
+    "CETODDLE": [
+      "HEADBUTT"
+    ],
+    "CETITAN": [
+      "HEADBUTT"
+    ],
+    "LUCARIO": [
+      "IRON_HEAD"
+    ],
+    "TYRUNT": [
+      "HEADBUTT"
+    ],
+    "TYRANTRUM": [
+      "HEADBUTT"
+    ],
+    "AMAURA": [
+      "POWER_GEM"
+    ],
+    "RATTATA_ALOLAN": [
+      "KNOCK_OFF",
+      "NIGHT_SLASH"
+    ],
+    "RATICATE_ALOLAN": [
+      "NIGHT_SLASH"
+    ],
+    "VULPIX_ALOLAN": [
+      "SHADOW_BALL"
+    ],
+    "NINETALES_ALOLAN": [
+      "SHADOW_BALL"
+    ],
+    "MUK_ALOLAN": [
+      "NIGHT_SLASH"
+    ],
+    "GROWLITHE_HISUIAN": [
+      "HEADBUTT"
+    ],
+    "ARCANINE_HISUIAN": [
+      "HEADBUTT"
+    ],
+    "AGGRON": [
+      "POWER_GEM"
+    ],
+    "TIRTOUGA": [
+      "HEADBUTT"
+    ],
+    "CARRACOSTA": [
+      "HEADBUTT"
+    ],
+    "SALAZZLE": [
+      "SHADOW_BALL"
+    ],
+    "SANDILE": [
+      "NIGHT_SLASH"
+    ],
+    "KROKOROK": [
+      "NIGHT_SLASH"
+    ],
+    "KROOKODILE": [
+      "NIGHT_SLASH"
+    ]
+  },
+  "egg_moves": {
+    "MAGNEMITE": [
+      "MIRROR_COAT"
+    ],
+    "WOOPER": [
+      "ACID_ARMOR"
+    ],
+    "LILEEP": [
+      "STUN_SPORE",
+      "LEECH_SEED"
+    ],
+    "TIMBURR": [
+      "CROSS_CHOP"
+    ],
+    "IMPIDIMP": [
+      "CHARM",
+      "MEAN_LOOK"
+    ],
+    "FRIGIBAX": [
+      "ICE_SHARD"
+    ],
+    "CHARCADET": [
+      "MEAN_LOOK"
+    ],
+    "ROOKIDEE": [
+      "PURSUIT",
+      "WHIRLWIND"
+    ],
+    "BUNEARY": [
+      "KARATE_CHOP"
+    ],
+    "TRAPINCH": [
+      "U_TURN"
+    ],
+    "WIMPOD": [
+      "AQUA_TAIL",
+      "SUPERPOWER"
+    ],
+    "PAWNIARD": [
+      "SUPERPOWER"
+    ],
+    "CETODDLE": [
+      "SLACK_OFF"
+    ],
+    "MIMIKYU": [
+      "SUCKER_PUNCH"
+    ],
+    "AMAURA": [
+      "MOONBLAST"
+    ],
+    "GEODUDE_ALOLAN": [
+      "MAGNITUDE"
+    ],
+    "SNEASEL_HISUIAN": [
+      "PURSUIT"
+    ],
+    "WOOPER_PALDEAN": [
+      "ACID_ARMOR"
+    ],
+    "TAUROS_PALDEAN_WATER": [
+      "HORN_ATTACK"
+    ],
+    "MAREANIE": [
+      "SPIKES"
+    ],
+    "SEVIPER": [
+      "SPITE",
+      "PURSUIT"
+    ],
+    "TIRTOUGA": [
+      "HEAD_SMASH"
+    ],
+    "JOLTIK": [
+      "STICKY_WEB"
+    ]
+  },
+  "tutors": {
+    "BASTIODON": [
+      "HEAD_SMASH"
+    ],
+    "SANDSLASH_ALOLAN": [
+      "FREEZE_DRY"
+    ],
+    "SNEASLER": [
+      "TRIPLE_AXEL"
+    ],
+    "GLIMMORA": [
+      "HEAD_SMASH"
+    ]
+  },
+  "breeding_prerequisites": {
+    "IMPIDIMP": {
+      "MEAN_LOOK": 30
+    }
+  }
+}

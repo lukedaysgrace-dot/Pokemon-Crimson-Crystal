@@ -43186,7 +43186,7 @@
       "name": "Bloodmoon Beast Ursaluna"
     }
   },
-  "policy": "Union individual historical mainline and Lumi 3.0 moves, filtered to implemented moves. Remove unsupported direct assignments; preserve six custom species and authored Pixie Punch. Retain valid acquisition levels and machine/egg routes. Missing access uses Blackthorn. Custom evolution carryover is reported explicitly, never treated as official compatibility.",
+  "policy": "Union individual historical mainline and Lumi 3.0 moves, filtered to implemented moves. Remove unsupported direct assignments; preserve six custom species and authored Pixie Punch. Retain valid acquisition levels and machine/egg routes. Missing access uses Blackthorn. Custom evolution carryover is reported explicitly, never treated as official compatibility. User-approved restorations are recorded separately from historical source claims in tools/testdata/authored_move_restorations.json.",
   "custom_entries": [
     "GOROCHU",
     "GOROTORA",
@@ -43200,13 +43200,6 @@
   ],
   "changes": {
     "level_up_removals": {
-      "VENUSAUR": [
-        "WOOD_HAMMER"
-      ],
-      "CHARIZARD": [
-        "DRACO_METEOR",
-        "RAGING_FURY"
-      ],
       "RATICATE": [
         "DIZZY_PUNCH"
       ],
@@ -43221,9 +43214,6 @@
       ],
       "NIDOKING": [
         "CROSS_POISON"
-      ],
-      "GOLBAT": [
-        "POISON_JAB"
       ],
       "PARASECT": [
         "SHADOW_CLAW",
@@ -43247,44 +43237,18 @@
       "ARCANINE": [
         "CRUSH_CLAW"
       ],
-      "MACHOP": [
-        "FORCE_PALM"
-      ],
-      "MACHOKE": [
-        "CIRCLE_THROW",
-        "FORCE_PALM"
-      ],
       "MACHAMP": [
-        "BODY_PRESS",
-        "CIRCLE_THROW",
-        "FORCE_PALM",
-        "HAMMER_ARM"
+        "BODY_PRESS"
       ],
       "VICTREEBEL": [
         "WOOD_HAMMER"
       ],
-      "GOLEM": [
-        "HEAD_SMASH"
-      ],
-      "RAPIDASH": [
-        "RAGING_FURY"
-      ],
       "DODUO": [
-        "DRILL_RUN",
         "DUALWINGBEAT"
       ],
       "DODRIO": [
         "BOUNCE",
         "DUALWINGBEAT"
-      ],
-      "DEWGONG": [
-        "FREEZE_DRY"
-      ],
-      "MUK": [
-        "CROSS_POISON"
-      ],
-      "CLOYSTER": [
-        "FREEZE_DRY"
       ],
       "GASTLY": [
         "SLUDGE"
@@ -43296,7 +43260,6 @@
         "SLUDGE"
       ],
       "ONIX": [
-        "IRON_DEFENSE",
         "MUD_SHOT"
       ],
       "VOLTORB": [
@@ -43316,10 +43279,6 @@
       ],
       "HITMONLEE": [
         "CIRCLE_THROW"
-      ],
-      "HITMONCHAN": [
-        "FORCE_PALM",
-        "HAMMER_ARM"
       ],
       "KOFFING": [
         "FAIRY_WIND"
@@ -43351,9 +43310,6 @@
         "FORESIGHT",
         "MIND_READER"
       ],
-      "AERODACTYL": [
-        "HEAD_SMASH"
-      ],
       "CHIKORITA": [
         "MEGA_DRAIN"
       ],
@@ -43361,21 +43317,16 @@
         "MEGA_DRAIN"
       ],
       "MEGANIUM": [
-        "MEGA_DRAIN",
-        "WOOD_HAMMER"
+        "MEGA_DRAIN"
       ],
       "TOTODILE": [
         "AGILITY"
-      ],
-      "CROBAT": [
-        "POISON_JAB"
       ],
       "CHINCHOU": [
         "NUZZLE"
       ],
       "LANTURN": [
-        "NUZZLE",
-        "TAIL_GLOW"
+        "NUZZLE"
       ],
       "TOGETIC": [
         "AURA_SPHERE"
@@ -43392,27 +43343,15 @@
       "FLAAFFY": [
         "NUZZLE"
       ],
-      "AMPHAROS": [
-        "HYPER_VOICE",
-        "NUZZLE"
-      ],
       "BELLOSSOM": [
-        "DRAINING_KISS",
         "WOOD_HAMMER"
       ],
       "SUDOWOODO": [
         "BOUNCE"
       ],
-      "SUNFLORA": [
-        "FLAMETHROWER",
-        "INCINERATE"
-      ],
       "SLOWKING": [
         "PSYCHO_CUT",
         "RECOVER"
-      ],
-      "MISDREAVUS": [
-        "FAIRY_WIND"
       ],
       "UNOWN": [
         "CALM_MIND",
@@ -43423,18 +43362,13 @@
         "PSYCHO_CUT"
       ],
       "DUNSPARCE": [
-        "DRAGONBREATH",
         "WORK_UP"
       ],
       "GLIGAR": [
-        "BOUNCE",
-        "DRILL_RUN"
+        "BOUNCE"
       ],
       "STEELIX": [
         "MUD_SHOT"
-      ],
-      "QWILFISH": [
-        "CROSS_POISON"
       ],
       "SCIZOR": [
         "WORK_UP"
@@ -43443,58 +43377,26 @@
         "BODY_PRESS"
       ],
       "HERACROSS": [
-        "HAMMER_ARM",
-        "LOW_SWEEP",
-        "SUPERPOWER"
-      ],
-      "SNEASEL": [
-        "ICE_FANG"
+        "LOW_SWEEP"
       ],
       "TEDDIURSA": [
-        "CRUSH_CLAW"
-      ],
-      "URSARING": [
         "CRUSH_CLAW"
       ],
       "MANTINE": [
         "AQUA_JET"
       ],
-      "HOUNDOOM": [
-        "RAGING_FURY"
-      ],
       "KINGDRA": [
         "DRAGON_TAIL"
       ],
-      "PHANPY": [
-        "DRILL_RUN"
-      ],
-      "DONPHAN": [
-        "DRILL_RUN"
-      ],
-      "STANTLER": [
-        "HORN_LEECH"
-      ],
-      "HITMONTOP": [
-        "BODY_PRESS",
-        "CIRCLE_THROW"
-      ],
       "ELEKID": [
         "NUZZLE"
-      ],
-      "CHARIZARD_CLONE": [
-        "DRACO_METEOR",
-        "RAGING_FURY"
-      ],
-      "VENUSAUR_CLONE": [
-        "WOOD_HAMMER"
       ],
       "AMBIPOM": [
         "DIZZY_PUNCH"
       ],
       "ANNIHILAPE": [
         "FOUL_PLAY",
-        "SNARL",
-        "SUPERPOWER"
+        "SNARL"
       ],
       "BAGON": [
         "SCALE_SHOT"
@@ -43504,44 +43406,17 @@
       ],
       "DUDUNSPARCE": [
         "CROSS_POISON",
-        "DRAGONBREATH",
         "FOUL_PLAY",
         "WORK_UP"
       ],
       "FARIGIRAF": [
         "PSYCHO_CUT"
       ],
-      "GALLADE": [
-        "CIRCLE_THROW",
-        "FORCE_PALM"
-      ],
       "GLISCOR": [
-        "BOUNCE",
-        "DRILL_RUN"
-      ],
-      "MAGMORTAR": [
-        "RAGING_FURY"
-      ],
-      "MISMAGIUS": [
-        "FAIRY_WIND"
-      ],
-      "VENIPEDE": [
-        "CROSS_POISON"
-      ],
-      "WHIRLIPEDE": [
-        "CROSS_POISON"
+        "BOUNCE"
       ],
       "TANGROWTH": [
         "WOOD_HAMMER"
-      ],
-      "URSALUNA": [
-        "CRUSH_CLAW"
-      ],
-      "WEAVILE": [
-        "ICE_FANG"
-      ],
-      "WYRDEER": [
-        "HORN_LEECH"
       ],
       "CRADILY": [
         "LEAF_STORM",
@@ -43550,18 +43425,6 @@
       "DUSKULL": [
         "SHADOW_PUNCH"
       ],
-      "DUSCLOPS": [
-        "SHADOW_CLAW"
-      ],
-      "DUSKNOIR": [
-        "SHADOW_CLAW"
-      ],
-      "GURDURR": [
-        "BODY_PRESS"
-      ],
-      "CONKELDURR": [
-        "BODY_PRESS"
-      ],
       "DEINO": [
         "SCALE_SHOT"
       ],
@@ -43569,23 +43432,16 @@
         "FOUL_PLAY",
         "SCALE_SHOT"
       ],
-      "HYDREIGON": [
-        "FOUL_PLAY"
-      ],
       "DREEPY": [
         "AGILITY",
-        "DRAGONBREATH",
         "DUALWINGBEAT",
         "HEX",
-        "PHANTOMFORCE",
         "SCALE_SHOT",
         "TWISTER"
       ],
       "DRAKLOAK": [
         "DEFOG",
-        "DRAGONBREATH",
-        "DUALWINGBEAT",
-        "SCALE_SHOT"
+        "DUALWINGBEAT"
       ],
       "DRAGAPULT": [
         "CRUNCH",
@@ -43594,18 +43450,14 @@
         "SCALE_SHOT"
       ],
       "IMPIDIMP": [
-        "CHARM",
         "DISARMING_VOICE",
         "ENCORE",
         "LOW_SWEEP",
-        "MEAN_LOOK",
-        "SNARL",
         "SWEET_KISS"
       ],
       "MORGREM": [
         "DISARMING_VOICE",
         "LOW_SWEEP",
-        "SNARL",
         "SWEET_KISS"
       ],
       "GRIMMSNARL": [
@@ -43615,19 +43467,10 @@
       "TINKATINK": [
         "BULLET_PUNCH"
       ],
-      "TINKATUFF": [
-        "HAMMER_ARM",
-        "IRON_DEFENSE"
-      ],
       "TINKATON": [
-        "HAMMER_ARM",
-        "IRON_DEFENSE",
         "IRON_HEAD"
       ],
       "FRIGIBAX": [
-        "SCALE_SHOT"
-      ],
-      "ARCTIBAX": [
         "SCALE_SHOT"
       ],
       "CHARCADET": [
@@ -43642,20 +43485,11 @@
       "CERULEDGE": [
         "FIRE_FANG"
       ],
-      "SNOVER": [
-        "FREEZE_DRY"
-      ],
-      "ABOMASNOW": [
-        "FREEZE_DRY"
-      ],
       "SWABLU": [
-        "BOUNCE",
-        "DRAINING_KISS"
+        "BOUNCE"
       ],
       "ALTARIA": [
         "BOUNCE",
-        "DRAGON_TAIL",
-        "DRAINING_KISS",
         "SCALE_SHOT"
       ],
       "APPLIN": [
@@ -43694,9 +43528,6 @@
       "BRELOOM": [
         "WOOD_HAMMER"
       ],
-      "LOPUNNY": [
-        "BRICK_BREAK"
-      ],
       "CAMERUPT": [
         "RAGING_FURY"
       ],
@@ -43704,22 +43535,13 @@
         "RAGING_FURY"
       ],
       "GRUBBIN": [
-        "NUZZLE",
-        "SIGNAL_BEAM"
-      ],
-      "CHARJABUG": [
         "NUZZLE"
       ],
       "VIKAVOLT": [
         "NUZZLE"
       ],
       "CROAGUNK": [
-        "ACID_ARMOR",
-        "FORCE_PALM"
-      ],
-      "TOXICROAK": [
-        "FORCE_PALM",
-        "SUPERPOWER"
+        "ACID_ARMOR"
       ],
       "DRIFLOON": [
         "BOUNCE"
@@ -43731,12 +43553,8 @@
       "SNORUNT": [
         "FREEZE_DRY"
       ],
-      "FROSLASS": [
-        "FREEZE_DRY"
-      ],
       "WIMPOD": [
         "BUBBLE",
-        "BUG_BITE",
         "FURY_CUTTER"
       ],
       "GOLISOPOD": [
@@ -43745,33 +43563,15 @@
       "GRUMPIG": [
         "SLACK_OFF"
       ],
-      "BISHARP": [
-        "SACRED_SWORD"
-      ],
       "KINGAMBIT": [
         "BODY_PRESS",
-        "HAMMER_ARM",
-        "SACRED_SWORD"
+        "HAMMER_ARM"
       ],
       "LUDICOLO": [
         "WOOD_HAMMER"
       ],
-      "OVERQWIL": [
-        "CROSS_POISON"
-      ],
-      "SCRAFTY": [
-        "CIRCLE_THROW",
-        "SUPERPOWER"
-      ],
-      "SPHEAL": [
-        "FREEZE_DRY"
-      ],
-      "SEALEO": [
-        "FREEZE_DRY"
-      ],
       "WALREIN": [
-        "FREEZE_DRY",
-        "SLACK_OFF"
+        "FREEZE_DRY"
       ],
       "TEDDIURSABM": [
         "CRUSH_CLAW"
@@ -43787,11 +43587,9 @@
         "WORK_UP"
       ],
       "CETITAN": [
-        "HAMMER_ARM",
         "WORK_UP"
       ],
       "MIMIKYU": [
-        "FOUL_PLAY",
         "SNARL"
       ],
       "CORSOLA_GALARIAN": [
@@ -43804,9 +43602,6 @@
         "CIRCLE_THROW",
         "FORCE_PALM",
         "LOW_SWEEP",
-        "SACRED_SWORD"
-      ],
-      "LUCARIO": [
         "SACRED_SWORD"
       ],
       "MUNCHLAX": [
@@ -43824,16 +43619,9 @@
       "PERSIAN_ALOLAN": [
         "CRUSH_CLAW"
       ],
-      "GOLEM_ALOLAN": [
-        "HEAD_SMASH"
-      ],
-      "MUK_ALOLAN": [
-        "CROSS_POISON"
-      ],
       "MAROWAK_ALOLAN": [
         "DRILL_RUN",
-        "MUD_SHOT",
-        "PHANTOMFORCE"
+        "MUD_SHOT"
       ],
       "MEOWTH_GALARIAN": [
         "CRUSH_CLAW"
@@ -43843,8 +43631,7 @@
         "LOW_SWEEP"
       ],
       "RAPIDASH_GALARIAN": [
-        "INCINERATE",
-        "MOONBLAST"
+        "INCINERATE"
       ],
       "SLOWKING_GALARIAN": [
         "RECOVER"
@@ -43856,29 +43643,15 @@
         "CRUSH_CLAW"
       ],
       "TYPHLOSION_HISUIAN": [
-        "PHANTOMFORCE",
         "RAGING_FURY"
-      ],
-      "SNEASLER": [
-        "CROSS_POISON"
       ],
       "TAUROS_PALDEAN_FIRE": [
-        "FLAME_WHEEL",
-        "HORN_ATTACK",
-        "RAGING_FURY"
-      ],
-      "TAUROS_PALDEAN_WATER": [
         "HORN_ATTACK"
       ],
       "TSAREENA": [
         "BRICK_BREAK",
         "CIRCLE_THROW",
-        "LEAF_BLADE",
-        "SWORDS_DANCE",
         "WOOD_HAMMER"
-      ],
-      "AGGRON": [
-        "HAMMER_ARM"
       ],
       "KLEAVOR": [
         "LOW_SWEEP",
@@ -43888,33 +43661,19 @@
       "GLIMMET": [
         "EARTH_POWER"
       ],
-      "MAREANIE": [
-        "BANEFUL_BUNKER",
-        "CROSS_POISON"
-      ],
-      "TOXAPEX": [
-        "BODY_PRESS"
-      ],
       "SEVIPER": [
-        "CROSS_POISON",
-        "FOUL_PLAY"
+        "CROSS_POISON"
       ],
       "ARCHEN": [
         "TAKE_DOWN"
-      ],
-      "CARRACOSTA": [
-        "HEAD_SMASH"
       ],
       "CHANDELURE": [
         "INFESTATION"
       ],
       "JOLTIK": [
-        "NUZZLE",
-        "SPARK",
         "THUNDERSHOCK"
       ],
       "GALVANTULA": [
-        "NUZZLE",
         "THUNDERSHOCK"
       ],
       "MAWILE": [
@@ -43932,11 +43691,9 @@
         "ASTONISH"
       ],
       "SALANDIT": [
-        "FIRE_SPIN",
         "FLAME_WHEEL"
       ],
       "SALAZZLE": [
-        "FIRE_SPIN",
         "FLAME_WHEEL"
       ],
       "FLITTLE": [
@@ -43958,14 +43715,10 @@
         "WHIRLPOOL"
       ],
       "PALAFIN": [
-        "BRICK_BREAK",
         "CIRCLE_THROW",
-        "CROSS_CHOP",
         "FORCE_PALM",
         "HAMMER_ARM",
         "LOW_SWEEP",
-        "MACH_PUNCH",
-        "SUPERPOWER",
         "TACKLE",
         "WORK_UP"
       ],
@@ -44186,9 +43939,6 @@
       "MAROWAK": [
         "DRAIN_PUNCH"
       ],
-      "HITMONLEE": [
-        "DRAIN_PUNCH"
-      ],
       "LICKITUNG": [
         "DRAIN_PUNCH",
         "IRON_HEAD"
@@ -44303,12 +44053,10 @@
       ],
       "LEDYBA": [
         "ENERGY_BALL",
-        "FURY_CUTTER",
         "ROCK_TOMB"
       ],
       "LEDIAN": [
         "ENERGY_BALL",
-        "FURY_CUTTER",
         "ROCK_TOMB"
       ],
       "SPINARAK": [
@@ -44436,9 +44184,6 @@
       "TEDDIURSA": [
         "DRAIN_PUNCH"
       ],
-      "URSARING": [
-        "DRAIN_PUNCH"
-      ],
       "HOUNDOUR": [
         "IRON_HEAD"
       ],
@@ -44495,7 +44240,6 @@
         "DRAIN_PUNCH"
       ],
       "HONCHKROW": [
-        "KNOCK_OFF",
         "STRENGTH"
       ],
       "AMBIPOM": [
@@ -44518,7 +44262,6 @@
         "CURSE"
       ],
       "DUDUNSPARCE": [
-        "DRAGON_CLAW",
         "IRON_HEAD",
         "SWIFT",
         "WORK_UP"
@@ -44583,9 +44326,6 @@
       "TOGEKISS": [
         "ROCK_TOMB"
       ],
-      "URSALUNA": [
-        "SANDSTORM"
-      ],
       "WEAVILE": [
         "DRAIN_PUNCH",
         "IRON_HEAD"
@@ -44599,25 +44339,12 @@
       ],
       "LILEEP": [
         "EARTHQUAKE",
-        "POWER_GEM",
         "ROCK_SMASH"
-      ],
-      "CRADILY": [
-        "POWER_GEM"
       ],
       "ANORITH": [
         "EARTHQUAKE",
         "POWER_GEM",
         "STRENGTH"
-      ],
-      "ARMALDO": [
-        "POWER_GEM"
-      ],
-      "GOLETT": [
-        "WILL_O_WISP"
-      ],
-      "GOLURK": [
-        "WILL_O_WISP"
       ],
       "LARVESTA": [
         "CURSE",
@@ -44635,23 +44362,18 @@
         "FIRE_BLAST",
         "FLAMETHROWER",
         "KNOCK_OFF",
-        "NIGHT_SLASH",
         "SURF"
       ],
       "ZWEILOUS": [
         "CURSE",
-        "DRAGON_CLAW",
         "FIRE_BLAST",
         "FLAMETHROWER",
         "KNOCK_OFF",
-        "NIGHT_SLASH",
         "SURF"
       ],
       "HYDREIGON": [
         "CURSE",
-        "DRAGON_CLAW",
-        "KNOCK_OFF",
-        "NIGHT_SLASH"
+        "KNOCK_OFF"
       ],
       "DREEPY": [
         "DRAGON_CLAW",
@@ -44673,27 +44395,22 @@
         "CURSE",
         "FIRE_PUNCH",
         "ICE_PUNCH",
-        "KNOCK_OFF",
         "THUNDERPUNCH"
       ],
       "MORGREM": [
         "CURSE",
         "FIRE_PUNCH",
         "ICE_PUNCH",
-        "KNOCK_OFF",
         "THUNDERPUNCH"
       ],
       "GRIMMSNARL": [
         "CURSE",
-        "KNOCK_OFF",
-        "NIGHT_SLASH",
         "STRENGTH"
       ],
       "TINKATINK": [
         "ATTRACT",
         "CURSE",
         "HIDDEN_POWER",
-        "IRON_HEAD",
         "RETURN",
         "STRENGTH",
         "SWAGGER",
@@ -44777,8 +44494,7 @@
       ],
       "CORVISQUIRE": [
         "CURSE",
-        "MUD_SLAP",
-        "STEEL_WING"
+        "MUD_SLAP"
       ],
       "CORVIKNIGHT": [
         "CUT",
@@ -44891,7 +44607,6 @@
         "CURSE"
       ],
       "LOPUNNY": [
-        "BULK_UP",
         "CURSE"
       ],
       "SIZZLIPEDE": [
@@ -45010,14 +44725,10 @@
       ],
       "OVERQWIL": [
         "HEADBUTT",
-        "KNOCK_OFF",
         "ROCK_TOMB",
         "STRENGTH",
         "THIEF",
         "WHIRLPOOL"
-      ],
-      "SCRAGGY": [
-        "NIGHT_SLASH"
       ],
       "SCRAFTY": [
         "NIGHT_SLASH"
@@ -45060,15 +44771,8 @@
         "CURSE",
         "HEADBUTT"
       ],
-      "CRANIDOS": [
-        "POWER_GEM"
-      ],
-      "RAMPARDOS": [
-        "POWER_GEM"
-      ],
       "CETODDLE": [
         "ATTRACT",
-        "HEADBUTT",
         "HIDDEN_POWER",
         "RETURN",
         "STRENGTH",
@@ -45079,7 +44783,6 @@
       ],
       "CETITAN": [
         "ATTRACT",
-        "HEADBUTT",
         "HIDDEN_POWER",
         "RETURN",
         "STRENGTH",
@@ -45128,24 +44831,20 @@
         "CURSE"
       ],
       "LUCARIO": [
-        "CURSE",
-        "IRON_HEAD"
+        "CURSE"
       ],
       "TYRUNT": [
-        "HEADBUTT",
         "MUD_SLAP",
         "POWER_GEM"
       ],
       "TYRANTRUM": [
-        "HEADBUTT",
         "MUD_SLAP",
         "POWER_GEM"
       ],
       "AMAURA": [
         "CURSE",
         "HEADBUTT",
-        "MUD_SLAP",
-        "POWER_GEM"
+        "MUD_SLAP"
       ],
       "AURORUS": [
         "CURSE",
@@ -45164,14 +44863,11 @@
       ],
       "RATTATA_ALOLAN": [
         "CURSE",
-        "IRON_HEAD",
-        "KNOCK_OFF",
-        "NIGHT_SLASH"
+        "IRON_HEAD"
       ],
       "RATICATE_ALOLAN": [
         "CURSE",
-        "IRON_HEAD",
-        "NIGHT_SLASH"
+        "IRON_HEAD"
       ],
       "RAICHU_ALOLAN": [
         "DRAIN_PUNCH",
@@ -45187,13 +44883,11 @@
       ],
       "VULPIX_ALOLAN": [
         "CURSE",
-        "IRON_HEAD",
-        "SHADOW_BALL"
+        "IRON_HEAD"
       ],
       "NINETALES_ALOLAN": [
         "CURSE",
-        "IRON_HEAD",
-        "SHADOW_BALL"
+        "IRON_HEAD"
       ],
       "DIGLETT_ALOLAN": [
         "CURSE",
@@ -45235,7 +44929,6 @@
       ],
       "MUK_ALOLAN": [
         "ENERGY_BALL",
-        "NIGHT_SLASH",
         "ROCK_SMASH",
         "STRENGTH"
       ],
@@ -45290,12 +44983,10 @@
       ],
       "GROWLITHE_HISUIAN": [
         "CURSE",
-        "HEADBUTT",
         "IRON_HEAD"
       ],
       "ARCANINE_HISUIAN": [
-        "CURSE",
-        "HEADBUTT"
+        "CURSE"
       ],
       "VOLTORB_HISUIAN": [
         "CURSE",
@@ -45398,8 +45089,7 @@
         "THUNDERPUNCH"
       ],
       "AGGRON": [
-        "DRAIN_PUNCH",
-        "POWER_GEM"
+        "DRAIN_PUNCH"
       ],
       "KLEAVOR": [
         "POWER_GEM",
@@ -45461,7 +45151,6 @@
         "THIEF"
       ],
       "TIRTOUGA": [
-        "HEADBUTT",
         "IRON_HEAD",
         "MUD_SLAP",
         "POWER_GEM",
@@ -45469,7 +45158,6 @@
       ],
       "CARRACOSTA": [
         "DRAIN_PUNCH",
-        "HEADBUTT",
         "ICE_PUNCH",
         "MUD_SLAP",
         "POWER_GEM",
@@ -45523,8 +45211,7 @@
       "SALAZZLE": [
         "CURSE",
         "DIG",
-        "HEADBUTT",
-        "SHADOW_BALL"
+        "HEADBUTT"
       ],
       "FLITTLE": [
         "ATTRACT",
@@ -45612,17 +45299,14 @@
       ],
       "SANDILE": [
         "KNOCK_OFF",
-        "NIGHT_SLASH",
         "SWIFT",
         "WORK_UP"
       ],
       "KROKOROK": [
-        "NIGHT_SLASH",
         "SWIFT",
         "WORK_UP"
       ],
       "KROOKODILE": [
-        "NIGHT_SLASH",
         "SWIFT",
         "WORK_UP"
       ]
@@ -45642,12 +45326,6 @@
       ],
       "GOLEM": [
         "SCREECH"
-      ],
-      "MAGNEMITE": [
-        "MIRROR_COAT"
-      ],
-      "MAGNETON": [
-        "MIRROR_COAT"
       ],
       "VOLTORB": [
         "NUZZLE",
@@ -45697,12 +45375,6 @@
         "FUTURE_SIGHT",
         "SUPERPOWER"
       ],
-      "WOOPER": [
-        "ACID_ARMOR"
-      ],
-      "QUAGSIRE": [
-        "ACID_ARMOR"
-      ],
       "HERACROSS": [
         "FAINT_ATTACK"
       ],
@@ -45747,23 +45419,6 @@
         "FORESIGHT",
         "MIND_READER"
       ],
-      "LILEEP": [
-        "LEECH_SEED",
-        "STUN_SPORE"
-      ],
-      "CRADILY": [
-        "LEECH_SEED",
-        "STUN_SPORE"
-      ],
-      "TIMBURR": [
-        "CROSS_CHOP"
-      ],
-      "GURDURR": [
-        "CROSS_CHOP"
-      ],
-      "CONKELDURR": [
-        "CROSS_CHOP"
-      ],
       "DREEPY": [
         "TAUNT"
       ],
@@ -45774,19 +45429,13 @@
         "TAUNT"
       ],
       "IMPIDIMP": [
-        "CHARM",
-        "ENCORE",
-        "MEAN_LOOK"
+        "ENCORE"
       ],
       "MORGREM": [
-        "CHARM",
-        "ENCORE",
-        "MEAN_LOOK"
+        "ENCORE"
       ],
       "GRIMMSNARL": [
-        "CHARM",
-        "ENCORE",
-        "MEAN_LOOK"
+        "ENCORE"
       ],
       "TINKATINK": [
         "BULLET_PUNCH",
@@ -45802,45 +45451,27 @@
       ],
       "FRIGIBAX": [
         "DOUBLE_EDGE",
-        "ICE_SHARD",
         "MIST"
       ],
       "ARCTIBAX": [
         "DOUBLE_EDGE",
-        "ICE_SHARD",
         "MIST"
       ],
       "BAXCALIBUR": [
         "DOUBLE_EDGE",
-        "ICE_SHARD",
         "MIST"
       ],
       "CHARCADET": [
         "CALM_MIND",
-        "MEAN_LOOK",
         "SWORDS_DANCE"
       ],
       "ARMAROUGE": [
         "CALM_MIND",
-        "MEAN_LOOK",
         "SWORDS_DANCE"
       ],
       "CERULEDGE": [
         "CALM_MIND",
-        "MEAN_LOOK",
         "SWORDS_DANCE"
-      ],
-      "ROOKIDEE": [
-        "PURSUIT",
-        "WHIRLWIND"
-      ],
-      "CORVISQUIRE": [
-        "PURSUIT",
-        "WHIRLWIND"
-      ],
-      "CORVIKNIGHT": [
-        "PURSUIT",
-        "WHIRLWIND"
       ],
       "APPLIN": [
         "DRAGON_TAIL",
@@ -45861,12 +45492,6 @@
         "DRAGON_TAIL",
         "GIGA_DRAIN",
         "LEECH_SEED"
-      ],
-      "BUNEARY": [
-        "KARATE_CHOP"
-      ],
-      "LOPUNNY": [
-        "KARATE_CHOP"
       ],
       "SIZZLIPEDE": [
         "AGILITY",
@@ -45913,32 +45538,20 @@
         "SKY_ATTACK"
       ],
       "TRAPINCH": [
-        "ROOST",
-        "U_TURN"
+        "ROOST"
       ],
       "SNORUNT": [
         "CONFUSE_RAY",
         "DESTINY_BOND"
       ],
-      "WIMPOD": [
-        "AQUA_TAIL",
-        "SUPERPOWER"
-      ],
-      "GOLISOPOD": [
-        "AQUA_TAIL",
-        "SUPERPOWER"
-      ],
       "PAWNIARD": [
-        "FOCUS_ENERGY",
-        "SUPERPOWER"
+        "FOCUS_ENERGY"
       ],
       "BISHARP": [
-        "FOCUS_ENERGY",
-        "SUPERPOWER"
+        "FOCUS_ENERGY"
       ],
       "KINGAMBIT": [
-        "FOCUS_ENERGY",
-        "SUPERPOWER"
+        "FOCUS_ENERGY"
       ],
       "LOTAD": [
         "FAKE_OUT"
@@ -45948,15 +45561,6 @@
         "COUNTER",
         "FURY_CUTTER",
         "SEISMIC_TOSS"
-      ],
-      "CETODDLE": [
-        "SLACK_OFF"
-      ],
-      "CETITAN": [
-        "SLACK_OFF"
-      ],
-      "MIMIKYU": [
-        "SUCKER_PUNCH"
       ],
       "CORSOLA_GALARIAN": [
         "BARRIER"
@@ -45971,12 +45575,6 @@
         "MIRROR_MOVE",
         "MUD_SLAP"
       ],
-      "AMAURA": [
-        "MOONBLAST"
-      ],
-      "AURORUS": [
-        "MOONBLAST"
-      ],
       "RATTATA_ALOLAN": [
         "BEAT_UP",
         "SCREECH"
@@ -45985,33 +45583,13 @@
         "BEAT_UP",
         "SCREECH"
       ],
-      "GEODUDE_ALOLAN": [
-        "MAGNITUDE"
-      ],
-      "GRAVELER_ALOLAN": [
-        "MAGNITUDE"
-      ],
-      "GOLEM_ALOLAN": [
-        "MAGNITUDE"
-      ],
-      "SNEASEL_HISUIAN": [
-        "PURSUIT"
-      ],
-      "SNEASLER": [
-        "PURSUIT"
-      ],
       "WOOPER_PALDEAN": [
-        "ACID_ARMOR",
         "SAFEGUARD"
       ],
       "CLODSIRE": [
-        "ACID_ARMOR",
         "SAFEGUARD"
       ],
       "TAUROS_PALDEAN_FIRE": [
-        "HORN_ATTACK"
-      ],
-      "TAUROS_PALDEAN_WATER": [
         "HORN_ATTACK"
       ],
       "BOUNSWEET": [
@@ -46028,31 +45606,16 @@
         "MORTAL_SPIN"
       ],
       "MAREANIE": [
-        "SLUDGE",
-        "SPIKES"
+        "SLUDGE"
       ],
       "TOXAPEX": [
-        "SLUDGE",
-        "SPIKES"
-      ],
-      "SEVIPER": [
-        "PURSUIT",
-        "SPITE"
+        "SLUDGE"
       ],
       "ARCHEN": [
         "FOCUS_ENERGY"
       ],
       "ARCHEOPS": [
         "FOCUS_ENERGY"
-      ],
-      "TIRTOUGA": [
-        "HEAD_SMASH"
-      ],
-      "CARRACOSTA": [
-        "HEAD_SMASH"
-      ],
-      "JOLTIK": [
-        "STICKY_WEB"
       ],
       "MAWILE": [
         "DISABLE"
@@ -46098,12 +45661,10 @@
         "HEAL_BELL"
       ],
       "VIBRAVA": [
-        "ROOST",
-        "U_TURN"
+        "ROOST"
       ],
       "FLYGON": [
-        "ROOST",
-        "U_TURN"
+        "ROOST"
       ],
       "MANTINE": [
         "GUNK_SHOT"
@@ -46141,9 +45702,6 @@
         "EARTH_POWER",
         "MORTAL_SPIN"
       ],
-      "MAGNEZONE": [
-        "MIRROR_COAT"
-      ],
       "FROSLASS": [
         "CONFUSE_RAY",
         "DESTINY_BOND"
@@ -46166,9 +45724,6 @@
         "COUNTER",
         "FURY_CUTTER",
         "SEISMIC_TOSS"
-      ],
-      "GALVANTULA": [
-        "STICKY_WEB"
       ]
     },
     "utility_removals": {},
@@ -46226,9 +45781,6 @@
       "GRUMPIG": [
         "THUNDERBOLT"
       ],
-      "BASTIODON": [
-        "HEAD_SMASH"
-      ],
       "CETODDLE": [
         "FREEZE_DRY"
       ],
@@ -46242,14 +45794,8 @@
         "AIR_CUTTER",
         "OMINOUS_WIND"
       ],
-      "SANDSLASH_ALOLAN": [
-        "FREEZE_DRY"
-      ],
       "SLOWKING_GALARIAN": [
         "PSYCHO_CUT"
-      ],
-      "SNEASLER": [
-        "TRIPLE_AXEL"
       ],
       "TAUROS_PALDEAN_FIRE": [
         "AQUA_JET",
@@ -46257,9 +45803,6 @@
       ],
       "TSAREENA": [
         "IRON_TAIL"
-      ],
-      "GLIMMORA": [
-        "HEAD_SMASH"
       ],
       "ARCHEOPS": [
         "X_SCISSOR"
@@ -48374,10 +47917,14 @@
       "PSYCHO_CUT",
       "WING_ATTACK"
     ],
-    "MESMERIA": [
-      "DAZZLING_GLEAM",
-      "DIZZY_PUNCH",
-      "PETAL_DANCE"
+    "DRAGAPULT": [
+      "SCALE_SHOT"
+    ],
+    "TINKATUFF": [
+      "IRON_HEAD"
+    ],
+    "TINKATON": [
+      "IRON_HEAD"
     ],
     "APPLETUN": [
       "BUG_BITE",
@@ -48394,12 +47941,24 @@
       "REFLECT",
       "SWEET_SCENT"
     ],
+    "CHARJABUG": [
+      "SIGNAL_BEAM"
+    ],
+    "VIKAVOLT": [
+      "NUZZLE"
+    ],
     "OVERQWIL": [
       "BUBBLE",
       "DEFENSE_CURL",
       "HEADBUTT",
       "MIMIC",
       "WHIRLPOOL"
+    ],
+    "SCRAFTY": [
+      "NIGHT_SLASH"
+    ],
+    "WALREIN": [
+      "FREEZE_DRY"
     ],
     "URSALUNABM": [
       "ATTRACT",
@@ -48473,16 +48032,8 @@
       "WISH",
       "YAWN"
     ],
-    "WATU": [
-      "SAFEGUARD"
-    ],
-    "GOROCHU": [
-      "DAZZLING_GLEAM",
-      "DIZZY_PUNCH",
-      "ICE_PUNCH",
-      "PETAL_DANCE",
-      "PSYCHIC_M",
-      "SCARY_FACE"
+    "GALVANTULA": [
+      "SPARK"
     ]
   },
   "added_access": {
@@ -50431,9 +49982,6 @@
     ]
   },
   "removed_access": {
-    "VENUSAUR": [
-      "WOOD_HAMMER"
-    ],
     "CHARMANDER": [
       "DRAIN_PUNCH",
       "IRON_HEAD"
@@ -50443,10 +49991,8 @@
       "IRON_HEAD"
     ],
     "CHARIZARD": [
-      "DRACO_METEOR",
       "DRAIN_PUNCH",
-      "IRON_HEAD",
-      "RAGING_FURY"
+      "IRON_HEAD"
     ],
     "SQUIRTLE": [
       "DARK_PULSE",
@@ -50546,8 +50092,7 @@
       "ENERGY_BALL"
     ],
     "GOLBAT": [
-      "ENERGY_BALL",
-      "POISON_JAB"
+      "ENERGY_BALL"
     ],
     "PARASECT": [
       "SHADOW_CLAW",
@@ -50592,18 +50137,8 @@
     "ARCANINE": [
       "CRUSH_CLAW"
     ],
-    "MACHOP": [
-      "FORCE_PALM"
-    ],
-    "MACHOKE": [
-      "CIRCLE_THROW",
-      "FORCE_PALM"
-    ],
     "MACHAMP": [
-      "BODY_PRESS",
-      "CIRCLE_THROW",
-      "FORCE_PALM",
-      "HAMMER_ARM"
+      "BODY_PRESS"
     ],
     "VICTREEBEL": [
       "WOOD_HAMMER"
@@ -50624,15 +50159,13 @@
     ],
     "GOLEM": [
       "DRAIN_PUNCH",
-      "HEAD_SMASH",
       "SCREECH"
     ],
     "PONYTA": [
       "IRON_HEAD"
     ],
     "RAPIDASH": [
-      "IRON_HEAD",
-      "RAGING_FURY"
+      "IRON_HEAD"
     ],
     "SLOWPOKE": [
       "IRON_HEAD"
@@ -50641,36 +50174,26 @@
       "IRON_HEAD"
     ],
     "MAGNEMITE": [
-      "MIRROR_COAT",
       "ROCK_TOMB"
     ],
     "MAGNETON": [
-      "MIRROR_COAT",
       "ROCK_TOMB"
     ],
     "FARFETCH_D": [
       "IRON_HEAD"
     ],
     "DODUO": [
-      "DRILL_RUN",
       "DUALWINGBEAT"
     ],
     "DODRIO": [
       "BOUNCE",
       "DUALWINGBEAT"
     ],
-    "DEWGONG": [
-      "FREEZE_DRY"
-    ],
     "GRIMER": [
       "ENERGY_BALL"
     ],
     "MUK": [
-      "CROSS_POISON",
       "ENERGY_BALL"
-    ],
-    "CLOYSTER": [
-      "FREEZE_DRY"
     ],
     "GASTLY": [
       "PHANTOMFORCE",
@@ -50683,7 +50206,6 @@
       "SLUDGE"
     ],
     "ONIX": [
-      "IRON_DEFENSE",
       "MUD_SHOT"
     ],
     "VOLTORB": [
@@ -50714,12 +50236,7 @@
       "MUD_SHOT"
     ],
     "HITMONLEE": [
-      "CIRCLE_THROW",
-      "DRAIN_PUNCH"
-    ],
-    "HITMONCHAN": [
-      "FORCE_PALM",
-      "HAMMER_ARM"
+      "CIRCLE_THROW"
     ],
     "LICKITUNG": [
       "DRAIN_PUNCH",
@@ -50810,9 +50327,6 @@
     "KABUTOPS": [
       "ENERGY_BALL"
     ],
-    "AERODACTYL": [
-      "HEAD_SMASH"
-    ],
     "SNORLAX": [
       "DRAIN_PUNCH",
       "SWIFT"
@@ -50833,8 +50347,7 @@
     ],
     "MEGANIUM": [
       "IRON_HEAD",
-      "MEGA_DRAIN",
-      "WOOD_HAMMER"
+      "MEGA_DRAIN"
     ],
     "CYNDAQUIL": [
       "ROCK_TOMB"
@@ -50875,12 +50388,10 @@
     ],
     "LEDYBA": [
       "ENERGY_BALL",
-      "FURY_CUTTER",
       "ROCK_TOMB"
     ],
     "LEDIAN": [
       "ENERGY_BALL",
-      "FURY_CUTTER",
       "QUIVER_DANCE",
       "ROCK_TOMB",
       "SIGNAL_BEAM"
@@ -50894,16 +50405,14 @@
       "FURY_CUTTER"
     ],
     "CROBAT": [
-      "ENERGY_BALL",
-      "POISON_JAB"
+      "ENERGY_BALL"
     ],
     "CHINCHOU": [
       "NUZZLE"
     ],
     "LANTURN": [
       "FLASH_CANNON",
-      "NUZZLE",
-      "TAIL_GLOW"
+      "NUZZLE"
     ],
     "PICHU": [
       "FLY",
@@ -50941,12 +50450,9 @@
     ],
     "AMPHAROS": [
       "DRAIN_PUNCH",
-      "HYPER_VOICE",
-      "IRON_HEAD",
-      "NUZZLE"
+      "IRON_HEAD"
     ],
     "BELLOSSOM": [
-      "DRAINING_KISS",
       "WOOD_HAMMER"
     ],
     "MARILL": [
@@ -50977,8 +50483,6 @@
       "IRON_HEAD"
     ],
     "SUNFLORA": [
-      "FLAMETHROWER",
-      "INCINERATE",
       "WOOD_HAMMER"
     ],
     "YANMA": [
@@ -50986,12 +50490,10 @@
       "FURY_CUTTER"
     ],
     "WOOPER": [
-      "ACID_ARMOR",
       "DRAIN_PUNCH",
       "IRON_HEAD"
     ],
     "QUAGSIRE": [
-      "ACID_ARMOR",
       "IRON_HEAD"
     ],
     "ESPEON": [
@@ -51005,9 +50507,6 @@
       "IRON_HEAD",
       "PSYCHO_CUT",
       "RECOVER"
-    ],
-    "MISDREAVUS": [
-      "FAIRY_WIND"
     ],
     "UNOWN": [
       "CALM_MIND",
@@ -51028,13 +50527,11 @@
       "FURY_CUTTER"
     ],
     "DUNSPARCE": [
-      "DRAGONBREATH",
       "IRON_HEAD",
       "WORK_UP"
     ],
     "GLIGAR": [
       "BOUNCE",
-      "DRILL_RUN",
       "IRON_HEAD"
     ],
     "STEELIX": [
@@ -51047,7 +50544,6 @@
       "DRAIN_PUNCH"
     ],
     "QWILFISH": [
-      "CROSS_POISON",
       "ROCK_TOMB"
     ],
     "SCIZOR": [
@@ -51059,21 +50555,14 @@
     ],
     "HERACROSS": [
       "FAINT_ATTACK",
-      "HAMMER_ARM",
-      "LOW_SWEEP",
-      "SUPERPOWER"
+      "LOW_SWEEP"
     ],
     "SNEASEL": [
       "DRAIN_PUNCH",
       "FREEZE_DRY",
-      "ICE_FANG",
       "IRON_HEAD"
     ],
     "TEDDIURSA": [
-      "CRUSH_CLAW",
-      "DRAIN_PUNCH"
-    ],
-    "URSARING": [
       "CRUSH_CLAW",
       "DRAIN_PUNCH"
     ],
@@ -51090,30 +50579,16 @@
       "IRON_HEAD"
     ],
     "HOUNDOOM": [
-      "IRON_HEAD",
-      "RAGING_FURY"
+      "IRON_HEAD"
     ],
     "KINGDRA": [
       "DRAGON_TAIL"
-    ],
-    "PHANPY": [
-      "DRILL_RUN"
-    ],
-    "DONPHAN": [
-      "DRILL_RUN"
     ],
     "PORYGON2": [
       "DISABLE",
       "FORESIGHT",
       "IRON_HEAD",
       "MIND_READER"
-    ],
-    "STANTLER": [
-      "HORN_LEECH"
-    ],
-    "HITMONTOP": [
-      "BODY_PRESS",
-      "CIRCLE_THROW"
     ],
     "SMOOCHUM": [
       "DRAIN_PUNCH",
@@ -51153,10 +50628,8 @@
       "IRON_HEAD"
     ],
     "CHARIZARD_CLONE": [
-      "DRACO_METEOR",
       "DRAIN_PUNCH",
-      "IRON_HEAD",
-      "RAGING_FURY"
+      "IRON_HEAD"
     ],
     "SQUIRTLE_CLONE": [
       "DARK_PULSE",
@@ -51169,11 +50642,7 @@
     "BLASTOISE_CLONE": [
       "DRAIN_PUNCH"
     ],
-    "VENUSAUR_CLONE": [
-      "WOOD_HAMMER"
-    ],
     "HONCHKROW": [
-      "KNOCK_OFF",
       "STRENGTH"
     ],
     "AMBIPOM": [
@@ -51185,7 +50654,6 @@
       "FOUL_PLAY",
       "IRON_HEAD",
       "SNARL",
-      "SUPERPOWER",
       "WILL_O_WISP"
     ],
     "BAGON": [
@@ -51206,8 +50674,6 @@
     ],
     "DUDUNSPARCE": [
       "CROSS_POISON",
-      "DRAGONBREATH",
-      "DRAGON_CLAW",
       "FOUL_PLAY",
       "IRON_HEAD",
       "SWIFT",
@@ -51233,9 +50699,7 @@
       "CURSE"
     ],
     "GALLADE": [
-      "CIRCLE_THROW",
-      "CURSE",
-      "FORCE_PALM"
+      "CURSE"
     ],
     "GLACEON": [
       "IRON_HEAD"
@@ -51248,7 +50712,6 @@
     ],
     "GLISCOR": [
       "BOUNCE",
-      "DRILL_RUN",
       "IRON_HEAD"
     ],
     "LICKILICKY": [
@@ -51258,14 +50721,10 @@
     ],
     "MAGMORTAR": [
       "DRAIN_PUNCH",
-      "IRON_HEAD",
-      "RAGING_FURY"
+      "IRON_HEAD"
     ],
     "MAGNEZONE": [
       "ROCK_TOMB"
-    ],
-    "MISMAGIUS": [
-      "FAIRY_WIND"
     ],
     "PORYGON_Z": [
       "DISABLE",
@@ -51278,11 +50737,9 @@
       "POWER_GEM"
     ],
     "VENIPEDE": [
-      "CROSS_POISON",
       "CURSE"
     ],
     "WHIRLIPEDE": [
-      "CROSS_POISON",
       "CURSE"
     ],
     "SCOLIPEDE": [
@@ -51295,18 +50752,12 @@
       "BOUNCE",
       "ROCK_TOMB"
     ],
-    "URSALUNA": [
-      "CRUSH_CLAW",
-      "SANDSTORM"
-    ],
     "WEAVILE": [
       "DRAIN_PUNCH",
       "FREEZE_DRY",
-      "ICE_FANG",
       "IRON_HEAD"
     ],
     "WYRDEER": [
-      "HORN_LEECH",
       "STRENGTH"
     ],
     "YANMEGA": [
@@ -51315,15 +50766,10 @@
     ],
     "LILEEP": [
       "EARTHQUAKE",
-      "LEECH_SEED",
-      "POWER_GEM",
-      "ROCK_SMASH",
-      "STUN_SPORE"
+      "ROCK_SMASH"
     ],
     "CRADILY": [
       "LEAF_STORM",
-      "POWER_GEM",
-      "STUN_SPORE",
       "WOOD_HAMMER"
     ],
     "ANORITH": [
@@ -51332,34 +50778,10 @@
       "STRENGTH"
     ],
     "ARMALDO": [
-      "POWER_GEM",
       "SIGNAL_BEAM"
-    ],
-    "GOLETT": [
-      "WILL_O_WISP"
-    ],
-    "GOLURK": [
-      "WILL_O_WISP"
     ],
     "DUSKULL": [
       "SHADOW_PUNCH"
-    ],
-    "DUSCLOPS": [
-      "SHADOW_CLAW"
-    ],
-    "DUSKNOIR": [
-      "SHADOW_CLAW"
-    ],
-    "TIMBURR": [
-      "CROSS_CHOP"
-    ],
-    "GURDURR": [
-      "BODY_PRESS",
-      "CROSS_CHOP"
-    ],
-    "CONKELDURR": [
-      "BODY_PRESS",
-      "CROSS_CHOP"
     ],
     "LARVESTA": [
       "CURSE",
@@ -51379,31 +50801,24 @@
       "FIRE_BLAST",
       "FLAMETHROWER",
       "KNOCK_OFF",
-      "NIGHT_SLASH",
       "SCALE_SHOT",
       "SURF"
     ],
     "ZWEILOUS": [
       "CURSE",
-      "DRAGON_CLAW",
       "FIRE_BLAST",
       "FLAMETHROWER",
       "FOUL_PLAY",
       "KNOCK_OFF",
-      "NIGHT_SLASH",
       "SCALE_SHOT",
       "SURF"
     ],
     "HYDREIGON": [
       "CURSE",
-      "DRAGON_CLAW",
-      "FOUL_PLAY",
-      "KNOCK_OFF",
-      "NIGHT_SLASH"
+      "KNOCK_OFF"
     ],
     "DREEPY": [
       "AGILITY",
-      "DRAGONBREATH",
       "DRAGON_CLAW",
       "DRAGON_PULSE",
       "DUALWINGBEAT",
@@ -51411,7 +50826,6 @@
       "FLAMETHROWER",
       "HEX",
       "HIDDEN_POWER",
-      "PHANTOMFORCE",
       "RETURN",
       "SCALE_SHOT",
       "SHADOW_BALL",
@@ -51423,10 +50837,8 @@
     ],
     "DRAKLOAK": [
       "DEFOG",
-      "DRAGONBREATH",
       "DRAGON_CLAW",
       "DUALWINGBEAT",
-      "SCALE_SHOT",
       "SWAGGER",
       "TAUNT",
       "TWISTER"
@@ -51435,48 +50847,35 @@
       "CRUNCH",
       "DEFOG",
       "DUALWINGBEAT",
-      "SCALE_SHOT",
       "TAUNT",
       "TWISTER"
     ],
     "IMPIDIMP": [
-      "CHARM",
       "CURSE",
       "DISARMING_VOICE",
       "ENCORE",
       "FIRE_PUNCH",
       "ICE_PUNCH",
-      "KNOCK_OFF",
       "LOW_SWEEP",
-      "MEAN_LOOK",
-      "SNARL",
       "SWEET_KISS",
       "THUNDERPUNCH"
     ],
     "MORGREM": [
-      "CHARM",
       "CURSE",
       "DISARMING_VOICE",
       "ENCORE",
       "FIRE_PUNCH",
       "ICE_PUNCH",
-      "KNOCK_OFF",
       "LOW_SWEEP",
-      "MEAN_LOOK",
-      "SNARL",
       "SWEET_KISS",
       "THUNDERPUNCH"
     ],
     "GRIMMSNARL": [
-      "CHARM",
       "CIRCLE_THROW",
       "CURSE",
       "DISARMING_VOICE",
       "ENCORE",
       "FORCE_PALM",
-      "KNOCK_OFF",
-      "MEAN_LOOK",
-      "NIGHT_SLASH",
       "STRENGTH",
       "SWEET_KISS"
     ],
@@ -51486,7 +50885,6 @@
       "CHARM",
       "CURSE",
       "HIDDEN_POWER",
-      "IRON_HEAD",
       "RETURN",
       "STRENGTH",
       "SWAGGER",
@@ -51497,10 +50895,7 @@
       "BULLET_PUNCH",
       "CHARM",
       "CURSE",
-      "HAMMER_ARM",
       "HIDDEN_POWER",
-      "IRON_DEFENSE",
-      "IRON_HEAD",
       "RETURN",
       "STRENGTH",
       "SWAGGER",
@@ -51511,10 +50906,7 @@
       "BULLET_PUNCH",
       "CHARM",
       "CURSE",
-      "HAMMER_ARM",
       "HIDDEN_POWER",
-      "IRON_DEFENSE",
-      "IRON_HEAD",
       "RETURN",
       "STRENGTH",
       "SWAGGER",
@@ -51526,7 +50918,6 @@
       "DOUBLE_EDGE",
       "EARTHQUAKE",
       "HIDDEN_POWER",
-      "ICE_SHARD",
       "IRON_HEAD",
       "MIST",
       "RETURN",
@@ -51540,10 +50931,8 @@
       "DOUBLE_EDGE",
       "EARTHQUAKE",
       "HIDDEN_POWER",
-      "ICE_SHARD",
       "MIST",
       "RETURN",
-      "SCALE_SHOT",
       "SWAGGER",
       "TOXIC"
     ],
@@ -51564,7 +50953,6 @@
       "FIRE_FANG",
       "HEX",
       "HIDDEN_POWER",
-      "MEAN_LOOK",
       "RETURN",
       "SWAGGER",
       "SWORDS_DANCE",
@@ -51577,7 +50965,6 @@
       "FLASH",
       "HEX",
       "HIDDEN_POWER",
-      "MEAN_LOOK",
       "RETURN",
       "SWAGGER",
       "SWORDS_DANCE",
@@ -51588,45 +50975,34 @@
       "CALM_MIND",
       "FIRE_FANG",
       "HYPER_BEAM",
-      "MEAN_LOOK",
       "RETURN",
       "STRENGTH"
     ],
     "ROOKIDEE": [
       "CURSE",
       "MUD_SLAP",
-      "PURSUIT",
       "STEEL_WING",
-      "SUNNY_DAY",
-      "WHIRLWIND"
+      "SUNNY_DAY"
     ],
     "CORVISQUIRE": [
       "CURSE",
-      "MUD_SLAP",
-      "PURSUIT",
-      "STEEL_WING",
-      "WHIRLWIND"
+      "MUD_SLAP"
     ],
     "CORVIKNIGHT": [
       "CUT",
       "MUD_SLAP",
-      "PURSUIT",
       "SANDSTORM",
-      "STRENGTH",
-      "WHIRLWIND"
+      "STRENGTH"
     ],
     "SNOVER": [
-      "FREEZE_DRY",
       "SUNNY_DAY"
     ],
     "ABOMASNOW": [
-      "FREEZE_DRY",
       "SUNNY_DAY"
     ],
     "SWABLU": [
       "BOUNCE",
       "CURSE",
-      "DRAINING_KISS",
       "EARTHQUAKE",
       "FIRE_BLAST",
       "FLAMETHROWER"
@@ -51634,8 +51010,6 @@
     "ALTARIA": [
       "BOUNCE",
       "CURSE",
-      "DRAGON_TAIL",
-      "DRAINING_KISS",
       "SCALE_SHOT",
       "STRENGTH"
     ],
@@ -51759,14 +51133,10 @@
       "WOOD_HAMMER"
     ],
     "BUNEARY": [
-      "CURSE",
-      "KARATE_CHOP"
+      "CURSE"
     ],
     "LOPUNNY": [
-      "BRICK_BREAK",
-      "BULK_UP",
-      "CURSE",
-      "KARATE_CHOP"
+      "CURSE"
     ],
     "CAMERUPT": [
       "RAGING_FURY"
@@ -51796,34 +51166,27 @@
       "AGILITY",
       "CURSE",
       "FURY_CUTTER",
-      "NUZZLE",
-      "SIGNAL_BEAM"
+      "NUZZLE"
     ],
     "CHARJABUG": [
       "AGILITY",
       "CURSE",
       "FLASH",
       "FURY_CUTTER",
-      "NUZZLE",
-      "SIGNAL_BEAM",
       "ZAP_CANNON"
     ],
     "VIKAVOLT": [
       "CURSE",
       "FLASH",
-      "FURY_CUTTER",
-      "NUZZLE"
+      "FURY_CUTTER"
     ],
     "CROAGUNK": [
       "ACID_ARMOR",
-      "CURSE",
-      "FORCE_PALM"
+      "CURSE"
     ],
     "TOXICROAK": [
       "ACID_ARMOR",
-      "CURSE",
-      "FORCE_PALM",
-      "SUPERPOWER"
+      "CURSE"
     ],
     "DRIFLOON": [
       "BOUNCE",
@@ -51866,8 +51229,7 @@
       "CURSE",
       "FIRE_BLAST",
       "FLAMETHROWER",
-      "ROOST",
-      "U_TURN"
+      "ROOST"
     ],
     "VIBRAVA": [
       "CURSE",
@@ -51883,26 +51245,18 @@
       "DESTINY_BOND",
       "FREEZE_DRY"
     ],
-    "FROSLASS": [
-      "FREEZE_DRY"
-    ],
     "WIMPOD": [
-      "AQUA_TAIL",
       "BUBBLE",
-      "BUG_BITE",
       "CURSE",
       "FURY_CUTTER",
       "ICE_BEAM",
-      "SUPERPOWER",
       "WHIRLPOOL"
     ],
     "GOLISOPOD": [
-      "AQUA_TAIL",
       "BUBBLE",
       "CURSE",
       "LOW_SWEEP",
       "STRENGTH",
-      "SUPERPOWER",
       "WHIRLPOOL"
     ],
     "SPOINK": [
@@ -51916,15 +51270,12 @@
     "PAWNIARD": [
       "CURSE",
       "FOCUS_ENERGY",
-      "STRENGTH",
-      "SUPERPOWER"
+      "STRENGTH"
     ],
     "BISHARP": [
       "CURSE",
       "FOCUS_ENERGY",
-      "SACRED_SWORD",
-      "STRENGTH",
-      "SUPERPOWER"
+      "STRENGTH"
     ],
     "KINGAMBIT": [
       "BODY_PRESS",
@@ -51932,9 +51283,7 @@
       "EARTHQUAKE",
       "FOCUS_ENERGY",
       "HAMMER_ARM",
-      "SACRED_SWORD",
-      "STRENGTH",
-      "SUPERPOWER"
+      "STRENGTH"
     ],
     "LOTAD": [
       "CURSE",
@@ -51949,29 +51298,9 @@
       "WOOD_HAMMER"
     ],
     "OVERQWIL": [
-      "CROSS_POISON",
-      "KNOCK_OFF",
       "ROCK_TOMB",
       "STRENGTH",
       "THIEF"
-    ],
-    "SCRAGGY": [
-      "NIGHT_SLASH"
-    ],
-    "SCRAFTY": [
-      "CIRCLE_THROW",
-      "NIGHT_SLASH",
-      "SUPERPOWER"
-    ],
-    "SPHEAL": [
-      "FREEZE_DRY"
-    ],
-    "SEALEO": [
-      "FREEZE_DRY"
-    ],
-    "WALREIN": [
-      "FREEZE_DRY",
-      "SLACK_OFF"
     ],
     "TEDDIURSABM": [
       "CRUSH_CLAW",
@@ -52004,22 +51333,11 @@
       "CURSE",
       "HEADBUTT"
     ],
-    "CRANIDOS": [
-      "POWER_GEM"
-    ],
-    "RAMPARDOS": [
-      "POWER_GEM"
-    ],
-    "BASTIODON": [
-      "HEAD_SMASH"
-    ],
     "CETODDLE": [
       "ATTRACT",
       "FREEZE_DRY",
-      "HEADBUTT",
       "HIDDEN_POWER",
       "RETURN",
-      "SLACK_OFF",
       "STRENGTH",
       "SURF",
       "SWAGGER",
@@ -52029,11 +51347,8 @@
     "CETITAN": [
       "ATTRACT",
       "FREEZE_DRY",
-      "HAMMER_ARM",
-      "HEADBUTT",
       "HIDDEN_POWER",
       "RETURN",
-      "SLACK_OFF",
       "STRENGTH",
       "SURF",
       "SWAGGER",
@@ -52050,11 +51365,9 @@
     ],
     "MIMIKYU": [
       "FLASH",
-      "FOUL_PLAY",
       "HEADBUTT",
       "SNARL",
-      "STRENGTH",
-      "SUCKER_PUNCH"
+      "STRENGTH"
     ],
     "CORSOLA_GALARIAN": [
       "BARRIER",
@@ -52089,31 +51402,24 @@
       "CURSE"
     ],
     "LUCARIO": [
-      "CURSE",
-      "IRON_HEAD",
-      "SACRED_SWORD"
+      "CURSE"
     ],
     "TYRUNT": [
-      "HEADBUTT",
       "MUD_SLAP",
       "POWER_GEM"
     ],
     "TYRANTRUM": [
-      "HEADBUTT",
       "MUD_SLAP",
       "POWER_GEM"
     ],
     "AMAURA": [
       "CURSE",
       "HEADBUTT",
-      "MOONBLAST",
-      "MUD_SLAP",
-      "POWER_GEM"
+      "MUD_SLAP"
     ],
     "AURORUS": [
       "CURSE",
       "HEADBUTT",
-      "MOONBLAST",
       "MUD_SLAP"
     ],
     "MUNCHLAX": [
@@ -52131,15 +51437,12 @@
       "BEAT_UP",
       "CURSE",
       "IRON_HEAD",
-      "KNOCK_OFF",
-      "NIGHT_SLASH",
       "SCREECH"
     ],
     "RATICATE_ALOLAN": [
       "BEAT_UP",
       "CURSE",
       "IRON_HEAD",
-      "NIGHT_SLASH",
       "SCREECH"
     ],
     "RAICHU_ALOLAN": [
@@ -52152,18 +51455,15 @@
       "DRAIN_PUNCH"
     ],
     "SANDSLASH_ALOLAN": [
-      "DRAIN_PUNCH",
-      "FREEZE_DRY"
+      "DRAIN_PUNCH"
     ],
     "VULPIX_ALOLAN": [
       "CURSE",
-      "IRON_HEAD",
-      "SHADOW_BALL"
+      "IRON_HEAD"
     ],
     "NINETALES_ALOLAN": [
       "CURSE",
-      "IRON_HEAD",
-      "SHADOW_BALL"
+      "IRON_HEAD"
     ],
     "DIGLETT_ALOLAN": [
       "CURSE",
@@ -52188,20 +51488,16 @@
     ],
     "GEODUDE_ALOLAN": [
       "DRAIN_PUNCH",
-      "MAGNITUDE",
       "POWER_GEM",
       "RAIN_DANCE"
     ],
     "GRAVELER_ALOLAN": [
       "DRAIN_PUNCH",
-      "MAGNITUDE",
       "POWER_GEM",
       "RAIN_DANCE"
     ],
     "GOLEM_ALOLAN": [
       "DRAIN_PUNCH",
-      "HEAD_SMASH",
-      "MAGNITUDE",
       "POWER_GEM",
       "RAIN_DANCE"
     ],
@@ -52211,9 +51507,7 @@
       "STRENGTH"
     ],
     "MUK_ALOLAN": [
-      "CROSS_POISON",
       "ENERGY_BALL",
-      "NIGHT_SLASH",
       "ROCK_SMASH",
       "STRENGTH"
     ],
@@ -52226,8 +51520,7 @@
       "DRAIN_PUNCH",
       "DRILL_RUN",
       "ICE_PUNCH",
-      "MUD_SHOT",
-      "PHANTOMFORCE"
+      "MUD_SHOT"
     ],
     "MEOWTH_GALARIAN": [
       "CRUSH_CLAW",
@@ -52248,8 +51541,7 @@
       "CURSE",
       "HEADBUTT",
       "INCINERATE",
-      "IRON_HEAD",
-      "MOONBLAST"
+      "IRON_HEAD"
     ],
     "SLOWPOKE_GALARIAN": [
       "FLASH",
@@ -52278,14 +51570,12 @@
     ],
     "GROWLITHE_HISUIAN": [
       "CURSE",
-      "HEADBUTT",
       "INCINERATE",
       "IRON_HEAD"
     ],
     "ARCANINE_HISUIAN": [
       "CRUSH_CLAW",
       "CURSE",
-      "HEADBUTT",
       "INCINERATE"
     ],
     "VOLTORB_HISUIAN": [
@@ -52300,29 +51590,23 @@
       "SUNNY_DAY"
     ],
     "TYPHLOSION_HISUIAN": [
-      "PHANTOMFORCE",
       "RAGING_FURY"
     ],
     "SNEASEL_HISUIAN": [
       "CURSE",
       "HEADBUTT",
       "IRON_HEAD",
-      "PURSUIT",
       "SURF",
       "WHIRLPOOL"
     ],
     "SNEASLER": [
-      "CROSS_POISON",
       "CURSE",
       "HEADBUTT",
       "IRON_HEAD",
-      "PURSUIT",
       "SURF",
-      "TRIPLE_AXEL",
       "WHIRLPOOL"
     ],
     "WOOPER_PALDEAN": [
-      "ACID_ARMOR",
       "ATTRACT",
       "BLIZZARD",
       "DRAIN_PUNCH",
@@ -52336,7 +51620,6 @@
       "SWAGGER"
     ],
     "CLODSIRE": [
-      "ACID_ARMOR",
       "ATTRACT",
       "BLIZZARD",
       "DRAIN_PUNCH",
@@ -52354,18 +51637,15 @@
       "AQUA_JET",
       "ATTRACT",
       "DRAIN_PUNCH",
-      "FLAME_WHEEL",
       "HEAT_WAVE",
       "HIDDEN_POWER",
       "HORN_ATTACK",
-      "RAGING_FURY",
       "SOLARBEAM"
     ],
     "TAUROS_PALDEAN_WATER": [
       "ATTRACT",
       "BLIZZARD",
       "DRAIN_PUNCH",
-      "HORN_ATTACK",
       "ICE_BEAM"
     ],
     "BOUNSWEET": [
@@ -52387,11 +51667,9 @@
       "FLASH",
       "IRON_HEAD",
       "IRON_TAIL",
-      "LEAF_BLADE",
       "LEECH_SEED",
       "ROCK_SMASH",
       "STRENGTH",
-      "SWORDS_DANCE",
       "THIEF",
       "WOOD_HAMMER"
     ],
@@ -52416,9 +51694,7 @@
       "THUNDERPUNCH"
     ],
     "AGGRON": [
-      "DRAIN_PUNCH",
-      "HAMMER_ARM",
-      "POWER_GEM"
+      "DRAIN_PUNCH"
     ],
     "KLEAVOR": [
       "LOW_SWEEP",
@@ -52440,26 +51716,20 @@
     "GLIMMORA": [
       "ATTRACT",
       "CURSE",
-      "HEAD_SMASH",
       "HIDDEN_POWER",
       "RETURN",
       "ROCK_SMASH",
       "SWAGGER"
     ],
     "MAREANIE": [
-      "BANEFUL_BUNKER",
-      "CROSS_POISON",
       "CURSE",
       "SLUDGE",
-      "SPIKES",
       "WATERFALL",
       "WHIRLPOOL"
     ],
     "TOXAPEX": [
-      "BODY_PRESS",
       "CURSE",
       "SLUDGE",
-      "SPIKES",
       "WATERFALL",
       "WHIRLPOOL"
     ],
@@ -52468,10 +51738,7 @@
       "DRAIN_PUNCH"
     ],
     "SEVIPER": [
-      "CROSS_POISON",
-      "FOUL_PLAY",
-      "PURSUIT",
-      "SPITE"
+      "CROSS_POISON"
     ],
     "BANETTE": [
       "DRAIN_PUNCH",
@@ -52504,8 +51771,6 @@
       "X_SCISSOR"
     ],
     "TIRTOUGA": [
-      "HEADBUTT",
-      "HEAD_SMASH",
       "IRON_HEAD",
       "MUD_SLAP",
       "POWER_GEM",
@@ -52513,8 +51778,6 @@
     ],
     "CARRACOSTA": [
       "DRAIN_PUNCH",
-      "HEADBUTT",
-      "HEAD_SMASH",
       "ICE_PUNCH",
       "MUD_SLAP",
       "POWER_GEM",
@@ -52536,17 +51799,12 @@
     ],
     "JOLTIK": [
       "CURSE",
-      "NUZZLE",
-      "SPARK",
-      "STICKY_WEB",
       "SUNNY_DAY",
       "THUNDERSHOCK",
       "ZAP_CANNON"
     ],
     "GALVANTULA": [
       "CURSE",
-      "NUZZLE",
-      "SPARK",
       "SUNNY_DAY",
       "THUNDERSHOCK",
       "ZAP_CANNON"
@@ -52582,7 +51840,6 @@
     "SALANDIT": [
       "CURSE",
       "DIG",
-      "FIRE_SPIN",
       "FLAME_WHEEL",
       "HEADBUTT",
       "SHADOW_BALL"
@@ -52590,10 +51847,8 @@
     "SALAZZLE": [
       "CURSE",
       "DIG",
-      "FIRE_SPIN",
       "FLAME_WHEEL",
-      "HEADBUTT",
-      "SHADOW_BALL"
+      "HEADBUTT"
     ],
     "FLITTLE": [
       "AIR_CUTTER",
@@ -52645,9 +51900,7 @@
     ],
     "PALAFIN": [
       "ATTRACT",
-      "BRICK_BREAK",
       "CIRCLE_THROW",
-      "CROSS_CHOP",
       "CURSE",
       "DIG",
       "DOUBLESLAP",
@@ -52659,13 +51912,11 @@
       "HEADBUTT",
       "HIDDEN_POWER",
       "LOW_SWEEP",
-      "MACH_PUNCH",
       "MUD_SLAP",
       "PLAY_ROUGH",
       "RETURN",
       "ROCK_SMASH",
       "STRENGTH",
-      "SUPERPOWER",
       "SUPER_FANG",
       "SWAGGER",
       "TACKLE",
@@ -52727,19 +51978,16 @@
     ],
     "SANDILE": [
       "KNOCK_OFF",
-      "NIGHT_SLASH",
       "SCRATCH",
       "SWIFT",
       "WORK_UP"
     ],
     "KROKOROK": [
-      "NIGHT_SLASH",
       "SCRATCH",
       "SWIFT",
       "WORK_UP"
     ],
     "KROOKODILE": [
-      "NIGHT_SLASH",
       "SCRATCH",
       "SWIFT",
       "WORK_UP"
@@ -54794,12 +54042,12 @@
       "CONFUSION": [
         "gen8legends_learnsets.ts:stantler:8L5"
       ],
-      "SAFEGUARD": [
-        "gen2_learnsets.ts:stantler:2S0"
-      ],
       "PSYSHIELD": [
         "ps_learnsets.ts:stantler:9E",
         "gen8legends_learnsets.ts:stantler:8L21"
+      ],
+      "SAFEGUARD": [
+        "gen2_learnsets.ts:stantler:2S0"
       ]
     },
     "TYROGUE": {
@@ -58265,6 +57513,7 @@
       "VENOSHOCK",
       "VINE_WHIP",
       "WEATHER_BALL",
+      "WOOD_HAMMER",
       "WORK_UP"
     ],
     "CHARMANDER": [
@@ -58475,6 +57724,7 @@
       "DIG",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
+      "DRACO_METEOR",
       "DRAGONBREATH",
       "DRAGON_CLAW",
       "DRAGON_DANCE",
@@ -58524,6 +57774,7 @@
       "PROTECT",
       "QUICK_ATTACK",
       "RAGE",
+      "RAGING_FURY",
       "REFLECT",
       "REST",
       "RETURN",
@@ -61304,6 +60555,7 @@
       "NASTY_PLOT",
       "OMINOUS_WIND",
       "POISON_FANG",
+      "POISON_JAB",
       "PROTECT",
       "PURSUIT",
       "QUICK_ATTACK",
@@ -63213,6 +62465,7 @@
       "FLAMETHROWER",
       "FOCUS_BLAST",
       "FOCUS_ENERGY",
+      "FORCE_PALM",
       "FORESIGHT",
       "FRUSTRATION",
       "HEADBUTT",
@@ -63273,6 +62526,7 @@
       "BULK_UP",
       "BULLDOZE",
       "BULLET_PUNCH",
+      "CIRCLE_THROW",
       "CLOSE_COMBAT",
       "COMET_PUNCH",
       "COUNTER",
@@ -63295,6 +62549,7 @@
       "FLAMETHROWER",
       "FOCUS_BLAST",
       "FOCUS_ENERGY",
+      "FORCE_PALM",
       "FORESIGHT",
       "FRUSTRATION",
       "HEADBUTT",
@@ -63355,6 +62610,7 @@
       "BULK_UP",
       "BULLDOZE",
       "BULLET_PUNCH",
+      "CIRCLE_THROW",
       "CLOSE_COMBAT",
       "COMET_PUNCH",
       "COUNTER",
@@ -63378,9 +62634,11 @@
       "FLAMETHROWER",
       "FOCUS_BLAST",
       "FOCUS_ENERGY",
+      "FORCE_PALM",
       "FORESIGHT",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "HAMMER_ARM",
       "HEADBUTT",
       "HEAVY_SLAM",
       "HIDDEN_POWER",
@@ -63967,6 +63225,7 @@
       "HAMMER_ARM",
       "HARDEN",
       "HEADBUTT",
+      "HEAD_SMASH",
       "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -64120,6 +63379,7 @@
       "PROTECT",
       "QUICK_ATTACK",
       "RAGE",
+      "RAGING_FURY",
       "REFLECT",
       "REST",
       "RETURN",
@@ -64371,6 +63631,7 @@
       "LIGHT_SCREEN",
       "LOCK_ON",
       "MIMIC",
+      "MIRROR_COAT",
       "PROTECT",
       "PSYCH_UP",
       "RAGE",
@@ -64430,6 +63691,7 @@
       "LIGHT_SCREEN",
       "LOCK_ON",
       "MIMIC",
+      "MIRROR_COAT",
       "PROTECT",
       "PSYCH_UP",
       "RAGE",
@@ -64559,6 +63821,7 @@
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
       "DRILL_PECK",
+      "DRILL_RUN",
       "ENDURE",
       "FACADE",
       "FAINT_ATTACK",
@@ -64766,6 +64029,7 @@
       "FAKE_OUT",
       "FLAIL",
       "FLIP_TURN",
+      "FREEZE_DRY",
       "FRUSTRATION",
       "GIGA_IMPACT",
       "GROWL",
@@ -64899,6 +64163,7 @@
       "BODY_SLAM",
       "BRICK_BREAK",
       "CONFUSE_RAY",
+      "CROSS_POISON",
       "CURSE",
       "DARK_PULSE",
       "DIG",
@@ -65058,6 +64323,7 @@
       "ENDURE",
       "EXPLOSION",
       "FACADE",
+      "FREEZE_DRY",
       "FRUSTRATION",
       "GIGA_IMPACT",
       "HAIL",
@@ -65414,6 +64680,7 @@
       "HEAD_SMASH",
       "HEAVY_SLAM",
       "HIDDEN_POWER",
+      "IRON_DEFENSE",
       "IRON_HEAD",
       "IRON_TAIL",
       "MIMIC",
@@ -66249,6 +65516,7 @@
       "DOUBLE_EDGE",
       "DOUBLE_KICK",
       "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
       "DYNAMICPUNCH",
       "EARTHQUAKE",
       "ENDURE",
@@ -66340,9 +65608,11 @@
       "FIRE_PUNCH",
       "FOCUS_BLAST",
       "FOCUS_ENERGY",
+      "FORCE_PALM",
       "FORESIGHT",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "HAMMER_ARM",
       "HEADBUTT",
       "HIDDEN_POWER",
       "HI_JUMP_KICK",
@@ -69058,6 +68328,7 @@
       "FRUSTRATION",
       "GIGA_IMPACT",
       "HEADBUTT",
+      "HEAD_SMASH",
       "HEAT_WAVE",
       "HIDDEN_POWER",
       "HONE_CLAWS",
@@ -70311,6 +69582,7 @@
       "TOXIC",
       "VINE_WHIP",
       "WEATHER_BALL",
+      "WOOD_HAMMER",
       "WORK_UP",
       "ZEN_HEADBUTT"
     ],
@@ -71166,6 +70438,7 @@
       "FACADE",
       "FLASH",
       "FRUSTRATION",
+      "FURY_CUTTER",
       "GIGA_DRAIN",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -71237,6 +70510,7 @@
       "FLY",
       "FOCUS_BLAST",
       "FRUSTRATION",
+      "FURY_CUTTER",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
       "HEADBUTT",
@@ -71477,6 +70751,7 @@
       "NIGHT_SLASH",
       "OMINOUS_WIND",
       "POISON_FANG",
+      "POISON_JAB",
       "PROTECT",
       "PURSUIT",
       "QUICK_ATTACK",
@@ -71620,6 +70895,7 @@
       "SUPERSONIC",
       "SURF",
       "SWAGGER",
+      "TAIL_GLOW",
       "TAKE_DOWN",
       "THUNDER",
       "THUNDERBOLT",
@@ -72380,6 +71656,7 @@
       "HEAL_BELL",
       "HIDDEN_POWER",
       "HYPER_BEAM",
+      "HYPER_VOICE",
       "ICE_PUNCH",
       "IRON_TAIL",
       "LIGHT_SCREEN",
@@ -72387,6 +71664,7 @@
       "MEGA_KICK",
       "MEGA_PUNCH",
       "MIMIC",
+      "NUZZLE",
       "OUTRAGE",
       "POWER_GEM",
       "PROTECT",
@@ -72434,6 +71712,7 @@
       "DAZZLING_GLEAM",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
+      "DRAINING_KISS",
       "DRAIN_PUNCH",
       "EARTH_POWER",
       "ENCORE",
@@ -73191,6 +72470,7 @@
       "ENDURE",
       "ENERGY_BALL",
       "FACADE",
+      "FLAMETHROWER",
       "FLASH",
       "FRUSTRATION",
       "GIGA_DRAIN",
@@ -73199,6 +72479,7 @@
       "GROWTH",
       "HIDDEN_POWER",
       "HYPER_BEAM",
+      "INCINERATE",
       "LEAF_STORM",
       "LEECH_SEED",
       "LIGHT_SCREEN",
@@ -73298,6 +72579,7 @@
       "WING_ATTACK"
     ],
     "WOOPER": [
+      "ACID_ARMOR",
       "AMNESIA",
       "ANCIENTPOWER",
       "AQUA_TAIL",
@@ -73370,6 +72652,7 @@
       "YAWN"
     ],
     "QUAGSIRE": [
+      "ACID_ARMOR",
       "AMNESIA",
       "ANCIENTPOWER",
       "AQUA_TAIL",
@@ -73852,6 +73135,7 @@
       "ENERGY_BALL",
       "EXTRASENSORY",
       "FACADE",
+      "FAIRY_WIND",
       "FLASH",
       "FOUL_PLAY",
       "FRUSTRATION",
@@ -74178,6 +73462,7 @@
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
       "DRACO_METEOR",
+      "DRAGONBREATH",
       "DREAM_EATER",
       "DRILL_RUN",
       "DUALWINGBEAT",
@@ -74274,6 +73559,7 @@
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
       "DREAM_EATER",
+      "DRILL_RUN",
       "DUALWINGBEAT",
       "EARTHQUAKE",
       "EARTH_POWER",
@@ -74630,6 +73916,7 @@
       "BOUNCE",
       "BUBBLE",
       "BUBBLEBEAM",
+      "CROSS_POISON",
       "CRUNCH",
       "CURSE",
       "DEFENSE_CURL",
@@ -74877,6 +74164,7 @@
       "FURY_ATTACK",
       "FURY_CUTTER",
       "GIGA_IMPACT",
+      "HAMMER_ARM",
       "HARDEN",
       "HEADBUTT",
       "HIDDEN_POWER",
@@ -74915,6 +74203,7 @@
       "STRUGGLE_BUG",
       "SUBSTITUTE",
       "SUNNY_DAY",
+      "SUPERPOWER",
       "SWAGGER",
       "SWORDS_DANCE",
       "TACKLE",
@@ -74965,6 +74254,7 @@
       "HIDDEN_POWER",
       "HONE_CLAWS",
       "ICE_BEAM",
+      "ICE_FANG",
       "ICE_PUNCH",
       "ICE_SHARD",
       "ICICLE_CRASH",
@@ -75119,12 +74409,14 @@
       "COUNTER",
       "CROSS_CHOP",
       "CRUNCH",
+      "CRUSH_CLAW",
       "CURSE",
       "CUT",
       "DEFENSE_CURL",
       "DIG",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
       "DYNAMICPUNCH",
       "EARTHQUAKE",
       "ENDURE",
@@ -76039,6 +75331,7 @@
       "PROTECT",
       "PURSUIT",
       "RAGE",
+      "RAGING_FURY",
       "RAIN_DANCE",
       "REST",
       "RETURN",
@@ -76154,6 +75447,7 @@
       "DIG",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
+      "DRILL_RUN",
       "EARTHQUAKE",
       "EARTH_POWER",
       "ENCORE",
@@ -76221,6 +75515,7 @@
       "DIG",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
+      "DRILL_RUN",
       "EARTHQUAKE",
       "EARTH_POWER",
       "ENCORE",
@@ -76392,6 +75687,7 @@
       "GIGA_IMPACT",
       "HEADBUTT",
       "HIDDEN_POWER",
+      "HORN_LEECH",
       "HYPER_BEAM",
       "HYPNOSIS",
       "IRON_TAIL",
@@ -76948,11 +76244,13 @@
       "AGILITY",
       "ATTRACT",
       "BATON_PASS",
+      "BODY_PRESS",
       "BODY_SLAM",
       "BRICK_BREAK",
       "BULK_UP",
       "BULLDOZE",
       "BULLET_PUNCH",
+      "CIRCLE_THROW",
       "CLOSE_COMBAT",
       "COUNTER",
       "CURSE",
@@ -78341,6 +77639,7 @@
       "DIG",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
+      "DRACO_METEOR",
       "DRAGONBREATH",
       "DRAGON_CLAW",
       "DRAGON_DANCE",
@@ -78390,6 +77689,7 @@
       "PROTECT",
       "QUICK_ATTACK",
       "RAGE",
+      "RAGING_FURY",
       "REFLECT",
       "REST",
       "RETURN",
@@ -78932,6 +78232,7 @@
       "VENOSHOCK",
       "VINE_WHIP",
       "WEATHER_BALL",
+      "WOOD_HAMMER",
       "WORK_UP"
     ],
     "HONCHKROW": [
@@ -78971,6 +78272,7 @@
       "HYPER_BEAM",
       "ICY_WIND",
       "INCINERATE",
+      "KNOCK_OFF",
       "MEAN_LOOK",
       "MIMIC",
       "MIRROR_MOVE",
@@ -79198,6 +78500,7 @@
       "SUBMISSION",
       "SUBSTITUTE",
       "SUNNY_DAY",
+      "SUPERPOWER",
       "SWAGGER",
       "SWIFT",
       "TACKLE",
@@ -79457,6 +78760,8 @@
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
       "DRACO_METEOR",
+      "DRAGONBREATH",
+      "DRAGON_CLAW",
       "DRAGON_PULSE",
       "DRAGON_TAIL",
       "DREAM_EATER",
@@ -79973,6 +79278,7 @@
       "BULLDOZE",
       "CALM_MIND",
       "CHARM",
+      "CIRCLE_THROW",
       "CLOSE_COMBAT",
       "COMET_PUNCH",
       "CONFUSE_RAY",
@@ -79998,6 +79304,7 @@
       "FLASH",
       "FOCUS_BLAST",
       "FOCUS_ENERGY",
+      "FORCE_PALM",
       "FRUSTRATION",
       "FURY_CUTTER",
       "FUTURE_SIGHT",
@@ -80365,6 +79672,7 @@
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
       "DREAM_EATER",
+      "DRILL_RUN",
       "DUALWINGBEAT",
       "EARTHQUAKE",
       "EARTH_POWER",
@@ -80609,6 +79917,7 @@
       "PSYCHIC_M",
       "PSYWAVE",
       "RAGE",
+      "RAGING_FURY",
       "REST",
       "RETURN",
       "ROAR",
@@ -80913,6 +80222,7 @@
       "ENERGY_BALL",
       "EXTRASENSORY",
       "FACADE",
+      "FAIRY_WIND",
       "FLASH",
       "FOUL_PLAY",
       "FRUSTRATION",
@@ -81177,6 +80487,7 @@
       "ATTRACT",
       "BITE",
       "BUG_BITE",
+      "CROSS_POISON",
       "DEFENSE_CURL",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
@@ -81224,6 +80535,7 @@
       "ATTRACT",
       "BITE",
       "BUG_BITE",
+      "CROSS_POISON",
       "DEFENSE_CURL",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
@@ -81531,6 +80843,7 @@
       "COUNTER",
       "CROSS_CHOP",
       "CRUNCH",
+      "CRUSH_CLAW",
       "CURSE",
       "CUT",
       "DEFENSE_CURL",
@@ -81581,6 +80894,7 @@
       "ROCK_SMASH",
       "ROCK_TOMB",
       "ROLLOUT",
+      "SANDSTORM",
       "SCARY_FACE",
       "SCRATCH",
       "SEED_BOMB",
@@ -81653,6 +80967,7 @@
       "HONE_CLAWS",
       "HYPER_BEAM",
       "ICE_BEAM",
+      "ICE_FANG",
       "ICE_PUNCH",
       "ICE_SHARD",
       "ICICLE_CRASH",
@@ -81743,6 +81058,7 @@
       "GIGA_IMPACT",
       "HEADBUTT",
       "HIDDEN_POWER",
+      "HORN_LEECH",
       "HYPER_BEAM",
       "HYPNOSIS",
       "IRON_TAIL",
@@ -81894,12 +81210,14 @@
       "GRASS_KNOT",
       "HIDDEN_POWER",
       "INFESTATION",
+      "LEECH_SEED",
       "MEGA_DRAIN",
       "MIMIC",
       "MIRROR_COAT",
       "MUD_SHOT",
       "MUD_SLAP",
       "PAIN_SPLIT",
+      "POWER_GEM",
       "PROTECT",
       "PSYCH_UP",
       "RECOVER",
@@ -81917,6 +81235,7 @@
       "SOLARBEAM",
       "STEALTH_ROCK",
       "STRING_SHOT",
+      "STUN_SPORE",
       "SUBSTITUTE",
       "SUNNY_DAY",
       "SWAGGER",
@@ -81963,6 +81282,7 @@
       "MUD_SHOT",
       "MUD_SLAP",
       "PAIN_SPLIT",
+      "POWER_GEM",
       "POWER_WHIP",
       "PROTECT",
       "PSYCH_UP",
@@ -81984,6 +81304,7 @@
       "STONE_EDGE",
       "STRENGTH",
       "STRING_SHOT",
+      "STUN_SPORE",
       "SUBSTITUTE",
       "SUNNY_DAY",
       "SWAGGER",
@@ -82095,6 +81416,7 @@
       "MIMIC",
       "MUD_SHOT",
       "MUD_SLAP",
+      "POWER_GEM",
       "PROTECT",
       "RAPID_SPIN",
       "REST",
@@ -82204,7 +81526,8 @@
       "TAKE_DOWN",
       "THIEF",
       "THUNDERPUNCH",
-      "TOXIC"
+      "TOXIC",
+      "WILL_O_WISP"
     ],
     "GOLURK": [
       "ASTONISH",
@@ -82296,6 +81619,7 @@
       "THUNDERPUNCH",
       "TOXIC",
       "TRICK",
+      "WILL_O_WISP",
       "ZEN_HEADBUTT"
     ],
     "DUSKULL": [
@@ -82425,6 +81749,7 @@
       "ROCK_TOMB",
       "SEISMIC_TOSS",
       "SHADOW_BALL",
+      "SHADOW_CLAW",
       "SHADOW_PUNCH",
       "SHADOW_SNEAK",
       "SKILL_SWAP",
@@ -82511,6 +81836,7 @@
       "ROCK_TOMB",
       "SEISMIC_TOSS",
       "SHADOW_BALL",
+      "SHADOW_CLAW",
       "SHADOW_PUNCH",
       "SHADOW_SNEAK",
       "SKILL_SWAP",
@@ -82540,6 +81866,7 @@
       "CLOSE_COMBAT",
       "COMET_PUNCH",
       "COUNTER",
+      "CROSS_CHOP",
       "CURSE",
       "DEFOG",
       "DETECT",
@@ -82598,11 +81925,13 @@
     "GURDURR": [
       "ATTRACT",
       "BIDE",
+      "BODY_PRESS",
       "BRICK_BREAK",
       "BULK_UP",
       "CLOSE_COMBAT",
       "COMET_PUNCH",
       "COUNTER",
+      "CROSS_CHOP",
       "CURSE",
       "DEFOG",
       "DETECT",
@@ -82662,6 +81991,7 @@
     "CONKELDURR": [
       "ATTRACT",
       "BIDE",
+      "BODY_PRESS",
       "BODY_SLAM",
       "BRICK_BREAK",
       "BULK_UP",
@@ -82669,6 +81999,7 @@
       "CLOSE_COMBAT",
       "COMET_PUNCH",
       "COUNTER",
+      "CROSS_CHOP",
       "CURSE",
       "DEFOG",
       "DETECT",
@@ -82882,6 +82213,7 @@
       "ICE_FANG",
       "INCINERATE",
       "NASTY_PLOT",
+      "NIGHT_SLASH",
       "OUTRAGE",
       "PROTECT",
       "PSYCH_UP",
@@ -82925,6 +82257,7 @@
       "DOUBLE_TEAM",
       "DRACO_METEOR",
       "DRAGONBREATH",
+      "DRAGON_CLAW",
       "DRAGON_DANCE",
       "DRAGON_PULSE",
       "DRAGON_RAGE",
@@ -82942,6 +82275,7 @@
       "ICE_FANG",
       "INCINERATE",
       "NASTY_PLOT",
+      "NIGHT_SLASH",
       "OUTRAGE",
       "PROTECT",
       "PSYCH_UP",
@@ -82988,6 +82322,7 @@
       "DOUBLE_TEAM",
       "DRACO_METEOR",
       "DRAGONBREATH",
+      "DRAGON_CLAW",
       "DRAGON_DANCE",
       "DRAGON_PULSE",
       "DRAGON_RAGE",
@@ -83005,6 +82340,7 @@
       "FLY",
       "FOCUS_BLAST",
       "FOCUS_ENERGY",
+      "FOUL_PLAY",
       "FRUSTRATION",
       "GIGA_IMPACT",
       "HEADBUTT",
@@ -83018,6 +82354,7 @@
       "INCINERATE",
       "IRON_TAIL",
       "NASTY_PLOT",
+      "NIGHT_SLASH",
       "OUTRAGE",
       "PROTECT",
       "PSYCH_UP",
@@ -83071,10 +82408,12 @@
       "DISABLE",
       "DOUBLE_TEAM",
       "DRACO_METEOR",
+      "DRAGONBREATH",
       "DRAGON_TAIL",
       "ENDURE",
       "FACADE",
       "INFESTATION",
+      "PHANTOMFORCE",
       "PROTECT",
       "QUICK_ATTACK",
       "REST",
@@ -83100,6 +82439,7 @@
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
       "DRACO_METEOR",
+      "DRAGONBREATH",
       "DRAGON_DANCE",
       "DRAGON_PULSE",
       "DRAGON_TAIL",
@@ -83123,6 +82463,7 @@
       "REST",
       "RETURN",
       "SCALD",
+      "SCALE_SHOT",
       "SHADOW_BALL",
       "SLEEP_TALK",
       "SNORE",
@@ -83185,6 +82526,7 @@
       "REST",
       "RETURN",
       "SCALD",
+      "SCALE_SHOT",
       "SHADOW_BALL",
       "SHADOW_CLAW",
       "SLEEP_TALK",
@@ -83211,6 +82553,7 @@
     "IMPIDIMP": [
       "ATTRACT",
       "BITE",
+      "CHARM",
       "DARK_PULSE",
       "DAZZLING_GLEAM",
       "DRAINING_KISS",
@@ -83221,9 +82564,11 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "HIDDEN_POWER",
+      "KNOCK_OFF",
       "LEECH_LIFE",
       "LIGHT_SCREEN",
       "LOW_KICK",
+      "MEAN_LOOK",
       "MEGA_KICK",
       "MEGA_PUNCH",
       "METRONOME",
@@ -83236,6 +82581,7 @@
       "RETURN",
       "SCARY_FACE",
       "SLEEP_TALK",
+      "SNARL",
       "SNORE",
       "SUBSTITUTE",
       "SUCKER_PUNCH",
@@ -83251,6 +82597,7 @@
     "MORGREM": [
       "ATTRACT",
       "BITE",
+      "CHARM",
       "DARK_PULSE",
       "DAZZLING_GLEAM",
       "DRAINING_KISS",
@@ -83261,9 +82608,11 @@
       "FOUL_PLAY",
       "FRUSTRATION",
       "HIDDEN_POWER",
+      "KNOCK_OFF",
       "LEECH_LIFE",
       "LIGHT_SCREEN",
       "LOW_KICK",
+      "MEAN_LOOK",
       "MEGA_KICK",
       "MEGA_PUNCH",
       "METRONOME",
@@ -83277,6 +82626,7 @@
       "SCARY_FACE",
       "SHADOW_CLAW",
       "SLEEP_TALK",
+      "SNARL",
       "SNORE",
       "SUBSTITUTE",
       "SUCKER_PUNCH",
@@ -83296,6 +82646,7 @@
       "BODY_SLAM",
       "BRICK_BREAK",
       "BULK_UP",
+      "CHARM",
       "CRUNCH",
       "DARK_PULSE",
       "DAZZLING_GLEAM",
@@ -83314,14 +82665,17 @@
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "ICE_PUNCH",
+      "KNOCK_OFF",
       "LEECH_LIFE",
       "LIGHT_SCREEN",
       "LOW_KICK",
       "LOW_SWEEP",
+      "MEAN_LOOK",
       "MEGA_KICK",
       "MEGA_PUNCH",
       "METRONOME",
       "NASTY_PLOT",
+      "NIGHT_SLASH",
       "PIXIE_PUNCH",
       "PLAY_ROUGH",
       "POWER_WHIP",
@@ -83361,6 +82715,7 @@
       "FALSE_SWIPE",
       "FLASH_CANNON",
       "FOUL_PLAY",
+      "IRON_HEAD",
       "KNOCK_OFF",
       "LIGHT_SCREEN",
       "METAL_CLAW",
@@ -83401,6 +82756,9 @@
       "FALSE_SWIPE",
       "FLASH_CANNON",
       "FOUL_PLAY",
+      "HAMMER_ARM",
+      "IRON_DEFENSE",
+      "IRON_HEAD",
       "KNOCK_OFF",
       "LIGHT_SCREEN",
       "METAL_CLAW",
@@ -83442,8 +82800,11 @@
       "FLASH_CANNON",
       "FOUL_PLAY",
       "GIGA_HAMMER",
+      "HAMMER_ARM",
       "HEAVY_SLAM",
       "HYPER_BEAM",
+      "IRON_DEFENSE",
+      "IRON_HEAD",
       "KNOCK_OFF",
       "LIGHT_SCREEN",
       "METAL_CLAW",
@@ -83490,6 +82851,7 @@
       "FREEZE_DRY",
       "ICE_BEAM",
       "ICE_FANG",
+      "ICE_SHARD",
       "ICICLE_CRASH",
       "ICICLE_SPEAR",
       "ICY_WIND",
@@ -83525,6 +82887,7 @@
       "FREEZE_DRY",
       "ICE_BEAM",
       "ICE_FANG",
+      "ICE_SHARD",
       "ICICLE_CRASH",
       "ICICLE_SPEAR",
       "ICY_WIND",
@@ -83534,6 +82897,7 @@
       "PROTECT",
       "RAIN_DANCE",
       "REST",
+      "SCALE_SHOT",
       "SCARY_FACE",
       "SLEEP_TALK",
       "SUBSTITUTE",
@@ -83608,6 +82972,7 @@
       "INCINERATE",
       "LAVA_PLUME",
       "LEER",
+      "MEAN_LOOK",
       "NIGHT_SHADE",
       "OMINOUS_WIND",
       "OVERHEAT",
@@ -83652,6 +83017,7 @@
       "LAVA_PLUME",
       "LEER",
       "LIGHT_SCREEN",
+      "MEAN_LOOK",
       "NIGHT_SHADE",
       "OMINOUS_WIND",
       "OVERHEAT",
@@ -83709,6 +83075,7 @@
       "LAVA_PLUME",
       "LEER",
       "LIGHT_SCREEN",
+      "MEAN_LOOK",
       "NIGHT_SHADE",
       "NIGHT_SLASH",
       "OMINOUS_WIND",
@@ -83763,6 +83130,7 @@
       "NASTY_PLOT",
       "PECK",
       "PROTECT",
+      "PURSUIT",
       "RAZOR_WIND",
       "REST",
       "RETURN",
@@ -83784,6 +83152,7 @@
       "THIEF",
       "TOXIC",
       "U_TURN",
+      "WHIRLWIND",
       "WING_ATTACK",
       "WORK_UP"
     ],
@@ -83811,6 +83180,7 @@
       "NASTY_PLOT",
       "PECK",
       "PROTECT",
+      "PURSUIT",
       "RAZOR_WIND",
       "REST",
       "RETURN",
@@ -83824,6 +83194,7 @@
       "SLEEP_TALK",
       "SNORE",
       "SPITE",
+      "STEEL_WING",
       "SUBSTITUTE",
       "SUNNY_DAY",
       "SWAGGER",
@@ -83833,6 +83204,7 @@
       "THIEF",
       "TOXIC",
       "U_TURN",
+      "WHIRLWIND",
       "WING_ATTACK",
       "WORK_UP"
     ],
@@ -83874,6 +83246,7 @@
       "OMINOUS_WIND",
       "PECK",
       "PROTECT",
+      "PURSUIT",
       "RAIN_DANCE",
       "RAZOR_WIND",
       "REFLECT",
@@ -83900,6 +83273,7 @@
       "THIEF",
       "TOXIC",
       "U_TURN",
+      "WHIRLWIND",
       "WING_ATTACK",
       "WORK_UP"
     ],
@@ -83916,6 +83290,7 @@
       "ENERGY_BALL",
       "FACADE",
       "FLASH",
+      "FREEZE_DRY",
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GRASS_KNOT",
@@ -83982,6 +83357,7 @@
       "FACADE",
       "FLASH",
       "FOCUS_BLAST",
+      "FREEZE_DRY",
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
@@ -84056,6 +83432,7 @@
       "DOUBLE_TEAM",
       "DRAGONBREATH",
       "DRAGON_PULSE",
+      "DRAINING_KISS",
       "DREAM_EATER",
       "DUALWINGBEAT",
       "ENDURE",
@@ -84127,6 +83504,8 @@
       "DRAGON_CLAW",
       "DRAGON_DANCE",
       "DRAGON_PULSE",
+      "DRAGON_TAIL",
+      "DRAINING_KISS",
       "DREAM_EATER",
       "DUALWINGBEAT",
       "EARTHQUAKE",
@@ -84697,6 +84076,7 @@
       "ICE_PUNCH",
       "IRON_TAIL",
       "JUMP_KICK",
+      "KARATE_CHOP",
       "LOW_KICK",
       "LOW_SWEEP",
       "MEGA_KICK",
@@ -84740,6 +84120,8 @@
       "BLAZE_KICK",
       "BLIZZARD",
       "BOUNCE",
+      "BRICK_BREAK",
+      "BULK_UP",
       "CHARM",
       "CIRCLE_THROW",
       "CLOSE_COMBAT",
@@ -84778,6 +84160,7 @@
       "ICE_PUNCH",
       "IRON_TAIL",
       "JUMP_KICK",
+      "KARATE_CHOP",
       "LOW_KICK",
       "LOW_SWEEP",
       "MACH_PUNCH",
@@ -85078,6 +84461,7 @@
       "REST",
       "RETURN",
       "SCREECH",
+      "SIGNAL_BEAM",
       "SLEEP_TALK",
       "SNORE",
       "SPARK",
@@ -85115,12 +84499,14 @@
       "LUNGE",
       "MUD_SHOT",
       "MUD_SLAP",
+      "NUZZLE",
       "POISON_JAB",
       "PROTECT",
       "RAIN_DANCE",
       "REST",
       "RETURN",
       "SCREECH",
+      "SIGNAL_BEAM",
       "SLEEP_TALK",
       "SNORE",
       "SPARK",
@@ -85171,6 +84557,7 @@
       "LUNGE",
       "MUD_SHOT",
       "MUD_SLAP",
+      "NUZZLE",
       "POISON_JAB",
       "PROTECT",
       "RAIN_DANCE",
@@ -85226,6 +84613,7 @@
       "FAINT_ATTACK",
       "FAKE_OUT",
       "FOCUS_BLAST",
+      "FORCE_PALM",
       "FOUL_PLAY",
       "FRUSTRATION",
       "FURY_CUTTER",
@@ -85308,6 +84696,7 @@
       "FAINT_ATTACK",
       "FAKE_OUT",
       "FOCUS_BLAST",
+      "FORCE_PALM",
       "FOUL_PLAY",
       "FRUSTRATION",
       "FURY_CUTTER",
@@ -85352,6 +84741,7 @@
       "SUBSTITUTE",
       "SUCKER_PUNCH",
       "SUNNY_DAY",
+      "SUPERPOWER",
       "SUPER_FANG",
       "SWAGGER",
       "SWORDS_DANCE",
@@ -86028,7 +85418,8 @@
       "SUPERPOWER",
       "SWAGGER",
       "TAKE_DOWN",
-      "TOXIC"
+      "TOXIC",
+      "U_TURN"
     ],
     "VIBRAVA": [
       "AERIAL_ACE",
@@ -86281,6 +85672,7 @@
       "ENDURE",
       "FACADE",
       "FLASH",
+      "FREEZE_DRY",
       "FRUSTRATION",
       "GIGA_IMPACT",
       "HAIL",
@@ -86342,7 +85734,9 @@
     ],
     "WIMPOD": [
       "AQUA_JET",
+      "AQUA_TAIL",
       "ATTRACT",
+      "BUG_BITE",
       "BUG_BUZZ",
       "DEFENSE_CURL",
       "DOUBLE_TEAM",
@@ -86368,6 +85762,7 @@
       "SPIKES",
       "STRUGGLE_BUG",
       "SUBSTITUTE",
+      "SUPERPOWER",
       "SURF",
       "SWAGGER",
       "SWIFT",
@@ -86379,6 +85774,7 @@
       "AERIAL_ACE",
       "AGILITY",
       "AQUA_JET",
+      "AQUA_TAIL",
       "ATTRACT",
       "BLIZZARD",
       "BRICK_BREAK",
@@ -86441,6 +85837,7 @@
       "STRUGGLE_BUG",
       "SUBSTITUTE",
       "SUCKER_PUNCH",
+      "SUPERPOWER",
       "SURF",
       "SWAGGER",
       "SWIFT",
@@ -86677,6 +86074,7 @@
       "STONE_EDGE",
       "SUBSTITUTE",
       "SUCKER_PUNCH",
+      "SUPERPOWER",
       "SWAGGER",
       "SWORDS_DANCE",
       "TAKE_DOWN",
@@ -86733,6 +86131,7 @@
       "ROCK_POLISH",
       "ROCK_SMASH",
       "ROCK_TOMB",
+      "SACRED_SWORD",
       "SANDSTORM",
       "SCARY_FACE",
       "SCRATCH",
@@ -86747,6 +86146,7 @@
       "STONE_EDGE",
       "SUBSTITUTE",
       "SUCKER_PUNCH",
+      "SUPERPOWER",
       "SWAGGER",
       "SWORDS_DANCE",
       "TAKE_DOWN",
@@ -86804,6 +86204,7 @@
       "ROCK_POLISH",
       "ROCK_SMASH",
       "ROCK_TOMB",
+      "SACRED_SWORD",
       "SANDSTORM",
       "SCARY_FACE",
       "SCRATCH",
@@ -86818,6 +86219,7 @@
       "STONE_EDGE",
       "SUBSTITUTE",
       "SUCKER_PUNCH",
+      "SUPERPOWER",
       "SWAGGER",
       "SWORDS_DANCE",
       "TAKE_DOWN",
@@ -87064,6 +86466,7 @@
       "BOUNCE",
       "BUBBLE",
       "BUBBLEBEAM",
+      "CROSS_POISON",
       "CRUNCH",
       "CURSE",
       "DARK_PULSE",
@@ -87091,6 +86494,7 @@
       "HYPER_BEAM",
       "ICE_BEAM",
       "ICY_WIND",
+      "KNOCK_OFF",
       "LIQUIDATION",
       "MIMIC",
       "MINIMIZE",
@@ -87185,6 +86589,7 @@
       "LOW_SWEEP",
       "MEGA_KICK",
       "MEGA_PUNCH",
+      "NIGHT_SLASH",
       "POISON_JAB",
       "PROTECT",
       "RAIN_DANCE",
@@ -87224,6 +86629,7 @@
       "BODY_SLAM",
       "BRICK_BREAK",
       "BULK_UP",
+      "CIRCLE_THROW",
       "CLOSE_COMBAT",
       "COUNTER",
       "CRUNCH",
@@ -87267,6 +86673,7 @@
       "MEGA_KICK",
       "MEGA_PUNCH",
       "METRONOME",
+      "NIGHT_SLASH",
       "OUTRAGE",
       "POISON_JAB",
       "PROTECT",
@@ -87290,6 +86697,7 @@
       "STRENGTH",
       "SUBSTITUTE",
       "SUNNY_DAY",
+      "SUPERPOWER",
       "SUPER_FANG",
       "SWAGGER",
       "SWORDS_DANCE",
@@ -87321,6 +86729,7 @@
       "ENDURE",
       "FACADE",
       "FISSURE",
+      "FREEZE_DRY",
       "FRUSTRATION",
       "GROWL",
       "HAIL",
@@ -87374,6 +86783,7 @@
       "ENDURE",
       "FACADE",
       "FISSURE",
+      "FREEZE_DRY",
       "FRUSTRATION",
       "GROWL",
       "HAIL",
@@ -87432,6 +86842,7 @@
       "ENDURE",
       "FACADE",
       "FISSURE",
+      "FREEZE_DRY",
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_IMPACT",
@@ -87462,6 +86873,7 @@
       "ROCK_TOMB",
       "ROLLOUT",
       "SIGNAL_BEAM",
+      "SLACK_OFF",
       "SLEEP_TALK",
       "SNORE",
       "STRENGTH",
@@ -88001,6 +87413,7 @@
       "IRON_TAIL",
       "LEER",
       "MUD_SLAP",
+      "POWER_GEM",
       "PROTECT",
       "PURSUIT",
       "RAIN_DANCE",
@@ -88085,6 +87498,7 @@
       "MUD_SLAP",
       "OUTRAGE",
       "PAIN_SPLIT",
+      "POWER_GEM",
       "PROTECT",
       "PURSUIT",
       "RAIN_DANCE",
@@ -88214,6 +87628,7 @@
       "FRUSTRATION",
       "GIGA_IMPACT",
       "HEADBUTT",
+      "HEAD_SMASH",
       "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
@@ -88274,6 +87689,7 @@
       "FACADE",
       "FLAIL",
       "GROWL",
+      "HEADBUTT",
       "HEAVY_SLAM",
       "HYPER_BEAM",
       "HYPER_VOICE",
@@ -88290,6 +87706,7 @@
       "PROTECT",
       "RAIN_DANCE",
       "REST",
+      "SLACK_OFF",
       "SLEEP_TALK",
       "SUBSTITUTE",
       "SUPERPOWER",
@@ -88316,6 +87733,8 @@
       "FLAIL",
       "GIGA_IMPACT",
       "GROWL",
+      "HAMMER_ARM",
+      "HEADBUTT",
       "HEAVY_SLAM",
       "HYPER_BEAM",
       "HYPER_VOICE",
@@ -88333,6 +87752,7 @@
       "PROTECT",
       "RAIN_DANCE",
       "REST",
+      "SLACK_OFF",
       "SLEEP_TALK",
       "SUBSTITUTE",
       "SUPERPOWER",
@@ -88473,6 +87893,7 @@
       "ENDURE",
       "FACADE",
       "FAINT_ATTACK",
+      "FOUL_PLAY",
       "FRUSTRATION",
       "GIGA_DRAIN",
       "GIGA_IMPACT",
@@ -88509,6 +87930,7 @@
       "SPITE",
       "SPLASH",
       "SUBSTITUTE",
+      "SUCKER_PUNCH",
       "SUNNY_DAY",
       "SWAGGER",
       "SWORDS_DANCE",
@@ -89014,6 +88436,7 @@
       "HYPER_BEAM",
       "ICE_PUNCH",
       "IRON_DEFENSE",
+      "IRON_HEAD",
       "IRON_TAIL",
       "LOW_KICK",
       "LOW_SWEEP",
@@ -89039,6 +88462,7 @@
       "ROCK_SLIDE",
       "ROCK_SMASH",
       "ROCK_TOMB",
+      "SACRED_SWORD",
       "SCARY_FACE",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -89089,6 +88513,7 @@
       "FACADE",
       "FIRE_FANG",
       "FRUSTRATION",
+      "HEADBUTT",
       "HIDDEN_POWER",
       "HONE_CLAWS",
       "HORN_DRILL",
@@ -89159,6 +88584,7 @@
       "FIRE_FANG",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "HEADBUTT",
       "HEAD_SMASH",
       "HIDDEN_POWER",
       "HONE_CLAWS",
@@ -89240,9 +88666,11 @@
       "LIGHT_SCREEN",
       "MIRROR_COAT",
       "MIST",
+      "MOONBLAST",
       "MUD_SHOT",
       "OUTRAGE",
       "POWDER_SNOW",
+      "POWER_GEM",
       "PROTECT",
       "PSYCH_UP",
       "RAIN_DANCE",
@@ -89314,6 +88742,7 @@
       "LIGHT_SCREEN",
       "MIRROR_COAT",
       "MIST",
+      "MOONBLAST",
       "MUD_SHOT",
       "OUTRAGE",
       "POWDER_SNOW",
@@ -89532,8 +88961,10 @@
       "ICE_BEAM",
       "ICY_WIND",
       "IRON_TAIL",
+      "KNOCK_OFF",
       "MUD_SLAP",
       "NASTY_PLOT",
+      "NIGHT_SLASH",
       "PROTECT",
       "PURSUIT",
       "QUICK_ATTACK",
@@ -89605,6 +89036,7 @@
       "KNOCK_OFF",
       "MUD_SLAP",
       "NASTY_PLOT",
+      "NIGHT_SLASH",
       "PROTECT",
       "PURSUIT",
       "QUICK_ATTACK",
@@ -89862,6 +89294,7 @@
       "FLAIL",
       "FLASH_CANNON",
       "FOCUS_BLAST",
+      "FREEZE_DRY",
       "FRUSTRATION",
       "FURY_CUTTER",
       "FURY_SWIPES",
@@ -89985,6 +89418,7 @@
       "ROAR",
       "ROCK_SLIDE",
       "SAFEGUARD",
+      "SHADOW_BALL",
       "SLEEP_TALK",
       "SNARL",
       "SNORE",
@@ -90067,6 +89501,7 @@
       "ROAR",
       "ROCK_SLIDE",
       "SAFEGUARD",
+      "SHADOW_BALL",
       "SLEEP_TALK",
       "SNARL",
       "SNORE",
@@ -90410,6 +89845,7 @@
       "HEADBUTT",
       "HIDDEN_POWER",
       "IRON_DEFENSE",
+      "MAGNITUDE",
       "MEGA_PUNCH",
       "MUD_SHOT",
       "MUD_SLAP",
@@ -90486,6 +89922,7 @@
       "HEAVY_SLAM",
       "HIDDEN_POWER",
       "IRON_DEFENSE",
+      "MAGNITUDE",
       "MEGA_PUNCH",
       "METRONOME",
       "MUD_SHOT",
@@ -90561,11 +89998,13 @@
       "HAMMER_ARM",
       "HARDEN",
       "HEADBUTT",
+      "HEAD_SMASH",
       "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "IRON_DEFENSE",
       "IRON_HEAD",
+      "MAGNITUDE",
       "MEGA_PUNCH",
       "METRONOME",
       "MUD_SHOT",
@@ -90699,6 +90138,7 @@
       "BITE",
       "BODY_SLAM",
       "BRICK_BREAK",
+      "CROSS_POISON",
       "CRUNCH",
       "CURSE",
       "DARK_PULSE",
@@ -90735,6 +90175,7 @@
       "MOONBLAST",
       "MUD_SHOT",
       "MUD_SLAP",
+      "NIGHT_SLASH",
       "PAIN_SPLIT",
       "POISON_FANG",
       "POISON_GAS",
@@ -90940,6 +90381,7 @@
       "OUTRAGE",
       "PAIN_SPLIT",
       "PERISH_SONG",
+      "PHANTOMFORCE",
       "PROTECT",
       "RAGE",
       "RAIN_DANCE",
@@ -91246,6 +90688,7 @@
       "IRON_TAIL",
       "LOW_KICK",
       "MEGAHORN",
+      "MOONBLAST",
       "MORNING_SUN",
       "OVERHEAT",
       "PAY_DAY",
@@ -91681,6 +91124,7 @@
       "FLARE_BLITZ",
       "FLASH_CANNON",
       "FRUSTRATION",
+      "HEADBUTT",
       "HEAD_SMASH",
       "HEAT_WAVE",
       "HIDDEN_POWER",
@@ -91752,6 +91196,7 @@
       "FLASH_CANNON",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "HEADBUTT",
       "HEAD_SMASH",
       "HEAT_CRASH",
       "HEAT_WAVE",
@@ -91982,6 +91427,7 @@
       "NIGHT_SHADE",
       "OMINOUS_WIND",
       "OVERHEAT",
+      "PHANTOMFORCE",
       "PLAY_ROUGH",
       "PROTECT",
       "QUICK_ATTACK",
@@ -92067,6 +91513,7 @@
       "POISON_TAIL",
       "PROTECT",
       "PSYCH_UP",
+      "PURSUIT",
       "QUICK_ATTACK",
       "RAIN_DANCE",
       "REST",
@@ -92114,6 +91561,7 @@
       "CALM_MIND",
       "CLOSE_COMBAT",
       "COUNTER",
+      "CROSS_POISON",
       "CRUSH_CLAW",
       "CUT",
       "DARK_PULSE",
@@ -92158,6 +91606,7 @@
       "POISON_TAIL",
       "PROTECT",
       "PSYCH_UP",
+      "PURSUIT",
       "QUICK_ATTACK",
       "RAIN_DANCE",
       "REST",
@@ -92192,12 +91641,14 @@
       "TORMENT",
       "TOXIC",
       "TOXIC_SPIKES",
+      "TRIPLE_AXEL",
       "U_TURN",
       "VACUUM_WAVE",
       "VENOSHOCK",
       "X_SCISSOR"
     ],
     "WOOPER_PALDEAN": [
+      "ACID_ARMOR",
       "AMNESIA",
       "ANCIENTPOWER",
       "BODY_PRESS",
@@ -92257,6 +91708,7 @@
       "YAWN"
     ],
     "CLODSIRE": [
+      "ACID_ARMOR",
       "AMNESIA",
       "ANCIENTPOWER",
       "BODY_PRESS",
@@ -92342,6 +91794,7 @@
       "FIRE_SPIN",
       "FLAMETHROWER",
       "FLAME_CHARGE",
+      "FLAME_WHEEL",
       "FLARE_BLITZ",
       "FRUSTRATION",
       "GIGA_IMPACT",
@@ -92357,6 +91810,7 @@
       "OVERHEAT",
       "PROTECT",
       "RAGING_BULL",
+      "RAGING_FURY",
       "RAIN_DANCE",
       "REFLECT",
       "REST",
@@ -92410,6 +91864,7 @@
       "GIGA_IMPACT",
       "HEADBUTT",
       "HIDDEN_POWER",
+      "HORN_ATTACK",
       "HYDRO_PUMP",
       "HYPER_BEAM",
       "IRON_HEAD",
@@ -92649,6 +92104,7 @@
       "HI_JUMP_KICK",
       "HYPER_BEAM",
       "KNOCK_OFF",
+      "LEAF_BLADE",
       "LEAF_STORM",
       "LIGHT_SCREEN",
       "LOW_KICK",
@@ -92677,6 +92133,7 @@
       "SWAGGER",
       "SWEET_SCENT",
       "SWIFT",
+      "SWORDS_DANCE",
       "SYNTHESIS",
       "TAKE_DOWN",
       "TAUNT",
@@ -92849,6 +92306,7 @@
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_IMPACT",
+      "HAMMER_ARM",
       "HARDEN",
       "HEADBUTT",
       "HEAD_SMASH",
@@ -92872,6 +92330,7 @@
       "MUD_SHOT",
       "MUD_SLAP",
       "OUTRAGE",
+      "POWER_GEM",
       "PROTECT",
       "RAIN_DANCE",
       "REST",
@@ -93049,6 +92508,7 @@
       "GIGA_IMPACT",
       "GUNK_SHOT",
       "HARDEN",
+      "HEAD_SMASH",
       "HYPER_BEAM",
       "IRON_DEFENSE",
       "LIGHT_SCREEN",
@@ -93080,8 +92540,10 @@
     ],
     "MAREANIE": [
       "ATTRACT",
+      "BANEFUL_BUNKER",
       "BITE",
       "BLIZZARD",
+      "CROSS_POISON",
       "DOUBLE_TEAM",
       "ENDURE",
       "FACADE",
@@ -93114,6 +92576,7 @@
       "SLEEP_TALK",
       "SLUDGE_BOMB",
       "SNORE",
+      "SPIKES",
       "SPIKE_CANNON",
       "SPITE",
       "SUBSTITUTE",
@@ -93129,6 +92592,7 @@
       "BANEFUL_BUNKER",
       "BITE",
       "BLIZZARD",
+      "BODY_PRESS",
       "BODY_SLAM",
       "CROSS_POISON",
       "DOUBLE_TEAM",
@@ -93168,6 +92632,7 @@
       "SLEEP_TALK",
       "SLUDGE_BOMB",
       "SNORE",
+      "SPIKES",
       "SPIKE_CANNON",
       "SPITE",
       "SUBSTITUTE",
@@ -93302,6 +92767,7 @@
       "FACADE",
       "FIRE_FANG",
       "FLAMETHROWER",
+      "FOUL_PLAY",
       "FRUSTRATION",
       "FURY_CUTTER",
       "GIGA_DRAIN",
@@ -93326,6 +92792,7 @@
       "POISON_JAB",
       "POISON_TAIL",
       "PROTECT",
+      "PURSUIT",
       "RAIN_DANCE",
       "REST",
       "RETURN",
@@ -93339,6 +92806,7 @@
       "SLUDGE_BOMB",
       "SNARL",
       "SNORE",
+      "SPITE",
       "STRENGTH",
       "SUBSTITUTE",
       "SUCKER_PUNCH",
@@ -93667,6 +93135,8 @@
       "FACADE",
       "FLAIL",
       "FRUSTRATION",
+      "HEADBUTT",
+      "HEAD_SMASH",
       "HIDDEN_POWER",
       "HYDRO_PUMP",
       "ICE_BEAM",
@@ -93730,6 +93200,8 @@
       "FOCUS_BLAST",
       "FRUSTRATION",
       "GIGA_IMPACT",
+      "HEADBUTT",
+      "HEAD_SMASH",
       "HEAVY_SLAM",
       "HIDDEN_POWER",
       "HYDRO_PUMP",
@@ -93969,6 +93441,7 @@
       "LEECH_LIFE",
       "LIGHT_SCREEN",
       "LUNGE",
+      "NUZZLE",
       "PIN_MISSILE",
       "POISON_JAB",
       "POISON_STING",
@@ -93982,7 +93455,9 @@
       "SLASH",
       "SLEEP_TALK",
       "SNORE",
+      "SPARK",
       "SPIDER_WEB",
+      "STICKY_WEB",
       "STRING_SHOT",
       "STRUGGLE_BUG",
       "SUBSTITUTE",
@@ -94025,6 +93500,7 @@
       "LEECH_LIFE",
       "LIGHT_SCREEN",
       "LUNGE",
+      "NUZZLE",
       "PIN_MISSILE",
       "POISON_JAB",
       "POISON_STING",
@@ -94038,6 +93514,7 @@
       "SLASH",
       "SLEEP_TALK",
       "SNORE",
+      "SPARK",
       "SPIDER_WEB",
       "STICKY_WEB",
       "STRING_SHOT",
@@ -94295,6 +93772,7 @@
       "FAKE_OUT",
       "FIRE_BLAST",
       "FIRE_FANG",
+      "FIRE_SPIN",
       "FLAMETHROWER",
       "FLAME_CHARGE",
       "FLARE_BLITZ",
@@ -94363,6 +93841,7 @@
       "FAKE_OUT",
       "FIRE_BLAST",
       "FIRE_FANG",
+      "FIRE_SPIN",
       "FLAMETHROWER",
       "FLAME_CHARGE",
       "FLARE_BLITZ",
@@ -94393,6 +93872,7 @@
       "SCALE_SHOT",
       "SCARY_FACE",
       "SCRATCH",
+      "SHADOW_BALL",
       "SHADOW_CLAW",
       "SLEEP_TALK",
       "SLUDGE_BOMB",
@@ -94554,10 +94034,12 @@
       "BLIZZARD",
       "BODY_SLAM",
       "BOUNCE",
+      "BRICK_BREAK",
       "BULK_UP",
       "CHARM",
       "CLOSE_COMBAT",
       "COUNTER",
+      "CROSS_CHOP",
       "DISARMING_VOICE",
       "DRAINING_KISS",
       "DRAIN_PUNCH",
@@ -94578,6 +94060,7 @@
       "ICY_WIND",
       "IRON_HEAD",
       "LIQUIDATION",
+      "MACH_PUNCH",
       "MIST",
       "OUTRAGE",
       "PROTECT",
@@ -94587,6 +94070,7 @@
       "REVERSAL",
       "SLEEP_TALK",
       "SUBSTITUTE",
+      "SUPERPOWER",
       "SUPERSONIC",
       "SURF",
       "SWIFT",
@@ -95142,6 +94626,7 @@
       "MEAN_LOOK",
       "MUD_SHOT",
       "MUD_SLAP",
+      "NIGHT_SLASH",
       "PROTECT",
       "PURSUIT",
       "RAGE",
@@ -95213,6 +94698,7 @@
       "MEGA_PUNCH",
       "MUD_SHOT",
       "MUD_SLAP",
+      "NIGHT_SLASH",
       "PROTECT",
       "PURSUIT",
       "RAGE",
@@ -95296,6 +94782,7 @@
       "MEGA_PUNCH",
       "MUD_SHOT",
       "MUD_SLAP",
+      "NIGHT_SLASH",
       "OUTRAGE",
       "PROTECT",
       "PURSUIT",
@@ -95916,6 +95403,10 @@
         "SOLARBEAM"
       ],
       [
+        55,
+        "WOOD_HAMMER"
+      ],
+      [
         62,
         "LEAF_STORM"
       ]
@@ -96194,6 +95685,10 @@
         "FIRE_SPIN"
       ],
       [
+        50,
+        "RAGING_FURY"
+      ],
+      [
         54,
         "BELLY_DRUM"
       ],
@@ -96208,6 +95703,10 @@
       [
         62,
         "OVERHEAT"
+      ],
+      [
+        64,
+        "DRACO_METEOR"
       ]
     ],
     "SQUIRTLE": [
@@ -98958,6 +98457,10 @@
         "HAZE"
       ],
       [
+        40,
+        "POISON_JAB"
+      ],
+      [
         42,
         "HEAT_WAVE"
       ],
@@ -100898,6 +100401,10 @@
         "KNOCK_OFF"
       ],
       [
+        22,
+        "FORCE_PALM"
+      ],
+      [
         23,
         "VITAL_THROW"
       ],
@@ -100984,6 +100491,10 @@
         "VITAL_THROW"
       ],
       [
+        24,
+        "FORCE_PALM"
+      ],
+      [
         26,
         "STRENGTH"
       ],
@@ -100998,6 +100509,10 @@
       [
         34,
         "COUNTER"
+      ],
+      [
+        36,
+        "CIRCLE_THROW"
       ],
       [
         37,
@@ -101074,6 +100589,10 @@
         "VITAL_THROW"
       ],
       [
+        24,
+        "FORCE_PALM"
+      ],
+      [
         26,
         "STRENGTH"
       ],
@@ -101098,12 +100617,20 @@
         "BULK_UP"
       ],
       [
+        38,
+        "CIRCLE_THROW"
+      ],
+      [
         40,
         "STONE_EDGE"
       ],
       [
         42,
         "CROSS_CHOP"
+      ],
+      [
+        42,
+        "HAMMER_ARM"
       ],
       [
         46,
@@ -101842,6 +101369,10 @@
         "STONE_EDGE"
       ],
       [
+        52,
+        "HEAD_SMASH"
+      ],
+      [
         60,
         "HEAVY_SLAM"
       ]
@@ -102020,6 +101551,10 @@
       [
         45,
         "BOUNCE"
+      ],
+      [
+        46,
+        "RAGING_FURY"
       ],
       [
         48,
@@ -102543,6 +102078,10 @@
       ],
       [
         36,
+        "DRILL_RUN"
+      ],
+      [
+        36,
         "SWORDS_DANCE"
       ],
       [
@@ -102832,6 +102371,10 @@
         "SAFEGUARD"
       ],
       [
+        38,
+        "FREEZE_DRY"
+      ],
+      [
         42,
         "LIQUIDATION"
       ],
@@ -102990,6 +102533,10 @@
       [
         42,
         "ACID_ARMOR"
+      ],
+      [
+        42,
+        "CROSS_POISON"
       ],
       [
         46,
@@ -103158,6 +102705,10 @@
       [
         38,
         "PIN_MISSILE"
+      ],
+      [
+        40,
+        "FREEZE_DRY"
       ],
       [
         44,
@@ -103502,6 +103053,10 @@
       [
         28,
         "SLAM"
+      ],
+      [
+        30,
+        "IRON_DEFENSE"
       ],
       [
         31,
@@ -104612,6 +104167,10 @@
         "DIZZY_PUNCH"
       ],
       [
+        26,
+        "FORCE_PALM"
+      ],
+      [
         27,
         "BULLET_PUNCH"
       ],
@@ -104646,6 +104205,10 @@
       [
         39,
         "MEGA_PUNCH"
+      ],
+      [
+        40,
+        "HAMMER_ARM"
       ],
       [
         40,
@@ -107634,6 +107197,10 @@
         "BRAVE_BIRD"
       ],
       [
+        60,
+        "HEAD_SMASH"
+      ],
+      [
         61,
         "GIGA_IMPACT"
       ],
@@ -108784,6 +108351,10 @@
       [
         55,
         "SOLARBEAM"
+      ],
+      [
+        55,
+        "WOOD_HAMMER"
       ],
       [
         56,
@@ -110144,6 +109715,10 @@
         "HAZE"
       ],
       [
+        40,
+        "POISON_JAB"
+      ],
+      [
         42,
         "HEAT_WAVE"
       ],
@@ -110278,6 +109853,10 @@
       [
         37,
         "THUNDERBOLT"
+      ],
+      [
+        40,
+        "TAIL_GLOW"
       ],
       [
         49,
@@ -110944,6 +110523,10 @@
         "COTTON_SPORE"
       ],
       [
+        10,
+        "NUZZLE"
+      ],
+      [
         17,
         "VOLT_SWITCH"
       ],
@@ -110966,6 +110549,10 @@
       [
         36,
         "THUNDERBOLT"
+      ],
+      [
+        36,
+        "HYPER_VOICE"
       ],
       [
         40,
@@ -111072,6 +110659,10 @@
       [
         27,
         "EARTH_POWER"
+      ],
+      [
+        28,
+        "DRAINING_KISS"
       ],
       [
         35,
@@ -111902,12 +111493,20 @@
         "ENERGY_BALL"
       ],
       [
+        28,
+        "INCINERATE"
+      ],
+      [
         34,
         "DAZZLING_GLEAM"
       ],
       [
         35,
         "EARTH_POWER"
+      ],
+      [
+        40,
+        "FLAMETHROWER"
       ],
       [
         41,
@@ -112686,6 +112285,10 @@
         "SPITE"
       ],
       [
+        7,
+        "FAIRY_WIND"
+      ],
+      [
         9,
         "ASTONISH"
       ],
@@ -113111,6 +112714,10 @@
       ],
       [
         25,
+        "DRAGONBREATH"
+      ],
+      [
+        25,
         "ROOST"
       ],
       [
@@ -113230,6 +112837,10 @@
       [
         34,
         "X_SCISSOR"
+      ],
+      [
+        36,
+        "DRILL_RUN"
       ],
       [
         36,
@@ -113640,6 +113251,10 @@
         "PIN_MISSILE"
       ],
       [
+        38,
+        "CROSS_POISON"
+      ],
+      [
         39,
         "TAKE_DOWN"
       ],
@@ -113939,6 +113554,10 @@
       ],
       [
         40,
+        "HAMMER_ARM"
+      ],
+      [
+        40,
         "STONE_EDGE"
       ],
       [
@@ -113956,6 +113575,10 @@
       [
         47,
         "COUNTER"
+      ],
+      [
+        48,
+        "SUPERPOWER"
       ],
       [
         50,
@@ -114010,6 +113633,10 @@
       [
         28,
         "BEAT_UP"
+      ],
+      [
+        28,
+        "ICE_FANG"
       ],
       [
         30,
@@ -114186,6 +113813,10 @@
       [
         32,
         "SWORDS_DANCE"
+      ],
+      [
+        34,
+        "CRUSH_CLAW"
       ],
       [
         35,
@@ -115260,6 +114891,10 @@
         "NASTY_PLOT"
       ],
       [
+        46,
+        "RAGING_FURY"
+      ],
+      [
         50,
         "HEAT_WAVE"
       ],
@@ -115428,6 +115063,10 @@
         "CHARM"
       ],
       [
+        32,
+        "DRILL_RUN"
+      ],
+      [
         34,
         "STEALTH_ROCK"
       ],
@@ -115548,6 +115187,10 @@
       [
         42,
         "BODY_PRESS"
+      ],
+      [
+        42,
+        "DRILL_RUN"
       ],
       [
         42,
@@ -115680,6 +115323,10 @@
       [
         27,
         "ZEN_HEADBUTT"
+      ],
+      [
+        28,
+        "HORN_LEECH"
       ],
       [
         34,
@@ -115918,6 +115565,14 @@
       [
         37,
         "COUNTER"
+      ],
+      [
+        38,
+        "CIRCLE_THROW"
+      ],
+      [
+        40,
+        "BODY_PRESS"
       ],
       [
         40,
@@ -117506,6 +117161,10 @@
         "FIRE_SPIN"
       ],
       [
+        50,
+        "RAGING_FURY"
+      ],
+      [
         54,
         "BELLY_DRUM"
       ],
@@ -117520,6 +117179,10 @@
       [
         62,
         "OVERHEAT"
+      ],
+      [
+        64,
+        "DRACO_METEOR"
       ]
     ],
     "SQUIRTLE_CLONE": [
@@ -118018,6 +117681,10 @@
         "SOLARBEAM"
       ],
       [
+        55,
+        "WOOD_HAMMER"
+      ],
+      [
         62,
         "LEAF_STORM"
       ]
@@ -118302,6 +117969,10 @@
       [
         44,
         "SCREECH"
+      ],
+      [
+        46,
+        "SUPERPOWER"
       ],
       [
         46,
@@ -118602,6 +118273,10 @@
       [
         24,
         "DRILL_RUN"
+      ],
+      [
+        25,
+        "DRAGONBREATH"
       ],
       [
         25,
@@ -119192,6 +118867,10 @@
         "PROTECT"
       ],
       [
+        26,
+        "FORCE_PALM"
+      ],
+      [
         27,
         "ZEN_HEADBUTT"
       ],
@@ -119214,6 +118893,10 @@
       [
         37,
         "CLOSE_COMBAT"
+      ],
+      [
+        38,
+        "CIRCLE_THROW"
       ],
       [
         40,
@@ -119636,6 +119319,10 @@
         "SPIKES"
       ],
       [
+        42,
+        "DRILL_RUN"
+      ],
+      [
         43,
         "SWORDS_DANCE"
       ],
@@ -119838,6 +119525,10 @@
       [
         46,
         "DARK_PULSE"
+      ],
+      [
+        48,
+        "RAGING_FURY"
       ],
       [
         49,
@@ -120146,6 +119837,10 @@
       [
         5,
         "SPITE"
+      ],
+      [
+        7,
+        "FAIRY_WIND"
       ],
       [
         9,
@@ -120490,6 +120185,10 @@
         "AGILITY"
       ],
       [
+        32,
+        "CROSS_POISON"
+      ],
+      [
         36,
         "TOXIC"
       ],
@@ -120554,6 +120253,10 @@
       [
         34,
         "AGILITY"
+      ],
+      [
+        36,
+        "CROSS_POISON"
       ],
       [
         38,
@@ -120921,6 +120624,10 @@
       ],
       [
         38,
+        "CRUSH_CLAW"
+      ],
+      [
+        38,
         "EARTHQUAKE"
       ],
       [
@@ -121026,6 +120733,10 @@
         "TAUNT"
       ],
       [
+        28,
+        "ICE_FANG"
+      ],
+      [
         30,
         "SWORDS_DANCE"
       ],
@@ -121106,6 +120817,10 @@
       [
         27,
         "ZEN_HEADBUTT"
+      ],
+      [
+        28,
+        "HORN_LEECH"
       ],
       [
         30,
@@ -121914,6 +121629,10 @@
         "CURSE"
       ],
       [
+        30,
+        "SHADOW_CLAW"
+      ],
+      [
         31,
         "SHADOW_BALL"
       ],
@@ -122014,6 +121733,10 @@
       [
         28,
         "CURSE"
+      ],
+      [
+        30,
+        "SHADOW_CLAW"
       ],
       [
         32,
@@ -122188,6 +121911,10 @@
         "HAMMER_ARM"
       ],
       [
+        40,
+        "BODY_PRESS"
+      ],
+      [
         46,
         "SUPERPOWER"
       ],
@@ -122264,6 +121991,10 @@
       [
         42,
         "HAMMER_ARM"
+      ],
+      [
+        44,
+        "BODY_PRESS"
       ],
       [
         48,
@@ -122688,6 +122419,10 @@
         "DRAGON_TAIL"
       ],
       [
+        46,
+        "FOUL_PLAY"
+      ],
+      [
         48,
         "HYPER_VOICE"
       ],
@@ -122734,8 +122469,16 @@
         "QUICK_ATTACK"
       ],
       [
+        18,
+        "DRAGONBREATH"
+      ],
+      [
         30,
         "DRAGON_TAIL"
+      ],
+      [
+        40,
+        "PHANTOMFORCE"
       ],
       [
         56,
@@ -122768,6 +122511,10 @@
         "LOCK_ON"
       ],
       [
+        12,
+        "DRAGONBREATH"
+      ],
+      [
         18,
         "HEX"
       ],
@@ -122786,6 +122533,10 @@
       [
         36,
         "U_TURN"
+      ],
+      [
+        38,
+        "SCALE_SHOT"
       ],
       [
         42,
@@ -122916,8 +122667,20 @@
         "DRAINING_KISS"
       ],
       [
+        28,
+        "SNARL"
+      ],
+      [
+        30,
+        "CHARM"
+      ],
+      [
         30,
         "TORMENT"
+      ],
+      [
+        30,
+        "MEAN_LOOK"
       ],
       [
         34,
@@ -122972,6 +122735,10 @@
       [
         32,
         "FOUL_PLAY"
+      ],
+      [
+        32,
+        "SNARL"
       ],
       [
         47,
@@ -123128,8 +122895,16 @@
         "FLASH_CANNON"
       ],
       [
+        32,
+        "IRON_DEFENSE"
+      ],
+      [
         35,
         "PLAY_ROUGH"
+      ],
+      [
+        38,
+        "HAMMER_ARM"
       ],
       [
         39,
@@ -123194,8 +122969,16 @@
         "PLAY_ROUGH"
       ],
       [
+        38,
+        "IRON_DEFENSE"
+      ],
+      [
         39,
         "FAKE_OUT"
+      ],
+      [
+        42,
+        "HAMMER_ARM"
       ],
       [
         48,
@@ -123304,6 +123087,10 @@
       [
         29,
         "ICE_FANG"
+      ],
+      [
+        38,
+        "SCALE_SHOT"
       ],
       [
         40,
@@ -123822,6 +123609,10 @@
         "MAGICAL_LEAF"
       ],
       [
+        34,
+        "FREEZE_DRY"
+      ],
+      [
         37,
         "MIST"
       ],
@@ -123904,6 +123695,10 @@
         "MIST"
       ],
       [
+        40,
+        "FREEZE_DRY"
+      ],
+      [
         41,
         "ICICLE_CRASH"
       ],
@@ -123944,6 +123739,10 @@
       [
         15,
         "SAFEGUARD"
+      ],
+      [
+        18,
+        "DRAINING_KISS"
       ],
       [
         19,
@@ -124040,6 +123839,10 @@
         "SAFEGUARD"
       ],
       [
+        18,
+        "DRAINING_KISS"
+      ],
+      [
         19,
         "MIST"
       ],
@@ -124078,6 +123881,10 @@
       [
         42,
         "DRAGON_PULSE"
+      ],
+      [
+        42,
+        "DRAGON_TAIL"
       ],
       [
         44,
@@ -124939,6 +124746,10 @@
       ],
       [
         32,
+        "BRICK_BREAK"
+      ],
+      [
+        32,
         "HEADBUTT"
       ],
       [
@@ -125340,6 +125151,10 @@
         "X_SCISSOR"
       ],
       [
+        32,
+        "SIGNAL_BEAM"
+      ],
+      [
         35,
         "CRUNCH"
       ],
@@ -125364,6 +125179,10 @@
       [
         1,
         "VICEGRIP"
+      ],
+      [
+        10,
+        "NUZZLE"
       ],
       [
         15,
@@ -125522,6 +125341,10 @@
         "SWAGGER"
       ],
       [
+        24,
+        "FORCE_PALM"
+      ],
+      [
         28,
         "BRICK_BREAK"
       ],
@@ -125608,6 +125431,10 @@
         "TAUNT"
       ],
       [
+        26,
+        "FORCE_PALM"
+      ],
+      [
         28,
         "POISON_JAB"
       ],
@@ -125642,6 +125469,10 @@
       [
         43,
         "CROSS_CHOP"
+      ],
+      [
+        44,
+        "SUPERPOWER"
       ],
       [
         47,
@@ -126990,6 +126821,10 @@
         "TAUNT"
       ],
       [
+        28,
+        "FREEZE_DRY"
+      ],
+      [
         32,
         "SHADOW_BALL"
       ],
@@ -127034,6 +126869,10 @@
       [
         1,
         "STRUGGLE_BUG"
+      ],
+      [
+        18,
+        "BUG_BITE"
       ],
       [
         24,
@@ -127474,6 +127313,10 @@
         "IRON_HEAD"
       ],
       [
+        46,
+        "SACRED_SWORD"
+      ],
+      [
         52,
         "SWORDS_DANCE"
       ],
@@ -127546,6 +127389,10 @@
       [
         50,
         "KOWTOW_CLEAVE"
+      ],
+      [
+        52,
+        "SACRED_SWORD"
       ],
       [
         52,
@@ -127888,6 +127735,10 @@
         "SPITE"
       ],
       [
+        38,
+        "CROSS_POISON"
+      ],
+      [
         39,
         "TAKE_DOWN"
       ],
@@ -128065,6 +127916,10 @@
       ],
       [
         36,
+        "CIRCLE_THROW"
+      ],
+      [
+        36,
         "SWAGGER"
       ],
       [
@@ -128082,6 +127937,10 @@
       [
         42,
         "CRUNCH"
+      ],
+      [
+        46,
+        "SUPERPOWER"
       ],
       [
         48,
@@ -128148,6 +128007,10 @@
       [
         34,
         "AQUA_TAIL"
+      ],
+      [
+        34,
+        "FREEZE_DRY"
       ],
       [
         37,
@@ -128222,6 +128085,10 @@
       [
         38,
         "AQUA_TAIL"
+      ],
+      [
+        38,
+        "FREEZE_DRY"
       ],
       [
         42,
@@ -128316,6 +128183,10 @@
       [
         44,
         "BELLY_DRUM"
+      ],
+      [
+        45,
+        "SLACK_OFF"
       ],
       [
         46,
@@ -129206,6 +129077,10 @@
         "PLAY_ROUGH"
       ],
       [
+        42,
+        "HAMMER_ARM"
+      ],
+      [
         49,
         "DOUBLE_EDGE"
       ]
@@ -129382,6 +129257,10 @@
       [
         38,
         "TRICK"
+      ],
+      [
+        40,
+        "FOUL_PLAY"
       ],
       [
         40,
@@ -130010,6 +129889,10 @@
       [
         45,
         "CLOSE_COMBAT"
+      ],
+      [
+        46,
+        "SACRED_SWORD"
       ],
       [
         49,
@@ -131912,6 +131795,10 @@
         "STONE_EDGE"
       ],
       [
+        52,
+        "HEAD_SMASH"
+      ],
+      [
         57,
         "WILD_CHARGE"
       ]
@@ -132062,6 +131949,10 @@
       [
         42,
         "ACID_ARMOR"
+      ],
+      [
+        42,
+        "CROSS_POISON"
       ],
       [
         46,
@@ -132290,6 +132181,10 @@
       [
         42,
         "SHADOW_BONE"
+      ],
+      [
+        44,
+        "PHANTOMFORCE"
       ],
       [
         45,
@@ -132626,6 +132521,10 @@
       [
         43,
         "TAKE_DOWN"
+      ],
+      [
+        48,
+        "MOONBLAST"
       ],
       [
         52,
@@ -133586,6 +133485,10 @@
         "FLAMETHROWER"
       ],
       [
+        46,
+        "PHANTOMFORCE"
+      ],
+      [
         47,
         "DOUBLE_EDGE"
       ],
@@ -133836,6 +133739,10 @@
       [
         41,
         "DOUBLE_TEAM"
+      ],
+      [
+        42,
+        "CROSS_POISON"
       ],
       [
         43,
@@ -134089,6 +133996,10 @@
       ],
       [
         28,
+        "FLAME_WHEEL"
+      ],
+      [
+        28,
         "BLAZE_KICK"
       ],
       [
@@ -134138,6 +134049,10 @@
       [
         44,
         "SUBMISSION"
+      ],
+      [
+        46,
+        "RAGING_FURY"
       ],
       [
         48,
@@ -134228,6 +134143,10 @@
       [
         30,
         "BODY_SLAM"
+      ],
+      [
+        30,
+        "HORN_ATTACK"
       ],
       [
         32,
@@ -134495,11 +134414,19 @@
       ],
       [
         40,
+        "LEAF_BLADE"
+      ],
+      [
+        40,
         "PLAY_ROUGH"
       ],
       [
         42,
         "SEED_BOMB"
+      ],
+      [
+        46,
+        "SWORDS_DANCE"
       ],
       [
         52,
@@ -134766,6 +134693,10 @@
       [
         42,
         "AQUA_TAIL"
+      ],
+      [
+        44,
+        "HAMMER_ARM"
       ],
       [
         44,
@@ -135060,6 +134991,14 @@
         "LIQUIDATION"
       ],
       [
+        36,
+        "CROSS_POISON"
+      ],
+      [
+        40,
+        "BANEFUL_BUNKER"
+      ],
+      [
         42,
         "WATER_PULSE"
       ],
@@ -135124,6 +135063,10 @@
       [
         35,
         "LIQUIDATION"
+      ],
+      [
+        42,
+        "BODY_PRESS"
       ],
       [
         42,
@@ -135348,6 +135291,10 @@
       [
         40,
         "DRAGON_TAIL"
+      ],
+      [
+        40,
+        "FOUL_PLAY"
       ],
       [
         40,
@@ -135954,6 +135901,10 @@
         "LIQUIDATION"
       ],
       [
+        52,
+        "HEAD_SMASH"
+      ],
+      [
         53,
         "STONE_EDGE"
       ],
@@ -136246,6 +136197,10 @@
         "SPIDER_WEB"
       ],
       [
+        8,
+        "NUZZLE"
+      ],
+      [
         12,
         "THUNDER_WAVE"
       ],
@@ -136264,6 +136219,10 @@
       [
         24,
         "BUG_BITE"
+      ],
+      [
+        28,
+        "SPARK"
       ],
       [
         29,
@@ -136322,6 +136281,10 @@
       [
         4,
         "SPIDER_WEB"
+      ],
+      [
+        8,
+        "NUZZLE"
       ],
       [
         12,
@@ -136660,6 +136623,10 @@
         "FLAME_CHARGE"
       ],
       [
+        32,
+        "FIRE_SPIN"
+      ],
+      [
         34,
         "TOXIC_SPIKES"
       ],
@@ -136756,6 +136723,10 @@
       [
         28,
         "VENOSHOCK"
+      ],
+      [
+        32,
+        "FIRE_SPIN"
       ],
       [
         34,
@@ -136987,6 +136958,10 @@
     "PALAFIN": [
       [
         1,
+        "MACH_PUNCH"
+      ],
+      [
+        1,
         "WATER_GUN"
       ],
       [
@@ -137027,6 +137002,10 @@
       ],
       [
         30,
+        "BRICK_BREAK"
+      ],
+      [
+        30,
         "WHIRLPOOL"
       ],
       [
@@ -137056,6 +137035,14 @@
       [
         46,
         "AURA_SPHERE"
+      ],
+      [
+        48,
+        "SUPERPOWER"
+      ],
+      [
+        50,
+        "CROSS_CHOP"
       ],
       [
         50,
@@ -140877,6 +140864,7 @@
       "SWIFT"
     ],
     "HITMONLEE": [
+      "DRAIN_PUNCH",
       "HEADBUTT",
       "CURSE",
       "TOXIC",
@@ -142605,6 +142593,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "FURY_CUTTER",
       "FLASH"
     ],
     "LEDIAN": [
@@ -142629,6 +142618,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "FURY_CUTTER",
       "FLASH",
       "ROCK_SMASH",
       "STRENGTH"
@@ -143893,6 +143883,7 @@
       "RAIN_DANCE"
     ],
     "URSARING": [
+      "DRAIN_PUNCH",
       "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
@@ -145124,6 +145115,7 @@
       "SHADOW_BALL",
       "MUD_SLAP",
       "SWAGGER",
+      "KNOCK_OFF",
       "SWIFT",
       "NASTY_PLOT",
       "REST",
@@ -145308,6 +145300,7 @@
       "RAIN_DANCE",
       "FACADE",
       "SOLARBEAM",
+      "DRAGON_CLAW",
       "THUNDER",
       "RETURN",
       "DIG",
@@ -145998,6 +145991,7 @@
       "MUD_SLAP",
       "SWAGGER",
       "ICE_PUNCH",
+      "SANDSTORM",
       "SWIFT",
       "BULK_UP",
       "THUNDERPUNCH",
@@ -146116,6 +146110,7 @@
       "SANDSTORM",
       "REST",
       "ATTRACT",
+      "POWER_GEM",
       "FLASH",
       "MUD_SLAP"
     ],
@@ -146138,6 +146133,7 @@
       "SANDSTORM",
       "REST",
       "ATTRACT",
+      "POWER_GEM",
       "STRENGTH",
       "DIG",
       "FLASH",
@@ -146186,6 +146182,7 @@
       "ATTRACT",
       "FURY_CUTTER",
       "HONE_CLAWS",
+      "POWER_GEM",
       "STRENGTH",
       "CUT",
       "HEADBUTT",
@@ -146199,6 +146196,7 @@
       "TOXIC",
       "HIDDEN_POWER",
       "PROTECT",
+      "WILL_O_WISP",
       "FACADE",
       "EARTHQUAKE",
       "RETURN",
@@ -146229,6 +146227,7 @@
       "HIDDEN_POWER",
       "HYPER_BEAM",
       "PROTECT",
+      "WILL_O_WISP",
       "FACADE",
       "EARTHQUAKE",
       "RETURN",
@@ -146467,6 +146466,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "RAIN_DANCE",
       "ROCK_SMASH",
@@ -146482,12 +146482,14 @@
       "WORK_UP",
       "PROTECT",
       "FACADE",
+      "DRAGON_CLAW",
       "RETURN",
       "SWAGGER",
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
       "THIEF",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "RAIN_DANCE",
       "ROCK_SMASH",
@@ -146504,6 +146506,7 @@
       "HYPER_BEAM",
       "PROTECT",
       "FACADE",
+      "DRAGON_CLAW",
       "RETURN",
       "SWAGGER",
       "FLASH_CANNON",
@@ -146513,6 +146516,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "SURF",
       "STRENGTH",
@@ -146594,6 +146598,7 @@
       "FACADE",
       "RETURN",
       "SWAGGER",
+      "KNOCK_OFF",
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
@@ -146607,6 +146612,7 @@
       "FACADE",
       "RETURN",
       "SWAGGER",
+      "KNOCK_OFF",
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
@@ -146622,19 +146628,22 @@
       "RETURN",
       "SWAGGER",
       "ICE_PUNCH",
+      "KNOCK_OFF",
       "BULK_UP",
       "THUNDERPUNCH",
       "NASTY_PLOT",
       "REST",
       "ATTRACT",
       "THIEF",
-      "FIRE_PUNCH"
+      "FIRE_PUNCH",
+      "NIGHT_SLASH"
     ],
     "TINKATINK": [
       "ROCK_TOMB",
       "ROCK_SMASH",
       "PROTECT",
       "FACADE",
+      "IRON_HEAD",
       "FLASH_CANNON",
       "KNOCK_OFF",
       "REST",
@@ -146779,6 +146788,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "STEEL_WING",
       "HONE_CLAWS",
       "FLY"
     ],
@@ -147107,6 +147117,7 @@
       "SWAGGER",
       "ICE_PUNCH",
       "SWIFT",
+      "BULK_UP",
       "THUNDERPUNCH",
       "REST",
       "ATTRACT",
@@ -147954,6 +147965,7 @@
       "FACADE",
       "RETURN",
       "SWAGGER",
+      "KNOCK_OFF",
       "SLUDGE_BOMB",
       "SWIFT",
       "REST",
@@ -147987,6 +147999,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "STRENGTH",
       "DIG",
@@ -148300,6 +148313,7 @@
       "ATTRACT",
       "FIRE_PUNCH",
       "ZEN_HEADBUTT",
+      "POWER_GEM",
       "STRENGTH",
       "BLIZZARD",
       "DIG",
@@ -148337,6 +148351,7 @@
       "ATTRACT",
       "FIRE_PUNCH",
       "ZEN_HEADBUTT",
+      "POWER_GEM",
       "STRENGTH",
       "BLIZZARD",
       "CUT",
@@ -148417,6 +148432,7 @@
       "THUNDERBOLT"
     ],
     "CETODDLE": [
+      "HEADBUTT",
       "CURSE",
       "BLIZZARD",
       "ICICLE_CRASH",
@@ -148430,6 +148446,7 @@
       "HYPER_BEAM"
     ],
     "CETITAN": [
+      "HEADBUTT",
       "CURSE",
       "BLIZZARD",
       "HYPER_BEAM",
@@ -148657,6 +148674,7 @@
       "HYPER_BEAM",
       "PROTECT",
       "FACADE",
+      "IRON_HEAD",
       "EARTHQUAKE",
       "RETURN",
       "SHADOW_BALL",
@@ -148681,6 +148699,7 @@
       "ROCK_TOMB"
     ],
     "TYRUNT": [
+      "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
       "ROAR",
@@ -148706,6 +148725,7 @@
       "SUNNY_DAY"
     ],
     "TYRANTRUM": [
+      "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
       "ROAR",
@@ -148749,6 +148769,7 @@
       "REST",
       "ATTRACT",
       "ZEN_HEADBUTT",
+      "POWER_GEM",
       "WEATHER_BALL",
       "THUNDERBOLT",
       "ICE_BEAM",
@@ -148861,11 +148882,13 @@
       "DIG",
       "SHADOW_BALL",
       "SWAGGER",
+      "KNOCK_OFF",
       "SLUDGE_BOMB",
       "SWIFT",
       "REST",
       "ATTRACT",
       "THIEF",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "CUT",
       "ICE_BEAM"
@@ -148894,6 +148917,7 @@
       "REST",
       "ATTRACT",
       "THIEF",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "CUT",
       "STRENGTH",
@@ -149003,6 +149027,7 @@
       "FACADE",
       "RETURN",
       "DIG",
+      "SHADOW_BALL",
       "SWAGGER",
       "SWIFT",
       "NASTY_PLOT",
@@ -149025,6 +149050,7 @@
       "SOLARBEAM",
       "RETURN",
       "DIG",
+      "SHADOW_BALL",
       "SWAGGER",
       "SWIFT",
       "NASTY_PLOT",
@@ -149282,6 +149308,7 @@
       "ATTRACT",
       "THIEF",
       "FIRE_PUNCH",
+      "NIGHT_SLASH",
       "ZEN_HEADBUTT",
       "FLAMETHROWER",
       "HEADBUTT",
@@ -149571,6 +149598,7 @@
       "THUNDERBOLT"
     ],
     "GROWLITHE_HISUIAN": [
+      "HEADBUTT",
       "ROCK_TOMB",
       "ROAR",
       "TOXIC",
@@ -149594,6 +149622,7 @@
       "FLAMETHROWER"
     ],
     "ARCANINE_HISUIAN": [
+      "HEADBUTT",
       "ROCK_TOMB",
       "ROAR",
       "TOXIC",
@@ -149993,6 +150022,7 @@
       "ATTRACT",
       "FIRE_PUNCH",
       "HONE_CLAWS",
+      "POWER_GEM",
       "STRENGTH",
       "THUNDERBOLT",
       "ICE_BEAM",
@@ -150265,6 +150295,7 @@
       "CUT"
     ],
     "TIRTOUGA": [
+      "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
       "TOXIC",
@@ -150290,6 +150321,7 @@
       "STRENGTH"
     ],
     "CARRACOSTA": [
+      "HEADBUTT",
       "CURSE",
       "ROCK_TOMB",
       "TOXIC",
@@ -150531,6 +150563,7 @@
       "FACADE",
       "DRAGON_CLAW",
       "RETURN",
+      "SHADOW_BALL",
       "MUD_SLAP",
       "SWAGGER",
       "KNOCK_OFF",
@@ -150787,6 +150820,7 @@
       "ATTRACT",
       "THIEF",
       "HONE_CLAWS",
+      "NIGHT_SLASH",
       "CUT"
     ],
     "KROKOROK": [
@@ -150811,6 +150845,7 @@
       "ATTRACT",
       "THIEF",
       "HONE_CLAWS",
+      "NIGHT_SLASH",
       "CUT",
       "STRENGTH"
     ],
@@ -150839,6 +150874,7 @@
       "ATTRACT",
       "THIEF",
       "HONE_CLAWS",
+      "NIGHT_SLASH",
       "CUT",
       "STRENGTH"
     ],
@@ -150995,6 +151031,7 @@
       "BARRIER",
       "HAZE",
       "MIRROR_COAT",
+      "MOONBLAST",
       "EARTH_POWER",
       "ROCK_THROW",
       "TAKE_DOWN",
@@ -151161,7 +151198,8 @@
       "ICE_PUNCH",
       "THUNDERPUNCH",
       "COSMIC_POWER",
-      "SKY_UPPERCUT"
+      "SKY_UPPERCUT",
+      "KARATE_CHOP"
     ],
     "CATERPIE": [],
     "CELEBI": [],
@@ -151169,6 +151207,7 @@
       "YAWN",
       "ICICLE_SPEAR",
       "BELLY_DRUM",
+      "SLACK_OFF",
       "ICICLE_CRASH",
       "SUPERPOWER"
     ],
@@ -151176,6 +151215,7 @@
       "CONFUSE_RAY",
       "DESTINY_BOND",
       "SPITE",
+      "MEAN_LOOK",
       "DISABLE"
     ],
     "CHARMANDER": [
@@ -151568,6 +151608,7 @@
     ],
     "FRIGIBAX": [
       "ICICLE_SPEAR",
+      "ICE_SHARD",
       "OUTRAGE",
       "AQUA_TAIL",
       "FREEZE_DRY"
@@ -151600,6 +151641,7 @@
     ],
     "GEODUDE_ALOLAN": [
       "ENDURE",
+      "MAGNITUDE",
       "MEGA_PUNCH",
       "IRON_DEFENSE",
       "COUNTER",
@@ -151800,7 +151842,9 @@
       "PRESENT"
     ],
     "IMPIDIMP": [
+      "CHARM",
       "LIGHT_SCREEN",
+      "MEAN_LOOK",
       "REFLECT",
       "THUNDER_WAVE",
       "TORMENT"
@@ -151810,6 +151854,7 @@
       "DISABLE",
       "GIGA_DRAIN",
       "POISON_JAB",
+      "STICKY_WEB",
       "CROSS_POISON",
       "DOUBLE_TEAM",
       "FAINT_ATTACK",
@@ -151955,6 +152000,8 @@
     "LILEEP": [
       "BARRIER",
       "ENDURE",
+      "STUN_SPORE",
+      "LEECH_SEED",
       "SEED_BOMB",
       "BIND",
       "CURSE",
@@ -152016,7 +152063,8 @@
     "MAGNEMITE": [
       "EXPLOSION",
       "IRON_DEFENSE",
-      "REFLECT"
+      "REFLECT",
+      "MIRROR_COAT"
     ],
     "MANKEY": [
       "ROCK_SLIDE",
@@ -152046,7 +152094,8 @@
     ],
     "MAREANIE": [
       "HAZE",
-      "INFESTATION"
+      "INFESTATION",
+      "SPIKES"
     ],
     "MAREEP": [
       "AGILITY",
@@ -152131,6 +152180,7 @@
       "DESTINY_BOND",
       "SPITE",
       "CONFUSE_RAY",
+      "SUCKER_PUNCH",
       "CURSE",
       "NIGHTMARE"
     ],
@@ -152295,6 +152345,7 @@
       "PSYCHO_CUT",
       "PURSUIT",
       "SUCKER_PUNCH",
+      "SUPERPOWER",
       "HEADBUTT",
       "STEALTH_ROCK"
     ],
@@ -152506,6 +152557,8 @@
       "SKY_UPPERCUT"
     ],
     "ROOKIDEE": [
+      "PURSUIT",
+      "WHIRLWIND",
       "SKY_ATTACK",
       "ROOST",
       "AGILITY",
@@ -152622,6 +152675,8 @@
       "BODY_SLAM",
       "IRON_TAIL",
       "SCARY_FACE",
+      "SPITE",
+      "PURSUIT",
       "NIGHT_SLASH"
     ],
     "SHELLDER": [
@@ -152757,6 +152812,7 @@
     ],
     "SNEASEL_HISUIAN": [
       "FAKE_OUT",
+      "PURSUIT",
       "TAUNT",
       "AGILITY",
       "COUNTER",
@@ -152981,6 +153037,7 @@
       "ENDURE",
       "ROCK_SLIDE",
       "BODY_SLAM",
+      "HORN_ATTACK",
       "CURSE"
     ],
     "TEDDIURSA": [
@@ -153029,6 +153086,7 @@
       "COUNTER",
       "DETECT",
       "ENDURE",
+      "CROSS_CHOP",
       "COMET_PUNCH",
       "DEFOG",
       "DRAIN_PUNCH",
@@ -153045,6 +153103,7 @@
       "BODY_SLAM",
       "FLAIL",
       "SLAM",
+      "HEAD_SMASH",
       "BIDE",
       "IRON_DEFENSE",
       "KNOCK_OFF",
@@ -153098,6 +153157,7 @@
       "FOCUS_ENERGY",
       "QUICK_ATTACK",
       "SIGNAL_BEAM",
+      "U_TURN",
       "BUG_BITE",
       "EARTH_POWER",
       "ENDURE",
@@ -153196,6 +153256,8 @@
     "WIMPOD": [
       "HARDEN",
       "ENDURE",
+      "AQUA_TAIL",
+      "SUPERPOWER",
       "AQUA_JET",
       "METAL_CLAW",
       "ROLLOUT",
@@ -153204,6 +153266,7 @@
     "WOOPER": [
       "ANCIENTPOWER",
       "SAFEGUARD",
+      "ACID_ARMOR",
       "ENCORE",
       "SLEEP_TALK",
       "BODY_SLAM",
@@ -153215,6 +153278,7 @@
     "WOOPER_PALDEAN": [
       "ANCIENTPOWER",
       "SPIKES",
+      "ACID_ARMOR",
       "COUNTER",
       "CURSE",
       "DOUBLE_KICK",
@@ -163455,7 +163519,8 @@
       "SELFDESTRUCT",
       "SNORE",
       "STONE_EDGE",
-      "TORMENT"
+      "TORMENT",
+      "HEAD_SMASH"
     ],
     "CETODDLE": [
       "BODY_PRESS",
@@ -163931,7 +163996,8 @@
       "SNORE",
       "SUPER_FANG",
       "TAKE_DOWN",
-      "X_SCISSOR"
+      "X_SCISSOR",
+      "FREEZE_DRY"
     ],
     "VULPIX_ALOLAN": [
       "BODY_SLAM",
@@ -164725,7 +164791,8 @@
       "THUNDERPUNCH",
       "TORMENT",
       "VACUUM_WAVE",
-      "VENOSHOCK"
+      "VENOSHOCK",
+      "TRIPLE_AXEL"
     ],
     "WOOPER_PALDEAN": [
       "BODY_PRESS",
@@ -164971,7 +165038,8 @@
       "GIGA_IMPACT",
       "GUNK_SHOT",
       "ROCK_SLIDE",
-      "STONE_EDGE"
+      "STONE_EDGE",
+      "HEAD_SMASH"
     ],
     "MAREANIE": [
       "DOUBLE_TEAM",
@@ -205418,24 +205486,5 @@
       "X_SCISSOR"
     ]
   },
-  "validation": {
-    "source_reference": "passed: all 35,651 sourced pairs and all pinned input hashes",
-    "regeneration": "passed: 498 unchanged level-up tables in isolated temporary copies",
-    "builds": [
-      "pokecrystal.gbc",
-      "pokecrystal_debug.gbc"
-    ],
-    "release_learnset_checks": 10565,
-    "debug_learnset_checks": 10565,
-    "release_breeding_checks": 11378,
-    "release_evolution_checks": 24,
-    "release_trainer_checks": 50,
-    "phantump_stantler_wyrdeer_checks_per_rom": 61,
-    "trainer_slots_checked": 1826,
-    "documentation": {
-      "warnings": 0,
-      "unparsed_rows": 0
-    },
-    "move_integrity": "passed: 442 implemented moves"
-  }
+  "authored_restorations": "tools/testdata/authored_move_restorations.json"
 }

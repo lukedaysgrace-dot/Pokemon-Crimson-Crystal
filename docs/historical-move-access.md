@@ -2,7 +2,7 @@
 
 All **498 roster entries** were checked against mainline history (including Red/Blue/Yellow, Gold/Silver/Crystal, Let’s Go, Legends: Arceus and Legends: Z-A) and Luminescent Platinum 3.0 level-up, egg, machine and tutor tables.
 
-**1,205 newly obtainable species/move pairs; 1,489 unsupported pairs removed; 35,651 sourced pairs accessible; zero deferred implemented moves.**
+**1,205 newly obtainable species/move pairs; 1,250 pairs remain removed after authored restorations; 35,651 sourced pairs accessible; zero deferred implemented moves.**
 
 Only moves implemented in this ROM are distributed. This is a union of individual historical access, including event moves; it does not claim every four-move combination is transferable between official games.
 
@@ -14,6 +14,14 @@ The six original custom species retain their authored move access, and Pixie Pun
 
 Sources: [Team Lumi’s Pokédex](https://luminescent.team/pokedex), [pinned Lumi data](https://github.com/TeamLumi/luminescent-team/tree/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0), [pinned Pokémon Showdown data](https://github.com/smogon/pokemon-showdown/tree/1242c1e2d9763ba5b85d33f13aecb89bae19ae3d/data). Exact input URLs, SHA-256 hashes, added-move provenance and final tables are in `tools/testdata/historical_move_access.json`.
 
+## Authored restorations
+
+The project restores 125 level-up entries at their previous levels, 49 machine flags, 28 family egg entries and 4 Blackthorn lessons from before `de9c06cf`. These are deliberate design choices, recorded separately from official and Lumi source evidence.
+
+Crobat regains Poison Jab. Duskull does not regain Shadow Punch; Chandelure, Cursola and Galarian Corsola do not regain Phantom Force; Mankey does not regain Rage Fist; Victreebel and Tangrowth do not regain Wood Hammer; Altaria does not regain Scale Shot. All four Slowbro/Slowking forms retain Slack Off instead of Recover. Normal pre-evolution inheritance and shared family egg lists still apply.
+
+Exact restored routes and the requested and excluded pairs are in `tools/testdata/authored_move_restorations.json`.
+
 ## Rechecking
 
 ```sh
@@ -23,22 +31,23 @@ python tools/audit_historical_move_access.py --reference
 make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 ```
 
-Validation passed: both ROM builds; 10,565 compiled learnset/menu checks per ROM; 11,378 release breeding checks; 1,826 trainer slots; 61 Phantump/Stantler/Wyrdeer checks per ROM; unchanged regeneration for all 498 level-up tables; independent source and move-integrity audits. Generated documentation has zero warnings and zero unparsed rows.
-
-Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
-
 ## Unavoidable custom evolution carryover
 
 - **Xatu:** Energy Ball, Extrasensory, Psybeam, Psycho Cut, Wing Attack.
-- **Mesmeria:** Dazzling Gleam, Dizzy Punch, Petal Dance.
+- **Dragapult:** Scale Shot.
+- **Tinkatuff:** Iron Head.
+- **Tinkaton:** Iron Head.
 - **Appletun:** Bug Bite, Dragon Breath, Infestation.
 - **Flapple:** Body Slam, Bug Bite, Dragon Tail, Gyro Ball, Infestation, Recover, Reflect, Sweet Scent.
+- **Charjabug:** Signal Beam.
+- **Vikavolt:** Nuzzle.
 - **Overqwil:** Bubble, Defense Curl, Headbutt, Mimic, Whirlpool.
+- **Scrafty:** Night Slash.
+- **Walrein:** Freeze-Dry.
 - **Ursaluna (Bloodmoon):** Attract, Belly Drum, Counter, Curse, Cut, Defense Curl, Double Team, Dynamic Punch, Fury Cutter, Headbutt, Hone Claws, Mega Kick, Mega Punch, Metronome, Mimic, Mud-Slap, Rock Smash, Rollout, Seismic Toss, Stealth Rock, Strength, Superpower, Swagger, Tackle, Thrash, Torment, Work Up, Zap Cannon.
 - **Mr. Rime:** Bide, Counter, Curse, Double-Edge, Dynamic Punch, Magical Leaf, Mind Reader, Nightmare, Play Rough, Psywave, Rage, Skull Bash, Submission, Take Down, Teleport.
 - **Sirfetch'd:** Acrobatics, Air Cutter, Baton Pass, Bide, Double Team, Flail, Foresight, Gust, Headbutt, Heat Wave, Mimic, Mirror Move, Mud-Slap, Ominous Wind, Rage, Razor Leaf, Reflect, Take Down, Thief, Twister, Whirlwind, Wish, Yawn.
-- **Watu:** Safeguard.
-- **Gorochu:** Dazzling Gleam, Dizzy Punch, Ice Punch, Petal Dance, Psychic, Scary Face.
+- **Galvantula:** Spark.
 
 ## Every Pokémon
 
@@ -48,11 +57,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Seismic Toss.
 
-**Removed:** Freeze-Dry, Sunny Day.
+**Removed:** Sunny Day.
 
-- **Removed natural entries:** Freeze-Dry.
 - **Removed machine flags:** Sunny Day.
 - **Added Blackthorn lessons:** Seismic Toss.
+- **Restored natural entries:** Freeze-Dry.
 
 ### Abra
 
@@ -66,19 +75,20 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Head Smash.
+**Removed:** None.
 
-- **Removed natural entries:** Head Smash.
+- **Restored natural entries:** Head Smash.
 
 ### Aggron
 
 **Added:** False Swipe, Mud Shot.
 
-**Removed:** Drain Punch, Hammer Arm, Power Gem.
+**Removed:** Drain Punch.
 
-- **Removed natural entries:** Hammer Arm.
-- **Removed machine flags:** Drain Punch, Power Gem.
+- **Removed machine flags:** Drain Punch.
 - **Added Blackthorn lessons:** False Swipe, Mud Shot.
+- **Restored natural entries:** Hammer Arm.
+- **Restored machine flags:** Power Gem.
 
 ### Aipom
 
@@ -130,31 +140,29 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Ancient Power, Hammer Arm, Scary Face, Sucker Punch.
 
-**Removed:** Drain Punch, Magnitude, Power Gem, Rain Dance.
+**Removed:** Drain Punch, Power Gem, Rain Dance.
 
 - **Removed machine flags:** Drain Punch, Power Gem, Rain Dance.
-- **Removed family egg entries:** Magnitude.
 - **Added Blackthorn lessons:** Ancient Power, Hammer Arm, Scary Face, Sucker Punch.
+- **Restored family egg entries:** Magnitude.
 
 ### Alolan Golem
 
 **Added:** Ancient Power, Fury Cutter, Spikes, Sucker Punch.
 
-**Removed:** Drain Punch, Head Smash, Magnitude, Power Gem, Rain Dance.
+**Removed:** Drain Punch, Power Gem, Rain Dance.
 
-- **Removed natural entries:** Head Smash.
 - **Removed machine flags:** Drain Punch, Power Gem, Rain Dance.
-- **Removed family egg entries:** Magnitude.
 - **Added Blackthorn lessons:** Ancient Power, Fury Cutter, Spikes, Sucker Punch.
+- **Restored natural entries:** Head Smash.
 
 ### Alolan Graveler
 
 **Added:** Ancient Power, Body Press, Giga Impact, Hammer Arm, Heavy Slam, Sucker Punch.
 
-**Removed:** Drain Punch, Magnitude, Power Gem, Rain Dance.
+**Removed:** Drain Punch, Power Gem, Rain Dance.
 
 - **Removed machine flags:** Drain Punch, Power Gem, Rain Dance.
-- **Removed family egg entries:** Magnitude.
 - **Added Blackthorn lessons:** Ancient Power, Body Press, Giga Impact, Hammer Arm, Heavy Slam, Sucker Punch.
 
 ### Alolan Grimer
@@ -170,11 +178,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Fury Attack, Tackle.
 
-**Removed:** Drain Punch, Drill Run, Ice Punch, Mud Shot, Phantom Force.
+**Removed:** Drain Punch, Drill Run, Ice Punch, Mud Shot.
 
-- **Removed natural entries:** Drill Run, Mud Shot, Phantom Force.
+- **Removed natural entries:** Drill Run, Mud Shot.
 - **Removed machine flags:** Drain Punch, Ice Punch.
 - **Added Blackthorn lessons:** Fury Attack, Tackle.
+- **Restored natural entries:** Phantom Force.
 
 ### Alolan Meowth
 
@@ -190,20 +199,22 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Lick, Shadow Punch, Zap Cannon.
 
-**Removed:** Cross Poison, Energy Ball, Night Slash, Rock Smash, Strength.
+**Removed:** Energy Ball, Rock Smash, Strength.
 
-- **Removed natural entries:** Cross Poison.
-- **Removed machine flags:** Energy Ball, Night Slash, Rock Smash, Strength.
+- **Removed machine flags:** Energy Ball, Rock Smash, Strength.
 - **Added Blackthorn lessons:** Lick, Shadow Punch, Zap Cannon.
+- **Restored natural entries:** Cross Poison.
+- **Restored machine flags:** Night Slash.
 
 ### Alolan Ninetales
 
 **Added:** Bulk Up, Energy Ball, Giga Drain, Ice Fang, Psychic, Rock Slide, Snarl, Thief.
 
-**Removed:** Curse, Iron Head, Shadow Ball.
+**Removed:** Curse, Iron Head.
 
-- **Removed machine flags:** Curse, Iron Head, Shadow Ball.
+- **Removed machine flags:** Curse, Iron Head.
 - **Added Blackthorn lessons:** Bulk Up, Energy Ball, Giga Drain, Ice Fang, Psychic, Rock Slide, Snarl, Thief.
+- **Restored machine flags:** Shadow Ball.
 
 ### Alolan Persian
 
@@ -228,21 +239,23 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Endure, False Swipe, Mud-Slap, Nasty Plot, Thunder, Thunder Wave, Thunderbolt, Wild Charge.
 
-**Removed:** Beat Up, Curse, Iron Head, Night Slash, Screech.
+**Removed:** Beat Up, Curse, Iron Head, Screech.
 
-- **Removed machine flags:** Curse, Iron Head, Night Slash.
+- **Removed machine flags:** Curse, Iron Head.
 - **Removed family egg entries:** Beat Up, Screech.
 - **Added Blackthorn lessons:** Endure, False Swipe, Mud-Slap, Nasty Plot, Thunder, Thunder Wave, Thunderbolt, Wild Charge.
+- **Restored machine flags:** Night Slash.
 
 ### Alolan Rattata
 
 **Added:** Endure, False Swipe, Mud-Slap, Nasty Plot, Scary Face, Strength, Swords Dance, Thunder, Thunder Wave, Thunderbolt, Venoshock, Wild Charge, Work Up.
 
-**Removed:** Beat Up, Curse, Iron Head, Knock Off, Night Slash, Screech.
+**Removed:** Beat Up, Curse, Iron Head, Screech.
 
-- **Removed machine flags:** Curse, Iron Head, Knock Off, Night Slash.
+- **Removed machine flags:** Curse, Iron Head.
 - **Removed family egg entries:** Beat Up, Screech.
 - **Added Blackthorn lessons:** Endure, False Swipe, Mud-Slap, Nasty Plot, Scary Face, Strength, Swords Dance, Thunder, Thunder Wave, Thunderbolt, Venoshock, Wild Charge, Work Up.
+- **Restored machine flags:** Knock Off, Night Slash.
 
 ### Alolan Sandshrew
 
@@ -257,40 +270,43 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Mud-Slap.
 
-**Removed:** Drain Punch, Freeze-Dry.
+**Removed:** Drain Punch.
 
 - **Removed machine flags:** Drain Punch.
-- **Removed fallback lessons:** Freeze-Dry.
 - **Added Blackthorn lessons:** Mud-Slap.
+- **Restored Blackthorn lessons:** Freeze-Dry.
 
 ### Alolan Vulpix
 
 **Added:** Bulk Up, Energy Ball, Giga Drain, Ice Fang, Psychic, Rock Slide, Snarl, Thief.
 
-**Removed:** Curse, Iron Head, Shadow Ball.
+**Removed:** Curse, Iron Head.
 
-- **Removed machine flags:** Curse, Iron Head, Shadow Ball.
+- **Removed machine flags:** Curse, Iron Head.
 - **Added Blackthorn lessons:** Bulk Up, Energy Ball, Giga Drain, Ice Fang, Psychic, Rock Slide, Snarl, Thief.
+- **Restored machine flags:** Shadow Ball.
 
 ### Altaria
 
 **Added:** Petal Dance.
 
-**Removed:** Bounce, Curse, Dragon Tail, Draining Kiss, Scale Shot, Strength.
+**Removed:** Bounce, Curse, Scale Shot, Strength.
 
-- **Removed natural entries:** Bounce, Dragon Tail, Draining Kiss, Scale Shot.
+- **Removed natural entries:** Bounce, Scale Shot.
 - **Removed machine flags:** Curse, Strength.
 - **Added Blackthorn lessons:** Petal Dance.
+- **Restored natural entries:** Dragon Tail, Draining Kiss.
 
 ### Amaura
 
 **Added:** Tackle.
 
-**Removed:** Curse, Headbutt, Moonblast, Mud-Slap, Power Gem.
+**Removed:** Curse, Headbutt, Mud-Slap.
 
-- **Removed machine flags:** Curse, Headbutt, Mud-Slap, Power Gem.
-- **Removed family egg entries:** Moonblast.
+- **Removed machine flags:** Curse, Headbutt, Mud-Slap.
 - **Added Blackthorn lessons:** Tackle.
+- **Restored machine flags:** Power Gem.
+- **Restored family egg entries:** Moonblast.
 
 ### Ambipom
 
@@ -306,21 +322,22 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Comet Punch, Flash Cannon.
 
-**Removed:** Drain Punch, Hyper Voice, Iron Head, Nuzzle.
+**Removed:** Drain Punch, Iron Head.
 
-- **Removed natural entries:** Hyper Voice, Nuzzle.
 - **Removed machine flags:** Drain Punch, Iron Head.
 - **Added Blackthorn lessons:** Comet Punch, Flash Cannon.
+- **Restored natural entries:** Hyper Voice, Nuzzle.
 
 ### Annihilape
 
 **Added:** Comet Punch, Knock Off, Light Screen, Roar, Rock Throw, Tackle, Torment.
 
-**Removed:** Foul Play, Iron Head, Snarl, Superpower, Will-O-Wisp.
+**Removed:** Foul Play, Iron Head, Snarl, Will-O-Wisp.
 
-- **Removed natural entries:** Foul Play, Snarl, Superpower.
+- **Removed natural entries:** Foul Play, Snarl.
 - **Removed machine flags:** Iron Head, Will-O-Wisp.
 - **Added Blackthorn lessons:** Comet Punch, Knock Off, Light Screen, Roar, Rock Throw, Tackle, Torment.
+- **Restored natural entries:** Superpower.
 
 ### Anorith
 
@@ -404,11 +421,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Attract, Curse, Double-Edge, Earthquake, Hidden Power, Ice Shard, Mist, Return, Scale Shot, Swagger, Toxic.
+**Removed:** Attract, Curse, Double-Edge, Earthquake, Hidden Power, Mist, Return, Swagger, Toxic.
 
-- **Removed natural entries:** Scale Shot.
 - **Removed machine flags:** Attract, Curse, Earthquake, Hidden Power, Return, Swagger, Toxic.
-- **Removed family egg entries:** Double-Edge, Ice Shard, Mist.
+- **Removed family egg entries:** Double-Edge, Mist.
+- **Restored natural entries:** Scale Shot.
 
 ### Ariados
 
@@ -423,21 +440,21 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Bug Buzz.
 
-**Removed:** Power Gem, Signal Beam.
+**Removed:** Signal Beam.
 
-- **Removed machine flags:** Power Gem.
 - **Removed fallback lessons:** Signal Beam.
 - **Added Blackthorn lessons:** Bug Buzz.
+- **Restored machine flags:** Power Gem.
 
 ### Armarouge
 
 **Added:** Double Team, Future Sight, Ominous Wind, Rock Tomb, Smokescreen.
 
-**Removed:** Curse, Extrasensory, Fire Fang, Flash, Hex, Hidden Power, Mean Look, Return, Swagger, Swords Dance, Zen Headbutt.
+**Removed:** Curse, Extrasensory, Fire Fang, Flash, Hex, Hidden Power, Return, Swagger, Swords Dance, Zen Headbutt.
 
 - **Removed natural entries:** Extrasensory, Hex.
 - **Removed machine flags:** Curse, Flash, Hidden Power, Return, Swagger, Zen Headbutt.
-- **Removed family egg entries:** Calm Mind, Mean Look, Swords Dance.
+- **Removed family egg entries:** Calm Mind, Swords Dance.
 - **Added Blackthorn lessons:** Double Team, Future Sight, Ominous Wind, Rock Tomb, Smokescreen.
 
 ### Aron
@@ -460,10 +477,9 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Tackle.
 
-**Removed:** Curse, Headbutt, Moonblast, Mud-Slap.
+**Removed:** Curse, Headbutt, Mud-Slap.
 
 - **Removed machine flags:** Curse, Headbutt, Mud-Slap.
-- **Removed family egg entries:** Moonblast.
 - **Added Blackthorn lessons:** Tackle.
 
 ### Axew
@@ -517,10 +533,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Self-Destruct.
 
-**Removed:** Head Smash.
+**Removed:** None.
 
-- **Removed fallback lessons:** Head Smash.
 - **Added Blackthorn lessons:** Self-Destruct.
+- **Restored Blackthorn lessons:** Head Smash.
 
 ### Baxcalibur
 
@@ -529,7 +545,7 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 **Removed:** Attract, Curse, Hidden Power, Mist, Return, Strength, Swagger, Toxic.
 
 - **Removed machine flags:** Attract, Curse, Hidden Power, Return, Strength, Swagger, Toxic.
-- **Removed family egg entries:** Double-Edge, Ice Shard, Mist.
+- **Removed family egg entries:** Double-Edge, Mist.
 - **Added Blackthorn lessons:** Double-Edge.
 
 ### Bayleef
@@ -555,9 +571,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Draining Kiss, Wood Hammer.
+**Removed:** Wood Hammer.
 
-- **Removed natural entries:** Draining Kiss, Wood Hammer.
+- **Removed natural entries:** Wood Hammer.
+- **Restored natural entries:** Draining Kiss.
 
 ### Bellsprout
 
@@ -571,11 +588,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Curse, Focus Energy, Sacred Sword, Strength, Superpower.
+**Removed:** Curse, Focus Energy, Strength.
 
-- **Removed natural entries:** Sacred Sword.
 - **Removed machine flags:** Curse, Strength.
-- **Removed family egg entries:** Focus Energy, Superpower.
+- **Removed family egg entries:** Focus Energy.
+- **Restored natural entries:** Sacred Sword.
 
 ### Blastoise
 
@@ -657,11 +674,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Close Combat, Cotton Guard, Double-Edge, Draining Kiss, Dynamic Punch, Seismic Toss, Tackle.
 
-**Removed:** Curse, Karate Chop.
+**Removed:** Curse.
 
 - **Removed machine flags:** Curse.
-- **Removed family egg entries:** Karate Chop.
 - **Added Blackthorn lessons:** Close Combat, Cotton Guard, Double-Edge, Draining Kiss, Dynamic Punch, Seismic Toss, Tackle.
+- **Restored family egg entries:** Karate Chop.
 
 ### Butterfree
 
@@ -684,12 +701,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Heavy Slam.
 
-**Removed:** Drain Punch, Head Smash, Headbutt, Ice Punch, Mud-Slap, Power Gem, Roar.
+**Removed:** Drain Punch, Ice Punch, Mud-Slap, Power Gem, Roar.
 
-- **Removed natural entries:** Head Smash.
-- **Removed machine flags:** Drain Punch, Headbutt, Ice Punch, Mud-Slap, Power Gem, Roar.
-- **Removed family egg entries:** Head Smash.
+- **Removed machine flags:** Drain Punch, Ice Punch, Mud-Slap, Power Gem, Roar.
 - **Added Blackthorn lessons:** Heavy Slam.
+- **Restored natural entries:** Head Smash.
+- **Restored machine flags:** Headbutt.
 
 ### Caterpie
 
@@ -720,34 +737,36 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Cut, Giga Impact, Ominous Wind, Razor Wind, Smokescreen, Stone Edge.
 
-**Removed:** Attract, Calm Mind, Fire Fang, Hyper Beam, Mean Look, Return, Strength.
+**Removed:** Attract, Calm Mind, Fire Fang, Hyper Beam, Return, Strength.
 
 - **Removed natural entries:** Fire Fang.
 - **Removed machine flags:** Attract, Hyper Beam, Return, Strength.
-- **Removed family egg entries:** Calm Mind, Mean Look, Swords Dance.
+- **Removed family egg entries:** Calm Mind, Swords Dance.
 - **Added Blackthorn lessons:** Cut, Giga Impact, Hex, Ominous Wind, Razor Wind, Smokescreen, Stone Edge.
 
 ### Cetitan
 
 **Added:** None.
 
-**Removed:** Attract, Freeze-Dry, Hammer Arm, Headbutt, Hidden Power, Return, Slack Off, Strength, Surf, Swagger, Toxic, Work Up.
+**Removed:** Attract, Freeze-Dry, Hidden Power, Return, Strength, Surf, Swagger, Toxic, Work Up.
 
-- **Removed natural entries:** Hammer Arm, Work Up.
-- **Removed machine flags:** Attract, Headbutt, Hidden Power, Return, Strength, Surf, Swagger, Toxic, Work Up.
-- **Removed family egg entries:** Slack Off.
+- **Removed natural entries:** Work Up.
+- **Removed machine flags:** Attract, Hidden Power, Return, Strength, Surf, Swagger, Toxic, Work Up.
 - **Removed fallback lessons:** Freeze-Dry.
+- **Restored natural entries:** Hammer Arm.
+- **Restored machine flags:** Headbutt.
 
 ### Cetoddle
 
 **Added:** None.
 
-**Removed:** Attract, Freeze-Dry, Headbutt, Hidden Power, Return, Slack Off, Strength, Surf, Swagger, Toxic, Work Up.
+**Removed:** Attract, Freeze-Dry, Hidden Power, Return, Strength, Surf, Swagger, Toxic, Work Up.
 
 - **Removed natural entries:** Work Up.
-- **Removed machine flags:** Attract, Headbutt, Hidden Power, Return, Strength, Surf, Swagger, Toxic, Work Up.
-- **Removed family egg entries:** Slack Off.
+- **Removed machine flags:** Attract, Hidden Power, Return, Strength, Surf, Swagger, Toxic, Work Up.
 - **Removed fallback lessons:** Freeze-Dry.
+- **Restored machine flags:** Headbutt.
+- **Restored family egg entries:** Slack Off.
 
 ### Chandelure
 
@@ -774,42 +793,43 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Ominous Wind, Smokescreen.
 
-**Removed:** Attract, Calm Mind, Curse, Fire Fang, Hex, Hidden Power, Mean Look, Return, Swagger, Swords Dance, Toxic.
+**Removed:** Attract, Calm Mind, Curse, Fire Fang, Hex, Hidden Power, Return, Swagger, Swords Dance, Toxic.
 
 - **Removed natural entries:** Fire Fang, Hex, Mean Look.
 - **Removed machine flags:** Attract, Curse, Hidden Power, Return, Swagger, Toxic.
-- **Removed family egg entries:** Calm Mind, Mean Look, Swords Dance.
+- **Removed family egg entries:** Calm Mind, Swords Dance.
 - **Added Blackthorn lessons:** Ominous Wind, Smokescreen.
+- **Restored family egg entries:** Mean Look.
 
 ### Charizard
 
 **Added:** Tackle.
 
-**Removed:** Draco Meteor, Drain Punch, Iron Head, Raging Fury.
+**Removed:** Drain Punch, Iron Head.
 
-- **Removed natural entries:** Draco Meteor, Raging Fury.
 - **Removed machine flags:** Drain Punch, Iron Head.
 - **Added Blackthorn lessons:** Tackle.
+- **Restored natural entries:** Draco Meteor, Raging Fury.
 
 ### Charizard (Clone)
 
 **Added:** Tackle.
 
-**Removed:** Draco Meteor, Drain Punch, Iron Head, Raging Fury.
+**Removed:** Drain Punch, Iron Head.
 
-- **Removed natural entries:** Draco Meteor, Raging Fury.
 - **Removed machine flags:** Drain Punch, Iron Head.
 - **Added Blackthorn lessons:** Tackle.
+- **Restored natural entries:** Draco Meteor, Raging Fury.
 
 ### Charjabug
 
 **Added:** None.
 
-**Removed:** Agility, Curse, Flash, Fury Cutter, Nuzzle, Signal Beam, Zap Cannon.
+**Removed:** Agility, Curse, Flash, Fury Cutter, Zap Cannon.
 
-- **Removed natural entries:** Nuzzle.
 - **Removed machine flags:** Curse, Flash, Fury Cutter, Zap Cannon.
 - **Removed family egg entries:** Agility.
+- **Restored natural entries:** Nuzzle.
 
 ### Charmander
 
@@ -900,28 +920,27 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Flip Turn, Frustration, Weather Ball, Whirlpool.
 
-**Removed:** Acid Armor, Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Rock Smash, Safeguard, Strength, Swagger, Thief.
+**Removed:** Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Rock Smash, Safeguard, Strength, Swagger, Thief.
 
 - **Removed machine flags:** Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Rock Smash, Strength, Swagger, Thief.
-- **Removed family egg entries:** Acid Armor, Safeguard.
+- **Removed family egg entries:** Safeguard.
 - **Added Blackthorn lessons:** Flip Turn, Frustration, Weather Ball, Whirlpool.
 
 ### Cloyster
 
 **Added:** None.
 
-**Removed:** Freeze-Dry.
+**Removed:** None.
 
-- **Removed natural entries:** Freeze-Dry.
+- **Restored natural entries:** Freeze-Dry.
 
 ### Conkeldurr
 
 **Added:** None.
 
-**Removed:** Body Press, Cross Chop.
+**Removed:** None.
 
-- **Removed natural entries:** Body Press.
-- **Removed family egg entries:** Cross Chop.
+- **Restored natural entries:** Body Press.
 
 ### Corsola
 
@@ -934,61 +953,60 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Frustration, Gust, Ominous Wind, Razor Wind, Slash.
 
-**Removed:** Cut, Mud-Slap, Pursuit, Sandstorm, Strength, Whirlwind.
+**Removed:** Cut, Mud-Slap, Sandstorm, Strength.
 
 - **Removed machine flags:** Cut, Mud-Slap, Sandstorm, Strength.
-- **Removed family egg entries:** Pursuit, Whirlwind.
 - **Added Blackthorn lessons:** Frustration, Gust, Ominous Wind, Razor Wind, Slash.
 
 ### Corvisquire
 
 **Added:** Frustration, Gust, Razor Wind, Slash.
 
-**Removed:** Curse, Mud-Slap, Pursuit, Steel Wing, Whirlwind.
+**Removed:** Curse, Mud-Slap.
 
-- **Removed machine flags:** Curse, Mud-Slap, Steel Wing.
-- **Removed family egg entries:** Pursuit, Whirlwind.
+- **Removed machine flags:** Curse, Mud-Slap.
 - **Added Blackthorn lessons:** Frustration, Gust, Razor Wind, Slash.
+- **Restored machine flags:** Steel Wing.
 
 ### Cradily
 
 **Added:** None.
 
-**Removed:** Leaf Storm, Power Gem, Stun Spore, Wood Hammer.
+**Removed:** Leaf Storm, Wood Hammer.
 
 - **Removed natural entries:** Leaf Storm, Wood Hammer.
-- **Removed machine flags:** Power Gem.
-- **Removed family egg entries:** Leech Seed, Stun Spore.
+- **Restored machine flags:** Power Gem.
 
 ### Cranidos
 
 **Added:** Bite, Seismic Toss, Tackle.
 
-**Removed:** Power Gem.
+**Removed:** None.
 
-- **Removed machine flags:** Power Gem.
 - **Added Blackthorn lessons:** Bite, Seismic Toss, Tackle.
+- **Restored machine flags:** Power Gem.
 
 ### Croagunk
 
 **Added:** Close Combat, Earth Power, Seismic Toss.
 
-**Removed:** Acid Armor, Curse, Force Palm.
+**Removed:** Acid Armor, Curse.
 
-- **Removed natural entries:** Acid Armor, Force Palm.
+- **Removed natural entries:** Acid Armor.
 - **Removed machine flags:** Curse.
 - **Removed family egg entries:** Acid Armor.
 - **Added Blackthorn lessons:** Close Combat, Earth Power, Seismic Toss.
+- **Restored natural entries:** Force Palm.
 
 ### Crobat
 
 **Added:** Flail, Knock Off, Night Slash.
 
-**Removed:** Energy Ball, Poison Jab.
+**Removed:** Energy Ball.
 
-- **Removed natural entries:** Poison Jab.
 - **Removed machine flags:** Energy Ball.
 - **Added Blackthorn lessons:** Flail, Knock Off, Night Slash.
+- **Restored natural entries:** Poison Jab.
 
 ### Croconaw
 
@@ -1032,11 +1050,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Dragon Dance.
 
-**Removed:** Curse, Dragon Claw, Fire Blast, Flamethrower, Knock Off, Night Slash, Scale Shot, Surf.
+**Removed:** Curse, Dragon Claw, Fire Blast, Flamethrower, Knock Off, Scale Shot, Surf.
 
 - **Removed natural entries:** Scale Shot.
-- **Removed machine flags:** Curse, Dragon Claw, Fire Blast, Flamethrower, Knock Off, Night Slash, Surf.
+- **Removed machine flags:** Curse, Dragon Claw, Fire Blast, Flamethrower, Knock Off, Surf.
 - **Added Blackthorn lessons:** Dragon Dance.
+- **Restored machine flags:** Night Slash.
 
 ### Delibird
 
@@ -1051,10 +1070,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Flail.
 
-**Removed:** Freeze-Dry.
+**Removed:** None.
 
-- **Removed natural entries:** Freeze-Dry.
 - **Added Blackthorn lessons:** Flail.
+- **Restored natural entries:** Freeze-Dry.
 
 ### Diglett
 
@@ -1094,24 +1113,25 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Drill Run, Dual Wingbeat.
+**Removed:** Dual Wingbeat.
 
-- **Removed natural entries:** Drill Run, Dual Wingbeat.
+- **Removed natural entries:** Dual Wingbeat.
+- **Restored natural entries:** Drill Run.
 
 ### Donphan
 
 **Added:** Absorb, Spikes.
 
-**Removed:** Drill Run.
+**Removed:** None.
 
-- **Removed natural entries:** Drill Run.
 - **Added Blackthorn lessons:** Absorb, Spikes.
+- **Restored natural entries:** Drill Run.
 
 ### Dragapult
 
 **Added:** Frustration, Shadow Claw.
 
-**Removed:** Crunch, Defog, Dual Wingbeat, Scale Shot, Taunt, Twister.
+**Removed:** Crunch, Defog, Dual Wingbeat, Taunt, Twister.
 
 - **Removed natural entries:** Crunch, Defog, Dual Wingbeat, Scale Shot.
 - **Removed family egg entries:** Taunt.
@@ -1138,12 +1158,13 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Frustration.
 
-**Removed:** Defog, Dragon Breath, Dragon Claw, Dual Wingbeat, Scale Shot, Swagger, Taunt, Twister.
+**Removed:** Defog, Dragon Claw, Dual Wingbeat, Swagger, Taunt, Twister.
 
-- **Removed natural entries:** Defog, Dragon Breath, Dual Wingbeat, Scale Shot.
+- **Removed natural entries:** Defog, Dual Wingbeat.
 - **Removed machine flags:** Dragon Claw, Swagger.
 - **Removed family egg entries:** Taunt.
 - **Added Blackthorn lessons:** Frustration.
+- **Restored natural entries:** Dragon Breath, Scale Shot.
 
 ### Dratini
 
@@ -1157,11 +1178,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Agility, Dragon Breath, Dragon Claw, Dragon Pulse, Dual Wingbeat, Fire Blast, Flamethrower, Hex, Hidden Power, Phantom Force, Return, Scale Shot, Shadow Ball, Swagger, Taunt, Thunderbolt, Twister, Will-O-Wisp.
+**Removed:** Agility, Dragon Claw, Dragon Pulse, Dual Wingbeat, Fire Blast, Flamethrower, Hex, Hidden Power, Return, Scale Shot, Shadow Ball, Swagger, Taunt, Thunderbolt, Twister, Will-O-Wisp.
 
-- **Removed natural entries:** Agility, Dragon Breath, Dual Wingbeat, Hex, Phantom Force, Scale Shot, Twister.
+- **Removed natural entries:** Agility, Dual Wingbeat, Hex, Scale Shot, Twister.
 - **Removed machine flags:** Dragon Claw, Dragon Pulse, Fire Blast, Flamethrower, Hidden Power, Return, Shadow Ball, Swagger, Thunderbolt, Will-O-Wisp.
 - **Removed family egg entries:** Taunt.
+- **Restored natural entries:** Dragon Breath, Phantom Force.
 
 ### Drifblim
 
@@ -1204,11 +1226,13 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Dazzling Gleam, Draco Meteor, Fury Attack, Horn Drill.
 
-**Removed:** Cross Poison, Dragon Breath, Dragon Claw, Foul Play, Iron Head, Swift, Work Up.
+**Removed:** Cross Poison, Foul Play, Iron Head, Swift, Work Up.
 
-- **Removed natural entries:** Cross Poison, Dragon Breath, Foul Play, Work Up.
-- **Removed machine flags:** Dragon Claw, Iron Head, Swift, Work Up.
+- **Removed natural entries:** Cross Poison, Foul Play, Work Up.
+- **Removed machine flags:** Iron Head, Swift, Work Up.
 - **Added Blackthorn lessons:** Dazzling Gleam, Draco Meteor, Fury Attack, Horn Drill.
+- **Restored natural entries:** Dragon Breath.
+- **Restored machine flags:** Dragon Claw.
 
 ### Dugtrio
 
@@ -1223,11 +1247,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Draco Meteor, Fury Attack, Horn Drill.
 
-**Removed:** Dragon Breath, Iron Head, Work Up.
+**Removed:** Iron Head, Work Up.
 
-- **Removed natural entries:** Dragon Breath, Work Up.
+- **Removed natural entries:** Work Up.
 - **Removed machine flags:** Iron Head, Work Up.
 - **Added Blackthorn lessons:** Draco Meteor, Fury Attack, Horn Drill.
+- **Restored natural entries:** Dragon Breath.
 
 ### Duraludon
 
@@ -1242,19 +1267,19 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Absorb.
 
-**Removed:** Shadow Claw.
+**Removed:** None.
 
-- **Removed natural entries:** Shadow Claw.
 - **Added Blackthorn lessons:** Absorb.
+- **Restored natural entries:** Shadow Claw.
 
 ### Dusknoir
 
 **Added:** Absorb, Drain Punch.
 
-**Removed:** Shadow Claw.
+**Removed:** None.
 
-- **Removed natural entries:** Shadow Claw.
 - **Added Blackthorn lessons:** Absorb, Drain Punch.
+- **Restored natural entries:** Shadow Claw.
 
 ### Duskull
 
@@ -1501,7 +1526,7 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 **Removed:** Curse.
 
 - **Removed machine flags:** Curse.
-- **Removed family egg entries:** Roost, U-turn.
+- **Removed family egg entries:** Roost.
 - **Added Blackthorn lessons:** Hurricane, Hyper Voice, Quiver Dance, Roost, U-turn.
 
 ### Forretress
@@ -1524,21 +1549,22 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Attract, Curse, Double-Edge, Earthquake, Hidden Power, Ice Shard, Iron Head, Mist, Return, Scale Shot, Swagger, Toxic.
+**Removed:** Attract, Curse, Double-Edge, Earthquake, Hidden Power, Iron Head, Mist, Return, Scale Shot, Swagger, Toxic.
 
 - **Removed natural entries:** Scale Shot.
 - **Removed machine flags:** Attract, Curse, Earthquake, Hidden Power, Iron Head, Return, Swagger, Toxic.
-- **Removed family egg entries:** Double-Edge, Ice Shard, Mist.
+- **Removed family egg entries:** Double-Edge, Mist.
+- **Restored family egg entries:** Ice Shard.
 
 ### Froslass
 
 **Added:** Nasty Plot, Petal Dance.
 
-**Removed:** Freeze-Dry.
+**Removed:** None.
 
-- **Removed natural entries:** Freeze-Dry.
 - **Removed family egg entries:** Confuse Ray, Destiny Bond.
 - **Added Blackthorn lessons:** Nasty Plot, Petal Dance.
+- **Restored natural entries:** Freeze-Dry.
 
 ### Furret
 
@@ -1583,11 +1609,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Double Team, Flame Charge, Frustration, Heat Crash, Heat Wave, Overheat, Solar Beam.
 
-**Removed:** Curse, Headbutt, Incinerate, Iron Head, Moonblast.
+**Removed:** Curse, Headbutt, Incinerate, Iron Head.
 
-- **Removed natural entries:** Incinerate, Moonblast.
+- **Removed natural entries:** Incinerate.
 - **Removed machine flags:** Curse, Headbutt, Iron Head.
 - **Added Blackthorn lessons:** Double Team, Flame Charge, Frustration, Heat Crash, Heat Wave, Overheat, Solar Beam.
+- **Restored natural entries:** Moonblast.
 
 ### Galarian Slowbro
 
@@ -1631,21 +1658,21 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Comet Punch, Focus Energy, Ice Beam, Razor Wind, Seismic Toss.
 
-**Removed:** Circle Throw, Curse, Force Palm.
+**Removed:** Curse.
 
-- **Removed natural entries:** Circle Throw, Force Palm.
 - **Removed machine flags:** Curse.
 - **Added Blackthorn lessons:** Comet Punch, Focus Energy, Ice Beam, Razor Wind, Seismic Toss.
+- **Restored natural entries:** Circle Throw, Force Palm.
 
 ### Galvantula
 
 **Added:** None.
 
-**Removed:** Curse, Nuzzle, Spark, Sunny Day, Thunder Shock, Zap Cannon.
+**Removed:** Curse, Sunny Day, Thunder Shock, Zap Cannon.
 
-- **Removed natural entries:** Nuzzle, Thunder Shock.
+- **Removed natural entries:** Thunder Shock.
 - **Removed machine flags:** Curse, Sunny Day, Zap Cannon.
-- **Removed family egg entries:** Sticky Web.
+- **Restored natural entries:** Nuzzle.
 
 ### Gardevoir
 
@@ -1707,11 +1734,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Bug Buzz.
 
-**Removed:** Bounce, Drill Run, Iron Head.
+**Removed:** Bounce, Iron Head.
 
-- **Removed natural entries:** Bounce, Drill Run.
+- **Removed natural entries:** Bounce.
 - **Removed machine flags:** Iron Head.
 - **Added Blackthorn lessons:** Bug Buzz.
+- **Restored natural entries:** Drill Run.
 
 ### Glimmet
 
@@ -1727,22 +1755,23 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Attract, Curse, Head Smash, Hidden Power, Return, Rock Smash, Swagger.
+**Removed:** Attract, Curse, Hidden Power, Return, Rock Smash, Swagger.
 
 - **Removed machine flags:** Attract, Curse, Hidden Power, Return, Rock Smash, Swagger.
 - **Removed family egg entries:** Earth Power, Mortal Spin.
-- **Removed fallback lessons:** Head Smash.
 - **Added Blackthorn lessons:** Earth Power.
+- **Restored Blackthorn lessons:** Head Smash.
 
 ### Gliscor
 
 **Added:** Bug Buzz, Pin Missile.
 
-**Removed:** Bounce, Drill Run, Iron Head.
+**Removed:** Bounce, Iron Head.
 
-- **Removed natural entries:** Bounce, Drill Run.
+- **Removed natural entries:** Bounce.
 - **Removed machine flags:** Iron Head.
 - **Added Blackthorn lessons:** Bug Buzz, Pin Missile.
+- **Restored natural entries:** Drill Run.
 
 ### Gloom
 
@@ -1755,11 +1784,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Flail, Hurricane, Sky Attack, X-Scissor.
 
-**Removed:** Energy Ball, Poison Jab.
+**Removed:** Energy Ball.
 
-- **Removed natural entries:** Poison Jab.
 - **Removed machine flags:** Energy Ball.
 - **Added Blackthorn lessons:** Flail, Hurricane, Sky Attack, X-Scissor.
+- **Restored natural entries:** Poison Jab.
 
 ### Goldeen
 
@@ -1782,41 +1811,40 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Rapid Spin, Spikes, Wild Charge.
 
-**Removed:** Drain Punch, Head Smash, Screech.
+**Removed:** Drain Punch, Screech.
 
-- **Removed natural entries:** Head Smash.
 - **Removed machine flags:** Drain Punch.
 - **Removed family egg entries:** Screech.
 - **Added Blackthorn lessons:** Rapid Spin, Spikes, Wild Charge.
+- **Restored natural entries:** Head Smash.
 
 ### Golett
 
 **Added:** Comet Punch, Harden, Headlong Rush, Iron Head, Tackle.
 
-**Removed:** Will-O-Wisp.
+**Removed:** None.
 
-- **Removed machine flags:** Will-O-Wisp.
 - **Added Blackthorn lessons:** Comet Punch, Harden, Headlong Rush, Iron Head, Tackle.
+- **Restored machine flags:** Will-O-Wisp.
 
 ### Golisopod
 
 **Added:** Agility, Cut, Gunk Shot, Night Slash, Stone Edge, U-turn.
 
-**Removed:** Aqua Tail, Bubble, Curse, Low Sweep, Strength, Superpower, Whirlpool.
+**Removed:** Bubble, Curse, Low Sweep, Strength, Whirlpool.
 
 - **Removed natural entries:** Low Sweep.
 - **Removed machine flags:** Curse, Strength, Whirlpool.
-- **Removed family egg entries:** Aqua Tail, Superpower.
 - **Added Blackthorn lessons:** Agility, Cut, Gunk Shot, Night Slash, Stone Edge, U-turn.
 
 ### Golurk
 
 **Added:** Comet Punch, Fissure, Harden, Headlong Rush, Iron Head, Skull Bash, Tackle.
 
-**Removed:** Will-O-Wisp.
+**Removed:** None.
 
-- **Removed machine flags:** Will-O-Wisp.
 - **Added Blackthorn lessons:** Comet Punch, Fissure, Harden, Headlong Rush, Iron Head, Skull Bash, Tackle.
+- **Restored machine flags:** Will-O-Wisp.
 
 ### Gorochu
 
@@ -1863,12 +1891,13 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Frustration.
 
-**Removed:** Charm, Circle Throw, Curse, Disarming Voice, Encore, Force Palm, Knock Off, Mean Look, Night Slash, Strength, Sweet Kiss.
+**Removed:** Circle Throw, Curse, Disarming Voice, Encore, Force Palm, Strength, Sweet Kiss.
 
 - **Removed natural entries:** Circle Throw, Force Palm.
-- **Removed machine flags:** Curse, Knock Off, Night Slash, Strength.
-- **Removed family egg entries:** Charm, Encore, Mean Look.
+- **Removed machine flags:** Curse, Strength.
+- **Removed family egg entries:** Encore.
 - **Added Blackthorn lessons:** Frustration.
+- **Restored machine flags:** Knock Off, Night Slash.
 
 ### Growlithe
 
@@ -1882,11 +1911,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Agility, Curse, Fury Cutter, Nuzzle, Signal Beam.
+**Removed:** Agility, Curse, Fury Cutter, Nuzzle.
 
-- **Removed natural entries:** Nuzzle, Signal Beam.
+- **Removed natural entries:** Nuzzle.
 - **Removed machine flags:** Curse, Fury Cutter.
 - **Removed family egg entries:** Agility.
+- **Restored natural entries:** Signal Beam.
 
 ### Grumpig
 
@@ -1903,11 +1933,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Rock Blast.
 
-**Removed:** Body Press, Cross Chop.
+**Removed:** None.
 
-- **Removed natural entries:** Body Press.
-- **Removed family egg entries:** Cross Chop.
 - **Added Blackthorn lessons:** Rock Blast.
+- **Restored natural entries:** Body Press.
 
 ### Gyarados
 
@@ -1948,21 +1977,23 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Calm Mind, Mud Shot, Outrage, Skull Bash, Slash.
 
-**Removed:** Feint Attack, Hammer Arm, Low Sweep, Superpower.
+**Removed:** Feint Attack, Low Sweep.
 
-- **Removed natural entries:** Hammer Arm, Low Sweep, Superpower.
+- **Removed natural entries:** Low Sweep.
 - **Removed family egg entries:** Feint Attack.
 - **Added Blackthorn lessons:** Calm Mind, Mud Shot, Outrage, Skull Bash, Slash.
+- **Restored natural entries:** Hammer Arm, Superpower.
 
 ### Hisuian Arcanine
 
 **Added:** Ancient Power, Double Team, Flash Cannon, Frustration, Iron Tail, Mud-Slap, Snore.
 
-**Removed:** Crush Claw, Curse, Headbutt, Incinerate.
+**Removed:** Crush Claw, Curse, Incinerate.
 
 - **Removed natural entries:** Crush Claw.
-- **Removed machine flags:** Curse, Headbutt.
+- **Removed machine flags:** Curse.
 - **Added Blackthorn lessons:** Ancient Power, Double Team, Flash Cannon, Frustration, Iron Tail, Mud-Slap, Snore.
+- **Restored machine flags:** Headbutt.
 
 ### Hisuian Electrode
 
@@ -1977,30 +2008,32 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Aerial Ace, Ancient Power, Bulldoze, Double Team, Flash Cannon, Frustration, Iron Tail, Mud-Slap, Snarl, Snore.
 
-**Removed:** Curse, Headbutt, Incinerate, Iron Head.
+**Removed:** Curse, Incinerate, Iron Head.
 
 - **Removed natural entries:** Incinerate.
-- **Removed machine flags:** Curse, Headbutt, Iron Head.
+- **Removed machine flags:** Curse, Iron Head.
 - **Added Blackthorn lessons:** Aerial Ace, Ancient Power, Bulldoze, Double Team, Flash Cannon, Frustration, Iron Tail, Mud-Slap, Snarl, Snore.
+- **Restored machine flags:** Headbutt.
 
 ### Hisuian Sneasel
 
 **Added:** Bulldoze, Crush Claw, Dark Pulse, Foresight, Frustration, Fury Cutter, Hail, Iron Tail, Knock Off, Mud-Slap, Psych Up, Seismic Toss, Snore, Sucker Punch, Superpower, Thunder Punch, Torment.
 
-**Removed:** Curse, Headbutt, Iron Head, Pursuit, Surf, Whirlpool.
+**Removed:** Curse, Headbutt, Iron Head, Surf, Whirlpool.
 
 - **Removed machine flags:** Curse, Headbutt, Iron Head, Surf, Whirlpool.
-- **Removed family egg entries:** Pursuit.
 - **Added Blackthorn lessons:** Bulldoze, Crush Claw, Dark Pulse, Foresight, Frustration, Fury Cutter, Hail, Iron Tail, Knock Off, Mud-Slap, Psych Up, Seismic Toss, Snore, Sucker Punch, Superpower, Thunder Punch, Torment.
+- **Restored family egg entries:** Pursuit.
 
 ### Hisuian Typhlosion
 
 **Added:** Seismic Toss, Thunderbolt.
 
-**Removed:** Phantom Force, Raging Fury.
+**Removed:** Raging Fury.
 
-- **Removed natural entries:** Phantom Force, Raging Fury.
+- **Removed natural entries:** Raging Fury.
 - **Added Blackthorn lessons:** Seismic Toss, Thunderbolt.
+- **Restored natural entries:** Phantom Force.
 
 ### Hisuian Voltorb
 
@@ -2015,28 +2048,28 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Force Palm, Hammer Arm.
+**Removed:** None.
 
-- **Removed natural entries:** Force Palm, Hammer Arm.
+- **Restored natural entries:** Force Palm, Hammer Arm.
 
 ### Hitmonlee
 
 **Added:** Dizzy Punch.
 
-**Removed:** Circle Throw, Drain Punch.
+**Removed:** Circle Throw.
 
 - **Removed natural entries:** Circle Throw.
-- **Removed machine flags:** Drain Punch.
 - **Added Blackthorn lessons:** Dizzy Punch.
+- **Restored machine flags:** Drain Punch.
 
 ### Hitmontop
 
 **Added:** Dizzy Punch, Rage.
 
-**Removed:** Body Press, Circle Throw.
+**Removed:** None.
 
-- **Removed natural entries:** Body Press, Circle Throw.
 - **Added Blackthorn lessons:** Dizzy Punch, Rage.
+- **Restored natural entries:** Body Press, Circle Throw.
 
 ### Ho-Oh
 
@@ -2050,10 +2083,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Beat Up, Drill Run.
 
-**Removed:** Knock Off, Strength.
+**Removed:** Strength.
 
-- **Removed machine flags:** Knock Off, Strength.
+- **Removed machine flags:** Strength.
 - **Added Blackthorn lessons:** Beat Up, Drill Run.
+- **Restored machine flags:** Knock Off.
 
 ### Hoothoot
 
@@ -2082,11 +2116,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Tackle.
 
-**Removed:** Iron Head, Raging Fury.
+**Removed:** Iron Head.
 
-- **Removed natural entries:** Raging Fury.
 - **Removed machine flags:** Iron Head.
 - **Added Blackthorn lessons:** Tackle.
+- **Restored natural entries:** Raging Fury.
 
 ### Houndour
 
@@ -2113,10 +2147,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Curse, Dragon Claw, Foul Play, Knock Off, Night Slash.
+**Removed:** Curse, Knock Off.
 
-- **Removed natural entries:** Foul Play.
-- **Removed machine flags:** Curse, Dragon Claw, Knock Off, Night Slash.
+- **Removed machine flags:** Curse, Knock Off.
+- **Restored natural entries:** Foul Play.
+- **Restored machine flags:** Dragon Claw, Night Slash.
 
 ### Hypno
 
@@ -2139,12 +2174,15 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Frustration.
 
-**Removed:** Charm, Curse, Disarming Voice, Encore, Fire Punch, Ice Punch, Knock Off, Low Sweep, Mean Look, Snarl, Sweet Kiss, Thunder Punch.
+**Removed:** Curse, Disarming Voice, Encore, Fire Punch, Ice Punch, Low Sweep, Sweet Kiss, Thunder Punch.
 
-- **Removed natural entries:** Charm, Disarming Voice, Encore, Low Sweep, Mean Look, Snarl, Sweet Kiss.
-- **Removed machine flags:** Curse, Fire Punch, Ice Punch, Knock Off, Thunder Punch.
-- **Removed family egg entries:** Charm, Encore, Mean Look.
+- **Removed natural entries:** Disarming Voice, Encore, Low Sweep, Sweet Kiss.
+- **Removed machine flags:** Curse, Fire Punch, Ice Punch, Thunder Punch.
+- **Removed family egg entries:** Encore.
 - **Added Blackthorn lessons:** Frustration.
+- **Restored natural entries:** Charm, Mean Look, Snarl.
+- **Restored machine flags:** Knock Off.
+- **Restored family egg entries:** Charm, Mean Look.
 
 ### Ivysaur
 
@@ -2192,11 +2230,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Curse, Nuzzle, Spark, Sticky Web, Sunny Day, Thunder Shock, Zap Cannon.
+**Removed:** Curse, Sunny Day, Thunder Shock, Zap Cannon.
 
-- **Removed natural entries:** Nuzzle, Spark, Thunder Shock.
+- **Removed natural entries:** Thunder Shock.
 - **Removed machine flags:** Curse, Sunny Day, Zap Cannon.
-- **Removed family egg entries:** Sticky Web.
+- **Restored natural entries:** Nuzzle, Spark.
+- **Restored family egg entries:** Sticky Web.
 
 ### Jumpluff
 
@@ -2260,11 +2299,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Body Press, Curse, Earthquake, Focus Energy, Hammer Arm, Sacred Sword, Strength, Superpower.
+**Removed:** Body Press, Curse, Earthquake, Focus Energy, Hammer Arm, Strength.
 
-- **Removed natural entries:** Body Press, Hammer Arm, Sacred Sword.
+- **Removed natural entries:** Body Press, Hammer Arm.
 - **Removed machine flags:** Curse, Earthquake, Strength.
-- **Removed family egg entries:** Focus Energy, Superpower.
+- **Removed family egg entries:** Focus Energy.
+- **Restored natural entries:** Sacred Sword.
 
 ### Kingdra
 
@@ -2330,21 +2370,23 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Tackle.
 
-**Removed:** Night Slash, Scratch, Swift, Work Up.
+**Removed:** Scratch, Swift, Work Up.
 
 - **Removed natural entries:** Scratch.
-- **Removed machine flags:** Night Slash, Swift, Work Up.
+- **Removed machine flags:** Swift, Work Up.
 - **Added Blackthorn lessons:** Tackle.
+- **Restored machine flags:** Night Slash.
 
 ### Krookodile
 
 **Added:** Fissure, Iron Head, Tackle.
 
-**Removed:** Night Slash, Scratch, Swift, Work Up.
+**Removed:** Scratch, Swift, Work Up.
 
 - **Removed natural entries:** Scratch.
-- **Removed machine flags:** Night Slash, Swift, Work Up.
+- **Removed machine flags:** Swift, Work Up.
 - **Added Blackthorn lessons:** Fissure, Iron Head, Tackle.
+- **Restored machine flags:** Night Slash.
 
 ### Lairon
 
@@ -2369,11 +2411,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Light Screen.
 
-**Removed:** Flash Cannon, Nuzzle, Tail Glow.
+**Removed:** Flash Cannon, Nuzzle.
 
-- **Removed natural entries:** Nuzzle, Tail Glow.
+- **Removed natural entries:** Nuzzle.
 - **Removed fallback lessons:** Flash Cannon.
 - **Added Blackthorn lessons:** Light Screen.
+- **Restored natural entries:** Tail Glow.
 
 ### Lapras
 
@@ -2413,20 +2456,22 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Barrier, Fly.
 
-**Removed:** Energy Ball, Fury Cutter, Quiver Dance, Rock Tomb, Signal Beam.
+**Removed:** Energy Ball, Quiver Dance, Rock Tomb, Signal Beam.
 
-- **Removed machine flags:** Energy Ball, Fury Cutter, Rock Tomb.
+- **Removed machine flags:** Energy Ball, Rock Tomb.
 - **Removed fallback lessons:** Quiver Dance, Signal Beam.
 - **Added Blackthorn lessons:** Barrier, Fly.
+- **Restored machine flags:** Fury Cutter.
 
 ### Ledyba
 
 **Added:** Barrier, Dual Wingbeat.
 
-**Removed:** Energy Ball, Fury Cutter, Rock Tomb.
+**Removed:** Energy Ball, Rock Tomb.
 
-- **Removed machine flags:** Energy Ball, Fury Cutter, Rock Tomb.
+- **Removed machine flags:** Energy Ball, Rock Tomb.
 - **Added Blackthorn lessons:** Barrier, Dual Wingbeat.
+- **Restored machine flags:** Fury Cutter.
 
 ### Lickilicky
 
@@ -2450,10 +2495,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Earthquake, Leech Seed, Power Gem, Rock Smash, Stun Spore.
+**Removed:** Earthquake, Rock Smash.
 
-- **Removed machine flags:** Earthquake, Power Gem, Rock Smash.
-- **Removed family egg entries:** Leech Seed, Stun Spore.
+- **Removed machine flags:** Earthquake, Rock Smash.
+- **Restored machine flags:** Power Gem.
+- **Restored family egg entries:** Leech Seed, Stun Spore.
 
 ### Litwick
 
@@ -2478,12 +2524,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Comet Punch, Cotton Guard, Double-Edge, Draining Kiss, Dynamic Punch, Mach Punch, Seismic Toss, Swords Dance, Tackle.
 
-**Removed:** Brick Break, Bulk Up, Curse, Karate Chop.
+**Removed:** Curse.
 
-- **Removed natural entries:** Brick Break.
-- **Removed machine flags:** Bulk Up, Curse.
-- **Removed family egg entries:** Karate Chop.
+- **Removed machine flags:** Curse.
 - **Added Blackthorn lessons:** Comet Punch, Cotton Guard, Double-Edge, Draining Kiss, Dynamic Punch, Mach Punch, Seismic Toss, Swords Dance, Tackle.
+- **Restored natural entries:** Brick Break.
+- **Restored machine flags:** Bulk Up.
 
 ### Lotad
 
@@ -2498,11 +2544,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Mach Punch, Seismic Toss.
 
-**Removed:** Curse, Iron Head, Sacred Sword.
+**Removed:** Curse.
 
-- **Removed natural entries:** Sacred Sword.
-- **Removed machine flags:** Curse, Iron Head.
+- **Removed machine flags:** Curse.
 - **Added Blackthorn lessons:** Mach Punch, Seismic Toss.
+- **Restored natural entries:** Sacred Sword.
+- **Restored machine flags:** Iron Head.
 
 ### Ludicolo
 
@@ -2526,28 +2573,29 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
 
-**Removed:** Body Press, Circle Throw, Force Palm, Hammer Arm.
+**Removed:** Body Press.
 
-- **Removed natural entries:** Body Press, Circle Throw, Force Palm, Hammer Arm.
+- **Removed natural entries:** Body Press.
 - **Added Blackthorn lessons:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
+- **Restored natural entries:** Circle Throw, Force Palm, Hammer Arm.
 
 ### Machoke
 
 **Added:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
 
-**Removed:** Circle Throw, Force Palm.
+**Removed:** None.
 
-- **Removed natural entries:** Circle Throw, Force Palm.
 - **Added Blackthorn lessons:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
+- **Restored natural entries:** Circle Throw, Force Palm.
 
 ### Machop
 
 **Added:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
 
-**Removed:** Force Palm.
+**Removed:** None.
 
-- **Removed natural entries:** Force Palm.
 - **Added Blackthorn lessons:** Comet Punch, False Swipe, Mach Punch, Tackle, Thrash.
+- **Restored natural entries:** Force Palm.
 
 ### Magby
 
@@ -2586,30 +2634,29 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Armor Cannon, Dizzy Punch, Dragon Pulse, Poison Gas, Scald, Tackle, Zap Cannon.
 
-**Removed:** Drain Punch, Iron Head, Raging Fury.
+**Removed:** Drain Punch, Iron Head.
 
-- **Removed natural entries:** Raging Fury.
 - **Removed machine flags:** Drain Punch, Iron Head.
 - **Added Blackthorn lessons:** Armor Cannon, Dizzy Punch, Dragon Pulse, Poison Gas, Scald, Tackle, Zap Cannon.
+- **Restored natural entries:** Raging Fury.
 
 ### Magnemite
 
 **Added:** Agility, Bug Buzz.
 
-**Removed:** Mirror Coat, Rock Tomb.
+**Removed:** Rock Tomb.
 
 - **Removed machine flags:** Rock Tomb.
-- **Removed family egg entries:** Mirror Coat.
 - **Added Blackthorn lessons:** Agility, Bug Buzz.
+- **Restored family egg entries:** Mirror Coat.
 
 ### Magneton
 
 **Added:** Agility, Bug Buzz.
 
-**Removed:** Mirror Coat, Rock Tomb.
+**Removed:** Rock Tomb.
 
 - **Removed machine flags:** Rock Tomb.
-- **Removed family egg entries:** Mirror Coat.
 - **Added Blackthorn lessons:** Agility, Bug Buzz.
 
 ### Magnezone
@@ -2619,7 +2666,6 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 **Removed:** Rock Tomb.
 
 - **Removed machine flags:** Rock Tomb.
-- **Removed family egg entries:** Mirror Coat.
 - **Added Blackthorn lessons:** Agility, Bug Buzz.
 
 ### Mamoswine
@@ -2665,11 +2711,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Baneful Bunker, Cross Poison, Curse, Sludge, Spikes, Waterfall, Whirlpool.
+**Removed:** Curse, Sludge, Waterfall, Whirlpool.
 
-- **Removed natural entries:** Baneful Bunker, Cross Poison.
 - **Removed machine flags:** Curse, Waterfall, Whirlpool.
-- **Removed family egg entries:** Sludge, Spikes.
+- **Removed family egg entries:** Sludge.
+- **Restored natural entries:** Baneful Bunker, Cross Poison.
+- **Restored family egg entries:** Spikes.
 
 ### Mareep
 
@@ -2715,11 +2762,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Dazzling Gleam, Disarming Voice, Leaf Blade, Play Rough, Tail Whip.
 
-**Removed:** Iron Head, Mega Drain, Wood Hammer.
+**Removed:** Iron Head, Mega Drain.
 
-- **Removed natural entries:** Mega Drain, Wood Hammer.
+- **Removed natural entries:** Mega Drain.
 - **Removed machine flags:** Iron Head.
 - **Added Blackthorn lessons:** Dazzling Gleam, Disarming Voice, Leaf Blade, Play Rough, Tail Whip.
+- **Restored natural entries:** Wood Hammer.
 
 ### Meowth
 
@@ -2794,30 +2842,31 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Tackle.
 
-**Removed:** Flash, Foul Play, Headbutt, Snarl, Strength, Sucker Punch.
+**Removed:** Flash, Headbutt, Snarl, Strength.
 
-- **Removed natural entries:** Foul Play, Snarl.
+- **Removed natural entries:** Snarl.
 - **Removed machine flags:** Flash, Headbutt, Strength.
-- **Removed family egg entries:** Sucker Punch.
 - **Added Blackthorn lessons:** Tackle.
+- **Restored natural entries:** Foul Play.
+- **Restored family egg entries:** Sucker Punch.
 
 ### Misdreavus
 
 **Added:** Extrasensory.
 
-**Removed:** Fairy Wind.
+**Removed:** None.
 
-- **Removed natural entries:** Fairy Wind.
 - **Added Blackthorn lessons:** Extrasensory.
+- **Restored natural entries:** Fairy Wind.
 
 ### Mismagius
 
 **Added:** Extrasensory.
 
-**Removed:** Fairy Wind.
+**Removed:** None.
 
-- **Removed natural entries:** Fairy Wind.
 - **Added Blackthorn lessons:** Extrasensory.
+- **Restored natural entries:** Fairy Wind.
 
 ### Moltres
 
@@ -2830,12 +2879,14 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Frustration.
 
-**Removed:** Charm, Curse, Disarming Voice, Encore, Fire Punch, Ice Punch, Knock Off, Low Sweep, Mean Look, Snarl, Sweet Kiss, Thunder Punch.
+**Removed:** Curse, Disarming Voice, Encore, Fire Punch, Ice Punch, Low Sweep, Sweet Kiss, Thunder Punch.
 
-- **Removed natural entries:** Disarming Voice, Low Sweep, Snarl, Sweet Kiss.
-- **Removed machine flags:** Curse, Fire Punch, Ice Punch, Knock Off, Thunder Punch.
-- **Removed family egg entries:** Charm, Encore, Mean Look.
+- **Removed natural entries:** Disarming Voice, Low Sweep, Sweet Kiss.
+- **Removed machine flags:** Curse, Fire Punch, Ice Punch, Thunder Punch.
+- **Removed family egg entries:** Encore.
 - **Added Blackthorn lessons:** Frustration.
+- **Restored natural entries:** Snarl.
+- **Restored machine flags:** Knock Off.
 
 ### Mr. Mime
 
@@ -2861,10 +2912,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Cross Poison, Energy Ball.
+**Removed:** Energy Ball.
 
-- **Removed natural entries:** Cross Poison.
 - **Removed machine flags:** Energy Ball.
+- **Restored natural entries:** Cross Poison.
 
 ### Munchlax
 
@@ -3024,63 +3075,68 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Sharpen.
 
-**Removed:** Iron Defense, Mud Shot.
+**Removed:** Mud Shot.
 
-- **Removed natural entries:** Iron Defense, Mud Shot.
+- **Removed natural entries:** Mud Shot.
 - **Added Blackthorn lessons:** Sharpen.
+- **Restored natural entries:** Iron Defense.
 
 ### Overqwil
 
 **Added:** Mortal Spin, Rock Slide.
 
-**Removed:** Cross Poison, Knock Off, Rock Tomb, Strength, Thief.
+**Removed:** Rock Tomb, Strength, Thief.
 
-- **Removed natural entries:** Cross Poison.
-- **Removed machine flags:** Headbutt, Knock Off, Rock Tomb, Strength, Thief, Whirlpool.
+- **Removed machine flags:** Headbutt, Rock Tomb, Strength, Thief, Whirlpool.
 - **Added Blackthorn lessons:** Bounce, Double Team, Frustration, Hail, Mortal Spin, Rock Slide, Scald, Snore.
+- **Restored natural entries:** Cross Poison.
+- **Restored machine flags:** Knock Off.
 
 ### Palafin
 
 **Added:** None.
 
-**Removed:** Attract, Brick Break, Circle Throw, Cross Chop, Curse, Dig, Double Slap, Earthquake, Fake Out, Fire Punch, Force Palm, Hammer Arm, Headbutt, Hidden Power, Low Sweep, Mach Punch, Mud-Slap, Play Rough, Return, Rock Smash, Strength, Super Fang, Superpower, Swagger, Tackle, Thief, Thunder Punch, Toxic, Work Up.
+**Removed:** Attract, Circle Throw, Curse, Dig, Double Slap, Earthquake, Fake Out, Fire Punch, Force Palm, Hammer Arm, Headbutt, Hidden Power, Low Sweep, Mud-Slap, Play Rough, Return, Rock Smash, Strength, Super Fang, Swagger, Tackle, Thief, Thunder Punch, Toxic, Work Up.
 
-- **Removed natural entries:** Brick Break, Circle Throw, Cross Chop, Force Palm, Hammer Arm, Low Sweep, Mach Punch, Superpower, Tackle, Work Up.
+- **Removed natural entries:** Circle Throw, Force Palm, Hammer Arm, Low Sweep, Tackle, Work Up.
 - **Removed machine flags:** Attract, Curse, Dig, Earthquake, Fire Punch, Headbutt, Hidden Power, Mud-Slap, Return, Rock Smash, Strength, Swagger, Thief, Thunder Punch, Toxic, Work Up.
 - **Removed family egg entries:** Fake Out, Super Fang.
+- **Restored natural entries:** Brick Break, Cross Chop, Mach Punch, Superpower.
 
 ### Paldean Aqua Tauros
 
 **Added:** Aerial Ace, Avalanche, Bullet Seed, Frustration, Iron Tail, Light Screen, Low Sweep, Reflect, Scald, Taunt.
 
-**Removed:** Attract, Blizzard, Drain Punch, Horn Attack, Ice Beam.
+**Removed:** Attract, Blizzard, Drain Punch, Ice Beam.
 
-- **Removed natural entries:** Horn Attack.
 - **Removed machine flags:** Attract, Blizzard, Drain Punch, Ice Beam.
-- **Removed family egg entries:** Horn Attack.
 - **Added Blackthorn lessons:** Aerial Ace, Avalanche, Bullet Seed, Frustration, Iron Tail, Light Screen, Low Sweep, Reflect, Scald, Taunt.
+- **Restored natural entries:** Horn Attack.
+- **Restored family egg entries:** Horn Attack.
 
 ### Paldean Blaze Tauros
 
 **Added:** Aerial Ace, Bullet Seed, Frustration, Heat Crash, Iron Tail, Light Screen, Low Sweep, Reflect, Taunt.
 
-**Removed:** Aqua Jet, Attract, Drain Punch, Flame Wheel, Heat Wave, Hidden Power, Horn Attack, Raging Fury, Solar Beam.
+**Removed:** Aqua Jet, Attract, Drain Punch, Heat Wave, Hidden Power, Horn Attack, Solar Beam.
 
-- **Removed natural entries:** Flame Wheel, Horn Attack, Raging Fury.
+- **Removed natural entries:** Horn Attack.
 - **Removed machine flags:** Attract, Drain Punch, Hidden Power, Solar Beam.
 - **Removed family egg entries:** Horn Attack.
 - **Removed fallback lessons:** Aqua Jet, Heat Wave.
 - **Added Blackthorn lessons:** Aerial Ace, Bullet Seed, Frustration, Heat Crash, Iron Tail, Light Screen, Low Sweep, Reflect, Taunt.
+- **Restored natural entries:** Flame Wheel, Raging Fury.
 
 ### Paldean Wooper
 
 **Added:** Flip Turn, Frustration, Weather Ball, Whirlpool.
 
-**Removed:** Acid Armor, Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Iron Head, Rock Smash, Safeguard, Swagger.
+**Removed:** Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Iron Head, Rock Smash, Safeguard, Swagger.
 
 - **Removed machine flags:** Attract, Blizzard, Drain Punch, Flash, Headbutt, Ice Beam, Ice Punch, Iron Head, Rock Smash, Swagger.
-- **Removed family egg entries:** Acid Armor, Safeguard.
+- **Removed family egg entries:** Safeguard.
 - **Added Blackthorn lessons:** Flip Turn, Frustration, Weather Ball, Whirlpool.
+- **Restored family egg entries:** Acid Armor.
 
 ### Paras
 
@@ -3103,10 +3159,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Curse, Focus Energy, Strength, Superpower.
+**Removed:** Curse, Focus Energy, Strength.
 
 - **Removed machine flags:** Curse, Strength.
-- **Removed family egg entries:** Focus Energy, Superpower.
+- **Removed family egg entries:** Focus Energy.
+- **Restored family egg entries:** Superpower.
 
 ### Perrserker
 
@@ -3132,10 +3189,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Absorb, Spikes.
 
-**Removed:** Drill Run.
+**Removed:** None.
 
-- **Removed natural entries:** Drill Run.
 - **Added Blackthorn lessons:** Absorb, Spikes.
+- **Restored natural entries:** Drill Run.
 
 ### Phantump
 
@@ -3314,10 +3371,9 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Belly Drum, Flip Turn, Scary Face.
 
-**Removed:** Acid Armor, Iron Head.
+**Removed:** Iron Head.
 
 - **Removed machine flags:** Iron Head.
-- **Removed family egg entries:** Acid Armor.
 - **Added Blackthorn lessons:** Belly Drum, Flip Turn, Scary Face.
 
 ### Quilava
@@ -3332,10 +3388,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Cross Poison, Rock Tomb.
+**Removed:** Rock Tomb.
 
-- **Removed natural entries:** Cross Poison.
 - **Removed machine flags:** Rock Tomb.
+- **Restored natural entries:** Cross Poison.
 
 ### Raichu
 
@@ -3373,19 +3429,19 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Bite, Seismic Toss, Tackle.
 
-**Removed:** Power Gem.
+**Removed:** None.
 
-- **Removed machine flags:** Power Gem.
 - **Added Blackthorn lessons:** Bite, Seismic Toss, Tackle.
+- **Restored machine flags:** Power Gem.
 
 ### Rapidash
 
 **Added:** None.
 
-**Removed:** Iron Head, Raging Fury.
+**Removed:** Iron Head.
 
-- **Removed natural entries:** Raging Fury.
 - **Removed machine flags:** Iron Head.
+- **Restored natural entries:** Raging Fury.
 
 ### Raticate
 
@@ -3454,11 +3510,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Frustration, Gust, Razor Wind, Slash.
 
-**Removed:** Curse, Mud-Slap, Pursuit, Steel Wing, Sunny Day, Whirlwind.
+**Removed:** Curse, Mud-Slap, Steel Wing, Sunny Day.
 
 - **Removed machine flags:** Curse, Mud-Slap, Steel Wing, Sunny Day.
-- **Removed family egg entries:** Pursuit, Whirlwind.
 - **Added Blackthorn lessons:** Frustration, Gust, Razor Wind, Slash.
+- **Restored family egg entries:** Pursuit, Whirlwind.
 
 ### Salamence
 
@@ -3474,29 +3530,33 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Curse, Dig, Fire Spin, Flame Wheel, Headbutt, Shadow Ball.
+**Removed:** Curse, Dig, Flame Wheel, Headbutt, Shadow Ball.
 
-- **Removed natural entries:** Fire Spin, Flame Wheel.
+- **Removed natural entries:** Flame Wheel.
 - **Removed machine flags:** Curse, Dig, Headbutt, Shadow Ball.
+- **Restored natural entries:** Fire Spin.
 
 ### Salazzle
 
 **Added:** None.
 
-**Removed:** Curse, Dig, Fire Spin, Flame Wheel, Headbutt, Shadow Ball.
+**Removed:** Curse, Dig, Flame Wheel, Headbutt.
 
-- **Removed natural entries:** Fire Spin, Flame Wheel.
-- **Removed machine flags:** Curse, Dig, Headbutt, Shadow Ball.
+- **Removed natural entries:** Flame Wheel.
+- **Removed machine flags:** Curse, Dig, Headbutt.
+- **Restored natural entries:** Fire Spin.
+- **Restored machine flags:** Shadow Ball.
 
 ### Sandile
 
 **Added:** Aerial Ace, Dragon Claw, Tackle.
 
-**Removed:** Knock Off, Night Slash, Scratch, Swift, Work Up.
+**Removed:** Knock Off, Scratch, Swift, Work Up.
 
 - **Removed natural entries:** Scratch.
-- **Removed machine flags:** Knock Off, Night Slash, Swift, Work Up.
+- **Removed machine flags:** Knock Off, Swift, Work Up.
 - **Added Blackthorn lessons:** Aerial Ace, Dragon Claw, Tackle.
+- **Restored machine flags:** Night Slash.
 
 ### Sandshrew
 
@@ -3538,20 +3598,20 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Dynamic Punch, Skull Bash, Tackle.
 
-**Removed:** Circle Throw, Night Slash, Superpower.
+**Removed:** None.
 
-- **Removed natural entries:** Circle Throw, Superpower.
 - **Removed machine flags:** Night Slash.
 - **Added Blackthorn lessons:** Dynamic Punch, Skull Bash, Tackle.
+- **Restored natural entries:** Circle Throw, Superpower.
 
 ### Scraggy
 
 **Added:** Dynamic Punch, Tackle.
 
-**Removed:** Night Slash.
+**Removed:** None.
 
-- **Removed machine flags:** Night Slash.
 - **Added Blackthorn lessons:** Dynamic Punch, Tackle.
+- **Restored machine flags:** Night Slash.
 
 ### Scyther
 
@@ -3583,10 +3643,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Liquidation.
 
-**Removed:** Freeze-Dry.
+**Removed:** None.
 
-- **Removed natural entries:** Freeze-Dry.
 - **Added Blackthorn lessons:** Liquidation.
+- **Restored natural entries:** Freeze-Dry.
 
 ### Seel
 
@@ -3609,11 +3669,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Dragon Pulse, Leer, Scale Shot.
 
-**Removed:** Cross Poison, Foul Play, Pursuit, Spite.
+**Removed:** Cross Poison.
 
-- **Removed natural entries:** Cross Poison, Foul Play.
-- **Removed family egg entries:** Pursuit, Spite.
+- **Removed natural entries:** Cross Poison.
 - **Added Blackthorn lessons:** Dragon Pulse, Leer, Scale Shot.
+- **Restored natural entries:** Foul Play.
+- **Restored family egg entries:** Pursuit, Spite.
 
 ### Shelgon
 
@@ -3760,24 +3821,23 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Moonlight.
 
-**Removed:** Drain Punch, Freeze-Dry, Ice Fang, Iron Head.
+**Removed:** Drain Punch, Freeze-Dry, Iron Head.
 
-- **Removed natural entries:** Ice Fang.
 - **Removed machine flags:** Drain Punch, Iron Head.
 - **Removed fallback lessons:** Freeze-Dry.
 - **Added Blackthorn lessons:** Moonlight.
+- **Restored natural entries:** Ice Fang.
 
 ### Sneasler
 
 **Added:** Bulldoze, Dark Pulse, Foresight, Frustration, Fury Cutter, Hail, Hex, Iron Tail, Knock Off, Mud-Slap, Psych Up, Seismic Toss, Snore, Superpower, Thunder Punch, Torment.
 
-**Removed:** Cross Poison, Curse, Headbutt, Iron Head, Pursuit, Surf, Triple Axel, Whirlpool.
+**Removed:** Curse, Headbutt, Iron Head, Surf, Whirlpool.
 
-- **Removed natural entries:** Cross Poison.
 - **Removed machine flags:** Curse, Headbutt, Iron Head, Surf, Whirlpool.
-- **Removed family egg entries:** Pursuit.
-- **Removed fallback lessons:** Triple Axel.
 - **Added Blackthorn lessons:** Bulldoze, Dark Pulse, Foresight, Frustration, Fury Cutter, Hail, Hex, Iron Tail, Knock Off, Mud-Slap, Psych Up, Seismic Toss, Snore, Superpower, Thunder Punch, Torment.
+- **Restored natural entries:** Cross Poison.
+- **Restored Blackthorn lessons:** Triple Axel.
 
 ### Snorlax
 
@@ -3802,11 +3862,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Seismic Toss.
 
-**Removed:** Freeze-Dry, Sunny Day.
+**Removed:** Sunny Day.
 
-- **Removed natural entries:** Freeze-Dry.
 - **Removed machine flags:** Sunny Day.
 - **Added Blackthorn lessons:** Seismic Toss.
+- **Restored natural entries:** Freeze-Dry.
 
 ### Snubbull
 
@@ -3828,10 +3888,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Liquidation.
 
-**Removed:** Freeze-Dry.
+**Removed:** None.
 
-- **Removed natural entries:** Freeze-Dry.
 - **Added Blackthorn lessons:** Liquidation.
+- **Restored natural entries:** Freeze-Dry.
 
 ### Spinarak
 
@@ -3875,10 +3935,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Confusion, Psyshield Bash, Safeguard.
 
-**Removed:** Horn Leech.
+**Removed:** None.
 
-- **Removed natural entries:** Horn Leech.
 - **Added Blackthorn lessons:** Confusion, Psyshield Bash, Safeguard.
+- **Restored natural entries:** Horn Leech.
 
 ### Staraptor
 
@@ -3967,11 +4027,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Splash.
 
-**Removed:** Flamethrower, Incinerate, Wood Hammer.
+**Removed:** Wood Hammer.
 
-- **Removed natural entries:** Flamethrower, Incinerate.
 - **Removed fallback lessons:** Wood Hammer.
 - **Added Blackthorn lessons:** Splash.
+- **Restored natural entries:** Flamethrower, Incinerate.
 
 ### Sunkern
 
@@ -3985,10 +4045,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Bounce, Curse, Draining Kiss, Earthquake, Fire Blast, Flamethrower.
+**Removed:** Bounce, Curse, Earthquake, Fire Blast, Flamethrower.
 
-- **Removed natural entries:** Bounce, Draining Kiss.
+- **Removed natural entries:** Bounce.
 - **Removed machine flags:** Curse, Earthquake, Fire Blast, Flamethrower.
+- **Restored natural entries:** Draining Kiss.
 
 ### Swinub
 
@@ -4082,51 +4143,54 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Cross Chop.
+**Removed:** None.
 
-- **Removed family egg entries:** Cross Chop.
+- **Restored family egg entries:** Cross Chop.
 
 ### Tinkatink
 
 **Added:** Brick Break, Bulldoze, False Swipe, Rock Throw, Screech, Tackle.
 
-**Removed:** Attract, Bullet Punch, Charm, Curse, Hidden Power, Iron Head, Return, Strength, Swagger, Toxic.
+**Removed:** Attract, Bullet Punch, Charm, Curse, Hidden Power, Return, Strength, Swagger, Toxic.
 
 - **Removed natural entries:** Bullet Punch.
-- **Removed machine flags:** Attract, Curse, Hidden Power, Iron Head, Return, Strength, Swagger, Toxic.
+- **Removed machine flags:** Attract, Curse, Hidden Power, Return, Strength, Swagger, Toxic.
 - **Removed family egg entries:** Bullet Punch, Charm.
 - **Added Blackthorn lessons:** Brick Break, Bulldoze, False Swipe, Rock Throw, Screech, Tackle.
+- **Restored machine flags:** Iron Head.
 
 ### Tinkaton
 
 **Added:** Bulk Up, False Swipe, Rock Throw, Screech, Tackle, Wood Hammer.
 
-**Removed:** Attract, Bullet Punch, Charm, Curse, Hammer Arm, Hidden Power, Iron Defense, Iron Head, Return, Strength, Swagger, Toxic.
+**Removed:** Attract, Bullet Punch, Charm, Curse, Hidden Power, Return, Strength, Swagger, Toxic.
 
-- **Removed natural entries:** Hammer Arm, Iron Defense, Iron Head.
+- **Removed natural entries:** Iron Head.
 - **Removed machine flags:** Attract, Curse, Hidden Power, Iron Head, Return, Strength, Swagger, Toxic.
 - **Removed family egg entries:** Bullet Punch, Charm.
 - **Added Blackthorn lessons:** Bulk Up, False Swipe, Rock Throw, Screech, Tackle, Wood Hammer.
+- **Restored natural entries:** Hammer Arm, Iron Defense.
 
 ### Tinkatuff
 
 **Added:** Bulk Up, Bulldoze, False Swipe, Rock Throw, Screech, Tackle.
 
-**Removed:** Attract, Bullet Punch, Charm, Curse, Hammer Arm, Hidden Power, Iron Defense, Iron Head, Return, Strength, Swagger, Toxic.
+**Removed:** Attract, Bullet Punch, Charm, Curse, Hidden Power, Return, Strength, Swagger, Toxic.
 
-- **Removed natural entries:** Hammer Arm, Iron Defense.
 - **Removed machine flags:** Attract, Curse, Hidden Power, Iron Head, Return, Strength, Swagger, Toxic.
 - **Removed family egg entries:** Bullet Punch, Charm.
 - **Added Blackthorn lessons:** Bulk Up, Bulldoze, False Swipe, Rock Throw, Screech, Tackle.
+- **Restored natural entries:** Hammer Arm, Iron Defense.
 
 ### Tirtouga
 
 **Added:** None.
 
-**Removed:** Head Smash, Headbutt, Iron Head, Mud-Slap, Power Gem, Roar.
+**Removed:** Iron Head, Mud-Slap, Power Gem, Roar.
 
-- **Removed machine flags:** Headbutt, Iron Head, Mud-Slap, Power Gem, Roar.
-- **Removed family egg entries:** Head Smash.
+- **Removed machine flags:** Iron Head, Mud-Slap, Power Gem, Roar.
+- **Restored machine flags:** Headbutt.
+- **Restored family egg entries:** Head Smash.
 
 ### Togekiss
 
@@ -4181,32 +4245,33 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Body Press, Curse, Sludge, Spikes, Waterfall, Whirlpool.
+**Removed:** Curse, Sludge, Waterfall, Whirlpool.
 
-- **Removed natural entries:** Body Press.
 - **Removed machine flags:** Curse, Waterfall, Whirlpool.
-- **Removed family egg entries:** Sludge, Spikes.
+- **Removed family egg entries:** Sludge.
+- **Restored natural entries:** Body Press.
 
 ### Toxicroak
 
 **Added:** Earth Power, Seismic Toss.
 
-**Removed:** Acid Armor, Curse, Force Palm, Superpower.
+**Removed:** Acid Armor, Curse.
 
-- **Removed natural entries:** Force Palm, Superpower.
 - **Removed machine flags:** Curse.
 - **Removed family egg entries:** Acid Armor.
 - **Added Blackthorn lessons:** Earth Power, Seismic Toss.
+- **Restored natural entries:** Force Palm, Superpower.
 
 ### Trapinch
 
 **Added:** Hyper Voice.
 
-**Removed:** Curse, Fire Blast, Flamethrower, Roost, U-turn.
+**Removed:** Curse, Fire Blast, Flamethrower, Roost.
 
 - **Removed machine flags:** Curse, Fire Blast, Flamethrower.
-- **Removed family egg entries:** Roost, U-turn.
+- **Removed family egg entries:** Roost.
 - **Added Blackthorn lessons:** Hyper Voice.
+- **Restored family egg entries:** U-turn.
 
 ### Trevenant
 
@@ -4220,13 +4285,14 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Growth.
 
-**Removed:** Brick Break, Circle Throw, Curse, Cut, Dig, Flash, Iron Head, Iron Tail, Leaf Blade, Leech Seed, Rock Smash, Strength, Swords Dance, Thief, Wood Hammer.
+**Removed:** Brick Break, Circle Throw, Curse, Cut, Dig, Flash, Iron Head, Iron Tail, Leech Seed, Rock Smash, Strength, Thief, Wood Hammer.
 
-- **Removed natural entries:** Brick Break, Circle Throw, Leaf Blade, Swords Dance, Wood Hammer.
+- **Removed natural entries:** Brick Break, Circle Throw, Wood Hammer.
 - **Removed machine flags:** Curse, Cut, Dig, Flash, Iron Head, Rock Smash, Strength, Thief.
 - **Removed family egg entries:** Leech Seed.
 - **Removed fallback lessons:** Iron Tail.
 - **Added Blackthorn lessons:** Growth.
+- **Restored natural entries:** Leaf Blade, Swords Dance.
 
 ### Typhlosion
 
@@ -4249,9 +4315,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Headbutt, Mud-Slap, Power Gem.
+**Removed:** Mud-Slap, Power Gem.
 
-- **Removed machine flags:** Headbutt, Mud-Slap, Power Gem.
+- **Removed machine flags:** Mud-Slap, Power Gem.
+- **Restored machine flags:** Headbutt.
 
 ### Tyrogue
 
@@ -4265,9 +4332,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Headbutt, Mud-Slap, Power Gem.
+**Removed:** Mud-Slap, Power Gem.
 
-- **Removed machine flags:** Headbutt, Mud-Slap, Power Gem.
+- **Removed machine flags:** Mud-Slap, Power Gem.
+- **Restored machine flags:** Headbutt.
 
 ### Umbreon
 
@@ -4291,11 +4359,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Stealth Rock, Tackle.
 
-**Removed:** Crush Claw, Sandstorm.
+**Removed:** None.
 
-- **Removed natural entries:** Crush Claw.
-- **Removed machine flags:** Sandstorm.
 - **Added Blackthorn lessons:** Stealth Rock, Tackle.
+- **Restored natural entries:** Crush Claw.
+- **Restored machine flags:** Sandstorm.
 
 ### Ursaluna (Bloodmoon)
 
@@ -4312,11 +4380,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Stealth Rock, Tackle.
 
-**Removed:** Crush Claw, Drain Punch.
+**Removed:** None.
 
-- **Removed natural entries:** Crush Claw.
-- **Removed machine flags:** Drain Punch.
 - **Added Blackthorn lessons:** Stealth Rock, Tackle.
+- **Restored natural entries:** Crush Claw.
+- **Restored machine flags:** Drain Punch.
 
 ### Ursaring (Bloodmoon)
 
@@ -4342,11 +4410,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Leer, Rock Tomb.
 
-**Removed:** Cross Poison, Curse.
+**Removed:** Curse.
 
-- **Removed natural entries:** Cross Poison.
 - **Removed machine flags:** Curse.
 - **Added Blackthorn lessons:** Leer, Rock Tomb.
+- **Restored natural entries:** Cross Poison.
 
 ### Venomoth
 
@@ -4369,19 +4437,19 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Ancient Power.
 
-**Removed:** Wood Hammer.
+**Removed:** None.
 
-- **Removed natural entries:** Wood Hammer.
 - **Added Blackthorn lessons:** Ancient Power.
+- **Restored natural entries:** Wood Hammer.
 
 ### Venusaur (Clone)
 
 **Added:** Ancient Power.
 
-**Removed:** Wood Hammer.
+**Removed:** None.
 
-- **Removed natural entries:** Wood Hammer.
 - **Added Blackthorn lessons:** Ancient Power.
+- **Restored natural entries:** Wood Hammer.
 
 ### Vibrava
 
@@ -4390,7 +4458,7 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 **Removed:** Curse, Fire Blast, Flamethrower.
 
 - **Removed machine flags:** Curse, Fire Blast, Flamethrower.
-- **Removed family egg entries:** Roost, U-turn.
+- **Removed family egg entries:** Roost.
 - **Added Blackthorn lessons:** Hurricane, Hyper Voice, Roost, U-turn.
 
 ### Victreebel
@@ -4406,7 +4474,7 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Hurricane.
 
-**Removed:** Curse, Flash, Fury Cutter, Nuzzle.
+**Removed:** Curse, Flash, Fury Cutter.
 
 - **Removed natural entries:** Nuzzle.
 - **Removed machine flags:** Curse, Flash, Fury Cutter.
@@ -4453,9 +4521,10 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Freeze-Dry, Slack Off.
+**Removed:** None.
 
-- **Removed natural entries:** Freeze-Dry, Slack Off.
+- **Removed natural entries:** Freeze-Dry.
+- **Restored natural entries:** Slack Off.
 
 ### Wartortle
 
@@ -4489,12 +4558,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Moonlight.
 
-**Removed:** Drain Punch, Freeze-Dry, Ice Fang, Iron Head.
+**Removed:** Drain Punch, Freeze-Dry, Iron Head.
 
-- **Removed natural entries:** Ice Fang.
 - **Removed machine flags:** Drain Punch, Iron Head.
 - **Removed fallback lessons:** Freeze-Dry.
 - **Added Blackthorn lessons:** Moonlight.
+- **Restored natural entries:** Ice Fang.
 
 ### Weedle
 
@@ -4525,11 +4594,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Leer, Mortal Spin, Rock Tomb.
 
-**Removed:** Cross Poison, Curse.
+**Removed:** Curse.
 
-- **Removed natural entries:** Cross Poison.
 - **Removed machine flags:** Curse.
 - **Added Blackthorn lessons:** Leer, Mortal Spin, Rock Tomb.
+- **Restored natural entries:** Cross Poison.
 
 ### Wigglytuff
 
@@ -4544,11 +4613,12 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** None.
 
-**Removed:** Aqua Tail, Bubble, Bug Bite, Curse, Fury Cutter, Ice Beam, Superpower, Whirlpool.
+**Removed:** Bubble, Curse, Fury Cutter, Ice Beam, Whirlpool.
 
-- **Removed natural entries:** Bubble, Bug Bite, Fury Cutter.
+- **Removed natural entries:** Bubble, Fury Cutter.
 - **Removed machine flags:** Curse, Fury Cutter, Ice Beam, Whirlpool.
-- **Removed family egg entries:** Aqua Tail, Superpower.
+- **Restored natural entries:** Bug Bite.
+- **Restored family egg entries:** Aqua Tail, Superpower.
 
 ### Wobbuffet
 
@@ -4562,11 +4632,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Belly Drum, Scary Face.
 
-**Removed:** Acid Armor, Drain Punch, Iron Head.
+**Removed:** Drain Punch, Iron Head.
 
 - **Removed machine flags:** Drain Punch, Iron Head.
-- **Removed family egg entries:** Acid Armor.
 - **Added Blackthorn lessons:** Belly Drum, Scary Face.
+- **Restored family egg entries:** Acid Armor.
 
 ### Wynaut
 
@@ -4579,11 +4649,11 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Confusion, Safeguard.
 
-**Removed:** Horn Leech, Strength.
+**Removed:** Strength.
 
-- **Removed natural entries:** Horn Leech.
 - **Removed machine flags:** Strength.
 - **Added Blackthorn lessons:** Confusion, Safeguard.
+- **Restored natural entries:** Horn Leech.
 
 ### Xatu
 
@@ -4642,8 +4712,9 @@ Comparison baseline: `acb384156cd40958bdb5c12f21dced7d8cc4a3ea`.
 
 **Added:** Dragon Dance.
 
-**Removed:** Curse, Dragon Claw, Fire Blast, Flamethrower, Foul Play, Knock Off, Night Slash, Scale Shot, Surf.
+**Removed:** Curse, Fire Blast, Flamethrower, Foul Play, Knock Off, Scale Shot, Surf.
 
 - **Removed natural entries:** Foul Play, Scale Shot.
-- **Removed machine flags:** Curse, Dragon Claw, Fire Blast, Flamethrower, Knock Off, Night Slash, Surf.
+- **Removed machine flags:** Curse, Fire Blast, Flamethrower, Knock Off, Surf.
 - **Added Blackthorn lessons:** Dragon Dance.
+- **Restored machine flags:** Dragon Claw, Night Slash.

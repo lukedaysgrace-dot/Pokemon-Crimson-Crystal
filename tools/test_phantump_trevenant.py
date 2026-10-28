@@ -108,8 +108,8 @@ def main():
                     for level in (27,28):
                         start=party(species=species,level=level)
                         h.call('LearnLevelMoves',max_frames=300)
-                        check('HORN_LEECH' not in moves(start),
-                              f'{species}: unsupported Horn Leech at level {level}, rules {rules}')
+                        check(('HORN_LEECH' in moves(start)) == (level == 28),
+                              f'{species}: Horn Leech unlock at level {level}, rules {rules}')
                 start=party(species='WYRDEER',level=31)
                 h.call('LearnLevelMoves',max_frames=300)
                 check('PSYSHIELD' in moves(start),f'Wyrdeer: Psyshield Bash retained, rules {rules}')

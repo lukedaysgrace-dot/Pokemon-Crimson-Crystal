@@ -1,5 +1,5 @@
 {
-  "scope": "Union individual historical mainline and Lumi 3.0 moves, filtered to implemented moves. Remove unsupported direct assignments; preserve six custom species and authored Pixie Punch. Retain valid acquisition levels and machine/egg routes. Missing access uses Blackthorn. Custom evolution carryover is reported explicitly, never treated as official compatibility.",
+  "scope": "Union individual historical mainline and Lumi 3.0 moves, filtered to implemented moves. Remove unsupported direct assignments; preserve six custom species and authored Pixie Punch. Retain valid acquisition levels and machine/egg routes. Missing access uses Blackthorn. Custom evolution carryover is reported explicitly, never treated as official compatibility. User-approved restorations are recorded separately from historical source claims in tools/testdata/authored_move_restorations.json.",
   "move_names": {
     "POUND": "Pound",
     "KARATE_CHOP": "Karate Chop",
@@ -452,7 +452,6 @@
         "SEISMIC_TOSS"
       ],
       "removed_moves": [
-        "FREEZE_DRY",
         "SUNNY_DAY"
       ],
       "new_tutor_routes": [
@@ -476,9 +475,7 @@
       "species": "AERODACTYL",
       "name": "Aerodactyl",
       "newly_available": [],
-      "removed_moves": [
-        "HEAD_SMASH"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
@@ -490,9 +487,7 @@
         "MUD_SHOT"
       ],
       "removed_moves": [
-        "DRAIN_PUNCH",
-        "HAMMER_ARM",
-        "POWER_GEM"
+        "DRAIN_PUNCH"
       ],
       "new_tutor_routes": [
         "FALSE_SWIPE",
@@ -590,7 +585,6 @@
       ],
       "removed_moves": [
         "DRAIN_PUNCH",
-        "MAGNITUDE",
         "POWER_GEM",
         "RAIN_DANCE"
       ],
@@ -613,8 +607,6 @@
       ],
       "removed_moves": [
         "DRAIN_PUNCH",
-        "HEAD_SMASH",
-        "MAGNITUDE",
         "POWER_GEM",
         "RAIN_DANCE"
       ],
@@ -639,7 +631,6 @@
       ],
       "removed_moves": [
         "DRAIN_PUNCH",
-        "MAGNITUDE",
         "POWER_GEM",
         "RAIN_DANCE"
       ],
@@ -684,8 +675,7 @@
         "DRAIN_PUNCH",
         "DRILL_RUN",
         "ICE_PUNCH",
-        "MUD_SHOT",
-        "PHANTOMFORCE"
+        "MUD_SHOT"
       ],
       "new_tutor_routes": [
         "FURY_ATTACK",
@@ -730,9 +720,7 @@
         "ZAP_CANNON"
       ],
       "removed_moves": [
-        "CROSS_POISON",
         "ENERGY_BALL",
-        "NIGHT_SLASH",
         "ROCK_SMASH",
         "STRENGTH"
       ],
@@ -758,8 +746,7 @@
       ],
       "removed_moves": [
         "CURSE",
-        "IRON_HEAD",
-        "SHADOW_BALL"
+        "IRON_HEAD"
       ],
       "new_tutor_routes": [
         "BULK_UP",
@@ -843,7 +830,6 @@
         "BEAT_UP",
         "CURSE",
         "IRON_HEAD",
-        "NIGHT_SLASH",
         "SCREECH"
       ],
       "new_tutor_routes": [
@@ -880,8 +866,6 @@
         "BEAT_UP",
         "CURSE",
         "IRON_HEAD",
-        "KNOCK_OFF",
-        "NIGHT_SLASH",
         "SCREECH"
       ],
       "new_tutor_routes": [
@@ -928,8 +912,7 @@
         "MUD_SLAP"
       ],
       "removed_moves": [
-        "DRAIN_PUNCH",
-        "FREEZE_DRY"
+        "DRAIN_PUNCH"
       ],
       "new_tutor_routes": [
         "MUD_SLAP"
@@ -951,8 +934,7 @@
       ],
       "removed_moves": [
         "CURSE",
-        "IRON_HEAD",
-        "SHADOW_BALL"
+        "IRON_HEAD"
       ],
       "new_tutor_routes": [
         "BULK_UP",
@@ -975,8 +957,6 @@
       "removed_moves": [
         "BOUNCE",
         "CURSE",
-        "DRAGON_TAIL",
-        "DRAINING_KISS",
         "SCALE_SHOT",
         "STRENGTH"
       ],
@@ -994,9 +974,7 @@
       "removed_moves": [
         "CURSE",
         "HEADBUTT",
-        "MOONBLAST",
-        "MUD_SLAP",
-        "POWER_GEM"
+        "MUD_SLAP"
       ],
       "new_tutor_routes": [
         "TACKLE"
@@ -1028,9 +1006,7 @@
       ],
       "removed_moves": [
         "DRAIN_PUNCH",
-        "HYPER_VOICE",
-        "IRON_HEAD",
-        "NUZZLE"
+        "IRON_HEAD"
       ],
       "new_tutor_routes": [
         "COMET_PUNCH",
@@ -1054,7 +1030,6 @@
         "FOUL_PLAY",
         "IRON_HEAD",
         "SNARL",
-        "SUPERPOWER",
         "WILL_O_WISP"
       ],
       "new_tutor_routes": [
@@ -1235,10 +1210,8 @@
         "DOUBLE_EDGE",
         "EARTHQUAKE",
         "HIDDEN_POWER",
-        "ICE_SHARD",
         "MIST",
         "RETURN",
-        "SCALE_SHOT",
         "SWAGGER",
         "TOXIC"
       ],
@@ -1273,7 +1246,6 @@
         "BUG_BUZZ"
       ],
       "removed_moves": [
-        "POWER_GEM",
         "SIGNAL_BEAM"
       ],
       "new_tutor_routes": [
@@ -1298,7 +1270,6 @@
         "FLASH",
         "HEX",
         "HIDDEN_POWER",
-        "MEAN_LOOK",
         "RETURN",
         "SWAGGER",
         "SWORDS_DANCE",
@@ -1353,7 +1324,6 @@
       "removed_moves": [
         "CURSE",
         "HEADBUTT",
-        "MOONBLAST",
         "MUD_SLAP"
       ],
       "new_tutor_routes": [
@@ -1464,9 +1434,7 @@
       "newly_available": [
         "SELFDESTRUCT"
       ],
-      "removed_moves": [
-        "HEAD_SMASH"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "SELFDESTRUCT"
       ],
@@ -1539,7 +1507,6 @@
       "name": "Bellossom",
       "newly_available": [],
       "removed_moves": [
-        "DRAINING_KISS",
         "WOOD_HAMMER"
       ],
       "new_tutor_routes": [],
@@ -1568,9 +1535,7 @@
       "removed_moves": [
         "CURSE",
         "FOCUS_ENERGY",
-        "SACRED_SWORD",
-        "STRENGTH",
-        "SUPERPOWER"
+        "STRENGTH"
       ],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
@@ -1716,8 +1681,7 @@
         "TACKLE"
       ],
       "removed_moves": [
-        "CURSE",
-        "KARATE_CHOP"
+        "CURSE"
       ],
       "new_tutor_routes": [
         "CLOSE_COMBAT",
@@ -1762,8 +1726,6 @@
       ],
       "removed_moves": [
         "DRAIN_PUNCH",
-        "HEADBUTT",
-        "HEAD_SMASH",
         "ICE_PUNCH",
         "MUD_SLAP",
         "POWER_GEM",
@@ -1832,7 +1794,6 @@
         "CALM_MIND",
         "FIRE_FANG",
         "HYPER_BEAM",
-        "MEAN_LOOK",
         "RETURN",
         "STRENGTH"
       ],
@@ -1854,11 +1815,8 @@
       "removed_moves": [
         "ATTRACT",
         "FREEZE_DRY",
-        "HAMMER_ARM",
-        "HEADBUTT",
         "HIDDEN_POWER",
         "RETURN",
-        "SLACK_OFF",
         "STRENGTH",
         "SURF",
         "SWAGGER",
@@ -1875,10 +1833,8 @@
       "removed_moves": [
         "ATTRACT",
         "FREEZE_DRY",
-        "HEADBUTT",
         "HIDDEN_POWER",
         "RETURN",
-        "SLACK_OFF",
         "STRENGTH",
         "SURF",
         "SWAGGER",
@@ -1938,7 +1894,6 @@
         "FIRE_FANG",
         "HEX",
         "HIDDEN_POWER",
-        "MEAN_LOOK",
         "RETURN",
         "SWAGGER",
         "SWORDS_DANCE",
@@ -1957,10 +1912,8 @@
         "TACKLE"
       ],
       "removed_moves": [
-        "DRACO_METEOR",
         "DRAIN_PUNCH",
-        "IRON_HEAD",
-        "RAGING_FURY"
+        "IRON_HEAD"
       ],
       "new_tutor_routes": [
         "TACKLE"
@@ -1974,10 +1927,8 @@
         "TACKLE"
       ],
       "removed_moves": [
-        "DRACO_METEOR",
         "DRAIN_PUNCH",
-        "IRON_HEAD",
-        "RAGING_FURY"
+        "IRON_HEAD"
       ],
       "new_tutor_routes": [
         "TACKLE"
@@ -1993,8 +1944,6 @@
         "CURSE",
         "FLASH",
         "FURY_CUTTER",
-        "NUZZLE",
-        "SIGNAL_BEAM",
         "ZAP_CANNON"
       ],
       "new_tutor_routes": [],
@@ -2195,7 +2144,6 @@
         "WHIRLPOOL"
       ],
       "removed_moves": [
-        "ACID_ARMOR",
         "ATTRACT",
         "BLIZZARD",
         "DRAIN_PUNCH",
@@ -2221,9 +2169,7 @@
       "species": "CLOYSTER",
       "name": "Cloyster",
       "newly_available": [],
-      "removed_moves": [
-        "FREEZE_DRY"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
@@ -2231,10 +2177,7 @@
       "species": "CONKELDURR",
       "name": "Conkeldurr",
       "newly_available": [],
-      "removed_moves": [
-        "BODY_PRESS",
-        "CROSS_CHOP"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
@@ -2259,10 +2202,8 @@
       "removed_moves": [
         "CUT",
         "MUD_SLAP",
-        "PURSUIT",
         "SANDSTORM",
-        "STRENGTH",
-        "WHIRLWIND"
+        "STRENGTH"
       ],
       "new_tutor_routes": [
         "FRUSTRATION",
@@ -2284,10 +2225,7 @@
       ],
       "removed_moves": [
         "CURSE",
-        "MUD_SLAP",
-        "PURSUIT",
-        "STEEL_WING",
-        "WHIRLWIND"
+        "MUD_SLAP"
       ],
       "new_tutor_routes": [
         "FRUSTRATION",
@@ -2303,8 +2241,6 @@
       "newly_available": [],
       "removed_moves": [
         "LEAF_STORM",
-        "POWER_GEM",
-        "STUN_SPORE",
         "WOOD_HAMMER"
       ],
       "new_tutor_routes": [],
@@ -2318,9 +2254,7 @@
         "SEISMIC_TOSS",
         "TACKLE"
       ],
-      "removed_moves": [
-        "POWER_GEM"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "BITE",
         "SEISMIC_TOSS",
@@ -2338,8 +2272,7 @@
       ],
       "removed_moves": [
         "ACID_ARMOR",
-        "CURSE",
-        "FORCE_PALM"
+        "CURSE"
       ],
       "new_tutor_routes": [
         "CLOSE_COMBAT",
@@ -2357,8 +2290,7 @@
         "NIGHT_SLASH"
       ],
       "removed_moves": [
-        "ENERGY_BALL",
-        "POISON_JAB"
+        "ENERGY_BALL"
       ],
       "new_tutor_routes": [
         "FLAIL",
@@ -2467,7 +2399,6 @@
         "FIRE_BLAST",
         "FLAMETHROWER",
         "KNOCK_OFF",
-        "NIGHT_SLASH",
         "SCALE_SHOT",
         "SURF"
       ],
@@ -2502,9 +2433,7 @@
       "newly_available": [
         "FLAIL"
       ],
-      "removed_moves": [
-        "FREEZE_DRY"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "FLAIL"
       ],
@@ -2572,7 +2501,6 @@
       "name": "Doduo",
       "newly_available": [],
       "removed_moves": [
-        "DRILL_RUN",
         "DUALWINGBEAT"
       ],
       "new_tutor_routes": [],
@@ -2585,9 +2513,7 @@
         "ABSORB",
         "SPIKES"
       ],
-      "removed_moves": [
-        "DRILL_RUN"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "ABSORB",
         "SPIKES"
@@ -2605,7 +2531,6 @@
         "CRUNCH",
         "DEFOG",
         "DUALWINGBEAT",
-        "SCALE_SHOT",
         "TAUNT",
         "TWISTER"
       ],
@@ -2655,10 +2580,8 @@
       ],
       "removed_moves": [
         "DEFOG",
-        "DRAGONBREATH",
         "DRAGON_CLAW",
         "DUALWINGBEAT",
-        "SCALE_SHOT",
         "SWAGGER",
         "TAUNT",
         "TWISTER"
@@ -2686,7 +2609,6 @@
       "newly_available": [],
       "removed_moves": [
         "AGILITY",
-        "DRAGONBREATH",
         "DRAGON_CLAW",
         "DRAGON_PULSE",
         "DUALWINGBEAT",
@@ -2694,7 +2616,6 @@
         "FLAMETHROWER",
         "HEX",
         "HIDDEN_POWER",
-        "PHANTOMFORCE",
         "RETURN",
         "SCALE_SHOT",
         "SHADOW_BALL",
@@ -2791,8 +2712,6 @@
       ],
       "removed_moves": [
         "CROSS_POISON",
-        "DRAGONBREATH",
-        "DRAGON_CLAW",
         "FOUL_PLAY",
         "IRON_HEAD",
         "SWIFT",
@@ -2829,7 +2748,6 @@
         "HORN_DRILL"
       ],
       "removed_moves": [
-        "DRAGONBREATH",
         "IRON_HEAD",
         "WORK_UP"
       ],
@@ -2867,9 +2785,7 @@
       "newly_available": [
         "ABSORB"
       ],
-      "removed_moves": [
-        "SHADOW_CLAW"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "ABSORB"
       ],
@@ -2882,9 +2798,7 @@
         "ABSORB",
         "DRAIN_PUNCH"
       ],
-      "removed_moves": [
-        "SHADOW_CLAW"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "ABSORB",
         "DRAIN_PUNCH"
@@ -3407,7 +3321,6 @@
         "DOUBLE_EDGE",
         "EARTHQUAKE",
         "HIDDEN_POWER",
-        "ICE_SHARD",
         "IRON_HEAD",
         "MIST",
         "RETURN",
@@ -3427,9 +3340,7 @@
         "NASTY_PLOT",
         "PETAL_DANCE"
       ],
-      "removed_moves": [
-        "FREEZE_DRY"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "NASTY_PLOT",
         "PETAL_DANCE"
@@ -3571,8 +3482,7 @@
         "CURSE",
         "HEADBUTT",
         "INCINERATE",
-        "IRON_HEAD",
-        "MOONBLAST"
+        "IRON_HEAD"
       ],
       "new_tutor_routes": [
         "DOUBLE_TEAM",
@@ -3739,9 +3649,7 @@
         "SEISMIC_TOSS"
       ],
       "removed_moves": [
-        "CIRCLE_THROW",
-        "CURSE",
-        "FORCE_PALM"
+        "CURSE"
       ],
       "new_tutor_routes": [
         "COMET_PUNCH",
@@ -3758,8 +3666,6 @@
       "newly_available": [],
       "removed_moves": [
         "CURSE",
-        "NUZZLE",
-        "SPARK",
         "SUNNY_DAY",
         "THUNDERSHOCK",
         "ZAP_CANNON"
@@ -3876,7 +3782,6 @@
       ],
       "removed_moves": [
         "BOUNCE",
-        "DRILL_RUN",
         "IRON_HEAD"
       ],
       "new_tutor_routes": [
@@ -3908,7 +3813,6 @@
       "removed_moves": [
         "ATTRACT",
         "CURSE",
-        "HEAD_SMASH",
         "HIDDEN_POWER",
         "RETURN",
         "ROCK_SMASH",
@@ -3928,7 +3832,6 @@
       ],
       "removed_moves": [
         "BOUNCE",
-        "DRILL_RUN",
         "IRON_HEAD"
       ],
       "new_tutor_routes": [
@@ -3955,8 +3858,7 @@
         "X_SCISSOR"
       ],
       "removed_moves": [
-        "ENERGY_BALL",
-        "POISON_JAB"
+        "ENERGY_BALL"
       ],
       "new_tutor_routes": [
         "FLAIL",
@@ -4007,7 +3909,6 @@
       ],
       "removed_moves": [
         "DRAIN_PUNCH",
-        "HEAD_SMASH",
         "SCREECH"
       ],
       "new_tutor_routes": [
@@ -4027,9 +3928,7 @@
         "IRON_HEAD",
         "TACKLE"
       ],
-      "removed_moves": [
-        "WILL_O_WISP"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "COMET_PUNCH",
         "HARDEN",
@@ -4051,12 +3950,10 @@
         "U_TURN"
       ],
       "removed_moves": [
-        "AQUA_TAIL",
         "BUBBLE",
         "CURSE",
         "LOW_SWEEP",
         "STRENGTH",
-        "SUPERPOWER",
         "WHIRLPOOL"
       ],
       "new_tutor_routes": [
@@ -4081,9 +3978,7 @@
         "SKULL_BASH",
         "TACKLE"
       ],
-      "removed_moves": [
-        "WILL_O_WISP"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "COMET_PUNCH",
         "FISSURE",
@@ -4190,15 +4085,11 @@
         "FRUSTRATION"
       ],
       "removed_moves": [
-        "CHARM",
         "CIRCLE_THROW",
         "CURSE",
         "DISARMING_VOICE",
         "ENCORE",
         "FORCE_PALM",
-        "KNOCK_OFF",
-        "MEAN_LOOK",
-        "NIGHT_SLASH",
         "STRENGTH",
         "SWEET_KISS"
       ],
@@ -4225,8 +4116,7 @@
         "AGILITY",
         "CURSE",
         "FURY_CUTTER",
-        "NUZZLE",
-        "SIGNAL_BEAM"
+        "NUZZLE"
       ],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
@@ -4261,10 +4151,7 @@
       "newly_available": [
         "ROCK_BLAST"
       ],
-      "removed_moves": [
-        "BODY_PRESS",
-        "CROSS_CHOP"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "ROCK_BLAST"
       ],
@@ -4355,9 +4242,7 @@
       ],
       "removed_moves": [
         "FAINT_ATTACK",
-        "HAMMER_ARM",
-        "LOW_SWEEP",
-        "SUPERPOWER"
+        "LOW_SWEEP"
       ],
       "new_tutor_routes": [
         "CALM_MIND",
@@ -4383,7 +4268,6 @@
       "removed_moves": [
         "CRUSH_CLAW",
         "CURSE",
-        "HEADBUTT",
         "INCINERATE"
       ],
       "new_tutor_routes": [
@@ -4442,7 +4326,6 @@
       ],
       "removed_moves": [
         "CURSE",
-        "HEADBUTT",
         "INCINERATE",
         "IRON_HEAD"
       ],
@@ -4486,7 +4369,6 @@
         "CURSE",
         "HEADBUTT",
         "IRON_HEAD",
-        "PURSUIT",
         "SURF",
         "WHIRLPOOL"
       ],
@@ -4519,7 +4401,6 @@
         "THUNDERBOLT"
       ],
       "removed_moves": [
-        "PHANTOMFORCE",
         "RAGING_FURY"
       ],
       "new_tutor_routes": [
@@ -4565,10 +4446,7 @@
       "species": "HITMONCHAN",
       "name": "Hitmonchan",
       "newly_available": [],
-      "removed_moves": [
-        "FORCE_PALM",
-        "HAMMER_ARM"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
@@ -4579,8 +4457,7 @@
         "DIZZY_PUNCH"
       ],
       "removed_moves": [
-        "CIRCLE_THROW",
-        "DRAIN_PUNCH"
+        "CIRCLE_THROW"
       ],
       "new_tutor_routes": [
         "DIZZY_PUNCH"
@@ -4594,10 +4471,7 @@
         "DIZZY_PUNCH",
         "RAGE"
       ],
-      "removed_moves": [
-        "BODY_PRESS",
-        "CIRCLE_THROW"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "DIZZY_PUNCH",
         "RAGE"
@@ -4622,7 +4496,6 @@
         "DRILL_RUN"
       ],
       "removed_moves": [
-        "KNOCK_OFF",
         "STRENGTH"
       ],
       "new_tutor_routes": [
@@ -4670,8 +4543,7 @@
         "TACKLE"
       ],
       "removed_moves": [
-        "IRON_HEAD",
-        "RAGING_FURY"
+        "IRON_HEAD"
       ],
       "new_tutor_routes": [
         "TACKLE"
@@ -4725,10 +4597,7 @@
       "newly_available": [],
       "removed_moves": [
         "CURSE",
-        "DRAGON_CLAW",
-        "FOUL_PLAY",
-        "KNOCK_OFF",
-        "NIGHT_SLASH"
+        "KNOCK_OFF"
       ],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
@@ -4790,16 +4659,12 @@
         "FRUSTRATION"
       ],
       "removed_moves": [
-        "CHARM",
         "CURSE",
         "DISARMING_VOICE",
         "ENCORE",
         "FIRE_PUNCH",
         "ICE_PUNCH",
-        "KNOCK_OFF",
         "LOW_SWEEP",
-        "MEAN_LOOK",
-        "SNARL",
         "SWEET_KISS",
         "THUNDERPUNCH"
       ],
@@ -4889,9 +4754,6 @@
       "newly_available": [],
       "removed_moves": [
         "CURSE",
-        "NUZZLE",
-        "SPARK",
-        "STICKY_WEB",
         "SUNNY_DAY",
         "THUNDERSHOCK",
         "ZAP_CANNON"
@@ -5005,9 +4867,7 @@
         "EARTHQUAKE",
         "FOCUS_ENERGY",
         "HAMMER_ARM",
-        "SACRED_SWORD",
-        "STRENGTH",
-        "SUPERPOWER"
+        "STRENGTH"
       ],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
@@ -5121,7 +4981,6 @@
         "TACKLE"
       ],
       "removed_moves": [
-        "NIGHT_SLASH",
         "SCRATCH",
         "SWIFT",
         "WORK_UP"
@@ -5140,7 +4999,6 @@
         "TACKLE"
       ],
       "removed_moves": [
-        "NIGHT_SLASH",
         "SCRATCH",
         "SWIFT",
         "WORK_UP"
@@ -5201,8 +5059,7 @@
       ],
       "removed_moves": [
         "FLASH_CANNON",
-        "NUZZLE",
-        "TAIL_GLOW"
+        "NUZZLE"
       ],
       "new_tutor_routes": [
         "LIGHT_SCREEN"
@@ -5284,7 +5141,6 @@
       ],
       "removed_moves": [
         "ENERGY_BALL",
-        "FURY_CUTTER",
         "QUIVER_DANCE",
         "ROCK_TOMB",
         "SIGNAL_BEAM"
@@ -5304,7 +5160,6 @@
       ],
       "removed_moves": [
         "ENERGY_BALL",
-        "FURY_CUTTER",
         "ROCK_TOMB"
       ],
       "new_tutor_routes": [
@@ -5354,10 +5209,7 @@
       "newly_available": [],
       "removed_moves": [
         "EARTHQUAKE",
-        "LEECH_SEED",
-        "POWER_GEM",
-        "ROCK_SMASH",
-        "STUN_SPORE"
+        "ROCK_SMASH"
       ],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
@@ -5402,10 +5254,7 @@
         "TACKLE"
       ],
       "removed_moves": [
-        "BRICK_BREAK",
-        "BULK_UP",
-        "CURSE",
-        "KARATE_CHOP"
+        "CURSE"
       ],
       "new_tutor_routes": [
         "COMET_PUNCH",
@@ -5440,9 +5289,7 @@
         "SEISMIC_TOSS"
       ],
       "removed_moves": [
-        "CURSE",
-        "IRON_HEAD",
-        "SACRED_SWORD"
+        "CURSE"
       ],
       "new_tutor_routes": [
         "MACH_PUNCH",
@@ -5482,10 +5329,7 @@
         "THRASH"
       ],
       "removed_moves": [
-        "BODY_PRESS",
-        "CIRCLE_THROW",
-        "FORCE_PALM",
-        "HAMMER_ARM"
+        "BODY_PRESS"
       ],
       "new_tutor_routes": [
         "COMET_PUNCH",
@@ -5506,10 +5350,7 @@
         "TACKLE",
         "THRASH"
       ],
-      "removed_moves": [
-        "CIRCLE_THROW",
-        "FORCE_PALM"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "COMET_PUNCH",
         "FALSE_SWIPE",
@@ -5529,9 +5370,7 @@
         "TACKLE",
         "THRASH"
       ],
-      "removed_moves": [
-        "FORCE_PALM"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "COMET_PUNCH",
         "FALSE_SWIPE",
@@ -5627,8 +5466,7 @@
       ],
       "removed_moves": [
         "DRAIN_PUNCH",
-        "IRON_HEAD",
-        "RAGING_FURY"
+        "IRON_HEAD"
       ],
       "new_tutor_routes": [
         "ARMOR_CANNON",
@@ -5649,7 +5487,6 @@
         "BUG_BUZZ"
       ],
       "removed_moves": [
-        "MIRROR_COAT",
         "ROCK_TOMB"
       ],
       "new_tutor_routes": [
@@ -5666,7 +5503,6 @@
         "BUG_BUZZ"
       ],
       "removed_moves": [
-        "MIRROR_COAT",
         "ROCK_TOMB"
       ],
       "new_tutor_routes": [
@@ -5771,11 +5607,8 @@
       "name": "Mareanie",
       "newly_available": [],
       "removed_moves": [
-        "BANEFUL_BUNKER",
-        "CROSS_POISON",
         "CURSE",
         "SLUDGE",
-        "SPIKES",
         "WATERFALL",
         "WHIRLPOOL"
       ],
@@ -5872,8 +5705,7 @@
       ],
       "removed_moves": [
         "IRON_HEAD",
-        "MEGA_DRAIN",
-        "WOOD_HAMMER"
+        "MEGA_DRAIN"
       ],
       "new_tutor_routes": [
         "DAZZLING_GLEAM",
@@ -6056,11 +5888,9 @@
       ],
       "removed_moves": [
         "FLASH",
-        "FOUL_PLAY",
         "HEADBUTT",
         "SNARL",
-        "STRENGTH",
-        "SUCKER_PUNCH"
+        "STRENGTH"
       ],
       "new_tutor_routes": [
         "TACKLE"
@@ -6073,9 +5903,7 @@
       "newly_available": [
         "EXTRASENSORY"
       ],
-      "removed_moves": [
-        "FAIRY_WIND"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "EXTRASENSORY"
       ],
@@ -6087,9 +5915,7 @@
       "newly_available": [
         "EXTRASENSORY"
       ],
-      "removed_moves": [
-        "FAIRY_WIND"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "EXTRASENSORY"
       ],
@@ -6110,16 +5936,12 @@
         "FRUSTRATION"
       ],
       "removed_moves": [
-        "CHARM",
         "CURSE",
         "DISARMING_VOICE",
         "ENCORE",
         "FIRE_PUNCH",
         "ICE_PUNCH",
-        "KNOCK_OFF",
         "LOW_SWEEP",
-        "MEAN_LOOK",
-        "SNARL",
         "SWEET_KISS",
         "THUNDERPUNCH"
       ],
@@ -6195,7 +6017,6 @@
       "name": "Muk",
       "newly_available": [],
       "removed_moves": [
-        "CROSS_POISON",
         "ENERGY_BALL"
       ],
       "new_tutor_routes": [],
@@ -6469,7 +6290,6 @@
         "SHARPEN"
       ],
       "removed_moves": [
-        "IRON_DEFENSE",
         "MUD_SHOT"
       ],
       "new_tutor_routes": [
@@ -6485,8 +6305,6 @@
         "ROCK_SLIDE"
       ],
       "removed_moves": [
-        "CROSS_POISON",
-        "KNOCK_OFF",
         "ROCK_TOMB",
         "STRENGTH",
         "THIEF"
@@ -6509,9 +6327,7 @@
       "newly_available": [],
       "removed_moves": [
         "ATTRACT",
-        "BRICK_BREAK",
         "CIRCLE_THROW",
-        "CROSS_CHOP",
         "CURSE",
         "DIG",
         "DOUBLESLAP",
@@ -6523,13 +6339,11 @@
         "HEADBUTT",
         "HIDDEN_POWER",
         "LOW_SWEEP",
-        "MACH_PUNCH",
         "MUD_SLAP",
         "PLAY_ROUGH",
         "RETURN",
         "ROCK_SMASH",
         "STRENGTH",
-        "SUPERPOWER",
         "SUPER_FANG",
         "SWAGGER",
         "TACKLE",
@@ -6560,7 +6374,6 @@
         "ATTRACT",
         "BLIZZARD",
         "DRAIN_PUNCH",
-        "HORN_ATTACK",
         "ICE_BEAM"
       ],
       "new_tutor_routes": [
@@ -6595,11 +6408,9 @@
         "AQUA_JET",
         "ATTRACT",
         "DRAIN_PUNCH",
-        "FLAME_WHEEL",
         "HEAT_WAVE",
         "HIDDEN_POWER",
         "HORN_ATTACK",
-        "RAGING_FURY",
         "SOLARBEAM"
       ],
       "new_tutor_routes": [
@@ -6625,7 +6436,6 @@
         "WHIRLPOOL"
       ],
       "removed_moves": [
-        "ACID_ARMOR",
         "ATTRACT",
         "BLIZZARD",
         "DRAIN_PUNCH",
@@ -6684,8 +6494,7 @@
       "removed_moves": [
         "CURSE",
         "FOCUS_ENERGY",
-        "STRENGTH",
-        "SUPERPOWER"
+        "STRENGTH"
       ],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
@@ -6763,9 +6572,7 @@
         "ABSORB",
         "SPIKES"
       ],
-      "removed_moves": [
-        "DRILL_RUN"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "ABSORB",
         "SPIKES"
@@ -7151,7 +6958,6 @@
         "SCARY_FACE"
       ],
       "removed_moves": [
-        "ACID_ARMOR",
         "IRON_HEAD"
       ],
       "new_tutor_routes": [
@@ -7176,7 +6982,6 @@
       "name": "Qwilfish",
       "newly_available": [],
       "removed_moves": [
-        "CROSS_POISON",
         "ROCK_TOMB"
       ],
       "new_tutor_routes": [],
@@ -7246,9 +7051,7 @@
         "SEISMIC_TOSS",
         "TACKLE"
       ],
-      "removed_moves": [
-        "POWER_GEM"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "BITE",
         "SEISMIC_TOSS",
@@ -7261,8 +7064,7 @@
       "name": "Rapidash",
       "newly_available": [],
       "removed_moves": [
-        "IRON_HEAD",
-        "RAGING_FURY"
+        "IRON_HEAD"
       ],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
@@ -7398,10 +7200,8 @@
       "removed_moves": [
         "CURSE",
         "MUD_SLAP",
-        "PURSUIT",
         "STEEL_WING",
-        "SUNNY_DAY",
-        "WHIRLWIND"
+        "SUNNY_DAY"
       ],
       "new_tutor_routes": [
         "FRUSTRATION",
@@ -7435,7 +7235,6 @@
       "removed_moves": [
         "CURSE",
         "DIG",
-        "FIRE_SPIN",
         "FLAME_WHEEL",
         "HEADBUTT",
         "SHADOW_BALL"
@@ -7450,10 +7249,8 @@
       "removed_moves": [
         "CURSE",
         "DIG",
-        "FIRE_SPIN",
         "FLAME_WHEEL",
-        "HEADBUTT",
-        "SHADOW_BALL"
+        "HEADBUTT"
       ],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
@@ -7468,7 +7265,6 @@
       ],
       "removed_moves": [
         "KNOCK_OFF",
-        "NIGHT_SLASH",
         "SCRATCH",
         "SWIFT",
         "WORK_UP"
@@ -7551,11 +7347,7 @@
         "SKULL_BASH",
         "TACKLE"
       ],
-      "removed_moves": [
-        "CIRCLE_THROW",
-        "NIGHT_SLASH",
-        "SUPERPOWER"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "DYNAMICPUNCH",
         "SKULL_BASH",
@@ -7570,9 +7362,7 @@
         "DYNAMICPUNCH",
         "TACKLE"
       ],
-      "removed_moves": [
-        "NIGHT_SLASH"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "DYNAMICPUNCH",
         "TACKLE"
@@ -7623,9 +7413,7 @@
       "newly_available": [
         "LIQUIDATION"
       ],
-      "removed_moves": [
-        "FREEZE_DRY"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "LIQUIDATION"
       ],
@@ -7668,10 +7456,7 @@
         "SCALE_SHOT"
       ],
       "removed_moves": [
-        "CROSS_POISON",
-        "FOUL_PLAY",
-        "PURSUIT",
-        "SPITE"
+        "CROSS_POISON"
       ],
       "new_tutor_routes": [
         "DRAGON_PULSE",
@@ -7927,7 +7712,6 @@
       "removed_moves": [
         "DRAIN_PUNCH",
         "FREEZE_DRY",
-        "ICE_FANG",
         "IRON_HEAD"
       ],
       "new_tutor_routes": [
@@ -7957,13 +7741,10 @@
         "TORMENT"
       ],
       "removed_moves": [
-        "CROSS_POISON",
         "CURSE",
         "HEADBUTT",
         "IRON_HEAD",
-        "PURSUIT",
         "SURF",
-        "TRIPLE_AXEL",
         "WHIRLPOOL"
       ],
       "new_tutor_routes": [
@@ -8025,7 +7806,6 @@
         "SEISMIC_TOSS"
       ],
       "removed_moves": [
-        "FREEZE_DRY",
         "SUNNY_DAY"
       ],
       "new_tutor_routes": [
@@ -8063,9 +7843,7 @@
       "newly_available": [
         "LIQUIDATION"
       ],
-      "removed_moves": [
-        "FREEZE_DRY"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "LIQUIDATION"
       ],
@@ -8150,9 +7928,7 @@
         "PSYSHIELD",
         "SAFEGUARD"
       ],
-      "removed_moves": [
-        "HORN_LEECH"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "CONFUSION",
         "PSYSHIELD",
@@ -8372,8 +8148,6 @@
         "SPLASH"
       ],
       "removed_moves": [
-        "FLAMETHROWER",
-        "INCINERATE",
         "WOOD_HAMMER"
       ],
       "new_tutor_routes": [
@@ -8400,7 +8174,6 @@
       "removed_moves": [
         "BOUNCE",
         "CURSE",
-        "DRAINING_KISS",
         "EARTHQUAKE",
         "FIRE_BLAST",
         "FLAMETHROWER"
@@ -8553,9 +8326,7 @@
       "species": "TIMBURR",
       "name": "Timburr",
       "newly_available": [],
-      "removed_moves": [
-        "CROSS_CHOP"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
@@ -8576,7 +8347,6 @@
         "CHARM",
         "CURSE",
         "HIDDEN_POWER",
-        "IRON_HEAD",
         "RETURN",
         "STRENGTH",
         "SWAGGER",
@@ -8608,10 +8378,7 @@
         "BULLET_PUNCH",
         "CHARM",
         "CURSE",
-        "HAMMER_ARM",
         "HIDDEN_POWER",
-        "IRON_DEFENSE",
-        "IRON_HEAD",
         "RETURN",
         "STRENGTH",
         "SWAGGER",
@@ -8643,10 +8410,7 @@
         "BULLET_PUNCH",
         "CHARM",
         "CURSE",
-        "HAMMER_ARM",
         "HIDDEN_POWER",
-        "IRON_DEFENSE",
-        "IRON_HEAD",
         "RETURN",
         "STRENGTH",
         "SWAGGER",
@@ -8667,8 +8431,6 @@
       "name": "Tirtouga",
       "newly_available": [],
       "removed_moves": [
-        "HEADBUTT",
-        "HEAD_SMASH",
         "IRON_HEAD",
         "MUD_SLAP",
         "POWER_GEM",
@@ -8780,10 +8542,8 @@
       "name": "Toxapex",
       "newly_available": [],
       "removed_moves": [
-        "BODY_PRESS",
         "CURSE",
         "SLUDGE",
-        "SPIKES",
         "WATERFALL",
         "WHIRLPOOL"
       ],
@@ -8799,9 +8559,7 @@
       ],
       "removed_moves": [
         "ACID_ARMOR",
-        "CURSE",
-        "FORCE_PALM",
-        "SUPERPOWER"
+        "CURSE"
       ],
       "new_tutor_routes": [
         "EARTH_POWER",
@@ -8819,8 +8577,7 @@
         "CURSE",
         "FIRE_BLAST",
         "FLAMETHROWER",
-        "ROOST",
-        "U_TURN"
+        "ROOST"
       ],
       "new_tutor_routes": [
         "HYPER_VOICE"
@@ -8856,11 +8613,9 @@
         "FLASH",
         "IRON_HEAD",
         "IRON_TAIL",
-        "LEAF_BLADE",
         "LEECH_SEED",
         "ROCK_SMASH",
         "STRENGTH",
-        "SWORDS_DANCE",
         "THIEF",
         "WOOD_HAMMER"
       ],
@@ -8900,7 +8655,6 @@
       "name": "Tyrantrum",
       "newly_available": [],
       "removed_moves": [
-        "HEADBUTT",
         "MUD_SLAP",
         "POWER_GEM"
       ],
@@ -8926,7 +8680,6 @@
       "name": "Tyrunt",
       "newly_available": [],
       "removed_moves": [
-        "HEADBUTT",
         "MUD_SLAP",
         "POWER_GEM"
       ],
@@ -8979,10 +8732,7 @@
         "STEALTH_ROCK",
         "TACKLE"
       ],
-      "removed_moves": [
-        "CRUSH_CLAW",
-        "SANDSTORM"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "STEALTH_ROCK",
         "TACKLE"
@@ -9013,10 +8763,7 @@
         "STEALTH_ROCK",
         "TACKLE"
       ],
-      "removed_moves": [
-        "CRUSH_CLAW",
-        "DRAIN_PUNCH"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "STEALTH_ROCK",
         "TACKLE"
@@ -9076,7 +8823,6 @@
         "ROCK_TOMB"
       ],
       "removed_moves": [
-        "CROSS_POISON",
         "CURSE"
       ],
       "new_tutor_routes": [
@@ -9117,9 +8863,7 @@
       "newly_available": [
         "ANCIENTPOWER"
       ],
-      "removed_moves": [
-        "WOOD_HAMMER"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "ANCIENTPOWER"
       ],
@@ -9131,9 +8875,7 @@
       "newly_available": [
         "ANCIENTPOWER"
       ],
-      "removed_moves": [
-        "WOOD_HAMMER"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [
         "ANCIENTPOWER"
       ],
@@ -9186,8 +8928,7 @@
       "removed_moves": [
         "CURSE",
         "FLASH",
-        "FURY_CUTTER",
-        "NUZZLE"
+        "FURY_CUTTER"
       ],
       "new_tutor_routes": [
         "HURRICANE"
@@ -9254,10 +8995,7 @@
       "species": "WALREIN",
       "name": "Walrein",
       "newly_available": [],
-      "removed_moves": [
-        "FREEZE_DRY",
-        "SLACK_OFF"
-      ],
+      "removed_moves": [],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
@@ -9330,7 +9068,6 @@
       "removed_moves": [
         "DRAIN_PUNCH",
         "FREEZE_DRY",
-        "ICE_FANG",
         "IRON_HEAD"
       ],
       "new_tutor_routes": [
@@ -9392,7 +9129,6 @@
         "ROCK_TOMB"
       ],
       "removed_moves": [
-        "CROSS_POISON",
         "CURSE"
       ],
       "new_tutor_routes": [
@@ -9431,13 +9167,10 @@
       "name": "Wimpod",
       "newly_available": [],
       "removed_moves": [
-        "AQUA_TAIL",
         "BUBBLE",
-        "BUG_BITE",
         "CURSE",
         "FURY_CUTTER",
         "ICE_BEAM",
-        "SUPERPOWER",
         "WHIRLPOOL"
       ],
       "new_tutor_routes": [],
@@ -9463,7 +9196,6 @@
         "SCARY_FACE"
       ],
       "removed_moves": [
-        "ACID_ARMOR",
         "DRAIN_PUNCH",
         "IRON_HEAD"
       ],
@@ -9489,7 +9221,6 @@
         "SAFEGUARD"
       ],
       "removed_moves": [
-        "HORN_LEECH",
         "STRENGTH"
       ],
       "new_tutor_routes": [
@@ -9599,12 +9330,10 @@
       ],
       "removed_moves": [
         "CURSE",
-        "DRAGON_CLAW",
         "FIRE_BLAST",
         "FLAMETHROWER",
         "FOUL_PLAY",
         "KNOCK_OFF",
-        "NIGHT_SLASH",
         "SCALE_SHOT",
         "SURF"
       ],
