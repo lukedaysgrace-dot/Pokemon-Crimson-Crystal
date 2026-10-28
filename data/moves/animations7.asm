@@ -900,3 +900,77 @@ BattleAnim_Poison_Bubble_branch_short_3_SourApple:
 	anim_obj ANIM_OBJ_SLUDGE, 148, 72, $0
 	anim_wait 48
 	anim_ret
+
+; User-requested Slack Off: the complete current Swagger sequence,
+; followed by Slack Off's existing recovery sparkles.
+BattleAnim_SlackOff_Custom:
+	anim_2gfx ANIM_GFX_MISC, ANIM_GFX_WIND
+.swagger
+	anim_sound 0, 0, SFX_MENU
+	anim_obj ANIM_OBJ_SWAGGER, 72, 88, $44
+	anim_wait 32
+	anim_loop 2, .swagger
+	anim_wait 32
+	anim_sound 0, 1, SFX_KINESIS_2
+	anim_obj ANIM_OBJ_ANGER, 104, 40, $0
+	anim_wait 40
+	anim_clearobjs
+	anim_wait 1
+	anim_1gfx ANIM_GFX_SHINE
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+	anim_sound 0, 0, SFX_METRONOME
+	anim_obj ANIM_OBJ_GLIMMER, 44, 64, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_GLIMMER, 24, 96, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_GLIMMER, 56, 104, $0
+	anim_wait 21
+	anim_ret
+
+; Two deep Crush Claw strikes: violet gashes and bubbles, then mirrored
+; acid-green gashes and bubbles. Clear the first phase before recoloring.
+BattleAnim_DireClaw_Custom:
+	anim_3gfx ANIM_GFX_TEAR, ANIM_GFX_POISON, ANIM_GFX_HIT
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_PURPLE
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PURPLE
+	anim_bgp $1b
+	anim_bgeffect ANIM_BG_BLACK_HUES, $0, $8, $0
+	anim_wait 8
+	anim_sound 0, 1, SFX_CUT
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $28, $3, $0
+	anim_obj ANIM_OBJ_DIRE_CLAW_FORWARD, 144, 48, $0
+	anim_wait 23
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_DIRE_CLAW_BUBBLES
+	anim_obj ANIM_OBJ_SLUDGE, 132, 64, $0
+	anim_obj ANIM_OBJ_SLUDGE, 120, 70, $0
+	anim_obj ANIM_OBJ_SLUDGE, 146, 66, $0
+	anim_obj ANIM_OBJ_POISON_DROPLET, 126, 48, $28
+	anim_obj ANIM_OBJ_POISON_DROPLET, 142, 48, $18
+	anim_obj ANIM_OBJ_POISON_DROPLET, 136, 58, $10
+	anim_wait 36
+	anim_clearobjs
+	anim_wait 1
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_GASTRO_ACID
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_GASTRO_ACID
+	anim_sound 0, 1, SFX_CUT
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $28, $3, $0
+; The tear's bounds are -27..7; compensate its off-center mirror axis.
+	anim_obj ANIM_OBJ_DIRE_CLAW_REVERSE, 124, 48, $0
+	anim_wait 23
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $2
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_DIRE_CLAW_BUBBLES
+	anim_obj ANIM_OBJ_SLUDGE, 132, 64, $0
+	anim_obj ANIM_OBJ_SLUDGE, 120, 70, $0
+	anim_obj ANIM_OBJ_SLUDGE, 146, 66, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_POISON_DROPLET, 128, 48, $28
+	anim_obj ANIM_OBJ_POISON_DROPLET, 144, 48, $18
+	anim_wait 30
+	anim_clearobjs
+	anim_wait 1
+	anim_ret
