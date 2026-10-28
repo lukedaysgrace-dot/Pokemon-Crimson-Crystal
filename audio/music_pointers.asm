@@ -122,3 +122,4 @@ Music:
 	dba Music_GreenEncounter         ; MUSIC_GREEN_ENCOUNTER
 	dba Music_MeetBlueCloak           ; MUSIC_MEET_BLUE_CLOAK
 	dba Music_RocketExecutiveBattle   ; MUSIC_ROCKET_EXECUTIVE_BATTLE
+	dba Music_RocketExecutiveTheme    ; MUSIC_ROCKET_EXECUTIVE_THEME

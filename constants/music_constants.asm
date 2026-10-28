@@ -124,6 +124,7 @@
 	const MUSIC_GREEN_ENCOUNTER                ; 73
 	const MUSIC_MEET_BLUE_CLOAK                ; 74
 	const MUSIC_ROCKET_EXECUTIVE_BATTLE        ; 75
+	const MUSIC_ROCKET_EXECUTIVE_THEME         ; 76
 
 ; GetMapMusic picks music for this value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $64
