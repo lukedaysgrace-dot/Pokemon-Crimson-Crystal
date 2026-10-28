@@ -125,6 +125,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_CottonGuard
 	dw BattleAnimFunction_RadialMoveOut_VeryFast_NoStop
 	dw BattleAnimFunction_LavaPlumeEmber
+	dw BattleAnimFunction_Discharge
 
 BattleAnimFunction_Stat:
 ; Polished Crystal's RadialMoveOut_Stats: speed 3, distance 80.
@@ -5186,13 +5187,13 @@ endr
 BattleAnimFunction_ObjectHover:
 ; Ported from pokeorange (Wish stars): the object climbs slowly (16-bit
 ; fixed-point y step of -0.5px/frame) until YOFFSET reaches -1, then bobs
-; in place. pokeorange's third stage (step to target) is unreachable from
-; this flow and was not ported.
+; in place. Sour Apple explicitly deletes the hovering stars with state 3.
 	call BattleAnim_AnonJumptable
 
 	dw .zero
 	dw .one
 	dw .two
+	dw .three
 
 .zero
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
@@ -5248,6 +5249,9 @@ BattleAnimFunction_ObjectHover:
 
 .two
 	ret
+
+.three
+	jp DeinitBattleAnimation
 
 BattleAnimFunction_RadialMoveOut_CP_BG:
 	call BattleAnim_AnonJumptable
@@ -5343,4 +5347,50 @@ BattleAnimFunction_CottonGuard:
 	ld a, e
 	ld [hld], a
 	ld [hl], d
+	ret
+
+; Sour Apple: rotating, rapidly expanding Discharge sparks.
+BattleAnimFunction_Discharge:
+; A rotating circle of objects centered at a position. It expands for $1b frames and then ends.
+; Obj Param: Defines starting point in the circle
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	inc [hl] ; These speed up spinning
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	ld d, [hl]
+	push af
+	push de
+	call BattleAnim_Sine
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	ld [hl], a
+	pop de
+	pop af
+	call BattleAnim_Cosine
+	ld hl, BATTLEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_10
+	add hl, bc
+	ld a, [hl]
+	inc [hl]
+	inc [hl] ; the rest of these control the in and out.
+	inc [hl]
+	ld hl, BATTLEANIMSTRUCT_0F
+	add hl, bc
+	cp $1b
+	jp nc, DeinitBattleAnimation
+	inc [hl]
+	inc [hl] ; expand speed
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	inc [hl]
 	ret

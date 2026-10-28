@@ -34,6 +34,9 @@ class AnimationAudit:
         self.hidden_hud_frames = 0
         self.discharge_black_frames = []
         self.current = None
+        manifest = json.loads((ROOT/'tools/battletest/mae_animation_manifest.json').read_text())
+        self.sour_apple = {row['move'] for row in manifest['moves']
+                           if row['local_file'] == 'data/moves/animations7.asm'}
         self.h.pb.hook_register(*h.sym['InitBattleAnimation'], self.on_object, None)
         self.h.pb.hook_register(*h.sym['QueueBattleAnimation'], self.on_queue, None)
 
@@ -133,6 +136,31 @@ class AnimationAudit:
             return [p['samples'] for p in self.spawns if p['object'] == 'ANIM_OBJ_'+name and p['samples']]
         def check(ok, message):
             if not ok: self.errors.append([move, side, message])
+        if move in self.sour_apple and move == 'VACUUM_WAVE':
+            check([p['object'] for p in self.spawns] ==
+                  ['ANIM_OBJ_PUNCH','ANIM_OBJ_VACUUM_SHRINKING','ANIM_OBJ_HIT'],
+                  'Sour Apple fist, shrinking pressure sphere and impact must appear in order')
+            check(all((p['x'],p['y']) == (136,52) for p in self.spawns),
+                  'vacuum pressure effect must stay on the target')
+            return
+        if move in self.sour_apple and move == 'DISCHARGE':
+            rays = ['DISCHARGE_SPARKS_'+d for d in ('N','NE','E','SE','S','SW','W','NW')]
+            check(all(len(tracks(n)) == 8 for n in rays),
+                  'all eight directional spark sprites must appear in every discharge wave')
+            check(all(max(abs(p[1]-48)+abs(p[2]-88) for p in t) >= 40
+                      for n in rays for t in tracks(n)),
+                  'discharge sparks must expand outward from the user')
+            check(len(tracks('LIGHTNING_BOLT')) == 3 and len(tracks('DISCHARGE_SPARKS_SMALL')) == 1,
+                  'Sour Apple small-to-large lightning buildup must precede the spark waves')
+            return
+        if move in self.sour_apple and move == 'LAVA_PLUME':
+            check(len(tracks('RADIAL_FLAME_RED')) == 24 and
+                  len(tracks('ERUPTION_SMALL_FLAME')) == 12 and
+                  len(tracks('LAVA_PLUME_SMOKE_SOUR')) == 12,
+                  'all source flame pairs, embers and large smoke puffs must render')
+            check(len({p['param'] for p in self.spawns if p['object']=='ANIM_OBJ_RADIAL_FLAME_RED'}) == 12,
+                  'source flames must spread around the user in twelve directions')
+            return
         if move == 'VACUUM_WAVE':
             phases = ('PUNCH','SHRINKING_RING_BIG','SHRINKING_RING_SMALL','HIT_YFIX')
             check([p['object'] for p in self.spawns] == ['ANIM_OBJ_'+n for n in phases],
@@ -247,8 +275,8 @@ def main():
                     audit.errors.append([move, side, 'rendered battle screen not fully restored',
                                          result['final_frame_changed_pixels']])
                 if move == 'LAVA_PLUME':
-                    first = min(p['samples'][0][0] for p in audit.spawns if p['samples'])
-                    if result['native_frames']-first > 120:
+                    last = max(p['samples'][-1][0] for p in audit.spawns if p['samples'])
+                    if result['native_frames']-last > 24:
                         audit.errors.append([move, side, 'sound tail delays the end of the plume'])
                 result['objects'] = audit.spawns.copy()
                 # Dense timelines include early/late phases missed by four snapshots.

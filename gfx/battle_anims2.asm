@@ -14,3 +14,10 @@ AnimObjLavaRocksGFX: INCBIN "gfx/battle_anims/lavarocks.2bpp.lz"
 AnimObjSmallExplosionGFX: INCBIN "gfx/battle_anims/smallexplosion.2bpp.lz"
 AnimObjRecycleGFX: INCBIN "gfx/battle_anims/recycle.2bpp.lz"
 AnimObjSacredFireCenterGFX: INCBIN "gfx/battle_anims/sacred_fire_center.2bpp.lz"
+
+SECTION "Sour Apple Animation Graphics", ROMX
+AnimObjLeafStormGFXSourApple: INCBIN "gfx/battle_anims/leafstorm_sour_apple.2bpp.lz"
+AnimObjSmokePuffBigGFXSourApple: INCBIN "gfx/battle_anims/smokepuffbig_sour_apple.2bpp.lz"
+AnimObjVortexGFXSourApple: INCBIN "gfx/battle_anims/vortex_sour_apple.2bpp.lz"
+AnimObjSwirlGFXSourApple: INCBIN "gfx/battle_anims/swirl_sour_apple.2bpp.lz"
+AnimObjShadowSneakGFXSourApple: INCBIN "gfx/battle_anims/shadow_sneak_sour_apple.2bpp.lz"

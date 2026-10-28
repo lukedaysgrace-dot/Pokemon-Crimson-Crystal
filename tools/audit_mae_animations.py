@@ -12,10 +12,11 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / 'tools/battletest/mae_animation_manifest.json'
-UPSTREAM_SHA = '83db98aec1a0ccf50e78f8b38e37b8427ba310bb'
+UPSTREAM_SHA = '41a44630a3f712f3f45a157874361234e13e68ca'
 SUPPORT_FILES = [
     'constants/battle_anim_constants.asm', 'macros/scripts/battle_anims.asm',
     'data/battle_anims/objects.asm', 'data/battle_anims/framesets.asm',
@@ -23,12 +24,27 @@ SUPPORT_FILES = [
     'engine/battle_anims/anim_commands.asm', 'engine/battle_anims/core.asm',
     'engine/battle_anims/functions.asm', 'engine/battle_anims/helpers.asm',
     'engine/battle_anims/data_readers.asm', 'engine/battle_anims/object_readers.asm',
-    'gfx/battle_anims.asm', 'gfx/battle_anims/custom.pal', 'gfx/battle_anims/cosmicpower.png',
-    *[f'data/moves/animations{suffix}.asm' for suffix in ('', '2', '3', '4', '5')],
+    'gfx/battle_anims.asm', 'gfx/battle_anims2.asm', 'gfx/battle_anims/custom.pal',
+    'gfx/battle_anims/cosmicpower.png',
+    *[p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'gfx/battle_anims').glob('*_sour_apple.png'))],
+    *[f'data/moves/animations{suffix}.asm' for suffix in ('', '2', '3', '4', '5', '6', '7')],
 ]
 CHANGED = {'BUBBLE', 'EGG_BOMB', 'SPIKE_CANNON', 'BARRAGE', 'FLAME_WHEEL',
            'LEAF_BLADE', 'SHADOW_PUNCH', 'DRAGON_DANCE', 'SLACK_OFF', 'VOLT_TACKLE', 'WISH',
            'SELFDESTRUCT', 'POWDER_SNOW', 'PRESENT'}
+SOUR_APPLE = {'WHIRLWIND', 'TWISTER', 'FIRE_FANG', 'ICE_FANG', 'THUNDER_FANG',
+    'BRAVE_BIRD', 'VOLT_TACKLE', 'LEAF_STORM', 'ROCK_POLISH',
+    'HEAD_SMASH', 'PSYCHO_CUT', 'CROSS_POISON', 'STEALTH_ROCK', 'DEFOG',
+    'GUST', 'TACKLE', 'SHADOW_BALL', 'SHADOW_SNEAK', 'POISON_FANG',
+    'BUG_BUZZ', 'POISON_JAB', 'VACUUM_WAVE', 'DISCHARGE', 'LAVA_PLUME',
+    'WISH'}
+CHANGED |= SOUR_APPLE
+ADAPTATIONS = {
+    'POISON_FANG': 'Use a dedicated purple bite object; preserve the source impact colors and poison-splash sequence.',
+    'SHADOW_SNEAK': 'Pack the exact three shadow tiles so HIT graphics and battler tiles do not overlap.',
+    'HEAD_SMASH': 'Clear the first debris group before the second impact to avoid dropped rocks.',
+    'LAVA_PLUME': 'Space spawns three frames apart and use short flame-pair crackles so particles fit and no long sound tail delays the finish.',
+}
 
 # Each exception describes the visible improvement or the required engine fix.
 PRESERVE = {
@@ -57,6 +73,12 @@ PRESERVE = {
     'MAGICAL_LEAF': 'Keep the Aurora palette on the actual green leaf slot in this engine.',
     'BOUNCE': 'Keep the complete charge, hit and miss paths and restored user sprite.',
     'WEATHER_BALL': 'Keep corrected 120-pixel travel, dedicated ice burst and removed transition flash.',
+    'IRON_HEAD': 'Keep the metallic user palette and explicit palette restoration instead of a black silhouette.',
+    'COSMIC_POWER': 'Keep Coral starfield positioning and immediate palette cycling, with both complete HUDs hidden.',
+    'ERUPTION': 'Same source sequence; the dedicated falling-rock object uses the loaded lava-rock graphics instead of unloaded ROCKS.',
+    'OMINOUS_WIND': 'Same source sequence; dedicated Coral mist object retains its correct palette and priority.',
+    'BLAZE_KICK': 'Keep six-frame flame spacing; the source one-frame burst drops flames from the ten-object pool.',
+    'TRICK_ROOM': 'User requested the original repeated SFX_UNKNOWN_66 sound sequence; visual effects and timing are retained.',
 }
 
 
@@ -86,8 +108,10 @@ class Scripts:
     def __init__(self, root, upstream=False):
         self.root = root
         self.upstream = upstream
-        names = ['animations_1.asm', 'animations_2.asm', 'special_animations.asm'] if upstream else [
-            'animations.asm', 'animations2.asm', 'animations3.asm', 'animations4.asm', 'animations5.asm']
+        names = [p.name for p in sorted((root / 'data/moves').glob('animations_*.asm'))]
+        names = names + ['special_animations.asm'] if upstream else [
+            'animations.asm', 'animations2.asm', 'animations3.asm', 'animations4.asm',
+            'animations5.asm', 'animations6.asm', 'animations7.asm']
         self.blocks, self.next, self.files = {}, {}, {}
         pointers = []
         for name in names:
@@ -147,6 +171,11 @@ class Scripts:
                 line = re.sub(r'ANIM_OBJ_([\dA-F]{2})\b',
                     lambda m: self.reference_objects[self.con[m[0]]], line)
                 line = line.replace('ANIM_OBJ_LIGHTNING_BOLT', 'ANIM_OBJ_THUNDERBOLT_CORE')
+                line = re.sub(r'(ANIM_GFX_\w+)_SA\b', r'\1', line)
+                line = line.replace('ANIM_GFX_SHADOW_SNEAK', 'ANIM_GFX_ANGELS')
+                line = re.sub(r'(ANIM_OBJ_\w+)_SOUR\b', r'\1', line)
+                if move == 'LAVA_PLUME':
+                    line = line.replace('ANIM_OBJ_RADIAL_FLAME_RED', 'ANIM_OBJ_RADIAL_FLAME')
                 line = re.sub(r'ANIM_BG_\w+',
                     lambda m: self.reference_bgs.get(self.con.get(m[0]), m[0]), line)
             line = line.replace('anim_clearenemyhud', 'anim_clearopponenthud')
@@ -169,6 +198,19 @@ class Scripts:
             # Labels are scoped to this script; bank suffixes carry no meaning.
             line = re.sub(r'(BattleAnim_\w+)_branch_c[\da-f]+', r'\1_branch', line)
             out.append(line)
+        if self.upstream and move == 'LAVA_PLUME':
+            out = ['anim_wait 3' if line == 'anim_wait 2' else line for line in out]
+            out.remove('anim_sound 6,2,SFX_EMBER')
+            pairs = [i for i,line in enumerate(out) if line.startswith('anim_obj ANIM_OBJ_RADIAL_FLAME,')][::2]
+            for index in reversed(pairs):
+                out.insert(index, 'anim_sound 0,0,SFX_BURN')
+        if self.upstream and move == 'HEAD_SMASH':
+            index = next(i for i,line in enumerate(out)
+                         if line == 'anim_sound 0,1,SFX_EGG_BOMB' and out[i-1] == 'anim_wait 6')
+            out.insert(index, 'anim_clearobjs')
+        if self.upstream and move == 'POISON_FANG':
+            out.insert(1, 'anim_setobjpal PAL_BATTLE_OB_BLUE,PAL_BTLCUSTOM_PURPLE')
+            out = [line.replace('ANIM_OBJ_BITE,', 'ANIM_OBJ_POISON_FANG_BITE,') for line in out]
         return [line for i, line in enumerate(out)
                 if not (line == 'anim_ret' and i and out[i-1] == 'anim_ret')]
 
@@ -191,6 +233,8 @@ def main():
             assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest() == expected, name
         print('PASS', len(saved['moves']), 'saved shared-move mappings and animation dependency hashes')
         return
+    revision = subprocess.check_output(['git', '-C', str(args.upstream), 'rev-parse', 'HEAD'], text=True).strip()
+    assert revision == UPSTREAM_SHA, ('wrong upstream revision', revision, UPSTREAM_SHA)
     source = Scripts(args.upstream.resolve(), upstream=True)
     local.reference_objects = {v: n for n, v in source.con.items() if n.startswith('ANIM_OBJ_')}
     # Pokeorange inserted WITHDRAW_ALL into its BG enum; later numeric ids
@@ -208,7 +252,8 @@ def main():
             status, reason = 'unresolved', 'Updated animation does not match reference commands.'
             print(move, '\n  crimson:', a, '\n  orange:', b)
         elif move in CHANGED:
-            status, reason = 'updated', 'Completed Pokeorange animation; retain compatible upgraded engine graphics.'
+            status, reason = 'updated', ADAPTATIONS.get(move,
+                'Completed Pokeorange animation; retain compatible upgraded engine graphics.')
         elif source.expanded(reference) == ['anim_ret'] or reference == 'BattleAnim_0':
             status, reason = 'preserved', 'Upstream has an empty placeholder; retain the implemented animation.'
         elif a == b:
@@ -228,9 +273,11 @@ def main():
     if unresolved:
         raise SystemExit('Unreviewed differences: '+', '.join(unresolved))
     result = {'upstream_repository': 'https://github.com/PiaCarrot/mae-pokeorange',
-              'upstream_commit': UPSTREAM_SHA, 'date': '2026-10-17',
+              'upstream_branch': 'sour-apple',
+              'upstream_commit': UPSTREAM_SHA, 'date': '2026-10-27',
               'scope': 'Shared move scripts and reachable helper bodies; engine adaptations and upgraded assets retained.',
               'counts': dict(Counter(row['status'] for row in rows)), 'moves': rows,
+              'absent_from_upstream': sorted(set(local.moves)-set(source.moves)-{'NO_MOVE'}),
               'support_file_sha256': {name: hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
                                       for name in SUPPORT_FILES}}
     if args.write:

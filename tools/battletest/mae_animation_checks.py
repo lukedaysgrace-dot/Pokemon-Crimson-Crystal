@@ -45,7 +45,7 @@ def stage(rom, audio=False):
     return h, fixture
 
 
-def capture(h, fixture, move, side, audio=False, param=None, observer=None):
+def capture(h, fixture, move, side, audio=False, param=None, observer=None, validate=True):
     fixture.seek(0)
     h.pb.load_state(fixture)
     m, pb = h.battle.mem, h.pb
@@ -93,16 +93,18 @@ def capture(h, fixture, move, side, audio=False, param=None, observer=None):
                                 count=sound.raw_buffer_head).reshape(-1, 2)
             samples.append(buf.astype(np.int16) * 256)
     assert len(frames) > 15, (move, side, 'animation did not execute')
-    assert not m.read('hSCX') and not m.read('hSCY'), (move, side, 'screen offset leaked')
-    assert not m.read('hLCDCPointer'), (move, side, 'LCD effect leaked')
-    assert palettes == [m.read_bytes(name, 64) for name in palette_names], (move, side, 'palette leaked')
-    assert tilemap == m.read_bytes('wTileMap', 360), (move, side, 'battle tilemap was not restored')
+    cleanup_errors = []
+    if m.read('hSCX') or m.read('hSCY'): cleanup_errors.append('screen offset leaked')
+    if m.read('hLCDCPointer'): cleanup_errors.append('LCD effect leaked')
+    if palettes != [m.read_bytes(name, 64) for name in palette_names]: cleanup_errors.append('palette leaked')
+    if tilemap != m.read_bytes('wTileMap', 360): cleanup_errors.append('battle tilemap was not restored')
+    if validate: assert not cleanup_errors, (move, side, cleanup_errors)
     changed = [int(np.any(frame != start, axis=2).sum()) for frame in frames]
     assert max(changed) > 20, (move, side, 'no visible animation')
     return frames, samples, {'move': move, 'side': side, 'param': param, 'frames': len(frames),
                             'native_frames': native_frames,
                             'final_frame_changed_pixels': int(np.any(frames[-1] != start, axis=2).sum()),
-                            'changed_pixels_peak': max(changed), 'cleanup': 'passed'}
+                            'changed_pixels_peak': max(changed), 'cleanup': cleanup_errors or 'passed'}
 
 
 def main():
@@ -111,6 +113,7 @@ def main():
     parser.add_argument('--before-rom', type=Path)
     parser.add_argument('--output', type=Path, default=ROOT / '_artifacts/mae-animation-comparison')
     parser.add_argument('--record', action='store_true')
+    parser.add_argument('--update-label', default='MAE POKEORANGE ANIMATION')
     parser.add_argument('--moves', nargs='+', default=CHANGED)
     args = parser.parse_args()
     if args.record and not args.before_rom:
@@ -143,7 +146,8 @@ def main():
                 frames, audio, result = capture(current, current_state, move, side, args.record)
                 old = None
                 if before:
-                    old, _, original = capture(before, before_state, move, side)
+                    old, _, original = capture(before, before_state, move, side, validate=False)
+                    result['original_cleanup'] = original['cleanup']
                     result['original_frames'] = len(old)
                     common = min(len(frames), len(old))
                     result['different_frames'] = sum(not np.array_equal(frames[i], old[i]) for i in range(common))
@@ -169,7 +173,7 @@ def main():
                     title = f'{move.replace("_", " ").title()}  |  {"Player" if side == 0 else "Opponent"} uses the move'
                     draw.text((20, 9), title, font=font, fill='white')
                     draw.text((20, 44), 'BEFORE', font=small, fill='#b8c3d5')
-                    draw.text((660, 44), 'UPDATED — MAE POKEORANGE ANIMATION', font=small, fill='#7de1ba')
+                    draw.text((660, 44), 'UPDATED — '+args.update_label, font=small, fill='#7de1ba')
                     for x, sequence in ((0, old), (640, frames)):
                         img = Image.fromarray(sequence[min(i, len(sequence)-1)])
                         canvas.paste(img.resize((640, 576), Image.Resampling.NEAREST), (x, 72))
@@ -202,6 +206,9 @@ def main():
             '-i', str(wav_path), '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k',
             '-shortest', '-movflags', '+faststart', str(target)], check=True)
         print('VIDEO', target, flush=True)
+        (args.output/'chapters.txt').write_text('\n'.join(
+            f'{int(c["seconds"])//60:02}:{int(c["seconds"])%60:02} {c["move"].replace("_", " ").title()} — '+
+            ('player' if c['side']==0 else 'opponent') for c in chapters)+'\n')
     (args.output / 'results.json').write_text(json.dumps({
         'rom_hash': current.rom_key(), 'original_rom_hash': before.rom_key() if before else None,
         'checks': results, 'variant_checks': variants, 'chapters': chapters,
