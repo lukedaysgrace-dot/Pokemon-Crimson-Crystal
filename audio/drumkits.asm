@@ -5,6 +5,7 @@ Drumkits:
 	dw Drumkit3
 	dw Drumkit4
 	dw Drumkit5
+	dw Drumkit6
 
 Drumkit0:
 	dw Drum00    ; rest
@@ -90,6 +91,22 @@ Drumkit5:
 	dw Snare14
 	dw Snare13
 	dw Kick2
+
+Drumkit6:
+; Rocket Executive battle kit
+	dw Drum00      ; rest
+	dw RocketKick  ; c  K
+	dw RocketSnare ; c# S
+	dw RocketGhost ; d  g
+	dw RocketHat   ; d# h
+	dw RocketOpen  ; e  o
+	dw RocketCrash ; f  X
+	dw RocketTomHi ; f# T
+	dw RocketTomMid; g  M
+	dw RocketTomLo ; g# L
+	dw RocketRoll  ; a  R
+	dw RocketHatSoft ; a# q
+	dw RocketClap  ; b  P
 
 Drum00:
 ; unused
@@ -258,4 +275,65 @@ Drum36:
 Kick2:
 	noise C#,  1, $a8, $6b
 	noise C#,  1, $71, $00
+	endchannel
+
+RocketKick:
+	noise C#, 1, $f1, $55
+	noise C#, 1, $d1, $66
+	noise C#, 2, $a1, $77
+	noise C#, 1, $00, $00
+	endchannel
+
+RocketHatSoft:
+	noise C#, 1, $41, $00
+	endchannel
+
+RocketSnare:
+	noise C#, 1, $f1, $52
+	noise C#, 1, $d2, $22
+	endchannel
+
+RocketGhost:
+	noise C#, 1, $61, $22
+	endchannel
+
+RocketRoll:
+	noise C#, 1, $a1, $32
+	endchannel
+
+RocketClap:
+	noise C#, 1, $e1, $33
+	noise C#, 1, $11, $33
+	noise C#, 1, $d2, $23
+	endchannel
+
+RocketHat:
+	noise C#, 1, $71, $00
+	endchannel
+
+RocketOpen:
+	noise C#, 1, $93, $01
+	endchannel
+
+RocketCrash:
+	noise C#, 1, $f1, $55
+	noise C#, 1, $f5, $12
+	endchannel
+
+RocketTomHi:
+	noise C#, 1, $e2, $1e
+	noise C#, 2, $c2, $1f
+	noise C#, 4, $a2, $2d
+	endchannel
+
+RocketTomMid:
+	noise C#, 1, $e2, $1f
+	noise C#, 2, $c2, $2d
+	noise C#, 4, $a2, $2f
+	endchannel
+
+RocketTomLo:
+	noise C#, 1, $e2, $2d
+	noise C#, 2, $c2, $2f
+	noise C#, 4, $a2, $3e
 	endchannel

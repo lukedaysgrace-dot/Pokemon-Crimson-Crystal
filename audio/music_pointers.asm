@@ -121,3 +121,4 @@ Music:
 	dba Music_CeruleanCaveRBY        ; MUSIC_CERULEAN_CAVE_RBY
 	dba Music_GreenEncounter         ; MUSIC_GREEN_ENCOUNTER
 	dba Music_MeetBlueCloak           ; MUSIC_MEET_BLUE_CLOAK
+	dba Music_RocketExecutiveBattle   ; MUSIC_ROCKET_EXECUTIVE_BATTLE

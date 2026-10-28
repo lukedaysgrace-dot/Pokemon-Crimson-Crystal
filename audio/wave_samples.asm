@@ -16,3 +16,6 @@ WaveSamples:
 	db $00, $04, $02, $6f, $4b, $97, $64, $20, $44, $24, $64, $60, $04, $00, $44, $b2
 	; 11: Trading Card Game Ronald encounter bass waveform.
 	db $01, $12, $23, $34, $45, $56, $67, $77, $88, $99, $aa, $bb, $cc, $dd, $ee, $ff
+	; 12: Rocket Executive bass, a 37.5% pulse with sloped edges: a strong
+	; fundamental plus a clear second harmonic so low notes stay audible.
+	dn 15, 15, 14, 14, 14, 14, 13, 13, 13, 13, 12, 12,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3

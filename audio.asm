@@ -210,6 +210,11 @@ SECTION "Blue Cloak Encounter Music", ROMX
 INCLUDE "audio/music/meetbluecloak.asm"
 
 
+SECTION "Rocket Executive Battle Music", ROMX
+
+INCLUDE "audio/music/rocketexecutivebattle.asm"
+
+
 SECTION "Sound Effects", ROMX
 
 INCLUDE "audio/sfx.asm"
