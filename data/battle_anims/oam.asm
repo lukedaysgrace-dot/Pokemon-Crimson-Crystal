@@ -389,6 +389,48 @@ BattleAnimOAMData:
 	dbbw $00, 4, .OAMData_03 ; BATTLEANIMOAMSET_SACRED_FIRE_CENTER
 	dbbw $04, 4, .OAMData_03 ; BATTLEANIMOAMSET_SACRED_FIRE_CENTER_SMALL
 
+; Sour Apple animation dependencies.
+	dbbw $04,  1, .OAMData_0f_SA ; BATTLEANIMOAMSET_0F_SA
+	dbbw $00,  4, .OAMData_03_SA ; BATTLEANIMOAMSET_1B_SA
+	dbbw $0c,  6, .OAMData_fc_SA ; BATTLEANIMOAMSET_FC_SA
+	dbbw $00,  6, .OAMData_c4_SA ; BATTLEANIMOAMSET_C4_SA
+	dbbw $06,  6, .OAMData_e5_SA ; BATTLEANIMOAMSET_E5_SA
+	dbbw $01,  5, .OAMData_0f_SA ; BATTLEANIMOAMSET_4B_SA
+	dbbw $01,  6, .OAMData_4c_SA ; BATTLEANIMOAMSET_4C_SA
+	dbbw $01,  7, .OAMData_4d_SA ; BATTLEANIMOAMSET_4D_SA
+	dbbw $01,  8, .OAMData_4f_SA ; BATTLEANIMOAMSET_4F_SA
+	dbbw $01,  9, .OAMData_50_SA ; BATTLEANIMOAMSET_50_SA
+	dbbw $01, 10, .OAMData_51_SA ; BATTLEANIMOAMSET_51_SA
+	dbbw $01,  6, .OAMData_51_SA ; BATTLEANIMOAMSET_52_SA
+	dbbw $11,  2, .OAMData_11_SA ; BATTLEANIMOAMSET_128_SA
+	dbbw $00,  2, .OAMData_0c_SA ; BATTLEANIMOAMSET_11A_SA
+	dbbw $00,  4, .OAMData_59_SA ; BATTLEANIMOAMSET_11B_SA
+	dbbw $00,  6, .OAMData_bc_SA ; BATTLEANIMOAMSET_BC_SA
+	dbbw $08,  1, .OAMData_0f_SA ; BATTLEANIMOAMSET_20_SA
+	dbbw $04,  3, .OAMData_117_SA ; BATTLEANIMOAMSET_117_SA
+	dbbw $00,  5, .OAMData_116_SA ; BATTLEANIMOAMSET_116_SA
+	dbbw $12,  4, .OAMData_03_SA ; BATTLEANIMOAMSET_AD_SA
+	dbbw $0a,  4, .OAMData_03_SA ; BATTLEANIMOAMSET_6C_SA
+	dbbw $0e,  4, .OAMData_03_SA ; BATTLEANIMOAMSET_6D_SA
+	dbbw $00, 29, .OAMData_12b_SA ; BATTLEANIMOAMSET_12B_SA
+	dbbw $09, 16, .OAMData_00_SA ; BATTLEANIMOAMSET_E8_SA
+	dbbw $0e,  4, .OAMData_42_SA ; BATTLEANIMOAMSET_42_SA
+	dbbw $0e,  4, .OAMData_44_SA ; BATTLEANIMOAMSET_44_SA
+	dbbw $0f,  1, .OAMData_0f_SA ; BATTLEANIMOAMSET_F9_SA
+	dbbw $0e,  1, .OAMData_0f_SA ; BATTLEANIMOAMSET_120_SA
+	dbbw $10,  1, .OAMData_0f_SA ; BATTLEANIMOAMSET_82_SA
+	dbbw $09,  4, .OAMData_03_SA ; BATTLEANIMOAMSET_03_SA
+	dbbw $00,  9, .OAMData_c3_SA ; BATTLEANIMOAMSET_11F_SA
+
+	dbbw $00, 16, .OAMData_e1_SAV ; BATTLEANIMOAMSET_E1_SAV
+	dbbw $08, 16, .OAMData_e1_SAV ; BATTLEANIMOAMSET_E2_SAV
+	dbbw $10, 16, .OAMData_e1_SAV ; BATTLEANIMOAMSET_E3_SAV
+	dbbw $18, 16, .OAMData_e1_SAV ; BATTLEANIMOAMSET_E4_SAV
+	dbbw $00,  9, .OAMData_cd_SAV ; BATTLEANIMOAMSET_CD_SAV
+	dbbw $0c,  9, .OAMData_cd_SAV ; BATTLEANIMOAMSET_BA_SAV
+	dbbw $06,  9, .OAMData_cd_SAV ; BATTLEANIMOAMSET_CE_SAV
+	dbbw $12,  9, .OAMData_cd_SAV ; BATTLEANIMOAMSET_94_SAV
+
 .OAMData_lumina_crash:
 ; 4x4 tile burst built from a 2x2 quadrant mirrored on both axes
 	dbsprite  -2, -2,  0, -2, $00, $0
@@ -2689,3 +2731,255 @@ BattleAnimOAMData:
 	dbsprite   0,  -1, 0, 0, $01, $0
 	dbsprite  -1,   0, 0, 0, $02, $0
 	dbsprite   0,   0, 0, 0, $03, $0
+
+.OAMData_0f_SA:
+	dbsprite  -1,  -1, 4, 4, $00, $0
+	dbsprite  -2,  -1, 4, 4, $01, $0
+	dbsprite  -1,  -1, 4, 4, $01, X_FLIP
+	dbsprite  -2,   0, 4, 4, $01, Y_FLIP
+	dbsprite  -1,   0, 4, 4, $01, X_FLIP | Y_FLIP
+
+
+.OAMData_03_SA:
+	dbsprite  -1,  -1, 0, 0, $00, $0
+	dbsprite   0,  -1, 0, 0, $01, $0
+	dbsprite  -1,   0, 0, 0, $02, $0
+	dbsprite   0,   0, 0, 0, $03, $0
+
+
+.OAMData_fc_SA:
+	dbsprite   1,  -1, 0, 0, $00, $0
+	dbsprite   0,   0, 0, 0, $01, $0
+	dbsprite   1,   0, 0, 0, $02, $0
+	dbsprite  -1,   1, 0, 0, $03, $0
+	dbsprite   0,   1, 0, 0, $04, $0
+	dbsprite   1,   1, 0, 0, $05, $0
+
+
+.OAMData_c4_SA:
+	dbsprite   0,  -2, 0, 0, $00, $0
+	dbsprite   1,  -2, 0, 0, $01, $0
+	dbsprite   1,  -1, 0, 0, $02, $0
+	dbsprite   1,   0, 0, 0, $03, $0
+	dbsprite   0,   1, 0, 0, $04, $0
+	dbsprite   1,   1, 0, 0, $05, $0
+
+
+.OAMData_e5_SA:
+	dbsprite  -2,   0, 0, 0, $00, $0
+	dbsprite   1,   0, 0, 0, $01, $0
+	dbsprite  -2,   1, 0, 0, $02, $0
+	dbsprite  -1,   1, 0, 0, $03, $0
+	dbsprite   0,   1, 0, 0, $04, $0
+	dbsprite   1,   1, 0, 0, $05, $0
+
+
+.OAMData_4c_SA:
+	dbsprite  -1,  -1, 4, 4, $00, $0
+	dbsprite  -2,   0, 6, 2, $00, $0
+	dbsprite  -3,   0, 6, 2, $01, $0
+	dbsprite  -2,   0, 6, 2, $01, X_FLIP
+	dbsprite  -3,   1, 6, 2, $01, Y_FLIP
+	dbsprite  -2,   1, 6, 2, $01, X_FLIP | Y_FLIP
+
+
+.OAMData_4d_SA:
+	dbsprite  -1,  -1, 4, 4, $00, $0
+	dbsprite  -2,   0, 6, 2, $00, $0
+	dbsprite  -2,   1, 0, 0, $00, $0
+	dbsprite  -3,   1, 0, 0, $01, $0
+	dbsprite  -2,   1, 0, 0, $01, X_FLIP
+	dbsprite  -3,   2, 0, 0, $01, Y_FLIP
+	dbsprite  -2,   2, 0, 0, $01, X_FLIP | Y_FLIP
+
+
+.OAMData_4f_SA:
+	dbsprite  -1,  -1, 4, 4, $00, $0
+	dbsprite  -2,   0, 6, 2, $00, $0
+	dbsprite  -2,   1, 0, 0, $00, $0
+	dbsprite  -3,   1, 2, 6, $00, $0
+	dbsprite  -4,   1, 2, 6, $01, $0
+	dbsprite  -3,   1, 2, 6, $01, X_FLIP
+	dbsprite  -4,   2, 2, 6, $01, Y_FLIP
+	dbsprite  -3,   2, 2, 6, $01, X_FLIP | Y_FLIP
+
+
+.OAMData_50_SA:
+	dbsprite  -1,  -1, 4, 4, $00, $0
+	dbsprite  -2,   0, 6, 2, $00, $0
+	dbsprite  -2,   1, 0, 0, $00, $0
+	dbsprite  -3,   1, 2, 6, $00, $0
+	dbsprite  -4,   2, 4, 4, $00, $0
+	dbsprite  -5,   2, 4, 4, $01, $0
+	dbsprite  -4,   2, 4, 4, $01, X_FLIP
+	dbsprite  -5,   3, 4, 4, $01, Y_FLIP
+	dbsprite  -4,   3, 4, 4, $01, X_FLIP | Y_FLIP
+
+
+.OAMData_51_SA:
+	dbsprite  -1,  -1, 4, 4, $00, $0
+	dbsprite  -2,   0, 6, 2, $00, $0
+	dbsprite  -2,   1, 0, 0, $00, $0
+	dbsprite  -3,   1, 2, 6, $00, $0
+	dbsprite  -4,   2, 4, 4, $00, $0
+	dbsprite  -5,   3, 6, 2, $00, $0
+	dbsprite  -6,   3, 6, 2, $01, $0
+	dbsprite  -5,   3, 6, 2, $01, X_FLIP
+	dbsprite  -6,   4, 6, 2, $01, Y_FLIP
+	dbsprite  -5,   4, 6, 2, $01, X_FLIP | Y_FLIP
+
+
+.OAMData_11_SA:
+	dbsprite  -1,  -1, 4, 0, $00, $0
+	dbsprite  -1,   0, 4, 0, $01, $0
+
+
+.OAMData_0c_SA:
+	dbsprite  -1,  -1, 0, 4, $00, $0
+	dbsprite   0,  -1, 0, 4, $00, X_FLIP
+
+
+.OAMData_59_SA:
+	dbsprite  -2,  -1, 0, 4, $00, $0
+	dbsprite  -1,  -1, 0, 4, $01, $0
+	dbsprite   0,  -1, 0, 4, $01, X_FLIP
+	dbsprite   1,  -1, 0, 4, $00, X_FLIP
+
+
+.OAMData_bc_SA:
+	dbsprite  -3,  -1, 0, 4, $00, $0
+	dbsprite  -2,  -1, 0, 4, $01, $0
+	dbsprite  -1,  -1, 0, 4, $02, $0
+	dbsprite   0,  -1, 0, 4, $02, X_FLIP
+	dbsprite   1,  -1, 0, 4, $01, X_FLIP
+	dbsprite   2,  -1, 0, 4, $00, X_FLIP
+
+
+.OAMData_117_SA:
+	dbsprite  -1, -1,  0, 0, $00, $0
+	dbsprite   0, -1,  0, 0, $01, $0
+	dbsprite  -1,  0,  0, 0, $03, $0
+
+
+.OAMData_116_SA:
+	dbsprite  -2, -2,  4, 4, $00, $0
+	dbsprite  -1, -2,  4, 4, $01, $0
+	dbsprite   0, -2,  4, 4, $02, $0
+	dbsprite  -2, -1,  4, 4, $03, $0
+	dbsprite  -2,  0,  4, 4, $06, $0
+
+
+.OAMData_12b_SA:
+	dbsprite  -2,  -4, 0, 7, $01, $0
+	dbsprite  -1,  -4, 0, 7, $02, $0
+	dbsprite  -3,  -3, 0, 7, $03, $0
+	dbsprite  -2,  -3, 0, 7, $04, $0
+	dbsprite  -1,  -3, 0, 7, $05, $0
+	dbsprite  -3,  -2, 0, 7, $06, $0
+	dbsprite  -2,  -2, 0, 7, $07, $0
+	dbsprite   1,  -4, 0, 7, $01, X_FLIP
+	dbsprite   0,  -4, 0, 7, $02, X_FLIP
+	dbsprite   2,  -3, 0, 7, $03, X_FLIP
+	dbsprite   1,  -3, 0, 7, $04, X_FLIP
+	dbsprite   0,  -3, 0, 7, $05, X_FLIP
+	dbsprite   2,  -2, 0, 7, $06, X_FLIP
+	dbsprite   1,  -2, 0, 7, $07, X_FLIP
+	dbsprite  -2,   1, 0, 7, $01, Y_FLIP
+	dbsprite  -1,   1, 0, 7, $02, Y_FLIP
+	dbsprite  -3,   0, 0, 7, $03, Y_FLIP
+	dbsprite  -2,   0, 0, 7, $04, Y_FLIP
+	dbsprite  -1,   0, 0, 7, $05, Y_FLIP
+	dbsprite  -3,  -1, 0, 7, $06, Y_FLIP
+	dbsprite  -2,  -1, 0, 7, $07, Y_FLIP
+	dbsprite   1,   1, 0, 7, $01, X_FLIP | Y_FLIP
+	dbsprite   0,   1, 0, 7, $02, X_FLIP | Y_FLIP
+	dbsprite   2,   0, 0, 7, $03, X_FLIP | Y_FLIP
+	dbsprite   1,   0, 0, 7, $04, X_FLIP | Y_FLIP
+	dbsprite   0,   0, 0, 7, $05, X_FLIP | Y_FLIP
+	dbsprite   2,  -1, 0, 7, $06, X_FLIP | Y_FLIP
+	dbsprite   1,  -1, 0, 7, $07, X_FLIP | Y_FLIP
+	dbsprite   0,  -1, 0, 7, $08, X_FLIP | Y_FLIP
+
+
+.OAMData_00_SA:
+	dbsprite  -2,  -2, 0, 0, $00, $0
+	dbsprite  -1,  -2, 0, 0, $01, $0
+	dbsprite  -2,  -1, 0, 0, $02, $0
+	dbsprite  -1,  -1, 0, 0, $03, $0
+	dbsprite   0,  -2, 0, 0, $01, X_FLIP
+	dbsprite   1,  -2, 0, 0, $00, X_FLIP
+	dbsprite   0,  -1, 0, 0, $03, X_FLIP
+	dbsprite   1,  -1, 0, 0, $02, X_FLIP
+	dbsprite  -2,   0, 0, 0, $02, Y_FLIP
+	dbsprite  -1,   0, 0, 0, $03, Y_FLIP
+	dbsprite  -2,   1, 0, 0, $00, Y_FLIP
+	dbsprite  -1,   1, 0, 0, $01, Y_FLIP
+	dbsprite   0,   0, 0, 0, $03, X_FLIP | Y_FLIP
+	dbsprite   1,   0, 0, 0, $02, X_FLIP | Y_FLIP
+	dbsprite   0,   1, 0, 0, $01, X_FLIP | Y_FLIP
+	dbsprite   1,   1, 0, 0, $00, X_FLIP | Y_FLIP
+
+
+.OAMData_42_SA:
+	dbsprite  -1,  -3, 4, 0, $02, $0
+	dbsprite  -1,   2, 4, 0, $02, X_FLIP | Y_FLIP
+	dbsprite  -3,  -1, 0, 4, $01, $0
+	dbsprite   2,  -1, 0, 4, $01, X_FLIP | Y_FLIP
+	dbsprite  -1,  -4, 4, 0, $02, $0
+	dbsprite  -1,   3, 4, 0, $02, X_FLIP | Y_FLIP
+	dbsprite  -4,  -1, 0, 4, $01, $0
+	dbsprite   3,  -1, 0, 4, $01, X_FLIP | Y_FLIP
+
+
+.OAMData_44_SA:
+	dbsprite  -3,  -3, 5, 5, $00, X_FLIP
+	dbsprite   1,  -3, 3, 5, $00, $0
+	dbsprite  -3,   1, 5, 3, $00, X_FLIP | Y_FLIP
+	dbsprite   1,   1, 3, 3, $00, Y_FLIP
+	dbsprite  -4,  -4, 5, 5, $00, X_FLIP
+	dbsprite   2,  -4, 3, 5, $00, $0
+	dbsprite  -4,   2, 5, 3, $00, X_FLIP | Y_FLIP
+	dbsprite   2,   2, 3, 3, $00, Y_FLIP
+
+
+.OAMData_c3_SA:
+	dbsprite  -2,  -2, 4, 4, $00, $0
+	dbsprite  -1,  -2, 4, 4, $01, $0
+	dbsprite   0,  -2, 4, 4, $02, $0
+	dbsprite  -2,  -1, 4, 4, $03, $0
+	dbsprite  -1,  -1, 4, 4, $04, $0
+	dbsprite   0,  -1, 4, 4, $05, $0
+	dbsprite  -2,   0, 4, 4, $06, $0
+	dbsprite  -1,   0, 4, 4, $07, $0
+	dbsprite   0,   0, 4, 4, $08, $0
+
+
+.OAMData_e1_SAV:
+	dbsprite  -2,  -2, 0, 0, $00, $0
+	dbsprite  -1,  -2, 0, 0, $01, $0
+	dbsprite   0,  -2, 0, 0, $02, $0
+	dbsprite   1,  -2, 0, 0, $03, $0
+	dbsprite  -2,  -1, 0, 0, $04, $0
+	dbsprite  -1,  -1, 0, 0, $05, $0
+	dbsprite   0,  -1, 0, 0, $06, $0
+	dbsprite   1,  -1, 0, 0, $07, $0
+	dbsprite  -2,   0, 0, 0, $07, X_FLIP | Y_FLIP
+	dbsprite  -1,   0, 0, 0, $06, X_FLIP | Y_FLIP
+	dbsprite   0,   0, 0, 0, $05, X_FLIP | Y_FLIP
+	dbsprite   1,   0, 0, 0, $04, X_FLIP | Y_FLIP
+	dbsprite  -2,   1, 0, 0, $03, X_FLIP | Y_FLIP
+	dbsprite  -1,   1, 0, 0, $02, X_FLIP | Y_FLIP
+	dbsprite   0,   1, 0, 0, $01, X_FLIP | Y_FLIP
+	dbsprite   1,   1, 0, 0, $00, X_FLIP | Y_FLIP
+
+
+.OAMData_cd_SAV:
+	dbsprite  -2,  -2, 4, 4, $00, $0
+	dbsprite  -1,  -2, 4, 4, $01, $0
+	dbsprite   0,  -2, 4, 4, $02, $0
+	dbsprite  -2,  -1, 4, 4, $03, $0
+	dbsprite  -1,  -1, 4, 4, $04, $0
+	dbsprite   0,  -1, 4, 4, $05, $0
+	dbsprite  -2,   0, 4, 4, $02, X_FLIP | Y_FLIP
+	dbsprite  -1,   0, 4, 4, $01, X_FLIP | Y_FLIP
+	dbsprite   0,   0, 4, 4, $00, X_FLIP | Y_FLIP

@@ -375,6 +375,41 @@ BattleAnimFrameData:
 	dw .Frameset_SACRED_FIRE_CENTER ; BATTLEANIMFRAMESET_SACRED_FIRE_CENTER
 	dw .Frameset_SACRED_FIRE_BURST ; BATTLEANIMFRAMESET_SACRED_FIRE_BURST
 
+; Sour Apple animation dependencies.
+	dw .Frameset_LeafStormSmallLeaf_SA ; BATTLEANIMFRAMESET_LEAF_STORM_SMALL_LEAF_SA
+	dw .Frameset_LeafStormBigLeaf_SA ; BATTLEANIMFRAMESET_LEAF_STORM_BIG_LEAF_SA
+	dw .Frameset_BigWhip_SA ; BATTLEANIMFRAMESET_BIG_WHIP_SA
+	dw .Frameset_BigWhip_NE_SA ; BATTLEANIMFRAMESET_BIG_WHIP_NE_SA
+	dw .Frameset_CutLongUpLeft_SA ; BATTLEANIMFRAMESET_CUT_LONG_UP_LEFT_SA
+	dw .Frameset_SteathRock_SA ; BATTLEANIMFRAMESET_STEALTH_ROCK_SA
+	dw .Frameset_DragonRush_SA ; BATTLEANIMFRAMESET_DRAGON_RUSH_SA
+	dw .Frameset_DragonRushFlipped_SA ; BATTLEANIMFRAMESET_DRAGON_RUSH_FLIPPED_SA
+	dw .Frameset_ShadowSneak_SA ; BATTLEANIMFRAMESET_SHADOW_SNEAK_SA
+	dw .Frameset_BugBuzzR_SA ; BATTLEANIMFRAMESET_BUG_BUZZ_L_SA
+	dw .Frameset_BugBuzzL_SA ; BATTLEANIMFRAMESET_BUG_BUZZ_R_SA
+	dw .Frameset_PoisonJabSW_SA ; BATTLEANIMFRAMESET_POISON_JAB_SW_SA
+	dw .Frameset_PoisonJabE_SA ; BATTLEANIMFRAMESET_POISON_JAB_E_SA
+	dw .Frameset_PoisonJabNW_SA ; BATTLEANIMFRAMESET_POISON_JAB_NW_SA
+	dw .Frameset_PoisonJabN_SA ; BATTLEANIMFRAMESET_POISON_JAB_N_SA
+	dw .Frameset_PoisonJabSE_SA ; BATTLEANIMFRAMESET_POISON_JAB_SE_SA
+	dw .Frameset_PoisonJabW_SA ; BATTLEANIMFRAMESET_POISON_JAB_W_SA
+	dw .Frameset_PoisonJabNE_SA ; BATTLEANIMFRAMESET_POISON_JAB_NE_SA
+	dw .Frameset_PoisonJabS_SA ; BATTLEANIMFRAMESET_POISON_JAB_S_SA
+	dw .Frameset_VacuumShrinking_SA ; BATTLEANIMFRAMESET_VACUUM_SHRINKING_SA
+	dw .Frameset_DischargeSparksSmall_SA ; BATTLEANIMFRAMESET_DISCHARGE_SPARKS_SMALL_SA
+	dw .Frameset_DischargeSparksN_SA ; BATTLEANIMFRAMESET_DISCHARGE_SPARKS_N_SA
+	dw .Frameset_DischargeSparksNE_SA ; BATTLEANIMFRAMESET_DISCHARGE_SPARKS_NE_SA
+	dw .Frameset_DischargeSparksE_SA ; BATTLEANIMFRAMESET_DISCHARGE_SPARKS_E_SA
+	dw .Frameset_DischargeSparksSE_SA ; BATTLEANIMFRAMESET_DISCHARGE_SPARKS_SE_SA
+	dw .Frameset_DischargeSparksS_SA ; BATTLEANIMFRAMESET_DISCHARGE_SPARKS_S_SA
+	dw .Frameset_DischargeSparksSW_SA ; BATTLEANIMFRAMESET_DISCHARGE_SPARKS_SW_SA
+	dw .Frameset_DischargeSparksW_SA ; BATTLEANIMFRAMESET_DISCHARGE_SPARKS_W_SA
+	dw .Frameset_DischargeSparksNW_SA ; BATTLEANIMFRAMESET_DISCHARGE_SPARKS_NW_SA
+	dw .Frameset_LavaPlumeSmoke_SA ; BATTLEANIMFRAMESET_LAVA_PLUME_SMOKE_SA
+
+	dw .Frameset_Vortex_SAV ; BATTLEANIMFRAMESET_VORTEX_SAV
+	dw .Frameset_SwirlShort_SAV ; BATTLEANIMFRAMESET_SWIRL_SHORT_SAV
+
 .Frameset_00:
 	oamframe BATTLEANIMOAMSET_00, 6
 	oamdelanim
@@ -2382,3 +2417,238 @@ BattleAnimFrameData:
 	oamframe BATTLEANIMOAMSET_0E, 3
 	oamframe BATTLEANIMOAMSET_0A, 4
 	oamrestart
+
+.Frameset_LeafStormSmallLeaf_SA:
+	oamframe BATTLEANIMOAMSET_0F_SA,  1
+	oamframe BATTLEANIMOAMSET_0F_SA,  1, OAM_X_FLIP
+	oamframe BATTLEANIMOAMSET_0F_SA,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_0F_SA,  1, OAM_Y_FLIP
+	oamrestart
+
+
+.Frameset_LeafStormBigLeaf_SA:
+	oamframe BATTLEANIMOAMSET_1B_SA,  1
+	oamframe BATTLEANIMOAMSET_1B_SA,  1, OAM_X_FLIP
+	oamframe BATTLEANIMOAMSET_1B_SA,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_1B_SA,  1, OAM_Y_FLIP
+	oamrestart
+
+
+.Frameset_BigWhip_SA:
+	oamframe BATTLEANIMOAMSET_FC_SA,  1, OAM_X_FLIP
+	oamframe BATTLEANIMOAMSET_C4_SA,  1, OAM_X_FLIP
+	oamframe BATTLEANIMOAMSET_FC_SA,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_E5_SA,  1, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_FC_SA,  1, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_C4_SA,  1
+	oamframe BATTLEANIMOAMSET_FC_SA,  1
+	oamframe BATTLEANIMOAMSET_E5_SA,  1
+	oamrestart
+
+
+.Frameset_BigWhip_NE_SA:
+	oamframe BATTLEANIMOAMSET_FC_SA,  8, OAM_Y_FLIP
+	oamendanim
+
+
+.Frameset_CutLongUpLeft_SA:
+	oamframe BATTLEANIMOAMSET_4B_SA,  1, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_4C_SA,  1, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_4D_SA,  1, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_4F_SA,  1, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_50_SA,  1, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_51_SA,  1, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_52_SA,  2, OAM_Y_FLIP
+	oamdowait 2
+	oamframe BATTLEANIMOAMSET_52_SA,  2, OAM_Y_FLIP
+	oamdowait 2
+	oamframe BATTLEANIMOAMSET_52_SA,  2, OAM_Y_FLIP
+	oamdowait 2
+	oamframe BATTLEANIMOAMSET_52_SA,  2, OAM_Y_FLIP
+	oamdelanim
+
+
+.Frameset_SteathRock_SA:
+	oamframe BATTLEANIMOAMSET_128_SA,  50
+	oamdowait 4
+	oamframe BATTLEANIMOAMSET_128_SA,  4
+	oamdowait 2
+	oamframe BATTLEANIMOAMSET_128_SA,  2
+	oamdowait 2
+	oamframe BATTLEANIMOAMSET_128_SA,  2
+	oamdelanim
+
+
+.Frameset_DragonRush_SA:
+	oamdowait 8
+	oamframe BATTLEANIMOAMSET_FC_SA,  1
+	oamframe BATTLEANIMOAMSET_E5_SA,  1
+	oamframe BATTLEANIMOAMSET_FC_SA,  1, OAM_X_FLIP
+	oamendanim
+
+
+.Frameset_DragonRushFlipped_SA:
+	oamdowait 8
+	oamframe BATTLEANIMOAMSET_FC_SA,  1, OAM_X_FLIP
+	oamframe BATTLEANIMOAMSET_E5_SA,  1
+	oamframe BATTLEANIMOAMSET_FC_SA,  1
+	oamendanim
+
+
+.Frameset_ShadowSneak_SA:
+	oamdowait 8
+	oamframe BATTLEANIMOAMSET_11A_SA,10
+	oamframe BATTLEANIMOAMSET_11B_SA,10
+	oamframe BATTLEANIMOAMSET_BC_SA, 32
+	oamendanim
+
+
+.Frameset_BugBuzzR_SA:
+	oamframe BATTLEANIMOAMSET_20_SA,  4
+	oamframe BATTLEANIMOAMSET_117_SA,  4
+	oamframe BATTLEANIMOAMSET_116_SA,  4
+	oamdelanim
+
+
+.Frameset_BugBuzzL_SA:
+	oamframe BATTLEANIMOAMSET_20_SA,  4, OAM_X_FLIP
+	oamframe BATTLEANIMOAMSET_117_SA,  4, OAM_X_FLIP
+	oamframe BATTLEANIMOAMSET_116_SA,  4, OAM_X_FLIP
+	oamdelanim
+
+
+.Frameset_PoisonJabSW_SA:
+	oamframe BATTLEANIMOAMSET_AD_SA,  32, OAM_X_FLIP, OAM_Y_FLIP
+	oamendanim
+
+
+.Frameset_PoisonJabE_SA:
+	oamframe BATTLEANIMOAMSET_6C_SA,  32
+	oamendanim
+
+
+.Frameset_PoisonJabNW_SA:
+	oamframe BATTLEANIMOAMSET_AD_SA,  32, OAM_X_FLIP
+	oamendanim
+
+
+.Frameset_PoisonJabN_SA:
+	oamframe BATTLEANIMOAMSET_6D_SA,  32, OAM_Y_FLIP
+	oamendanim
+
+
+.Frameset_PoisonJabSE_SA:
+	oamframe BATTLEANIMOAMSET_AD_SA,  32, OAM_Y_FLIP
+	oamendanim
+
+
+.Frameset_PoisonJabW_SA:
+	oamframe BATTLEANIMOAMSET_6C_SA,  32, OAM_X_FLIP
+	oamdelanim
+
+
+.Frameset_PoisonJabNE_SA:
+	oamframe BATTLEANIMOAMSET_AD_SA,  32
+	oamendanim
+
+
+.Frameset_PoisonJabS_SA:
+	oamframe BATTLEANIMOAMSET_6D_SA,  32
+	oamendanim
+
+
+.Frameset_VacuumShrinking_SA:
+	oamframe BATTLEANIMOAMSET_12B_SA, 1
+	oamframe BATTLEANIMOAMSET_E8_SA,  1
+	oamdelanim
+
+
+.Frameset_DischargeSparksSmall_SA:
+	oamframe BATTLEANIMOAMSET_42_SA,  2
+	oamdowait 2
+	oamframe BATTLEANIMOAMSET_44_SA,  2
+	oamdowait 2
+	oamrestart
+
+
+.Frameset_DischargeSparksN_SA:
+	oamframe BATTLEANIMOAMSET_F9_SA,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_120_SA, 2, OAM_X_FLIP
+	oamframe BATTLEANIMOAMSET_82_SA,  2
+	oamendanim
+
+
+.Frameset_DischargeSparksNE_SA:
+	oamframe BATTLEANIMOAMSET_120_SA, 2, OAM_X_FLIP
+	oamframe BATTLEANIMOAMSET_82_SA,  2
+	oamframe BATTLEANIMOAMSET_120_SA, 2
+	oamendanim
+
+
+.Frameset_DischargeSparksE_SA:
+	oamframe BATTLEANIMOAMSET_82_SA,  2
+	oamframe BATTLEANIMOAMSET_120_SA, 2
+	oamframe BATTLEANIMOAMSET_F9_SA,  2
+	oamendanim
+
+
+.Frameset_DischargeSparksSE_SA:
+	oamframe BATTLEANIMOAMSET_120_SA, 2
+	oamframe BATTLEANIMOAMSET_F9_SA,  2
+	oamframe BATTLEANIMOAMSET_120_SA, 2, OAM_Y_FLIP
+	oamendanim
+
+
+.Frameset_DischargeSparksS_SA:
+	oamframe BATTLEANIMOAMSET_F9_SA,  2
+	oamframe BATTLEANIMOAMSET_120_SA, 2, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_82_SA,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamendanim
+
+
+.Frameset_DischargeSparksSW_SA:
+	oamframe BATTLEANIMOAMSET_120_SA, 2, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_82_SA,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_120_SA, 2, OAM_X_FLIP, OAM_Y_FLIP
+	oamendanim
+
+
+.Frameset_DischargeSparksW_SA:
+	oamframe BATTLEANIMOAMSET_82_SA,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_120_SA, 2, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_F9_SA,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamendanim
+
+
+.Frameset_DischargeSparksNW_SA:
+	oamframe BATTLEANIMOAMSET_120_SA, 2, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_F9_SA,  2, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_120_SA, 2, OAM_X_FLIP
+	oamendanim
+
+
+.Frameset_LavaPlumeSmoke_SA:
+	oamframe BATTLEANIMOAMSET_03_SA, 2
+	oamframe BATTLEANIMOAMSET_11F_SA , 2
+	oamframe BATTLEANIMOAMSET_03_SA, 2
+	oamdelanim
+
+
+.Frameset_Vortex_SAV:
+	oamframe BATTLEANIMOAMSET_E1_SAV,  1
+	oamframe BATTLEANIMOAMSET_E2_SAV,  1
+	oamframe BATTLEANIMOAMSET_E3_SAV,  1
+	oamframe BATTLEANIMOAMSET_E4_SAV,  1
+	oamrestart
+
+
+.Frameset_SwirlShort_SAV:
+	oamframe BATTLEANIMOAMSET_CD_SAV,  1
+	oamframe BATTLEANIMOAMSET_BA_SAV,  1
+	oamframe BATTLEANIMOAMSET_CE_SAV,  1
+	oamframe BATTLEANIMOAMSET_94_SAV,  1
+	oamframe BATTLEANIMOAMSET_CD_SAV,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_BA_SAV,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_CE_SAV,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamframe BATTLEANIMOAMSET_94_SAV,  1, OAM_X_FLIP, OAM_Y_FLIP
+	oamdelanim

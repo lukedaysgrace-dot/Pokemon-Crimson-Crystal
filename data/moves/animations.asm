@@ -54,9 +54,9 @@ BattleAnimations::
 	banim BattleAnim_RazorWind
 	banim BattleAnim_SwordsDance_PC3 ; SWORDS_DANCE (was BattleAnim_SwordsDance)
 	banim BattleAnim_Cut_PC4 ; CUT (was BattleAnim_Cut)
-	banim BattleAnim_Gust_PC3 ; GUST (was BattleAnim_Gust)
+	banim BattleAnim_Gust_SourApple
 	banim BattleAnim_WingAttack_PC3 ; WING_ATTACK (was BattleAnim_WingAttack)
-	banim BattleAnim_Whirlwind
+	banim BattleAnim_Whirlwind_SourApple
 	banim BattleAnim_Fly_PC3 ; FLY (was BattleAnim_Fly)
 	banim BattleAnim_Bind
 	banim BattleAnim_Slam
@@ -71,7 +71,7 @@ BattleAnimations::
 	banim BattleAnim_HornAttack_PC4 ; HORN_ATTACK (was BattleAnim_HornAttack)
 	banim BattleAnim_FuryAttack
 	banim BattleAnim_HornDrill
-	banim BattleAnim_Tackle_PC4 ; TACKLE (was BattleAnim_Tackle)
+	banim BattleAnim_Tackle_SourApple
 	banim BattleAnim_BodySlam_PC3 ; BODY_SLAM (was BattleAnim_BodySlam)
 	banim BattleAnim_Wrap_PC3 ; WRAP (was BattleAnim_Wrap)
 	banim BattleAnim_TakeDown_PC3 ; TAKE_DOWN (was BattleAnim_TakeDown)
@@ -277,7 +277,7 @@ BattleAnimations::
 	banim BattleAnim_Moonlight
 	banim BattleAnim_HiddenPower_PC3 ; HIDDEN_POWER (was BattleAnim_HiddenPower)
 	banim BattleAnim_CrossChop_PC3 ; CROSS_CHOP (was BattleAnim_CrossChop)
-	banim BattleAnim_Twister
+	banim BattleAnim_Twister_SourApple
 	banim BattleAnim_RainDance_PC3 ; RAIN_DANCE (was BattleAnim_RainDance)
 	banim BattleAnim_SunnyDay_PC3 ; SUNNY_DAY (was BattleAnim_SunnyDay)
 	banim BattleAnim_Crunch_PC3 ; CRUNCH (was BattleAnim_Crunch)
@@ -285,7 +285,7 @@ BattleAnimations::
 	banim BattleAnim_PsychUp
 	banim BattleAnim_Extremespeed_PC3 ; EXTREMESPEED (was BattleAnim_Extremespeed)
 	banim BattleAnim_Ancientpower_PC3 ; ANCIENTPOWER (was BattleAnim_Ancientpower)
-	banim BattleAnim_ShadowBall_PC3 ; SHADOW_BALL (was BattleAnim_ShadowBall)
+	banim BattleAnim_ShadowBall_SourApple
 	banim BattleAnim_FutureSight_PC3 ; FUTURE_SIGHT (was BattleAnim_FutureSight)
 	banim BattleAnim_BrickBreak_PC3 ; ROCK_SMASH (was BattleAnim_RockSmash)
 	banim BattleAnim_Whirlpool_PC3 ; WHIRLPOOL (was BattleAnim_Whirlpool)
@@ -299,9 +299,9 @@ BattleAnimations::
 	banim BattleAnim_FairyWind
 	banim BattleAnim_SuckerPunch_PC3 ; SUCKER_PUNCH (was BattleAnim_SuckerPunch)
 	banim BattleAnim_DarkPulse_PC3 ; DARK_PULSE (was BattleAnim_DarkPulse)
-	banim BattleAnim_FireFang
-	banim BattleAnim_IceFang
-	banim BattleAnim_ThunderFang
+	banim BattleAnim_FireFang_SourApple
+	banim BattleAnim_IceFang_SourApple
+	banim BattleAnim_ThunderFang_SourApple
 	banim BattleAnim_AquaJet_PC3 ; AQUA_JET (was BattleAnim_AquaJet)
 	banim BattleAnim_WildCharge_PC3 ; WILD_CHARGE (was BattleAnim_WildCharge)
 	banim BattleAnim_BitterBlade
@@ -311,18 +311,18 @@ BattleAnimations::
 	banim BattleAnim_IcicleCrash_PC3 ; ICICLE_CRASH (was BattleAnim_IcicleCrash)
 	banim BattleAnim_StruggleBug
 	banim BattleAnim_Infestation
-	banim BattleAnim_BugBuzz_PC3 ; BUG_BUZZ (was BattleAnim_BugBuzz)
+	banim BattleAnim_BugBuzz_SourApple
 	banim BattleAnim_Accelrock
 	banim BattleAnim_StoneEdge_PC3 ; STONE_EDGE (was BattleAnim_StoneEdge)
 	banim BattleAnim_AirSlash_PC3 ; AIR_SLASH (was BattleAnim_AirSlash)
-	banim BattleAnim_PoisonFang
+	banim BattleAnim_PoisonFang_SourApple
 	banim BattleAnim_Venoshock_PC3 ; VENOSHOCK (was BattleAnim_Venoshock)
 	banim BattleAnim_Hail_PC4 ; HAIL (was BattleAnim_Hail)
 	banim BattleAnim_LeafBlade
-	banim BattleAnim_ShadowSneak
+	banim BattleAnim_ShadowSneak_SourApple
 	banim BattleAnim_ShadowPunch
 	banim BattleAnim_ShadowClaw_PC3 ; SHADOW_CLAW (was BattleAnim_ShadowClaw)
-	banim BattleAnim_PoisonJab_PC3 ; POISON_JAB (was BattleAnim_PoisonJab)
+	banim BattleAnim_PoisonJab_SourApple
 	banim BattleAnim_Lunge
 	banim BattleAnim_BugBite_PC3 ; BUG_BITE (was BattleAnim_BugBite)
 	banim BattleAnim_XScissor_PC4 ; X_SCISSOR (was BattleAnim_XScissor)
@@ -342,7 +342,7 @@ BattleAnimations::
 	banim BattleAnim_Astonish ; ASTONISH
 	banim BattleAnim_AuraSphere_PC3 ; AURA_SPHERE (was BattleAnim_AuraSphere)
 	banim BattleAnim_Avalanche_PC3 ; AVALANCHE (was BattleAnim_Avalanche)
-	banim BattleAnim_BraveBird ; BRAVE_BIRD
+	banim BattleAnim_BraveBird_SourApple
 	banim BattleAnim_BulkUp ; BULK_UP
 	banim BattleAnim_Bulldoze_PC3 ; BULLDOZE (was BattleAnim_Bulldoze)
 	banim BattleAnim_CalmMind ; CALM_MIND
@@ -379,7 +379,7 @@ BattleAnimations::
 	banim BattleAnim_SkillSwap ; SKILL_SWAP
 	banim BattleAnim_ToxicSpikes ; TOXIC_SPIKES
 	banim BattleAnim_Trick ; TRICK
-	banim BattleAnim_TrickRoom ; TRICK_ROOM
+	banim BattleAnim_TrickRoom ; original repeated sound effect
 	banim BattleAnim_VoltSwitch_PC3 ; VOLT_SWITCH (was BattleAnim_VoltSwitch)
 	banim BattleAnim_WaterPulse ; WATER_PULSE
 	banim BattleAnim_WillOWisp_PC3 ; WILL_O_WISP (was BattleAnim_WillOWisp)
@@ -389,17 +389,17 @@ BattleAnimations::
 	banim BattleAnim_FirstImpression ; FIRST_IMPRESSION
 	banim BattleAnim_Liquidation ; LIQUIDATION
 	banim BattleAnim_SlackOff ; SLACK_OFF
-	banim BattleAnim_VoltTackle ; VOLT_TACKLE
+	banim BattleAnim_VoltTackle_SourApple
 	banim BattleAnim_Overheat_CC ; OVERHEAT
-	banim BattleAnim_LeafStorm_CC ; LEAF_STORM
+	banim BattleAnim_LeafStorm_SourApple
 	banim BattleAnim_FakeOut_CC ; FAKE_OUT
 	banim BattleAnim_FlipTurn_CC ; FLIP_TURN
 	banim BattleAnim_IronDefense_CC ; IRON_DEFENSE
-	banim BattleAnim_RockPolish_CC ; ROCK_POLISH
+	banim BattleAnim_RockPolish_SourApple
 	banim BattleAnim_WoodHammer_CC ; WOOD_HAMMER
-	banim BattleAnim_HeadSmash_CC ; HEAD_SMASH
+	banim BattleAnim_HeadSmash_SourApple
 	banim BattleAnim_DrillRun_CC ; DRILL_RUN
-	banim BattleAnim_PsychoCut_CC ; PSYCHO_CUT
+	banim BattleAnim_PsychoCut_SourApple
 	banim BattleAnim_SacredSword_CC ; SACRED_SWORD
 	banim BattleAnim_BrickBreak_CC ; BRICK_BREAK
 	banim BattleAnim_HeatWave_CC ; HEAT_WAVE
@@ -411,7 +411,7 @@ BattleAnimations::
 	banim BattleAnim_LowSweep_CC ; LOW_SWEEP
 	banim BattleAnim_MudShot_CC ; MUD_SHOT
 	banim BattleAnim_AirCutter_CC ; AIR_CUTTER
-	banim BattleAnim_CrossPoison_CC ; CROSS_POISON
+	banim BattleAnim_CrossPoison_SourApple
 	banim BattleAnim_MagicalLeaf_CC ; MAGICAL_LEAF
 	banim BattleAnim_SignalBeam_CC ; SIGNAL_BEAM
 	banim BattleAnim_ScaleShot_CC ; SCALE_SHOT
@@ -437,8 +437,8 @@ BattleAnimations::
 	banim BattleAnim_FickleBeam_CC ; FICKLE_BEAM
 	banim BattleAnim_StoneAxe_CC ; STONE_AXE
 	banim BattleAnim_QuiverDance_CC ; QUIVER_DANCE
-	banim BattleAnim_StealthRock_CC ; STEALTH_ROCK
-	banim BattleAnim_Defog_CC ; DEFOG
+	banim BattleAnim_StealthRock_SourApple
+	banim BattleAnim_Defog_SourApple
 	banim BattleAnim_BodyPress_CC ; BODY_PRESS
 	banim BattleAnim_WorkUp_CC ; WORK_UP
 	banim BattleAnim_Superpower_CC ; SUPERPOWER
@@ -456,14 +456,14 @@ BattleAnimations::
 	banim BattleAnim_Torment_PO ; TORMENT (ported from pokeorange)
 	banim BattleAnim_Taunt_PO ; TAUNT (ported from pokeorange)
 	banim BattleAnim_Yawn_PO ; YAWN (ported from pokeorange)
-	banim BattleAnim_Wish_PO ; WISH (ported from pokeorange)
+	banim BattleAnim_Wish_SourApple
 	banim BattleAnim_StickyWeb ; STICKY_WEB
 	banim BattleAnim_WeatherBall_PO ; WEATHER_BALL (ported from mae-pokeorange)
 	banim BattleAnim_Incinerate_PC3 ; INCINERATE
 	banim BattleAnim_Psyshock_Oct19 ; PSYSHOCK
-	banim BattleAnim_VacuumWave_Oct19 ; VACUUM_WAVE
-	banim BattleAnim_Discharge_Oct19 ; DISCHARGE
-	banim BattleAnim_LavaPlume_Oct19 ; LAVA_PLUME
+	banim BattleAnim_VacuumWave_SourApple
+	banim BattleAnim_Discharge_SourApple
+	banim BattleAnim_LavaPlume_SourApple
 	banim BattleAnim_MeteorMash_Oct19 ; METEOR_MASH
 	banim BattleAnim_DragonHammer_Oct19 ; DRAGON_HAMMER
 	banim BattleAnim_CottonGuard_Oct19 ; COTTON_GUARD

@@ -104,3 +104,11 @@ AnimObjGFX:
 	anim_obj_gfx 16, AnimObjHornLeechGFX
 	anim_obj_gfx 27, AnimObjGrassKnotGFX
 	anim_obj_gfx 8, AnimObjSacredFireCenterGFX
+
+; Sour Apple animation graphics.
+	anim_obj_gfx 6, AnimObjLeafStormGFXSourApple
+	anim_obj_gfx 14, AnimObjSmokePuffBigGFXSourApple
+
+	anim_obj_gfx 32, AnimObjVortexGFXSourApple
+	anim_obj_gfx 3, AnimObjShadowSneakGFXSourApple
+	anim_obj_gfx 24, AnimObjSwirlGFXSourApple
