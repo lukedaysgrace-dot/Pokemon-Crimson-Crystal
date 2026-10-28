@@ -215,6 +215,11 @@ SECTION "Rocket Executive Battle Music", ROMX
 INCLUDE "audio/music/rocketexecutivebattle.asm"
 
 
+SECTION "Rocket Executive Theme Music", ROMX
+
+INCLUDE "audio/music/rocketexecutivetheme.asm"
+
+
 SECTION "Sound Effects", ROMX
 
 INCLUDE "audio/sfx.asm"
