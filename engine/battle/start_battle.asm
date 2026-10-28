@@ -94,9 +94,19 @@ PlayBattleMusic:
 	cp RED
 	jp z, .done
 
-	; Every Team Rocket class gets the Rocket theme: vanilla left out the
-	; Executives and Scientists, and ARCHER was missing alongside the other
-	; three admins.
+	; The four named admins get their own Rocket Executive theme.
+	ld de, MUSIC_ROCKET_EXECUTIVE_BATTLE
+	cp PROTON
+	jp z, .done
+	cp PETREL
+	jp z, .done
+	cp ARIANA
+	jp z, .done
+	cp ARCHER
+	jp z, .done
+
+	; Every other Team Rocket class gets the Rocket theme: vanilla left out
+	; the Executives and Scientists.
 	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
 	jp z, .done
@@ -107,14 +117,6 @@ PlayBattleMusic:
 	cp EXECUTIVEF
 	jp z, .done
 	cp SCIENTIST
-	jp z, .done
-	cp PROTON
-	jp z, .done
-	cp PETREL
-	jp z, .done
-	cp ARIANA
-	jp z, .done
-	cp ARCHER
 	jp z, .done
 
 	ld de, MUSIC_GREEN_BATTLE
