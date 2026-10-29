@@ -128,6 +128,7 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_Discharge
 	dw BattleAnimFunction_HeavyDrop
 	dw BattleAnimFunction_SwarmOrbit
+	dw BattleAnimFunction_FlameTwirl
 
 BattleAnimFunction_Stat:
 ; Polished Crystal's RadialMoveOut_Stats: speed 3, distance 80.

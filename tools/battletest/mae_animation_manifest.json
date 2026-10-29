@@ -1718,7 +1718,7 @@
       "reference_label": "BattleAnim_Octazooka",
       "status": "preserved",
       "reason": "Keep the ink shot followed by the requested opponent-only Overheat-style charred smoke finish.",
-      "script_sha256": "43db5589c7d7b799a12d4ccdfcd8b5a36887478166c550e621bcaf51b0818791"
+      "script_sha256": "3c8780c63e245a8fe33c1b0b78cf79719f0ec399ba4db8fc6ae5a294d6aa979e"
     },
     {
       "move": "SPIKES",
@@ -3194,7 +3194,7 @@
       "reference_label": "BattleAnim_TailGlow",
       "status": "preserved",
       "reason": "User-requested creative sequence with native sprite, motion and cleanup checks on both battle sides.",
-      "script_sha256": "aee813ad9dccf0d11c619c56bfbaef06f797ae0d3a641e1bc80906820e532fd2"
+      "script_sha256": "9a4fa2cef5ac90d77baf1b1a2c3774024c78446e7ffb168994d9f34d449ad81e"
     },
     {
       "move": "RECYCLE",
@@ -3339,23 +3339,23 @@
     "constants/sfx_constants.asm": "adc88f6e9794243586a184bc9fbef1643543eb0d3fa81076b78d6928070061d4",
     "audio/sfx.asm": "c7da9f76ca2f939e9333155034b196642ee545ff1042991b4b745b4974625506",
     "audio/sfx_pointers.asm": "833e8eef56ef0124a323168f9ee39c5befa6cba9f3d2b125819509c05e9ac880",
-    "constants/battle_anim_constants.asm": "cbed36b418c359762232e861212929853ff57dda3de5dd0800be879f6dcc6169",
+    "constants/battle_anim_constants.asm": "dcee998a63dc977ac15e54e54e2bd46c16255e9fb92fec0d47bfc82d1c8d207e",
     "macros/scripts/battle_anims.asm": "58ad390e02afe1cd39028ebd644ffae6f6b88d02ba47a90dded6473e6c849d20",
-    "data/battle_anims/objects.asm": "1597910627f7c6637b77da83d00c985d95018d76bd05ab2321a9ef2e7249b6fa",
+    "data/battle_anims/objects.asm": "c5e5fdc23fa3862988768232ed8cd47fc29d86fcf17c3167616d69038a3910ac",
     "data/battle_anims/framesets.asm": "97eb2707aec48fceffab74f215106767bba26017bc5751cec7806d7e294e40e5",
     "data/battle_anims/oam.asm": "5723040c71d0b21fa38d96e41a607e7f28c370b44d89573b54cbff1fd7566a6a",
     "data/battle_anims/object_gfx.asm": "ebfb1b37b169f5e3da2344a9f541ef7af64a27920b6effa939e5dd7127f51681",
     "engine/battle_anims/anim_commands.asm": "b7a0038b9413834c03c75eac7aaae2efa4f7c8ce43f96cae1bafd06e0e9d5a58",
     "engine/battle_anims/core.asm": "db9ede2ae5ab5dbfc370331f3847029b7ab65481e06a8119913e7552f475e46a",
-    "engine/battle_anims/functions.asm": "dc6b9f94157463ca4533ba68c2ae1458789d449b321e9669ef36305e04268dcd",
+    "engine/battle_anims/functions.asm": "bc837393b2f86efa6a02bc0dfa331972401c997eda3361082db02f14fd78ad71",
     "engine/battle_anims/helpers.asm": "45c8df0e4c57d45911a4691d670d9096d156f43f972b4f7c37f0919adf6ffbac",
     "engine/battle_anims/data_readers.asm": "8365f057a95719d2cb64897c2a140accacf6eaf8100b1f93f5794be0b8753cec",
     "engine/battle_anims/object_readers.asm": "0a829a3fecb0c20ca464365e747058522f537ee0a1b093067879406751aa3e11",
     "gfx/battle_anims.asm": "b516929d91582fc2445d82199366825b77ef40ca7d248882160408bb8ec92648",
     "gfx/battle_anims2.asm": "2c8979252dedb206b8fb0bdcd1713b2057db9dd9554780c101fc4b9250d2350e",
-    "gfx/battle_anims/custom.pal": "05dbfa38a83f7c4f71b94eac2203496223345ade1136e42e2cfedb32f3ab5ab6",
+    "gfx/battle_anims/custom.pal": "fbead48e4d9fed2deb8f969e2e4b298fff72795922c84181a5155631b99b3d3b",
     "gfx/battle_anims/cosmicpower.png": "d3e1ce2fce32bdda9b49a0ce6275aeba8b0280fecbe25cb2c3b0ba2acea161a6",
-    "engine/battle_anims/creative_motion.asm": "515ce280eee54be588ce95c3aa10b9b3a38ecf260246600053bdedd4b7dfe9a2",
+    "engine/battle_anims/creative_motion.asm": "f6114b4fb208d2ea5932a6773e189492bdb1bdb404cb2dd84626ca488f0b3ded",
     "gfx/battle_anims/creative_apple.png": "20bd90ec9e6350f250f3d2f7a839cac09ba8fd8f4d90c2cc4d53f884c4813d1a",
     "gfx/battle_anims/gigaton_hammer.png": "516cfe6eff19f0007e4456c87ba061577db616e6c02d64cc909462f105e813a6",
     "gfx/battle_anims/infestation_bug.png": "71f3f2ea66f0a4123e4c7ba0c24cade24406c9930d9d794855a9275a4bd5e571",
@@ -3366,11 +3366,11 @@
     "gfx/battle_anims/vortex_sour_apple.png": "ca14cc1e12276e97ffa5cab1ce0eb75abd3c657f204224615b44cebdff6f817f",
     "data/moves/animations.asm": "7f16eae35086c3e406c982671f41bb1ccb3585bdbe9140395774e2a9951d5a0b",
     "data/moves/animations2.asm": "be1524dc9d960b2ff661b628db604e9300a3d10da4425ede16dcb1e10db99b34",
-    "data/moves/animations3.asm": "52274ca6d10f2b38e649d5595f6cc6df23537bce320df3abbcafa05db8aad95b",
+    "data/moves/animations3.asm": "940740b622ffd94d6b98342a4ad08a515b33abc09cfb38fe0ffd7f7ed9f2bada",
     "data/moves/animations4.asm": "04fc84c077d33019db382856ab7af203bfc7f9d4c3b768d3dc9042171e395f19",
     "data/moves/animations5.asm": "4c0feace6cf6ad50d94002619f5224df08354e820ec2da60727ccfdbe6bdaafd",
     "data/moves/animations6.asm": "baf45aae47a2168c0f4075018023583310b0f527ecef7a07fa77384cd53b07af",
     "data/moves/animations7.asm": "ed07a120c85ddfaed58dfd6a5f78e00979cab05f13fb6436de1e590e09a00123",
-    "data/moves/animations8.asm": "c78aebc0bbbe2d233873179596a601fb3ec45e35a86d42ce032c877d0520a440"
+    "data/moves/animations8.asm": "b53c6ece9ebe006315e5e16131cc1dacf6338372c5beccccee350201bedc4d3b"
   }
 }

@@ -2601,20 +2601,22 @@ BattleAnim_Octazooka_PC3:
 	anim_obj ANIM_OBJ_INK_SPLASH, 140, 56, $e8
 	anim_obj ANIM_OBJ_INK_SPLASH, 140, 56, $d0
 	anim_obj ANIM_OBJ_INK_SPLASH, 140, 56, $50
-	anim_wait 40
-	anim_clearobjs
-	anim_incbgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING
-	anim_resetobp0
-	; Overheat's charred silhouette and rising smoke, on the opponent only.
-	anim_setobjpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_CHARRED
+	anim_wait 28
+	; The ink soaks in: a charred-gray stain with smoke rising off the
+	; opponent only, which fades back to normal before the move ends.
+	anim_setbgpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_CHARRED
 	anim_sound 0, 1, SFX_BALL_POOF
 .burnout
 	anim_obj ANIM_OBJ_TARGET_BURNOUT, 120, 56, $30
-	anim_wait 4
+	anim_wait 6
 	anim_obj ANIM_OBJ_TARGET_BURNOUT, 144, 48, $30
 	anim_wait 8
-	anim_loop 3, .burnout
-	anim_wait 24
+	anim_loop 2, .burnout
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING
+	anim_wait 10
+	anim_setbgpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_DEFAULT
+	anim_wait 18
+	anim_resetobp0
 	anim_ret
 
 BattleAnim_Outrage_PC3:

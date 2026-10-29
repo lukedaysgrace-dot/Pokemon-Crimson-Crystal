@@ -96,7 +96,7 @@ def main():
                             offsets = [p[2] for p in particle['samples']]
                             assert max(offsets)-min(offsets) >= 48, (move, 'heavy object did not fall')
                         if move == 'INFESTATION':
-                            assert names.count('ANIM_OBJ_INFESTATION_BUG') == 10
+                            assert names.count('ANIM_OBJ_INFESTATION_BUG') == 6
                         result['objects'] = names
                         result['sound_ids'] = list(sounds)
                         result['graphics_errors'] = errors

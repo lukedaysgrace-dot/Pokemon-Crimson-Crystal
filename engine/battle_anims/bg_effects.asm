@@ -136,6 +136,8 @@ BattleBGEffects:
 	dw BattleBGEffect_CycleBGPals_Inverted ; ANIM_BG_CYCLE_BGPALS_INVERTED
 	dw BattleBGEffect_ShakeMonY            ; ANIM_BG_SHAKE_MON_Y
 	dw BattleBGEffect_ShakeMonX            ; ANIM_BG_SHAKE_MON_X
+	dw BattleBGEffect_FadeMonFromBlack     ; ANIM_BG_FADE_MON_FROM_BLACK
+	dw BattleBGEffect_FadeMonGlow          ; ANIM_BG_FADE_MON_GLOW
 
 BattleBGEffect_End:
 	call EndBattleBGEffect
@@ -2168,6 +2170,24 @@ BattleBGEffect_1d:
 
 .Pals:
 	db $e4, $90, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $40, $90, $e4, $ff
+
+BattleBGEffect_FadeMonFromBlack:
+; Mirror of FADE_MON_TO_BLACK: a silhouette brightens back to normal shades.
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
+	ret
+
+.Pals:
+	db $fc, $f8, $e4, $ff
+
+BattleBGEffect_FadeMonGlow:
+; One smooth glow: the mon lightens two shades, holds, then fades back.
+	ld de, .Pals
+	call BGEffect_RapidCyclePals
+	ret
+
+.Pals:
+	db $e4, $90, $40, $40, $40, $40, $40, $90, $e4, $ff
 
 BattleBGEffect_1e:
 	ld de, .Pals
