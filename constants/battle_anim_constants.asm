@@ -532,6 +532,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_HEAT_COMET
 	const ANIM_OBJ_TARGET_BURNOUT
 	const ANIM_OBJ_PARADE_GHOST
+	const ANIM_OBJ_FLAME_TWIRL
 
 
 
@@ -655,6 +656,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFUNC_DISCHARGE
 	const BATTLEANIMFUNC_HEAVY_DROP
 	const BATTLEANIMFUNC_SWARM_ORBIT
+	const BATTLEANIMFUNC_FLAME_TWIRL
 
 
 ; BattleAnimFrameData indexes (see data/battle_anims/framesets.asm)
@@ -1542,6 +1544,8 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_BG_CYCLE_BGPALS_INVERTED ; $36
 	const ANIM_BG_SHAKE_MON_Y           ; $37
 	const ANIM_BG_SHAKE_MON_X           ; $38
+	const ANIM_BG_FADE_MON_FROM_BLACK   ; $39
+	const ANIM_BG_FADE_MON_GLOW         ; $3a
 
 ; polishedcrystal-compatible names for vanilla effects (index differs by 1
 ; from polished past $08 because polished inserted CYCLE_BGPALS_INVERTED)
@@ -1787,6 +1791,7 @@ PAL_BATTLE_BG_TARGET EQU 9
 
 	const PAL_BTLCUSTOM_APPLE
 	const PAL_BTLCUSTOM_ACID_APPLE
+	const PAL_BTLCUSTOM_BLAST
 
 NUM_CUSTOM_BATTLE_PALETTES EQU const_value
 
