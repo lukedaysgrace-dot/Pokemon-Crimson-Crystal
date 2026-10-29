@@ -92,6 +92,10 @@ test-burned-tower: pokecrystal.gbc pokecrystal_debug.gbc
 
 debug: pokecrystal_debug.gbc
 
+.PHONY: test-wimpod
+test-wimpod: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_wimpod_encounter.py
+
 test: pokecrystal_debug.gbc
 	python3 tools/battletest/runner.py
 
@@ -453,6 +457,10 @@ gfx/sprites/karate_king.2bpp: gfx/sprites/karate_king.png tools/grayscale_sprite
 gfx/sprites/riolu.2bpp: gfx/sprites/riolu.png tools/reorder_sprite_frames.py Makefile
 	$(RGBGFX) $(rgbgfx) -o $@ $<
 	python3 tools/reorder_sprite_frames.py $@ 0 1 2 5 3 4
+
+# Wimpod's colored source uses gray as visible color 1, never transparency.
+gfx/sprites/wimpod.2bpp: gfx/sprites/wimpod.png tools/wimpod_sprite.py tools/pokemontools/png.py
+	python3 tools/wimpod_sprite.py $< $@
 
 # Textbox frames: lines pushed out to the edge of the box (no white margin).
 gfx/frames/%.1bpp: gfx/frames/%.png tools/tight_frames.py

@@ -517,6 +517,9 @@ SECTION "Move Animations 6", ROMX
 
 INCLUDE "data/moves/animations6.asm"
 
+SECTION "Move Animations 8", ROMX
+INCLUDE "data/moves/animations8.asm"
+
 SECTION "Move Animations 7", ROMX
 
 INCLUDE "data/moves/animations7.asm"

@@ -1,0 +1,279 @@
+{
+  "remaps": {
+    "AURORA_BEAM": {
+      "BEAM": "BEAM_AURORA"
+    },
+    "SOLARBEAM": {
+      "BEAM": "BEAM_SOLAR"
+    },
+    "LEECH_LIFE": {
+      "HIT": "HIT_2"
+    },
+    "AQUA_JET": {
+      "HIT": "HIT_2"
+    },
+    "AQUA_TAIL": {
+      "HIT": "HIT_2"
+    },
+    "ZEN_HEADBUTT": {
+      "HIT": "HIT_2"
+    },
+    "BOUNCE": {
+      "HIT": "HIT_2"
+    },
+    "ENERGY_BALL": {
+      "CHARGE": "ENERGY_BALL"
+    },
+    "POWER_GEM": {
+      "CHARGE": "SHINE"
+    },
+    "ROCK_BLAST": {
+      "EGG": "ROCKS"
+    },
+    "RAPID_SPIN": {}
+  },
+  "results": [
+    {
+      "move": "AURORA_BEAM",
+      "side": 0,
+      "param": 0,
+      "frames": 230,
+      "native_frames": 222,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 4152,
+      "cleanup": "passed"
+    },
+    {
+      "move": "AURORA_BEAM",
+      "side": 1,
+      "param": 0,
+      "frames": 230,
+      "native_frames": 222,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 4133,
+      "cleanup": "passed"
+    },
+    {
+      "move": "SOLARBEAM",
+      "side": 0,
+      "param": 0,
+      "frames": 162,
+      "native_frames": 154,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 4136,
+      "cleanup": "passed"
+    },
+    {
+      "move": "SOLARBEAM",
+      "side": 1,
+      "param": 0,
+      "frames": 162,
+      "native_frames": 154,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 4113,
+      "cleanup": "passed"
+    },
+    {
+      "move": "LEECH_LIFE",
+      "side": 0,
+      "param": 0,
+      "frames": 181,
+      "native_frames": 173,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 14802,
+      "cleanup": "passed"
+    },
+    {
+      "move": "LEECH_LIFE",
+      "side": 1,
+      "param": 0,
+      "frames": 181,
+      "native_frames": 173,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 14871,
+      "cleanup": "passed"
+    },
+    {
+      "move": "AQUA_JET",
+      "side": 0,
+      "param": 0,
+      "frames": 118,
+      "native_frames": 110,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 2401,
+      "cleanup": "passed"
+    },
+    {
+      "move": "AQUA_JET",
+      "side": 1,
+      "param": 0,
+      "frames": 118,
+      "native_frames": 110,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 3197,
+      "cleanup": "passed"
+    },
+    {
+      "move": "AQUA_TAIL",
+      "side": 0,
+      "param": 0,
+      "frames": 207,
+      "native_frames": 199,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 14802,
+      "cleanup": "passed"
+    },
+    {
+      "move": "AQUA_TAIL",
+      "side": 1,
+      "param": 0,
+      "frames": 207,
+      "native_frames": 199,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 14887,
+      "cleanup": "passed"
+    },
+    {
+      "move": "ZEN_HEADBUTT",
+      "side": 0,
+      "param": 0,
+      "frames": 221,
+      "native_frames": 213,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 14802,
+      "cleanup": "passed"
+    },
+    {
+      "move": "ZEN_HEADBUTT",
+      "side": 1,
+      "param": 0,
+      "frames": 221,
+      "native_frames": 213,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 14871,
+      "cleanup": "passed"
+    },
+    {
+      "move": "BOUNCE",
+      "side": 0,
+      "param": 0,
+      "frames": 94,
+      "native_frames": 86,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 3903,
+      "cleanup": "passed"
+    },
+    {
+      "move": "BOUNCE",
+      "side": 1,
+      "param": 0,
+      "frames": 94,
+      "native_frames": 86,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 3913,
+      "cleanup": "passed"
+    },
+    {
+      "move": "ENERGY_BALL",
+      "side": 0,
+      "param": 0,
+      "frames": 239,
+      "native_frames": 231,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 2930,
+      "cleanup": "passed"
+    },
+    {
+      "move": "ENERGY_BALL",
+      "side": 1,
+      "param": 0,
+      "frames": 239,
+      "native_frames": 231,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 2929,
+      "cleanup": "passed"
+    },
+    {
+      "move": "POWER_GEM",
+      "side": 0,
+      "param": 0,
+      "frames": 192,
+      "native_frames": 184,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 14862,
+      "cleanup": "passed"
+    },
+    {
+      "move": "POWER_GEM",
+      "side": 1,
+      "param": 0,
+      "frames": 192,
+      "native_frames": 184,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 15015,
+      "cleanup": "passed"
+    },
+    {
+      "move": "ROCK_BLAST",
+      "side": 0,
+      "param": 0,
+      "frames": 91,
+      "native_frames": 83,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 1156,
+      "cleanup": "passed"
+    },
+    {
+      "move": "ROCK_BLAST",
+      "side": 1,
+      "param": 0,
+      "frames": 91,
+      "native_frames": 83,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 1098,
+      "cleanup": "passed"
+    },
+    {
+      "move": "RAPID_SPIN",
+      "side": 0,
+      "param": 0,
+      "frames": 124,
+      "native_frames": 116,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 2031,
+      "cleanup": "passed"
+    },
+    {
+      "move": "RAPID_SPIN",
+      "side": 1,
+      "param": 0,
+      "frames": 124,
+      "native_frames": 116,
+      "final_frame_changed_pixels": 0,
+      "changed_pixels_peak": 2687,
+      "cleanup": "passed"
+    }
+  ],
+  "errors": [
+    [
+      "RAPID_SPIN/0",
+      "ANIM_OBJ_HIT",
+      "VRAM differs from requested graphics"
+    ],
+    [
+      "RAPID_SPIN/0",
+      "ANIM_OBJ_HIT",
+      "live object graphics overwritten"
+    ],
+    [
+      "RAPID_SPIN/1",
+      "ANIM_OBJ_HIT",
+      "VRAM differs from requested graphics"
+    ],
+    [
+      "RAPID_SPIN/1",
+      "ANIM_OBJ_HIT",
+      "live object graphics overwritten"
+    ]
+  ]
+}

@@ -2,11 +2,11 @@
   "upstream_repository": "https://github.com/PiaCarrot/mae-pokeorange",
   "upstream_branch": "sour-apple",
   "upstream_commit": "41a44630a3f712f3f45a157874361234e13e68ca",
-  "date": "2026-10-27",
+  "date": "2026-10-28",
   "scope": "Shared move scripts and reachable helper bodies; engine adaptations and upgraded assets retained.",
   "counts": {
-    "matching": 166,
-    "preserved": 157,
+    "matching": 161,
+    "preserved": 162,
     "updated": 37
   },
   "moves": [
@@ -1151,7 +1151,7 @@
       "reference_label": "BattleAnim_Waterfall",
       "status": "preserved",
       "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
-      "script_sha256": "4f148a2503ef7173c88ade6e4cedeb66c2412ea4feda1e7839a4f5ce22b2febc"
+      "script_sha256": "1a3c433b3c270513a338c89ccbbb5fd82c4f5bdcbcd4ee0b48ae251e60030135"
     },
     {
       "move": "CLAMP",
@@ -1717,8 +1717,8 @@
       "local_file": "data/moves/animations3.asm",
       "reference_label": "BattleAnim_Octazooka",
       "status": "preserved",
-      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
-      "script_sha256": "c5ce064ecba0263e46baaed6a69f4cda848216a46db6f70445f35124d34e583e"
+      "reason": "Keep the ink shot followed by the requested opponent-only Overheat-style charred smoke finish.",
+      "script_sha256": "43db5589c7d7b799a12d4ccdfcd8b5a36887478166c550e621bcaf51b0818791"
     },
     {
       "move": "SPIKES",
@@ -2069,7 +2069,7 @@
       "reference_label": "BattleAnim_RapidSpin",
       "status": "preserved",
       "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
-      "script_sha256": "9aee77c665d49ac79904e7c879671d0ab5a58008833fdf3f9244f4125f6cbe6f"
+      "script_sha256": "f62ea7ec7c79f12ed29cb24a2dcf95568ff88500e11f08b183a828c1c514d19e"
     },
     {
       "move": "SWEET_SCENT",
@@ -2346,9 +2346,9 @@
       "local_label": "BattleAnim_StoneEdge_PC3",
       "local_file": "data/moves/animations3.asm",
       "reference_label": "BattleAnim_StoneEdge",
-      "status": "matching",
-      "reason": "Same normalized animation commands and reachable helper bodies.",
-      "script_sha256": "e3a36fa71be4e3054cde4bdad9a775f7fd15cedf60ec564950d762c0f1d12edc"
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "fd529bdf7959547aee6405cc1357b250b9c48e8d63d1abed5ce2c94ab45b03b3"
     },
     {
       "move": "AIR_SLASH",
@@ -2375,7 +2375,7 @@
       "reference_label": "BattleAnim_Hail",
       "status": "preserved",
       "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
-      "script_sha256": "d60cb5949280dae196e3e3e51efba398df2da246fbcb0708305ea863d9cbb387"
+      "script_sha256": "1623e75b7e88d8e783e1a8482fc1c39180a3fde1757fbfcdb78c673ab264811e"
     },
     {
       "move": "LEAF_BLADE",
@@ -2490,9 +2490,9 @@
       "local_label": "BattleAnim_CloseCombat_PC3",
       "local_file": "data/moves/animations3.asm",
       "reference_label": "BattleAnim_CloseCombat",
-      "status": "matching",
-      "reason": "Same normalized animation commands and reachable helper bodies.",
-      "script_sha256": "70e4d28423cb961358291e356a39696b0e3d57f5a92dae51fa2aaf0363d4fa99"
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "aa4a476b48e96618644b4f28080f0397c7220c6a6a1ea9abf207278bb13d0bc8"
     },
     {
       "move": "AERIAL_ACE",
@@ -2625,18 +2625,18 @@
       "local_label": "BattleAnim_FlareBlitz_PC3",
       "local_file": "data/moves/animations3.asm",
       "reference_label": "BattleAnim_FlareBlitz",
-      "status": "matching",
-      "reason": "Same normalized animation commands and reachable helper bodies.",
-      "script_sha256": "92799624b9b3df2116897ab25109579453c4937937d9f1bafcb54473ad72962d"
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "8c3637f6f9869ada550980ec55472f31c7cf4a1be9aab312d417817991e54a5d"
     },
     {
       "move": "FLASH_CANNON",
       "local_label": "BattleAnim_FlashCannon",
       "local_file": "data/moves/animations2.asm",
       "reference_label": "BattleAnim_FlashCannon",
-      "status": "matching",
-      "reason": "Same normalized animation commands and reachable helper bodies.",
-      "script_sha256": "ee2341c27ad29841df8ad6418033c0b78a2f003152b6d07e99c2321d48f95944"
+      "status": "preserved",
+      "reason": "Space the impact sparks so all thirteen rays fit the ten-object pool without dropped particles.",
+      "script_sha256": "b86d2bb52ef8e04fd43d147872aa90ebcd12fed157b59d44d41dea63113e5a9e"
     },
     {
       "move": "FOCUS_BLAST",
@@ -2661,9 +2661,9 @@
       "local_label": "BattleAnim_GunkShot_PC3",
       "local_file": "data/moves/animations3.asm",
       "reference_label": "BattleAnim_GunkShot",
-      "status": "matching",
-      "reason": "Same normalized animation commands and reachable helper bodies.",
-      "script_sha256": "2dab77384102e33af098e14fa9012ddec93b7bf92e3ca6f20ab1ab39e576f032"
+      "status": "preserved",
+      "reason": "Existing Polished Crystal upgrade with its graphics, palettes and timing.",
+      "script_sha256": "2f6bb7c685e718eaf77bebca0c6dd9fe9f178671f76b4171d96e28155f8fc33c"
     },
     {
       "move": "GYRO_BALL",
@@ -2698,8 +2698,8 @@
       "local_file": "data/moves/animations2.asm",
       "reference_label": "BattleAnim_IronHead",
       "status": "preserved",
-      "reason": "Keep the metallic user palette and explicit palette restoration instead of a black silhouette.",
-      "script_sha256": "f5768203171b27d70dd955100603b61de3438358c189ab8648158ddd38af39c3"
+      "reason": "Keep the metallic user palette and explicit palette restoration; wait for the impact to expire before the second debris group.",
+      "script_sha256": "f06a3d438b1fdc09d3c1e4143dc617ea514cb9dc630e08a53d3f37fed4a17ecb"
     },
     {
       "move": "KNOCK_OFF",
@@ -2860,8 +2860,8 @@
       "local_file": "data/moves/animations5.asm",
       "reference_label": "BattleAnim_Overheat",
       "status": "preserved",
-      "reason": "Keep the red flame object; the shared radial flame has a different palette here.",
-      "script_sha256": "e58655e11f88cd1ff26550bd1a5004a90f1eb59fe4a54e9d236d4321a164b12f"
+      "reason": "Keep the red flame object and stagger all thirteen flames per wave so no object allocations are dropped.",
+      "script_sha256": "450f36c90dcfcf882aa696956913c78699d57fbb8a89d6557b98c6af79e96837"
     },
     {
       "move": "LEAF_STORM",
@@ -3189,12 +3189,12 @@
     },
     {
       "move": "TAIL_GLOW",
-      "local_label": "BattleAnim_TailGlow_Oct19",
-      "local_file": "data/moves/animations6.asm",
+      "local_label": "BattleAnim_TailGlow_Creative",
+      "local_file": "data/moves/animations8.asm",
       "reference_label": "BattleAnim_TailGlow",
-      "status": "matching",
-      "reason": "Same normalized animation commands and reachable helper bodies.",
-      "script_sha256": "5e30f5875154ab721b63cad8d65dcd2be483eb92412affe229167a25a567fb92"
+      "status": "preserved",
+      "reason": "User-requested creative sequence with native sprite, motion and cleanup checks on both battle sides.",
+      "script_sha256": "aee813ad9dccf0d11c619c56bfbaef06f797ae0d3a641e1bc80906820e532fd2"
     },
     {
       "move": "RECYCLE",
@@ -3337,35 +3337,40 @@
   ],
   "support_file_sha256": {
     "constants/sfx_constants.asm": "adc88f6e9794243586a184bc9fbef1643543eb0d3fa81076b78d6928070061d4",
-    "audio/sfx.asm": "8c742c8d109490e44840121678716c9a96ea6b66a52fe6f291dcdbbd696c4c54",
+    "audio/sfx.asm": "c7da9f76ca2f939e9333155034b196642ee545ff1042991b4b745b4974625506",
     "audio/sfx_pointers.asm": "833e8eef56ef0124a323168f9ee39c5befa6cba9f3d2b125819509c05e9ac880",
-    "constants/battle_anim_constants.asm": "286d95053b29b94c044d6344accb7a86ea35cfaae61fd31f5cfa0f63ccec8a74",
+    "constants/battle_anim_constants.asm": "cbed36b418c359762232e861212929853ff57dda3de5dd0800be879f6dcc6169",
     "macros/scripts/battle_anims.asm": "58ad390e02afe1cd39028ebd644ffae6f6b88d02ba47a90dded6473e6c849d20",
-    "data/battle_anims/objects.asm": "0de60fca3586fe73e2ea2ad2fff69e685832bcd27433812ad51666269cd034af",
-    "data/battle_anims/framesets.asm": "3905c50b19647501c1708a8c48c98358c852e3dcb3df5e96658ca66d993681d9",
-    "data/battle_anims/oam.asm": "ee2efbcfaaa9e796f1db15af8cda2edb602d084b09fa85f63e4cb9136caa2a97",
-    "data/battle_anims/object_gfx.asm": "186455272248ffc1913e8238ca5a03a81bf3b4f7ee65d7bc5d2abff5a5d1e910",
+    "data/battle_anims/objects.asm": "1597910627f7c6637b77da83d00c985d95018d76bd05ab2321a9ef2e7249b6fa",
+    "data/battle_anims/framesets.asm": "97eb2707aec48fceffab74f215106767bba26017bc5751cec7806d7e294e40e5",
+    "data/battle_anims/oam.asm": "5723040c71d0b21fa38d96e41a607e7f28c370b44d89573b54cbff1fd7566a6a",
+    "data/battle_anims/object_gfx.asm": "ebfb1b37b169f5e3da2344a9f541ef7af64a27920b6effa939e5dd7127f51681",
     "engine/battle_anims/anim_commands.asm": "b7a0038b9413834c03c75eac7aaae2efa4f7c8ce43f96cae1bafd06e0e9d5a58",
     "engine/battle_anims/core.asm": "db9ede2ae5ab5dbfc370331f3847029b7ab65481e06a8119913e7552f475e46a",
-    "engine/battle_anims/functions.asm": "35c3e63625536afe66955f4c76a28132d21b3a3c7c6fcb81007abcad20fcb2e2",
+    "engine/battle_anims/functions.asm": "dc6b9f94157463ca4533ba68c2ae1458789d449b321e9669ef36305e04268dcd",
     "engine/battle_anims/helpers.asm": "45c8df0e4c57d45911a4691d670d9096d156f43f972b4f7c37f0919adf6ffbac",
     "engine/battle_anims/data_readers.asm": "8365f057a95719d2cb64897c2a140accacf6eaf8100b1f93f5794be0b8753cec",
     "engine/battle_anims/object_readers.asm": "0a829a3fecb0c20ca464365e747058522f537ee0a1b093067879406751aa3e11",
     "gfx/battle_anims.asm": "b516929d91582fc2445d82199366825b77ef40ca7d248882160408bb8ec92648",
-    "gfx/battle_anims2.asm": "171e3d8fc3df0dd284a26081637eca73c208560be8aa4589272f15808412c58a",
-    "gfx/battle_anims/custom.pal": "23b118f510abef62d2582f73f6237b732d2028c21f6dadd103c20b1c3d29efb8",
+    "gfx/battle_anims2.asm": "2c8979252dedb206b8fb0bdcd1713b2057db9dd9554780c101fc4b9250d2350e",
+    "gfx/battle_anims/custom.pal": "05dbfa38a83f7c4f71b94eac2203496223345ade1136e42e2cfedb32f3ab5ab6",
     "gfx/battle_anims/cosmicpower.png": "d3e1ce2fce32bdda9b49a0ce6275aeba8b0280fecbe25cb2c3b0ba2acea161a6",
+    "engine/battle_anims/creative_motion.asm": "515ce280eee54be588ce95c3aa10b9b3a38ecf260246600053bdedd4b7dfe9a2",
+    "gfx/battle_anims/creative_apple.png": "20bd90ec9e6350f250f3d2f7a839cac09ba8fd8f4d90c2cc4d53f884c4813d1a",
+    "gfx/battle_anims/gigaton_hammer.png": "516cfe6eff19f0007e4456c87ba061577db616e6c02d64cc909462f105e813a6",
+    "gfx/battle_anims/infestation_bug.png": "71f3f2ea66f0a4123e4c7ba0c24cade24406c9930d9d794855a9275a4bd5e571",
     "gfx/battle_anims/leafstorm_sour_apple.png": "94b6c655f4b210519eb1f4ee29a37114879ae2b1551c4865fb069146126c00dd",
     "gfx/battle_anims/shadow_sneak_sour_apple.png": "681c5c1412fd41c7c8e146987213015ccfe0cc733e66128425d70286887d5358",
     "gfx/battle_anims/smokepuffbig_sour_apple.png": "5ac5a0b572c4a5dc2f4e79d58f843371cc7cb6f9cfe7fbbc18f47c4e33e429ff",
     "gfx/battle_anims/swirl_sour_apple.png": "4ae0d2b04b66002996d61f2aabdbff3c9b51313a4d80927393196dfd249e8959",
     "gfx/battle_anims/vortex_sour_apple.png": "ca14cc1e12276e97ffa5cab1ce0eb75abd3c657f204224615b44cebdff6f817f",
-    "data/moves/animations.asm": "9370b5c3700961581a2f480120a3b04dc724fe08490dbedbc21e91e54f76f0dd",
-    "data/moves/animations2.asm": "a38de20819ebe926f03533a99b3f8e570f0183e3ee1071321d64d723bd338543",
-    "data/moves/animations3.asm": "6ef9396f71f57a3a7ee299382c06301be0fc191bb9f9adbf6b1073f08418458a",
-    "data/moves/animations4.asm": "713eff2d6bf83b385efe65fa7067ad428c220502de93b88840bccdc05087d5ce",
-    "data/moves/animations5.asm": "5414fe4a3d602f1363d35757fe3fbf95acdc2cbf5d22b4fc6866d3a41d8e17f4",
+    "data/moves/animations.asm": "7f16eae35086c3e406c982671f41bb1ccb3585bdbe9140395774e2a9951d5a0b",
+    "data/moves/animations2.asm": "be1524dc9d960b2ff661b628db604e9300a3d10da4425ede16dcb1e10db99b34",
+    "data/moves/animations3.asm": "52274ca6d10f2b38e649d5595f6cc6df23537bce320df3abbcafa05db8aad95b",
+    "data/moves/animations4.asm": "04fc84c077d33019db382856ab7af203bfc7f9d4c3b768d3dc9042171e395f19",
+    "data/moves/animations5.asm": "4c0feace6cf6ad50d94002619f5224df08354e820ec2da60727ccfdbe6bdaafd",
     "data/moves/animations6.asm": "baf45aae47a2168c0f4075018023583310b0f527ecef7a07fa77384cd53b07af",
-    "data/moves/animations7.asm": "10b2ce4ae1a092667b451825557b2b35ced09c93dea69b458f0b3f1d1614230c"
+    "data/moves/animations7.asm": "ed07a120c85ddfaed58dfd6a5f78e00979cab05f13fb6436de1e590e09a00123",
+    "data/moves/animations8.asm": "c78aebc0bbbe2d233873179596a601fb3ec45e35a86d42ce032c877d0520a440"
   }
 }

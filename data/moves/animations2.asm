@@ -657,32 +657,33 @@ BattleAnim_FlashCannon:
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $14, $2, $0
 	anim_obj ANIM_OBJ_SHRINKING_GLOW, 140, 44, $0
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_WHITE, 136, 48, $0
-	anim_wait 1
+; Let each pair advance before adding more sparks to the ten-object pool.
+	anim_wait 4
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_RED, 136, 48, $28
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_WHITE, 136, 48, $30
-	anim_wait 1
+	anim_wait 4
 	anim_sound 0, 0, SFX_METRONOME
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_RED, 136, 48, $38
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_SHRINKING_GLOW, 124, 60, $0
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_WHITE, 136, 48, $20
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_RED, 136, 48, $8
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_WHITE, 136, 48, $18
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_RED, 136, 48, $4
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_SHRINKING_GLOW, 140, 60, $0
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_WHITE, 136, 48, $2b
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_RED, 136, 48, $14
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_WHITE, 136, 48, $3b
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_RED, 136, 48, $24
-	anim_wait 1
+	anim_wait 4
 	anim_obj ANIM_OBJ_SHRINKING_GLOW, 124, 44, $0
 	anim_obj ANIM_OBJ_FLASH_CANNON_SPARKS_WHITE, 136, 48, $b
 	anim_wait 4
@@ -993,7 +994,7 @@ BattleAnim_IronHead:
 	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $e8
 	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $9c
 	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $d0
-	anim_wait 6
+	anim_wait 12
 	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $1c
 	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $50
 	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $dc

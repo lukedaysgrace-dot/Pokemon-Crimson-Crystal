@@ -27,8 +27,11 @@ SUPPORT_FILES = [
     'engine/battle_anims/data_readers.asm', 'engine/battle_anims/object_readers.asm',
     'gfx/battle_anims.asm', 'gfx/battle_anims2.asm', 'gfx/battle_anims/custom.pal',
     'gfx/battle_anims/cosmicpower.png',
+    'engine/battle_anims/creative_motion.asm',
+    'gfx/battle_anims/creative_apple.png', 'gfx/battle_anims/gigaton_hammer.png',
+    'gfx/battle_anims/infestation_bug.png',
     *[p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'gfx/battle_anims').glob('*_sour_apple.png'))],
-    *[f'data/moves/animations{suffix}.asm' for suffix in ('', '2', '3', '4', '5', '6', '7')],
+    *[f'data/moves/animations{suffix}.asm' for suffix in ('', '2', '3', '4', '5', '6', '7', '8')],
 ]
 CHANGED = {'BUBBLE', 'EGG_BOMB', 'SPIKE_CANNON', 'BARRAGE', 'FLAME_WHEEL',
            'LEAF_BLADE', 'SHADOW_PUNCH', 'DRAGON_DANCE', 'SLACK_OFF', 'VOLT_TACKLE', 'WISH',
@@ -49,6 +52,11 @@ ADAPTATIONS = {
 
 # Each exception describes the visible improvement or the required engine fix.
 PRESERVE = {
+    **dict.fromkeys(('ARMOR_CANNON', 'APPLE_ACID', 'FIERY_DANCE', 'FOUL_PLAY',
+                    'GIGA_HAMMER', 'GRAV_APPLE', 'HEAT_CRASH', 'INFERNAL_PARADE',
+                    'INFESTATION', 'QUIVER_DANCE', 'SOLAR_BLADE', 'TAIL_GLOW'),
+                   'User-requested creative sequence with native sprite, motion and cleanup checks on both battle sides.'),
+    'OCTAZOOKA': 'Keep the ink shot followed by the requested opponent-only Overheat-style charred smoke finish.',
     'SMOG': 'Retain the existing poison-purple palette enhancement.',
     'SLUDGE': 'Retain poison-purple palette handling and its automatic reset.',
     'POISON_GAS': 'Retain the existing poison-purple palette enhancement.',
@@ -68,13 +76,14 @@ PRESERVE = {
     'NASTY_PLOT': 'Keep dedicated thought/hand/surprise graphics instead of reused Amnesia icons.',
     'NIGHT_SLASH': 'Keep the dedicated horizontal slash object and its orientation parameter.',
     'WATER_PULSE': 'Keep explicit user restoration using the correct fourth object.',
-    'OVERHEAT': 'Keep the red flame object; the shared radial flame has a different palette here.',
+    'OVERHEAT': 'Keep the red flame object and stagger all thirteen flames per wave so no object allocations are dropped.',
+    'FLASH_CANNON': 'Space the impact sparks so all thirteen rays fit the ten-object pool without dropped particles.',
     'BRICK_BREAK': 'Keep the visible screen, chop, shattering fragments and impact.',
     'BULLET_SEED': 'Keep one short volley per native multi-hit iteration, avoiding repeated volleys.',
     'MAGICAL_LEAF': 'Keep the Aurora palette on the actual green leaf slot in this engine.',
     'BOUNCE': 'Keep the complete charge, hit and miss paths and restored user sprite.',
     'WEATHER_BALL': 'Keep corrected 120-pixel travel, dedicated ice burst and removed transition flash.',
-    'IRON_HEAD': 'Keep the metallic user palette and explicit palette restoration instead of a black silhouette.',
+    'IRON_HEAD': 'Keep the metallic user palette and explicit palette restoration; wait for the impact to expire before the second debris group.',
     'COSMIC_POWER': 'Keep Coral starfield positioning and immediate palette cycling, with both complete HUDs hidden.',
     'ERUPTION': 'Same source sequence; the dedicated falling-rock object uses the loaded lava-rock graphics instead of unloaded ROCKS.',
     'OMINOUS_WIND': 'Same source sequence; dedicated Coral mist object retains its correct palette and priority.',
@@ -112,7 +121,7 @@ class Scripts:
         names = [p.name for p in sorted((root / 'data/moves').glob('animations_*.asm'))]
         names = names + ['special_animations.asm'] if upstream else [
             'animations.asm', 'animations2.asm', 'animations3.asm', 'animations4.asm',
-            'animations5.asm', 'animations6.asm', 'animations7.asm']
+            'animations5.asm', 'animations6.asm', 'animations7.asm', 'animations8.asm']
         self.blocks, self.next, self.files = {}, {}, {}
         pointers = []
         for name in names:
@@ -275,7 +284,7 @@ def main():
         raise SystemExit('Unreviewed differences: '+', '.join(unresolved))
     result = {'upstream_repository': 'https://github.com/PiaCarrot/mae-pokeorange',
               'upstream_branch': 'sour-apple',
-              'upstream_commit': UPSTREAM_SHA, 'date': '2026-10-27',
+              'upstream_commit': UPSTREAM_SHA, 'date': '2026-10-28',
               'scope': 'Shared move scripts and reachable helper bodies; engine adaptations and upgraded assets retained.',
               'counts': dict(Counter(row['status'] for row in rows)), 'moves': rows,
               'absent_from_upstream': sorted(set(local.moves)-set(source.moves)-{'NO_MOVE'}),

@@ -2274,4 +2274,11 @@ EVENT_ROUTE_4_PARTY_MEW EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 ; Recomputed from Dick's defeat flag by the tower's object callback.
 	const EVENT_BURNED_TOWER_FIREBREATHER_DICK_ASHES
 
+; Route 31's skittish Wimpod returns after fleeing when the route is reloaded.
+; Catching or battling it completes this stationary encounter.
+	const EVENT_ROUTE_31_WIMPOD_FINISHED
+EVENT_ROUTE_31_WIMPOD_HIDDEN EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+EVENT_ROUTE_31_WIMPOD_SWEET_SCENT EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+EVENT_ROUTE_31_WIMPOD_WAITING EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
+
 NUM_EVENTS EQU const_value

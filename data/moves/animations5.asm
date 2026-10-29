@@ -59,16 +59,22 @@ BattleAnim_Overheat_CC:
 .loop
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $0
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $28
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $30
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $38
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $20
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $8
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $18
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $4
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $2b
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $14
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $3b
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $24
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME_RED, 44, 88, $b
 	anim_wait 12
 	anim_clearobjs

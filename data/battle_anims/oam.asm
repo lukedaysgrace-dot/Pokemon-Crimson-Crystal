@@ -438,6 +438,12 @@ BattleAnimOAMData:
 	dbbw $00, 11, .OAMData_DIRE_CLAW_DRAW_5 ; BATTLEANIMOAMSET_DIRE_CLAW_DRAW_5
 	dbbw $00, 14, .OAMData_DIRE_CLAW_DRAW_6 ; BATTLEANIMOAMSET_DIRE_CLAW_DRAW_6
 	dbbw $00, 16, .OAMData_DIRE_CLAW_DRAW_7 ; BATTLEANIMOAMSET_DIRE_CLAW_DRAW_7
+	dbbw $00, 9, .OAMData_APPLE_SMALL ; BATTLEANIMOAMSET_APPLE_SMALL
+	dbbw $09, 16, .OAMData_APPLE_LARGE ; BATTLEANIMOAMSET_APPLE_LARGE
+	dbbw $00, 36, .OAMData_GIGATON_HAMMER ; BATTLEANIMOAMSET_GIGATON_HAMMER
+	dbbw $00, 4, .OAMData_INFESTATION_BUG_1 ; BATTLEANIMOAMSET_INFESTATION_BUG_1
+	dbbw $04, 4, .OAMData_INFESTATION_BUG_2 ; BATTLEANIMOAMSET_INFESTATION_BUG_2
+
 
 .OAMData_lumina_crash:
 ; 4x4 tile burst built from a 2x2 quadrant mirrored on both axes
@@ -3064,3 +3070,78 @@ BattleAnimOAMData:
 	dbsprite  -2,   0, -3, 3, $06, $0
 	dbsprite  -2,   1, -1, 1, $07, $0
 	dbsprite  -1,   1, -1, 1, $08, $0
+
+.OAMData_APPLE_SMALL:
+	dsprite 0, -12, 0, -12, $00, $0
+	dsprite 0, -12, 0, -4, $01, $0
+	dsprite 0, -12, 0, 4, $02, $0
+	dsprite 0, -4, 0, -12, $03, $0
+	dsprite 0, -4, 0, -4, $04, $0
+	dsprite 0, -4, 0, 4, $05, $0
+	dsprite 0, 4, 0, -12, $06, $0
+	dsprite 0, 4, 0, -4, $07, $0
+	dsprite 0, 4, 0, 4, $08, $0
+.OAMData_APPLE_LARGE:
+	dsprite 0, -16, 0, -16, $00, $0
+	dsprite 0, -16, 0, -8, $01, $0
+	dsprite 0, -16, 0, 0, $02, $0
+	dsprite 0, -16, 0, 8, $03, $0
+	dsprite 0, -8, 0, -16, $04, $0
+	dsprite 0, -8, 0, -8, $05, $0
+	dsprite 0, -8, 0, 0, $06, $0
+	dsprite 0, -8, 0, 8, $07, $0
+	dsprite 0, 0, 0, -16, $08, $0
+	dsprite 0, 0, 0, -8, $09, $0
+	dsprite 0, 0, 0, 0, $0a, $0
+	dsprite 0, 0, 0, 8, $0b, $0
+	dsprite 0, 8, 0, -16, $0c, $0
+	dsprite 0, 8, 0, -8, $0d, $0
+	dsprite 0, 8, 0, 0, $0e, $0
+	dsprite 0, 8, 0, 8, $0f, $0
+.OAMData_GIGATON_HAMMER:
+	dsprite 0, -24, 0, -24, $00, $0
+	dsprite 0, -24, 0, -16, $01, $0
+	dsprite 0, -24, 0, -8, $02, $0
+	dsprite 0, -24, 0, 0, $03, $0
+	dsprite 0, -24, 0, 8, $04, $0
+	dsprite 0, -24, 0, 16, $05, $0
+	dsprite 0, -16, 0, -24, $06, $0
+	dsprite 0, -16, 0, -16, $07, $0
+	dsprite 0, -16, 0, -8, $08, $0
+	dsprite 0, -16, 0, 0, $09, $0
+	dsprite 0, -16, 0, 8, $0a, $0
+	dsprite 0, -16, 0, 16, $0b, $0
+	dsprite 0, -8, 0, -24, $0c, $0
+	dsprite 0, -8, 0, -16, $0d, $0
+	dsprite 0, -8, 0, -8, $0e, $0
+	dsprite 0, -8, 0, 0, $0f, $0
+	dsprite 0, -8, 0, 8, $10, $0
+	dsprite 0, -8, 0, 16, $11, $0
+	dsprite 0, 0, 0, -24, $12, $0
+	dsprite 0, 0, 0, -16, $13, $0
+	dsprite 0, 0, 0, -8, $14, $0
+	dsprite 0, 0, 0, 0, $15, $0
+	dsprite 0, 0, 0, 8, $16, $0
+	dsprite 0, 0, 0, 16, $17, $0
+	dsprite 0, 8, 0, -24, $18, $0
+	dsprite 0, 8, 0, -16, $19, $0
+	dsprite 0, 8, 0, -8, $1a, $0
+	dsprite 0, 8, 0, 0, $1b, $0
+	dsprite 0, 8, 0, 8, $1c, $0
+	dsprite 0, 8, 0, 16, $1d, $0
+	dsprite 0, 16, 0, -24, $1e, $0
+	dsprite 0, 16, 0, -16, $1f, $0
+	dsprite 0, 16, 0, -8, $20, $0
+	dsprite 0, 16, 0, 0, $21, $0
+	dsprite 0, 16, 0, 8, $22, $0
+	dsprite 0, 16, 0, 16, $23, $0
+.OAMData_INFESTATION_BUG_1:
+	dsprite 0, -8, 0, -8, $00, $0
+	dsprite 0, -8, 0, 0, $01, $0
+	dsprite 0, 0, 0, -8, $02, $0
+	dsprite 0, 0, 0, 0, $03, $0
+.OAMData_INFESTATION_BUG_2:
+	dsprite 0, -8, 0, -8, $00, $0
+	dsprite 0, -8, 0, 0, $01, $0
+	dsprite 0, 0, 0, -8, $02, $0
+	dsprite 0, 0, 0, 0, $03, $0

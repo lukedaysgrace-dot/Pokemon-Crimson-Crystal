@@ -11,6 +11,12 @@ SweetScentFromMenu:
 	callasm GetPartyNick
 	writetext UnknownText_0x50726
 	waitbutton
+	callasm Route31TryWimpodSweetScent
+	iffalse .NormalEncounter
+	closetext
+	end
+
+.NormalEncounter:
 	callasm SweetScentEncounter
 	iffalse SweetScentNothing
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -33,6 +39,36 @@ SweetScentNothing:
 	waitbutton
 	closetext
 	end
+
+Route31TryWimpodSweetScent:
+; On Route 31, using the move leaves a scent until the map is reloaded.
+; The proximity scripts consume it instead of starting a random grass battle.
+	xor a
+	ld [wScriptVar], a
+	ld a, [wMapGroup]
+	cp GROUP_ROUTE_31
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_ROUTE_31
+	ret nz
+	ld de, EVENT_ROUTE_31_WIMPOD_FINISHED
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	ret nz
+	ld de, EVENT_ROUTE_31_WIMPOD_HIDDEN
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	ret nz
+	ld de, EVENT_ROUTE_31_WIMPOD_SWEET_SCENT
+	ld b, SET_FLAG
+	call EventFlagAction
+	ld a, 1
+	ld [wScriptVar], a
+	ret
 
 SweetScentEncounter:
 	ld a, [wStatusFlags2]

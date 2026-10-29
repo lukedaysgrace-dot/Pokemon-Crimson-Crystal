@@ -21,3 +21,8 @@ AnimObjSmokePuffBigGFXSourApple: INCBIN "gfx/battle_anims/smokepuffbig_sour_appl
 AnimObjVortexGFXSourApple: INCBIN "gfx/battle_anims/vortex_sour_apple.2bpp.lz"
 AnimObjSwirlGFXSourApple: INCBIN "gfx/battle_anims/swirl_sour_apple.2bpp.lz"
 AnimObjShadowSneakGFXSourApple: INCBIN "gfx/battle_anims/shadow_sneak_sour_apple.2bpp.lz"
+
+SECTION "Creative Move Graphics", ROMX
+AnimObjCreativeAppleGFX: INCBIN "gfx/battle_anims/creative_apple.2bpp.lz"
+AnimObjGigatonHammerGFX: INCBIN "gfx/battle_anims/gigaton_hammer.2bpp.lz"
+AnimObjInfestationBugGFX: INCBIN "gfx/battle_anims/infestation_bug.2bpp.lz"

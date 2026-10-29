@@ -804,6 +804,8 @@ BattleAnim_CloseCombat_PC3:
 	anim_sound 0, 0, SFX_RAZOR_WIND
 	anim_call BattleAnimSub_Agility_PC3
 	anim_wait 12
+; The speed lines persist; release their seven slots before the punch volley.
+	anim_clearobjs
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $60, $2, $0
 	anim_bgp $90
 .loop
@@ -1634,22 +1636,22 @@ BattleAnim_FlareBlitz_PC3:
 	anim_sound 0, 0, SFX_KARATE_CHOP
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $0
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $28
-	anim_wait 1
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $30
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $38
-	anim_wait 1
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $20
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $8
-	anim_wait 1
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $18
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $4
-	anim_wait 1
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $2b
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $14
-	anim_wait 1
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $3b
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $24
-	anim_wait 1
+	anim_wait 6
 	anim_obj ANIM_OBJ_RADIAL_FLAME, 136, 56, $b
 	anim_sound 0, 0, SFX_KARATE_CHOP
 	anim_wait 2
@@ -1862,8 +1864,12 @@ BattleAnim_GunkShot_PC3:
 	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_PURPLE
 	anim_2gfx ANIM_GFX_WIND_BG, ANIM_GFX_POISON
 	anim_bgeffect ANIM_BG_BLACK_HUES, $0, $8, $0
-	anim_obj ANIM_OBJ_GUNK_SHOT, 48, 96, $0
 	anim_call BattleAnimSub_AgilityMinor_PC3
+	anim_wait 12
+; Finish the approach before reserving slots for the poison bubbles.
+	anim_clearobjs
+	anim_wait 1
+	anim_obj ANIM_OBJ_GUNK_SHOT, 48, 96, $0
 .loop
 	anim_sound 0, 1, SFX_TOXIC
 	anim_obj ANIM_OBJ_GUNK_SHOT_BUBBLES, 48, 88, $5c
@@ -2596,6 +2602,19 @@ BattleAnim_Octazooka_PC3:
 	anim_obj ANIM_OBJ_INK_SPLASH, 140, 56, $d0
 	anim_obj ANIM_OBJ_INK_SPLASH, 140, 56, $50
 	anim_wait 40
+	anim_clearobjs
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING
+	anim_resetobp0
+	; Overheat's charred silhouette and rising smoke, on the opponent only.
+	anim_setobjpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_CHARRED
+	anim_sound 0, 1, SFX_BALL_POOF
+.burnout
+	anim_obj ANIM_OBJ_TARGET_BURNOUT, 120, 56, $30
+	anim_wait 4
+	anim_obj ANIM_OBJ_TARGET_BURNOUT, 144, 48, $30
+	anim_wait 8
+	anim_loop 3, .burnout
+	anim_wait 24
 	anim_ret
 
 BattleAnim_Outrage_PC3:
@@ -3015,7 +3034,7 @@ BattleAnim_RainDance_PC3:
 	anim_ret
 
 BattleAnim_RapidSpin_PC3:
-	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_HIT
+	anim_1gfx ANIM_GFX_WIND
 	anim_obp0 $e4
 .loop
 	anim_sound 0, 0, SFX_MENU
@@ -3023,6 +3042,11 @@ BattleAnim_RapidSpin_PC3:
 	anim_wait 2
 	anim_loop 5, .loop
 	anim_wait 24
+; WIND + HIT overlaps the two-row battler copy at tiles 102-104.
+; The spin is finished; load HIT alone before copying the target.
+	anim_clearobjs
+	anim_1gfx ANIM_GFX_HIT
+	anim_wait 1
 	anim_call BattleAnim_TargetObj_2Row_PC3
 	anim_bgeffect ANIM_BG_BODY_SLAM, $0, $1, $0
 	anim_wait 4
@@ -3622,6 +3646,9 @@ BattleAnim_StoneEdge_PC3:
 	anim_wait 1
 	anim_obj ANIM_OBJ_STONE_EDGE_STILL, 144, 64, $8
 	anim_wait 32
+; Replace the ten stationary rocks before the first rising rock is queued.
+	anim_clearobjs
+	anim_wait 1
 	anim_sound 0, 1, SFX_KARATE_CHOP
 	anim_obj ANIM_OBJ_STONE_EDGE, 156, 64, $8
 	anim_wait 2
@@ -4160,19 +4187,19 @@ BattleAnim_Waterfall_PC3:
 	anim_obj ANIM_OBJ_HIT_YFIX, 134, 64, $0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 138, 64, $d0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 130, 64, $10
-	anim_wait 3
+	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 134, 56, $0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 138, 56, $d0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 130, 56, $10
-	anim_wait 3
+	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 134, 48, $0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 138, 48, $d0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 130, 48, $10
-	anim_wait 3
+	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 134, 40, $0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 138, 40, $d0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 130, 40, $10
-	anim_wait 3
+	anim_wait 6
 	anim_obj ANIM_OBJ_HIT_YFIX, 134, 32, $0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 138, 32, $d0
 	anim_obj ANIM_OBJ_BUBBLE_SPLASH, 130, 32, $10

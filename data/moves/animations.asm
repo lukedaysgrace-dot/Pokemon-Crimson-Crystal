@@ -290,7 +290,7 @@ BattleAnimations::
 	banim BattleAnim_BrickBreak_PC3 ; ROCK_SMASH (was BattleAnim_RockSmash)
 	banim BattleAnim_Whirlpool_PC3 ; WHIRLPOOL (was BattleAnim_Whirlpool)
 	banim BattleAnim_BeatUp
-	banim BattleAnim_GigaHammer
+	banim BattleAnim_GigaHammer_Creative
 	banim BattleAnim_DazzlinGleam_PC3 ; DAZZLING_GLEAM (was BattleAnim_DazzlingGleam)
 	banim BattleAnim_DisarmingVoice
 	banim BattleAnim_DrainingKiss
@@ -305,12 +305,12 @@ BattleAnimations::
 	banim BattleAnim_AquaJet_PC3 ; AQUA_JET (was BattleAnim_AquaJet)
 	banim BattleAnim_WildCharge_PC3 ; WILD_CHARGE (was BattleAnim_WildCharge)
 	banim BattleAnim_BitterBlade
-	banim BattleAnim_HeatCrash
+	banim BattleAnim_HeatCrash_Creative
 	banim BattleAnim_IceShard_PC3 ; ICE_SHARD (was BattleAnim_IceShard)
 	banim BattleAnim_TripleAxel
 	banim BattleAnim_IcicleCrash_PC3 ; ICICLE_CRASH (was BattleAnim_IcicleCrash)
 	banim BattleAnim_StruggleBug
-	banim BattleAnim_Infestation
+	banim BattleAnim_Infestation_Creative
 	banim BattleAnim_BugBuzz_SourApple
 	banim BattleAnim_Accelrock
 	banim BattleAnim_StoneEdge_PC3 ; STONE_EDGE (was BattleAnim_StoneEdge)
@@ -334,7 +334,7 @@ BattleAnimations::
 	banim BattleAnim_BloodMoon
 	banim BattleAnim_BulletPunch_PC3 ; BULLET_PUNCH (was BattleAnim_BulletPunch)
 	banim BattleAnim_DrainPunch_PC3 ; DRAIN_PUNCH (was BattleAnim_DrainPunch)
-	banim BattleAnim_SolarBlade
+	banim BattleAnim_SolarBlade_Creative
 	banim BattleAnim_CloseCombat_PC3 ; CLOSE_COMBAT (was BattleAnim_CloseCombat)
 	banim BattleAnim_Acrobatics_PC3 ; ACROBATICS (was BattleAnim_Acrobatics)
 	banim BattleAnim_AerialAce ; AERIAL_ACE
@@ -420,14 +420,14 @@ BattleAnimations::
 	banim BattleAnim_ShadowBone_CC ; SHADOW_BONE
 	banim BattleAnim_DireClaw_Custom ; DIRE_CLAW
 	banim BattleAnim_BarbBarrage_CC ; BARB_BARRAGE
-	banim BattleAnim_InfernalParade_CC ; INFERNAL_PARADE
+	banim BattleAnim_InfernalParade_Creative ; INFERNAL_PARADE
 	banim BattleAnim_KowtowCleave_CC ; KOWTOW_CLEAVE
-	banim BattleAnim_ArmorCannon_CC ; ARMOR_CANNON
+	banim BattleAnim_ArmorCannon_Creative ; ARMOR_CANNON
 	banim BattleAnim_ShellSideArm_CC ; SHELLSIDEARM
 	banim BattleAnim_GlaiveRush_CC ; GLAIVE_RUSH
 	banim BattleAnim_DragonDarts_CC ; DRAGON_DARTS
-	banim BattleAnim_AppleAcid_CC ; APPLE_ACID
-	banim BattleAnim_GravApple_CC ; GRAV_APPLE
+	banim BattleAnim_AppleAcid_Creative ; APPLE_ACID
+	banim BattleAnim_GravApple_Creative ; GRAV_APPLE
 	banim BattleAnim_PsyshieldBash_CC ; PSYSHIELD
 	banim BattleAnim_RagingFury_CC ; RAGING_FURY
 	banim BattleAnim_StrangeSteam_CC ; STRANGESTEAM
@@ -436,14 +436,14 @@ BattleAnimations::
 	banim BattleAnim_RagingBull_CC ; RAGING_BULL
 	banim BattleAnim_FickleBeam_CC ; FICKLE_BEAM
 	banim BattleAnim_StoneAxe_CC ; STONE_AXE
-	banim BattleAnim_QuiverDance_CC ; QUIVER_DANCE
+	banim BattleAnim_QuiverDance_Creative ; QUIVER_DANCE
 	banim BattleAnim_StealthRock_SourApple
 	banim BattleAnim_Defog_SourApple
 	banim BattleAnim_BodyPress_CC ; BODY_PRESS
 	banim BattleAnim_WorkUp_CC ; WORK_UP
 	banim BattleAnim_Superpower_CC ; SUPERPOWER
-	banim BattleAnim_FieryDance_CC ; FIERY_DANCE
-	banim BattleAnim_FoulPlay_CC ; FOUL_PLAY
+	banim BattleAnim_FieryDance_Creative ; FIERY_DANCE
+	banim BattleAnim_FoulPlay_Creative ; FOUL_PLAY
 	banim BattleAnim_RageFist_CC ; RAGE_FIST
 	banim BattleAnim_CrushClaw_CC ; CRUSH_CLAW
 	banim BattleAnim_ForcePalm_CC ; FORCE_PALM
@@ -471,7 +471,7 @@ BattleAnimations::
 	banim BattleAnim_Eruption_Oct19 ; ERUPTION
 	banim BattleAnim_WaterSpout_Oct19 ; WATER_SPOUT
 	banim BattleAnim_DoomDesire_Oct19 ; DOOM_DESIRE
-	banim BattleAnim_TailGlow_Oct19 ; TAIL_GLOW
+	banim BattleAnim_TailGlow_Creative ; TAIL_GLOW
 	banim BattleAnim_Recycle_Oct19 ; RECYCLE
 	banim BattleAnim_PetalBlizzard_Oct19 ; PETAL_BLIZZARD
 	banim BattleAnim_BlazeKick_Oct19 ; BLAZE_KICK
@@ -490,57 +490,29 @@ BattleAnim_MirrorMove:
 	anim_ret
 
 BattleAnim_GigaHammer:
-; Steel charge-up (same reflect / shine / harden sequence as Metal Claw),
-; then heavy rocks and deep impact hits on the target.
-; No anim_bgp / FLASH_INVERTED here: those fight the player palette and draw a
-; bright frame around the backpic during the "dark" beat.
+; SameBoy reference: two gray metallic sweeps, a held wind-up, two pale
+; impact stars with a brief inverted flash, then rocks bursting outward.
 	anim_3gfx ANIM_GFX_REFLECT, ANIM_GFX_ROCKS, ANIM_GFX_HIT
-	anim_obp0 $0
-	anim_sound 0, 0, SFX_RAGE
+	anim_obp0 $e4
 	anim_call BattleAnim_TargetObj_1Row
 	anim_call BattleAnim_MetalClaw_branch_cbc43
 	anim_call BattleAnim_ShowMon_0
-	; Restore the object palettes as soon as the shine is over (as Metal Claw
-	; does). `anim_obp0 $0` turns the gray object palette all-white on CGB,
-	; and it used to stay set until the end, so every hit star below was
-	; drawn as a white silhouette.
+	anim_wait 46
 	anim_resetobp0
-	anim_wait 16
-	anim_sound 0, 1, SFX_OUTRAGE
-	anim_wait 28
-	anim_bgeffect ANIM_BG_1F, $e0, $2, $0
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_obj ANIM_OBJ_BIG_ROCK, 136, 48, $48
-	anim_obj ANIM_OBJ_SMALL_ROCK, 148, 56, $30
-	anim_obj ANIM_OBJ_SMALL_ROCK, 124, 52, $50
-	anim_wait 8
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_obj ANIM_OBJ_BIG_ROCK, 128, 44, $38
-	anim_obj ANIM_OBJ_SMALL_ROCK, 144, 64, $40
-	anim_obj ANIM_OBJ_SMALL_ROCK, 132, 60, $28
-	anim_wait 8
-	anim_bgeffect ANIM_BG_25, $0, $1, $0
-	anim_bgeffect ANIM_BG_26, $0, $1, $0
-	anim_sound 0, 1, SFX_COMET_PUNCH
-	anim_obj ANIM_OBJ_0A, 136, 48, $43
-	anim_wait 8
-	anim_sound 0, 1, SFX_MEGA_KICK
-	anim_obj ANIM_OBJ_04, 140, 40, $0
-	anim_obj ANIM_OBJ_05, 132, 52, $0
-	anim_obj ANIM_OBJ_00, 128, 44, $0
-	anim_wait 8
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $3, $4
 	anim_sound 0, 1, SFX_EGG_BOMB
-	anim_obj ANIM_OBJ_03, 144, 48, $0
-	anim_obj ANIM_OBJ_04, 136, 36, $0
-	anim_wait 10
-	anim_sound 0, 1, SFX_STRENGTH
-	anim_wait 14
-	anim_incbgeffect ANIM_BG_26
-	anim_wait 8
-	anim_incbgeffect ANIM_BG_1F
-	anim_bgeffect ANIM_BG_SHOW_MON, $0, $0, $0
-	anim_wait 8
-	anim_call BattleAnim_ShowMon_0
+	anim_obj ANIM_OBJ_HIT, 128, 64, $0
+	anim_wait 6
+	anim_obj ANIM_OBJ_HIT_BIG, 128, 52, $0
+	anim_wait 6
+	anim_sound 0, 1, SFX_EGG_BOMB
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $28
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $5c
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $10
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $e8
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $9c
+	anim_obj ANIM_OBJ_ROCK_SMASH, 128, 64, $d0
+	anim_wait 22
 	anim_ret
 
 BattleAnim_DazzlingGleam:
