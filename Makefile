@@ -252,6 +252,10 @@ gfx/sprites/riolu.2bpp: gfx/sprites/riolu.png tools/reorder_sprite_frames.py Mak
 	$(RGBGFX) $(rgbgfx) -o $@ $<
 	python3 tools/reorder_sprite_frames.py $@ 0 1 2 5 3 4
 
+# Wimpod's colored source uses gray as visible color 1, never transparency.
+gfx/sprites/wimpod.2bpp: gfx/sprites/wimpod.png tools/wimpod_sprite.py tools/pokemontools/png.py
+	python3 tools/wimpod_sprite.py $< $@
+
 # Textbox frames: lines pushed out to the edge of the box (no white margin).
 gfx/frames/%.1bpp: gfx/frames/%.png tools/tight_frames.py
 	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<

@@ -6,12 +6,21 @@
 	const ROUTE31_FRUIT_TREE
 	const ROUTE31_POKE_BALL1
 	const ROUTE31_POKE_BALL2
+	const ROUTE31_WIMPOD
 
 Route31_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckMomCall
+	callback MAPCALLBACK_OBJECTS, .Wimpod
+
+.Wimpod:
+	checkevent EVENT_ROUTE_31_WIMPOD_FINISHED
+	iffalse .WimpodDone
+	disappear ROUTE31_WIMPOD
+.WimpodDone:
+	return
 
 .CheckMomCall:
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
@@ -265,6 +274,198 @@ Route31Potion:
 Route31PokeBall:
 	itemball POKE_BALL
 
+Route31WimpodProximity:
+	checkevent EVENT_ROUTE_31_WIMPOD_HIDDEN
+	iftrue .Done
+	checkevent EVENT_ROUTE_31_WIMPOD_WAITING
+	iftrue .Done
+	checkevent EVENT_ROUTE_31_WIMPOD_SWEET_SCENT
+	iftrue Route31WimpodApproach
+	sjump Route31WimpodFlee
+.Done:
+	end
+
+Route31WimpodScript:
+	checkevent EVENT_ROUTE_31_WIMPOD_WAITING
+	iftrue Route31WimpodBattle
+	; Also handle interacting from beside it after loading a save nearby.
+	checkevent EVENT_ROUTE_31_WIMPOD_SWEET_SCENT
+	iftrue Route31WimpodApproach
+	sjump Route31WimpodFlee
+
+Route31WimpodFlee:
+	showemote EMOTE_SHOCK, ROUTE31_WIMPOD, 15
+	; A player to the west blocks the straight escape. Go around below
+	; them and use the left den tile (18,5); otherwise use (19,5).
+	readvar VAR_YCOORD
+	ifnotequal 6, .RightDen
+	readvar VAR_XCOORD
+	ifequal 20, .LeftDen
+	ifequal 21, .LeftDen
+.RightDen:
+	applymovement ROUTE31_WIMPOD, Route31WimpodRunRightDen
+	sjump .EnterDen
+.LeftDen:
+	applymovement ROUTE31_WIMPOD, Route31WimpodRunLeftDen
+.EnterDen:
+	; Start the final step without waiting for its destination. Remove the
+	; sprite halfway into the cave, while it is still moving from row 6.
+	callasm Route31WimpodStartEnteringDen
+	deactivatefacing 10
+	disappear ROUTE31_WIMPOD
+	callasm Route31WimpodFinishEnteringDen
+	opentext
+	writetext Route31WimpodFledText
+	waitbutton
+	closetext
+	end
+
+Route31WimpodApproach:
+	setevent EVENT_ROUTE_31_WIMPOD_WAITING
+	opentext
+	writetext Route31WimpodLikesScentText
+	waitbutton
+	closetext
+	; The land-side trigger ring is two tiles away. Stop beside the
+	; player, facing them, and leave the battle for the next A press.
+	readvar VAR_XCOORD
+	ifequal 20, .FromLeft
+	ifequal 24, .FromRight
+	readvar VAR_YCOORD
+	ifnotequal 8, .Ready
+	applymovement ROUTE31_WIMPOD, Route31WimpodApproachDown
+	readvar VAR_XCOORD
+	ifequal 21, .StepLeft
+	ifequal 23, .StepRight
+	sjump .Ready
+.FromLeft:
+	applymovement ROUTE31_WIMPOD, Route31WimpodApproachLeft
+	sjump .Vertical
+.FromRight:
+	applymovement ROUTE31_WIMPOD, Route31WimpodApproachRight
+.Vertical:
+	readvar VAR_YCOORD
+	ifequal 6, .Ready
+	applymovement ROUTE31_WIMPOD, Route31WimpodApproachDown
+	readvar VAR_YCOORD
+	ifequal 7, .Ready
+	applymovement ROUTE31_WIMPOD, Route31WimpodApproachDown
+	sjump .Ready
+.StepLeft:
+	applymovement ROUTE31_WIMPOD, Route31WimpodApproachLeft
+	sjump .Ready
+.StepRight:
+	applymovement ROUTE31_WIMPOD, Route31WimpodApproachRight
+.Ready:
+	writeobjectxy ROUTE31_WIMPOD
+	faceobject ROUTE31_WIMPOD, PLAYER
+	faceobject PLAYER, ROUTE31_WIMPOD
+	end
+
+Route31WimpodBattle:
+	faceplayer
+	showemote EMOTE_SHOCK, ROUTE31_WIMPOD, 15
+	; Match the player's facing to turn away from them before the battle.
+	readvar VAR_FACING
+	ifequal DOWN, .TurnDown
+	ifequal UP, .TurnUp
+	ifequal LEFT, .TurnLeft
+	turnobject ROUTE31_WIMPOD, RIGHT
+	sjump .Battle
+.TurnDown:
+	turnobject ROUTE31_WIMPOD, DOWN
+	sjump .Battle
+.TurnUp:
+	turnobject ROUTE31_WIMPOD, UP
+	sjump .Battle
+.TurnLeft:
+	turnobject ROUTE31_WIMPOD, LEFT
+.Battle:
+	pause 8
+	cry WIMPOD
+	waitsfx
+	loadwildmon WIMPOD, 8
+	startbattle
+	setevent EVENT_ROUTE_31_WIMPOD_FINISHED
+	disappear ROUTE31_WIMPOD
+	reloadmapafterbattle
+	end
+
+Route31WimpodStartEnteringDen:
+	; Native object routines use zero-based map indices, unlike scripts.
+	ld c, ROUTE31_WIMPOD - 1
+	farcall SetFlagsForMovement_1
+	ld c, ROUTE31_WIMPOD - 1
+	ld b, BANK(Route31WimpodEnterDen)
+	ld hl, Route31WimpodEnterDen
+	jp GetMovementData
+
+LoadRoute31WimpodPalette::
+; Reuse Route 31's unoccupied rock OBJ palette for opaque gray and purple.
+	ld a, [wMapGroup]
+	cp GROUP_ROUTE_31
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_ROUTE_31
+	ret nz
+	ld hl, .GrayPurple
+	ld de, wOBPals1 palette PAL_OW_ROCK
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	jp FarCopyWRAM
+.GrayPurple:
+	RGB 31,31,31, 24,24,24, 18,04,18, 00,00,00
+
+Route31WimpodFinishEnteringDen:
+	ld hl, wVramState
+	res 7, [hl]
+	ret
+
+Route31WimpodRunRightDen:
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	step_end
+
+Route31WimpodRunLeftDen:
+	big_step DOWN
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step LEFT
+	big_step UP
+	step_end
+
+Route31WimpodEnterDen:
+	step UP
+	step_end
+
+Route31WimpodApproachDown:
+	step DOWN
+	step_end
+
+Route31WimpodApproachLeft:
+	step LEFT
+	step_end
+
+Route31WimpodApproachRight:
+	step RIGHT
+	step_end
+
+Route31WimpodFledText:
+	text "WIMPOD scurried"
+	line "to its den!"
+	done
+
+Route31WimpodLikesScentText:
+	text "WIMPOD looks at"
+	line "you with a"
+	cont "peculiar glance."
+
+	para "It seems to like"
+	line "your smell!"
+	done
+
 Route31CooltrainerMText:
 	text "DARK CAVE…"
 
@@ -423,17 +624,27 @@ Route31_MapEvents:
 	warp_event  4,  7, ROUTE_31_VIOLET_GATE, 4
 	warp_event 34,  5, DARK_CAVE_VIOLET_ENTRANCE, 1
 
-	db 0 ; coord events
+	db 9 ; coord events
+	coord_event 20, 6, -1, Route31WimpodProximity
+	coord_event 20, 7, -1, Route31WimpodProximity
+	coord_event 20, 8, -1, Route31WimpodProximity
+	coord_event 21, 8, -1, Route31WimpodProximity
+	coord_event 22, 8, -1, Route31WimpodProximity
+	coord_event 23, 8, -1, Route31WimpodProximity
+	coord_event 24, 8, -1, Route31WimpodProximity
+	coord_event 24, 7, -1, Route31WimpodProximity
+	coord_event 24, 6, -1, Route31WimpodProximity
 
 	db 2 ; bg events
 	bg_event  7,  5, BGEVENT_READ, Route31Sign
 	bg_event 31,  5, BGEVENT_READ, DarkCaveSign
 
-	db 7 ; object events
-	object_event 17,  7, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31MailRecipientScript, -1
+	db 8 ; object events
+	object_event 17,  4, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31MailRecipientScript, -1
 	object_event  9,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31YoungsterScript, -1
 	object_event 21, 13, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherWade1, -1
 	object_event 33,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31CooltrainerMScript, -1
-	object_event 16,  7, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31FruitTree, -1
-	object_event 29,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION
+	object_event 16,  4, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31FruitTree, -1
+	object_event 30,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION
 	object_event 19, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31PokeBall, EVENT_ROUTE_31_POKE_BALL
+	object_event 22,  6, SPRITE_WIMPOD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_SCRIPT, 0, Route31WimpodScript, EVENT_ROUTE_31_WIMPOD_HIDDEN

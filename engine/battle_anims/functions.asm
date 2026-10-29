@@ -126,6 +126,8 @@ DoBattleAnimFrame:
 	dw BattleAnimFunction_RadialMoveOut_VeryFast_NoStop
 	dw BattleAnimFunction_LavaPlumeEmber
 	dw BattleAnimFunction_Discharge
+	dw BattleAnimFunction_HeavyDrop
+	dw BattleAnimFunction_SwarmOrbit
 
 BattleAnimFunction_Stat:
 ; Polished Crystal's RadialMoveOut_Stats: speed 3, distance 80.
@@ -5394,3 +5396,4 @@ BattleAnimFunction_Discharge:
 	inc [hl]
 	inc [hl]
 	ret
+INCLUDE "engine/battle_anims/creative_motion.asm"

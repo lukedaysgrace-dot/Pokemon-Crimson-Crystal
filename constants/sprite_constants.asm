@@ -98,7 +98,7 @@ SPRITE_FOSSIL EQU SPRITE_PAPER ; reuse the otherwise-unused paper sprite slot
 	const SPRITE_SILVER_TROPHY ; 5f
 	const SPRITE_LYRA ; 60
 	const SPRITE_LYRA_BIKE ; 61
-	const SPRITE_KURT_OUTSIDE ; 62
+	const SPRITE_WIMPOD ; 62 (unused Kurt-outside slot; preserve other sprite IDs)
 	const SPRITE_LYRA_SURF ; 63
 	const SPRITE_ENTEI_NPC ; 64
 	const SPRITE_MOVE_TUTOR ; 65

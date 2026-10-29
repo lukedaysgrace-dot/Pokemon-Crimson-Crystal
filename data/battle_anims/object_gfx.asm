@@ -112,3 +112,7 @@ AnimObjGFX:
 	anim_obj_gfx 32, AnimObjVortexGFXSourApple
 	anim_obj_gfx 3, AnimObjShadowSneakGFXSourApple
 	anim_obj_gfx 24, AnimObjSwirlGFXSourApple
+
+	anim_obj_gfx 25, AnimObjCreativeAppleGFX
+	anim_obj_gfx 36, AnimObjGigatonHammerGFX
+	anim_obj_gfx 8, AnimObjInfestationBugGFX

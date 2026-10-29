@@ -445,9 +445,13 @@ BattleAnim_Hail_PC4:
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_ICE
 	anim_1gfx ANIM_GFX_ICE
 	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
-.loop
+; Hail objects wrap and keep falling. Reuse the first ten instead of
+; attempting twenty more allocations into an already full pool.
 	anim_call BattleAnimSub_Hail_PC4
-	anim_loop 3, .loop
+.loop
+	anim_sound 0, 1, SFX_SHINE
+	anim_wait 8
+	anim_loop 10, .loop
 	anim_ret
 
 BattleAnim_Haze_PC4:

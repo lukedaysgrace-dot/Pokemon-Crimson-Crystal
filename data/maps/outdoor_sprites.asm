@@ -374,7 +374,7 @@ CherrygroveGroupSprites:
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
 	db SPRITE_KAREN
-	db SPRITE_NURSE
+	db SPRITE_WIMPOD ; Route 31 (indoor nurses load their own graphics)
 	db SPRITE_OLD_LINK_RECEPTIONIST
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX

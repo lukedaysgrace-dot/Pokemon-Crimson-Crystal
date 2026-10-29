@@ -104,7 +104,7 @@ OverworldSprites:
 	overworld_sprite SilverTrophySpriteGFX, 4, STILL_SPRITE, PAL_OW_SILVER
 	overworld_sprite LyraSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite LyraBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite KurtOutsideSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BROWN
+	overworld_sprite WimpodSpriteGFX, 12, WALKING_SPRITE, PAL_OW_ROCK
 	overworld_sprite LyraSurfSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite EnteiSpriteGFX, 4, STILL_SPRITE, PAL_OW_RED
 	overworld_sprite MoveTutorSpriteGFX, 12, STANDING_SPRITE, PAL_OW_RED

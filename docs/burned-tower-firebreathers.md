@@ -7,8 +7,9 @@ Koffing Lv15. Existing trainer IDs retain their values; the restored parties
 are appended to the Firebreather group.
 
 Dick's original approach trigger at (8,1) works in every tower scene. Talking
-to him also starts the battle. Winning replaces his red Fisher sprite with
-the original white/gray ashes appearance and retains his post-battle text.
+to him also starts the battle. Both trainers use the Firebreather overworld
+sprite. Winning replaces Dick's red appearance with a white/gray Firebreather
+ashes appearance and retains his post-battle text.
 The existing defeat flag controls this appearance on every map entry; the
 ashes visibility flag is recomputed, so a new game is not required. His ashes stay
 at the original post-battle position (8,2). Losing does not transform him.
