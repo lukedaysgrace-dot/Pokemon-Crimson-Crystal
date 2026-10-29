@@ -438,11 +438,15 @@ BattleAnimOAMData:
 	dbbw $00, 11, .OAMData_DIRE_CLAW_DRAW_5 ; BATTLEANIMOAMSET_DIRE_CLAW_DRAW_5
 	dbbw $00, 14, .OAMData_DIRE_CLAW_DRAW_6 ; BATTLEANIMOAMSET_DIRE_CLAW_DRAW_6
 	dbbw $00, 16, .OAMData_DIRE_CLAW_DRAW_7 ; BATTLEANIMOAMSET_DIRE_CLAW_DRAW_7
-	dbbw $00, 9, .OAMData_APPLE_SMALL ; BATTLEANIMOAMSET_APPLE_SMALL
-	dbbw $09, 16, .OAMData_APPLE_LARGE ; BATTLEANIMOAMSET_APPLE_LARGE
+	dbbw $00, 10, .OAMData_APPLE_SMALL ; BATTLEANIMOAMSET_APPLE_SMALL
+	dbbw $0a, 18, .OAMData_APPLE_LARGE ; BATTLEANIMOAMSET_APPLE_LARGE
 	dbbw $00, 36, .OAMData_GIGATON_HAMMER ; BATTLEANIMOAMSET_GIGATON_HAMMER
 	dbbw $00, 4, .OAMData_INFESTATION_BUG_1 ; BATTLEANIMOAMSET_INFESTATION_BUG_1
 	dbbw $04, 4, .OAMData_INFESTATION_BUG_2 ; BATTLEANIMOAMSET_INFESTATION_BUG_2
+	dbbw $00, 1, .OAMData_ACID_BUBBLE_1x1 ; BATTLEANIMOAMSET_ACID_BUBBLE_SMALL
+	dbbw $01, 1, .OAMData_ACID_BUBBLE_1x1 ; BATTLEANIMOAMSET_ACID_BUBBLE_MEDIUM
+	dbbw $02, 4, .OAMData_ACID_BUBBLE_2x2 ; BATTLEANIMOAMSET_ACID_BUBBLE_LARGE
+	dbbw $06, 4, .OAMData_ACID_BUBBLE_2x2 ; BATTLEANIMOAMSET_ACID_BUBBLE_POP
 
 
 .OAMData_lumina_crash:
@@ -3072,6 +3076,7 @@ BattleAnimOAMData:
 	dbsprite  -1,   1, -1, 1, $08, $0
 
 .OAMData_APPLE_SMALL:
+	dsprite 0, -10, 0, -3, $09, BATTLEANIM_OAM_NEXT_PAL ; leaf and stem
 	dsprite 0, -12, 0, -12, $00, $0
 	dsprite 0, -12, 0, -4, $01, $0
 	dsprite 0, -12, 0, 4, $02, $0
@@ -3082,6 +3087,8 @@ BattleAnimOAMData:
 	dsprite 0, 4, 0, -4, $07, $0
 	dsprite 0, 4, 0, 4, $08, $0
 .OAMData_APPLE_LARGE:
+	dsprite 0, -14, 0, -4, $10, BATTLEANIM_OAM_NEXT_PAL ; leaf and stem
+	dsprite 0, -14, 0, 4, $11, BATTLEANIM_OAM_NEXT_PAL
 	dsprite 0, -16, 0, -16, $00, $0
 	dsprite 0, -16, 0, -8, $01, $0
 	dsprite 0, -16, 0, 0, $02, $0
@@ -3141,6 +3148,14 @@ BattleAnimOAMData:
 	dsprite 0, 0, 0, -8, $02, $0
 	dsprite 0, 0, 0, 0, $03, $0
 .OAMData_INFESTATION_BUG_2:
+	dsprite 0, -8, 0, -8, $00, $0
+	dsprite 0, -8, 0, 0, $01, $0
+	dsprite 0, 0, 0, -8, $02, $0
+	dsprite 0, 0, 0, 0, $03, $0
+
+.OAMData_ACID_BUBBLE_1x1:
+	dsprite 0, -4, 0, -4, $00, $0
+.OAMData_ACID_BUBBLE_2x2:
 	dsprite 0, -8, 0, -8, $00, $0
 	dsprite 0, -8, 0, 0, $01, $0
 	dsprite 0, 0, 0, -8, $02, $0
