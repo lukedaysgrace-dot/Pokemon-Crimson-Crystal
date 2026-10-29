@@ -208,3 +208,21 @@ BattleAnimFunction_FlameTwirl:
 	add hl, bc
 	ld [hl], a
 	ret
+
+; Apple Acid: a bubble rises 1px per frame with a gentle 3px sway.
+; Param = starting sway phase. Its frameset grows it, then pops it.
+BattleAnimFunction_BubbleRise:
+	ld hl, BATTLEANIMSTRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	add 2
+	ld [hl], a
+	ld d, 3
+	call BattleAnim_Sine
+	ld hl, BATTLEANIMSTRUCT_XOFFSET
+	add hl, bc
+	ld [hl], a
+	ld hl, BATTLEANIMSTRUCT_YOFFSET
+	add hl, bc
+	dec [hl]
+	ret

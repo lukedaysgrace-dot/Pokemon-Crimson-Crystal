@@ -51,39 +51,33 @@ BattleAnim_ArmorCannon_Creative:
 	anim_ret
 
 BattleAnim_AppleAcid_Creative:
-; A sour apple is lobbed at the foe and bursts into lime acid that splashes
-; out, eats at the target in two corrosive pulses and drips off.
-	anim_2gfx ANIM_GFX_CREATIVE_APPLE, ANIM_GFX_POISON
+; A sour apple is lobbed at the foe; on impact, lime acid bubbles up from
+; underneath it, swelling and popping as they rise.
+	anim_2gfx ANIM_GFX_CREATIVE_APPLE, ANIM_GFX_ACID_BUBBLE
 	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_APPLE
-	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_ACID_APPLE
+	anim_setobjpal PAL_BATTLE_OB_GREEN, PAL_BTLCUSTOM_APPLE_LEAF
+	anim_setobjpal PAL_BATTLE_OB_BLUE, PAL_BTLCUSTOM_ACID_APPLE
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_APPLE_SHOT, 56, 92, $4
 	anim_wait 36
 	anim_sound 0, 1, SFX_BUBBLEBEAM
-	anim_obj ANIM_OBJ_INK_SPLASH, 136, 52, $5c
-	anim_obj ANIM_OBJ_INK_SPLASH, 136, 52, $e8
-	anim_obj ANIM_OBJ_INK_SPLASH, 136, 52, $d0
-	anim_obj ANIM_OBJ_INK_SPLASH, 136, 52, $50
-	anim_obj ANIM_OBJ_INK_SPLASH, 136, 52, $90
-	anim_obj ANIM_OBJ_INK_SPLASH, 136, 52, $1c
-	anim_wait 6
+.bubbles
+	anim_obj ANIM_OBJ_ACID_BUBBLE, 124, 64, $0
+	anim_wait 3
+	anim_obj ANIM_OBJ_ACID_BUBBLE, 146, 62, $20
+	anim_wait 3
+	anim_obj ANIM_OBJ_ACID_BUBBLE, 112, 60, $10
+	anim_wait 3
+	anim_obj ANIM_OBJ_ACID_BUBBLE, 138, 66, $30
+	anim_wait 3
+	anim_obj ANIM_OBJ_ACID_BUBBLE, 158, 60, $8
+	anim_wait 3
+	anim_loop 3, .bubbles
 	anim_sound 0, 1, SFX_TOXIC
-	anim_setbgpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_ACID_APPLE
-	anim_wait 8
-	anim_setbgpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_DEFAULT
-	anim_obj ANIM_OBJ_POISON_DROPLET, 124, 44, $0
-	anim_wait 6
-	anim_sound 0, 1, SFX_TOXIC
-	anim_setbgpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_ACID_APPLE
-	anim_obj ANIM_OBJ_POISON_DROPLET, 148, 40, $0
-	anim_wait 8
-	anim_setbgpal PAL_BATTLE_BG_TARGET, PAL_BTLCUSTOM_DEFAULT
-	anim_obj ANIM_OBJ_POISON_DROPLET, 136, 48, $0
-	anim_wait 6
-	anim_obj ANIM_OBJ_POISON_DROPLET, 116, 52, $0
-	anim_wait 6
-	anim_obj ANIM_OBJ_POISON_DROPLET, 152, 56, $0
-	anim_wait 20
+	anim_obj ANIM_OBJ_ACID_BUBBLE, 130, 64, $18
+	anim_wait 3
+	anim_obj ANIM_OBJ_ACID_BUBBLE, 144, 64, $28
+	anim_wait 30
 	anim_ret
 
 BattleAnim_FieryDance_Creative:
@@ -197,6 +191,7 @@ BattleAnim_GravApple_Creative:
 ; hangs for a beat, then plummets and craters the ground.
 	anim_4gfx ANIM_GFX_CREATIVE_APPLE, ANIM_GFX_BIG_RINGS, ANIM_GFX_ROCKS, ANIM_GFX_SMOKE_PUFF
 	anim_setobjpal PAL_BATTLE_OB_RED, PAL_BTLCUSTOM_APPLE
+	anim_setobjpal PAL_BATTLE_OB_GREEN, PAL_BTLCUSTOM_APPLE_LEAF
 	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PAYBACK
 	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_GRAY
 	anim_sound 0, 1, SFX_GRAVITY

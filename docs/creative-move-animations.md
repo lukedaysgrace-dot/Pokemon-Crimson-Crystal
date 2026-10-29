@@ -6,7 +6,7 @@ its existing shot in bank 3 and adds its target-only burnout finish there.
 | Move | Sequence |
 | --- | --- |
 | Armor Cannon | Steel-tinted user draws in fire, fires a pulsing molten shell; blast with lava-hot armor shards and an upward flame fan |
-| Apple Acid | Real apple lobbed in an arc, lime acid splash, two corrosive pulses on the target, acid drips |
+| Apple Acid | Shaded apple with a green leaf lobbed in an arc; glossy lime acid bubbles well up from underneath the foe, swell and pop |
 | Fiery Dance | Flames spiral up around the dancer, unroll into a wavering ribbon and wrap the foe in a fire spin |
 | Foul Play | User fades into a silhouette and sinks into a shadow that slides under the foe; triple rake, crossing slash, then the user rises back out of black |
 | Gigaton Hammer | Steel sheen on the user; the 48px mallet eases in over the foe, winds up, slams, rebounds; dust and shards |
@@ -35,6 +35,11 @@ New engine pieces (append-only ids):
 - `ANIM_BG_FADE_MON_GLOW`: one smooth brighten, hold and fade back. Like the
   other palette fades, the speed is the high nibble of the last argument.
 - `PAL_BTLCUSTOM_BLAST`: explosion palette with a hot core instead of black.
+- `BATTLEANIM_OAM_NEXT_PAL`: an OAM data attribute flag that draws one sprite
+  with the object's palette + 1. The apple uses it for its green leaf
+  (`PAL_BTLCUSTOM_APPLE_LEAF` in the green slot) over the red body.
+- `ANIM_OBJ_ACID_BUBBLE` / `BattleAnimFunction_BubbleRise`: a native acid
+  bubble that rises 1px per frame with a slight sway, swells and pops.
 
 The apple source and deterministic native-tile generator are documented in
 `tools/testdata/creative_moves/README.md`. The steel mallet has a beveled

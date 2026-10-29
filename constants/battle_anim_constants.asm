@@ -27,6 +27,11 @@
 BATTLEANIMSTRUCT_LENGTH EQU const_value
 NUM_ANIM_OBJECTS EQU 10 ; see wActiveAnimObjects
 
+; OAM data attribute bit (VRAM bank bit, unused by battle anim OAM data):
+; draw this sprite with the object's palette + 1.
+BATTLEANIM_OAM_NEXT_PAL_F EQU 3
+BATTLEANIM_OAM_NEXT_PAL   EQU 1 << BATTLEANIM_OAM_NEXT_PAL_F
+
 ; Start tile for battle animation graphics
 BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 
@@ -533,6 +538,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_TARGET_BURNOUT
 	const ANIM_OBJ_PARADE_GHOST
 	const ANIM_OBJ_FLAME_TWIRL
+	const ANIM_OBJ_ACID_BUBBLE
 
 
 
@@ -657,6 +663,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFUNC_HEAVY_DROP
 	const BATTLEANIMFUNC_SWARM_ORBIT
 	const BATTLEANIMFUNC_FLAME_TWIRL
+	const BATTLEANIMFUNC_BUBBLE_RISE
 
 
 ; BattleAnimFrameData indexes (see data/battle_anims/framesets.asm)
@@ -1036,6 +1043,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_GIGATON_HAMMER
 	const BATTLEANIMFRAMESET_INFESTATION_BUG
 	const BATTLEANIMFRAMESET_HEAT_COMET
+	const BATTLEANIMFRAMESET_ACID_BUBBLE
 
 
 
@@ -1480,6 +1488,10 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMOAMSET_GIGATON_HAMMER
 	const BATTLEANIMOAMSET_INFESTATION_BUG_1
 	const BATTLEANIMOAMSET_INFESTATION_BUG_2
+	const BATTLEANIMOAMSET_ACID_BUBBLE_SMALL
+	const BATTLEANIMOAMSET_ACID_BUBBLE_MEDIUM
+	const BATTLEANIMOAMSET_ACID_BUBBLE_LARGE
+	const BATTLEANIMOAMSET_ACID_BUBBLE_POP
 
 
 
@@ -1677,6 +1689,7 @@ OAMENDANIM_COMMAND  EQU $ffff
 	const ANIM_GFX_CREATIVE_APPLE
 	const ANIM_GFX_GIGATON_HAMMER
 	const ANIM_GFX_INFESTATION_BUG
+	const ANIM_GFX_ACID_BUBBLE
 
 
 ; battle_bg_effect struct members (see macros/wram.asm)
@@ -1792,6 +1805,7 @@ PAL_BATTLE_BG_TARGET EQU 9
 	const PAL_BTLCUSTOM_APPLE
 	const PAL_BTLCUSTOM_ACID_APPLE
 	const PAL_BTLCUSTOM_BLAST
+	const PAL_BTLCUSTOM_APPLE_LEAF
 
 NUM_CUSTOM_BATTLE_PALETTES EQU const_value
 

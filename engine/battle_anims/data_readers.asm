@@ -97,6 +97,12 @@ BattleAnimOAMUpdate:
 	or b
 	ld b, a
 	ld a, [wBattleAnimTempPalette]
+	; A sprite flagged BATTLEANIM_OAM_NEXT_PAL uses the following object
+	; palette (e.g. the apple's green leaf over its red body).
+	bit BATTLEANIM_OAM_NEXT_PAL_F, [hl]
+	jr z, .same_palette
+	inc a
+.same_palette
 	and PALETTE_MASK | VRAM_BANK_1
 	or b
 	ld [de], a

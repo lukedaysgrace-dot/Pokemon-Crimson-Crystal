@@ -26,3 +26,4 @@ SECTION "Creative Move Graphics", ROMX
 AnimObjCreativeAppleGFX: INCBIN "gfx/battle_anims/creative_apple.2bpp.lz"
 AnimObjGigatonHammerGFX: INCBIN "gfx/battle_anims/gigaton_hammer.2bpp.lz"
 AnimObjInfestationBugGFX: INCBIN "gfx/battle_anims/infestation_bug.2bpp.lz"
+AnimObjAcidBubbleGFX: INCBIN "gfx/battle_anims/acid_bubble.2bpp.lz"
