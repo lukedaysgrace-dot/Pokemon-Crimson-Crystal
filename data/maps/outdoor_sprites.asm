@@ -38,7 +38,7 @@ PalletGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -88,7 +88,7 @@ PewterGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -200,7 +200,7 @@ SaffronGroupSprites:
 	db SPRITE_HIKER
 	db SPRITE_BIRD_KEEPER_NEW
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_PICNICKER_NEW
 	db SPRITE_CAMPER_NEW
 	db SPRITE_COOLTRAINER_M_NEW
@@ -225,7 +225,7 @@ CeladonGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -250,7 +250,7 @@ LavenderGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_HIKER
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -275,7 +275,7 @@ VermilionGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_COOLTRAINER_M_NEW ; CHANTZ in Vermilion City (was SPRITE_BIG_LAPRAS, unused in this group)
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -300,7 +300,7 @@ FuchsiaGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_HIKER
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -325,7 +325,7 @@ IndigoGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -350,7 +350,7 @@ NewBarkGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_PSYCHIC
 	db SPRITE_FAT_GUY ; non-trainer NPCs (was indoor-only NURSE)
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -375,7 +375,7 @@ CherrygroveGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_WIMPOD ; Route 31 (indoor nurses load their own graphics)
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -461,7 +461,7 @@ EcruteakGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_MYSTICALMAN ; Ecruteak City Eusine event (was unused outdoor NURSE)
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -486,7 +486,7 @@ AzaleaGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_HIKER
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_KURT
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -511,7 +511,7 @@ GoldenrodGroupSprites:
 	db SPRITE_COOLTRAINER_F
 	db SPRITE_NONE
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -573,7 +573,7 @@ OlivineGroupSprites:
 	db SPRITE_JASMINE ; lighthouse medicine encounter (replaces unused Will)
 	db SPRITE_PSYCHIC
 	db SPRITE_AROMA_LADY ; Route 38 trainer (replaces NURSE; Pokecenter 1F is indoor, self-loads)
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_STANDING_YOUNGSTER
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -598,7 +598,7 @@ LakeOfRageGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_SUPER_NERD
 	db SPRITE_COOLTRAINER_F
 	db SPRITE_SUDOWOODO
@@ -648,7 +648,7 @@ BlackthornGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_HIKER
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_COOLTRAINER_F
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -673,7 +673,7 @@ DungeonsGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_PSYCHIC
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_GAMEBOY_KID
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO
@@ -698,7 +698,7 @@ FastShipGroupSprites:
 	db SPRITE_WILL
 	db SPRITE_KAREN
 	db SPRITE_NURSE
-	db SPRITE_OLD_LINK_RECEPTIONIST
+	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS
 	db SPRITE_BIG_ONIX
 	db SPRITE_SUDOWOODO

@@ -1073,7 +1073,7 @@ JohtoGrassWildMons:
 	dbw 78, DONPHAN
 	dbw 78, TOGEKISS
 	dbw 81, GOLEM
-	dbw 82, DURALUDON
+	dbw 82, STEELIX
 	dbw 82, ALTARIA
 
 	map_id SILVER_CAVE_ROOM_2

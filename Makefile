@@ -453,6 +453,10 @@ data/maps/portrait_texts.asm: tools/trainer_portrait_texts.py $(wildcard maps/*.
 gfx/sprites/karate_king.2bpp: gfx/sprites/karate_king.png tools/grayscale_sprite.py tools/pokemontools/png.py
 	python3 tools/grayscale_sprite.py $< $@
 
+# This sheet also contains a few near-gray export pixels (84 and 173).
+gfx/tilesets/johto.2bpp: gfx/tilesets/johto.png tools/grayscale_sprite.py tools/pokemontools/png.py
+	python3 tools/grayscale_sprite.py $< $@
+
 # Riolu's source has walking poses up/left/down; Crystal loads down/up/left.
 gfx/sprites/riolu.2bpp: gfx/sprites/riolu.png tools/reorder_sprite_frames.py Makefile
 	$(RGBGFX) $(rgbgfx) -o $@ $<
@@ -461,6 +465,10 @@ gfx/sprites/riolu.2bpp: gfx/sprites/riolu.png tools/reorder_sprite_frames.py Mak
 # Wimpod's colored source uses gray as visible color 1, never transparency.
 gfx/sprites/wimpod.2bpp: gfx/sprites/wimpod.png tools/wimpod_sprite.py tools/pokemontools/png.py
 	python3 tools/wimpod_sprite.py $< $@
+
+# Duraludon's gray body is opaque color 1; only white is transparent.
+gfx/sprites/duraludon.2bpp: gfx/sprites/duraludon.png tools/duraludon_sprite.py tools/pokemontools/png.py
+	python3 tools/duraludon_sprite.py $< $@
 
 # Textbox frames: lines pushed out to the edge of the box (no white margin).
 gfx/frames/%.1bpp: gfx/frames/%.png tools/tight_frames.py
