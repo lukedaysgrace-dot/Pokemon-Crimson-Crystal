@@ -38,7 +38,7 @@ def main():
         h.wr(h.s(name), value)
 
     items = {}
-    for item in [*range(1, 255), *range(257, 285)]:
+    for item in [*range(1, 255), *range(257, 273), *range(280, 285)]:
         write('wCurItem', h.call('GetItemIDFromIndex', hl=item)['a'])
         h.call('CheckItemPocket')
         items[item] = h.rd(h.s('wItemAttributeParamBuffer'))

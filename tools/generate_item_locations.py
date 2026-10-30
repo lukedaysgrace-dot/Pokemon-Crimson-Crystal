@@ -131,7 +131,7 @@ def generate(repo, builder=None, write=True):
     attrs = {}
     current = None
     for line in (repo/'data/items/attributes.asm').read_text(encoding='utf-8').splitlines():
-        if line in ('; $ff', '; $00'):
+        if re.match(r'^; \$[0-9a-f]+', line, re.I):
             current = None
             continue  # padding records, not named items
         m = re.match(r'; (\w+)(?:\s*\(|\s*$)', line)

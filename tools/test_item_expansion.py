@@ -182,7 +182,7 @@ def main():
     expanded = [(name, value) for name, value in con.items.items() if value >= 257]
     rom_bytes = rom.read_bytes()
     desc_bank, desc_address = h.sym['ItemDescriptions']
-    check(len(expanded) == 28, 'expanded catalogue size')
+    check(len(expanded) == 21, 'expanded catalogue size')
     for name, value in expanded:
         item = runtime(value)
         check(item != 0 and index(item) == value, name + ': round-trip conversion')
@@ -206,15 +206,17 @@ def main():
         write('wPartyMon1Item', 0)
 
     print('[four word-index marts: names, stock and BCD prices]', flush=True)
-    for number in range(4):
+    stock = [list(range(257, 264)), list(range(264, 271)),
+             [271, 272], list(range(280, 285))]
+    for number, expected_stock in enumerate(stock):
         bank, address = h.sym['MartExpanded' + str(number)]
         write('wMartPointerBank', bank)
         h.wr16(h.s('wMartPointer'), address)
         write('wCurMart', bytes(16))
         h.call('FarReadMart')
-        check(h.rd(h.s('wCurMart')) == 7, 'mart count')
-        check([index(h.rd(h.s('wCurMart') + 1 + i)) for i in range(7)] ==
-              list(range(257 + number * 7, 264 + number * 7)), 'mart stock indexes')
+        check(h.rd(h.s('wCurMart')) == len(expected_stock), 'mart count')
+        check([index(h.rd(h.s('wCurMart') + 1 + i)) for i in range(len(expected_stock))] ==
+              expected_stock, 'mart stock indexes')
 
     print('[word-index bag sorting: same low byte, embedded $ff, stack merging]', flush=True)
     write('wMenuData_ScrollingMenuItemFormat', 3)
@@ -233,19 +235,19 @@ def main():
         check(raw == bytes([v for i, n in expected for v in (i >> 8, i & 255, n)] + [255]), 'sort/merge corrupted word rows')
 
     print('[boxed held indexes survive collection, snapshots and save/reload]', flush=True)
-    for slot, name in enumerate(('TINYMUSHROOM', 'POLKADOT_BOW', 'NORMAL_BOX', 'LUM_BERRY'), 1):
+    for slot, name in enumerate(('TINYMUSHROOM', 'POLKADOT_BOW', 'NORMAL_BOX', 'RARE_BONE'), 1):
         h.build_temp_mon(25, [1, 0, 0, 0], level=10, item=runtime(con.item_id(name)))
         h.call('AddTempMonToStorage')
     for candidate in range(194, 285):
         if candidate not in (255, 256):
             runtime(candidate)
     h.call('ForceGarbageCollection')
-    for slot, name in enumerate(('TINYMUSHROOM', 'POLKADOT_BOW', 'NORMAL_BOX', 'LUM_BERRY'), 1):
+    for slot, name in enumerate(('TINYMUSHROOM', 'POLKADOT_BOW', 'NORMAL_BOX', 'RARE_BONE'), 1):
         h.call('GetStorageBoxMon', bc=0x100 | slot)
         check(index(h.rd(h.s('wTempMonItem'))) == con.item_id(name), name + ': boxed item changed')
     entries('wNumItems', [(257, 99), (284, 1)])
     entries('wNumPCItems', [(258, 45), (283, 99)])
-    party = h.build_temp_mon(25, [1, 0, 0, 0], level=10, item=runtime(con.item_id('LUM_BERRY')))
+    party = h.build_temp_mon(25, [1, 0, 0, 0], level=10, item=runtime(con.item_id('RARE_BONE')))
     write('wPartyCount', 1)
     write('wPartySpecies', [party['sid'], 255])
     write('wPartyMon1', h.rd(h.s('wTempMon'), h.s('wPartyMon2') - h.s('wPartyMon1')))
@@ -257,7 +259,7 @@ def main():
     write('wPartyMon1Item', 0)
     h.call('TryLoadSaveFile', max_frames=600)
     check(h.rd(h.s('wNumItems'), 8) == expected_bag, 'word bag did not survive save/load')
-    check(index(h.rd(h.s('wPartyMon1Item'))) == con.item_id('LUM_BERRY'), 'expanded party held item did not survive save/load')
+    check(index(h.rd(h.s('wPartyMon1Item'))) == con.item_id('RARE_BONE'), 'expanded party held item did not survive save/load')
     # Sidecar corruption participates in each record's checksum.
     pool, entry = h.box_pointer(1, 1)
     high_bank, high_address = h.sym['sPokeDBItemHigh']
@@ -266,6 +268,69 @@ def main():
     h.sram_wr(high_bank, address, previous ^ 1)
     check(h.call('GetStorageBoxMon', bc=0x101)['c_flag'], 'corrupt boxed item high byte was accepted')
     h.sram_wr(high_bank, address, previous)
+
+    print('[retired berry save compatibility: bag, PC, held slots and backup]', flush=True)
+    equivalents = ['PSNCUREBERRY', 'ICE_BERRY', 'BURNT_BERRY', 'MINT_BERRY',
+                   'PRZCUREBERRY', 'BITTER_BERRY', 'MIRACLEBERRY']
+    for retired, name in enumerate(equivalents, 0x111):
+        original = con.item_id(name)
+        check(index(runtime(retired)) == original, name + ': retired index did not resolve')
+        result = h.call('NormalizeRetiredBerryIndex', hl=retired, bc=0x1234, de=0x5678)
+        check(result['hl'] == original and result['bc'] == 0x1234 and result['de'] == 0x5678,
+              name + ': compatibility helper clobbered registers')
+    for untouched in (0, 0x110, 0x118, 0x211, 0xffff):
+        check(h.call('NormalizeRetiredBerryIndex', hl=untouched)['hl'] == untouched,
+              'compatibility helper changed unrelated index')
+    # A real old boxed record contains the retired true index and a checksum
+    # over that raw representation. Reading it must not create a Bad Egg.
+    pool, entry = h.box_pointer(1, 1)
+    record_address = h.call('OpenPokeDB', de=(pool << 8) | entry)['hl']
+    record_bank = h.rd(h.s('hSRAMBank'))
+    record = bytearray(h.sram(record_bank, record_address, 57))
+    high_address = h.sym['sPokeDBItemHigh'][1] + (pool - 1) * 254 + entry - 1
+    for retired, name in enumerate(equivalents, 0x111):
+        record[2] = retired & 255
+        checksum = (0x7f + sum(value * (55 - i) for i, value in enumerate(record[:55]))
+                    + (retired >> 8) * 257) & 65535
+        record[55:57] = checksum.to_bytes(2, 'little')
+        h.sram_wr(record_bank, record_address, record)
+        h.sram_wr(high_bank, high_address, retired >> 8)
+        check(not h.call('GetStorageBoxMon', bc=0x101)['c_flag'], name + ': old box record rejected')
+        check(index(h.rd(h.s('wTempMonItem'))) == con.item_id(name), name + ': old boxed item changed')
+    h.call('CloseSRAM')
+    # Simulate a valid format-5 save written by the earlier expansion build.
+    # Keep the old raw table values, as actual saved party/daycare slots do.
+    table_bank, table_address = h.sym['wItemIndexTableEntries']
+    for slot, retired in enumerate(range(0x111, 0x118), 202):
+        h.mem[table_bank, table_address + 2 * (slot - 1)] = retired & 255
+        h.mem[table_bank, table_address + 2 * (slot - 1) + 1] = retired >> 8
+    write('wPartyMon1Item', 202)
+    write('wBreedMon1Item', 208)
+    retired_rows = [(retired, 92 + i) for i, retired in enumerate(range(0x111, 0x118))]
+    original_rows = [(con.item_id(name), 92 + i) for i, name in enumerate(equivalents)]
+    entries('wNumItems', retired_rows)
+    entries('wNumPCItems', list(reversed(retired_rows)))
+    h.call('SaveGameData', max_frames=600)
+    for fallback in (False, True):
+        if fallback:
+            put('sCheckValue1', 0)
+        write('wNumItems', [0, 255])
+        write('wNumPCItems', [0, 255])
+        check(not h.call('TryLoadSaveFile', max_frames=600)['c_flag'], 'retired-item save rejected')
+        for pocket, rows in [('wNumItems', original_rows), ('wNumPCItems', list(reversed(original_rows)))]:
+            expected = bytes([len(rows)] + [v for i, n in rows for v in (i >> 8, i & 255, n)] + [255])
+            check(h.rd(h.s(pocket), len(expected)) == expected,
+                  pocket + ': retired conversion lost quantity/order/terminator')
+        check(index(h.rd(h.s('wPartyMon1Item'))) == con.item_id('PSNCUREBERRY'),
+              'retired party held berry changed')
+        check(index(h.rd(h.s('wBreedMon1Item'))) == con.item_id('MIRACLEBERRY'),
+              'retired daycare held berry changed')
+        for retired in range(0x111, 0x118):
+            write('wCurItem', runtime(retired))
+            write('wItemQuantityChangeBuffer', 1)
+            check(h.call('_CheckItem', hl=h.s('wNumItems'))['c_flag'],
+                  'converted berry cannot be found in bag')
+    write('wBreedMon1Item', 0)
 
     print('[native Normal/Gorgeous Box effects: consume item and award trophy]', flush=True)
     events = _parse_constants(root / 'constants/event_flags.asm')
@@ -314,7 +379,7 @@ def main():
     receiver.call('InitializeItemIndexTable')
     for candidate in reversed(range(257, 285)):
         receiver.call('GetItemIDFromIndex', hl=candidate)
-    held = ['TINYMUSHROOM', 'NORMAL_BOX', 'GORGEOUS_BOX', 'LUM_BERRY', 'PEARL_STRING', 'SURF_MAIL']
+    held = ['TINYMUSHROOM', 'NORMAL_BOX', 'GORGEOUS_BOX', 'RARE_BONE', 'PEARL_STRING', 'SURF_MAIL']
     stride = h.s('wPartyMon2') - h.s('wPartyMon1')
     for slot, name in enumerate(held):
         info = h.build_temp_mon(25, [1, 0, 0, 0], item=runtime(con.item_id(name)))

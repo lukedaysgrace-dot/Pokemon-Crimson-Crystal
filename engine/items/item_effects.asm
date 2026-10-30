@@ -234,13 +234,13 @@ ItemEffects:
 	dw NoEffect ; GOLD_LEAF
 	dw NormalBoxEffect ; NORMAL_BOX
 	dw GorgeousBoxEffect ; GORGEOUS_BOX
-	dw NoEffect ; PECHA_BERRY
-	dw NoEffect ; RAWST_BERRY
-	dw NoEffect ; ASPEAR_BERRY
-	dw NoEffect ; CHESTO_BERRY
-	dw NoEffect ; CHERI_BERRY
-	dw NoEffect ; PERSIM_BERRY
-	dw NoEffect ; LUM_BERRY
+	dw NoEffect ; retired $0111
+	dw NoEffect ; retired $0112
+	dw NoEffect ; retired $0113
+	dw NoEffect ; retired $0114
+	dw NoEffect ; retired $0115
+	dw NoEffect ; retired $0116
+	dw NoEffect ; retired $0117
 	dw NoEffect ; RARE_BONE
 	dw NoEffect ; BALM_MUSHROOM
 	dw NoEffect ; COMET_SHARD

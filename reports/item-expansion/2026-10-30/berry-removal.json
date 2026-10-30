@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-30",
+  "change": "Remove seven redundant status Berries; preserve all remaining item IDs.",
+  "usableCatalogueEntries": 275,
+  "remainingAddedEntries": 21,
+  "saveFormatVersion": 5,
+  "retiredIndexes": [
+    "$0111",
+    "$0112",
+    "$0113",
+    "$0114",
+    "$0115",
+    "$0116",
+    "$0117"
+  ],
+  "savedItemCompatibility": {
+    "PECHA_BERRY": "PSNCUREBERRY",
+    "RAWST_BERRY": "ICE_BERRY",
+    "ASPEAR_BERRY": "BURNT_BERRY",
+    "CHESTO_BERRY": "MINT_BERRY",
+    "CHERI_BERRY": "PRZCUREBERRY",
+    "PERSIM_BERRY": "BITTER_BERRY",
+    "LUM_BERRY": "MIRACLEBERRY"
+  },
+  "compatibilityScope": [
+    "bag",
+    "PC inventory",
+    "party held items",
+    "daycare held items",
+    "boxed held items",
+    "primary and backup saves"
+  ],
+  "roms": {
+    "pokecrystal.gbc": {
+      "bytes": 4194304,
+      "sha256": "d4c6daec59d57ec0b814c67bebf52f7531d820e0d0da9b2fbce01a4892f98123"
+    },
+    "pokecrystal_debug.gbc": {
+      "bytes": 4194304,
+      "sha256": "b222f40def99aafccf785990cf211c389889c64469aebcd057fb390dbcd70cb7"
+    }
+  },
+  "checks": {
+    "inventoryPerRom": 28686,
+    "expansionPerRom": 1117,
+    "nativeHeldItemChecks": 42,
+    "battleRegressionCases": 6686,
+    "battleWorkers": 4,
+    "pcSaveRecovery": 25,
+    "pcStorage": 122,
+    "saveLayoutAudit": 185,
+    "catalogueUnitTests": 8,
+    "staticDataInvariants": 45588
+  },
+  "sourceSaveUnchanged": true,
+  "sourceSaveSha256": "54d81db917aeacd54bba669f93db9f13c0943f05b205f22ffab80c1b592dc105",
+  "modernItemCandidatesImplemented": false
+}

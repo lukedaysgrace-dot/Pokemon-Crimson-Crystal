@@ -2,6 +2,48 @@
 ; terminates the list; valid indices are $0001..$feff. Quantities are 1..99.
 ; Ball/key pockets retain fixed legacy byte IDs and their existing layouts.
 
+NormalizeRetiredBerryInventories::
+; Normalize loaded word inventories without changing stack quantities/counts.
+; Party/daycare runtime slots and boxed indices resolve through the home
+; conversion helpers, so their saved layout and checksums stay unchanged.
+	ld hl, wNumItems
+	ld b, MAX_ITEMS
+	call .pocket
+	ld hl, wNumPCItems
+	ld b, MAX_PC_ITEMS
+.pocket
+	ld a, [hli]
+	cp b
+	jr c, .valid
+	ret nz
+.valid
+	ld b, a
+	and a
+	ret z
+.loop
+	push bc
+	push hl
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	; The usual farcall macro replaces hl with the target address. This
+	; helper takes its item index in hl, so use the de call trampoline.
+	ld de, NormalizeRetiredBerryIndex
+	ld a, BANK(NormalizeRetiredBerryIndex)
+	call FarCall_de
+	ld d, h
+	ld e, l
+	pop hl
+	ld [hl], d
+	inc hl
+	ld [hl], e
+	inc hl
+	inc hl
+	pop bc
+	dec b
+	jr nz, .loop
+	ret
+
 GetCurItemIndexBC:
 	push hl
 	ld a, [wCurItem]

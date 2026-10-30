@@ -771,6 +771,7 @@ LoadPlayerData:
 	ld bc, wCurMapDataEnd - wCurMapData
 	call CopyBytes
 	call CloseSRAM
+	farcall NormalizeRetiredBerryInventories
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	ld a, [sBattleTowerChallengeState]
@@ -882,6 +883,7 @@ LoadBackupPlayerData:
 	ld bc, wCurMapDataEnd - wCurMapData
 	call CopyBytes
 	call CloseSRAM
+	farcall NormalizeRetiredBerryInventories
 	ret
 
 LoadBackupPokemonData:

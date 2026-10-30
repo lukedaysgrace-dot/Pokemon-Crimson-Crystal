@@ -189,7 +189,7 @@ def candidate_builds(data, species, count=12, level=100, seed=1, items=None):
             coverage.append(m)
     base = (coverage + [m for m in ranked if m not in coverage])[:4]
     abilities = list(dict.fromkeys(a for a in s["abilities"] if a != "NO_ABILITY")) or ["NO_ABILITY"]
-    items = items or [i for i in ("NO_ITEM", "LEFTOVERS", "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "LIFE_ORB", "FOCUS_SASH", "LUM_BERRY", "GOLD_BERRY") if i in data["items"]]
+    items = items or [i for i in ("NO_ITEM", "LEFTOVERS", "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "LIFE_ORB", "FOCUS_SASH", "MIRACLEBERRY", "GOLD_BERRY") if i in data["items"]]
     if not pool or not items:
         raise ValueError(f"no candidate moves/items for {species}")
     rng = random.Random(seed)

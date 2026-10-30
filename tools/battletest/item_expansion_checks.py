@@ -28,9 +28,9 @@ def main():
                     rng='forced_low', turns=0)
         check(h.run_battle(test) == STATE_WAIT, 'battle did not reach pre-turn pause')
 
-    def equip(name):
+    def equip(name, retired=None):
         m = h.battle.mem
-        index = h.con.item_id(name)
+        index = retired if retired is not None else h.con.item_id(name)
         slot = 202  # beyond all fixed legacy/Mail slots
         offset = 2 * (slot - 1)
         previous = m.read_bytes('wItemIndexTableEntries', 2, offset)
@@ -39,7 +39,8 @@ def main():
             m.write('wItemIndexTableUsedSlots', m.read('wItemIndexTableUsedSlots') + 1)
         m.write('wBattleMonItem', slot)
         m.write('wPartyMon1Item', slot)
-        check(h.battle.player.item == name, name + ': fixture index')
+        expected = f'ITEM_{retired}' if retired is not None else name
+        check(h.battle.player.item == expected, name + ': fixture index')
 
     def turn():
         m = h.battle.mem
@@ -53,12 +54,13 @@ def main():
         raise AssertionError('battle turn did not finish')
 
     try:
-        for name, status, confuse in [('PECHA_BERRY', 8, False), ('RAWST_BERRY', 16, False),
-                                     ('ASPEAR_BERRY', 32, False), ('CHESTO_BERRY', 3, False),
-                                     ('CHERI_BERRY', 64, False), ('PERSIM_BERRY', 0, True),
-                                     ('LUM_BERRY', 8, True)]:
+        for retired, (name, status, confuse) in enumerate([
+                ('PSNCUREBERRY', 8, False), ('ICE_BERRY', 16, False),
+                ('BURNT_BERRY', 32, False), ('MINT_BERRY', 3, False),
+                ('PRZCUREBERRY', 64, False), ('BITTER_BERRY', 0, True),
+                ('MIRACLEBERRY', 8, True)], 0x111):
             start()
-            equip(name)
+            equip(name, retired)
             m = h.battle.mem
             m.write('wBattleMonStatus', status)
             m.write('wPartyMon1Status', status)
@@ -72,11 +74,11 @@ def main():
                   name + ': consumed item not synchronized to party')
             print(name + ': native cure and consumption passed', flush=True)
         start(ability='KLUTZ')
-        equip('PECHA_BERRY')
+        equip('PSNCUREBERRY', 0x111)
         h.battle.mem.write('wBattleMonStatus', 8)
         h.battle.mem.write('wPartyMon1Status', 8)
         turn()
-        check(h.battle.player.status == 8 and h.battle.player.item == 'PECHA_BERRY', 'Klutz failed to suppress expanded Berry')
+        check(h.battle.player.status == 8 and h.battle.player.item == 'ITEM_273', 'Klutz failed to suppress converted Berry')
         damage = []
         for expanded in (False, True):
             start(item='PINK_BOW', move='TACKLE')

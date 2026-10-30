@@ -131,12 +131,40 @@ ENDC
 _LockMoveID::
 	___conversion_table_lock_ID wMoveIndexTable, MOVE_TABLE
 
+NormalizeRetiredBerryIndex::
+; Old expansion saves may contain the seven removed status Berries. Resolve
+; those reserved indices to their original equivalents, preserving bc/de.
+	ld a, h
+	cp $01
+	ret nz
+	ld a, l
+	sub $11
+	ret c
+	cp 7
+	ret nc
+	push de
+	ld e, a
+	ld d, 0
+	ld hl, .originals
+	add hl, de
+	ld l, [hl]
+	ld h, 0
+	pop de
+	ret
+.originals
+	db PSNCUREBERRY, ICE_BERRY, BURNT_BERRY, MINT_BERRY
+	db PRZCUREBERRY, BITTER_BERRY, MIRACLEBERRY
+
 _GetItemIndexFromID::
+	call .raw
+	jp NormalizeRetiredBerryIndex
+.raw
 	___conversion_table_load wItemIndexTable, ITEM_TABLE
 
 _GetItemIDFromIndex::
+	call NormalizeRetiredBerryIndex
 	___conversion_table_store wItemIndexTable, ITEM_TABLE
-
+	; Fall through directly to collection, as required by the store macro.
 ItemTableGarbageCollection:
 	push de
 	ldh a, [rSVBK]

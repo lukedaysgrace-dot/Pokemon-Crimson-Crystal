@@ -1,7 +1,7 @@
 # Expanded item IDs
 
-Crimson Crystal now has 282 named usable item/TM/HM entries. The 28 added
-entries use true item indexes `$0101`–`$011c`; the old item indexes stay stable.
+Crimson Crystal now has 275 named usable item/TM/HM entries. The 21 added
+entries use true item indexes `$0101`–`$0110` and `$0118`–`$011c`; the old item indexes stay stable.
 No Plates were added.
 
 The implementation adapts the conversion-table approach from
@@ -17,18 +17,22 @@ opens the floor's original shop.
 | --- | --- |
 | Goldenrod Department Store 3F | TinyMushroom, Big Mushroom, Big Pearl, Polkadot Bow, Surf Mail, LiteBlueMail, PortraitMail |
 | Goldenrod Department Store 4F | Lovely Mail, Morph Mail, BlueSky Mail, Music Mail, Mirage Mail, Silver Leaf, Gold Leaf |
-| Celadon Department Store 3F | Normal Box, Gorgeous Box, Pecha Berry, Rawst Berry, Aspear Berry, Chesto Berry, Cheri Berry |
-| Celadon Department Store 4F | Persim Berry, Lum Berry, Rare Bone, Balm Mushroom, Comet Shard, Big Nugget, Pearl String |
+| Celadon Department Store 3F | Normal Box, Gorgeous Box |
+| Celadon Department Store 4F | Rare Bone, Balm Mushroom, Comet Shard, Big Nugget, Pearl String |
 
 The first sixteen entries restore removed items. Normal/Gorgeous Box award
 the silver/gold trophy decorations and are consumed. Polkadot Bow provides
 the existing 10% Normal-type held boost. All ten Mail designs work, including
 their original artwork and palette ordering.
 
-The seven new Berries are held consumables: poison, burn, freeze, sleep,
-paralysis, confusion, or all status/confusion respectively. They obey Klutz
-and synchronize consumption to the party. Their descriptions identify held
-use; they are not selectable field medicines. Treasures can be sold at marts.
+Treasures can be sold at marts. The seven duplicate status Berries were
+removed. Saves from the first expansion build resolve Pecha, Rawst, Aspear,
+Chesto, Cheri, Persim and Lum to PSNCUREBERRY, Ice Berry, Burnt Berry,
+Mint Berry, PRZCUREBERRY, Bitter Berry and MiracleBerry respectively.
+Bag/PC stacks normalize on load without losing quantities; saved runtime
+held slots and boxed item indexes resolve through the same compatibility
+mapping. Their retired indexes `$0111`–`$0117` stay reserved forever, so no
+remaining item changes its identity. Save format remains 5.
 
 ## Storage and compatibility
 
@@ -78,14 +82,19 @@ supported by this change. Existing content in those fields is unchanged.
 
 Release and debug ROMs were built. Private emulator tests cover:
 
-- 29,512 inventory boundary assertions per ROM, across all 282 usable entries;
+- inventory boundary assertions per ROM, across all 275 usable entries;
 - Over 1,000 expansion assertions per ROM, including v3/v4 migration, corrupt saves,
   names/descriptions, all new marts, sorting/merging, boxed held items, native
   trophy-box effects, divergent link tables and temporary-ID exhaustion;
 - 6,686 battle regression cases, with no failures/errors/skips;
-- separate real-turn tests of every new Berry, Klutz, and Polkadot Bow damage;
+- separate real-turn tests of all seven retired held-Berry conversions,
+  Klutz, and Polkadot Bow damage;
 - PC storage/recovery, native consumable menus, Apricorn handoff/crafting/
   collection, item catalogue coverage, and source/layout audits.
+
+The original expansion validation is recorded in
+`reports/item-expansion/2026-10-30/validation.json`; the berry-removal checks
+are recorded separately in `reports/item-expansion/2026-10-30/berry-removal.json`.
 
 Reproduce the main checks in WSL with the project's virtual environment:
 

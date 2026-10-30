@@ -442,20 +442,13 @@ MartExpanded1:
 	dw -1
 
 MartExpanded2:
-	db 7
+	db 2
 	dw NORMAL_BOX
 	dw GORGEOUS_BOX
-	dw PECHA_BERRY
-	dw RAWST_BERRY
-	dw ASPEAR_BERRY
-	dw CHESTO_BERRY
-	dw CHERI_BERRY
 	dw -1
 
 MartExpanded3:
-	db 7
-	dw PERSIM_BERRY
-	dw LUM_BERRY
+	db 5
 	dw RARE_BONE
 	dw BALM_MUSHROOM
 	dw COMET_SHARD
