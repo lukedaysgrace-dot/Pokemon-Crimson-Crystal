@@ -279,3 +279,8 @@ SECTION "Apricorn Sprite", ROMX
 ApricornSpriteGFX::           INCBIN "gfx/sprites/apricorn.2bpp"
 ApricornSpriteGFXEnd::
 assert ApricornSpriteGFXEnd - ApricornSpriteGFX == 4 * 16
+
+SECTION "Hostess Walking Sprite", ROMX
+HostessSpriteGFX::           INCBIN "gfx/sprites/hostess.2bpp"
+HostessSpriteGFXEnd::
+assert HostessSpriteGFXEnd - HostessSpriteGFX == 24 * 16

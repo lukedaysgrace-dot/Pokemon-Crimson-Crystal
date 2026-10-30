@@ -879,4 +879,7 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 	trainerclass SLOT_MANIAC
 	const SLOT_MANIAC_LUCKY
 
+	trainerclass HOSTESS
+; Reserved class only; individual trainers and teams will be added later.
+
 NUM_TRAINER_CLASSES EQU __enum__

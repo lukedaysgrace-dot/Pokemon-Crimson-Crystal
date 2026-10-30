@@ -61,6 +61,10 @@ CheckShininess:
 	and a
 	ret
 
+; Keep the legacy unused DV check out of the full palette bank so the
+; trainer-palette table can grow when classes are added.
+PUSHS
+SECTION "Unused Shiny DV Check", ROMX
 Unused_CheckShininess:
 ; Return carry if the DVs at hl are all 10 or higher.
 
@@ -93,6 +97,8 @@ Unused_CheckShininess:
 .NotShiny:
 	and a
 	ret
+
+POPS
 
 Unreferenced_Function8aa4:
 	push de

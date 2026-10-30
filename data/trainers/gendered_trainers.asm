@@ -46,4 +46,5 @@ FemaleTrainers:
 	db COSPLAYER
 	db BATTLE_GIRL
 	db SCHOOL_GIRL
+	db HOSTESS
 .End

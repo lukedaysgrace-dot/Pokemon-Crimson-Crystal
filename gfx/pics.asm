@@ -1514,6 +1514,9 @@ CueballPic: INCBIN "gfx/trainers/cueball.2bpp.lz"
 KarateKingPic: INCBIN "gfx/trainers/karate_king.2bpp.lz"
 SlotManiacPic: INCBIN "gfx/trainers/slot_maniac.2bpp.lz"
 
+SECTION "Hostess Trainer Pic", ROMX
+HostessPic: INCBIN "gfx/trainers/hostess.2bpp.lz"
+
 SECTION "Jirachi Pics", ROMX
 
 JirachiFrontpic: INCBIN "gfx/pokemon/jirachi/front.animated.2bpp.lz"
