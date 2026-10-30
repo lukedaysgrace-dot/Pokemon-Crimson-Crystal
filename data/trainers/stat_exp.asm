@@ -131,3 +131,4 @@ TrainerClassStatExp:
 	dw  6400 ; CUEBALL ; 20 pts, +13 @L64-67 in Hard Mode
 	dw 10000 ; KARATE_KING ; 25 pts in Hard Mode
 	dw     0 ; SLOT_MANIAC
+	dw     0 ; HOSTESS

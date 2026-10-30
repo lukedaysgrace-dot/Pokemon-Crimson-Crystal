@@ -1,0 +1,28 @@
+{
+  "map": "Shucks",
+  "blocks": [
+    12,
+    9
+  ],
+  "movement_cells": [
+    24,
+    18
+  ],
+  "unique_graphic_tiles": 121,
+  "unique_blocks": 53,
+  "reachable_floor_cells": 254,
+  "objects": 6,
+  "warps": 0,
+  "upstream_commit": "435bb9061592246dec0c5c5cf813389e7d17de4a",
+  "source_sha256": {
+    "game_corner.png": "11590727f0230b56aff922cc552df0108a6cc203ef5de3b335775eaf58d9e1e9",
+    "game_corner_attributes.bin": "d2f66b349af9c24e94c977669a15ef2507d8a534e6dc85aae69cdf26b33e0455",
+    "game_corner_metatiles.bin": "f6814475c647734a22003ebb32d8bc9a18764741f6633b685f5cf4b4371d70f4",
+    "hotel.png": "66c57f9f655574833288e0913bee2e17399dd7c73fc180c7d90bbfb9527d9d18",
+    "hotel_attributes.bin": "e3d0128e182daf5bbbd24f053e6faf93edcf67d198b6f91ed747aaa597da3520",
+    "hotel_metatiles.bin": "0ed9d86d8bb89f1104309bf18c3aab00db630aaee7424b7853617dc05649ac7c",
+    "traditional_house.png": "8e62e4fffe18e2135083ffacc43437ccd678a2a7c72fcc975fcd20bc995cc241",
+    "traditional_house_attributes.bin": "77389e8028aad05014203cbca03ef1b280bd9d8a975ee19269855ebb550df4e8",
+    "traditional_house_metatiles.bin": "e41d61a5fa3b0cc12a95e331d8352925280d55b391cdfbf27850de84940bb28a"
+  }
+}

@@ -107,3 +107,4 @@ TrainerGroups:
 	dba CueballGroup ; CUEBALL
 	dba KarateKingGroup ; KARATE_KING
 	dba SlotManiacGroup ; SLOT_MANIAC
+	dba HostessGroup ; HOSTESS (no trainers or teams yet)

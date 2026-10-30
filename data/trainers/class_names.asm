@@ -105,3 +105,4 @@ TrainerClassNames::
 	db "CUEBALL@"
 	db "KARATE KING@"
 	db "SLOT MANIAC@"
+	db "HOSTESS@"

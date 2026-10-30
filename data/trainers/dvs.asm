@@ -106,3 +106,4 @@ TrainerClassDVs:
 	dn 14, 13, 13, 13 ; CUEBALL
 	dn 15, 15, 15, 15 ; KARATE_KING
 	dn 13, 13, 13, 13 ; SLOT_MANIAC
+	dn 15, 15, 15, 15 ; HOSTESS

@@ -107,3 +107,4 @@ TrainerPicPointers::
 	dba CueballPic ; CUEBALL
 	dba KarateKingPic ; KARATE_KING
 	dba SlotManiacPic ; SLOT_MANIAC
+	dba HostessPic ; HOSTESS
