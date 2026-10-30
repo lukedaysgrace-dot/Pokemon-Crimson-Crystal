@@ -19,7 +19,7 @@ def item_id(name):
 
 # bag: a Mail and a Potion
 h.wr(S("wNumItems"), 2)
-h.wr(S("wNumItems") + 1, [MAIL, 1, 0x12, 1, 0xFF])
+h.wr(S("wNumItems") + 1, [0, MAIL, 1, 0, 0x12, 1, 0xFF])
 
 
 def num_items():

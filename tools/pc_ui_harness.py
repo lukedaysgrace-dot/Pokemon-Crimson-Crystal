@@ -9,6 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pc_harness import Harness, enc, SENTINEL, SCRATCH_SP  # noqa: E402
 
 OUT = os.environ.get("PC_UI_OUT", "/tmp")
+os.makedirs(OUT, exist_ok=True)
 PASS = FAIL = 0
 
 

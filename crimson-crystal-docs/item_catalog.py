@@ -62,11 +62,13 @@ def build_catalog(builder, write_guide=False):
     attrs = {}
     current = None
     for line in (repo / 'data/items/attributes.asm').read_text(encoding='utf-8').splitlines():
-        if line == '; $ff': break
+        if line in ('; $ff', '; $00'):
+            current = None
+            continue
         match = re.match(r'; (\w+)(?:\s*\(|\s*$)', line)
         if match: current = match[1]
         match = re.match(r'\s*item_attribute (.*)', line)
-        if match: attrs[current] = [part.strip() for part in match[1].split(',')]
+        if match and current: attrs[current] = [part.strip() for part in match[1].split(',')]
 
     def category(item):
         if item in hm: return 'HM'
@@ -88,8 +90,8 @@ def build_catalog(builder, write_guide=False):
     # The description pointer table uses the same IDs/order as ItemNames.
     desc_text = (repo / 'data/items/descriptions.asm').read_text(encoding='utf-8')
     pointers = re.findall(r'^\s*dw (\w+)', desc_text, re.M)
-    for index, item in enumerate(names):
-        label = pointers[index]
+    for item in names:
+        label = pointers[builder.item_index[item] - 1]
         block = re.search(r'^' + label + r':\n(.*?)(?=^\w+:|\Z)', desc_text, re.M | re.S)
         words = re.findall(r'"([^"]*)"', block[1]) if block else []
         description = ' '.join(words).replace('- ', '').replace('@', '').replace('#MON', 'Pokémon').replace('<PKMN>', 'Pokémon')
@@ -145,7 +147,7 @@ def build_catalog(builder, write_guide=False):
         block = re.search(r'^' + label + r':\n(.*?)(?=^\w+:|\Z)', mart_text, re.M|re.S)
         for stem, text in maps.items():
             if not re.search(r'^\s*pokemart \w+,\s*' + const + r'\b', text, re.M): continue
-            for item in re.findall(r'^\s*db (\w+)\s*(?:;.*)?$', block[1], re.M):
+            for item in re.findall(r'^\s*dw (\w+)\s*(?:;.*)?$', block[1], re.M):
                 if item not in extra: continue
                 price = int(attrs[item][0])
                 detail = f'Repeatable purchase. Cost: ₽{price:,}.'

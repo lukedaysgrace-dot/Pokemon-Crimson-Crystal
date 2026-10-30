@@ -49,10 +49,11 @@ def run(rom):
 
     def bag(pocket, stacks):
         m.write('wNum' + pocket, len(stacks))
-        m.write_bytes('w' + pocket, [v for stack in stacks for v in stack] + [255])
+        m.write_bytes('w' + pocket, [v for kind, n in stacks for v in ((kind >> 8, kind & 255, n) if pocket == "Items" else (kind, n))] + [255])
 
     def contents(pocket):
-        return [(m.read('w' + pocket, 2 * i), m.read('w' + pocket, 2 * i + 1))
+        width = 3 if pocket == 'Items' else 2
+        return [((m.read('w' + pocket, width * i) << 8 | m.read('w' + pocket, width * i + 1)) if width == 3 else m.read('w' + pocket, width * i), m.read('w' + pocket, width * i + width - 1))
                 for i in range(m.read('wNum' + pocket))]
 
     def quantity(pocket, item):
@@ -86,14 +87,24 @@ def run(rom):
     def kurt_position():
         return next((tuple(o['position']) for o in c.objects() if o['map_object'] == 1), None)
 
-    def finish(label):
+    def finish(label, cancel_picker=False):
         for _ in range(2000):
             if idle():
                 h.tick(12)
                 return
+            # Collecting a completed batch offers the next color immediately.
+            # Decline that optional new batch so this case can inspect pickup.
+            text = tile_text(h) if cancel_picker else ''
+            if 'CANCEL' in text and 'APRICORN' in text:
+                h.press('b', hold=8, wait=32)
+                h.press('a', hold=4, wait=32)
+                continue
             pb.button('a', 2)
             h.tick(4)
-        raise RuntimeError(label + ' did not finish: ' + tile_text(h))
+        pc = pb.register_file.PC
+        bank = m.read('hROMBank') if pc >= 0x4000 else 0
+        raise RuntimeError(label + ' did not finish at ' + str(h.sym.nearest(bank, pc)) +
+                           f' joy={m.read("hJoyPressed")}/{m.read("hJoyDown")} menu={m.read("wMenuJoypad")} script={m.read("wScriptMode")}/{m.read("wScriptRunning")}: ' + tile_text(h))
 
     def choose_apricorn(item, facing='up', cancel=False):
         h.press(facing, hold=4, wait=24)
@@ -153,7 +164,7 @@ def run(rom):
                 call(h, 'Kurt_TakeAllApricorns')
                 check(pending() == total, f'{color}/{total}: complete pending batch')
                 check(contents('Items') == others, f'{color}/{total}: stable bag compaction')
-                check(m.read('wItems', 2 * len(others)) == 255, f'{color}/{total}: terminator')
+                check(m.read('wItems', 3 * len(others)) == 255, f'{color}/{total}: terminator')
                 check(m.read('wScriptVar') == item, f'{color}/{total}: selected color returned')
 
                 for pocket in ([], [(h.con.item_id('POKE_BALL'), 99)] * 12,
@@ -271,7 +282,7 @@ def run(rom):
                 check(pending() == 100 and event('EVENT_GAVE_KURT_RED_APRICORN'), 'full pocket retains entire batch')
                 bag('Balls', [])
             h.press('a', hold=4, wait=20)
-            finish('finished Ball pickup')
+            finish('finished Ball pickup', cancel_picker=True)
             check(quantity('Balls', ball_id) == 100 and pending() == 0, color + ': correct 100 crafted Balls')
             check(not event('EVENT_GAVE_KURT_' + color + '_APRICORN'), color + ': reward cannot repeat')
             check(not h.text_overflows, color + ': native dialogue stays in bounds ' + repr(h.text_overflows[:8]))

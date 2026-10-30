@@ -255,6 +255,35 @@ ItemDescriptions:
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
 	dw QuestionMarkDesc
+	dw QuestionMarkDesc ; $100: placeholder between legacy and expanded items
+	dw TINYMUSHROOMDesc
+	dw BIG_MUSHROOMDesc
+	dw BIG_PEARLDesc
+	dw POLKADOT_BOWDesc
+	dw SURF_MAILDesc
+	dw LITEBLUEMAILDesc
+	dw PORTRAITMAILDesc
+	dw LOVELY_MAILDesc
+	dw MORPH_MAILDesc
+	dw BLUESKY_MAILDesc
+	dw MUSIC_MAILDesc
+	dw MIRAGE_MAILDesc
+	dw SILVER_LEAFDesc
+	dw GOLD_LEAFDesc
+	dw NORMAL_BOXDesc
+	dw GORGEOUS_BOXDesc
+	dw PECHA_BERRYDesc
+	dw RAWST_BERRYDesc
+	dw ASPEAR_BERRYDesc
+	dw CHESTO_BERRYDesc
+	dw CHERI_BERRYDesc
+	dw PERSIM_BERRYDesc
+	dw LUM_BERRYDesc
+	dw RARE_BONEDesc
+	dw BALM_MUSHROOMDesc
+	dw COMET_SHARDDesc
+	dw BIG_NUGGETDesc
+	dw PEARL_STRINGDesc
 
 MasterBallDesc:
 	db   "The best BALL. It"
@@ -1030,3 +1059,115 @@ HelixFossilDesc:
 SailFossilDesc:
 	db   "Ancient fossil of"
 	next "a back sail.@"
+
+TINYMUSHROOMDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"
+
+BIG_MUSHROOMDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"
+
+BIG_PEARLDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"
+
+POLKADOT_BOWDesc:
+	db "Powers up NORMAL-"
+	next "type moves. (HOLD)@"
+
+SURF_MAILDesc:
+	db "A letter for a MON"
+	next "to hold.@"
+
+LITEBLUEMAILDesc:
+	db "A letter for a MON"
+	next "to hold.@"
+
+PORTRAITMAILDesc:
+	db "A letter for a MON"
+	next "to hold.@"
+
+LOVELY_MAILDesc:
+	db "A letter for a MON"
+	next "to hold.@"
+
+MORPH_MAILDesc:
+	db "A letter for a MON"
+	next "to hold.@"
+
+BLUESKY_MAILDesc:
+	db "A letter for a MON"
+	next "to hold.@"
+
+MUSIC_MAILDesc:
+	db "A letter for a MON"
+	next "to hold.@"
+
+MIRAGE_MAILDesc:
+	db "A letter for a MON"
+	next "to hold.@"
+
+SILVER_LEAFDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"
+
+GOLD_LEAFDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"
+
+NORMAL_BOXDesc:
+	db "Open it to find"
+	next "a silver trophy.@"
+
+GORGEOUS_BOXDesc:
+	db "Open it to find"
+	next "a gold trophy.@"
+
+PECHA_BERRYDesc:
+	db "Heals poison."
+	next "Consumed. (HOLD)@"
+
+RAWST_BERRYDesc:
+	db "Heals a burn."
+	next "Consumed. (HOLD)@"
+
+ASPEAR_BERRYDesc:
+	db "Heals freezing."
+	next "Consumed. (HOLD)@"
+
+CHESTO_BERRYDesc:
+	db "Heals sleep."
+	next "Consumed. (HOLD)@"
+
+CHERI_BERRYDesc:
+	db "Heals paralysis."
+	next "Consumed. (HOLD)@"
+
+PERSIM_BERRYDesc:
+	db "Heals confusion."
+	next "Consumed. (HOLD)@"
+
+LUM_BERRYDesc:
+	db "Heals status."
+	next "Consumed. (HOLD)@"
+
+RARE_BONEDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"
+
+BALM_MUSHROOMDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"
+
+COMET_SHARDDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"
+
+BIG_NUGGETDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"
+
+PEARL_STRINGDesc:
+	db "A valuable find."
+	next "Sell it at a MART.@"

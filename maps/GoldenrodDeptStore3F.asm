@@ -11,6 +11,13 @@ GoldenrodDeptStore3F_MapScripts:
 GoldenrodDeptStore3FClerkScript:
 	faceplayer
 	opentext
+	writetext GoldenrodDeptStore3FExpandedStockText
+	yesorno
+	iffalse .OriginalStock
+	pokemart MARTTYPE_STANDARD, MART_EXPANDED_0
+	closetext
+	end
+.OriginalStock
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_3F
 	closetext
 	end
@@ -72,3 +79,8 @@ GoldenrodDeptStore3F_MapEvents:
 	object_event  6,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FClerkScript, -1
 	object_event 12,  5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FSuperNerdScript, -1
 	object_event  2,  5, SPRITE_ROCKER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FRockerScript, -1
+
+GoldenrodDeptStore3FExpandedStockText:
+	text "Would you like to"
+	line "see our new stock?"
+	done

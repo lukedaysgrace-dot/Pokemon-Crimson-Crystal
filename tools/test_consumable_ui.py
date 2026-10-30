@@ -26,8 +26,8 @@ def main():
         h.wr(h.s(name), value)
 
     def quantity():
-        return sum(h.rd(h.s('wItems') + 2 * i + 1) for i in range(h.rd(h.s('wNumItems')))
-                   if h.rd(h.s('wItems') + 2 * i) == h.rd(h.s('wCurItem')))
+        return sum(h.rd(h.s('wItems') + 3 * i + 2) for i in range(h.rd(h.s('wNumItems')))
+                   if h.rd(h.s('wItems') + 3 * i + 1) == h.rd(h.s('wCurItem')))
 
     def check(ok, message):
         nonlocal checks
@@ -59,7 +59,7 @@ def main():
             write('wPartyMon1HP', [hp >> 8, hp & 255])
             write('wPartyMon1MaxHP', [0, 200])
             write('wPartyMenuCursor', 1)
-            write('wNumItems', [1, con.item_id(item), amount, 255])
+            write('wNumItems', [1, 0, con.item_id(item), amount, 255])
             write('wCurItem', con.item_id(item))
             write('wCurItemQuantity', 0)
             write('wBattleMode', 0)

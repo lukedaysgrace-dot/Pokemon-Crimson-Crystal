@@ -98,4 +98,4 @@ PCANIM_QUICKFRAMES EQU  9
 	const PAL_PC_SHADOW
 
 ; Save file format
-SAVE_FORMAT_VERSION EQU 4 ; 4: 498-species caught/seen flags; version 3 upgrades automatically
+SAVE_FORMAT_VERSION EQU 5 ; word bag/PC item indices; versions 3/4 upgrade automatically

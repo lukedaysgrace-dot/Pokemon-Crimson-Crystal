@@ -13,6 +13,13 @@ CeladonDeptStore3F_MapScripts:
 CeladonDeptStore3FClerkScript:
 	faceplayer
 	opentext
+	writetext CeladonDeptStore3FExpandedStockText
+	yesorno
+	iffalse .OriginalStock
+	pokemart MARTTYPE_STANDARD, MART_EXPANDED_2
+	closetext
+	end
+.OriginalStock
 	pokemart MARTTYPE_STANDARD, MART_CELADON_3F
 	closetext
 	end
@@ -112,3 +119,8 @@ CeladonDeptStore3F_MapEvents:
 	object_event  9,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameboyKid1Script, -1
 	object_event 10,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameboyKid2Script, -1
 	object_event 13,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FSuperNerdScript, -1
+
+CeladonDeptStore3FExpandedStockText:
+	text "Would you like to"
+	line "see our new stock?"
+	done

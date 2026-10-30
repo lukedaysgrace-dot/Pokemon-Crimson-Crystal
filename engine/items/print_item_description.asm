@@ -2,7 +2,7 @@ PrintItemDescription:
 ; Print the description for item [wCurSpecies] at de.
 
 	ld a, [wCurSpecies]
-	cp TM01
+	call CompareItemWithTM01
 	jr c, .not_a_tm
 
 	ld [wCurItem], a
@@ -16,12 +16,11 @@ PrintItemDescription:
 
 .not_a_tm
 	push de
-	ld hl, ItemDescriptions
 	ld a, [wCurSpecies]
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
+	call GetValidItemIndexFromID
+	dec hl
+	add hl, hl
+	ld bc, ItemDescriptions
 	add hl, bc
 	ld e, [hl]
 	inc hl

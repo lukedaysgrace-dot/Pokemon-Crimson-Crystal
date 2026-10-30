@@ -8,9 +8,15 @@ _DoItemEffect::
 	farcall FishingContestCanUseItem
 	jp c, NoEffect
 	ld a, [wCurItem]
-	dec a
-	ld hl, ItemEffects
-	rst JumpTable
+	call GetValidItemIndexFromID
+	dec hl
+	add hl, hl
+	ld bc, ItemEffects
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call _hl_
 	ret
 
 ItemEffects:
@@ -208,6 +214,38 @@ ItemEffects:
 	dw NoEffect            ; ELEMENTAL_SPHERE
 	dw PokeBallEffect      ; SAFARI_BALL
 	dw NoEffect            ; SAIL_FOSSIL
+
+	rept $100 - (TM01 - 1)
+		dw NoEffect
+	endr
+	dw NoEffect ; TINYMUSHROOM
+	dw NoEffect ; BIG_MUSHROOM
+	dw NoEffect ; BIG_PEARL
+	dw NoEffect ; POLKADOT_BOW
+	dw NoEffect ; SURF_MAIL
+	dw NoEffect ; LITEBLUEMAIL
+	dw NoEffect ; PORTRAITMAIL
+	dw NoEffect ; LOVELY_MAIL
+	dw NoEffect ; MORPH_MAIL
+	dw NoEffect ; BLUESKY_MAIL
+	dw NoEffect ; MUSIC_MAIL
+	dw NoEffect ; MIRAGE_MAIL
+	dw NoEffect ; SILVER_LEAF
+	dw NoEffect ; GOLD_LEAF
+	dw NormalBoxEffect ; NORMAL_BOX
+	dw GorgeousBoxEffect ; GORGEOUS_BOX
+	dw NoEffect ; PECHA_BERRY
+	dw NoEffect ; RAWST_BERRY
+	dw NoEffect ; ASPEAR_BERRY
+	dw NoEffect ; CHESTO_BERRY
+	dw NoEffect ; CHERI_BERRY
+	dw NoEffect ; PERSIM_BERRY
+	dw NoEffect ; LUM_BERRY
+	dw NoEffect ; RARE_BONE
+	dw NoEffect ; BALM_MUSHROOM
+	dw NoEffect ; COMET_SHARD
+	dw NoEffect ; BIG_NUGGET
+	dw NoEffect ; PEARL_STRING
 
 PokeBallEffect:
 	ld a, [wBattleMode]

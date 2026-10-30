@@ -131,13 +131,14 @@ def generate(repo, builder=None, write=True):
     attrs = {}
     current = None
     for line in (repo/'data/items/attributes.asm').read_text(encoding='utf-8').splitlines():
-        if line == '; $ff':
-            break  # padding records, not named items
+        if line in ('; $ff', '; $00'):
+            current = None
+            continue  # padding records, not named items
         m = re.match(r'; (\w+)(?:\s*\(|\s*$)', line)
         if m:
             current = m[1]
         m = re.match(r'\s*item_attribute (.*)', line)
-        if m:
+        if m and current:
             assert current and current not in attrs, (current, line)
             attrs[current] = [x.strip() for x in m[1].split(',')]
     held = {c for c, a in attrs.items() if a[1] != 'HELD_NONE' and 'BERRY' not in c} | IDENTITY_HELD
@@ -232,7 +233,7 @@ def generate(repo, builder=None, write=True):
     assert len(mart_constants) == len(mart_labels)
     for const, label in zip(mart_constants, mart_labels):
         block = re.search(r'^' + label + r':\n(.*?)(?=^\w+:|\Z)', mart_text, re.M | re.S)
-        items = re.findall(r'^\s*db (\w+)\s*(?:;.*)?$', block[1], re.M)
+        items = re.findall(r'^\s*dw (\w+)\s*(?:;.*)?$', block[1], re.M)
         for stem, p in maps.items():
             for number, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
                 match = re.match(r'\s*pokemart (\w+),\s*' + const + r'\b', line)

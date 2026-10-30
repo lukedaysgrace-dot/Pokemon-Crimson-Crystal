@@ -106,6 +106,15 @@ class Memory:
     def move_index_of(self, runtime_id):
         return self._table_entry("wMoveIndexTable", runtime_id)
 
+    def item_index_of(self, runtime_id):
+        if runtime_id == 0:
+            return 0
+        if runtime_id == 255:
+            return 65535
+        bank, address = self.sym['wItemIndexTableEntries']
+        address += 2 * (runtime_id - 1)
+        return self._read_addr(bank, address) | self._read_addr(bank, address + 1) << 8
+
 
 class Side:
     """Accessors for one battler (player / enemy)."""
@@ -144,7 +153,7 @@ class Side:
 
     @property
     def item(self):
-        iid = self.mem.read(self.p + "Item")
+        iid = self.mem.item_index_of(self.mem.read(self.p + "Item"))
         return self.con.items_by_id.get(iid, f"ITEM_{iid}")
 
     @property

@@ -19,7 +19,7 @@ def num_items():
 
 def bag():
     n = num_items()
-    return [(h.rd(S("wNumItems") + 1 + 2 * i), h.rd(S("wNumItems") + 2 + 2 * i)) for i in range(n)]
+    return [(h.rd(S("wNumItems") + 2 + 3 * i), h.rd(S("wNumItems") + 3 + 3 * i)) for i in range(n)]
 
 
 print("[open]")

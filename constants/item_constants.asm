@@ -295,8 +295,41 @@ ENDM
 NUM_TM_HM_TUTOR EQU __enum__ + -1
 
 USE_SCRIPT_VAR EQU $00
-ITEM_FROM_MEM  EQU $ff
+ITEM_FROM_MEM  EQU $ffff
 
 ; leftovers from red
 MOON_STONE_RED EQU $0a ; BURN_HEAL
 FULL_HEAL_RED  EQU $34 ; X_SPEED
+
+; Expanded catalogue. Existing item indices remain stable.
+	const_def $101
+	const TINYMUSHROOM
+	const BIG_MUSHROOM
+	const BIG_PEARL
+	const POLKADOT_BOW
+	const SURF_MAIL
+	const LITEBLUEMAIL
+	const PORTRAITMAIL
+	const LOVELY_MAIL
+	const MORPH_MAIL
+	const BLUESKY_MAIL
+	const MUSIC_MAIL
+	const MIRAGE_MAIL
+	const SILVER_LEAF
+	const GOLD_LEAF
+	const NORMAL_BOX
+	const GORGEOUS_BOX
+	const PECHA_BERRY
+	const RAWST_BERRY
+	const ASPEAR_BERRY
+	const CHESTO_BERRY
+	const CHERI_BERRY
+	const PERSIM_BERRY
+	const LUM_BERRY
+	const RARE_BONE
+	const BALM_MUSHROOM
+	const COMET_SHARD
+	const BIG_NUGGET
+	const PEARL_STRING
+NUM_ITEM_INDEXES EQU const_value - 1
+	assert NUM_ITEM_INDEXES < $ff00

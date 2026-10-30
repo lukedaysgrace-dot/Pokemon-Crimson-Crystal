@@ -36,9 +36,8 @@ GetRepeatableConsumableQuantity::
 
 IsRepeatableConsumable::
 	ld a, [wCurItem]
-	dec a
-	ld l, a
-	ld h, 0
+	call GetValidItemIndexFromID
+	dec hl
 	add hl, hl
 	ld bc, ItemEffects
 	add hl, bc
@@ -69,16 +68,23 @@ IsRepeatableConsumable::
 	dw 0
 
 GetBagItemQuantity::
-; wCurItem -> bc = total across all stacks. Carry if any remain.
 	ld a, [wCurItem]
-	ld c, a
-	ld a, [wNumItems]
-	ld b, a
-	ld de, 0
+	call GetItemIndexFromID
+	ld b, h
+	ld c, l
 	ld hl, wItems
+	ld de, 0
+	ld a, [wNumItems]
+	ld [wTempLoopCounter], a
+.loop
+	ld a, [wTempLoopCounter]
 	and a
 	jr z, .done
-.loop
+	dec a
+	ld [wTempLoopCounter], a
+	ld a, [hli]
+	cp b
+	jr nz, .skip_low
 	ld a, [hli]
 	cp c
 	jr nz, .next
@@ -87,10 +93,12 @@ GetBagItemQuantity::
 	ld e, a
 	jr nc, .next
 	inc d
+	jr .next
+.skip_low
+	inc hl
 .next
 	inc hl
-	dec b
-	jr nz, .loop
+	jr .loop
 .done
 	ld b, d
 	ld c, e

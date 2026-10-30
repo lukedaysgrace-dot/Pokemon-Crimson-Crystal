@@ -578,22 +578,27 @@ class Builder:
     if not (cp.exists() and np.exists()):
       self.report['warnings'].append('Item name tables not found; using constant names')
       return out
-    ids={}; started=False; nxt=0
+    ids={}; started=False; nxt=0; in_macro=False
     for raw in txt(cp).splitlines():
       l=strip(raw)
-      m=re.match(r'^const_def(?:\s+(-?\w+))?\s*$',l,re.I)
+      if re.search(r'\bMACRO$', l, re.I): in_macro=True
+      if in_macro:
+        if l.upper() == 'ENDM': in_macro=False
+        continue
+      m=re.match(r'^const_def(?:\s+(-?\$?\w+))?\s*$',l,re.I)
       if m:
-        if started: break  # a second const_def block (TMs) is not in ItemNames
-        started=True; nxt=int(m.group(1)) if m.group(1) else 0
+        token=m.group(1)
+        started=True; nxt=(int(token[1:],16) if token.startswith('$') else int(token)) if token else 0
         continue
       if not started: continue
-      if re.match(r'^\w+\s+EQU\b',l,re.I) and 'const_value' in l: break
+      if re.match(r'^add_(tm|hm)\s+',l,re.I): nxt+=1; continue
       m=re.match(r'^const\s+([A-Z0-9_]+)',l,re.I)
       if m:
         ids[m.group(1).upper()]=nxt; nxt+=1
       elif re.match(r'^const_skip(?:\s+(\d+))?',l,re.I):
         s=re.match(r'^const_skip(?:\s+(\d+))?',l,re.I)
         nxt+=int(s.group(1)) if s.group(1) else 1
+    self.item_index = ids
     # ItemNames has no record for NO_ITEM (id 0), so item N is names[N - 1].
     names=[x.replace('@','') for x in re.findall(r'db\s+"([^"]*)"',txt(np))]
     for c,i in ids.items():

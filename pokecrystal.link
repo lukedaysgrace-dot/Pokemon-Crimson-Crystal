@@ -346,6 +346,7 @@ SRAM $01
 	"SRAM Mobile 1"
 SRAM $02
 	"Box Metadata"
+	"Item expansion saves"
 SRAM $03
 	"PokeDB 1A"
 SRAM $04

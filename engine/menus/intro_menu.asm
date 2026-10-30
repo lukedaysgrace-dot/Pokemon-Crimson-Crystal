@@ -156,6 +156,7 @@ _ResetWRAM:
 	ld bc, wMoveIndexTableEnd - wMoveIndexTable
 	call ByteFill
 
+	farcall InitializeItemIndexTable
 	ld a, 1
 	ldh [rSVBK], a
 

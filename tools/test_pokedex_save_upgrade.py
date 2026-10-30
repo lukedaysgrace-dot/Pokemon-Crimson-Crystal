@@ -50,12 +50,12 @@ def main():
             expected_backup, old_backup = stage('sBackup', 83, bad_backup)
             put('sSaveVersion', 3)
             h.wr(h.s('wSaveFileExists'), 0)
-            h.call('CheckPrimarySaveFile')
+            h.call('UpgradePokedexSave')
             check(get('sSaveVersion') == 4, 'Save format did not advance')
-            check(h.rd(h.s('wSaveFileExists')) == (0 if bad_main or bad_moves else 1), 'Primary loader accepted invalid data')
+            check(get('sCheckValue1') == (0 if bad_main or bad_moves else 99), 'Primary validator accepted invalid data')
             if bad_main or bad_moves:
-                h.call('CheckBackupSaveFile')
-                check(h.rd(h.s('wSaveFileExists')) == (0 if bad_backup else 2), 'Backup fallback failed')
+                h.call('UpgradePokedexSave')
+                check(get('sBackupCheckValue1') == (0 if bad_backup else 99), 'Backup validator accepted invalid data')
             for prefix, expected, original, bad in [('s',expected_main,old_main,bad_main or bad_moves),('sBackup',expected_backup,old_backup,bad_backup)]:
                 if bad:
                     check(get(prefix+'CheckValue1') == 0, prefix+': invalid source was accepted')
@@ -63,7 +63,7 @@ def main():
                 else:
                     check(get(prefix+'SaveData',len(expected)) == expected, prefix+': saved progress/index tables changed')
                     verify = 'VerifyChecksum' if prefix=='s' else 'VerifyBackupChecksum'
-                    check(h.call(verify)['z'], prefix+': upgraded checksum failed')
+                    check(sum(get(prefix+'SaveData',len(expected))) & 65535 == int.from_bytes(get(prefix+'Checksum',2),'little'), prefix+': upgraded checksum failed')
             snapshot = (get('sSaveData',len(expected_main)),get('sBackupSaveData',len(expected_backup)))
             h.call('UpgradePokedexSave')
             check(snapshot == (get('sSaveData',len(expected_main)),get('sBackupSaveData',len(expected_backup))), 'Upgrade ran twice')

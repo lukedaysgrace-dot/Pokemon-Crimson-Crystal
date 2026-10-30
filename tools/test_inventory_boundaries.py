@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compiled bag/PC item transfers at stack and capacity boundaries.
 
-Uses private in-memory SRAM. Tests item IDs 1-254 through the native pocket
+Uses private in-memory SRAM. Tests legacy and expanded IDs through the native pocket
 dispatcher, plus the PC pocket, with byte guards around each pocket. The
 fixtures intentionally fill pockets; they do not claim campaign availability.
 """
@@ -19,6 +19,7 @@ def main():
     rom = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'pokecrystal.gbc'
     h = Harness(rom=str(rom), sym=str(rom.with_suffix('.sym')))
     h.boot()
+    h.call("InitializeItemIndexTable")
     con = Constants()
     limits = {name: int(value) for name, value in re.findall(
         r'^(MAX_\w+)\s+EQU\s+(\d+)',
@@ -37,19 +38,19 @@ def main():
         h.wr(h.s(name), value)
 
     items = {}
-    for item in range(1, 255):
-        write('wCurItem', item)
+    for item in [*range(1, 255), *range(257, 285)]:
+        write('wCurItem', h.call('GetItemIDFromIndex', hl=item)['a'])
         h.call('CheckItemPocket')
         items[item] = h.rd(h.s('wItemAttributeParamBuffer'))
 
     def action(routine, item, quantity=1, pocket='wNumItems', slot=255):
-        write('wCurItem', item)
+        write('wCurItem', h.call('GetItemIDFromIndex', hl=item)['a'])
         write('wItemQuantityChangeBuffer', quantity)
         write('wCurItemQuantity', slot)
         return h.call(routine, hl=h.s(pocket))['c_flag']
 
     def seed(pocket, capacity, rows, key=False, guards=True):
-        width = 1 if key else 2
+        width = 1 if key else (2 if pocket == "wNumBalls" else 3)
         span = width * capacity + 2  # count, entries, terminator
         h.wr(h.s(pocket), [0xCC] * span)
         if guards:
@@ -57,14 +58,14 @@ def main():
             h.wr(h.s(pocket) + span, 0x5A)
         payload = [len(rows)]
         for row in rows:
-            payload.extend([row] if key else row)
+            payload.extend([row] if key else ([row[0] >> 8, row[0] & 255, row[1]] if width == 3 else row))
         h.wr(h.s(pocket), payload + [255])
         return span
 
     def verify(pocket, span, rows, label, key=False):
         expected = [len(rows)]
         for row in rows:
-            expected.extend([row] if key else row)
+            expected.extend([row] if key else ([row[0] >> 8, row[0] & 255, row[1]] if pocket != "wNumBalls" else row))
         expected.append(255)
         check(h.rd(h.s(pocket), len(expected)) == bytes(expected), label + ': count/entries/terminator')
         check(h.rd(h.s(pocket) - 1) == 0xA5 and h.rd(h.s(pocket) + span) == 0x5A, label + ': adjacent bytes')

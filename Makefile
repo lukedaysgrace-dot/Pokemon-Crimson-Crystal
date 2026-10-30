@@ -223,6 +223,7 @@ test-phantump: pokecrystal.gbc pokecrystal_debug.gbc
 
 test-inventory: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_inventory_boundaries.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_item_expansion.py pokecrystal.gbc
 
 test-safari-ui: pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/safari_ui_checks.py

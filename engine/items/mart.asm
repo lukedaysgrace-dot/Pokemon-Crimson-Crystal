@@ -230,28 +230,41 @@ FarReadMart:
 	ld h, [hl]
 	ld l, a
 	ld de, wCurMart
-.CopyMart:
 	ld a, [wMartPointerBank]
 	call GetFarByte
 	ld [de], a
-	inc hl
 	inc de
-	cp -1
-	jr nz, .CopyMart
+	inc hl
+.CopyMart:
+	push hl
+	ld a, [wMartPointerBank]
+	call GetFarHalfword
+	ld a, h
+	and l
+	cp $ff
+	jr z, .end
+	call GetItemIDFromIndex
+	ld [de], a
+	inc de
+	pop hl
+	inc hl
+	inc hl
+	jr .CopyMart
+.end
+	pop hl
+	ld a, -1
+	ld [de], a
 	ld hl, wMartItem1BCD
 	ld de, wCurMart + 1
 .ReadMartItem:
 	ld a, [de]
 	inc de
 	cp -1
-	jr z, .done
+	ret z
 	push de
 	call GetMartItemPrice
 	pop de
 	jr .ReadMartItem
-
-.done
-	ret
 
 GetMartItemPrice:
 ; Return the price of item a in BCD at hl and in tiles at wStringBuffer1.

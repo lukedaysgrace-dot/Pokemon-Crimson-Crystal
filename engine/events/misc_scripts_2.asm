@@ -91,7 +91,7 @@ RepelWoreOffScript::
 
 HiddenItemScript::
 	opentext
-	readmem wHiddenItemID
+	callasm HiddenItemToRuntime
 	getitemname STRING_BUFFER_3, USE_SCRIPT_VAR
 	writetext .found_text
 	giveitem ITEM_FROM_MEM
@@ -146,4 +146,13 @@ SetMemEvent:
 	ld e, a
 	ld b, SET_FLAG
 	call EventFlagAction
+	ret
+
+HiddenItemToRuntime:
+	ld hl, wHiddenItemID
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call GetItemIDFromIndex
+	ld [wScriptVar], a
 	ret

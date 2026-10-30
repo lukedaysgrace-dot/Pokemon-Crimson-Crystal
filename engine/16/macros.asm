@@ -133,6 +133,9 @@ ___unroll = 8
 
 	; not found - we have to allocate the 16-bit ID on the table and return the new 8-bit ID for it
 	call .allocate ;returns hl = position + 2
+	if !strcmp("\2", "ITEM_TABLE")
+		jp c, .allocation_failed
+	endc
 	push hl
 	dec hl
 	ld a, d
@@ -209,6 +212,16 @@ ___unroll = 8
 	pop de
 	ret
 
+	if !strcmp("\2", "ITEM_TABLE")
+.allocation_failed
+	pop af
+	ldh [rSVBK], a
+	pop bc
+	pop de
+	xor a ; allocation failure: return NO_ITEM, without changing a root
+	ret
+	endc
+
 .allocate
 	; check if the table isn't already full
 	ld hl, \1
@@ -262,6 +275,14 @@ ___unroll = 8
 .no_room
 	; the table is really full; free up slots and try again (WARNING: the loop won't exit until some slots are freed)
 	call .collect_garbage
+	if !strcmp("\2", "ITEM_TABLE")
+		ld a, [\1UsedSlots]
+		cp \2_ENTRIES
+		jr c, .retry_allocation
+		scf
+		ret
+.retry_allocation
+	endc
 	ld c, 1
 	jr .start_allocation_loop
 

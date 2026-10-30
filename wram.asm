@@ -1828,6 +1828,7 @@ wMartItem7BCD:: ds 3
 wMartItem8BCD:: ds 3
 wMartItem9BCD:: ds 3
 wMartItem10BCD:: ds 3
+wMartExtraPrices:: ds 4 * 3
 
 NEXTU ; d002
 ; Decoration shops share temporary menu storage; no saved data is added.
@@ -1971,7 +1972,7 @@ wCurFruit:: db
 NEXTU ; d02c
 ; item ball data
 wItemBallData::
-wItemBallItemID:: db
+wItemBallItemID:: dw
 wItemBallQuantity:: db
 wItemBallDataEnd::
 
@@ -1979,7 +1980,7 @@ NEXTU ; d02c
 ; hidden item data
 wHiddenItemData::
 wHiddenItemEvent:: dw
-wHiddenItemID:: db
+wHiddenItemID:: dw
 wHiddenItemDataEnd::
 
 NEXTU ; d02c
@@ -2743,7 +2744,7 @@ wTMsHMs:: ds NUM_TMS + NUM_HMS ; d859
 wTMsHMsEnd::
 
 wNumItems:: db ; d892
-wItems:: ds MAX_ITEMS * 2 + 1 ; d893
+wItems:: ds MAX_ITEMS * 3 + 1 ; d893
 wItemsEnd::
 
 wNumKeyItems:: db ; d8bc
@@ -2755,7 +2756,7 @@ wBalls:: ds MAX_BALLS * 2 + 1 ; d8d8
 wBallsEnd::
 
 wNumPCItems:: db
-wPCItems:: ds MAX_PC_ITEMS * 2 + 1 ; d8f1
+wPCItems:: ds MAX_PC_ITEMS * 3 + 1 ; d8f1
 wPCItemsEnd::
 
 wPokegearFlags::
@@ -2781,7 +2782,7 @@ wUndergroundSwitchPositions:: db ; d963
 wFarfetchdPosition:: db ; d964
 wFinizenPosition:: db ; d965 - Route 41 FINIZEN chase step (1-3, 4 = gone for this visit)
 
-	ds 12
+	ds 1 ; 11 bytes reclaimed for word item indices
 
 ; map scene ids
 wPokecenter2FSceneID::                            db ; d972
@@ -2867,7 +2868,7 @@ wSilentCryptSceneID::                             db
 wGravekeepersHouseSceneID::                       db
 
 wOlivineFishingCoveGateSceneID::                   db
-	ds 46
+	ds 0 ; 46 bytes reclaimed for word item indices
 
 ; fight counts
 wJackFightCount::    db ; d9f2
@@ -2907,7 +2908,7 @@ wBugContestStonePrizeIndex:: db
 wFishingContestPrize:: db ; pending prize, retained if the Bag is full
 wFishingContestFlags:: db ; bit 0: show contestants for the results ceremony
 wFishingContestRoster:: ds NUM_FISHING_CONTESTANTS ; candidate IDs, chosen on entry
-	ds 33 ; preserve the addresses of existing save data
+	ds 0 ; 33 bytes reclaimed for word item indices
 
 wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6d
@@ -3306,6 +3307,7 @@ SECTION "16-bit WRAM tables", WRAMX
 ; align this section to $100
 	wram_conversion_table wPokemonIndexTable, MON_TABLE
 	wram_conversion_table wMoveIndexTable, MOVE_TABLE
+	wram_conversion_table wItemIndexTable, ITEM_TABLE
 
 
 SECTION "Battle Tower RAM", WRAMX

@@ -1,6 +1,5 @@
 NamesPointers::
 ; entries correspond to GetName constants (see constants/text_constants.asm); MON_NAME and MOVE_NAME are not handled by this table
-	dba ItemNames           ; ITEM_NAME
 	dbw 0, wPartyMonOT      ; PARTY_OT_NAME
 	dbw 0, wOTPartyMonOT    ; ENEMY_OT_NAME
 	dba TrainerClassNames   ; TRAINER_NAME
@@ -23,6 +22,9 @@ GetName::
 	jr z, .go
 	dec a ; MOVE_NAME
 	ld hl, GetMoveName
+	jr z, .go
+	dec a ; ITEM_NAME
+	ld hl, GetItemName
 	jr z, .go
 	dec a
 	ld hl, .generic_function
@@ -152,109 +154,16 @@ GetPokemonName::
 	ret
 
 GetItemName::
-; Get item name for wNamedObjectIndexBuffer.
-
 	push hl
-	push bc
-	ld a, [wNamedObjectIndexBuffer]
-
-	cp TM01
-	jr nc, .TM
-
-	ld [wCurSpecies], a
-	ld a, ITEM_NAME
-	ld [wNamedObjectTypeBuffer], a
-	call GetName
-	jr .Copied
-.TM:
-	call GetTMHMName
-.Copied:
-	ld de, wStringBuffer1
-	pop bc
+	farcall _GetItemName
 	pop hl
 	ret
 
 GetTMHMName::
-; Get TM/HM name for item wNamedObjectIndexBuffer.
-
 	push hl
-	push de
-	push bc
-	ld a, [wNamedObjectIndexBuffer]
-	push af
-
-; TM/HM prefix
-	cp HM01
-	push af
-	jr c, .TM
-
-	ld hl, .HMText
-	ld bc, .HMTextEnd - .HMText
-	jr .asm_34a1
-
-.TM:
-	ld hl, .TMText
-	ld bc, .TMTextEnd - .TMText
-
-.asm_34a1
-	ld de, wStringBuffer1
-	call CopyBytes
-
-; TM/HM number
-	push de
-	ld a, [wNamedObjectIndexBuffer]
-	ld c, a
-	callfar GetTMHMNumber
-	pop de
-
-; HM numbers follow the last TM, but are displayed starting from 1
-	pop af
-	ld a, c
-	jr c, .asm_34b9
-	sub NUM_TMS
-.asm_34b9
-
-; Divide and mod by 10 to get the top and bottom digits respectively
-	ld b, "0"
-.mod10
-	sub 10
-	jr c, .asm_34c2
-	inc b
-	jr .mod10
-.asm_34c2
-	add 10
-
-	push af
-	ld a, b
-	ld [de], a
-	inc de
-	pop af
-
-	ld b, "0"
-	add b
-	ld [de], a
-
-; End the string
-	inc de
-	ld a, "@"
-	ld [de], a
-
-	pop af
-	ld [wNamedObjectIndexBuffer], a
-	pop bc
-	pop de
+	farcall _GetTMHMName
 	pop hl
 	ret
-
-.TMText:
-	db "TM"
-.TMTextEnd:
-	db "@"
-
-.HMText:
-	db "HM"
-.HMTextEnd:
-	db "@"
 
 INCLUDE "home/hm_moves.asm"
 

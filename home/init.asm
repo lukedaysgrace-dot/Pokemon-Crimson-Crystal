@@ -119,6 +119,7 @@ Init::
 	ldh [hSRAMBank], a
 
 	call ClearWRAM
+	farcall InitializeItemIndexTable
 	ld a, 1
 	ldh [rSVBK], a
 	call ClearVRAM

@@ -536,11 +536,7 @@ Script_verbosegiveitemvar:
 ; script command 0x9f
 ; parameters: item, var
 
-	call GetScriptByte
-	cp ITEM_FROM_MEM
-	jr nz, .ok
-	ld a, [wScriptVar]
-.ok
+	call GetScriptItemID
 	ld [wCurItem], a
 	call GetScriptByte
 	call GetVarAction
@@ -1853,7 +1849,7 @@ Script_getitemname:
 ; script command 0x41
 ; parameters: string_buffer, item_id (0 aka USE_SCRIPT_VAR to use wScriptVar)
 
-	call GetScriptByte
+	call GetScriptItemID
 	and a ; USE_SCRIPT_VAR
 	jr nz, .ok
 	ld a, [wScriptVar]
@@ -2014,11 +2010,7 @@ Script_giveitem:
 ; script command 0x1f
 ; parameters: item, quantity
 
-	call GetScriptByte
-	cp ITEM_FROM_MEM
-	jr nz, .ok
-	ld a, [wScriptVar]
-.ok
+	call GetScriptItemID
 	ld [wCurItem], a
 	call GetScriptByte
 	ld [wItemQuantityChangeBuffer], a
@@ -2039,7 +2031,7 @@ Script_takeitem:
 
 	xor a
 	ld [wScriptVar], a
-	call GetScriptByte
+	call GetScriptItemID
 	ld [wCurItem], a
 	call GetScriptByte
 	ld [wItemQuantityChangeBuffer], a
@@ -2058,7 +2050,7 @@ Script_checkitem:
 
 	xor a
 	ld [wScriptVar], a
-	call GetScriptByte
+	call GetScriptItemID
 	ld [wCurItem], a
 	ld hl, wNumItems
 	call CheckItem
@@ -2881,3 +2873,17 @@ LoadScriptPokemonID:
 	jp nz, GetPokemonIDFromIndex
 	ld a, [wScriptVar]
 	ret
+
+GetScriptItemID:
+	call GetScriptByte
+	ld l, a
+	call GetScriptByte
+	ld h, a
+	ld a, h
+	and l
+	cp $ff
+	jr nz, .index
+	ld a, [wScriptVar]
+	ret
+.index
+	jp GetItemIDFromIndex

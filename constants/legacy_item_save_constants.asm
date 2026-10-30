@@ -1,0 +1,26 @@
+; Frozen version-4 addresses/offsets, used only by the validated migration.
+LEGACY_sSaveData EQU $a009
+LEGACY_sSaveDataEnd EQU $ac3a
+LEGACY_sPlayerData EQU $a009
+LEGACY_sPokemonData EQU $a7de
+LEGACY_sConversionTableChecksum EQU $ac38
+LEGACY_sBackupSaveData EQU $b209
+LEGACY_sBackupSaveDataEnd EQU $be3a
+LEGACY_sBackupPlayerData EQU $b209
+LEGACY_sBackupPokemonData EQU $b9de
+LEGACY_sBackupConversionTableChecksum EQU $be38
+LEGACY_wPlayerData EQU $d4c8
+LEGACY_wNumItems EQU $d8e3
+LEGACY_wItems EQU $d8e4
+LEGACY_wNumPCItems EQU $d96a
+LEGACY_wPCItems EQU $d96b
+LEGACY_wPokemonData EQU $dc9d
+LEGACY_wEndPokedexCaught EQU $de94
+LEGACY_wEndPokedexSeen EQU $ded3
+LEGACY_wUnownDex EQU $ded3
+LEGACY_wPokegearFlags EQU $d9d0
+LEGACY_wFinizenPosition EQU $d9de
+LEGACY_wPokecenter2FSceneID EQU $d9eb
+LEGACY_wOlivineFishingCoveGateSceneID EQU $da3c
+LEGACY_wJackFightCount EQU $da6b
+LEGACY_wFishingContestRoster EQU $da8a

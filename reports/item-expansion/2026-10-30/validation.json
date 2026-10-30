@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-30",
+  "saveFormatVersion": 5,
+  "usableCatalogueEntries": 282,
+  "expandedEntries": 28,
+  "restoredEntries": 16,
+  "platesAdded": 0,
+  "upstream": {
+    "repository": "https://github.com/fellowship-of-the-roms/pokecrystal16",
+    "itemBranchCommit": "595068e8313526491c43eecce964f94a35c69250",
+    "moveBranchCommit": "2b20755433fef3cdbe989ecb9d121701b5c1e247"
+  },
+  "roms": {
+    "pokecrystal.gbc": {
+      "bytes": 4194304,
+      "sha256": "e0a006e932bbd17f1d184dc18e9d278f485e5e7904cb553bb6b12f62a5161585"
+    },
+    "pokecrystal_debug.gbc": {
+      "bytes": 4194304,
+      "sha256": "418f19d7d6d4a005ee030195f94810eb9d4a5c6c85e926480a50c93472379461"
+    }
+  },
+  "checks": {
+    "inventoryPerRom": 29512,
+    "expansionPerRom": 1102,
+    "battleRegressionCases": 6686,
+    "expandedHeldItemChecks": 42,
+    "pcSaveRecovery": 25,
+    "pcStorage": 122,
+    "saveLayoutAudit": 185,
+    "nativeConsumableMenusPerRom": 63,
+    "qolFollowups": 8874,
+    "nativeKurtPerRom": 1336,
+    "nativePcItemMode": 14,
+    "nativePcMail": 23,
+    "pokedexUpgradePerRom": 43,
+    "catalogueUnitTests": 8,
+    "staticDataInvariants": 45595
+  },
+  "battleRegressionScope": "Full suite passed before final migration-only hardening and description/palette cleanup. Both final ROMs then passed the focused migration, inventory and native-item suites; the final debug ROM also passed held-item turn tests.",
+  "playerSave": {
+    "before": {
+      "version": 255,
+      "primaryAccepted": false,
+      "backupAccepted": false
+    },
+    "after": {
+      "version": 255,
+      "primaryAccepted": false,
+      "backupAccepted": false
+    },
+    "sourceUnchanged": true,
+    "sourceSha256": "54d81db917aeacd54bba669f93db9f13c0943f05b205f22ffab80c1b592dc105",
+    "backup": "pokecrystal.sav.before-item16-20261030.bak"
+  },
+  "limits": [
+    "New catalogue entries use the regular Item pocket; category-specific and legacy byte data paths are documented in docs/item-id-expansion.md.",
+    "Link packet serialization was tested; a physical cable session was not emulated.",
+    "Existing emulator save states and old save-editor profiles are not upgraded."
+  ]
+}

@@ -90,3 +90,68 @@ LockMoveID::
 ; out: a = 8-bit index; everything else preserved
 GetLockedMoveID::
 	___conversion_table_homecall_readlocked wMoveIndexTable
+
+GetItemIndexFromID::
+	___conversion_table_homecall read, _GetItemIndexFromID
+
+GetItemIDFromIndex::
+	___conversion_table_homecall write, _GetItemIDFromIndex
+
+; Like cp TM01/HM01 for the legacy catalogue, but extended ordinary items
+; sort below TMs. Preserve the runtime ID in a and every other register.
+CompareItemWithTM01::
+	push hl
+	push bc
+	ld b, a
+	call GetItemIndexFromID
+	ld a, h
+	and a
+	jr nz, .ordinary
+	ld a, l
+	cp TM01
+	jr .done
+.ordinary
+	scf
+.done
+	ld a, b
+	pop bc
+	pop hl
+	ret
+
+CompareItemWithHM01::
+	push hl
+	push bc
+	ld b, a
+	call GetItemIndexFromID
+	ld a, h
+	and a
+	jr nz, .ordinary
+	ld a, l
+	cp HM01
+	jr .done
+.ordinary
+	scf
+.done
+	ld a, b
+	pop bc
+	pop hl
+	ret
+
+GetValidItemIndexFromID::
+; Table readers use the existing '?' placeholder for missing/corrupt IDs.
+; Inventory and storage codecs use the raw conversion to retain NO_ITEM.
+	call GetItemIndexFromID
+	ld a, h
+	cp HIGH(NUM_ITEM_INDEXES + 1)
+	jr c, .in_range
+	jr nz, .invalid
+	ld a, l
+	cp LOW(NUM_ITEM_INDEXES + 1)
+	jr nc, .invalid
+.in_range
+	ld a, h
+	or l
+	ret nz
+.invalid
+	ld hl, $100
+	ret

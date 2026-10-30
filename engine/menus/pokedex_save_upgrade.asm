@@ -46,6 +46,8 @@ upgrade_pokedex_copy: MACRO
 	jp nz, .invalid\@
 
 	; First move the Unown/Day-Care/roamer data and index/checksum tables.
+	xor a
+	ld [\1CheckValue1], a ; partial upgrades must not pass legacy validation
 	ld hl, \1SaveDataEnd - 3
 	ld de, \1SaveDataEnd - 1
 	ld bc, \1SaveDataEnd - (\1PokemonData + wUnownDex - wPokemonData)
@@ -59,6 +61,8 @@ upgrade_pokedex_copy: MACRO
 	ld [\1PokemonData + wEndPokedexCaught - wPokemonData - 1], a
 	ld [\1PokemonData + wEndPokedexSeen - wPokemonData - 1], a
 	; Inserting zeros preserves the additive checksums exactly.
+	ld a, SAVE_CHECK_VALUE_1
+	ld [\1CheckValue1], a
 	jr .done\@
 .invalid\@
 	xor a
@@ -76,7 +80,7 @@ UpgradePokedexSave:
 	upgrade_pokedex_copy sBackup
 	ld a, BANK(sSaveVersion)
 	call GetSRAMBank
-	ld a, SAVE_FORMAT_VERSION
+	ld a, 4
 	ld [sSaveVersion], a
 	jp CloseSRAM
 

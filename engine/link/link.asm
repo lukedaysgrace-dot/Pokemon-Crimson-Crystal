@@ -224,7 +224,7 @@ Gen2ToGen2LinkComms:
 	ld hl, wOTPartyMons
 	ld de, wStringBuffer1
 	; 6 preamble bytes, 2 replacement bytes, 1 stop byte, and 6 extra just in case
-	ld bc, 2 * (1 + NUM_MOVES) * PARTY_LENGTH + 15
+	ld bc, 2 * (2 + NUM_MOVES) * PARTY_LENGTH + 15
 	call Serial_ExchangeBytes
 	ld hl, wLinkData
 	ld de, wOTPlayerName
@@ -1007,13 +1007,13 @@ Link_FixOTParty_Gen2:
 	jr z, .skip_preamble_loop
 	dec hl
 	push hl
-	ld c, 2 * (1 + NUM_MOVES) * PARTY_LENGTH + 2
+	ld c, 2 * (2 + NUM_MOVES) * PARTY_LENGTH + 2
 	call Link_ComputeBufferChecksum
 	cp [hl]
 	pop hl
 	scf
 	ret nz
-	ld a, 2 * (1 + NUM_MOVES) * PARTY_LENGTH
+	ld a, 2 * (2 + NUM_MOVES) * PARTY_LENGTH
 	call Link_FixIndexListAfterTransfer
 	ld d, h
 	ld e, l
@@ -1036,7 +1036,16 @@ Link_FixOTParty_Gen2:
 	pop bc
 	ld a, b
 	ld [hli], a
-	inc hl
+	push hl
+	ld a, [de]
+	inc de
+	ld l, a
+	ld a, [de]
+	inc de
+	ld h, a
+	call GetItemIDFromIndex
+	pop hl
+	ld [hli], a
 	ld b, NUM_MOVES
 .move_loop
 	push hl
@@ -1085,7 +1094,11 @@ Link_BuildIndexList:
 	call nc, GetPokemonIndexFromID
 	call .write
 	pop hl
-	inc hl
+	ld a, [hli]
+	push hl
+	call GetItemIndexFromID
+	call .write
+	pop hl
 	ld b, NUM_MOVES
 .move_loop
 	ld a, [hli]

@@ -33,7 +33,7 @@ def main():
         return h.rd(h.s(name))
 
     def bag(rows):
-        write('wNumItems', [len(rows)] + [v for item, qty in rows for v in (con.item_id(item), qty)] + [255])
+        write('wNumItems', [len(rows)] + [v for item, qty in rows for v in (con.item_id(item) >> 8, con.item_id(item) & 255, qty)] + [255])
         write('wCurItemQuantity', 255)
 
     def party(species='MEW', level=50, known=('TACKLE',)):
@@ -61,12 +61,12 @@ def main():
                 previous_id = con.item_id(previous)
                 write('wLastRepelUsed', previous_id)
                 write('wRepelEffect', 0)
-                before = h.rd(h.s('wNumItems'), 82)
+                before = h.rd(h.s('wNumItems'), 122)
                 h.call('RepelWoreOffScript.CheckForAnotherRepel')
                 available = dict(zip(repels, quantities))
                 expected = previous if available.get(previous) else next((r for r in reversed(repels) if available[r]), None)
                 check(bool(read('wScriptVar')) == bool(expected), f'Repel offer {quantities}/{previous}')
-                check(read('wLastRepelUsed') == previous_id and h.rd(h.s('wNumItems'), 82) == before,
+                check(read('wLastRepelUsed') == previous_id and h.rd(h.s('wNumItems'), 122) == before,
                       'offering/declining a Repel changed the bag or preference')
                 if expected:
                     check(read('wCurItem') == con.item_id(expected), 'wrong replacement Repel')

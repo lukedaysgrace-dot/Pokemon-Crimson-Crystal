@@ -8,6 +8,7 @@ ForceGarbageCollection::
 	ldh [rSVBK], a
 	call PokemonTableGarbageCollection
 	call MoveTableGarbageCollection
+	call ItemTableGarbageCollection
 	pop af
 	ldh [rSVBK], a
 	pop bc
@@ -129,3 +130,108 @@ ENDC
 
 _LockMoveID::
 	___conversion_table_lock_ID wMoveIndexTable, MOVE_TABLE
+
+_GetItemIndexFromID::
+	___conversion_table_load wItemIndexTable, ITEM_TABLE
+
+_GetItemIDFromIndex::
+	___conversion_table_store wItemIndexTable, ITEM_TABLE
+
+ItemTableGarbageCollection:
+	push de
+	ldh a, [rSVBK]
+	push af
+	___conversion_bitmap_initialize wItemIndexTable, ITEM_TABLE, .set_bit
+	ld a, 1
+.fixed
+	push af
+	call .set_bit
+	pop af
+	inc a
+	cp ITEM_FIXED_RUNTIME_IDS + 1
+	jr c, .fixed
+	ld a, 1
+	ldh [rSVBK], a
+	___conversion_bitmap_check_structs wPartyMon1Item, PARTYMON_STRUCT_LENGTH, PARTY_LENGTH, .set_bit
+	___conversion_bitmap_check_structs wOTPartyMon1Item, PARTYMON_STRUCT_LENGTH, PARTY_LENGTH, .set_bit
+	___conversion_bitmap_check_structs wBreedMon1Item, wBreedMon2 - wBreedMon1, 2, .set_bit
+	___conversion_bitmap_check_values .set_bit, wCurItem, wNamedObjectIndexBuffer, wMenuSelection, wPackUsedItem, wTempMonItem, wBufferMonItem, wBattleMonItem, wEnemyMonItem, wContestMonItem, wCurEnemyItem, wEnemyTrainerItem1, wEnemyTrainerItem2, wScriptVar, wMartItemID, wBillsPC_CursorItem
+	; All bag/PC entries and boxed items contain true indices, not roots.
+	; Mart menus alone retain an array of runtime IDs.
+	___conversion_bitmap_check_structs wCurMart + 1, 1, 14, .set_bit
+IF DEF(DEBUG_BATTLE)
+	ld a, BANK(wDebugPartyBackedUp)
+	ldh [rSVBK], a
+	ld a, [wDebugPartyBackedUp]
+	and a
+	jr z, .no_debug_backup
+	___conversion_bitmap_check_structs wDebugPartyBackup + (wPartyMon1Item - wPartyCount), PARTYMON_STRUCT_LENGTH, PARTY_LENGTH, .set_bit
+.no_debug_backup
+ENDC
+	ld a, BANK(wItemIndexTable)
+	ldh [rSVBK], a
+	___conversion_bitmap_free_unused wItemIndexTable, ITEM_TABLE
+	pop af
+	ldh [rSVBK], a
+	pop de
+	ret
+.set_bit
+	___conversion_bitmap_set ITEM_TABLE
+
+InitializeItemIndexTable::
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wItemIndexTable)
+	ldh [rSVBK], a
+	ld hl, wItemIndexTable
+	ld bc, wItemIndexTableEnd - wItemIndexTable
+	xor a
+	call ByteFill
+	ld hl, wItemIndexTableEntries
+	ld b, 1
+.loop
+	ld [hl], b
+	inc hl
+	ld [hl], 0
+	inc hl
+	inc b
+	ld a, b
+	cp ITEM_TABLE_ENTRIES + 1
+	jr c, .loop
+	ld hl, wItemIndexTableEntries + 2 * (0 + ITEM_FIXED_MAIL_RUNTIME - 1)
+	ld [hl], LOW(SURF_MAIL)
+	inc hl
+	ld [hl], HIGH(SURF_MAIL)
+	ld hl, wItemIndexTableEntries + 2 * (1 + ITEM_FIXED_MAIL_RUNTIME - 1)
+	ld [hl], LOW(LITEBLUEMAIL)
+	inc hl
+	ld [hl], HIGH(LITEBLUEMAIL)
+	ld hl, wItemIndexTableEntries + 2 * (2 + ITEM_FIXED_MAIL_RUNTIME - 1)
+	ld [hl], LOW(PORTRAITMAIL)
+	inc hl
+	ld [hl], HIGH(PORTRAITMAIL)
+	ld hl, wItemIndexTableEntries + 2 * (3 + ITEM_FIXED_MAIL_RUNTIME - 1)
+	ld [hl], LOW(LOVELY_MAIL)
+	inc hl
+	ld [hl], HIGH(LOVELY_MAIL)
+	ld hl, wItemIndexTableEntries + 2 * (4 + ITEM_FIXED_MAIL_RUNTIME - 1)
+	ld [hl], LOW(MORPH_MAIL)
+	inc hl
+	ld [hl], HIGH(MORPH_MAIL)
+	ld hl, wItemIndexTableEntries + 2 * (5 + ITEM_FIXED_MAIL_RUNTIME - 1)
+	ld [hl], LOW(BLUESKY_MAIL)
+	inc hl
+	ld [hl], HIGH(BLUESKY_MAIL)
+	ld hl, wItemIndexTableEntries + 2 * (6 + ITEM_FIXED_MAIL_RUNTIME - 1)
+	ld [hl], LOW(MUSIC_MAIL)
+	inc hl
+	ld [hl], HIGH(MUSIC_MAIL)
+	ld hl, wItemIndexTableEntries + 2 * (7 + ITEM_FIXED_MAIL_RUNTIME - 1)
+	ld [hl], LOW(MIRAGE_MAIL)
+	inc hl
+	ld [hl], HIGH(MIRAGE_MAIL)
+	ld a, ITEM_TABLE_ENTRIES
+	ld [wItemIndexTableUsedSlots], a
+	pop af
+	ldh [rSVBK], a
+	ret

@@ -6,6 +6,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
+from battletest.symbols import Constants
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -112,16 +113,25 @@ def audit_items(audit: Audit, charmap: list[str]) -> None:
     effects_header = read(ROOT / "engine/items/item_effects.asm").split("PokeBallEffect:", 1)[0]
     effects = directive_rows(effects_header, "dw")
 
-    audit.expect(len(names) == 256, f"item name table has {len(names)} rows; expected 256")
-    audit.expect(len(attributes) == 256, f"item attribute table has {len(attributes)} rows; expected 256")
-    audit.expect(len(descriptions) == 255, f"item description table has {len(descriptions)} rows; expected 255")
+    last_index = max(Constants().items.values())
+    # The legacy effect table stops at the first TM; its reserved/TM region
+    # is now explicitly padded before the expanded effect entries.
+    padding = re.search(r'rept \$100 - \(TM01 - 1\)\s+dw NoEffect\s+endr', effects_header)
+    effect_count = len(effects)
+    if padding:
+        legacy = read(ROOT / 'constants/item_constants.asm').split('add_tm: MACRO', 1)[0]
+        first_tm = len(re.findall(r'^\s*const \w+', legacy, re.M))
+        effect_count += 256 - (first_tm - 1) - 1
+    audit.expect(len(names) == last_index, f"item name table has {len(names)} rows; expected {last_index}")
+    audit.expect(len(attributes) == last_index, f"item attribute table has {len(attributes)} rows; expected {last_index}")
+    audit.expect(len(descriptions) == last_index, f"item description table has {len(descriptions)} rows; expected {last_index}")
 
     for item_id, (line_number, name) in enumerate(names, 1):
         width = encoded_length(name, charmap)
         audit.expect(width is not None, f"data/items/names.asm:{line_number}: unencodable item name {name!r}")
         if width is not None:
             audit.expect(width <= 12, f"data/items/names.asm:{line_number}: {name!r} exceeds 12 visible bytes")
-        if item_id <= 0xC1 and name not in {"TERU-SAMA", "?"}:
+        if (item_id <= 0xC1 or item_id > 0x100) and name not in {"TERU-SAMA", "?"}:
             pointer = descriptions[item_id - 1][1][0]
             audit.expect(
                 pointer != "QuestionMarkDesc",
@@ -132,14 +142,14 @@ def audit_items(audit: Audit, charmap: list[str]) -> None:
     for item_id, (line_number, row) in enumerate(attributes, 1):
         audit.expect(len(row) == 7, f"data/items/attributes.asm:{line_number}: expected 7 arguments")
         if (
-            item_id < 0xC2
+            (item_id < 0xC2 or item_id > 0x100)
             and len(row) == 7
             and (row[5] != "ITEMMENU_NOUSE" or row[6] != "ITEMMENU_NOUSE")
         ):
             highest_usable = item_id
     audit.expect(
-        len(effects) >= highest_usable,
-        f"ItemEffects has {len(effects)} rows but selectable item ${highest_usable:02x} can index it",
+        effect_count >= highest_usable,
+        f"ItemEffects has {effect_count} rows but selectable item ${highest_usable:04x} can index it",
     )
 
     mart_text = read(ROOT / "data/items/marts.asm")
@@ -167,9 +177,11 @@ def audit_items(audit: Audit, charmap: list[str]) -> None:
         except (ValueError, IndexError):
             audit.errors.append(f"{label}: invalid declared item count")
             continue
-        inventory = [row[1][0] for row in rows[1:] if row[1] and row[1][0] != "-1"]
-        terminated = any(row[1] and row[1][0] == "-1" for row in rows[1:])
+        item_rows = directive_rows("\n".join(mart_lines[start + 1 : end]), "dw")
+        inventory = [row[1][0] for row in item_rows if row[1] and row[1][0] != "-1"]
+        terminated = any(row[1] and row[1][0] == "-1" for row in item_rows)
         audit.expect(len(inventory) == declared, f"{label}: declares {declared} items but has {len(inventory)}")
+        audit.expect(declared <= 14, f"{label}: exceeds the 14 item/price menu capacity")
         audit.expect(terminated, f"{label}: missing -1 terminator")
 
     fruit_constants = re.findall(

@@ -1934,11 +1934,12 @@ BillsPC_GetItemIconOffset:
 	ld e, HELDTYPE_MAIL tiles
 	jr c, .done
 	; held effect
-	ld hl, ItemAttributes + ITEMATTR_EFFECT
 	ld a, c
-	dec a
-	ld b, 0
-	ld c, a
+	call GetItemIndexFromID
+	dec hl
+	ld b, h
+	ld c, l
+	ld hl, ItemAttributes + ITEMATTR_EFFECT
 	ld a, ITEMATTR_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(ItemAttributes)

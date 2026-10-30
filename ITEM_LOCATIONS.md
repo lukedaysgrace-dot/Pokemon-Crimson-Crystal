@@ -1,6 +1,6 @@
 # Crimson Crystal — TM and held-item locations
 
-Locations for all 54 TMs and 59 held items. Most ground items and gifts are one-time rewards.
+Locations for all 54 TMs and 60 held items. Most ground items and gifts are one-time rewards.
 
 Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their held items. Trick swaps items; use it to take Air Balloon before a damaging hit pops it.
 
@@ -104,6 +104,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Nevermeltice](#nevermeltice) | Ground pickup, Trainer item |
 | [Pink Bow](#pink_bow) | Gift / reward, Trainer item |
 | [Poison Barb](#poison_barb) | Gift / reward, Wild Pokémon |
+| [Polkadot Bow](#polkadot_bow) | Shop |
 | [Quick Claw](#quick_claw) | Gift / reward, Trainer item, Wild Pokémon |
 | [Rocky Helmet](#rocky_helmet) | Gift / reward, Shop, Trainer item |
 | [Scope Lens](#scope_lens) | Gift / reward, Mystery Gift, Trainer item |
@@ -1212,7 +1213,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Route 39 | **Wild Pokémon** — Magnemite; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 25. |
 | Route 6 | **Wild Pokémon** — Magnemite; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 51–52. |
 | Route 6 | **Wild Pokémon** — Magneton; approx. 5% held-item chance. Grass / Cave; Day, Morning; Lv. 53. |
-| Silver Cave Room 1 | **Wild Pokémon** — Steelix; approx. 5% held-item chance. Grass / Cave; Morning; Lv. 81. |
+| Silver Cave Room 1 | **Wild Pokémon** — Steelix; approx. 5% held-item chance. Grass / Cave; Morning, Night; Lv. 81–82. |
 | Silver Cave Room 2 | **Wild Pokémon** — Steelix; approx. 5% held-item chance. Grass / Cave; Night; Lv. 84. |
 
 <a id="metal_powder"></a>
@@ -1323,6 +1324,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Whirl Islands NE | **Wild Pokémon** — Mareanie; approx. 5% held-item chance. Grass / Cave; Night; Lv. 39. |
 | Whirl Islands SE | **Wild Pokémon** — Mareanie; approx. 5% held-item chance. Grass / Cave; Night; Lv. 39. |
 | Whirl Islands SW | **Wild Pokémon** — Mareanie; approx. 5% held-item chance. Grass / Cave; Night; Lv. 39. |
+
+<a id="polkadot_bow"></a>
+## Polkadot Bow
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽1,000. |
 
 <a id="quick_claw"></a>
 ## Quick Claw
