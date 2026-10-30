@@ -88,7 +88,7 @@
 	const SPRITE_PAPER ; 56
 SPRITE_FOSSIL EQU SPRITE_PAPER ; reuse the otherwise-unused paper sprite slot
 	const SPRITE_VIRTUAL_BOY ; 57
-	const SPRITE_OLD_LINK_RECEPTIONIST ; 58
+	const SPRITE_DURALUDON ; 58 (unused old link receptionist slot)
 	const SPRITE_ROCK ; 59
 	const SPRITE_BOULDER ; 5a
 	const SPRITE_SNES ; 5b
