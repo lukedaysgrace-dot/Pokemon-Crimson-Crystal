@@ -271,13 +271,13 @@ ItemNames::
 	db "GOLD LEAF@"
 	db "NORMAL BOX@"
 	db "GORGEOUS BOX@"
-	db "PECHA BERRY@"
-	db "RAWST BERRY@"
-	db "ASPEAR BERRY@"
-	db "CHESTO BERRY@"
-	db "CHERI BERRY@"
-	db "PERSIM BERRY@"
-	db "LUM BERRY@"
+	db "?@" ; retired $0111
+	db "?@" ; retired $0112
+	db "?@" ; retired $0113
+	db "?@" ; retired $0114
+	db "?@" ; retired $0115
+	db "?@" ; retired $0116
+	db "?@" ; retired $0117
 	db "RARE BONE@"
 	db "BALMMUSHROOM@"
 	db "COMET SHARD@"

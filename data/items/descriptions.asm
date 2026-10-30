@@ -272,13 +272,13 @@ ItemDescriptions:
 	dw GOLD_LEAFDesc
 	dw NORMAL_BOXDesc
 	dw GORGEOUS_BOXDesc
-	dw PECHA_BERRYDesc
-	dw RAWST_BERRYDesc
-	dw ASPEAR_BERRYDesc
-	dw CHESTO_BERRYDesc
-	dw CHERI_BERRYDesc
-	dw PERSIM_BERRYDesc
-	dw LUM_BERRYDesc
+	dw QuestionMarkDesc ; retired $0111
+	dw QuestionMarkDesc ; retired $0112
+	dw QuestionMarkDesc ; retired $0113
+	dw QuestionMarkDesc ; retired $0114
+	dw QuestionMarkDesc ; retired $0115
+	dw QuestionMarkDesc ; retired $0116
+	dw QuestionMarkDesc ; retired $0117
 	dw RARE_BONEDesc
 	dw BALM_MUSHROOMDesc
 	dw COMET_SHARDDesc
@@ -1123,34 +1123,6 @@ NORMAL_BOXDesc:
 GORGEOUS_BOXDesc:
 	db "Open it to find"
 	next "a gold trophy.@"
-
-PECHA_BERRYDesc:
-	db "Heals poison."
-	next "Consumed. (HOLD)@"
-
-RAWST_BERRYDesc:
-	db "Heals a burn."
-	next "Consumed. (HOLD)@"
-
-ASPEAR_BERRYDesc:
-	db "Heals freezing."
-	next "Consumed. (HOLD)@"
-
-CHESTO_BERRYDesc:
-	db "Heals sleep."
-	next "Consumed. (HOLD)@"
-
-CHERI_BERRYDesc:
-	db "Heals paralysis."
-	next "Consumed. (HOLD)@"
-
-PERSIM_BERRYDesc:
-	db "Heals confusion."
-	next "Consumed. (HOLD)@"
-
-LUM_BERRYDesc:
-	db "Heals status."
-	next "Consumed. (HOLD)@"
 
 RARE_BONEDesc:
 	db "A valuable find."

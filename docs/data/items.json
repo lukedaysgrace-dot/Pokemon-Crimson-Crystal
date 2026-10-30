@@ -1,10 +1,10 @@
 {
   "counts": {
-    "total": 282,
+    "total": 275,
     "tms": 54,
     "hms": 7,
     "held_items": 60,
-    "acquisition_rows": 1638,
+    "acquisition_rows": 1631,
     "no_sources": []
   },
   "items": [
@@ -1913,23 +1913,6 @@
       "notes": ""
     },
     {
-      "const": "ASPEAR_BERRY",
-      "name": "Aspear Berry",
-      "category": "Berry",
-      "sources": [
-        {
-          "location": "Celadon Dept Store 3F",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: ₽200.",
-          "source": "data/items/marts.asm",
-          "line": 444
-        }
-      ],
-      "description": "Heals freezing. Consumed. (HOLD)",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
       "const": "BERRY",
       "name": "Berry",
       "category": "Berry",
@@ -2359,40 +2342,6 @@
       "notes": ""
     },
     {
-      "const": "CHERI_BERRY",
-      "name": "Cheri Berry",
-      "category": "Berry",
-      "sources": [
-        {
-          "location": "Celadon Dept Store 3F",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: ₽200.",
-          "source": "data/items/marts.asm",
-          "line": 444
-        }
-      ],
-      "description": "Heals paralysis. Consumed. (HOLD)",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "CHESTO_BERRY",
-      "name": "Chesto Berry",
-      "category": "Berry",
-      "sources": [
-        {
-          "location": "Celadon Dept Store 3F",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: ₽200.",
-          "source": "data/items/marts.asm",
-          "line": 444
-        }
-      ],
-      "description": "Heals sleep. Consumed. (HOLD)",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
       "const": "GOLD_BERRY",
       "name": "Gold Berry",
       "category": "Berry",
@@ -2609,23 +2558,6 @@
       "notes": ""
     },
     {
-      "const": "LUM_BERRY",
-      "name": "Lum Berry",
-      "category": "Berry",
-      "sources": [
-        {
-          "location": "Celadon Dept Store 4F",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: ₽200.",
-          "source": "data/items/marts.asm",
-          "line": 455
-        }
-      ],
-      "description": "Heals status. Consumed. (HOLD)",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
       "const": "MINT_BERRY",
       "name": "Mint Berry",
       "category": "Berry",
@@ -2810,40 +2742,6 @@
       "notes": ""
     },
     {
-      "const": "PECHA_BERRY",
-      "name": "Pecha Berry",
-      "category": "Berry",
-      "sources": [
-        {
-          "location": "Celadon Dept Store 3F",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: ₽200.",
-          "source": "data/items/marts.asm",
-          "line": 444
-        }
-      ],
-      "description": "Heals poison. Consumed. (HOLD)",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "PERSIM_BERRY",
-      "name": "Persim Berry",
-      "category": "Berry",
-      "sources": [
-        {
-          "location": "Celadon Dept Store 4F",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: ₽200.",
-          "source": "data/items/marts.asm",
-          "line": 455
-        }
-      ],
-      "description": "Heals confusion. Consumed. (HOLD)",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
       "const": "PRZCUREBERRY",
       "name": "Przcureberry",
       "category": "Berry",
@@ -2972,23 +2870,6 @@
         }
       ],
       "description": "A self-cure for poison. (HOLD)",
-      "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "RAWST_BERRY",
-      "name": "Rawst Berry",
-      "category": "Berry",
-      "sources": [
-        {
-          "location": "Celadon Dept Store 3F",
-          "method": "Shop",
-          "details": "Repeatable purchase. Cost: ₽200.",
-          "source": "data/items/marts.asm",
-          "line": 444
-        }
-      ],
-      "description": "Heals a burn. Consumed. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -14807,7 +14688,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: ₽15,000.",
           "source": "data/items/marts.asm",
-          "line": 455
+          "line": 450
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -14841,7 +14722,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: ₽20,000.",
           "source": "data/items/marts.asm",
-          "line": 455
+          "line": 450
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -14892,7 +14773,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: ₽20,000.",
           "source": "data/items/marts.asm",
-          "line": 455
+          "line": 450
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -15825,7 +15706,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: ₽25,000.",
           "source": "data/items/marts.asm",
-          "line": 455
+          "line": 450
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -15883,7 +15764,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: ₽10,000.",
           "source": "data/items/marts.asm",
-          "line": 455
+          "line": 450
         }
       ],
       "description": "A valuable find. Sell it at a MART.",

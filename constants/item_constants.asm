@@ -319,13 +319,8 @@ FULL_HEAL_RED  EQU $34 ; X_SPEED
 	const GOLD_LEAF
 	const NORMAL_BOX
 	const GORGEOUS_BOX
-	const PECHA_BERRY
-	const RAWST_BERRY
-	const ASPEAR_BERRY
-	const CHESTO_BERRY
-	const CHERI_BERRY
-	const PERSIM_BERRY
-	const LUM_BERRY
+	; Retired duplicate berries ($0111..$0117). Never reuse saved item IDs.
+	const_def $118
 	const RARE_BONE
 	const BALM_MUSHROOM
 	const COMET_SHARD
