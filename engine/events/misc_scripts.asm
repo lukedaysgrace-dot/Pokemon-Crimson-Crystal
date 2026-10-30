@@ -53,12 +53,17 @@ FindItemInBallScript::
 .TryReceiveItem:
 	xor a
 	ld [wScriptVar], a
-	ld a, [wItemBallItemID]
+	ld hl, wItemBallItemID
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call GetItemIDFromIndex
+	ld [wCurItem], a
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld hl, wStringBuffer3
 	call CopyName2
-	ld a, [wItemBallItemID]
+	ld a, [wCurItem]
 	ld [wCurItem], a
 	ld a, [wItemBallQuantity]
 	ld [wItemQuantityChangeBuffer], a

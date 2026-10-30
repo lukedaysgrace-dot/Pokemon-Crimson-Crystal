@@ -47,7 +47,7 @@ AskTeachTMHM:
 	push af
 	res NO_TEXT_SCROLL, [hl]
 	ld a, [wCurItem]
-	cp TM01
+	call CompareItemWithTM01
 	jr c, .NotTMHM
 	call GetTMHMItemMove
 	ld a, [wTempTMHM]
@@ -56,7 +56,7 @@ AskTeachTMHM:
 	call CopyName1
 	ld hl, Text_BootedTM ; Booted up a TM
 	ld a, [wCurItem]
-	cp HM01
+	call CompareItemWithHM01
 	jr c, .TM
 	ld hl, Text_BootedHM ; Booted up an HM
 .TM:

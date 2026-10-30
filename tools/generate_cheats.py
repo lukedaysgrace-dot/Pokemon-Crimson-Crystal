@@ -262,34 +262,19 @@ def main() -> int:
         )
     )
 
-    starter_pack = [
-        (0x0C, w_num_items),
-        (0x01, w_items),
-        (0x63, w_items + 1),
-        (0x02, w_items + 2),
-        (0x63, w_items + 3),
-        (0x04, w_items + 4),
-        (0x63, w_items + 5),
-        (0x05, w_items + 6),
-        (0x63, w_items + 7),
-        (0x9D, w_items + 8),
-        (0x63, w_items + 9),
-        (0x9F, w_items + 10),
-        (0x63, w_items + 11),
-        (0xA0, w_items + 12),
-        (0x63, w_items + 13),
-        (0xA1, w_items + 14),
-        (0x63, w_items + 15),
-        (0xA4, w_items + 16),
-        (0x63, w_items + 17),
-        (0xA5, w_items + 18),
-        (0x63, w_items + 19),
-        (0xA6, w_items + 20),
-        (0x63, w_items + 21),
-        (0xB1, w_items + 22),
-        (0x63, w_items + 23),
-        (0xFF, w_items + 24),
-    ]
+    useful = ['POTION', 'FULL_HEAL', 'REVIVE', 'MAX_REPEL', 'RARE_CANDY', 'PP_MAX', 'NUGGET', 'ESCAPE_ROPE']
+    starter_pack = [(len(useful), w_num_items)]
+    for slot, name in enumerate(useful):
+        index = parse_const_value(item_constants, name)
+        starter_pack.extend([(index >> 8, w_items + 3 * slot),
+                             (index & 255, w_items + 3 * slot + 1),
+                             (99, w_items + 3 * slot + 2)])
+    starter_pack.append((255, w_items + 3 * len(useful)))
+    balls = [1, 2, 4, 5]
+    starter_pack.append((len(balls), w_num_balls))
+    for slot, item in enumerate(balls):
+        starter_pack.extend([(item, w_balls + 2 * slot), (99, w_balls + 2 * slot + 1)])
+    starter_pack.append((255, w_balls + 2 * len(balls)))
     blocks.append(
         cheat_block(
             "useful items x99 (master ball, rare candy, etc.)",

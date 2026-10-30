@@ -63,9 +63,19 @@ EncodeSavedMon::
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	inc hl
+	pop hl
+	push hl
 	ld a, [wTempMonItem]
-	ld [hl], a
+	call GetItemIndexFromID
+	ld b, h
+	ld c, l
+	pop hl
+	ld a, b
+	call WriteSavedItemHigh
+	push hl
+	inc hl
+	inc hl
+	ld [hl], c
 	pop hl
 
 	encode_move 0
@@ -191,6 +201,13 @@ ComputeSavedMonChecksum::
 	ldh [hTemp], a
 	jr nz, .loop
 	pop hl
+	call ReadSavedItemHigh
+	ld b, a
+	add e
+	ld e, a
+	ld a, d
+	adc b
+	ld d, a
 	ret
 
 VerifySavedMonChecksum::
@@ -251,9 +268,13 @@ DecodeSavedMon::
 	ld [wTempMonSpecies], a
 	pop hl
 	push hl
+	call ReadSavedItemHigh
+	ld b, a
 	inc hl
 	inc hl
-	ld a, [hl]
+	ld l, [hl]
+	ld h, b
+	call GetItemIDFromIndex
 	ld [wTempMonItem], a
 	pop hl
 

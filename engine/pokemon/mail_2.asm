@@ -111,8 +111,16 @@ ReadAnyMail:
 	ret
 
 MailGFXPointers:
-	dbw FLOWER_MAIL,  LoadFlowerMailGFX
-	dbw EON_MAIL,     LoadEonMailGFX
+	dbw FLOWER_MAIL, LoadFlowerMailGFX
+	dbw ITEM_FIXED_MAIL_RUNTIME, LoadSurfMailGFX
+	dbw ITEM_FIXED_MAIL_RUNTIME + 1, LoadLiteBlueMailGFX
+	dbw ITEM_FIXED_MAIL_RUNTIME + 2, LoadPortraitMailGFX
+	dbw ITEM_FIXED_MAIL_RUNTIME + 3, LoadLovelyMailGFX
+	dbw EON_MAIL, LoadEonMailGFX
+	dbw ITEM_FIXED_MAIL_RUNTIME + 4, LoadMorphMailGFX
+	dbw ITEM_FIXED_MAIL_RUNTIME + 5, LoadBlueSkyMailGFX
+	dbw ITEM_FIXED_MAIL_RUNTIME + 6, LoadMusicMailGFX
+	dbw ITEM_FIXED_MAIL_RUNTIME + 7, LoadMirageMailGFX
 	db -1
 
 LoadSurfMailGFX:

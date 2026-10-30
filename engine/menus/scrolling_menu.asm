@@ -498,6 +498,8 @@ ScrollingMenu_GetListItemCoordAndFunctionArgs:
 	ld l, a
 	inc hl ; items
 	ld a, [wMenuData_ScrollingMenuItemFormat]
+	cp SCROLLINGMENU_ITEMS_16BIT_QUANTITY
+	jr z, .word_item
 	cp SCROLLINGMENU_ITEMS_NORMAL
 	jr z, .got_spacing
 	cp SCROLLINGMENU_ITEMS_QUANTITY
@@ -508,6 +510,34 @@ ScrollingMenu_GetListItemCoordAndFunctionArgs:
 	add hl, de
 	ld a, [wMenuData_ItemsPointerBank]
 	call GetFarByte
+	ld [wMenuSelection], a
+	ld [wCurItem], a
+	inc hl
+	ld a, [wMenuData_ItemsPointerBank]
+	call GetFarByte
+	ld [wMenuSelectionQuantity], a
+	pop hl
+	pop de
+	ret
+
+.word_item
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [wMenuData_ItemsPointerBank]
+	call GetFarByte
+	cp -1
+	jr z, .word_end
+	ld b, a
+	inc hl
+	ld a, [wMenuData_ItemsPointerBank]
+	call GetFarByte
+	push hl
+	ld h, b
+	ld l, a
+	call GetItemIDFromIndex
+	pop hl
+.word_end
 	ld [wMenuSelection], a
 	ld [wCurItem], a
 	inc hl

@@ -440,11 +440,30 @@ SaveIndexTables:
 	ld de, sMoveIndexTable
 	ld bc, wMoveIndexTableEnd - wMoveIndexTable
 	call CopyBytes
+	ld a, BANK(sItemIndexTable)
+	call GetSRAMBank
+	ld hl, wItemIndexTable
+	ld de, sItemIndexTable
+	ld bc, wItemIndexTableEnd - wItemIndexTable
+	call CopyBytes
 	pop af
 	ldh [rSVBK], a
 	jp CloseSRAM
 
 SaveChecksum:
+	ld a, BANK(sItemIndexTable)
+	call GetSRAMBank
+	ld hl, sItemIndexTable
+	ld bc, wItemIndexTableEnd - wItemIndexTable
+	call Checksum
+	ld a, e
+	ld [sItemIndexChecksum], a
+	ld a, d
+	ld [sItemIndexChecksum + 1], a
+	ld a, $49
+	ld [sItemIndexMagic], a
+	ld a, $16
+	ld [sItemIndexMagic + 1], a
 	ld a, BANK(sMoveIndexTable)
 	call GetSRAMBank
 	ld hl, sMoveIndexTable
@@ -527,11 +546,30 @@ SaveBackupIndexTables:
 	ld de, sBackupMoveIndexTable
 	ld bc, wMoveIndexTableEnd - wMoveIndexTable
 	call CopyBytes
+	ld a, BANK(sBackupItemIndexTable)
+	call GetSRAMBank
+	ld hl, wItemIndexTable
+	ld de, sBackupItemIndexTable
+	ld bc, wItemIndexTableEnd - wItemIndexTable
+	call CopyBytes
 	pop af
 	ldh [rSVBK], a
 	jp CloseSRAM
 
 SaveBackupChecksum:
+	ld a, BANK(sBackupItemIndexTable)
+	call GetSRAMBank
+	ld hl, sBackupItemIndexTable
+	ld bc, wItemIndexTableEnd - wItemIndexTable
+	call Checksum
+	ld a, e
+	ld [sBackupItemIndexChecksum], a
+	ld a, d
+	ld [sBackupItemIndexChecksum + 1], a
+	ld a, $49
+	ld [sBackupItemIndexMagic], a
+	ld a, $16
+	ld [sBackupItemIndexMagic + 1], a
 	ld a, BANK(sBackupMoveIndexTable)
 	call GetSRAMBank
 	ld hl, sBackupMoveIndexTable
@@ -671,7 +709,7 @@ TryLoadSaveData:
 INCLUDE "data/default_options.asm"
 
 CheckPrimarySaveFile:
-	call UpgradePokedexSave
+	farcall UpgradeItemSave
 	ld a, BANK(sCheckValue1) ; aka BANK(sCheckValue2), BANK(sSaveVersion)
 	call GetSRAMBank
 	ld a, [sSaveVersion]
@@ -696,7 +734,7 @@ CheckPrimarySaveFile:
 	ret
 
 CheckBackupSaveFile:
-	call UpgradePokedexSave
+	farcall UpgradeItemSave
 	ld a, BANK(sSaveVersion)
 	call GetSRAMBank
 	ld a, [sSaveVersion]
@@ -771,11 +809,34 @@ LoadIndexTables:
 	ld de, wMoveIndexTable
 	ld bc, wMoveIndexTableEnd - wMoveIndexTable
 	call CopyBytes
+	ld a, BANK(sItemIndexTable)
+	call GetSRAMBank
+	ld hl, sItemIndexTable
+	ld de, wItemIndexTable
+	ld bc, wItemIndexTableEnd - wItemIndexTable
+	call CopyBytes
 	pop af
 	ldh [rSVBK], a
 	jp CloseSRAM
 
 VerifyChecksum:
+	ld a, BANK(sItemIndexTable)
+	call GetSRAMBank
+	ld a, [sItemIndexMagic]
+	cp $49
+	jp nz, .fail
+	ld a, [sItemIndexMagic + 1]
+	cp $16
+	jp nz, .fail
+	ld hl, sItemIndexTable
+	ld bc, wItemIndexTableEnd - wItemIndexTable
+	call Checksum
+	ld a, [sItemIndexChecksum]
+	cp e
+	jr nz, .fail
+	ld a, [sItemIndexChecksum + 1]
+	cp d
+	jr nz, .fail
 	ld hl, sSaveData
 	ld bc, sSaveDataEnd - sSaveData
 	ld a, BANK(sSaveData)
@@ -850,11 +911,34 @@ LoadBackupIndexTables:
 	ld de, wMoveIndexTable
 	ld bc, wMoveIndexTableEnd - wMoveIndexTable
 	call CopyBytes
+	ld a, BANK(sBackupItemIndexTable)
+	call GetSRAMBank
+	ld hl, sBackupItemIndexTable
+	ld de, wItemIndexTable
+	ld bc, wItemIndexTableEnd - wItemIndexTable
+	call CopyBytes
 	pop af
 	ldh [rSVBK], a
 	jp CloseSRAM
 
 VerifyBackupChecksum:
+	ld a, BANK(sBackupItemIndexTable)
+	call GetSRAMBank
+	ld a, [sBackupItemIndexMagic]
+	cp $49
+	jp nz, .fail
+	ld a, [sBackupItemIndexMagic + 1]
+	cp $16
+	jp nz, .fail
+	ld hl, sBackupItemIndexTable
+	ld bc, wItemIndexTableEnd - wItemIndexTable
+	call Checksum
+	ld a, [sBackupItemIndexChecksum]
+	cp e
+	jr nz, .fail
+	ld a, [sBackupItemIndexChecksum + 1]
+	cp d
+	jr nz, .fail
 	ld hl, sBackupSaveData
 	ld bc, sBackupSaveDataEnd - sBackupSaveData
 	ld a, BANK(sBackupSaveData)

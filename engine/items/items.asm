@@ -1,6 +1,8 @@
 _ReceiveItem::
+	call DoesHLEqualNumBalls
+	jp z, PutItemInPocketLow
 	call DoesHLEqualNumItems
-	jp nz, PutItemInPocket
+	jp nz, PutItemInPocket16
 	push hl
 	call CheckItemPocket
 	pop de
@@ -20,7 +22,7 @@ _ReceiveItem::
 .Item:
 	ld h, d
 	ld l, e
-	jp PutItemInPocket
+	jp PutItemInPocket16
 
 .KeyItem:
 	ld h, d
@@ -29,7 +31,7 @@ _ReceiveItem::
 
 .Ball:
 	ld hl, wNumBalls
-	jp PutItemInPocket
+	jp PutItemInPocketLow
 
 .TMHM:
 	ld h, d
@@ -40,6 +42,8 @@ _ReceiveItem::
 	jp ReceiveTMHM
 
 _TossItem::
+	call DoesHLEqualNumBalls
+	jp z, RemoveItemFromPocketLow
 	call DoesHLEqualNumItems
 	jr nz, .remove
 	push hl
@@ -60,7 +64,7 @@ _TossItem::
 
 .Ball:
 	ld hl, wNumBalls
-	jp RemoveItemFromPocket
+	jp RemoveItemFromPocketLow
 
 .TMHM:
 	ld h, d
@@ -80,9 +84,11 @@ _TossItem::
 	ld l, e
 
 .remove
-	jp RemoveItemFromPocket
+	jp RemoveItemFromPocket16
 
 _CheckItem::
+	call DoesHLEqualNumBalls
+	jp z, CheckTheItemLow
 	call DoesHLEqualNumItems
 	jr nz, .nope
 	push hl
@@ -103,7 +109,7 @@ _CheckItem::
 
 .Ball:
 	ld hl, wNumBalls
-	jp CheckTheItem
+	jp CheckTheItemLow
 
 .TMHM:
 	ld h, d
@@ -123,7 +129,7 @@ _CheckItem::
 	ld l, e
 
 .nope
-	jp CheckTheItem
+	jp CheckTheItem16
 
 DoesHLEqualNumItems:
 	ld a, l
@@ -131,6 +137,14 @@ DoesHLEqualNumItems:
 	ret nz
 	ld a, h
 	cp HIGH(wNumItems)
+	ret
+
+DoesHLEqualNumBalls:
+	ld a, l
+	cp LOW(wNumBalls)
+	ret nz
+	ld a, h
+	cp HIGH(wNumBalls)
 	ret
 
 GetPocketCapacity:
@@ -155,7 +169,7 @@ GetPocketCapacity:
 	ld c, MAX_BALLS
 	ret
 
-PutItemInPocket:
+PutItemInPocketLow:
 	ld d, h
 	ld e, l
 	inc hl
@@ -231,7 +245,7 @@ PutItemInPocket:
 	scf
 	ret
 
-RemoveItemFromPocket:
+RemoveItemFromPocketLow:
 	ld d, h
 	ld e, l
 	ld a, [hli]
@@ -296,7 +310,7 @@ RemoveItemFromPocket:
 	and a
 	ret
 
-CheckTheItem:
+CheckTheItemLow:
 	ld a, [wCurItem]
 	ld c, a
 .loop
@@ -458,15 +472,24 @@ CheckTMHM:
 
 GetTMHMNumber::
 ; Return the number of a TM/HM by item id c.
+	push hl
 	ld a, c
+	call GetItemIndexFromID
+	ld a, l
 	sub TM01 - 1
+	pop hl
 	ld c, a
 	ret
 
 GetNumberedTMHM:
 ; Return the item id of a TM/HM by number c.
+	push hl
 	ld a, c
 	add a, TM01 - 1
+	ld l, a
+	ld h, 0
+	call GetItemIDFromIndex
+	pop hl
 	ld c, a
 	ret
 
@@ -519,19 +542,21 @@ GetItemAttr:
 	push hl
 	push bc
 
+	push af
+	xor a
+	ld [wItemAttributeParamBuffer], a
+	ld a, [wCurItem]
+	call GetValidItemIndexFromID
+	dec hl
+	ld b, h
+	ld c, l
 	ld hl, ItemAttributes
+	ld a, ITEMATTR_STRUCT_LENGTH
+	call AddNTimes
+	pop af
 	ld c, a
 	ld b, 0
 	add hl, bc
-
-	xor a
-	ld [wItemAttributeParamBuffer], a
-
-	ld a, [wCurItem]
-	dec a
-	ld c, a
-	ld a, ITEMATTR_STRUCT_LENGTH
-	call AddNTimes
 	ld a, BANK(ItemAttributes)
 	call GetFarByte
 
@@ -558,3 +583,5 @@ GetItemPrice:
 	pop bc
 	pop hl
 	ret
+
+INCLUDE "engine/items/inventory16.asm"

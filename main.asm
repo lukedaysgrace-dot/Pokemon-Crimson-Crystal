@@ -814,10 +814,12 @@ INCLUDE "data/phone/text/erin_callee.asm"
 INCLUDE "data/phone/text/unused.asm"
 
 
-SECTION "Miscellaneous Text", ROMX
+SECTION "Item catalogue text", ROMX
 
 INCLUDE "data/items/names.asm"
+INCLUDE "engine/items/names.asm"
 INCLUDE "engine/items/print_item_description.asm"
+SECTION "Miscellaneous Text", ROMX
 INCLUDE "data/moves/names.asm"
 INCLUDE "engine/overworld/landmarks.asm"
 
@@ -989,3 +991,6 @@ INCLUDE "data/pokemon/technical_tutor.asm"
 
 SECTION "Burned Tower Ashes Palette", ROMX
 INCLUDE "engine/gfx/burned_tower_palette.asm"
+
+SECTION "Item save upgrade", ROMX
+INCLUDE "engine/menus/item_save_upgrade.asm"

@@ -57,3 +57,5 @@ INCLUDE "constants/type_constants.asm"
 
 INCLUDE "constants/16_bit_translation_constants.asm"
 INCLUDE "constants/16_bit_locking_constants.asm" ; MUST come after the translation constants file!
+
+INCLUDE "constants/legacy_item_save_constants.asm"

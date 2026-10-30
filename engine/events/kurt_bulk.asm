@@ -4,32 +4,9 @@ DEF KURT_BULK_MARKER EQU $a7
 	assert MAX_ITEMS * 99 < $10000
 
 Kurt_CountAllApricorns::
-; wCurItem = Apricorn; bc = full 16-bit total. Preserve de/hl for the menu.
 	push de
 	push hl
-	ld a, [wCurItem]
-	ld d, a
-	ld a, [wNumItems]
-	ld e, a
-	ld hl, wItems
-	ld bc, 0
-.loop
-	ld a, e
-	and a
-	jr z, .done
-	ld a, [hli]
-	cp d
-	jr nz, .next
-	ld a, c
-	add [hl]
-	ld c, a
-	jr nc, .next
-	inc b
-.next
-	inc hl
-	dec e
-	jr .loop
-.done
+	farcall GetBagItemQuantity
 	pop hl
 	pop de
 	ret
@@ -54,8 +31,16 @@ Kurt_TakeAllApricorns::
 	and a
 	jr z, .done
 	ld a, [hli]
+	and a
+	jr nz, .keep_high
+	ld a, [hl]
 	cp b
-	jr z, .take
+	jr z, .take_low
+	xor a
+.keep_high
+	ld [de], a
+	inc de
+	ld a, [hli]
 	ld [de], a
 	inc de
 	ld a, [hli]
@@ -65,7 +50,8 @@ Kurt_TakeAllApricorns::
 	inc a
 	ld [wItemQuantityBuffer], a
 	jr .next
-.take
+.take_low
+	inc hl
 	ld a, [hli]
 	push hl
 	ld hl, wKurtApricornQuantity

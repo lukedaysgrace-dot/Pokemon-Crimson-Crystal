@@ -56,6 +56,8 @@ CatchTutorial::
 	ld hl, wDudeNumItems
 	ld [hl], 1
 	inc hl
+	ld [hl], 0
+	inc hl
 	ld [hl], POTION
 	inc hl
 	ld [hl], 1

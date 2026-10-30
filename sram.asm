@@ -410,3 +410,13 @@ s5_b2fb:: db ; b2fb
 
 s5_be45:: db ; be45
 s5_be46:: db ; be46
+
+SECTION "Item expansion saves", SRAM
+sItemIndexTable:: ds wItemIndexTableEnd - wItemIndexTable
+sItemIndexChecksum:: dw
+sItemIndexMagic:: dw
+sBackupItemIndexTable:: ds wItemIndexTableEnd - wItemIndexTable
+sBackupItemIndexChecksum:: dw
+sBackupItemIndexMagic:: dw
+; Parallel high bytes keep all existing PokeDB record addresses stable.
+sPokeDBItemHigh:: ds 2 * MONDB_ENTRIES

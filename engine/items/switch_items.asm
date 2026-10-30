@@ -94,6 +94,15 @@ Function249a7:
 	ld a, [de]
 	cp [hl]
 	jr nz, .asm_249cd
+	ld a, [wMenuData_ScrollingMenuItemFormat]
+	cp SCROLLINGMENU_ITEMS_16BIT_QUANTITY
+	jr nz, .same_item
+	inc de
+	inc hl
+	ld a, [de]
+	cp [hl]
+	jr nz, .asm_249cd
+.same_item
 	ld a, [wScrollingMenuCursorPosition]
 	call Function24a97
 	cp 99
@@ -112,12 +121,10 @@ Function249a7:
 
 Function249d1:
 	ld a, [wSwitchItem]
-	call ItemSwitch_GetNthItem
-	inc hl
+	call ItemSwitch_GetQuantityPointer
 	push hl
 	ld a, [wScrollingMenuCursorPosition]
-	call ItemSwitch_GetNthItem
-	inc hl
+	call ItemSwitch_GetQuantityPointer
 	ld a, [hl]
 	pop hl
 	add [hl]
@@ -126,12 +133,10 @@ Function249d1:
 	sub 99
 	push af
 	ld a, [wScrollingMenuCursorPosition]
-	call ItemSwitch_GetNthItem
-	inc hl
+	call ItemSwitch_GetQuantityPointer
 	ld [hl], 99
 	ld a, [wSwitchItem]
-	call ItemSwitch_GetNthItem
-	inc hl
+	call ItemSwitch_GetQuantityPointer
 	pop af
 	ld [hl], a
 	xor a
@@ -141,8 +146,7 @@ Function249d1:
 .asm_24a01
 	push af
 	ld a, [wScrollingMenuCursorPosition]
-	call ItemSwitch_GetNthItem
-	inc hl
+	call ItemSwitch_GetQuantityPointer
 	pop af
 	ld [hl], a
 	ld hl, wMenuData_ItemsPointerAddr
@@ -170,12 +174,24 @@ Function249d1:
 	push hl
 	add hl, bc
 	pop de
-.asm_24a34
+	push hl
+	ld hl, wMenuData_ItemsPointerAddr
 	ld a, [hli]
-	ld [de], a
-	inc de
-	cp $ff
-	jr nz, .asm_24a34
+	ld h, [hl]
+	ld l, a
+	ld a, [hl]
+	ld hl, wSwitchItem
+	sub [hl]
+	ld h, b
+	ld l, c
+	call ItemSwitch_ConvertItemFormatToDW
+	ld hl, 0
+	call AddNTimes
+	inc hl
+	ld b, h
+	ld c, l
+	pop hl
+	call CopyBytes
 	xor a
 	ld [wSwitchItem], a
 	ret
@@ -243,22 +259,18 @@ ItemSwitch_ConvertItemFormatToDW:
 	dw 0
 	dw 1
 	dw 2
+	dw 3
 
-Function24a97:
-	push af
-	call ItemSwitch_ConvertItemFormatToDW
-	ld a, c
-	cp 2
-	jr nz, .not_2
-	pop af
+ItemSwitch_GetQuantityPointer:
 	call ItemSwitch_GetNthItem
-	inc hl
-	ld a, [hl]
+	call ItemSwitch_ConvertItemFormatToDW
+	add hl, bc
+	dec hl
 	ret
 
-.not_2
-	pop af
-	ld a, $1
+Function24a97:
+	call ItemSwitch_GetQuantityPointer
+	ld a, [hl]
 	ret
 
 Function24aab:
