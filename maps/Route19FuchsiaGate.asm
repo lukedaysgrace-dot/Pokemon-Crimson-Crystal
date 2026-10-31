@@ -28,14 +28,11 @@ Route19FuchsiaGateOfficerText:
 
 	para "It hurled boulders"
 	line "that cut off ROUTE"
-	cont "19 indefinitely."
+	cont "19."
 
-	para "Earn ERIKA's,"
-	line "SABRINA's and"
-	cont "JANINE's BADGES."
-
-	para "The roadwork will"
-	line "be finished then."
+	para "The crews say"
+	line "it'll take a while"
+	cont "yet."
 	done
 
 Route19FuchsiaGateOfficerText_RocksCleared:

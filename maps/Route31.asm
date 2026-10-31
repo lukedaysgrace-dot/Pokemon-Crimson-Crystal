@@ -556,14 +556,14 @@ Text_Route31DescribeHoneClaws:
 
 	para "It sharpens claws"
 	line "to raise ATTACK"
+	cont "and accuracy too."
 
-	para "and accuracy too."
+	para "Ooooh… That sounds"
+	line "sharp!"
 
-	para "Ooooh…"
-	line "That sounds sharp!"
-
-	para "Handy for DARK"
-	line "CAVE, I bet."
+	para "Handy against"
+	line "#MON that like"
+	cont "to dodge, I bet."
 	done
 
 Text_Route31WrongMail:

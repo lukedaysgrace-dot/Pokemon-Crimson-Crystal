@@ -252,12 +252,14 @@ PsychicJaredBeatenText:
 	done
 
 PsychicJaredAfterBattleText:
-	text "KARATE KING, the"
-	line "master of the"
+	text "KIYO, the KARATE"
+	line "KING next door,"
+	cont "wants to take this"
+	cont "GYM from SABRINA."
 
-	para "FIGHTING DOJO, was"
-	line "just destroyed by"
-	cont "SABRINA."
+	para "He'll need more"
+	line "than muscle to"
+	cont "beat her."
 	done
 
 SaffronGymGuyText:

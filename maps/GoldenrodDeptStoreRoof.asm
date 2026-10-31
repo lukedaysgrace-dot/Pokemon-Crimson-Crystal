@@ -123,7 +123,7 @@ GoldenrodDeptStoreRoofFisherText:
 	text "I got chewed out"
 	line "for buying all the"
 	cont "dolls the other"
-	cont "day....."
+	cont "day…"
 
 	para "It's not fair."
 	done

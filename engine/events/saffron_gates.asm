@@ -46,7 +46,7 @@ SaffronGateGuardClosedText:
 	cont "take a break."
 
 	para "A cold drink would"
-	line "sure help..."
+	line "sure help…"
 	done
 
 SaffronGateGuardGaveDrinkText:
@@ -54,7 +54,7 @@ SaffronGateGuardGaveDrinkText:
 	line "Oh, is that for"
 	cont "me?"
 
-	para "...Glug, glug..."
+	para "…Glug, glug…"
 
 	para "Ahh, that's"
 	line "better!"

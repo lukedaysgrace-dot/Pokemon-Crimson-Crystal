@@ -63,8 +63,9 @@ PokefanmCarterBeatenText:
 	done
 
 PokefanmCarterAfterBattleText:
-	text "SQUIRTLE, CHARMAN-"
-	line "DER and BULBASAUR…"
+	text "BLASTOISE,"
+	line "CHARIZARD and"
+	cont "VENUSAUR…"
 
 	para "I think that's a"
 	line "well-balanced mix."

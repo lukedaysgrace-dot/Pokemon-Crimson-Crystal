@@ -161,7 +161,7 @@ ViridianForestYoungster2Text:
 	cont "WEEDLE!"
 
 	para "Then a PIKACHU"
-	line "showed up..."
+	line "showed up…"
 	cont "Bring extras!"
 	done
 

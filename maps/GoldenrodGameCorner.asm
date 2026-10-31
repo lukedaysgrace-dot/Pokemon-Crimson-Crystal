@@ -496,12 +496,12 @@ GoldenrodGameCornerSlotManiacChallengeText:
 
 	para "I'll teach you to"
 	line "keep your hands to"
-	cont "yourself kid!"
+	cont "yourself, kid!"
 	done
 
 GoldenrodGameCornerSlotManiacBeatenText:
 	text "I'm so unlucky"
-	line "today..."
+	line "today…"
 	done
 
 GoldenrodGameCornerSlotManiacAfterText:
@@ -512,11 +512,10 @@ GoldenrodGameCornerSlotManiacAfterText:
 	line "don't have them"
 	cont "anymore anyway."
 
-	para "Those Loaded Dice"
+	para "Those LOADED DICE"
 	line "have been drawing"
-	cont "me a little too"
-	cont "much unwanted"
-	cont "attention..."
+	cont "a little too much"
+	cont "attention…"
 
 	para "They make moves"
 	line "that hit multiple"

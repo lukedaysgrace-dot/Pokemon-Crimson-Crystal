@@ -736,7 +736,7 @@ GoldenrodPokecenter1FLassText:
 GoldenrodPokeCenter1FBillPleaseAcceptGSBallText:
 	text "I recently got my"
 	line "hands on a very"
-	cont "unusual Poké Ball"
+	cont "unusual # BALL"
 	cont "from an old"
 	cont "collection."
 
@@ -761,14 +761,14 @@ GoldenrodPokeCenter1FBillAfterGSBallText:
 
 	para "KURT is the"
 	line "absolute authority"
-	cont "on Poké Balls,"
-	cont "surely he'll be"
+	cont "on # BALLS."
+	cont "Surely he'll be"
 	cont "able to figure it"
 	cont "out."
 
 	para "I have to get back"
-	line "to work."
-	cont "See you later!"
+	line "to work. See you"
+	cont "later!"
 	done
 
 UnknownText_0x62370:

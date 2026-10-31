@@ -422,7 +422,7 @@ FisherMarvinAfterBattleText:
 	line "#MON."
 
 	para "It's much more"
-	line "effective than a"
+	line "effective than an"
 	cont "ULTRA BALL."
 	done
 

@@ -98,8 +98,8 @@ AromaLadyDahliaSeenText:
 	cont "garden."
 
 	para "The blooms by this"
-	line "lighthouse grow"
-	cont "nowhere else!"
+	line "lighthouse are the"
+	cont "rarest I've seen!"
 
 	para "Let's see if your"
 	line "#MON can match"

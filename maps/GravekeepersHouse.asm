@@ -104,7 +104,7 @@ GravekeeperGiftText:
 	line "age are nothing"
 	cont "but trouble."
 
-	para "Thank you young"
+	para "Thank you, young"
 	line "one."
 
 	para "I've spent my life"

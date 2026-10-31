@@ -218,11 +218,13 @@ SchoolGirlSharonBeatenText:
 	done
 
 SchoolGirlSharonAfterBattleText:
-	text "SMEARGLE paints;"
-	line "ALTARIA sings."
+	text "SMEARGLE painted a"
+	line "mustache on my"
+	cont "portrait of"
+	cont "ALTARIA."
 
-	para "Our art club never"
-	line "runs out of ideas."
+	para "It's an"
+	line "improvement."
 	done
 
 CosplayerPearlSeenText:
@@ -251,12 +253,12 @@ CosplayerPixieBeatenText:
 	done
 
 CosplayerPixieAfterBattleText:
-	text "SMEARGLE paints"
-	line "my costume plans."
+	text "I spent my whole"
+	line "allowance on this"
+	cont "wig."
 
-	para "SYLVEON helps me"
-	line "choose the ribbons"
-	cont "for each outfit!"
+	para "It still won't"
+	line "stay on!"
 	done
 
 MtMoonSquareSignText:

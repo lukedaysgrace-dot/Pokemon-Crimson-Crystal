@@ -95,8 +95,9 @@ UtilityMoveTutorIntroText:
 	line "battle moves!"
 
 	para "Try SUBSTITUTE or"
-	line "SLEEP TALK, or"
-	cont "support your team."
+	line "SLEEP TALK, or a"
+	cont "move that supports"
+	cont "your team."
 
 	para "My fee is ¥1000."
 	line "Interested?"

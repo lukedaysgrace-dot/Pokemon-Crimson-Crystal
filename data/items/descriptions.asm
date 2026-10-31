@@ -919,8 +919,8 @@ DragonScaleDesc:
 	next "item.@"
 
 BerserkGeneDesc:
-	db   "MEWTWO: ATK & SATK"
-	next "up below half HP.@"
+	db   "Low HP: MEWTWO's"
+	next "ATK & SPCL.ATK up.@"
 
 SacredAshDesc:
 	db   "Fully revives all"
@@ -1097,35 +1097,35 @@ POLKADOT_BOWDesc:
 	next "type moves. (HOLD)@"
 
 SURF_MAILDesc:
-	db "A letter for a MON"
+	db "Mail for a #MON"
 	next "to hold.@"
 
 LITEBLUEMAILDesc:
-	db "A letter for a MON"
+	db "Mail for a #MON"
 	next "to hold.@"
 
 PORTRAITMAILDesc:
-	db "A letter for a MON"
+	db "Mail for a #MON"
 	next "to hold.@"
 
 LOVELY_MAILDesc:
-	db "A letter for a MON"
+	db "Mail for a #MON"
 	next "to hold.@"
 
 MORPH_MAILDesc:
-	db "A letter for a MON"
+	db "Mail for a #MON"
 	next "to hold.@"
 
 BLUESKY_MAILDesc:
-	db "A letter for a MON"
+	db "Mail for a #MON"
 	next "to hold.@"
 
 MUSIC_MAILDesc:
-	db "A letter for a MON"
+	db "Mail for a #MON"
 	next "to hold.@"
 
 MIRAGE_MAILDesc:
-	db "A letter for a MON"
+	db "Mail for a #MON"
 	next "to hold.@"
 
 SILVER_LEAFDesc:
@@ -1197,16 +1197,16 @@ WHITE_HERBDesc:
 	next "stats once. (HOLD)@"
 
 BLACK_SLUDGEDesc:
-	db "Heals POISON types"
-	next "hurts others. HOLD@"
+	db "POISON types heal,"
+	next "others hurt.(HOLD)@"
 
 LIGHT_CLAYDesc:
-	db "Makes screens last"
-	next "eight turns. HOLD@"
+	db "Screens last eight"
+	next "turns. (HOLD)@"
 
 THROAT_SPRAYDesc:
 	db "Sound moves raise"
-	next "SPCL.ATK up. HOLD@"
+	next "SPCL.ATK. (HOLD)@"
 
 PUNCHING_GLOVEDesc:
 	db "Boosts punches. No"
@@ -1225,8 +1225,8 @@ BIG_ROOTDesc:
 	next "from a foe. (HOLD)@"
 
 BLUNDER_POLICYDesc:
-	db "Miss to sharply"
-	next "raise SPEED. HOLD@"
+	db "A miss sharply"
+	next "ups SPEED. (HOLD)@"
 
 
 CUSTAP_BERRYDesc:

@@ -365,9 +365,10 @@ BeautySamanthaBeatenText:
 	done
 
 BeautySamanthaAfterBattleText:
-	text "I taught MEOWTH"
-	line "moves for taking"
-	cont "on any type…"
+	text "I taught MEOWTH to"
+	line "bite and scratch"
+	cont "its way through"
+	cont "anything…"
 	done
 
 GoldenrodGymGuyText:

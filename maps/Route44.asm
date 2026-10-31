@@ -529,8 +529,7 @@ BoarderSpencerSeenText:
 	done
 
 BoarderSpencerBeatenText:
-	text "Wiped out…"
-	line "Total wipeout."
+	text "Total wipeout!"
 	done
 
 BoarderSpencerAfterBattleText:

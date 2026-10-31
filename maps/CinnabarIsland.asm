@@ -170,18 +170,14 @@ CinnabarIslandBlueCloakBeforeText:
 	cont "heard you beat RED"
 	cont "on MT.SILVER."
 
-	para "The last time we"
-	line "fought, I knew"
-	cont "there was some-"
-	cont "thing different"
-	cont "about you."
+	para "Back at VIRIDIAN,"
+	line "I called JOHTO's"
+	cont "GYMS pathetic."
 
-	para "I've wanted this"
-	line "since VIRIDIAN."
-
-	para "You beat me"
-	line "there. Fair and"
-	cont "square."
+	para "Then you beat me."
+	line "Fair and square. I"
+	cont "was wrong about"
+	cont "you."
 
 	para "I've gone over"
 	line "that battle more"
@@ -189,11 +185,10 @@ CinnabarIslandBlueCloakBeforeText:
 	cont "admit."
 
 	para "I know where I"
-	line "went wrong."
-
-	para "And I'm not the"
-	line "same trainer you"
-	cont "fought before."
+	line "went wrong. And"
+	cont "I'm not the same"
+	cont "trainer you fought"
+	cont "before."
 
 	para "No GYM this time."
 	line "No BADGE."

@@ -320,8 +320,7 @@ BattleText_BerserkGeneRaisedBoth:
 	text "<USER>'s"
 	line "BERSERK GENE"
 	cont "raised its ATTACK"
-	cont "and SPECIAL"
-	cont "ATTACK!"
+	cont "and SPCL.ATK!"
 	prompt
 
 BattleText_BerserkGeneRaisedAttack:
@@ -333,8 +332,8 @@ BattleText_BerserkGeneRaisedAttack:
 BattleText_BerserkGeneRaisedSpAttack:
 	text "<USER>'s"
 	line "BERSERK GENE"
-	cont "raised its SPECIAL"
-	cont "ATTACK!"
+	cont "raised its"
+	cont "SPCL.ATK!"
 	prompt
 
 BattleText_ItemsCantBeUsedHere:
@@ -1067,15 +1066,15 @@ SwappedAbilitiesText:
 	prompt
 
 ToxicSpikesText:
-	text "Toxic spikes"
+	text "TOXIC SPIKES"
 	line "scattered around"
 	cont "<TARGET>!"
 	prompt
 
 BlewToxicSpikesText:
 	text "<USER>"
-	line "blew away Toxic"
-	cont "Spikes!"
+	line "blew away TOXIC"
+	cont "SPIKES!"
 	prompt
 
 TrickRoomText:
@@ -1181,7 +1180,7 @@ ItStartedToHailText:
 
 PeltedByHailText:
 	text "<USER>"
-	line "is pelted by HAIL!"
+	line "is pelted by hail!"
 	prompt
 
 BracedItselfText:

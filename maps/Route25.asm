@@ -740,13 +740,13 @@ SchoolGirlNadiaSeenText:
 	line "us to win a"
 	cont "fabulous prize!"
 
-	para "I built my team"
-	line "to surprise you."
+	para "I built my team to"
+	line "surprise you."
 	done
 
 SchoolGirlNadiaBeatenText:
-	text "My design needs"
-	line "a redesign!"
+	text "Back to the"
+	line "drawing board!"
 	done
 
 SchoolGirlNadiaAfterBattleText:
@@ -778,7 +778,9 @@ PokefanmDustinAfterBattleText:
 	done
 
 CosplayerNoelleSeenText:
-	text "My mascot costume"
+	text "I'm No. 3!"
+
+	para "My mascot costume"
 	line "is ready for its"
 	cont "big battle debut!"
 	done
@@ -788,12 +790,12 @@ CosplayerNoelleBeatenText:
 	done
 
 CosplayerNoelleAfterBattleText:
-	text "SMEARGLE sketches"
-	line "my mascot designs."
+	text "It's really hot"
+	line "inside this mascot"
+	cont "head."
 
-	para "A surfer RAICHU,"
-	line "a winter GLACEON…"
-	cont "So many costumes!"
+	para "I can barely see"
+	line "out of it!"
 	done
 
 LassPaigeSeenText:
@@ -821,8 +823,8 @@ JugglerSilasSeenText:
 	done
 
 JugglerSilasBeatenText:
-	text "How could I drop"
-	line "the ball?"
+	text "Whoa! Everything's"
+	line "falling!"
 	done
 
 JugglerSilasAfterBattleText:

@@ -214,21 +214,23 @@ MovementData_0x74555:
 	step_end
 
 TamerDevinSeenText:
-	text "I've raised fierce"
-	line "#MON to face"
-	cont "any danger!"
+	text "My GYARADOS chewed"
+	line "through its last"
+	cont "three # BALLS!"
 	done
 
 TamerDevinBeatenText:
-	text "They respect your"
-	line "strength!"
+	text "Hey! Nobody bite"
+	line "the trainer!"
 	done
 
 TamerDevinAfterBattleText:
-	text "A strong #MON"
-	line "needs trust as"
-	cont "well as"
-	cont "discipline."
+	text "I keep my"
+	line "ARCANINE's food"
+	cont "bowl bolted to the"
+	cont "floor."
+
+	para "Long story."
 	done
 
 TamerRolfSeenText:
@@ -243,8 +245,12 @@ TamerRolfBeatenText:
 	done
 
 TamerRolfAfterBattleText:
-	text "Power means little"
-	line "without control."
+	text "I dug TYRANTRUM's"
+	line "fossil out of this"
+	cont "very cave."
+
+	para "It's been grumpy"
+	line "ever since."
 	done
 
 BattleGirlKiraSeenText:
@@ -254,8 +260,8 @@ BattleGirlKiraSeenText:
 	done
 
 BattleGirlKiraBeatenText:
-	text "You broke through"
-	line "my guard!"
+	text "My legs gave out"
+	line "first!"
 	done
 
 BattleGirlKiraAfterBattleText:
@@ -272,8 +278,8 @@ BattleGirlMinaSeenText:
 	done
 
 BattleGirlMinaBeatenText:
-	text "Your form is"
-	line "incredible!"
+	text "So that's how you"
+	line "made it this far!"
 	done
 
 BattleGirlMinaAfterBattleText:
@@ -296,10 +302,12 @@ CooltrainerMAdrianBeatenText:
 	done
 
 CooltrainerMAdrianAfterBattleText:
-	text "Knowing the right"
-	line "move is one thing."
-	cont "Picking the right"
-	cont "moment is harder."
+	text "I counted. I had a"
+	line "super effective"
+	cont "move for every one"
+	cont "of yours."
+
+	para "I still lost."
 	done
 
 CooltrainerFSeleneSeenText:
@@ -346,18 +354,14 @@ VictoryRoadRivalBeforeText:
 VictoryRoadRivalDefeatText:
 	text "…I couldn't win…"
 
-	para "I gave it every-"
-	line "thing I had…"
-
-	para "What you possess,"
-	line "and what I lack…"
+	para "I gave it"
+	line "everything I had…"
 
 	para "Since MT.MOON,"
 	line "we've come so far."
 
-	para "I believe in my"
-	line "#MON. We'll keep"
-	cont "growing together."
+	para "It still wasn't"
+	line "enough."
 	done
 
 VictoryRoadRivalAfterText:
@@ -365,14 +369,7 @@ VictoryRoadRivalAfterText:
 	line "up on becoming the"
 	cont "greatest trainer…"
 
-	para "We'll train"
-	line "together and"
-	cont "become stronger."
-
-	para "When I do, I will"
-	line "challenge you."
-
-	para "Next time, we'll"
+	para "Next time, I'll"
 	line "win."
 
 	para "…Humph! You keep"

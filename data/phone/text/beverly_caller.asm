@@ -13,11 +13,10 @@ UnknownText_0x1746c3:
 	line "across a wild"
 	cont "SNUBBULL recently."
 
-	para "My GRANBULL, I"
+	para "My SNUBBULL, I"
 	line "assure you, was"
-
-	para "far cuter than the"
-	line "wild one."
+	cont "far cuter than the"
+	cont "wild one."
 	done
 
 UnknownText_0x174734:

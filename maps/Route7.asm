@@ -62,8 +62,8 @@ BattleGirlMihoSeenText:
 	text "AYA and I train"
 	line "out here together."
 
-	para "Let's see how you"
-	line "keep up!"
+	para "Let's see if you"
+	line "can keep up!"
 	done
 
 BattleGirlMihoBeatenText:

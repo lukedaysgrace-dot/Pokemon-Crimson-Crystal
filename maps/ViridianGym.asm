@@ -205,9 +205,10 @@ LeaderBlueEpilogueText:
 	done
 
 CooltrainermLarrySeenText:
-	text "A trainer's real"
-	line "strength shows in"
-	cont "a long battle."
+	text "BLUE makes us run"
+	line "laps around"
+	cont "VIRIDIAN before"
+	cont "breakfast!"
 	done
 
 CooltrainermLarryBeatenText:
@@ -216,15 +217,20 @@ CooltrainermLarryBeatenText:
 	done
 
 CooltrainermLarryAfterBattleText:
-	text "I keep my team's"
-	line "stamina up with"
-	cont "steady training."
+	text "My SCOLIPEDE can"
+	line "outrun me now."
+
+	para "That's a little"
+	line "embarrassing."
 	done
 
 CooltrainermSnowSeenText:
-	text "I train here every"
-	line "day to sharpen my"
-	cont "battling skills."
+	text "BLUE picked every"
+	line "trainer in this"
+	cont "GYM himself."
+
+	para "Let's see if you'd"
+	line "make the cut!"
 	done
 
 CooltrainermSnowBeatenText:
@@ -233,12 +239,12 @@ CooltrainermSnowBeatenText:
 	done
 
 CooltrainermSnowAfterBattleText:
-	text "Raw power isn't"
-	line "enough at this"
-	cont "level."
+	text "BLUE still won't"
+	line "tell me why he"
+	cont "picked me."
 
-	para "You have to know"
-	line "your #MON."
+	para "I think it was my"
+	line "LAPRAS."
 	done
 
 CooltrainermCyanideSeenText:
