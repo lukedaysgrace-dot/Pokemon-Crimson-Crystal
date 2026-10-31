@@ -71,7 +71,7 @@ BattleAnimations::
 	banim BattleAnim_HornAttack_PC4 ; HORN_ATTACK (was BattleAnim_HornAttack)
 	banim BattleAnim_FuryAttack
 	banim BattleAnim_HornDrill
-	banim BattleAnim_Tackle_SourApple
+	banim BattleAnim_Tackle
 	banim BattleAnim_BodySlam_PC3 ; BODY_SLAM (was BattleAnim_BodySlam)
 	banim BattleAnim_Wrap_PC3 ; WRAP (was BattleAnim_Wrap)
 	banim BattleAnim_TakeDown_PC3 ; TAKE_DOWN (was BattleAnim_TakeDown)

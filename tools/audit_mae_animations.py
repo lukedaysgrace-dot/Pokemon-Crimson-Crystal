@@ -39,7 +39,7 @@ CHANGED = {'BUBBLE', 'EGG_BOMB', 'SPIKE_CANNON', 'BARRAGE', 'FLAME_WHEEL',
 SOUR_APPLE = {'WHIRLWIND', 'TWISTER', 'FIRE_FANG', 'ICE_FANG', 'THUNDER_FANG',
     'BRAVE_BIRD', 'VOLT_TACKLE', 'LEAF_STORM', 'ROCK_POLISH',
     'HEAD_SMASH', 'PSYCHO_CUT', 'CROSS_POISON', 'STEALTH_ROCK', 'DEFOG',
-    'GUST', 'TACKLE', 'SHADOW_BALL', 'SHADOW_SNEAK', 'POISON_FANG',
+    'GUST', 'SHADOW_BALL', 'SHADOW_SNEAK', 'POISON_FANG',
     'BUG_BUZZ', 'POISON_JAB', 'VACUUM_WAVE', 'DISCHARGE', 'LAVA_PLUME',
     'WISH'}
 CHANGED |= SOUR_APPLE
@@ -52,6 +52,7 @@ ADAPTATIONS = {
 
 # Each exception describes the visible improvement or the required engine fix.
 PRESERVE = {
+    'TACKLE': 'User requested the original Pokemon Crystal animation from pret/pokecrystal.',
     **dict.fromkeys(('ARMOR_CANNON', 'APPLE_ACID', 'FIERY_DANCE', 'FOUL_PLAY',
                     'GIGA_HAMMER', 'GRAV_APPLE', 'HEAT_CRASH', 'INFERNAL_PARADE',
                     'INFESTATION', 'QUIVER_DANCE', 'SOLAR_BLADE', 'TAIL_GLOW'),

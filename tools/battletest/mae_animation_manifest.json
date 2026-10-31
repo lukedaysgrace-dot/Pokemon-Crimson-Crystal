@@ -5,9 +5,9 @@
   "date": "2026-10-28",
   "scope": "Shared move scripts and reachable helper bodies; engine adaptations and upgraded assets retained.",
   "counts": {
-    "matching": 161,
-    "preserved": 162,
-    "updated": 37
+    "matching": 160,
+    "preserved": 164,
+    "updated": 36
   },
   "moves": [
     {
@@ -300,12 +300,12 @@
     },
     {
       "move": "TACKLE",
-      "local_label": "BattleAnim_Tackle_SourApple",
-      "local_file": "data/moves/animations7.asm",
+      "local_label": "BattleAnim_Tackle",
+      "local_file": "data/moves/animations.asm",
       "reference_label": "BattleAnim_Tackle",
-      "status": "updated",
-      "reason": "Completed Pokeorange animation; retain compatible upgraded engine graphics.",
-      "script_sha256": "f2e653c1b012001072e62ff997a8a81b117398a553bb1343353fb4ddc6b0121b"
+      "status": "preserved",
+      "reason": "User requested the original Pokemon Crystal animation from pret/pokecrystal.",
+      "script_sha256": "5038753505c28a850910df7f44d06b0591b4d31646023d9ff24ab2dfbb7e3ae7"
     },
     {
       "move": "BODY_SLAM",
@@ -3364,7 +3364,7 @@
     "gfx/battle_anims/smokepuffbig_sour_apple.png": "5ac5a0b572c4a5dc2f4e79d58f843371cc7cb6f9cfe7fbbc18f47c4e33e429ff",
     "gfx/battle_anims/swirl_sour_apple.png": "4ae0d2b04b66002996d61f2aabdbff3c9b51313a4d80927393196dfd249e8959",
     "gfx/battle_anims/vortex_sour_apple.png": "ca14cc1e12276e97ffa5cab1ce0eb75abd3c657f204224615b44cebdff6f817f",
-    "data/moves/animations.asm": "7f16eae35086c3e406c982671f41bb1ccb3585bdbe9140395774e2a9951d5a0b",
+    "data/moves/animations.asm": "b04453778f8e0c7ca40825f0926e6de151a4990087143af1b7e9f0cd46548f1d",
     "data/moves/animations2.asm": "be1524dc9d960b2ff661b628db604e9300a3d10da4425ede16dcb1e10db99b34",
     "data/moves/animations3.asm": "940740b622ffd94d6b98342a4ad08a515b33abc09cfb38fe0ffd7f7ed9f2bada",
     "data/moves/animations4.asm": "04fc84c077d33019db382856ab7af203bfc7f9d4c3b768d3dc9042171e395f19",
