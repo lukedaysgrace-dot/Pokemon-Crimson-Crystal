@@ -59,11 +59,11 @@ def main():
 
     def bag(rows):
         write('wNumItems', len(rows))
-        write('wItems', [value for name, quantity in rows for value in (items[name], quantity)] + [255])
+        write('wItems', [value for name, quantity in rows for value in (*divmod(items[name], 256), quantity)] + [255])
 
     def quantity(name):
-        return sum(h.rd(h.s('wItems') + index * 2 + 1) for index in range(read('wNumItems'))
-                   if h.rd(h.s('wItems') + index * 2) == items[name])
+        return sum(h.rd(h.s('wItems') + index * 3 + 2) for index in range(read('wNumItems'))
+                   if int.from_bytes(h.rd(h.s('wItems') + index * 3, 2), 'big') == items[name])
 
     def flag(drink, value=None):
         index = events['EVENT_CELADON_GIRL_GOT_' + drink]

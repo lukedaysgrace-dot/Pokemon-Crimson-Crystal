@@ -282,7 +282,7 @@ class Controls:
             # Hard mode permits only Ball-pocket items in the battle pack.
             return False
         healing = {'POTION', 'SUPER_POTION', 'HYPER_POTION', 'MAX_POTION', 'FULL_RESTORE'}
-        inventory = [self.h.con.items_by_id.get(self.m.read('wItems', i * 2), '')
+        inventory = [self.h.con.items_by_id.get((self.m.read('wItems', i * 3) << 8 | self.m.read('wItems', i * 3 + 1)), '')
                      for i in range(self.m.read('wNumItems'))]
         available = [i for i, name in enumerate(inventory) if name in healing]
         if not available:

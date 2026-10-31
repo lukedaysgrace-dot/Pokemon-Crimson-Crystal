@@ -127,6 +127,9 @@ class Sweep:
         pics = re.findall(r'^\s*dba\s+(\w+)', (ROOT / 'data/trainers/pic_pointers.asm').read_text(), re.M)
         files = dict(re.findall(r'^(\w+):\s+INCBIN "([^"]+)"', (ROOT / 'gfx/pics.asm').read_text(), re.M))
         palettes = re.findall(r'^INCBIN "([^"]+)"', (ROOT / 'data/trainers/palettes.asm').read_text(), re.M)
+        # Reserved classes have no trainer names yet, so their intro text is placeholder data.
+        unused = set(re.findall(r'^\s*dba\s+\w+\s*;\s*(\w+)\s*\(no trainers',
+                                (ROOT / 'data/trainers/party_pointers.asm').read_text(), re.M))
         self.check(len(pics) == len(h.con.trainer_classes) - 1, 'all trainer classes have a picture entry')
         captured = []
         ready = []
@@ -173,7 +176,8 @@ class Sweep:
                         h.tick(8)
                         h.pb.screen.image.save(self.output / f'battle-{name.lower()}-fight.png')
                         self.check(m.read('wBattleMode') == 2, name + ': reached trainer Fight menu')
-                        self.check(not h.text_overflows, name + ': trainer introduction fits textbox')
+                        if name not in unused:
+                            self.check(not h.text_overflows, name + ': trainer introduction fits textbox')
                         self.result['battles'].append(name)
                         print(f'PASS BATTLE SPRITE {name} ({klass})', flush=True)
                         break

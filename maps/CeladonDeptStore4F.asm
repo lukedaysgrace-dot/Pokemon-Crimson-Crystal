@@ -12,13 +12,6 @@ CeladonDeptStore4F_MapScripts:
 CeladonDeptStore4FClerkScript:
 	faceplayer
 	opentext
-	writetext CeladonDeptStore4FClerkScriptNewStockText
-	yesorno
-	iffalse .regular
-	pokemart MARTTYPE_STANDARD, MART_BATTLE_ITEMS_2
-	closetext
-	end
-.regular
 	writetext CeladonDeptStore4FExpandedStockText
 	yesorno
 	iffalse .OriginalStock
@@ -102,9 +95,4 @@ CeladonDeptStore4F_MapEvents:
 CeladonDeptStore4FExpandedStockText:
 	text "Would you like to"
 	line "see our new stock?"
-	done
-
-CeladonDeptStore4FClerkScriptNewStockText:
-	text "Browse our new"
-	line "battle items?"
 	done

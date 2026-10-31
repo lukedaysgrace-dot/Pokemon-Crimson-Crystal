@@ -17,7 +17,7 @@ from ui_checks import tile_text
 
 GEAR = ('EVIOLITE', 'ROCKY_HELMET', 'AIR_BALLOON', 'MUSCLE_BAND',
         'WISE_GLASSES', 'EXPERT_BELT', 'FLAME_ORB', 'TOXIC_ORB',
-        'ASSAULT_VEST', 'LIFE_ORB')
+        'ASSAULT_VEST', 'LIFE_ORB', 'WIDE_LENS')
 EXPENSIVE = {'ROCKY_HELMET', 'ASSAULT_VEST', 'LIFE_ORB'}
 SUPPLIES = ('RAGECANDYBAR', 'GREAT_BALL', 'SUPER_POTION', 'HYPER_POTION',
             'ANTIDOTE', 'PARLYZ_HEAL', 'SUPER_REPEL', 'REVIVE', 'FLOWER_MAIL')
@@ -96,10 +96,14 @@ def main():
         pb.save_state(selector)
         c.press('down', hold=4, wait=20)
         c.press('a', hold=4, wait=80)
-        expected = bytes([10, *(h.con.items[name] for name in GEAR), 255])
-        assert m.read_bytes('wCurMart', len(expected)) == expected
-        for index, item in enumerate(GEAR, 1):
-            bcd = m.read_bytes(f'wMartItem{index}BCD', 3).hex()
+        # wCurMart holds runtime item IDs (16-bit indexes are remapped), so
+        # check the count/terminator here and the real indexes via purchases.
+        stock = m.read_bytes('wCurMart', len(GEAR) + 2)
+        assert stock[0] == len(GEAR) and stock[-1] == 255 and 255 not in stock[1:-1], stock
+        # wMartItem1BCD..wMartItem10BCD continue into wMartExtraPrices.
+        prices = m.read_bytes('wMartItem1BCD', 3 * len(GEAR))
+        for index, item in enumerate(GEAR):
+            bcd = prices[index * 3:index * 3 + 3].hex()
             assert int(bcd) == (30000 if item in EXPENSIVE else 20000), (item, bcd)
         pb.screen.image.save(str(output / 'held-items.png'))
         m.write_bytes('wMoney', (999999).to_bytes(3, 'big'))
@@ -118,7 +122,7 @@ def main():
                 c.press('a', hold=4, wait=90)
             price = 30000 if item in EXPENSIVE else 20000
             assert int.from_bytes(m.read_bytes('wMoney', 3), 'big') == 999999 - price, (item, m.read_bytes('wMoney', 3), tile_text(h))
-            assert m.read_bytes('wNumItems', 4) == bytes([1, h.con.items[item], 1, 255]), item
+            assert m.read_bytes('wNumItems', 5) == bytes([1, *divmod(h.con.items[item], 256), 1, 255]), item
             print(f'PASS: purchase {item} for {price}', flush=True)
 
         gear_menu.seek(0)

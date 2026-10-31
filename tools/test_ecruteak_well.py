@@ -53,11 +53,11 @@ def main():
 
     def bag(rows):
         write('wNumItems', len(rows))
-        write('wItems', [v for name, count in rows for v in (items[name], count)] + [255])
+        write('wItems', [v for name, count in rows for v in (*divmod(items[name], 256), count)] + [255])
 
     def candy_count():
-        return sum(h.rd(h.s('wItems') + i * 2 + 1) for i in range(read('wNumItems'))
-                   if h.rd(h.s('wItems') + i * 2) == items['RARE_CANDY'])
+        return sum(h.rd(h.s('wItems') + i * 3 + 2) for i in range(read('wNumItems'))
+                   if int.from_bytes(h.rd(h.s('wItems') + i * 3, 2), 'big') == items['RARE_CANDY'])
 
     def script(name, accept=True):
         bank, address = h.sym[name]

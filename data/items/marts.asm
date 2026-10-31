@@ -39,10 +39,6 @@ Marts:
 	dw MartExpanded1
 	dw MartExpanded2
 	dw MartExpanded3
-	dw MartBattleItems0
-	dw MartBattleItems1
-	dw MartBattleItems2
-
 .End
 
 MartCherrygrove:
@@ -403,7 +399,7 @@ MartUnderground:
 	dw -1 ; end
 
 MartMahoganyHeldItems:
-	db 12 ; # items
+	db 11 ; # items
 	dw EVIOLITE
 	dw ROCKY_HELMET
 	dw AIR_BALLOON
@@ -415,7 +411,6 @@ MartMahoganyHeldItems:
 	dw ASSAULT_VEST
 	dw LIFE_ORB
 	dw WIDE_LENS
-	dw BRIGHTPOWDER
 	dw -1 ; end
 
 DefaultMart:
@@ -461,33 +456,3 @@ MartExpanded3:
 	dw PEARL_STRING
 	dw -1
 
-MartBattleItems0:
-	db 7
-	dw COVERT_CLOAK
-	dw CLEAR_AMULET
-	dw METRONOME_ITEM
-	dw HEAVY_DUTY_BOOTS
-	dw RED_CARD
-	dw EJECT_BUTTON
-	dw POWER_HERB
-	dw -1
-
-MartBattleItems1:
-	db 7
-	dw WHITE_HERB
-	dw BLACK_SLUDGE
-	dw LIGHT_CLAY
-	dw THROAT_SPRAY
-	dw PUNCHING_GLOVE
-	dw QUICK_POWDER
-	dw SAFETY_GOGGLES
-	dw -1
-
-MartBattleItems2:
-	db 5
-	dw BIG_ROOT
-	dw BLUNDER_POLICY
-	dw GOLD_BERRY
-	dw CUSTAP_BERRY
-	dw SALAC_BERRY
-	dw -1

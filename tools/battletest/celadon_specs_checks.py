@@ -72,8 +72,8 @@ def main():
 
     def quantity():
         item = h.con.item_id('CHOICE_SPECS')
-        return sum(m.read('wItems', i * 2 + 1) for i in range(m.read('wNumItems'))
-                   if m.read('wItems', i * 2) == item)
+        return sum(m.read('wItems', i * 3 + 2) for i in range(m.read('wNumItems'))
+                   if (m.read('wItems', i * 3) << 8 | m.read('wItems', i * 3 + 1)) == item)
 
     def obj(index):
         return next((o for o in c.objects() if o['map_object'] == index), None)
@@ -129,7 +129,7 @@ def main():
         stock = [i for i in range(1,194) if i not in excluded
                  and pb.memory[bank, address + (i-1)*7 + 5] == 1][:40]
         m.write('wNumItems', 40)
-        m.write_bytes('wItems', bytes(v for i in stock for v in (i,1)) + b'\xff')
+        m.write_bytes('wItems', bytes(v for i in stock for v in (i >> 8, i & 255, 1)) + b'\xff')
 
     try:
         new_game(h, 0)
@@ -229,7 +229,7 @@ def main():
             for name in reset_flags[:3]:
                 event(name, True)
             m.write('wNumItems', 1)
-            m.write_bytes('wItems', [h.con.item_id('CHOICE_SPECS'), older_copies+1, 255])
+            m.write_bytes('wItems', [*divmod(h.con.item_id('CHOICE_SPECS'), 256), older_copies+1, 255])
             enter(33,11)
             check(obj(10) is None and obj(11) is None and obj(12) is None and quantity() == older_copies,
                   'Old rematch save did not remove only the encounter pickup and hide the officer')
@@ -254,7 +254,7 @@ def main():
             m.write('wLastSpawnMapNumber',number)
             m.write_bytes('wMoney',(10000).to_bytes(3,'big'))
             m.write('wNumItems',int(bool(older_copies)))
-            m.write_bytes('wItems', [h.con.item_id('CHOICE_SPECS'),older_copies,255] if older_copies else [255])
+            m.write_bytes('wItems', [*divmod(h.con.item_id('CHOICE_SPECS'), 256),older_copies,255] if older_copies else [255])
             texts.clear()
             enter(33,lane)
             c.press('right',hold=12,wait=36)
@@ -282,7 +282,7 @@ def main():
             check(quantity() == older_copies and not event('EVENT_GOT_CELADON_CHOICE_SPECS'),
                   'Restarted chase awards Specs before pickup')
             print(f'PASS native officer loss in lane {lane}, full restart in lane {retry_lane}',flush=True)
-        check(h.sym.addr('wCurBox') == 0xdbb9, 'Save layout shifted')
+        check(h.sym.addr('wCurBox') == 0xdbbb, 'Save layout shifted')
         print(f'CELADON SPECS: {checks} checks passed', flush=True)
     finally:
         if active[0]:

@@ -463,7 +463,7 @@ def check_rom(h):
                   'Judging did not end the contest and mark Friday entry used')
             check(read('wFishingContestPrize') == 0, 'Delivered prize remained pending')
             pocket = 'wBalls' if rank == 0 else 'wItems'
-            check(h.rd(h.s(pocket), 2) == bytes([items[prize], 1]), f'Wrong prize for placement {rank}')
+            check((h.rd(h.s(pocket), 3) == bytes([*divmod(items[prize], 256), 1])) if pocket == 'wItems' else (h.rd(h.s(pocket), 2) == bytes([items[prize], 1])), f'Wrong prize for placement {rank}')
             check(read('wMapNumber') == GATE, 'Results returned to the wrong gate')
             check((read('wXCoord'), read('wYCoord')) == (7, 5),
                   'Player did not stand at the right end of the judging lineup')
@@ -478,8 +478,8 @@ def check_rom(h):
             write('wCurItem', item)
             h.call('CheckItemPocket')
             if read('wItemAttributeParamBuffer') == 1 and item != items['WATER_STONE']:
-                full.extend([item, 99])
-                if len(full) == 80:
+                full.extend([item >> 8, item & 255, 99])
+                if len(full) == 120:
                     break
         write('wNumItems', 40)
         write('wItems', full + [255])
@@ -492,7 +492,7 @@ def check_rom(h):
         write('wNumItems', 0)
         write('wItems', [255])
         script('OlivineFishingCoveGateOfficerScript')
-        check(read('wFishingContestPrize') == 0 and h.rd(h.s('wItems'), 2) == bytes([items['WATER_STONE'], 1]),
+        check(read('wFishingContestPrize') == 0 and h.rd(h.s('wItems'), 3) == bytes([*divmod(items['WATER_STONE'], 256), 1]),
               'Guard did not deliver the held prize after making Bag space')
 
         for exit_script in ['BugCatchingContestReturnToGateScript', 'BugCatchingContestOverScript',

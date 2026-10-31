@@ -178,7 +178,7 @@ def main():
                 texts = run()
                 check(texts[-1] == h.sym['EcruteakCityWishingWellRewardText'] and event(candy),
                       'unclaimed Rare Candy was lost after the shard exchange')
-                check(read('wNumItems') == 1 and h.rd(h.s('wItems')) == items['RARE_CANDY'],
+                check(read('wNumItems') == 1 and int.from_bytes(h.rd(h.s('wItems'), 2), 'big') == items['RARE_CANDY'],
                       'later coin wish did not award Rare Candy')
                 texts = run()
                 check(texts[-1] == h.sym['EcruteakCityWishingWellNothingText'],

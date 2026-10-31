@@ -244,7 +244,7 @@ def main():
         check(not event('EVENT_MT_MOON_WISHING_STAR_CRASHED'), 'Dance alone does not trigger the meteor')
         before_loot = snapshot()
         m.write('wNumItems', 40)
-        m.write_bytes('wItems', [value for _ in range(40) for value in (items['POTION'], 99)] + [255])
+        m.write_bytes('wItems', [value for _ in range(40) for value in (*divmod(items['POTION'], 256), 99)] + [255])
         loot_stone()
         check(not event('EVENT_MT_MOON_WISHING_STAR_CRASHED')
               and not event('EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE'), 'Full Bag neither spends the pickup nor triggers a crash')
@@ -254,7 +254,7 @@ def main():
         check(event('EVENT_MT_MOON_WISHING_STAR_CRASHED'), 'Successful Moon Stone pickup triggers the crash')
         check(sfx['SFX_EGG_BOMB'] in sounds, 'Crash plays the explosion sound')
         check(m.read_bytes('wOBPals1', 64) == palettes_before_crash, 'Shooting star restores the overworld object palettes')
-        check(event('EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE') and m.read('wItems') == items['MOON_STONE'], 'Moon Stone is awarded before the crash')
+        check(event('EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE') and (m.read('wItems') << 8 | m.read('wItems', 1)) == items['MOON_STONE'], 'Moon Stone is awarded before the crash')
         check(len(star_positions) == 56 and star_positions[0] == (0, 8) and star_positions[-1] == (220, 200),
               'Faster shooting star and its tail leave the bottom-right in 56 frames')
         check(len(star_priority) == 56 and all(star_priority),
@@ -277,7 +277,8 @@ def main():
         check(block(20, 14) == 0x9f, 'Crater survives map reload')
         check(not any(o['map_object'] == 4 for o in c.objects()), 'Meteor uses the tileset boulder without a fossil sprite')
         pb.screen.image.resize((640, 576)).save(output / 'crater-meteor.png')
-        c.go((20, 15))
+        # The meteor is a solid boulder now; step onto the crater rim beside it.
+        c.go((19, 14))
         until(idle, advance=True)
         check(not has_key('STAR_PIECE') and event('EVENT_MT_MOON_STAR_PIECE_VANISHED'), 'Approaching the meteor consumes STAR PIECE once')
         check(h.sym['MountMoonSquareStarPieceVanishesText'] in texts, 'Approach explains the vanishing key item')

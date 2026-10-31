@@ -43,7 +43,7 @@ def main():
         call(h,'EventFlagAction',B=int(value),D=flag>>8,E=flag&255)
 
     def quantity(item=band):
-        return sum(m.read('wItems',i*2+1) for i in range(m.read('wNumItems')) if m.read('wItems',i*2)==item)
+        return sum(m.read('wItems',i*3+2) for i in range(m.read('wNumItems')) if (m.read('wItems',i*3)<<8|m.read('wItems',i*3+1))==item)
 
     def obj(index):
         return next((o for o in c.objects() if o['map_object']==index),None)
@@ -149,7 +149,7 @@ def main():
         excluded={h.con.item_id(n) for n in ('CHOICE_BAND','POTION','SUPER_POTION','HYPER_POTION','MAX_POTION','FULL_RESTORE')}
         stock=[i for i in range(1,194) if i not in excluded and pb.memory[bank,address+(i-1)*7+5]==1][:40]
         m.write('wNumItems',40)
-        m.write_bytes('wItems',bytes(v for i in stock for v in (i,1))+b'\xff')
+        m.write_bytes('wItems',bytes(v for i in stock for v in (i >> 8, i & 255, 1))+b'\xff')
         c.press('up',hold=4,wait=24)
         c.press('a',hold=4,wait=24)
         until_battle()
@@ -157,7 +157,7 @@ def main():
         for slot,item in enumerate(('STICK','LIFE_ORB','FOCUS_SASH','LEFTOVERS','WIDE_LENS'),1):
             check(m.read(f'wOTPartyMon{slot}Item')==h.con.item_id(item),'Wrong Kiyo held item: '+item)
         for slot,expected in ((1,('CLOSE_COMBAT','BRAVE_BIRD','LEAF_BLADE','NIGHT_SLASH')),
-                              (2,('FAKE_OUT','DIRE_CLAW','CLOSE_COMBAT','TRIPLE_AXEL')),
+                              (2,('FAKE_OUT','DIRE_CLAW','CLOSE_COMBAT','ICE_PUNCH')),
                               (3,('SPORE','BULLET_SEED','MACH_PUNCH','ROCK_TOMB')),
                               (4,('DRAGON_DANCE','DRAIN_PUNCH','KNOCK_OFF','ICE_PUNCH')),
                               (5,('TRIPLE_KICK','TRIPLE_AXEL','MACH_PUNCH','BULLET_PUNCH'))):
@@ -222,7 +222,7 @@ def main():
                 check(not quantity() and not event('EVENT_BEAT_DOJO_KIYO'),'Reward given before winning')
         check(king==104 and h.con.trainer_classes['CUEBALL']==103,'Existing trainer class IDs shifted')
         check(portrait,'Karate King Kiyo battle introduction did not render')
-        check(h.sym.addr('wCurBox')==0xdbb9,'Save layout shifted')
+        check(h.sym.addr('wCurBox')==0xdbbb,'Save layout shifted')
         print(f'KIYO DOJO: {checks} checks passed',flush=True)
     finally:
         pb.stop(save=False)

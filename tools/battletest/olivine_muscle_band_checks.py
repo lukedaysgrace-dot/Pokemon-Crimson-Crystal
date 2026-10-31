@@ -38,8 +38,8 @@ def main():
         return bool(m.read('wEventFlags', flag // 8) & (1 << (flag % 8)))
 
     def quantity():
-        return sum(m.read('wItems', i*2+1) for i in range(m.read('wNumItems'))
-                   if m.read('wItems', i*2) == band)
+        return sum(m.read('wItems', i*3+2) for i in range(m.read('wNumItems'))
+                   if (m.read('wItems', i*3) << 8 | m.read('wItems', i*3+1)) == band)
 
     def obj(index):
         return next((o for o in c.objects() if o['map_object'] == index), None)
@@ -158,7 +158,7 @@ def main():
                      and pb.memory[bank, address+(item-1)*7+5] == 1][:40]
             check(len(stock) == 40, 'Cannot construct full item pocket')
             m.write('wNumItems', 40)
-            m.write_bytes('wItems', bytes(v for item in stock for v in (item, 1))+b'\xff')
+            m.write_bytes('wItems', bytes(v for item in stock for v in (item >> 8, item & 255, 1))+b'\xff')
             talk()
             check(not event() and quantity() == 0, 'Full Bag consumes or grants the one-time gift')
             machamp_graphics()
@@ -189,8 +189,8 @@ def main():
         finally:
             pb.hook_deregister(*h.sym['Script_writetext'])
         check(flag == 0x1ab, 'Gift did not reuse the unused saved event bit')
-        for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbb9,
-                               'wGameDataEnd': 0xdff3, 'sSaveDataEnd': 0xac36}.items():
+        for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbbb,
+                               'wGameDataEnd': 0xdff7, 'sSaveDataEnd': 0xac3a}.items():
             check(h.sym.addr(name) == expected, 'Save layout shifted: '+name)
         (output / 'results.json').write_text(json.dumps({'checks': checks, 'animation_frames': sorted(frames)}, indent=2)+'\n')
         print(f'OLIVINE MUSCLE BAND: {checks} checks passed', flush=True)

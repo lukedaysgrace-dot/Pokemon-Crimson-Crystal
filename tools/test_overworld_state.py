@@ -197,10 +197,10 @@ def main():
             write('wCurItem', value)
             h.call('CheckItemPocket')
             if read('wItemAttributeParamBuffer') == 1:
-                full += [value, 99]
-                if len(full) == 80:
+                full += [value >> 8, value & 255, 99]
+                if len(full) == 120:
                     break
-        if len(full) != 80:
+        if len(full) != 120:
             raise RuntimeError('could not construct full item pocket')
         for entry, reward, event_name in (
                 ('ElmGiveEverstoneScript', 'EVERSTONE', 'EVENT_GOT_EVERSTONE_FROM_ELM'),
@@ -215,16 +215,16 @@ def main():
             write('wItems', full + [255])
             script(entry)
             check(not event(event_name), f'{reward}: full pack lost pending reward')
-            check(read('wNumItems') == 40 and h.rd(h.s('wItems'), 81) == bytes(full + [255]), f'{reward}: failed gift changed inventory')
+            check(read('wNumItems') == 40 and h.rd(h.s('wItems'), 121) == bytes(full + [255]), f'{reward}: failed gift changed inventory')
             write('wNumItems', 0)
             write('wItems', [255])
             script(entry)
             check(event(event_name), f'{reward}: retry did not complete')
-            check(read('wNumItems') == 1 and h.rd(h.s('wItems'), 3) == bytes([items[reward], 1, 255]), f'{reward}: retry inventory incorrect')
+            check(read('wNumItems') == 1 and h.rd(h.s('wItems'), 4) == bytes([*divmod(items[reward], 256), 1, 255]), f'{reward}: retry inventory incorrect')
             if reward == 'EVERSTONE':
                 entry = 'ProfElmScript'
             script(entry)
-            check(read('wNumItems') == 1 and h.rd(h.s('wItems'), 3) == bytes([items[reward], 1, 255]), f'{reward}: duplicate reward on next conversation')
+            check(read('wNumItems') == 1 and h.rd(h.s('wItems'), 4) == bytes([*divmod(items[reward], 256), 1, 255]), f'{reward}: duplicate reward on next conversation')
 
         print('[all fruit trees: full pack, retry, same-day repeat and daily renewal]', flush=True)
         fruits = re.findall(r'^\s*db\s+(\w+)', (ROOT / 'data/items/fruit_trees.asm').read_text(), re.MULTILINE)
@@ -238,22 +238,22 @@ def main():
             write('wItems', full + [255])
             script('FruitTreeScript')
             check(h.rd(h.s('wFruitTreeFlags'), 4) == bytes(4), f'tree {tree}: full pack consumed fruit')
-            check(h.rd(h.s('wItems'), 81) == bytes(full + [255]), f'tree {tree}: failed gift changed pack')
+            check(h.rd(h.s('wItems'), 121) == bytes(full + [255]), f'tree {tree}: failed gift changed pack')
             write('wNumItems', 0)
             write('wItems', [255])
             quantity = 3 if fruit.endswith('_APRICORN') else 1
             script('FruitTreeScript')
             expected_flags = (1 << (tree - 1)).to_bytes(4, 'little')
             check(h.rd(h.s('wFruitTreeFlags'), 4) == expected_flags, f'tree {tree}: wrong picked flag')
-            check(read('wNumItems') == 1 and h.rd(h.s('wItems'), 3) == bytes([items[fruit], quantity, 255]), f'tree {tree}: wrong fruit/quantity')
+            check(read('wNumItems') == 1 and h.rd(h.s('wItems'), 4) == bytes([*divmod(items[fruit], 256), quantity, 255]), f'tree {tree}: wrong fruit/quantity')
             script('FruitTreeScript')
-            check(h.rd(h.s('wItems'), 3) == bytes([items[fruit], quantity, 255]), f'tree {tree}: duplicate same-day gift')
+            check(h.rd(h.s('wItems'), 4) == bytes([*divmod(items[fruit], 256), quantity, 255]), f'tree {tree}: duplicate same-day gift')
             # Daily timer clearing is tested separately below. Exercise the
             # first tree interaction after that clear through its real script.
             write('wDailyFlags1', 0)
             script('FruitTreeScript')
             check(h.rd(h.s('wFruitTreeFlags'), 4) == expected_flags, f'tree {tree}: renewal flag incorrect')
-            check(h.rd(h.s('wItems'), 3) == bytes([items[fruit], quantity * 2, 255]), f'tree {tree}: next-day renewal failed')
+            check(h.rd(h.s('wItems'), 4) == bytes([*divmod(items[fruit], 256), quantity * 2, 255]), f'tree {tree}: next-day renewal failed')
 
     print('[elapsed calendar arithmetic and daily flags]', flush=True)
     for day, hour, minute, second in product((0, 5, 139, 145), (0, 23), (0, 59), (0, 59)):

@@ -35,11 +35,19 @@ def main():
                                   con['BATTLEANIMOAMSET_0A'], 0, 4)), sequence
         for side in (0, 1):
             spawns = []
+            last = [None]
             def spawned(_):
                 m = h.battle.mem
-                spawns.append((m.read('wBattleObjectTempID') |
-                               m.read('wBattleObjectTempIDHi') << 8,
-                               m.read('wBattleObjectTempParam')))
+                regs = h.pb.register_file
+                spawn = (m.read('wBattleObjectTempID') |
+                         m.read('wBattleObjectTempIDHi') << 8,
+                         m.read('wBattleObjectTempParam'))
+                # An interrupt taken on the hooked instruction can report the
+                # same object slot twice; one queued object is one spawn.
+                key = (regs.B << 8 | regs.C, *spawn)
+                if key != last[0]:
+                    spawns.append(spawn)
+                last[0] = key
             h.pb.hook_register(*h.sym['InitBattleAnimation'], spawned, None)
             frames, _, result = capture(h, fixture, 'SACRED_FIRE', side)
             h.pb.hook_deregister(*h.sym['InitBattleAnimation'])

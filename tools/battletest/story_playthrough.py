@@ -272,7 +272,7 @@ def main():
         data['enemy_species'] = h.con.species_by_index.get(m.species_index_of(m.read('wEnemyMonSpecies')), '') if m.read('wBattleMode') else ''
         data['enemy_level'] = m.read('wEnemyMonLevel') if m.read('wBattleMode') else 0
         data['enemy_hp'] = m.read_u16_be('wEnemyMonHP') if m.read('wBattleMode') else 0
-        data['inventory'] = [(h.con.items_by_id.get(m.read('wItems', i * 2), ''), m.read('wItems', i * 2 + 1))
+        data['inventory'] = [(h.con.items_by_id.get((m.read('wItems', i * 3) << 8 | m.read('wItems', i * 3 + 1)), ''), m.read('wItems', i * 3 + 2))
                              for i in range(m.read('wNumItems'))]
         data['events'] = {name: bool(m.read('wEventFlags', event_ids[name] // 8) & (1 << (event_ids[name] % 8)))
                           for name in ('EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON', 'EVENT_GAVE_MYSTERY_EGG_TO_ELM',

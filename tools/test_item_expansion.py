@@ -229,11 +229,9 @@ def main():
 
     print('[word-index marts: names, stock and BCD prices]', flush=True)
     stock = [list(range(257, 264)), list(range(264, 271)),
-             [271, 272], list(range(280, 285)), list(range(285, 292)),
-             list(range(292, 299)), [299, 300, con.item_id("GOLD_BERRY"), 302, 303]]
+             [271, 272], list(range(280, 285))]
     for number, expected_stock in enumerate(stock):
-        bank, address = h.sym[('MartExpanded' + str(number)) if number < 4
-                              else ('MartBattleItems' + str(number - 4))]
+        bank, address = h.sym['MartExpanded' + str(number)]
         write('wMartPointerBank', bank)
         h.wr16(h.s('wMartPointer'), address)
         write('wCurMart', bytes(16))

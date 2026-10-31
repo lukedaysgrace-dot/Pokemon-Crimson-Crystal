@@ -125,7 +125,7 @@ def check_rom(h):
                 check(h.sym['FishingContestResultsWarpScript.received'] in visited,
                       f'Level {level} Krabby results did not reach prize delivery')
                 pocket = 'wBalls' if expected_prize == 'LURE_BALL' else 'wItems'
-                check(h.rd(h.s(pocket), 2) == bytes([items[expected_prize], 1]),
+                check((h.rd(h.s(pocket), 3) == bytes([*divmod(items[expected_prize], 256), 1])) if pocket == 'wItems' else (h.rd(h.s(pocket), 2) == bytes([items[expected_prize], 1])),
                       f'Level {level} Krabby did not receive {expected_prize}')
                 check(h.rd(h.s('wPartyCount')) == 2 and h.rd(h.s('wPartySpecies') + 1) == krabby,
                       f'Level {level} Krabby was not kept after judging')

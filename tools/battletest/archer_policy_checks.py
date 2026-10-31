@@ -48,9 +48,9 @@ def main():
         call(h, 'EventFlagAction', B=int(value), D=flag >> 8, E=flag & 255)
 
     def quantity():
-        return sum(m.read('wItems', i * 2 + 1)
+        return sum(m.read('wItems', i * 3 + 2)
                    for i in range(m.read('wNumItems'))
-                   if m.read('wItems', i * 2) == policy)
+                   if (m.read('wItems', i * 3) << 8 | m.read('wItems', i * 3 + 1)) == policy)
 
     def obj(index):
         return next((o for o in controls.objects() if o['map_object'] == index), None)
@@ -200,7 +200,7 @@ def main():
         stock = [item for item in range(1, 194) if item != policy
                  and pb.memory[bank, address + (item - 1) * 7 + 5] == 1][:40]
         m.write('wNumItems', 40)
-        m.write_bytes('wItems', bytes(v for item in stock for v in (item, 1)) + b'\xff')
+        m.write_bytes('wItems', bytes(v for item in stock for v in (item >> 8, item & 255, 1)) + b'\xff')
         loot()
         check(obj(6) is not None and not event(collected) and quantity() == 0,
               'Full Bag consumes the item ball')
@@ -221,8 +221,8 @@ def main():
         check(obj(6) is not None and obj(6)['position'] == [13, 5],
               'Completed saves cannot collect the newly added reward')
         check(flags[collected] == 0x19a, 'Reward did not reuse the unused event bit')
-        for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbb9,
-                               'wGameDataEnd': 0xdff3, 'sSaveDataEnd': 0xac36}.items():
+        for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbbb,
+                               'wGameDataEnd': 0xdff7, 'sSaveDataEnd': 0xac3a}.items():
             check(h.sym.addr(name) == expected, f'Save layout shifted: {name}')
         print(f'ARCHER POLICY: {checks} checks passed; native Archer finale and pickup completed', flush=True)
     finally:

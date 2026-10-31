@@ -314,13 +314,13 @@ def main():
                     for drink in ('FRESH_WATER', 'SODA_POP', 'LEMONADE'):
                         event('EVENT_GAVE_SAFFRON_GUARDS_DRINK', False)
                         write('wNumItems', 2)
-                        write('wItems', [con.item_id(drink), 2, con.item_id('POTION'), 7, 255])
+                        write('wItems', [*divmod(con.item_id(drink), 256), 2, *divmod(con.item_id('POTION'), 256), 7, 255])
                         load(map_name)
                         _, texts, moves = script(start)
                         check(event('EVENT_GAVE_SAFFRON_GUARDS_DRINK') and not moves,
                               f'{start}: {drink} did not open the gates')
                         check(texts == [h.sym['SaffronGateGuardGaveDrinkText']], f'{start}: drink dialogue')
-                        check(h.rd(h.s('wItems'), 5) == bytes([con.item_id(drink), 1, con.item_id('POTION'), 7, 255]),
+                        check(h.rd(h.s('wItems'), 7) == bytes([*divmod(con.item_id(drink), 256), 1, *divmod(con.item_id('POTION'), 256), 7, 255]),
                               f'{start}: consumed more than one drink or another item')
                         for other_map, other_entry, other_officer, _, _, _ in gates:
                             load(other_map)
@@ -328,7 +328,7 @@ def main():
                             check(not texts and not moves, f'{other_entry}: other guard failed to open')
                             _, texts, _ = script(other_officer)
                             check(texts == [h.sym['SaffronGateGuardOpenText']], f'{other_officer}: repeat dialogue')
-                        check(h.rd(h.s('wItems') + 1) == 1, 'open gates took another drink')
+                        check(h.rd(h.s('wItems') + 2) == 1, 'open gates took another drink')
 
             # Use compiled blocks, collisions and coord triggers to find a bypass,
             # ignoring NPCs so moving around the guard cannot hide a route.

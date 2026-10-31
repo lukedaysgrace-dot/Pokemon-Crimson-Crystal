@@ -4,6 +4,19 @@ _AnimateTileset::
 
 ; Typically in wra1, vra0
 
+	; At CGB double speed, VBlank0_Graphics may already have uploaded a full
+	; BG map buffer and palettes this frame. Defer the animation frame rather
+	; than let OAM spill past the end of VBlank.
+	ldh a, [hCGB]
+	and a
+	jr z, .animate
+	ldh a, [rKEY1]
+	bit 7, a
+	jr z, .animate
+	ldh a, [rLY]
+	cp LY_VBLANK + 4
+	ret nc
+.animate
 	ld a, [wTilesetAnim]
 	ld e, a
 	ld a, [wTilesetAnim + 1]

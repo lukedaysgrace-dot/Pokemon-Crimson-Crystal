@@ -150,10 +150,10 @@ def main():
         check(h.call('TryBuyDecoration', a=moon[0])['a'] == 3 and money() == 50000, 'bought unstocked decoration')
         # Furniture unlocks directly, even when the ordinary Items pocket is full.
         write('wNumItems', 40)
-        inventory = bytes(value for item in range(1, 41) for value in (item, 1)) + b'\xff'
+        inventory = bytes(value for item in range(1, 41) for value in (item >> 8, item & 255, 1)) + b'\xff'
         write('wItems', inventory)
         check(h.call('TryBuyDecoration', a=furniture[0])['a'] == 0 and owned(furniture[0]), 'full Bag blocked decoration')
-        check(read('wNumItems') == 40 and h.rd(h.s('wItems'), 81) == inventory, 'decoration changed the Bag')
+        check(read('wNumItems') == 40 and h.rd(h.s('wItems'), 121) == inventory, 'decoration changed the Bag')
         clear()
         for deco in furniture:
             owned(deco, True)

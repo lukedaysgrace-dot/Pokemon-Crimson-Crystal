@@ -90,8 +90,8 @@ def main():
         return bool(m.read('wScriptVar'))
 
     def quantity(item):
-        bag = m.read_bytes('wItems', 81)
-        return sum(bag[i*2+1] for i in range(m.read('wNumItems')) if bag[i*2] == items[item])
+        bag = m.read_bytes('wItems', 121)
+        return sum(bag[i*3+2] for i in range(m.read('wNumItems')) if (bag[i*3] << 8 | bag[i*3+1]) == items[item])
 
     def object_present(object_id):
         base = h.sym.addr('wObjectStructs')
@@ -125,8 +125,8 @@ def main():
         for label, item, event, x,y in [('Route42HiddenCarbos', 'CARBOS', 'EVENT_ROUTE_42_HIDDEN_CARBOS',6,4),
                                       ('Route42HiddenPPUp', 'PP_UP', 'EVENT_ROUTE_42_HIDDEN_PP_UP',33,8)]:
             bank, address = h.sym[label]
-            data = bytes(pb.memory[bank, address:address+3])
-            check(data == events[event].to_bytes(2,'little') + bytes([items[item]]), label + ': incorrect hidden-item data')
+            data = bytes(pb.memory[bank, address:address+4])  # hiddenitem: dw flag, dw item
+            check(data == events[event].to_bytes(2,'little') + items[item].to_bytes(2,'little'), label + ': incorrect hidden-item data')
             check(bytes([y,x,7]) + address.to_bytes(2,'little') in bg_events, label + ': missing hidden BG event at original item tile')
             flag(event,False)
             m.write('wNumItems',0)
@@ -137,7 +137,7 @@ def main():
             check(quantity(item) == 1 and flag_set(event), label + ': pickup did not award item and set collection flag')
             flag(event,False)
             m.write('wNumItems',40)
-            m.write_bytes('wItems',bytes([items['POTION'],99]*40 + [255]))
+            m.write_bytes('wItems',bytes([*divmod(items['POTION'],256),99]*40 + [255]))
             with quiet_text(h):
                 script('HiddenItemScript')
             check(quantity(item) == 0 and not flag_set(event), label + ': full bag consumed hidden item')
@@ -200,7 +200,7 @@ def main():
                 # A full pocket with only one free space in this stack cannot
                 # accept three fruit; otherwise the game opens another stack.
                 m.write('wNumItems',40)
-                m.write_bytes('wItems',bytes([items[item],98] + [items['POTION'],99]*39 + [255]))
+                m.write_bytes('wItems',bytes([*divmod(items[item],256),98] + [*divmod(items['POTION'],256),99]*39 + [255]))
                 with quiet_text(h):
                     script(label)
                 check(quantity(item) == 98 and not picked(tree) and object_present(obj), tree + ': failed harvest consumed fruit')

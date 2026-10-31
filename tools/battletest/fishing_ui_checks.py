@@ -179,9 +179,14 @@ class ContestUI:
         item_id = self.h.con.item_id(item)
         total = 0
         for count, entries in [('wNumItems', 'wItems'), ('wNumBalls', 'wBalls')]:
+            stride = 3 if entries == 'wItems' else 2
             for slot in range(self.m.read(count)):
-                if self.m.read(entries, slot * 2) == item_id:
-                    total += self.m.read(entries, slot * 2 + 1)
+                if stride == 3:
+                    stored = self.m.read(entries, slot * 3) << 8 | self.m.read(entries, slot * 3 + 1)
+                else:
+                    stored = self.m.read(entries, slot * 2)
+                if stored == item_id:
+                    total += self.m.read(entries, slot * stride + stride - 1)
         return total
 
     def fish_and_catch(self):
@@ -369,7 +374,7 @@ class ContestUI:
                  and self.h.pb.memory[bank, table + (item_id - 1) * 7 + 5] == 1][:capacity]
         self.check(len(items) == capacity, 'full-bag fixture uses the actual bag capacity and item pocket')
         self.m.write('wNumItems', len(items))
-        self.m.write_bytes('wItems', [v for item in items for v in (self.h.con.item_id(item), 1)] + [255])
+        self.m.write_bytes('wItems', [v for item in items for v in (*divmod(self.h.con.item_id(item), 256), 1)] + [255])
         self.m.write('wFishingContestPrize', self.h.con.item_id('WATER_STONE'))
         self.officer([], (1, 16))
         self.check(self.m.read('wFishingContestPrize') == self.h.con.item_id('WATER_STONE'), 'full bag retains pending prize')
@@ -379,10 +384,10 @@ class ContestUI:
                    'native Save/fresh boot/Continue preserves the held prize')
         self.check(self.m.read('wNumItems') == capacity, 'native Continue preserves the full bag')
         self.m.write('wNumItems', len(items) - 1)
-        self.m.write('wItems', 255, (len(items) - 1) * 2)
+        self.m.write('wItems', 255, (len(items) - 1) * 3)
         self.officer([], (1, 16))
         self.check(self.m.read('wFishingContestPrize') == 0, 'claim succeeds after making room')
-        self.check(self.m.read('wNumItems') == len(items) and self.m.read('wItems', (len(items) - 1) * 2) == self.h.con.item_id('WATER_STONE'),
+        self.check(self.m.read('wNumItems') == len(items) and (self.m.read('wItems', (len(items) - 1) * 3) << 8 | self.m.read('wItems', (len(items) - 1) * 3 + 1)) == self.h.con.item_id('WATER_STONE'),
                    'native claim placed Water Stone in the freed slot')
         self.capture('held-prize-claimed')
 

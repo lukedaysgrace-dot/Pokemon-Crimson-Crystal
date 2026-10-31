@@ -32,9 +32,9 @@ def main():
         return bool(m.read('wEventFlags', flag // 8) & (1 << (flag % 8)))
 
     def quantity():
-        return sum(m.read('wItems', i * 2 + 1)
+        return sum(m.read('wItems', i * 3 + 2)
                    for i in range(m.read('wNumItems'))
-                   if m.read('wItems', i * 2) == helmet)
+                   if (m.read('wItems', i * 3) << 8 | m.read('wItems', i * 3 + 1)) == helmet)
 
     def finish_dialogue():
         for _ in range(120):
@@ -117,7 +117,7 @@ def main():
                  and pb.memory[bank, address + (item - 1) * 7 + 5] == 1][:40]
         check(len(stock) == 40, 'Could not prepare a full legal item pocket')
         m.write('wNumItems', 40)
-        m.write_bytes('wItems', bytes(v for item in stock for v in (item, 1)) + b'\xff')
+        m.write_bytes('wItems', bytes(v for item in stock for v in (item >> 8, item & 255, 1)) + b'\xff')
         win()
         check(not event('EVENT_GOT_ROCKY_HELMET_FROM_ANTHONY') and quantity() == 0,
               'Full Bag consumes reward')
@@ -130,9 +130,9 @@ def main():
         check(quantity() == 1, 'Claiming pending gift makes it repeatable')
         check(flags['EVENT_GOT_ROCKY_HELMET_FROM_ANTHONY'] == 0x193,
               'Reward did not reuse the unused event bit')
-        for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbb9,
-                               'wGameDataEnd': 0xdff3, 'sSaveDataEnd': 0xac36,
-                               'sBackupSaveDataEnd': 0xbe36}.items():
+        for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbbb,
+                               'wGameDataEnd': 0xdff7, 'sSaveDataEnd': 0xac3a,
+                               'sBackupSaveDataEnd': 0xbe3a}.items():
             check(h.sym.addr(name) == expected, f'Save layout shifted: {name}')
         print(f'ANTHONY HELMET: {checks} checks passed; two native battles won', flush=True)
     finally:

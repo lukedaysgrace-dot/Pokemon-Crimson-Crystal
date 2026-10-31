@@ -269,7 +269,9 @@ def main():
                 audit.motion_checks(move, side)
                 result['attempted_objects'] = len(audit.attempts)
                 result['dropped_objects'] = len(audit.attempts)-len(audit.spawns)
-                if result['dropped_objects']:
+                # Only a queue attempt without a matching spawn is a drop; the
+                # spawn hook can see one more object than the queue hook.
+                if result['dropped_objects'] > 0:
                     audit.errors.append([move, side, 'object pool overflow', result['dropped_objects']])
                 if result['final_frame_changed_pixels']:
                     audit.errors.append([move, side, 'rendered battle screen not fully restored',

@@ -42,9 +42,9 @@ def main():
         call(h, 'EventFlagAction', B=int(value), D=flag >> 8, E=flag & 255)
 
     def quantity():
-        return sum(m.read('wItems', i * 2 + 1)
+        return sum(m.read('wItems', i * 3 + 2)
                    for i in range(m.read('wNumItems'))
-                   if m.read('wItems', i * 2) == scarf)
+                   if (m.read('wItems', i * 3) << 8 | m.read('wItems', i * 3 + 1)) == scarf)
 
     def keys():
         return list(m.read_bytes('wKeyItems', m.read('wNumKeyItems')))
@@ -147,7 +147,7 @@ def main():
                              and pb.memory[bank, address + (item - 1) * 7 + 5] == 1][:40]
                     check(len(stock) == 40, 'Could not prepare full legal item pocket')
                     m.write('wNumItems', 40)
-                    m.write_bytes('wItems', bytes(v for item in stock for v in (item, 1)) + b'\xff')
+                    m.write_bytes('wItems', bytes(v for item in stock for v in (item >> 8, item & 255, 1)) + b'\xff')
                     talk_below()
                     check(not event(collected) and quantity() == 0 and obj(7) is not None,
                           'Full Bag consumes the scarf or its permission')
@@ -179,8 +179,8 @@ def main():
                       'Existing quest recovery duplicates or loses Pass')
             check([flags[n] for n in (attempted, permission, collected)] == list(range(0x19b, 0x19e)),
                   'Scarf flags did not reuse the three unused save bits')
-            for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbb9,
-                                   'wGameDataEnd': 0xdff3, 'sSaveDataEnd': 0xac36}.items():
+            for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbbb,
+                                   'wGameDataEnd': 0xdff7, 'sSaveDataEnd': 0xac3a}.items():
                 check(h.sym.addr(name) == expected, f'Save layout shifted: {name}')
             print(f'COPYCAT SCARF: {checks} checks passed', flush=True)
         finally:

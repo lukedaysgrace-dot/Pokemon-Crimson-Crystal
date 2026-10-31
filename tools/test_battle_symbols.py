@@ -33,7 +33,7 @@ def main():
         classes = Constants().trainer_classes
         assert classes['SCIENTIST'] == 0x14
         assert classes['HEX_MANIAC'] == 0x4b
-        assert classes['AROMA_LADY'] == len(classes) - 1
+        assert classes['HOSTESS'] == len(classes) - 1
         assert len(classes) - 1 == len(re.findall(
             r'^\s*dba\s+', (ROOT / 'data/trainers/pic_pointers.asm').read_text(), re.M))
     print('BATTLE SYMBOLS: alias/bank boundaries and constant counter checks passed')

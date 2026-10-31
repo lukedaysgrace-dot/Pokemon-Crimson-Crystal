@@ -486,7 +486,7 @@ class Session:
         names = [name for name in self.pocket_names('ITEM') if name not in ('RARE_CANDY', 'MOON_STONE')][:40]
         assert len(names) == 40
         self.write('wNumItems', 40)
-        self.write('wItems', [value for name in names for value in (self.items[name], 1)] + [255])
+        self.write('wItems', [value for name in names for value in (*divmod(self.items[name], 256), 1)] + [255])
 
     def full_keys(self, shard=False):
         names = [name for name in self.pocket_names('KEY_ITEM') if name not in ('STAR_SHARD', 'STAR_PIECE', 'WISHING_STAR')]
@@ -544,7 +544,7 @@ class Session:
         self.write('wLastSpawnMapNumber', self.maps['ECRUTEAK_CITY'][1])
         self.write('wMoney', (10000).to_bytes(3, 'big'))
         self.write('wNumItems', 1)
-        self.write('wItems', [self.items['MAX_REPEL'], 99, 255])
+        self.write('wItems', [*divmod(self.items['MAX_REPEL'], 256), 99, 255])
         self.write('wRepelEffect', 250)
         self.write('wLastRepelUsed', self.items['MAX_REPEL'])
         self.write('wNumBalls', 1)

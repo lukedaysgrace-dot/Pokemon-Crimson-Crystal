@@ -40,9 +40,9 @@ def main():
         return bool(m.read('wEventFlags', flag // 8) & (1 << (flag % 8)))
 
     def quantity():
-        return sum(m.read('wItems', i * 2 + 1)
+        return sum(m.read('wItems', i * 3 + 2)
                    for i in range(m.read('wNumItems'))
-                   if m.read('wItems', i * 2) == vest)
+                   if (m.read('wItems', i * 3) << 8 | m.read('wItems', i * 3 + 1)) == vest)
 
     group = number = 0
     for line in (ROOT / 'constants/map_constants.asm').read_text().splitlines():
@@ -176,7 +176,7 @@ def main():
                  and pb.memory[bank, address + (item - 1) * 7 + 5] == 1][:40]
         check(len(stock) == 40, 'Could not prepare a full legal item pocket')
         m.write('wNumItems', 40)
-        m.write_bytes('wItems', bytes(v for item in stock for v in (item, 1)) + b'\xff')
+        m.write_bytes('wItems', bytes(v for item in stock for v in (item >> 8, item & 255, 1)) + b'\xff')
         encounter('CHOPPER', (8, 17), 'CUEBALL', 1, chopper)
         check(not event(received) and quantity() == 0, 'Full Bag consumes Chopper reward')
         m.write('wNumItems', 0)
@@ -189,8 +189,8 @@ def main():
         check([flags[n] for n in ('EVENT_BEAT_ROUTE16_BIKER_AXLE', 'EVENT_BEAT_ROUTE16_BIKER_RUSTY',
                                  'EVENT_BEAT_CUEBALL_CHOPPER', received)] == list(range(0x196, 0x19a)),
               'Gang flags did not reuse unused event bits')
-        for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbb9,
-                               'wGameDataEnd': 0xdff3, 'sSaveDataEnd': 0xac36}.items():
+        for name, expected in {'wEventFlags': 0xdab0, 'wCurBox': 0xdbbb,
+                               'wGameDataEnd': 0xdff7, 'sSaveDataEnd': 0xac3a}.items():
             check(h.sym.addr(name) == expected, f'Save layout shifted: {name}')
         check(portrait_saved, 'Cueball Chopper battle introduction was not displayed')
         print(f'CYCLING GANG: {checks} checks passed; four native battles won', flush=True)

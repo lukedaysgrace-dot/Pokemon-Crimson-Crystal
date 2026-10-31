@@ -157,7 +157,7 @@ try:
 
  # Exercise the actual 16-bit egg-list inheritance scan, not only the tutor.
  # Father/other-parent move pointers are selected exactly as normal breeding.
- for hatchling,mother,father,move in [('GROWLITHE','ARCANINE','ESPEON','MORNING_SUN'),('MAGBY','MAGMAR','MAGMAR','BELLY_DRUM'),('MAGBY','MAGMAR','HITMONCHAN','MACH_PUNCH'),('GIRAFARIG','GIRAFARIG','GARDEVOIR','WISH'),('SQUIRTLE','WARTORTLE','GOLDUCK','FLIP_TURN'),('ONIX','ONIX','GOLEM','HEAD_SMASH'),('TANGELA','TANGELA','BULBASAUR','LEECH_SEED'),('MAREEP','AMPHAROS','RAICHU','AGILITY'),('SPINARAK','ARIADOS','CENTISKORCH','LUNGE'),('ARON','AGGRON','RHYPERIOR','HEAD_SMASH'),('ARON','AGGRON','NIDOKING','SUPERPOWER'),('ARON','AGGRON','LICKITUNG','STOMP')]:
+ for hatchling,mother,father,move in [('GROWLITHE','ARCANINE','ESPEON','MORNING_SUN'),('MAGBY','MAGMAR','MAGMAR','BELLY_DRUM'),('MAGBY','MAGMAR','HITMONCHAN','MACH_PUNCH'),('GIRAFARIG','GIRAFARIG','ESPEON','WISH'),('SQUIRTLE','WARTORTLE','GOLDUCK','FLIP_TURN'),('ONIX','ONIX','GOLEM','HEAD_SMASH'),('TANGELA','TANGELA','BULBASAUR','LEECH_SEED'),('MAREEP','AMPHAROS','RAICHU','AGILITY'),('SPINARAK','ARIADOS','CENTISKORCH','LUNGE'),('ARON','AGGRON','RHYPERIOR','HEAD_SMASH'),('ARON','AGGRON','NIDOKING','SUPERPOWER'),('ARON','AGGRON','LICKITUNG','STOMP')]:
   mom=party(mother,known=())
   dad=h.species_id(con.species_index(father));mid=h.move_id(con.move_index(move))
   h.wr(h.s('wBreedMotherOrNonDitto'),0)

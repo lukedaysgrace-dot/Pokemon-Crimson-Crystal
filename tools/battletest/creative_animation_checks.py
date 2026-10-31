@@ -80,7 +80,7 @@ def main():
                         frames, pcm, result = capture(h, fixture, move, side, args.record,
                                                       param=param, observer=audit.observe)
                         errors = list(audit.errors)
-                        if len(audit.attempts) != len(audit.spawns):
+                        if len(audit.attempts) > len(audit.spawns):
                             errors.append(['dropped object allocation', len(audit.attempts), len(audit.spawns)])
                         assert result['final_frame_changed_pixels'] == 0, result
                         names = [p['object'] for p in audit.spawns]

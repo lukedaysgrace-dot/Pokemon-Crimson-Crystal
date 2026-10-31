@@ -60,9 +60,9 @@ def main():
         return bool(m.read('wEventFlags', flag // 8) & (1 << (flag % 8)))
 
     def quantity():
-        return sum(m.read('wItems', i * 2 + 1)
+        return sum(m.read('wItems', i * 3 + 2)
                    for i in range(m.read('wNumItems'))
-                   if m.read('wItems', i * 2) == air)
+                   if (m.read('wItems', i * 3) << 8 | m.read('wItems', i * 3 + 1)) == air)
 
     def balloon():
         return next((obj for obj in controls.objects() if obj['map_object'] == 9), None)
@@ -137,7 +137,7 @@ def main():
                  and pb.memory[bank, address + (item - 1) * 7 + 5] == 1][:40]
         check(len(stock) == 40, 'Could not construct a full item pocket')
         m.write('wNumItems', 40)
-        m.write_bytes('wItems', bytes(v for item in stock for v in (item, 1)) + b'\xff')
+        m.write_bytes('wItems', bytes(v for item in stock for v in (item >> 8, item & 255, 1)) + b'\xff')
         approach()
         press('a', wait=90)
         close_text()

@@ -97,7 +97,10 @@ def capture(h, fixture, move, side, audio=False, param=None, observer=None, vali
     if m.read('hSCX') or m.read('hSCY'): cleanup_errors.append('screen offset leaked')
     if m.read('hLCDCPointer'): cleanup_errors.append('LCD effect leaked')
     if palettes != [m.read_bytes(name, 64) for name in palette_names]: cleanup_errors.append('palette leaked')
-    if tilemap != m.read_bytes('wTileMap', 360): cleanup_errors.append('battle tilemap was not restored')
+    # With param 1 the user faints, so HIDE_MON deliberately leaves its pic cleared.
+    fainted = move in ('SELFDESTRUCT', 'EXPLOSION') and param == 1
+    if tilemap != m.read_bytes('wTileMap', 360) and not fainted:
+        cleanup_errors.append('battle tilemap was not restored')
     if validate: assert not cleanup_errors, (move, side, cleanup_errors)
     changed = [int(np.any(frame != start, axis=2).sum()) for frame in frames]
     assert max(changed) > 20, (move, side, 'no visible animation')
