@@ -1,10 +1,10 @@
 	db "SHEDDING@" ; species name
 	dw 200, 260 ; height, weight
 
-	db   "This SCRAGGY"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It pulls up its"
+	next "baggy skin to"
+	next "shield itself."
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "It headbutts any"
+	next "who catch its eye"
+	next "with a hard skull.@"

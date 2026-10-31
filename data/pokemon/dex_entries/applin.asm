@@ -1,10 +1,10 @@
 	db "APPLE CORE@" ; species name
 	dw 8, 11 ; height, weight
 
-	db   "This APPLIN"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It lives inside"
+	next "an apple all its"
+	next "life. It hides in"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "the fruit to keep"
+	next "safe from birds"
+	next "that peck at it.@"

@@ -1,10 +1,10 @@
 	db "FROST TREE@" ; species name
 	dw 303, 1113 ; height, weight
 
-	db   "This SNOVER"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It lives on cold"
+	next "mountains. In"
+	next "spring, berries"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "like ice cream"
+	next "grow around its"
+	next "belly.@"

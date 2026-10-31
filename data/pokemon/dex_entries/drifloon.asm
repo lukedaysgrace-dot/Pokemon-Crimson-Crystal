@@ -1,10 +1,10 @@
 	db "BALLOON@" ; species name
 	dw 104, 26 ; height, weight
 
-	db   "This DRIFLOON"
-	next "was newly added"
-	next "to the #DEX."
+	db   "Made of gathered"
+	next "spirits, it tugs"
+	next "on children's"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "hands. Kids who"
+	next "hold on may float"
+	next "away with it.@"

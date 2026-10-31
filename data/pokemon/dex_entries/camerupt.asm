@@ -1,10 +1,10 @@
 	db "ERUPTION@" ; species name
 	dw 603, 4850 ; height, weight
 
-	db   "This CAMERUPT"
-	next "was newly added"
-	next "to the #DEX."
+	db   "The volcanoes on"
+	next "its back erupt"
+	next "with molten rock"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "when it gets angry"
+	next "or when they grow"
+	next "too hot inside.@"

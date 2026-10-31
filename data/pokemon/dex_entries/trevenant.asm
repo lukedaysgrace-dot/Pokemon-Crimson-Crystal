@@ -7,4 +7,4 @@
 
 	page "who harm its woods"
 	next "and shelter small"
-	next "forest POKEMON.@"
+	next "forest #MON.@"

@@ -1,10 +1,10 @@
 	db "MANIPULATE@" ; species name
 	dw 211, 1576 ; height, weight
 
-	db   "This GRUMPIG"
-	next "was newly added"
-	next "to the #DEX."
+	db   "The black pearls"
+	next "on its head boost"
+	next "its psychic power."
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "Its odd dance"
+	next "steps let it"
+	next "control its foes.@"

@@ -1,10 +1,10 @@
 	db "SUBTERRENE@" ; species name
 	dw 204, 891 ; height, weight
 
-	db   "This EXCADRILL"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It can tunnel"
+	next "through steel"
+	next "plates. It helps"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "dig the subway"
+	next "tunnels that run"
+	next "under big cities.@"

@@ -1,10 +1,10 @@
 	db "NUMB@" ; species name
 	dw 204, 529 ; height, weight
 
-	db   "This NUMEL"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It stores magma"
+	next "inside its body."
+	next "It is slow-witted"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "and barely notices"
+	next "when it is hit,"
+	next "even very hard.@"

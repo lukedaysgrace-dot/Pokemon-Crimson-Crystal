@@ -1,10 +1,10 @@
 	db "ALLOY@" ; species name
 	dw 607, 1323 ; height, weight
 
-	db   "This ARCHALUDON"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It stands still as"
+	next "a bridge for days."
+	next "In storms, it"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "draws lightning"
+	next "into its metal"
+	next "body to recharge.@"

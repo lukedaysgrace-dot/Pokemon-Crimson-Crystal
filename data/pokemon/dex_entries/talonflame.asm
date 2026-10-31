@@ -1,10 +1,10 @@
 	db "SCORCHING@" ; species name
 	dw 311, 540 ; height, weight
 
-	db   "This TALONFLAME"
-	next "was newly added"
-	next "to the #DEX."
+	db   "In battle, it"
+	next "dives at prey at"
+	next "great speed. As it"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "grows excited, it"
+	next "shoots embers from"
+	next "its wings.@"

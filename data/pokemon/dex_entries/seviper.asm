@@ -5,6 +5,6 @@
 	next "swordlike tail on"
 	next "rocks. It has a"
 
-	page "long rivalry with"
-	next "ZANGOOSE nearby"
-	next "and attacks.@"
+	page "long-running feud"
+	next "with ZANGOOSE and"
+	next "fights on sight.@"

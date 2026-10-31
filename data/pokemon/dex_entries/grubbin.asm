@@ -1,10 +1,10 @@
 	db "LARVA@" ; species name
 	dw 104, 97 ; height, weight
 
-	db   "This GRUBBIN"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It digs with its"
+	next "big jaw and spits"
+	next "sticky thread to"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "swing from tree to"
+	next "tree. It loves to"
+	next "eat tree sap.@"

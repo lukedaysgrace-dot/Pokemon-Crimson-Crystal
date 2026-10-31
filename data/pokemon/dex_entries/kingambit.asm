@@ -1,10 +1,10 @@
 	db "BIG BLADE@" ; species name
 	dw 607, 2646 ; height, weight
 
-	db   "This KINGAMBIT"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It rose from the"
+	next "ranks of BISHARP."
+	next "It commands a"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "whole army of"
+	next "PAWNIARD with its"
+	next "huge head blade.@"

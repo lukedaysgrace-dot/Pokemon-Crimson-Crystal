@@ -1,10 +1,10 @@
 	db "RADIATOR@" ; species name
 	dw 204, 22 ; height, weight
 
-	db   "This SIZZLIPEDE"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It coils its hot"
+	next "body around prey"
+	next "and roasts it."
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "The sac on its"
+	next "belly holds gas"
+	next "to fuel its heat.@"

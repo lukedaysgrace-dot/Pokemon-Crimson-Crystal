@@ -1,10 +1,10 @@
 	db "CLAP@" ; species name
 	dw 207, 871 ; height, weight
 
-	db   "This SPHEAL"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It rolls instead"
+	next "of walking. It"
+	next "claps its flippers"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "to show it is"
+	next "happy, and is"
+	next "easy to raise.@"

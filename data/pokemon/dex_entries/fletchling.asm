@@ -1,10 +1,10 @@
 	db "TINY ROBIN@" ; species name
 	dw 100, 37 ; height, weight
 
-	db   "This FLETCHLING"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It sings with a"
+	next "lovely voice to"
+	next "mark its turf."
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "Once a battle"
+	next "starts, it shows"
+	next "no mercy at all.@"

@@ -1,10 +1,10 @@
 	db "PIN CLUSTER@" ; species name
 	dw 802, 1334 ; height, weight
 
-	db   "This OVERQWIL"
-	next "was newly added"
-	next "to the #DEX."
+	db   "Its spines grew"
+	next "long and sharp in"
+	next "cold, deep seas."
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "It fears nothing"
+	next "and attacks foes"
+	next "much larger.@"

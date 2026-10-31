@@ -1,10 +1,10 @@
 	db "COTTON BIRD@" ; species name
 	dw 104, 26 ; height, weight
 
-	db   "This SWABLU"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It uses its cotton"
+	next "wings to clean"
+	next "things up. It"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "perches on heads"
+	next "and sits there"
+	next "like a soft hat.@"

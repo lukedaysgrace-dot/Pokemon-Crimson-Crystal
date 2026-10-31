@@ -1191,8 +1191,8 @@ WHITE_HERBDesc:
 	next "stats once. (HOLD)@"
 
 BLACK_SLUDGEDesc:
-	db "POISON types heal,"
-	next "others hurt.(HOLD)@"
+	db "POISON types heal;"
+	next "rest hurt. (HOLD)@"
 
 LIGHT_CLAYDesc:
 	db "Screens last eight"

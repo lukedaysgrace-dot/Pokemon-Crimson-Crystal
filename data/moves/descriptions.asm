@@ -512,7 +512,7 @@ DrillRunDescription:
 	next "critical rate.@"
 
 PsychoCutDescription:
-	db   "Psychic blades."
+	db   "PSYCHIC blades."
 	next "High crit rate.@"
 
 SacredSwordDescription:
@@ -1588,7 +1588,7 @@ GigaHammerDescription:
 	next "twice in a row.@"
 
 DazzlingGleamDescription:
-	db   "Fairy light hits"
+	db   "FAIRY light hits"
 	next "the target.@"
 
 DisarmingVoiceDescription:
@@ -1661,7 +1661,7 @@ IcicleCrashDescription:
 
 StruggleBugDescription:
 	db   "A weak bug wave."
-	next "May lower SP.ATK.@"
+	next "May cut SPCL.ATK.@"
 
 InfestationDescription:
 	db   "Swarming bugs may"
@@ -1737,11 +1737,11 @@ DragonClawDescription:
 
 DracoMeteorDescription:
 	db   "Calls down comets."
-	next "Harsh SP.ATK drop.@"
+	next "SPCL.ATK drops 2.@"
 
 MoonblastDescription:
 	db   "Moon power may"
-	next "lower SP.ATK.@"
+	next "lower SPCL.ATK.@"
 
 PixiePunchDescription:
 	db   "A fairy punch may"
@@ -1765,7 +1765,7 @@ SolarBladeDescription:
 
 CloseCombatDescription:
 	db   "A fierce attack."
-	next "Lowers DEF/SP.DEF.@"
+	next "Cuts DEF/SPCL.DEF.@"
 
 AcrobaticsDescription:
 	db   "Damage doubles if"
@@ -1793,19 +1793,19 @@ BraveBirdDescription:
 
 BulkUpDescription:
 	db   "Raises the user's"
-	next "Atk and Def.@"
+	next "ATK and DEF.@"
 
 BulldozeDescription:
-	db   "A Ground attack"
-	next "that lowers Speed.@"
+	db   "A GROUND attack"
+	next "that lowers SPEED.@"
 
 CalmMindDescription:
-	db   "Raises the user's"
-	next "Sp.Atk and Sp.Def.@"
+	db   "Raises SPCL.ATK"
+	next "and SPCL.DEF.@"
 
 DragonDanceDescription:
 	db   "Raises the user's"
-	next "Attack and Speed.@"
+	next "ATTACK and SPEED.@"
 
 DragonPulseDescription:
 	db   "Attacks foe with"
@@ -1813,15 +1813,15 @@ DragonPulseDescription:
 
 EarthPowerDescription:
 	db   "An attack that may"
-	next "lower Sp.Def.@"
+	next "lower SPCL.DEF.@"
 
 FacadeDescription:
 	db   "Double damage with"
-	next "Psn, Brn, or Prz.@"
+	next "PSN, BRN, or PAR.@"
 
 FlameChargeDescription:
 	db   "An attack that may"
-	next "up user's Speed.@"
+	next "up user's SPEED.@"
 
 GigaImpactDescription:
 	db   "Must recharge"
@@ -1841,7 +1841,7 @@ HexDescription:
 
 HoneClawsDescription:
 	db   "Raises the user's"
-	next "Atk and accuracy.@"
+	next "ATK and accuracy.@"
 
 HurricaneDescription:
 	db   "An attack that may"
@@ -1861,7 +1861,7 @@ KnockOffDescription:
 
 NastyPlotDescription:
 	db   "Sharply raises the"
-	next "user's Sp.Atk.@"
+	next "user's SPCL.ATK.@"
 
 NightSlashDescription:
 	db   "Has a high criti-"
@@ -2028,7 +2028,7 @@ SuperpowerDescription:
 	next "cuts own ATK/DEF.@"
 
 FieryDanceDescription:
-	db   "Fire dance. May up"
+	db   "FIRE dance. May up"
 	next "own SPCL.ATK.@"
 
 FoulPlayDescription:
@@ -2069,7 +2069,7 @@ DragonTailDescription:
 
 LuminaCrashDescription:
 	db   "Harsh light that"
-	next "cuts SP.DEF by 2.@"
+	next "cuts SPCL.DEF 2x.@"
 
 TormentDescription:
 	db   "Bars using the"
@@ -2108,7 +2108,7 @@ VacuumWaveDescription:
 	next "strikes first.@"
 
 DischargeDescription:
-	db   "Electric blast."
+	db   "ELECTRIC blast."
 	next "May paralyze.@"
 
 LavaPlumeDescription:
@@ -2140,7 +2140,7 @@ WaterSpoutDescription:
 	next "a stronger spout.@"
 
 DoomDesireDescription:
-	db   "Steel blast. Can't"
+	db   "STEEL blast. Can't"
 	next "repeat next turn.@"
 
 TailGlowDescription:

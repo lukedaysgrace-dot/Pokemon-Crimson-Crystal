@@ -1,10 +1,10 @@
 	db "BATTERY@" ; species name
 	dw 108, 231 ; height, weight
 
-	db   "This CHARJABUG"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It stores food as"
+	next "electricity in"
+	next "its sturdy body."
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "Hikers carry it"
+	next "to charge their"
+	next "gadgets on trips.@"

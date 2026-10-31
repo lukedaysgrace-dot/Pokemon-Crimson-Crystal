@@ -274,7 +274,7 @@ MenuIconPointers:
 	dba RaltsMenuIcon
 	dba KirliaMenuIcon
 	dba GardevoirMenuIcon
-	dba GardevoirMenuIcon
+	dba GalladeMenuIcon
 	dba GlaceonMenuIcon
 	dba LeafeonMenuIcon
 	dba SylveonMenuIcon

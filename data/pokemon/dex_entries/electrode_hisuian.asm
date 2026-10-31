@@ -6,4 +6,4 @@
 	next "body is curious-"
 	page "ly similar in"
 	next "composition to an"
-	next "Apricorn.@"
+	next "APRICORN.@"

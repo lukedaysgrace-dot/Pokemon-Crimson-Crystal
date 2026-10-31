@@ -1,10 +1,10 @@
 	db "TURN TAIL@" ; species name
 	dw 108, 265 ; height, weight
 
-	db   "This WIMPOD"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It is a coward"
+	next "that flees at the"
+	next "first sign of a"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "foe. It cleans the"
+	next "shore by eating"
+	next "scraps it finds.@"
