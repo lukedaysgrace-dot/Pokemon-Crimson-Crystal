@@ -3696,7 +3696,7 @@
   },
   "unchanged_runtime": {
     "engine/pokemon/evolve.asm": "3b4fddcf7f5e590dc05a4c25c32214118c406e01d472df5e30595009741fed05",
-    "engine/events/move_deleter.asm": "9753cb116d45dd0857ee26f501fa5b7dff2b1f346e8cdc23b9b4a31243e6d2e0",
+    "engine/events/move_deleter.asm": "fa77247cf201edd3478a823b722ca80b7b254722770f0681360759755634a260",
     "main.asm": "f34c7ee4cd32f9d5aa8411180b6107af7e39964e0762d9c1d130efa86a126178"
   }
 }

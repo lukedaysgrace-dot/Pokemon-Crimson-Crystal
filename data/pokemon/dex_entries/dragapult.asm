@@ -2,7 +2,7 @@
 	dw 910, 1102 ; height, weight
 
 	db   "It fires"
-	next "hidden Dreepy"
+	next "hidden DREEPY"
 	next "like darts."
 
 	page "Kids nap in"

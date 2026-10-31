@@ -5,5 +5,5 @@
 	next "neck like a whip"
 	next "and smacks its"
 	page "opponents. This"
-	next "makes Exeggutor"
+	next "makes EXEGGUTOR"
 	next "itself dizzy, too.@"

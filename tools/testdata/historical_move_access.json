@@ -96222,7 +96222,7 @@
       ],
       [
         24,
-        "AIR_SLASH"
+        "RAZOR_WIND"
       ],
       [
         27,
@@ -96230,7 +96230,7 @@
       ],
       [
         27,
-        "RAZOR_WIND"
+        "AIR_SLASH"
       ],
       [
         30,
@@ -96284,7 +96284,7 @@
       ],
       [
         27,
-        "AIR_SLASH"
+        "RAZOR_WIND"
       ],
       [
         31,
@@ -96292,7 +96292,7 @@
       ],
       [
         31,
-        "RAZOR_WIND"
+        "AIR_SLASH"
       ],
       [
         35,
@@ -96346,7 +96346,7 @@
       ],
       [
         27,
-        "AIR_SLASH"
+        "RAZOR_WIND"
       ],
       [
         30,
@@ -96358,7 +96358,7 @@
       ],
       [
         31,
-        "RAZOR_WIND"
+        "AIR_SLASH"
       ],
       [
         35,
@@ -126214,7 +126214,7 @@
       ],
       [
         26,
-        "AIR_SLASH"
+        "RAZOR_WIND"
       ],
       [
         27,
@@ -126222,7 +126222,7 @@
       ],
       [
         27,
-        "RAZOR_WIND"
+        "AIR_SLASH"
       ],
       [
         30,
@@ -126316,7 +126316,7 @@
       ],
       [
         26,
-        "AIR_SLASH"
+        "RAZOR_WIND"
       ],
       [
         27,
@@ -126324,7 +126324,7 @@
       ],
       [
         27,
-        "RAZOR_WIND"
+        "AIR_SLASH"
       ],
       [
         30,
@@ -136440,7 +136440,7 @@
       ],
       [
         25,
-        "AIR_SLASH"
+        "RAZOR_WIND"
       ],
       [
         29,
@@ -136448,7 +136448,7 @@
       ],
       [
         31,
-        "RAZOR_WIND"
+        "AIR_SLASH"
       ],
       [
         32,
@@ -136530,7 +136530,7 @@
       ],
       [
         25,
-        "AIR_SLASH"
+        "RAZOR_WIND"
       ],
       [
         29,
@@ -136538,7 +136538,7 @@
       ],
       [
         31,
-        "RAZOR_WIND"
+        "AIR_SLASH"
       ],
       [
         32,
@@ -167573,7 +167573,7 @@
   ],
   "unchanged_runtime": {
     "engine/pokemon/evolve.asm": "3b4fddcf7f5e590dc05a4c25c32214118c406e01d472df5e30595009741fed05",
-    "engine/events/move_deleter.asm": "9753cb116d45dd0857ee26f501fa5b7dff2b1f346e8cdc23b9b4a31243e6d2e0",
+    "engine/events/move_deleter.asm": "fa77247cf201edd3478a823b722ca80b7b254722770f0681360759755634a260",
     "main.asm": "d52fc26d54a69c91c6861ea9066eb829c247a41a4decd9cfff9107a608f4339c"
   },
   "baseline_revision": "acb384156cd40958bdb5c12f21dced7d8cc4a3ea",

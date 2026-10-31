@@ -6,4 +6,4 @@
 	next "shock of evolving"
 	page "has caused Shell-"
 	next "der to take con-"
-	next "trol of Slowking.@"
+	next "trol of SLOWKING.@"

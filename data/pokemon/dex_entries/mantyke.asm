@@ -7,4 +7,4 @@
 
 	page "skim the tops of"
 	next "the waves with"
-	next "Remoraid.@"
+	next "REMORAID.@"

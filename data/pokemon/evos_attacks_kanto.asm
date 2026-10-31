@@ -451,9 +451,9 @@ PidgeyEvosAttacks:
 	dbw 9, WING_ATTACK
 	dbw 12, SWIFT
 	dbw 21, TWISTER
-	dbw 24, AIR_SLASH
+	dbw 24, RAZOR_WIND
 	dbw 27, AGILITY
-	dbw 27, RAZOR_WIND
+	dbw 27, AIR_SLASH
 	dbw 30, ROOST
 	dbw 34, WHIRLWIND
 	dbw 42, HURRICANE
@@ -471,9 +471,9 @@ PidgeottoEvosAttacks:
 	dbw 9, WING_ATTACK
 	dbw 12, SWIFT
 	dbw 22, TWISTER
-	dbw 27, AIR_SLASH
+	dbw 27, RAZOR_WIND
 	dbw 31, AGILITY
-	dbw 31, RAZOR_WIND
+	dbw 31, AIR_SLASH
 	dbw 35, ROOST
 	dbw 39, WHIRLWIND
 	dbw 42, HEAT_WAVE
@@ -490,10 +490,10 @@ PidgeotEvosAttacks:
 	dbw 9, WING_ATTACK
 	dbw 12, SWIFT
 	dbw 22, TWISTER
-	dbw 27, AIR_SLASH
+	dbw 27, RAZOR_WIND
 	dbw 30, U_TURN
 	dbw 31, AGILITY
-	dbw 31, RAZOR_WIND
+	dbw 31, AIR_SLASH
 	dbw 35, ROOST
 	dbw 36, HEAT_WAVE
 	dbw 40, WHIRLWIND

@@ -2,7 +2,7 @@
 	dw 108, 331 ; height, weight
 
 	db "It prefers an arid"
-	next "atmposhere. It"
+	next "atmosphere. It"
 	next "leaks water that"
 
 	page "looks like tears"
