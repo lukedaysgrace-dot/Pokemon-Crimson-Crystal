@@ -1,0 +1,138 @@
+# Twin Beam: 45 power per hit, exactly two hits, independent 10% Sp.Def drops.
+- name: "Twin Beam: two 45-power hits with no secondary proc"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - wram('wDamageCalcBasePower') == 45
+    - wram('wEnemyRageFistHits') == 2
+    - enemy.stat_levels[4] == 7
+    - player.pp[0] == player.start_pp[0] - 1
+
+- name: "Twin Beam: both hits can lower Special Defense"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wEnemyRageFistHits') == 2
+    - enemy.stat_levels[4] == 5
+
+- name: "Twin Beam: enemy also hits twice and rolls both drops"
+  player: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram('wPlayerRageFistHits') == 2
+    - player.stat_levels[4] == 5
+
+- name: "Twin Beam: failed drop at minus six does not cancel second damage"
+  player: { species: MEW, level: 20, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], stages: {sdef: -6} }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.stat_levels[4] == 1
+    - wram('wEnemyRageFistHits') == 2
+
+- name: "Twin Beam: Clear Body blocks drops but both hits damage"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: CLEAR_BODY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.stat_levels[4] == 7
+    - wram('wEnemyRageFistHits') == 2
+
+- name: "Twin Beam: Shield Dust blocks both secondary rolls"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: SHIELD_DUST, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.stat_levels[4] == 7
+    - wram('wEnemyRageFistHits') == 2
+
+- name: "Twin Beam: Sheer Force suppresses both drops"
+  player: { species: MEW, level: 50, ability: SHEER_FORCE, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.stat_levels[4] == 7
+    - wram('wEnemyRageFistHits') == 2
+
+- name: "Twin Beam: Parental Bond does not add a third hit"
+  player: { species: MEW, level: 50, ability: PARENTAL_BOND, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyRageFistHits') == 2"]
+
+- name: "Twin Beam: Skill Link and Loaded Dice still give exactly two hits"
+  player: { species: MEW, level: 50, ability: SKILL_LINK, item: LOADED_DICE, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyRageFistHits') == 2"]
+
+- name: "Twin Beam: Protect stops both damage and drops"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [PROTECT] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[4] == 7
+    - wram('wEnemyRageFistHits') == 0
+
+- name: "Twin Beam: Dark immunity stops both damage and drops"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: UMBREON, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[4] == 7
+    - wram('wEnemyRageFistHits') == 0
+
+- name: "Twin Beam: Contrary inverts each successful drop"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: CONTRARY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.stat_levels[4] == 9
+    - wram('wEnemyRageFistHits') == 2
+
+- name: "Twin Beam: Substitute blocks drops on both absorbed hits"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 255 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - enemy.stat_levels[4] == 7
+
+- name: "Twin Beam: breaking Substitute only permits a drop on the next hit"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH], substatus: [SUBSTITUTE] }
+  setup_wram: { wEnemySubstituteHP: 1 }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels[4] == 6
+
+- name: "Twin Beam: first-hit knockout stops the second hit"
+  player: { species: MEW, level: 100, ability: NO_ABILITY, moves: [TWIN_BEAM] }
+  enemy: { species: MAGIKARP, level: 5, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.pp[0] == player.start_pp[0] - 1

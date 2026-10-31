@@ -113,6 +113,7 @@ PrepareParentalBond_Core::
 	; Existing multi-hit moves, charging moves, delayed attacks, and moves
 	; whose supported effect cannot make a second attack.
 	db EFFECT_MULTI_HIT, EFFECT_DOUBLE_HIT, EFFECT_POISON_MULTI_HIT
+	db EFFECT_SP_DEF_DOWN_DOUBLE_HIT
 	db EFFECT_TRIPLE_KICK, EFFECT_BEAT_UP, EFFECT_SCALE_SHOT
 	db EFFECT_RAZOR_WIND, EFFECT_SKY_ATTACK, EFFECT_SKULL_BASH
 	db EFFECT_SOLARBEAM, EFFECT_FLY, EFFECT_BOUNCE

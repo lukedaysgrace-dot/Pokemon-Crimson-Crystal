@@ -419,6 +419,9 @@ BattleAnimFrameData:
 	dw .Frameset_HEAT_COMET ; BATTLEANIMFRAMESET_HEAT_COMET
 	dw .Frameset_ACID_BUBBLE ; BATTLEANIMFRAMESET_ACID_BUBBLE
 	dw .Frameset_Berry ; BATTLEANIMFRAMESET_BERRY
+	dw .Frameset_TwinBeamGlow ; BATTLEANIMFRAMESET_TWIN_BEAM_GLOW
+	dw .Frameset_TwinBeamOrbFull ; BATTLEANIMFRAMESET_TWIN_BEAM_ORB_FULL
+	dw .Frameset_TwinBeamOrbHalf ; BATTLEANIMFRAMESET_TWIN_BEAM_ORB_HALF
 
 
 .Frameset_00:
@@ -2719,3 +2722,28 @@ BattleAnimFrameData:
 	oamframe BATTLEANIMOAMSET_94, 24
 	oamframe BATTLEANIMOAMSET_7F, 24
 	oamdelanim
+
+.Frameset_TwinBeamGlow:
+; Twin Beam's charge orb: grows quickly through the three glow sizes, then
+; pulses at full size. The charge-up's last clearobjs hands over to
+; .Frameset_TwinBeamOrbFull mid-pulse, so the orb never visibly resets.
+	oamframe BATTLEANIMOAMSET_55, 5
+	oamframe BATTLEANIMOAMSET_54, 6
+	oamframe BATTLEANIMOAMSET_53, 4
+	oamframe BATTLEANIMOAMSET_54, 3
+	oamframe BATTLEANIMOAMSET_53, 4
+	oamframe BATTLEANIMOAMSET_54, 3
+	oamframe BATTLEANIMOAMSET_53, 4
+	oamendanim
+
+.Frameset_TwinBeamOrbFull:
+; Fully charged orb, pulsing between full and three-quarter size.
+	oamframe BATTLEANIMOAMSET_54, 3
+	oamframe BATTLEANIMOAMSET_53, 4
+	oamrestart
+
+.Frameset_TwinBeamOrbHalf:
+; The orb after the first beam: half size, still pulsing.
+	oamframe BATTLEANIMOAMSET_54, 4
+	oamframe BATTLEANIMOAMSET_55, 3
+	oamrestart

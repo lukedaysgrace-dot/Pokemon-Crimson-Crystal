@@ -233,3 +233,4 @@
 	const EFFECT_RECYCLE
 	const EFFECT_LOW_KICK   ; Low Kick, Grass Knot: power from the target's weight
 	const EFFECT_HEAVY_SLAM ; Heavy Slam, Heat Crash: power from the weight ratio
+	const EFFECT_SP_DEF_DOWN_DOUBLE_HIT ; Twin Beam: independent secondary on each hit

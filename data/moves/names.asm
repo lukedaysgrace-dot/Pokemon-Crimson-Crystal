@@ -441,3 +441,4 @@ MoveNames::
 	db "HORN LEECH@"
 	db "GRASS KNOT@"
 	db "HEAVY SLAM@"
+	db "TWIN BEAM@"
