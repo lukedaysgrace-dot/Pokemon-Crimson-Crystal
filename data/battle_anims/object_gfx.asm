@@ -117,3 +117,4 @@ AnimObjGFX:
 	anim_obj_gfx 36, AnimObjGigatonHammerGFX
 	anim_obj_gfx 8, AnimObjInfestationBugGFX
 	anim_obj_gfx 10, AnimObjAcidBubbleGFX
+	anim_obj_gfx 12, AnimObjBerryGFX

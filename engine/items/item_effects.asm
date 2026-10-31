@@ -247,6 +247,26 @@ ItemEffects:
 	dw NoEffect ; BIG_NUGGET
 	dw NoEffect ; PEARL_STRING
 
+	dw NoEffect ; COVERT_CLOAK
+	dw NoEffect ; CLEAR_AMULET
+	dw NoEffect ; METRONOME_ITEM
+	dw NoEffect ; HEAVY_DUTY_BOOTS
+	dw NoEffect ; RED_CARD
+	dw NoEffect ; EJECT_BUTTON
+	dw NoEffect ; POWER_HERB
+	dw NoEffect ; WHITE_HERB
+	dw NoEffect ; BLACK_SLUDGE
+	dw NoEffect ; LIGHT_CLAY
+	dw NoEffect ; THROAT_SPRAY
+	dw NoEffect ; PUNCHING_GLOVE
+	dw NoEffect ; QUICK_POWDER
+	dw NoEffect ; SAFETY_GOGGLES
+	dw NoEffect ; BIG_ROOT
+	dw NoEffect ; BLUNDER_POLICY
+	dw NoEffect ; retired $012d
+	dw NoEffect ; CUSTAP_BERRY
+	dw NoEffect ; SALAC_BERRY
+
 PokeBallEffect:
 	ld a, [wBattleMode]
 	dec a
@@ -2207,6 +2227,34 @@ GetOneFifthMaxHP:
 	ret
 
 GetHealingItemAmount:
+	push hl
+	ld a, [wCurItem]
+	call GetItemIndexFromID
+	ld a, h
+	cp HIGH(GOLD_BERRY)
+	jr nz, .ordinary
+	ld a, l
+	cp LOW(GOLD_BERRY)
+	jr nz, .ordinary
+	ld a, MON_MAXHP
+	call GetPartyParamLocation
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+	srl d
+	rr e
+	srl d
+	rr e
+	ld a, d
+	or e
+	jr nz, .gold_berry_done
+	inc e
+.gold_berry_done
+	pop hl
+	and a
+	ret
+.ordinary
+	pop hl
 	push hl
 	ld a, [wCurItem]
 	ld hl, HealingHPAmounts

@@ -772,3 +772,64 @@ BattleAnim_InSandstorm_PC4:
 	anim_loop 6, .loop
 	anim_wait 8
 	anim_ret
+
+; From Polished Crystal 435bb9061592246dec0c5c5cf813389e7d17de4a.
+BattleAnim_HeldItemTrigger:
+	anim_if_param_equal 0, .not_berry
+	anim_jump .alternate
+.not_berry
+	anim_1gfx ANIM_GFX_BUBBLE
+	anim_call BattleAnim_TargetObj_1Row
+	anim_sound 0, 0, SFX_FULL_HEAL
+	anim_bgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING, $0, $1, $40
+	anim_call BattleAnim_Recover_branch_PC4
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING
+	anim_call BattleAnim_ShowMon_0
+	anim_ret
+
+.alternate
+	anim_if_param_equal 1, .blue
+	anim_if_param_equal 2, .gold
+	anim_if_param_equal 3, .pink
+	anim_if_param_equal 4, .red
+	anim_if_param_equal 5, .green
+	anim_if_param_equal 8, .yellow_green
+	anim_if_param_equal 9, .light_blue
+	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_BERRY
+	anim_jump .animate
+.blue
+	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_BLUE
+	anim_jump .animate
+.gold
+	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_BERRY_GOLD
+	anim_jump .animate
+.pink
+	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_PINK
+	anim_jump .animate
+.red
+	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_RED
+	anim_jump .animate
+.green
+	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_GREEN
+	anim_jump .animate
+.yellow_green
+	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_BERRY_YELLOW_GREEN
+	anim_jump .animate
+.light_blue
+	anim_setobjpal PAL_BATTLE_OB_BROWN, PAL_BTLCUSTOM_BERRY_LIGHT_BLUE
+.animate
+	anim_2gfx ANIM_GFX_BERRY, ANIM_GFX_BUBBLE
+	anim_sound 0, 0, SFX_SWITCH_POKEMON
+	anim_obj ANIM_OBJ_BERRY, 60, 104, $10
+	anim_wait 48
+	anim_sound 0, 0, SFX_BITE
+	anim_wait 24
+	anim_sound 0, 0, SFX_BITE
+	anim_wait 24
+	anim_sound 0, 0, SFX_BITE
+	anim_wait 16
+	anim_sound 0, 0, SFX_FULL_HEAL
+	anim_bgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING, $0, $1, $40
+	anim_call BattleAnim_Recover_branch_PC4
+	anim_incbgeffect ANIM_BG_FADE_MON_TO_LIGHT_REPEATING
+	anim_ret

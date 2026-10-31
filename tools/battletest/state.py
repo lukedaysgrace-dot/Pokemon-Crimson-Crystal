@@ -24,7 +24,7 @@ DBG_HPPCT = 16
 DBG_STATUS = 17
 DBG_STATLEVELS = 18
 DBG_SUBSTATUS = 25  # 5 bytes, ORed into SubStatus1-5 post-entry
-DBG_SIZE = 30
+DBG_SIZE = 31
 
 SUBSTATUS_BITS = parse_substatus_bits()
 
@@ -314,7 +314,9 @@ class Request:
                 # Zero means "no override" in the ROM request protocol.
                 blk[DBG_ABILOVERRIDE] = 0xFF if ability_id == 0 else ability_id
         if "item" in spec:
-            blk[DBG_ITEM] = self.con.item_id(spec["item"])
+            index = self.con.item_id(spec["item"])
+            blk[DBG_ITEM] = index & 255
+            blk[30] = index >> 8
         moves = spec.get("moves") or []
         for i, mv in enumerate(moves[:4]):
             mi = self.con.move_index(mv)

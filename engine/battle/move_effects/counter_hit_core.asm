@@ -32,6 +32,7 @@ RecordCounterHit_Core::
 	ld a, [wCurDamage + 1]
 	or b
 	jr z, .return
+	farcall ModernRecordHit_Core
 	push hl
 	push de
 	ld hl, wEnemyCounterHit

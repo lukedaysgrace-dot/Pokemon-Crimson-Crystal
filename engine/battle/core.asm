@@ -509,6 +509,12 @@ DetermineMoveOrder:
 	jp .enemy_first
 
 .equal_priority
+	farcall ModernCustapOrder_Core
+	ld a, b
+	cp 1
+	jp z, .player_first
+	cp 2
+	jp z, .enemy_first
 	call SetPlayerTurn
 	callfar GetUserItem
 	push bc
@@ -1254,6 +1260,9 @@ ResidualLeechSeed:
 	pop bc
 	ld a, $1
 	ldh [hBGMapMode], a
+	call SwitchTurnCore
+	farcall ModernBigRoot_Core
+	call SwitchTurnCore
 	call RestoreHP
 	ld hl, LeechSeedSapsText
 	jp StdBattleTextbox
@@ -1465,6 +1474,7 @@ HandleStatusCureAbilitiesAndLeftovers:
 	ret
 
 HandleUserLeftovers:
+	farcall ModernBlackSludge_Core
 	call HasUserFainted
 	ret z
 
@@ -1635,17 +1645,17 @@ HandleUserMysteryberry::
 .skip_checks
 	callfar GetUserItem
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	push af
 	; Centralized consumption records the Berry for Harvest and Unburden and
 	; keeps battle/party item copies synchronized. ConsumeHeldItem is
 	; opponent-oriented, while Mysteryberry is handling the turn holder.
 	call SwitchTurnCore
+	call ItemRecoveryAnim
 	callfar ConsumeHeldItem
 	call SwitchTurnCore
+	pop af
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	call SwitchTurnCore
-	call ItemRecoveryAnim
-	call SwitchTurnCore
 	ld hl, BattleText_UserRecoveredPPUsing
 	jp StdBattleTextbox
 
@@ -3864,6 +3874,9 @@ endr
 	ld [wEnemyTurnsTaken], a
 	ld [wEnemyGlaiveRush], a
 	ld [wEnemyRageFistHits], a
+	ld [wEnemyMetronomeMove], a
+	ld [wEnemyMetronomeCount], a
+	ld [wEnemyItemSwitchPending], a
 	ld hl, wPlayerSubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
 	ld a, 1
@@ -4422,6 +4435,9 @@ endr
 	ld [wPlayerTurnsTaken], a
 	ld [wPlayerGlaiveRush], a
 	ld [wPlayerRageFistHits], a
+	ld [wPlayerMetronomeMove], a
+	ld [wPlayerMetronomeCount], a
+	ld [wPlayerItemSwitchPending], a
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
 	ld a, 1
@@ -4451,6 +4467,10 @@ ENDC
 	ret
 
 SpikesDamage:
+	callfar GetUserItem
+	ld a, b
+	cp HELD_HEAVY_DUTY_BOOTS
+	ret z
 	call .Spikes
 	; Do not run later entry hazards after Spikes knocked out the switch-in.
 	; Besides being nonsensical, Toxic Spikes could otherwise poison the
@@ -4613,6 +4633,7 @@ HandleHealingItems:
 	jp UseConfusionHealingItem
 
 HandleHPHealingItem::
+	farcall ModernHPItemsOpp_Core
 	; HP update events also activate Mewtwo's reusable Berserk Gene.
 	farcall HandleOpponentBerserkGene_Core
 	farcall OppHasFainted
@@ -4711,11 +4732,22 @@ ItemRecoveryAnim:
 	call SwitchTurnCore
 	xor a
 	ld [wNumHits], a
-	if HIGH(RECOVER)
-		ld a, HIGH(RECOVER)
-	endc
+	ld [wBattleAnimParam], a
+	push hl
+	callfar GetUserItem
+	ld b, [hl]
+	push bc
+	farcall IsBerryItem_Core
+	pop bc
+	pop hl
+	jr nc, .not_berry
+	farcall BerryAnimationParam_Core
+	ld a, b
+	ld [wBattleAnimParam], a
+.not_berry
+	ld a, HIGH(ANIM_HELD_ITEM_TRIGGER)
 	ld [wFXAnimID + 1], a
-	ld a, LOW(RECOVER)
+	ld a, LOW(ANIM_HELD_ITEM_TRIGGER)
 	ld [wFXAnimID], a
 	predef PlayBattleAnim
 	call SwitchTurnCore
@@ -4807,12 +4839,14 @@ UseConfusionHealingItem:
 
 .heal_status
 	ld a, [hl]
-	ld [wNamedObjectIndexBuffer], a
+	push af
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVarAddr
 	res SUBSTATUS_CONFUSED, [hl]
-	call GetItemName
 	call ItemRecoveryAnim
+	pop af
+	ld [wNamedObjectIndexBuffer], a
+	call GetItemName
 	ld hl, BattleText_ItemHealedConfusion
 	call StdBattleTextbox
 	; Use the shared consumption path so Harvest and Unburden see confusion-

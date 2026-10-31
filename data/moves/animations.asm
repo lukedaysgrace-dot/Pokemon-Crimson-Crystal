@@ -484,6 +484,7 @@ BattleAnimations::
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown
+	banim BattleAnim_HeldItemTrigger
 
 BattleAnim_0:
 BattleAnim_MirrorMove:

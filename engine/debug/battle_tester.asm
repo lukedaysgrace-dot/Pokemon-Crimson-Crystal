@@ -56,7 +56,8 @@ dbg_STATLEVELS   EQU 18 ; ds 7; [0] = 0 -> no stat stage override
 dbg_SUBSTATUS    EQU 25 ; ds 5; ORed into w{Player,Enemy}SubStatus1-5
                         ; post-entry (player1/enemy only; player2's field
                         ; is ignored - substatus belongs to the active mon)
-dbg_SIZE         EQU 30
+dbg_ITEM_HIGH    EQU 30
+dbg_SIZE         EQU 31
 
 DEBUG_WRAM_BANK EQU 2
 DEBUG_TEXT_RAM_LOG_ENTRIES EQU 16
@@ -460,6 +461,13 @@ DebugBuildPartyMon:
 	; --- item ---
 	ld c, dbg_ITEM
 	call DebugReqByte
+	ld l, a
+	push hl
+	ld c, dbg_ITEM_HIGH
+	call DebugReqByte
+	pop hl
+	ld h, a
+	call GetItemIDFromIndex
 	ld e, a
 	ld bc, MON_ITEM
 	call DebugBasePtr
@@ -691,6 +699,15 @@ DebugModifyWildMon::
 	ld hl, dbg_ITEM
 	add hl, de
 	call DebugPeek
+	push de
+	ld c, a
+	ld hl, dbg_ITEM_HIGH
+	add hl, de
+	call DebugPeek
+	ld h, a
+	ld l, c
+	call GetItemIDFromIndex
+	pop de
 	ld [wEnemyMonItem], a
 
 	; DVs

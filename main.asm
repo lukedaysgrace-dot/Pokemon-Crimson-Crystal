@@ -892,6 +892,9 @@ SECTION "Abilities Engine", ROMX
 
 INCLUDE "engine/battle/abilities_engine.asm"
 
+SECTION "Modern Held Item Core", ROMX
+INCLUDE "engine/battle/modern_held_items.asm"
+
 SECTION "Perish Song Ability Core", ROMX
 
 INCLUDE "engine/battle/move_effects/perish_song_core.asm"

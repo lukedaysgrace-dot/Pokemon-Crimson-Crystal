@@ -458,6 +458,7 @@ NUM_ATTACKS EQU const_value + -1
 	const ANIM_SWEET_SCENT_2
 	const ANIM_STAT_UP
 	const ANIM_STAT_DOWN
+	const ANIM_HELD_ITEM_TRIGGER
 ; Animations with negative IDs will play even when animations are disabled
 const_value = -$1b ;fix if more negative values are added
 	const ANIM_INTRO_RAIN        ; -1b (ffe5)

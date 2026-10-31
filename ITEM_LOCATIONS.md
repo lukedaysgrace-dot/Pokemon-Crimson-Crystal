@@ -1,6 +1,6 @@
 # Crimson Crystal — TM and held-item locations
 
-Locations for all 54 TMs and 60 held items. Most ground items and gifts are one-time rewards.
+Locations for all 54 TMs and 76 held items. Most ground items and gifts are one-time rewards.
 
 Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their held items. Trick swaps items; use it to take Air Balloon before a damaging hit pops it.
 
@@ -66,8 +66,11 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Amulet Coin](#amulet_coin) | Ground pickup, Wild Pokémon |
 | [Assault Vest](#assault_vest) | Gift / reward, Shop, Trainer item |
 | [Berserk Gene](#berserk_gene) | Hidden pickup |
+| [Big Root](#big_root) | Shop |
+| [Black Sludge](#black_sludge) | Shop |
 | [Blackbelt](#blackbelt) | Gift / reward, Trainer item |
 | [Blackglasses](#blackglasses) | Gift / reward, Trainer item |
+| [Blunderpolcy](#blunder_policy) | Shop |
 | [Brick Piece](#brick_piece) | Ground pickup |
 | [Brightpowder](#brightpowder) | Trainer item |
 | [Charcoal](#charcoal) | Gift / reward, Shop, Trainer item |
@@ -75,9 +78,12 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Choice Scarf](#choice_scarf) | Battle Tower prize, Gift / reward |
 | [Choice Specs](#choice_specs) | Battle Tower prize, Gift / reward |
 | [Cleanse Tag](#cleanse_tag) | Gift / reward |
+| [Clear Amulet](#clear_amulet) | Shop |
+| [Covert Cloak](#covert_cloak) | Shop |
 | [Damp Rock](#damp_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [Dragon Fang](#dragon_fang) | Ground pickup |
 | [Dragon Scale](#dragon_scale) | Ground pickup, Wild Pokémon |
+| [Eject Button](#eject_button) | Shop |
 | [Everstone](#everstone) | Gift / reward, Static wild Pokémon, Wild Pokémon |
 | [Eviolite](#eviolite) | Ground pickup, Shop, Trainer item |
 | [Exp. Share](#exp_share) | Gift / reward |
@@ -87,17 +93,20 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Focus Sash](#focus_sash) | Battle Tower prize, Gift / reward, Trainer item |
 | [Hard Stone](#hard_stone) | Gift / reward, Wild Pokémon |
 | [Heat Rock](#heat_rock) | Ground pickup, Mystery Gift |
+| [Heavy Boots](#heavy_duty_boots) | Shop |
 | [Icy Rock](#icy_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [King's Rock](#kings_rock) | Gift / reward, Wild Pokémon |
 | [Leftovers](#leftovers) | Hidden pickup, Search trash can, Static wild Pokémon, Trainer item, Wild Pokémon |
 | [Life Orb](#life_orb) | Ground pickup, Shop, Trainer item |
 | [Light Ball](#light_ball) | Trainer item, Wild Pokémon |
+| [Light Clay](#light_clay) | Shop |
 | [Loaded Dice](#loaded_dice) | Hidden pickup |
 | [Lucky Egg](#lucky_egg) | Wild Pokémon |
 | [Lucky Punch](#lucky_punch) | Wild Pokémon |
 | [Magnet](#magnet) | Gift / reward, Trainer item, Wild Pokémon |
 | [Metal Coat](#metal_coat) | Gift / reward, In-game trade, Wild Pokémon |
 | [Metal Powder](#metal_powder) | Wild Pokémon |
+| [Metronome](#metronome_item) | Shop |
 | [Miracle Seed](#miracle_seed) | Gift / reward, Trainer item |
 | [Muscle Band](#muscle_band) | Gift / reward, Shop, Trainer item |
 | [Mystic Water](#mystic_water) | Fishing Contest prize, Gift / reward, Ground pickup, Trainer item |
@@ -105,8 +114,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Pink Bow](#pink_bow) | Gift / reward, Trainer item |
 | [Poison Barb](#poison_barb) | Gift / reward, Wild Pokémon |
 | [Polkadot Bow](#polkadot_bow) | Shop |
+| [Power Herb](#power_herb) | Shop |
+| [Punch Glove](#punching_glove) | Shop |
 | [Quick Claw](#quick_claw) | Gift / reward, Trainer item, Wild Pokémon |
+| [Quick Powder](#quick_powder) | Shop |
+| [Red Card](#red_card) | Shop |
 | [Rocky Helmet](#rocky_helmet) | Gift / reward, Shop, Trainer item |
+| [Safety Goggl](#safety_goggles) | Shop |
 | [Scope Lens](#scope_lens) | Gift / reward, Mystery Gift, Trainer item |
 | [Sharp Beak](#sharp_beak) | Gift / reward, Trainer item, Wild Pokémon |
 | [Silverpowder](#silverpowder) | Wild Pokémon |
@@ -116,10 +130,12 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Spell Tag](#spell_tag) | Trainer item, Wild Pokémon |
 | [Stick](#stick) | Trainer item, Wild Pokémon |
 | [Thick Club](#thick_club) | Trainer item, Wild Pokémon |
+| [Throat Spray](#throat_spray) | Shop |
 | [Toxic Orb](#toxic_orb) | Ground pickup, Shop |
 | [Twistedspoon](#twistedspoon) | Gift / reward, Trainer item |
 | [Up-Grade](#up_grade) | Gift / reward |
 | [Weak Policy](#weak_policy) | Battle Tower prize, Ground pickup |
+| [White Herb](#white_herb) | Shop |
 | [Wide Lens](#wide_lens) | Ground pickup, Shop, Trainer item |
 | [Wise Glasses](#wise_glasses) | Gift / reward, Shop, Trainer item |
 
@@ -554,6 +570,20 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | --- | --- |
 | Cerulean City | **Hidden pickup** — Search this map tile. Tile (2, 12). |
 
+<a id="big_root"></a>
+## Big Root
+
+| Location | How to obtain |
+| --- | --- |
+| Celadon Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+
+<a id="black_sludge"></a>
+## Black Sludge
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+
 <a id="blackbelt"></a>
 ## Blackbelt
 
@@ -573,6 +603,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Radio Tower 5F | **Trainer item** — Executive Archer: Kingambit Lv. 42. |
 | Radio Tower 5F | **Trainer item** — Executive Archer: Krookodile Lv. 42. |
 | Route 36 | **Trainer item** — Schoolboy Alan: Kingambit Lv. 74. |
+
+<a id="blunder_policy"></a>
+## Blunderpolcy
+
+| Location | How to obtain |
+| --- | --- |
+| Celadon Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
 
 <a id="brick_piece"></a>
 ## Brick Piece
@@ -648,6 +685,20 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | --- | --- |
 | Route 5 Cleanse Tag House | **Gift / reward** — Granny in the house; talk to her. Tile (2, 5). |
 
+<a id="clear_amulet"></a>
+## Clear Amulet
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+
+<a id="covert_cloak"></a>
+## Covert Cloak
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+
 <a id="damp_rock"></a>
 ## Damp Rock
 
@@ -695,6 +746,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Whirl Islands SW | **Wild Pokémon** — Horsea; approx. 5% held-item chance. Surf; Any; Lv. 33. |
 | Whirl Islands SW | **Wild Pokémon** — Kingdra; approx. 5% held-item chance. Super Rod; Any; Lv. 40. |
 | Whirl Islands SW | **Wild Pokémon** — Seadra; approx. 5% held-item chance. Super Rod; Any; Lv. 40. |
+
+<a id="eject_button"></a>
+## Eject Button
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
 
 <a id="everstone"></a>
 ## Everstone
@@ -834,6 +892,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | --- | --- |
 | Pokémon Center 2F delivery NPC | **Mystery Gift** — Unlock Mystery Gift with Carrie on Goldenrod Department Store 5F, then use a compatible infrared session. |
 | Ruins of Alph Ho Oh Item Room | **Ground pickup** — Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage. Tile (5, 6). |
+
+<a id="heavy_duty_boots"></a>
+## Heavy Boots
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
 
 <a id="icy_rock"></a>
 ## Icy Rock
@@ -1151,6 +1216,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Pallet Town | **Trainer item** — Red: Pikachu Lv. 83. |
 | Silver Cave Room 3 | **Trainer item** — Pokémon Trainer: Pikachu Lv. 88. |
 
+<a id="light_clay"></a>
+## Light Clay
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+
 <a id="loaded_dice"></a>
 ## Loaded Dice
 
@@ -1227,6 +1299,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Route 34 | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 15. |
 | Route 35 | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 17–19. |
 | Route 35 | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass Swarm; Day, Morning, Night; Lv. 17. Condition: Swarm. |
+
+<a id="metronome_item"></a>
+## Metronome
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
 
 <a id="miracle_seed"></a>
 ## Miracle Seed
@@ -1332,6 +1411,20 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | --- | --- |
 | Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽1,000. |
 
+<a id="power_herb"></a>
+## Power Herb
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
+
+<a id="punching_glove"></a>
+## Punch Glove
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+
 <a id="quick_claw"></a>
 ## Quick Claw
 
@@ -1352,6 +1445,20 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Silver Cave Outside | **Wild Pokémon** — Sneasler; approx. 5% held-item chance. Grass / Cave; Night; Lv. 78. |
 | Olivine Gym | **Trainer item** — Leader Jasmine: Steelix Lv. 34. |
 
+<a id="quick_powder"></a>
+## Quick Powder
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+
+<a id="red_card"></a>
+## Red Card
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
+
 <a id="rocky_helmet"></a>
 ## Rocky Helmet
 
@@ -1365,6 +1472,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Route 27 | **Trainer item** — Bird Keeper Jose: Skarmory Lv. 74. |
 | Route 36 | **Trainer item** — Schoolboy Alan: Corsola Lv. 77. |
 | Violet Gym | **Trainer item** — Leader Falkner: Skarmory Lv. 75. One-time gym rematch after defeating Red. |
+
+<a id="safety_goggles"></a>
+## Safety Goggl
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
 
 <a id="scope_lens"></a>
 ## Scope Lens
@@ -1511,6 +1625,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Route 25 | **Trainer item** — Crystal Crystal: Marowak Lv. 69. |
 | Route 34 | **Trainer item** — Camper Todd: Marowak (Alolan) Lv. 76. |
 
+<a id="throat_spray"></a>
+## Throat Spray
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
+
 <a id="toxic_orb"></a>
 ## Toxic Orb
 
@@ -1542,6 +1663,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | --- | --- |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Radio Tower 5F | **Ground pickup** — Collect the item ball after defeating Archer and receiving the Clear Bell. Tile (13, 5). |
+
+<a id="white_herb"></a>
+## White Herb
+
+| Location | How to obtain |
+| --- | --- |
+| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
 
 <a id="wide_lens"></a>
 ## Wide Lens

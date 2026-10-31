@@ -164,7 +164,7 @@ def _configure(effect, move, power):
         test["player"]["item"] = "GOLD_BERRY"
         test["turns"] = 2
         # The berry is consumed during entry, before the harness snapshot.
-        assertions = ["player.item == 'GOLD_BERRY'", "player.hp == player.maxhp"]
+        assertions = ["player.item == 'NO_ITEM'", "player.hp == 1 + 3 * (player.maxhp // 4)"]
     if effect == "EFFECT_ATTRACT":
         test["player"]["species"] = "NIDOKING"
         test["enemy"]["species"] = "NIDOQUEEN"
