@@ -285,6 +285,26 @@ ItemDescriptions:
 	dw BIG_NUGGETDesc
 	dw PEARL_STRINGDesc
 
+	dw COVERT_CLOAKDesc
+	dw CLEAR_AMULETDesc
+	dw METRONOME_ITEMDesc
+	dw HEAVY_DUTY_BOOTSDesc
+	dw RED_CARDDesc
+	dw EJECT_BUTTONDesc
+	dw POWER_HERBDesc
+	dw WHITE_HERBDesc
+	dw BLACK_SLUDGEDesc
+	dw LIGHT_CLAYDesc
+	dw THROAT_SPRAYDesc
+	dw PUNCHING_GLOVEDesc
+	dw QUICK_POWDERDesc
+	dw SAFETY_GOGGLESDesc
+	dw BIG_ROOTDesc
+	dw BLUNDER_POLICYDesc
+	dw QuestionMarkDesc ; retired $012d
+	dw CUSTAP_BERRYDesc
+	dw SALAC_BERRYDesc
+
 MasterBallDesc:
 	db   "The best BALL. It"
 	next "never misses.@"
@@ -971,8 +991,8 @@ BerryDesc:
 	next "item. (10HP, HOLD)@"
 
 GoldBerryDesc:
-	db   "A self-restore"
-	next "item. (30HP, HOLD)@"
+	db "Restores 1/4 HP at"
+	next "half HP. (HOLD)@"
 
 SquirtBottleDesc:
 	db   "A bottle used for"
@@ -1143,3 +1163,76 @@ BIG_NUGGETDesc:
 PEARL_STRINGDesc:
 	db "A valuable find."
 	next "Sell it at a MART.@"
+
+COVERT_CLOAKDesc:
+	db "Blocks extra move"
+	next "effects. (HOLD)@"
+
+CLEAR_AMULETDesc:
+	db "Prevents a foe's"
+	next "stat drops. (HOLD)@"
+
+METRONOME_ITEMDesc:
+	db "Repeat a move to"
+	next "boost it. (HOLD)@"
+
+HEAVY_DUTY_BOOTSDesc:
+	db "Avoids all entry"
+	next "hazards. (HOLD)@"
+
+RED_CARDDesc:
+	db "Hit by a move,"
+	next "ejects foe. (HOLD)@"
+
+EJECT_BUTTONDesc:
+	db "Hit by a move,"
+	next "switches. (HOLD)@"
+
+POWER_HERBDesc:
+	db "Skips charging a"
+	next "move once. (HOLD)@"
+
+WHITE_HERBDesc:
+	db "Restores lowered"
+	next "stats once. (HOLD)@"
+
+BLACK_SLUDGEDesc:
+	db "Heals POISON types"
+	next "hurts others. HOLD@"
+
+LIGHT_CLAYDesc:
+	db "Makes screens last"
+	next "eight turns. HOLD@"
+
+THROAT_SPRAYDesc:
+	db "Sound moves raise"
+	next "SPCL.ATK up. HOLD@"
+
+PUNCHING_GLOVEDesc:
+	db "Boosts punches. No"
+	next "contact. (HOLD)@"
+
+QUICK_POWDERDesc:
+	db "Doubles DITTO's"
+	next "SPEED. (HOLD)@"
+
+SAFETY_GOGGLESDesc:
+	db "Blocks powders and"
+	next "weather. (HOLD)@"
+
+BIG_ROOTDesc:
+	db "Boosts HP drained"
+	next "from a foe. (HOLD)@"
+
+BLUNDER_POLICYDesc:
+	db "Miss to sharply"
+	next "raise SPEED. HOLD@"
+
+
+CUSTAP_BERRYDesc:
+	db "Move first once"
+	next "at low HP. (HOLD)@"
+
+SALAC_BERRYDesc:
+	db "Raises SPEED once"
+	next "at low HP. (HOLD)@"

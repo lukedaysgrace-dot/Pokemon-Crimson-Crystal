@@ -26,8 +26,9 @@ def main():
         h.wr(h.s(name), value)
 
     def quantity():
+        index = con.item_id(item)
         return sum(h.rd(h.s('wItems') + 3 * i + 2) for i in range(h.rd(h.s('wNumItems')))
-                   if h.rd(h.s('wItems') + 3 * i + 1) == h.rd(h.s('wCurItem')))
+                   if int.from_bytes(h.rd(h.s('wItems') + 3 * i, 2), 'big') == index)
 
     def check(ok, message):
         nonlocal checks
@@ -37,6 +38,7 @@ def main():
     try:
         for name, item, amount, species, level, hp, cancel in [
             ('potions', 'POTION', 2, 'MEW', 20, 1, False),
+            ('gold-berries', 'GOLD_BERRY', 2, 'MEW', 20, 1, False),
             ('cancel-after-one', 'POTION', 3, 'MEW', 20, 1, True),
             ('full-hp', 'POTION', 3, 'MEW', 20, 200, False),
             ('vitamins', 'PROTEIN', 2, 'MEW', 20, 100, False),
@@ -59,8 +61,10 @@ def main():
             write('wPartyMon1HP', [hp >> 8, hp & 255])
             write('wPartyMon1MaxHP', [0, 200])
             write('wPartyMenuCursor', 1)
-            write('wNumItems', [1, 0, con.item_id(item), amount, 255])
-            write('wCurItem', con.item_id(item))
+            index = con.item_id(item)
+            runtime = h.call('GetItemIDFromIndex', hl=index)['a']
+            write('wNumItems', [1, index >> 8, index & 255, amount, 255])
+            write('wCurItem', runtime)
             write('wCurItemQuantity', 0)
             write('wBattleMode', 0)
             write('wLinkMode', 0)
@@ -116,6 +120,8 @@ def main():
             check(quantity() == (amount - 1 if cancel or capped else amount if name == 'full-hp' else 0), f'{name}: wrong consumption')
             if name == 'potions':
                 check(h.rd(h.s('wPartyMon1HP'), 2) == bytes([0, 41]), 'native repeated Potion healing')
+            elif name == 'gold-berries':
+                check(h.rd(h.s('wPartyMon1HP'), 2) == bytes([0, 101]), 'native repeated Gold Berry healing')
             elif name == 'vitamins':
                 check(h.rd(h.s('wPartyMon1AtkExp')) == 20, 'native repeated vitamins')
             elif name in ('pp-ups', 'pp-max'):

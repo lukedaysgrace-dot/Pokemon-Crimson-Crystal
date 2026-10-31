@@ -334,3 +334,9 @@ INCLUDE "gfx/battle_anims/battle_anims.pal"
 	RGB 31,31,31, 31,29,10, 31,17,3, 25,5,2
 ; Apple leaf: light and dark leaf greens, brown stem and outline.
 	RGB 31,31,31, 15,26,4, 5,15,1, 8,4,1
+; Aspear / Burnt Berry: yellow-green.
+	RGB 31,31,31, 24,29,5, 13,19,2, 0,0,0
+; Rawst / Ice Berry: light blue.
+	RGB 31,31,31, 20,28,31, 12,21,30, 0,0,0
+; Gold Berry: warm gold body with an amber shadow, distinct from yellow.
+	RGB 31,31,31, 31,26,8, 27,19,2, 0,0,0

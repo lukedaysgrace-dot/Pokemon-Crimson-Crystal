@@ -326,5 +326,25 @@ FULL_HEAL_RED  EQU $34 ; X_SPEED
 	const COMET_SHARD
 	const BIG_NUGGET
 	const PEARL_STRING
+	const COVERT_CLOAK
+	const CLEAR_AMULET
+	const METRONOME_ITEM
+	const HEAVY_DUTY_BOOTS
+	const RED_CARD
+	const EJECT_BUTTON
+	const POWER_HERB
+	const WHITE_HERB
+	const BLACK_SLUDGE
+	const LIGHT_CLAY
+	const THROAT_SPRAY
+	const PUNCHING_GLOVE
+	const QUICK_POWDER
+	const SAFETY_GOGGLES
+	const BIG_ROOT
+	const BLUNDER_POLICY
+	; $012d: retired duplicate HP Berry; resolves to GOLD_BERRY.
+	const_def $12e
+	const CUSTAP_BERRY
+	const SALAC_BERRY
 NUM_ITEM_INDEXES EQU const_value - 1
 	assert NUM_ITEM_INDEXES < $ff00

@@ -746,8 +746,11 @@
     ability: NO_ABILITY
     moves:
     - SPLASH
-    hp: 1
+    hp: 100
     item: GOLD_BERRY
+  setup_wram:
+    wEnemyMonHP: [0, 1]
+    wOTPartyMon1HP: [0, 1]
   rng: forced_high
   turns: 1
   assert:
@@ -885,8 +888,11 @@
     ability: STICKY_HOLD
     moves:
     - SPLASH
-    hp: 1
+    hp: 100
     item: GOLD_BERRY
+  setup_wram:
+    wEnemyMonHP: [0, 1]
+    wOTPartyMon1HP: [0, 1]
   rng: forced_high
   turns: 1
   assert:
@@ -901,7 +907,7 @@
     ability: NO_ABILITY
     moves:
     - SPLASH
-    hp: 1
+    hp: 100
     item: GOLD_BERRY
   enemy:
     species: MEW
@@ -909,6 +915,9 @@
     ability: NO_ABILITY
     moves:
     - INCINERATE
+  setup_wram:
+    wBattleMonHP: [0, 1]
+    wPartyMon1HP: [0, 1]
   rng: forced_high
   turns: 1
   assert:
@@ -922,7 +931,7 @@
     ability: STICKY_HOLD
     moves:
     - SPLASH
-    hp: 1
+    hp: 100
     item: GOLD_BERRY
   enemy:
     species: MEW
@@ -930,6 +939,9 @@
     ability: NO_ABILITY
     moves:
     - INCINERATE
+  setup_wram:
+    wBattleMonHP: [0, 1]
+    wPartyMon1HP: [0, 1]
   rng: forced_high
   turns: 1
   assert:
@@ -955,7 +967,7 @@
   rng: forced_high
   turns: 1
   assert:
-  - enemy.hp == result('inc_heal_control')['enemy']['hp'] + 30
+  - enemy.hp == result('inc_heal_control')['enemy']['hp'] + enemy.maxhp // 4
   - wram('wEnemyConsumedItem') == item_id('GOLD_BERRY')
 - id: inc_harvest_low
   name: Incinerate destroys a threshold berry before Harvest can restore it

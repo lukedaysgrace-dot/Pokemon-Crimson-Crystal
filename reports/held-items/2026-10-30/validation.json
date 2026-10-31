@@ -1,0 +1,222 @@
+{
+  "date": "2026-10-30",
+  "items_added": 18,
+  "removed_item": "SITRUS_BERRY",
+  "replacement_item": "GOLD_BERRY",
+  "gold_berry_healing": "25% maximum HP",
+  "berry_palette_checks": {
+    "rom_hash": "9867c2fe4001",
+    "passed": 20,
+    "results": [
+      {
+        "side": "player",
+        "item": "BERRY",
+        "color": "Blue",
+        "palette": "ff7f887da3540000",
+        "frames": 100
+      },
+      {
+        "side": "player",
+        "item": "GOLD_BERRY",
+        "color": "Gold",
+        "palette": "ff7f5f237b0a0000",
+        "frames": 100
+      },
+      {
+        "side": "player",
+        "item": "PSNCUREBERRY",
+        "color": "Pink",
+        "palette": "ff7f7f623e350000",
+        "frames": 100
+      },
+      {
+        "side": "player",
+        "item": "PRZCUREBERRY",
+        "color": "Red",
+        "palette": "ff7f7f625e190000",
+        "frames": 100
+      },
+      {
+        "side": "player",
+        "item": "BURNT_BERRY",
+        "color": "Yellow-green",
+        "palette": "ff7fb8176d0a0000",
+        "frames": 100
+      },
+      {
+        "side": "player",
+        "item": "ICE_BERRY",
+        "color": "Light blue",
+        "palette": "ff7f947fac7a0000",
+        "frames": 100
+      },
+      {
+        "side": "player",
+        "item": "BITTER_BERRY",
+        "color": "Pink",
+        "palette": "ff7f7f623e350000",
+        "frames": 100
+      },
+      {
+        "side": "player",
+        "item": "MINT_BERRY",
+        "color": "Blue",
+        "palette": "ff7f887da3540000",
+        "frames": 100
+      },
+      {
+        "side": "player",
+        "item": "MIRACLEBERRY",
+        "color": "Green",
+        "palette": "ff7f2c07c5010000",
+        "frames": 100
+      },
+      {
+        "side": "player",
+        "item": "MYSTERYBERRY",
+        "color": "Red",
+        "palette": "ff7f7f625e190000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "BERRY",
+        "color": "Blue",
+        "palette": "ff7f887da3540000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "GOLD_BERRY",
+        "color": "Gold",
+        "palette": "ff7f5f237b0a0000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "PSNCUREBERRY",
+        "color": "Pink",
+        "palette": "ff7f7f623e350000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "PRZCUREBERRY",
+        "color": "Red",
+        "palette": "ff7f7f625e190000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "BURNT_BERRY",
+        "color": "Yellow-green",
+        "palette": "ff7fb8176d0a0000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "ICE_BERRY",
+        "color": "Light blue",
+        "palette": "ff7f947fac7a0000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "BITTER_BERRY",
+        "color": "Pink",
+        "palette": "ff7f7f623e350000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "MINT_BERRY",
+        "color": "Blue",
+        "palette": "ff7f887da3540000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "MIRACLEBERRY",
+        "color": "Green",
+        "palette": "ff7f2c07c5010000",
+        "frames": 100
+      },
+      {
+        "side": "enemy",
+        "item": "MYSTERYBERRY",
+        "color": "Red",
+        "palette": "ff7f7f625e190000",
+        "frames": 100
+      }
+    ]
+  },
+  "battle_cases": {
+    "passed": 6105,
+    "failed": 0,
+    "errored": 0,
+    "skipped": 0
+  },
+  "targeted_item_cases": 200,
+  "catalog_and_save_checks_per_rom": 1245,
+  "quick_powder_exact_speed_checks_per_rom": 512,
+  "native_consumable_menu_checks_per_rom": 69,
+  "static_item_catalog_tests": 8,
+  "video": {
+    "rom_hash": "9867c2fe4001",
+    "frames": 2280,
+    "seconds": 38.0,
+    "audio_samples": 1826280,
+    "audio_peak": 7552,
+    "events": [
+      {
+        "frame": 670,
+        "holder": "player"
+      },
+      {
+        "frame": 1417,
+        "holder": "enemy"
+      }
+    ],
+    "results": [
+      {
+        "holder": "player",
+        "frames": 1111,
+        "animation_frames": 100,
+        "hp_before": 66,
+        "hp_after": 53,
+        "maxhp": 110
+      },
+      {
+        "holder": "enemy",
+        "frames": 1169,
+        "animation_frames": 100,
+        "hp_before": 96,
+        "hp_after": 121,
+        "maxhp": 190
+      }
+    ],
+    "video": "/mnt/c/Users/luked/Documents/GitHub/Pokemon-Crimson-Crystal/_artifacts/held-items/berry-animation.mp4",
+    "video_bytes": 1050543
+  },
+  "roms": {
+    "pokecrystal.gbc": {
+      "sha256": "c5c19a6a4250f8179924820998c605fe6640cd761c9f35269d92c445525468ab",
+      "bytes": 4194304
+    },
+    "pokecrystal_debug.gbc": {
+      "sha256": "1d7a16f919e7327925400e26dab24b019df29dc375e31ce584223d3c25d80f6a",
+      "bytes": 4194304
+    }
+  },
+  "upstream": {
+    "repository": "https://github.com/rangi42/polishedcrystal",
+    "commit": "435bb9061592246dec0c5c5cf813389e7d17de4a",
+    "berry_artwork_identical": true
+  },
+  "preexisting_failure": {
+    "check": "tools/test_battle_symbols.py",
+    "assertion": "classes['AROMA_LADY'] == len(classes) - 1",
+    "reason": "The repository already has trainer classes after AROMA_LADY, ending with HOSTESS. The test and trainer constants are both unchanged from HEAD.",
+    "related_to_item_changes": false
+  }
+}

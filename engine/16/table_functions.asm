@@ -138,6 +138,11 @@ NormalizeRetiredBerryIndex::
 	cp $01
 	ret nz
 	ld a, l
+	cp $2d ; retired Sitrus Berry from the first held-item expansion
+	jr nz, .status_berries
+	ld hl, GOLD_BERRY
+	ret
+.status_berries
 	sub $11
 	ret c
 	cp 7

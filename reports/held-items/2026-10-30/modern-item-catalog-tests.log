@@ -1,0 +1,26 @@
+UserWarning: Using SDL2 binaries from pysdl2-dll 2.32.10
+[v3/v4 migration: inventory, progress, party, boxes and backup]
+[restored/expanded names, attributes and runtime-ID collection]
+[Gold Berry field healing: native quarter-max-HP amount]
+[removed duplicate HP Berry resolves to Gold Berry]
+[word-index marts: names, stock and BCD prices]
+[word-index bag sorting: same low byte, embedded $ff, stack merging]
+[boxed held indexes survive collection, snapshots and save/reload]
+[retired berry save compatibility: bag, PC, held slots and backup]
+[native Normal/Gorgeous Box effects: consume item and award trophy]
+[link item serialization with different runtime tables]
+[exhausted runtime table refuses allocation without hanging or corrupting inventory]
+ITEM EXPANSION PASSED: 1245 checks in pokecrystal.gbc
+UserWarning: Using SDL2 binaries from pysdl2-dll 2.32.10
+[v3/v4 migration: inventory, progress, party, boxes and backup]
+[restored/expanded names, attributes and runtime-ID collection]
+[Gold Berry field healing: native quarter-max-HP amount]
+[removed duplicate HP Berry resolves to Gold Berry]
+[word-index marts: names, stock and BCD prices]
+[word-index bag sorting: same low byte, embedded $ff, stack merging]
+[boxed held indexes survive collection, snapshots and save/reload]
+[retired berry save compatibility: bag, PC, held slots and backup]
+[native Normal/Gorgeous Box effects: consume item and award trophy]
+[link item serialization with different runtime tables]
+[exhausted runtime table refuses allocation without hanging or corrupting inventory]
+ITEM EXPANSION PASSED: 1245 checks in pokecrystal_debug.gbc

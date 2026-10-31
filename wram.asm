@@ -811,6 +811,12 @@ wPlayerSpiderWebSource:: db
 wEnemySpiderWebSource:: db
 ; Nonzero only while a web's stat drop is resolving; value = setter slot + 1.
 wEntryWebStatDrop:: db
+wPlayerMetronomeMove:: db
+wEnemyMetronomeMove:: db
+wPlayerMetronomeCount:: db
+wEnemyMetronomeCount:: db
+wPlayerItemSwitchPending:: db
+wEnemyItemSwitchPending:: db
 wBattleEnd::
 
 NEXTU ; c608
@@ -3555,10 +3561,10 @@ wDebugAbilityActivationLog:: ds 16
 
 ; Per-side setup blocks. Same layout for all three; see dbg_* offsets in
 ; engine/debug/battle_tester.asm.
-wDebugPlayer1::    ds 30
-wDebugPlayer2::    ds 30 ; species 0 = no second party mon
-wDebugEnemy::      ds 30
-wDebugEnemy2::     ds 30 ; species != 0 = trainer battle, 2-mon enemy party
+wDebugPlayer1::    ds 31
+wDebugPlayer2::    ds 31 ; species 0 = no second party mon
+wDebugEnemy::      ds 31
+wDebugEnemy2::     ds 31 ; species != 0 = trainer battle, 2-mon enemy party
 
 wDebugPartyBackedUp:: db
 ; One contiguous blob: party structs + names + dex caught/seen flags

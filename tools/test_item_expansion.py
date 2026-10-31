@@ -182,7 +182,7 @@ def main():
     expanded = [(name, value) for name, value in con.items.items() if value >= 257]
     rom_bytes = rom.read_bytes()
     desc_bank, desc_address = h.sym['ItemDescriptions']
-    check(len(expanded) == 21, 'expanded catalogue size')
+    check(len(expanded) == 39, 'expanded catalogue size')
     for name, value in expanded:
         item = runtime(value)
         check(item != 0 and index(item) == value, name + ': round-trip conversion')
@@ -205,11 +205,35 @@ def main():
         check(index(h.rd(h.s('wPartyMon1Item'))) == value, name + ': held item evicted')
         write('wPartyMon1Item', 0)
 
-    print('[four word-index marts: names, stock and BCD prices]', flush=True)
+    print('[Gold Berry field healing: native quarter-max-HP amount]', flush=True)
+    write('wCurPartyMon', 0)
+    write('wCurItem', runtime(con.item_id('GOLD_BERRY')))
+    for max_hp in (1, 3, 4, 5, 175, 255, 256, 999, 65535):
+        write('wPartyMon1MaxHP', max_hp.to_bytes(2, 'big'))
+        check(h.call('GetHealingItemAmount')['de'] == max(1, max_hp // 4),
+              'Gold Berry field healing amount')
+
+    print('[removed duplicate HP Berry resolves to Gold Berry]', flush=True)
+    check('SITRUS_BERRY' not in con.items, 'retired Berry remains in active catalogue')
+    check(index(runtime(0x12d)) == con.item_id('GOLD_BERRY'), 'retired held item identity')
+    result = h.call('NormalizeRetiredBerryIndex', hl=0x12d, bc=0x1234, de=0x5678)
+    check(result['hl'] == con.item_id('GOLD_BERRY') and result['bc'] == 0x1234
+          and result['de'] == 0x5678, 'retired Gold Berry conversion clobbered registers')
+    for pocket in ('wNumItems', 'wNumPCItems'):
+        entries(pocket, [(0x12d, 7), (con.item_id('GOLD_BERRY'), 3)])
+    h.call('NormalizeRetiredBerryInventories')
+    for pocket in ('wNumItems', 'wNumPCItems'):
+        check(h.rd(h.s(pocket), 8) == bytes([2, 0, con.item_id('GOLD_BERRY'), 7,
+                                           0, con.item_id('GOLD_BERRY'), 3, 255]),
+              pocket + ': retired Berry conversion changed quantities')
+
+    print('[word-index marts: names, stock and BCD prices]', flush=True)
     stock = [list(range(257, 264)), list(range(264, 271)),
-             [271, 272], list(range(280, 285))]
+             [271, 272], list(range(280, 285)), list(range(285, 292)),
+             list(range(292, 299)), [299, 300, con.item_id("GOLD_BERRY"), 302, 303]]
     for number, expected_stock in enumerate(stock):
-        bank, address = h.sym['MartExpanded' + str(number)]
+        bank, address = h.sym[('MartExpanded' + str(number)) if number < 4
+                              else ('MartBattleItems' + str(number - 4))]
         write('wMartPointerBank', bank)
         h.wr16(h.s('wMartPointer'), address)
         write('wCurMart', bytes(16))

@@ -1024,7 +1024,10 @@ BattleCheckCharge_Core:
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	bit SUBSTATUS_CHARGED, [hl]
-	ret z
+	jr nz, .second_turn
+	farcall ModernPowerHerb_Core
+	ret
+.second_turn
 	res SUBSTATUS_CHARGED, [hl]
 	res SUBSTATUS_UNDERGROUND, [hl]
 	res SUBSTATUS_FLYING, [hl]
@@ -1381,6 +1384,11 @@ WeatherDefenseBoost_Core:
 	ret
 
 BattleUTurn_Core:
+	farcall ModernReactiveSwitch_Core
+	ld a, b
+	and a
+	ret nz
+.SwitchUser
 	ld a, [wAttackMissed]
 	and a
 	ret nz
@@ -1866,6 +1874,7 @@ StatDownMessage_Core:
 	call BattleTextbox
 	; Defiant / Competitive react to the drop
 	farcall RunStatDropReaction
+	farcall ModernWhiteHerbOpp_Core
 	ret
 
 .defer
@@ -2049,6 +2058,7 @@ FlushStatMessages_Core::
 	ld a, c
 	and a
 	jr nz, .reaction_loop
+	farcall ModernWhiteHerbOpp_Core
 	ret
 
 PrintStatList:

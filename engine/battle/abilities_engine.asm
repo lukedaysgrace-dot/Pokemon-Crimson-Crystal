@@ -1187,7 +1187,10 @@ RunHPItemUpdatesBoth::
 	call GetOpponentItem_Core
 	ld a, b
 	cp HELD_BERRY
-	jr nz, .no
+	jr z, .legacy_hp_item
+	farcall ModernHPItemEligibleOpp_Core
+	ret
+.legacy_hp_item
 	ld a, [hl]
 	cp BERRY_JUICE
 	jr z, .threshold
@@ -3166,6 +3169,7 @@ RunDamageModifiers:
 	jp .defender
 
 ApplyHeldItemDamageModifiers:
+	farcall ModernDamageItems_Core
 	callfar GetUserItem
 	ld a, b
 	cp HELD_CHOICE_BAND
@@ -3505,6 +3509,8 @@ ContraryInvertsSelfDrop::
 	ret
 
 AbilityProtectsStatDrop::
+	farcall ModernClearAmulet_Core
+	ret c
 ; Carry if the opponent's (stat-drop target's) ability protects the stat
 ; in wLoweredStat. Shows the ability banner when it does.
 	; Entry hazards have no attacking Mold Breaker, even if the active foe
@@ -3623,6 +3629,10 @@ AbilityProtectsStatDrop::
 	ret
 
 AbilityImmuneToSandstorm::
+	push hl
+	farcall ModernGogglesUser_Core
+	pop hl
+	jr z, WeatherImmune
 ; Carry if the current turn holder's ability grants sandstorm immunity.
 	call GetTrueUserAbility
 	cp SAND_VEIL
@@ -3634,6 +3644,10 @@ AbilityImmuneToSandstorm::
 	jr WeatherImmuneCommon
 
 AbilityImmuneToHail::
+	push hl
+	farcall ModernGogglesUser_Core
+	pop hl
+	jr z, WeatherImmune
 ; Carry if the current turn holder's ability grants hail immunity.
 ; Unlike Sand Rush in sandstorm, Slush Rush only boosts Speed: it grants
 ; no hail immunity (its holders here are Ice-types, but a transferred
@@ -3795,6 +3809,22 @@ TargetEvadesTryHitAbilities:
 	ret
 
 GrassBlocksCurrentPowder:
+	push bc
+	push hl
+	call SwitchTurn
+	farcall ModernGogglesUser_Core
+	call SwitchTurn
+	pop hl
+	pop bc
+	jr nz, .grass_check
+	push hl
+	push bc
+	ld hl, PowderMoves
+	call CurrentMoveInList
+	pop bc
+	pop hl
+	ret c
+.grass_check
 ; Carry if the target's Grass typing blocks this powder/spore move.
 ; Sap Sipper absorbs a Grass-type powder before that (Showdown runs TryHit
 ; abilities before the powder immunity step), unless Mold Breaker ignores it.
@@ -4231,6 +4261,10 @@ GetBattleEffectiveSpeeds::
 	ld b, a
 	ld hl, wBattleMonSpeed
 	call .GetEffectiveSpeed
+	ld b, 0
+	ld d, h
+	ld e, l
+	farcall ModernQuickPowder_Core
 	ld a, [wBattleMonItem]
 	ld b, a
 	call GetPlayerAbilityEffective
@@ -4248,6 +4282,10 @@ GetBattleEffectiveSpeeds::
 	ld b, a
 	ld hl, wEnemyMonSpeed
 	call .GetEffectiveSpeed
+	ld b, 1
+	ld d, h
+	ld e, l
+	farcall ModernQuickPowder_Core
 	ld a, [wEnemyMonItem]
 	ld b, a
 	call GetEnemyAbilityEffective
@@ -4782,6 +4820,8 @@ RunContactAbilitiesHook::
 	ret ; recoil and move-end reactions follow the completed move script
 
 RunAfterMoveAbilities_Core::
+	farcall ModernThroatSpray_Core
+	farcall ModernReactiveSwitch_Core
 	farcall ReadAfterMoveAbilitiesPending_Core
 	ld a, b
 	and a
@@ -5098,6 +5138,13 @@ TargetContactAbilities:
 	dbw -1, -1
 
 CheckContactMove::
+	push hl
+	farcall ModernGloveContact_Core
+	pop hl
+	jr nc, .ordinary
+	and a
+	ret
+.ordinary
 ; carry if the current move makes contact
 	push hl
 	push bc
@@ -6446,6 +6493,8 @@ RunGuardedStatusProc:
 	ret
 
 AbilityEffectChanceMods::
+	farcall ModernCloakOpp_Core
+	jr z, .cloak_or_dust
 ; b = secondary effect chance. Serene Grace doubles it; Sheer Force
 ; suppresses it (carry) - its damage boost lives in RunDamageModifiers.
 ; The defender's Shield Dust suppresses it outright.
@@ -6454,6 +6503,7 @@ AbilityEffectChanceMods::
 	pop bc
 	cp SHIELD_DUST
 	jr nz, .check_user_ability
+.cloak_or_dust
 	; Shield Dust blocks additional effects on its holder, not secondary
 	; effects that benefit the attacker itself.
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -7249,6 +7299,8 @@ AbilityCritLevelMods::
 	ret
 
 AbilityPreventsFlinch::
+	farcall ModernCloakOpp_Core
+	jr z, .block
 ; Carry if the defender's ability blocks this additional flinch effect.
 ; Canon: no message is shown.
 	call GetOpponentIgnorableAbility
@@ -8566,9 +8618,7 @@ HarvestAbility:
 	and a
 	ret z
 	push bc
-	ld hl, BerryItems
-	ld de, 1
-	call IsInArray
+	call IsBerryItem_Core
 	pop bc
 	ret nc
 	; roll: guaranteed in sun, 50% otherwise
@@ -8635,6 +8685,25 @@ HarvestAbility:
 IsBerryItem_Core:
 ; Returns carry if item b is a Berry (used by Incinerate).
 	ld a, b
+	call GetItemIndexFromID
+	ld a, h
+	cp HIGH(CUSTAP_BERRY)
+	jr nz, .legacy
+	ld a, l
+	cp LOW(CUSTAP_BERRY)
+	jr c, .not_berry
+	cp LOW(SALAC_BERRY) + 1
+	jr nc, .not_berry
+	scf
+	ret
+.not_berry
+	and a
+	ret
+.legacy
+	ld a, h
+	and a
+	ret nz
+	ld a, l
 	ld hl, BerryItems
 	ld de, 1
 	jp IsInArray
@@ -8694,6 +8763,15 @@ CudChewAbility:
 	jp EndAbility
 
 .other_berry
+	ld a, b
+	cp HELD_GOLD_BERRY
+	jr z, .modern_berry
+	cp HELD_SALAC_BERRY
+	jr nz, .ordinary_berry
+.modern_berry
+	farcall ModernCudChewBerry_Core
+	jp EndAbility
+.ordinary_berry
 	push de
 	call .WouldEat
 	pop de
@@ -9183,6 +9261,14 @@ BerryThresholdCheck_Core::
 	pop hl
 	scf
 	ret
+
+ModernPunchMoveCheck_Core::
+	ld hl, PunchMoves
+	jp CurrentMoveInList
+
+ModernSoundMoveCheck_Core::
+	ld hl, SoundMoves
+	jp CurrentMoveInList
 
 SECTION "Mimikyu Broken Pics", ROMX
 

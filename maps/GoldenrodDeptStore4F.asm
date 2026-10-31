@@ -12,6 +12,13 @@ GoldenrodDeptStore4F_MapScripts:
 GoldenrodDeptStore4FClerkScript:
 	faceplayer
 	opentext
+	writetext GoldenrodDeptStore4FClerkScriptNewStockText
+	yesorno
+	iffalse .regular
+	pokemart MARTTYPE_STANDARD, MART_BATTLE_ITEMS_1
+	closetext
+	end
+.regular
 	writetext GoldenrodDeptStore4FExpandedStockText
 	yesorno
 	iffalse .OriginalStock
@@ -105,4 +112,9 @@ GoldenrodDeptStore4F_MapEvents:
 GoldenrodDeptStore4FExpandedStockText:
 	text "Would you like to"
 	line "see our new stock?"
+	done
+
+GoldenrodDeptStore4FClerkScriptNewStockText:
+	text "Browse our new"
+	line "battle items?"
 	done

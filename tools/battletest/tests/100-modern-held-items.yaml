@@ -1,0 +1,4289 @@
+# Native ROM held-item behavior and negative controls.
+- name: 'Modern item: Cloak Body Slam NO_ITEM/NO_ABILITY #0'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: NO_ITEM
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BODY_SLAM
+  rng: forced_low
+  turns: 1
+  assert:
+  - player.status == 64
+- name: 'Modern item: Cloak Body Slam NO_ITEM/NO_ABILITY #0 (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BODY_SLAM
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: NO_ITEM
+  rng: forced_low
+  turns: 1
+  assert:
+  - enemy.status == 64
+- name: 'Modern item: Cloak Body Slam COVERT_CLOAK/NO_ABILITY #2'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BODY_SLAM
+  rng: forced_low
+  turns: 1
+  assert:
+  - player.status == 0
+- name: 'Modern item: Cloak Body Slam COVERT_CLOAK/NO_ABILITY #2 (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BODY_SLAM
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  rng: forced_low
+  turns: 1
+  assert:
+  - enemy.status == 0
+- name: 'Modern item: Cloak Body Slam COVERT_CLOAK/KLUTZ #4'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BODY_SLAM
+  rng: forced_low
+  turns: 1
+  assert:
+  - player.status == 64
+- name: 'Modern item: Cloak Body Slam COVERT_CLOAK/KLUTZ #4 (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BODY_SLAM
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  rng: forced_low
+  turns: 1
+  assert:
+  - enemy.status == 64
+- name: 'Modern item: Cloak Body Slam COVERT_CLOAK/NO_ABILITY #6'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BODY_SLAM
+  rng: forced_low
+  turns: 1
+  assert:
+  - player.status == 0
+- name: 'Modern item: Cloak Body Slam COVERT_CLOAK/NO_ABILITY #6 (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BODY_SLAM
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  rng: forced_low
+  turns: 1
+  assert:
+  - enemy.status == 0
+- name: 'Modern item: Clear Amulet TAIL_WHIP/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TAIL_WHIP
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[1] == 7
+- name: 'Modern item: Clear Amulet TAIL_WHIP/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TAIL_WHIP
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[1] == 7
+- name: 'Modern item: Clear Amulet TAIL_WHIP/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TAIL_WHIP
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[1] == 6
+- name: 'Modern item: Clear Amulet TAIL_WHIP/KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TAIL_WHIP
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[1] == 6
+- name: 'Modern item: Clear Amulet SCREECH/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SCREECH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[1] == 7
+- name: 'Modern item: Clear Amulet SCREECH/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SCREECH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[1] == 7
+- name: 'Modern item: Clear Amulet SCREECH/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SCREECH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[1] == 5
+- name: 'Modern item: Clear Amulet SCREECH/KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SCREECH
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[1] == 5
+- name: 'Modern item: Clear Amulet SCARY_FACE/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SCARY_FACE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Clear Amulet SCARY_FACE/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SCARY_FACE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[2] == 7
+- name: 'Modern item: Clear Amulet SCARY_FACE/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SCARY_FACE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[2] == 5
+- name: 'Modern item: Clear Amulet SCARY_FACE/KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SCARY_FACE
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[2] == 5
+- name: 'Modern item: Clear Amulet blocks Mold Breaker'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  enemy:
+    species: MEW
+    level: 50
+    ability: MOLD_BREAKER
+    moves:
+    - TAIL_WHIP
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[1] == 7
+- name: 'Modern item: Clear Amulet permits self drops'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - CLOSE_COMBAT
+    item: CLEAR_AMULET
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[1] == 6
+  - player.stat_levels[4] == 6
+- name: 'Modern item: Clear Amulet blocks entry Intimidate'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CLEAR_AMULET
+  enemy:
+    species: MEW
+    level: 50
+    ability: INTIMIDATE
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[0] == 7
+- name: 'Modern item: Metronome repeated hits NO_ITEM'
+  player:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: NO_ITEM
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 3
+  assert:
+  - enemy.hp < enemy.maxhp
+  id: modern_metronome_control
+- name: 'Modern item: Metronome repeated hits METRONOME_ITEM'
+  player:
+    species: MEW
+    level: 30
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: METRONOME_ITEM
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 3
+  assert:
+  - enemy.hp < enemy.maxhp
+  - enemy.maxhp - enemy.hp > result('modern_metronome_control')['enemy']['damage']
+  - wram("wPlayerMetronomeCount") == 2
+- name: 'Modern item: Metronome resets on different move'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    - SCRATCH
+    item: METRONOME_ITEM
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  move_script:
+  - 1
+  - 2
+  assert:
+  - wram("wPlayerMetronomeCount") == 0
+- name: 'Modern item: Boots SPIKES/HEAVY_DUTY_BOOTS/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPIKES
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.hp == player.maxhp
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Boots SPIKES/HEAVY_DUTY_BOOTS/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPIKES
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.hp < player.maxhp
+- name: 'Modern item: Boots SPIKES/NO_ITEM/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPIKES
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: NO_ITEM
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.hp < player.maxhp
+- name: 'Modern item: Boots TOXIC_SPIKES/HEAVY_DUTY_BOOTS/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TOXIC_SPIKES
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.hp == player.maxhp
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Boots TOXIC_SPIKES/HEAVY_DUTY_BOOTS/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TOXIC_SPIKES
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.status == 8
+- name: 'Modern item: Boots TOXIC_SPIKES/NO_ITEM/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TOXIC_SPIKES
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: NO_ITEM
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.status == 8
+- name: 'Modern item: Boots STEALTH_ROCK/HEAVY_DUTY_BOOTS/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - STEALTH_ROCK
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.hp == player.maxhp
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Boots STEALTH_ROCK/HEAVY_DUTY_BOOTS/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - STEALTH_ROCK
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.hp < player.maxhp
+- name: 'Modern item: Boots STEALTH_ROCK/NO_ITEM/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - STEALTH_ROCK
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: NO_ITEM
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.hp < player.maxhp
+- name: 'Modern item: Boots STICKY_WEB/HEAVY_DUTY_BOOTS/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - STICKY_WEB
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.hp == player.maxhp
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Boots STICKY_WEB/HEAVY_DUTY_BOOTS/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - STICKY_WEB
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.stat_levels[2] == 6
+- name: 'Modern item: Boots STICKY_WEB/NO_ITEM/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - STICKY_WEB
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: NO_ITEM
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.stat_levels[2] == 6
+- name: 'Modern item: Boots SPIDER_WEB/HEAVY_DUTY_BOOTS/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPIDER_WEB
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.hp == player.maxhp
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Boots SPIDER_WEB/HEAVY_DUTY_BOOTS/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPIDER_WEB
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: HEAVY_DUTY_BOOTS
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.status == 8 and player.stat_levels[2] == 6
+- name: 'Modern item: Boots SPIDER_WEB/NO_ITEM/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPIDER_WEB
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: NO_ITEM
+  move_script:
+  - 1
+  - switch:2
+  assert:
+  - player.status == 8 and player.stat_levels[2] == 6
+- name: 'Modern item: RED_CARD switches player'
+  player:
+    species: MEW
+    level: 70
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: RED_CARD
+  enemy:
+    species: MEW
+    level: 40
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: seeded
+  turns: 1
+  rng_value: 41
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - enemy.species == 'SNORLAX'
+  - wram('wPartyMon1Item') == 0
+- name: 'Modern item: RED_CARD switches enemy'
+  player:
+    species: MEW
+    level: 70
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  enemy:
+    species: MEW
+    level: 40
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: RED_CARD
+  rng: seeded
+  turns: 1
+  rng_value: 41
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - player.species == 'SNORLAX'
+  - wram('wOTPartyMon1Item') == 0
+- name: 'Modern item: Red Card ejects wild attacker'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: RED_CARD
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - wram("wDebugState") == 5
+  - wram("wBattleMode") == 0
+  snapshot: false
+- name: 'Modern item: RED_CARD Substitute prevents activation'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: RED_CARD
+    substatus:
+    - SUBSTITUTE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  setup_wram:
+    wPlayerSubstituteHP: 200
+  assert:
+  - player.item == 'RED_CARD'
+- name: 'Modern item: EJECT_BUTTON switches player'
+  player:
+    species: MEW
+    level: 70
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: EJECT_BUTTON
+  enemy:
+    species: MEW
+    level: 40
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: seeded
+  turns: 1
+  rng_value: 41
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - player.species == 'SNORLAX'
+  - wram('wPartyMon1Item') == 0
+- name: 'Modern item: EJECT_BUTTON switches enemy'
+  player:
+    species: MEW
+    level: 70
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  enemy:
+    species: MEW
+    level: 40
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: EJECT_BUTTON
+  rng: seeded
+  turns: 1
+  rng_value: 41
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - enemy.species == 'SNORLAX'
+  - wram('wOTPartyMon1Item') == 0
+- name: 'Modern item: EJECT_BUTTON no bench stays held'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: EJECT_BUTTON
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'EJECT_BUTTON'
+- name: 'Modern item: EJECT_BUTTON no bench stays held (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: EJECT_BUTTON
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'EJECT_BUTTON'
+- name: 'Modern item: EJECT_BUTTON Substitute prevents activation'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: EJECT_BUTTON
+    substatus:
+    - SUBSTITUTE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  setup_wram:
+    wPlayerSubstituteHP: 200
+  assert:
+  - player.item == 'EJECT_BUTTON'
+- name: 'Modern item: Power Herb SOLARBEAM'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SOLARBEAM
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - enemy.hp < enemy.maxhp
+  - (player.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb SOLARBEAM (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SOLARBEAM
+    item: POWER_HERB
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - player.hp < player.maxhp
+  - (enemy.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb FLY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FLY
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - enemy.hp < enemy.maxhp
+  - (player.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb FLY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FLY
+    item: POWER_HERB
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - player.hp < player.maxhp
+  - (enemy.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb DIG'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - DIG
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - enemy.hp < enemy.maxhp
+  - (player.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb DIG (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - DIG
+    item: POWER_HERB
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - player.hp < player.maxhp
+  - (enemy.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb BOUNCE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BOUNCE
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - enemy.hp < enemy.maxhp
+  - (player.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb BOUNCE (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BOUNCE
+    item: POWER_HERB
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - player.hp < player.maxhp
+  - (enemy.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb SKY_ATTACK'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SKY_ATTACK
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - enemy.hp < enemy.maxhp
+  - (player.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb SKY_ATTACK (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SKY_ATTACK
+    item: POWER_HERB
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - player.hp < player.maxhp
+  - (enemy.substatus[2] & 0x70) == 0
+- name: 'Modern item: Power Herb Klutz keeps charging'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SOLARBEAM
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'POWER_HERB'
+  - enemy.hp == enemy.maxhp
+- name: 'Modern item: Power Herb sunny Solar Beam saves item'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SOLARBEAM
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  weather: sun
+  assert:
+  - player.item == 'POWER_HERB'
+  - enemy.hp < enemy.maxhp
+- name: 'Modern item: White Herb SHELL_SMASH'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SHELL_SMASH
+    item: WHITE_HERB
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[1] >= 7
+  - player.stat_levels[4] >= 7
+  - player.stat_levels[3] >= 7
+- name: 'Modern item: White Herb SHELL_SMASH (enemy holder)'
+  player:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SHELL_SMASH
+    item: WHITE_HERB
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.stat_levels[1] >= 7
+  - enemy.stat_levels[4] >= 7
+  - enemy.stat_levels[3] >= 7
+- name: 'Modern item: White Herb CLOSE_COMBAT'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - CLOSE_COMBAT
+    item: WHITE_HERB
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[1] >= 7
+  - player.stat_levels[4] >= 7
+  - player.stat_levels[3] >= 7
+- name: 'Modern item: White Herb CLOSE_COMBAT (enemy holder)'
+  player:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - CLOSE_COMBAT
+    item: WHITE_HERB
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.stat_levels[1] >= 7
+  - enemy.stat_levels[4] >= 7
+  - enemy.stat_levels[3] >= 7
+- name: 'Modern item: White Herb LEAF_STORM'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - LEAF_STORM
+    item: WHITE_HERB
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[1] >= 7
+  - player.stat_levels[4] >= 7
+  - player.stat_levels[3] >= 7
+- name: 'Modern item: White Herb LEAF_STORM (enemy holder)'
+  player:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - LEAF_STORM
+    item: WHITE_HERB
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.stat_levels[1] >= 7
+  - enemy.stat_levels[4] >= 7
+  - enemy.stat_levels[3] >= 7
+- name: 'Modern item: White Herb preserves positive stages'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: WHITE_HERB
+    stages:
+      atk: 2
+      def: -2
+      acc: -1
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[0] == 9
+  - player.stat_levels[1] == 7
+  - player.stat_levels[5] == 7
+  - player.item == 'NO_ITEM'
+- name: 'Modern item: White Herb does not consume at neutral stages'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: WHITE_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'WHITE_HERB'
+- name: 'Modern item: Black Sludge GRIMER/NO_ABILITY'
+  player:
+    species: GRIMER
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: BLACK_SLUDGE
+    hp: 50
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp == player.start_hp + player.maxhp // 16
+  - player.item == 'BLACK_SLUDGE'
+- name: 'Modern item: Black Sludge GRIMER/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: GRIMER
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: BLACK_SLUDGE
+    hp: 50
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.hp == enemy.start_hp + enemy.maxhp // 16
+  - enemy.item == 'BLACK_SLUDGE'
+- name: 'Modern item: Black Sludge MEW/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: BLACK_SLUDGE
+    hp: 50
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp == player.start_hp - player.maxhp // 8
+  - player.item == 'BLACK_SLUDGE'
+- name: 'Modern item: Black Sludge MEW/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: BLACK_SLUDGE
+    hp: 50
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.hp == enemy.start_hp - enemy.maxhp // 8
+  - enemy.item == 'BLACK_SLUDGE'
+- name: 'Modern item: Black Sludge MEW/MAGIC_GUARD'
+  player:
+    species: MEW
+    level: 50
+    ability: MAGIC_GUARD
+    moves:
+    - SPLASH
+    item: BLACK_SLUDGE
+    hp: 50
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp == player.start_hp
+  - player.item == 'BLACK_SLUDGE'
+- name: 'Modern item: Black Sludge MEW/MAGIC_GUARD (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: MAGIC_GUARD
+    moves:
+    - SPLASH
+    item: BLACK_SLUDGE
+    hp: 50
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.hp == enemy.start_hp
+  - enemy.item == 'BLACK_SLUDGE'
+- name: 'Modern item: Black Sludge GRIMER/KLUTZ'
+  player:
+    species: GRIMER
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: BLACK_SLUDGE
+    hp: 50
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp == player.start_hp
+  - player.item == 'BLACK_SLUDGE'
+- name: 'Modern item: Black Sludge GRIMER/KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: GRIMER
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: BLACK_SLUDGE
+    hp: 50
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.hp == enemy.start_hp
+  - enemy.item == 'BLACK_SLUDGE'
+- name: 'Modern item: Light Clay REFLECT/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - REFLECT
+    item: LIGHT_CLAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram("wPlayerReflectCount") == 7
+- name: 'Modern item: Light Clay REFLECT/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - REFLECT
+    item: LIGHT_CLAY
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram("wEnemyReflectCount") == 7
+- name: 'Modern item: Light Clay REFLECT/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - REFLECT
+    item: LIGHT_CLAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram("wPlayerReflectCount") == 4
+- name: 'Modern item: Light Clay REFLECT/KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - REFLECT
+    item: LIGHT_CLAY
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram("wEnemyReflectCount") == 4
+- name: 'Modern item: Light Clay LIGHT_SCREEN/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - LIGHT_SCREEN
+    item: LIGHT_CLAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram("wPlayerLightScreenCount") == 7
+- name: 'Modern item: Light Clay LIGHT_SCREEN/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - LIGHT_SCREEN
+    item: LIGHT_CLAY
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram("wEnemyLightScreenCount") == 7
+- name: 'Modern item: Light Clay LIGHT_SCREEN/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - LIGHT_SCREEN
+    item: LIGHT_CLAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram("wPlayerLightScreenCount") == 4
+- name: 'Modern item: Light Clay LIGHT_SCREEN/KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - LIGHT_SCREEN
+    item: LIGHT_CLAY
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram("wEnemyLightScreenCount") == 4
+- name: 'Modern item: Throat Spray HYPER_VOICE/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - HYPER_VOICE
+    item: THROAT_SPRAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[3] == 8
+  - player.item == 'NO_ITEM'
+- name: 'Modern item: Throat Spray HYPER_VOICE/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - HYPER_VOICE
+    item: THROAT_SPRAY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[3] == 8
+  - enemy.item == 'NO_ITEM'
+- name: 'Modern item: Throat Spray GROWL/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - GROWL
+    item: THROAT_SPRAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[3] == 8
+  - player.item == 'NO_ITEM'
+- name: 'Modern item: Throat Spray GROWL/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - GROWL
+    item: THROAT_SPRAY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[3] == 8
+  - enemy.item == 'NO_ITEM'
+- name: 'Modern item: Throat Spray TACKLE/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: THROAT_SPRAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[3] == 7
+  - player.item == 'THROAT_SPRAY'
+- name: 'Modern item: Throat Spray TACKLE/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: THROAT_SPRAY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[3] == 7
+  - enemy.item == 'THROAT_SPRAY'
+- name: 'Modern item: Throat Spray HYPER_VOICE/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - HYPER_VOICE
+    item: THROAT_SPRAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[3] == 7
+  - player.item == 'THROAT_SPRAY'
+- name: 'Modern item: Throat Spray HYPER_VOICE/KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - HYPER_VOICE
+    item: THROAT_SPRAY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.stat_levels[3] == 7
+  - enemy.item == 'THROAT_SPRAY'
+- name: 'Modern item: Glove control FIRE_PUNCH'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FIRE_PUNCH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.hp < enemy.maxhp
+  id: modern_glove_FIRE_PUNCH
+- name: 'Modern item: Glove damage FIRE_PUNCH'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FIRE_PUNCH
+    item: PUNCHING_GLOVE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.maxhp - enemy.hp > result('modern_glove_FIRE_PUNCH')['enemy']['damage']
+- name: 'Modern item: Glove Rocky Helmet FIRE_PUNCH'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FIRE_PUNCH
+    item: PUNCHING_GLOVE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: ROCKY_HELMET
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp == player.maxhp
+- name: 'Modern item: Glove control TACKLE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.hp < enemy.maxhp
+  id: modern_glove_TACKLE
+- name: 'Modern item: Glove damage TACKLE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: PUNCHING_GLOVE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.maxhp - enemy.hp == result('modern_glove_TACKLE')['enemy']['damage']
+- name: 'Modern item: Glove Rocky Helmet TACKLE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: PUNCHING_GLOVE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: ROCKY_HELMET
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp < player.maxhp
+- name: 'Modern item: Glove Iron Barbs NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FIRE_PUNCH
+    item: PUNCHING_GLOVE
+  enemy:
+    species: MEW
+    level: 50
+    ability: IRON_BARBS
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp == player.maxhp
+- name: 'Modern item: Glove Iron Barbs KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - FIRE_PUNCH
+    item: PUNCHING_GLOVE
+  enemy:
+    species: MEW
+    level: 50
+    ability: IRON_BARBS
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp < player.maxhp
+- name: 'Modern item: Quick Powder Ditto Transform player'
+  player:
+    species: DITTO
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TRANSFORM
+    item: QUICK_POWDER
+  enemy:
+    species: SHUCKLE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  assert:
+  - player.item == 'QUICK_POWDER'
+  - player.species == 'SHUCKLE'
+  - wram("wEnemyGoesFirst") == 0
+- name: 'Modern item: Quick Powder Ditto Transform enemy'
+  player:
+    species: SHUCKLE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: DITTO
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TRANSFORM
+    item: QUICK_POWDER
+  rng: forced_high
+  turns: 2
+  assert:
+  - enemy.item == 'QUICK_POWDER'
+  - enemy.species == 'SHUCKLE'
+  - wram("wEnemyGoesFirst") == 1
+- name: 'Modern item: Goggles sandstorm/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  weather: sandstorm
+  assert:
+  - player.hp == player.maxhp
+- name: 'Modern item: Goggles sandstorm/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  rng: forced_high
+  turns: 1
+  weather: sandstorm
+  assert:
+  - enemy.hp == enemy.maxhp
+- name: 'Modern item: Goggles sandstorm/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  weather: sandstorm
+  assert:
+  - player.hp < player.maxhp
+- name: 'Modern item: Goggles sandstorm/KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  rng: forced_high
+  turns: 1
+  weather: sandstorm
+  assert:
+  - enemy.hp < enemy.maxhp
+- name: 'Modern item: Goggles hail/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  weather: hail
+  assert:
+  - player.hp == player.maxhp
+- name: 'Modern item: Goggles hail/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  rng: forced_high
+  turns: 1
+  weather: hail
+  assert:
+  - enemy.hp == enemy.maxhp
+- name: 'Modern item: Goggles hail/KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  weather: hail
+  assert:
+  - player.hp < player.maxhp
+- name: 'Modern item: Goggles hail/KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  rng: forced_high
+  turns: 1
+  weather: hail
+  assert:
+  - enemy.hp < enemy.maxhp
+- name: 'Modern item: Goggles SPORE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPORE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Goggles SPORE (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPORE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.status == 0
+  - enemy.stat_levels[2] == 7
+- name: 'Modern item: Goggles SLEEP_POWDER'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SLEEP_POWDER
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Goggles SLEEP_POWDER (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SLEEP_POWDER
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.status == 0
+  - enemy.stat_levels[2] == 7
+- name: 'Modern item: Goggles POISONPOWDER'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - POISONPOWDER
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Goggles POISONPOWDER (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - POISONPOWDER
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.status == 0
+  - enemy.stat_levels[2] == 7
+- name: 'Modern item: Goggles STUN_SPORE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - STUN_SPORE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Goggles STUN_SPORE (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - STUN_SPORE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.status == 0
+  - enemy.stat_levels[2] == 7
+- name: 'Modern item: Goggles COTTON_SPORE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - COTTON_SPORE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.status == 0
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Goggles COTTON_SPORE (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - COTTON_SPORE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SAFETY_GOGGLES
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.status == 0
+  - enemy.stat_levels[2] == 7
+- name: 'Modern item: Big Root control ABSORB'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - ABSORB
+    hp: 25
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp > player.start_hp
+  id: modern_root_ABSORB
+- name: 'Modern item: Big Root boost ABSORB'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - ABSORB
+    hp: 25
+    item: BIG_ROOT
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp - player.start_hp == 13 * result('modern_root_ABSORB')['player']['healing'] // 10
+- name: 'Modern item: Big Root control GIGA_DRAIN'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - GIGA_DRAIN
+    hp: 25
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp > player.start_hp
+  id: modern_root_GIGA_DRAIN
+- name: 'Modern item: Big Root boost GIGA_DRAIN'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - GIGA_DRAIN
+    hp: 25
+    item: BIG_ROOT
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp - player.start_hp == 13 * result('modern_root_GIGA_DRAIN')['player']['healing'] // 10
+- name: 'Modern item: Big Root control DRAIN_PUNCH'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - DRAIN_PUNCH
+    hp: 25
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp > player.start_hp
+  id: modern_root_DRAIN_PUNCH
+- name: 'Modern item: Big Root boost DRAIN_PUNCH'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - DRAIN_PUNCH
+    hp: 25
+    item: BIG_ROOT
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp - player.start_hp == 13 * result('modern_root_DRAIN_PUNCH')['player']['healing'] // 10
+- name: 'Modern item: Big Root Leech Seed NO_ITEM'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - LEECH_SEED
+    hp: 25
+    item: NO_ITEM
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp > player.start_hp
+  id: modern_seed_control
+- name: 'Modern item: Big Root Leech Seed BIG_ROOT'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - LEECH_SEED
+    hp: 25
+    item: BIG_ROOT
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.hp > player.start_hp
+  - player.hp - player.start_hp > result('modern_seed_control')['player']['healing']
+- name: 'Modern item: Blunder Policy accuracy miss NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - DYNAMICPUNCH
+    item: BLUNDER_POLICY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  rng_value: 180
+  assert:
+  - player.stat_levels[2] == 9
+  - player.item == 'NO_ITEM'
+- name: 'Modern item: Blunder Policy accuracy miss NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - DYNAMICPUNCH
+    item: BLUNDER_POLICY
+  rng: forced_high
+  turns: 1
+  rng_value: 180
+  assert:
+  - enemy.stat_levels[2] == 9
+  - enemy.item == 'NO_ITEM'
+- name: 'Modern item: Blunder Policy accuracy miss KLUTZ'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - DYNAMICPUNCH
+    item: BLUNDER_POLICY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  rng_value: 180
+  assert:
+  - player.stat_levels[2] == 7
+  - player.item == 'BLUNDER_POLICY'
+- name: 'Modern item: Blunder Policy accuracy miss KLUTZ (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - DYNAMICPUNCH
+    item: BLUNDER_POLICY
+  rng: forced_high
+  turns: 1
+  rng_value: 180
+  assert:
+  - enemy.stat_levels[2] == 7
+  - enemy.item == 'BLUNDER_POLICY'
+- name: 'Modern item: Blunder Policy Protect is not a miss'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: BLUNDER_POLICY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - PROTECT
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[2] == 7
+  - player.item == 'BLUNDER_POLICY'
+- name: 'Modern item: Blunder Policy type immunity is not a miss'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+    item: BLUNDER_POLICY
+  enemy:
+    species: GENGAR
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[2] == 7
+  - player.item == 'BLUNDER_POLICY'
+- name: 'Modern item: Gold Berry 50/NO_ABILITY/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.hp == 87 + player.maxhp // 4
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 87
+    wPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Gold Berry 50/NO_ABILITY/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.hp == 87 + enemy.maxhp // 4
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 87
+    wOTPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Gold Berry 51/NO_ABILITY/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'GOLD_BERRY'
+  - player.hp == 89
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 89
+    wPartyMon1HP:
+    - 0
+    - 89
+- name: 'Modern item: Gold Berry 51/NO_ABILITY/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'GOLD_BERRY'
+  - enemy.hp == 89
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 89
+    wOTPartyMon1HP:
+    - 0
+    - 89
+- name: 'Modern item: Gold Berry 50/KLUTZ/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'GOLD_BERRY'
+  - player.hp == 87
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 87
+    wPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Gold Berry 50/KLUTZ/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'GOLD_BERRY'
+  - enemy.hp == 87
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 87
+    wOTPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Gold Berry 50/RIPEN/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: RIPEN
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.hp == 87 + 2 * (player.maxhp // 4)
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 87
+    wPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Gold Berry 50/RIPEN/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: RIPEN
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.hp == 87 + 2 * (enemy.maxhp // 4)
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 87
+    wOTPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Gold Berry 50/NO_ABILITY/UNNERVE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'GOLD_BERRY'
+  - player.hp == 87
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 87
+    wPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Gold Berry 50/NO_ABILITY/UNNERVE (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'GOLD_BERRY'
+  - enemy.hp == 87
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 87
+    wOTPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Salac 25/NO_ABILITY/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[2] == 8
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 43
+    wPartyMon1HP:
+    - 0
+    - 43
+- name: 'Modern item: Salac 25/NO_ABILITY/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.stat_levels[2] == 8
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 43
+    wOTPartyMon1HP:
+    - 0
+    - 43
+- name: 'Modern item: Salac 26/NO_ABILITY/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'SALAC_BERRY'
+  - player.stat_levels[2] == 7
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 45
+    wPartyMon1HP:
+    - 0
+    - 45
+- name: 'Modern item: Salac 26/NO_ABILITY/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'SALAC_BERRY'
+  - enemy.stat_levels[2] == 7
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 45
+    wOTPartyMon1HP:
+    - 0
+    - 45
+- name: 'Modern item: Salac 50/GLUTTONY/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: GLUTTONY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[2] == 8
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 87
+    wPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Salac 50/GLUTTONY/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: GLUTTONY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.stat_levels[2] == 8
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 87
+    wOTPartyMon1HP:
+    - 0
+    - 87
+- name: 'Modern item: Salac 51/GLUTTONY/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: GLUTTONY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'SALAC_BERRY'
+  - player.stat_levels[2] == 7
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 89
+    wPartyMon1HP:
+    - 0
+    - 89
+- name: 'Modern item: Salac 51/GLUTTONY/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: GLUTTONY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'SALAC_BERRY'
+  - enemy.stat_levels[2] == 7
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 89
+    wOTPartyMon1HP:
+    - 0
+    - 89
+- name: 'Modern item: Salac 25/KLUTZ/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'SALAC_BERRY'
+  - player.stat_levels[2] == 7
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 43
+    wPartyMon1HP:
+    - 0
+    - 43
+- name: 'Modern item: Salac 25/KLUTZ/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'SALAC_BERRY'
+  - enemy.stat_levels[2] == 7
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 43
+    wOTPartyMon1HP:
+    - 0
+    - 43
+- name: 'Modern item: Salac 25/RIPEN/NO_ABILITY'
+  player:
+    species: MEW
+    level: 50
+    ability: RIPEN
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[2] == 9
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 43
+    wPartyMon1HP:
+    - 0
+    - 43
+- name: 'Modern item: Salac 25/RIPEN/NO_ABILITY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: RIPEN
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.stat_levels[2] == 9
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 43
+    wOTPartyMon1HP:
+    - 0
+    - 43
+- name: 'Modern item: Salac 25/NO_ABILITY/UNNERVE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'SALAC_BERRY'
+  - player.stat_levels[2] == 7
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 43
+    wPartyMon1HP:
+    - 0
+    - 43
+- name: 'Modern item: Salac 25/NO_ABILITY/UNNERVE (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'SALAC_BERRY'
+  - enemy.stat_levels[2] == 7
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 43
+    wOTPartyMon1HP:
+    - 0
+    - 43
+- name: 'Modern item: Custap 25/NO_ABILITY/NO_ABILITY'
+  player:
+    species: SHUCKLE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 25
+  enemy:
+    species: ELECTRODE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - wram("wEnemyGoesFirst") == 0
+- name: 'Modern item: Custap 25/NO_ABILITY/NO_ABILITY (enemy holder)'
+  player:
+    species: ELECTRODE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: SHUCKLE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 25
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - wram("wEnemyGoesFirst") == 1
+- name: 'Modern item: Custap 26/NO_ABILITY/NO_ABILITY'
+  player:
+    species: SHUCKLE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 26
+  enemy:
+    species: ELECTRODE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'CUSTAP_BERRY'
+  - wram("wEnemyGoesFirst") == 1
+- name: 'Modern item: Custap 26/NO_ABILITY/NO_ABILITY (enemy holder)'
+  player:
+    species: ELECTRODE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: SHUCKLE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 26
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'CUSTAP_BERRY'
+  - wram("wEnemyGoesFirst") == 0
+- name: 'Modern item: Custap 50/GLUTTONY/NO_ABILITY'
+  player:
+    species: SHUCKLE
+    level: 50
+    ability: GLUTTONY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 50
+  enemy:
+    species: ELECTRODE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - wram("wEnemyGoesFirst") == 0
+- name: 'Modern item: Custap 50/GLUTTONY/NO_ABILITY (enemy holder)'
+  player:
+    species: ELECTRODE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: SHUCKLE
+    level: 50
+    ability: GLUTTONY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 50
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - wram("wEnemyGoesFirst") == 1
+- name: 'Modern item: Custap 25/KLUTZ/NO_ABILITY'
+  player:
+    species: SHUCKLE
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 25
+  enemy:
+    species: ELECTRODE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'CUSTAP_BERRY'
+  - wram("wEnemyGoesFirst") == 1
+- name: 'Modern item: Custap 25/KLUTZ/NO_ABILITY (enemy holder)'
+  player:
+    species: ELECTRODE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: SHUCKLE
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 25
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'CUSTAP_BERRY'
+  - wram("wEnemyGoesFirst") == 0
+- name: 'Modern item: Custap 25/NO_ABILITY/UNNERVE'
+  player:
+    species: SHUCKLE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 25
+  enemy:
+    species: ELECTRODE
+    level: 50
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'CUSTAP_BERRY'
+  - wram("wEnemyGoesFirst") == 1
+- name: 'Modern item: Custap 25/NO_ABILITY/UNNERVE (enemy holder)'
+  player:
+    species: ELECTRODE
+    level: 50
+    ability: UNNERVE
+    moves:
+    - SPLASH
+  enemy:
+    species: SHUCKLE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 25
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'CUSTAP_BERRY'
+  - wram("wEnemyGoesFirst") == 0
+- name: 'Modern item: Cud Chew replay GOLD_BERRY'
+  player:
+    species: MEW
+    level: 50
+    ability: CUD_CHEW
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 43
+    wPartyMon1HP:
+    - 0
+    - 43
+  assert:
+  - player.hp == 129
+  - player.item == 'NO_ITEM'
+  - ability_seen('CUD_CHEW')
+- name: 'Modern item: Cud Chew replay GOLD_BERRY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: CUD_CHEW
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  rng: forced_high
+  turns: 2
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 43
+    wOTPartyMon1HP:
+    - 0
+    - 43
+  assert:
+  - enemy.hp == 129
+  - enemy.item == 'NO_ITEM'
+  - ability_seen('CUD_CHEW')
+- name: 'Modern item: Cud Chew replay SALAC_BERRY'
+  player:
+    species: MEW
+    level: 50
+    ability: CUD_CHEW
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 43
+    wPartyMon1HP:
+    - 0
+    - 43
+  assert:
+  - player.stat_levels[2] == 9
+  - player.item == 'NO_ITEM'
+  - ability_seen('CUD_CHEW')
+- name: 'Modern item: Cud Chew replay SALAC_BERRY (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy:
+    species: MEW
+    level: 50
+    ability: CUD_CHEW
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  rng: forced_high
+  turns: 2
+  setup_wram:
+    wEnemyMonHP:
+    - 0
+    - 43
+    wOTPartyMon1HP:
+    - 0
+    - 43
+  assert:
+  - enemy.stat_levels[2] == 9
+  - enemy.item == 'NO_ITEM'
+  - ability_seen('CUD_CHEW')
+- name: 'Modern item: Harvest restores modern Gold Berry'
+  player:
+    species: MEW
+    level: 50
+    ability: HARVEST
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  weather: sun
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 87
+    wPartyMon1HP:
+    - 0
+    - 87
+  assert:
+  - player.hp == 130
+  - player.item == 'GOLD_BERRY'
+  - ability_seen('HARVEST')
+- name: 'Modern item: Recycle restores modern Gold Berry'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    - RECYCLE
+    item: GOLD_BERRY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  setup_wram:
+    wBattleMonHP:
+    - 0
+    - 87
+    wPartyMon1HP:
+    - 0
+    - 87
+  move_script:
+  - 1
+  - 2
+  assert:
+  - player.hp == 130
+  - player.item == 'GOLD_BERRY'
+- name: 'Modern item: Incinerate destroys GOLD_BERRY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: GOLD_BERRY
+  enemy:
+    species: MEW
+    level: 80
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Incinerate destroys SALAC_BERRY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: SALAC_BERRY
+  enemy:
+    species: MEW
+    level: 80
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Incinerate destroys CUSTAP_BERRY'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+  enemy:
+    species: MEW
+    level: 80
+    ability: NO_ABILITY
+    moves:
+    - INCINERATE
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[2] == 7
+- name: 'Modern item: Custap respects move priority'
+  player:
+    species: SHUCKLE
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: CUSTAP_BERRY
+    hp: 25
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - QUICK_ATTACK
+  rng: forced_high
+  turns: 1
+  assert:
+  - wram("wEnemyGoesFirst") == 1
+  - player.item == 'CUSTAP_BERRY'
+- name: 'Modern item: Cloak secondary PSYCHIC_M'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - PSYCHIC_M
+  rng: forced_low
+  turns: 1
+  assert:
+  - player.stat_levels[4] == 7
+  - (player.substatus[2] & 0x80) == 0
+- name: 'Modern item: Cloak secondary PSYCHIC_M (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - PSYCHIC_M
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  rng: forced_low
+  turns: 1
+  assert:
+  - enemy.stat_levels[4] == 7
+  - (enemy.substatus[2] & 0x80) == 0
+- name: 'Modern item: Cloak secondary BITE'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BITE
+  rng: forced_low
+  turns: 1
+  assert:
+  - player.stat_levels[4] == 7
+  - (player.substatus[2] & 0x80) == 0
+- name: 'Modern item: Cloak secondary BITE (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - BITE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  rng: forced_low
+  turns: 1
+  assert:
+  - enemy.stat_levels[4] == 7
+  - (enemy.substatus[2] & 0x80) == 0
+- name: 'Modern item: Cloak secondary CONFUSION'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - CONFUSION
+  rng: forced_low
+  turns: 1
+  assert:
+  - player.stat_levels[4] == 7
+  - (player.substatus[2] & 0x80) == 0
+- name: 'Modern item: Cloak secondary CONFUSION (enemy holder)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - CONFUSION
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  rng: forced_low
+  turns: 1
+  assert:
+  - enemy.stat_levels[4] == 7
+  - (enemy.substatus[2] & 0x80) == 0
+- name: 'Modern item: Cloak allows primary stat moves'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: COVERT_CLOAK
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TAIL_WHIP
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[1] == 6
+- name: 'Modern item: White Herb Klutz suppresses restoration'
+  player:
+    species: MEW
+    level: 50
+    ability: KLUTZ
+    moves:
+    - SPLASH
+    item: WHITE_HERB
+    stages:
+      def: -1
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.stat_levels[1] == 6
+  - player.item == 'WHITE_HERB'
+- name: 'Modern item: Red Card no player bench stays held'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: RED_CARD
+  rng: forced_high
+  turns: 1
+  assert:
+  - enemy.item == 'RED_CARD'
+- name: 'Modern item: Red Card consumed against Suction Cups'
+  player:
+    species: MEW
+    level: 50
+    ability: SUCTION_CUPS
+    moves:
+    - TACKLE
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: RED_CARD
+  rng: forced_high
+  turns: 1
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - player.species == 'MEW'
+- name: 'Modern item: Sheer Force suppresses RED_CARD'
+  player:
+    species: MEW
+    level: 50
+    ability: SHEER_FORCE
+    moves:
+    - BODY_SLAM
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: RED_CARD
+  rng: forced_high
+  turns: 1
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - enemy.item == 'RED_CARD'
+  - player.species == 'MEW'
+  - enemy.species == 'MEW'
+- name: 'Modern item: Sheer Force suppresses EJECT_BUTTON'
+  player:
+    species: MEW
+    level: 50
+    ability: SHEER_FORCE
+    moves:
+    - BODY_SLAM
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: EJECT_BUTTON
+  rng: forced_high
+  turns: 1
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  enemy2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - enemy.item == 'EJECT_BUTTON'
+  - player.species == 'MEW'
+  - enemy.species == 'MEW'
+- name: 'Modern item: Sheer Force suppresses Throat Spray on Bug Buzz'
+  player:
+    species: MEW
+    level: 50
+    ability: SHEER_FORCE
+    moves:
+    - BUG_BUZZ
+    item: THROAT_SPRAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'THROAT_SPRAY'
+  - player.stat_levels[3] == 7
+- name: 'Modern item: Sheer Force permits Throat Spray on Hyper Voice'
+  player:
+    species: MEW
+    level: 50
+    ability: SHEER_FORCE
+    moves:
+    - HYPER_VOICE
+    item: THROAT_SPRAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[3] == 8
+- name: 'Modern item: Metronome charged move NO_ITEM'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FLY
+    item: NO_ITEM
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  assert:
+  - enemy.hp < enemy.maxhp
+  id: modern_metronome_charge_control
+- name: 'Modern item: Metronome charged move METRONOME_ITEM'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FLY
+    item: METRONOME_ITEM
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  turns: 2
+  assert:
+  - enemy.hp < enemy.maxhp
+  - enemy.maxhp - enemy.hp == result('modern_metronome_charge_control')['enemy']['damage']
+  - wram("wPlayerMetronomeCount") == 0
+- name: 'Modern item: RED_CARD not triggered by status'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: RED_CARD
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TAIL_WHIP
+  rng: forced_high
+  turns: 1
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - player.item == 'RED_CARD'
+  - player.species == 'MEW'
+- name: 'Modern item: RED_CARD holder KO keeps item'
+  player:
+    species: MEW
+    level: 5
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: RED_CARD
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - player.species == 'SNORLAX'
+  - wram('wPartyMon1Item') != 0
+- name: 'Modern item: EJECT_BUTTON not triggered by status'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: EJECT_BUTTON
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TAIL_WHIP
+  rng: forced_high
+  turns: 1
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - player.item == 'EJECT_BUTTON'
+  - player.species == 'MEW'
+- name: 'Modern item: EJECT_BUTTON holder KO keeps item'
+  player:
+    species: MEW
+    level: 5
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+    item: EJECT_BUTTON
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced_high
+  turns: 1
+  player2:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  assert:
+  - player.species == 'SNORLAX'
+  - wram('wPartyMon1Item') != 0

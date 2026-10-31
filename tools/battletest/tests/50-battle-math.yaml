@@ -142,10 +142,10 @@
 
 # ---- BM6: berries fire immediately after damage ---------------------------
 # KO differential: Double Kick's first hit drops the holder below half, the
-# Gold Berry heals 30 between hits, and that heal is what survives hit 2.
+# Gold Berry heals 1/4 max HP and keeps the holder alive through hit 2.
 # With the old end-of-turn timing the second kick KOs before any berry.
 # (Nidoran M's kicks deal 26 each to this Snorlax under forced_low;
-# 20% of 235 = 47: 47-26 -> berry -> 51-26 = 25 alive; no berry -> KO.)
+# 20% of 235 = 47; a quarter-max-HP heal adds 58. No berry -> KO.)
 
 - name: "BM6 control: without a berry, the second kick is lethal"
   id: bm6c

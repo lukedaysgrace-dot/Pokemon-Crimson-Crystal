@@ -1,0 +1,28 @@
+UserWarning: Using SDL2 binaries from pysdl2-dll 2.32.10
+potions: native menus passed (2 party selections).
+gold-berries: native menus passed (2 party selections).
+cancel-after-one: native menus passed (2 party selections).
+full-hp: native menus passed (1 party selections).
+vitamins: native menus passed (2 party selections).
+pp-ups: native menus passed (3 party selections).
+pp-max: native menus passed (1 party selections).
+candies: native menus passed (2 party selections).
+hard-cap: native menus passed (2 party selections).
+before-blue-cap: native menus passed (2 party selections).
+after-blue-candies: native menus passed (2 party selections).
+after-blue-high: native menus passed (2 party selections).
+CONSUMABLE UI TESTS PASSED: 69 checks.
+UserWarning: Using SDL2 binaries from pysdl2-dll 2.32.10
+potions: native menus passed (2 party selections).
+gold-berries: native menus passed (2 party selections).
+cancel-after-one: native menus passed (2 party selections).
+full-hp: native menus passed (1 party selections).
+vitamins: native menus passed (2 party selections).
+pp-ups: native menus passed (3 party selections).
+pp-max: native menus passed (1 party selections).
+candies: native menus passed (2 party selections).
+hard-cap: native menus passed (2 party selections).
+before-blue-cap: native menus passed (2 party selections).
+after-blue-candies: native menus passed (2 party selections).
+after-blue-high: native menus passed (2 party selections).
+CONSUMABLE UI TESTS PASSED: 69 checks.

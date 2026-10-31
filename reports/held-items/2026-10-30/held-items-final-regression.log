@@ -1,0 +1,9 @@
+UserWarning: Using SDL2 binaries from pysdl2-dll 2.32.10
+Running 6105 cases in 6 isolated workers; logs: /mnt/c/Users/luked/Documents/GitHub/Pokemon-Crimson-Crystal/.tmpbuild/battletest-9867c2fe4001-1793406590122568003
+Worker 0: 1018 passed, 0 failed, 0 errored, 0 skipped
+Worker 1: 1018 passed, 0 failed, 0 errored, 0 skipped
+Worker 2: 1018 passed, 0 failed, 0 errored, 0 skipped
+Worker 3: 1017 passed, 0 failed, 0 errored, 0 skipped
+Worker 4: 1017 passed, 0 failed, 0 errored, 0 skipped
+Worker 5: 1017 passed, 0 failed, 0 errored, 0 skipped
+6105 passed, 0 failed, 0 errored, 0 skipped across 6 workers

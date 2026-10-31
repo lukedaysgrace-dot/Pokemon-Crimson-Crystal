@@ -44,6 +44,7 @@ DoTurn:
 	call UpdateMoveData
 
 DoMove:
+	farcall ModernMetronomeMove_Core
 	; A self-drop move that missed / was Protected exits at failuretext
 	; before restoremiss, leaving wPreStatScopeActive stale; the other side's
 	; stat drops would then be treated as self-inflicted and bypass Mist,
@@ -1986,7 +1987,9 @@ BattleCommand_CheckHit:
 .RollAccuracy
 	call BattleRandom
 	cp b
-	jr nc, .Miss
+	jr c, .Hit
+	farcall ModernBlunderPolicy_Core
+	jr .Miss
 
 .Hit:
 	ret
@@ -4095,6 +4098,15 @@ SapHealth:
 	ld a, 1
 	ldh [hDividend + 1], a
 .at_least_one
+	ldh a, [hDividend]
+	ld b, a
+	ldh a, [hDividend + 1]
+	ld c, a
+	farcall ModernBigRoot_Core
+	ld a, b
+	ldh [hDividend], a
+	ld a, c
+	ldh [hDividend + 1], a
 
 	ld hl, wBattleMonHP
 	ld de, wBattleMonMaxHP
@@ -6497,7 +6509,7 @@ BattleCommand_Screen:
 	bit SCREENS_LIGHT_SCREEN, [hl]
 	jr nz, .failed
 	set SCREENS_LIGHT_SCREEN, [hl]
-	ld a, 5
+	farcall ModernScreenDuration_Core
 	ld [bc], a
 	ld hl, LightScreenEffectText
 	jr .good
@@ -6510,7 +6522,7 @@ BattleCommand_Screen:
 	; LightScreenCount -> ReflectCount
 	inc bc
 
-	ld a, 5
+	farcall ModernScreenDuration_Core
 	ld [bc], a
 	ld hl, ReflectEffectText
 

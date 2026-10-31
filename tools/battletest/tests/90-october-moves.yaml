@@ -4151,8 +4151,8 @@
     "turns": 2,
     "name": "October moves: Recycle restores real consumed Gold Berry",
     "assert": [
-      "player.item == 'GOLD_BERRY'",
-      "player.hp == player.maxhp",
+      "player.item == 'NO_ITEM'",
+      "player.hp == 1 + 3 * (player.maxhp // 4)",
       "wram('wInAbility') == 0"
     ]
   },
@@ -4230,8 +4230,8 @@
     "turns": 2,
     "name": "October moves: Recycle interacts with UNBURDEN",
     "assert": [
-      "player.item == 'GOLD_BERRY'",
-      "player.hp == player.maxhp",
+      "player.item == 'NO_ITEM'",
+      "player.hp == 1 + 3 * (player.maxhp // 4)",
       "wram('wInAbility') == 0"
     ]
   },
@@ -4258,8 +4258,8 @@
     "turns": 2,
     "name": "October moves: Recycle interacts with CUD_CHEW",
     "assert": [
-      "player.item == 'GOLD_BERRY'",
-      "player.hp == player.maxhp",
+      "player.item == 'NO_ITEM'",
+      "player.hp == 1 + 4 * (player.maxhp // 4)",
       "wram('wInAbility') == 0"
     ]
   },
@@ -4287,7 +4287,7 @@
     "name": "October moves: Recycle interacts with HARVEST",
     "assert": [
       "player.item == 'GOLD_BERRY'",
-      "player.hp == player.maxhp",
+      "player.hp == 1 + 3 * (player.maxhp // 4)",
       "wram('wInAbility') == 0"
     ]
   },
@@ -4330,7 +4330,7 @@
     "name": "October moves: Recycle history survives switching out and back",
     "assert": [
       "player.species == 'MEW'",
-      "player.item == 'GOLD_BERRY'",
+      "player.item == 'NO_ITEM'",
       "wram('wInAbility') == 0"
     ]
   },

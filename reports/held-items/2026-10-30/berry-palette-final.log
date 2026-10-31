@@ -1,0 +1,22 @@
+UserWarning: Using SDL2 binaries from pysdl2-dll 2.32.10
+PASS player BERRY Blue
+PASS player GOLD_BERRY Gold
+PASS player PSNCUREBERRY Pink
+PASS player PRZCUREBERRY Red
+PASS player BURNT_BERRY Yellow-green
+PASS player ICE_BERRY Light blue
+PASS player BITTER_BERRY Pink
+PASS player MINT_BERRY Blue
+PASS player MIRACLEBERRY Green
+PASS player MYSTERYBERRY Red
+PASS enemy BERRY Blue
+PASS enemy GOLD_BERRY Gold
+PASS enemy PSNCUREBERRY Pink
+PASS enemy PRZCUREBERRY Red
+PASS enemy BURNT_BERRY Yellow-green
+PASS enemy ICE_BERRY Light blue
+PASS enemy BITTER_BERRY Pink
+PASS enemy MINT_BERRY Blue
+PASS enemy MIRACLEBERRY Green
+PASS enemy MYSTERYBERRY Red
+BERRY PALETTES: all 10 Berries passed on both battle sides
