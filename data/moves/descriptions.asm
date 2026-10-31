@@ -1341,7 +1341,7 @@ OctazookaDescription:
 
 SpikesDescription:
 	db   "Hurts foes when"
-	next "they switch out.@"
+	next "they switch in.@"
 
 ZapCannonDescription:
 	db   "An attack that"
@@ -1696,8 +1696,8 @@ HailDescription:
 	next "storm for 5 turns.@"
 
 LeafBladeDescription:
-	db   "A sharp leaf slash"
-	next "High crit rate.@"
+	db   "A sharp leaf"
+	next "slash. High crit.@"
 
 ShadowSneakDescription:
 	db   "Extends a shadow"
@@ -1848,7 +1848,7 @@ HurricaneDescription:
 	next "confuse the foe.@"
 
 HyperVoiceDescription:
-	db   "Attack the foe"
+	db   "Attacks the foe"
 	next "with sound waves.@"
 
 IcicleSpearDescription:
@@ -1912,7 +1912,7 @@ TrickDescription:
 	next "with the foe.@"
 
 TrickRoomDescription:
-	db   "Slow #mon move"
+	db   "Slow #MON move"
 	next "first for 5 turns.@"
 
 VoltSwitchDescription:
@@ -2156,8 +2156,8 @@ PetalBlizzardDescription:
 	next "of sharp petals.@"
 
 BlazeKickDescription:
-	db   "Fiery kick with a"
-	next "high crit odds.@"
+	db   "Fiery kick. High"
+	next "crit. May burn.@"
 
 SkyUppercutDescription:
 	db   "An uppercut that"
