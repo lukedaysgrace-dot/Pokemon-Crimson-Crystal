@@ -412,6 +412,8 @@ OriginalPokemonStats:
 	db  60,  62,  63,  60,  80,  80
 	dw JIGGLYPUFF
 	db 115,  45,  20,  20,  45,  25
+	dw JIRACHI
+	db 100, 100, 100, 100, 100, 100
 	dw JOLTEON
 	db  65,  65,  60, 130, 110,  95
 	dw JOLTIK
@@ -624,6 +626,8 @@ OriginalPokemonStats:
 	db  65,  60,  60, 115,  75,  65
 	dw PHANPY
 	db  90,  60,  60,  40,  40,  40
+	dw PHANTUMP
+	db  43,  70,  48,  38,  50,  60
 	dw PICHU
 	db  20,  40,  15,  60,  35,  35
 	dw PIDGEOT

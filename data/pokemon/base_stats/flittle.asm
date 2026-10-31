@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/flittle/front.dimensions"
 	abilities_for FLITTLE, FRISK, KEEN_EYE, SPEED_BOOST
 	db 0 ; padding
-	db GROWTH_MEDIUM_FAST ; growth rate
+	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups
 
 	; tm/hm learnset

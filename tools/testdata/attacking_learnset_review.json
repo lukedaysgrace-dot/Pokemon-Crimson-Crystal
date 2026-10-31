@@ -3193,7 +3193,7 @@
       "HEX"
     ]
   },
-  "unchanged_evolutions": "9ab0752d64fc3583dd8af1bf3a69cb3cbfdea3f24199ea46a44b4bd4ed31b90a",
+  "unchanged_evolutions": "572ec5ea0a8f2c173379a607022a59a9725476428fe9da58dd53b3d422b6de71",
   "unchanged_level_one": {
     "BULBASAUR": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
     "IVYSAUR": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
@@ -3696,7 +3696,7 @@
   },
   "unchanged_runtime": {
     "engine/pokemon/evolve.asm": "3b4fddcf7f5e590dc05a4c25c32214118c406e01d472df5e30595009741fed05",
-    "engine/events/move_deleter.asm": "fa77247cf201edd3478a823b722ca80b7b254722770f0681360759755634a260",
-    "main.asm": "f34c7ee4cd32f9d5aa8411180b6107af7e39964e0762d9c1d130efa86a126178"
+    "engine/events/move_deleter.asm": "c791df8a31222fbfd90e8afdfbb0a4884e0aa382c9c595e1d8f6b0b5a909e7d5",
+    "main.asm": "1c4f18c116e7eda0c0c0debb671ee8950fa7560a1ce62b609e650252f2ffdd64"
   }
 }

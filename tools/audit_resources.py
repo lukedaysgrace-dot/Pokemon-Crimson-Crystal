@@ -143,6 +143,10 @@ def audit_binary_references(audit: Audit) -> int:
         if any(part in {".git", ".tmpbuild", "_to_delete"} for part in source.parts):
             continue
         text = source.read_text(encoding="utf-8", errors="replace")
+        # Staged assets that are deliberately not part of the build yet
+        # (e.g. data/tilesets/shucks.asm) reference generated files.
+        if "intentionally not included" in text[:400]:
+            continue
         references.update(re.findall(r'^\s*INCBIN\s+"([^"]+)"', text, re.M))
     literal = [ref for ref in references if "{" not in ref and "\\" not in ref]
     for ref in sorted(literal):

@@ -9,13 +9,13 @@
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F12_5 ; gender ratio
 	db 100 ; unknown 1
-	db 20 ; step cycles to hatch
+	db 30 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/anorith/front.dimensions"
 	abilities_for ANORITH, BATTLE_ARMOR, SWIFT_SWIM, TOUGH_CLAWS
 	db 0 ; padding
 	db GROWTH_SLOW ; growth rate
-	dn EGG_WATER_3, EGG_BUG ; egg groups
+	dn EGG_WATER_3, EGG_WATER_3 ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, ROCK_TOMB, TOXIC, ROCK_SMASH, HIDDEN_POWER, PROTECT, FACADE, RETURN, DIG, SWAGGER, KNOCK_OFF, SANDSTORM, REST, ATTRACT, FURY_CUTTER, HONE_CLAWS, CUT, HEADBUTT, MUD_SLAP, SUNNY_DAY

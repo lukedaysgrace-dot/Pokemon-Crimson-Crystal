@@ -743,10 +743,12 @@ def audit_animations(audit: Audit, moves: list[str]) -> None:
         for raw in lines[start + 1 : end]
         if (match := re.match(r"\s*banim\s+([A-Za-z][A-Za-z0-9_]*)", raw))
     ]
-    audit.check(len(targets) == len(moves) + 4, f"battle animation pointers: got {len(targets)}, expected {len(moves) + 4}")
+    # BattleAnim_0 plus the trailing SweetScent2, StatUp, StatDown and
+    # HeldItemTrigger entries follow the per-move pointers.
+    audit.check(len(targets) == len(moves) + 5, f"battle animation pointers: got {len(targets)}, expected {len(moves) + 5}")
     animation_sources = "\n".join(
-        read(f"data/moves/animations{suffix}.asm")
-        for suffix in ("", "2", "3", "4", "5", "6")
+        path.read_text(encoding="utf-8", errors="replace")
+        for path in sorted((ROOT / "data/moves").glob("animations*.asm"))
     )
     labels = set(re.findall(r"^(BattleAnim_[A-Za-z0-9_]+):", animation_sources, re.MULTILINE))
     for target in targets:

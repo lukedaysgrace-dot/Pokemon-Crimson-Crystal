@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/cetoddle/front.dimensions"
 	abilities_for CETODDLE, THICK_FAT, SNOW_CLOAK, SHEER_FORCE
 	db 0 ; padding
-	db GROWTH_MEDIUM_FAST ; growth rate
+	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
 	; tm/hm learnset
