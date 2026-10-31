@@ -16,6 +16,10 @@ Start::
 	nop
 	jp _Start
 
+; The cartridge header data is filled in by rgbfix.
+; This makes sure it doesn't get used for anything else.
+	ds $0150 - $0104, $00
+
 
 SECTION "Home", ROM0
 

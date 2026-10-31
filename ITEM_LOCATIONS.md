@@ -66,11 +66,11 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Amulet Coin](#amulet_coin) | Ground pickup, Wild Pokémon |
 | [Assault Vest](#assault_vest) | Gift / reward, Shop, Trainer item |
 | [Berserk Gene](#berserk_gene) | Hidden pickup |
-| [Big Root](#big_root) | Shop |
-| [Black Sludge](#black_sludge) | Shop |
+| [Big Root](#big_root) | Unavailable |
+| [Black Sludge](#black_sludge) | Unavailable |
 | [Blackbelt](#blackbelt) | Gift / reward, Trainer item |
 | [Blackglasses](#blackglasses) | Gift / reward, Trainer item |
-| [Blunderpolcy](#blunder_policy) | Shop |
+| [Blunderpolcy](#blunder_policy) | Unavailable |
 | [Brick Piece](#brick_piece) | Ground pickup |
 | [Brightpowder](#brightpowder) | Trainer item |
 | [Charcoal](#charcoal) | Gift / reward, Shop, Trainer item |
@@ -78,12 +78,12 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Choice Scarf](#choice_scarf) | Battle Tower prize, Gift / reward |
 | [Choice Specs](#choice_specs) | Battle Tower prize, Gift / reward |
 | [Cleanse Tag](#cleanse_tag) | Gift / reward |
-| [Clear Amulet](#clear_amulet) | Shop |
-| [Covert Cloak](#covert_cloak) | Shop |
+| [Clear Amulet](#clear_amulet) | Unavailable |
+| [Covert Cloak](#covert_cloak) | Unavailable |
 | [Damp Rock](#damp_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [Dragon Fang](#dragon_fang) | Ground pickup |
 | [Dragon Scale](#dragon_scale) | Ground pickup, Wild Pokémon |
-| [Eject Button](#eject_button) | Shop |
+| [Eject Button](#eject_button) | Unavailable |
 | [Everstone](#everstone) | Gift / reward, Static wild Pokémon, Wild Pokémon |
 | [Eviolite](#eviolite) | Ground pickup, Shop, Trainer item |
 | [Exp. Share](#exp_share) | Gift / reward |
@@ -93,20 +93,20 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Focus Sash](#focus_sash) | Battle Tower prize, Gift / reward, Trainer item |
 | [Hard Stone](#hard_stone) | Gift / reward, Wild Pokémon |
 | [Heat Rock](#heat_rock) | Ground pickup, Mystery Gift |
-| [Heavy Boots](#heavy_duty_boots) | Shop |
+| [Heavy Boots](#heavy_duty_boots) | Unavailable |
 | [Icy Rock](#icy_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [King's Rock](#kings_rock) | Gift / reward, Wild Pokémon |
 | [Leftovers](#leftovers) | Hidden pickup, Search trash can, Static wild Pokémon, Trainer item, Wild Pokémon |
 | [Life Orb](#life_orb) | Ground pickup, Shop, Trainer item |
 | [Light Ball](#light_ball) | Trainer item, Wild Pokémon |
-| [Light Clay](#light_clay) | Shop |
+| [Light Clay](#light_clay) | Unavailable |
 | [Loaded Dice](#loaded_dice) | Hidden pickup |
 | [Lucky Egg](#lucky_egg) | Wild Pokémon |
 | [Lucky Punch](#lucky_punch) | Wild Pokémon |
 | [Magnet](#magnet) | Gift / reward, Trainer item, Wild Pokémon |
 | [Metal Coat](#metal_coat) | Gift / reward, In-game trade, Wild Pokémon |
 | [Metal Powder](#metal_powder) | Wild Pokémon |
-| [Metronome](#metronome_item) | Shop |
+| [Metronome](#metronome_item) | Unavailable |
 | [Miracle Seed](#miracle_seed) | Gift / reward, Trainer item |
 | [Muscle Band](#muscle_band) | Gift / reward, Shop, Trainer item |
 | [Mystic Water](#mystic_water) | Fishing Contest prize, Gift / reward, Ground pickup, Trainer item |
@@ -114,13 +114,13 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Pink Bow](#pink_bow) | Gift / reward, Trainer item |
 | [Poison Barb](#poison_barb) | Gift / reward, Wild Pokémon |
 | [Polkadot Bow](#polkadot_bow) | Shop |
-| [Power Herb](#power_herb) | Shop |
-| [Punch Glove](#punching_glove) | Shop |
+| [Power Herb](#power_herb) | Unavailable |
+| [Punch Glove](#punching_glove) | Unavailable |
 | [Quick Claw](#quick_claw) | Gift / reward, Trainer item, Wild Pokémon |
-| [Quick Powder](#quick_powder) | Shop |
-| [Red Card](#red_card) | Shop |
+| [Quick Powder](#quick_powder) | Unavailable |
+| [Red Card](#red_card) | Unavailable |
 | [Rocky Helmet](#rocky_helmet) | Gift / reward, Shop, Trainer item |
-| [Safety Goggl](#safety_goggles) | Shop |
+| [Safety Goggl](#safety_goggles) | Unavailable |
 | [Scope Lens](#scope_lens) | Gift / reward, Mystery Gift, Trainer item |
 | [Sharp Beak](#sharp_beak) | Gift / reward, Trainer item, Wild Pokémon |
 | [Silverpowder](#silverpowder) | Wild Pokémon |
@@ -130,12 +130,12 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Spell Tag](#spell_tag) | Trainer item, Wild Pokémon |
 | [Stick](#stick) | Trainer item, Wild Pokémon |
 | [Thick Club](#thick_club) | Trainer item, Wild Pokémon |
-| [Throat Spray](#throat_spray) | Shop |
+| [Throat Spray](#throat_spray) | Unavailable |
 | [Toxic Orb](#toxic_orb) | Ground pickup, Shop |
 | [Twistedspoon](#twistedspoon) | Gift / reward, Trainer item |
 | [Up-Grade](#up_grade) | Gift / reward |
 | [Weak Policy](#weak_policy) | Battle Tower prize, Ground pickup |
-| [White Herb](#white_herb) | Shop |
+| [White Herb](#white_herb) | Unavailable |
 | [Wide Lens](#wide_lens) | Ground pickup, Shop, Trainer item |
 | [Wise Glasses](#wise_glasses) | Gift / reward, Shop, Trainer item |
 
@@ -558,8 +558,8 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Route 20 | **Trainer item** — Green: Wigglytuff Lv. 80. |
 | Route 25 | **Trainer item** — Crystal Crystal: Tyranitar Lv. 69. |
 | Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Lapras Lv. 87. |
-| Viridian Gym | **Trainer item** — Cooltrainer Larry: Blastoise Lv. 67. |
-| Viridian Gym | **Trainer item** — Cooltrainer Larry: Golisopod Lv. 67. |
+| Viridian Gym | **Trainer item** — Cooltrainer Landon: Blastoise Lv. 67. |
+| Viridian Gym | **Trainer item** — Cooltrainer Landon: Golisopod Lv. 67. |
 | Wills Room | **Trainer item** — Elite Four Will: Farigiraf Lv. 68. |
 | Wills Room | **Trainer item** — Elite Four Will: Farigiraf Lv. 84. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 
@@ -573,16 +573,12 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="big_root"></a>
 ## Big Root
 
-| Location | How to obtain |
-| --- | --- |
-| Celadon Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="black_sludge"></a>
 ## Black Sludge
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="blackbelt"></a>
 ## Blackbelt
@@ -607,9 +603,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="blunder_policy"></a>
 ## Blunderpolcy
 
-| Location | How to obtain |
-| --- | --- |
-| Celadon Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
+Unavailable.
 
 <a id="brick_piece"></a>
 ## Brick Piece
@@ -688,16 +682,12 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="clear_amulet"></a>
 ## Clear Amulet
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="covert_cloak"></a>
 ## Covert Cloak
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="damp_rock"></a>
 ## Damp Rock
@@ -750,9 +740,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="eject_button"></a>
 ## Eject Button
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
+Unavailable.
 
 <a id="everstone"></a>
 ## Everstone
@@ -832,8 +820,8 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Trainer House B1F | **Trainer item** — Pokémon Trainer Cal: Typhlosion Lv. 50. |
 | Violet Gym | **Trainer item** — Leader Falkner: Archeops Lv. 76. One-time gym rematch after defeating Red. |
 | Viridian Gym | **Trainer item** — Cooltrainer Cy: Dragonite Lv. 67. |
-| Viridian Gym | **Trainer item** — Cooltrainer Larry: Salamence Lv. 67. |
-| Viridian Gym | **Trainer item** — Cooltrainer Snow: Gardevoir Lv. 68. |
+| Viridian Gym | **Trainer item** — Cooltrainer Desmond: Gardevoir Lv. 68. |
+| Viridian Gym | **Trainer item** — Cooltrainer Landon: Salamence Lv. 67. |
 | Viridian Gym | **Trainer item** — Leader: Arcanine Lv. 68. |
 
 <a id="flame_orb"></a>
@@ -896,9 +884,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="heavy_duty_boots"></a>
 ## Heavy Boots
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="icy_rock"></a>
 ## Icy Rock
@@ -1031,6 +1017,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Fighting Dojo | **Trainer item** — Karate King Kiyo: Scrafty Lv. 68. |
 | Fuchsia Gym | **Trainer item** — Leader Janine: Overqwil Lv. 61. |
 | Fuchsia Gym | **Trainer item** — Leader Janine: Toxapex Lv. 59. |
+| Fuchsia Gym | **Trainer item** — Leader Janine: Weezing Lv. 60. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Blissey Lv. 77. One-time gym rematch after defeating Bugsy’s rematch. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Miltank Lv. 79. One-time gym rematch after defeating Bugsy’s rematch. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Snorlax Lv. 79. One-time gym rematch after defeating Bugsy’s rematch. |
@@ -1063,7 +1050,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Pallet Town | **Trainer item** — Red: Snorlax Lv. 84. |
 | Pewter Gym | **Trainer item** — Leader Brock: Bastiodon Lv. 49. |
 | Pewter Gym | **Trainer item** — Leader Brock: Cradily Lv. 48. |
-| Pewter Gym | **Trainer item** — Leader Brock: Steelix Lv. 48. |
+| Pewter Gym | **Trainer item** — Leader Brock: Kabutops Lv. 48. |
 | Radio Tower 5F | **Trainer item** — Executive Archer: Dusknoir Lv. 41. |
 | Radio Tower 5F | **Trainer item** — Executive Ariana: Toxapex Lv. 43. |
 | Route 16 | **Trainer item** — Biker Axle: Weezing Lv. 60. |
@@ -1105,7 +1092,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Victory Road | **Trainer item** — Rival ?: Slowking Lv. 69. |
 | Viridian Gym | **Trainer item** — Cooltrainer Cy: Tyranitar Lv. 67. |
 | Viridian Gym | **Trainer item** — Cooltrainer Cy: Venusaur Lv. 67. |
-| Viridian Gym | **Trainer item** — Cooltrainer Snow: Lapras Lv. 68. |
+| Viridian Gym | **Trainer item** — Cooltrainer Desmond: Lapras Lv. 68. |
 | Viridian Gym | **Trainer item** — Leader: Rhyperior Lv. 67. |
 | Wills Room | **Trainer item** — Elite Four Will: Espathra Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 | Wills Room | **Trainer item** — Elite Four Will: Slowking Lv. 69. |
@@ -1146,7 +1133,6 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Fighting Dojo | **Trainer item** — Karate King Kiyo: Sneasler Lv. 67. |
 | Fuchsia Gym | **Trainer item** — Leader Janine: Ariados Lv. 61. |
 | Fuchsia Gym | **Trainer item** — Leader Janine: Seviper Lv. 60. |
-| Fuchsia Gym | **Trainer item** — Leader Janine: Venomoth Lv. 60. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Ambipom Lv. 77. One-time gym rematch after defeating Bugsy’s rematch. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Lopunny Lv. 78. One-time gym rematch after defeating Bugsy’s rematch. |
 | Karens Room | **Trainer item** — Elite Four Karen: Honchkrow Lv. 70. |
@@ -1196,8 +1182,8 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Violet Gym | **Trainer item** — Leader Falkner: Honchkrow Lv. 77. One-time gym rematch after defeating Red. |
 | Violet Gym | **Trainer item** — Leader Falkner: Pidgeot Lv. 77. One-time gym rematch after defeating Red. |
 | Violet Gym | **Trainer item** — Leader Falkner: Talonflame Lv. 76. One-time gym rematch after defeating Red. |
-| Viridian Gym | **Trainer item** — Cooltrainer Larry: Scolipede Lv. 67. |
-| Viridian Gym | **Trainer item** — Cooltrainer Snow: Charizard Lv. 68. |
+| Viridian Gym | **Trainer item** — Cooltrainer Desmond: Charizard Lv. 68. |
+| Viridian Gym | **Trainer item** — Cooltrainer Landon: Scolipede Lv. 67. |
 | Viridian Gym | **Trainer item** — Leader: Electivire Lv. 69. |
 | Viridian Gym | **Trainer item** — Leader: Gyarados Lv. 67. |
 | Viridian Gym | **Trainer item** — Leader: Pidgeot Lv. 66. |
@@ -1219,9 +1205,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="light_clay"></a>
 ## Light Clay
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="loaded_dice"></a>
 ## Loaded Dice
@@ -1303,9 +1287,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="metronome_item"></a>
 ## Metronome
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="miracle_seed"></a>
 ## Miracle Seed
@@ -1414,16 +1396,12 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="power_herb"></a>
 ## Power Herb
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
+Unavailable.
 
 <a id="punching_glove"></a>
 ## Punch Glove
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="quick_claw"></a>
 ## Quick Claw
@@ -1448,16 +1426,12 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="quick_powder"></a>
 ## Quick Powder
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="red_card"></a>
 ## Red Card
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
+Unavailable.
 
 <a id="rocky_helmet"></a>
 ## Rocky Helmet
@@ -1476,9 +1450,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="safety_goggles"></a>
 ## Safety Goggl
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽4,000. |
+Unavailable.
 
 <a id="scope_lens"></a>
 ## Scope Lens
@@ -1628,9 +1600,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="throat_spray"></a>
 ## Throat Spray
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
+Unavailable.
 
 <a id="toxic_orb"></a>
 ## Toxic Orb
@@ -1667,9 +1637,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="white_herb"></a>
 ## White Herb
 
-| Location | How to obtain |
-| --- | --- |
-| Goldenrod Dept Store 4F | **Shop** — Repeatable purchase. Cost: ₽2,000. |
+Unavailable.
 
 <a id="wide_lens"></a>
 ## Wide Lens
@@ -1696,6 +1664,6 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Mesmeria Lv. 87. |
 | Violet Gym | **Trainer item** — Leader Falkner: Noctowl Lv. 75. One-time gym rematch after defeating Red. |
 | Viridian Gym | **Trainer item** — Cooltrainer Cy: Kingdra Lv. 67. |
-| Viridian Gym | **Trainer item** — Cooltrainer Snow: Mismagius Lv. 68. |
+| Viridian Gym | **Trainer item** — Cooltrainer Desmond: Mismagius Lv. 68. |
 | Wills Room | **Trainer item** — Elite Four Will: Grumpig Lv. 69. |
 | Wills Room | **Trainer item** — Elite Four Will: Grumpig Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
