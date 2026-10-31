@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/aurorus/front.dimensions"
 	abilities_for AURORUS, REFRIGERATE, SOLID_ROCK, SNOW_WARNING
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
+	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
 
 	; tm/hm learnset

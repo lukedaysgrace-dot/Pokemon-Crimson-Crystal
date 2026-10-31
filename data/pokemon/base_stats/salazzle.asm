@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/salazzle/front.dimensions"
 	abilities_for SALAZZLE, CORROSION, POISON_PUPPETEER, MERCILESS
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
+	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MONSTER, EGG_DRAGON ; egg groups
 
 	; tm/hm learnset

@@ -9,13 +9,13 @@
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
-	db 20 ; step cycles to hatch
+	db 40 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/shelgon/front.dimensions"
 	abilities_for SHELGON, ROCK_HEAD, BATTLE_ARMOR, OVERCOAT
 	db 0 ; padding
-	db GROWTH_MEDIUM_SLOW ; growth rate
-	dn EGG_GROUND, EGG_GROUND ; egg groups
+	db GROWTH_SLOW ; growth rate
+	dn EGG_DRAGON, EGG_DRAGON ; egg groups
 
 	; tm/hm learnset
 	tmhm HEADBUTT, TOXIC, ROCK_SMASH, DRAGON_PULSE, HIDDEN_POWER, PROTECT, FACADE, DRAGON_CLAW, RETURN, SWAGGER, FIRE_BLAST, DRAGON_DANCE, REST, ATTRACT, HONE_CLAWS, ZEN_HEADBUTT, FLAMETHROWER, CUT, FURY_CUTTER, IRON_HEAD, MUD_SLAP, RAIN_DANCE, ROAR, ROCK_TOMB, STRENGTH, SUNNY_DAY

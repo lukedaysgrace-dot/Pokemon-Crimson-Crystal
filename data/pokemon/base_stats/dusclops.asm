@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/dusclops/front.dimensions"
 	abilities_for DUSCLOPS, LEVITATE, PRANKSTER, PRESSURE
 	db 0 ; padding
-	db GROWTH_SLOW ; growth rate
+	db GROWTH_FAST ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
 
 	; tm/hm learnset

@@ -403,7 +403,7 @@ MartUnderground:
 	dw -1 ; end
 
 MartMahoganyHeldItems:
-	db 11 ; # items
+	db 12 ; # items
 	dw EVIOLITE
 	dw ROCKY_HELMET
 	dw AIR_BALLOON
@@ -415,6 +415,7 @@ MartMahoganyHeldItems:
 	dw ASSAULT_VEST
 	dw LIFE_ORB
 	dw WIDE_LENS
+	dw BRIGHTPOWDER
 	dw -1 ; end
 
 DefaultMart:

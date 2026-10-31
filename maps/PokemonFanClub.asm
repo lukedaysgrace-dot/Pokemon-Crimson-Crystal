@@ -27,7 +27,7 @@ PokemonFanClubChairmanScript:
 	writetext PokemonFanClubChairmanIWantYouToHaveThisText
 	buttonsound
 	verbosegiveitem RARE_CANDY
-	iffalse .BagFull
+	iffalse .BagFullRemember
 	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	writetext PokemonFanClubChairmanItsARareCandyText
 	waitbutton
@@ -44,6 +44,11 @@ PokemonFanClubChairmanScript:
 	writetext PokemonFanClubChairmanHowDisappointingText
 	waitbutton
 .BagFull:
+	closetext
+	end
+
+.BagFullRemember:
+	setevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT_BUT_BAG_WAS_FULL
 	closetext
 	end
 

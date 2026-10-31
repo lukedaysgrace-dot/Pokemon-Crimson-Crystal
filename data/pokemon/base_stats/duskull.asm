@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/duskull/front.dimensions"
 	abilities_for DUSKULL, LEVITATE, FRISK, REGENERATOR
 	db 0 ; padding
-	db GROWTH_SLOW ; growth rate
+	db GROWTH_FAST ; growth rate
 	dn EGG_INDETERMINATE, EGG_INDETERMINATE ; egg groups
 
 	; tm/hm learnset

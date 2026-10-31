@@ -9,7 +9,7 @@
 	db NO_ITEM, HARD_STONE ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
-	db 25 ; step cycles to hatch
+	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/kleavor/front.dimensions"
 	abilities_for KLEAVOR, TECHNICIAN, SHEER_FORCE, SHARPNESS
