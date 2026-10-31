@@ -853,3 +853,65 @@ BattleAnim_HeavySlam:
 	anim_setbgpal PAL_BATTLE_BG_USER, PAL_BTLCUSTOM_DEFAULT
 	anim_call BattleAnim_ShowMon_0_2_PO19
 	anim_ret
+
+BattleAnim_TwinBeam_PC:
+; Polished Coral's Twin Beam (data/moves/animations_2.asm, BattleAnim_TwinBeam),
+; preceded by a quick Flash Cannon-style charge-up. The charge uses the beams'
+; palette and colour cycling, so it flickers between the same pink and purple.
+	anim_setobjpal PAL_BATTLE_OB_GRAY, PAL_BTLCUSTOM_PSYCHO_BOOST_2
+	anim_setobjpal PAL_BATTLE_OB_YELLOW, PAL_BTLCUSTOM_PSYCHO_BOOST_2
+	anim_4gfx ANIM_GFX_CHARGE, ANIM_GFX_GLOW, ANIM_GFX_SPEED, ANIM_GFX_BEAM
+	anim_bgeffect ANIM_BG_CYCLE_OBPALS_FULL_SHIFT_CORAL, $0, $2, $0
+	anim_sound 0, 0, SFX_UNKNOWN_66
+	anim_obj ANIM_OBJ_FLASH_CANNON_CHARGE, 48, 96, $00
+	anim_obj ANIM_OBJ_PULSING_SPARKLE, 64, 80, $0
+	anim_wait 3
+	anim_obj ANIM_OBJ_FLASH_CANNON_CHARGE, 48, 96, $30
+	anim_obj ANIM_OBJ_PULSING_SPARKLE, 32, 112, $0
+	anim_wait 3
+	anim_sound 0, 0, SFX_UNKNOWN_66
+	anim_obj ANIM_OBJ_TWIN_BEAM_GLOW, 48, 96, $0
+	anim_obj ANIM_OBJ_FLASH_CANNON_CHARGE, 48, 96, $0c
+	anim_wait 3
+	anim_obj ANIM_OBJ_FLASH_CANNON_CHARGE, 48, 96, $24
+	anim_obj ANIM_OBJ_PULSING_SPARKLE, 64, 112, $0
+	anim_wait 3
+	anim_sound 0, 0, SFX_UNKNOWN_66
+	anim_obj ANIM_OBJ_FLASH_CANNON_CHARGE, 48, 96, $18
+	anim_wait 16
+	anim_clearobjs
+; Object 10 (the charge-up created objects 1-9): the charged orb stays,
+; pulsing, until the first beam lands.
+	anim_obj ANIM_OBJ_TWIN_BEAM_ORB_FULL, 48, 96, $0
+	anim_wait 1
+; Coral from here on, plus the orb shrinking after the first beam and vanishing
+; with the clearobjs that fires the second.
+	anim_incbgeffect ANIM_BG_ALTERNATE_HUES
+	anim_sound 6, 2, SFX_LEER
+	anim_obj ANIM_OBJ_LEER, 72, 84, $0
+	anim_wait 1
+	anim_obj ANIM_OBJ_LEER, 88, 76, $0
+	anim_wait 1
+	anim_obj ANIM_OBJ_LEER, 104, 68, $0
+	anim_wait 1
+	anim_obj ANIM_OBJ_LEER, 120, 60, $0
+	anim_wait 1
+	anim_obj ANIM_OBJ_LEER_TIP, 130, 54, $0
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $8, $2, $0
+	anim_incobj 10
+	anim_obj ANIM_OBJ_TWIN_BEAM_ORB_HALF, 48, 96, $0
+	anim_wait 24
+	anim_clearobjs
+	anim_sound 6, 2, SFX_LEER
+	anim_obj ANIM_OBJ_LEER, 64, 80, $0
+	anim_wait 1
+	anim_obj ANIM_OBJ_LEER, 80, 72, $0
+	anim_wait 1
+	anim_obj ANIM_OBJ_LEER, 96, 64, $0
+	anim_wait 1
+	anim_obj ANIM_OBJ_LEER, 112, 56, $0
+	anim_wait 1
+	anim_obj ANIM_OBJ_LEER_TIP, 122, 50, $0
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $8, $2, $0
+	anim_wait 24
+	anim_ret

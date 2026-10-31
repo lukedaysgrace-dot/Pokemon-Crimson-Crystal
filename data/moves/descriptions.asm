@@ -447,6 +447,7 @@ MoveDescriptions1:
 	dw HornLeechDescription
 	dw GrassKnotDescription
 	dw HeavySlamDescription
+	dw TwinBeamDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -2182,3 +2183,7 @@ GrassKnotDescription:
 HeavySlamDescription:
 	db   "A heavy body slam."
 	next "More if heavier.@"
+
+TwinBeamDescription:
+	db   "Hits twice. May"
+	next "drop SPCL.DEF each@"

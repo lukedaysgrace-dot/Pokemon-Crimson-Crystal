@@ -976,6 +976,39 @@ MultiHit:
 	kingsrock
 	endmove
 
+SpecialDefenseDownDoubleHit:
+; endloop repeats from critical, including a fresh secondary roll per hit.
+; Roll before applydamage so breaking a Substitute cannot expose its holder
+; to that hit's secondary. Clear stat-command failures before the next hit.
+	checkobedience
+	usedmovetext
+	doturn
+	startloop
+	lowersub
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	effectchance
+	clearmissdamage
+	moveanimnosub
+	failuretext
+	applydamage
+	criticaltext
+	cleartext
+	supereffectivelooptext
+	checkfaint
+	buildopponentrage
+	specialdefensedown
+	statdownmessage
+	resetmiss
+	endloop
+	raisesub
+	kingsrock
+	endmove
+
 PoisonMultiHit:
 	checkobedience
 	usedmovetext

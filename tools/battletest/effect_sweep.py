@@ -49,6 +49,7 @@ TARGET_STAGES = {
     "EFFECT_SPEED_DOWN_HIT": (2, 6), "EFFECT_ACCURACY_DOWN_HIT": (5, 6),
     "EFFECT_SP_ATK_DOWN_HIT": (3, 6), "EFFECT_SP_DEF_DOWN_HIT": (4, 6),
     "EFFECT_SP_DEF_DOWN_2_HIT": (4, 5),
+    "EFFECT_SP_DEF_DOWN_DOUBLE_HIT": (4, 5),
 }
 USER_MULTI = {
     "EFFECT_COSMIC_POWER": {1: 8, 4: 8},
@@ -114,6 +115,9 @@ def _configure(effect, move, power):
         assertions.append(SECONDARY_STATUS[effect])
 
     special = {
+        "EFFECT_SP_DEF_DOWN_DOUBLE_HIT": ["enemy.hp < enemy.start_hp",
+                                         "enemy.stat_levels[4] == 5",
+                                         "wram('wEnemyRageFistHits') == 2"],
         "EFFECT_DEF_SPDEF_DOWN_HIT": ["enemy.hp < enemy.start_hp",
                                       "enemy.stat_levels[1] == 6",
                                       "enemy.stat_levels[4] == 6"],

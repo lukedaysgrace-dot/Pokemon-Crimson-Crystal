@@ -340,3 +340,7 @@ INCLUDE "gfx/battle_anims/battle_anims.pal"
 	RGB 31,31,31, 20,28,31, 12,21,30, 0,0,0
 ; Gold Berry: warm gold body with an amber shadow, distinct from yellow.
 	RGB 31,31,31, 31,26,8, 27,19,2, 0,0,0
+; Twin Beam charge: soft lavender glow.
+	RGB 31,31,31, 28,24,31, 23,17,31, 16,10,27
+; Twin Beam beam: Psybeam in purple.
+	RGB 31,31,31, 25,16,31, 19,7,28, 10,2,18

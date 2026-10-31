@@ -138,6 +138,7 @@ BattleBGEffects:
 	dw BattleBGEffect_ShakeMonX            ; ANIM_BG_SHAKE_MON_X
 	dw BattleBGEffect_FadeMonFromBlack     ; ANIM_BG_FADE_MON_FROM_BLACK
 	dw BattleBGEffect_FadeMonGlow          ; ANIM_BG_FADE_MON_GLOW
+	dw BattleBGEffect_CycleOBPalsFullShiftCoral ; ANIM_BG_CYCLE_OBPALS_FULL_SHIFT_CORAL
 
 BattleBGEffect_End:
 	call EndBattleBGEffect
@@ -329,6 +330,23 @@ BattleBGEffect_07:
 .PalsSGB:
 	dc 3, 3, 0, 0
 	dc 3, 0, 3, 0
+	db -2
+
+BattleBGEffect_CycleOBPalsFullShiftCoral:
+; Polished Coral's BattleBGEffect_CycleOBPalsGrayAndYellowFullShift: rotates
+; the gray and yellow object palettes through all four shades, leaving the
+; background alone. (ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW_FULL_SHIFT in this
+; project aliases ANIM_BG_08, which cycles the background instead.)
+	ld de, .Pals
+	call BattleBGEffect_GetNthDMGPal
+	ld [wOBP0], a
+	ret
+
+.Pals:
+	db %11100100
+	db %10010011
+	db %01001110
+	db %00111001
 	db -2
 
 BattleBGEffect_08:

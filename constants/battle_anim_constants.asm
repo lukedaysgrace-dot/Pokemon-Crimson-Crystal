@@ -540,6 +540,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_FLAME_TWIRL
 	const ANIM_OBJ_ACID_BUBBLE
 	const ANIM_OBJ_BERRY
+	const ANIM_OBJ_TWIN_BEAM_GLOW
+	const ANIM_OBJ_TWIN_BEAM_ORB_FULL
+	const ANIM_OBJ_TWIN_BEAM_ORB_HALF
 
 
 
@@ -1046,6 +1049,9 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const BATTLEANIMFRAMESET_HEAT_COMET
 	const BATTLEANIMFRAMESET_ACID_BUBBLE
 	const BATTLEANIMFRAMESET_BERRY
+	const BATTLEANIMFRAMESET_TWIN_BEAM_GLOW
+	const BATTLEANIMFRAMESET_TWIN_BEAM_ORB_FULL
+	const BATTLEANIMFRAMESET_TWIN_BEAM_ORB_HALF
 
 
 
@@ -1560,6 +1566,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_BG_SHAKE_MON_X           ; $38
 	const ANIM_BG_FADE_MON_FROM_BLACK   ; $39
 	const ANIM_BG_FADE_MON_GLOW         ; $3a
+	const ANIM_BG_CYCLE_OBPALS_FULL_SHIFT_CORAL ; $3b
 
 ; polishedcrystal-compatible names for vanilla effects (index differs by 1
 ; from polished past $08 because polished inserted CYCLE_BGPALS_INVERTED)
@@ -1812,6 +1819,9 @@ PAL_BATTLE_BG_TARGET EQU 9
 	const PAL_BTLCUSTOM_BERRY_YELLOW_GREEN
 	const PAL_BTLCUSTOM_BERRY_LIGHT_BLUE
 	const PAL_BTLCUSTOM_BERRY_GOLD
+; Twin Beam: light-purple charge and purple Psybeam.
+	const PAL_BTLCUSTOM_LIGHT_PURPLE
+	const PAL_BTLCUSTOM_PSYBEAM_PURPLE
 
 NUM_CUSTOM_BATTLE_PALETTES EQU const_value
 

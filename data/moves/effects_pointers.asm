@@ -233,3 +233,4 @@ MoveEffectsPointers:
 	dw Recycle ; EFFECT_RECYCLE
 	dw LowKick ; EFFECT_LOW_KICK
 	dw HeavySlam ; EFFECT_HEAVY_SLAM
+	dw SpecialDefenseDownDoubleHit ; EFFECT_SP_DEF_DOWN_DOUBLE_HIT

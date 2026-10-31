@@ -1408,6 +1408,7 @@ GirafarigEvosAttacks:
 	dbw 21, AGILITY
 	dbw 26, SIGNAL_BEAM
 	dbw 27, ZEN_HEADBUTT
+	dbw 32, TWIN_BEAM
 	dbw 33, CRUNCH
 	dbw 34, TRICK
 	dbw 36, PSYCHIC_M
@@ -4238,6 +4239,7 @@ FarigirafEvosAttacks:
 	dbw 20, LIGHT_SCREEN
 	dbw 21, AGILITY
 	dbw 27, ZEN_HEADBUTT
+	dbw 32, TWIN_BEAM
 	dbw 33, CRUNCH
 	dbw 34, TRICK
 	dbw 36, PSYCHIC_M

@@ -2354,6 +2354,8 @@ BattleCommand_MoveAnimNoSub:
 	ld [wNumHits], a
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
+	cp EFFECT_SP_DEF_DOWN_DOUBLE_HIT
+	jr z, .twin_beam_anim
 	cp EFFECT_MULTI_HIT
 	jr z, .alternate_anim
 	cp EFFECT_CONVERSION
@@ -2406,6 +2408,13 @@ BattleCommand_MoveAnimNoSub:
 	ld [wNumHits], a
 .play_anim
 	jp PlaySelectedFXAnim
+
+.twin_beam_anim
+	; Derive the beam from the actual loop count rather than alternating
+	; animation scratch state, so each hit plays its upstream phase.
+	ld a, [de]
+	ld [wKickCounter], a
+	jr .triplekick
 
 BattleCommand_StatUpAnim:
 	ld a, [wAttackMissed]
@@ -2488,6 +2497,8 @@ BattleCommand_FailureText:
 	cp EFFECT_MULTI_HIT
 	jr z, .multihit
 	cp EFFECT_DOUBLE_HIT
+	jr z, .multihit
+	cp EFFECT_SP_DEF_DOWN_DOUBLE_HIT
 	jr z, .multihit
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multihit
@@ -2889,6 +2900,8 @@ BattleCommand_CheckFaint:
 	cp EFFECT_MULTI_HIT
 	jr z, .multiple_hit_raise_sub
 	cp EFFECT_DOUBLE_HIT
+	jr z, .multiple_hit_raise_sub
+	cp EFFECT_SP_DEF_DOWN_DOUBLE_HIT
 	jr z, .multiple_hit_raise_sub
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multiple_hit_raise_sub
@@ -5640,6 +5653,8 @@ BattleCommand_EndLoop:
 	call GetBattleVarAddr
 	ld a, [hl]
 	cp EFFECT_POISON_MULTI_HIT
+	jr z, .twineedle
+	cp EFFECT_SP_DEF_DOWN_DOUBLE_HIT
 	jr z, .twineedle
 	cp EFFECT_DOUBLE_HIT
 	ld a, 1
