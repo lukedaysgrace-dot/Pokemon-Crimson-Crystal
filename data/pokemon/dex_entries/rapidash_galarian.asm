@@ -3,7 +3,7 @@
 
 	db   "A psychic attack"
 	next "unleashed from"
-	next "Rapidash's horn can"
+	next "RAPIDASH's horn can"
 	page "punch a hole right"
 	next "through a thick"
 	next "metal sheet.@"

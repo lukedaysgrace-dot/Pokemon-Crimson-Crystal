@@ -628,8 +628,8 @@ GuillotineDescription:
 	next "pincer attack.@"
 
 RazorWindDescription:
-	db   "1st turn: Prepare"
-	next "2nd turn: Attack@"
+	db   "Whips up a cutting"
+	next "wind. High crit.@"
 
 SwordsDanceDescription:
 	db   "A dance that in-"
@@ -1960,7 +1960,7 @@ GlaiveRushDescription:
 	next "foe hits back 2x.@"
 
 DragonDartsDescription:
-	db   "Fires Dreepy darts"
+	db   "Fires DREEPY darts"
 	next "twice in a row.@"
 
 AppleAcidDescription:

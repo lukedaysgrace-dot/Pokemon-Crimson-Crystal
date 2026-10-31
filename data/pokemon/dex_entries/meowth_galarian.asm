@@ -6,4 +6,4 @@
 	next "their foreheads."
 	page "Harder coins gar-"
 	next "ner more respect"
-	next "among Meowth.@"
+	next "among MEOWTH.@"

@@ -1,7 +1,7 @@
 	db "DESERT CROC@" ; species name
 	dw 204, 335 ; height, weight
 
-	db   "Sandile is small,"
+	db   "SANDILE is small,"
 	next "but its legs and"
 	next "lower body are"
 

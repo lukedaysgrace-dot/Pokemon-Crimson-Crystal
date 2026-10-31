@@ -2,7 +2,7 @@
 	dw 407, 243 ; height, weight
 
 	db   "It stores"
-	next "Dreepy ammo"
+	next "DREEPY ammo"
 	next "in its gut."
 
 	page "It fires"

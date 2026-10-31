@@ -3423,9 +3423,9 @@ NoibatEvosAttacks:
 	dbw 13, WING_ATTACK
 	dbw 17, AGILITY
 	dbw 24, AIR_CUTTER
-	dbw 25, AIR_SLASH
+	dbw 25, RAZOR_WIND
 	dbw 29, WHIRLWIND
-	dbw 31, RAZOR_WIND
+	dbw 31, AIR_SLASH
 	dbw 32, DEFOG
 	dbw 32, SUPER_FANG
 	dbw 33, SCREECH
@@ -3449,9 +3449,9 @@ NoivernEvosAttacks:
 	dbw 17, AGILITY
 	dbw 24, TAUNT
 	dbw 24, AIR_CUTTER
-	dbw 25, AIR_SLASH
+	dbw 25, RAZOR_WIND
 	dbw 29, WHIRLWIND
-	dbw 31, RAZOR_WIND
+	dbw 31, AIR_SLASH
 	dbw 32, SUPER_FANG
 	dbw 33, SCREECH
 	dbw 37, ROOST
@@ -6237,9 +6237,9 @@ FletchinderEvosAttacks:
 	dbw 20, ACROBATICS
 	dbw 20, FLAME_WHEEL
 	dbw 25, AGILITY
-	dbw 26, AIR_SLASH
+	dbw 26, RAZOR_WIND
 	dbw 27, INCINERATE
-	dbw 27, RAZOR_WIND
+	dbw 27, AIR_SLASH
 	dbw 30, AERIAL_ACE
 	dbw 30, DUALWINGBEAT
 	dbw 32, DEFOG
@@ -6935,9 +6935,9 @@ TalonflameEvosAttacks:
 	dbw 20, FLAME_WHEEL
 	dbw 24, TAUNT
 	dbw 25, AGILITY
-	dbw 26, AIR_SLASH
+	dbw 26, RAZOR_WIND
 	dbw 27, INCINERATE
-	dbw 27, RAZOR_WIND
+	dbw 27, AIR_SLASH
 	dbw 30, AERIAL_ACE
 	dbw 30, DUALWINGBEAT
 	dbw 32, DEFOG
@@ -7023,7 +7023,7 @@ UrsalunabmEvosAttacks:
 	db 0 ; no more level-up moves
 
 VibravaEvosAttacks:
-	dbbw EVOLVE_LEVEL, 45, FLYGON
+	dbbw EVOLVE_LEVEL, 40, FLYGON
 	db 0 ; no more evolutions
 	dbw 1, ASTONISH
 	dbw 1, BITE

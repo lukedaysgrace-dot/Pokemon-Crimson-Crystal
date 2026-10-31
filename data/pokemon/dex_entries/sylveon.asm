@@ -5,6 +5,6 @@
 	next "soothe foes"
 	next "with calm."
 
-	page "Galar tales"
+	page "GALAR tales"
 	next "praise ribbon"
 	next "charms.@"

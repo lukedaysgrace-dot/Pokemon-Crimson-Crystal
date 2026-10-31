@@ -3,8 +3,8 @@
 
 	db   "With its Herculean"
 	next "powers, it can"
-	next "easily throw arou-"
+	next "easily throw"
 
-	page "nd an object that"
-	next "is 100 times its"
-	next "own weight.@"
+	page "around an object"
+	next "100 times its own"
+	next "weight.@"
