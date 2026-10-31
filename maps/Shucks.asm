@@ -41,11 +41,12 @@ ShucksCueRackScript:
 	jumptext ShucksCueRackText
 
 ShucksBartenderText:
-	text "Welcome to"
-	line "SHUCKS."
-	para "Beer, wine, and"
-	line "spirits on the"
+	text "Welcome to SHUCKS."
+
+	para "Sodas, juices and"
+	line "MOOMOO MILK on the"
 	cont "shelf behind me."
+
 	para "The stage show"
 	line "starts at dusk."
 	done
@@ -65,8 +66,10 @@ ShucksPoolPlayerText:
 	done
 
 ShucksSailorText:
-	text "A cold beer after"
-	line "a long voyage..."
+	text "An ice-cold MOOMOO"
+	line "MILK after a long"
+	cont "voyage…"
+
 	para "Now that's what I"
 	line "call shore leave!"
 	done
@@ -80,8 +83,11 @@ ShucksPatronText:
 
 ShucksMenuText:
 	text "SHUCKS"
-	line "BEER - WINE"
-	cont "SPIRITS - WATER"
+
+	para "SODA - JUICE -"
+	line "MOOMOO MILK -"
+	cont "WATER"
+
 	para "Pool tables and"
 	line "live stage shows."
 	done
@@ -89,7 +95,8 @@ ShucksMenuText:
 ShucksPoolTableText:
 	text "A green felt pool"
 	line "table. The balls"
-	cont "ready for a break."
+	cont "are racked for a"
+	cont "break."
 	done
 
 ShucksCueRackText:

@@ -318,12 +318,12 @@ YoungsterMikeyBeatenText:
 	done
 
 YoungsterMikeyAfterText:
-	text "DRILBUR loves to"
-	line "dig in our garden."
+	text "DRILBUR dug up"
+	line "half my mom's"
+	cont "garden last week."
 
-	para "PIDGEY watches"
-	line "from above while"
-	cont "we train together!"
+	para "I'm still in"
+	line "trouble for that."
 	done
 
 BugCatcherDonSeenText:

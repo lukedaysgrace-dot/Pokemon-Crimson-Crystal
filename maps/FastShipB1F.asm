@@ -377,9 +377,10 @@ BlackbeltWaiAfterBattleText:
 	line "the KARATE KING in"
 	cont "JOHTO."
 
-	para "He's supposed to"
-	line "be training in a"
-	cont "cave somewhere."
+	para "I heard he left"
+	line "MT.MORTAR and went"
+	cont "to KANTO. I'm"
+	cont "going after him!"
 	done
 
 SailorKennethSeenText:

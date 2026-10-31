@@ -201,23 +201,33 @@ OlivineFishingCoveGateBallsText:
 OlivineFishingCoveGateRulesText:
 	text "You have 20 min."
 	line "and 20 LURE BALLS."
+
 	para "Everyone uses the"
 	line "same special rod."
+
 	para "Face the water and"
 	line "press A to fish."
+
 	para "No need to carry"
 	line "or register a rod."
+
 	para "Keep your best"
 	line "catch for judging."
-	para "Rarity, size and"
-	line "balls used all"
-	cont "count for points."
+
+	para "Rarity and size"
+	line "earn points. So"
+	cont "does landing your"
+	cont "catch with few"
+	cont "LURE BALLS."
+
 	para "Return here or"
 	line "choose QUIT to"
 	cont "finish early."
-	para "You'll keep the"
-	line "last fish you"
-	cont "choose to keep."
+
+	para "The last #MON"
+	line "you chose to keep"
+	cont "is yours to take"
+	cont "home."
 	done
 OlivineFishingCoveGateFridayText:
 	text "Welcome to OLIVINE"

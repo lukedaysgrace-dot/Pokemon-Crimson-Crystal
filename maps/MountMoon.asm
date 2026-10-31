@@ -106,8 +106,8 @@ MountMoonSilverTextBefore:
 	line "will help us grow"
 	cont "stronger together."
 
-	para "<PLAYER>, now we'll"
-	line "show you!"
+	para "<PLAYER>, this time"
+	line "we'll show you!"
 	done
 
 MountMoonSilverTextWin:

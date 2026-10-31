@@ -187,12 +187,14 @@ SchoolGirlHeidiBeatenText:
 	done
 
 SchoolGirlHeidiAfterBattleText:
-	text "CRADILY and"
-	line "ARMALDO teach us"
+	text "Our club dug up"
+	line "their fossils"
+	cont "behind the school."
 
-	para "how ancient"
-	line "#MON used to"
-	cont "battle."
+	para "The principal"
+	line "still thinks"
+	cont "they're just"
+	cont "rocks!"
 	done
 
 CamperSidSeenText:
@@ -226,11 +228,14 @@ SchoolGirlEdnaBeatenText:
 	done
 
 SchoolGirlEdnaAfterBattleText:
-	text "FROSLASS and"
-	line "MISMAGIUS make"
+	text "Last week,"
+	line "FROSLASS froze the"
+	cont "classroom"
+	cont "doorknob."
 
-	para "every ghost story"
-	line "feel real."
+	para "Now everyone"
+	line "believes my ghost"
+	cont "stories!"
 	done
 
 HikerTimSeenText:
@@ -283,8 +288,13 @@ JugglerMarcoBeatenText:
 	done
 
 JugglerMarcoAfterBattleText:
-	text "A JUGGLER never"
-	line "loses focus!"
+	text "I can juggle seven"
+	line "# BALLS at"
+	cont "once."
+
+	para "Just not during a"
+	line "battle,"
+	cont "apparently."
 	done
 
 JugglerLeonSeenText:
@@ -293,13 +303,16 @@ JugglerLeonSeenText:
 	done
 
 JugglerLeonBeatenText:
-	text "You broke my"
-	line "rhythm!"
+	text "Ow! Right on my"
+	line "head!"
 	done
 
 JugglerLeonAfterBattleText:
-	text "Timing is every-"
-	line "thing in battle."
+	text "I juggle at kids'"
+	line "parties."
+
+	para "They throw things"
+	line "back."
 	done
 
 Route9SignText:

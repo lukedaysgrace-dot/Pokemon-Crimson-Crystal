@@ -296,11 +296,12 @@ CeladonDeptStore6FLittleGirlAlreadyHadDrinkText:
 	done
 
 CeladonDeptStore6FLittleGirlHadAllDrinksText:
-	text "Thanks for all"
-	line "the yummy drinks!"
+	text "Thanks for all the"
+	line "yummy drinks!"
 
 	para "I'm having fun"
-	line "shopping with dad!"
+	line "shopping with my"
+	cont "dad!"
 	done
 
 CeladonDeptStore6FDadText:

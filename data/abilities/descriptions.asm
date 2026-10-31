@@ -239,8 +239,8 @@ CloudNineDescription:
 	done
 
 CompoundEyesDescription:
-	text "Boosts the Poké-"
-	next "mon's accuracy."
+	text "Boosts its"
+	next "accuracy."
 	done
 
 InsomniaDescription:
@@ -256,8 +256,8 @@ PastelVeilDescription:
 	done
 
 FlashFireDescription:
-	text "Absorbs fire; ups"
-	next "higher Atk/Sp.Atk."
+	text "Absorbs Fire moves"
+	next "to power up Fire."
 	done
 
 OwnTempoDescription:
@@ -397,7 +397,7 @@ HyperCutterDescription:
 	done
 
 PickupDescription:
-	text "The #mon may"
+	text "The #MON may"
 	next "pick up items."
 	done
 
@@ -593,7 +593,7 @@ SnowWarningDescription:
 	done
 
 HoneyGatherDescription:
-	text "The #mon may"
+	text "The #MON may"
 if DEF(FAITHFUL)
 	next "gather Honey."
 else
@@ -642,8 +642,8 @@ CursedBodyDescription:
 	done
 
 WeakArmorDescription:
-	text "Physical attacks"
-	next "trade Def for Spe."
+	text "Physical hits"
+	next "trade Def for Spd."
 	done
 
 MultiscaleDescription:
@@ -748,7 +748,7 @@ MegaLauncherDescription:
 
 ToughClawsDescription:
 	text "Boosts moves that"
-	next "makes contact."
+	next "make contact."
 	done
 
 PixilateDescription:
@@ -863,7 +863,7 @@ MirrorArmorDescription:
 
 StormDrainDescription:
 	text "Draws in water,"
-	next "raising SpclAtk."
+	next "raising Sp.Atk."
 	done
 
 StaminaDescription:

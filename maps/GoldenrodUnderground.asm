@@ -1061,22 +1061,15 @@ GoldenrodUndergroundGirlThanksText:
 	cont "here."
 
 	para "RIOLU was my"
-	line "grandma's. He's"
-	cont "always been really"
-	cont "special to me."
-
-	para "But after seeing"
-	line "you stand up for"
-	cont "us…"
-
-	para "I think Grandma"
-	line "would've trusted"
-	cont "you with him, too."
+	line "grandma's. They'll"
+	cont "come back for him,"
+	cont "and I can't fight"
+	cont "them off."
 
 	para "He's brave for his"
-	line "size, and I know"
-	cont "you'll keep him"
-	cont "safe."
+	line "size. He'd be"
+	cont "safer with a"
+	cont "trainer like you."
 
 	para "Would you please"
 	line "take him?"

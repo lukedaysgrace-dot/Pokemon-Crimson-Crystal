@@ -2,9 +2,9 @@ BillPhoneGSBallInvitationText:
 	text "Hey, <PLAYER>!"
 
 	para "When you get a"
-	line "chance could you"
+	line "chance, could you"
 	cont "stop by the"
-	cont "Pokécenter in"
+	cont "#MON CENTER in"
 	cont "GOLDENROD?"
 
 	para "I have something"

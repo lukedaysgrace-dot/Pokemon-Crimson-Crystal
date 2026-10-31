@@ -257,8 +257,9 @@ CooltrainermJakeSeenText:
 	line "the #MON"
 	cont "LEAGUE."
 
-	para "Sixteen BADGES is"
-	line "just the start!"
+	para "Getting all 16"
+	line "BADGES is just the"
+	cont "start!"
 	done
 
 CooltrainermJakeBeatenText:

@@ -124,35 +124,36 @@ FightingDojoKiyoAfterText:
 	done
 
 FightingDojoRikuSeenText:
-	text "A strong stance"
-	line "is only the start!"
+	text "Feet apart! Knees"
+	line "bent!"
 
-	para "Show me how you"
-	line "handle a fight!"
+	para "Now, battle!"
 	done
 
 FightingDojoRikuBeatenText:
-	text "You broke through"
-	line "my defense!"
+	text "My stance! It"
+	line "crumbled!"
 	done
 
 FightingDojoRikuAfterText:
-	text "KIYO teaches us"
-	line "to learn from"
-	cont "every defeat."
+	text "KIYO makes us do a"
+	line "hundred push-ups"
+	cont "for every loss."
+
+	para "See you in an"
+	line "hour."
 	done
 
 FightingDojoMasaruSeenText:
-	text "Technique and"
-	line "power together!"
+	text "I've broken forty"
+	line "boards today!"
 
-	para "That's the way of"
-	line "our FIGHTING DOJO!"
+	para "You're number"
+	line "forty-one!"
 	done
 
 FightingDojoMasaruBeatenText:
-	text "Your technique is"
-	line "something else!"
+	text "Ow! My knuckles!"
 	done
 
 FightingDojoMasaruAfterText:
@@ -160,7 +161,8 @@ FightingDojoMasaruAfterText:
 	line "never stops"
 	cont "training."
 
-	para "Neither will I!"
+	para "I think he sleeps"
+	line "standing up!"
 	done
 
 FightingDojoSign1Text:

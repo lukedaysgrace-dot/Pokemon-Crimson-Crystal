@@ -150,9 +150,9 @@ SilverCaveOutsideAgathaBeforeText:
 	line "LORELEI, look"
 	cont "who's here."
 
-	para "The JOHTO CHAMPION"
-	line "we've heard so"
-	cont "much about."
+	para "The CHAMPION from"
+	line "JOHTO we've heard"
+	cont "so much about."
 
 	para "Few trainers dare"
 	line "to come this far."

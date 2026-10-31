@@ -19,7 +19,7 @@ NotifyMoldBreakerText:
 NotifyUnnerveText:
 	text "<TARGET>"
 	line "is too afraid to"
-	cont "eat Berries!"
+	cont "eat BERRIES!"
 	prompt
 
 NotifyNeutralizingGasText:
@@ -59,7 +59,7 @@ IntimidateResistedText:
 
 	text_start
 	para "protects it from"
-	line "Intimidate!"
+	line "INTIMIDATE!"
 	prompt
 
 FriskedItemText:
@@ -124,7 +124,7 @@ DisguiseBustedText::
 
 ToxicDebrisText::
 ; Toxic Debris (printed from the attacker's perspective)
-	text "Toxic Spikes were"
+	text "TOXIC SPIKES were"
 	line "scattered on the"
 	cont "ground!"
 	prompt

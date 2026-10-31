@@ -199,9 +199,8 @@ OakYesKantoBadgesText:
 PUSHS
 SECTION "Oak Campaign Progression Text", ROMX
 OakLeagueNextText:
-	text "OAK: Sixteen"
-	line "GYM BADGES!"
-	cont "Well done!"
+	text "OAK: All 16 GYM"
+	line "BADGES! Well done!"
 
 	para "Now take VICTORY"
 	line "ROAD to the LEAGUE"

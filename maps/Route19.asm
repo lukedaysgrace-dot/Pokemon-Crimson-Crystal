@@ -325,9 +325,9 @@ Route19Fisher1Text:
 	line "is closed for"
 	cont "construction."
 
-	para "We'll finish after"
-	line "ERIKA, SABRINA and"
-	cont "JANINE are beaten."
+	para "Clearing those"
+	line "boulders will take"
+	cont "a while yet."
 	done
 
 Route19Fisher1Text_RocksCleared:

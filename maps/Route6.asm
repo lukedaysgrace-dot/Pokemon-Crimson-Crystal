@@ -52,28 +52,32 @@ Route6UndergroundPathSignText:
 	done
 
 PokefanmRexSeenText:
-	text "My DONPHAN is the"
-	line "cutest in the"
-	cont "world."
+	text "Everyone says"
+	line "DONPHAN isn't"
+	cont "cute. Everyone is"
+	cont "wrong!"
 	done
 
 PokefanmRexBeatenText:
-	text "My DONPHAN!"
+	text "My poor DONPHAN!"
 	done
 
 PokefanmRexAfterBattleText:
-	text "Look how adorable"
-	line "my DONPHAN acts!"
+	text "Look at those"
+	line "little ears flap"
+	cont "when it charges!"
 
-	para "Isn't it cute"
-	line "enough to make"
-	cont "your heart melt?"
+	para "How can anyone say"
+	line "that isn't"
+	cont "adorable?"
 	done
 
 PokefanmAllanSeenText:
-	text "My SNORLAX is"
-	line "the cutest in the"
-	cont "world."
+	text "SNORLAX is the"
+	line "cutest #MON"
+	cont "there is. Just"
+	cont "look at that"
+	cont "sleepy face!"
 	done
 
 PokefanmAllanBeatenText:
@@ -81,12 +85,14 @@ PokefanmAllanBeatenText:
 	done
 
 PokefanmAllanAfterBattleText:
-	text "Look how adorable"
-	line "my SNORLAX acts!"
+	text "My SNORLAX naps on"
+	line "my bed. Well, it"
+	cont "naps on my whole"
+	cont "room."
 
-	para "Isn't it cute"
-	line "enough to make"
-	cont "your heart melt?"
+	para "I sleep on the"
+	line "couch now. Worth"
+	cont "it!"
 	done
 
 Route6_MapEvents:

@@ -250,7 +250,7 @@ BugCatcherBennySeenText:
 	text "Some bug #MON"
 	line "need time to grow."
 
-	para "My TRAPINCH and"
+	para "My LARVESTA and"
 	line "PINECO are worth"
 	cont "the wait!"
 	done

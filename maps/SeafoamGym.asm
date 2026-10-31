@@ -204,75 +204,88 @@ SeafoamGymGuyWinText2:
 	done
 
 BurglarMortonSeenText:
-	text "The heat in here"
-	line "keeps my #MON"
-	cont "fired up!"
+	text "Psst. I used to"
+	line "sneak in here to"
+	cont "stay warm."
+
+	para "Now I train here!"
 	done
 
 BurglarMortonBeatenText:
-	text "You put out my"
-	line "flames!"
+	text "Should've stayed a"
+	line "burglar…"
 	done
 
 BurglarMortonAfterBattleText:
-	text "BLAINE trains us"
-	line "hard. Only the"
-	cont "toughest teams"
-	cont "keep up!"
+	text "BLAINE caught me"
+	line "trying to steal"
+	cont "his FIRE STONES."
+
+	para "Then he gave me a"
+	line "job."
 	done
 
 BurglarVanceSeenText:
-	text "Think you can walk"
-	line "through this GYM"
-	cont "unburned?"
+	text "Hand over your"
+	line "BADGES!"
+
+	para "…Kidding. Old"
+	line "habits."
 	done
 
 BurglarVanceBeatenText:
-	text "Argh! Too hot to"
-	line "handle!"
+	text "Busted again!"
 	done
 
 BurglarVanceAfterBattleText:
-	text "You've got the"
-	line "spark to face"
-	cont "BLAINE."
+	text "I used to pick"
+	line "locks. Now I pick"
+	cont "fights with"
+	cont "challengers."
+
+	para "BLAINE pays"
+	line "better."
 	done
 
 FirebreatherScorchSeenText:
-	text "Feel the burn!"
-	line "My #MON breathe"
-	cont "fire!"
+	text "Stand back! I just"
+	line "ate a spicy lunch!"
 	done
 
 FirebreatherScorchBeatenText:
-	text "I'm all burned"
-	line "out…"
+	text "Ack! I swallowed"
+	line "my own fire!"
 	done
 
 FirebreatherScorchAfterBattleText:
-	text "A true fire"
-	line "trainer never"
+	text "I singed off my"
+	line "eyebrows"
+	cont "practicing that"
+	cont "trick."
 
-	para "lets the flame"
-	line "die down."
+	para "Worth it."
 	done
 
 FirebreatherBlazeSeenText:
-	text "You'll be roasted"
-	line "before you reach"
-	cont "the LEADER!"
+	text "BLAINE says I'm"
+	line "too reckless."
+
+	para "Let's prove him"
+	line "right!"
 	done
 
 FirebreatherBlazeBeatenText:
-	text "Snuffed out!"
+	text "…Okay. He was"
+	line "right."
 	done
 
 FirebreatherBlazeAfterBattleText:
-	text "BLAINE's fire is"
-	line "even fiercer than"
+	text "BLAINE quizzes us"
+	line "between battles."
 
-	para "mine. Good luck"
-	line "in there!"
+	para "I still can't"
+	line "answer half his"
+	cont "riddles."
 	done
 
 SeafoamGym_MapEvents:

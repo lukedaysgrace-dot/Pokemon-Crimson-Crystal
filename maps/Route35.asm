@@ -330,8 +330,8 @@ PicnickerBrookeAfterBattleText:
 	done
 
 SchoolGirlKimSeenText:
-	text "The GOLDENROD GYM"
-	line "is just ahead!"
+	text "I just came from"
+	line "the GOLDENROD GYM!"
 
 	para "I've been taking"
 	line "battle notes all"
@@ -344,12 +344,12 @@ SchoolGirlKimBeatenText:
 	done
 
 SchoolGirlKimAfterBattleText:
-	text "KIRLIA helps me"
-	line "read expressions."
+	text "KIRLIA can tell"
+	line "when I haven't"
+	cont "studied."
 
-	para "That's useful in"
-	line "battles and class"
-	cont "presentations!"
+	para "It gives me the"
+	line "saddest look!"
 	done
 
 BirdKeeperBryanSeenText:

@@ -51,12 +51,16 @@ BoarderAidanSeenText:
 	done
 
 BoarderAidanBeatenText:
-	text "That wiped me out!"
+	text "Face-plant!"
 	done
 
 BoarderAidanAfterBattleText:
-	text "My #MON love"
-	line "the cold in here."
+	text "I carved my name"
+	line "into the ice wall"
+	cont "yesterday."
+
+	para "It had frozen over"
+	line "by morning."
 	done
 
 BoarderNoelSeenText:
@@ -70,23 +74,29 @@ BoarderNoelBeatenText:
 	done
 
 BoarderNoelAfterBattleText:
-	text "The snow here is"
-	line "perfect all year."
+	text "I've been here"
+	line "three weeks."
+
+	para "I keep saying,"
+	line "\"One more run…\""
 	done
 
 SkierBiancaSeenText:
-	text "Care for a battle"
-	line "on the ice?"
+	text "Look out! I can't"
+	line "stop on this ice!"
 	done
 
 SkierBiancaBeatenText:
-	text "What a slippery"
-	line "defeat!"
+	text "Whoa-oa-oa! Thud."
 	done
 
 SkierBiancaAfterBattleText:
-	text "Strong footing is"
-	line "everything on ice."
+	text "I came here to"
+	line "ski."
+
+	para "Nobody told me"
+	line "SHIVER ISLE is"
+	cont "mostly cliffs."
 	done
 
 ShiverIsle_MapEvents:

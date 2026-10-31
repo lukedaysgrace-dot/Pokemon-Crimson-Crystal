@@ -282,21 +282,25 @@ ViridianCityBirdAttackText:
 ViridianCityBattleInterruptedMText:
 	text "Hey! You made me"
 	line "mess up my attack!"
-	para "This is an intense"
-	line "battle! Earn the"
-	cont "BADGES of ERIKA,"
-	cont "SABRINA and JANINE"
-	cont "while we finish."
+
+	para "This battle could"
+	line "take a while! Go"
+	cont "check out the GYMS"
+	cont "in CELADON,"
+	cont "SAFFRON and"
+	cont "FUCHSIA!"
 	done
 
 ViridianCityBattleInterruptedFText:
 	text "Look what you did!"
 	line "I lost my focus!"
-	para "This is an intense"
-	line "battle! Earn the"
-	cont "BADGES of ERIKA,"
-	cont "SABRINA and JANINE"
-	cont "while we finish."
+
+	para "This battle could"
+	line "take a while! Go"
+	cont "check out the GYMS"
+	cont "in CELADON,"
+	cont "SAFFRON and"
+	cont "FUCHSIA!"
 	done
 
 ViridianCityBattlePokemonText:

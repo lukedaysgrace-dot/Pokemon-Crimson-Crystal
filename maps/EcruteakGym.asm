@@ -401,8 +401,7 @@ EcruteakGymClosedText:
 	done
 
 MortyRematchChallengeText:
-	text "Ah, the JOHTO"
-	line "CHAMPION."
+	text "Ah, our CHAMPION."
 
 	para "I've spent many"
 	line "nights in the"

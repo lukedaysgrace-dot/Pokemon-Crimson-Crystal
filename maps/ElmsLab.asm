@@ -1160,16 +1160,31 @@ TakeBulbasaurText:
 AskCharmanderVersionText:
 	text "Which CHARMANDER"
 	line "will you take?"
+
+	para "The CLONES look a"
+	line "little different"
+	cont "from the regular"
+	cont "ones."
 	done
 
 AskSquirtleVersionText:
 	text "Which SQUIRTLE"
 	line "will you take?"
+
+	para "The CLONES look a"
+	line "little different"
+	cont "from the regular"
+	cont "ones."
 	done
 
 AskBulbasaurVersionText:
 	text "Which BULBASAUR"
 	line "will you take?"
+
+	para "The CLONES look a"
+	line "little different"
+	cont "from the regular"
+	cont "ones."
 	done
 
 RegularOrCloneMenuHeader:
@@ -1356,12 +1371,13 @@ ElmGiveAbilityCapText1:
 
 ElmGiveAbilityCapText2:
 	text "An ABILITY CAP"
-	line "draws out a #-"
-	cont "MON's hidden side."
+	line "draws out a"
+	cont "#MON's hidden"
+	cont "side."
 
-	para "Every #MON is"
-	line "born with differ-"
-	cont "ent ABILITIES."
+	para "Each species can"
+	line "have different"
+	cont "ABILITIES."
 
 	para "Use it as often as"
 	line "you like. Each use"
@@ -1527,10 +1543,6 @@ ElmGiveTicketText1:
 
 	para "See? It's an"
 	line "S.S.TICKET."
-
-	para "You'll need all 16"
-	line "BADGES to face the"
-	cont "ELITE FOUR."
 	done
 
 ElmGiveTicketText2:

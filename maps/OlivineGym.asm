@@ -339,9 +339,8 @@ LassKathrynSeenText:
 	done
 
 LassKathrynBeatenText:
-	text "You polished right"
-	line "through my de-"
-	cont "fenses!"
+	text "My MAGNETON stuck"
+	line "to the wall again!"
 	done
 
 LassKathrynAfterBattleText:
@@ -354,20 +353,25 @@ LassKathrynAfterBattleText:
 	done
 
 LassEliseSeenText:
-	text "Steel can bend,"
-	line "but my team won't"
-	cont "give up easily!"
+	text "My MAWILE looks"
+	line "sweet, but its"
+	cont "jaws are pure"
+	cont "steel!"
 	done
 
 LassEliseBeatenText:
-	text "You found a crack"
-	line "in our defenses!"
+	text "Clang!"
 	done
 
 LassEliseAfterBattleText:
-	text "Even steel needs"
-	line "a strong trainer"
-	cont "to guide it."
+	text "JASMINE taught me"
+	line "to look for the"
+	cont "weak joint in"
+	cont "every suit of"
+	cont "armor."
+
+	para "You found mine"
+	line "first."
 	done
 
 OlivineGym_MapEvents:

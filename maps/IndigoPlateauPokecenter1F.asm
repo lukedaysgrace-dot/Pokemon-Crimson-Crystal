@@ -261,20 +261,10 @@ PlateauRivalText1:
 	cont "to prove I was"
 	cont "better than you."
 
-	para "I blamed my"
-	line "#MON. I thought"
-	cont "stronger ones"
-	cont "would fix"
-	cont "everything."
-
 	para "LANCE told me what"
 	line "I was missing. I"
 	cont "hated hearing it."
 	cont "But he was right."
-
-	para "They weren't weak."
-	line "I was holding them"
-	cont "back."
 
 	para "Look at them now."
 	line "This is the team"
@@ -302,16 +292,10 @@ PlateauRivalText2:
 	line "weak. Not one of"
 	cont "them backed down."
 
-	para "…Don't expect me"
-	line "to enjoy saying"
-	cont "this. You're the"
-	cont "better trainer."
-
-	para "I still intend to"
-	line "reach the top. But"
-	cont "I'm done trying to"
-	cont "prove it by"
-	cont "dragging you down."
+	para "…You're the better"
+	line "trainer. Don't"
+	cont "expect me to enjoy"
+	cont "saying it."
 
 	para "Go on. Show LANCE"
 	line "what the trainer"
@@ -324,13 +308,7 @@ PlateauRivalText2:
 	cont "lose to second"
 	cont "best."
 
-	para "…And <PLAYER>?"
-	line "Thanks. For never"
-	cont "letting me hide"
-	cont "behind my excuses."
-
-	para "Hmph. Don't make"
-	line "me say that again."
+	para "…Hmph."
 	done
 
 PlateauRivalLoseText:

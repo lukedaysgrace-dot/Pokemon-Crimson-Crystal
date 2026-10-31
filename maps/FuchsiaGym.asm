@@ -340,21 +340,22 @@ PicnickerCindyAfterText:
 	done
 
 CamperBarryBeforeText:
-	text "Wahahaha!"
+	text "Fufufu…"
 
-	para "You betcha!"
-	line "I'm JANINE!"
+	para "I am JANINE,"
+	line "master of shadows!"
 	done
 
 CamperBarryBeatenText:
-	text "My disguise was"
-	line "right on! Dang!"
+	text "My disguise…"
+	line "unmasked!"
 	done
 
 CamperBarryAfterText:
-	text "Hey, you. Was my"
-	line "disguise flawless"
-	cont "or what, huh?"
+	text "A true ninja never"
+	line "reveals his face."
+
+	para "…Well, I just did."
 	done
 
 FuchsiaGymGuyText:

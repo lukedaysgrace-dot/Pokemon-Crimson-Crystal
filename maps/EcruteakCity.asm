@@ -597,7 +597,7 @@ EcruteakCityWishingWellStarShardPromptText:
 
 	para "The STAR SHARD"
 	line "begins to glow"
-	cont "faintly..."
+	cont "faintly…"
 
 	para "Toss the"
 	line "STAR SHARD into"
@@ -609,7 +609,7 @@ EcruteakCityWishingWellStarShardTossText:
 	line "STAR SHARD into"
 	cont "the well."
 
-	para "..."
+	para "…"
 	done
 
 EcruteakCityWishingWellStarPieceRisesText:
@@ -618,7 +618,7 @@ EcruteakCityWishingWellStarPieceRisesText:
 	cont "beneath the water!"
 
 	para "Something rises"
-	line "to the surface..."
+	line "to the surface…"
 	done
 
 EcruteakCityWishingWellStarPieceReceivedText:
@@ -663,7 +663,7 @@ EcruteakCityWellGrannyStarPieceText:
 	para "I wonder if"
 	line "there's any truth"
 	cont "to those old"
-	cont "stories..."
+	cont "stories…"
 
 	para "Perhaps that stone"
 	line "of yours has"
@@ -688,9 +688,9 @@ EcruteakCityWishingWellWishText:
 
 	para "You close your"
 	line "eyes and make a"
-	cont "wish..."
+	cont "wish…"
 
-	para "..."
+	para "…"
 
 	para "Something sparkles"
 	line "beneath the water!"
@@ -734,7 +734,7 @@ EcruteakCityWellGrannyText:
 
 	para "I still remember"
 	line "what I wished"
-	cont "for..."
+	cont "for…"
 
 	para "But I won't tell"
 	line "you!"
@@ -748,7 +748,7 @@ EcruteakCityWellGrannyAfterText:
 	line "something in the"
 	cont "well?"
 
-	para "How curious..."
+	para "How curious…"
 
 	para "I've been coming"
 	line "here for years,"

@@ -57,8 +57,9 @@ TrainerCueballChopper:
 BikerAxleSeenText:
 	text "This stretch is"
 	line "our gang's spot!"
+
 	para "You can't just"
-	line "tread around here!"
+	line "roll through here!"
 	done
 
 BikerAxleBeatenText:
@@ -68,15 +69,19 @@ BikerAxleBeatenText:
 BikerAxleAfterText:
 	text "CHOPPER's the boss"
 	line "of our bike gang."
-	para "He respects spunk."
-	line "You've got plenty!"
+
+	para "He likes trainers"
+	line "who don't scare"
+	cont "easy."
 	done
 
 BikerRustySeenText:
 	text "Hear that? That's"
 	line "our road calling!"
-	para "Beat it, or we'll"
-	line "turn you back!"
+
+	para "Turn back, or"
+	line "we'll run you off"
+	cont "it!"
 	done
 
 BikerRustyBeatenText:
@@ -102,8 +107,8 @@ CueballChopperSeenText:
 	done
 
 CueballChopperBeatenText:
-	text "Ha! Now that's"
-	line "what I call spunk!"
+	text "Ha! You've got"
+	line "guts, kid!"
 	done
 
 CueballChopperSpunkText:
@@ -118,9 +123,11 @@ CueballChopperSpunkText:
 
 CueballChopperAfterText:
 	text "That vest boosts"
-	line "SPCL.DEF, but your"
-	cont "#MON can only"
-	cont "use attack moves!"
+	line "SPCL.DEF, but the"
+	cont "#MON holding it"
+	cont "can only use"
+	cont "attacking moves!"
+
 	para "You've earned a"
 	line "spot on this road!"
 	done

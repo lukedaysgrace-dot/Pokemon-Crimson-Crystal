@@ -170,9 +170,8 @@ ReceivedZephyrBadgeText:
 FalknerZephyrBadgeText:
 	text "ZEPHYRBADGE lets"
 	line "your #MON use"
-
-	para "FLASH, if they"
-	line "have it, anytime."
+	cont "FLASH outside of"
+	cont "battle."
 
 	para "Here--take this"
 	line "too."
@@ -181,22 +180,22 @@ FalknerZephyrBadgeText:
 FalknerTMMudSlapText:
 	text "By using a TM, a"
 	line "#MON will"
+	cont "instantly learn a"
+	cont "new move."
 
-	para "instantly learn a"
-	line "new move."
-
-	para "Think before you"
-	line "act--a TM can be"
-	cont "used only once."
+	para "A TM never runs"
+	line "out, so you can"
+	cont "teach it to as"
+	cont "many #MON as"
+	cont "you like."
 
 	para "TM31 contains"
 	line "MUD-SLAP."
 
 	para "It reduces the"
 	line "enemy's accuracy"
-
-	para "while it causes"
-	line "damage."
+	cont "while it causes"
+	cont "damage."
 
 	para "In other words, it"
 	line "is both defensive"
