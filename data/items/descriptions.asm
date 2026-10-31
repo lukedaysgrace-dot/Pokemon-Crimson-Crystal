@@ -816,9 +816,8 @@ AbilityCapDesc:
 	next "current ABILITY.@"
 
 LoadedDiceDesc:
-	db   "Multi-hit moves:"
-	next "4-5 times. Triple"
-	next "Kick/Axel hit 3x.@"
+	db   "Multi-hit moves"
+	next "hit 4-5x. (HOLD)@"
 
 ChoiceBandDesc:
 	db   "Boosts ATTACK,"
@@ -833,7 +832,7 @@ ChoiceScarfDesc:
 	next "locks move. (HOLD)@"
 
 EvioliteDesc:
-	db   "Boosts DEFENSE of"
+	db   "Boosts defenses of"
 	next "evolvers. (HOLD)@"
 
 AssaultVestDesc:
@@ -846,8 +845,7 @@ FocusSashDesc:
 
 ExpertBeltDesc:
 	db   "Boosts super-"
-	next "effective hits."
-	next "(HOLD)@"
+	next "effective. (HOLD)@"
 
 RockyHelmetDesc:
 	db   "Hurts foes on"
@@ -858,8 +856,8 @@ LifeOrbDesc:
 	next "costs HP. (HOLD)@"
 
 WeakPolicyDesc:
-	db   "Raises offenses if"
-	next "hit weakly. (HOLD)@"
+	db   "A weakness hit ups"
+	next "offenses. (HOLD)@"
 
 AirBalloonDesc:
 	db   "Grants ground"
@@ -882,8 +880,7 @@ ToxicOrbDesc:
 	next "holder. (HOLD)@"
 
 ElementalSphereDesc:
-	db   "A sphere pulsing"
-	next "with fire,"
+	db   "Pulses with fire,"
 	next "lightning and ice.@"
 
 CharcoalDesc:
@@ -1058,19 +1055,16 @@ IcyRockDesc:
 	next "8 turns. (HOLD)@"
 
 TartAppleDesc:
-	db   "A very tart apple."
-	next "Evolves DIPPLIN."
-	next "Works at LV.36.@"
+	db   "Tart apple for"
+	next "DIPPLIN at LV.36+.@"
 
 SweetAppleDesc:
-	db   "A sweet apple."
-	next "Evolves DIPPLIN."
-	next "Works at LV.36.@"
+	db   "Sweet apple for"
+	next "DIPPLIN at LV.36+.@"
 
 SyrupyAppleDesc:
-	db   "A syrupy apple."
-	next "Evolves DIPPLIN."
-	next "Works at LV.36.@"
+	db   "Syrupy apple for"
+	next "DIPPLIN at LV.36+.@"
 
 HelixFossilDesc:
 	db   "Ancient fossil of"
@@ -1093,7 +1087,7 @@ BIG_PEARLDesc:
 	next "Sell it at a MART.@"
 
 POLKADOT_BOWDesc:
-	db "Powers up NORMAL-"
+	db "Powers up normal-"
 	next "type moves. (HOLD)@"
 
 SURF_MAILDesc:

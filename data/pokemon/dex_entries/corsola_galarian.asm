@@ -3,7 +3,7 @@
 
 	db   "Sudden climate"
 	next "change wiped out"
-	next "this #mon."
+	next "this #MON."
 	page "It absorbs others'"
 	next "life-force through"
 	next "its branches.@"

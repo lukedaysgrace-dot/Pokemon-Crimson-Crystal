@@ -3,7 +3,7 @@
 
 	db   "Its storm horns"
 	next "spark while the"
-	next "dusk air hums"
+	next "dusk air hums."
 
 	page "It tests rivals"
 	next "during storms.@"
