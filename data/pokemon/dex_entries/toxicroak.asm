@@ -1,10 +1,10 @@
 	db "TOXIC MOUTH@" ; species name
 	dw 403, 979 ; height, weight
 
-	db   "This TOXICROAK"
-	next "was newly added"
-	next "to the #DEX."
+	db   "Its knuckle claws"
+	next "hold a poison so"
+	next "strong that even"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "a scratch can be"
+	next "fatal. It croaks"
+	next "before it strikes.@"

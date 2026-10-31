@@ -1,10 +1,10 @@
 	db "BLIMP@" ; species name
 	dw 311, 331 ; height, weight
 
-	db   "This DRIFBLIM"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It drifts on the"
+	next "wind at dusk."
+	next "It grabs people"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "and #MON and"
+	next "carries them off"
+	next "to parts unknown.@"

@@ -1,10 +1,10 @@
 	db "FROST TREE@" ; species name
 	dw 703, 2987 ; height, weight
 
-	db   "This ABOMASNOW"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It lives on snowy"
+	next "peaks. It whips up"
+	next "blizzards to hide"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "itself and drive"
+	next "off anyone who"
+	next "climbs too close.@"

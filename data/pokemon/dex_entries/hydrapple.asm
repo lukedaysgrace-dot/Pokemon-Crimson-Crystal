@@ -1,10 +1,10 @@
 	db "APPLE HYDRA@" ; species name
 	dw 511, 2050 ; height, weight
 
-	db   "This HYDRAPPLE"
-	next "was newly added"
-	next "to the #DEX."
+	db   "Seven syrup heads"
+	next "grow from this"
+	next "apple. It swings"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "them like whips"
+	next "to drive away any"
+	next "who threaten it.@"

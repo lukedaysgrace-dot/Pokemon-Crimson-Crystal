@@ -1,10 +1,10 @@
 	db "HOODLUM@" ; species name
 	dw 307, 661 ; height, weight
 
-	db   "This SCRAFTY"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It pulls up its"
+	next "shed skin like"
+	next "pants to protect"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "itself. It spits"
+	next "acid and kicks at"
+	next "any who come near.@"

@@ -1,10 +1,10 @@
 	db "CAREFREE@" ; species name
 	dw 411, 1213 ; height, weight
 
-	db   "This LUDICOLO"
-	next "was newly added"
-	next "to the #DEX."
+	db   "When it hears a"
+	next "cheerful tune, its"
+	next "body starts to"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "dance. Its moves"
+	next "grow stronger as"
+	next "the beat quickens.@"

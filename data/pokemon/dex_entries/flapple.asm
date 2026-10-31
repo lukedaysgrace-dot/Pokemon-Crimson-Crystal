@@ -1,10 +1,10 @@
 	db "APPLE WING@" ; species name
 	dw 100, 22 ; height, weight
 
-	db   "This FLAPPLE"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It flies on wings"
+	next "of apple skin. It"
+	next "spits acid at foes"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "that come near the"
+	next "apple tree where"
+	next "it makes its nest.@"

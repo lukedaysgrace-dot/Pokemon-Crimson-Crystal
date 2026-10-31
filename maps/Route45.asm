@@ -587,7 +587,7 @@ Route45GrampsStoryText:
 	line "reflecting on the"
 
 	para "water, the sound"
-	line "of the lake..."
+	line "of the lake…"
 
 	para "It reminds me of"
 	line "when I was a boy."
@@ -610,7 +610,7 @@ Route45GrampsStoryText:
 	para "in the sky carried"
 	line "someone's wish."
 
-	para "...I still"
+	para "…I still"
 	line "remember those"
 	cont "nights fondly."
 
@@ -670,7 +670,7 @@ Route45GrampsAfterText:
 
 	para "grandfather and I"
 	line "spent watching the"
-	cont "stars together..."
+	cont "stars together…"
 
 	para "Funny how those"
 	line "little moments"

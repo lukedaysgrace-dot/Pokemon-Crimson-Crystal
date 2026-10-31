@@ -1,10 +1,10 @@
 	db "STAG BEETLE@" ; species name
 	dw 411, 992 ; height, weight
 
-	db   "This VIKAVOLT"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It fires beams of"
+	next "electricity from"
+	next "its big jaws. It"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "flies fast and"
+	next "zaps prey before"
+	next "it can get away.@"

@@ -490,10 +490,8 @@ MoveReminder_IntroText:
 
 MoveReminder_WhichMonText:
 	text "Which #MON"
-	line "would you like"
-
-	para "to make remember"
-	line "a move?"
+	line "should remember"
+	cont "a move?"
 	done
 
 MoveTutorShared_WhichMonText:

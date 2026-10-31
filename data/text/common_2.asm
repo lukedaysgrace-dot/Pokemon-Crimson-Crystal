@@ -1026,7 +1026,7 @@ ContestJudging_FirstPlaceText::
 
 FishingContestJudging_FirstPlaceText::
 	text "This Fishing"
-	line "Competition winner"
+	line "Contest's winner"
 	cont "is@"
 	text_pause
 	text "…"

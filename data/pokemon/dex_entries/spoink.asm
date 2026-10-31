@@ -1,10 +1,10 @@
 	db "BOUNCE@" ; species name
 	dw 204, 675 ; height, weight
 
-	db   "This SPOINK"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It bounces on its"
+	next "tail to keep its"
+	next "heart beating."
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "If it stops, it"
+	next "dies, so it never"
+	next "stays still.@"

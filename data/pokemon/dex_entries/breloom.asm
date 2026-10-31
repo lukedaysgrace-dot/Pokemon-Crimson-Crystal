@@ -1,10 +1,10 @@
 	db "MUSHROOM@" ; species name
 	dw 311, 864 ; height, weight
 
-	db   "This BRELOOM"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It throws punches"
+	next "with its springy"
+	next "arms, then fires"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "toxic spores from"
+	next "the cap on its"
+	next "head.@"

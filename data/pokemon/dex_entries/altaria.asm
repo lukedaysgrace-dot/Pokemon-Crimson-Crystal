@@ -1,10 +1,10 @@
 	db "HUMMING@" ; species name
 	dw 307, 454 ; height, weight
 
-	db   "This ALTARIA"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It sings in a"
+	next "lovely soprano."
+	next "It hides among"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "white clouds, its"
+	next "fluffy wings"
+	next "blending right in.@"

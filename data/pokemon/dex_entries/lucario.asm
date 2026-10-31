@@ -7,4 +7,4 @@
 
 	page "Its focused spirit"
 	next "lets it strike"
-	next "great precision.@"
+	next "with precision.@"

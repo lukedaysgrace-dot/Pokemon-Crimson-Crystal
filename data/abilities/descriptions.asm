@@ -173,7 +173,7 @@ AbilityDescriptions::
 	dw SupersweetSyrupDescription
 
 NoAbilityDescription:
-	text "Abilities are"
+	text "ABILITIES are"
 	next "disabled."
 	done
 
@@ -183,7 +183,7 @@ DrizzleDescription:
 	done
 
 SpeedBoostDescription:
-	text "Its Speed stat is"
+	text "Its SPEED stat is"
 	next "gradually boosted."
 	done
 
@@ -220,12 +220,12 @@ StaticDescription:
 
 VoltAbsorbDescription:
 	text "Restores HP if hit"
-	next "by Electric moves."
+	next "by ELECTRIC moves."
 	done
 
 WaterAbsorbDescription:
 	text "Restores HP if hit"
-	next "by Water moves."
+	next "by WATER moves."
 	done
 
 ObliviousDescription:
@@ -256,8 +256,8 @@ PastelVeilDescription:
 	done
 
 FlashFireDescription:
-	text "Absorbs Fire moves"
-	next "to power up Fire."
+	text "Absorbs FIRE moves"
+	next "to power up FIRE."
 	done
 
 OwnTempoDescription:
@@ -267,7 +267,7 @@ OwnTempoDescription:
 
 IntimidateDescription:
 	text "Lowers the foe's"
-	next "Attack stat."
+	next "ATTACK stat."
 	done
 
 ShadowTagDescription:
@@ -277,17 +277,17 @@ ShadowTagDescription:
 
 LevitateDescription:
 	text "Gives immunity to"
-	next "Ground-type moves."
+	next "GROUND-type moves."
 	done
 
 EffectSporeDescription:
 	text "Contact may cause"
-	next "Par, Psn, or Slp."
+	next "PAR, PSN, or SLP."
 	done
 
 SynchronizeDescription:
-	text "Passes Psn, Par,"
-	next "or Brn to foes."
+	text "Passes PSN, PAR,"
+	next "or BRN to foes."
 	done
 
 ClearBodyDescription:
@@ -302,8 +302,8 @@ NaturalCureDescription:
 	done
 
 LightningRodDescription:
-	text "Electric moves"
-	next "boost Sp.Atk."
+	text "ELECTRIC moves"
+	next "boost SPCL.ATK."
 	done
 
 SereneGraceDescription:
@@ -312,22 +312,22 @@ SereneGraceDescription:
 	done
 
 SwiftSwimDescription:
-	text "Boosts its Speed"
+	text "Boosts its SPEED"
 	next "in rain."
 	done
 
 ChlorophyllDescription:
-	text "Boosts its Speed"
+	text "Boosts its SPEED"
 	next "in sunshine."
 	done
 
 TraceDescription:
 	text "Copies the foe's"
-	next "Ability."
+	next "ABILITY."
 	done
 
 HugePowerDescription:
-	text "Boosts its Attack"
+	text "Boosts its ATTACK"
 	next "stat."
 	done
 
@@ -353,7 +353,7 @@ WaterVeilDescription:
 
 MagnetPullDescription:
 	text "Prevents escape by"
-	next "Steel-type foes."
+	next "STEEL-type foes."
 	done
 
 SoundproofDescription:
@@ -378,7 +378,7 @@ PressureDescription:
 
 ThickFatDescription:
 	text "Ups resistance to"
-	next "Fire and Ice."
+	next "FIRE and ICE."
 	done
 
 FlameBodyDescription:
@@ -393,7 +393,7 @@ KeenEyeDescription:
 
 HyperCutterDescription:
 	text "Prevents foes from"
-	next "lowering Attack."
+	next "lowering ATTACK."
 	done
 
 PickupDescription:
@@ -402,7 +402,7 @@ PickupDescription:
 	done
 
 HustleDescription:
-	text "Boosts Attack, but"
+	text "Boosts ATTACK, but"
 	next "lowers accuracy."
 	done
 
@@ -417,32 +417,32 @@ ShedSkinDescription:
 	done
 
 GutsDescription:
-	text "Boosts Attack on"
+	text "Boosts ATTACK on"
 	next "status problems."
 	done
 
 MarvelScaleDescription:
-	text "Boosts Defense on"
+	text "Boosts DEFENSE on"
 	next "status problems."
 	done
 
 OvergrowDescription:
-	text "Boosts Grass moves"
+	text "Boosts GRASS moves"
 	next "in a pinch."
 	done
 
 BlazeDescription:
-	text "Boosts Fire moves"
+	text "Boosts FIRE moves"
 	next "in a pinch."
 	done
 
 TorrentDescription:
-	text "Boosts Water moves"
+	text "Boosts WATER moves"
 	next "in a pinch."
 	done
 
 SwarmDescription:
-	text "Boosts Bug moves"
+	text "Boosts BUG moves"
 	next "in a pinch."
 	done
 
@@ -467,8 +467,8 @@ TangledFeetDescription:
 	done
 
 MotorDriveDescription:
-	text "Electric moves"
-	next "boost Speed."
+	text "ELECTRIC moves"
+	next "boost SPEED."
 	done
 
 RivalryDescription:
@@ -477,7 +477,7 @@ RivalryDescription:
 	done
 
 SteadfastDescription:
-	text "Boosts Speed when"
+	text "Boosts SPEED when"
 	next "it flinches."
 	done
 
@@ -487,13 +487,13 @@ SnowCloakDescription:
 	done
 
 AngerPointDescription:
-	text "Maxes Attack after"
+	text "Maxes ATTACK after"
 	next "a critical hit."
 	done
 
 DrySkinDescription:
 	text "Reduces HP in sun."
-	next "Water restores HP."
+	next "WATER restores HP."
 	done
 
 IronFistDescription:
@@ -522,12 +522,12 @@ HydrationDescription:
 	done
 
 SolarPowerDescription:
-	text "Boosts Sp.Atk but"
+	text "Ups SPCL.ATK but"
 	next "lowers HP in sun."
 	done
 
 QuickFeetDescription:
-	text "Boosts Speed with"
+	text "Boosts SPEED with"
 	next "status problems."
 	done
 
@@ -579,7 +579,7 @@ SolidRockDescription:
 
 ScrappyDescription:
 	text "Enables moves to"
-	next "hit Ghost-types."
+	next "hit GHOST-types."
 	done
 
 IceBodyDescription:
@@ -595,9 +595,9 @@ SnowWarningDescription:
 HoneyGatherDescription:
 	text "The #MON may"
 if DEF(FAITHFUL)
-	next "gather Honey."
+	next "gather HONEY."
 else
-	next "find Sweet Honey."
+	next "find SWEET HONEY."
 endc
 	done
 
@@ -628,11 +628,11 @@ ContraryDescription:
 
 UnnerveDescription:
 	text "Prevents foes from"
-	next "eating Berries."
+	next "eating BERRIES."
 	done
 
 DefiantDescription:
-	text "Boosts Attack when"
+	text "Boosts ATTACK when"
 	next "stats are lowered."
 	done
 
@@ -643,7 +643,7 @@ CursedBodyDescription:
 
 WeakArmorDescription:
 	text "Physical hits"
-	next "trade Def for Spd."
+	next "trade DEF for SPD."
 	done
 
 MultiscaleDescription:
@@ -668,11 +668,11 @@ RegeneratorDescription:
 
 BigPecksDescription:
 	text "Prevents foes from"
-	next "lowering Defense."
+	next "lowering DEFENSE."
 	done
 
 SandRushDescription:
-	text "Boosts Speed in"
+	text "Boosts SPEED in"
 	next "a sandstorm."
 	done
 
@@ -692,18 +692,18 @@ ImposterDescription:
 	done
 
 MoxieDescription:
-	text "Boosts Attack when"
+	text "Boosts ATTACK when"
 	next "knocking out foes."
 	done
 
 JustifiedDescription:
-	text "Boosts Attack when"
-	next "hit by Dark moves."
+	text "Boosts ATTACK when"
+	next "hit by DARK moves."
 	done
 
 RattledDescription:
-	text "Dark, Ghost or Bug"
-	next "moves boost Speed."
+	text "DARK, GHOST or BUG"
+	next "moves boost SPEED."
 	done
 
 MagicBounceDescription:
@@ -712,8 +712,8 @@ MagicBounceDescription:
 	done
 
 SapSipperDescription:
-	text "Boosts Attack when"
-	next "hit by Grass."
+	text "Boosts ATTACK when"
+	next "hit by GRASS."
 	done
 
 PranksterDescription:
@@ -737,7 +737,7 @@ BulletproofDescription:
 	done
 
 CompetitiveDescription:
-	text "Boosts Sp.Atk on"
+	text "Boosts SPCL.ATK on"
 	next "stat reduction."
 	done
 
@@ -752,8 +752,8 @@ ToughClawsDescription:
 	done
 
 PixilateDescription:
-	text "Normal-type moves"
-	next "become Fairy-type."
+	text "NORMAL-type moves"
+	next "become FAIRY-type."
 	done
 
 ParentalBondDescription:
@@ -762,33 +762,33 @@ ParentalBondDescription:
 	done
 
 BerserkDescription:
-	text "Boosts Sp.Atk when"
+	text "Ups SPCL.ATK when"
 	next "damaged over half."
 	done
 
 SlushRushDescription:
-	text "Boosts Speed in"
+	text "Boosts SPEED in"
 	next "a hailstorm."
 	done
 
 GalvanizeDescription:
-	text "Normal-type moves"
-	next "become Electric."
+	text "NORMAL-type moves"
+	next "become ELECTRIC."
 	done
 
 FluffyDescription:
 	text "Resists contact,"
-	next "but weak to Fire."
+	next "but weak to FIRE."
 	done
 
 TanglingHairDescription:
 	text "Contact may lower"
-	next "the foe's Speed."
+	next "the foe's SPEED."
 	done
 
 NeutralizingGasDescription:
 	text "Suppresses all"
-	next "other Abilities."
+	next "other ABILITIES."
 	done
 
 WindRiderDescription:
@@ -797,7 +797,7 @@ WindRiderDescription:
 	done
 
 SteelySpiritDescription:
-	text "Boosts Steel-type"
+	text "Boosts STEEL-type"
 	next "moves."
 	done
 
@@ -822,8 +822,8 @@ ArmorTailDescription:
 	done
 
 MindsEyeDescription:
-	text "Bypass evasion and"
-	next "Ghost immunity."
+	text "Ignores evasion"
+	next "& GHOST immunity."
 	done
 
 MegaSolDescription:
@@ -832,13 +832,13 @@ MegaSolDescription:
 	done
 
 RefrigerateDescription:
-	text "Normal moves"
-	next "become Ice-type."
+	text "NORMAL moves"
+	next "become ICE-type."
 	done
 
 AerilateDescription:
-	text "Normal moves be-"
-	next "come Flying-type."
+	text "NORMAL moves be-"
+	next "come FLYING-type."
 	done
 
 DisguiseDescription:
@@ -847,7 +847,7 @@ DisguiseDescription:
 	done
 
 GaleWingsDescription:
-	text "Flying moves"
+	text "FLYING moves"
 	next "go first."
 	done
 
@@ -863,11 +863,11 @@ MirrorArmorDescription:
 
 StormDrainDescription:
 	text "Draws in water,"
-	next "raising Sp.Atk."
+	next "raising SPCL.ATK."
 	done
 
 StaminaDescription:
-	text "Boosts Defense"
+	text "Boosts DEFENSE"
 	next "when hit."
 	done
 
@@ -882,7 +882,7 @@ SupremeOverlordDescription:
 	done
 
 ThermalExchangeDescription:
-	text "Fire raises Atk."
+	text "FIRE raises ATK."
 	next "Can't be burned."
 	done
 
@@ -902,7 +902,7 @@ PoisonPuppeteerDescription:
 	done
 
 ToxicDebrisDescription:
-	text "Lays Toxic Spikes"
+	text "Lays TOXIC SPIKES"
 	next "when hit."
 	done
 
@@ -912,7 +912,7 @@ QueenlyMajestyDescription:
 	done
 
 GluttonyDescription:
-	text "Eats a held Berry"
+	text "Eats a held BERRY"
 	next "earlier."
 	done
 
@@ -968,7 +968,7 @@ CorrosionDescription:
 
 HarvestDescription:
 	text "May restore a"
-	next "used Berry."
+	next "used BERRY."
 	done
 
 DownloadDescription:
@@ -998,11 +998,11 @@ KlutzDescription:
 
 RipenDescription:
 	text "Doubles the effect"
-	next "of its Berries."
+	next "of its BERRIES."
 	done
 
 CudChewDescription:
-	text "Eats a used Berry"
+	text "Eats a used BERRY"
 	next "a second time."
 	done
 

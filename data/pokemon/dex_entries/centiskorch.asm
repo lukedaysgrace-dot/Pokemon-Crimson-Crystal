@@ -1,10 +1,10 @@
 	db "RADIATOR@" ; species name
 	dw 910, 2646 ; height, weight
 
-	db   "This CENTISKORC"
-	next "was newly added"
-	next "to the #DEX."
+	db   "Its body heats up"
+	next "to 1,500 degrees."
+	next "It lashes foes"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "with its long"
+	next "body, burning"
+	next "them on contact.@"

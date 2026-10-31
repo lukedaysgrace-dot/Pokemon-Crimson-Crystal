@@ -1,10 +1,10 @@
 	db "BALL ROLL@" ; species name
 	dw 307, 1931 ; height, weight
 
-	db   "This SEALEO"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It balances things"
+	next "on its nose and"
+	next "checks them by"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "spinning them."
+	next "That is how it"
+	next "learns about them.@"

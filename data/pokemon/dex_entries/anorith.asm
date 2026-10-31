@@ -1,10 +1,10 @@
 	db "OLD SHRIMP@" ; species name
 	dw 204, 276 ; height, weight
 
-	db   "This ANORITH"
-	next "was newly added"
-	next "to the #DEX."
+	db   "An ancient #MON"
+	next "revived from a"
+	next "fossil. It swam"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "by flapping the"
+	next "eight wings on"
+	next "its sides.@"

@@ -7,4 +7,4 @@
 
 	page "strong. Each fight"
 	next "teaches it to grow"
-	next "tough and bolder.@"
+	next "tougher, bolder.@"

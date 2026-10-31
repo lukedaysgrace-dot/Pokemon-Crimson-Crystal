@@ -1,10 +1,10 @@
 	db "SNOW HAT@" ; species name
 	dw 204, 370 ; height, weight
 
-	db   "This SNORUNT"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It is said that a"
+	next "home visited by"
+	next "SNORUNT will be"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "blessed with good"
+	next "fortune. It lives"
+	next "in snowy country.@"

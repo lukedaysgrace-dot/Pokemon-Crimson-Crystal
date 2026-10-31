@@ -3,7 +3,7 @@
 
 	db   "Its metallic whis-"
 	next "kers are heavy, so"
-	next "it's not very fast,"
+	next "it is rather slow,"
 	page "but it has the"
 	next "power to dig"
 	next "through bedrock.@"

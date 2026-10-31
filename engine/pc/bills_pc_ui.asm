@@ -3532,7 +3532,7 @@ BillsPC_Item:
 	db -1
 
 BillsPC_EggsCantHoldItemsText:
-	text "Eggs can't hold"
+	text "EGGS can't hold"
 	line "items."
 	prompt
 

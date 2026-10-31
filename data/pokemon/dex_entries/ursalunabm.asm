@@ -1,10 +1,10 @@
 	db "PEAT@" ; species name
 	dw 810, 7341 ; height, weight
 
-	db   "This URSALUNA"
-	next "was newly added"
-	next "to the #DEX."
+	db   "It can see in the"
+	next "dark. Its left eye"
+	next "glows red under"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "the full moon. It"
+	next "was shaped by mud"
+	next "from a peat bog.@"

@@ -1,10 +1,10 @@
 	db "ICE BREAK@" ; species name
 	dw 407, 3320 ; height, weight
 
-	db   "This WALREIN"
-	next "was newly added"
-	next "to the #DEX."
+	db   "Its huge tusks can"
+	next "shatter blocks of"
+	next "ice weighing ten"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "tons. Its thick"
+	next "blubber keeps out"
+	next "freezing water.@"

@@ -1,10 +1,10 @@
 	db "CANDY APPLE@" ; species name
 	dw 104, 214 ; height, weight
 
-	db   "This DIPPLIN"
-	next "was newly added"
-	next "to the #DEX."
+	db   "Two APPLIN live"
+	next "inside this apple."
+	next "They share its"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "thick, sugary"
+	next "syrup and work"
+	next "together to fight.@"

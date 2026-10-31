@@ -4,6 +4,6 @@
 	db   "A combination of"
 	next "toxins and the"
 	next "shock of evolving"
-	page "has caused Shell-"
-	next "der to take con-"
+	page "has caused SHELL-"
+	next "DER to take con-"
 	next "trol of SLOWKING.@"

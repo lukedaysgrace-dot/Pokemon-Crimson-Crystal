@@ -1,10 +1,10 @@
 	db "VIBRATION@" ; species name
 	dw 307, 337 ; height, weight
 
-	db   "This VIBRAVA"
-	next "was newly added"
-	next "to the #DEX."
+	db   "Its wings are not"
+	next "fully grown. It"
+	next "rubs them to make"
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "ultrasonic waves"
+	next "that knock out"
+	next "its prey.@"

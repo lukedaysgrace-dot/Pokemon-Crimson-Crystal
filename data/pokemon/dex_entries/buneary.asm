@@ -1,10 +1,10 @@
 	db "RABBIT@" ; species name
 	dw 104, 121 ; height, weight
 
-	db   "This BUNEARY"
-	next "was newly added"
-	next "to the #DEX."
+	db   "When it senses"
+	next "danger, it rolls"
+	next "up its long ears."
 
-	page "Its data can be"
-	next "expanded as the"
-	next "hack develops.@"
+	page "It can hit hard"
+	next "by unrolling its"
+	next "ears in a flash.@"
