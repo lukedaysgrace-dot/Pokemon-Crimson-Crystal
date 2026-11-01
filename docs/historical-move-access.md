@@ -2599,12 +2599,12 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 ### Magby
 
-**Added:** Dark Pulse, Dizzy Punch, Poison Gas, Scald, Tackle.
+**Added:** Dark Pulse, Dizzy Punch, Poison Gas, Tackle.
 
 **Removed:** Drain Punch, Iron Head.
 
 - **Removed machine flags:** Drain Punch, Iron Head.
-- **Added Blackthorn lessons:** Dark Pulse, Dizzy Punch, Poison Gas, Scald, Tackle.
+- **Added Blackthorn lessons:** Dark Pulse, Dizzy Punch, Poison Gas, Tackle.
 
 ### Magcargo
 
@@ -2623,21 +2623,21 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 ### Magmar
 
-**Added:** Dark Pulse, Dizzy Punch, Poison Gas, Scald, Tackle.
+**Added:** Dark Pulse, Dizzy Punch, Poison Gas, Tackle.
 
 **Removed:** Drain Punch, Iron Head.
 
 - **Removed machine flags:** Drain Punch, Iron Head.
-- **Added Blackthorn lessons:** Dark Pulse, Dizzy Punch, Poison Gas, Scald, Tackle.
+- **Added Blackthorn lessons:** Dark Pulse, Dizzy Punch, Poison Gas, Tackle.
 
 ### Magmortar
 
-**Added:** Armor Cannon, Dizzy Punch, Dragon Pulse, Poison Gas, Scald, Tackle, Zap Cannon.
+**Added:** Armor Cannon, Dizzy Punch, Dragon Pulse, Poison Gas, Tackle, Zap Cannon.
 
 **Removed:** Drain Punch, Iron Head.
 
 - **Removed machine flags:** Drain Punch, Iron Head.
-- **Added Blackthorn lessons:** Armor Cannon, Dizzy Punch, Dragon Pulse, Poison Gas, Scald, Tackle, Zap Cannon.
+- **Added Blackthorn lessons:** Armor Cannon, Dizzy Punch, Dragon Pulse, Poison Gas, Tackle, Zap Cannon.
 - **Restored natural entries:** Raging Fury.
 
 ### Magnemite

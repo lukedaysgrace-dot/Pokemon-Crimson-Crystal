@@ -151,8 +151,11 @@ def source_reference():
                     selected.setdefault((source.split(':')[0], re.sub(r'\d+$', '', source.split(':')[-1])), source)
                 provenance[species][move].extend(selected.values())
             key = norm_move(dex.get(key, {}).get('prevo', ''))
-        expected[species] = sorted(expected[species])
-        provenance[species] = dict(provenance[species])
+        # User-excluded moves (authored_move_restorations.json "excluded") stay
+        # out even when an upstream source lists them, e.g. Magmar-line Scald.
+        excluded = set(load_json(RESTORATIONS).get('excluded', {}).get(species, [])) if RESTORATIONS.exists() else set()
+        expected[species] = sorted(expected[species] - excluded)
+        provenance[species] = {m: s for m, s in provenance[species].items() if m not in excluded}
         absent[species] = sorted(absent[species])
     sources = load_json(CACHE / 'sources.json')
     # Include late-decoded name/TM inputs in the reproducible download manifest.
