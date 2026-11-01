@@ -85,7 +85,8 @@ def main():
   expected=[pixie['level_up'][c]] if c in pixie['level_up'] else []
   assert actual==expected,(c,'Pixie Punch distribution/timing')
   assert 'PIXIE_PUNCH' not in eggs[c]+tm[c]+technical.get(c,[]),(c,'Pixie Punch must use natural early access')
- assert eligible | set(pixie['grandfathered'])==set(pixie['level_up']),'New Pixie Punch learners must be Fairy types with higher base Attack than Special Attack'
+ # Hoofed/armless forms are excluded on theme even when their stats qualify.
+ assert (eligible-set(pixie.get('excluded',[]))) | set(pixie['grandfathered'])==set(pixie['level_up']),'New Pixie Punch learners must be Fairy types with higher base Attack than Special Attack'
  assert all(1<=lv<=9 for lv in pixie['level_up'].values()),'Pixie Punch must be available early'
  pools={}
  for c in order:

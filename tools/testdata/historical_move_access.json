@@ -12847,7 +12847,6 @@
       "FACADE",
       "FIRE_PUNCH",
       "FLAMETHROWER",
-      "FLAME_WHEEL",
       "FOCUS_ENERGY",
       "FORESIGHT",
       "FRUSTRATION",
@@ -12928,7 +12927,6 @@
       "FACADE",
       "FIRE_PUNCH",
       "FLAMETHROWER",
-      "FLAME_WHEEL",
       "FOCUS_BLAST",
       "FOCUS_ENERGY",
       "FORESIGHT",
@@ -15579,7 +15577,6 @@
       "GRASS_KNOT",
       "GROWL",
       "GROWTH",
-      "GUNK_SHOT",
       "HEADBUTT",
       "HEAL_BELL",
       "HIDDEN_POWER",
@@ -49517,6 +49514,7 @@
       "TACKLE"
     ],
     "URSARINGBM": [
+      "MUD_SHOT",
       "STEALTH_ROCK",
       "TACKLE"
     ],
@@ -50658,11 +50656,13 @@
     ],
     "SENTRET": [
       "DRAIN_PUNCH",
+      "FLAME_WHEEL",
       "IRON_HEAD",
       "ROCK_TOMB"
     ],
     "FURRET": [
       "DRAIN_PUNCH",
+      "FLAME_WHEEL",
       "IRON_HEAD",
       "ROCK_TOMB"
     ],
@@ -50781,6 +50781,7 @@
       "PSYCHO_CUT"
     ],
     "UMBREON": [
+      "GUNK_SHOT",
       "IRON_HEAD"
     ],
     "SLOWKING": [
@@ -51815,13 +51816,15 @@
     "PONYTA_GALARIAN": [
       "CURSE",
       "HEADBUTT",
-      "IRON_HEAD"
+      "IRON_HEAD",
+      "PIXIE_PUNCH"
     ],
     "RAPIDASH_GALARIAN": [
       "CURSE",
       "HEADBUTT",
       "INCINERATE",
-      "IRON_HEAD"
+      "IRON_HEAD",
+      "PIXIE_PUNCH"
     ],
     "SLOWPOKE_GALARIAN": [
       "FLASH",
@@ -52212,6 +52215,7 @@
       "FUTURE_SIGHT",
       "GROWL",
       "IRON_HEAD",
+      "PIXIE_PUNCH",
       "ROCK_TOMB",
       "SUPERPOWER"
     ],
@@ -55554,6 +55558,9 @@
       "TACKLE": [
         "gen8legends_learnsets.ts:ursaring:8L1",
         "gen8legends_learnsets.ts:teddiursa:8L1"
+      ],
+      "MUD_SHOT": [
+        "authored request (authored_move_restorations.json)"
       ]
     },
     "URSALUNABM": {
@@ -71684,7 +71691,6 @@
       "FACADE",
       "FIRE_PUNCH",
       "FLAMETHROWER",
-      "FLAME_WHEEL",
       "FOCUS_ENERGY",
       "FORESIGHT",
       "FRUSTRATION",
@@ -71765,7 +71771,6 @@
       "FACADE",
       "FIRE_PUNCH",
       "FLAMETHROWER",
-      "FLAME_WHEEL",
       "FOCUS_BLAST",
       "FOCUS_ENERGY",
       "FORESIGHT",
@@ -74434,7 +74439,6 @@
       "GRASS_KNOT",
       "GROWL",
       "GROWTH",
-      "GUNK_SHOT",
       "HEADBUTT",
       "HEAL_BELL",
       "HIDDEN_POWER",
@@ -88598,6 +88602,7 @@
       "METAL_CLAW",
       "METRONOME",
       "MIMIC",
+      "MUD_SHOT",
       "MUD_SLAP",
       "NIGHT_SLASH",
       "PLAY_ROUGH",
@@ -92205,7 +92210,6 @@
       "IRON_TAIL",
       "LOW_KICK",
       "MORNING_SUN",
-      "PIXIE_PUNCH",
       "PLAY_ROUGH",
       "PROTECT",
       "PSYBEAM",
@@ -92270,7 +92274,6 @@
       "MORNING_SUN",
       "OVERHEAT",
       "PAY_DAY",
-      "PIXIE_PUNCH",
       "PLAY_ROUGH",
       "PROTECT",
       "PSYBEAM",
@@ -95692,7 +95695,6 @@
       "MUD_SHOT",
       "MUD_SLAP",
       "PERISH_SONG",
-      "PIXIE_PUNCH",
       "PRESENT",
       "PROTECT",
       "RAIN_DANCE",
@@ -110665,10 +110667,6 @@
         "REST"
       ],
       [
-        20,
-        "FLAME_WHEEL"
-      ],
-      [
         23,
         "ZEN_HEADBUTT"
       ],
@@ -110741,10 +110739,6 @@
       [
         18,
         "REST"
-      ],
-      [
-        22,
-        "FLAME_WHEEL"
       ],
       [
         26,
@@ -113727,10 +113721,6 @@
       [
         36,
         "SPITE"
-      ],
-      [
-        37,
-        "GUNK_SHOT"
       ],
       [
         40,
@@ -130023,8 +130013,16 @@
         "SWEET_SCENT"
       ],
       [
+        22,
+        "SLASH"
+      ],
+      [
         30,
         "WORK_UP"
+      ],
+      [
+        33,
+        "MUD_SHOT"
       ],
       [
         35,
@@ -130033,6 +130031,10 @@
       [
         36,
         "HYPER_VOICE"
+      ],
+      [
+        39,
+        "BODY_SLAM"
       ],
       [
         41,
@@ -134115,10 +134117,6 @@
         "FAIRY_WIND"
       ],
       [
-        8,
-        "PIXIE_PUNCH"
-      ],
-      [
         10,
         "CONFUSION"
       ],
@@ -134191,10 +134189,6 @@
       [
         1,
         "TACKLE"
-      ],
-      [
-        1,
-        "PIXIE_PUNCH"
       ],
       [
         1,
@@ -138815,10 +138809,6 @@
       [
         7,
         "AQUA_JET"
-      ],
-      [
-        7,
-        "PIXIE_PUNCH"
       ],
       [
         7,

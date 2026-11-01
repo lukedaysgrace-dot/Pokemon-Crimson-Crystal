@@ -22,8 +22,8 @@ opens the floor's original shop.
 
 The first sixteen entries restore removed items. Normal/Gorgeous Box award
 the silver/gold trophy decorations and are consumed. Polkadot Bow provides
-the existing 10% Normal-type held boost. All ten Mail designs work, including
-their original artwork and palette ordering.
+a 20% Fairy-type held boost; Pink Bow remains the 20% Normal booster. All ten
+Mail designs work, including their original artwork and palette ordering.
 
 Treasures can be sold at marts. The seven duplicate status Berries were
 removed. Saves from the first expansion build resolve Pecha, Rawst, Aspear,

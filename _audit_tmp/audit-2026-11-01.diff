@@ -1,0 +1,405 @@
+diff --git a/data/moves/descriptions.asm b/data/moves/descriptions.asm
+index e5ed9628f..36847d255 100644
+--- a/data/moves/descriptions.asm
++++ b/data/moves/descriptions.asm
+@@ -2097,8 +2097,8 @@ WeatherBallDescription:
+ 	next "power in weather.@"
+ 
+ IncinerateDescription:
+-	db   "Burns the foe and"
+-	next "its held BERRY.@"
++	db   "Fire hit that also"
++	next "burns up a BERRY.@"
+ 
+ PsyshockDescription:
+ 	db   "Special hit uses"
+diff --git a/data/pokemon/dex_entries/gorochu.asm b/data/pokemon/dex_entries/gorochu.asm
+index 815fad47d..4cee8a5a2 100644
+--- a/data/pokemon/dex_entries/gorochu.asm
++++ b/data/pokemon/dex_entries/gorochu.asm
+@@ -5,5 +5,6 @@
+ 	next "spark while the"
+ 	next "dusk air hums."
+ 
+-	page "It tests rivals"
+-	next "during storms.@"
++	page "It challenges any"
++	next "rival it meets to"
++	next "duel in a storm.@"
+diff --git a/data/pokemon/dex_entries/mienfoo.asm b/data/pokemon/dex_entries/mienfoo.asm
+index c8582df4f..2b62ae371 100644
+--- a/data/pokemon/dex_entries/mienfoo.asm
++++ b/data/pokemon/dex_entries/mienfoo.asm
+@@ -1,4 +1,4 @@
+-	db "MARTIAL ARTS@" ; species name
++	db "MARTIALARTS@" ; species name
+ 	dw 211, 441 ; height (feet/inches), weight (tenths of a pound)
+ 
+ 	db   "At dawn, mountain"
+diff --git a/data/pokemon/dex_entries/mienshao.asm b/data/pokemon/dex_entries/mienshao.asm
+index 375727e00..7c81e280c 100644
+--- a/data/pokemon/dex_entries/mienshao.asm
++++ b/data/pokemon/dex_entries/mienshao.asm
+@@ -1,4 +1,4 @@
+-	db "MARTIAL ARTS@" ; species name
++	db "MARTIALARTS@" ; species name
+ 	dw 407, 783 ; height (feet/inches), weight (tenths of a pound)
+ 
+ 	db   "It lashes foes"
+diff --git a/data/pokemon/evos_attacks_johto.asm b/data/pokemon/evos_attacks_johto.asm
+index 391e2bbac..caa586c78 100644
+--- a/data/pokemon/evos_attacks_johto.asm
++++ b/data/pokemon/evos_attacks_johto.asm
+@@ -357,7 +357,6 @@ SentretEvosAttacks:
+ 	dbw 5, FURY_SWIPES
+ 	dbw 15, SLAM
+ 	dbw 17, REST
+-	dbw 20, FLAME_WHEEL
+ 	dbw 23, ZEN_HEADBUTT
+ 	dbw 26, AMNESIA
+ 	dbw 29, REVERSAL
+@@ -380,7 +379,6 @@ FurretEvosAttacks:
+ 	dbw 15, AGILITY
+ 	dbw 15, SLAM
+ 	dbw 18, REST
+-	dbw 22, FLAME_WHEEL
+ 	dbw 26, WORK_UP
+ 	dbw 26, ZEN_HEADBUTT
+ 	dbw 28, EXTREMESPEED
+@@ -1268,7 +1266,6 @@ UmbreonEvosAttacks:
+ 	dbw 34, SNARL
+ 	dbw 34, SUCKER_PUNCH
+ 	dbw 36, SPITE
+-	dbw 37, GUNK_SHOT
+ 	dbw 40, DARK_PULSE
+ 	dbw 40, FOUL_PLAY
+ 	dbw 45, SCREECH
+@@ -3672,7 +3669,6 @@ AzurillEvosAttacks:
+ 	dbw 1, TAIL_WHIP
+ 	dbw 5, FORESIGHT
+ 	dbw 7, AQUA_JET
+-	dbw 7, PIXIE_PUNCH
+ 	dbw 7, BUBBLE
+ 	dbw 10, CHARM
+ 	dbw 12, SLAM
+@@ -7202,9 +7198,12 @@ UrsaringbmEvosAttacks:
+ 	dbw 8, FURY_SWIPES
+ 	dbw 15, FAINT_ATTACK
+ 	dbw 17, SWEET_SCENT
++	dbw 22, SLASH
+ 	dbw 30, WORK_UP
++	dbw 33, BULLDOZE
+ 	dbw 35, SCARY_FACE
+ 	dbw 36, HYPER_VOICE
++	dbw 39, BODY_SLAM
+ 	dbw 41, REST
+ 	dbw 41, SNORE
+ 	db 0 ; no more level-up moves
+@@ -8450,7 +8449,6 @@ PonytaGalarianEvosAttacks:
+ 	dbw 1, TACKLE
+ 	dbw 4, TAIL_WHIP
+ 	dbw 8, FAIRY_WIND
+-	dbw 8, PIXIE_PUNCH
+ 	dbw 10, CONFUSION
+ 	dbw 16, STOMP
+ 	dbw 20, AGILITY
+@@ -8473,7 +8471,6 @@ RapidashGalarianEvosAttacks:
+ 	dbw 1, MEGAHORN
+ 	dbw 1, QUICK_ATTACK
+ 	dbw 1, TACKLE
+-	dbw 1, PIXIE_PUNCH
+ 	dbw 1, PSYCHO_CUT
+ 	dbw 1, BLAZE_KICK
+ 	dbw 4, TAIL_WHIP
+diff --git a/tools/audit_learnset_variety.py b/tools/audit_learnset_variety.py
+index d5caee45f..ae24e54c5 100644
+--- a/tools/audit_learnset_variety.py
++++ b/tools/audit_learnset_variety.py
+@@ -85,7 +85,8 @@ def main():
+   expected=[pixie['level_up'][c]] if c in pixie['level_up'] else []
+   assert actual==expected,(c,'Pixie Punch distribution/timing')
+   assert 'PIXIE_PUNCH' not in eggs[c]+tm[c]+technical.get(c,[]),(c,'Pixie Punch must use natural early access')
+- assert eligible | set(pixie['grandfathered'])==set(pixie['level_up']),'New Pixie Punch learners must be Fairy types with higher base Attack than Special Attack'
++ # Hoofed/armless forms are excluded on theme even when their stats qualify.
++ assert (eligible-set(pixie.get('excluded',[]))) | set(pixie['grandfathered'])==set(pixie['level_up']),'New Pixie Punch learners must be Fairy types with higher base Attack than Special Attack'
+  assert all(1<=lv<=9 for lv in pixie['level_up'].values()),'Pixie Punch must be available early'
+  pools={}
+  for c in order:
+diff --git a/tools/testdata/authored_move_restorations.json b/tools/testdata/authored_move_restorations.json
+index 4f556e498..7ff0acc67 100644
+--- a/tools/testdata/authored_move_restorations.json
++++ b/tools/testdata/authored_move_restorations.json
+@@ -569,6 +569,15 @@
+     ],
+     "MAGMORTAR": [
+       "SCALD"
++    ],
++    "UMBREON": [
++      "GUNK_SHOT"
++    ],
++    "SENTRET": [
++      "FLAME_WHEEL"
++    ],
++    "FURRET": [
++      "FLAME_WHEEL"
+     ]
+   },
+   "level_up": {
+diff --git a/tools/testdata/historical_move_access.json b/tools/testdata/historical_move_access.json
+index 6ed137d11..7703d1cde 100644
+--- a/tools/testdata/historical_move_access.json
++++ b/tools/testdata/historical_move_access.json
+@@ -12847,7 +12847,6 @@
+       "FACADE",
+       "FIRE_PUNCH",
+       "FLAMETHROWER",
+-      "FLAME_WHEEL",
+       "FOCUS_ENERGY",
+       "FORESIGHT",
+       "FRUSTRATION",
+@@ -12928,7 +12927,6 @@
+       "FACADE",
+       "FIRE_PUNCH",
+       "FLAMETHROWER",
+-      "FLAME_WHEEL",
+       "FOCUS_BLAST",
+       "FOCUS_ENERGY",
+       "FORESIGHT",
+@@ -15579,7 +15577,6 @@
+       "GRASS_KNOT",
+       "GROWL",
+       "GROWTH",
+-      "GUNK_SHOT",
+       "HEADBUTT",
+       "HEAL_BELL",
+       "HIDDEN_POWER",
+@@ -50658,11 +50655,13 @@
+     ],
+     "SENTRET": [
+       "DRAIN_PUNCH",
++      "FLAME_WHEEL",
+       "IRON_HEAD",
+       "ROCK_TOMB"
+     ],
+     "FURRET": [
+       "DRAIN_PUNCH",
++      "FLAME_WHEEL",
+       "IRON_HEAD",
+       "ROCK_TOMB"
+     ],
+@@ -50781,6 +50780,7 @@
+       "PSYCHO_CUT"
+     ],
+     "UMBREON": [
++      "GUNK_SHOT",
+       "IRON_HEAD"
+     ],
+     "SLOWKING": [
+@@ -51815,13 +51815,15 @@
+     "PONYTA_GALARIAN": [
+       "CURSE",
+       "HEADBUTT",
+-      "IRON_HEAD"
++      "IRON_HEAD",
++      "PIXIE_PUNCH"
+     ],
+     "RAPIDASH_GALARIAN": [
+       "CURSE",
+       "HEADBUTT",
+       "INCINERATE",
+-      "IRON_HEAD"
++      "IRON_HEAD",
++      "PIXIE_PUNCH"
+     ],
+     "SLOWPOKE_GALARIAN": [
+       "FLASH",
+@@ -52212,6 +52214,7 @@
+       "FUTURE_SIGHT",
+       "GROWL",
+       "IRON_HEAD",
++      "PIXIE_PUNCH",
+       "ROCK_TOMB",
+       "SUPERPOWER"
+     ],
+@@ -71684,7 +71687,6 @@
+       "FACADE",
+       "FIRE_PUNCH",
+       "FLAMETHROWER",
+-      "FLAME_WHEEL",
+       "FOCUS_ENERGY",
+       "FORESIGHT",
+       "FRUSTRATION",
+@@ -71765,7 +71767,6 @@
+       "FACADE",
+       "FIRE_PUNCH",
+       "FLAMETHROWER",
+-      "FLAME_WHEEL",
+       "FOCUS_BLAST",
+       "FOCUS_ENERGY",
+       "FORESIGHT",
+@@ -74434,7 +74435,6 @@
+       "GRASS_KNOT",
+       "GROWL",
+       "GROWTH",
+-      "GUNK_SHOT",
+       "HEADBUTT",
+       "HEAL_BELL",
+       "HIDDEN_POWER",
+@@ -92205,7 +92205,6 @@
+       "IRON_TAIL",
+       "LOW_KICK",
+       "MORNING_SUN",
+-      "PIXIE_PUNCH",
+       "PLAY_ROUGH",
+       "PROTECT",
+       "PSYBEAM",
+@@ -92270,7 +92269,6 @@
+       "MORNING_SUN",
+       "OVERHEAT",
+       "PAY_DAY",
+-      "PIXIE_PUNCH",
+       "PLAY_ROUGH",
+       "PROTECT",
+       "PSYBEAM",
+@@ -95692,7 +95690,6 @@
+       "MUD_SHOT",
+       "MUD_SLAP",
+       "PERISH_SONG",
+-      "PIXIE_PUNCH",
+       "PRESENT",
+       "PROTECT",
+       "RAIN_DANCE",
+@@ -110664,10 +110661,6 @@
+         17,
+         "REST"
+       ],
+-      [
+-        20,
+-        "FLAME_WHEEL"
+-      ],
+       [
+         23,
+         "ZEN_HEADBUTT"
+@@ -110742,10 +110735,6 @@
+         18,
+         "REST"
+       ],
+-      [
+-        22,
+-        "FLAME_WHEEL"
+-      ],
+       [
+         26,
+         "WORK_UP"
+@@ -113728,10 +113717,6 @@
+         36,
+         "SPITE"
+       ],
+-      [
+-        37,
+-        "GUNK_SHOT"
+-      ],
+       [
+         40,
+         "DARK_PULSE"
+@@ -130022,10 +130007,18 @@
+         17,
+         "SWEET_SCENT"
+       ],
++      [
++        22,
++        "SLASH"
++      ],
+       [
+         30,
+         "WORK_UP"
+       ],
++      [
++        33,
++        "BULLDOZE"
++      ],
+       [
+         35,
+         "SCARY_FACE"
+@@ -130034,6 +130027,10 @@
+         36,
+         "HYPER_VOICE"
+       ],
++      [
++        39,
++        "BODY_SLAM"
++      ],
+       [
+         41,
+         "REST"
+@@ -134114,10 +134111,6 @@
+         8,
+         "FAIRY_WIND"
+       ],
+-      [
+-        8,
+-        "PIXIE_PUNCH"
+-      ],
+       [
+         10,
+         "CONFUSION"
+@@ -134192,10 +134185,6 @@
+         1,
+         "TACKLE"
+       ],
+-      [
+-        1,
+-        "PIXIE_PUNCH"
+-      ],
+       [
+         1,
+         "PSYCHO_CUT"
+@@ -138816,10 +138805,6 @@
+         7,
+         "AQUA_JET"
+       ],
+-      [
+-        7,
+-        "PIXIE_PUNCH"
+-      ],
+       [
+         7,
+         "BUBBLE"
+diff --git a/tools/testdata/pixie_punch.json b/tools/testdata/pixie_punch.json
+index 1dcc1bcc0..86b900d55 100644
+--- a/tools/testdata/pixie_punch.json
++++ b/tools/testdata/pixie_punch.json
+@@ -1,5 +1,5 @@
+ {
+-  "policy": "Preserve every existing learner. New distributions require Fairy typing and base Attack strictly exceeding base Special Attack in this game. The five grandfathered learners keep their original levels regardless of stats. Sketch remains unrestricted.",
++  "policy": "Preserve every existing learner. New distributions require Fairy typing and base Attack strictly exceeding base Special Attack in this game. The five grandfathered learners keep their original levels regardless of stats. Sketch remains unrestricted. Hoofed or armless forms (Galarian Ponyta/Rapidash, Azurill) were removed as thematic misfits.",
+   "level_up": {
+     "SNUBBULL": 7,
+     "GRANBULL": 1,
+@@ -10,12 +10,9 @@
+     "TINKATUFF": 5,
+     "TINKATON": 5,
+     "MIMIKYU": 9,
+-    "PONYTA_GALARIAN": 8,
+-    "RAPIDASH_GALARIAN": 1,
+     "MAWILE": 6,
+     "JIGGLYPUFF": 7,
+     "WIGGLYTUFF": 1,
+-    "AZURILL": 7,
+     "MARILL": 7,
+     "AZUMARILL": 7,
+     "MIENFOO": 7,
+@@ -24,8 +21,12 @@
+   "grandfathered": [
+     "JIGGLYPUFF",
+     "WIGGLYTUFF",
+-    "AZURILL",
+     "MARILL",
+     "AZUMARILL"
++  ],
++  "excluded": [
++    "PONYTA_GALARIAN",
++    "RAPIDASH_GALARIAN",
++    "AZURILL"
+   ]
+ }

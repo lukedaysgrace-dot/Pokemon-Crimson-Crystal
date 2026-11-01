@@ -79,15 +79,18 @@ def main():
         h.battle.mem.write('wPartyMon1Status', 8)
         turn()
         check(h.battle.player.status == 8 and h.battle.player.item == 'ITEM_273', 'Klutz failed to suppress converted Berry')
-        damage = []
-        for expanded in (False, True):
-            start(item='PINK_BOW', move='TACKLE')
-            if expanded:
-                equip('POLKADOT_BOW')
-            before = h.battle.enemy.hp
-            turn()
-            damage.append(before - h.battle.enemy.hp)
-        check(damage[0] > 0 and damage[0] == damage[1], 'Polkadot Bow differs from the existing 10% Normal boost')
+        for move, booster in [('TACKLE', 'PINK_BOW'), ('PIXIE_PUNCH', 'POLKADOT_BOW')]:
+            damage = {}
+            for item in ('NO_ITEM', 'PINK_BOW', 'POLKADOT_BOW'):
+                start(item='NO_ITEM' if item == 'POLKADOT_BOW' else item, move=move)
+                if item == 'POLKADOT_BOW':
+                    equip(item)
+                before = h.battle.enemy.hp
+                turn()
+                damage[item] = before - h.battle.enemy.hp
+            other = 'POLKADOT_BOW' if booster == 'PINK_BOW' else 'PINK_BOW'
+            check(damage[booster] > damage['NO_ITEM'] > 0, move + ': matching Bow did not boost damage')
+            check(damage[other] == damage['NO_ITEM'], move + ': wrong-type Bow boosted damage')
         print(f'EXPANDED HELD ITEMS PASSED: {checks} checks', flush=True)
     finally:
         h.pb.stop(save=False)

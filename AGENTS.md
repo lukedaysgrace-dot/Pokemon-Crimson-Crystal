@@ -30,6 +30,8 @@ Read this before changing the game. Keep it up to date when something here chang
 - `hiddenitem` is `dw flag, dw item` (4 bytes). Mart prices: `wMartItem1BCD`..`wMartItem10BCD`
   continue into `wMartExtraPrices` (14 items max).
 - Save format version is 5.
+- All type-boosting held items give 20%. Pink Bow boosts Normal; Polkadot Bow
+  boosts Fairy (there is no Fairy Feather). Keep their saved item indexes stable.
 
 ## Species additions
 - There are 500 internal species indexes. Append new indexes to preserve saved
@@ -54,6 +56,8 @@ Read this before changing the game. Keep it up to date when something here chang
 - Magby, Magmar and Magmortar must never learn or know SCALD. It is listed under `excluded` in
   `tools/testdata/authored_move_restorations.json`, which the historical move-access generator honors.
 - Don't change dialogue unless the user asks. Report text issues instead.
+- Pixie Punch is excluded from Galarian Ponyta/Rapidash and Azurill on theme (hooves/no arms), even though
+  their stats qualify. See `excluded` in `tools/testdata/pixie_punch.json`.
 
 ## Test harness quirks
 - A PyBoy hook can fire twice for one object when an interrupt lands on the hooked

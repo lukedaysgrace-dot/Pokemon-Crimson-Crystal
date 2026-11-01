@@ -2399,13 +2399,13 @@
       "links": []
     },
     {
-      "id": "type-boosting-items-retain-the-gen-2-bonus",
+      "id": "type-boosting-items",
       "category": "items",
       "title": "Type-boosting items",
       "before": "Held type-boosting items generally add 10% damage.",
-      "after": "Type-boosting items such as Charcoal, Mystic Water and Magnet increase damage by 10%.",
+      "after": "Type-boosting held items such as Charcoal, Mystic Water and Magnet increase matching-type damage by 20%. Pink Bow boosts Normal moves; Polkadot Bow boosts Fairy moves. There is no Fairy Feather.",
       "comparison": "Gen 2",
-      "kind": "exception",
+      "kind": "modern",
       "sources": [
         "data/items/attributes.asm"
       ],

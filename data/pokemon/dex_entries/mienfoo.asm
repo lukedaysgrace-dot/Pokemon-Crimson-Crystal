@@ -1,4 +1,4 @@
-	db "MARTIAL ARTS@" ; species name
+	db "MARTIALARTS@" ; species name
 	dw 211, 441 ; height (feet/inches), weight (tenths of a pound)
 
 	db   "At dawn, mountain"

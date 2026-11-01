@@ -5,5 +5,6 @@
 	next "spark while the"
 	next "dusk air hums."
 
-	page "It tests rivals"
-	next "during storms.@"
+	page "It challenges any"
+	next "rival it meets to"
+	next "duel in a storm.@"
