@@ -208,11 +208,20 @@ ModernMetronomeMove_Core::
 	; A new move never inherits another move's Blunder Policy miss.
 	xor a
 	ld [wBlunderPolicyPending], a
-	; Releasing a charged move is the same use, not a second selection.
+	; A completed charging turn is a successful use: the release gets the
+	; next Metronome boost even though charging dealt no damage.
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	bit SUBSTATUS_CHARGED, a
-	ret nz
+	jr z, .not_charged
+	ld hl, wPlayerMetronomeLanded
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .charged_side
+	inc hl
+.charged_side
+	ld [hl], TRUE
+.not_charged
 	ld hl, wPlayerMetronomeMove
 	ld de, wPlayerMetronomeCount
 	ld bc, wPlayerMetronomeLanded
@@ -449,7 +458,20 @@ ModernPowerHerbUse_Core::
 
 ModernBlunderPolicy_Core::
 ; Only reached by the accuracy roll, never Protect/type/semi-invulnerability.
-; The item activates after the miss (and any crash) text: see MoveEnd below.
+; OHKO misses and later Triple Kick/Axel misses do not activate the item.
+	ld a, [wAttackMissed]
+	and a
+	ret nz ; an earlier command already blocked the move
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_OHKO
+	ret z
+	cp EFFECT_TRIPLE_KICK
+	jr nz, .eligible
+	ld a, [wKickCounter]
+	and a
+	ret nz
+.eligible
 	ld a, TRUE
 	ld [wBlunderPolicyPending], a
 	ret
@@ -460,13 +482,23 @@ ModernBlunderPolicyMoveEnd_Core::
 	ld [hl], 0
 	and a
 	ret z
-	farcall UserHasFainted ; e.g. a Hi Jump Kick crash KO
+	; Some scripts calculate type immunity after their accuracy check.
+	ld a, [wTypeModifier]
+	and $7f
+	ret z
+	farcall UserHasFainted
 	ret z
 	callfar GetUserItem
 	ld a, b
 	cp HELD_BLUNDER_POLICY
 	ret nz
-	; Later move-end events still see this move's miss state.
+	; Later commands still see this move's miss state. The failure-text
+	; hook also runs this before Jump Kick's crash damage, so preserve it.
+	ld a, [wCurDamage]
+	ld d, a
+	ld a, [wCurDamage + 1]
+	ld e, a
+	push de
 	ld a, [wAttackMissed]
 	ld e, a
 	ld a, [wEffectFailed]
@@ -479,6 +511,11 @@ ModernBlunderPolicyMoveEnd_Core::
 	ld [wAttackMissed], a
 	ld a, d
 	ld [wEffectFailed], a
+	pop de
+	ld a, d
+	ld [wCurDamage], a
+	ld a, e
+	ld [wCurDamage + 1], a
 	ret
 
 ModernThroatSpray_Core::

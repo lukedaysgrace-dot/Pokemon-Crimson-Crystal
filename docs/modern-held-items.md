@@ -30,7 +30,7 @@ already names the move.
 | --- | --- |
 | Covert Cloak | Blocks damaging moves' additional effects against the holder, including flinching. |
 | Clear Amulet | Blocks opponents' stat drops, including Intimidate; permits self-inflicted drops. |
-| Metronome | Repeating the same move adds 20% damage per consecutive use, up to 2×; changing moves or switching resets the count. |
+| Metronome | Repeating the same move adds 20% damage per successful consecutive use, up to 2×. Misses, failures, lost turns, changing moves and switching break the chain. A completed charge counts toward the attacking turn's boost. |
 | Heavy-Duty Boots | Ignores Spikes, Toxic Spikes, Stealth Rock, Sticky Web, and this game's Spider Web entry hazard. |
 | Red Card | After surviving direct damage, consumes itself and forces the attacker out. A wild attacker flees. Suction Cups prevents displacement after consumption. |
 | Eject Button | After surviving direct damage, consumes itself and switches the holder to a usable reserve through the native switch-selection flow. |
@@ -41,9 +41,9 @@ already names the move.
 | Throat Spray | A successfully used sound move consumes it and raises Special Attack by one stage. |
 | Punching Glove | Boosts punching moves by 10% and removes their contact. |
 | Quick Powder | Doubles **original Ditto's** effective Speed, including after Transform. This intentionally follows this game's Gen II-style Metal Powder identity rule, as requested. |
-| Safety Goggles | Blocks powder/spore moves and sandstorm/hail damage. |
+| Safety Goggles | Blocks powder/spore moves, Effect Spore, and sandstorm/hail damage. |
 | Big Root | Multiplies HP received from draining moves and Leech Seed by 1.3, rounded down. |
-| Blunder Policy | An accuracy-roll miss consumes it and sharply raises Speed. Protect and type immunity do not trigger it. |
+| Blunder Policy | An accuracy-roll miss consumes it and sharply raises Speed after the miss text, before Jump Kick crash damage. Protect, type immunity, OHKO misses and later Triple Kick/Axel misses do not trigger it. |
 | Gold Berry | At half HP or lower, consumes itself and restores 1/4 max HP. Ripen doubles restoration. Also usable from the Bag. |
 | Custap Berry | At 1/4 HP or lower, consumes itself and moves first within the existing move-priority bracket. Gluttony advances the threshold to half HP. |
 | Salac Berry | At 1/4 HP or lower, consumes itself and raises Speed. Gluttony advances the threshold to half HP; Ripen doubles the stage increase. |
