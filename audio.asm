@@ -249,3 +249,7 @@ INCLUDE "audio/cries_3.asm"
 SECTION "Phantump and Trevenant Cries", ROMX
 
 INCLUDE "audio/cries_phantump_trevenant.asm"
+
+SECTION "Mienfoo and Mienshao Cries", ROMX
+
+INCLUDE "audio/cries_mienfoo_mienshao.asm"

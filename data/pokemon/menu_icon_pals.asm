@@ -506,3 +506,5 @@ MonMenuIconPals:
 	icon_pals YELLOW, RED ; JIRACHI
 	icon_pals BROWN, GRAY ; PHANTUMP
 	icon_pals BROWN, GRAY ; TREVENANT
+	icon_pals BROWN, PURPLE ; MIENFOO
+	icon_pals PURPLE, RED ; MIENSHAO

@@ -518,6 +518,8 @@ JOHTO_POKEMON EQU const_value
 	const JIRACHI           ; appended to preserve all existing species IDs
 	const PHANTUMP          ; internal IDs append; regional Dex order is separate
 	const TREVENANT         ;
+	const MIENFOO           ; appended; regional Dex order is separate
+	const MIENSHAO          ;
 NUM_POKEMON EQU const_value + -1
 
 EGG EQU -3

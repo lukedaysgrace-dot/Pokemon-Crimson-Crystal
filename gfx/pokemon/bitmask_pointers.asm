@@ -497,3 +497,5 @@ BitmasksPointers:
 	dw JirachiBitmasks
 	dw PhantumpBitmasks
 	dw TrevenantBitmasks
+	dba MienfooBitmasks
+	dba MienshaoBitmasks

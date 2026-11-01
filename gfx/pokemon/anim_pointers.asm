@@ -497,3 +497,5 @@ AnimationPointers:
 	dba JirachiAnimation
 	dba PhantumpAnimation
 	dba TrevenantAnimation
+	dba MienfooAnimation
+	dba MienshaoAnimation

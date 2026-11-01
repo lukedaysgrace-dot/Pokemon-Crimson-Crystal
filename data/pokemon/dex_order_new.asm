@@ -265,6 +265,8 @@ NewPokedexOrder:
 	dw GALLADE
 	dw RIOLU
 	dw LUCARIO
+	dw MIENFOO
+	dw MIENSHAO
 	dw MISDREAVUS
 	dw MISMAGIUS
 	dw MIMIKYU

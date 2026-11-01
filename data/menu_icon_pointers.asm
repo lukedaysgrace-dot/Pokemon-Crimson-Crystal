@@ -500,3 +500,5 @@ MenuIconPointers:
 	dba JirachiMenuIcon
 	dba PhantumpMenuIcon
 	dba TrevenantMenuIcon
+	dba MienfooMenuIcon
+	dba MienshaoMenuIcon

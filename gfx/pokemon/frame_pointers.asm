@@ -497,3 +497,5 @@ FramesPointers:
 	dba JirachiFrames
 	dba PhantumpFrames
 	dba TrevenantFrames
+	dba MienfooFrames
+	dba MienshaoFrames

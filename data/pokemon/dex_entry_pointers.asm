@@ -498,3 +498,5 @@ PokedexDataPointerTable:
 	dba JirachiPokedexEntry
 	dba PhantumpPokedexEntry
 	dba TrevenantPokedexEntry
+	dba MienfooPokedexEntry
+	dba MienshaoPokedexEntry

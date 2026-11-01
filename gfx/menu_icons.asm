@@ -528,3 +528,5 @@ PhantumpMenuIcon: INCBIN "gfx/menu_icons/phantump.2bpp"
 TrevenantMenuIcon: INCBIN "gfx/menu_icons/trevenant.2bpp"
 
 EggMenuIcon:         INCBIN "gfx/menu_icons/egg.2bpp"
+MienfooMenuIcon: INCBIN "gfx/menu_icons/mienfoo.2bpp"
+MienshaoMenuIcon: INCBIN "gfx/menu_icons/mienshao.2bpp"

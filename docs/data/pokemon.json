@@ -251,43 +251,55 @@
     "anim": {
       "sheet": "assets/pokemon/chikorita.sheet.png",
       "size": 40,
-      "frames": 6,
+      "frames": 5,
       "main": [
         [
           0,
-          4
+          12
         ],
         [
           1,
-          24
+          12
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          1,
+          12
         ],
         [
           0,
-          8
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          3,
-          4
-        ],
-        [
-          4,
-          5
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          3,
-          4
-        ],
-        [
-          4,
-          5
+          12
         ]
       ],
       "idle": [
@@ -296,7 +308,7 @@
           6
         ],
         [
-          5,
+          1,
           6
         ],
         [
@@ -304,7 +316,7 @@
           6
         ],
         [
-          5,
+          1,
           6
         ],
         [
@@ -312,7 +324,7 @@
           6
         ],
         [
-          5,
+          1,
           6
         ]
       ],
@@ -4400,8 +4412,8 @@
       },
       {
         "level": 24,
-        "const": "AIR_SLASH",
-        "move": "Air Slash"
+        "const": "RAZOR_WIND",
+        "move": "Razor Wind"
       },
       {
         "level": 27,
@@ -4410,8 +4422,8 @@
       },
       {
         "level": 27,
-        "const": "RAZOR_WIND",
-        "move": "Razor Wind"
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
       },
       {
         "level": 30,
@@ -4817,8 +4829,8 @@
       },
       {
         "level": 27,
-        "const": "AIR_SLASH",
-        "move": "Air Slash"
+        "const": "RAZOR_WIND",
+        "move": "Razor Wind"
       },
       {
         "level": 31,
@@ -4827,8 +4839,8 @@
       },
       {
         "level": 31,
-        "const": "RAZOR_WIND",
-        "move": "Razor Wind"
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
       },
       {
         "level": 35,
@@ -5134,7 +5146,7 @@
       "HP": 83,
       "Attack": 60,
       "Defense": 70,
-      "Speed": 101,
+      "Speed": 102,
       "Sp. Atk": 115,
       "Sp. Def": 70
     },
@@ -5199,8 +5211,8 @@
       },
       {
         "level": 27,
-        "const": "AIR_SLASH",
-        "move": "Air Slash"
+        "const": "RAZOR_WIND",
+        "move": "Razor Wind"
       },
       {
         "level": 30,
@@ -5214,8 +5226,8 @@
       },
       {
         "level": 31,
-        "const": "RAZOR_WIND",
-        "move": "Razor Wind"
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
       },
       {
         "level": 35,
@@ -5336,7 +5348,7 @@
       "HP": 83,
       "Attack": 60,
       "Defense": 70,
-      "Speed": 101,
+      "Speed": 102,
       "Sp. Atk": 115,
       "Sp. Def": 70
     },
@@ -18552,7 +18564,7 @@
           9
         ],
         [
-          3,
+          0,
           8
         ],
         [
@@ -18560,7 +18572,7 @@
           8
         ],
         [
-          3,
+          0,
           8
         ],
         [
@@ -18568,7 +18580,7 @@
           8
         ],
         [
-          3,
+          0,
           8
         ],
         [
@@ -23518,7 +23530,7 @@
         "NO_ITEM"
       ],
       "gender": "87.5% male, 12.5% female",
-      "egg_cycles": 20,
+      "egg_cycles": 10,
       "growth": "Fast",
       "egg_groups": [
         "Flying",
@@ -38802,7 +38814,7 @@
       "growth": "Slow",
       "egg_groups": [
         "Water 1",
-        "Water 2"
+        "Dragon"
       ]
     },
     "sprite": "assets/pokemon/feebas.png",
@@ -39188,7 +39200,7 @@
       "growth": "Slow",
       "egg_groups": [
         "Water 1",
-        "Water 2"
+        "Dragon"
       ]
     },
     "sprite": "assets/pokemon/milotic.png",
@@ -55126,7 +55138,7 @@
     "original_stats_source": "modern main games",
     "sprite_size": 56,
     "back": "assets/pokemon/scyther.back.png",
-    "back_size": 96,
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/scyther.sheet.png",
       "size": 56,
@@ -55616,57 +55628,73 @@
     "anim": {
       "sheet": "assets/pokemon/scizor.sheet.png",
       "size": 56,
-      "frames": 5,
+      "frames": 7,
       "main": [
-        [
-          1,
-          6
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          3,
-          6
-        ],
-        [
-          1,
-          6
-        ],
-        [
-          4,
-          6
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          3,
-          6
-        ],
         [
           0,
           6
+        ],
+        [
+          5,
+          22
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          6,
+          18
         ]
       ],
       "idle": [
         [
-          1,
-          6
+          0,
+          8
         ],
         [
-          2,
-          6
+          4,
+          8
         ],
         [
-          1,
-          6
+          0,
+          8
         ],
         [
-          2,
-          6
+          4,
+          8
         ]
       ],
       "gap": 18
@@ -56024,7 +56052,7 @@
         "HARD_STONE"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 25,
+      "egg_cycles": 20,
       "growth": "Medium Fast",
       "egg_groups": [
         "Bug"
@@ -66241,7 +66269,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 10,
       "growth": "Fast",
       "egg_groups": [
         "Water 1",
@@ -66719,7 +66747,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 10,
       "growth": "Fast",
       "egg_groups": [
         "Water 1",
@@ -74861,6 +74889,11 @@
         "move": "Zen Headbutt"
       },
       {
+        "level": 32,
+        "const": "TWIN_BEAM",
+        "move": "Twin Beam"
+      },
+      {
         "level": 33,
         "const": "CRUNCH",
         "move": "Crunch"
@@ -75354,6 +75387,11 @@
         "level": 27,
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
+      },
+      {
+        "level": 32,
+        "const": "TWIN_BEAM",
+        "move": "Twin Beam"
       },
       {
         "level": 33,
@@ -77913,7 +77951,7 @@
         "NO_ITEM"
       ],
       "gender": "75% male, 25% female",
-      "egg_cycles": 20,
+      "egg_cycles": 25,
       "growth": "Medium Fast",
       "egg_groups": [
         "Human-Like"
@@ -80885,7 +80923,7 @@
         "NO_ITEM"
       ],
       "gender": "75% male, 25% female",
-      "egg_cycles": 20,
+      "egg_cycles": 25,
       "growth": "Medium Fast",
       "egg_groups": [
         "Human-Like"
@@ -84740,7 +84778,7 @@
       "Attack": 75,
       "Defense": 70,
       "Speed": 95,
-      "Sp. Atk": 95,
+      "Sp. Atk": 110,
       "Sp. Def": 70
     },
     "types": [
@@ -84991,7 +85029,7 @@
       "Attack": 75,
       "Defense": 70,
       "Speed": 95,
-      "Sp. Atk": 95,
+      "Sp. Atk": 110,
       "Sp. Def": 70
     },
     "original_stats": {
@@ -98017,7 +98055,7 @@
         "NO_ITEM"
       ],
       "gender": "87.5% male, 12.5% female",
-      "egg_cycles": 20,
+      "egg_cycles": 35,
       "growth": "Medium Fast",
       "egg_groups": [
         "Field"
@@ -98487,7 +98525,7 @@
         "NO_ITEM"
       ],
       "gender": "87.5% male, 12.5% female",
-      "egg_cycles": 20,
+      "egg_cycles": 35,
       "growth": "Medium Fast",
       "egg_groups": [
         "Field"
@@ -98976,8 +99014,7 @@
       "egg_cycles": 35,
       "growth": "Medium Fast",
       "egg_groups": [
-        "Field",
-        "Fairy"
+        "Field"
       ]
     },
     "sprite": "assets/pokemon/sylveon.png",
@@ -113320,10 +113357,10 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "egg_cycles": 40,
+      "growth": "Slow",
       "egg_groups": [
-        "Field"
+        "Dragon"
       ]
     },
     "sprite": "assets/pokemon/bagon.png",
@@ -113743,10 +113780,10 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "egg_cycles": 40,
+      "growth": "Slow",
       "egg_groups": [
-        "Field"
+        "Dragon"
       ]
     },
     "sprite": "assets/pokemon/shelgon.png",
@@ -114242,10 +114279,10 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "egg_cycles": 40,
+      "growth": "Slow",
       "egg_groups": [
-        "Field"
+        "Dragon"
       ]
     },
     "sprite": "assets/pokemon/salamence.png",
@@ -116128,9 +116165,10 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "growth": "Slow",
       "egg_groups": [
-        "Field"
+        "Human-Like",
+        "Amorphous"
       ]
     },
     "sprite": "assets/pokemon/ralts.png",
@@ -116565,9 +116603,10 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "growth": "Slow",
       "egg_groups": [
-        "Field"
+        "Human-Like",
+        "Amorphous"
       ]
     },
     "sprite": "assets/pokemon/kirlia.png",
@@ -117019,9 +117058,10 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "growth": "Slow",
       "egg_groups": [
-        "Field"
+        "Human-Like",
+        "Amorphous"
       ]
     },
     "sprite": "assets/pokemon/gardevoir.png",
@@ -117577,9 +117617,10 @@
       ],
       "gender": "100% male",
       "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "growth": "Slow",
       "egg_groups": [
-        "Field"
+        "Human-Like",
+        "Amorphous"
       ]
     },
     "sprite": "assets/pokemon/gallade.png",
@@ -118992,9 +119033,830 @@
     ]
   },
   {
+    "const": "MIENFOO",
+    "name": "Mienfoo",
+    "number": 262,
+    "stats": {
+      "HP": 45,
+      "Attack": 85,
+      "Defense": 50,
+      "Speed": 65,
+      "Sp. Atk": 55,
+      "Sp. Def": 50
+    },
+    "types": [
+      "Fighting",
+      "Fairy"
+    ],
+    "abilities": [
+      "Serene Grace",
+      "Regenerator",
+      "Reckless"
+    ],
+    "ability_slots": [
+      {
+        "name": "Serene Grace",
+        "slot": 1
+      },
+      {
+        "name": "Regenerator",
+        "slot": 2
+      },
+      {
+        "name": "Reckless",
+        "slot": 3
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "POUND",
+        "move": "Pound"
+      },
+      {
+        "level": 1,
+        "const": "DETECT",
+        "move": "Detect"
+      },
+      {
+        "level": 5,
+        "const": "FAKE_OUT",
+        "move": "Fake Out"
+      },
+      {
+        "level": 7,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
+      },
+      {
+        "level": 8,
+        "const": "MEDITATE",
+        "move": "Meditate"
+      },
+      {
+        "level": 10,
+        "const": "REVERSAL",
+        "move": "Reversal"
+      },
+      {
+        "level": 12,
+        "const": "LOW_KICK",
+        "move": "Low Kick"
+      },
+      {
+        "level": 15,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 17,
+        "const": "DOUBLESLAP",
+        "move": "Double Slap"
+      },
+      {
+        "level": 21,
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "level": 25,
+        "const": "FORCE_PALM",
+        "move": "Force Palm"
+      },
+      {
+        "level": 30,
+        "const": "U_TURN",
+        "move": "U-turn"
+      },
+      {
+        "level": 32,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 35,
+        "const": "DRAIN_PUNCH",
+        "move": "Drain Punch"
+      },
+      {
+        "level": 37,
+        "const": "JUMP_KICK",
+        "move": "Jump Kick"
+      },
+      {
+        "level": 40,
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
+      },
+      {
+        "level": 45,
+        "const": "AURA_SPHERE",
+        "move": "Aura Sphere"
+      },
+      {
+        "level": 48,
+        "const": "SPIRIT_BREAK",
+        "move": "Spirit Break"
+      },
+      {
+        "level": 51,
+        "const": "BOUNCE",
+        "move": "Bounce"
+      },
+      {
+        "level": 55,
+        "const": "CALM_MIND",
+        "move": "Calm Mind"
+      },
+      {
+        "level": 60,
+        "const": "HI_JUMP_KICK",
+        "move": "High Jump Kick"
+      }
+    ],
+    "evolutions": [
+      {
+        "method": "EVOLVE_LEVEL",
+        "args": [
+          "50"
+        ],
+        "target": "MIENSHAO",
+        "text": "Level 50",
+        "target_name": "Mienshao",
+        "target_slug": "mienshao"
+      }
+    ],
+    "egg_moves": [
+      "BATON_PASS",
+      "ENDURE",
+      "KNOCK_OFF",
+      "LOW_KICK",
+      "VITAL_THROW"
+    ],
+    "tmhm": [
+      "DRAIN_PUNCH",
+      "ROCK_TOMB",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "WORK_UP",
+      "PROTECT",
+      "RAIN_DANCE",
+      "FACADE",
+      "IRON_HEAD",
+      "RETURN",
+      "DIG",
+      "SWAGGER",
+      "KNOCK_OFF",
+      "SWIFT",
+      "BULK_UP",
+      "REST",
+      "ATTRACT",
+      "ZEN_HEADBUTT",
+      "STRENGTH"
+    ],
+    "info": {
+      "catch_rate": 180,
+      "base_exp": 70,
+      "items": [
+        "NO_ITEM",
+        "NO_ITEM"
+      ],
+      "gender": "50% male, 50% female",
+      "egg_cycles": 25,
+      "growth": "Medium Slow",
+      "egg_groups": [
+        "Field",
+        "Human-Like"
+      ]
+    },
+    "sprite": "assets/pokemon/mienfoo.png",
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK",
+      "REFLECT"
+    ],
+    "blackthorn_tutor_moves": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
+      "DOUBLE_TEAM",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FRUSTRATION",
+      "GRASS_KNOT",
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "POISON_JAB",
+      "PSYCH_UP",
+      "ROCK_SLIDE",
+      "SNORE",
+      "STONE_EDGE",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT"
+    ],
+    "evolves_from": null,
+    "original_types": [
+      "Fighting"
+    ],
+    "updated_types": [
+      "Fighting",
+      "Fairy"
+    ],
+    "updated_stats": {
+      "HP": 45,
+      "Attack": 85,
+      "Defense": 50,
+      "Speed": 65,
+      "Sp. Atk": 55,
+      "Sp. Def": 50
+    },
+    "original_stats": {
+      "HP": 45,
+      "Attack": 85,
+      "Defense": 50,
+      "Speed": 65,
+      "Sp. Atk": 55,
+      "Sp. Def": 50
+    },
+    "original_stats_source": "modern main games",
+    "sprite_size": 48,
+    "back": "assets/pokemon/mienfoo.back.png",
+    "back_size": 48,
+    "anim": {
+      "sheet": "assets/pokemon/mienfoo.sheet.png",
+      "size": 48,
+      "frames": 4,
+      "main": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          2,
+          36
+        ]
+      ],
+      "idle": [
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "gap": 18
+    },
+    "tmhm_labeled": [
+      {
+        "tm": "TM01",
+        "const": "DRAIN_PUNCH",
+        "move": "Drain Punch"
+      },
+      {
+        "tm": "TM04",
+        "const": "ROCK_TOMB",
+        "move": "Rock Tomb"
+      },
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM11",
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
+      },
+      {
+        "tm": "TM13",
+        "const": "WORK_UP",
+        "move": "Work Up"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM18",
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM23",
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "tm": "TM39",
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "tm": "TM40",
+        "const": "BULK_UP",
+        "move": "Bulk Up"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM45",
+        "const": "ATTRACT",
+        "move": "Attract"
+      },
+      {
+        "tm": "TM52",
+        "const": "ZEN_HEADBUTT",
+        "move": "Zen Headbutt"
+      },
+      {
+        "tm": "HM04",
+        "const": "STRENGTH",
+        "move": "Strength"
+      }
+    ]
+  },
+  {
+    "const": "MIENSHAO",
+    "name": "Mienshao",
+    "number": 263,
+    "stats": {
+      "HP": 65,
+      "Attack": 125,
+      "Defense": 60,
+      "Speed": 115,
+      "Sp. Atk": 85,
+      "Sp. Def": 60
+    },
+    "types": [
+      "Fighting",
+      "Fairy"
+    ],
+    "abilities": [
+      "Serene Grace",
+      "Regenerator",
+      "Reckless"
+    ],
+    "ability_slots": [
+      {
+        "name": "Serene Grace",
+        "slot": 1
+      },
+      {
+        "name": "Regenerator",
+        "slot": 2
+      },
+      {
+        "name": "Reckless",
+        "slot": 3
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "POUND",
+        "move": "Pound"
+      },
+      {
+        "level": 1,
+        "const": "DETECT",
+        "move": "Detect"
+      },
+      {
+        "level": 1,
+        "const": "FAKE_OUT",
+        "move": "Fake Out"
+      },
+      {
+        "level": 1,
+        "const": "REVERSAL",
+        "move": "Reversal"
+      },
+      {
+        "level": 1,
+        "const": "MEDITATE",
+        "move": "Meditate"
+      },
+      {
+        "level": 7,
+        "const": "PIXIE_PUNCH",
+        "move": "Pixie Punch"
+      },
+      {
+        "level": 12,
+        "const": "LOW_KICK",
+        "move": "Low Kick"
+      },
+      {
+        "level": 15,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 17,
+        "const": "DOUBLESLAP",
+        "move": "Double Slap"
+      },
+      {
+        "level": 21,
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "level": 25,
+        "const": "FORCE_PALM",
+        "move": "Force Palm"
+      },
+      {
+        "level": 30,
+        "const": "U_TURN",
+        "move": "U-turn"
+      },
+      {
+        "level": 32,
+        "const": "PLAY_ROUGH",
+        "move": "Play Rough"
+      },
+      {
+        "level": 35,
+        "const": "DRAIN_PUNCH",
+        "move": "Drain Punch"
+      },
+      {
+        "level": 37,
+        "const": "JUMP_KICK",
+        "move": "Jump Kick"
+      },
+      {
+        "level": 40,
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
+      },
+      {
+        "level": 45,
+        "const": "AURA_SPHERE",
+        "move": "Aura Sphere"
+      },
+      {
+        "level": 48,
+        "const": "SPIRIT_BREAK",
+        "move": "Spirit Break"
+      },
+      {
+        "level": 53,
+        "const": "BOUNCE",
+        "move": "Bounce"
+      },
+      {
+        "level": 59,
+        "const": "CALM_MIND",
+        "move": "Calm Mind"
+      },
+      {
+        "level": 66,
+        "const": "HI_JUMP_KICK",
+        "move": "High Jump Kick"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [
+      "BATON_PASS",
+      "ENDURE",
+      "KNOCK_OFF",
+      "LOW_KICK",
+      "VITAL_THROW"
+    ],
+    "tmhm": [
+      "DRAIN_PUNCH",
+      "ROCK_TOMB",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "WORK_UP",
+      "HYPER_BEAM",
+      "PROTECT",
+      "RAIN_DANCE",
+      "FACADE",
+      "IRON_HEAD",
+      "RETURN",
+      "DIG",
+      "SWAGGER",
+      "KNOCK_OFF",
+      "SWIFT",
+      "BULK_UP",
+      "REST",
+      "ATTRACT",
+      "ZEN_HEADBUTT",
+      "STRENGTH"
+    ],
+    "info": {
+      "catch_rate": 45,
+      "base_exp": 179,
+      "items": [
+        "NO_ITEM",
+        "NO_ITEM"
+      ],
+      "gender": "50% male, 50% female",
+      "egg_cycles": 25,
+      "growth": "Medium Slow",
+      "egg_groups": [
+        "Field",
+        "Human-Like"
+      ]
+    },
+    "sprite": "assets/pokemon/mienshao.png",
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK",
+      "REFLECT"
+    ],
+    "blackthorn_tutor_moves": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "BLAZE_KICK",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
+      "DOUBLE_EDGE",
+      "DOUBLE_TEAM",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FRUSTRATION",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "POISON_JAB",
+      "PSYCH_UP",
+      "ROCK_SLIDE",
+      "SNORE",
+      "STONE_EDGE",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "TRIPLE_AXEL",
+      "VACUUM_WAVE"
+    ],
+    "evolves_from": {
+      "const": "MIENFOO",
+      "name": "Mienfoo",
+      "slug": "mienfoo",
+      "text": "Level 50"
+    },
+    "original_types": [
+      "Fighting"
+    ],
+    "updated_types": [
+      "Fighting",
+      "Fairy"
+    ],
+    "updated_stats": {
+      "HP": 65,
+      "Attack": 125,
+      "Defense": 60,
+      "Speed": 115,
+      "Sp. Atk": 85,
+      "Sp. Def": 60
+    },
+    "original_stats": {
+      "HP": 65,
+      "Attack": 125,
+      "Defense": 60,
+      "Speed": 105,
+      "Sp. Atk": 95,
+      "Sp. Def": 60
+    },
+    "original_stats_source": "modern main games",
+    "sprite_size": 56,
+    "back": "assets/pokemon/mienshao.back.png",
+    "back_size": 48,
+    "anim": {
+      "sheet": "assets/pokemon/mienshao.sheet.png",
+      "size": 56,
+      "frames": 4,
+      "main": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          2,
+          36
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "idle": [
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "gap": 18
+    },
+    "tmhm_labeled": [
+      {
+        "tm": "TM01",
+        "const": "DRAIN_PUNCH",
+        "move": "Drain Punch"
+      },
+      {
+        "tm": "TM04",
+        "const": "ROCK_TOMB",
+        "move": "Rock Tomb"
+      },
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM11",
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
+      },
+      {
+        "tm": "TM13",
+        "const": "WORK_UP",
+        "move": "Work Up"
+      },
+      {
+        "tm": "TM15",
+        "const": "HYPER_BEAM",
+        "move": "Hyper Beam"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM18",
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM23",
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "tm": "TM39",
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "tm": "TM40",
+        "const": "BULK_UP",
+        "move": "Bulk Up"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM45",
+        "const": "ATTRACT",
+        "move": "Attract"
+      },
+      {
+        "tm": "TM52",
+        "const": "ZEN_HEADBUTT",
+        "move": "Zen Headbutt"
+      },
+      {
+        "tm": "HM04",
+        "const": "STRENGTH",
+        "move": "Strength"
+      }
+    ]
+  },
+  {
     "const": "MISDREAVUS",
     "name": "Misdreavus",
-    "number": 262,
+    "number": 264,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -119478,7 +120340,7 @@
   {
     "const": "MISMAGIUS",
     "name": "Mismagius",
-    "number": 263,
+    "number": 265,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -119695,7 +120557,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 25,
       "growth": "Fast",
       "egg_groups": [
         "Amorphous"
@@ -119981,7 +120843,7 @@
   {
     "const": "MIMIKYU",
     "name": "Mimikyu",
-    "number": 264,
+    "number": 266,
     "stats": {
       "HP": 55,
       "Attack": 100,
@@ -120375,7 +121237,7 @@
   {
     "const": "PORYGON",
     "name": "Porygon",
-    "number": 265,
+    "number": 267,
     "stats": {
       "HP": 65,
       "Attack": 60,
@@ -120806,7 +121668,7 @@
   {
     "const": "PORYGON2",
     "name": "Porygon2",
-    "number": 266,
+    "number": 268,
     "stats": {
       "HP": 85,
       "Attack": 80,
@@ -121215,7 +122077,7 @@
   {
     "const": "PORYGON_Z",
     "name": "Porygon-Z",
-    "number": 267,
+    "number": 269,
     "stats": {
       "HP": 85,
       "Attack": 76,
@@ -121649,7 +122511,7 @@
   {
     "const": "VENIPEDE",
     "name": "Venipede",
-    "number": 268,
+    "number": 270,
     "stats": {
       "HP": 30,
       "Attack": 45,
@@ -121807,10 +122669,10 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
-        "Field"
+        "Bug"
       ]
     },
     "sprite": "assets/pokemon/venipede.png",
@@ -121978,7 +122840,7 @@
   {
     "const": "WHIRLIPEDE",
     "name": "Whirlipede",
-    "number": 269,
+    "number": 271,
     "stats": {
       "HP": 40,
       "Attack": 55,
@@ -122141,10 +123003,10 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
-        "Field"
+        "Bug"
       ]
     },
     "sprite": "assets/pokemon/whirlipede.png",
@@ -122337,7 +123199,7 @@
   {
     "const": "SCOLIPEDE",
     "name": "Scolipede",
-    "number": 270,
+    "number": 272,
     "stats": {
       "HP": 60,
       "Attack": 110,
@@ -122523,7 +123385,7 @@
       "egg_cycles": 20,
       "growth": "Medium Slow",
       "egg_groups": [
-        "Field"
+        "Bug"
       ]
     },
     "sprite": "assets/pokemon/scolipede.png",
@@ -122817,7 +123679,7 @@
   {
     "const": "SNEASEL",
     "name": "Sneasel",
-    "number": 271,
+    "number": 273,
     "stats": {
       "HP": 55,
       "Attack": 95,
@@ -123282,7 +124144,7 @@
   {
     "const": "WEAVILE",
     "name": "Weavile",
-    "number": 272,
+    "number": 274,
     "stats": {
       "HP": 70,
       "Attack": 120,
@@ -123805,7 +124667,7 @@
   {
     "const": "LILEEP",
     "name": "Lileep",
-    "number": 273,
+    "number": 275,
     "stats": {
       "HP": 66,
       "Attack": 41,
@@ -124195,7 +125057,7 @@
   {
     "const": "CRADILY",
     "name": "Cradily",
-    "number": 274,
+    "number": 276,
     "stats": {
       "HP": 86,
       "Attack": 81,
@@ -124640,7 +125502,7 @@
   {
     "const": "ANORITH",
     "name": "Anorith",
-    "number": 275,
+    "number": 277,
     "stats": {
       "HP": 45,
       "Attack": 95,
@@ -124819,11 +125681,10 @@
         "NO_ITEM"
       ],
       "gender": "87.5% male, 12.5% female",
-      "egg_cycles": 20,
+      "egg_cycles": 30,
       "growth": "Slow",
       "egg_groups": [
-        "Water 3",
-        "Bug"
+        "Water 3"
       ]
     },
     "sprite": "assets/pokemon/anorith.png",
@@ -125053,7 +125914,7 @@
   {
     "const": "ARMALDO",
     "name": "Armaldo",
-    "number": 276,
+    "number": 278,
     "stats": {
       "HP": 75,
       "Attack": 125,
@@ -125259,8 +126120,7 @@
       "egg_cycles": 30,
       "growth": "Slow",
       "egg_groups": [
-        "Water 3",
-        "Bug"
+        "Water 3"
       ]
     },
     "sprite": "assets/pokemon/armaldo.png",
@@ -125555,7 +126415,7 @@
   {
     "const": "CRANIDOS",
     "name": "Cranidos",
-    "number": 277,
+    "number": 279,
     "stats": {
       "HP": 67,
       "Attack": 125,
@@ -126078,7 +126938,7 @@
   {
     "const": "RAMPARDOS",
     "name": "Rampardos",
-    "number": 278,
+    "number": 280,
     "stats": {
       "HP": 97,
       "Attack": 155,
@@ -126637,7 +127497,7 @@
   {
     "const": "SHIELDON",
     "name": "Shieldon",
-    "number": 279,
+    "number": 281,
     "stats": {
       "HP": 30,
       "Attack": 22,
@@ -127080,7 +127940,7 @@
   {
     "const": "BASTIODON",
     "name": "Bastiodon",
-    "number": 280,
+    "number": 282,
     "stats": {
       "HP": 75,
       "Attack": 27,
@@ -127546,7 +128406,7 @@
   {
     "const": "TYRUNT",
     "name": "Tyrunt",
-    "number": 281,
+    "number": 283,
     "stats": {
       "HP": 58,
       "Attack": 89,
@@ -127748,7 +128608,7 @@
       ],
       "gender": "87.5% male, 12.5% female",
       "egg_cycles": 30,
-      "growth": "Medium Slow",
+      "growth": "Medium Fast",
       "egg_groups": [
         "Monster",
         "Dragon"
@@ -127978,7 +128838,7 @@
   {
     "const": "TYRANTRUM",
     "name": "Tyrantrum",
-    "number": 282,
+    "number": 284,
     "stats": {
       "HP": 82,
       "Attack": 121,
@@ -128200,7 +129060,7 @@
       ],
       "gender": "87.5% male, 12.5% female",
       "egg_cycles": 30,
-      "growth": "Medium Slow",
+      "growth": "Medium Fast",
       "egg_groups": [
         "Monster",
         "Dragon"
@@ -128457,7 +129317,7 @@
   {
     "const": "AMAURA",
     "name": "Amaura",
-    "number": 283,
+    "number": 285,
     "stats": {
       "HP": 77,
       "Attack": 59,
@@ -128677,7 +129537,7 @@
       ],
       "gender": "87.5% male, 12.5% female",
       "egg_cycles": 30,
-      "growth": "Medium Slow",
+      "growth": "Medium Fast",
       "egg_groups": [
         "Monster"
       ]
@@ -128974,7 +129834,7 @@
   {
     "const": "AURORUS",
     "name": "Aurorus",
-    "number": 284,
+    "number": 286,
     "stats": {
       "HP": 123,
       "Attack": 77,
@@ -129196,7 +130056,7 @@
       ],
       "gender": "87.5% male, 12.5% female",
       "egg_cycles": 30,
-      "growth": "Medium Slow",
+      "growth": "Medium Fast",
       "egg_groups": [
         "Monster"
       ]
@@ -129517,7 +130377,7 @@
   {
     "const": "GOLETT",
     "name": "Golett",
-    "number": 285,
+    "number": 287,
     "stats": {
       "HP": 59,
       "Attack": 74,
@@ -129984,7 +130844,7 @@
   {
     "const": "GOLURK",
     "name": "Golurk",
-    "number": 286,
+    "number": 288,
     "stats": {
       "HP": 94,
       "Attack": 124,
@@ -130519,7 +131379,7 @@
   {
     "const": "PHANTUMP",
     "name": "Phantump",
-    "number": 287,
+    "number": 289,
     "stats": {
       "HP": 43,
       "Attack": 70,
@@ -130724,7 +131584,7 @@
       "Sp. Atk": 50,
       "Sp. Def": 60
     },
-    "original_stats_source": "custom species",
+    "original_stats_source": "modern main games",
     "sprite_size": 48,
     "back": "assets/pokemon/phantump.back.png",
     "back_size": 48,
@@ -130913,7 +131773,7 @@
   {
     "const": "TREVENANT",
     "name": "Trevenant",
-    "number": 288,
+    "number": 290,
     "stats": {
       "HP": 90,
       "Attack": 110,
@@ -131305,7 +132165,7 @@
   {
     "const": "DUSKULL",
     "name": "Duskull",
-    "number": 289,
+    "number": 291,
     "stats": {
       "HP": 20,
       "Attack": 40,
@@ -131480,7 +132340,7 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 25,
-      "growth": "Slow",
+      "growth": "Fast",
       "egg_groups": [
         "Amorphous"
       ]
@@ -131697,7 +132557,7 @@
   {
     "const": "DUSCLOPS",
     "name": "Dusclops",
-    "number": 290,
+    "number": 292,
     "stats": {
       "HP": 40,
       "Attack": 70,
@@ -131921,7 +132781,7 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 25,
-      "growth": "Slow",
+      "growth": "Fast",
       "egg_groups": [
         "Amorphous"
       ]
@@ -132207,7 +133067,7 @@
   {
     "const": "DUSKNOIR",
     "name": "Dusknoir",
-    "number": 291,
+    "number": 293,
     "stats": {
       "HP": 60,
       "Attack": 100,
@@ -132411,7 +133271,7 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 25,
-      "growth": "Slow",
+      "growth": "Fast",
       "egg_groups": [
         "Amorphous"
       ]
@@ -132776,7 +133636,7 @@
   {
     "const": "TIMBURR",
     "name": "Timburr",
-    "number": 292,
+    "number": 294,
     "stats": {
       "HP": 75,
       "Attack": 80,
@@ -133228,7 +134088,7 @@
   {
     "const": "GURDURR",
     "name": "Gurdurr",
-    "number": 293,
+    "number": 295,
     "stats": {
       "HP": 85,
       "Attack": 105,
@@ -133730,7 +134590,7 @@
   {
     "const": "CONKELDURR",
     "name": "Conkeldurr",
-    "number": 294,
+    "number": 296,
     "stats": {
       "HP": 105,
       "Attack": 140,
@@ -134176,7 +135036,7 @@
   {
     "const": "LARVESTA",
     "name": "Larvesta",
-    "number": 295,
+    "number": 297,
     "stats": {
       "HP": 55,
       "Attack": 85,
@@ -134513,7 +135373,7 @@
   {
     "const": "VOLCARONA",
     "name": "Volcarona",
-    "number": 296,
+    "number": 298,
     "stats": {
       "HP": 85,
       "Attack": 60,
@@ -134962,7 +135822,7 @@
   {
     "const": "DEINO",
     "name": "Deino",
-    "number": 297,
+    "number": 299,
     "stats": {
       "HP": 52,
       "Attack": 65,
@@ -135345,7 +136205,7 @@
   {
     "const": "ZWEILOUS",
     "name": "Zweilous",
-    "number": 298,
+    "number": 300,
     "stats": {
       "HP": 72,
       "Attack": 85,
@@ -135740,7 +136600,7 @@
   {
     "const": "HYDREIGON",
     "name": "Hydreigon",
-    "number": 299,
+    "number": 301,
     "stats": {
       "HP": 92,
       "Attack": 105,
@@ -136237,7 +137097,7 @@
   {
     "const": "DREEPY",
     "name": "Dreepy",
-    "number": 300,
+    "number": 302,
     "stats": {
       "HP": 28,
       "Attack": 60,
@@ -136494,7 +137354,7 @@
   {
     "const": "DRAKLOAK",
     "name": "Drakloak",
-    "number": 301,
+    "number": 303,
     "stats": {
       "HP": 68,
       "Attack": 80,
@@ -136918,7 +137778,7 @@
   {
     "const": "DRAGAPULT",
     "name": "Dragapult",
-    "number": 302,
+    "number": 304,
     "stats": {
       "HP": 88,
       "Attack": 120,
@@ -137352,7 +138212,7 @@
   {
     "const": "IMPIDIMP",
     "name": "Impidimp",
-    "number": 303,
+    "number": 305,
     "stats": {
       "HP": 45,
       "Attack": 55,
@@ -137717,7 +138577,7 @@
   {
     "const": "MORGREM",
     "name": "Morgrem",
-    "number": 304,
+    "number": 306,
     "stats": {
       "HP": 65,
       "Attack": 75,
@@ -138058,7 +138918,7 @@
   {
     "const": "GRIMMSNARL",
     "name": "Grimmsnarl",
-    "number": 305,
+    "number": 307,
     "stats": {
       "HP": 95,
       "Attack": 120,
@@ -138444,7 +139304,7 @@
   {
     "const": "TINKATINK",
     "name": "Tinkatink",
-    "number": 306,
+    "number": 308,
     "stats": {
       "HP": 50,
       "Attack": 45,
@@ -138789,7 +139649,7 @@
   {
     "const": "TINKATUFF",
     "name": "Tinkatuff",
-    "number": 307,
+    "number": 309,
     "stats": {
       "HP": 65,
       "Attack": 55,
@@ -139140,7 +140000,7 @@
   {
     "const": "TINKATON",
     "name": "Tinkaton",
-    "number": 308,
+    "number": 310,
     "stats": {
       "HP": 85,
       "Attack": 75,
@@ -139486,7 +140346,7 @@
   {
     "const": "FRIGIBAX",
     "name": "Frigibax",
-    "number": 309,
+    "number": 311,
     "stats": {
       "HP": 65,
       "Attack": 75,
@@ -139679,7 +140539,7 @@
     "original_stats_source": "modern main games",
     "sprite_size": 40,
     "back": "assets/pokemon/frigibax.back.png",
-    "back_size": 40,
+    "back_size": 48,
     "anim": {
       "sheet": "assets/pokemon/frigibax.sheet.png",
       "size": 40,
@@ -139838,7 +140698,7 @@
   {
     "const": "ARCTIBAX",
     "name": "Arctibax",
-    "number": 310,
+    "number": 312,
     "stats": {
       "HP": 90,
       "Attack": 95,
@@ -140169,7 +141029,7 @@
   {
     "const": "BAXCALIBUR",
     "name": "Baxcalibur",
-    "number": 311,
+    "number": 313,
     "stats": {
       "HP": 115,
       "Attack": 145,
@@ -140543,7 +141403,7 @@
   {
     "const": "CHARCADET",
     "name": "Charcadet",
-    "number": 312,
+    "number": 314,
     "stats": {
       "HP": 40,
       "Attack": 50,
@@ -140687,7 +141547,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 40,
+      "egg_cycles": 35,
       "growth": "Slow",
       "egg_groups": [
         "Human-Like"
@@ -140846,7 +141706,7 @@
   {
     "const": "ARMAROUGE",
     "name": "Armarouge",
-    "number": 313,
+    "number": 315,
     "stats": {
       "HP": 85,
       "Attack": 60,
@@ -141010,7 +141870,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 40,
+      "egg_cycles": 35,
       "growth": "Slow",
       "egg_groups": [
         "Human-Like"
@@ -141228,7 +142088,7 @@
   {
     "const": "CERULEDGE",
     "name": "Ceruledge",
-    "number": 314,
+    "number": 316,
     "stats": {
       "HP": 75,
       "Attack": 125,
@@ -141381,7 +142241,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 40,
+      "egg_cycles": 35,
       "growth": "Slow",
       "egg_groups": [
         "Human-Like"
@@ -141707,7 +142567,7 @@
   {
     "const": "ROOKIDEE",
     "name": "Rookidee",
-    "number": 315,
+    "number": 317,
     "stats": {
       "HP": 38,
       "Attack": 47,
@@ -142070,7 +142930,7 @@
   {
     "const": "CORVISQUIRE",
     "name": "Corvisquire",
-    "number": 316,
+    "number": 318,
     "stats": {
       "HP": 68,
       "Attack": 67,
@@ -142455,7 +143315,7 @@
   {
     "const": "CORVIKNIGHT",
     "name": "Corviknight",
-    "number": 317,
+    "number": 319,
     "stats": {
       "HP": 98,
       "Attack": 87,
@@ -142892,7 +143752,7 @@
   {
     "const": "HOUNDOUR",
     "name": "Houndour",
-    "number": 318,
+    "number": 320,
     "stats": {
       "HP": 45,
       "Attack": 60,
@@ -143367,7 +144227,7 @@
   {
     "const": "HOUNDOOM",
     "name": "Houndoom",
-    "number": 319,
+    "number": 321,
     "stats": {
       "HP": 75,
       "Attack": 100,
@@ -143866,7 +144726,7 @@
   {
     "const": "SLUGMA",
     "name": "Slugma",
-    "number": 320,
+    "number": 322,
     "stats": {
       "HP": 50,
       "Attack": 50,
@@ -144251,7 +145111,7 @@
   {
     "const": "MAGCARGO",
     "name": "Magcargo",
-    "number": 321,
+    "number": 323,
     "stats": {
       "HP": 75,
       "Attack": 50,
@@ -144682,7 +145542,7 @@
   {
     "const": "HAPPINY",
     "name": "Happiny",
-    "number": 322,
+    "number": 324,
     "stats": {
       "HP": 100,
       "Attack": 5,
@@ -145058,7 +145918,7 @@
   {
     "const": "CHANSEY",
     "name": "Chansey",
-    "number": 323,
+    "number": 325,
     "stats": {
       "HP": 250,
       "Attack": 5,
@@ -145589,7 +146449,7 @@
   {
     "const": "BLISSEY",
     "name": "Blissey",
-    "number": 324,
+    "number": 326,
     "stats": {
       "HP": 255,
       "Attack": 10,
@@ -146103,7 +146963,7 @@
   {
     "const": "LAPRAS",
     "name": "Lapras",
-    "number": 325,
+    "number": 327,
     "stats": {
       "HP": 130,
       "Attack": 85,
@@ -146596,7 +147456,7 @@
   {
     "const": "OMANYTE",
     "name": "Omanyte",
-    "number": 326,
+    "number": 328,
     "stats": {
       "HP": 35,
       "Attack": 40,
@@ -147018,7 +147878,7 @@
   {
     "const": "OMASTAR",
     "name": "Omastar",
-    "number": 327,
+    "number": 329,
     "stats": {
       "HP": 70,
       "Attack": 60,
@@ -147462,7 +148322,7 @@
   {
     "const": "KABUTO",
     "name": "Kabuto",
-    "number": 328,
+    "number": 330,
     "stats": {
       "HP": 30,
       "Attack": 80,
@@ -147901,7 +148761,7 @@
   {
     "const": "KABUTOPS",
     "name": "Kabutops",
-    "number": 329,
+    "number": 331,
     "stats": {
       "HP": 60,
       "Attack": 115,
@@ -148394,7 +149254,7 @@
   {
     "const": "AERODACTYL",
     "name": "Aerodactyl",
-    "number": 330,
+    "number": 332,
     "stats": {
       "HP": 80,
       "Attack": 105,
@@ -148923,7 +149783,7 @@
   {
     "const": "MUNCHLAX",
     "name": "Munchlax",
-    "number": 331,
+    "number": 333,
     "stats": {
       "HP": 135,
       "Attack": 85,
@@ -149433,7 +150293,7 @@
   {
     "const": "SNORLAX",
     "name": "Snorlax",
-    "number": 332,
+    "number": 334,
     "stats": {
       "HP": 160,
       "Attack": 110,
@@ -150006,7 +150866,7 @@
   {
     "const": "BULBASAUR",
     "name": "Bulbasaur",
-    "number": 333,
+    "number": 335,
     "stats": {
       "HP": 45,
       "Attack": 49,
@@ -150440,7 +151300,7 @@
       "normal": {
         "const": "BULBASAUR",
         "name": "Bulbasaur",
-        "number": 333,
+        "number": 335,
         "stats": {
           "HP": 45,
           "Attack": 49,
@@ -150874,7 +151734,7 @@
       "clone": {
         "const": "BULBASAUR_CLONE",
         "name": "Bulbasaur",
-        "number": 365,
+        "number": 367,
         "stats": {
           "HP": 45,
           "Attack": 49,
@@ -151310,7 +152170,7 @@
   {
     "const": "IVYSAUR",
     "name": "Ivysaur",
-    "number": 334,
+    "number": 336,
     "stats": {
       "HP": 60,
       "Attack": 62,
@@ -151754,7 +152614,7 @@
       "normal": {
         "const": "IVYSAUR",
         "name": "Ivysaur",
-        "number": 334,
+        "number": 336,
         "stats": {
           "HP": 60,
           "Attack": 62,
@@ -152198,7 +153058,7 @@
       "clone": {
         "const": "IVYSAUR_CLONE",
         "name": "Ivysaur",
-        "number": 366,
+        "number": 368,
         "stats": {
           "HP": 60,
           "Attack": 62,
@@ -152636,7 +153496,7 @@
   {
     "const": "VENUSAUR",
     "name": "Venusaur",
-    "number": 335,
+    "number": 337,
     "stats": {
       "HP": 80,
       "Attack": 82,
@@ -153123,7 +153983,7 @@
       "normal": {
         "const": "VENUSAUR",
         "name": "Venusaur",
-        "number": 335,
+        "number": 337,
         "stats": {
           "HP": 80,
           "Attack": 82,
@@ -153610,7 +154470,7 @@
       "clone": {
         "const": "VENUSAUR_CLONE",
         "name": "Venusaur",
-        "number": 367,
+        "number": 369,
         "stats": {
           "HP": 80,
           "Attack": 82,
@@ -154099,7 +154959,7 @@
   {
     "const": "CHARMANDER",
     "name": "Charmander",
-    "number": 336,
+    "number": 338,
     "stats": {
       "HP": 39,
       "Attack": 52,
@@ -154593,7 +155453,7 @@
       "normal": {
         "const": "CHARMANDER",
         "name": "Charmander",
-        "number": 336,
+        "number": 338,
         "stats": {
           "HP": 39,
           "Attack": 52,
@@ -155087,7 +155947,7 @@
       "clone": {
         "const": "CHARMANDER_CLONE",
         "name": "Charmander",
-        "number": 359,
+        "number": 361,
         "stats": {
           "HP": 39,
           "Attack": 52,
@@ -155631,7 +156491,7 @@
   {
     "const": "CHARMELEON",
     "name": "Charmeleon",
-    "number": 337,
+    "number": 339,
     "stats": {
       "HP": 58,
       "Attack": 64,
@@ -156138,7 +156998,7 @@
       "normal": {
         "const": "CHARMELEON",
         "name": "Charmeleon",
-        "number": 337,
+        "number": 339,
         "stats": {
           "HP": 58,
           "Attack": 64,
@@ -156645,7 +157505,7 @@
       "clone": {
         "const": "CHARMELEON_CLONE",
         "name": "Charmeleon",
-        "number": 360,
+        "number": 362,
         "stats": {
           "HP": 58,
           "Attack": 64,
@@ -157206,7 +158066,7 @@
   {
     "const": "CHARIZARD",
     "name": "Charizard",
-    "number": 338,
+    "number": 340,
     "stats": {
       "HP": 78,
       "Attack": 84,
@@ -157803,7 +158663,7 @@
       "normal": {
         "const": "CHARIZARD",
         "name": "Charizard",
-        "number": 338,
+        "number": 340,
         "stats": {
           "HP": 78,
           "Attack": 84,
@@ -158400,7 +159260,7 @@
       "clone": {
         "const": "CHARIZARD_CLONE",
         "name": "Charizard",
-        "number": 361,
+        "number": 363,
         "stats": {
           "HP": 78,
           "Attack": 84,
@@ -158983,7 +159843,7 @@
   {
     "const": "SQUIRTLE",
     "name": "Squirtle",
-    "number": 339,
+    "number": 341,
     "stats": {
       "HP": 44,
       "Attack": 48,
@@ -159440,7 +160300,7 @@
       "normal": {
         "const": "SQUIRTLE",
         "name": "Squirtle",
-        "number": 339,
+        "number": 341,
         "stats": {
           "HP": 44,
           "Attack": 48,
@@ -159897,7 +160757,7 @@
       "clone": {
         "const": "SQUIRTLE_CLONE",
         "name": "Squirtle",
-        "number": 362,
+        "number": 364,
         "stats": {
           "HP": 44,
           "Attack": 48,
@@ -160436,7 +161296,7 @@
   {
     "const": "WARTORTLE",
     "name": "Wartortle",
-    "number": 340,
+    "number": 342,
     "stats": {
       "HP": 59,
       "Attack": 63,
@@ -160898,7 +161758,7 @@
       "normal": {
         "const": "WARTORTLE",
         "name": "Wartortle",
-        "number": 340,
+        "number": 342,
         "stats": {
           "HP": 59,
           "Attack": 63,
@@ -161360,7 +162220,7 @@
       "clone": {
         "const": "WARTORTLE_CLONE",
         "name": "Wartortle",
-        "number": 363,
+        "number": 365,
         "stats": {
           "HP": 59,
           "Attack": 63,
@@ -161824,7 +162684,7 @@
   {
     "const": "BLASTOISE",
     "name": "Blastoise",
-    "number": 341,
+    "number": 343,
     "stats": {
       "HP": 79,
       "Attack": 83,
@@ -162323,7 +163183,7 @@
       "normal": {
         "const": "BLASTOISE",
         "name": "Blastoise",
-        "number": 341,
+        "number": 343,
         "stats": {
           "HP": 79,
           "Attack": 83,
@@ -162822,7 +163682,7 @@
       "clone": {
         "const": "BLASTOISE_CLONE",
         "name": "Blastoise",
-        "number": 364,
+        "number": 366,
         "stats": {
           "HP": 79,
           "Attack": 83,
@@ -163323,7 +164183,7 @@
   {
     "const": "ARTICUNO",
     "name": "Articuno",
-    "number": 342,
+    "number": 344,
     "stats": {
       "HP": 90,
       "Attack": 75,
@@ -163760,7 +164620,7 @@
   {
     "const": "ZAPDOS",
     "name": "Zapdos",
-    "number": 343,
+    "number": 345,
     "stats": {
       "HP": 90,
       "Attack": 90,
@@ -164183,7 +165043,7 @@
   {
     "const": "MOLTRES",
     "name": "Moltres",
-    "number": 344,
+    "number": 346,
     "stats": {
       "HP": 90,
       "Attack": 100,
@@ -164720,7 +165580,7 @@
   {
     "const": "RAIKOU",
     "name": "Raikou",
-    "number": 345,
+    "number": 347,
     "stats": {
       "HP": 90,
       "Attack": 85,
@@ -165179,7 +166039,7 @@
   {
     "const": "ENTEI",
     "name": "Entei",
-    "number": 346,
+    "number": 348,
     "stats": {
       "HP": 115,
       "Attack": 115,
@@ -165629,7 +166489,7 @@
   {
     "const": "SUICUNE",
     "name": "Suicune",
-    "number": 347,
+    "number": 349,
     "stats": {
       "HP": 100,
       "Attack": 75,
@@ -166096,7 +166956,7 @@
   {
     "const": "DRATINI",
     "name": "Dratini",
-    "number": 348,
+    "number": 350,
     "stats": {
       "HP": 41,
       "Attack": 64,
@@ -166548,7 +167408,7 @@
   {
     "const": "DRAGONAIR",
     "name": "Dragonair",
-    "number": 349,
+    "number": 351,
     "stats": {
       "HP": 61,
       "Attack": 84,
@@ -167041,7 +167901,7 @@
   {
     "const": "DRAGONITE",
     "name": "Dragonite",
-    "number": 350,
+    "number": 352,
     "stats": {
       "HP": 91,
       "Attack": 134,
@@ -167712,7 +168572,7 @@
   {
     "const": "LARVITAR",
     "name": "Larvitar",
-    "number": 351,
+    "number": 353,
     "stats": {
       "HP": 50,
       "Attack": 64,
@@ -168124,7 +168984,7 @@
   {
     "const": "PUPITAR",
     "name": "Pupitar",
-    "number": 352,
+    "number": 354,
     "stats": {
       "HP": 70,
       "Attack": 84,
@@ -168562,7 +169422,7 @@
   {
     "const": "TYRANITAR",
     "name": "Tyranitar",
-    "number": 353,
+    "number": 355,
     "stats": {
       "HP": 100,
       "Attack": 134,
@@ -169175,7 +170035,7 @@
   {
     "const": "LUGIA",
     "name": "Lugia",
-    "number": 354,
+    "number": 356,
     "stats": {
       "HP": 106,
       "Attack": 90,
@@ -169707,7 +170567,7 @@
   {
     "const": "HO_OH",
     "name": "Ho-Oh",
-    "number": 355,
+    "number": 357,
     "stats": {
       "HP": 106,
       "Attack": 130,
@@ -170243,7 +171103,7 @@
   {
     "const": "MEWTWO",
     "name": "Mewtwo",
-    "number": 356,
+    "number": 358,
     "stats": {
       "HP": 106,
       "Attack": 110,
@@ -170887,7 +171747,7 @@
   {
     "const": "MEW",
     "name": "Mew",
-    "number": 357,
+    "number": 359,
     "stats": {
       "HP": 100,
       "Attack": 100,
@@ -171742,7 +172602,7 @@
   {
     "const": "CELEBI",
     "name": "Celebi",
-    "number": 358,
+    "number": 360,
     "stats": {
       "HP": 100,
       "Attack": 100,
@@ -172211,7 +173071,7 @@
   {
     "const": "SNOVER",
     "name": "Snover",
-    "number": 368,
+    "number": 370,
     "stats": {
       "HP": 60,
       "Attack": 62,
@@ -172596,7 +173456,7 @@
   {
     "const": "ABOMASNOW",
     "name": "Abomasnow",
-    "number": 369,
+    "number": 371,
     "stats": {
       "HP": 90,
       "Attack": 92,
@@ -173020,7 +173880,7 @@
   {
     "const": "SWABLU",
     "name": "Swablu",
-    "number": 370,
+    "number": 372,
     "stats": {
       "HP": 45,
       "Attack": 60,
@@ -173436,7 +174296,7 @@
   {
     "const": "ALTARIA",
     "name": "Altaria",
-    "number": 371,
+    "number": 373,
     "stats": {
       "HP": 75,
       "Attack": 90,
@@ -173926,7 +174786,7 @@
   {
     "const": "APPLIN",
     "name": "Applin",
-    "number": 372,
+    "number": 374,
     "stats": {
       "HP": 40,
       "Attack": 40,
@@ -174134,7 +174994,7 @@
   {
     "const": "DIPPLIN",
     "name": "Dipplin",
-    "number": 373,
+    "number": 375,
     "stats": {
       "HP": 80,
       "Attack": 80,
@@ -174495,7 +175355,7 @@
   {
     "const": "APPLETUN",
     "name": "Appletun",
-    "number": 374,
+    "number": 376,
     "stats": {
       "HP": 110,
       "Attack": 85,
@@ -174925,7 +175785,7 @@
   {
     "const": "FLAPPLE",
     "name": "Flapple",
-    "number": 375,
+    "number": 377,
     "stats": {
       "HP": 70,
       "Attack": 135,
@@ -175313,7 +176173,7 @@
   {
     "const": "HYDRAPPLE",
     "name": "Hydrapple",
-    "number": 376,
+    "number": 378,
     "stats": {
       "HP": 106,
       "Attack": 70,
@@ -175542,26 +176402,62 @@
     "anim": {
       "sheet": "assets/pokemon/hydrapple.sheet.png",
       "size": 56,
-      "frames": 4,
+      "frames": 8,
       "main": [
         [
-          1,
+          0,
           6
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          0,
+          12
         ],
         [
           2,
-          12
-        ],
-        [
-          1,
-          6
+          9
         ],
         [
           3,
+          6
+        ],
+        [
+          4,
           12
         ],
         [
-          1,
+          5,
+          9
+        ],
+        [
+          6,
+          29
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          7,
           6
         ],
         [
@@ -175569,11 +176465,7 @@
           6
         ],
         [
-          1,
-          12
-        ],
-        [
-          0,
+          7,
           6
         ]
       ],
@@ -175673,7 +176565,7 @@
   {
     "const": "DURALUDON",
     "name": "Duraludon",
-    "number": 377,
+    "number": 379,
     "stats": {
       "HP": 70,
       "Attack": 95,
@@ -175835,8 +176727,8 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "egg_cycles": 30,
+      "growth": "Medium Fast",
       "egg_groups": [
         "Mineral",
         "Dragon"
@@ -176044,7 +176936,7 @@
   {
     "const": "ARCHALUDON",
     "name": "Archaludon",
-    "number": 378,
+    "number": 380,
     "stats": {
       "HP": 90,
       "Attack": 105,
@@ -176191,8 +177083,8 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "egg_cycles": 30,
+      "growth": "Medium Fast",
       "egg_groups": [
         "Mineral",
         "Dragon"
@@ -176419,7 +177311,7 @@
   {
     "const": "SHROOMISH",
     "name": "Shroomish",
-    "number": 379,
+    "number": 381,
     "stats": {
       "HP": 60,
       "Attack": 40,
@@ -176588,7 +177480,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
         "Fairy",
@@ -176771,7 +177663,7 @@
   {
     "const": "BRELOOM",
     "name": "Breloom",
-    "number": 380,
+    "number": 382,
     "stats": {
       "HP": 60,
       "Attack": 130,
@@ -176981,7 +177873,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
         "Fairy",
@@ -177252,7 +178144,7 @@
   {
     "const": "BUNEARY",
     "name": "Buneary",
-    "number": 381,
+    "number": 383,
     "stats": {
       "HP": 55,
       "Attack": 66,
@@ -177673,7 +178565,7 @@
   {
     "const": "LOPUNNY",
     "name": "Lopunny",
-    "number": 382,
+    "number": 384,
     "stats": {
       "HP": 65,
       "Attack": 106,
@@ -178200,7 +179092,7 @@
   {
     "const": "NUMEL",
     "name": "Numel",
-    "number": 383,
+    "number": 385,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -178649,7 +179541,7 @@
   {
     "const": "CAMERUPT",
     "name": "Camerupt",
-    "number": 384,
+    "number": 386,
     "stats": {
       "HP": 80,
       "Attack": 100,
@@ -179118,7 +180010,7 @@
   {
     "const": "SIZZLIPEDE",
     "name": "Sizzlipede",
-    "number": 385,
+    "number": 387,
     "stats": {
       "HP": 50,
       "Attack": 65,
@@ -179423,7 +180315,7 @@
   {
     "const": "CENTISKORCH",
     "name": "Centiskorch",
-    "number": 386,
+    "number": 388,
     "stats": {
       "HP": 100,
       "Attack": 115,
@@ -179791,7 +180683,7 @@
   {
     "const": "GRUBBIN",
     "name": "Grubbin",
-    "number": 387,
+    "number": 389,
     "stats": {
       "HP": 47,
       "Attack": 62,
@@ -179927,7 +180819,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Fast",
       "egg_groups": [
         "Bug"
@@ -180111,7 +181003,7 @@
   {
     "const": "CHARJABUG",
     "name": "Charjabug",
-    "number": 388,
+    "number": 390,
     "stats": {
       "HP": 57,
       "Attack": 82,
@@ -180254,7 +181146,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Fast",
       "egg_groups": [
         "Bug"
@@ -180465,7 +181357,7 @@
   {
     "const": "VIKAVOLT",
     "name": "Vikavolt",
-    "number": 389,
+    "number": 391,
     "stats": {
       "HP": 77,
       "Attack": 70,
@@ -180634,7 +181526,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Fast",
       "egg_groups": [
         "Bug"
@@ -180897,7 +181789,7 @@
   {
     "const": "CROAGUNK",
     "name": "Croagunk",
-    "number": 390,
+    "number": 392,
     "stats": {
       "HP": 48,
       "Attack": 61,
@@ -181097,7 +181989,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 10,
       "growth": "Medium Fast",
       "egg_groups": [
         "Human-Like"
@@ -181367,7 +182259,7 @@
   {
     "const": "TOXICROAK",
     "name": "Toxicroak",
-    "number": 391,
+    "number": 393,
     "stats": {
       "HP": 83,
       "Attack": 106,
@@ -181881,7 +182773,7 @@
   {
     "const": "DRIFLOON",
     "name": "Drifloon",
-    "number": 392,
+    "number": 394,
     "stats": {
       "HP": 90,
       "Attack": 50,
@@ -182072,7 +182964,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 30,
       "growth": "Medium Fast",
       "egg_groups": [
         "Amorphous"
@@ -182329,7 +183221,7 @@
   {
     "const": "DRIFBLIM",
     "name": "Drifblim",
-    "number": 393,
+    "number": 395,
     "stats": {
       "HP": 150,
       "Attack": 80,
@@ -182515,7 +183407,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 30,
       "growth": "Medium Fast",
       "egg_groups": [
         "Amorphous"
@@ -182779,7 +183671,7 @@
   {
     "const": "DRILBUR",
     "name": "Drilbur",
-    "number": 394,
+    "number": 396,
     "stats": {
       "HP": 60,
       "Attack": 85,
@@ -183176,7 +184068,7 @@
   {
     "const": "EXCADRILL",
     "name": "Excadrill",
-    "number": 395,
+    "number": 397,
     "stats": {
       "HP": 110,
       "Attack": 135,
@@ -183618,7 +184510,7 @@
   {
     "const": "KOTORA",
     "name": "Kotora",
-    "number": 396,
+    "number": 398,
     "stats": {
       "HP": 80,
       "Attack": 55,
@@ -184083,7 +184975,7 @@
   {
     "const": "RAITORA",
     "name": "Raitora",
-    "number": 397,
+    "number": 399,
     "stats": {
       "HP": 115,
       "Attack": 85,
@@ -184534,7 +185426,7 @@
   {
     "const": "GOROTORA",
     "name": "Gorotora",
-    "number": 398,
+    "number": 400,
     "stats": {
       "HP": 120,
       "Attack": 95,
@@ -185029,7 +185921,7 @@
   {
     "const": "FLETCHLING",
     "name": "Fletchling",
-    "number": 399,
+    "number": 401,
     "stats": {
       "HP": 45,
       "Attack": 50,
@@ -185198,7 +186090,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
         "Flying"
@@ -185443,7 +186335,7 @@
   {
     "const": "FLETCHINDER",
     "name": "Fletchinder",
-    "number": 400,
+    "number": 402,
     "stats": {
       "HP": 62,
       "Attack": 73,
@@ -185523,8 +186415,8 @@
       },
       {
         "level": 26,
-        "const": "AIR_SLASH",
-        "move": "Air Slash"
+        "const": "RAZOR_WIND",
+        "move": "Razor Wind"
       },
       {
         "level": 27,
@@ -185533,8 +186425,8 @@
       },
       {
         "level": 27,
-        "const": "RAZOR_WIND",
-        "move": "Razor Wind"
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
       },
       {
         "level": 30,
@@ -185634,7 +186526,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
         "Flying"
@@ -185913,7 +186805,7 @@
   {
     "const": "TALONFLAME",
     "name": "Talonflame",
-    "number": 401,
+    "number": 403,
     "stats": {
       "HP": 78,
       "Attack": 81,
@@ -186003,8 +186895,8 @@
       },
       {
         "level": 26,
-        "const": "AIR_SLASH",
-        "move": "Air Slash"
+        "const": "RAZOR_WIND",
+        "move": "Razor Wind"
       },
       {
         "level": 27,
@@ -186013,8 +186905,8 @@
       },
       {
         "level": 27,
-        "const": "RAZOR_WIND",
-        "move": "Razor Wind"
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
       },
       {
         "level": 30,
@@ -186107,7 +186999,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
         "Flying"
@@ -186344,7 +187236,7 @@
   {
     "const": "TRAPINCH",
     "name": "Trapinch",
-    "number": 402,
+    "number": 404,
     "stats": {
       "HP": 55,
       "Attack": 100,
@@ -186729,7 +187621,7 @@
   {
     "const": "VIBRAVA",
     "name": "Vibrava",
-    "number": 403,
+    "number": 405,
     "stats": {
       "HP": 60,
       "Attack": 85,
@@ -186907,10 +187799,10 @@
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "45"
+          "40"
         ],
         "target": "FLYGON",
-        "text": "Level 45",
+        "text": "Level 40",
         "target_name": "Flygon",
         "target_slug": "flygon"
       }
@@ -187240,7 +188132,7 @@
   {
     "const": "FLYGON",
     "name": "Flygon",
-    "number": 404,
+    "number": 406,
     "stats": {
       "HP": 80,
       "Attack": 115,
@@ -187530,7 +188422,7 @@
       "const": "VIBRAVA",
       "name": "Vibrava",
       "slug": "vibrava",
-      "text": "Level 45"
+      "text": "Level 40"
     },
     "original_types": [
       "Ground",
@@ -187815,7 +188707,7 @@
   {
     "const": "SNORUNT",
     "name": "Snorunt",
-    "number": 405,
+    "number": 407,
     "stats": {
       "HP": 50,
       "Attack": 50,
@@ -188195,7 +189087,7 @@
   {
     "const": "FROSLASS",
     "name": "Froslass",
-    "number": 406,
+    "number": 408,
     "stats": {
       "HP": 70,
       "Attack": 70,
@@ -188685,7 +189577,7 @@
   {
     "const": "WIMPOD",
     "name": "Wimpod",
-    "number": 407,
+    "number": 409,
     "stats": {
       "HP": 25,
       "Attack": 35,
@@ -188971,7 +189863,7 @@
   {
     "const": "GOLISOPOD",
     "name": "Golisopod",
-    "number": 408,
+    "number": 410,
     "stats": {
       "HP": 75,
       "Attack": 125,
@@ -189432,7 +190324,7 @@
   {
     "const": "SPOINK",
     "name": "Spoink",
-    "number": 409,
+    "number": 411,
     "stats": {
       "HP": 60,
       "Attack": 25,
@@ -189850,7 +190742,7 @@
   {
     "const": "GRUMPIG",
     "name": "Grumpig",
-    "number": 410,
+    "number": 412,
     "stats": {
       "HP": 80,
       "Attack": 45,
@@ -190352,7 +191244,7 @@
   {
     "const": "PAWNIARD",
     "name": "Pawniard",
-    "number": 411,
+    "number": 413,
     "stats": {
       "HP": 45,
       "Attack": 85,
@@ -190776,7 +191668,7 @@
   {
     "const": "BISHARP",
     "name": "Bisharp",
-    "number": 412,
+    "number": 414,
     "stats": {
       "HP": 65,
       "Attack": 125,
@@ -191196,7 +192088,7 @@
   {
     "const": "KINGAMBIT",
     "name": "Kingambit",
-    "number": 413,
+    "number": 415,
     "stats": {
       "HP": 100,
       "Attack": 135,
@@ -191661,7 +192553,7 @@
   {
     "const": "LOTAD",
     "name": "Lotad",
-    "number": 414,
+    "number": 416,
     "stats": {
       "HP": 40,
       "Attack": 30,
@@ -191839,7 +192731,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
         "Water 1",
@@ -192060,7 +192952,7 @@
   {
     "const": "LOMBRE",
     "name": "Lombre",
-    "number": 415,
+    "number": 417,
     "stats": {
       "HP": 60,
       "Attack": 50,
@@ -192268,7 +193160,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
         "Water 1",
@@ -192544,7 +193436,7 @@
   {
     "const": "LUDICOLO",
     "name": "Ludicolo",
-    "number": 416,
+    "number": 418,
     "stats": {
       "HP": 80,
       "Attack": 90,
@@ -192748,7 +193640,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
         "Water 1",
@@ -193065,7 +193957,7 @@
   {
     "const": "SCRAGGY",
     "name": "Scraggy",
-    "number": 417,
+    "number": 419,
     "stats": {
       "HP": 50,
       "Attack": 75,
@@ -193267,7 +194159,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Fast",
       "egg_groups": [
         "Field",
@@ -193548,7 +194440,7 @@
   {
     "const": "SCRAFTY",
     "name": "Scrafty",
-    "number": 418,
+    "number": 420,
     "stats": {
       "HP": 77,
       "Attack": 90,
@@ -193754,7 +194646,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 15,
       "growth": "Medium Fast",
       "egg_groups": [
         "Field",
@@ -194050,7 +194942,7 @@
   {
     "const": "SPHEAL",
     "name": "Spheal",
-    "number": 419,
+    "number": 421,
     "stats": {
       "HP": 70,
       "Attack": 40,
@@ -194475,7 +195367,7 @@
   {
     "const": "SEALEO",
     "name": "Sealeo",
-    "number": 420,
+    "number": 422,
     "stats": {
       "HP": 90,
       "Attack": 60,
@@ -194897,7 +195789,7 @@
   {
     "const": "WALREIN",
     "name": "Walrein",
-    "number": 421,
+    "number": 423,
     "stats": {
       "HP": 110,
       "Attack": 80,
@@ -195346,7 +196238,7 @@
   {
     "const": "TEDDIURSABM",
     "name": "Teddiursa",
-    "number": 422,
+    "number": 424,
     "stats": {
       "HP": 60,
       "Attack": 80,
@@ -195824,7 +196716,7 @@
   {
     "const": "URSARINGBM",
     "name": "Ursaring",
-    "number": 423,
+    "number": 425,
     "stats": {
       "HP": 90,
       "Attack": 75,
@@ -196284,7 +197176,7 @@
   {
     "const": "URSALUNABM",
     "name": "Ursaluna",
-    "number": 424,
+    "number": 426,
     "stats": {
       "HP": 113,
       "Attack": 70,
@@ -196685,7 +197577,7 @@
   {
     "const": "CETODDLE",
     "name": "Cetoddle",
-    "number": 425,
+    "number": 427,
     "stats": {
       "HP": 108,
       "Attack": 68,
@@ -196831,7 +197723,7 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 25,
-      "growth": "Medium Fast",
+      "growth": "Medium Slow",
       "egg_groups": [
         "Field"
       ]
@@ -197048,7 +197940,7 @@
   {
     "const": "CETITAN",
     "name": "Cetitan",
-    "number": 426,
+    "number": 428,
     "stats": {
       "HP": 170,
       "Attack": 113,
@@ -197199,7 +198091,7 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 25,
-      "growth": "Medium Fast",
+      "growth": "Medium Slow",
       "egg_groups": [
         "Field"
       ]
@@ -197397,7 +198289,7 @@
   {
     "const": "CORSOLA_GALARIAN",
     "name": "Corsola",
-    "number": 427,
+    "number": 429,
     "stats": {
       "HP": 60,
       "Attack": 55,
@@ -197836,7 +198728,7 @@
   {
     "const": "CURSOLA",
     "name": "Cursola",
-    "number": 428,
+    "number": 430,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -198298,7 +199190,7 @@
   {
     "const": "RATTATA_ALOLAN",
     "name": "Rattata",
-    "number": 429,
+    "number": 431,
     "stats": {
       "HP": 30,
       "Attack": 56,
@@ -198715,7 +199607,7 @@
   {
     "const": "RATICATE_ALOLAN",
     "name": "Raticate",
-    "number": 430,
+    "number": 432,
     "stats": {
       "HP": 80,
       "Attack": 88,
@@ -199172,7 +200064,7 @@
   {
     "const": "RAICHU_ALOLAN",
     "name": "Raichu",
-    "number": 431,
+    "number": 433,
     "stats": {
       "HP": 60,
       "Attack": 85,
@@ -199686,7 +200578,7 @@
   {
     "const": "SANDSHREW_ALOLAN",
     "name": "Sandshrew",
-    "number": 432,
+    "number": 434,
     "stats": {
       "HP": 50,
       "Attack": 75,
@@ -200214,7 +201106,7 @@
   {
     "const": "SANDSLASH_ALOLAN",
     "name": "Sandslash",
-    "number": 433,
+    "number": 435,
     "stats": {
       "HP": 85,
       "Attack": 100,
@@ -200738,7 +201630,7 @@
   {
     "const": "VULPIX_ALOLAN",
     "name": "Vulpix",
-    "number": 434,
+    "number": 436,
     "stats": {
       "HP": 38,
       "Attack": 41,
@@ -201177,7 +202069,7 @@
   {
     "const": "NINETALES_ALOLAN",
     "name": "Ninetales",
-    "number": 435,
+    "number": 437,
     "stats": {
       "HP": 73,
       "Attack": 67,
@@ -201626,7 +202518,7 @@
   {
     "const": "DIGLETT_ALOLAN",
     "name": "Diglett",
-    "number": 436,
+    "number": 438,
     "stats": {
       "HP": 10,
       "Attack": 55,
@@ -202046,7 +202938,7 @@
   {
     "const": "DUGTRIO_ALOLAN",
     "name": "Dugtrio",
-    "number": 437,
+    "number": 439,
     "stats": {
       "HP": 60,
       "Attack": 100,
@@ -202498,7 +203390,7 @@
   {
     "const": "MEOWTH_ALOLAN",
     "name": "Meowth",
-    "number": 438,
+    "number": 440,
     "stats": {
       "HP": 40,
       "Attack": 35,
@@ -202923,7 +203815,7 @@
   {
     "const": "PERSIAN_ALOLAN",
     "name": "Persian",
-    "number": 439,
+    "number": 441,
     "stats": {
       "HP": 70,
       "Attack": 70,
@@ -203392,7 +204284,7 @@
   {
     "const": "GEODUDE_ALOLAN",
     "name": "Geodude",
-    "number": 440,
+    "number": 442,
     "stats": {
       "HP": 40,
       "Attack": 80,
@@ -203834,7 +204726,7 @@
   {
     "const": "GRAVELER_ALOLAN",
     "name": "Graveler",
-    "number": 441,
+    "number": 443,
     "stats": {
       "HP": 55,
       "Attack": 95,
@@ -204328,7 +205220,7 @@
   {
     "const": "GOLEM_ALOLAN",
     "name": "Golem",
-    "number": 442,
+    "number": 444,
     "stats": {
       "HP": 80,
       "Attack": 120,
@@ -204820,7 +205712,7 @@
   {
     "const": "GRIMER_ALOLAN",
     "name": "Grimer",
-    "number": 443,
+    "number": 445,
     "stats": {
       "HP": 80,
       "Attack": 80,
@@ -205279,7 +206171,7 @@
   {
     "const": "MUK_ALOLAN",
     "name": "Muk",
-    "number": 444,
+    "number": 446,
     "stats": {
       "HP": 105,
       "Attack": 105,
@@ -205754,7 +206646,7 @@
   {
     "const": "EXEGGUTOR_ALOLAN",
     "name": "Exeggutor",
-    "number": 445,
+    "number": 447,
     "stats": {
       "HP": 95,
       "Attack": 125,
@@ -206287,7 +207179,7 @@
   {
     "const": "MAROWAK_ALOLAN",
     "name": "Marowak",
-    "number": 446,
+    "number": 448,
     "stats": {
       "HP": 60,
       "Attack": 80,
@@ -206858,7 +207750,7 @@
   {
     "const": "MEOWTH_GALARIAN",
     "name": "Meowth",
-    "number": 447,
+    "number": 449,
     "stats": {
       "HP": 50,
       "Attack": 65,
@@ -207315,7 +208207,7 @@
   {
     "const": "PERRSERKER",
     "name": "Perrserker",
-    "number": 448,
+    "number": 450,
     "stats": {
       "HP": 85,
       "Attack": 110,
@@ -207792,7 +208684,7 @@
   {
     "const": "PONYTA_GALARIAN",
     "name": "Ponyta",
-    "number": 449,
+    "number": 451,
     "stats": {
       "HP": 50,
       "Attack": 85,
@@ -208128,7 +209020,7 @@
   {
     "const": "RAPIDASH_GALARIAN",
     "name": "Rapidash",
-    "number": 450,
+    "number": 452,
     "stats": {
       "HP": 65,
       "Attack": 105,
@@ -208564,7 +209456,7 @@
   {
     "const": "SLOWPOKE_GALARIAN",
     "name": "Slowpoke",
-    "number": 451,
+    "number": 453,
     "stats": {
       "HP": 90,
       "Attack": 65,
@@ -209046,7 +209938,7 @@
   {
     "const": "SLOWBRO_GALARIAN",
     "name": "Slowbro",
-    "number": 452,
+    "number": 454,
     "stats": {
       "HP": 95,
       "Attack": 100,
@@ -209639,7 +210531,7 @@
   {
     "const": "SLOWKING_GALARIAN",
     "name": "Slowking",
-    "number": 453,
+    "number": 455,
     "stats": {
       "HP": 95,
       "Attack": 65,
@@ -210219,7 +211111,7 @@
   {
     "const": "WEEZING_GALARIAN",
     "name": "Weezing",
-    "number": 454,
+    "number": 456,
     "stats": {
       "HP": 65,
       "Attack": 80,
@@ -210659,7 +211551,7 @@
   {
     "const": "GROWLITHE_HISUIAN",
     "name": "Growlithe",
-    "number": 455,
+    "number": 457,
     "stats": {
       "HP": 60,
       "Attack": 75,
@@ -211073,7 +211965,7 @@
   {
     "const": "ARCANINE_HISUIAN",
     "name": "Arcanine",
-    "number": 456,
+    "number": 458,
     "stats": {
       "HP": 95,
       "Attack": 120,
@@ -211552,7 +212444,7 @@
   {
     "const": "VOLTORB_HISUIAN",
     "name": "Voltorb",
-    "number": 457,
+    "number": 459,
     "stats": {
       "HP": 40,
       "Attack": 30,
@@ -212000,7 +212892,7 @@
   {
     "const": "ELECTRODE_HISUIAN",
     "name": "Electrode",
-    "number": 458,
+    "number": 460,
     "stats": {
       "HP": 60,
       "Attack": 50,
@@ -212444,7 +213336,7 @@
   {
     "const": "TYPHLOSION_HISUIAN",
     "name": "Typhlosion",
-    "number": 459,
+    "number": 461,
     "stats": {
       "HP": 73,
       "Attack": 84,
@@ -213019,7 +213911,7 @@
   {
     "const": "SNEASEL_HISUIAN",
     "name": "Sneasel",
-    "number": 460,
+    "number": 462,
     "stats": {
       "HP": 55,
       "Attack": 95,
@@ -213569,7 +214461,7 @@
   {
     "const": "SNEASLER",
     "name": "Sneasler",
-    "number": 461,
+    "number": 463,
     "stats": {
       "HP": 80,
       "Attack": 130,
@@ -214111,7 +215003,7 @@
   {
     "const": "WOOPER_PALDEAN",
     "name": "Wooper",
-    "number": 462,
+    "number": 464,
     "stats": {
       "HP": 55,
       "Attack": 55,
@@ -214499,7 +215391,7 @@
   {
     "const": "CLODSIRE",
     "name": "Clodsire",
-    "number": 463,
+    "number": 465,
     "stats": {
       "HP": 130,
       "Attack": 75,
@@ -214887,7 +215779,7 @@
   {
     "const": "TAUROS_PALDEAN_FIRE",
     "name": "Tauros",
-    "number": 464,
+    "number": 466,
     "stats": {
       "HP": 75,
       "Attack": 115,
@@ -215389,7 +216281,7 @@
   {
     "const": "TAUROS_PALDEAN_WATER",
     "name": "Tauros",
-    "number": 465,
+    "number": 467,
     "stats": {
       "HP": 75,
       "Attack": 115,
@@ -215883,7 +216775,7 @@
   {
     "const": "BOUNSWEET",
     "name": "Bounsweet",
-    "number": 466,
+    "number": 468,
     "stats": {
       "HP": 42,
       "Attack": 30,
@@ -216206,7 +217098,7 @@
   {
     "const": "STEENEE",
     "name": "Steenee",
-    "number": 467,
+    "number": 469,
     "stats": {
       "HP": 52,
       "Attack": 40,
@@ -216553,7 +217445,7 @@
   {
     "const": "TSAREENA",
     "name": "Tsareena",
-    "number": 468,
+    "number": 470,
     "stats": {
       "HP": 72,
       "Attack": 120,
@@ -216930,7 +217822,7 @@
   {
     "const": "ARON",
     "name": "Aron",
-    "number": 469,
+    "number": 471,
     "stats": {
       "HP": 50,
       "Attack": 70,
@@ -217355,7 +218247,7 @@
   {
     "const": "LAIRON",
     "name": "Lairon",
-    "number": 470,
+    "number": 472,
     "stats": {
       "HP": 60,
       "Attack": 90,
@@ -217803,7 +218695,7 @@
   {
     "const": "AGGRON",
     "name": "Aggron",
-    "number": 471,
+    "number": 473,
     "stats": {
       "HP": 80,
       "Attack": 110,
@@ -218369,7 +219261,7 @@
   {
     "const": "GLIMMET",
     "name": "Glimmet",
-    "number": 472,
+    "number": 474,
     "stats": {
       "HP": 48,
       "Attack": 35,
@@ -218512,7 +219404,7 @@
         "POISON_BARB"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 30,
       "growth": "Medium Slow",
       "egg_groups": [
         "Mineral"
@@ -218676,7 +219568,7 @@
   {
     "const": "GLIMMORA",
     "name": "Glimmora",
-    "number": 473,
+    "number": 475,
     "stats": {
       "HP": 83,
       "Attack": 55,
@@ -218817,7 +219709,7 @@
         "POISON_BARB"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 30,
       "growth": "Medium Slow",
       "egg_groups": [
         "Mineral"
@@ -219009,7 +219901,7 @@
   {
     "const": "MAREANIE",
     "name": "Mareanie",
-    "number": 474,
+    "number": 476,
     "stats": {
       "HP": 50,
       "Attack": 53,
@@ -219350,7 +220242,7 @@
   {
     "const": "TOXAPEX",
     "name": "Toxapex",
-    "number": 475,
+    "number": 477,
     "stats": {
       "HP": 50,
       "Attack": 63,
@@ -219724,7 +220616,7 @@
   {
     "const": "ZANGOOSE",
     "name": "Zangoose",
-    "number": 476,
+    "number": 478,
     "stats": {
       "HP": 75,
       "Attack": 125,
@@ -220297,7 +221189,7 @@
   {
     "const": "SEVIPER",
     "name": "Seviper",
-    "number": 477,
+    "number": 479,
     "stats": {
       "HP": 75,
       "Attack": 115,
@@ -220775,7 +221667,7 @@
   {
     "const": "SHUPPET",
     "name": "Shuppet",
-    "number": 478,
+    "number": 480,
     "stats": {
       "HP": 44,
       "Attack": 75,
@@ -221217,7 +222109,7 @@
   {
     "const": "BANETTE",
     "name": "Banette",
-    "number": 479,
+    "number": 481,
     "stats": {
       "HP": 64,
       "Attack": 125,
@@ -221678,7 +222570,7 @@
   {
     "const": "ARCHEN",
     "name": "Archen",
-    "number": 480,
+    "number": 482,
     "stats": {
       "HP": 55,
       "Attack": 112,
@@ -222121,7 +223013,7 @@
   {
     "const": "ARCHEOPS",
     "name": "Archeops",
-    "number": 481,
+    "number": 483,
     "stats": {
       "HP": 75,
       "Attack": 135,
@@ -222609,7 +223501,7 @@
   {
     "const": "TIRTOUGA",
     "name": "Tirtouga",
-    "number": 482,
+    "number": 484,
     "stats": {
       "HP": 54,
       "Attack": 78,
@@ -223045,7 +223937,7 @@
   {
     "const": "CARRACOSTA",
     "name": "Carracosta",
-    "number": 483,
+    "number": 485,
     "stats": {
       "HP": 70,
       "Attack": 117,
@@ -223512,7 +224404,7 @@
   {
     "const": "LITWICK",
     "name": "Litwick",
-    "number": 484,
+    "number": 486,
     "stats": {
       "HP": 50,
       "Attack": 30,
@@ -223913,7 +224805,7 @@
   {
     "const": "LAMPENT",
     "name": "Lampent",
-    "number": 485,
+    "number": 487,
     "stats": {
       "HP": 60,
       "Attack": 40,
@@ -224327,7 +225219,7 @@
   {
     "const": "CHANDELURE",
     "name": "Chandelure",
-    "number": 486,
+    "number": 488,
     "stats": {
       "HP": 60,
       "Attack": 55,
@@ -224785,7 +225677,7 @@
   {
     "const": "JOLTIK",
     "name": "Joltik",
-    "number": 487,
+    "number": 489,
     "stats": {
       "HP": 50,
       "Attack": 47,
@@ -225175,7 +226067,7 @@
   {
     "const": "GALVANTULA",
     "name": "Galvantula",
-    "number": 488,
+    "number": 490,
     "stats": {
       "HP": 70,
       "Attack": 77,
@@ -225545,7 +226437,7 @@
   {
     "const": "MAWILE",
     "name": "Mawile",
-    "number": 489,
+    "number": 491,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -225993,7 +226885,7 @@
   {
     "const": "NOIBAT",
     "name": "Noibat",
-    "number": 490,
+    "number": 492,
     "stats": {
       "HP": 40,
       "Attack": 30,
@@ -226073,8 +226965,8 @@
       },
       {
         "level": 25,
-        "const": "AIR_SLASH",
-        "move": "Air Slash"
+        "const": "RAZOR_WIND",
+        "move": "Razor Wind"
       },
       {
         "level": 29,
@@ -226083,8 +226975,8 @@
       },
       {
         "level": 31,
-        "const": "RAZOR_WIND",
-        "move": "Razor Wind"
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
       },
       {
         "level": 32,
@@ -226170,8 +227062,8 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 21,
-      "growth": "Medium Slow",
+      "egg_cycles": 20,
+      "growth": "Medium Fast",
       "egg_groups": [
         "Flying",
         "Dragon"
@@ -226415,7 +227307,7 @@
   {
     "const": "NOIVERN",
     "name": "Noivern",
-    "number": 491,
+    "number": 493,
     "stats": {
       "HP": 85,
       "Attack": 60,
@@ -226510,8 +227402,8 @@
       },
       {
         "level": 25,
-        "const": "AIR_SLASH",
-        "move": "Air Slash"
+        "const": "RAZOR_WIND",
+        "move": "Razor Wind"
       },
       {
         "level": 29,
@@ -226520,8 +227412,8 @@
       },
       {
         "level": 31,
-        "const": "RAZOR_WIND",
-        "move": "Razor Wind"
+        "const": "AIR_SLASH",
+        "move": "Air Slash"
       },
       {
         "level": 32,
@@ -226610,8 +227502,8 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 21,
-      "growth": "Medium Slow",
+      "egg_cycles": 20,
+      "growth": "Medium Fast",
       "egg_groups": [
         "Flying",
         "Dragon"
@@ -226896,7 +227788,7 @@
   {
     "const": "SALANDIT",
     "name": "Salandit",
-    "number": 492,
+    "number": 494,
     "stats": {
       "HP": 48,
       "Attack": 44,
@@ -227077,7 +227969,7 @@
       ],
       "gender": "87.5% male, 12.5% female",
       "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "growth": "Medium Fast",
       "egg_groups": [
         "Monster",
         "Dragon"
@@ -227333,7 +228225,7 @@
   {
     "const": "SALAZZLE",
     "name": "Salazzle",
-    "number": 493,
+    "number": 495,
     "stats": {
       "HP": 68,
       "Attack": 64,
@@ -227541,7 +228433,7 @@
       ],
       "gender": "100% female",
       "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "growth": "Medium Fast",
       "egg_groups": [
         "Monster",
         "Dragon"
@@ -227837,7 +228729,7 @@
   {
     "const": "FLITTLE",
     "name": "Flittle",
-    "number": 494,
+    "number": 496,
     "stats": {
       "HP": 30,
       "Attack": 35,
@@ -227974,7 +228866,7 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
-      "growth": "Medium Fast",
+      "growth": "Medium Slow",
       "egg_groups": [
         "Flying"
       ]
@@ -228153,7 +229045,7 @@
   {
     "const": "ESPATHRA",
     "name": "Espathra",
-    "number": 495,
+    "number": 497,
     "stats": {
       "HP": 95,
       "Attack": 60,
@@ -228313,7 +229205,7 @@
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
-      "growth": "Medium Fast",
+      "growth": "Medium Slow",
       "egg_groups": [
         "Flying"
       ]
@@ -228537,7 +229429,7 @@
   {
     "const": "FINIZEN",
     "name": "Finizen",
-    "number": 496,
+    "number": 498,
     "stats": {
       "HP": 70,
       "Attack": 45,
@@ -228680,7 +229572,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 40,
       "growth": "Slow",
       "egg_groups": [
         "Water 2",
@@ -228903,7 +229795,7 @@
   {
     "const": "PALAFIN",
     "name": "Palafin",
-    "number": 497,
+    "number": 499,
     "stats": {
       "HP": 90,
       "Attack": 120,
@@ -229107,7 +229999,7 @@
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 40,
       "growth": "Slow",
       "egg_groups": [
         "Water 2",
@@ -229347,7 +230239,7 @@
   {
     "const": "JIRACHI",
     "name": "Jirachi",
-    "number": 498,
+    "number": 500,
     "stats": {
       "HP": 100,
       "Attack": 100,
@@ -229558,7 +230450,7 @@
       "Sp. Atk": 100,
       "Sp. Def": 100
     },
-    "original_stats_source": "custom species",
+    "original_stats_source": "modern main games",
     "sprite_size": 56,
     "back": "assets/pokemon/jirachi.back.png",
     "back_size": 48,

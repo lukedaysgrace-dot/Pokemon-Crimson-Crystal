@@ -3008,6 +3008,8 @@ EvosAttacksPointers2C::
 	dw JirachiEvosAttacks
 	dw PhantumpEvosAttacks
 	dw TrevenantEvosAttacks
+	dw MienfooEvosAttacks
+	dw MienshaoEvosAttacks
 
 ; Initial moves and level-up learnset from Rage Blue.
 GorochuEvosAttacks:
@@ -3091,6 +3093,57 @@ TrevenantEvosAttacks:
 	dbw 36, PHANTOMFORCE
 	dbw 44, WOOD_HAMMER
 	dbw 48, DESTINY_BOND
+	db 0 ; no more level-up moves
+
+MienfooEvosAttacks:
+	dbbw EVOLVE_LEVEL, 50, MIENSHAO
+	db 0 ; no more evolutions
+	dbw 1, POUND
+	dbw 1, DETECT
+	dbw 5, FAKE_OUT
+	dbw 7, PIXIE_PUNCH
+	dbw 8, MEDITATE
+	dbw 10, REVERSAL
+	dbw 12, LOW_KICK
+	dbw 15, FURY_SWIPES
+	dbw 17, DOUBLESLAP
+	dbw 21, SWIFT
+	dbw 25, FORCE_PALM
+	dbw 30, U_TURN
+	dbw 32, PLAY_ROUGH
+	dbw 35, DRAIN_PUNCH
+	dbw 37, JUMP_KICK
+	dbw 40, HONE_CLAWS
+	dbw 45, AURA_SPHERE
+	dbw 48, SPIRIT_BREAK
+	dbw 51, BOUNCE
+	dbw 55, CALM_MIND
+	dbw 60, HI_JUMP_KICK
+	db 0 ; no more level-up moves
+
+MienshaoEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, POUND
+	dbw 1, DETECT
+	dbw 1, FAKE_OUT
+	dbw 1, REVERSAL
+	dbw 1, MEDITATE
+	dbw 7, PIXIE_PUNCH
+	dbw 12, LOW_KICK
+	dbw 15, FURY_SWIPES
+	dbw 17, DOUBLESLAP
+	dbw 21, SWIFT
+	dbw 25, FORCE_PALM
+	dbw 30, U_TURN
+	dbw 32, PLAY_ROUGH
+	dbw 35, DRAIN_PUNCH
+	dbw 37, JUMP_KICK
+	dbw 40, HONE_CLAWS
+	dbw 45, AURA_SPHERE
+	dbw 48, SPIRIT_BREAK
+	dbw 53, BOUNCE
+	dbw 59, CALM_MIND
+	dbw 66, HI_JUMP_KICK
 	db 0 ; no more level-up moves
 
 ShuppetEvosAttacks:

@@ -348,6 +348,8 @@ EggMovePointers2::
 	dw NoEggMoves2 ; JIRACHI
 	dw PhantumpEggMoves ; PHANTUMP
 	dw NoEggMoves2 ; TREVENANT
+	dw MienfooEggMoves ; MIENFOO
+	dw NoEggMoves2 ; MIENSHAO
 
 ChikoritaEggMoves:
 	dw VINE_WHIP
@@ -3311,4 +3313,12 @@ CanonicalSHUPPETEggMoves2:
 PhantumpEggMoves:
 	dw DISABLE
 	dw SUCKER_PUNCH
+	dw -1 ; end
+
+MienfooEggMoves:
+	dw BATON_PASS
+	dw ENDURE
+	dw KNOCK_OFF
+	dw LOW_KICK
+	dw VITAL_THROW
 	dw -1 ; end
