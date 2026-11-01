@@ -77017,7 +77017,6 @@
       "MIMIC",
       "POISON_GAS",
       "POISON_JAB",
-      "SCALD",
       "SEISMIC_TOSS",
       "SNORE",
       "TACKLE",
@@ -77458,7 +77457,6 @@
       "POISON_JAB",
       "PSYWAVE",
       "RAGE",
-      "SCALD",
       "SEISMIC_TOSS",
       "SKULL_BASH",
       "SNORE",
@@ -77952,7 +77950,6 @@
       "PSYWAVE",
       "RAGE",
       "ROCK_SLIDE",
-      "SCALD",
       "SEISMIC_TOSS",
       "SKULL_BASH",
       "SNORE",
@@ -177268,21 +177265,21 @@
       "Normal"
     ],
     "abilities": [
-      "Run Away",
-      "Klutz",
-      "Limber"
+      "Scrappy",
+      "Cute Charm",
+      "Adaptability"
     ],
     "ability_slots": [
       {
-        "name": "Run Away",
+        "name": "Scrappy",
         "slot": 1
       },
       {
-        "name": "Klutz",
+        "name": "Cute Charm",
         "slot": 2
       },
       {
-        "name": "Limber",
+        "name": "Adaptability",
         "slot": 3
       }
     ],

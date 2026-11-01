@@ -3946,7 +3946,6 @@ TechnicalTutor_MAGMAR:
 	dw POISON_JAB
 	dw PSYWAVE
 	dw RAGE
-	dw SCALD
 	dw SEISMIC_TOSS
 	dw SKULL_BASH
 	dw SNORE
@@ -6954,7 +6953,6 @@ TechnicalTutor_MAGBY:
 	dw MIMIC
 	dw POISON_GAS
 	dw POISON_JAB
-	dw SCALD
 	dw SEISMIC_TOSS
 	dw SNORE
 	dw TACKLE
@@ -7818,7 +7816,6 @@ TechnicalTutor_MAGMORTAR:
 	dw PSYWAVE
 	dw RAGE
 	dw ROCK_SLIDE
-	dw SCALD
 	dw SEISMIC_TOSS
 	dw SKULL_BASH
 	dw SNORE

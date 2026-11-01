@@ -38,6 +38,8 @@ Read this before changing the game. Keep it up to date when something here chang
 - BRIGHTPOWDER is trainer-theft only (Koga/Janine), price 10. Not sold in marts.
 - Dipplin's growth rate matches Applin/Appletun/Flapple/Hydrapple on purpose.
 - HOSTESS is a reserved trainer class with no trainers yet.
+- Magby, Magmar and Magmortar must never learn or know SCALD. It is listed under `excluded` in
+  `tools/testdata/authored_move_restorations.json`, which the historical move-access generator honors.
 - Don't change dialogue unless the user asks. Report text issues instead.
 
 ## Test harness quirks

@@ -540,6 +540,15 @@
     ],
     "CORSOLA_GALARIAN": [
       "PHANTOMFORCE"
+    ],
+    "MAGBY": [
+      "SCALD"
+    ],
+    "MAGMAR": [
+      "SCALD"
+    ],
+    "MAGMORTAR": [
+      "SCALD"
     ]
   },
   "level_up": {

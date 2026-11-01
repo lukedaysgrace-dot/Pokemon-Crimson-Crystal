@@ -5387,7 +5387,6 @@
         "DARK_PULSE",
         "DIZZY_PUNCH",
         "POISON_GAS",
-        "SCALD",
         "TACKLE"
       ],
       "removed_moves": [
@@ -5398,7 +5397,6 @@
         "DARK_PULSE",
         "DIZZY_PUNCH",
         "POISON_GAS",
-        "SCALD",
         "TACKLE"
       ],
       "breeding_fallbacks": {}
@@ -5436,7 +5434,6 @@
         "DARK_PULSE",
         "DIZZY_PUNCH",
         "POISON_GAS",
-        "SCALD",
         "TACKLE"
       ],
       "removed_moves": [
@@ -5447,7 +5444,6 @@
         "DARK_PULSE",
         "DIZZY_PUNCH",
         "POISON_GAS",
-        "SCALD",
         "TACKLE"
       ],
       "breeding_fallbacks": {}
@@ -5460,7 +5456,6 @@
         "DIZZY_PUNCH",
         "DRAGON_PULSE",
         "POISON_GAS",
-        "SCALD",
         "TACKLE",
         "ZAP_CANNON"
       ],
@@ -5473,7 +5468,6 @@
         "DIZZY_PUNCH",
         "DRAGON_PULSE",
         "POISON_GAS",
-        "SCALD",
         "TACKLE",
         "ZAP_CANNON"
       ],

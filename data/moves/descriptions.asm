@@ -493,12 +493,12 @@ FlipTurnDescription:
 	next "making its attack.@"
 
 IronDefenseDescription:
-	db   "Hardens body to"
-	next "sharply up DEF.@"
+	db   "Sharply raises the"
+	next "user's DEFENSE.@"
 
 RockPolishDescription:
-	db   "Polishes body to"
-	next "sharply up SPD.@"
+	db   "Sharply raises the"
+	next "user's SPEED.@"
 
 WoodHammerDescription:
 	db   "Timber slam that"
@@ -545,8 +545,8 @@ DualWingbeatDescription:
 	next "wings, twice.@"
 
 RockTombDescription:
-	db   "Drops rocks that"
-	next "cut the foe's SPD.@"
+	db   "Rocks that lower"
+	next "the foe's SPEED.@"
 
 LowSweepDescription:
 	db   "A swift kick that"
@@ -573,8 +573,8 @@ SignalBeamDescription:
 	next "confuse the foe.@"
 
 ScaleShotDescription:
-	db   "2-5 hits. Ups SPD,"
-	next "cuts DEFENSE.@"
+	db   "2-5 hits. SPEED up"
+	next "and DEFENSE down.@"
 
 PhantomForceDescription:
 	db   "Vanishes, then"
@@ -1765,8 +1765,8 @@ SolarBladeDescription:
 	next "No charge in sun.@"
 
 CloseCombatDescription:
-	db   "A fierce attack."
-	next "Cuts DEF/SPCL.DEF.@"
+	db   "Cuts own DEFENSE"
+	next "and SPCL.DEF.@"
 
 AcrobaticsDescription:
 	db   "Damage doubles if"
@@ -1793,8 +1793,8 @@ BraveBirdDescription:
 	next "hurts the user.@"
 
 BulkUpDescription:
-	db   "Raises the user's"
-	next "ATK and DEF.@"
+	db   "Raises ATTACK and"
+	next "DEFENSE.@"
 
 BulldozeDescription:
 	db   "A GROUND attack"
@@ -1841,8 +1841,8 @@ HexDescription:
 	next "foe has status.@"
 
 HoneClawsDescription:
-	db   "Raises the user's"
-	next "ATK and accuracy.@"
+	db   "Raises ATTACK and"
+	next "accuracy.@"
 
 HurricaneDescription:
 	db   "An attack that may"
@@ -1925,8 +1925,8 @@ WillOWispDescription:
 	next "burn the foe.@"
 
 HeadlongRushDescription:
-	db   "Reckless charge"
-	next "that cuts own DEF.@"
+	db   "A charge that cuts"
+	next "DEFENSE, SPCL.DEF.@"
 
 ShadowBoneDescription:
 	db   "Spectral bone hit."
@@ -2005,8 +2005,8 @@ StoneAxeDescription:
 	next "stones on hit.@"
 
 QuiverDanceDescription:
-	db   "Ups SPCL. stats"
-	next "and SPEED.@"
+	db   "Raises SPCL.ATK,"
+	next "SPCL.DEF & SPEED.@"
 
 StealthRockDescription:
 	db   "Floating rocks"
@@ -2025,8 +2025,8 @@ WorkUpDescription:
 	next "and SPCL.ATK.@"
 
 SuperpowerDescription:
-	db   "Mighty blow that"
-	next "cuts own ATK/DEF.@"
+	db   "Cuts own ATTACK"
+	next "and DEFENSE.@"
 
 FieryDanceDescription:
 	db   "FIRE dance. May up"

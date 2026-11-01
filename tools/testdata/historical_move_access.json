@@ -9964,7 +9964,6 @@
       "RETURN",
       "ROAR",
       "ROCK_SMASH",
-      "SCALD",
       "SCARY_FACE",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -16013,6 +16012,7 @@
       "TOXIC",
       "TRICK",
       "TRICK_ROOM",
+      "TWIN_BEAM",
       "WISH",
       "WORK_UP",
       "ZAP_CANNON",
@@ -18784,7 +18784,6 @@
       "REST",
       "RETURN",
       "ROCK_SMASH",
-      "SCALD",
       "SCARY_FACE",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -21277,6 +21276,7 @@
       "TOXIC",
       "TRICK",
       "TRICK_ROOM",
+      "TWIN_BEAM",
       "WISH",
       "WORK_UP",
       "ZAP_CANNON",
@@ -22189,7 +22189,6 @@
       "ROCK_SLIDE",
       "ROCK_SMASH",
       "ROCK_TOMB",
-      "SCALD",
       "SCARY_FACE",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -46284,7 +46283,6 @@
         "DARK_PULSE",
         "DIZZY_PUNCH",
         "POISON_GAS",
-        "SCALD",
         "TACKLE"
       ],
       "PINSIR": [
@@ -46719,7 +46717,6 @@
         "DARK_PULSE",
         "DIZZY_PUNCH",
         "POISON_GAS",
-        "SCALD",
         "TACKLE"
       ],
       "BLISSEY": [
@@ -46856,7 +46853,6 @@
         "DIZZY_PUNCH",
         "DRAGON_PULSE",
         "POISON_GAS",
-        "SCALD",
         "TACKLE",
         "ZAP_CANNON"
       ],
@@ -48488,7 +48484,6 @@
       "DARK_PULSE",
       "DIZZY_PUNCH",
       "POISON_GAS",
-      "SCALD",
       "TACKLE"
     ],
     "PINSIR": [
@@ -48917,7 +48912,6 @@
       "DARK_PULSE",
       "DIZZY_PUNCH",
       "POISON_GAS",
-      "SCALD",
       "TACKLE"
     ],
     "BLISSEY": [
@@ -49052,7 +49046,6 @@
       "DIZZY_PUNCH",
       "DRAGON_PULSE",
       "POISON_GAS",
-      "SCALD",
       "TACKLE",
       "ZAP_CANNON"
     ],
@@ -49979,6 +49972,15 @@
     "TREVENANT": [
       "SHADOW_PUNCH",
       "SHADOW_SNEAK"
+    ],
+    "GIRAFARIG": [
+      "TWIN_BEAM"
+    ],
+    "FARIGIRAF": [
+      "TWIN_BEAM"
+    ],
+    "SMEARGLE": [
+      "TWIN_BEAM"
     ]
   },
   "removed_access": {
@@ -53065,10 +53067,6 @@
         "gen8legends_learnsets.ts:magmar:8L18",
         "gen8legends_learnsets.ts:magby:8L18"
       ],
-      "SCALD": [
-        "lumi:126:M49",
-        "lumi:240:M49"
-      ],
       "TACKLE": [
         "gen8legends_learnsets.ts:magmar:8L6",
         "gen8legends_learnsets.ts:magby:8L6"
@@ -54098,9 +54096,6 @@
       "POISON_GAS": [
         "gen8legends_learnsets.ts:magby:8L18"
       ],
-      "SCALD": [
-        "lumi:240:M49"
-      ],
       "TACKLE": [
         "gen8legends_learnsets.ts:magby:8L6"
       ]
@@ -54428,11 +54423,6 @@
         "gen8legends_learnsets.ts:magmortar:8L18",
         "gen8legends_learnsets.ts:magmar:8L18",
         "gen8legends_learnsets.ts:magby:8L18"
-      ],
-      "SCALD": [
-        "lumi:467:M49",
-        "lumi:126:M49",
-        "lumi:240:M49"
       ],
       "TACKLE": [
         "gen8legends_learnsets.ts:magmortar:8L6",
@@ -56879,6 +56869,22 @@
       ],
       "SHADOW_SNEAK": [
         "lumi:709:L1"
+      ]
+    },
+    "GIRAFARIG": {
+      "TWIN_BEAM": [
+        "ps_learnsets.ts:girafarig:9L32"
+      ]
+    },
+    "FARIGIRAF": {
+      "TWIN_BEAM": [
+        "ps_learnsets.ts:farigiraf:9L32",
+        "ps_learnsets.ts:girafarig:9L32"
+      ]
+    },
+    "SMEARGLE": {
+      "TWIN_BEAM": [
+        "sketch"
       ]
     }
   },
@@ -67221,7 +67227,6 @@
       "RETURN",
       "ROAR",
       "ROCK_SMASH",
-      "SCALD",
       "SCARY_FACE",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -73291,6 +73296,7 @@
       "TOXIC",
       "TRICK",
       "TRICK_ROOM",
+      "TWIN_BEAM",
       "WISH",
       "WORK_UP",
       "ZAP_CANNON",
@@ -76155,6 +76161,7 @@
       "TRI_ATTACK",
       "TROP_KICK",
       "TWINEEDLE",
+      "TWIN_BEAM",
       "TWISTER",
       "U_TURN",
       "VACUUM_WAVE",
@@ -76508,7 +76515,6 @@
       "REST",
       "RETURN",
       "ROCK_SMASH",
-      "SCALD",
       "SCARY_FACE",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -79008,6 +79014,7 @@
       "TOXIC",
       "TRICK",
       "TRICK_ROOM",
+      "TWIN_BEAM",
       "WISH",
       "WORK_UP",
       "ZAP_CANNON",
@@ -79924,7 +79931,6 @@
       "ROCK_SLIDE",
       "ROCK_SMASH",
       "ROCK_TOMB",
-      "SCALD",
       "SCARY_FACE",
       "SCREECH",
       "SEISMIC_TOSS",
@@ -112471,6 +112477,10 @@
         "ZEN_HEADBUTT"
       ],
       [
+        32,
+        "TWIN_BEAM"
+      ],
+      [
         33,
         "CRUNCH"
       ],
@@ -118481,6 +118491,10 @@
       [
         27,
         "ZEN_HEADBUTT"
+      ],
+      [
+        32,
+        "TWIN_BEAM"
       ],
       [
         33,
@@ -157281,7 +157295,6 @@
       "POISON_JAB",
       "PSYWAVE",
       "RAGE",
-      "SCALD",
       "SEISMIC_TOSS",
       "SKULL_BASH",
       "SNORE",
@@ -160197,7 +160210,6 @@
       "MIMIC",
       "POISON_GAS",
       "POISON_JAB",
-      "SCALD",
       "SEISMIC_TOSS",
       "SNORE",
       "TACKLE",
@@ -161298,7 +161310,6 @@
       "PSYWAVE",
       "RAGE",
       "ROCK_SLIDE",
-      "SCALD",
       "SEISMIC_TOSS",
       "SKULL_BASH",
       "SNORE",
@@ -166250,6 +166261,7 @@
     "TRI_ATTACK",
     "TROP_KICK",
     "TWINEEDLE",
+    "TWIN_BEAM",
     "TWISTER",
     "U_TURN",
     "VACUUM_WAVE",
