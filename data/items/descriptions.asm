@@ -590,12 +590,12 @@ OldAmberDesc:
 	next "DNA inside it.@"
 
 SoftSandDesc:
-	db   "Powers up ground-"
-	next "type moves. (HOLD)@"
+	db   "Ground-type"
+	next "moves +20%. (HOLD)@"
 
 SharpBeakDesc:
-	db   "Powers up flying-"
-	next "type moves. (HOLD)@"
+	db   "Flying-type"
+	next "moves +20%. (HOLD)@"
 
 PrzCureBerryDesc:
 	db   "A self-cure for"
@@ -610,8 +610,8 @@ IceBerryDesc:
 	next "burn. (HOLD)@"
 
 PoisonBarbDesc:
-	db   "Powers up poison-"
-	next "type moves. (HOLD)@"
+	db   "Poison-type"
+	next "moves +20%. (HOLD)@"
 
 KingsRockDesc:
 	db   "May make the foe"
@@ -637,8 +637,8 @@ WishingStarDesc:
 	next "cool to the touch.@"
 
 SilverPowderDesc:
-	db   "Powers up bug-type"
-	next "moves. (HOLD)@"
+	db   "Bug-type"
+	next "moves +20%. (HOLD)@"
 
 BluApricornDesc:
 	db   "A blue APRICORN.@"
@@ -658,19 +658,19 @@ CleanseTagDesc:
 	next "#MON. (HOLD)@"
 
 MysticWaterDesc:
-	db   "Powers up water-"
-	next "type moves. (HOLD)@"
+	db   "Water-type"
+	next "moves +20%. (HOLD)@"
 
 TwistedSpoonDesc:
-	db   "Powers up psychic-"
-	next "type moves. (HOLD)@"
+	db   "Psychic-type"
+	next "moves +20%. (HOLD)@"
 
 WhtApricornDesc:
 	db   "A white APRICORN.@"
 
 BlackbeltDesc:
-	db   "Boosts fighting-"
-	next "type moves. (HOLD)@"
+	db   "Fighting-type"
+	next "moves +20%. (HOLD)@"
 
 BlkApricornDesc:
 	db   "A black APRICORN."
@@ -681,16 +681,16 @@ PnkApricornDesc:
 	next "@"
 
 BlackGlassesDesc:
-	db   "Powers up dark-"
-	next "type moves. (HOLD)@"
+	db   "Dark-type"
+	next "moves +20%. (HOLD)@"
 
 SlowpokeTailDesc:
 	db   "Very tasty. Sell"
 	next "high.@"
 
 PinkBowDesc:
-	db   "Powers up normal-"
-	next "type moves. (HOLD)@"
+	db   "Normal-type"
+	next "moves +20%. (HOLD)@"
 
 StickDesc:
 	db   "An ordinary stick."
@@ -701,12 +701,12 @@ SmokeBallDesc:
 	next "#MON. (HOLD)@"
 
 NeverMeltIceDesc:
-	db   "Powers up ice-type"
-	next "moves. (HOLD)@"
+	db   "Ice-type"
+	next "moves +20%. (HOLD)@"
 
 MagnetDesc:
-	db   "Boosts electric-"
-	next "type moves. (HOLD)@"
+	db   "Electric-type"
+	next "moves +20%. (HOLD)@"
 
 MiracleBerryDesc:
 	db   "Cures all status"
@@ -725,8 +725,8 @@ EverStoneDesc:
 	next "(HOLD)@"
 
 SpellTagDesc:
-	db   "Powers up ghost-"
-	next "type moves. (HOLD)@"
+	db   "Ghost-type"
+	next "moves +20%. (HOLD)@"
 
 RageCandyBarDesc:
 	db   "Restores #MON"
@@ -741,8 +741,8 @@ BlueCardDesc:
 	next "points.@"
 
 MiracleSeedDesc:
-	db   "Powers up grass-"
-	next "type moves. (HOLD)@"
+	db   "Grass-type"
+	next "moves +20%. (HOLD)@"
 
 ThickClubDesc:
 	db   "A bone of some"
@@ -773,8 +773,8 @@ RevivalHerbDesc:
 	next "#MON. Bitter.@"
 
 HardStoneDesc:
-	db   "Powers up rock-"
-	next "type moves. (HOLD)@"
+	db   "Rock-type"
+	next "moves +20%. (HOLD)@"
 
 LuckyEggDesc:
 	db   "Earns extra EXP."
@@ -884,8 +884,8 @@ ElementalSphereDesc:
 	next "lightning and ice.@"
 
 CharcoalDesc:
-	db   "Powers up fire-"
-	next "type moves. (HOLD)@"
+	db   "Fire-type"
+	next "moves +20%. (HOLD)@"
 
 BerryJuiceDesc:
 	db   "Restores #MON"
@@ -896,12 +896,12 @@ ScopeLensDesc:
 	next "hit ratio. (HOLD)@"
 
 MetalCoatDesc:
-	db   "Powers up steel-"
-	next "type moves. (HOLD)@"
+	db   "Steel-type"
+	next "moves +20%. (HOLD)@"
 
 DragonFangDesc:
-	db   "Powers up dragon-"
-	next "type moves. (HOLD)@"
+	db   "Dragon-type"
+	next "moves +20%. (HOLD)@"
 
 LeftoversDesc:
 	db   "Restores HP during"
@@ -1087,8 +1087,8 @@ BIG_PEARLDesc:
 	next "Sell it at a MART.@"
 
 POLKADOT_BOWDesc:
-	db "Powers up normal-"
-	next "type moves. (HOLD)@"
+	db "Fairy-type"
+	next "moves +20%. (HOLD)@"
 
 SURF_MAILDesc:
 	db "Mail for a #MON"

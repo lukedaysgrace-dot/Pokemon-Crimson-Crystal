@@ -357,7 +357,6 @@ SentretEvosAttacks:
 	dbw 5, FURY_SWIPES
 	dbw 15, SLAM
 	dbw 17, REST
-	dbw 20, FLAME_WHEEL
 	dbw 23, ZEN_HEADBUTT
 	dbw 26, AMNESIA
 	dbw 29, REVERSAL
@@ -380,7 +379,6 @@ FurretEvosAttacks:
 	dbw 15, AGILITY
 	dbw 15, SLAM
 	dbw 18, REST
-	dbw 22, FLAME_WHEEL
 	dbw 26, WORK_UP
 	dbw 26, ZEN_HEADBUTT
 	dbw 28, EXTREMESPEED
@@ -1268,7 +1266,6 @@ UmbreonEvosAttacks:
 	dbw 34, SNARL
 	dbw 34, SUCKER_PUNCH
 	dbw 36, SPITE
-	dbw 37, GUNK_SHOT
 	dbw 40, DARK_PULSE
 	dbw 40, FOUL_PLAY
 	dbw 45, SCREECH
@@ -3672,7 +3669,6 @@ AzurillEvosAttacks:
 	dbw 1, TAIL_WHIP
 	dbw 5, FORESIGHT
 	dbw 7, AQUA_JET
-	dbw 7, PIXIE_PUNCH
 	dbw 7, BUBBLE
 	dbw 10, CHARM
 	dbw 12, SLAM
@@ -7202,9 +7198,12 @@ UrsaringbmEvosAttacks:
 	dbw 8, FURY_SWIPES
 	dbw 15, FAINT_ATTACK
 	dbw 17, SWEET_SCENT
+	dbw 22, SLASH
 	dbw 30, WORK_UP
+	dbw 33, MUD_SHOT
 	dbw 35, SCARY_FACE
 	dbw 36, HYPER_VOICE
+	dbw 39, BODY_SLAM
 	dbw 41, REST
 	dbw 41, SNORE
 	db 0 ; no more level-up moves
@@ -8450,7 +8449,6 @@ PonytaGalarianEvosAttacks:
 	dbw 1, TACKLE
 	dbw 4, TAIL_WHIP
 	dbw 8, FAIRY_WIND
-	dbw 8, PIXIE_PUNCH
 	dbw 10, CONFUSION
 	dbw 16, STOMP
 	dbw 20, AGILITY
@@ -8473,7 +8471,6 @@ RapidashGalarianEvosAttacks:
 	dbw 1, MEGAHORN
 	dbw 1, QUICK_ATTACK
 	dbw 1, TACKLE
-	dbw 1, PIXIE_PUNCH
 	dbw 1, PSYCHO_CUT
 	dbw 1, BLAZE_KICK
 	dbw 4, TAIL_WHIP

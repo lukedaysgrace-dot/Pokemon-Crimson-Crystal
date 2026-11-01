@@ -3780,7 +3780,7 @@
           "map_source": "maps/CianwoodGym.asm"
         }
       ],
-      "description": "Boosts fightingtype moves. (HOLD)",
+      "description": "Fighting-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -3841,7 +3841,7 @@
           "map_source": "maps/Route36.asm"
         }
       ],
-      "description": "Powers up darktype moves. (HOLD)",
+      "description": "Dark-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -4123,7 +4123,7 @@
           "map_source": "maps/VictoryRoad.asm"
         }
       ],
-      "description": "Powers up firetype moves. (HOLD)",
+      "description": "Fire-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -4304,7 +4304,7 @@
           "line": 133
         }
       ],
-      "description": "Powers up dragontype moves. (HOLD)",
+      "description": "Dragon-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -5479,7 +5479,7 @@
           "held_source": "data/pokemon/base_stats/aron.asm"
         }
       ],
-      "description": "Powers up rocktype moves. (HOLD)",
+      "description": "Rock-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -8849,7 +8849,7 @@
           "map_source": "maps/VictoryRoad.asm"
         }
       ],
-      "description": "Boosts electrictype moves. (HOLD)",
+      "description": "Electric-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -8990,7 +8990,7 @@
           "held_source": "data/pokemon/base_stats/steelix.asm"
         }
       ],
-      "description": "Powers up steeltype moves. (HOLD)",
+      "description": "Steel-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -9174,7 +9174,7 @@
           "map_source": "maps/VictoryRoad.asm"
         }
       ],
-      "description": "Powers up grasstype moves. (HOLD)",
+      "description": "Grass-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -9429,7 +9429,7 @@
           "map_source": "maps/VictoryRoad.asm"
         }
       ],
-      "description": "Powers up watertype moves. (HOLD)",
+      "description": "Water-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -9490,7 +9490,7 @@
           "map_source": "maps/VictoryRoad.asm"
         }
       ],
-      "description": "Powers up ice-type moves. (HOLD)",
+      "description": "Ice-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -9532,7 +9532,7 @@
           "map_source": "maps/VermilionCity.asm"
         }
       ],
-      "description": "Powers up normaltype moves. (HOLD)",
+      "description": "Normal-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -9739,7 +9739,7 @@
           "held_source": "data/pokemon/base_stats/mareanie.asm"
         }
       ],
-      "description": "Powers up poisontype moves. (HOLD)",
+      "description": "Poison-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -9758,7 +9758,7 @@
           "map_line": 17
         }
       ],
-      "description": "Powers up normaltype moves. (HOLD)",
+      "description": "Fairy-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -10601,7 +10601,7 @@
           "held_source": "data/pokemon/base_stats/fearow.asm"
         }
       ],
-      "description": "Powers up flyingtype moves. (HOLD)",
+      "description": "Flying-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -10691,7 +10691,7 @@
           "held_source": "data/pokemon/base_stats/butterfree.asm"
         }
       ],
-      "description": "Powers up bug-type moves. (HOLD)",
+      "description": "Bug-type moves +20%. (HOLD)",
       "availability": "Held-item hunting",
       "notes": ""
     },
@@ -10766,7 +10766,7 @@
           "held_source": "data/pokemon/base_stats/diglett_alolan.asm"
         }
       ],
-      "description": "Powers up groundtype moves. (HOLD)",
+      "description": "Ground-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -10852,7 +10852,7 @@
           "map_source": "maps/VictoryRoad.asm"
         }
       ],
-      "description": "Powers up ghosttype moves. (HOLD)",
+      "description": "Ghost-type moves +20%. (HOLD)",
       "availability": "Held-item hunting",
       "notes": ""
     },
@@ -11113,7 +11113,7 @@
           "map_source": "maps/SilverCaveRoom3.asm"
         }
       ],
-      "description": "Powers up psychictype moves. (HOLD)",
+      "description": "Psychic-type moves +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },

@@ -2097,8 +2097,8 @@ WeatherBallDescription:
 	next "power in weather.@"
 
 IncinerateDescription:
-	db   "Burns the foe and"
-	next "its held BERRY.@"
+	db   "Fire hit that also"
+	next "burns up a BERRY.@"
 
 PsyshockDescription:
 	db   "Special hit uses"
