@@ -498,7 +498,9 @@
     "GOROCHU",
     "JIRACHI",
     "PHANTUMP",
-    "TREVENANT"
+    "TREVENANT",
+    "MIENFOO",
+    "MIENSHAO"
   ],
   "changes": {
     "SQUIRTLE": {
@@ -3193,7 +3195,7 @@
       "HEX"
     ]
   },
-  "unchanged_evolutions": "572ec5ea0a8f2c173379a607022a59a9725476428fe9da58dd53b3d422b6de71",
+  "unchanged_evolutions": "ea6f573a14d63099e454456c26c6b56efd8d3e9d335dbd31a712fda811f3fa6e",
   "unchanged_level_one": {
     "BULBASAUR": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
     "IVYSAUR": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
@@ -3692,11 +3694,17 @@
     "GOROCHU": "eeeeaafb7db0b58e1ecbd6b14489e59f3094b90290a4fc306781485a1922e17b",
     "JIRACHI": "12b4ceb4e935810de5fc0378cc0bd19ac659d9de14e2699ae30ea017e6a24a06",
     "PHANTUMP": "bfaf81c62ffef85fd205ac1d878e5aff4668ca8e89b3c0f2b66106e2a1da19cc",
-    "TREVENANT": "20c3264971cac4983b018d3764eb695bdf9f889f0ce92e50aff6b0070c9c6d0e"
+    "TREVENANT": "20c3264971cac4983b018d3764eb695bdf9f889f0ce92e50aff6b0070c9c6d0e",
+    "MIENFOO": "b843a206c1b4166509d6046aa74e9775c560cb377b122c6e41f94f0aefa32943",
+    "MIENSHAO": "007a7dfebc2b1badcf5ee282767888768260514e78912b41d5ca743b54db0b61"
   },
   "unchanged_runtime": {
     "engine/pokemon/evolve.asm": "3b4fddcf7f5e590dc05a4c25c32214118c406e01d472df5e30595009741fed05",
     "engine/events/move_deleter.asm": "c791df8a31222fbfd90e8afdfbb0a4884e0aa382c9c595e1d8f6b0b5a909e7d5",
     "main.asm": "1c4f18c116e7eda0c0c0debb671ee8950fa7560a1ce62b609e650252f2ffdd64"
+  },
+  "family_additions": {
+    "MIENFOO": "Crimson Fighting/Fairy martial arts: Pixie Punch 7, Play Rough 32, Spirit Break 48; Serene Grace; requested Iron Head and Zen Headbutt machines.",
+    "MIENSHAO": "Crimson Enhanced stats move 10 Sp. Atk into Speed (115 Speed / 85 Sp. Atk); Original stats remain canonical. Serene Grace and Fairy progression match Mienfoo."
   }
 }

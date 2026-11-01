@@ -1,0 +1,315 @@
+# The new family uses the same native combat and switch paths as the roster.
+- name: "Mienfoo: Serene Grace Force Palm paralyzes"
+  player: { species: MIENFOO, level: 50, ability: SERENE_GRACE, moves: [FORCE_PALM] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - (enemy.status & 64) != 0
+    - player.ability == 'SERENE_GRACE'
+
+- name: "Mienshao: Drain Punch restores HP after damaging the target"
+  player: { species: MIENSHAO, level: 50, ability: SERENE_GRACE, hp: 40, moves: [DRAIN_PUNCH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.hp > player.start_hp
+
+- name: "Mienfoo: U-turn triggers its Regenerator on the outgoing party member"
+  player: { species: MIENFOO, level: 50, ability: REGENERATOR, hp: 25, moves: [U_TURN] }
+  player2: { species: MIENSHAO, level: 50, moves: [POUND] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'MIENSHAO'
+    - wram16('wPartyMon1HP') > player.start_hp
+    - enemy.hp < enemy.start_hp
+
+- name: "Mienshao: Regenerator works on an ordinary switch"
+  player: { species: MIENSHAO, level: 50, ability: REGENERATOR, hp: 25, moves: [POUND] }
+  player2: { species: MIENFOO, level: 50, moves: [POUND] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  move_script: ["switch:2"]
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'MIENFOO'
+    - wram16('wPartyMon1HP') > player.start_hp
+
+- name: "Mienshao: High Jump Kick control damage"
+  id: mienshao_hjk_control
+  player: { species: MIENSHAO, level: 50, ability: NO_ABILITY, moves: [HI_JUMP_KICK] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Mienshao: Reckless boosts High Jump Kick"
+  player: { species: MIENSHAO, level: 50, ability: RECKLESS, moves: [HI_JUMP_KICK] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('mienshao_hjk_control')['enemy']['damage']
+
+- name: "Mienfoo: Fake Out hits and flinches on its first turn"
+  player: { species: MIENFOO, level: 50, ability: SERENE_GRACE, moves: [FAKE_OUT] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [TACKLE] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.hp == player.start_hp
+
+- name: "Mienshao: Aura Sphere uses the new species' special attack"
+  player: { species: MIENSHAO, level: 50, ability: SERENE_GRACE, moves: [AURA_SPHERE] }
+  enemy: { species: ONIX, level: 100, ability: NO_ABILITY, moves: [SPLASH], stages: { eva: 6 } }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+# Paired rolls prove Serene Grace uses the existing effect probabilities.
+- name: 'Mienshao: IRON_HEAD ordinary-chance control'
+  player:
+    species: MIENSHAO
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - IRON_HEAD
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - player.hp < player.start_hp
+
+- name: 'Mienshao: IRON_HEAD Serene Grace added effect'
+  player:
+    species: MIENSHAO
+    level: 50
+    ability: SERENE_GRACE
+    moves:
+    - IRON_HEAD
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - player.hp == player.start_hp
+
+- name: 'Mienshao: ROCK_SLIDE ordinary-chance control'
+  player:
+    species: MIENSHAO
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - ROCK_SLIDE
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - player.hp < player.start_hp
+
+- name: 'Mienshao: ROCK_SLIDE Serene Grace added effect'
+  player:
+    species: MIENSHAO
+    level: 50
+    ability: SERENE_GRACE
+    moves:
+    - ROCK_SLIDE
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - player.hp == player.start_hp
+
+- name: 'Mienfoo: POISON_JAB ordinary-chance control'
+  player:
+    species: MIENFOO
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - POISON_JAB
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - (enemy.status & 8) == 0
+
+- name: 'Mienfoo: POISON_JAB Serene Grace added effect'
+  player:
+    species: MIENFOO
+    level: 50
+    ability: SERENE_GRACE
+    moves:
+    - POISON_JAB
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - (enemy.status & 8) != 0
+
+- name: 'Mienshao: ZEN_HEADBUTT ordinary-chance control'
+  player:
+    species: MIENSHAO
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - ZEN_HEADBUTT
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced
+  rng_value: 96
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - player.hp < player.start_hp
+
+- name: 'Mienshao: ZEN_HEADBUTT Serene Grace added effect'
+  player:
+    species: MIENSHAO
+    level: 50
+    ability: SERENE_GRACE
+    moves:
+    - ZEN_HEADBUTT
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TACKLE
+  rng: forced
+  rng_value: 96
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - player.hp == player.start_hp
+
+- name: 'Mienfoo: FORCE_PALM ordinary-chance control'
+  player:
+    species: MIENFOO
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FORCE_PALM
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - (enemy.status & 64) == 0
+
+- name: 'Mienfoo: FORCE_PALM Serene Grace added effect'
+  player:
+    species: MIENFOO
+    level: 50
+    ability: SERENE_GRACE
+    moves:
+    - FORCE_PALM
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced
+  rng_value: 100
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - (enemy.status & 64) != 0
+
+- name: 'Mienshao: PLAY_ROUGH ordinary-chance control'
+  player:
+    species: MIENSHAO
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - PLAY_ROUGH
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - enemy.stat_levels[0] == 7
+
+- name: 'Mienshao: PLAY_ROUGH Serene Grace added effect'
+  player:
+    species: MIENSHAO
+    level: 50
+    ability: SERENE_GRACE
+    moves:
+    - PLAY_ROUGH
+  enemy:
+    species: SNORLAX
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert:
+  - enemy.hp < enemy.start_hp
+  - enemy.stat_levels[0] == 6
+

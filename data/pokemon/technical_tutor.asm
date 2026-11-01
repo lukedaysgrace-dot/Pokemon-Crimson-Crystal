@@ -500,6 +500,8 @@ TechnicalTutorPointers::
 	dba TechnicalTutor_JIRACHI ; JIRACHI
 	dba TechnicalTutor_PHANTUMP ; PHANTUMP
 	dba TechnicalTutor_TREVENANT ; TREVENANT
+	dba TechnicalTutor_MIENFOO ; MIENFOO
+	dba TechnicalTutor_MIENSHAO ; MIENSHAO
 assert (@ - TechnicalTutorPointers) == NUM_POKEMON * 3
 
 SECTION "Blackthorn Tutor Moves 1", ROMX
@@ -12557,4 +12559,57 @@ TechnicalTutor_TREVENANT:
 	dw TRICK
 	dw TRICK_ROOM
 	dw X_SCISSOR
+	dw 0
+
+TechnicalTutor_MIENFOO:
+	dw ACROBATICS
+	dw AERIAL_ACE
+	dw AGILITY
+	dw BRICK_BREAK
+	dw CLOSE_COMBAT
+	dw DOUBLE_TEAM
+	dw FOCUS_BLAST
+	dw FOCUS_ENERGY
+	dw FRUSTRATION
+	dw GRASS_KNOT
+	dw LOW_SWEEP
+	dw MEGA_KICK
+	dw MEGA_PUNCH
+	dw POISON_JAB
+	dw PSYCH_UP
+	dw ROCK_SLIDE
+	dw SNORE
+	dw STONE_EDGE
+	dw SWORDS_DANCE
+	dw TAKE_DOWN
+	dw TAUNT
+	dw 0
+
+TechnicalTutor_MIENSHAO:
+	dw ACROBATICS
+	dw AERIAL_ACE
+	dw AGILITY
+	dw BLAZE_KICK
+	dw BRICK_BREAK
+	dw CLOSE_COMBAT
+	dw DOUBLE_EDGE
+	dw DOUBLE_TEAM
+	dw FOCUS_BLAST
+	dw FOCUS_ENERGY
+	dw FRUSTRATION
+	dw GIGA_IMPACT
+	dw GRASS_KNOT
+	dw LOW_SWEEP
+	dw MEGA_KICK
+	dw MEGA_PUNCH
+	dw POISON_JAB
+	dw PSYCH_UP
+	dw ROCK_SLIDE
+	dw SNORE
+	dw STONE_EDGE
+	dw SWORDS_DANCE
+	dw TAKE_DOWN
+	dw TAUNT
+	dw TRIPLE_AXEL
+	dw VACUUM_WAVE
 	dw 0

@@ -31,6 +31,19 @@ Read this before changing the game. Keep it up to date when something here chang
   continue into `wMartExtraPrices` (14 items max).
 - Save format version is 5.
 
+## Species additions
+- There are 500 internal species indexes. Append new indexes to preserve saved
+  Pokémon; displayed regional numbering is in `data/pokemon/dex_order_new.asm`.
+- Mienfoo/Mienshao are internal 499/500, regional #262/#263, and evolve at level 50.
+  Their Field/Human-Like groups and supported move provenance are recorded in
+  `tools/testdata/mienfoo_mienshao.json`. Run `make test-mienfoo` for native checks.
+- Crimson Mienfoo/Mienshao are Fighting/Fairy with Serene Grace in slot 1;
+  Original typing is pure Fighting. Mienshao's Enhanced Speed/Sp. Atk are 115/85,
+  while Original retains 105/95. Their requested Fairy/coverage moves are authored
+  additions in `tools/testdata/authored_move_restorations.json`.
+- The current seen/caught fields are 63 bytes each (capacity 504 species).
+  Exceeding that capacity requires reviewing WRAM/SRAM and save migration.
+
 ## Intentional choices: do not "fix"
 - Proton's lines keep "damn": `maps/RadioTower4F.asm` ("Damn it! Not to") and
   `maps/SlowpokeWellB1F.asm` ("stopped a damn"). Never change them.

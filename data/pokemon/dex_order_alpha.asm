@@ -275,6 +275,8 @@ AlphabeticalPokedexOrder:
 	dw METAPOD
 	dw MEW
 	dw MEWTWO
+	dw MIENFOO
+	dw MIENSHAO
 	dw MILOTIC
 	dw MILTANK
 	dw MIME_JR_

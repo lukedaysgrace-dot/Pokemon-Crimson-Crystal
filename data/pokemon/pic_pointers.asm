@@ -1009,3 +1009,7 @@ PokemonPicPointers::
 	dba PhantumpBackpic
 	dba TrevenantFrontpic
 	dba TrevenantBackpic
+	dba MienfooFrontpic
+	dba MienfooBackpic
+	dba MienshaoFrontpic
+	dba MienshaoBackpic

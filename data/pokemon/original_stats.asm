@@ -544,6 +544,10 @@ OriginalPokemonStats:
 	db 100, 100, 100, 100, 100, 100
 	dw MEWTWO
 	db 106, 110,  90, 130, 154,  90
+	dw MIENFOO
+	db 45, 85, 50, 65, 55, 50
+	dw MIENSHAO
+	db 65, 125, 60, 105, 95, 60
 	dw MILOTIC
 	db  95,  60,  79,  81, 100, 125
 	dw MILTANK

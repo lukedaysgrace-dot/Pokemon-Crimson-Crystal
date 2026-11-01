@@ -499,4 +499,6 @@ PreEvolutionSpecies::
 	dw 0 ; JIRACHI
 	dw 0 ; PHANTUMP
 	dw PHANTUMP ; TREVENANT
+	dw 0 ; MIENFOO
+	dw MIENFOO ; MIENSHAO
 assert (@ - PreEvolutionSpecies) == NUM_POKEMON * 2

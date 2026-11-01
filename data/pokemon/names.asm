@@ -501,3 +501,5 @@ PokemonNames::
 	db "JIRACHI@@@"
 	db "PHANTUMP@@"
 	db "TREVENANT@"
+	db "MIENFOO@@@"
+	db "MIENSHAO@@"

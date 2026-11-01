@@ -499,3 +499,5 @@ IconPointers:
 	dba JirachiIcon
 	dba PhantumpIcon
 	dba TrevenantIcon
+	dba MienfooIcon
+	dba MienshaoIcon

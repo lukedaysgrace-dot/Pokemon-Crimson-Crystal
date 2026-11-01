@@ -1,6 +1,6 @@
 # Phantump, Trevenant and Horn Leech
 
-Phantump and Trevenant are regional Pokédex **#287 and #288**, immediately
+Phantump and Trevenant are regional Pokédex **#289 and #290**, immediately
 before the Duskull family. Their internal indexes are 497 and 498 so existing
 species indexes stay unchanged. Jirachi remains the last regional entry.
 

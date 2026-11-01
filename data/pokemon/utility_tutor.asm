@@ -500,5 +500,7 @@ UtilityTutorCompatibility:
 	db %00011111 ; JIRACHI
 	db %00000111 ; PHANTUMP
 	db %00000111 ; TREVENANT
+	db %00000111 ; MIENFOO
+	db %00000111 ; MIENSHAO
 UtilityTutorCompatibilityEnd:
 	assert UtilityTutorCompatibilityEnd - UtilityTutorCompatibility == NUM_POKEMON

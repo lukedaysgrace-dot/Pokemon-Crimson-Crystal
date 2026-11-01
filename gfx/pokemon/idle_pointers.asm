@@ -497,3 +497,5 @@ AnimationIdlePointers:
 	dba JirachiAnimationIdle
 	dba PhantumpAnimationIdle
 	dba TrevenantAnimationIdle
+	dba MienfooAnimationIdle
+	dba MienshaoAnimationIdle

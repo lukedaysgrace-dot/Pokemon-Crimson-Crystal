@@ -213,6 +213,12 @@ test-capture-field: pokecrystal.gbc
 test-evolutions: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_evolution_sweep.py pokecrystal.gbc
 
+.PHONY: test-mienfoo
+test-mienfoo: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_mienfoo_mienshao.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_mienfoo_mienshao.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render tools/battletest/tests/96-mienfoo-mienshao.yaml
+
 .PHONY: test-phantump
 test-phantump: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_phantump_trevenant.py pokecrystal.gbc

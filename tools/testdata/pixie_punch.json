@@ -17,7 +17,15 @@
     "WIGGLYTUFF": 1,
     "AZURILL": 7,
     "MARILL": 7,
-    "AZUMARILL": 7
+    "AZUMARILL": 7,
+    "MIENFOO": 7,
+    "MIENSHAO": 7
   },
-  "grandfathered": ["JIGGLYPUFF", "WIGGLYTUFF", "AZURILL", "MARILL", "AZUMARILL"]
+  "grandfathered": [
+    "JIGGLYPUFF",
+    "WIGGLYTUFF",
+    "AZURILL",
+    "MARILL",
+    "AZUMARILL"
+  ]
 }

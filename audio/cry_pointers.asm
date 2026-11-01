@@ -131,3 +131,5 @@ Cries:
 	dba Cry_PorygonZ
 	dba Cry_Phantump
 	dba Cry_Trevenant
+	dba Cry_Mienfoo
+	dba Cry_Mienshao

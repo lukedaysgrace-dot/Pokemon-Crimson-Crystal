@@ -36689,6 +36689,140 @@
       "WILL_O_WISP",
       "WOOD_HAMMER",
       "X_SCISSOR"
+    ],
+    "MIENFOO": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "ATTRACT",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BOUNCE",
+      "BRICK_BREAK",
+      "BULK_UP",
+      "CALM_MIND",
+      "CLOSE_COMBAT",
+      "DETECT",
+      "DIG",
+      "DOUBLESLAP",
+      "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
+      "ENDURE",
+      "FACADE",
+      "FAKE_OUT",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FORCE_PALM",
+      "FRUSTRATION",
+      "FURY_SWIPES",
+      "GRASS_KNOT",
+      "HIDDEN_POWER",
+      "HI_JUMP_KICK",
+      "HONE_CLAWS",
+      "JUMP_KICK",
+      "KNOCK_OFF",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEDITATE",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "POISON_JAB",
+      "POUND",
+      "PROTECT",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "ROCK_TOMB",
+      "SLEEP_TALK",
+      "SNORE",
+      "STONE_EDGE",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "SWIFT",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "TOXIC",
+      "U_TURN",
+      "VITAL_THROW",
+      "WORK_UP"
+    ],
+    "MIENSHAO": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "ATTRACT",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BLAZE_KICK",
+      "BOUNCE",
+      "BRICK_BREAK",
+      "BULK_UP",
+      "CALM_MIND",
+      "CLOSE_COMBAT",
+      "DETECT",
+      "DIG",
+      "DOUBLESLAP",
+      "DOUBLE_EDGE",
+      "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
+      "ENDURE",
+      "FACADE",
+      "FAKE_OUT",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FORCE_PALM",
+      "FRUSTRATION",
+      "FURY_SWIPES",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "HIDDEN_POWER",
+      "HI_JUMP_KICK",
+      "HONE_CLAWS",
+      "HYPER_BEAM",
+      "JUMP_KICK",
+      "KNOCK_OFF",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEDITATE",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "POISON_JAB",
+      "POUND",
+      "PROTECT",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "ROCK_TOMB",
+      "SLEEP_TALK",
+      "SNORE",
+      "STONE_EDGE",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "SWIFT",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "TOXIC",
+      "TRIPLE_AXEL",
+      "U_TURN",
+      "VACUUM_WAVE",
+      "VITAL_THROW",
+      "WORK_UP"
     ]
   },
   "lumi_forms": {
@@ -40704,7 +40838,7 @@
       "id": 669,
       "monsno": 669,
       "formno": 0,
-      "name": "Red Flower Flab\u00e9b\u00e9"
+      "name": "Red Flower Flabébé"
     },
     "floette": {
       "id": 670,
@@ -42972,7 +43106,7 @@
       "id": 1074,
       "monsno": 83,
       "formno": 1,
-      "name": "Galarian Farfetch\u2019d"
+      "name": "Galarian Farfetch’d"
     },
     "grimeralola": {
       "id": 1075,
@@ -49981,6 +50115,150 @@
     ],
     "SMEARGLE": [
       "TWIN_BEAM"
+    ],
+    "MIENFOO": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "ATTRACT",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BOUNCE",
+      "BRICK_BREAK",
+      "BULK_UP",
+      "CALM_MIND",
+      "CLOSE_COMBAT",
+      "DETECT",
+      "DIG",
+      "DOUBLESLAP",
+      "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
+      "ENDURE",
+      "FACADE",
+      "FAKE_OUT",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FORCE_PALM",
+      "FRUSTRATION",
+      "FURY_SWIPES",
+      "GRASS_KNOT",
+      "HIDDEN_POWER",
+      "HI_JUMP_KICK",
+      "HONE_CLAWS",
+      "IRON_HEAD",
+      "JUMP_KICK",
+      "KNOCK_OFF",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEDITATE",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "PIXIE_PUNCH",
+      "PLAY_ROUGH",
+      "POISON_JAB",
+      "POUND",
+      "PROTECT",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "ROCK_TOMB",
+      "SLEEP_TALK",
+      "SNORE",
+      "SPIRIT_BREAK",
+      "STONE_EDGE",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "SWIFT",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "TOXIC",
+      "U_TURN",
+      "VITAL_THROW",
+      "WORK_UP",
+      "ZEN_HEADBUTT"
+    ],
+    "MIENSHAO": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "ATTRACT",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BLAZE_KICK",
+      "BOUNCE",
+      "BRICK_BREAK",
+      "BULK_UP",
+      "CALM_MIND",
+      "CLOSE_COMBAT",
+      "DETECT",
+      "DIG",
+      "DOUBLESLAP",
+      "DOUBLE_EDGE",
+      "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
+      "ENDURE",
+      "FACADE",
+      "FAKE_OUT",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FORCE_PALM",
+      "FRUSTRATION",
+      "FURY_SWIPES",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "HIDDEN_POWER",
+      "HI_JUMP_KICK",
+      "HONE_CLAWS",
+      "HYPER_BEAM",
+      "IRON_HEAD",
+      "JUMP_KICK",
+      "KNOCK_OFF",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEDITATE",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "PIXIE_PUNCH",
+      "PLAY_ROUGH",
+      "POISON_JAB",
+      "POUND",
+      "PROTECT",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "ROCK_TOMB",
+      "SLEEP_TALK",
+      "SNORE",
+      "SPIRIT_BREAK",
+      "STONE_EDGE",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "SWIFT",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "TOXIC",
+      "TRIPLE_AXEL",
+      "U_TURN",
+      "VACUUM_WAVE",
+      "VITAL_THROW",
+      "WORK_UP",
+      "ZEN_HEADBUTT"
     ]
   },
   "removed_access": {
@@ -56886,6 +57164,1300 @@
       "TWIN_BEAM": [
         "sketch"
       ]
+    },
+    "MIENFOO": {
+      "ACROBATICS": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M"
+      ],
+      "AERIAL_ACE": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M40"
+      ],
+      "AGILITY": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M"
+      ],
+      "ATTRACT": [
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M45"
+      ],
+      "AURA_SPHERE": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L45",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L45",
+        "ps_learnsets.ts:mienfoo:7L61",
+        "ps_learnsets.ts:mienfoo:6L61",
+        "ps_learnsets.ts:mienfoo:5L61",
+        "lumi:619:L45"
+      ],
+      "BATON_PASS": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E"
+      ],
+      "BOUNCE": [
+        "ps_learnsets.ts:mienfoo:9L51",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L51",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:7L49",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:6L49",
+        "ps_learnsets.ts:mienfoo:5T",
+        "ps_learnsets.ts:mienfoo:5L49",
+        "lumi:619:L51"
+      ],
+      "BRICK_BREAK": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M31"
+      ],
+      "BULK_UP": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M8"
+      ],
+      "CALM_MIND": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L55",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L55",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:7L25",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:6L25",
+        "ps_learnsets.ts:mienfoo:5M",
+        "ps_learnsets.ts:mienfoo:5L25",
+        "lumi:619:L55",
+        "lumi:619:M4"
+      ],
+      "CLOSE_COMBAT": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "lumi:619:M125"
+      ],
+      "DETECT": [
+        "ps_learnsets.ts:mienfoo:9L1",
+        "ps_learnsets.ts:mienfoo:8L1",
+        "ps_learnsets.ts:mienfoo:7L9",
+        "ps_learnsets.ts:mienfoo:6L9",
+        "ps_learnsets.ts:mienfoo:5L9",
+        "lumi:619:L1"
+      ],
+      "DIG": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M28"
+      ],
+      "DOUBLESLAP": [
+        "ps_learnsets.ts:mienfoo:7L17",
+        "ps_learnsets.ts:mienfoo:6L17",
+        "ps_learnsets.ts:mienfoo:5L17"
+      ],
+      "DOUBLE_TEAM": [
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M32"
+      ],
+      "DRAIN_PUNCH": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L35",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L35",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:7L33",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:6L33",
+        "ps_learnsets.ts:mienfoo:5T",
+        "ps_learnsets.ts:mienfoo:5L33",
+        "lumi:619:L35",
+        "lumi:619:M60"
+      ],
+      "ENDURE": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E",
+        "lumi:619:M58"
+      ],
+      "FACADE": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M42"
+      ],
+      "FAKE_OUT": [
+        "ps_learnsets.ts:mienfoo:9L5",
+        "ps_learnsets.ts:mienfoo:8L5",
+        "ps_learnsets.ts:mienfoo:7L13",
+        "ps_learnsets.ts:mienfoo:6L13",
+        "ps_learnsets.ts:mienfoo:5L13",
+        "lumi:619:L5"
+      ],
+      "FOCUS_BLAST": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M52"
+      ],
+      "FOCUS_ENERGY": [
+        "ps_learnsets.ts:mienfoo:8M"
+      ],
+      "FORCE_PALM": [
+        "ps_learnsets.ts:mienfoo:9L25",
+        "ps_learnsets.ts:mienfoo:8L25",
+        "ps_learnsets.ts:mienfoo:7L29",
+        "ps_learnsets.ts:mienfoo:6L29",
+        "ps_learnsets.ts:mienfoo:5L29",
+        "lumi:619:L25"
+      ],
+      "FRUSTRATION": [
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M111"
+      ],
+      "FURY_SWIPES": [
+        "ps_learnsets.ts:mienfoo:9L15",
+        "ps_learnsets.ts:mienfoo:8L15",
+        "lumi:619:L15"
+      ],
+      "GRASS_KNOT": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M86"
+      ],
+      "HIDDEN_POWER": [
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M104"
+      ],
+      "HI_JUMP_KICK": [
+        "ps_learnsets.ts:mienfoo:9L60",
+        "ps_learnsets.ts:mienfoo:8L60",
+        "ps_learnsets.ts:mienfoo:7L50",
+        "ps_learnsets.ts:mienfoo:6L50",
+        "ps_learnsets.ts:mienfoo:5L53",
+        "lumi:619:L60"
+      ],
+      "HONE_CLAWS": [
+        "ps_learnsets.ts:mienfoo:9L40",
+        "ps_learnsets.ts:mienfoo:8L40",
+        "lumi:619:L40"
+      ],
+      "JUMP_KICK": [
+        "ps_learnsets.ts:mienfoo:7L37",
+        "ps_learnsets.ts:mienfoo:6L37",
+        "ps_learnsets.ts:mienfoo:5L37"
+      ],
+      "KNOCK_OFF": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9E",
+        "ps_learnsets.ts:mienfoo:8E",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5T",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E"
+      ],
+      "LOW_KICK": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5T",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E"
+      ],
+      "LOW_SWEEP": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M27"
+      ],
+      "MEDITATE": [
+        "ps_learnsets.ts:mienfoo:7L5",
+        "ps_learnsets.ts:mienfoo:6L5",
+        "ps_learnsets.ts:mienfoo:5L5"
+      ],
+      "MEGA_KICK": [
+        "ps_learnsets.ts:mienfoo:8M"
+      ],
+      "MEGA_PUNCH": [
+        "ps_learnsets.ts:mienfoo:8M"
+      ],
+      "POISON_JAB": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M84"
+      ],
+      "POUND": [
+        "ps_learnsets.ts:mienfoo:9L1",
+        "ps_learnsets.ts:mienfoo:8L1",
+        "ps_learnsets.ts:mienfoo:7L1",
+        "ps_learnsets.ts:mienfoo:6L1",
+        "ps_learnsets.ts:mienfoo:5L1",
+        "lumi:619:L1"
+      ],
+      "PROTECT": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M17"
+      ],
+      "PSYCH_UP": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M77"
+      ],
+      "RAIN_DANCE": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M18"
+      ],
+      "REFLECT": [
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M33"
+      ],
+      "REST": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M44"
+      ],
+      "RETURN": [
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M112"
+      ],
+      "REVERSAL": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L10",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L10",
+        "ps_learnsets.ts:mienfoo:7L57",
+        "ps_learnsets.ts:mienfoo:6L57",
+        "ps_learnsets.ts:mienfoo:5L57",
+        "lumi:619:L10"
+      ],
+      "ROCK_SLIDE": [
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M80"
+      ],
+      "ROCK_SMASH": [
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M98"
+      ],
+      "ROCK_TOMB": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M39"
+      ],
+      "SLEEP_TALK": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5T",
+        "lumi:619:M82"
+      ],
+      "SNORE": [
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:5T"
+      ],
+      "STONE_EDGE": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M71"
+      ],
+      "STRENGTH": [
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M96"
+      ],
+      "SUBSTITUTE": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M90"
+      ],
+      "SUNNY_DAY": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M11"
+      ],
+      "SWAGGER": [
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M87"
+      ],
+      "SWIFT": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7L21",
+        "ps_learnsets.ts:mienfoo:6L21",
+        "ps_learnsets.ts:mienfoo:5L21"
+      ],
+      "SWORDS_DANCE": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M75"
+      ],
+      "TAKE_DOWN": [
+        "ps_learnsets.ts:mienfoo:9M"
+      ],
+      "TAUNT": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M12"
+      ],
+      "TOXIC": [
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M6"
+      ],
+      "U_TURN": [
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L30",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L30",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:7L41",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:6L41",
+        "ps_learnsets.ts:mienfoo:5M",
+        "ps_learnsets.ts:mienfoo:5L41",
+        "lumi:619:L30",
+        "lumi:619:M89"
+      ],
+      "VITAL_THROW": [
+        "ps_learnsets.ts:mienfoo:8E",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E"
+      ],
+      "WORK_UP": [
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M10"
+      ],
+      "PIXIE_PUNCH": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ],
+      "PLAY_ROUGH": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ],
+      "SPIRIT_BREAK": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ],
+      "IRON_HEAD": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ],
+      "ZEN_HEADBUTT": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ]
+    },
+    "MIENSHAO": {
+      "ACROBATICS": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M"
+      ],
+      "AERIAL_ACE": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M40",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M40"
+      ],
+      "AGILITY": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M"
+      ],
+      "ATTRACT": [
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M45",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M45"
+      ],
+      "AURA_SPHERE": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:9L45",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:8L45",
+        "ps_learnsets.ts:mienshao:7L1",
+        "ps_learnsets.ts:mienshao:6L1",
+        "ps_learnsets.ts:mienshao:5L70",
+        "lumi:620:L45",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L45",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L45",
+        "ps_learnsets.ts:mienfoo:7L61",
+        "ps_learnsets.ts:mienfoo:6L61",
+        "ps_learnsets.ts:mienfoo:5L61",
+        "lumi:619:L45"
+      ],
+      "BATON_PASS": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "lumi:620:E",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E"
+      ],
+      "BLAZE_KICK": [
+        "ps_learnsets.ts:mienshao:8M"
+      ],
+      "BOUNCE": [
+        "ps_learnsets.ts:mienshao:9L53",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:8L53",
+        "ps_learnsets.ts:mienshao:7T",
+        "ps_learnsets.ts:mienshao:7L49",
+        "ps_learnsets.ts:mienshao:6T",
+        "ps_learnsets.ts:mienshao:6L49",
+        "ps_learnsets.ts:mienshao:5T",
+        "ps_learnsets.ts:mienshao:5L49",
+        "lumi:620:L53",
+        "ps_learnsets.ts:mienfoo:9L51",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L51",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:7L49",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:6L49",
+        "ps_learnsets.ts:mienfoo:5T",
+        "ps_learnsets.ts:mienfoo:5L49",
+        "lumi:619:L51"
+      ],
+      "BRICK_BREAK": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M31",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M31"
+      ],
+      "BULK_UP": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M8",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M8"
+      ],
+      "CALM_MIND": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:9L59",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:8L59",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:7L25",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:6L25",
+        "ps_learnsets.ts:mienshao:5M",
+        "ps_learnsets.ts:mienshao:5L25",
+        "lumi:620:L59",
+        "lumi:620:M4",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L55",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L55",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:7L25",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:6L25",
+        "ps_learnsets.ts:mienfoo:5M",
+        "ps_learnsets.ts:mienfoo:5L25",
+        "lumi:619:L55",
+        "lumi:619:M4"
+      ],
+      "CLOSE_COMBAT": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "lumi:620:M125",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "lumi:619:M125"
+      ],
+      "DETECT": [
+        "ps_learnsets.ts:mienshao:9L1",
+        "ps_learnsets.ts:mienshao:8L1",
+        "ps_learnsets.ts:mienshao:7L1",
+        "ps_learnsets.ts:mienshao:6L1",
+        "ps_learnsets.ts:mienshao:5L1",
+        "lumi:620:L1",
+        "ps_learnsets.ts:mienfoo:9L1",
+        "ps_learnsets.ts:mienfoo:8L1",
+        "ps_learnsets.ts:mienfoo:7L9",
+        "ps_learnsets.ts:mienfoo:6L9",
+        "ps_learnsets.ts:mienfoo:5L9",
+        "lumi:619:L1"
+      ],
+      "DIG": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M28",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M28"
+      ],
+      "DOUBLE_EDGE": [
+        "ps_learnsets.ts:mienshao:9M"
+      ],
+      "DOUBLESLAP": [
+        "ps_learnsets.ts:mienshao:7L17",
+        "ps_learnsets.ts:mienshao:6L17",
+        "ps_learnsets.ts:mienshao:5L17",
+        "ps_learnsets.ts:mienfoo:7L17",
+        "ps_learnsets.ts:mienfoo:6L17",
+        "ps_learnsets.ts:mienfoo:5L17"
+      ],
+      "DOUBLE_TEAM": [
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M32",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M32"
+      ],
+      "DRAIN_PUNCH": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:9L35",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:8L35",
+        "ps_learnsets.ts:mienshao:7T",
+        "ps_learnsets.ts:mienshao:7L33",
+        "ps_learnsets.ts:mienshao:6T",
+        "ps_learnsets.ts:mienshao:6L33",
+        "ps_learnsets.ts:mienshao:5T",
+        "ps_learnsets.ts:mienshao:5L33",
+        "lumi:620:L35",
+        "lumi:620:M60",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L35",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L35",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:7L33",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:6L33",
+        "ps_learnsets.ts:mienfoo:5T",
+        "ps_learnsets.ts:mienfoo:5L33",
+        "lumi:619:L35",
+        "lumi:619:M60"
+      ],
+      "ENDURE": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "lumi:620:E",
+        "lumi:620:M58",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E",
+        "lumi:619:M58"
+      ],
+      "FACADE": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M42",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M42"
+      ],
+      "FAKE_OUT": [
+        "ps_learnsets.ts:mienshao:9L1",
+        "ps_learnsets.ts:mienshao:8L1",
+        "ps_learnsets.ts:mienshao:7L1",
+        "ps_learnsets.ts:mienshao:7S0",
+        "ps_learnsets.ts:mienshao:6L1",
+        "ps_learnsets.ts:mienshao:5L1",
+        "lumi:620:L1",
+        "ps_learnsets.ts:mienfoo:9L5",
+        "ps_learnsets.ts:mienfoo:8L5",
+        "ps_learnsets.ts:mienfoo:7L13",
+        "ps_learnsets.ts:mienfoo:6L13",
+        "ps_learnsets.ts:mienfoo:5L13",
+        "lumi:619:L5"
+      ],
+      "FOCUS_BLAST": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M52",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M52"
+      ],
+      "FOCUS_ENERGY": [
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienfoo:8M"
+      ],
+      "FORCE_PALM": [
+        "ps_learnsets.ts:mienshao:9L25",
+        "ps_learnsets.ts:mienshao:8L25",
+        "ps_learnsets.ts:mienshao:7L29",
+        "ps_learnsets.ts:mienshao:6L29",
+        "ps_learnsets.ts:mienshao:5L29",
+        "lumi:620:L25",
+        "ps_learnsets.ts:mienfoo:9L25",
+        "ps_learnsets.ts:mienfoo:8L25",
+        "ps_learnsets.ts:mienfoo:7L29",
+        "ps_learnsets.ts:mienfoo:6L29",
+        "ps_learnsets.ts:mienfoo:5L29",
+        "lumi:619:L25"
+      ],
+      "FRUSTRATION": [
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M111",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M111"
+      ],
+      "FURY_SWIPES": [
+        "ps_learnsets.ts:mienshao:9L15",
+        "ps_learnsets.ts:mienshao:8L15",
+        "lumi:620:L15",
+        "ps_learnsets.ts:mienfoo:9L15",
+        "ps_learnsets.ts:mienfoo:8L15",
+        "lumi:619:L15"
+      ],
+      "GIGA_IMPACT": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M68"
+      ],
+      "GRASS_KNOT": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M86",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M86"
+      ],
+      "HIDDEN_POWER": [
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M104",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M104"
+      ],
+      "HI_JUMP_KICK": [
+        "ps_learnsets.ts:mienshao:9L66",
+        "ps_learnsets.ts:mienshao:8L66",
+        "ps_learnsets.ts:mienshao:7L56",
+        "ps_learnsets.ts:mienshao:7S0",
+        "ps_learnsets.ts:mienshao:6L56",
+        "ps_learnsets.ts:mienshao:5L56",
+        "lumi:620:L66",
+        "ps_learnsets.ts:mienfoo:9L60",
+        "ps_learnsets.ts:mienfoo:8L60",
+        "ps_learnsets.ts:mienfoo:7L50",
+        "ps_learnsets.ts:mienfoo:6L50",
+        "ps_learnsets.ts:mienfoo:5L53",
+        "lumi:619:L60"
+      ],
+      "HONE_CLAWS": [
+        "ps_learnsets.ts:mienshao:9L40",
+        "ps_learnsets.ts:mienshao:8L40",
+        "lumi:620:L40",
+        "ps_learnsets.ts:mienfoo:9L40",
+        "ps_learnsets.ts:mienfoo:8L40",
+        "lumi:619:L40"
+      ],
+      "HYPER_BEAM": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M15"
+      ],
+      "JUMP_KICK": [
+        "ps_learnsets.ts:mienshao:7L37",
+        "ps_learnsets.ts:mienshao:6L37",
+        "ps_learnsets.ts:mienshao:5L37",
+        "ps_learnsets.ts:mienfoo:7L37",
+        "ps_learnsets.ts:mienfoo:6L37",
+        "ps_learnsets.ts:mienfoo:5L37"
+      ],
+      "KNOCK_OFF": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:7T",
+        "ps_learnsets.ts:mienshao:6T",
+        "ps_learnsets.ts:mienshao:5T",
+        "lumi:620:E",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9E",
+        "ps_learnsets.ts:mienfoo:8E",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5T",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E"
+      ],
+      "LOW_KICK": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7T",
+        "ps_learnsets.ts:mienshao:6T",
+        "ps_learnsets.ts:mienshao:5T",
+        "lumi:620:E",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5T",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E"
+      ],
+      "LOW_SWEEP": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M27",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M27"
+      ],
+      "MEDITATE": [
+        "ps_learnsets.ts:mienshao:7L1",
+        "ps_learnsets.ts:mienshao:6L1",
+        "ps_learnsets.ts:mienshao:5L1",
+        "ps_learnsets.ts:mienfoo:7L5",
+        "ps_learnsets.ts:mienfoo:6L5",
+        "ps_learnsets.ts:mienfoo:5L5"
+      ],
+      "MEGA_KICK": [
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienfoo:8M"
+      ],
+      "MEGA_PUNCH": [
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienfoo:8M"
+      ],
+      "POISON_JAB": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M84",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M84"
+      ],
+      "POUND": [
+        "ps_learnsets.ts:mienshao:9L1",
+        "ps_learnsets.ts:mienshao:8L1",
+        "ps_learnsets.ts:mienshao:7L1",
+        "ps_learnsets.ts:mienshao:6L1",
+        "ps_learnsets.ts:mienshao:5L1",
+        "lumi:620:L1",
+        "ps_learnsets.ts:mienfoo:9L1",
+        "ps_learnsets.ts:mienfoo:8L1",
+        "ps_learnsets.ts:mienfoo:7L1",
+        "ps_learnsets.ts:mienfoo:6L1",
+        "ps_learnsets.ts:mienfoo:5L1",
+        "lumi:619:L1"
+      ],
+      "PROTECT": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M17",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M17"
+      ],
+      "PSYCH_UP": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M77",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M77"
+      ],
+      "RAIN_DANCE": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M18",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M18"
+      ],
+      "REFLECT": [
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M33",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M33"
+      ],
+      "REST": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M44",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M44"
+      ],
+      "RETURN": [
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M112",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M112"
+      ],
+      "REVERSAL": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:9L1",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:8L1",
+        "ps_learnsets.ts:mienshao:7L1",
+        "ps_learnsets.ts:mienshao:6L1",
+        "ps_learnsets.ts:mienshao:5L63",
+        "lumi:620:L1",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L10",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L10",
+        "ps_learnsets.ts:mienfoo:7L57",
+        "ps_learnsets.ts:mienfoo:6L57",
+        "ps_learnsets.ts:mienfoo:5L57",
+        "lumi:619:L10"
+      ],
+      "ROCK_SLIDE": [
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M80",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M80"
+      ],
+      "ROCK_SMASH": [
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M98",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M98"
+      ],
+      "ROCK_TOMB": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M39",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M39"
+      ],
+      "SLEEP_TALK": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5T",
+        "lumi:620:M82",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5T",
+        "lumi:619:M82"
+      ],
+      "SNORE": [
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7T",
+        "ps_learnsets.ts:mienshao:6T",
+        "ps_learnsets.ts:mienshao:5T",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7T",
+        "ps_learnsets.ts:mienfoo:6T",
+        "ps_learnsets.ts:mienfoo:5T"
+      ],
+      "STONE_EDGE": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M71",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M71"
+      ],
+      "STRENGTH": [
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M96",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M96"
+      ],
+      "SUBSTITUTE": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M90",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M90"
+      ],
+      "SUNNY_DAY": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M11",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M11"
+      ],
+      "SWAGGER": [
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M87",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M87"
+      ],
+      "SWIFT": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7L21",
+        "ps_learnsets.ts:mienshao:6L21",
+        "ps_learnsets.ts:mienshao:5L21",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7L21",
+        "ps_learnsets.ts:mienfoo:6L21",
+        "ps_learnsets.ts:mienfoo:5L21"
+      ],
+      "SWORDS_DANCE": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M75",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M75"
+      ],
+      "TAKE_DOWN": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienfoo:9M"
+      ],
+      "TAUNT": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M12",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M12"
+      ],
+      "TOXIC": [
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M6",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M6"
+      ],
+      "TRIPLE_AXEL": [
+        "ps_learnsets.ts:mienshao:9M"
+      ],
+      "U_TURN": [
+        "ps_learnsets.ts:mienshao:9M",
+        "ps_learnsets.ts:mienshao:9L30",
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:8L30",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:7L41",
+        "ps_learnsets.ts:mienshao:7S0",
+        "ps_learnsets.ts:mienshao:6M",
+        "ps_learnsets.ts:mienshao:6L41",
+        "ps_learnsets.ts:mienshao:5M",
+        "ps_learnsets.ts:mienshao:5L41",
+        "lumi:620:L30",
+        "lumi:620:M89",
+        "ps_learnsets.ts:mienfoo:9M",
+        "ps_learnsets.ts:mienfoo:9L30",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:8L30",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:7L41",
+        "ps_learnsets.ts:mienfoo:6M",
+        "ps_learnsets.ts:mienfoo:6L41",
+        "ps_learnsets.ts:mienfoo:5M",
+        "ps_learnsets.ts:mienfoo:5L41",
+        "lumi:619:L30",
+        "lumi:619:M89"
+      ],
+      "VACUUM_WAVE": [
+        "ps_learnsets.ts:mienshao:9M"
+      ],
+      "WORK_UP": [
+        "ps_learnsets.ts:mienshao:8M",
+        "ps_learnsets.ts:mienshao:7M",
+        "ps_learnsets.ts:mienshao:5M",
+        "lumi:620:M10",
+        "ps_learnsets.ts:mienfoo:8M",
+        "ps_learnsets.ts:mienfoo:7M",
+        "ps_learnsets.ts:mienfoo:5M",
+        "lumi:619:M10"
+      ],
+      "VITAL_THROW": [
+        "lumi:620:E",
+        "ps_learnsets.ts:mienfoo:8E",
+        "ps_learnsets.ts:mienfoo:7E",
+        "ps_learnsets.ts:mienfoo:6E",
+        "ps_learnsets.ts:mienfoo:5E",
+        "lumi:619:E"
+      ],
+      "PIXIE_PUNCH": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ],
+      "PLAY_ROUGH": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ],
+      "SPIRIT_BREAK": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ],
+      "IRON_HEAD": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ],
+      "ZEN_HEADBUTT": [
+        "Authored: user request 2026-11-01, Crimson Fairy martial-arts progression and coverage"
+      ]
     }
   },
   "unimplemented_moves": [
@@ -56951,7 +58523,7 @@
     "Flower Shield",
     "Focus Punch",
     "Follow Me",
-    "Forest\u2019s Curse",
+    "Forest’s Curse",
     "Frost Breath",
     "Gastro Acid",
     "Grass Whistle",
@@ -95156,6 +96728,150 @@
       "WILL_O_WISP",
       "WOOD_HAMMER",
       "X_SCISSOR"
+    ],
+    "MIENFOO": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "ATTRACT",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BOUNCE",
+      "BRICK_BREAK",
+      "BULK_UP",
+      "CALM_MIND",
+      "CLOSE_COMBAT",
+      "DETECT",
+      "DIG",
+      "DOUBLESLAP",
+      "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
+      "ENDURE",
+      "FACADE",
+      "FAKE_OUT",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FORCE_PALM",
+      "FRUSTRATION",
+      "FURY_SWIPES",
+      "GRASS_KNOT",
+      "HIDDEN_POWER",
+      "HI_JUMP_KICK",
+      "HONE_CLAWS",
+      "IRON_HEAD",
+      "JUMP_KICK",
+      "KNOCK_OFF",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEDITATE",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "PIXIE_PUNCH",
+      "PLAY_ROUGH",
+      "POISON_JAB",
+      "POUND",
+      "PROTECT",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "ROCK_TOMB",
+      "SLEEP_TALK",
+      "SNORE",
+      "SPIRIT_BREAK",
+      "STONE_EDGE",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "SWIFT",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "TOXIC",
+      "U_TURN",
+      "VITAL_THROW",
+      "WORK_UP",
+      "ZEN_HEADBUTT"
+    ],
+    "MIENSHAO": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "ATTRACT",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BLAZE_KICK",
+      "BOUNCE",
+      "BRICK_BREAK",
+      "BULK_UP",
+      "CALM_MIND",
+      "CLOSE_COMBAT",
+      "DETECT",
+      "DIG",
+      "DOUBLESLAP",
+      "DOUBLE_EDGE",
+      "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
+      "ENDURE",
+      "FACADE",
+      "FAKE_OUT",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FORCE_PALM",
+      "FRUSTRATION",
+      "FURY_SWIPES",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "HIDDEN_POWER",
+      "HI_JUMP_KICK",
+      "HONE_CLAWS",
+      "HYPER_BEAM",
+      "IRON_HEAD",
+      "JUMP_KICK",
+      "KNOCK_OFF",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEDITATE",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "PIXIE_PUNCH",
+      "PLAY_ROUGH",
+      "POISON_JAB",
+      "POUND",
+      "PROTECT",
+      "PSYCH_UP",
+      "RAIN_DANCE",
+      "REFLECT",
+      "REST",
+      "RETURN",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "ROCK_TOMB",
+      "SLEEP_TALK",
+      "SNORE",
+      "SPIRIT_BREAK",
+      "STONE_EDGE",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SWAGGER",
+      "SWIFT",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "TOXIC",
+      "TRIPLE_AXEL",
+      "U_TURN",
+      "VACUUM_WAVE",
+      "VITAL_THROW",
+      "WORK_UP",
+      "ZEN_HEADBUTT"
     ]
   },
   "final_level_up": {
@@ -138142,6 +139858,178 @@
         48,
         "DESTINY_BOND"
       ]
+    ],
+    "MIENFOO": [
+      [
+        1,
+        "POUND"
+      ],
+      [
+        1,
+        "DETECT"
+      ],
+      [
+        5,
+        "FAKE_OUT"
+      ],
+      [
+        7,
+        "PIXIE_PUNCH"
+      ],
+      [
+        8,
+        "MEDITATE"
+      ],
+      [
+        10,
+        "REVERSAL"
+      ],
+      [
+        12,
+        "LOW_KICK"
+      ],
+      [
+        15,
+        "FURY_SWIPES"
+      ],
+      [
+        17,
+        "DOUBLESLAP"
+      ],
+      [
+        21,
+        "SWIFT"
+      ],
+      [
+        25,
+        "FORCE_PALM"
+      ],
+      [
+        30,
+        "U_TURN"
+      ],
+      [
+        32,
+        "PLAY_ROUGH"
+      ],
+      [
+        35,
+        "DRAIN_PUNCH"
+      ],
+      [
+        37,
+        "JUMP_KICK"
+      ],
+      [
+        40,
+        "HONE_CLAWS"
+      ],
+      [
+        45,
+        "AURA_SPHERE"
+      ],
+      [
+        48,
+        "SPIRIT_BREAK"
+      ],
+      [
+        51,
+        "BOUNCE"
+      ],
+      [
+        55,
+        "CALM_MIND"
+      ],
+      [
+        60,
+        "HI_JUMP_KICK"
+      ]
+    ],
+    "MIENSHAO": [
+      [
+        1,
+        "POUND"
+      ],
+      [
+        1,
+        "DETECT"
+      ],
+      [
+        1,
+        "FAKE_OUT"
+      ],
+      [
+        1,
+        "REVERSAL"
+      ],
+      [
+        1,
+        "MEDITATE"
+      ],
+      [
+        7,
+        "PIXIE_PUNCH"
+      ],
+      [
+        12,
+        "LOW_KICK"
+      ],
+      [
+        15,
+        "FURY_SWIPES"
+      ],
+      [
+        17,
+        "DOUBLESLAP"
+      ],
+      [
+        21,
+        "SWIFT"
+      ],
+      [
+        25,
+        "FORCE_PALM"
+      ],
+      [
+        30,
+        "U_TURN"
+      ],
+      [
+        32,
+        "PLAY_ROUGH"
+      ],
+      [
+        35,
+        "DRAIN_PUNCH"
+      ],
+      [
+        37,
+        "JUMP_KICK"
+      ],
+      [
+        40,
+        "HONE_CLAWS"
+      ],
+      [
+        45,
+        "AURA_SPHERE"
+      ],
+      [
+        48,
+        "SPIRIT_BREAK"
+      ],
+      [
+        53,
+        "BOUNCE"
+      ],
+      [
+        59,
+        "CALM_MIND"
+      ],
+      [
+        66,
+        "HI_JUMP_KICK"
+      ]
     ]
   },
   "final_tmhm": {
@@ -151004,6 +152892,53 @@
       "THIEF",
       "TOXIC",
       "WILL_O_WISP"
+    ],
+    "MIENFOO": [
+      "DRAIN_PUNCH",
+      "ROCK_TOMB",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "WORK_UP",
+      "PROTECT",
+      "RAIN_DANCE",
+      "FACADE",
+      "IRON_HEAD",
+      "RETURN",
+      "DIG",
+      "SWAGGER",
+      "KNOCK_OFF",
+      "SWIFT",
+      "BULK_UP",
+      "REST",
+      "ATTRACT",
+      "ZEN_HEADBUTT",
+      "STRENGTH"
+    ],
+    "MIENSHAO": [
+      "DRAIN_PUNCH",
+      "ROCK_TOMB",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "WORK_UP",
+      "HYPER_BEAM",
+      "PROTECT",
+      "RAIN_DANCE",
+      "FACADE",
+      "IRON_HEAD",
+      "RETURN",
+      "DIG",
+      "SWAGGER",
+      "KNOCK_OFF",
+      "SWIFT",
+      "BULK_UP",
+      "REST",
+      "ATTRACT",
+      "ZEN_HEADBUTT",
+      "STRENGTH"
     ]
   },
   "final_egg_moves": {
@@ -153340,6 +155275,13 @@
       "STEEL_WING",
       "WING_ATTACK",
       "ZEN_HEADBUTT"
+    ],
+    "MIENFOO": [
+      "BATON_PASS",
+      "ENDURE",
+      "KNOCK_OFF",
+      "LOW_KICK",
+      "VITAL_THROW"
     ]
   },
   "final_utility": {
@@ -153840,7 +155782,9 @@
     "GOROCHU": 31,
     "JIRACHI": 31,
     "PHANTUMP": 7,
-    "TREVENANT": 7
+    "TREVENANT": 7,
+    "MIENFOO": 7,
+    "MIENSHAO": 7
   },
   "final_tutors": {
     "BULBASAUR": [
@@ -165856,6 +167800,57 @@
       "TRICK",
       "TRICK_ROOM",
       "X_SCISSOR"
+    ],
+    "MIENFOO": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
+      "DOUBLE_TEAM",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FRUSTRATION",
+      "GRASS_KNOT",
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "POISON_JAB",
+      "PSYCH_UP",
+      "ROCK_SLIDE",
+      "SNORE",
+      "STONE_EDGE",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT"
+    ],
+    "MIENSHAO": [
+      "ACROBATICS",
+      "AERIAL_ACE",
+      "AGILITY",
+      "BLAZE_KICK",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
+      "DOUBLE_EDGE",
+      "DOUBLE_TEAM",
+      "FOCUS_BLAST",
+      "FOCUS_ENERGY",
+      "FRUSTRATION",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "POISON_JAB",
+      "PSYCH_UP",
+      "ROCK_SLIDE",
+      "SNORE",
+      "STONE_EDGE",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "TRIPLE_AXEL",
+      "VACUUM_WAVE"
     ]
   },
   "sketch_access": [
@@ -205496,7 +207491,9 @@
       "WILL_O_WISP",
       "WOOD_HAMMER",
       "X_SCISSOR"
-    ]
+    ],
+    "MIENFOO": [],
+    "MIENSHAO": []
   },
   "authored_restorations": "tools/testdata/authored_move_restorations.json"
 }

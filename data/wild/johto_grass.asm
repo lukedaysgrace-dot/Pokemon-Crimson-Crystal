@@ -604,7 +604,7 @@ JohtoGrassWildMons:
 	dbw 29, GEODUDE
 	dbw 30, RATTATA
 	dbw 31, MACHOP
-	dbw 30, MANKEY
+	dbw 30, MIENFOO
 	dbw 31, ZUBAT
 	dbw 31, ONIX
 	dbw 31, RHYHORN
@@ -612,7 +612,7 @@ JohtoGrassWildMons:
 	dbw 29, RHYHORN
 	dbw 30, CUBONE
 	dbw 31, MACHOP
-	dbw 30, MANKEY
+	dbw 30, MIENFOO
 	dbw 31, ARON
 	dbw 31, ZUBAT
 	dbw 31, DRILBUR
@@ -620,7 +620,7 @@ JohtoGrassWildMons:
 	dbw 29, SCRAGGY
 	dbw 30, NUMEL
 	dbw 31, RATTATA
-	dbw 30, TIMBURR
+	dbw 30, MIENFOO
 	dbw 31, MARILL
 	dbw 31, ZUBAT
 	dbw 31, PAWNIARD
@@ -642,7 +642,7 @@ JohtoGrassWildMons:
 	dbw 46, BRELOOM
 	dbw 44, MAROWAK
 	dbw 47, EXCADRILL
-	dbw 46, DUGTRIO
+	dbw 50, MIENSHAO
 	; nite
 	dbw 47, HITMONLEE
 	dbw 47, HITMONCHAN

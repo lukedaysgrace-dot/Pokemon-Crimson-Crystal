@@ -2983,6 +2983,18 @@
    "weight_hg": 70,
    "dex_lbs_x10": 154
   },
+  "MIENFOO": {
+   "dex_entry": "mienfoo",
+   "source": "mienfoo",
+   "weight_hg": 200,
+   "dex_lbs_x10": 441
+  },
+  "MIENSHAO": {
+   "dex_entry": "mienshao",
+   "source": "mienshao",
+   "weight_hg": 355,
+   "dex_lbs_x10": 783
+  },
   "TREVENANT": {
    "dex_entry": "trevenant",
    "source": "trevenant",

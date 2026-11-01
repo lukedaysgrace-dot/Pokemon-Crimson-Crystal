@@ -496,3 +496,5 @@ INCBIN "gfx/footprints/raichu.1bpp" ; GOROCHU
 INCBIN "gfx/footprints/jirachi.1bpp" ; JIRACHI
 INCBIN "gfx/footprints/phantump.1bpp" ; PHANTUMP
 INCBIN "gfx/footprints/trevenant.1bpp" ; TREVENANT
+INCBIN "gfx/footprints/mienfoo.1bpp" ; MIENFOO
+INCBIN "gfx/footprints/mienshao.1bpp" ; MIENSHAO

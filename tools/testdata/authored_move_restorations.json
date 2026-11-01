@@ -1,6 +1,6 @@
 {
   "removed_commit": "de9c06cf98b567091b59946e38dde5f5440decb0",
-  "policy": "Restore only the requested entries at their pre-trimming levels and acquisition routes. Exclusions apply to direct species assignments; normal evolution and shared family breeding still apply. All four Slowbro/Slowking forms retain Slack Off instead of Recover.",
+  "policy": "Restore only the requested entries at their pre-trimming levels and acquisition routes. Exclusions apply to direct species assignments; normal evolution and shared family breeding still apply. All four Slowbro/Slowking forms retain Slack Off instead of Recover. Requested Crimson Mienfoo/Mienshao Fairy progression and coverage additions are recorded separately from canonical history.",
   "requested": {
     "CHARIZARD": [
       "DRACO_METEOR",
@@ -514,6 +514,26 @@
     ],
     "CROBAT": [
       "POISON_JAB"
+    ],
+    "MIENFOO": [
+      "PIXIE_PUNCH",
+      "PLAY_ROUGH",
+      "SPIRIT_BREAK",
+      "IRON_HEAD",
+      "ROCK_SLIDE",
+      "POISON_JAB",
+      "ZEN_HEADBUTT",
+      "FORCE_PALM"
+    ],
+    "MIENSHAO": [
+      "PIXIE_PUNCH",
+      "PLAY_ROUGH",
+      "SPIRIT_BREAK",
+      "IRON_HEAD",
+      "ROCK_SLIDE",
+      "POISON_JAB",
+      "ZEN_HEADBUTT",
+      "FORCE_PALM"
     ]
   },
   "excluded": {
@@ -1247,6 +1267,34 @@
         40,
         "POISON_JAB"
       ]
+    ],
+    "MIENFOO": [
+      [
+        7,
+        "PIXIE_PUNCH"
+      ],
+      [
+        32,
+        "PLAY_ROUGH"
+      ],
+      [
+        48,
+        "SPIRIT_BREAK"
+      ]
+    ],
+    "MIENSHAO": [
+      [
+        7,
+        "PIXIE_PUNCH"
+      ],
+      [
+        32,
+        "PLAY_ROUGH"
+      ],
+      [
+        48,
+        "SPIRIT_BREAK"
+      ]
     ]
   },
   "tmhm": {
@@ -1388,6 +1436,14 @@
     ],
     "KROOKODILE": [
       "NIGHT_SLASH"
+    ],
+    "MIENFOO": [
+      "IRON_HEAD",
+      "ZEN_HEADBUTT"
+    ],
+    "MIENSHAO": [
+      "IRON_HEAD",
+      "ZEN_HEADBUTT"
     ]
   },
   "egg_moves": {

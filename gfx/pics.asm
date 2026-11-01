@@ -1531,3 +1531,13 @@ SECTION "Trevenant Pics", ROMX
 
 TrevenantFrontpic: INCBIN "gfx/pokemon/trevenant/front.animated.2bpp.lz"
 TrevenantBackpic: INCBIN "gfx/pokemon/trevenant/back.2bpp.lz"
+
+SECTION "Mienfoo Pics", ROMX
+
+MienfooFrontpic: INCBIN "gfx/pokemon/mienfoo/front.animated.2bpp.lz"
+MienfooBackpic: INCBIN "gfx/pokemon/mienfoo/back.2bpp.lz"
+
+SECTION "Mienshao Pics", ROMX
+
+MienshaoFrontpic: INCBIN "gfx/pokemon/mienshao/front.animated.2bpp.lz"
+MienshaoBackpic: INCBIN "gfx/pokemon/mienshao/back.2bpp.lz"
