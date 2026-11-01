@@ -4186,8 +4186,8 @@
   turns: 2
   assert:
   - enemy.hp < enemy.maxhp
-  - enemy.maxhp - enemy.hp == result('modern_metronome_charge_control')['enemy']['damage']
-  - wram("wPlayerMetronomeCount") == 0
+  - enemy.maxhp - enemy.hp > result('modern_metronome_charge_control')['enemy']['damage']
+  - wram("wPlayerMetronomeCount") == 1
 - name: 'Modern item: RED_CARD not triggered by status'
   player:
     species: MEW
@@ -4784,3 +4784,316 @@
   - player.stat_levels[2] == 9
   - enemy.item == 'RED_CARD'
   - wram("wCurBattleMon") == 0
+# Independent item review: OHKO exceptions, first kick misses, crash order.
+- name: 'Modern item: Blunder Policy inaccurate move into type immunity (player)'
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [DYNAMICPUNCH], item: BLUNDER_POLICY}
+  enemy: {species: GENGAR, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: [player.item == 'BLUNDER_POLICY', 'player.stat_levels[2] == 7', enemy.hp == enemy.maxhp]
+- name: 'Modern item: Blunder Policy inaccurate move into type immunity (enemy)'
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [DYNAMICPUNCH], item: BLUNDER_POLICY}
+  player: {species: GENGAR, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: [enemy.item == 'BLUNDER_POLICY', 'enemy.stat_levels[2] == 7', player.hp == player.maxhp]
+- name: 'Modern item: Blunder Policy ignores FISSURE miss (player)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FISSURE
+    item: BLUNDER_POLICY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+  - player.item == 'BLUNDER_POLICY'
+  - player.stat_levels[2] == 7
+  - enemy.hp == enemy.maxhp
+- name: 'Modern item: Blunder Policy ignores GUILLOTINE miss (player)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - GUILLOTINE
+    item: BLUNDER_POLICY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+  - player.item == 'BLUNDER_POLICY'
+  - player.stat_levels[2] == 7
+  - enemy.hp == enemy.maxhp
+- name: 'Modern item: Blunder Policy ignores HORN_DRILL miss (player)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - HORN_DRILL
+    item: BLUNDER_POLICY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+  - player.item == 'BLUNDER_POLICY'
+  - player.stat_levels[2] == 7
+  - enemy.hp == enemy.maxhp
+- name: 'Modern item: Blunder Policy first TRIPLE_KICK miss activates (player)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TRIPLE_KICK
+    item: BLUNDER_POLICY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 244
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[2] == 9
+  - enemy.hp == enemy.maxhp
+- name: 'Modern item: Blunder Policy first TRIPLE_AXEL miss activates (player)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TRIPLE_AXEL
+    item: BLUNDER_POLICY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 244
+  turns: 1
+  assert:
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[2] == 9
+  - enemy.hp == enemy.maxhp
+- name: 'Modern item: Jump Kick crash control (player)'
+  id: modern_crash_control_player
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - HI_JUMP_KICK
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 244
+  turns: 1
+  assert:
+  - player.hp < player.maxhp
+  - enemy.hp == enemy.maxhp
+- name: 'Modern item: Blunder Policy follows miss before crash (player)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - HI_JUMP_KICK
+    item: BLUNDER_POLICY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 244
+  turns: 1
+  assert:
+  - player.hp < player.maxhp
+  - enemy.hp == enemy.maxhp
+  - player.item == 'NO_ITEM'
+  - player.stat_levels[2] == 9
+  - player.hp == result('modern_crash_control_player')['player']['hp']
+  - textbox_before('AttackMissedText', 'AbilityItemActivatedText')
+  - textbox_before('AbilityItemActivatedText', 'CrashedText')
+- name: 'Modern item: Blunder Policy ignores FISSURE miss (enemy)'
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - FISSURE
+    item: BLUNDER_POLICY
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+  - enemy.item == 'BLUNDER_POLICY'
+  - enemy.stat_levels[2] == 7
+  - player.hp == player.maxhp
+- name: 'Modern item: Blunder Policy ignores GUILLOTINE miss (enemy)'
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - GUILLOTINE
+    item: BLUNDER_POLICY
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+  - enemy.item == 'BLUNDER_POLICY'
+  - enemy.stat_levels[2] == 7
+  - player.hp == player.maxhp
+- name: 'Modern item: Blunder Policy ignores HORN_DRILL miss (enemy)'
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - HORN_DRILL
+    item: BLUNDER_POLICY
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+  - enemy.item == 'BLUNDER_POLICY'
+  - enemy.stat_levels[2] == 7
+  - player.hp == player.maxhp
+- name: 'Modern item: Blunder Policy first TRIPLE_KICK miss activates (enemy)'
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TRIPLE_KICK
+    item: BLUNDER_POLICY
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 244
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.stat_levels[2] == 9
+  - player.hp == player.maxhp
+- name: 'Modern item: Blunder Policy first TRIPLE_AXEL miss activates (enemy)'
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - TRIPLE_AXEL
+    item: BLUNDER_POLICY
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 244
+  turns: 1
+  assert:
+  - enemy.item == 'NO_ITEM'
+  - enemy.stat_levels[2] == 9
+  - player.hp == player.maxhp
+- name: 'Modern item: Jump Kick crash control (enemy)'
+  id: modern_crash_control_enemy
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - HI_JUMP_KICK
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 244
+  turns: 1
+  assert:
+  - enemy.hp < enemy.maxhp
+  - player.hp == player.maxhp
+- name: 'Modern item: Blunder Policy follows miss before crash (enemy)'
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - HI_JUMP_KICK
+    item: BLUNDER_POLICY
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves:
+    - SPLASH
+  rng: forced_high
+  rng_value: 244
+  turns: 1
+  assert:
+  - enemy.hp < enemy.maxhp
+  - player.hp == player.maxhp
+  - enemy.item == 'NO_ITEM'
+  - enemy.stat_levels[2] == 9
+  - enemy.hp == result('modern_crash_control_enemy')['enemy']['hp']
+  - textbox_before('AttackMissedText', 'AbilityItemActivatedText')
+  - textbox_before('AbilityItemActivatedText', 'CrashedText')

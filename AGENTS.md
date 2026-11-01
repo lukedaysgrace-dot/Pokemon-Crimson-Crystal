@@ -60,6 +60,9 @@ Read this before changing the game. Keep it up to date when something here chang
   their stats qualify. See `excluded` in `tools/testdata/pixie_punch.json`.
 
 ## Test harness quirks
+- Entry tests must use a legal species/ability pair. Arbitrary lead ability
+  overrides are applied after entry; a post-entry ability assertion alone
+  does not prove that ability was active during switch-in effects.
 - A PyBoy hook can fire twice for one object when an interrupt lands on the hooked
   instruction. In animation tests, more spawns than queue attempts is not a bug. Only
   attempts greater than spawns means an object was dropped.

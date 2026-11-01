@@ -593,8 +593,13 @@ def audit_move_mechanics(audit: Audit) -> None:
         )
 
     battle_core = read("engine/battle/core.asm")
-    spikes_damage = "\n".join(global_blocks(battle_core).get("SpikesDamage", []))
-    spikes_call = spikes_damage.find("call .Spikes")
+    spikes_damage = "\n".join(
+        line.split(";", 1)[0]
+        for line in global_blocks(battle_core).get("SpikesDamage", [])
+    )
+    # Boots conditionally skip Spikes but still reach Poison-type absorption.
+    spikes_match = re.search(r"^\s*call\s+(?:nz,\s*)?\.Spikes\s*$", spikes_damage, re.MULTILINE)
+    spikes_call = spikes_match.start() if spikes_match else -1
     spikes_faint_gate = spikes_damage.find("UserHasFainted")
     toxic_spikes_call = spikes_damage.find("ToxicSpikesPoison")
     audit.check(

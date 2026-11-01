@@ -2671,6 +2671,8 @@ GetFailureResultText:
 	ld hl, UnaffectedText
 .got_text
 	call FailText_CheckOpponentProtect
+	; Blunder Policy follows the miss message, before Jump Kick's crash.
+	farcall ModernBlunderPolicyMoveEnd_Core
 	xor a
 	ld [wCriticalHit], a
 

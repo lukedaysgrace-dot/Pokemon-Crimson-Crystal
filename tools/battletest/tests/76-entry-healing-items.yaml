@@ -1,4 +1,6 @@
 # Held-item updates after entry abilities, before the first move.
+# Entry fixtures must use a legal species/ability slot. Arbitrary lead
+# overrides are applied after entry; Golett has Klutz in slot 2.
 - name: 'Entry item: player RIPEN'
   player:
     species: APPLIN
@@ -20,6 +22,46 @@
   - player.hp == (player.maxhp * 45) // 100 + 20
   - player.item == "NO_ITEM"
   - wram("wInAbility") == 0
+  - turns_done == 0
+- name: 'Entry item: player Golett Iron Fist control consumes Berry'
+  player: {species: GOLETT, level: 100, ability: IRON_FIST, hp: 45, item: BERRY, moves: [SPLASH]}
+  enemy: {species: MAGIKARP, level: 100, ability: SWIFT_SWIM, moves: [SPLASH]}
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.ability == 'IRON_FIST'
+  - player.hp == (player.maxhp * 45) // 100 + 10
+  - player.item == 'NO_ITEM'
+  - turns_done == 0
+- name: 'Entry item: enemy Golett Iron Fist control consumes Berry'
+  enemy: {species: GOLETT, level: 100, ability: IRON_FIST, hp: 45, item: BERRY, moves: [SPLASH]}
+  player: {species: MAGIKARP, level: 100, ability: SWIFT_SWIM, moves: [SPLASH]}
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.ability == 'IRON_FIST'
+  - enemy.hp == (enemy.maxhp * 45) // 100 + 10
+  - enemy.item == 'NO_ITEM'
+  - turns_done == 0
+- name: 'Entry item: player Golett Gas suppresses Klutz before Berry check'
+  player: {species: GOLETT, level: 100, ability: KLUTZ, hp: 45, item: BERRY, moves: [SPLASH]}
+  enemy: {species: WEEZING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  rng: forced_high
+  turns: 0
+  assert:
+  - player.ability == 'KLUTZ'
+  - player.hp == (player.maxhp * 45) // 100 + 10
+  - player.item == 'NO_ITEM'
+  - turns_done == 0
+- name: 'Entry item: enemy Golett Gas suppresses Klutz before Berry check'
+  enemy: {species: GOLETT, level: 100, ability: KLUTZ, hp: 45, item: BERRY, moves: [SPLASH]}
+  player: {species: WEEZING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  rng: forced_high
+  turns: 0
+  assert:
+  - enemy.ability == 'KLUTZ'
+  - enemy.hp == (enemy.maxhp * 45) // 100 + 10
+  - enemy.item == 'NO_ITEM'
   - turns_done == 0
 - name: 'Entry item: player GLUTTONY'
   player:
@@ -45,7 +87,7 @@
   - turns_done == 0
 - name: 'Entry item: player KLUTZ'
   player:
-    species: BUNEARY
+    species: GOLETT
     level: 100
     ability: KLUTZ
     hp: 45
@@ -63,6 +105,7 @@
   assert:
   - player.hp == (player.maxhp * 45) // 100 + 0
   - player.item == "BERRY"
+  - player.ability == 'KLUTZ'
   - wram("wInAbility") == 0
   - turns_done == 0
 - name: 'Entry item: player UNNERVE'
@@ -163,7 +206,7 @@
     moves:
     - SPLASH
   enemy:
-    species: BUNEARY
+    species: GOLETT
     level: 100
     ability: KLUTZ
     moves:
@@ -173,6 +216,9 @@
   assert:
   - player.hp == (player.maxhp * 45) // 100 + 0
   - player.item == "BERRY"
+  - player.ability == 'KLUTZ'
+  - enemy.ability == 'KLUTZ'
+  - ability_seen('TRACE')
   - wram("wInAbility") == 0
   - turns_done == 0
 - name: 'Entry item: player JUICE_UNNERVE'
@@ -243,7 +289,7 @@
   - turns_done == 0
 - name: 'Entry item: enemy KLUTZ'
   enemy:
-    species: BUNEARY
+    species: GOLETT
     level: 100
     ability: KLUTZ
     hp: 45
@@ -261,6 +307,7 @@
   assert:
   - enemy.hp == (enemy.maxhp * 45) // 100 + 0
   - enemy.item == "BERRY"
+  - enemy.ability == 'KLUTZ'
   - wram("wInAbility") == 0
   - turns_done == 0
 - name: 'Entry item: enemy UNNERVE'
@@ -361,7 +408,7 @@
     moves:
     - SPLASH
   player:
-    species: BUNEARY
+    species: GOLETT
     level: 100
     ability: KLUTZ
     moves:
@@ -371,6 +418,9 @@
   assert:
   - enemy.hp == (enemy.maxhp * 45) // 100 + 0
   - enemy.item == "BERRY"
+  - enemy.ability == 'KLUTZ'
+  - player.ability == 'KLUTZ'
+  - ability_seen('TRACE')
   - wram("wInAbility") == 0
   - turns_done == 0
 - name: 'Entry item: enemy JUICE_UNNERVE'
