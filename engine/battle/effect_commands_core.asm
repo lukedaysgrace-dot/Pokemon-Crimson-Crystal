@@ -1024,10 +1024,7 @@ BattleCheckCharge_Core:
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	bit SUBSTATUS_CHARGED, [hl]
-	jr nz, .second_turn
-	farcall ModernPowerHerb_Core
-	ret
-.second_turn
+	ret z ; first turn: the charge command handles Power Herb
 	res SUBSTATUS_CHARGED, [hl]
 	res SUBSTATUS_UNDERGROUND, [hl]
 	res SUBSTATUS_FLYING, [hl]

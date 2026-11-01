@@ -4470,8 +4470,8 @@ SpikesDamage:
 	callfar GetUserItem
 	ld a, b
 	cp HELD_HEAVY_DUTY_BOOTS
-	ret z
-	call .Spikes
+	; Boots skip Spikes; ToxicSpikesPoison handles the other hazards.
+	call nz, .Spikes
 	; Do not run later entry hazards after Spikes knocked out the switch-in.
 	; Besides being nonsensical, Toxic Spikes could otherwise poison the
 	; fainted mon and consume its status-curing held item.

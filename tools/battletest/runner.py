@@ -103,6 +103,7 @@ class Harness:
         self.pb.set_emulation_speed(0)
         self.battle = Battle(self.pb, self.sym, self.con)
         self.battle.textbox_contexts = set()
+        self.battle.textbox_order = []
         self.fixture = None  # BytesIO of the DEBUG-menu state
         self.text_context = None
         self.text_overflows = []
@@ -146,6 +147,7 @@ class Harness:
         bank = self.battle.mem.read("hROMBank") if address >= 0x4000 else 0
         self.text_context = self.sym.nearest(bank, address)
         self.battle.textbox_contexts.add(self.text_context)
+        self.battle.textbox_order.append(self.text_context)
 
     def _end_text(self, _context):
         self.text_context = None
@@ -246,6 +248,7 @@ class Harness:
         self.text_context = None
         self.text_overflows = []
         self.battle.textbox_contexts.clear()
+        self.battle.textbox_order.clear()
 
     def run_battle(self, test):
         """Write request, run to the assertion point. Returns reached state."""
@@ -360,6 +363,11 @@ class AssertionContext:
             "textbox_seen": lambda label: any(context == label or context.startswith(label + "+")
                                              for context in b.textbox_contexts),
             "ability_seen": b.ability_seen,
+            # True if textbox label `first` was printed before label `second`
+            "textbox_before": lambda first, second: (
+                lambda order: first in order and second in order
+                and order.index(first) < order.index(second))(
+                [c.split("+")[0] for c in getattr(b, "textbox_order", [])]),
             "buffer_is": b.buffer_is,
             # name of the move the AI picked last (wCurEnemyMove, 8-bit ID)
             "enemy_move": lambda: b.con.moves_by_index.get(

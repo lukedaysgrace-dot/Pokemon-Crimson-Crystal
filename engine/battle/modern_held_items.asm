@@ -205,6 +205,9 @@ ModernCustapOrder_Core::
 
 ModernMetronomeMove_Core::
 ; Called once per executed move script, never once per hit.
+	; A new move never inherits another move's Blunder Policy miss.
+	xor a
+	ld [wBlunderPolicyPending], a
 	; Releasing a charged move is the same use, not a second selection.
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
@@ -212,12 +215,20 @@ ModernMetronomeMove_Core::
 	ret nz
 	ld hl, wPlayerMetronomeMove
 	ld de, wPlayerMetronomeCount
+	ld bc, wPlayerMetronomeLanded
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .got
 	inc hl
 	inc de
+	inc bc
 .got
+	; Gen V+: the chain only continues if the previous use landed. A miss,
+	; a failed move or a turn lost before moving (see DoTurn) resets it.
+	ld a, [bc]
+	push af
+	xor a
+	ld [bc], a
 	push hl
 	push de
 	callfar GetUserItem
@@ -225,7 +236,10 @@ ModernMetronomeMove_Core::
 	pop de
 	pop hl
 	cp HELD_METRONOME
-	jr nz, .reset
+	jr nz, .reset_pop
+	pop af
+	and a
+	jr z, .restart
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	cp [hl]
@@ -236,12 +250,28 @@ ModernMetronomeMove_Core::
 	inc a
 	ld [de], a
 	ret
-.reset
+.restart
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	jr .new
+.reset_pop
+	pop af
 	xor a
 .new
 	ld [hl], a
 	xor a
 	ld [de], a
+	ret
+
+ModernMetronomeLostTurn_Core::
+; The user lost its turn before moving (paralysis, flinch, sleep...).
+	ld hl, wPlayerMetronomeLanded
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got
+	inc hl
+.got
+	ld [hl], 0
 	ret
 
 ModernDamageItems_Core::
@@ -394,32 +424,62 @@ ModernScreenDuration_Core::
 	pop bc
 	ret
 
-ModernPowerHerb_Core::
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_SOLARBEAM
-	jr nz, .item
-	ld a, [wBattleWeather]
-	cp WEATHER_SUN
-	ret z
-.item
+ModernPowerHerbCheck_Core::
+; Carry if the user's Power Herb skips this charge turn. Reached from the
+; charge command, so checkobedience/doturn (PP) have already run, and a
+; sunny Solar Beam has already skipped the charge (item kept).
 	callfar GetUserItem
 	ld a, b
 	cp HELD_POWER_HERB
-	ret nz
-	call ModernConsumeUserItem_Core
-	ld b, charge_command
-	farcall SkipToBattleCommand
+	jr nz, .no
+	scf
 	ret
+.no
+	and a
+	ret
+
+ModernPowerHerbUse_Core::
+; Skull Bash keeps its charge-turn Defense raise when the herb skips it.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_SKULL_BASH
+	jp nz, ModernConsumeUserItem_Core
+	ld b, DEFENSE
+	jp ModernRaiseUserStat_Core
 
 ModernBlunderPolicy_Core::
 ; Only reached by the accuracy roll, never Protect/type/semi-invulnerability.
+; The item activates after the miss (and any crash) text: see MoveEnd below.
+	ld a, TRUE
+	ld [wBlunderPolicyPending], a
+	ret
+
+ModernBlunderPolicyMoveEnd_Core::
+	ld hl, wBlunderPolicyPending
+	ld a, [hl]
+	ld [hl], 0
+	and a
+	ret z
+	farcall UserHasFainted ; e.g. a Hi Jump Kick crash KO
+	ret z
 	callfar GetUserItem
 	ld a, b
 	cp HELD_BLUNDER_POLICY
 	ret nz
+	; Later move-end events still see this move's miss state.
+	ld a, [wAttackMissed]
+	ld e, a
+	ld a, [wEffectFailed]
+	ld d, a
+	push de
 	ld b, $10 | SPEED
-	jp ModernRaiseUserStat_Core
+	call ModernRaiseUserStat_Core
+	pop de
+	ld a, e
+	ld [wAttackMissed], a
+	ld a, d
+	ld [wEffectFailed], a
+	ret
 
 ModernThroatSpray_Core::
 	call ModernMoveSuppressesSecondary_Core
@@ -432,12 +492,19 @@ ModernThroatSpray_Core::
 	ret nz
 	farcall ModernSoundMoveCheck_Core
 	ret nc
+	; A landed damaging sound move is a successful use even when its
+	; secondary drop then fails (which sets wAttackMissed after the hit).
+	farcall ReadAfterMoveAbilitiesPending_Core
+	ld a, b
+	and a
+	jr nz, .used
 	ld a, [wAttackMissed]
 	and a
 	ret nz
 	ld a, [wEffectFailed]
 	and a
 	ret nz
+.used
 	ld hl, wPlayerStatLevels + SP_ATTACK
 	ldh a, [hBattleTurn]
 	and a

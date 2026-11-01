@@ -4820,6 +4820,7 @@ RunContactAbilitiesHook::
 	ret ; recoil and move-end reactions follow the completed move script
 
 RunAfterMoveAbilities_Core::
+	farcall ModernBlunderPolicyMoveEnd_Core
 	farcall ModernThroatSpray_Core
 	farcall ModernReactiveSwitch_Core
 	farcall ReadAfterMoveAbilitiesPending_Core
@@ -5367,6 +5368,13 @@ EffectSporeAbility:
 	ret z
 	call GetOpponentAbility
 	cp OVERCOAT
+	ret z
+	; Safety Goggles also make the attacker immune to Effect Spore.
+	call SwitchTurn
+	farcall ModernGogglesUser_Core
+	push af
+	call SwitchTurn
+	pop af
 	ret z
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar

@@ -873,6 +873,12 @@ HandleRoost:
 ToxicSpikesPoison:
 ; Poison a grounded mon switching in if toxic spikes lie on its side.
 ; Like SpikesDamage, the victim is the current turn holder.
+	; Heavy-Duty Boots skip every hazard, but the holder is still grounded:
+	; a Poison-type absorbs Toxic Spikes (.toxic_spikes handles the boots).
+	callfar GetUserItem
+	ld a, b
+	cp HELD_HEAVY_DUTY_BOOTS
+	jp z, .toxic_spikes
 	; Stealth Rock and Sticky Web share this switch-in hook (same bank).
 	call StealthRockEntryDamage
 	; Stealth Rock may have knocked out the switch-in. Toxic Spikes must not
@@ -934,6 +940,12 @@ ToxicSpikesPoison:
 	pop hl
 	cp HELD_AIR_BALLOON
 	ret z
+	cp HELD_HEAVY_DUTY_BOOTS
+	jr nz, .no_boots
+	; Boots: only Poison-type absorption below applies. IMMUNITY in c takes
+	; the poison-prevention exit right after that check.
+	ld c, IMMUNITY
+.no_boots
 	ld a, [de] ; restore type2 for the checks below
 
 	; Grounded Poison-types absorb the toxic spikes (even Poison/Steel)

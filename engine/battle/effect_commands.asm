@@ -39,8 +39,11 @@ DoTurn:
 
 	ld a, [wTurnEnded]
 	and a
-	ret nz
+	jr z, .can_move
+	farcall ModernMetronomeLostTurn_Core
+	ret
 
+.can_move
 	call UpdateMoveData
 
 DoMove:
@@ -4671,6 +4674,13 @@ BattleCommand_StatDown::
 	ld [wFailedMessage], a
 	ret
 .NotSelfInflicted
+	; A missed move or a failed secondary roll lowers nothing, so Clear
+	; Amulet, Clear Body, Contrary and Mirror Armor must not react to it.
+	ld a, [wAttackMissed]
+	ld b, a
+	ld a, [wEffectFailed]
+	or b
+	jp nz, StatDownSkipProtect.Failed
 	; A Substitute blocks a move's stat drop outright, before the target's
 	; abilities can react to it (Contrary/Clear Body/Mirror Armor banners
 	; must not fire behind a sub). Reflection already ran in DoMove.
@@ -5886,6 +5896,15 @@ BattleCommand_Charge:
 	jp EndMoveEffect
 
 .awake
+	; Power Herb: show the charge message, then attack this turn.
+	farcall ModernPowerHerbCheck_Core
+	jr nc, .charge
+	ld hl, .UsedText
+	call BattleTextbox
+	farcall ModernPowerHerbUse_Core
+	ret
+
+.charge
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	set SUBSTATUS_CHARGED, [hl]
