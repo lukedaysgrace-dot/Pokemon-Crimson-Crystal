@@ -113,7 +113,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Nevermeltice](#nevermeltice) | Ground pickup, Trainer item |
 | [Pink Bow](#pink_bow) | Gift / reward, Trainer item |
 | [Poison Barb](#poison_barb) | Gift / reward, Wild Pokémon |
-| [Polkadot Bow](#polkadot_bow) | Shop |
+| [Polkadot Bow](#polkadot_bow) | Gift / reward, Shop |
 | [Power Herb](#power_herb) | Unavailable |
 | [Punch Glove](#punching_glove) | Unavailable |
 | [Quick Claw](#quick_claw) | Gift / reward, Trainer item, Wild Pokémon |
@@ -1355,7 +1355,6 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
-| Goldenrod Radio Tower 4F | **Gift / reward** — DJ Mary; after clearing Team Rocket from the Radio Tower. |
 | Route 29 | **Gift / reward** — Tuscany; Tuesday. |
 | Route 43 | **Gift / reward** — Picnicker Tiffany’s phone gift; register her number and return when she calls with a gift. |
 | Vermilion City | **Trainer item** — Cooltrainer Chantz: Persian Lv. 51. |
@@ -1391,6 +1390,7 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
+| Goldenrod Radio Tower 4F | **Gift / reward** — DJ Mary; after clearing Team Rocket from the Radio Tower. |
 | Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽1,000. |
 
 <a id="power_herb"></a>

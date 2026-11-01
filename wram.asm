@@ -817,6 +817,11 @@ wPlayerMetronomeCount:: db
 wEnemyMetronomeCount:: db
 wPlayerItemSwitchPending:: db
 wEnemyItemSwitchPending:: db
+; TRUE once the side's current move has landed a hit (Metronome item chain).
+wPlayerMetronomeLanded:: db
+wEnemyMetronomeLanded:: db
+; Set by the mover's accuracy-roll miss; Blunder Policy resolves at move end.
+wBlunderPolicyPending:: db
 wBattleEnd::
 
 NEXTU ; c608

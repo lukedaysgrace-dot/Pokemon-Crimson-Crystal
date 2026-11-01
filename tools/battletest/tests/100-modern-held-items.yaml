@@ -397,6 +397,7 @@
   - player.stat_levels[1] == 6
   - player.stat_levels[4] == 6
 - name: 'Modern item: Clear Amulet blocks entry Intimidate'
+  # Gyarados: Intimidate must be the species' own slot to fire on entry.
   player:
     species: MEW
     level: 50
@@ -405,7 +406,7 @@
     - SPLASH
     item: CLEAR_AMULET
   enemy:
-    species: MEW
+    species: GYARADOS
     level: 50
     ability: INTIMIDATE
     moves:
@@ -4287,3 +4288,499 @@
   assert:
   - player.species == 'SNORLAX'
   - wram('wPartyMon1Item') != 0
+# Regressions from the 2026-11-01 held-item audit (Power Herb PP/Skull Bash,
+# Throat Spray, Metronome resets, Boots + Toxic Spikes, Goggles + Effect Spore,
+# stat-drop protection on missed moves / failed secondaries).
+- name: 'Modern item: Power Herb Solar Beam spends PP'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SOLARBEAM]
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: [player.item == 'NO_ITEM', enemy.hp < enemy.maxhp, 'player.pp[0] == 9']
+- name: 'Modern item: Power Herb Skull Bash raises Defense'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SKULL_BASH]
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: [player.item == 'NO_ITEM', enemy.hp < enemy.maxhp, 'player.stat_levels[1] == 8']
+- name: 'Modern item: Throat Spray Bug Buzz without secondary'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [BUG_BUZZ]
+    item: THROAT_SPRAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: [enemy.hp < enemy.maxhp, player.item == 'NO_ITEM', 'player.stat_levels[3] == 8']
+- name: 'Modern item: Throat Spray Snarl into Clear Amulet'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SNARL]
+    item: THROAT_SPRAY
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: CLEAR_AMULET
+  rng: forced_low
+  turns: 1
+  assert: [enemy.hp < enemy.maxhp, 'enemy.stat_levels[3] == 7', player.item == 'NO_ITEM', 'player.stat_levels[3] == 8']
+- name: 'Modern item: Metronome resets after a miss'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TACKLE]
+    item: METRONOME_ITEM
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 3
+  turn_setup_wram:
+    1: {wEnemySubStatus3: 64}
+    2: {wEnemySubStatus3: 0}
+  turn_assert: [wram("wPlayerMetronomeCount") <= 2]
+  assert: [wram("wPlayerMetronomeCount") == 0]
+- name: 'Modern item: Boots Poison-type still absorbs Toxic Spikes'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TOXIC_SPIKES]
+  rng: forced_high
+  turns: 2
+  player2:
+    species: GRIMER
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: HEAVY_DUTY_BOOTS
+  move_script: [1, 'switch:2']
+  assert: [(wram("wPlayerScreens") & 0x60) == 0x20]
+- name: 'Modern item: Boots control Poison-type absorbs Toxic Spikes'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TOXIC_SPIKES]
+  rng: forced_high
+  turns: 2
+  player2:
+    species: GRIMER
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  move_script: [1, 'switch:2']
+  assert: [(wram("wPlayerScreens") & 0x60) == 0x20]
+- name: 'Modern item: Goggles block Effect Spore'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TACKLE]
+    item: SAFETY_GOGGLES
+  enemy:
+    species: MEW
+    level: 50
+    ability: EFFECT_SPORE
+    moves: [SPLASH]
+  rng: forced_low
+  turns: 1
+  assert: [enemy.hp < enemy.maxhp, player.status == 0]
+- name: 'Modern item: Effect Spore control'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TACKLE]
+  enemy:
+    species: MEW
+    level: 50
+    ability: EFFECT_SPORE
+    moves: [SPLASH]
+  rng: forced_low
+  turns: 1
+  assert: [player.status != 0]
+- name: 'Modern item: White Herb after Sticky Web'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [STICKY_WEB]
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: WHITE_HERB
+  move_script: [1, 'switch:2']
+  assert: ['player.stat_levels[2] == 7', player.item == 'NO_ITEM']
+- name: 'Modern item: Eject Button switches player (multi-hit)'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: EJECT_BUTTON
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [DOUBLE_KICK]
+  rng: seeded
+  turns: 1
+  assert: [wram("wCurBattleMon") == 1]
+- name: 'Modern item: White Herb after Intimidate'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: WHITE_HERB
+  enemy:
+    species: GYARADOS
+    level: 50
+    ability: INTIMIDATE
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: ['player.stat_levels[0] == 7', player.item == 'NO_ITEM']
+- name: 'Modern item: Intimidate control'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  enemy:
+    species: GYARADOS
+    level: 50
+    ability: INTIMIDATE
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: ['player.stat_levels[0] == 6']
+- name: 'Modern item: Clear Amulet blocks Intimidate'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: CLEAR_AMULET
+  enemy:
+    species: GYARADOS
+    level: 50
+    ability: INTIMIDATE
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: ['player.stat_levels[0] == 7', player.item == 'CLEAR_AMULET']
+- name: 'Modern item: Clear Body quiet when Psychic secondary misses'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [PSYCHIC_M]
+  enemy:
+    species: TENTACRUEL
+    level: 50
+    ability: CLEAR_BODY
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: [not ability_seen('CLEAR_BODY')]
+- name: 'Modern item: Contrary ignores failed Psychic secondary'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [PSYCHIC_M]
+  enemy:
+    species: SHUCKLE
+    level: 50
+    ability: CONTRARY
+    ability_slot: hidden
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: ['enemy.stat_levels[4] == 7']
+- name: 'Modern item: Cloak blocks Fake Out'
+  player:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves: [FAKE_OUT]
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TACKLE]
+    item: COVERT_CLOAK
+  rng: forced_low
+  turns: 1
+  assert: [player.hp < player.maxhp]
+- name: 'Modern item: Fake Out control'
+  player:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves: [FAKE_OUT]
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TACKLE]
+  rng: forced_low
+  turns: 1
+  assert: [player.hp == player.maxhp]
+- name: 'Modern item: Cloak blocks Kings Rock'
+  player:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves: [TACKLE]
+    item: KINGS_ROCK
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TACKLE]
+    item: COVERT_CLOAK
+  rng: forced_low
+  turns: 1
+  assert: [player.hp < player.maxhp]
+- name: 'Modern item: Clear Amulet blocks Sticky Web'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [STICKY_WEB]
+  rng: forced_high
+  turns: 2
+  player2:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: CLEAR_AMULET
+  move_script: [1, 'switch:2']
+  assert: ['player.stat_levels[2] == 7']
+- name: 'Modern item: Black Sludge Muk heals'
+  player:
+    species: MUK
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: BLACK_SLUDGE
+    hp: 50
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: [player.hp > player.start_hp]
+- name: 'Modern item: Metronome one hit'
+  id: modern_metronome_one_hit
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TACKLE]
+    item: METRONOME_ITEM
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  rng: forced_low
+  turns: 1
+  assert: [enemy.hp < enemy.maxhp]
+- name: 'Modern item: Metronome resets after a lost turn'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TACKLE]
+    item: METRONOME_ITEM
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  rng: forced_low
+  turns: 3
+  turn_setup_wram:
+    1: {wBattleMonStatus: 64}
+    2: {wBattleMonStatus: 0}
+  turn_assert: ['turns_done != 2 or enemy.hp == result(''modern_metronome_one_hit'')[''enemy''][''hp'']']
+  assert: ['enemy.hp < result(''modern_metronome_one_hit'')[''enemy''][''hp'']', wram("wPlayerMetronomeCount") == 0]
+- name: 'Modern item: Metronome chain control 3 hits'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [TACKLE]
+    item: METRONOME_ITEM
+  enemy:
+    species: MEW
+    level: 100
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 3
+  assert: [wram("wPlayerMetronomeCount") == 2]
+- name: 'Modern item: Contrary ignores a missed Growl'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [GROWL]
+  enemy:
+    species: SHUCKLE
+    level: 50
+    ability: CONTRARY
+    ability_slot: hidden
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  setup_wram: {wEnemySubStatus3: 64}
+  assert: ['enemy.stat_levels[0] == 7']
+- name: 'Modern item: Contrary control Growl raises'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [GROWL]
+  enemy:
+    species: SHUCKLE
+    level: 50
+    ability: CONTRARY
+    ability_slot: hidden
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: ['enemy.stat_levels[0] == 8']
+- name: 'Modern item: Power Herb Fly spends PP'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [FLY]
+    item: POWER_HERB
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+  rng: forced_high
+  turns: 1
+  assert: [player.item == 'NO_ITEM', enemy.hp < enemy.maxhp, 'player.pp[0] == 14', '(player.substatus[2] & 0x70) == 0']
+- name: 'Modern item: Clear Amulet quiet when Psychic secondary misses'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [PSYCHIC_M]
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: CLEAR_AMULET
+  rng: forced_high
+  turns: 1
+  assert: [enemy.hp < enemy.maxhp, not text_seen("CLEAR AMULET")]
+- name: 'Modern item: Clear Amulet message control'
+  player:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SCREECH]
+  enemy:
+    species: MEW
+    level: 50
+    ability: NO_ABILITY
+    moves: [SPLASH]
+    item: CLEAR_AMULET
+  rng: forced_high
+  turns: 1
+  assert: [text_seen("CLEAR AMULET"), 'enemy.stat_levels[1] == 7']
+- name: 'Modern item: Blunder Policy activates after the miss text'
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [DYNAMICPUNCH], item: BLUNDER_POLICY}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+  - player.stat_levels[2] == 9
+  - player.item == 'NO_ITEM'
+  - textbox_before('AttackMissedText', 'AbilityItemActivatedText')
+- name: 'Modern item: Blunder Policy miss does not trigger Throat Spray logic'
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [DYNAMICPUNCH], item: BLUNDER_POLICY}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH], item: RED_CARD}
+  player2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  rng_value: 180
+  turns: 1
+  assert:
+  - player.stat_levels[2] == 9
+  - enemy.item == 'RED_CARD'
+  - wram("wCurBattleMon") == 0

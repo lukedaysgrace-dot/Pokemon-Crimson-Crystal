@@ -363,6 +363,13 @@ MarkAfterMoveAbilitiesPending_Core::
 	bit 7, a
 	ret z
 .landed
+	ld hl, wPlayerMetronomeLanded
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .metronome_side
+	inc hl
+.metronome_side
+	ld [hl], TRUE
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wAfterMoveAbilitiesPending)
