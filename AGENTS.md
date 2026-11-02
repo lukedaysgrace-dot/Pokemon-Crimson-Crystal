@@ -69,5 +69,24 @@ Read this before changing the game. Keep it up to date when something here chang
 - Battle fixtures are cached per ROM hash in `tools/battletest/fixtures/`. A broken ROM shows
   up as "New Game did not finish" during bootstrap.
 
+## Illusion
+- Totodile's slot 1 is temporarily ILLUSION for testing (slots 2/3 stay Torrent/Sheer Force).
+- Illusion copies the last conscious non-Egg party member's appearance, nickname,
+  gender and shiny palette, while keeping all real battle/party data. It resets on
+  every entry. Its two active-slot bytes are banked WRAM2, not saved data.
+- The custom +1 Speed reward occurs once when a direct damaging hit breaks an
+  active disguise. Substitute damage and residual/recoil damage do not break it.
+  Suppression reveals without that damage reward; Gas ending cannot restore a
+  disguise. Transform/Imposter fail if either battler has an active disguise.
+- Reveals warp the copied sprite with Transform's wave and Dark Pulse's
+  `SFX_SPITE`. At the picture-update cue the real sprite/palette appears, then
+  the wave contracts around it. Do not add a palette flash. Keep the disguise
+  active until that cue; skip directly to the clean reveal if animations are off.
+- Run `tools/battletest/tests/96-illusion.yaml`; generate every-move coverage with
+  `python3 tools/battletest/illusion_move_matrix.py` (use `--abilities-only` for
+  every opposing ability against a legal active disguise). `record_illusion.py` verifies
+  exact front/back tiles and palettes against ordinary species controls and records
+  native switches/reveals with audio under `_artifacts/illusion/`.
+
 ## Reports
 Past audits are in `reports/` (`full-audit-*.md`, `full-sweep-*.md`).
