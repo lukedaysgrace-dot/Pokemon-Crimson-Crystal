@@ -171,3 +171,4 @@ AbilityNames::
 	db "CUD CHEW@"
 	db "FOREWARN@"
 	db "SUPERSWEET SYRUP@"
+	db "ILLUSION@"

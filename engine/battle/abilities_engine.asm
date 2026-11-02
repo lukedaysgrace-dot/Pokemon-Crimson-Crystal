@@ -410,6 +410,7 @@ RunEntryAbilities::
 ; reactivation, so Trace/Ripen and item suppression use its active ability.
 	; The foe may still be awaiting its own initial entry effects.
 	call RunEntryAbilitiesInner
+	farcall CheckIllusionSuppression
 	call CheckNeutralizingGasEnded
 	call RunPendingTraceUpdatesBoth
 	; During battle, the existing battler also needs an item update when
@@ -4616,6 +4617,7 @@ RunContactAbilitiesHook::
 	bit SUBSTATUS_SUBSTITUTE, a
 	jp nz, .life_orb
 .through_substitute
+	farcall IllusionDirectHit
 	; Stench: the attacker's damaging hits have a 10% flinch chance
 	call GetTrueUserAbility
 	cp STENCH

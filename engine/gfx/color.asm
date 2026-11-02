@@ -775,10 +775,10 @@ RestoreFirstOBJPalette::
 
 GetBattlemonBackpicPalettePointer:
 	push de
-	farcall GetPartyMonDVs
+	farcall IllusionPlayerPalette
+	ld a, b
 	ld c, l
 	ld b, h
-	ld a, [wTempBattleMonSpecies]
 	call GetBackpicPalettePointer
 	pop de
 	ret
@@ -826,10 +826,10 @@ endr
 
 GetEnemyFrontpicPalettePointer:
 	push de
-	farcall GetEnemyMonDVs
+	farcall IllusionEnemyPalette
+	ld a, b
 	ld c, l
 	ld b, h
-	ld a, [wTempEnemyMonSpecies]
 	call GetFrontpicPalettePointer
 	pop de
 	ret

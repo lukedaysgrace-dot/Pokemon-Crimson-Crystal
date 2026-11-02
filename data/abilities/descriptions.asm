@@ -171,6 +171,7 @@ AbilityDescriptions::
 	dw CudChewDescription
 	dw ForewarnDescription
 	dw SupersweetSyrupDescription
+	dw IllusionDescription
 
 NoAbilityDescription:
 	text "ABILITIES are"
@@ -1014,4 +1015,9 @@ ForewarnDescription:
 SupersweetSyrupDescription:
 	text "Its scent lowers"
 	next "the foe's evasion."
+	done
+
+IllusionDescription:
+	text "Disguises itself."
+	next "Break: SPEED up."
 	done

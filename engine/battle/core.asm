@@ -3826,6 +3826,13 @@ Function_SetEnemyMonAndSendOutAnimation:
 	call Call_PlayBattleAnim
 
 .not_shiny
+	ld a, [wEnemyMonSpecies]
+	ld b, a
+	ld hl, wEnemyMonDVs
+	farcall OverrideEnemyIllusionAppearance
+	ld a, b
+	ld [wCurPartySpecies], a
+	ld [wCurSpecies], a
 	ld bc, wTempMonSpecies
 	farcall CheckFaintedFrzSlp
 	jr c, .skip_cry
@@ -3842,7 +3849,7 @@ Function_SetEnemyMonAndSendOutAnimation:
 .cry_no_anim
 	ld a, $f
 	ld [wCryTracks], a
-	ld a, [wTempEnemyMonSpecies]
+	ld a, [wCurPartySpecies]
 	call PlayStereoCry
 
 .skip_cry
@@ -4171,51 +4178,15 @@ TryToRunAwayFromBattle:
 	ret
 
 InitBattleMon:
-	ld a, MON_SPECIES
-	call GetPartyParamLocation
-	ld de, wBattleMonSpecies
-	ld bc, MON_ID
-	call CopyBytes
-	ld bc, MON_DVS - MON_ID
-	add hl, bc
-	ld de, wBattleMonDVs
-	ld bc, MON_PKRUS - MON_DVS
-	call CopyBytes
-	inc hl
-	inc hl
-	inc hl
-	ld de, wBattleMonLevel
-	ld bc, PARTYMON_STRUCT_LENGTH - MON_LEVEL
-	call CopyBytes
-	ld a, [wBattleMonSpecies]
-	ld [wTempBattleMonSpecies], a
-	ld [wCurPartySpecies], a
-	ld [wCurSpecies], a
-	call GetBaseData
-	ld a, [wBaseType1]
-	ld [wBattleMonType1], a
-	ld a, [wBaseType2]
-	ld [wBattleMonType2], a
-	call SetPlayerAbility
-	ld hl, wPartyMonNicknames
-	ld a, [wCurBattleMon]
-	call SkipNames
-	ld de, wBattleMonNick
-	ld bc, MON_NAME_LENGTH
-	call CopyBytes
-	ld hl, wBattleMonAttack
-	ld de, wPlayerStats
-	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
-	call CopyBytes
-	call ApplyStatusEffectOnPlayerStats
+	farcall InitBattleMonWithIllusion
 	ret
 
 BattleCheckPlayerShininess:
-	call GetPartyMonDVs
+	farcall IllusionPlayerPalette
 	jr BattleCheckShininess
 
 BattleCheckEnemyShininess:
-	call GetEnemyMonDVs
+	farcall IllusionEnemyPalette
 
 BattleCheckShininess:
 	ld b, h
@@ -4312,6 +4283,7 @@ InitEnemyMon:
 	jr nz, .loop
 	ld a, [wCurPartyMon]
 	ld [wCurOTMon], a
+	farcall InitEnemyIllusion
 	ret
 
 SwitchPlayerMon:
@@ -4387,6 +4359,10 @@ SendOutPlayerMon:
 	ld a, $f0
 	ld [wCryTracks], a
 	ld a, [wCurPartySpecies]
+	ld b, a
+	ld hl, wBattleMonDVs
+	farcall OverridePlayerIllusionAppearance
+	ld a, b
 	call PlayStereoCry
 
 .statused
@@ -5093,7 +5069,7 @@ PrintPlayerHUD:
 	add hl, bc
 	ld a, [hl]
 	ld b, a
-	farcall GetGenderFromFlags
+	farcall GetPlayerIllusionGender
 	ld a, " "
 	jr c, .got_gender_char
 	ld a, "♂"
@@ -5176,7 +5152,7 @@ DrawEnemyHUD:
 
 	ld a, [wEnemyMonShinyGenderFlags]
 	ld b, a
-	farcall GetGenderFromFlags
+	farcall GetEnemyIllusionGender
 	ld a, " "
 	jr c, .got_gender
 	ld a, "♂"
@@ -6956,6 +6932,7 @@ LoadEnemyMon:
 	; Switched-in single-player opponents must receive the same burn,
 	; paralysis and frostbite stat reductions as initially loaded/link mons.
 	call ApplyStatusEffectOnEnemyStats
+	farcall InitEnemyIllusion
 	ret
 
 CheckUnownLetter:
@@ -8413,8 +8390,11 @@ DropPlayerSub:
 	ld a, [wCurPartySpecies]
 	push af
 	ld a, [wBattleMonSpecies]
-	ld [wCurPartySpecies], a
+	ld b, a
 	ld hl, wBattleMonDVs
+	farcall OverridePlayerIllusionAppearance
+	ld a, b
+	ld [wCurPartySpecies], a
 	predef GetUnownLetter
 	ld de, vTiles2 tile $31
 	predef GetMonBackpic
@@ -8448,10 +8428,15 @@ DropEnemySub:
 	ld a, [wCurPartySpecies]
 	push af
 	ld a, [wEnemyMonSpecies]
+	ld b, a
+	ld hl, wEnemyMonDVs
+	farcall OverrideEnemyIllusionAppearance
+	push hl
+	ld a, b
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData
-	ld hl, wEnemyMonDVs
+	pop hl
 	predef GetUnownLetter
 	ld de, vTiles2
 	predef GetAnimatedFrontpic
@@ -8544,6 +8529,7 @@ LoadTrainerOrWildMonPic:
 	ret
 
 InitEnemy:
+	farcall ResetIllusionState
 	ld a, [wOtherTrainerClass]
 	and a
 	jp nz, InitEnemyTrainer ; trainer

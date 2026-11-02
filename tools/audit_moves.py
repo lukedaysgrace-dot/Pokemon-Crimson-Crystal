@@ -748,13 +748,21 @@ def audit_animations(audit: Audit, moves: list[str]) -> None:
         for raw in lines[start + 1 : end]
         if (match := re.match(r"\s*banim\s+([A-Za-z][A-Za-z0-9_]*)", raw))
     ]
-    # BattleAnim_0 plus the trailing SweetScent2, StatUp, StatDown and
-    # HeldItemTrigger entries follow the per-move pointers.
-    audit.check(len(targets) == len(moves) + 5, f"battle animation pointers: got {len(targets)}, expected {len(moves) + 5}")
+    # BattleAnim_0 plus the declared positive effect animations accompany
+    # the per-move pointers.
+    # Count the declared positive effect IDs rather than freezing four extras.
+    # There is also one pointer for move zero. Negative IDs precede this table.
+    effects = read("constants/move_constants.asm").split("; Battle animation id", 1)[1]
+    effects = effects.split("; Animations with negative IDs", 1)[0]
+    effect_count = len(re.findall(r"^\s*const\s+ANIM_[A-Z0-9_]+", effects, re.MULTILINE))
+    expected = len(moves) + 1 + effect_count
+    audit.check(len(targets) == expected, f"battle animation pointers: got {len(targets)}, expected {expected}")
     animation_sources = "\n".join(
         path.read_text(encoding="utf-8", errors="replace")
         for path in sorted((ROOT / "data/moves").glob("animations*.asm"))
     )
+    # Ability-specific scripts may share their ROM bank with their engine.
+    animation_sources += "\n" + read("engine/battle/illusion.asm")
     labels = set(re.findall(r"^(BattleAnim_[A-Za-z0-9_]+):", animation_sources, re.MULTILINE))
     for target in targets:
         audit.check(target in labels, f"battle animation pointer has no script: {target}")

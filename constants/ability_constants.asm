@@ -175,4 +175,5 @@
 	const CUD_CHEW
 	const FOREWARN
 	const SUPERSWEET_SYRUP
+	const ILLUSION
 NUM_ABILITIES EQU const_value

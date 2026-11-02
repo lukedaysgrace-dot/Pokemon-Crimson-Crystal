@@ -172,3 +172,4 @@ AbilityFlags:
 	db $00 ; CUD_CHEW
 	db $00 ; FOREWARN
 	db $00 ; SUPERSWEET_SYRUP
+	db $07 ; ILLUSION (NO_COPY, NO_TRACE, NO_SWAP; suppressible, not ignorable)

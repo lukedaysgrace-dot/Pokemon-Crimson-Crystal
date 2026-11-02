@@ -2,6 +2,10 @@ BattleCommand_Transform::
 ; transform
 
 	call ClearLastMove
+	farcall CheckIllusionTransformBlocked
+	ld a, b
+	and a
+	jp nz, BattleEffect_ButItFailed
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarAddr
 	bit SUBSTATUS_TRANSFORMED, [hl]

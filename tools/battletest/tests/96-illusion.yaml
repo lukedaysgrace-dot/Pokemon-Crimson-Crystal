@@ -1,0 +1,276 @@
+- name: "Illusion: legal Totodile entry disguises without changing its real data"
+  player: {species: TOTODILE, level: 70, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 20, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, moves: [SPLASH]}
+  turns: 0
+  assert:
+    - wram('wPlayerIllusionSlot') == 2
+    - player.species == 'TOTODILE'
+    - player.level == 70
+    - player.ability == 'ILLUSION'
+    - buffer_is('wBattleMonNick', 'GENGAR')
+
+- name: "Illusion: first hit reveals and boosts Speed once across later hits"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [TACKLE]}
+  rng: forced_high
+  turns: 3
+  turn_assert:
+    - player.stat_levels[2] == 8
+    - player.stats['speed'] == player.start_stats['speed'] * 3 // 2
+    - wram('wPlayerIllusionSlot') == 0
+    - buffer_is('wBattleMonNick', 'TOTODILE')
+  assert: ["player.hp < player.start_hp", "wram('wInAbility') == 0"]
+
+- name: "Illusion: switching out and back restores disguise and a new single boost"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [TACKLE, SPLASH]}
+  rng: forced_high
+  turns: 5
+  move_script: [1, 'switch:2', 'switch:1', 1, 1]
+  turn_setup_wram:
+    1: {wEnemyMonMoves: {move: SPLASH}}
+    3: {wEnemyMonMoves: {move: TACKLE}}
+  turn_assert:
+    - turns_done != 1 or player.stat_levels[2] == 8
+    - turns_done != 3 or wram('wPlayerIllusionSlot') == 2
+    - turns_done != 3 or player.stat_levels[2] == 7
+    - turns_done != 4 or player.stat_levels[2] == 8
+    - turns_done != 5 or player.stat_levels[2] == 8
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8"]
+
+- name: "Illusion: no party partner means no disguise or Speed reward"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 7"]
+
+- name: "Illusion: enemy trainer uses front sprite disguise and reveals once"
+  player: {species: MEW, level: 10, moves: [TACKLE]}
+  enemy: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  enemy2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 2
+  assert:
+    - enemy.species == 'TOTODILE'
+    - enemy.stat_levels[2] == 8
+    - wram('wEnemyIllusionSlot') == 0
+    - buffer_is('wEnemyMonNick', 'TOTODILE')
+
+- name: "Illusion: status and poison residual damage preserve disguise"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [TOXIC]}
+  rng: forced_low
+  turns: 3
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7", "player.hp < player.start_hp"]
+
+- name: "Illusion: Substitute damage does not reveal"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SUBSTITUTE]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [TACKLE]}
+  rng: forced_high
+  turns: 2
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7"]
+
+- name: "Illusion: Infiltrator hits the holder through Substitute"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SUBSTITUTE]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, ability: INFILTRATOR, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8"]
+
+- name: "Illusion: sound damage bypasses Substitute and reveals"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SUBSTITUTE]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [HYPER_VOICE]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8"]
+
+- name: "Illusion: Protect preserves disguise"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [PROTECT]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7"]
+
+- name: "Illusion: fixed damage reveals"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [SEISMIC_TOSS]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8"]
+
+- name: "Illusion: multi-hit move gives only one Speed stage"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, ability: SKILL_LINK, moves: [FURY_SWIPES]}
+  rng: forced_low
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8"]
+
+- name: "Illusion: Mold Breaker still reveals and rewards"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, ability: MOLD_BREAKER, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8"]
+
+- name: "Illusion: Future Sight reveals on its delayed hit"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [FUTURE_SIGHT]}
+  rng: forced_high
+  turns: 3
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8"]
+
+- name: "Illusion: Speed at maximum still reveals without exceeding cap"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, stages: {spd: 6}, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [TACKLE]}
+  rng: forced_high
+  turns: 2
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 13", "wram('wAttackMissed') == 0"]
+
+- name: "Illusion: Trace cannot copy it"
+  player: {species: PORYGON, level: 50, ability: TRACE, moves: [SPLASH]}
+  enemy: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  enemy2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  turns: 0
+  assert: ["player.ability == 'TRACE'", "wram('wEnemyIllusionSlot') == 2"]
+
+- name: "Illusion: Skill Swap fails without breaking it"
+  player: {species: MEW, level: 10, moves: [SKILL_SWAP]}
+  enemy: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  enemy2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.ability == 'ILLUSION'", "wram('wEnemyIllusionSlot') == 2", "player.ability == 'SYNCHRONIZE'"]
+
+- name: "Illusion: Transform cannot copy an active disguise"
+  player: {species: MEW, level: 10, moves: [TRANSFORM]}
+  enemy: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  enemy2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.species == 'MEW'", "wram('wEnemyIllusionSlot') == 2"]
+
+- name: "Illusion: Imposter cannot copy an active disguise"
+  player: {species: DITTO, level: 100, ability: IMPOSTER, moves: [SPLASH]}
+  enemy: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  enemy2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  turns: 0
+  assert: ["player.species == 'DITTO'", "wram('wEnemyIllusionSlot') == 2"]
+
+- name: "Illusion: Gas prevents disguise on entry"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: WEEZING, level: 10, ability: NEUTRALIZING_GAS, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 7"]
+
+- name: "Illusion: Gas entering reveals and Gas leaving does not restore it"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, moves: [BATON_PASS]}
+  enemy2: {species: WEEZING, level: 100, ability: NEUTRALIZING_GAS, moves: [BATON_PASS]}
+  rng: forced_high
+  turns: 2
+  turn_assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 7"]
+  assert: ["buffer_is('wBattleMonNick', 'TOTODILE')"]
+
+- name: "Illusion: weather damage preserves disguise"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [SPLASH]}
+  weather: sandstorm
+  rng: forced_high
+  turns: 2
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7", "player.hp < player.start_hp"]
+
+- name: "Illusion: recoil damage preserves disguise"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [DOUBLE_EDGE]}
+  player2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  enemy: {species: LUGIA, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7", "player.hp < player.start_hp"]
+
+- name: "Illusion: a missed attack preserves disguise"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [ZAP_CANNON]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7", "player.hp == player.start_hp"]
+
+- name: "Illusion: Leech Seed and its damage use real typing without revealing"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: VENUSAUR, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [LEECH_SEED]}
+  rng: forced_low
+  turns: 2
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7", "player.hp < player.start_hp"]
+
+- name: "Illusion: Haze clearing the reward does not restore or re-trigger it"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [TACKLE, HAZE]}
+  rng: forced_high
+  turns: 3
+  turn_setup_wram:
+    1: {wEnemyMonMoves: {move: HAZE}}
+    2: {wEnemyMonMoves: {move: TACKLE}}
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 7"]
+
+- name: "Illusion: using Transform while disguised fails without breaking it"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [TRANSFORM]}
+  player2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7", "player.species == 'TOTODILE'", "player.ability == 'ILLUSION'"]
+
+- name: "Illusion: Transform can copy the holder after the disguise is gone"
+  player: {species: MEW, level: 10, moves: [TACKLE, TRANSFORM]}
+  enemy: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  enemy2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 2
+  move_script: [1, 2]
+  assert: ["wram('wEnemyIllusionSlot') == 0", "wram('wPlayerIllusionSlot') == 0", "player.species == 'TOTODILE'", "player.ability == 'ILLUSION'"]
+
+- name: "Illusion: Spikes damage on re-entry preserves the restored disguise"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [SPLASH]}
+  player_screens: 1
+  setup_wram: {wPlayerSpikesLayers: 3}
+  rng: forced_high
+  turns: 2
+  move_script: ['switch:2', 'switch:1']
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7", "player.hp < player.start_hp"]
+
+- name: "Illusion: animations off still cleanly reveals and boosts once"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [TACKLE]}
+  setup_wram: {wOptions: 193}
+  rng: forced_high
+  turns: 2
+  assert:
+    - wram('wPlayerIllusionSlot') == 0
+    - player.stat_levels[2] == 8
+    - buffer_is('wBattleMonNick', 'TOTODILE')
+    - wram('hLCDCPointer') == 0
+    - wram('hSCX') == 0
+    - wram('hSCY') == 0

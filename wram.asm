@@ -3289,6 +3289,9 @@ wCounterHitHistoryEnd::
 
 SECTION "Ability Move State", WRAMX, BANK[2]
 
+wPlayerIllusionSlot:: db
+wEnemyIllusionSlot:: db
+
 ; BANKED (bank 2): accessed only through helpers in abilities_engine.asm.
 ; Base power the latest damagecalc used for the current hit, after the
 ; variable-power commands (Return, Present, Magnitude, Flail, Gyro Ball,
