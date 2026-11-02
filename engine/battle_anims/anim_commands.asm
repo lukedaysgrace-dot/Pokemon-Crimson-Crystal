@@ -1149,6 +1149,18 @@ BattleAnimCmd_E7:
 	ret
 
 BattleAnimCmd_Transform:
+	call .IsIllusion
+	jr nz, .normal
+	farcall PrepareIllusionRevealPic
+	ret
+.IsIllusion
+	ld a, [wFXAnimID + 1]
+	cp HIGH(ANIM_ILLUSION_BREAK)
+	ret nz
+	ld a, [wFXAnimID]
+	cp LOW(ANIM_ILLUSION_BREAK)
+	ret
+.normal
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wCurPartySpecies)
@@ -1184,6 +1196,16 @@ BattleAnimCmd_Transform:
 	ret
 
 BattleAnimCmd_UpdateActorPic:
+	; Illusion's Transform-style cue loads the actual holder, rather than
+	; Transform's preloaded copy of the opponent, and changes its palette.
+	ld a, [wFXAnimID + 1]
+	cp HIGH(ANIM_ILLUSION_BREAK)
+	jr nz, .normal
+	ld a, [wFXAnimID]
+	cp LOW(ANIM_ILLUSION_BREAK)
+	jr nz, .normal
+	farcall IllusionRevealDuringWarp
+.normal
 	ld de, vTiles0 tile $00
 	ldh a, [hBattleTurn]
 	and a

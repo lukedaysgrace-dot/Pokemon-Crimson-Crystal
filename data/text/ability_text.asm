@@ -122,6 +122,11 @@ DisguiseBustedText::
 	cont "busted!"
 	prompt
 
+IllusionBrokeText::
+	text "<USER>'s"
+	line "ILLUSION broke!"
+	prompt
+
 ToxicDebrisText::
 ; Toxic Debris (printed from the attacker's perspective)
 	text "TOXIC SPIKES were"

@@ -486,6 +486,7 @@ BattleAnimations::
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown
 	banim BattleAnim_HeldItemTrigger
+	banim BattleAnim_IllusionBreak
 
 BattleAnim_0:
 BattleAnim_MirrorMove:
