@@ -46084,8 +46084,8 @@
       "catch_rate": 35,
       "base_exp": 101,
       "items": [
-        "NO_ITEM",
-        "METAL_POWDER"
+        "METAL_POWDER",
+        "QUICK_POWDER"
       ],
       "gender": "Genderless",
       "egg_cycles": 20,

@@ -26,6 +26,11 @@ class LabTests(unittest.TestCase):
         for key, s in self.data["species"].items():
             self.assertTrue(set(s["legal_moves"]) <= self.data["moves"].keys(), key)
 
+    def test_retired_items_not_selectable(self):
+        for key, item in self.data["items"].items():
+            if key.startswith("RETIRED_"):
+                self.assertFalse(item["selectable"], key)
+
     def test_weights_from_dex(self):
         reference = json.loads((ROOT / "tools/testdata/species_weights.json").read_text())["species"]
         for key, entry in reference.items():

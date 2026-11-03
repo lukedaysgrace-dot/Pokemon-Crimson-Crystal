@@ -1,5 +1,5 @@
 {
- "description": "Official weights (hectograms) for every species slot, from PokeAPI pokemon.csv; Blood Moon Ursaluna corrected to 333.0 kg. Palafin uses Hero Form and Dudunsparce its Two-Segment Form. dex_lbs_x10 is the value stored in the Pokedex entry (round(hg * 2.20462)). Custom species have no official weight.",
+ "description": "Official weights (hectograms) for every species slot, from PokeAPI pokemon.csv with official-site corrections: Bloodmoon Ursaluna 333.0 kg and Dipplin 4.4 kg. Modern dimensions and source resolutions are pinned in species_dimensions.json. Palafin uses Hero Form and Dudunsparce its Two-Segment Form. dex_lbs_x10 is the value stored in the Pokedex entry (round(hg * 2.20462)). Custom species have no official weight.",
  "species": {
   "BULBASAUR": {
    "dex_entry": "bulbasaur",
@@ -2008,8 +2008,8 @@
   "DIPPLIN": {
    "dex_entry": "dipplin",
    "source": "dipplin",
-   "weight_hg": 97,
-   "dex_lbs_x10": 214
+   "weight_hg": 44,
+   "dex_lbs_x10": 97
   },
   "APPLETUN": {
    "dex_entry": "appletun",

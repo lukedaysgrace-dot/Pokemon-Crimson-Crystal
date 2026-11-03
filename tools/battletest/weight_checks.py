@@ -3,7 +3,8 @@
 
 Runs the compiled GetSpeciesWeightHG routine natively for every species slot
 and compares its hectogram result with tools/testdata/species_weights.json
-(official PokeAPI weights). It then evaluates the Low Kick / Grass Knot and
+(PokeAPI weights with official-site corrections recorded in species_dimensions.json).
+It then evaluates the Low Kick / Grass Knot and
 Heavy Slam / Heat Crash power formulas from those native weights and checks
 them against an independent Python copy of Showdown's basePowerCallback
 code. Uses a private emulator fixture; no save is read or modified.

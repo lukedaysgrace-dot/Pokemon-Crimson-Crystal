@@ -5,9 +5,9 @@
   turns: 1
   assert: ["player.ability == 'WONDER_SKIN'", "enemy.ability == 'SYNCHRONIZE'"]
 
-- name: "Deep ability: Skill Swap ignores accuracy evasion and BrightPowder"
+- name: "Deep ability: Skill Swap ignores accuracy and evasion"
   player: { species: MEW, level: 30, ability: SYNCHRONIZE, stages: {acc: -6}, moves: [SKILL_SWAP] }
-  enemy: { species: SNORLAX, level: 100, ability: THICK_FAT, stages: {eva: 6}, item: BRIGHTPOWDER, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: THICK_FAT, stages: {eva: 6}, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert: ["player.ability == 'THICK_FAT'", "enemy.ability == 'SYNCHRONIZE'"]

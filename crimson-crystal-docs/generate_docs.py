@@ -474,7 +474,7 @@ class Builder:
       if comment.startswith('catch rate') and vals: info['catch_rate']=num(vals[0])
       elif comment.startswith('base exp') and vals: info['base_exp']=num(vals[0])
       elif comment.startswith('items') and len(vals)>=2:
-        info['items']=[x.upper() for x in vals[:2]]
+        info['items']=[re.sub(r'^LOW\((\w+)\)$', r'\1', x.upper()) for x in vals[:2]]
       elif comment.startswith('gender ratio') and vals:
         info['gender']=GENDER_TEXT.get(vals[0].upper(),disp(vals[0]))
       elif comment.startswith('step cycles') and vals: info['egg_cycles']=num(vals[0])
@@ -605,6 +605,7 @@ class Builder:
     # ItemNames has no record for NO_ITEM (id 0), so item N is names[N - 1].
     names=[x.replace('@','') for x in re.findall(r'db\s+"([^"]*)"',txt(np))]
     for c,i in ids.items():
+      if c.startswith('RETIRED_'): continue
       if 1<=i<=len(names): out[c]=titlecase(names[i-1].replace('#', 'POKÉ'))
     out.update({'HP_UP':'HP Up', 'PP_UP':'PP Up', 'EXP_SHARE':'Exp. Share'})
     return out

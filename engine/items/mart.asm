@@ -486,12 +486,7 @@ BuyMenuLoop:
 	ld hl, wNumItems
 	call ReceiveItem
 	jr nc, .insufficient_bag_space
-	ld a, [wMartItemID]
-	ld e, a
-	ld d, 0
-	ld b, SET_FLAG
-	ld hl, wBargainShopFlags
-	call FlagAction
+	call RecordBargainShopPurchase
 	call PlayTransactionSound
 	ld de, wMoney
 	ld bc, hMoneyTemp
@@ -523,6 +518,19 @@ BuyMenuLoop:
 	and a
 	ret
 
+RecordBargainShopPurchase:
+; Only the limited-stock bargain shop owns this one-byte bitmap. Ordinary
+; and held-item shops have unlimited stock, including rows beyond bit 7.
+	ld a, [wMartType]
+	cp MARTTYPE_BARGAIN
+	ret nz
+	ld a, [wMartItemID]
+	ld e, a
+	ld d, 0
+	ld b, SET_FLAG
+	ld hl, wBargainShopFlags
+	jp FlagAction
+
 StandardMartAskPurchaseQuantity:
 	ld a, [wMartType]
 	cp MARTTYPE_HELD_ITEMS
@@ -543,7 +551,8 @@ StandardMartAskPurchaseQuantity:
 
 ApplyHeldItemMarkup:
 ; Mahogany held-item stock charges ten times the normal
-; item price. de = price in, marked-up price out. Clobbers a and hl.
+; item price. This legacy shop type is no longer used by Mahogany's granny.
+; de = price in/out; clobbers a and hl.
 	ld a, [wMartType]
 	cp MARTTYPE_HELD_ITEMS
 	ret nz

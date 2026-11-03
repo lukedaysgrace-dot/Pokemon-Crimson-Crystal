@@ -1,29 +1,18 @@
 {
   "counts": {
-    "total": 293,
+    "total": 285,
     "tms": 54,
     "hms": 7,
-    "held_items": 76,
-    "acquisition_rows": 1631,
+    "held_items": 70,
+    "acquisition_rows": 1638,
     "no_sources": [
-      "CUSTAP_BERRY",
-      "SALAC_BERRY",
       "BIG_ROOT",
-      "BLACK_SLUDGE",
-      "BLUNDER_POLICY",
       "CLEAR_AMULET",
       "COVERT_CLOAK",
-      "EJECT_BUTTON",
-      "HEAVY_DUTY_BOOTS",
       "LIGHT_CLAY",
       "METRONOME_ITEM",
-      "POWER_HERB",
       "PUNCHING_GLOVE",
-      "QUICK_POWDER",
-      "RED_CARD",
-      "SAFETY_GOGGLES",
-      "THROAT_SPRAY",
-      "WHITE_HERB"
+      "SAFETY_GOGGLES"
     ]
   },
   "items": [
@@ -327,7 +316,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd3,000.",
           "source": "data/items/marts.asm",
-          "line": 316,
+          "line": 319,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 23
         },
@@ -353,7 +342,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,000.",
           "source": "data/items/marts.asm",
-          "line": 316,
+          "line": 319,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 23
         },
@@ -464,7 +453,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd3,000.",
           "source": "data/items/marts.asm",
-          "line": 316,
+          "line": 319,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 23
         }
@@ -483,7 +472,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,000.",
           "source": "data/items/marts.asm",
-          "line": 316,
+          "line": 319,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 23
         },
@@ -824,7 +813,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,000.",
           "source": "data/items/marts.asm",
-          "line": 316,
+          "line": 319,
           "map_source": "maps/CeladonDeptStore3F.asm",
           "map_line": 23
         },
@@ -1303,21 +1292,21 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 219
+          "line": 222
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 256
+          "line": 259
         },
         {
           "location": "Ecruteak Mart",
@@ -1331,7 +1320,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 350
+          "line": 353
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -1352,7 +1341,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 268
+          "line": 271
         },
         {
           "location": "Mahogany Mart 1F",
@@ -1373,7 +1362,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 245
+          "line": 248
         },
         {
           "location": "Player\u2019s House",
@@ -1408,7 +1397,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 361
+          "line": 364
         },
         {
           "location": "Union Cave 1F",
@@ -1617,7 +1606,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Cherrygrove Mart",
@@ -1721,7 +1710,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 219
+          "line": 222
         },
         {
           "location": "Burned Tower 1F",
@@ -1735,7 +1724,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Cerulean Cave 1F",
@@ -1770,14 +1759,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 256
+          "line": 259
         },
         {
           "location": "Fuchsia Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 350
+          "line": 353
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -1805,7 +1794,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 382
+          "line": 385
         },
         {
           "location": "Mt. Mortar 1F Inside",
@@ -1847,7 +1836,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 361
+          "line": 364
         },
         {
           "location": "Silver Cave Room 1",
@@ -1889,7 +1878,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 280
+          "line": 283
         },
         {
           "location": "Viridian Forest",
@@ -1903,7 +1892,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 232
+          "line": 235
         },
         {
           "location": "Whirl Islands B1F",
@@ -2358,15 +2347,6 @@
       ],
       "description": "A self-cure for freezing. (HOLD)",
       "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "CUSTAP_BERRY",
-      "name": "Custap Berry",
-      "category": "Berry",
-      "sources": [],
-      "description": "Move first once at low HP. (HOLD)",
-      "availability": "No source found",
       "notes": ""
     },
     {
@@ -2899,15 +2879,6 @@
       ],
       "description": "A self-cure for poison. (HOLD)",
       "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "SALAC_BERRY",
-      "name": "Salac Berry",
-      "category": "Berry",
-      "sources": [],
-      "description": "Raises SPEED once at low HP. (HOLD)",
-      "availability": "No source found",
       "notes": ""
     },
     {
@@ -3472,20 +3443,18 @@
       "category": "Held item",
       "sources": [
         {
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 191
+        },
+        {
           "location": "Goldenrod Dept Store Roof",
           "method": "Gift / reward",
           "details": "Collect the red balloon at (15, 0).",
           "source": "maps/GoldenrodDeptStoreRoof.asm",
           "line": 87
-        },
-        {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
         },
         {
           "location": "Vermilion Gym",
@@ -3536,13 +3505,11 @@
       "category": "Held item",
       "sources": [
         {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd30,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 209
         },
         {
           "location": "Route 16",
@@ -3737,15 +3704,6 @@
       "notes": ""
     },
     {
-      "const": "BLACK_SLUDGE",
-      "name": "Black Sludge",
-      "category": "Held item",
-      "sources": [],
-      "description": "POISON types heal; rest hurt. (HOLD)",
-      "availability": "No source found",
-      "notes": ""
-    },
-    {
       "const": "BLACKBELT",
       "name": "Blackbelt",
       "category": "Held item",
@@ -3846,15 +3804,6 @@
       "notes": ""
     },
     {
-      "const": "BLUNDER_POLICY",
-      "name": "Blunderpolcy",
-      "category": "Held item",
-      "sources": [],
-      "description": "A miss sharply ups SPEED. (HOLD)",
-      "availability": "No source found",
-      "notes": ""
-    },
-    {
       "const": "BRICK_PIECE",
       "name": "Brick Piece",
       "category": "Held item",
@@ -3869,38 +3818,6 @@
       ],
       "description": "A rare chunk of tile.",
       "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "BRIGHTPOWDER",
-      "name": "Brightpowder",
-      "category": "Held item",
-      "sources": [
-        {
-          "location": "Fuchsia Gym",
-          "method": "Trainer item",
-          "details": "Leader Janine: Crobat Lv. 62.",
-          "source": "data/trainers/parties.asm",
-          "line": 2134,
-          "trainer_class": "JANINE",
-          "trainer_id": "JANINE1",
-          "species": "CROBAT",
-          "map_source": "maps/FuchsiaGym.asm"
-        },
-        {
-          "location": "Kogas Room",
-          "method": "Trainer item",
-          "details": "Elite Four Koga: Crobat Lv. 71.",
-          "source": "data/trainers/parties.asm",
-          "line": 912,
-          "trainer_class": "KOGA",
-          "trainer_id": "KOGA1",
-          "species": "CROBAT",
-          "map_source": "maps/KogasRoom.asm"
-        }
-      ],
-      "description": "Lowers the foe's accuracy. (HOLD)",
-      "availability": "Trainer theft only",
       "notes": ""
     },
     {
@@ -4137,7 +4054,7 @@
           "method": "Battle Tower prize",
           "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
           "source": "maps/BattleTower1F.asm",
-          "line": 136
+          "line": 139
         },
         {
           "location": "Fighting Dojo",
@@ -4183,7 +4100,7 @@
           "method": "Battle Tower prize",
           "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
           "source": "maps/BattleTower1F.asm",
-          "line": 144
+          "line": 147
         },
         {
           "location": "Copycats House 2F",
@@ -4207,7 +4124,7 @@
           "method": "Battle Tower prize",
           "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
           "source": "maps/BattleTower1F.asm",
-          "line": 140
+          "line": 143
         },
         {
           "location": "Celadon City",
@@ -4573,15 +4490,6 @@
       ],
       "description": "A rare dragon-type item.",
       "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "EJECT_BUTTON",
-      "name": "Eject Button",
-      "category": "Held item",
-      "sources": [],
-      "description": "Hit by a move, switches. (HOLD)",
-      "availability": "No source found",
       "notes": ""
     },
     {
@@ -4963,20 +4871,18 @@
       "category": "Held item",
       "sources": [
         {
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 185
+        },
+        {
           "location": "Day Care",
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (3, 3).",
           "source": "maps/DayCare.asm",
           "line": 78
-        },
-        {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
         },
         {
           "location": "Goldenrod Underground Switch Room Entrances",
@@ -5057,13 +4963,11 @@
       "category": "Held item",
       "sources": [
         {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 200
         },
         {
           "location": "Route 34",
@@ -5204,20 +5108,18 @@
       "category": "Held item",
       "sources": [
         {
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 203
+        },
+        {
           "location": "Burned Tower B1F",
           "method": "Ground pickup",
           "details": "Basement item ball. Tile (5, 2).",
           "source": "maps/BurnedTowerB1F.asm",
           "line": 131
-        },
-        {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
         },
         {
           "location": "Brunos Room",
@@ -5295,7 +5197,7 @@
           "method": "Battle Tower prize",
           "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
           "source": "maps/BattleTower1F.asm",
-          "line": 148
+          "line": 151
         },
         {
           "location": "Gravekeepers House",
@@ -5505,15 +5407,6 @@
       ],
       "description": "Extends sun to 8 turns. (HOLD)",
       "availability": "World sources",
-      "notes": ""
-    },
-    {
-      "const": "HEAVY_DUTY_BOOTS",
-      "name": "Heavy Boots",
-      "category": "Held item",
-      "sources": [],
-      "description": "Avoids all entry hazards. (HOLD)",
-      "availability": "No source found",
       "notes": ""
     },
     {
@@ -7599,13 +7492,11 @@
       "category": "Held item",
       "sources": [
         {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd30,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 212
         },
         {
           "location": "Team Rocket Base B3F",
@@ -9002,61 +8893,61 @@
         {
           "location": "Cerulean Cave 1F",
           "method": "Wild Pok\u00e9mon",
-          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 57.",
+          "details": "Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 57.",
           "source": "data/wild/kanto_grass.asm",
           "line": 0,
           "species": "DITTO",
-          "held_chance": 5,
+          "held_chance": 20,
           "held_source": "data/pokemon/base_stats/ditto.asm"
         },
         {
           "location": "Cerulean Cave 2F",
           "method": "Wild Pok\u00e9mon",
-          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 59.",
+          "details": "Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 59.",
           "source": "data/wild/kanto_grass.asm",
           "line": 0,
           "species": "DITTO",
-          "held_chance": 5,
+          "held_chance": 20,
           "held_source": "data/pokemon/base_stats/ditto.asm"
         },
         {
           "location": "Cerulean Cave B1F",
           "method": "Wild Pok\u00e9mon",
-          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 61.",
+          "details": "Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 61.",
           "source": "data/wild/kanto_grass.asm",
           "line": 0,
           "species": "DITTO",
-          "held_chance": 5,
+          "held_chance": 20,
           "held_source": "data/pokemon/base_stats/ditto.asm"
         },
         {
           "location": "Route 34",
           "method": "Wild Pok\u00e9mon",
-          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 15.",
+          "details": "Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 15.",
           "source": "data/wild/johto_grass.asm",
           "line": 0,
           "species": "DITTO",
-          "held_chance": 5,
+          "held_chance": 20,
           "held_source": "data/pokemon/base_stats/ditto.asm"
         },
         {
           "location": "Route 35",
           "method": "Wild Pok\u00e9mon",
-          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 17\u201319.",
+          "details": "Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 17\u201319.",
           "source": "data/wild/johto_grass.asm",
           "line": 0,
           "species": "DITTO",
-          "held_chance": 5,
+          "held_chance": 20,
           "held_source": "data/pokemon/base_stats/ditto.asm"
         },
         {
           "location": "Route 35",
           "method": "Wild Pok\u00e9mon",
-          "details": "Ditto; approx. 5% held-item chance. Grass Swarm; Day, Morning, Night; Lv. 17. Condition: Swarm.",
+          "details": "Ditto; approx. 20% held-item chance. Grass Swarm; Day, Morning, Night; Lv. 17. Condition: Swarm.",
           "source": "data/wild/swarm_grass.asm",
           "line": 0,
           "species": "DITTO",
-          "held_chance": 5,
+          "held_chance": 20,
           "held_source": "data/pokemon/base_stats/ditto.asm"
         }
       ],
@@ -9184,13 +9075,11 @@
       "category": "Held item",
       "sources": [
         {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 194
         },
         {
           "location": "Olivine Port",
@@ -9746,7 +9635,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,000.",
           "source": "data/items/marts.asm",
-          "line": 422,
+          "line": 414,
           "map_source": "maps/GoldenrodDeptStore3F.asm",
           "map_line": 17
         },
@@ -9766,9 +9655,19 @@
       "const": "POWER_HERB",
       "name": "Power Herb",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Mahogany Mart 1F",
+          "method": "Shop",
+          "details": "Granny\u2019s shop; opens after clearing the Rocket Hideout. Repeatable purchase; unlimited stock. Cost: \u20bd1,000.",
+          "source": "data/items/marts.asm",
+          "line": 206,
+          "map_source": "maps/MahoganyMart1F.asm",
+          "map_line": 123
+        }
+      ],
       "description": "Skips charging a move once. (HOLD)",
-      "availability": "No source found",
+      "availability": "World sources",
       "notes": ""
     },
     {
@@ -9932,18 +9831,70 @@
       "const": "QUICK_POWDER",
       "name": "Quick Powder",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Cerulean Cave 1F",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 57.",
+          "source": "data/wild/kanto_grass.asm",
+          "line": 0,
+          "species": "DITTO",
+          "held_chance": 5,
+          "held_source": "data/pokemon/base_stats/ditto.asm"
+        },
+        {
+          "location": "Cerulean Cave 2F",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 59.",
+          "source": "data/wild/kanto_grass.asm",
+          "line": 0,
+          "species": "DITTO",
+          "held_chance": 5,
+          "held_source": "data/pokemon/base_stats/ditto.asm"
+        },
+        {
+          "location": "Cerulean Cave B1F",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 61.",
+          "source": "data/wild/kanto_grass.asm",
+          "line": 0,
+          "species": "DITTO",
+          "held_chance": 5,
+          "held_source": "data/pokemon/base_stats/ditto.asm"
+        },
+        {
+          "location": "Route 34",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 15.",
+          "source": "data/wild/johto_grass.asm",
+          "line": 0,
+          "species": "DITTO",
+          "held_chance": 5,
+          "held_source": "data/pokemon/base_stats/ditto.asm"
+        },
+        {
+          "location": "Route 35",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 17\u201319.",
+          "source": "data/wild/johto_grass.asm",
+          "line": 0,
+          "species": "DITTO",
+          "held_chance": 5,
+          "held_source": "data/pokemon/base_stats/ditto.asm"
+        },
+        {
+          "location": "Route 35",
+          "method": "Wild Pok\u00e9mon",
+          "details": "Ditto; approx. 5% held-item chance. Grass Swarm; Day, Morning, Night; Lv. 17. Condition: Swarm.",
+          "source": "data/wild/swarm_grass.asm",
+          "line": 0,
+          "species": "DITTO",
+          "held_chance": 5,
+          "held_source": "data/pokemon/base_stats/ditto.asm"
+        }
+      ],
       "description": "Doubles DITTO's SPEED. (HOLD)",
-      "availability": "No source found",
-      "notes": ""
-    },
-    {
-      "const": "RED_CARD",
-      "name": "Red Card",
-      "category": "Held item",
-      "sources": [],
-      "description": "Hit by a move, ejects foe. (HOLD)",
-      "availability": "No source found",
+      "availability": "Held-item hunting",
       "notes": ""
     },
     {
@@ -9952,13 +9903,11 @@
       "category": "Held item",
       "sources": [
         {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd30,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 188
         },
         {
           "location": "Route 33",
@@ -11047,9 +10996,19 @@
       "const": "THROAT_SPRAY",
       "name": "Throat Spray",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Mahogany Mart 1F",
+          "method": "Shop",
+          "details": "Granny\u2019s shop; opens after clearing the Rocket Hideout. Repeatable purchase; unlimited stock. Cost: \u20bd1,000.",
+          "source": "data/items/marts.asm",
+          "line": 206,
+          "map_source": "maps/MahoganyMart1F.asm",
+          "map_line": 123
+        }
+      ],
       "description": "Sound moves raise SPCL.ATK. (HOLD)",
-      "availability": "No source found",
+      "availability": "World sources",
       "notes": ""
     },
     {
@@ -11058,20 +11017,18 @@
       "category": "Held item",
       "sources": [
         {
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 206
+        },
+        {
           "location": "Goldenrod Underground Warehouse",
           "method": "Ground pickup",
           "details": "Warehouse item ball reached during the Radio Tower rescue. Tile (2, 1).",
           "source": "maps/GoldenrodUndergroundWarehouse.asm",
           "line": 96
-        },
-        {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
         }
       ],
       "description": "Badly poisons the holder. (HOLD)",
@@ -11144,7 +11101,7 @@
           "method": "Battle Tower prize",
           "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
           "source": "maps/BattleTower1F.asm",
-          "line": 152
+          "line": 155
         },
         {
           "location": "Radio Tower 5F",
@@ -11162,9 +11119,19 @@
       "const": "WHITE_HERB",
       "name": "White Herb",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Mahogany Mart 1F",
+          "method": "Shop",
+          "details": "Granny\u2019s shop; opens after clearing the Rocket Hideout. Repeatable purchase; unlimited stock. Cost: \u20bd1,000.",
+          "source": "data/items/marts.asm",
+          "line": 206,
+          "map_source": "maps/MahoganyMart1F.asm",
+          "map_line": 123
+        }
+      ],
       "description": "Restores lowered stats once. (HOLD)",
-      "availability": "No source found",
+      "availability": "World sources",
       "notes": ""
     },
     {
@@ -11173,13 +11140,11 @@
       "category": "Held item",
       "sources": [
         {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 215
         },
         {
           "location": "Olivine Lighthouse 3F",
@@ -11210,13 +11175,11 @@
       "category": "Held item",
       "sources": [
         {
-          "location": "Mahogany Mart 1F",
-          "method": "Shop",
-          "details": "Granny\u2019s Held Items shop; opens after clearing the Rocket Hideout. Cost: \u20bd20,000.",
-          "source": "data/items/marts.asm",
-          "line": 401,
-          "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 138
+          "location": "Battle Tower 1F",
+          "method": "Battle Tower prize",
+          "details": "Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges.",
+          "source": "maps/BattleTower1F.asm",
+          "line": 197
         },
         {
           "location": "Radio Tower 2F",
@@ -11852,7 +11815,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd100.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Cherrygrove Mart",
@@ -11901,7 +11864,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd100.",
           "source": "data/items/marts.asm",
-          "line": 268
+          "line": 271
         },
         {
           "location": "Mahogany Mart 1F",
@@ -11922,7 +11885,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd100.",
           "source": "data/items/marts.asm",
-          "line": 245
+          "line": 248
         },
         {
           "location": "Player\u2019s House",
@@ -11950,7 +11913,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd100.",
           "source": "data/items/marts.asm",
-          "line": 232
+          "line": 235
         }
       ],
       "description": "Cures poisoned Pok\u00e9mon.",
@@ -11967,7 +11930,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Cherrygrove Mart",
@@ -12002,7 +11965,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 268
+          "line": 271
         },
         {
           "location": "Olivine Mart",
@@ -12016,7 +11979,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 245
+          "line": 248
         },
         {
           "location": "Union Cave 1F",
@@ -12030,7 +11993,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 280
+          "line": 283
         },
         {
           "location": "Violet Mart",
@@ -12044,7 +12007,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 232
+          "line": 235
         }
       ],
       "description": "Awakens sleeping Pok\u00e9mon.",
@@ -12078,7 +12041,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Ecruteak Mart",
@@ -12106,28 +12069,28 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 268
+          "line": 271
         },
         {
           "location": "Pewter Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 245
+          "line": 248
         },
         {
           "location": "Vermilion Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 280
+          "line": 283
         },
         {
           "location": "Viridian Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 232
+          "line": 235
         }
       ],
       "description": "Heals burned Pok\u00e9mon.",
@@ -12144,7 +12107,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 330
+          "line": 333
         },
         {
           "location": "Dragon's Den B1F",
@@ -12231,7 +12194,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 330
+          "line": 333
         },
         {
           "location": "Goldenrod Dept Store 4F",
@@ -12412,7 +12375,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd800.",
           "source": "data/items/marts.asm",
-          "line": 393
+          "line": 396
         },
         {
           "location": "Ruins of Alph Aerodactyl Item Room",
@@ -12436,7 +12399,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 393
+          "line": 396
         },
         {
           "location": "Ruins of Alph Kabuto Item Room",
@@ -12585,21 +12548,21 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 219
+          "line": 222
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 256
+          "line": 259
         },
         {
           "location": "Cianwood Pharmacy",
@@ -12620,7 +12583,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 350
+          "line": 353
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -12669,7 +12632,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 382
+          "line": 385
         },
         {
           "location": "National Park",
@@ -12697,7 +12660,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 361
+          "line": 364
         },
         {
           "location": "Team Rocket Base B2F",
@@ -12753,7 +12716,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd600.",
           "source": "data/items/marts.asm",
-          "line": 232
+          "line": 235
         }
       ],
       "description": "Eliminates all status problems.",
@@ -12798,7 +12761,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd3,000.",
           "source": "data/items/marts.asm",
-          "line": 382
+          "line": 385
         },
         {
           "location": "Lake of Rage",
@@ -12913,7 +12876,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 330
+          "line": 333
         },
         {
           "location": "Goldenrod Dept Store 4F",
@@ -13000,7 +12963,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd450.",
           "source": "data/items/marts.asm",
-          "line": 393
+          "line": 396
         },
         {
           "location": "Ruins of Alph Aerodactyl Item Room",
@@ -13031,14 +12994,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 219
+          "line": 222
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 291
+          "line": 294
         },
         {
           "location": "Cerulean Cave 2F",
@@ -13073,7 +13036,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 350
+          "line": 353
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -13087,7 +13050,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 382
+          "line": 385
         },
         {
           "location": "Mahogany Mart 1F",
@@ -13150,7 +13113,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 361
+          "line": 364
         },
         {
           "location": "Team Rocket Base B1F",
@@ -13171,7 +13134,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 280
+          "line": 283
         },
         {
           "location": "Violet City",
@@ -13192,7 +13155,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,200.",
           "source": "data/items/marts.asm",
-          "line": 232
+          "line": 235
         }
       ],
       "description": "Restores Pok\u00e9mon HP by 200.",
@@ -13209,7 +13172,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd250.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Ecruteak Mart",
@@ -13261,7 +13224,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 330
+          "line": 333
         },
         {
           "location": "Goldenrod Dept Store 4F",
@@ -13518,14 +13481,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,500.",
           "source": "data/items/marts.asm",
-          "line": 219
+          "line": 222
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,500.",
           "source": "data/items/marts.asm",
-          "line": 291
+          "line": 294
         },
         {
           "location": "Dragon's Den B1F",
@@ -13560,7 +13523,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,500.",
           "source": "data/items/marts.asm",
-          "line": 382
+          "line": 385
         },
         {
           "location": "Lake of Rage",
@@ -13616,7 +13579,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,500.",
           "source": "data/items/marts.asm",
-          "line": 361
+          "line": 364
         },
         {
           "location": "Silver Cave Room 2",
@@ -13929,7 +13892,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Cherrygrove Mart",
@@ -13971,7 +13934,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 268
+          "line": 271
         },
         {
           "location": "Mahogany Mart 1F",
@@ -14006,7 +13969,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 245
+          "line": 248
         },
         {
           "location": "Sprout Tower 1F",
@@ -14020,7 +13983,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 280
+          "line": 283
         },
         {
           "location": "Violet Mart",
@@ -14034,7 +13997,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd200.",
           "source": "data/items/marts.asm",
-          "line": 232
+          "line": 235
         }
       ],
       "description": "Heals paralyzed Pok\u00e9mon.",
@@ -14058,7 +14021,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd300.",
           "source": "data/items/marts.asm",
-          "line": 291
+          "line": 294
         },
         {
           "location": "Cherrygrove Mart",
@@ -14114,7 +14077,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd300.",
           "source": "data/items/marts.asm",
-          "line": 268
+          "line": 271
         },
         {
           "location": "Mahogany Mart 1F",
@@ -14204,7 +14167,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd9,800.",
           "source": "data/items/marts.asm",
-          "line": 330
+          "line": 333
         },
         {
           "location": "Cerulean Cave 2F",
@@ -14465,7 +14428,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,800.",
           "source": "data/items/marts.asm",
-          "line": 393
+          "line": 396
         }
       ],
       "description": "Revives fainted Pok\u00e9mon. Bitter.",
@@ -14489,14 +14452,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 219
+          "line": 222
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 291
+          "line": 294
         },
         {
           "location": "Cianwood City",
@@ -14573,7 +14536,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 382
+          "line": 385
         },
         {
           "location": "Mahogany Mart 1F",
@@ -14629,14 +14592,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 280
+          "line": 283
         },
         {
           "location": "Viridian Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,500.",
           "source": "data/items/marts.asm",
-          "line": 232
+          "line": 235
         },
         {
           "location": "Pok\u00e9mon Center 2F delivery NPC",
@@ -14705,14 +14668,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 291
+          "line": 294
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 256
+          "line": 259
         },
         {
           "location": "Cianwood Pharmacy",
@@ -14733,7 +14696,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 350
+          "line": 353
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -14768,7 +14731,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 268
+          "line": 271
         },
         {
           "location": "Mahogany Mart 1F",
@@ -14796,7 +14759,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 245
+          "line": 248
         },
         {
           "location": "Player\u2019s House",
@@ -14852,7 +14815,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 280
+          "line": 283
         }
       ],
       "description": "Restores Pok\u00e9mon HP by 50.",
@@ -14869,7 +14832,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd15,000.",
           "source": "data/items/marts.asm",
-          "line": 450
+          "line": 442
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -14886,7 +14849,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd5,000.",
           "source": "data/items/marts.asm",
-          "line": 422
+          "line": 414
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -14903,7 +14866,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 450
+          "line": 442
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -14920,7 +14883,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd7,500.",
           "source": "data/items/marts.asm",
-          "line": 422
+          "line": 414
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -14937,7 +14900,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 433
+          "line": 425
         }
       ],
       "description": "Mail for a Pok\u00e9mon to hold.",
@@ -14954,7 +14917,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd20,000.",
           "source": "data/items/marts.asm",
-          "line": 450
+          "line": 442
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -14971,14 +14934,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd650.",
           "source": "data/items/marts.asm",
-          "line": 339
+          "line": 342
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd650.",
           "source": "data/items/marts.asm",
-          "line": 256
+          "line": 259
         },
         {
           "location": "Dark Cave Violet Entrance",
@@ -15054,7 +15017,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 302
+          "line": 305
         },
         {
           "location": "Goldenrod Dept Store 2F",
@@ -15141,7 +15104,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 350
+          "line": 353
         },
         {
           "location": "Goldenrod Dept Store 2F",
@@ -15162,7 +15125,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 361
+          "line": 364
         },
         {
           "location": "Violet Mart",
@@ -15176,7 +15139,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 232
+          "line": 235
         }
       ],
       "description": "Flower-print MAIL. (HOLD)",
@@ -15193,7 +15156,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd2,000.",
           "source": "data/items/marts.asm",
-          "line": 433
+          "line": 425
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -15210,7 +15173,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd0.",
           "source": "data/items/marts.asm",
-          "line": 444
+          "line": 436
         }
       ],
       "description": "Open it to find a gold trophy.",
@@ -15227,7 +15190,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 339
+          "line": 342
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -15265,7 +15228,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 422
+          "line": 414
         }
       ],
       "description": "Mail for a Pok\u00e9mon to hold.",
@@ -15282,7 +15245,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 433
+          "line": 425
         }
       ],
       "description": "Mail for a Pok\u00e9mon to hold.",
@@ -15299,35 +15262,35 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 219
+          "line": 222
         },
         {
           "location": "Celadon Dept Store 2F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 291
+          "line": 294
         },
         {
           "location": "Fuchsia Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 350
+          "line": 353
         },
         {
           "location": "Indigo Plateau Pokecenter 1F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 382
+          "line": 385
         },
         {
           "location": "Lavender Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd700.",
           "source": "data/items/marts.asm",
-          "line": 268
+          "line": 271
         },
         {
           "location": "Mt. Mortar 1F Inside",
@@ -15365,7 +15328,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 433
+          "line": 425
         }
       ],
       "description": "Mail for a Pok\u00e9mon to hold.",
@@ -15382,7 +15345,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 433
+          "line": 425
         }
       ],
       "description": "Mail for a Pok\u00e9mon to hold.",
@@ -15399,7 +15362,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 433
+          "line": 425
         }
       ],
       "description": "Mail for a Pok\u00e9mon to hold.",
@@ -15416,7 +15379,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd0.",
           "source": "data/items/marts.asm",
-          "line": 444
+          "line": 436
         }
       ],
       "description": "Open it to find a silver trophy.",
@@ -15887,7 +15850,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd25,000.",
           "source": "data/items/marts.asm",
-          "line": 450
+          "line": 442
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -15904,7 +15867,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,000.",
           "source": "data/items/marts.asm",
-          "line": 325
+          "line": 328
         },
         {
           "location": "Goldenrod Dept Store 2F",
@@ -15928,7 +15891,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 422
+          "line": 414
         }
       ],
       "description": "Mail for a Pok\u00e9mon to hold.",
@@ -15945,7 +15908,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd10,000.",
           "source": "data/items/marts.asm",
-          "line": 450
+          "line": 442
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -16017,7 +15980,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd1,000.",
           "source": "data/items/marts.asm",
-          "line": 433
+          "line": 425
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -16243,14 +16206,14 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 291
+          "line": 294
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 256
+          "line": 259
         },
         {
           "location": "Mahogany Mart 1F",
@@ -16278,7 +16241,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 245
+          "line": 248
         },
         {
           "location": "Pok\u00e9mon Center 2F delivery NPC",
@@ -16302,7 +16265,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd50.",
           "source": "data/items/marts.asm",
-          "line": 422
+          "line": 414
         }
       ],
       "description": "Mail for a Pok\u00e9mon to hold.",
@@ -16319,7 +16282,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 422
+          "line": 414
         }
       ],
       "description": "A valuable find. Sell it at a MART.",
@@ -16336,7 +16299,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd950.",
           "source": "data/items/marts.asm",
-          "line": 339
+          "line": 342
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -16381,21 +16344,21 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 219
+          "line": 222
         },
         {
           "location": "Celadon Dept Store 5F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 339
+          "line": 342
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 256
+          "line": 259
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -16416,7 +16379,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd500.",
           "source": "data/items/marts.asm",
-          "line": 361
+          "line": 364
         },
         {
           "location": "Union Cave 1F",
@@ -16454,21 +16417,21 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 219
+          "line": 222
         },
         {
           "location": "Celadon Dept Store 5F",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 339
+          "line": 342
         },
         {
           "location": "Cerulean Mart",
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 256
+          "line": 259
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -16489,7 +16452,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd550.",
           "source": "data/items/marts.asm",
-          "line": 361
+          "line": 364
         },
         {
           "location": "Union Cave B1F",
@@ -16527,7 +16490,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd350.",
           "source": "data/items/marts.asm",
-          "line": 339
+          "line": 342
         },
         {
           "location": "Goldenrod Dept Store 3F",
@@ -16572,7 +16535,7 @@
           "method": "Shop",
           "details": "Repeatable purchase. Cost: \u20bd350.",
           "source": "data/items/marts.asm",
-          "line": 339
+          "line": 342
         },
         {
           "location": "Goldenrod Dept Store 3F",

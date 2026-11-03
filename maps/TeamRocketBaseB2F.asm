@@ -13,6 +13,7 @@
 	const TEAMROCKETBASEB2F_ROCKET3
 	const TEAMROCKETBASEB2F_ROCKET4
 	const TEAMROCKETBASEB2F_POKE_BALL
+	const TEAMROCKETBASEB2F_HEALING_DRAGONITE
 
 TeamRocketBaseB2F_MapScripts:
 	db 4 ; scene scripts
@@ -114,6 +115,16 @@ RocketBaseBossFScript:
 	disappear TEAMROCKETBASEB2F_ROCKET2
 	disappear TEAMROCKETBASEB2F_ROCKET3
 	disappear TEAMROCKETBASEB2F_ROCKET4
+	; Stand beside Lance on the inside of the two-tile doorway.
+	readvar VAR_XCOORD
+	ifequal 15, .DragoniteRightEntrance
+	moveobject TEAMROCKETBASEB2F_DRAGON, 13, 13
+	sjump .DragoniteRejoins
+.DragoniteRightEntrance:
+	moveobject TEAMROCKETBASEB2F_DRAGON, 12, 13
+.DragoniteRejoins:
+	appear TEAMROCKETBASEB2F_DRAGON
+	applymovement TEAMROCKETBASEB2F_DRAGON, RocketBaseDragoniteFaceDownMovement
 	pause 15
 	special FadeInQuickly
 	setscene SCENE_TEAMROCKETBASEB2F_ELECTRODES
@@ -123,21 +134,29 @@ RocketBaseBossFScript:
 	writetext UnknownText_0x6d5d8
 	waitbutton
 	closetext
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d250
+	callasm RocketBasePairRight
+	callasm RocketBaseStopDragoniteMovement
+	turnobject TEAMROCKETBASEB2F_LANCE, DOWN
+	; Dragonite can keep facing right for this first conversation.
+	turnobject TEAMROCKETBASEB2F_DRAGON, RIGHT
 	turnobject PLAYER, UP
 	opentext
 	writetext UnknownText_0x6d64e
 	waitbutton
 	closetext
 	follow TEAMROCKETBASEB2F_LANCE, PLAYER
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d254
+	callasm RocketBasePairUp
+	callasm RocketBaseStopDragoniteMovement
 	stopfollow
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d258
+	callasm RocketBasePairInspection
+	callasm RocketBaseStopDragoniteMovement
 	opentext
 	writetext UnknownText_0x6d6cf
 	waitbutton
 	closetext
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d267
+	callasm RocketBasePairToElectrodes
+	callasm RocketBaseStopDragoniteMovement
+	disappear TEAMROCKETBASEB2F_DRAGON
 	disappear TEAMROCKETBASEB2F_LANCE
 
 RocketBaseCantLeaveScript:
@@ -177,12 +196,18 @@ LanceHealsCommon:
 	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
 	readvar VAR_FACING
 	ifequal RIGHT, .FacingRight
+	follow TEAMROCKETBASEB2F_LANCE, TEAMROCKETBASEB2F_HEALING_DRAGONITE
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d212
+	stopfollow
+	disappear TEAMROCKETBASEB2F_HEALING_DRAGONITE
 	disappear TEAMROCKETBASEB2F_LANCE
 	end
 
 .FacingRight:
+	follow TEAMROCKETBASEB2F_LANCE, TEAMROCKETBASEB2F_HEALING_DRAGONITE
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d219
+	stopfollow
+	disappear TEAMROCKETBASEB2F_HEALING_DRAGONITE
 	disappear TEAMROCKETBASEB2F_LANCE
 	end
 
@@ -279,8 +304,11 @@ TeamRocketBaseB2FReloadMap:
 
 RocketBaseElectrodeScript:
 	moveobject TEAMROCKETBASEB2F_LANCE, 18, 6
+	moveobject TEAMROCKETBASEB2F_DRAGON, 19, 6
 	appear TEAMROCKETBASEB2F_LANCE
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d27a
+	appear TEAMROCKETBASEB2F_DRAGON
+	callasm RocketBasePairReturn
+	callasm RocketBaseStopDragoniteMovement
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext UnknownText_0x6d809
@@ -291,12 +319,15 @@ RocketBaseElectrodeScript:
 	waitbutton
 	closetext
 	turnobject TEAMROCKETBASEB2F_LANCE, DOWN
+	turnobject TEAMROCKETBASEB2F_DRAGON, DOWN
 	opentext
 	writetext UnknownText_0x6d994
 	waitbutton
 	closetext
 	turnobject PLAYER, DOWN
-	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d283
+	callasm RocketBasePairExit
+	callasm RocketBaseStopDragoniteMovement
+	disappear TEAMROCKETBASEB2F_DRAGON
 	disappear TEAMROCKETBASEB2F_LANCE
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT
 	clearevent EVENT_MAHOGANY_MART_OWNERS
@@ -446,31 +477,45 @@ MovementData_0x6d24c:
 MovementData_0x6d250:
 	step RIGHT
 	step RIGHT
-	turn_head DOWN
 	step_end
+.End:
 
 MovementData_0x6d254:
 	step UP
 	step UP
 	step UP
 	step_end
+.End:
+
+RocketBaseDragoniteFaceDownMovement:
+	turn_head DOWN
+	step_end
 
 MovementData_0x6d258:
 	step_sleep 8
 	step LEFT
 	step LEFT
+	step LEFT
+	step LEFT
 	turn_head UP
 	step_sleep 8
 	step RIGHT
 	step RIGHT
 	step RIGHT
 	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
+	step RIGHT
 	turn_head UP
 	step_sleep 8
+	step LEFT
+	step LEFT
 	step LEFT
 	step LEFT
 	turn_head DOWN
 	step_end
+.End:
 
 MovementData_0x6d267:
 	step RIGHT
@@ -483,6 +528,7 @@ MovementData_0x6d267:
 	step UP
 	step UP
 	step_end
+.End:
 
 MovementData_0x6d271:
 	step UP
@@ -506,7 +552,9 @@ MovementData_0x6d27a:
 	step LEFT
 	step LEFT
 	step LEFT
+	step LEFT
 	step_end
+.End:
 
 MovementData_0x6d283:
 	step DOWN
@@ -517,7 +565,103 @@ MovementData_0x6d283:
 	step LEFT
 	step LEFT
 	step LEFT
+	step LEFT
+	step LEFT ; both actors are off screen before disappearing
 	step_end
+.End:
+
+; Dragonite mirrors the same simple movement stream beside Lance. The native
+; follower slot remains available for the player walking behind Lance.
+RocketBasePairRight:
+	ld hl, MovementData_0x6d250
+	ld bc, MovementData_0x6d250.End - MovementData_0x6d250 - 1
+	jr RocketBaseStartSideBySide
+
+RocketBasePairUp:
+	ld hl, MovementData_0x6d254
+	ld bc, MovementData_0x6d254.End - MovementData_0x6d254 - 1
+	jr RocketBaseStartSideBySide
+
+RocketBasePairInspection:
+	ld hl, MovementData_0x6d258
+	ld bc, MovementData_0x6d258.End - MovementData_0x6d258 - 1
+	jr RocketBaseStartSideBySide
+
+RocketBasePairToElectrodes:
+	ld hl, MovementData_0x6d267
+	ld bc, MovementData_0x6d267.End - MovementData_0x6d267 - 1
+	jr RocketBaseStartSideBySide
+
+RocketBasePairReturn:
+	ld hl, MovementData_0x6d27a
+	ld bc, MovementData_0x6d27a.End - MovementData_0x6d27a - 1
+	jr RocketBaseStartSideBySide
+
+RocketBasePairExit:
+	ld hl, MovementData_0x6d283
+	ld bc, MovementData_0x6d283.End - MovementData_0x6d283 - 1
+
+RocketBaseStartSideBySide:
+	; Match applymovement's portrait cleanup before loading walking frames.
+	push hl
+	push bc
+	farcall TrainerPortrait_HideForMovement
+	pop bc
+	pop hl
+	push hl
+	ld de, wMovementBuffer
+	call CopyBytes
+	ld a, movement_step_sleep + 8
+	ld [de], a
+	inc de
+	ld a, 255
+	ld [de], a
+	inc de
+	ld a, movement_step_loop
+	ld [de], a
+	ld a, LOW(wMovementBuffer)
+	ld [wc2e6], a
+	ld a, HIGH(wMovementBuffer)
+	ld [wc2e6 + 1], a
+	ld c, TEAMROCKETBASEB2F_LANCE - 1
+	farcall SetFlagsForMovement_1
+	ld c, TEAMROCKETBASEB2F_LANCE - 1
+	farcall _SetFlagsForMovement_2
+	ld a, TEAMROCKETBASEB2F_DRAGON - 1
+	call CheckObjectVisibility
+	ld hl, OBJECT_FLAGS2
+	add hl, bc
+	res OBJ_FLAGS2_5, [hl]
+	ld hl, OBJECT_MOVEMENTTYPE
+	add hl, bc
+	ld [hl], SPRITEMOVEDATA_0D
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_00
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
+	add hl, bc
+	ld [hl], 0
+	pop hl
+	ld b, BANK(TeamRocketBaseB2F_MapScripts)
+	ld c, TEAMROCKETBASEB2F_LANCE - 1
+	call GetMovementData
+	ld a, SCRIPT_WAIT_MOVEMENT
+	ld [wScriptMode], a
+	ld hl, wScriptFlags
+	res SCRIPT_RUNNING, [hl]
+	ret
+
+RocketBaseStopDragoniteMovement:
+	ld a, TEAMROCKETBASEB2F_DRAGON - 1
+	call CheckObjectVisibility
+	ret c
+	ld hl, OBJECT_MOVEMENTTYPE
+	add hl, bc
+	ld [hl], SPRITEMOVEDATA_STANDING_DOWN
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_00
+	ret
 
 MovementData_0x6d28c:
 	step RIGHT
@@ -528,7 +672,6 @@ MovementData_0x6d28c:
 	step DOWN
 	step DOWN
 	step DOWN
-	step RIGHT
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -544,7 +687,6 @@ MovementData_0x6d299:
 	step RIGHT
 	step RIGHT
 	step RIGHT
-	step RIGHT
 	step_end
 
 MovementData_0x6d2a4:
@@ -552,7 +694,6 @@ MovementData_0x6d2a4:
 	step RIGHT
 	step DOWN
 	step DOWN
-	step RIGHT
 	step RIGHT
 	step RIGHT
 	step RIGHT
@@ -919,7 +1060,7 @@ TeamRocketBaseB2F_MapEvents:
 
 	db 9 ; coord events
 	coord_event  5, 14, SCENE_DEFAULT, LanceHealsScript1
-	coord_event  4, 13, SCENE_DEFAULT, LanceHealsScript2
+	coord_event  3, 13, SCENE_DEFAULT, LanceHealsScript2
 	coord_event 14, 11, SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS, RocketBaseBossFLeft
 	coord_event 15, 11, SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS, RocketBaseBossFRight
 	coord_event 14, 12, SCENE_TEAMROCKETBASEB2F_ELECTRODES, RocketBaseCantLeaveScript
@@ -953,7 +1094,7 @@ TeamRocketBaseB2F_MapEvents:
 	bg_event 17,  8, BGEVENT_READ, TeamRocketBaseB2FTransmitterScript
 	bg_event 26,  7, BGEVENT_ITEM, TeamRocketBaseB2FHiddenFullHeal
 
-	db 14 ; object events
+	db 15 ; object events
 	object_event 20, 16, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_GRUNT_WITH_EXECUTIVE
 	object_event 20, 16, SPRITE_ARIANA, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE
 	object_event  5, 13, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B2F_LANCE
@@ -968,3 +1109,4 @@ TeamRocketBaseB2F_MapEvents:
 	object_event  4,  1, SPRITE_ROCKET, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerGruntM18, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 21, 14, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerGruntF13, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  3, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB2FTMThief, EVENT_TEAM_ROCKET_BASE_B2F_TM_THIEF
+	object_event  4, 13, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE

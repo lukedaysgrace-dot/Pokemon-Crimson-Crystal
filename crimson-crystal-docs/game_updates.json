@@ -2507,9 +2507,9 @@
     {
       "id": "mahogany-held-item-shop",
       "category": "items",
-      "title": "Mahogany held-item shop",
+      "title": "Mahogany supplies and consumables",
       "before": "Mahogany has only the original supply inventories.",
-      "after": "After clearing the Rocket Hideout, buy held items from the granny in Mahogany Mart. Stock includes Eviolite, Rocky Helmet, Air Balloon, Muscle Band, Wise Glasses, Expert Belt, Flame Orb, Toxic Orb, Assault Vest, Life Orb and Wide Lens.",
+      "after": "After clearing the Rocket Hideout, the granny sells the original Crystal supplies plus White Herb, Power Herb and Throat Spray for ₽1,000 each, with unlimited repeat purchases. Her former eleven battle items are Battle Tower win prizes instead.",
       "comparison": "Gen 2",
       "kind": "expanded",
       "sources": [
@@ -2520,7 +2520,7 @@
       "links": [
         {
           "label": "Shop locations and prices",
-          "href": "items.html#eviolite"
+          "href": "items.html#white_herb"
         }
       ]
     },
@@ -2529,7 +2529,7 @@
       "category": "items",
       "title": "Choose Battle Tower gear prizes",
       "before": "The Battle Tower awards a random vitamin after a seven-win streak.",
-      "after": "Win a seven-battle challenge to choose a Choice Band, Choice Specs, Choice Scarf, Focus Sash or Weakness Policy. Win more challenges for extra copies.",
+      "after": "Win a seven-battle challenge to choose one of sixteen prizes across three menu pages: Choice Band, Choice Specs, Choice Scarf, Focus Sash, Weakness Policy, Eviolite, Rocky Helmet, Air Balloon, Muscle Band, Wise Glasses, Expert Belt, Flame Orb, Toxic Orb, Assault Vest, Life Orb or Wide Lens. Win more challenges for extra copies. Canceling or having a full Bag preserves the unclaimed prize.",
       "comparison": "Gen 2",
       "kind": "expanded",
       "sources": [
@@ -2551,7 +2551,7 @@
       "category": "items",
       "title": "Special item acquisition methods",
       "before": "Some items rely on special activities, rare held items or Mystery Gift.",
-      "after": "Eon Mail comes from Mystery Gift. Steal BrightPowder from Koga’s or Janine’s Crobat. Find the four weather rocks in the Ho-Oh secret chamber at the Ruins of Alph.",
+      "after": "Eon Mail comes from Mystery Gift. Wild Ditto is the only source of Metal Powder (20%) and Quick Powder (5%). BrightPowder is retired. Find the four weather rocks in the Ho-Oh secret chamber at the Ruins of Alph.",
       "comparison": "Gen 2",
       "kind": "expanded",
       "sources": [

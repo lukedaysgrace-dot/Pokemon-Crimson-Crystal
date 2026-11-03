@@ -882,7 +882,7 @@ ReloadBank0SpriteFacings::
 	scf
 	ret
 
-GetUsedSprite:
+GetUsedSprite::
 	ldh a, [hUsedSpriteIndex]
 	call SafeGetSprite
 	ldh a, [hUsedSpriteTile]

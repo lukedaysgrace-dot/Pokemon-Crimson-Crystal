@@ -247,7 +247,8 @@ def generate(repo, builder=None, write=True):
                     detail = 'Repeatable purchase.'
                     if match[1] == 'MARTTYPE_HELD_ITEMS':
                         price *= 10
-                        detail = 'Granny’s Held Items shop; opens after clearing the Rocket Hideout.'
+                    if const == 'MART_MAHOGANY_2':
+                        detail = 'Granny’s shop; opens after clearing the Rocket Hideout. Repeatable purchase; unlimited stock.'
                     elif item == 'TM_HEADBUTT':
                         detail = 'Stock appears after receiving Headbutt in Ilex Forest.'
                     elif item == 'TM_ROCK_SMASH':
@@ -259,7 +260,7 @@ def generate(repo, builder=None, write=True):
                             map_source=p.relative_to(repo).as_posix(), map_line=number)
 
     # Dynamic rewards: the old tower random vitamin table is not called by
-    # the current prize menu, so only the five selectable rewards belong here.
+    # the current prize menu, so only its selectable rewards belong here.
     tower_path = repo/'maps/BattleTower1F.asm'
     tower_text = tower_path.read_text(encoding="utf-8")
     tower_block = tower_text.split('Script_GivePlayerHisPrize:', 1)[1].split('BattleTowerPrizeMenuHeader:', 1)[0]

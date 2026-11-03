@@ -64,6 +64,14 @@ OVERRIDES = {
 	# Ariana (the executive) speaks for the pair when they corner you.
 	'UnknownText_0x6d2ad': 'ARIANA',
 	'UnknownText_0x6d2c3': 'ARIANA',
+	# Dragonite steps aside immediately before Lance reveals the mart stairs.
+	'UnknownText_0x6c59e': 'LANCE',
+	# Paired movement helpers do not identify Lance as the speaker.
+	'UnknownText_0x6d64e': 'LANCE',
+	'UnknownText_0x6d6cf': 'LANCE',
+	# The paired movement helper also precedes Lance's reward and farewell.
+	'UnknownText_0x6d8f8': 'LANCE',
+	'UnknownText_0x6d994': 'LANCE',
 	# Clair, lost for words after the Elder's scolding.
 	'DragonShrineSpeechlessText': 'CLAIR',
 	# Mr. Pokemon, not Oak.

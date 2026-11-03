@@ -3,7 +3,7 @@
 ; Ball/key pockets retain fixed legacy byte IDs and their existing layouts.
 
 NormalizeRetiredBerryInventories::
-; Normalize loaded word inventories without changing stack quantities/counts.
+; Normalize loaded word inventories and compact away removed item stacks.
 ; Party/daycare runtime slots and boxed indices resolve through the home
 ; conversion helpers, so their saved layout and checksums stay unchanged.
 	ld hl, wNumItems
@@ -12,16 +12,23 @@ NormalizeRetiredBerryInventories::
 	ld hl, wNumPCItems
 	ld b, MAX_PC_ITEMS
 .pocket
-	ld a, [hli]
+	ld a, [hl]
 	cp b
 	jr c, .valid
 	ret nz
 .valid
+	push hl ; count byte
+	inc hl
 	ld b, a
-	and a
-	ret z
+	ld d, h
+	ld e, l ; destination (never ahead of source)
+	ld c, 0 ; surviving stacks
 .loop
+	ld a, b
+	and a
+	jr z, .done
 	push bc
+	push de
 	push hl
 	ld a, [hli]
 	ld l, [hl]
@@ -31,17 +38,67 @@ NormalizeRetiredBerryInventories::
 	ld de, NormalizeRetiredBerryIndex
 	ld a, BANK(NormalizeRetiredBerryIndex)
 	call FarCall_de
-	ld d, h
-	ld e, l
+	ld b, h
+	ld c, l
+	ld a, b
+	or c
 	pop hl
-	ld [hl], d
+	pop de
+	jr z, .drop
+	ld a, b
+	ld [de], a
+	inc de
+	ld a, c
+	ld [de], a
+	inc de
 	inc hl
-	ld [hl], e
+	inc hl
+	ld a, [hli]
+	ld [de], a
+	inc de
+	pop bc
+	inc c
+	jr .next
+.drop
+	inc hl
 	inc hl
 	inc hl
 	pop bc
+.next
 	dec b
 	jr nz, .loop
+	; Falling through also handles an empty/all-retired pocket.
+.done
+	ld a, $ff
+	ld [de], a
+	pop hl
+	ld [hl], c
+	ret
+
+NormalizeLoadedRetiredItems::
+; Called after the saved conversion table and Pokemon data are loaded.
+; Boxed indexes use GetItemIDFromIndex on decode and normalize there.
+	ld hl, wPartyMon1Item
+	ld de, PARTYMON_STRUCT_LENGTH
+	ld b, PARTY_LENGTH
+	call .held
+	ld hl, wBreedMon1Item
+	ld de, wBreedMon2 - wBreedMon1
+	ld b, 2
+.held
+	ld a, [hl]
+	push bc
+	push de
+	push hl
+	call GetItemIndexFromID
+	call GetItemIDFromIndex
+	pop hl
+	pop de
+	pop bc
+	ld [hl], a
+	add hl, de
+	dec b
+	jr nz, .held
 	ret
 
 GetCurItemIndexBC:

@@ -167,7 +167,8 @@ def extract():
         key = con.items_by_id.get(index, item_names[index - 1].replace(" ", "_") + f"_{index}")
         items[key] = {"id": index, "name": item_names[index - 1], "held_effect": row[1],
                       "parameter": row[2], "pocket": row[4], "source": f"data/items/attributes.asm:{line}",
-                      "selectable": index in con.items_by_id and row[4] in {"ITEM", "BERRIES"}}
+                      "selectable": index in con.items_by_id and not key.startswith("RETIRED_")
+                                    and row[4] in {"ITEM", "BERRIES"}}
     matchups = {}
     for _, row in rows("data/types/type_matchups.asm", "db"):
         if len(row) == 3:

@@ -92,6 +92,7 @@ def save_continue(h, map_id=(24, 7)):
     h.pb.hook_register(0, 0x100, lambda _: None, None)
     h.battle = Battle(h.pb, h.sym, h.con)
     h.battle.textbox_contexts = set()
+    h.battle.textbox_order = []
     h.text_context = None
     h.text_overflows.clear()
     for symbol, callback in (('PrintTextboxText', h._begin_text),

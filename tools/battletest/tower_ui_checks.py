@@ -36,6 +36,7 @@ class TowerUI:
         self.maps = set()
         self.reset_seen = False
         self.selection = False
+        self.prize_pages = set()
         OUTPUT.mkdir(parents=True, exist_ok=True)
         self.monitor_stop = threading.Event()
 
@@ -137,6 +138,8 @@ class TowerUI:
 
     def drive(self, until, answers=(), group=1, prize=1, challenge=1, limit=240000):
         answers = list(answers)
+        prize_page, prize_row = prize if isinstance(prize, tuple) else (0, prize)
+        closing_prize_menu = False
         start = self.c.frames
         while self.c.frames - start < limit:
             self.maps.add(self.c.map_id())
@@ -176,12 +179,28 @@ class TowerUI:
                     self.c.press('up', hold=4, wait=24)
                 else:
                     self.c.press('a', hold=4, wait=24)
-            elif 'CHOICE BAND' in text and 'CHOICE SPECS' in text and 'CANCEL' in text:
+            elif (('CHOICE BAND' in text and 'CHOICE SPECS' in text and 'CANCEL' in text)
+                  or ('EVIOLITE' in text and 'ROCKY HELMET' in text)
+                  or ('FLAME ORB' in text and 'TOXIC ORB' in text)):
                 self.c.wait(30)
-                if self.m.read('wMenuCursorY') != prize:
+                page = 0 if 'CHOICE BAND' in text else 1 if 'EVIOLITE' in text else 2
+                if page not in self.prize_pages:
+                    self.capture('prize-menu-page-' + str(page + 1))
+                    self.prize_pages.add(page)
+                desired = ((6 if page == 0 else 7) if prize_page > page else
+                           (8 if page == 1 else 6) if prize_page < page else prize_row)
+                if not desired:
+                    closing_prize_menu = True
+                    self.c.press('b', hold=4, wait=24)
+                elif self.m.read('wMenuCursorY') != desired:
                     self.c.press('down', hold=4, wait=20)
                 else:
+                    closing_prize_menu = True
                     self.c.press('a', hold=4, wait=24)
+            elif closing_prize_menu and not text.strip():
+                # Let menu/script teardown reach idle before pressing A again;
+                # otherwise a successful claim can immediately reopen the NPC.
+                self.c.wait(1)
             else:
                 self.c.press('a', hold=4, wait=20)
         self.capture('timeout')
@@ -282,7 +301,7 @@ def main():
             t.m.write_bytes(f'wPartyMon{slot}Attack', (10000).to_bytes(2, 'big'))
         streak_party = t.m.read_bytes('wPartyMons', len(t.party))
         t.talk()
-        t.drive(t.idle, answers=[False, True] + [True] * 6, group=10, prize=6)
+        t.drive(t.idle, answers=[False, True] + [True] * 6, group=10, prize=7)
         t.check(len(t.battles) == 7, 'seven actual battles in a complete streak')
         t.check(t.sram('sNrOfBeatenBattleTowerTrainers') == 7, 'seven opponents recorded')
         t.check(t.sram('sBattleTowerChallengeState') == 3, 'canceled prize remains available')
@@ -294,16 +313,31 @@ def main():
             t.h.pb.save_state(stream)
         won = io.BytesIO()
         t.h.pb.save_state(won)
-        for choice, item in enumerate(('CHOICE_BAND', 'CHOICE_SPECS', 'CHOICE_SCARF', 'FOCUS_SASH', 'WEAK_POLICY'), 1):
+        prizes = [(0, row, item) for row, item in enumerate(
+            ('CHOICE_BAND', 'CHOICE_SPECS', 'CHOICE_SCARF', 'FOCUS_SASH', 'WEAK_POLICY'), 1)]
+        prizes += [(1, row, item) for row, item in enumerate(
+            ('EVIOLITE', 'ROCKY_HELMET', 'AIR_BALLOON', 'MUSCLE_BAND', 'WISE_GLASSES', 'EXPERT_BELT'), 1)]
+        prizes += [(2, row, item) for row, item in enumerate(
+            ('FLAME_ORB', 'TOXIC_ORB', 'ASSAULT_VEST', 'LIFE_ORB', 'WIDE_LENS'), 1)]
+        for page, choice, item in prizes:
             won.seek(0)
             t.h.pb.load_state(won)
             t.label = 'prize-' + item.lower()
             t.talk()
-            t.drive(t.idle, prize=choice)
+            t.drive(t.idle, prize=(page, choice))
             t.check(t.sram('sBattleTowerChallengeState') == 4, 'prize marked received')
             t.check(t.m.read('wNumItems') == 1 and (t.m.read('wItems') << 8 | t.m.read('wItems', 1)) == t.h.con.item_id(item)
                     and t.m.read('wItems', 2) == 1, 'one selected prize awarded')
             t.capture('claimed')
+
+        for page, choice in ((1, 0), (2, 7)):
+            won.seek(0)
+            t.h.pb.load_state(won)
+            t.label = 'prize-page-' + str(page) + '-cancel'
+            t.talk()
+            t.drive(t.idle, prize=(page, choice))
+            t.check(t.sram('sBattleTowerChallengeState') == 3, 'paged cancel preserves unclaimed prize')
+            t.check(t.m.read('wNumItems') == 0, 'paged cancel awards no item')
 
         won.seek(0)
         t.h.pb.load_state(won)

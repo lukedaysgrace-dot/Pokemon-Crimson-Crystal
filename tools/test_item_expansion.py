@@ -179,10 +179,11 @@ def main():
 
     print('[restored/expanded names, attributes and runtime-ID collection]', flush=True)
     names = re.findall(r'\tdb "([^"@]+)@"', (root / 'data/items/names.asm').read_text())
-    expanded = [(name, value) for name, value in con.items.items() if value >= 257]
+    expanded = [(name, value) for name, value in con.items.items()
+                if value >= 257 and not name.startswith('RETIRED_')]
     rom_bytes = rom.read_bytes()
     desc_bank, desc_address = h.sym['ItemDescriptions']
-    check(len(expanded) == 39, 'expanded catalogue size')
+    check(len(expanded) == 32, 'expanded catalogue size')
     for name, value in expanded:
         item = runtime(value)
         check(item != 0 and index(item) == value, name + ': round-trip conversion')
@@ -239,6 +240,58 @@ def main():
         check(h.rd(h.s('wCurMart')) == len(expected_stock), 'mart count')
         check([index(h.rd(h.s('wCurMart') + 1 + i)) for i in range(len(expected_stock))] ==
               expected_stock, 'mart stock indexes')
+
+    print('[Mahogany granny: original stock, three 1000-yen items and repeat stock]', flush=True)
+    mart_types = _parse_constants(root / 'constants/mart_constants.asm')
+    write('wMartType', mart_types['MARTTYPE_STANDARD'])
+    bank, address = h.sym['MartMahogany2']
+    write('wMartPointerBank', bank)
+    h.wr16(h.s('wMartPointer'), address)
+    expected_names = ['RAGECANDYBAR', 'GREAT_BALL', 'SUPER_POTION', 'HYPER_POTION',
+                      'ANTIDOTE', 'PARLYZ_HEAL', 'SUPER_REPEL', 'REVIVE', 'FLOWER_MAIL',
+                      'WHITE_HERB', 'POWER_HERB', 'THROAT_SPRAY']
+    expected_prices = [300, 600, 700, 1200, 100, 200, 500, 1500, 50, 1000, 1000, 1000]
+    for _ in range(2):
+        h.call('FarReadMart')
+        check(h.rd(h.s('wCurMart')) == 12, 'Mahogany stock count')
+        for slot, (name, price) in enumerate(zip(expected_names, expected_prices)):
+            check(index(h.rd(h.s('wCurMart') + slot + 1)) == con.item_id(name), name + ': shop slot')
+            bcd = bytes.fromhex(f'{price:06d}')
+            check(h.rd(h.s('wMartItem1BCD') + slot * 3, 3) == bcd, name + ': displayed shop price')
+    entries('wNumItems', [])
+    for name in expected_names[-3:]:
+        item = runtime(con.item_id(name))
+        write('wCurItem', item)
+        base = h.call('GetItemPrice')['de']
+        marked = h.call('ApplyHeldItemMarkup', de=base)['de']
+        check(marked == 1000, name + ': purchase price differs from displayed price')
+        write('wBuffer1', marked >> 8)
+        write('wBuffer2', marked & 255)
+        for quantity in (1, 2, 33, 99):
+            write('wItemQuantityChangeBuffer', quantity)
+            h.call('BuySell_MultiplyPrice')
+            check(int.from_bytes(h.rd(h.s('hProduct') + 1, 3), 'big') == 1000 * quantity,
+                  name + ': purchase subtotal')
+        for _ in range(2):
+            write('wItemQuantityChangeBuffer', 1)
+            check(h.call('_ReceiveItem', hl=h.s('wNumItems'))['c_flag'], name + ': repeat purchase refused')
+    check(h.rd(h.s('wNumItems')) == 3, 'herb/spray purchases did not stack')
+    check([h.rd(h.s('wItems') + slot * 3 + 2) for slot in range(3)] == [2, 2, 2],
+          'repeat purchases did not increase quantities')
+    flags = h.s('wBargainShopFlags')
+    for row in range(14):
+        h.wr(flags, [0x55, 0xaa, 0x33])
+        write('wMartItemID', row)
+        h.call('RecordBargainShopPurchase')
+        check(h.rd(flags, 3) == bytes([0x55, 0xaa, 0x33]),
+              'held-item purchase changed bargain flags/adjacent memory')
+    write('wMartType', mart_types['MARTTYPE_BARGAIN'])
+    h.wr(flags, [0, 0xaa, 0x33])
+    for row in range(3):
+        write('wMartItemID', row)
+        h.call('RecordBargainShopPurchase')
+    check(h.rd(flags, 3) == bytes([7, 0xaa, 0x33]), 'bargain purchase tracking broke')
+    write('wMartType', mart_types['MARTTYPE_STANDARD'])
 
     print('[word-index bag sorting: same low byte, embedded $ff, stack merging]', flush=True)
     write('wMenuData_ScrollingMenuItemFormat', 3)

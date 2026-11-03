@@ -1,5 +1,6 @@
 	object_const_def ; object_event constants
 	const TEAMROCKETBASEB3F_LANCE
+	const TEAMROCKETBASEB3F_DRAGONITE
 	const TEAMROCKETBASEB3F_ROCKET1
 	const TEAMROCKETBASEB3F_MOLTRES
 	const TEAMROCKETBASEB3F_ROCKET_GIRL
@@ -22,8 +23,10 @@ TeamRocketBaseB3F_MapScripts:
 	scene_script .DummyScene2 ; SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS
 	scene_script .DummyScene3 ; SCENE_TEAMROCKETBASEB3F_NOTHING
 
-	db 1 ; callbacks
+	db 3 ; callbacks
 	callback MAPCALLBACK_TILES, .CheckGiovanniDoor
+	callback MAPCALLBACK_SPRITES, .SetRocketSprite
+	callback MAPCALLBACK_OBJECTS, .CheckRocketSleeping
 
 .LanceGetsPassword:
 	prioritysjump LanceGetPasswordScript
@@ -38,7 +41,20 @@ TeamRocketBaseB3F_MapScripts:
 .DummyScene3:
 	end
 
+.SetRocketSprite:
+	callasm LanceDragoniteSetRocketVariable
+	return
+
+.CheckRocketSleeping:
+	checkevent EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
+	iffalse .KeepRocketStanding
+	callasm LanceDragoniteSleepingRocketMovement
+.KeepRocketStanding:
+	return
+
 .CheckGiovanniDoor:
+	; Set the variable before LoadGraphics sorts and allocates sprite tiles.
+	callasm LanceDragoniteSetRocketVariable
 	checkevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
 	iftrue .OpenSesame
 	return
@@ -52,19 +68,160 @@ TeamRocketBaseB3F_MapScripts:
 	return
 
 LanceGetPasswordScript:
-	turnobject PLAYER, LEFT
-	pause 5
-	turnobject TEAMROCKETBASEB3F_MOLTRES, RIGHT
-	pause 20
-	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12a
+	applymovement PLAYER, LanceDragoniteEntryMovement
+	opentext
+	writetext LanceDragoniteOutrageText
+	waitbutton
+	closetext
+	cry DRAGONITE
+	waitsfx
+	callasm LanceDragoniteOutrageAnimation
+	pause 15 ; let the impact settle before Dragonite clears Lance's path
+	applymovement TEAMROCKETBASEB3F_DRAGONITE, LanceDragoniteStepAsideMovement
+	; Keep the escort active while Dragonite yields the aisle to Lance.
+	follow TEAMROCKETBASEB3F_LANCE, TEAMROCKETBASEB3F_DRAGONITE
+	callasm LanceDragoniteYieldApproach
+	applymovement TEAMROCKETBASEB3F_LANCE, LanceDragoniteConfrontRocketMovement
+	; They are now adjacent: seed the normal trailing step for the return.
+	follow TEAMROCKETBASEB3F_LANCE, TEAMROCKETBASEB3F_DRAGONITE
+	pause 60
+	applymovement TEAMROCKETBASEB3F_LANCE, LanceDragoniteReturnMovement
 	opentext
 	writetext LanceGetPasswordText
 	waitbutton
 	closetext
-	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12c
+	applymovement TEAMROCKETBASEB3F_LANCE, LanceDragoniteLeaveMovement
+	stopfollow
+	disappear TEAMROCKETBASEB3F_DRAGONITE
 	disappear TEAMROCKETBASEB3F_LANCE
 	setscene SCENE_TEAMROCKETBASEB3F_RIVAL_ENCOUNTER
 	end
+
+LanceDragoniteSetRocketVariable:
+	ld de, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	ld a, SPRITE_ROCKET
+	jr z, .Store
+	ld a, SPRITE_ROCKET_ASLEEP
+.Store:
+	ld [wVariableSprites + SPRITE_ROCKET_BASE_GRUNT - SPRITE_VARS], a
+	ret
+
+LanceDragoniteSleepingRocketMovement:
+	ld a, TEAMROCKETBASEB3F_ROCKET3 - 1
+	call GetMapObject
+	ld hl, MAPOBJECT_MOVEMENT
+	add hl, bc
+	ld [hl], SPRITEMOVEDATA_STILL
+	ret
+
+LanceDragoniteKnockOutRocket:
+	; The scene cannot be interrupted by saving. Its existing departure flag
+	; also preserves the sleeping grunt without adding any saved state.
+	ld de, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
+	ld b, SET_FLAG
+	call EventFlagAction
+	ld a, SPRITE_ROCKET_ASLEEP
+	ld [wVariableSprites + SPRITE_ROCKET_BASE_GRUNT - SPRITE_VARS], a
+	call LanceDragoniteSleepingRocketMovement
+	ld a, TEAMROCKETBASEB3F_ROCKET3 - 1
+	call CheckObjectVisibility
+	ret c
+	ld hl, OBJECT_MOVEMENTTYPE
+	add hl, bc
+	ld [hl], SPRITEMOVEDATA_STILL
+	ld hl, OBJECT_FACING
+	add hl, bc
+	ld [hl], OW_DOWN
+	ld hl, OBJECT_FLAGS1
+	add hl, bc
+	set FIXED_FACING_F, [hl]
+	set SLIDING_F, [hl]
+	; Replace only this variable sprite's reserved tiles, keeping all other
+	; actors and their VRAM assignments intact at the moment of impact.
+	ld hl, OBJECT_SPRITE_TILE
+	add hl, bc
+	ld a, [hl]
+	ldh [hUsedSpriteTile], a
+	ld a, SPRITE_ROCKET_BASE_GRUNT
+	ldh [hUsedSpriteIndex], a
+	ld a, [wSpriteFlags]
+	push af
+	res 5, a
+	bit 7, [hl]
+	jr z, .LoadSprite
+	set 5, a
+.LoadSprite:
+	ld [wSpriteFlags], a
+	farcall GetUsedSprite
+	pop af
+	ld [wSpriteFlags], a
+	ret
+
+LanceDragoniteYieldApproach:
+	; The initial diagonal must not make Dragonite walk across Lance's path.
+	; Watch him pass, then let follow seed the adjacent return step normally.
+	ld a, movement_turn_head + UP
+	ld [wFollowMovementQueue], a
+	ret
+
+LanceDragoniteOutrageAnimation:
+	; Animate only the sprite offsets: neither actor ever leaves its tile.
+	ld a, TEAMROCKETBASEB3F_ROCKET3 - 1 ; script IDs include an extra player slot
+	call CheckObjectVisibility
+	ret c
+	ld hl, OBJECT_SPRITE_Y_OFFSET
+	add hl, bc
+	push hl
+	ld a, TEAMROCKETBASEB3F_DRAGONITE - 1
+	call CheckObjectVisibility
+	pop de
+	ret c
+	ld hl, OBJECT_SPRITE_X_OFFSET
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld hl, .Frames
+.Frame:
+	ld a, [hli]
+	cp $80
+	ret z
+	ld [bc], a
+	ld a, [hli]
+	ld [de], a
+	ld a, [hli]
+	push bc
+	push de
+	push hl
+	and a
+	jr z, .Draw
+	ld de, SFX_EGG_BOMB
+	call PlaySFX
+	call LanceDragoniteKnockOutRocket
+.Draw:
+	call UpdateSprites
+	ld c, 2
+	call DelayFrames
+	pop hl
+	pop de
+	pop bc
+	jr .Frame
+
+.Frames:
+	; Dragonite lunge X, Rocket height Y, ground-impact sound.
+	; One sharp 16-frame slam and a heavy, three-channel explosion on landing.
+	db   0,   0, 0
+	db  -4, -10, 0
+	db  -8, -20, 0
+	db -12, -28, 0
+	db -12, -28, 0
+	db  -8, -20, 0
+	db  -4, -10, 0
+	db   0,   0, 1
+	db $80
 
 RocketBaseRival:
 	turnobject PLAYER, LEFT
@@ -226,11 +383,24 @@ TeamRocketBaseB3FUltraBall:
 TeamRocketBaseB3FLifeOrb:
 	itemball LIFE_ORB
 
-MovementData_0x6e12a:
+LanceDragoniteEntryMovement:
+	big_step LEFT
+	step_end
+
+LanceDragoniteStepAsideMovement:
+	step DOWN
+	turn_head UP
+	step_end
+
+LanceDragoniteConfrontRocketMovement:
+	step LEFT
+	step_end
+
+LanceDragoniteReturnMovement:
 	step RIGHT
 	step_end
 
-MovementData_0x6e12c:
+LanceDragoniteLeaveMovement:
 	step DOWN
 	step LEFT
 	step LEFT
@@ -342,6 +512,11 @@ LanceGetPasswordText:
 
 	para "<PLAY_G>, let's go"
 	line "get the passwords."
+	done
+
+LanceDragoniteOutrageText:
+	text "LANCE: DRAGONITE,"
+	line "OUTRAGE."
 	done
 
 TeamRocketBaseB3FRocketText:
@@ -606,15 +781,16 @@ TeamRocketBaseB3F_MapEvents:
 	bg_event  6, 13, BGEVENT_READ, TeamRocketBaseB3FOathScript
 	bg_event  7, 13, BGEVENT_READ, TeamRocketBaseB3FOathScript
 
-	db 15 ; object events
-	object_event 25, 14, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceGetPasswordScript, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
+	db 16 ; object events
+	object_event 25, 14, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceGetPasswordScript, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
+	object_event 24, 14, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
 	object_event  8,  3, SPRITE_PETREL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketBaseBoss, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
 	object_event  7,  2, SPRITE_MURKROW, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RocketBaseMurkrow, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 21,  7, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, SlowpokeTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  5, 14, SPRITE_ROCKET, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, RaticateTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 23, 11, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 11, 15, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
-	object_event 24, 14, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TeamRocketBaseB3FRocketScript, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event 23, 14, SPRITE_ROCKET_BASE_GRUNT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TeamRocketBaseB3FRocketScript, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  4,  5, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_TEAM_ROCKET_BASE
 	object_event  1, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB3FProtein, EVENT_TEAM_ROCKET_BASE_B3F_PROTEIN
 	object_event  3, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB3FXSpecial, EVENT_TEAM_ROCKET_BASE_B3F_X_SPECIAL

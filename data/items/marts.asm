@@ -204,7 +204,7 @@ MartMahogany1:
 	dw -1 ; end
 
 MartMahogany2:
-	db 9 ; # items
+	db 12 ; # items: original Crystal stock plus three consumables
 	dw RAGECANDYBAR
 	dw GREAT_BALL
 	dw SUPER_POTION
@@ -214,6 +214,9 @@ MartMahogany2:
 	dw SUPER_REPEL
 	dw REVIVE
 	dw FLOWER_MAIL
+	dw WHITE_HERB
+	dw POWER_HERB
+	dw THROAT_SPRAY
 	dw -1 ; end
 
 MartBlackthorn:
@@ -399,18 +402,7 @@ MartUnderground:
 	dw -1 ; end
 
 MartMahoganyHeldItems:
-	db 11 ; # items
-	dw EVIOLITE
-	dw ROCKY_HELMET
-	dw AIR_BALLOON
-	dw MUSCLE_BAND
-	dw WISE_GLASSES
-	dw EXPERT_BELT
-	dw FLAME_ORB
-	dw TOXIC_ORB
-	dw ASSAULT_VEST
-	dw LIFE_ORB
-	dw WIDE_LENS
+	db 0 ; retired shop; keep the mart ID reserved
 	dw -1 ; end
 
 DefaultMart:

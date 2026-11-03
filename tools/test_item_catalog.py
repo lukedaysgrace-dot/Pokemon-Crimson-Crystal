@@ -24,7 +24,9 @@ class ItemCatalogTests(unittest.TestCase):
             if number.startswith(('TM', 'HM'))
         }
         self.assertEqual(set(self.items), expected)
-        self.assertEqual(self.catalog['counts']['no_sources'], [])
+        self.assertEqual(set(self.catalog['counts']['no_sources']), {
+            'BIG_ROOT', 'CLEAR_AMULET', 'COVERT_CLOAK', 'LIGHT_CLAY',
+            'METRONOME_ITEM', 'PUNCHING_GLOVE', 'SAFETY_GOGGLES'})
         self.assertEqual(sum(i['category'] == 'TM' for i in self.items.values()), 54)
         self.assertEqual(sum(i['category'] == 'HM' for i in self.items.values()), 7)
 
@@ -48,10 +50,19 @@ class ItemCatalogTests(unittest.TestCase):
                 self.assertIn(source, {s['source'] for s in self.items[const]['sources']})
         self.assertNotIn('maps/Route34.asm', {s['source'] for s in self.items['SOFT_SAND']['sources']})
 
-    def test_brightpowder_requires_real_trainer_theft(self):
-        item = self.items['BRIGHTPOWDER']
-        self.assertEqual(item['availability'], 'Trainer theft only')
-        self.assertEqual({s['trainer_id'] for s in item['sources']}, {'KOGA1', 'JANINE1'})
+    def test_removed_items_are_not_in_the_catalog(self):
+        for item in ('CUSTAP_BERRY', 'SALAC_BERRY', 'BLACK_SLUDGE', 'BRIGHTPOWDER',
+                     'RED_CARD', 'HEAVY_DUTY_BOOTS', 'BLUNDER_POLICY', 'EJECT_BUTTON'):
+            self.assertNotIn(item, self.items)
+        self.assertFalse(any(item.startswith('RETIRED_') for item in self.items))
+
+    def test_ditto_is_the_only_powder_source(self):
+        for item, rate in (('METAL_POWDER', 20), ('QUICK_POWDER', 5)):
+            sources = self.items[item]['sources']
+            self.assertTrue(sources)
+            self.assertEqual({s['method'] for s in sources}, {'Wild Pokémon'})
+            self.assertTrue(all('Ditto' in s['details'] and f'{rate}%' in s['details']
+                                for s in sources), sources)
 
     def test_conversion_and_forced_static_held_item_sources(self):
         self.assertEqual({s['method'] for s in self.items['BERRY_JUICE']['sources']}, {'Berry conversion'})
@@ -59,6 +70,26 @@ class ItemCatalogTests(unittest.TestCase):
         self.assertEqual(len(ash), 1)
         self.assertEqual(ash[0]['source'], 'maps/TinTowerRoof.asm')
         self.assertIn('100% held-item chance', ash[0]['details'])
+
+    def test_mahogany_consumables_are_repeatable_and_1000(self):
+        for item in ('WHITE_HERB', 'POWER_HERB', 'THROAT_SPRAY'):
+            sources = self.items[item]['sources']
+            self.assertEqual(len(sources), 1, item)
+            source = sources[0]
+            self.assertEqual(source['method'], 'Shop')
+            self.assertEqual(source['map_source'], 'maps/MahoganyMart1F.asm')
+            self.assertIn('Rocket Hideout', source['details'])
+            self.assertIn('unlimited stock', source['details'])
+            self.assertIn('₽1,000', source['details'])
+
+    def test_former_mahogany_gear_is_a_tower_prize(self):
+        for item in ('EVIOLITE', 'ROCKY_HELMET', 'AIR_BALLOON', 'MUSCLE_BAND',
+                     'WISE_GLASSES', 'EXPERT_BELT', 'FLAME_ORB', 'TOXIC_ORB',
+                     'ASSAULT_VEST', 'LIFE_ORB', 'WIDE_LENS'):
+            sources = self.items[item]['sources']
+            self.assertTrue(any(s['method'] == 'Battle Tower prize' for s in sources), item)
+            self.assertFalse(any(s.get('map_source') == 'maps/MahoganyMart1F.asm'
+                                 for s in sources), item)
 
     def test_weather_rocks_list_chamber_requirement(self):
         for const in ('DAMP_ROCK', 'HEAT_ROCK', 'SMOOTH_ROCK', 'ICY_ROCK'):

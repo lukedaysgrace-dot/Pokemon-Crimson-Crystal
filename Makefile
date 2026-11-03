@@ -160,6 +160,14 @@ test-learnsets: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_trainer_move_access.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/weight_move_learnsets.py
 
+.PHONY: test-item-retirements
+test-item-retirements: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_item_retirements.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_item_retirements.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_item_catalog.py
+	$(BATTLE_TEST_PYTHON) tools/test_quick_powder.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_quick_powder.py pokecrystal_debug.gbc
+
 .PHONY: test-weight-moves
 test-weight-moves: pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/weight_move_learnsets.py
@@ -276,6 +284,7 @@ test-link-session: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/link_session_checks.py
 
 audit-static: pokecrystal.gbc pokecrystal_debug.gbc
+	python3 tools/audit_species_dimensions.py --rom pokecrystal.gbc --rom pokecrystal_debug.gbc
 	python3 tools/audit_game_data.py
 	python3 tools/audit_ability_text.py
 	python3 tools/audit_moves.py

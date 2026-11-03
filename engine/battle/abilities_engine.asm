@@ -8705,20 +8705,6 @@ IsBerryItem_Core:
 	ld a, b
 	call GetItemIndexFromID
 	ld a, h
-	cp HIGH(CUSTAP_BERRY)
-	jr nz, .legacy
-	ld a, l
-	cp LOW(CUSTAP_BERRY)
-	jr c, .not_berry
-	cp LOW(SALAC_BERRY) + 1
-	jr nc, .not_berry
-	scf
-	ret
-.not_berry
-	and a
-	ret
-.legacy
-	ld a, h
 	and a
 	ret nz
 	ld a, l

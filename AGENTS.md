@@ -32,6 +32,19 @@ Read this before changing the game. Keep it up to date when something here chang
 - `hiddenitem` is `dw flag, dw item` (4 bytes). Mart prices: `wMartItem1BCD`..`wMartItem10BCD`
   continue into `wMartExtraPrices` (14 items max).
 - Save format version is 5.
+- Mahogany granny uses the original Crystal supplies plus White Herb, Power
+  Herb and Throat Spray (1000 each, unlimited), available after the hideout.
+  It is a standard mart with no markup. Her former eleven battle items are
+  selectable Battle Tower prizes, one per completed seven-win challenge.
+- BrightPowder, Custap/Salac Berries, Black Sludge, Red Card, Heavy-Duty Boots,
+  Blunder Policy and Eject Button are retired. Their `RETIRED_` indexes remain
+  reserved; old saved stacks are removed and held items normalize to no item.
+- Wild Ditto is the only powder source: Metal Powder in the common 20% slot,
+  Quick Powder in the rare 5% slot. Base held-item low bytes use padding bits
+  0/1 for their high bits; `_GetBaseData` resolves both to runtime IDs. Keep
+  `LOW(QUICK_POWDER)` and Ditto's padding bit together.
+- Run `make test-item-retirements` after changing retired-item compatibility
+  or wild powder sources. It tests both ROMs, catalog routes and Quick Powder.
 - All type-boosting held items give 20%. Pink Bow boosts Normal; Polkadot Bow
   boosts Fairy (there is no Fairy Feather). Keep their saved item indexes stable.
 
@@ -95,7 +108,6 @@ Read this before changing the game. Keep it up to date when something here chang
 - Proton's lines keep "damn": `maps/RadioTower4F.asm` ("Damn it! Not to") and
   `maps/SlowpokeWellB1F.asm` ("stopped a damn"). Never change them.
 - Lileep/Cradily are Water 3 + Plant (not official Water 3 only) so STUN SPORE can be bred.
-- BRIGHTPOWDER is trainer-theft only (Koga/Janine), price 10. Not sold in marts.
 - Dipplin's growth rate matches Applin/Appletun/Flapple/Hydrapple on purpose.
 - HOSTESS is a reserved trainer class with no trainers yet.
 - Magby, Magmar and Magmortar must never learn or know SCALD. It is listed under `excluded` in
@@ -111,8 +123,55 @@ Read this before changing the game. Keep it up to date when something here chang
 - A PyBoy hook can fire twice for one object when an interrupt lands on the hooked
   instruction. In animation tests, more spawns than queue attempts is not a bug. Only
   attempts greater than spawns means an object was dropped.
+- Mahogany Mart keeps Dragonite visible after Hyper Beam. Lance's map-local
+  secondary RAM movement stream walks ahead of the Dragonite/player follow pair;
+  Dragonite steps up to 5,2 and faces down for the stair dialogue, then joins
+  Lance from above via 6,2 and follows him downstairs. The bookcase at 6,4 is
+  blocked; do not route Dragonite through it.
+  B2F's healing Dragonite stands at 4,13, one tile left of Lance, and uses the
+  healed event separately from the later executive-scene Dragonite. The west
+  healing trigger is at 3,13 so Dragonite does not block it. Run
+  `python3 tools/check_lance_escort_scenes.py` for both mart entrances, both
+  healing approaches, native HP/status/PP restoration and re-entry persistence;
+  repeat with `--rom pokecrystal_debug.gbc --output _artifacts/lance-escort-scenes-debug`.
+  `python3 tools/record_lance_escort_scenes.py` records the mart entrance,
+  healing and Ariana/Dragonite/Lance arrival with game audio under
+  `_artifacts/lance-escort-videos/`, using only private emulator fixtures.
+- B2F's transmitter scenes keep Dragonite horizontally beside Lance with the
+  same facing. Dragonite may face right during the first conversation after
+  Lance's two rightward steps; Lance faces down toward the player. Do not add
+  extra lineup steps or detours. The hall inspection goes four tiles left,
+  eight right and four left back to its starting spot, with the original
+  upward looks and pauses; Dragonite mirrors it beside him. The actors mirror each
+  route simultaneously; the player uses the native follow slot when entering.
+  The initial entry chooses opposite sides for the two doorway columns so
+  both stay on floor. The final return uses columns 18/19, then ends at 14/15
+  beside the player at 13,11; their straight downward exit fits the open door.
+  Both companions disappear only after walking off screen together.
+  `python3 tools/record_rocket_transmitter.py` runs native Ariana/three-Electrode
+  battles, validates actor paths against collisions and records the entire
+  briefing-to-departure sequence with audio under `_artifacts/rocket-transmitter/`.
+  Use `--no-video --entry right --order 3,1,2 --rom pokecrystal_debug.gbc` to
+  test the other doorway and another final Electrode. No player save is touched.
+  Add `--skip-electrode-battles` to omit those fights from the video while
+  still running all three native battles and checks.
 - Battle fixtures are cached per ROM hash in `tools/battletest/fixtures/`. A broken ROM shows
   up as "New Game did not finish" during bootstrap.
+- B3F Lance's Outrage scene uses the walking `SPRITE_DRAGON` at 24,14. Keep
+  the Rocket facing right for one rapid vertical slam, with `SFX_EGG_BOMB` on
+  landing. Dragonite lunges through sprite offsets, then steps down to clear
+  Lance's silent approach. Keep `follow LANCE, DRAGONITE` (leader first) active
+  as Lance confronts the grunt, returns to the player and leaves. The initial
+  diagonal follow step yields the aisle, then reseeds normally once adjacent.
+  At impact the grunt switches to the supplied `rocket_asleep.png` static art
+  and stays asleep on map re-entry, using the existing scene departure flag.
+  `SPRITE_ROCKET_BASE_GRUNT` is its dedicated variable sprite; don't replace
+  other Rocket actors' graphics when loading the four sleeping tiles.
+  `python3 tools/record_lance_dragonite.py` checks the incoming stair warp, the
+  single slam and impact timing, silent confrontation, concurrent following and
+  persistent departure, and records
+  game audio under `_artifacts/lance-dragonite/`. Use `--rom pokecrystal_debug.gbc`
+  to check the debug ROM too; only private emulator memory is staged.
 
 ## Illusion
 - Totodile's slot 1 is temporarily ILLUSION for testing (slots 2/3 stay Torrent/Sheer Force).
@@ -134,4 +193,13 @@ Read this before changing the game. Keep it up to date when something here chang
   native switches/reveals with audio under `_artifacts/illusion/`.
 
 ## Reports
+Modern height/weight references for all 502 slots are in
+`tools/testdata/species_dimensions.json`. Run `python3 tools/audit_species_dimensions.py
+--rom pokecrystal.gbc --rom pokecrystal_debug.gbc` (also part of `make audit-static`).
+Dipplin is 0.4 m / 4.4 kg; Bloodmoon Ursaluna is 2.7 m / 333.0 kg. PokeAPI
+currently has incorrect dimensions for those records; the receipt links official
+confirmations. Battle weights derive from Dex pounds, so keep
+`tools/testdata/species_weights.json` aligned when changing them. Custom species
+retain authored dimensions, and regional forms must use form-specific sources.
+
 Past audits are in `reports/` (`full-audit-*.md`, `full-sweep-*.md`).
