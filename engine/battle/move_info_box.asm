@@ -107,6 +107,6 @@ BattleMoveInfoStats::
 	ret
 
 .PowAcc:
-	db "   <BOLD_P>/   <PCT>@"
+	db "   /   <PCT>@"
 .NA:
 	db "---@"

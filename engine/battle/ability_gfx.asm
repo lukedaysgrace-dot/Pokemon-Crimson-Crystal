@@ -821,6 +821,7 @@ RestoreBattleAttrMapNoPalettes:
 	ld a, PAL_BATTLE_BG_EXP
 	ld [wAttrMap + 1 * SCREEN_WIDTH + 4], a
 	ld [wAttrMap + 8 * SCREEN_WIDTH + 12], a
+	farcall RestoreBattleTypeIconAttrs
 	farcall ApplyAttrMap
 	ret
 
