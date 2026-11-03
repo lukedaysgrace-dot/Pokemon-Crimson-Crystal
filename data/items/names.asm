@@ -302,3 +302,4 @@ ItemNames::
 	db "?@" ; retired $012d
 	db "?@" ; retired $012e
 	db "?@" ; retired $012f
+	db "EXP RELAY@"

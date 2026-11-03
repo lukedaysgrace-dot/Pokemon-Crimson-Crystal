@@ -1,6 +1,6 @@
 {
   "counts": {
-    "total": 285,
+    "total": 286,
     "tms": 54,
     "hms": 7,
     "held_items": 70,
@@ -12,7 +12,8 @@
       "LIGHT_CLAY",
       "METRONOME_ITEM",
       "PUNCHING_GLOVE",
-      "SAFETY_GOGGLES"
+      "SAFETY_GOGGLES",
+      "EXP_RELAY"
     ]
   },
   "items": [
@@ -111,7 +112,7 @@
           "method": "Gift / reward",
           "details": "Lance\u2019s reward after shutting down the Rocket Hideout generator.",
           "source": "maps/TeamRocketBaseB2F.asm",
-          "line": 288
+          "line": 316
         }
       ],
       "availability": "World sources",
@@ -977,7 +978,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (3, 10).",
           "source": "maps/TeamRocketBaseB2F.asm",
-          "line": 355
+          "line": 386
         }
       ],
       "availability": "World sources",
@@ -1864,7 +1865,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (14, 10).",
           "source": "maps/TeamRocketBaseB3F.asm",
-          "line": 224
+          "line": 381
         },
         {
           "location": "Tin Tower 4F",
@@ -7503,7 +7504,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (14, 1).",
           "source": "maps/TeamRocketBaseB3F.asm",
-          "line": 227
+          "line": 384
         },
         {
           "location": "Azalea Gym",
@@ -9663,7 +9664,7 @@
           "source": "data/items/marts.asm",
           "line": 206,
           "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 123
+          "map_line": 139
         }
       ],
       "description": "Skips charging a move once. (HOLD)",
@@ -11004,7 +11005,7 @@
           "source": "data/items/marts.asm",
           "line": 206,
           "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 123
+          "map_line": 139
         }
       ],
       "description": "Sound moves raise SPCL.ATK. (HOLD)",
@@ -11127,7 +11128,7 @@
           "source": "data/items/marts.asm",
           "line": 206,
           "map_source": "maps/MahoganyMart1F.asm",
-          "map_line": 123
+          "map_line": 139
         }
       ],
       "description": "Restores lowered stats once. (HOLD)",
@@ -11467,6 +11468,15 @@
       "description": "Pulses with fire, lightning and ice.",
       "availability": "World sources",
       "notes": ""
+    },
+    {
+      "const": "EXP_RELAY",
+      "name": "Exp Relay",
+      "category": "Key item",
+      "sources": [],
+      "description": "Transfers all Stat EXP to a Pok\u00e9mon.",
+      "availability": "No source found",
+      "notes": "Acquisition is intentionally undecided. Reusable outside battle. Choose a donor and a different non-Egg recipient, then confirm. All five Gen 2 Stat EXP values are added to the recipient (each capped at 65,535); all five donor values become zero. Both Pok\u00e9mon\u2019s stats are recalculated. Regular EXP, levels, DVs, moves, abilities, items and happiness stay unchanged. Current HP stays unchanged unless it exceeds the new maximum; fainted Pok\u00e9mon stay fainted."
     },
     {
       "const": "GOOD_ROD",
@@ -12667,14 +12677,14 @@
           "method": "Hidden pickup",
           "details": "Search this tile. Tile (26, 7).",
           "source": "maps/TeamRocketBaseB2F.asm",
-          "line": 358
+          "line": 389
         },
         {
           "location": "Team Rocket Base B3F",
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (28, 9).",
           "source": "maps/TeamRocketBaseB3F.asm",
-          "line": 218
+          "line": 375
         },
         {
           "location": "Tin Tower 3F",
@@ -13207,7 +13217,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (17, 2).",
           "source": "maps/TeamRocketBaseB3F.asm",
-          "line": 221
+          "line": 378
         }
       ],
       "description": "Defrosts frozen Pok\u00e9mon.",
@@ -14244,7 +14254,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (1, 12).",
           "source": "maps/TeamRocketBaseB3F.asm",
-          "line": 212
+          "line": 369
         },
         {
           "location": "Viridian Forest",
@@ -16504,7 +16514,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (3, 12).",
           "source": "maps/TeamRocketBaseB3F.asm",
-          "line": 215
+          "line": 372
         },
         {
           "location": "Underground Path",

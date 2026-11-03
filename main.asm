@@ -49,6 +49,7 @@ INCLUDE "engine/pokemon/breedmon_level_growth.asm"
 INCLUDE "engine/events/bug_contest/caught_mon.asm"
 INCLUDE "engine/items/item_effects.asm"
 INCLUDE "engine/items/consumable_qol.asm"
+INCLUDE "engine/items/exp_relay.asm"
 INCLUDE "engine/battle_anims/pokeball_wobble.asm"
 INCLUDE "engine/pokemon/knows_move.asm"
 

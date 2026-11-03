@@ -1,12 +1,13 @@
 # Unplaced items (no player source yet)
 
-These seven implemented items currently have no player acquisition route:
+These eight implemented items currently have no player acquisition route:
 
 | Constant | Item |
 | --- | --- |
 | BIG_ROOT | Big Root |
 | CLEAR_AMULET | Clear Amulet |
 | COVERT_CLOAK | Covert Cloak |
+| EXP_RELAY | EXP RELAY (reusable Key Item; acquisition intentionally undecided) |
 | LIGHT_CLAY | Light Clay |
 | METRONOME_ITEM | Metronome |
 | PUNCHING_GLOVE | Punching Glove |

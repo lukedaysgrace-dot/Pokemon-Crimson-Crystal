@@ -165,6 +165,12 @@ test-learnsets: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_trainer_move_access.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/weight_move_learnsets.py
 
+.PHONY: test-exp-relay
+test-exp-relay: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_exp_relay.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_exp_relay.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_item_catalog.py
+
 .PHONY: test-item-retirements
 test-item-retirements: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_item_retirements.py pokecrystal.gbc

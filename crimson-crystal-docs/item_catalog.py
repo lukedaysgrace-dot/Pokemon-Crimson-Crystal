@@ -15,6 +15,7 @@ NOTES = {
     'BICYCLE': 'Choose either the Bicycle or Skateboard at the Goldenrod Bike Shop. The other ride cannot be claimed on the same save.',
     'SKATEBOARD': 'Choose either the Skateboard or Bicycle at the Goldenrod Bike Shop. The other ride cannot be claimed on the same save.',
     'ABILITY_CAP': 'Elm gives this after you return the Mystery Egg, provided abilities are enabled for the save.',
+    'EXP_RELAY': 'Acquisition is intentionally undecided. Reusable outside battle. Choose a donor and a different non-Egg recipient, then confirm. All five Gen 2 Stat EXP values are added to the recipient (each capped at 65,535); all five donor values become zero. Both Pokémon’s stats are recalculated. Regular EXP, levels, DVs, moves, abilities, items and happiness stay unchanged. Current HP stays unchanged unless it exceeds the new maximum; fainted Pokémon stay fainted.',
     'PARK_BALL': 'Receive 20 balls for each Bug-Catching Contest.',
     'SAFARI_BALL': 'Thirty balls are supplied for a paid Safari Game. Remaining balls are taken back when the game ends.',
 }

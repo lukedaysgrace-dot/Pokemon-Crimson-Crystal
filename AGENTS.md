@@ -60,6 +60,12 @@ Read this before changing the game. Keep it up to date when something here chang
   or wild powder sources. It tests both ROMs, catalog routes and Quick Powder.
 - All type-boosting held items give 20%. Pink Bow boosts Normal; Polkadot Bow
   boosts Fairy (there is no Fairy Feather). Keep their saved item indexes stable.
+- EXP RELAY ($0130) is a reusable field-only Key Item. Its acquisition location
+  is intentionally undecided; do not add a reward until requested. It transfers
+  all five big-endian Stat EXP words with $ffff saturation, then zeroes the donor and
+  recalculates both with the normal stat-mode-aware calculator. Current HP only
+  clamps down to the new maximum; it never heals or revives. Run
+  `make test-exp-relay` for native transfer and menu cancellation checks.
 
 ## Species additions
 - There are 502 internal species indexes and 501 visible Dex entries. Append new

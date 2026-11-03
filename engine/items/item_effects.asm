@@ -266,6 +266,11 @@ ItemEffects:
 	dw NoEffect ; retired $012d
 	dw NoEffect ; CUSTAP_BERRY
 	dw NoEffect ; SALAC_BERRY
+	dw ExpRelayEffect ; EXP_RELAY
+
+ExpRelayEffect:
+	farcall ExpRelayCore
+	ret
 
 PokeBallEffect:
 	ld a, [wBattleMode]

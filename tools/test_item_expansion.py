@@ -183,7 +183,7 @@ def main():
                 if value >= 257 and not name.startswith('RETIRED_')]
     rom_bytes = rom.read_bytes()
     desc_bank, desc_address = h.sym['ItemDescriptions']
-    check(len(expanded) == 32, 'expanded catalogue size')
+    check(len(expanded) == 33, 'expanded catalogue size')
     for name, value in expanded:
         item = runtime(value)
         check(item != 0 and index(item) == value, name + ': round-trip conversion')
@@ -195,16 +195,24 @@ def main():
               h.s(name + 'Desc'), name + ': description pointer')
         write('wCurItem', item)
         h.call('CheckItemPocket')
-        check(h.rd(h.s('wItemAttributeParamBuffer')) == 1, name + ': wrong pocket')
+        key_item = name == 'EXP_RELAY'
+        check(h.rd(h.s('wItemAttributeParamBuffer')) == (2 if key_item else 1), name + ': wrong pocket')
         is_mail = name.endswith('MAIL')
         check(h.call('StorageItemIsMail', a=item)['c_flag'] == is_mail, name + ': Mail classification')
-        write('wPartyMon1Item', item)
+        root_symbol = 'wKeyItems' if key_item else 'wPartyMon1Item'
+        if key_item:
+            write('wNumKeyItems', [1, item, 255])
+        else:
+            write(root_symbol, item)
         for candidate in range(194, 285):
             if candidate not in (255, 256):
                 runtime(candidate)
         h.call('ForceGarbageCollection')
-        check(index(h.rd(h.s('wPartyMon1Item'))) == value, name + ': held item evicted')
-        write('wPartyMon1Item', 0)
+        check(index(h.rd(h.s(root_symbol))) == value, name + ': runtime item evicted')
+        if key_item:
+            write('wNumKeyItems', [0, 255])
+        else:
+            write(root_symbol, 0)
 
     print('[Gold Berry field healing: native quarter-max-HP amount]', flush=True)
     write('wCurPartyMon', 0)
