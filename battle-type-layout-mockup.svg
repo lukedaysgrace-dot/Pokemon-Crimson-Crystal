@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="280" viewBox="0 0 640 280">
+  <rect width="640" height="280" fill="#f4f1dc"/>
+  <text x="24" y="32" font-family="Arial" font-size="20" font-weight="bold" fill="#222">Battle HUD type-pill size showcase</text>
+  <text x="24" y="58" font-family="Arial" font-size="14" fill="#444">Game Boy source scale shown enlarged 4× (native pixels: 160×144 screen)</text>
+  <rect x="24" y="82" width="592" height="72" rx="8" fill="#fff" stroke="#222" stroke-width="3"/>
+  <text x="42" y="112" font-family="Arial" font-size="18" font-weight="bold" fill="#222">ZOROARK</text>
+  <text x="42" y="135" font-family="monospace" font-size="13" fill="#555">Lv50</text>
+  <rect x="190" y="96" width="128" height="32" rx="16" fill="#8b5b9a" stroke="#222" stroke-width="2"/>
+  <text x="254" y="118" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">NORMAL</text>
+  <rect x="326" y="96" width="128" height="32" rx="16" fill="#555" stroke="#222" stroke-width="2"/>
+  <text x="390" y="118" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">GHOST</text>
+  <text x="470" y="118" font-family="Arial" font-size="13" fill="#444">dual type</text>
+  <line x1="190" y1="170" x2="318" y2="170" stroke="#555" stroke-width="2"/>
+  <line x1="326" y1="170" x2="454" y2="170" stroke="#555" stroke-width="2"/>
+  <text x="254" y="192" text-anchor="middle" font-family="Arial" font-size="13" fill="#444">32 px native</text>
+  <text x="390" y="192" text-anchor="middle" font-family="Arial" font-size="13" fill="#444">32 px native</text>
+  <rect x="24" y="218" width="128" height="32" rx="16" fill="#a040a0" stroke="#222" stroke-width="2"/>
+  <text x="88" y="240" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="white">POISON</text>
+  <text x="170" y="240" font-family="Arial" font-size="14" fill="#444">mono type: 32×8 native pixels</text>
+</svg>

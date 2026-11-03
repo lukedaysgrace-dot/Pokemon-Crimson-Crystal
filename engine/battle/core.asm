@@ -4,6 +4,7 @@ DoBattle:
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wBattleParticipantsIncludingFainted], a
+	ld [wPendingStatExpRecalcs], a
 	ld [wBattlePlayerAction], a
 	ld [wBattleEnded], a
 	ld [wDisguiseBusted], a
@@ -7419,6 +7420,7 @@ GiveExperiencePoints:
 	dec c
 	jr nz, .stat_exp_loop
 	pop bc
+	farcall MarkPartyStatExpRecalculation
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [wLevelCap]
@@ -7625,6 +7627,7 @@ GiveExperiencePoints:
 	ld b, TRUE
 	predef CalcMonStats
 	pop bc
+	farcall ClearPartyStatExpRecalculation
 	pop de
 	ld hl, MON_MAXHP + 1
 	add hl, bc
@@ -8728,6 +8731,8 @@ Unreferenced_Function3f662:
 	ret
 
 ExitBattle:
+	; After all combat/party HP synchronization, before evolution or healing.
+	farcall RecalculatePartyStatExpAfterBattle
 	call .HandleEndOfBattle
 	call CleanUpBattleRAM
 	ret

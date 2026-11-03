@@ -67,6 +67,20 @@ Read this before changing the game. Keep it up to date when something here chang
   clamps down to the new maximum; it never heals or revives. Run
   `make test-exp-relay` for native transfer and menu cancellation checks.
 
+## Battle Stat EXP
+- Battle awards retain all five Gen 2 Stat EXP words, division, Pokérus and
+  saturation rules. Hard Mode caps and level 100 block regular EXP only;
+  eligible conscious participants and EXP Share holders still earn Stat EXP.
+- `wPendingStatExpRecalcs` uses the former unused battle byte after `wWildMon`. Awards
+  mark party slots; normal level-up calculations clear their slot, and later
+  awards mark it again. `ExitBattle` refreshes pending party stats before
+  evolution/cleanup on all outcomes. Do not refresh them during combat or copy
+  modified battle stats into the party.
+- The deferred calculation preserves damage taken when maximum HP changes;
+  zero HP stays zero even if the recipient fainted after earning Stat EXP.
+  Run `make test-stat-exp BATTLE_TEST_PYTHON=.venv/bin/python` for both ROMs,
+  all levels, caps, sharing, switching, fainting and subsequent battle entry.
+
 ## Species additions
 - There are 502 internal species indexes and 501 visible Dex entries. Append new
   indexes for ordinary additions; displayed regional numbering is separate in
