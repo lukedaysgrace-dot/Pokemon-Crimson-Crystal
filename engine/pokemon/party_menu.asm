@@ -832,6 +832,15 @@ PartyMenuStrings:
 	dw ChooseAMonString ; Probably used to be ChooseAFemalePKMNString
 	dw ChooseAMonString ; Probably used to be ChooseAMalePKMNString
 	dw ToWhichPKMNString
+	dw ChooseAMonString ; PARTYMENUACTION_MOBILE
+	dw ExpRelayDonorString
+	dw ExpRelayRecipientString
+
+ExpRelayDonorString:
+	db "Donate from whom?@"
+
+ExpRelayRecipientString:
+	db "Receive on whom?@"
 
 ChooseAMonString:
 	db "Choose a #MON.@"

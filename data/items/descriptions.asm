@@ -304,6 +304,7 @@ ItemDescriptions:
 	dw QuestionMarkDesc ; retired $012d
 	dw QuestionMarkDesc ; retired item
 	dw QuestionMarkDesc ; retired item
+	dw EXP_RELAYDesc
 
 MasterBallDesc:
 	db   "The best BALL. It"
@@ -1202,3 +1203,7 @@ SAFETY_GOGGLESDesc:
 BIG_ROOTDesc:
 	db "Boosts HP drained"
 	next "from a foe. (HOLD)@"
+
+EXP_RELAYDesc:
+	db "Transfers all Stat"
+	next "EXP to a #MON.@"
