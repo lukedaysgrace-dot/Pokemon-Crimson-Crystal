@@ -64,6 +64,11 @@ data/pokemon/pre_evolutions.asm: tools/generate_pre_evolutions.py tools/audit_le
 audit-pokemon-back-colors:
 	$(BATTLE_TEST_PYTHON) tools/audit_pokemon_back_colors.py --rgbgfx $(RGBGFX)
 
+.PHONY: test-streamed-map
+test-streamed-map: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_streamed_map.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/streamed_map_ui_checks.py
+
 .PHONY: test-engine-optimizations
 test-engine-optimizations: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_engine_optimizations.py

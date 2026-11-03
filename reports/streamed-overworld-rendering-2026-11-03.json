@@ -1,0 +1,138 @@
+{
+  "date": "2026-11-03",
+  "toolchain": "RGBDS 0.5.2",
+  "routine_release": {
+    "rom": "pokecrystal.gbc",
+    "checks": 7429,
+    "cases": 928,
+    "tilesets": 38,
+    "timing": {
+      "0": {
+        "full_redraw_div_ticks": 71,
+        "streamed_edge_div_ticks": 47
+      },
+      "1": {
+        "full_redraw_div_ticks": 71,
+        "streamed_edge_div_ticks": 46
+      },
+      "2": {
+        "full_redraw_div_ticks": 71,
+        "streamed_edge_div_ticks": 39
+      },
+      "3": {
+        "full_redraw_div_ticks": 71,
+        "streamed_edge_div_ticks": 39
+      }
+    }
+  },
+  "routine_debug": {
+    "rom": "pokecrystal_debug.gbc",
+    "checks": 7429,
+    "cases": 928,
+    "tilesets": 38,
+    "timing": {
+      "0": {
+        "full_redraw_div_ticks": 71,
+        "streamed_edge_div_ticks": 47
+      },
+      "1": {
+        "full_redraw_div_ticks": 71,
+        "streamed_edge_div_ticks": 46
+      },
+      "2": {
+        "full_redraw_div_ticks": 71,
+        "streamed_edge_div_ticks": 39
+      },
+      "3": {
+        "full_redraw_div_ticks": 71,
+        "streamed_edge_div_ticks": 39
+      }
+    }
+  },
+  "native_release": {
+    "rom": "pokecrystal.gbc",
+    "checks": 1527,
+    "verified_screens": 287,
+    "native_queues": 213,
+    "directions": {
+      "3": 53,
+      "1": 53,
+      "0": 55,
+      "2": 52
+    },
+    "screenshots": 17,
+    "observed_vblanks": 16174,
+    "latest_oam_scanline": 151
+  },
+  "native_debug": {
+    "rom": "pokecrystal_debug.gbc",
+    "checks": 1527,
+    "verified_screens": 287,
+    "native_queues": 213,
+    "directions": {
+      "3": 53,
+      "1": 53,
+      "0": 55,
+      "2": 52
+    },
+    "screenshots": 17,
+    "observed_vblanks": 16058,
+    "latest_oam_scanline": 151
+  },
+  "static_audits": "make audit-static: passed",
+  "existing_engine_regressions": "make test-engine-optimizations: passed",
+  "overworld_and_portrait_regressions": [
+    {
+      "command": [
+        "/mnt/c/Users/luked/OneDrive/Documents/GitHub/Pokemon-Crimson-Crystal/.venv/bin/python",
+        "tools/test_overworld_state.py",
+        "pokecrystal.gbc"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/mnt/c/Users/luked/OneDrive/Documents/GitHub/Pokemon-Crimson-Crystal/.venv/bin/python",
+        "tools/test_overworld_state.py",
+        "pokecrystal_debug.gbc"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/mnt/c/Users/luked/OneDrive/Documents/GitHub/Pokemon-Crimson-Crystal/.venv/bin/python",
+        "tools/test_portrait_weather_sprites.py",
+        "pokecrystal.gbc"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "/mnt/c/Users/luked/OneDrive/Documents/GitHub/Pokemon-Crimson-Crystal/.venv/bin/python",
+        "tools/test_portrait_weather_sprites.py",
+        "pokecrystal_debug.gbc"
+      ],
+      "exit": 0
+    }
+  ],
+  "battle_sweep": {
+    "workers": 8,
+    "errored": 0,
+    "command": ".venv/bin/python tools/battletest/runner.py --all-moves --all-effects --all-abilities --jobs 8",
+    "failed": 0,
+    "passed": 3665,
+    "skipped": 0
+  },
+  "rom_hashes": {
+    "before_final_build": {
+      "pokecrystal": "54dd7c1d2eee9beb7bfe190b3649e41339b175eb6537cb4fda0b61b78278678e",
+      "pokecrystal_debug": "29f52fa72443d95c8420932dfc59a9625d5ecd4b44b5be9fd4b63298cbdd7f63"
+    },
+    "final": {
+      "pokecrystal": "54dd7c1d2eee9beb7bfe190b3649e41339b175eb6537cb4fda0b61b78278678e",
+      "pokecrystal_debug": "29f52fa72443d95c8420932dfc59a9625d5ecd4b44b5be9fd4b63298cbdd7f63"
+    },
+    "unchanged": true
+  },
+  "limitations": "Private emulator fixtures; not physical hardware or a full campaign playthrough."
+}

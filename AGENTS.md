@@ -10,8 +10,9 @@ Read this before changing the game. Keep it up to date when something here chang
   need `tools/battletest/prepare_mbc30.py` run first.
 
 ## ROM0 (home bank) is almost full
-- Fixed-bank free space is about 95 bytes in total, split into small gaps. The largest gap
-  is under 30 bytes. Check the `SLACK` line for ROM0 in `pokecrystal.map` /
+- Fixed-bank free space is 94 bytes in release and 88 bytes in debug, split into
+  small gaps; the largest gaps are 37 and 16 bytes respectively. Check the `SLACK`
+  line for ROM0 in `pokecrystal.map` /
   `pokecrystal_debug.map`.
 - If a build fails with `Unable to place "..." (ROM0 section) anywhere`, ROM0 is out of
   room. Move code into a ROMX bank and call it with `farcall`/`callfar`, or shrink something.
@@ -21,6 +22,18 @@ Read this before changing the game. Keep it up to date when something here chang
   builds cleanly but crashes on boot. Keep it.
 - The graphics/palette section `bank2` is also exactly full after the hippo family.
   Its two nearby back-palette dispatches use short jumps to fit the added palettes.
+
+## Streamed overworld rendering
+- Walking decodes only the entering edge into the existing VBlank queues through
+  `home/map_stream.asm` and `engine/overworld/map_scroll.asm`. The VRAM BG map is
+  the walking cache; `wTileMap`, `wAttrMap` and the surrounding buffers are stale
+  between full redraws. Do not enable full-map uploads from those stale buffers.
+- Menus, text, battles and `reloadmappart` retain `LoadMapPart`/reanchoring. Any new
+  full-screen consumer must rebuild first. Tile/attribute tables are independently
+  banked ROM data, not the donor engine's decompressed WRAM tables.
+- Run `make test-streamed-map BATTLE_TEST_PYTHON=.venv/bin/python` after rendering
+  changes. It checks all tilesets against the full decoder, queue bounds and banks,
+  then native walking, weather, BG wrapping, connections, warps and UI returns.
 
 ## Item IDs are 16-bit
 - Bag rows in `wItems` / `wPCItems` are 3 bytes: [index hi, index lo, quantity].

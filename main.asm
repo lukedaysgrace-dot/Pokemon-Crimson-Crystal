@@ -106,6 +106,11 @@ SECTION "Roofs", ROMX
 INCLUDE "engine/tilesets/mapgroup_roofs.asm"
 
 
+SECTION "Streamed Map Queue", ROMX
+
+INCLUDE "engine/overworld/map_scroll.asm"
+
+
 SECTION "Clock Reset", ROMX
 
 INCLUDE "engine/rtc/restart_clock.asm"
