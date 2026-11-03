@@ -1173,6 +1173,9 @@ BattleAnimCmd_Transform:
 	jr z, .player
 
 	ld a, [wTempBattleMonSpecies] ; TempBattleMonSpecies
+	ld b, a
+	farcall OverridePlayerIllusionAppearance
+	ld a, b
 	ld [wCurPartySpecies], a ; CurPartySpecies
 	ld hl, wBattleMonDVs ; BattleMonDVs
 	predef GetUnownLetter
@@ -1182,6 +1185,9 @@ BattleAnimCmd_Transform:
 
 .player
 	ld a, [wTempEnemyMonSpecies] ; TempEnemyMonSpecies
+	ld b, a
+	farcall OverrideEnemyIllusionAppearance
+	ld a, b
 	ld [wCurPartySpecies], a ; CurPartySpecies
 	ld hl, wEnemyMonDVs ; EnemyMonDVs
 	predef GetUnownLetter

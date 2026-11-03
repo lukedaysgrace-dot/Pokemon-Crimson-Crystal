@@ -253,3 +253,7 @@ INCLUDE "audio/cries_phantump_trevenant.asm"
 SECTION "Mienfoo and Mienshao Cries", ROMX
 
 INCLUDE "audio/cries_mienfoo_mienshao.asm"
+
+SECTION "Hippopotas and Hippowdon Cries", ROMX
+
+INCLUDE "audio/cries_hippopotas_hippowdon.asm"

@@ -175,6 +175,7 @@ BattleMultiHitRoll_Core:
 
 BattleBanefulBunker_Core:
 ; Protect variant: also poisons attackers that make contact.
+	farcall ClearUserKingsShield
 	callfar ProtectChance
 	ret c
 

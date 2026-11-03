@@ -378,20 +378,20 @@ MonMenuIconPals:
 	icon_pals BLUE  , RED    ; FROSLASS
 	icon_pals GRAY  , BLUE   ; WIMPOD
 	icon_pals GRAY  , BLUE   ; GOLISOPOD
-	icon_pals GRAY  , PINK   ; SPOINK
-	icon_pals PURPLE, GRAY   ; GRUMPIG
+	icon_pals GRAY  , BLUE   ; ZORUA
+	icon_pals RED   , PURPLE ; ZOROARK
 	icon_pals RED,    GRAY   ; PAWNIARD
 	icon_pals RED,    GRAY   ; BISHARP
 	icon_pals GRAY  , RED    ; KINGAMBIT
-	icon_pals GREEN , BLUE   ; LOTAD
-	icon_pals GREEN , BLUE   ; LOMBRE
-	icon_pals GREEN , BLUE   ; LUDICOLO
+	icon_pals BROWN , RED    ; SEEDOT
+	icon_pals BROWN , RED    ; NUZLEAF
+	icon_pals BROWN , RED    ; SHIFTRY
 	icon_pals PURPLE, GRAY   ; OVERQWIL
 	icon_pals BROWN, RED    ; SCRAGGY
 	icon_pals BROWN, RED    ; SCRAFTY
-	icon_pals BLUE  , GRAY   ; SPHEAL
-	icon_pals BLUE  , GRAY   ; SEALEO
-	icon_pals BLUE  , GRAY   ; WALREIN
+	icon_pals BROWN , RED    ; HONEDGE
+	icon_pals PINK  , RED    ; DOUBLADE
+	icon_pals BROWN , RED    ; AEGISLASH
 	icon_pals BROWN,  GREEN  ; TEDDIURSABM
 	icon_pals BROWN,  GREEN  ; URSARINGBM
 	icon_pals BROWN , RED    ; URSALUNABM
@@ -486,8 +486,8 @@ MonMenuIconPals:
 	icon_pals PURPLE, GREEN  ; NOIVERN
 	icon_pals GRAY,   RED    ; SALANDIT
 	icon_pals PURPLE, RED    ; SALAZZLE
-	icon_pals BROWN,  PINK   ; FLITTLE
-	icon_pals BROWN,  PURPLE ; ESPATHRA
+	icon_pals PURPLE, YELLOW ; SABLEYE
+	icon_pals BROWN , RED    ; AEGISLASH_BLADE
 	icon_pals BLUE,   TEAL   ; FINIZEN
 	icon_pals BLUE,   PINK   ; PALAFIN
 	icon_pals BLUE,   GREEN  ; AZURILL
@@ -508,3 +508,5 @@ MonMenuIconPals:
 	icon_pals BROWN, GRAY ; TREVENANT
 	icon_pals BROWN, PURPLE ; MIENFOO
 	icon_pals PURPLE, RED ; MIENSHAO
+	icon_pals BROWN, GREEN ; HIPPOPOTAS
+	icon_pals BROWN, GREEN ; HIPPOWDON

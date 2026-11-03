@@ -3291,6 +3291,9 @@ SECTION "Ability Move State", WRAMX, BANK[2]
 
 wPlayerIllusionSlot:: db
 wEnemyIllusionSlot:: db
+wPlayerBladeForm:: db ; battle-only; never written into party/save species
+wEnemyBladeForm:: db
+wKingsShieldFlags:: db ; bit 0 player, bit 1 enemy; valid only while Protect is set
 
 ; BANKED (bank 2): accessed only through helpers in abilities_engine.asm.
 ; Base power the latest damagecalc used for the current hit, after the

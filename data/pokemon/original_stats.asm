@@ -252,8 +252,8 @@ OriginalPokemonStats:
 	db  45,  63,  37,  95,  65,  55
 	dw ENTEI
 	db 115, 115,  85, 100,  90,  75
-	dw ESPATHRA
-	db  95,  60,  60, 105, 101,  60
+	dw AEGISLASH_BLADE
+	db 60, 140, 50, 60, 140, 50
 	dw ESPEON
 	db  65,  65,  60, 110, 130,  95
 	dw EXCADRILL
@@ -286,8 +286,8 @@ OriginalPokemonStats:
 	db  62,  73,  55,  84,  56,  52
 	dw FLETCHLING
 	db  45,  50,  43,  62,  40,  38
-	dw FLITTLE
-	db  30,  35,  30,  75,  55,  30
+	dw SABLEYE
+	db 50, 75, 75, 50, 65, 65
 	dw FLYGON
 	db  80, 100,  80, 100,  80,  80
 	dw FORRETRESS
@@ -362,8 +362,8 @@ OriginalPokemonStats:
 	db  60,  75,  45,  55,  65,  50
 	dw GRUBBIN
 	db  47,  62,  45,  46,  55,  45
-	dw GRUMPIG
-	db  80,  45,  65,  80,  90, 110
+	dw ZOROARK
+	db 55, 100, 60, 110, 125, 60
 	dw GURDURR
 	db  85, 105,  85,  40,  40,  50
 	dw GYARADOS
@@ -476,16 +476,16 @@ OriginalPokemonStats:
 	db  66,  41,  77,  23,  61,  87
 	dw LITWICK
 	db  50,  30,  55,  20,  65,  55
-	dw LOMBRE
-	db  60,  50,  50,  50,  60,  70
+	dw NUZLEAF
+	db 70, 70, 40, 60, 60, 40
 	dw LOPUNNY
 	db  65,  76,  84, 105,  54,  96
-	dw LOTAD
-	db  40,  30,  30,  30,  40,  50
+	dw SEEDOT
+	db 40, 40, 50, 30, 30, 30
 	dw LUCARIO
 	db  70, 110,  70,  90, 115,  70
-	dw LUDICOLO
-	db  80,  70,  70,  70,  90, 100
+	dw SHIFTRY
+	db 90, 100, 60, 80, 90, 60
 	dw LUGIA
 	db 106,  90, 130, 110,  90, 154
 	dw MACHAMP
@@ -742,8 +742,8 @@ OriginalPokemonStats:
 	db  55,  65,  95,  85,  95,  45
 	dw SEAKING
 	db  80,  92,  65,  68,  65,  80
-	dw SEALEO
-	db  90,  60,  70,  45,  75,  70
+	dw DOUBLADE
+	db 59, 110, 150, 35, 45, 49
 	dw SEEL
 	db  65,  45,  55,  45,  45,  70
 	dw SENTRET
@@ -804,12 +804,12 @@ OriginalPokemonStats:
 	db  60,  80,  50,  30,  40,  40
 	dw SPEAROW
 	db  40,  60,  30,  70,  31,  31
-	dw SPHEAL
-	db  70,  40,  50,  25,  55,  50
+	dw HONEDGE
+	db 45, 80, 100, 28, 35, 37
 	dw SPINARAK
 	db  40,  60,  40,  30,  40,  40
-	dw SPOINK
-	db  60,  25,  35,  60,  70,  80
+	dw ZORUA
+	db 35, 60, 40, 70, 85, 40
 	dw SQUIRTLE
 	db  44,  48,  65,  43,  50,  64
 	dw SQUIRTLE_CLONE
@@ -944,8 +944,8 @@ OriginalPokemonStats:
 	db  38,  41,  40,  65,  50,  65
 	dw VULPIX_ALOLAN
 	db  38,  41,  40,  65,  50,  65
-	dw WALREIN
-	db 110,  80,  90,  65,  95,  90
+	dw AEGISLASH
+	db 60, 50, 140, 60, 50, 140
 	dw WARTORTLE
 	db  59,  63,  80,  58,  65,  80
 	dw WARTORTLE_CLONE
@@ -990,4 +990,8 @@ OriginalPokemonStats:
 	db  40,  45,  35,  55,  30,  40
 	dw ZWEILOUS
 	db  72,  85,  70,  58,  65,  70
+	dw HIPPOPOTAS
+	db 68, 72, 78, 32, 38, 42
+	dw HIPPOWDON
+	db 108, 112, 118, 47, 68, 72
 	dw 0

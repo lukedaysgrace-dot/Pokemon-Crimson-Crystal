@@ -369,20 +369,20 @@ BitmasksPointers:
 	dw FroslassBitmasks
 	dw WimpodBitmasks
 	dw GolisopodBitmasks
-	dw SpoinkBitmasks
-	dw GrumpigBitmasks
+	dw ZoruaBitmasks
+	dw ZoroarkBitmasks
 	dw PawniardBitmasks
 	dw BisharpBitmasks
 	dw KingambitBitmasks
-	dw LotadBitmasks
-	dw LombreBitmasks
-	dw LudicoloBitmasks
+	dw SeedotBitmasks
+	dw NuzleafBitmasks
+	dw ShiftryBitmasks
 	dw OverqwilBitmasks
 	dw ScraggyBitmasks
 	dw ScraftyBitmasks
-	dw SphealBitmasks
-	dw SealeoBitmasks
-	dw WalreinBitmasks
+	dw HonedgeBitmasks
+	dw DoubladeBitmasks
+	dw AegislashBitmasks
 	dw TeddiursabmBitmasks
 	dw UrsaringbmBitmasks
 	dw UrsalunabmBitmasks
@@ -477,8 +477,8 @@ BitmasksPointers:
 	dw NoivernBitmasks
 	dw SalanditBitmasks
 	dw SalazzleBitmasks
-	dw FlittleBitmasks
-	dw EspathraBitmasks
+	dw SableyeBitmasks
+	dw AegislashBladeBitmasks
 	dw FinizenBitmasks
 	dw PalafinBitmasks
 	dw AzurillBitmasks
@@ -499,3 +499,5 @@ BitmasksPointers:
 	dw TrevenantBitmasks
 	dba MienfooBitmasks
 	dba MienshaoBitmasks
+	dba HippopotasBitmasks
+	dba HippowdonBitmasks

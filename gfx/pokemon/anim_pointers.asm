@@ -369,20 +369,20 @@ AnimationPointers:
 	dba FroslassAnimation
 	dba WimpodAnimation
 	dba GolisopodAnimation
-	dba SpoinkAnimation
-	dba GrumpigAnimation
+	dba ZoruaAnimation
+	dba ZoroarkAnimation
 	dba PawniardAnimation
 	dba BisharpAnimation
 	dba KingambitAnimation
-	dba LotadAnimation
-	dba LombreAnimation
-	dba LudicoloAnimation
+	dba SeedotAnimation
+	dba NuzleafAnimation
+	dba ShiftryAnimation
 	dba OverqwilAnimation
 	dba ScraggyAnimation
 	dba ScraftyAnimation
-	dba SphealAnimation
-	dba SealeoAnimation
-	dba WalreinAnimation
+	dba HonedgeAnimation
+	dba DoubladeAnimation
+	dba AegislashAnimation
 	dba TeddiursabmAnimation
 	dba UrsaringbmAnimation
 	dba UrsalunabmAnimation
@@ -477,8 +477,8 @@ AnimationPointers:
 	dba NoivernAnimation
 	dba SalanditAnimation
 	dba SalazzleAnimation
-	dba FlittleAnimation
-	dba EspathraAnimation
+	dba SableyeAnimation
+	dba AegislashBladeAnimation
 	dba FinizenAnimation
 	dba PalafinAnimation
 	dba AzurillAnimation
@@ -499,3 +499,5 @@ AnimationPointers:
 	dba TrevenantAnimation
 	dba MienfooAnimation
 	dba MienshaoAnimation
+	dba HippopotasAnimation
+	dba HippowdonAnimation

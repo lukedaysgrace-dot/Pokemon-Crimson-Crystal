@@ -117,14 +117,14 @@ JohtoGrassWildMons:
 	; morn
 	dbw 54, XATU
 	dbw 54, HYPNO
-	dbw 55, GRUMPIG
+	dbw 55, ZOROARK
 	dbw 55, WYRDEER
 	dbw 56, ALAKAZAM
 	dbw 56, GARDEVOIR
 	dbw 57, FARIGIRAF
 	; day
 	dbw 54, XATU
-	dbw 54, GRUMPIG
+	dbw 54, ZOROARK
 	dbw 55, HYPNO
 	dbw 55, FARIGIRAF
 	dbw 56, WOBBUFFET
@@ -134,7 +134,7 @@ JohtoGrassWildMons:
 	dbw 54, HYPNO
 	dbw 54, XATU
 	dbw 55, MISMAGIUS
-	dbw 55, GRUMPIG
+	dbw 55, ZOROARK
 	dbw 56, ALAKAZAM
 	dbw 56, WOBBUFFET
 	dbw 57, GALLADE
@@ -145,16 +145,16 @@ JohtoGrassWildMons:
 	dbw 55, WYRDEER
 	dbw 55, FARIGIRAF
 	dbw 56, XATU
-	dbw 56, GRUMPIG
+	dbw 56, ZOROARK
 	dbw 57, ALAKAZAM
 	dbw 58, MR__MIME
 	dbw 58, GARDEVOIR
 	; day
 	dbw 55, WYRDEER
 	dbw 55, FARIGIRAF
-	dbw 56, GRUMPIG
+	dbw 56, ZOROARK
 	dbw 56, MR__MIME
-	dbw 57, ESPATHRA
+	dbw 57, SABLEYE
 	dbw 58, GARDEVOIR
 	dbw 58, GALLADE
 	; nite
@@ -164,7 +164,7 @@ JohtoGrassWildMons:
 	dbw 56, WOBBUFFET
 	dbw 57, ALAKAZAM
 	dbw 58, MISMAGIUS
-	dbw 58, ESPATHRA
+	dbw 58, SABLEYE
 
 	map_id TIN_TOWER_6F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
@@ -363,7 +363,7 @@ JohtoGrassWildMons:
 	dbw 18, ABRA
 	dbw 24, KADABRA
 	dbw 20, SMEARGLE
-	dbw 22, SPOINK
+	dbw 22, ZORUA
 	dbw 22, MIME_JR_
 	; day
 	dbw 20, NATU
@@ -380,7 +380,7 @@ JohtoGrassWildMons:
 	dbw 24, GIRAFARIG
 	dbw 22, WOBBUFFET
 	dbw 22, MURKROW
-	dbw 22, SPOINK
+	dbw 22, ZORUA
 
 	map_id RUINS_OF_ALPH_INNER_CHAMBER
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -683,7 +683,7 @@ JohtoGrassWildMons:
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	dbw 27, SNEASEL
-	dbw 27, SPHEAL
+	dbw 27, HONEDGE
 	dbw 28, SNOVER
 	dbw 28, SMOOCHUM
 	dbw 29, SNORUNT
@@ -691,14 +691,14 @@ JohtoGrassWildMons:
 	dbw 30, SWINUB
 	; day
 	dbw 27, SWINUB
-	dbw 27, SPHEAL
+	dbw 27, HONEDGE
 	dbw 28, SNOVER
 	dbw 28, SNEASEL
 	dbw 29, DELIBIRD
 	dbw 29, FRIGIBAX
 	dbw 31, JYNX
 	; nite
-	dbw 27, SPHEAL
+	dbw 27, HONEDGE
 	dbw 28, SNOVER
 	dbw 28, SNEASEL
 	dbw 29, DELIBIRD
@@ -713,7 +713,7 @@ JohtoGrassWildMons:
 	dbw 39, ABOMASNOW
 	dbw 39, WEAVILE
 	dbw 40, FROSLASS
-	dbw 41, SPHEAL
+	dbw 41, HONEDGE
 	dbw 41, SMOOCHUM
 	dbw 41, SWINUB
 	; day
@@ -722,13 +722,13 @@ JohtoGrassWildMons:
 	dbw 40, WEAVILE
 	dbw 41, FROSLASS
 	dbw 41, JYNX
-	dbw 41, SEALEO
+	dbw 41, DOUBLADE
 	dbw 41, FRIGIBAX
 	; nite
 	dbw 38, DELIBIRD
 	dbw 39, PILOSWINE
 	dbw 39, FROSLASS
-	dbw 40, SEALEO
+	dbw 40, DOUBLADE
 	dbw 41, JYNX
 	dbw 39, SNEASEL
 	dbw 39, SNOVER
@@ -746,7 +746,7 @@ JohtoGrassWildMons:
 	; day
 	dbw 39, PILOSWINE
 	dbw 40, ABOMASNOW
-	dbw 40, SEALEO
+	dbw 40, DOUBLADE
 	dbw 41, FROSLASS
 	dbw 42, ARCTIBAX
 	dbw 40, SNORUNT
@@ -757,7 +757,7 @@ JohtoGrassWildMons:
 	dbw 40, ABOMASNOW
 	dbw 41, PILOSWINE
 	dbw 42, FROSLASS
-	dbw 40, SEALEO
+	dbw 40, DOUBLADE
 	dbw 39, SNEASEL
 
 	map_id ICE_PATH_B2F_MAHOGANY_SIDE
@@ -773,7 +773,7 @@ JohtoGrassWildMons:
 	; day
 	dbw 39, PILOSWINE
 	dbw 40, ABOMASNOW
-	dbw 40, SEALEO
+	dbw 40, DOUBLADE
 	dbw 41, FROSLASS
 	dbw 41, CETITAN
 	dbw 38, SMOOCHUM
@@ -791,7 +791,7 @@ JohtoGrassWildMons:
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
 	dbw 39, PILOSWINE
-	dbw 40, SEALEO
+	dbw 40, DOUBLADE
 	dbw 40, WEAVILE
 	dbw 41, ABOMASNOW
 	dbw 42, FRIGIBAX
@@ -802,7 +802,7 @@ JohtoGrassWildMons:
 	dbw 41, ARCTIBAX
 	dbw 40, ABOMASNOW
 	dbw 41, FROSLASS
-	dbw 42, SEALEO
+	dbw 42, DOUBLADE
 	dbw 38, SMOOCHUM
 	dbw 40, FRIGIBAX
 	; nite
@@ -827,7 +827,7 @@ JohtoGrassWildMons:
 	; day
 	dbw 41, PILOSWINE
 	dbw 42, ABOMASNOW
-	dbw 42, SEALEO
+	dbw 42, DOUBLADE
 	dbw 43, WEAVILE
 	dbw 41, JYNX
 	dbw 43, FROSLASS
@@ -873,7 +873,7 @@ JohtoGrassWildMons:
 	dbw 37, KRABBY
 	dbw 38, ZUBAT
 	dbw 37, SEEL
-	dbw 39, SPHEAL
+	dbw 39, HONEDGE
 	dbw 40, GOLBAT
 	dbw 39, MARILL
 	dbw 39, WIMPOD
@@ -907,7 +907,7 @@ JohtoGrassWildMons:
 	dbw 37, KRABBY
 	dbw 38, ZUBAT
 	dbw 37, SEEL
-	dbw 39, SPHEAL
+	dbw 39, HONEDGE
 	dbw 40, AZUMARILL
 	dbw 39, GRAVELER
 	dbw 39, PSYDUCK
@@ -951,7 +951,7 @@ JohtoGrassWildMons:
 	dbw 37, KRABBY
 	dbw 38, ZUBAT
 	dbw 37, SEEL
-	dbw 39, SPHEAL
+	dbw 39, HONEDGE
 	dbw 40, GOLBAT
 	dbw 39, WIMPOD
 	dbw 39, GRAVELER
@@ -995,7 +995,7 @@ JohtoGrassWildMons:
 	dbw 38, SLOWPOKE
 	dbw 40, SEEL
 	dbw 41, GOLBAT
-	dbw 40, SEALEO
+	dbw 40, DOUBLADE
 	dbw 40, CROBAT
 	map_id WHIRL_ISLAND_B2F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -1037,7 +1037,7 @@ JohtoGrassWildMons:
 	dbw 40, KRABBY
 	dbw 41, GOLBAT
 	dbw 40, SEEL
-	dbw 42, SEALEO
+	dbw 42, DOUBLADE
 	dbw 43, KINGLER
 	dbw 42, GOLISOPOD
 	dbw 42, CROBAT
@@ -1220,7 +1220,7 @@ JohtoGrassWildMons:
 	dbw 4, KOTORA
 	dbw 3, HOPPIP
 	dbw 4, SENTRET
-	dbw 4, LOTAD
+	dbw 4, SEEDOT
 	; day
 	dbw 3, SENTRET
 	dbw 4, PIDGEY
@@ -1234,7 +1234,7 @@ JohtoGrassWildMons:
 	dbw 3, HOOTHOOT
 	dbw 4, SPINARAK
 	dbw 4, ZUBAT
-	dbw 3, LOTAD
+	dbw 3, SEEDOT
 	dbw 4, MEOWTH
 	dbw 4, MURKROW
 
@@ -1281,7 +1281,7 @@ JohtoGrassWildMons:
 	dbw 6, BELLSPROUT
 	dbw 6, NIDORAN_M
 	dbw 5, WEEDLE
-	dbw 6, LOTAD
+	dbw 6, SEEDOT
 	dbw 6, NIDORAN_F
 	; nite
 	dbw 5, SPINARAK
@@ -1622,7 +1622,7 @@ JohtoGrassWildMons:
 	dbw 35, GLIGAR
 	dbw 36, DONPHAN
 	dbw 37, WYRDEER
-	dbw 38, LARVITAR
+	dbw 28, HIPPOPOTAS
 	dbw 39, PHANPY
 	dbw 40, WATU
 	dbw 42, FARIGIRAF
@@ -1630,10 +1630,10 @@ JohtoGrassWildMons:
 	dbw 35, CORVISQUIRE
 	dbw 36, AMBIPOM
 	dbw 37, JUMPLUFF
-	dbw 38, GLIGAR
-	dbw 40, AMPHAROS
+	dbw 30, HIPPOPOTAS
+	dbw 38, HIPPOWDON
 	dbw 41, RAITORA
-	dbw 42, GRUMPIG
+	dbw 42, ZOROARK
 	; nite
 	dbw 35, DONPHAN
 	dbw 36, MURKROW

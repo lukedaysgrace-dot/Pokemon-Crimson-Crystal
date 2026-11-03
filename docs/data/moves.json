@@ -5043,7 +5043,7 @@
     "const": "INCINERATE",
     "name": "Incinerate",
     "rom_name": "INCINERATE",
-    "description": "Burns the foe and its held BERRY.",
+    "description": "Fire hit that also burns up a BERRY.",
     "power": 75,
     "type": "Fire",
     "category": "Special",
@@ -5314,5 +5314,17 @@
     "accuracy": 100,
     "pp": 10,
     "chance": 10
+  },
+  {
+    "const": "KINGS_SHIELD",
+    "name": "King Shield",
+    "rom_name": "KING SHIELD",
+    "description": "Guards from hits. Contact drops ATK.",
+    "power": 0,
+    "type": "Steel",
+    "category": "Status",
+    "accuracy": 100,
+    "pp": 10,
+    "chance": 0
   }
 ]

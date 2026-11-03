@@ -90,10 +90,10 @@ _GetVarAction::
 	ld hl, wPokedexCaught
 	ld bc, wEndPokedexCaught - wPokedexCaught
 	call CountSetBits16
-	ld a, LOW(NUM_POKEMON)
+	ld a, LOW(NUM_POKEDEX_ENTRIES)
 	sub c
 	ld c, a
-	ld a, HIGH(NUM_POKEMON)
+	ld a, HIGH(NUM_POKEDEX_ENTRIES)
 	sbc b
 	jr .load_or_saturate
 

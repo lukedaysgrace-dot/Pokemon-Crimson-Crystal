@@ -442,7 +442,9 @@
     "OMINOUS_WIND": "Ominous Wind",
     "HORN_LEECH": "Horn Leech",
     "GRASS_KNOT": "Grass Knot",
-    "HEAVY_SLAM": "Heavy Slam"
+    "HEAVY_SLAM": "Heavy Slam",
+    "TWIN_BEAM": "Twin Beam",
+    "KINGS_SHIELD": "King Shield"
   },
   "pokemon": [
     {
@@ -469,6 +471,22 @@
       "new_tutor_routes": [
         "FORESIGHT"
       ],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "AEGISLASH",
+      "name": "Aegislash",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "AEGISLASH_BLADE",
+      "name": "Aegislash Blade",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
     {
@@ -1376,6 +1394,7 @@
         "FUTURE_SIGHT",
         "GROWL",
         "IRON_HEAD",
+        "PIXIE_PUNCH",
         "ROCK_TOMB",
         "SUPERPOWER"
       ],
@@ -2521,6 +2540,14 @@
       "breeding_fallbacks": {}
     },
     {
+      "species": "DOUBLADE",
+      "name": "Doublade",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
+      "breeding_fallbacks": {}
+    },
+    {
       "species": "DRAGAPULT",
       "name": "Dragapult",
       "newly_available": [
@@ -2944,27 +2971,6 @@
       "breeding_fallbacks": {}
     },
     {
-      "species": "ESPATHRA",
-      "name": "Espathra",
-      "newly_available": [],
-      "removed_moves": [
-        "AIR_CUTTER",
-        "ATTRACT",
-        "CHARM",
-        "CURSE",
-        "FLASH",
-        "FUTURE_SIGHT",
-        "HAZE",
-        "HIDDEN_POWER",
-        "MAGICAL_LEAF",
-        "RETURN",
-        "SWAGGER",
-        "TOXIC"
-      ],
-      "new_tutor_routes": [],
-      "breeding_fallbacks": {}
-    },
-    {
       "species": "ESPEON",
       "name": "Espeon",
       "newly_available": [
@@ -3055,7 +3061,9 @@
     {
       "species": "FARIGIRAF",
       "name": "Farigiraf",
-      "newly_available": [],
+      "newly_available": [
+        "TWIN_BEAM"
+      ],
       "removed_moves": [
         "PSYCHO_CUT"
       ],
@@ -3244,30 +3252,6 @@
       "breeding_fallbacks": {}
     },
     {
-      "species": "FLITTLE",
-      "name": "Flittle",
-      "newly_available": [],
-      "removed_moves": [
-        "AIR_CUTTER",
-        "ATTRACT",
-        "CHARM",
-        "CURSE",
-        "DAZZLING_GLEAM",
-        "FLASH",
-        "FUTURE_SIGHT",
-        "HAZE",
-        "HIDDEN_POWER",
-        "HYPER_VOICE",
-        "MAGICAL_LEAF",
-        "RETURN",
-        "SHADOW_BALL",
-        "SWAGGER",
-        "TOXIC"
-      ],
-      "new_tutor_routes": [],
-      "breeding_fallbacks": {}
-    },
-    {
       "species": "FLYGON",
       "name": "Flygon",
       "newly_available": [
@@ -3355,6 +3339,7 @@
       ],
       "removed_moves": [
         "DRAIN_PUNCH",
+        "FLAME_WHEEL",
         "IRON_HEAD",
         "ROCK_TOMB"
       ],
@@ -3455,7 +3440,8 @@
       "removed_moves": [
         "CURSE",
         "HEADBUTT",
-        "IRON_HEAD"
+        "IRON_HEAD",
+        "PIXIE_PUNCH"
       ],
       "new_tutor_routes": [
         "DOUBLE_TEAM",
@@ -3482,7 +3468,8 @@
         "CURSE",
         "HEADBUTT",
         "INCINERATE",
-        "IRON_HEAD"
+        "IRON_HEAD",
+        "PIXIE_PUNCH"
       ],
       "new_tutor_routes": [
         "DOUBLE_TEAM",
@@ -3740,7 +3727,9 @@
     {
       "species": "GIRAFARIG",
       "name": "Girafarig",
-      "newly_available": [],
+      "newly_available": [
+        "TWIN_BEAM"
+      ],
       "removed_moves": [
         "IRON_HEAD",
         "PSYCHO_CUT"
@@ -4122,30 +4111,6 @@
       "breeding_fallbacks": {}
     },
     {
-      "species": "GRUMPIG",
-      "name": "Grumpig",
-      "newly_available": [
-        "HYPNOSIS",
-        "OMINOUS_WIND",
-        "PAY_DAY",
-        "SHADOW_PUNCH",
-        "WILL_O_WISP"
-      ],
-      "removed_moves": [
-        "CURSE",
-        "SLACK_OFF",
-        "THUNDERBOLT"
-      ],
-      "new_tutor_routes": [
-        "HYPNOSIS",
-        "OMINOUS_WIND",
-        "PAY_DAY",
-        "SHADOW_PUNCH",
-        "WILL_O_WISP"
-      ],
-      "breeding_fallbacks": {}
-    },
-    {
       "species": "GURDURR",
       "name": "Gurdurr",
       "newly_available": [
@@ -4251,6 +4216,131 @@
         "SKULL_BASH",
         "SLASH"
       ],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "HIPPOPOTAS",
+      "name": "Hippopotas",
+      "newly_available": [
+        "AMNESIA",
+        "ATTRACT",
+        "BITE",
+        "BODY_PRESS",
+        "BODY_SLAM",
+        "BULLDOZE",
+        "CRUNCH",
+        "CURSE",
+        "DIG",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "EARTHQUAKE",
+        "EARTH_POWER",
+        "ENDURE",
+        "FACADE",
+        "FIRE_FANG",
+        "FISSURE",
+        "FRUSTRATION",
+        "HEADBUTT",
+        "HIDDEN_POWER",
+        "ICE_FANG",
+        "IRON_TAIL",
+        "MUD_SHOT",
+        "MUD_SLAP",
+        "PROTECT",
+        "REST",
+        "RETURN",
+        "ROAR",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "ROCK_TOMB",
+        "SANDSTORM",
+        "SAND_ATTACK",
+        "SLACK_OFF",
+        "SLEEP_TALK",
+        "SNORE",
+        "STEALTH_ROCK",
+        "STONE_EDGE",
+        "STRENGTH",
+        "SUBSTITUTE",
+        "SUNNY_DAY",
+        "SUPERPOWER",
+        "SWAGGER",
+        "TACKLE",
+        "TAKE_DOWN",
+        "THUNDER_FANG",
+        "TOXIC",
+        "WATER_PULSE",
+        "WEATHER_BALL",
+        "WHIRLWIND",
+        "YAWN"
+      ],
+      "removed_moves": [],
+      "new_tutor_routes": [],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "HIPPOWDON",
+      "name": "Hippowdon",
+      "newly_available": [
+        "AMNESIA",
+        "ATTRACT",
+        "BITE",
+        "BODY_PRESS",
+        "BODY_SLAM",
+        "BULLDOZE",
+        "CRUNCH",
+        "CURSE",
+        "DIG",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "EARTHQUAKE",
+        "EARTH_POWER",
+        "ENDURE",
+        "FACADE",
+        "FIRE_FANG",
+        "FISSURE",
+        "FRUSTRATION",
+        "GIGA_IMPACT",
+        "HEADBUTT",
+        "HEAVY_SLAM",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "HYPER_VOICE",
+        "ICE_FANG",
+        "IRON_HEAD",
+        "IRON_TAIL",
+        "MUD_SHOT",
+        "MUD_SLAP",
+        "PROTECT",
+        "REST",
+        "RETURN",
+        "ROAR",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "ROCK_TOMB",
+        "SANDSTORM",
+        "SAND_ATTACK",
+        "SLACK_OFF",
+        "SLEEP_TALK",
+        "SNORE",
+        "STEALTH_ROCK",
+        "STONE_EDGE",
+        "STRENGTH",
+        "SUBSTITUTE",
+        "SUNNY_DAY",
+        "SUPERPOWER",
+        "SWAGGER",
+        "TACKLE",
+        "TAKE_DOWN",
+        "THUNDER_FANG",
+        "TOXIC",
+        "WATER_PULSE",
+        "WEATHER_BALL",
+        "WHIRLWIND",
+        "YAWN"
+      ],
+      "removed_moves": [],
+      "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
     {
@@ -4443,6 +4533,22 @@
       "breeding_fallbacks": {}
     },
     {
+      "species": "ZOROARK",
+      "name": "Hisuian Zoroark",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "ZORUA",
+      "name": "Hisuian Zorua",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
+      "breeding_fallbacks": {}
+    },
+    {
       "species": "HITMONCHAN",
       "name": "Hitmonchan",
       "newly_available": [],
@@ -4502,6 +4608,14 @@
         "BEAT_UP",
         "DRILL_RUN"
       ],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "HONEDGE",
+      "name": "Honedge",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
     {
@@ -5230,16 +5344,6 @@
       "breeding_fallbacks": {}
     },
     {
-      "species": "LOMBRE",
-      "name": "Lombre",
-      "newly_available": [],
-      "removed_moves": [
-        "CURSE"
-      ],
-      "new_tutor_routes": [],
-      "breeding_fallbacks": {}
-    },
-    {
       "species": "LOPUNNY",
       "name": "Lopunny",
       "newly_available": [
@@ -5270,18 +5374,6 @@
       "breeding_fallbacks": {}
     },
     {
-      "species": "LOTAD",
-      "name": "Lotad",
-      "newly_available": [],
-      "removed_moves": [
-        "CURSE",
-        "FAKE_OUT",
-        "WATERFALL"
-      ],
-      "new_tutor_routes": [],
-      "breeding_fallbacks": {}
-    },
-    {
       "species": "LUCARIO",
       "name": "Lucario",
       "newly_available": [
@@ -5295,17 +5387,6 @@
         "MACH_PUNCH",
         "SEISMIC_TOSS"
       ],
-      "breeding_fallbacks": {}
-    },
-    {
-      "species": "LUDICOLO",
-      "name": "Ludicolo",
-      "newly_available": [],
-      "removed_moves": [
-        "CURSE",
-        "WOOD_HAMMER"
-      ],
-      "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
     {
@@ -5816,6 +5897,164 @@
       "breeding_fallbacks": {}
     },
     {
+      "species": "MIENFOO",
+      "name": "Mienfoo",
+      "newly_available": [
+        "ACROBATICS",
+        "AERIAL_ACE",
+        "AGILITY",
+        "ATTRACT",
+        "AURA_SPHERE",
+        "BATON_PASS",
+        "BOUNCE",
+        "BRICK_BREAK",
+        "BULK_UP",
+        "CALM_MIND",
+        "CLOSE_COMBAT",
+        "DETECT",
+        "DIG",
+        "DOUBLESLAP",
+        "DOUBLE_TEAM",
+        "DRAIN_PUNCH",
+        "ENDURE",
+        "FACADE",
+        "FAKE_OUT",
+        "FOCUS_BLAST",
+        "FOCUS_ENERGY",
+        "FORCE_PALM",
+        "FRUSTRATION",
+        "FURY_SWIPES",
+        "GRASS_KNOT",
+        "HIDDEN_POWER",
+        "HI_JUMP_KICK",
+        "HONE_CLAWS",
+        "IRON_HEAD",
+        "JUMP_KICK",
+        "KNOCK_OFF",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "MEDITATE",
+        "MEGA_KICK",
+        "MEGA_PUNCH",
+        "PIXIE_PUNCH",
+        "PLAY_ROUGH",
+        "POISON_JAB",
+        "POUND",
+        "PROTECT",
+        "PSYCH_UP",
+        "RAIN_DANCE",
+        "REFLECT",
+        "REST",
+        "RETURN",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "ROCK_TOMB",
+        "SLEEP_TALK",
+        "SNORE",
+        "SPIRIT_BREAK",
+        "STONE_EDGE",
+        "STRENGTH",
+        "SUBSTITUTE",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "SWIFT",
+        "SWORDS_DANCE",
+        "TAKE_DOWN",
+        "TAUNT",
+        "TOXIC",
+        "U_TURN",
+        "VITAL_THROW",
+        "WORK_UP",
+        "ZEN_HEADBUTT"
+      ],
+      "removed_moves": [],
+      "new_tutor_routes": [],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "MIENSHAO",
+      "name": "Mienshao",
+      "newly_available": [
+        "ACROBATICS",
+        "AERIAL_ACE",
+        "AGILITY",
+        "ATTRACT",
+        "AURA_SPHERE",
+        "BATON_PASS",
+        "BLAZE_KICK",
+        "BOUNCE",
+        "BRICK_BREAK",
+        "BULK_UP",
+        "CALM_MIND",
+        "CLOSE_COMBAT",
+        "DETECT",
+        "DIG",
+        "DOUBLESLAP",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "DRAIN_PUNCH",
+        "ENDURE",
+        "FACADE",
+        "FAKE_OUT",
+        "FOCUS_BLAST",
+        "FOCUS_ENERGY",
+        "FORCE_PALM",
+        "FRUSTRATION",
+        "FURY_SWIPES",
+        "GIGA_IMPACT",
+        "GRASS_KNOT",
+        "HIDDEN_POWER",
+        "HI_JUMP_KICK",
+        "HONE_CLAWS",
+        "HYPER_BEAM",
+        "IRON_HEAD",
+        "JUMP_KICK",
+        "KNOCK_OFF",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "MEDITATE",
+        "MEGA_KICK",
+        "MEGA_PUNCH",
+        "PIXIE_PUNCH",
+        "PLAY_ROUGH",
+        "POISON_JAB",
+        "POUND",
+        "PROTECT",
+        "PSYCH_UP",
+        "RAIN_DANCE",
+        "REFLECT",
+        "REST",
+        "RETURN",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "ROCK_TOMB",
+        "SLEEP_TALK",
+        "SNORE",
+        "SPIRIT_BREAK",
+        "STONE_EDGE",
+        "STRENGTH",
+        "SUBSTITUTE",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "SWIFT",
+        "SWORDS_DANCE",
+        "TAKE_DOWN",
+        "TAUNT",
+        "TOXIC",
+        "TRIPLE_AXEL",
+        "U_TURN",
+        "VACUUM_WAVE",
+        "VITAL_THROW",
+        "WORK_UP",
+        "ZEN_HEADBUTT"
+      ],
+      "removed_moves": [],
+      "new_tutor_routes": [],
+      "breeding_fallbacks": {}
+    },
+    {
       "species": "MILOTIC",
       "name": "Milotic",
       "newly_available": [
@@ -6232,6 +6471,14 @@
     {
       "species": "NUMEL",
       "name": "Numel",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "NUZLEAF",
+      "name": "Nuzleaf",
       "newly_available": [],
       "removed_moves": [],
       "new_tutor_routes": [],
@@ -7206,6 +7453,14 @@
       "breeding_fallbacks": {}
     },
     {
+      "species": "SABLEYE",
+      "name": "Sableye",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
+      "breeding_fallbacks": {}
+    },
+    {
       "species": "SALAMENCE",
       "name": "Salamence",
       "newly_available": [
@@ -7402,15 +7657,11 @@
       "breeding_fallbacks": {}
     },
     {
-      "species": "SEALEO",
-      "name": "Sealeo",
-      "newly_available": [
-        "LIQUIDATION"
-      ],
+      "species": "SEEDOT",
+      "name": "Seedot",
+      "newly_available": [],
       "removed_moves": [],
-      "new_tutor_routes": [
-        "LIQUIDATION"
-      ],
+      "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
     {
@@ -7433,6 +7684,7 @@
       ],
       "removed_moves": [
         "DRAIN_PUNCH",
+        "FLAME_WHEEL",
         "IRON_HEAD",
         "ROCK_TOMB"
       ],
@@ -7492,6 +7744,14 @@
         "BODY_PRESS",
         "SELFDESTRUCT"
       ],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "SHIFTRY",
+      "name": "Shiftry",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
     {
@@ -7673,8 +7933,13 @@
     {
       "species": "SMEARGLE",
       "name": "Smeargle",
-      "newly_available": [],
-      "removed_moves": [],
+      "newly_available": [
+        "KINGS_SHIELD",
+        "TWIN_BEAM"
+      ],
+      "removed_moves": [
+        "LUMINA_CRASH"
+      ],
       "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
@@ -7832,18 +8097,6 @@
       "breeding_fallbacks": {}
     },
     {
-      "species": "SPHEAL",
-      "name": "Spheal",
-      "newly_available": [
-        "LIQUIDATION"
-      ],
-      "removed_moves": [],
-      "new_tutor_routes": [
-        "LIQUIDATION"
-      ],
-      "breeding_fallbacks": {}
-    },
-    {
       "species": "SPINARAK",
       "name": "Spinarak",
       "newly_available": [
@@ -7859,28 +8112,6 @@
         "FALSE_SWIPE",
         "GROWTH",
         "HEADBUTT"
-      ],
-      "breeding_fallbacks": {}
-    },
-    {
-      "species": "SPOINK",
-      "name": "Spoink",
-      "newly_available": [
-        "HYPNOSIS",
-        "MUD_SHOT",
-        "PAY_DAY",
-        "SHADOW_PUNCH",
-        "WILL_O_WISP"
-      ],
-      "removed_moves": [
-        "CURSE"
-      ],
-      "new_tutor_routes": [
-        "HYPNOSIS",
-        "MUD_SHOT",
-        "PAY_DAY",
-        "SHADOW_PUNCH",
-        "WILL_O_WISP"
       ],
       "breeding_fallbacks": {}
     },
@@ -8693,6 +8924,7 @@
         "ROCK_SMASH"
       ],
       "removed_moves": [
+        "GUNK_SHOT",
         "IRON_HEAD"
       ],
       "new_tutor_routes": [
@@ -8768,6 +9000,7 @@
       "species": "URSARINGBM",
       "name": "Ursaring (Bloodmoon)",
       "newly_available": [
+        "MUD_SHOT",
         "STEALTH_ROCK",
         "TACKLE"
       ],
@@ -8983,14 +9216,6 @@
         "FLAME_WHEEL",
         "HEAL_BELL"
       ],
-      "breeding_fallbacks": {}
-    },
-    {
-      "species": "WALREIN",
-      "name": "Walrein",
-      "newly_available": [],
-      "removed_moves": [],
-      "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
     {

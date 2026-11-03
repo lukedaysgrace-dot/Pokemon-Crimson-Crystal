@@ -1,9 +1,9 @@
-; Every Pokemon sorted alphabetically by its displayed English name.
-; Species with identical displayed names retain species-index order.
-
+; Generated from PokemonNames by tools/generate_dex_order_alpha.py.
+; Battle-only Aegislash Blade shares its base form entry.
 AlphabeticalPokedexOrder:
 	dw ABOMASNOW
 	dw ABRA
+	dw AEGISLASH
 	dw AERODACTYL
 	dw AGGRON
 	dw AIPOM
@@ -99,6 +99,7 @@ AlphabeticalPokedexOrder:
 	dw DODRIO
 	dw DODUO
 	dw DONPHAN
+	dw DOUBLADE
 	dw DRAGAPULT
 	dw DRAGONAIR
 	dw DRAGONITE
@@ -125,7 +126,6 @@ AlphabeticalPokedexOrder:
 	dw ELECTRODE_HISUIAN
 	dw ELEKID
 	dw ENTEI
-	dw ESPATHRA
 	dw ESPEON
 	dw EXCADRILL
 	dw EXEGGCUTE
@@ -142,7 +142,6 @@ AlphabeticalPokedexOrder:
 	dw FLAREON
 	dw FLETCHINDER
 	dw FLETCHLING
-	dw FLITTLE
 	dw FLYGON
 	dw FORRETRESS
 	dw FRAXURE
@@ -182,18 +181,20 @@ AlphabeticalPokedexOrder:
 	dw GROWLITHE
 	dw GROWLITHE_HISUIAN
 	dw GRUBBIN
-	dw GRUMPIG
 	dw GURDURR
 	dw GYARADOS
 	dw HAPPINY
 	dw HAUNTER
 	dw HAXORUS
 	dw HERACROSS
+	dw HIPPOPOTAS
+	dw HIPPOWDON
 	dw HITMONCHAN
 	dw HITMONLEE
 	dw HITMONTOP
 	dw HO_OH
 	dw HONCHKROW
+	dw HONEDGE
 	dw HOOTHOOT
 	dw HOPPIP
 	dw HORSEA
@@ -240,11 +241,8 @@ AlphabeticalPokedexOrder:
 	dw LICKITUNG
 	dw LILEEP
 	dw LITWICK
-	dw LOMBRE
 	dw LOPUNNY
-	dw LOTAD
 	dw LUCARIO
-	dw LUDICOLO
 	dw LUGIA
 	dw MACHAMP
 	dw MACHOKE
@@ -304,6 +302,7 @@ AlphabeticalPokedexOrder:
 	dw NOIBAT
 	dw NOIVERN
 	dw NUMEL
+	dw NUZLEAF
 	dw OCTILLERY
 	dw ODDISH
 	dw OMANYTE
@@ -360,6 +359,7 @@ AlphabeticalPokedexOrder:
 	dw RHYPERIOR
 	dw RIOLU
 	dw ROOKIDEE
+	dw SABLEYE
 	dw SALAMENCE
 	dw SALANDIT
 	dw SALAZZLE
@@ -375,13 +375,14 @@ AlphabeticalPokedexOrder:
 	dw SCYTHER
 	dw SEADRA
 	dw SEAKING
-	dw SEALEO
+	dw SEEDOT
 	dw SEEL
 	dw SENTRET
 	dw SEVIPER
 	dw SHELGON
 	dw SHELLDER
 	dw SHIELDON
+	dw SHIFTRY
 	dw SHROOMISH
 	dw SHUCKLE
 	dw SHUPPET
@@ -406,9 +407,7 @@ AlphabeticalPokedexOrder:
 	dw SNOVER
 	dw SNUBBULL
 	dw SPEAROW
-	dw SPHEAL
 	dw SPINARAK
-	dw SPOINK
 	dw SQUIRTLE
 	dw SQUIRTLE_CLONE
 	dw STANTLER
@@ -478,7 +477,6 @@ AlphabeticalPokedexOrder:
 	dw VOLTORB_HISUIAN
 	dw VULPIX
 	dw VULPIX_ALOLAN
-	dw WALREIN
 	dw WARTORTLE
 	dw WARTORTLE_CLONE
 	dw WATU
@@ -500,5 +498,7 @@ AlphabeticalPokedexOrder:
 	dw YANMEGA
 	dw ZANGOOSE
 	dw ZAPDOS
+	dw ZOROARK
+	dw ZORUA
 	dw ZUBAT
 	dw ZWEILOUS

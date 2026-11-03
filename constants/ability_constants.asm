@@ -176,4 +176,5 @@
 	const FOREWARN
 	const SUPERSWEET_SYRUP
 	const ILLUSION
+	const STANCE_CHANGE
 NUM_ABILITIES EQU const_value

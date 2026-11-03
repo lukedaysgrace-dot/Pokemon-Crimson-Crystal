@@ -442,3 +442,4 @@ MoveNames::
 	db "GRASS KNOT@"
 	db "HEAVY SLAM@"
 	db "TWIN BEAM@"
+	db "KING SHIELD@"

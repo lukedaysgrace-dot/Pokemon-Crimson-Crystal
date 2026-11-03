@@ -172,3 +172,4 @@ AbilityNames::
 	db "FOREWARN@"
 	db "SUPERSWEET SYRUP@"
 	db "ILLUSION@"
+	db "STANCE CHANGE@"

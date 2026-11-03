@@ -728,31 +728,67 @@ Text_WhatEvolving:
 	text_far UnknownText_0x1c4be3
 	text_end
 
-LearnEspathraEvolutionMove:
+LearnAegislashEvolutionMove:
 LearnEvolutionMove:
 ; Offer each family's evolution move at any evolution level. The level-1
 ; entries also remain available from the move reminder.
 	ld a, [wEvolutionOldSpecies]
 	call GetPokemonIndexFromID
 	ld a, h
-	cp HIGH(FLITTLE)
+	cp HIGH(DOUBLADE)
 	jr nz, .phantump
 	ld a, l
-	cp LOW(FLITTLE)
+	cp LOW(DOUBLADE)
 	jr nz, .phantump
 	ld a, [wTempSpecies]
 	call GetPokemonIndexFromID
 	ld a, h
-	cp HIGH(ESPATHRA)
+	cp HIGH(AEGISLASH)
 	ret nz
 	ld a, l
-	cp LOW(ESPATHRA)
+	cp LOW(AEGISLASH)
 	ret nz
 
-	ld hl, LUMINA_CRASH
+	ld hl, KINGS_SHIELD
 	jr .teach
 
 .phantump
+	ld a, h
+	cp HIGH(ZORUA)
+	jr nz, .seedot
+	ld a, l
+	cp LOW(ZORUA)
+	jr nz, .seedot
+	ld a, [wTempSpecies]
+	call GetPokemonIndexFromID
+	ld a, h
+	cp HIGH(ZOROARK)
+	ret nz
+	ld a, l
+	cp LOW(ZOROARK)
+	ret nz
+	ld hl, SHADOW_CLAW ; Hisuian Zoroark's evolution move
+	jr .teach
+
+.seedot
+	ld a, h
+	cp HIGH(SEEDOT)
+	jr nz, .trevenant
+	ld a, l
+	cp LOW(SEEDOT)
+	jr nz, .trevenant
+	ld a, [wTempSpecies]
+	call GetPokemonIndexFromID
+	ld a, h
+	cp HIGH(NUZLEAF)
+	ret nz
+	ld a, l
+	cp LOW(NUZLEAF)
+	ret nz
+	ld hl, RAZOR_LEAF
+	jr .teach
+
+.trevenant
 	ld a, h
 	cp HIGH(PHANTUMP)
 	ret nz

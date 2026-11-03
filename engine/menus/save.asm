@@ -597,6 +597,7 @@ TryLoadSaveFile:
 	call LoadPlayerData
 	call LoadPokemonData
 	call LoadIndexTables
+	farcall NormalizeLoadedRoster
 	; If the reset happened while the backup copy was being written, finish it
 	; now (the main copy is good and the storage snapshot must match it).
 	call WasMidSaveAborted
@@ -616,6 +617,7 @@ TryLoadSaveFile:
 	call LoadBackupPlayerData
 	call LoadBackupPokemonData
 	call LoadBackupIndexTables
+	farcall NormalizeLoadedRoster
 	farcall LoadStorageSystem
 	farcall RestorePartyMonMail
 	farcall RestoreMobileEventIndex

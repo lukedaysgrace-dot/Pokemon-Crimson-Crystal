@@ -119,9 +119,6 @@ Cries:
 	dba Cry_Carracosta
 	dba Cry_Archen
 	dba Cry_Archeops
-; Paldea (gen 9)
-	dba Cry_Flittle
-	dba Cry_Espathra
 ; More cries imported from Polished Coral
 	dba Cry_Exeggutor
 	dba Cry_Espeon
@@ -133,3 +130,5 @@ Cries:
 	dba Cry_Trevenant
 	dba Cry_Mienfoo
 	dba Cry_Mienshao
+	dba Cry_Hippopotas
+	dba Cry_Hippowdon

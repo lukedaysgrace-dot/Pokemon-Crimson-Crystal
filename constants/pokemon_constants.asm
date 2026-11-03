@@ -390,20 +390,20 @@ JOHTO_POKEMON EQU const_value
 	const FROSLASS   ;
 	const WIMPOD     ;
 	const GOLISOPOD  ;
-	const SPOINK     ;
-	const GRUMPIG    ;
+	const ZORUA     ;
+	const ZOROARK    ;
 	const PAWNIARD   ;
 	const BISHARP    ;
 	const KINGAMBIT  ;
-	const LOTAD      ;
-	const LOMBRE     ;
-	const LUDICOLO   ;
+	const SEEDOT      ;
+	const NUZLEAF     ;
+	const SHIFTRY   ;
 	const OVERQWIL   ;
 	const SCRAGGY    ;
 	const SCRAFTY    ;
-	const SPHEAL     ;
-	const SEALEO     ;
-	const WALREIN    ;
+	const HONEDGE     ;
+	const DOUBLADE     ;
+	const AEGISLASH    ;
 	const TEDDIURSABM ;
 	const URSARINGBM ;
 	const URSALUNABM ;
@@ -498,8 +498,8 @@ JOHTO_POKEMON EQU const_value
 	const NOIVERN           ;
 	const SALANDIT          ;
 	const SALAZZLE          ;
-	const FLITTLE           ;
-	const ESPATHRA          ;
+	const SABLEYE           ;
+	const AEGISLASH_BLADE          ;
 	const FINIZEN           ;
 	const PALAFIN           ;
 	const AZURILL           ; appended to preserve all existing species IDs
@@ -520,7 +520,10 @@ JOHTO_POKEMON EQU const_value
 	const TREVENANT         ;
 	const MIENFOO           ; appended; regional Dex order is separate
 	const MIENSHAO          ;
+	const HIPPOPOTAS        ; 501
+	const HIPPOWDON         ; 502
 NUM_POKEMON EQU const_value + -1
+NUM_POKEDEX_ENTRIES EQU NUM_POKEMON - 1 ; Aegislash Blade is battle-only
 
 EGG EQU -3
 

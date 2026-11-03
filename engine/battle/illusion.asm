@@ -49,8 +49,6 @@ IllusionPlayerPalette::
 	ld b, a
 	and a
 	ret z ; trainer/player backpic before a Pokemon enters
-	call GetPlayerIllusionSlot
-	ret z
 	jp OverridePlayerIllusionAppearance
 IllusionEnemyPalette::
 	farcall GetEnemyMonDVs
@@ -58,11 +56,10 @@ IllusionEnemyPalette::
 	ld b, a
 	and a
 	ret z
-	call GetEnemyIllusionSlot
-	ret z
 	jp OverrideEnemyIllusionAppearance
 
 ResetIllusionState::
+	farcall ResetStanceState
 	ldh a, [hBattleTurn]
 	push af
 	call SetPlayerTurn
@@ -120,6 +117,7 @@ SetUserIllusionSlot:
 	ret
 
 InitPlayerIllusion::
+	farcall ResetPlayerStance
 	ldh a, [hBattleTurn]
 	push af
 	call SetPlayerTurn
@@ -128,6 +126,7 @@ InitPlayerIllusion::
 	ldh [hBattleTurn], a
 	ret
 InitEnemyIllusion::
+	farcall ResetEnemyStance
 	ldh a, [hBattleTurn]
 	push af
 	call SetEnemyTurn
@@ -230,14 +229,22 @@ OverridePlayerIllusionAppearance::
 ; Set hl here: the farcall macro uses hl to dispatch, not to pass arguments.
 	ld hl, wBattleMonDVs
 	call GetPlayerIllusionSlot
-	ret z
+	jr nz, .disguised
+	farcall OverridePlayerStanceAppearance
+	ld hl, wBattleMonDVs
+	ret
+.disguised
 	dec a
 	ld hl, wPartyMon1Species
 	jr OverrideIllusionAppearance
 OverrideEnemyIllusionAppearance::
 	ld hl, wEnemyMonDVs
 	call GetEnemyIllusionSlot
-	ret z
+	jr nz, .disguised
+	farcall OverrideEnemyStanceAppearance
+	ld hl, wEnemyMonDVs
+	ret
+.disguised
 	dec a
 	ld hl, wOTPartyMon1Species
 OverrideIllusionAppearance:

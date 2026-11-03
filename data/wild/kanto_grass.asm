@@ -8,7 +8,7 @@
 ; Evolved forms never appear below the level at which they would have evolved.
 ; Scyther, Pinsir and Heracross are Bug Contest exclusives.
 ; Ice types are Shiver Isle / Ice Path / the Safari Zone's ice area only, plus
-; Walrein in SILVER_CAVE_ROOM_2's water.
+; Aegislash in SILVER_CAVE_ROOM_2's water.
 ; Ghost types are Silent Crypt only, with one deliberate exception: Galarian
 ; Corsola on the Whirl Islands' night tables. It is bleached dead coral -
 ; "areas oceans once covered" - so it belongs on a tide line, not inland.
@@ -200,7 +200,7 @@ KantoGrassWildMons:
 	dbw 60, PIDGEY
 	dbw 60, SENTRET
 	dbw 61, RATTATA
-	dbw 61, LOTAD
+	dbw 61, SEEDOT
 	dbw 63, FURRET
 	dbw 63, PIDGEOTTO
 	dbw 64, MILTANK

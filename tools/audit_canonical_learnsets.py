@@ -20,6 +20,9 @@ CACHE = ROOT / 'tools/lumi_learnsets/cache/smogon-sv'
 RECEIPT = ROOT / 'tools/testdata/canonical_learnsets.json'
 CUSTOM = {'WATU', 'MESMERIA', 'KOTORA', 'RAITORA', 'GOROTORA', 'GOROCHU'}
 ALIASES = {
+    'AEGISLASH_BLADE': 'aegislash',
+    # This game's sole Zorua family uses the Hisuian forms at these stable slots.
+    'ZORUA': 'zoruahisui', 'ZOROARK': 'zoroarkhisui',
     'TEDDIURSABM': 'teddiursa', 'URSARINGBM': 'ursaring',
     'URSALUNABM': 'ursalunabloodmoon',
     'TAUROS_PALDEAN_FIRE': 'taurospaldeablaze',

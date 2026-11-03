@@ -487,7 +487,7 @@ GetStorageBoxSpecies::
 	call GetStorageBoxPointer
 	ld a, e
 	and a
-	jr z, .empty
+	jp z, .empty
 	call IsStorageUsed
 	jr z, .empty
 	call OpenPokeDB
@@ -520,6 +520,11 @@ GetStorageBoxSpecies::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a ; hl = species index
+	ld d, h
+	ld e, l
+	farcall NormalizeRetiredRosterIndexDE
+	ld h, d
+	ld l, e
 	ld a, c
 	push af
 	call CloseSRAM
