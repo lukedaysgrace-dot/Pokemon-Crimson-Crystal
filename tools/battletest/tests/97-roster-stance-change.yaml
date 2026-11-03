@@ -1,0 +1,296 @@
+- name: "Stance Change: damaging move uses Blade stats without replacing real species"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'AEGISLASH'
+    - wram('wPlayerBladeForm') == 1
+    - player.stats['attack'] > player.stats['defense']
+    - player.stats['spclatk'] > player.stats['spcldef']
+
+- name: "Stance Change: enemy uses its Blade form"
+  player: {species: MEW, level: 100, moves: [SPLASH]}
+  enemy: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.species == 'AEGISLASH'
+    - wram('wEnemyBladeForm') == 1
+    - enemy.stats['attack'] > enemy.stats['defense']
+
+- name: "King's Shield: protects and lowers contact Attack one stage"
+  player: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [KINGS_SHIELD]}
+  enemy: {species: MEW, level: 50, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - enemy.stat_levels[0] == 6
+    - wram('wPlayerBladeForm') == 0
+
+- name: "King's Shield: enemy guard punishes player contact"
+  player: {species: MEW, level: 50, moves: [TACKLE]}
+  enemy: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [KINGS_SHIELD]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "player.stat_levels[0] == 6"]
+
+- name: "King's Shield: ranged move is blocked without a contact penalty"
+  player: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [KINGS_SHIELD]}
+  enemy: {species: MEW, level: 50, moves: [SWIFT]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp == player.start_hp", "enemy.stat_levels[0] == 7"]
+
+- name: "King's Shield: status moves pass through the guard"
+  player: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [KINGS_SHIELD]}
+  enemy: {species: MEW, level: 50, moves: [WILL_O_WISP]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.status & 16 != 0"]
+
+- name: "Stance Change: other status moves stay in Shield"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [SWORDS_DANCE]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  turns: 1
+  assert:
+    - wram('wPlayerBladeForm') == 0
+    - player.stat_levels[0] == 9
+    - player.stats['defense'] == player.start_stats['defense']
+
+- name: "Stance Change: King's Shield restores Shield after attacking"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD, KINGS_SHIELD]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or wram('wPlayerBladeForm') == 1
+    - turns_done != 2 or wram('wPlayerBladeForm') == 0
+  assert:
+    - player.stats['attack'] == player.start_stats['attack']
+    - player.stats['defense'] == player.start_stats['defense']
+
+- name: "Stance Change: switching restores Shield and resets form state"
+  player: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [IRON_HEAD, SPLASH]}
+  player2: {species: MEW, level: 100, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  move_script: [1, 'switch:2', 'switch:1', 2]
+  rng: forced_high
+  turns: 4
+  assert: ["player.species == 'AEGISLASH'", "wram('wPlayerBladeForm') == 0", "player.stats['defense'] > player.stats['attack']"]
+
+- name: "Stance Change: real Swords Dance boosts persist through both forms"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [SWORDS_DANCE, IRON_HEAD, KINGS_SHIELD]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  move_script: [1, 2, 3]
+  rng: forced_high
+  turns: 3
+  assert:
+    - wram('wPlayerBladeForm') == 0
+    - player.stat_levels[0] == 9
+    - player.stats['attack'] == player.start_stats['attack'] * 2
+    - player.stats['defense'] == player.start_stats['defense']
+
+- name: "Stance Change: other status moves preserve Blade and their stat boosts"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD, SWORDS_DANCE]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: ["wram('wPlayerBladeForm') == 1", "player.stat_levels[0] == 9"]
+
+- name: "Stance Change: a missed attack still enters Blade"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD], stages: {acc: -6}}
+  enemy: {species: MEW, level: 100, moves: [SPLASH], stages: {eva: 6}}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerBladeForm') == 1", "enemy.hp == enemy.start_hp"]
+
+- name: "Stance Change: an attack blocked by Protect still enters Blade"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD]}
+  enemy: {species: MEW, level: 100, moves: [PROTECT]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerBladeForm') == 1", "enemy.hp == enemy.start_hp"]
+
+- name: "Stance Change: sleep prevents an ordinary attack and form change"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD], status_byte: 5}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerBladeForm') == 0", "enemy.hp == enemy.start_hp"]
+
+- name: "Stance Change: full paralysis prevents an ordinary attack and form change"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD], status_byte: 64}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["wram('wPlayerBladeForm') == 0", "enemy.hp == enemy.start_hp"]
+
+- name: "Stance Change: flinching prevents an ordinary attack and form change"
+  player: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [IRON_HEAD]}
+  enemy: {species: MEW, level: 100, moves: [BITE]}
+  rng: forced_low
+  turns: 1
+  assert: ["wram('wPlayerBladeForm') == 0", "enemy.hp == enemy.start_hp", "player.hp > 0"]
+
+- name: "Stance Change: Sleep Talk's called attack enters Blade"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [SLEEP_TALK, IRON_HEAD], status_byte: 5}
+  enemy: {species: MEW, level: 100, moves: [SPLASH, SPLASH]}
+  rng: forced
+  rng_value: 181
+  turns: 1
+  assert: ["wram('wPlayerBladeForm') == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Stance Change: Struggle enters Blade despite skipping PP deduction"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [STRUGGLE]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerBladeForm') == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Stance Change: failed King Shield still returns Blade to Shield"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD, PROTECT, KINGS_SHIELD]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  move_script: [1, 2, 3]
+  rng: forced_high
+  turns: 3
+  turn_assert:
+    - turns_done != 2 or wram('wPlayerBladeForm') == 1
+  assert: ["wram('wPlayerBladeForm') == 0", "player.stats['defense'] == player.start_stats['defense']"]
+
+- name: "Stance Change: Neutralizing Gas cannot suppress the form change"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD]}
+  enemy: {species: KOFFING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerBladeForm') == 1", "player.ability == 'STANCE_CHANGE'"]
+
+- name: "Stance Change: Skill Swap cannot replace or acquire it"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD]}
+  enemy: {species: MEW, level: 100, moves: [SKILL_SWAP]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'STANCE_CHANGE'", "enemy.ability != 'STANCE_CHANGE'", "wram('wPlayerBladeForm') == 1"]
+
+- name: "Stance Change: transformed Shield copy cannot change form with its copied ability"
+  player: {species: MEW, level: 100, moves: [TRANSFORM]}
+  enemy: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD]}
+  move_script: [1, 1]
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.species == 'AEGISLASH'
+    - player.ability == 'STANCE_CHANGE'
+    - wram('wPlayerBladeForm') == 0
+    - player.stats['defense'] > player.stats['attack']
+
+- name: "Illusion: Hisuian Zorua legally disguises on entry"
+  player: {species: ZORUA, level: 50, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  turns: 0
+  assert: ["wram('wPlayerIllusionSlot') == 2", "player.species == 'ZORUA'", "buffer_is('wBattleMonNick', 'GENGAR')"]
+
+- name: "Hisuian Zorua: Normal immunity uses real typing underneath Illusion"
+  player: {species: ZORUA, level: 50, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: PIKACHU, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp == player.start_hp", "wram('wPlayerIllusionSlot') == 2", "buffer_is('wBattleMonNick', 'PIKACHU')"]
+
+- name: "Hisuian Zoroark: Ghost immunity keeps the Gengar disguise intact"
+  player: {species: ZOROARK, level: 50, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, moves: [LICK]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp == player.start_hp", "wram('wPlayerIllusionSlot') == 2"]
+
+- name: "Hisuian Zoroark: Fighting immunity replaces regular Zoroark's weakness"
+  player: {species: MEW, level: 100, moves: [KARATE_CHOP]}
+  enemy: {species: ZOROARK, level: 50, ability: ILLUSION, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp"]
+
+- name: "Hisuian Zorua: Ghost Curse uses real typing under a Pikachu disguise"
+  player: {species: ZORUA, level: 100, ability: ILLUSION, moves: [CURSE]}
+  player2: {species: PIKACHU, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - enemy.hp < enemy.start_hp
+    - player.stat_levels[0] == 7
+    - player.stat_levels[1] == 7
+    - player.stat_levels[2] == 7
+    - wram('wPlayerIllusionSlot') == 2
+
+- name: "Stance Change: Transform copies its ability but keeps the target's Blade form"
+  player: {species: MEW, level: 100, moves: [SPLASH, TRANSFORM]}
+  enemy: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.species == 'AEGISLASH'
+    - player.ability == 'STANCE_CHANGE'
+    - wram('wPlayerBladeForm') == 1
+    - player.stats['attack'] > player.stats['defense']
+
+- name: "King's Shield: guards share the consecutive-use failure chance"
+  player: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [PROTECT, KINGS_SHIELD]}
+  enemy: {species: MEW, level: 10, moves: [SHADOW_CLAW]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: ["player.hp < player.start_hp", "enemy.stat_levels[0] == 7"]
+
+- name: "King's Shield: contact attacker behind Substitute is still punished"
+  player: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [SPLASH, KINGS_SHIELD]}
+  enemy: {species: MEW, level: 50, moves: [SUBSTITUTE, SHADOW_CLAW]}
+  move_script: [1, 2]
+  turn_setup_wram:
+    1: {wEnemyMonMoves: {move: SHADOW_CLAW}}
+  rng: forced_high
+  turns: 2
+  assert: ["enemy.stat_levels[0] == 6"]
+
+- name: "King's Shield: Contrary reverses the contact Attack drop"
+  player: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [KINGS_SHIELD]}
+  enemy: {species: SHUCKLE, level: 50, ability: CONTRARY, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 8", "player.hp == player.start_hp"]
+
+- name: "King's Shield: Clear Body blocks its contact Attack drop"
+  player: {species: AEGISLASH, level: 100, ability: STANCE_CHANGE, moves: [KINGS_SHIELD]}
+  enemy: {species: TENTACOOL, level: 50, ability: CLEAR_BODY, moves: [TACKLE]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 7", "player.hp == player.start_hp"]
+
+- name: "Illusion: Hisuian Zoroark legally disguises on entry and gains Speed on reveal"
+  player: {species: ZOROARK, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [CONFUSION]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.species == 'ZOROARK'", "player.stat_levels[2] == 8"]
+
+- name: "Shiftry: Prankster boosts Growth before faster Taunt"
+  player: {species: SHIFTRY, level: 50, ability: PRANKSTER, moves: [GROWTH]}
+  enemy: {species: MEW, level: 50, moves: [TAUNT]}
+  turns: 1
+  assert: ["player.stat_levels[3] == 8"]
+
+- name: "Shiftry: Wind Rider absorbs wind and raises Attack"
+  player: {species: SHIFTRY, level: 50, ability: WIND_RIDER, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, moves: [GUST]}
+  turns: 1
+  assert: ["player.hp == player.start_hp", "player.stat_levels[0] == 8"]

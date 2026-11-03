@@ -186,12 +186,14 @@ def audit_rom(path):
     return count
 
 
-def audit(compiler, fix=False):
+def audit(compiler, fix=False, species=None):
     report = {"checked": 0, "mismatches": [], "fixed": [],
               "front_palette_repairs": [], "exceptions": sorted(BLUE_EXCEPTIONS)}
     with tempfile.TemporaryDirectory(prefix="backsprite-colors-") as folder:
         tmp = Path(folder)
         for front_path, back_path in pairs():
+            if species and back_path.parent.name not in species:
+                continue
             if not front_path.exists():
                 raise ValueError(f"Missing front sprite: {front_path}")
             report["checked"] += 1
@@ -232,11 +234,13 @@ def main():
     parser.add_argument("--rgbgfx", default=str(project_compiler)
                         if project_compiler.exists() else shutil.which("rgbgfx"))
     parser.add_argument("--fix", action="store_true")
+    parser.add_argument("--species", action="append", default=[],
+                        help="Limit source color checks/repairs to these sprite folders")
     parser.add_argument("--report", type=Path)
     parser.add_argument("--rom", type=Path, action="append", default=[],
                         help="Also verify built ROM sprite data and normal/shiny palettes")
     args = parser.parse_args()
-    report = audit(args.rgbgfx, args.fix)
+    report = audit(args.rgbgfx, args.fix, set(args.species))
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

@@ -371,20 +371,20 @@ IconPointers:
 	dba FroslassIcon
 	dba WimpodIcon
 	dba GolisopodIcon
-	dba QuadrupedIcon
-	dba QuadrupedIcon
+	dba ZoruaIcon
+	dba ZoroarkIcon
 	dba PawniardIcon
 	dba BisharpIcon
 	dba KingambitIcon
-	dba PlantIcon
-	dba PlantIcon
-	dba PlantIcon
+	dba SeedotIcon
+	dba NuzleafIcon
+	dba ShiftryIcon
 	dba OverqwilIcon
 	dba ScraggyIcon
 	dba ScraftyIcon
-	dba SphealIcon
-	dba SealeoIcon
-	dba WalreinIcon
+	dba HonedgeIcon
+	dba DoubladeIcon
+	dba AegislashIcon
 	dba TeddiursabmIcon
 	dba UrsaringbmIcon
 	dba UrsalunabmIcon
@@ -396,7 +396,7 @@ IconPointers:
 	dba ShieldonIcon
 	dba BastiodonIcon
 	dba SeelIcon
-	dba WalreinIcon
+	dba AegislashIcon
 	dba MagikarpIcon
 	dba GyaradosIcon
 	dba MimikyuIcon
@@ -479,8 +479,8 @@ IconPointers:
 	dba NoivernIcon
 	dba SalanditIcon
 	dba SalazzleIcon
-	dba FlittleIcon
-	dba EspathraIcon
+	dba SableyeIcon
+	dba AegislashBladeIcon
 	dba FinizenIcon
 	dba PalafinIcon
 	dba AzurillIcon
@@ -501,3 +501,5 @@ IconPointers:
 	dba TrevenantIcon
 	dba MienfooIcon
 	dba MienshaoIcon
+	dba HippopotasIcon
+	dba HippowdonIcon

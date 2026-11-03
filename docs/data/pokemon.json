@@ -2814,13 +2814,13 @@
       "Water"
     ],
     "abilities": [
-      "Strong Jaw",
+      "Illusion",
       "Torrent",
       "Sheer Force"
     ],
     "ability_slots": [
       {
-        "name": "Strong Jaw",
+        "name": "Illusion",
         "slot": 1
       },
       {
@@ -9924,11 +9924,6 @@
         "move": "Rest"
       },
       {
-        "level": 20,
-        "const": "FLAME_WHEEL",
-        "move": "Flame Wheel"
-      },
-      {
         "level": 23,
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
@@ -10402,11 +10397,6 @@
         "level": 18,
         "const": "REST",
         "move": "Rest"
-      },
-      {
-        "level": 22,
-        "const": "FLAME_WHEEL",
-        "move": "Flame Wheel"
       },
       {
         "level": 26,
@@ -65714,11 +65704,6 @@
       },
       {
         "level": 7,
-        "const": "PIXIE_PUNCH",
-        "move": "Pixie Punch"
-      },
-      {
-        "level": 7,
         "const": "BUBBLE",
         "move": "Bubble"
       },
@@ -96455,7 +96440,7 @@
     "abilities": [
       "Flash Fire",
       "Guts",
-      "Quick Feet"
+      "Fur Coat"
     ],
     "ability_slots": [
       {
@@ -96467,7 +96452,7 @@
         "slot": 2
       },
       {
-        "name": "Quick Feet",
+        "name": "Fur Coat",
         "slot": 3
       }
     ],
@@ -97514,11 +97499,6 @@
         "level": 36,
         "const": "SPITE",
         "move": "Spite"
-      },
-      {
-        "level": 37,
-        "const": "GUNK_SHOT",
-        "move": "Gunk Shot"
       },
       {
         "level": 40,
@@ -105932,9 +105912,714 @@
     ]
   },
   {
+    "const": "HIPPOPOTAS",
+    "name": "Hippopotas",
+    "number": 235,
+    "stats": {
+      "HP": 68,
+      "Attack": 72,
+      "Defense": 78,
+      "Speed": 32,
+      "Sp. Atk": 38,
+      "Sp. Def": 42
+    },
+    "types": [
+      "Ground"
+    ],
+    "abilities": [
+      "Sand Stream",
+      "Sand Force",
+      "Strong Jaw"
+    ],
+    "ability_slots": [
+      {
+        "name": "Sand Stream",
+        "slot": 1
+      },
+      {
+        "name": "Sand Force",
+        "slot": 2
+      },
+      {
+        "name": "Strong Jaw",
+        "slot": 3
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "SAND_ATTACK",
+        "move": "Sand Attack"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 7,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 11,
+        "const": "YAWN",
+        "move": "Yawn"
+      },
+      {
+        "level": 15,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 19,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 23,
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "level": 24,
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "level": 24,
+        "const": "AMNESIA",
+        "move": "Amnesia"
+      },
+      {
+        "level": 27,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 31,
+        "const": "BODY_SLAM",
+        "move": "Body Slam"
+      },
+      {
+        "level": 32,
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "level": 35,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
+      },
+      {
+        "level": 36,
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "level": 39,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 43,
+        "const": "STEALTH_ROCK",
+        "move": "Stealth Rock"
+      },
+      {
+        "level": 47,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 51,
+        "const": "FISSURE",
+        "move": "Fissure"
+      },
+      {
+        "level": 55,
+        "const": "SUPERPOWER",
+        "move": "Superpower"
+      }
+    ],
+    "evolutions": [
+      {
+        "method": "EVOLVE_LEVEL",
+        "args": [
+          "34"
+        ],
+        "target": "HIPPOWDON",
+        "text": "Level 34",
+        "target_name": "Hippowdon",
+        "target_slug": "hippowdon"
+      }
+    ],
+    "egg_moves": [
+      "CURSE",
+      "WHIRLWIND",
+      "SLACK_OFF",
+      "BODY_SLAM",
+      "SLEEP_TALK"
+    ],
+    "tmhm": [
+      "HEADBUTT",
+      "CURSE",
+      "ROCK_TOMB",
+      "ROAR",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "PROTECT",
+      "FACADE",
+      "EARTHQUAKE",
+      "RETURN",
+      "DIG",
+      "MUD_SLAP",
+      "SWAGGER",
+      "SANDSTORM",
+      "REST",
+      "ATTRACT",
+      "WEATHER_BALL",
+      "STRENGTH"
+    ],
+    "info": {
+      "catch_rate": 140,
+      "base_exp": 66,
+      "items": [
+        "NO_ITEM",
+        "NO_ITEM"
+      ],
+      "gender": "50% male, 50% female",
+      "egg_cycles": 30,
+      "growth": "Slow",
+      "egg_groups": [
+        "Field"
+      ]
+    },
+    "sprite": "assets/pokemon/hippopotas.png",
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK"
+    ],
+    "blackthorn_tutor_moves": [
+      "BODY_PRESS",
+      "DOUBLE_TEAM",
+      "EARTH_POWER",
+      "ENDURE",
+      "FIRE_FANG",
+      "FRUSTRATION",
+      "ICE_FANG",
+      "IRON_TAIL",
+      "MUD_SHOT",
+      "ROCK_SLIDE",
+      "SNORE",
+      "STONE_EDGE",
+      "THUNDER_FANG",
+      "WATER_PULSE"
+    ],
+    "evolves_from": null,
+    "original_types": [
+      "Ground"
+    ],
+    "updated_types": [
+      "Ground"
+    ],
+    "updated_stats": {
+      "HP": 68,
+      "Attack": 72,
+      "Defense": 78,
+      "Speed": 32,
+      "Sp. Atk": 38,
+      "Sp. Def": 42
+    },
+    "original_stats": {
+      "HP": 68,
+      "Attack": 72,
+      "Defense": 78,
+      "Speed": 32,
+      "Sp. Atk": 38,
+      "Sp. Def": 42
+    },
+    "original_stats_source": "modern main games",
+    "sprite_size": 56,
+    "back": "assets/pokemon/hippopotas.back.png",
+    "back_size": 48,
+    "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "tm": "TM03",
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "tm": "TM04",
+        "const": "ROCK_TOMB",
+        "move": "Rock Tomb"
+      },
+      {
+        "tm": "TM05",
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM11",
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM26",
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "tm": "TM31",
+        "const": "MUD_SLAP",
+        "move": "Mud-Slap"
+      },
+      {
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "tm": "TM37",
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM45",
+        "const": "ATTRACT",
+        "move": "Attract"
+      },
+      {
+        "tm": "TM54",
+        "const": "WEATHER_BALL",
+        "move": "Weather Ball"
+      },
+      {
+        "tm": "HM04",
+        "const": "STRENGTH",
+        "move": "Strength"
+      }
+    ]
+  },
+  {
+    "const": "HIPPOWDON",
+    "name": "Hippowdon",
+    "number": 236,
+    "stats": {
+      "HP": 108,
+      "Attack": 112,
+      "Defense": 118,
+      "Speed": 47,
+      "Sp. Atk": 68,
+      "Sp. Def": 72
+    },
+    "types": [
+      "Ground"
+    ],
+    "abilities": [
+      "Sand Stream",
+      "Sand Force",
+      "Strong Jaw"
+    ],
+    "ability_slots": [
+      {
+        "name": "Sand Stream",
+        "slot": 1
+      },
+      {
+        "name": "Sand Force",
+        "slot": 2
+      },
+      {
+        "name": "Strong Jaw",
+        "slot": 3
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "SAND_ATTACK",
+        "move": "Sand Attack"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "THUNDER_FANG",
+        "move": "Thunder Fang"
+      },
+      {
+        "level": 1,
+        "const": "FIRE_FANG",
+        "move": "Fire Fang"
+      },
+      {
+        "level": 1,
+        "const": "ICE_FANG",
+        "move": "Ice Fang"
+      },
+      {
+        "level": 1,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 7,
+        "const": "BITE",
+        "move": "Bite"
+      },
+      {
+        "level": 11,
+        "const": "YAWN",
+        "move": "Yawn"
+      },
+      {
+        "level": 15,
+        "const": "BULLDOZE",
+        "move": "Bulldoze"
+      },
+      {
+        "level": 19,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 23,
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "level": 24,
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "level": 24,
+        "const": "AMNESIA",
+        "move": "Amnesia"
+      },
+      {
+        "level": 27,
+        "const": "CRUNCH",
+        "move": "Crunch"
+      },
+      {
+        "level": 31,
+        "const": "BODY_SLAM",
+        "move": "Body Slam"
+      },
+      {
+        "level": 32,
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "level": 36,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
+      },
+      {
+        "level": 38,
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "level": 41,
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "level": 46,
+        "const": "STEALTH_ROCK",
+        "move": "Stealth Rock"
+      },
+      {
+        "level": 51,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 56,
+        "const": "FISSURE",
+        "move": "Fissure"
+      },
+      {
+        "level": 61,
+        "const": "SUPERPOWER",
+        "move": "Superpower"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [
+      "CURSE",
+      "WHIRLWIND",
+      "SLACK_OFF",
+      "BODY_SLAM",
+      "SLEEP_TALK"
+    ],
+    "tmhm": [
+      "HEADBUTT",
+      "CURSE",
+      "ROCK_TOMB",
+      "ROAR",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "HYPER_BEAM",
+      "PROTECT",
+      "FACADE",
+      "IRON_HEAD",
+      "EARTHQUAKE",
+      "RETURN",
+      "DIG",
+      "MUD_SLAP",
+      "SWAGGER",
+      "SANDSTORM",
+      "REST",
+      "ATTRACT",
+      "WEATHER_BALL",
+      "STRENGTH"
+    ],
+    "info": {
+      "catch_rate": 60,
+      "base_exp": 184,
+      "items": [
+        "NO_ITEM",
+        "NO_ITEM"
+      ],
+      "gender": "50% male, 50% female",
+      "egg_cycles": 30,
+      "growth": "Slow",
+      "egg_groups": [
+        "Field"
+      ]
+    },
+    "sprite": "assets/pokemon/hippowdon.png",
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK"
+    ],
+    "blackthorn_tutor_moves": [
+      "BODY_PRESS",
+      "DOUBLE_TEAM",
+      "EARTH_POWER",
+      "ENDURE",
+      "FRUSTRATION",
+      "GIGA_IMPACT",
+      "HEAVY_SLAM",
+      "HYPER_VOICE",
+      "IRON_TAIL",
+      "MUD_SHOT",
+      "ROCK_SLIDE",
+      "SNORE",
+      "STONE_EDGE",
+      "WATER_PULSE"
+    ],
+    "evolves_from": {
+      "const": "HIPPOPOTAS",
+      "name": "Hippopotas",
+      "slug": "hippopotas",
+      "text": "Level 34"
+    },
+    "original_types": [
+      "Ground"
+    ],
+    "updated_types": [
+      "Ground"
+    ],
+    "updated_stats": {
+      "HP": 108,
+      "Attack": 112,
+      "Defense": 118,
+      "Speed": 47,
+      "Sp. Atk": 68,
+      "Sp. Def": 72
+    },
+    "original_stats": {
+      "HP": 108,
+      "Attack": 112,
+      "Defense": 118,
+      "Speed": 47,
+      "Sp. Atk": 68,
+      "Sp. Def": 72
+    },
+    "original_stats_source": "modern main games",
+    "sprite_size": 56,
+    "back": "assets/pokemon/hippowdon.back.png",
+    "back_size": 48,
+    "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "tm": "TM03",
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "tm": "TM04",
+        "const": "ROCK_TOMB",
+        "move": "Rock Tomb"
+      },
+      {
+        "tm": "TM05",
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM11",
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
+      },
+      {
+        "tm": "TM15",
+        "const": "HYPER_BEAM",
+        "move": "Hyper Beam"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM23",
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "tm": "TM26",
+        "const": "EARTHQUAKE",
+        "move": "Earthquake"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "tm": "TM31",
+        "const": "MUD_SLAP",
+        "move": "Mud-Slap"
+      },
+      {
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "tm": "TM37",
+        "const": "SANDSTORM",
+        "move": "Sandstorm"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM45",
+        "const": "ATTRACT",
+        "move": "Attract"
+      },
+      {
+        "tm": "TM54",
+        "const": "WEATHER_BALL",
+        "move": "Weather Ball"
+      },
+      {
+        "tm": "HM04",
+        "const": "STRENGTH",
+        "move": "Strength"
+      }
+    ]
+  },
+  {
     "const": "MANTYKE",
     "name": "Mantyke",
-    "number": 235,
+    "number": 237,
     "stats": {
       "HP": 45,
       "Attack": 20,
@@ -106325,7 +107010,7 @@
   {
     "const": "MANTINE",
     "name": "Mantine",
-    "number": 236,
+    "number": 238,
     "stats": {
       "HP": 85,
       "Attack": 40,
@@ -106753,7 +107438,7 @@
   {
     "const": "SKARMORY",
     "name": "Skarmory",
-    "number": 237,
+    "number": 239,
     "stats": {
       "HP": 85,
       "Attack": 90,
@@ -107212,7 +107897,7 @@
   {
     "const": "DODUO",
     "name": "Doduo",
-    "number": 238,
+    "number": 240,
     "stats": {
       "HP": 35,
       "Attack": 85,
@@ -107621,7 +108306,7 @@
   {
     "const": "DODRIO",
     "name": "Dodrio",
-    "number": 239,
+    "number": 241,
     "stats": {
       "HP": 70,
       "Attack": 110,
@@ -108063,7 +108748,7 @@
   {
     "const": "PONYTA",
     "name": "Ponyta",
-    "number": 240,
+    "number": 242,
     "stats": {
       "HP": 50,
       "Attack": 85,
@@ -108446,7 +109131,7 @@
   {
     "const": "RAPIDASH",
     "name": "Rapidash",
-    "number": 241,
+    "number": 243,
     "stats": {
       "HP": 65,
       "Attack": 105,
@@ -108915,7 +109600,7 @@
   {
     "const": "CUBONE",
     "name": "Cubone",
-    "number": 242,
+    "number": 244,
     "stats": {
       "HP": 50,
       "Attack": 50,
@@ -109412,7 +110097,7 @@
   {
     "const": "MAROWAK",
     "name": "Marowak",
-    "number": 243,
+    "number": 245,
     "stats": {
       "HP": 60,
       "Attack": 80,
@@ -109902,7 +110587,7 @@
   {
     "const": "KANGASKHAN",
     "name": "Kangaskhan",
-    "number": 244,
+    "number": 246,
     "stats": {
       "HP": 105,
       "Attack": 95,
@@ -110488,7 +111173,7 @@
   {
     "const": "RHYHORN",
     "name": "Rhyhorn",
-    "number": 245,
+    "number": 247,
     "stats": {
       "HP": 80,
       "Attack": 85,
@@ -110970,7 +111655,7 @@
   {
     "const": "RHYDON",
     "name": "Rhydon",
-    "number": 246,
+    "number": 248,
     "stats": {
       "HP": 105,
       "Attack": 130,
@@ -111673,7 +112358,7 @@
   {
     "const": "RHYPERIOR",
     "name": "Rhyperior",
-    "number": 247,
+    "number": 249,
     "stats": {
       "HP": 115,
       "Attack": 140,
@@ -112302,7 +112987,7 @@
   {
     "const": "MURKROW",
     "name": "Murkrow",
-    "number": 248,
+    "number": 250,
     "stats": {
       "HP": 60,
       "Attack": 85,
@@ -112750,7 +113435,7 @@
   {
     "const": "HONCHKROW",
     "name": "Honchkrow",
-    "number": 249,
+    "number": 251,
     "stats": {
       "HP": 100,
       "Attack": 125,
@@ -113188,7 +113873,7 @@
   {
     "const": "BAGON",
     "name": "Bagon",
-    "number": 250,
+    "number": 252,
     "stats": {
       "HP": 45,
       "Attack": 75,
@@ -113606,7 +114291,7 @@
   {
     "const": "SHELGON",
     "name": "Shelgon",
-    "number": 251,
+    "number": 253,
     "stats": {
       "HP": 65,
       "Attack": 95,
@@ -114035,7 +114720,7 @@
   {
     "const": "SALAMENCE",
     "name": "Salamence",
-    "number": 252,
+    "number": 254,
     "stats": {
       "HP": 95,
       "Attack": 135,
@@ -114575,7 +115260,7 @@
   {
     "const": "AXEW",
     "name": "Axew",
-    "number": 253,
+    "number": 255,
     "stats": {
       "HP": 46,
       "Attack": 87,
@@ -115055,7 +115740,7 @@
   {
     "const": "FRAXURE",
     "name": "Fraxure",
-    "number": 254,
+    "number": 256,
     "stats": {
       "HP": 66,
       "Attack": 117,
@@ -115513,7 +116198,7 @@
   {
     "const": "HAXORUS",
     "name": "Haxorus",
-    "number": 255,
+    "number": 257,
     "stats": {
       "HP": 76,
       "Attack": 147,
@@ -115983,7 +116668,7 @@
   {
     "const": "RALTS",
     "name": "Ralts",
-    "number": 256,
+    "number": 258,
     "stats": {
       "HP": 28,
       "Attack": 25,
@@ -116410,7 +117095,7 @@
   {
     "const": "KIRLIA",
     "name": "Kirlia",
-    "number": 257,
+    "number": 259,
     "stats": {
       "HP": 38,
       "Attack": 35,
@@ -116860,7 +117545,7 @@
   {
     "const": "GARDEVOIR",
     "name": "Gardevoir",
-    "number": 258,
+    "number": 260,
     "stats": {
       "HP": 68,
       "Attack": 65,
@@ -117354,7 +118039,7 @@
   {
     "const": "GALLADE",
     "name": "Gallade",
-    "number": 259,
+    "number": 261,
     "stats": {
       "HP": 68,
       "Attack": 125,
@@ -117940,7 +118625,7 @@
   {
     "const": "RIOLU",
     "name": "Riolu",
-    "number": 260,
+    "number": 262,
     "stats": {
       "HP": 40,
       "Attack": 70,
@@ -118423,7 +119108,7 @@
   {
     "const": "LUCARIO",
     "name": "Lucario",
-    "number": 261,
+    "number": 263,
     "stats": {
       "HP": 70,
       "Attack": 110,
@@ -119035,7 +119720,7 @@
   {
     "const": "MIENFOO",
     "name": "Mienfoo",
-    "number": 262,
+    "number": 264,
     "stats": {
       "HP": 45,
       "Attack": 85,
@@ -119445,7 +120130,7 @@
   {
     "const": "MIENSHAO",
     "name": "Mienshao",
-    "number": 263,
+    "number": 265,
     "stats": {
       "HP": 65,
       "Attack": 125,
@@ -119856,7 +120541,7 @@
   {
     "const": "MISDREAVUS",
     "name": "Misdreavus",
-    "number": 264,
+    "number": 266,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -120340,7 +121025,7 @@
   {
     "const": "MISMAGIUS",
     "name": "Mismagius",
-    "number": 265,
+    "number": 267,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -120843,7 +121528,7 @@
   {
     "const": "MIMIKYU",
     "name": "Mimikyu",
-    "number": 266,
+    "number": 268,
     "stats": {
       "HP": 55,
       "Attack": 100,
@@ -121237,7 +121922,7 @@
   {
     "const": "PORYGON",
     "name": "Porygon",
-    "number": 267,
+    "number": 269,
     "stats": {
       "HP": 65,
       "Attack": 60,
@@ -121668,7 +122353,7 @@
   {
     "const": "PORYGON2",
     "name": "Porygon2",
-    "number": 268,
+    "number": 270,
     "stats": {
       "HP": 85,
       "Attack": 80,
@@ -122077,7 +122762,7 @@
   {
     "const": "PORYGON_Z",
     "name": "Porygon-Z",
-    "number": 269,
+    "number": 271,
     "stats": {
       "HP": 85,
       "Attack": 76,
@@ -122511,7 +123196,7 @@
   {
     "const": "VENIPEDE",
     "name": "Venipede",
-    "number": 270,
+    "number": 272,
     "stats": {
       "HP": 30,
       "Attack": 45,
@@ -122840,7 +123525,7 @@
   {
     "const": "WHIRLIPEDE",
     "name": "Whirlipede",
-    "number": 271,
+    "number": 273,
     "stats": {
       "HP": 40,
       "Attack": 55,
@@ -123199,7 +123884,7 @@
   {
     "const": "SCOLIPEDE",
     "name": "Scolipede",
-    "number": 272,
+    "number": 274,
     "stats": {
       "HP": 60,
       "Attack": 110,
@@ -123679,7 +124364,7 @@
   {
     "const": "SNEASEL",
     "name": "Sneasel",
-    "number": 273,
+    "number": 275,
     "stats": {
       "HP": 55,
       "Attack": 95,
@@ -124144,7 +124829,7 @@
   {
     "const": "WEAVILE",
     "name": "Weavile",
-    "number": 274,
+    "number": 276,
     "stats": {
       "HP": 70,
       "Attack": 120,
@@ -124438,65 +125123,29 @@
     "anim": {
       "sheet": "assets/pokemon/weavile.sheet.png",
       "size": 56,
-      "frames": 7,
+      "frames": 5,
       "main": [
         [
           1,
-          3
+          10
         ],
         [
           2,
-          3
+          4
         ],
         [
           3,
-          2
+          28
         ],
         [
           4,
-          6
-        ],
-        [
-          5,
-          2
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          4,
-          6
-        ],
-        [
-          5,
-          2
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          1,
-          6
+          10
         ]
       ],
       "idle": [
         [
-          6,
-          5
-        ],
-        [
-          0,
-          5
-        ],
-        [
-          6,
-          5
+          4,
+          8
         ]
       ],
       "gap": 18
@@ -124667,7 +125316,7 @@
   {
     "const": "LILEEP",
     "name": "Lileep",
-    "number": 275,
+    "number": 277,
     "stats": {
       "HP": 66,
       "Attack": 41,
@@ -125057,7 +125706,7 @@
   {
     "const": "CRADILY",
     "name": "Cradily",
-    "number": 276,
+    "number": 278,
     "stats": {
       "HP": 86,
       "Attack": 81,
@@ -125502,7 +126151,7 @@
   {
     "const": "ANORITH",
     "name": "Anorith",
-    "number": 277,
+    "number": 279,
     "stats": {
       "HP": 45,
       "Attack": 95,
@@ -125914,7 +126563,7 @@
   {
     "const": "ARMALDO",
     "name": "Armaldo",
-    "number": 278,
+    "number": 280,
     "stats": {
       "HP": 75,
       "Attack": 125,
@@ -126415,7 +127064,7 @@
   {
     "const": "CRANIDOS",
     "name": "Cranidos",
-    "number": 279,
+    "number": 281,
     "stats": {
       "HP": 67,
       "Attack": 125,
@@ -126938,7 +127587,7 @@
   {
     "const": "RAMPARDOS",
     "name": "Rampardos",
-    "number": 280,
+    "number": 282,
     "stats": {
       "HP": 97,
       "Attack": 155,
@@ -127497,7 +128146,7 @@
   {
     "const": "SHIELDON",
     "name": "Shieldon",
-    "number": 281,
+    "number": 283,
     "stats": {
       "HP": 30,
       "Attack": 22,
@@ -127940,7 +128589,7 @@
   {
     "const": "BASTIODON",
     "name": "Bastiodon",
-    "number": 282,
+    "number": 284,
     "stats": {
       "HP": 75,
       "Attack": 27,
@@ -128406,7 +129055,7 @@
   {
     "const": "TYRUNT",
     "name": "Tyrunt",
-    "number": 283,
+    "number": 285,
     "stats": {
       "HP": 58,
       "Attack": 89,
@@ -128838,7 +129487,7 @@
   {
     "const": "TYRANTRUM",
     "name": "Tyrantrum",
-    "number": 284,
+    "number": 286,
     "stats": {
       "HP": 82,
       "Attack": 121,
@@ -129317,7 +129966,7 @@
   {
     "const": "AMAURA",
     "name": "Amaura",
-    "number": 285,
+    "number": 287,
     "stats": {
       "HP": 77,
       "Attack": 59,
@@ -129834,7 +130483,7 @@
   {
     "const": "AURORUS",
     "name": "Aurorus",
-    "number": 286,
+    "number": 288,
     "stats": {
       "HP": 123,
       "Attack": 77,
@@ -130377,7 +131026,7 @@
   {
     "const": "GOLETT",
     "name": "Golett",
-    "number": 287,
+    "number": 289,
     "stats": {
       "HP": 59,
       "Attack": 74,
@@ -130844,7 +131493,7 @@
   {
     "const": "GOLURK",
     "name": "Golurk",
-    "number": 288,
+    "number": 290,
     "stats": {
       "HP": 94,
       "Attack": 124,
@@ -131379,7 +132028,7 @@
   {
     "const": "PHANTUMP",
     "name": "Phantump",
-    "number": 289,
+    "number": 291,
     "stats": {
       "HP": 43,
       "Attack": 70,
@@ -131773,7 +132422,7 @@
   {
     "const": "TREVENANT",
     "name": "Trevenant",
-    "number": 290,
+    "number": 292,
     "stats": {
       "HP": 90,
       "Attack": 110,
@@ -132165,7 +132814,7 @@
   {
     "const": "DUSKULL",
     "name": "Duskull",
-    "number": 291,
+    "number": 293,
     "stats": {
       "HP": 20,
       "Attack": 40,
@@ -132557,7 +133206,7 @@
   {
     "const": "DUSCLOPS",
     "name": "Dusclops",
-    "number": 292,
+    "number": 294,
     "stats": {
       "HP": 40,
       "Attack": 70,
@@ -133067,7 +133716,7 @@
   {
     "const": "DUSKNOIR",
     "name": "Dusknoir",
-    "number": 293,
+    "number": 295,
     "stats": {
       "HP": 60,
       "Attack": 100,
@@ -133636,7 +134285,7 @@
   {
     "const": "TIMBURR",
     "name": "Timburr",
-    "number": 294,
+    "number": 296,
     "stats": {
       "HP": 75,
       "Attack": 80,
@@ -134088,7 +134737,7 @@
   {
     "const": "GURDURR",
     "name": "Gurdurr",
-    "number": 295,
+    "number": 297,
     "stats": {
       "HP": 85,
       "Attack": 105,
@@ -134590,7 +135239,7 @@
   {
     "const": "CONKELDURR",
     "name": "Conkeldurr",
-    "number": 296,
+    "number": 298,
     "stats": {
       "HP": 105,
       "Attack": 140,
@@ -135036,7 +135685,7 @@
   {
     "const": "LARVESTA",
     "name": "Larvesta",
-    "number": 297,
+    "number": 299,
     "stats": {
       "HP": 55,
       "Attack": 85,
@@ -135373,7 +136022,7 @@
   {
     "const": "VOLCARONA",
     "name": "Volcarona",
-    "number": 298,
+    "number": 300,
     "stats": {
       "HP": 85,
       "Attack": 60,
@@ -135822,7 +136471,7 @@
   {
     "const": "DEINO",
     "name": "Deino",
-    "number": 299,
+    "number": 301,
     "stats": {
       "HP": 52,
       "Attack": 65,
@@ -136205,7 +136854,7 @@
   {
     "const": "ZWEILOUS",
     "name": "Zweilous",
-    "number": 300,
+    "number": 302,
     "stats": {
       "HP": 72,
       "Attack": 85,
@@ -136600,7 +137249,7 @@
   {
     "const": "HYDREIGON",
     "name": "Hydreigon",
-    "number": 301,
+    "number": 303,
     "stats": {
       "HP": 92,
       "Attack": 105,
@@ -137097,7 +137746,7 @@
   {
     "const": "DREEPY",
     "name": "Dreepy",
-    "number": 302,
+    "number": 304,
     "stats": {
       "HP": 28,
       "Attack": 60,
@@ -137354,7 +138003,7 @@
   {
     "const": "DRAKLOAK",
     "name": "Drakloak",
-    "number": 303,
+    "number": 305,
     "stats": {
       "HP": 68,
       "Attack": 80,
@@ -137778,7 +138427,7 @@
   {
     "const": "DRAGAPULT",
     "name": "Dragapult",
-    "number": 304,
+    "number": 306,
     "stats": {
       "HP": 88,
       "Attack": 120,
@@ -138212,7 +138861,7 @@
   {
     "const": "IMPIDIMP",
     "name": "Impidimp",
-    "number": 305,
+    "number": 307,
     "stats": {
       "HP": 45,
       "Attack": 55,
@@ -138577,7 +139226,7 @@
   {
     "const": "MORGREM",
     "name": "Morgrem",
-    "number": 306,
+    "number": 308,
     "stats": {
       "HP": 65,
       "Attack": 75,
@@ -138918,7 +139567,7 @@
   {
     "const": "GRIMMSNARL",
     "name": "Grimmsnarl",
-    "number": 307,
+    "number": 309,
     "stats": {
       "HP": 95,
       "Attack": 120,
@@ -139304,7 +139953,7 @@
   {
     "const": "TINKATINK",
     "name": "Tinkatink",
-    "number": 308,
+    "number": 310,
     "stats": {
       "HP": 50,
       "Attack": 45,
@@ -139649,7 +140298,7 @@
   {
     "const": "TINKATUFF",
     "name": "Tinkatuff",
-    "number": 309,
+    "number": 311,
     "stats": {
       "HP": 65,
       "Attack": 55,
@@ -140000,7 +140649,7 @@
   {
     "const": "TINKATON",
     "name": "Tinkaton",
-    "number": 310,
+    "number": 312,
     "stats": {
       "HP": 85,
       "Attack": 75,
@@ -140346,7 +140995,7 @@
   {
     "const": "FRIGIBAX",
     "name": "Frigibax",
-    "number": 311,
+    "number": 313,
     "stats": {
       "HP": 65,
       "Attack": 75,
@@ -140698,7 +141347,7 @@
   {
     "const": "ARCTIBAX",
     "name": "Arctibax",
-    "number": 312,
+    "number": 314,
     "stats": {
       "HP": 90,
       "Attack": 95,
@@ -141029,7 +141678,7 @@
   {
     "const": "BAXCALIBUR",
     "name": "Baxcalibur",
-    "number": 313,
+    "number": 315,
     "stats": {
       "HP": 115,
       "Attack": 145,
@@ -141403,7 +142052,7 @@
   {
     "const": "CHARCADET",
     "name": "Charcadet",
-    "number": 314,
+    "number": 316,
     "stats": {
       "HP": 40,
       "Attack": 50,
@@ -141706,7 +142355,7 @@
   {
     "const": "ARMAROUGE",
     "name": "Armarouge",
-    "number": 315,
+    "number": 317,
     "stats": {
       "HP": 85,
       "Attack": 60,
@@ -142088,7 +142737,7 @@
   {
     "const": "CERULEDGE",
     "name": "Ceruledge",
-    "number": 316,
+    "number": 318,
     "stats": {
       "HP": 75,
       "Attack": 125,
@@ -142567,7 +143216,7 @@
   {
     "const": "ROOKIDEE",
     "name": "Rookidee",
-    "number": 317,
+    "number": 319,
     "stats": {
       "HP": 38,
       "Attack": 47,
@@ -142930,7 +143579,7 @@
   {
     "const": "CORVISQUIRE",
     "name": "Corvisquire",
-    "number": 318,
+    "number": 320,
     "stats": {
       "HP": 68,
       "Attack": 67,
@@ -143315,7 +143964,7 @@
   {
     "const": "CORVIKNIGHT",
     "name": "Corviknight",
-    "number": 319,
+    "number": 321,
     "stats": {
       "HP": 98,
       "Attack": 87,
@@ -143752,7 +144401,7 @@
   {
     "const": "HOUNDOUR",
     "name": "Houndour",
-    "number": 320,
+    "number": 322,
     "stats": {
       "HP": 45,
       "Attack": 60,
@@ -144227,7 +144876,7 @@
   {
     "const": "HOUNDOOM",
     "name": "Houndoom",
-    "number": 321,
+    "number": 323,
     "stats": {
       "HP": 75,
       "Attack": 100,
@@ -144726,7 +145375,7 @@
   {
     "const": "SLUGMA",
     "name": "Slugma",
-    "number": 322,
+    "number": 324,
     "stats": {
       "HP": 50,
       "Attack": 50,
@@ -145111,7 +145760,7 @@
   {
     "const": "MAGCARGO",
     "name": "Magcargo",
-    "number": 323,
+    "number": 325,
     "stats": {
       "HP": 75,
       "Attack": 50,
@@ -145542,7 +146191,7 @@
   {
     "const": "HAPPINY",
     "name": "Happiny",
-    "number": 324,
+    "number": 326,
     "stats": {
       "HP": 100,
       "Attack": 5,
@@ -145918,7 +146567,7 @@
   {
     "const": "CHANSEY",
     "name": "Chansey",
-    "number": 325,
+    "number": 327,
     "stats": {
       "HP": 250,
       "Attack": 5,
@@ -146449,7 +147098,7 @@
   {
     "const": "BLISSEY",
     "name": "Blissey",
-    "number": 326,
+    "number": 328,
     "stats": {
       "HP": 255,
       "Attack": 10,
@@ -146963,7 +147612,7 @@
   {
     "const": "LAPRAS",
     "name": "Lapras",
-    "number": 327,
+    "number": 329,
     "stats": {
       "HP": 130,
       "Attack": 85,
@@ -147456,7 +148105,7 @@
   {
     "const": "OMANYTE",
     "name": "Omanyte",
-    "number": 328,
+    "number": 330,
     "stats": {
       "HP": 35,
       "Attack": 40,
@@ -147878,7 +148527,7 @@
   {
     "const": "OMASTAR",
     "name": "Omastar",
-    "number": 329,
+    "number": 331,
     "stats": {
       "HP": 70,
       "Attack": 60,
@@ -148322,7 +148971,7 @@
   {
     "const": "KABUTO",
     "name": "Kabuto",
-    "number": 330,
+    "number": 332,
     "stats": {
       "HP": 30,
       "Attack": 80,
@@ -148761,7 +149410,7 @@
   {
     "const": "KABUTOPS",
     "name": "Kabutops",
-    "number": 331,
+    "number": 333,
     "stats": {
       "HP": 60,
       "Attack": 115,
@@ -149254,7 +149903,7 @@
   {
     "const": "AERODACTYL",
     "name": "Aerodactyl",
-    "number": 332,
+    "number": 334,
     "stats": {
       "HP": 80,
       "Attack": 105,
@@ -149783,7 +150432,7 @@
   {
     "const": "MUNCHLAX",
     "name": "Munchlax",
-    "number": 333,
+    "number": 335,
     "stats": {
       "HP": 135,
       "Attack": 85,
@@ -150293,7 +150942,7 @@
   {
     "const": "SNORLAX",
     "name": "Snorlax",
-    "number": 334,
+    "number": 336,
     "stats": {
       "HP": 160,
       "Attack": 110,
@@ -150866,7 +151515,7 @@
   {
     "const": "BULBASAUR",
     "name": "Bulbasaur",
-    "number": 335,
+    "number": 337,
     "stats": {
       "HP": 45,
       "Attack": 49,
@@ -151300,7 +151949,7 @@
       "normal": {
         "const": "BULBASAUR",
         "name": "Bulbasaur",
-        "number": 335,
+        "number": 337,
         "stats": {
           "HP": 45,
           "Attack": 49,
@@ -151734,7 +152383,7 @@
       "clone": {
         "const": "BULBASAUR_CLONE",
         "name": "Bulbasaur",
-        "number": 367,
+        "number": 369,
         "stats": {
           "HP": 45,
           "Attack": 49,
@@ -152170,7 +152819,7 @@
   {
     "const": "IVYSAUR",
     "name": "Ivysaur",
-    "number": 336,
+    "number": 338,
     "stats": {
       "HP": 60,
       "Attack": 62,
@@ -152614,7 +153263,7 @@
       "normal": {
         "const": "IVYSAUR",
         "name": "Ivysaur",
-        "number": 336,
+        "number": 338,
         "stats": {
           "HP": 60,
           "Attack": 62,
@@ -153058,7 +153707,7 @@
       "clone": {
         "const": "IVYSAUR_CLONE",
         "name": "Ivysaur",
-        "number": 368,
+        "number": 370,
         "stats": {
           "HP": 60,
           "Attack": 62,
@@ -153496,7 +154145,7 @@
   {
     "const": "VENUSAUR",
     "name": "Venusaur",
-    "number": 337,
+    "number": 339,
     "stats": {
       "HP": 80,
       "Attack": 82,
@@ -153983,7 +154632,7 @@
       "normal": {
         "const": "VENUSAUR",
         "name": "Venusaur",
-        "number": 337,
+        "number": 339,
         "stats": {
           "HP": 80,
           "Attack": 82,
@@ -154470,7 +155119,7 @@
       "clone": {
         "const": "VENUSAUR_CLONE",
         "name": "Venusaur",
-        "number": 369,
+        "number": 371,
         "stats": {
           "HP": 80,
           "Attack": 82,
@@ -154959,7 +155608,7 @@
   {
     "const": "CHARMANDER",
     "name": "Charmander",
-    "number": 338,
+    "number": 340,
     "stats": {
       "HP": 39,
       "Attack": 52,
@@ -155453,7 +156102,7 @@
       "normal": {
         "const": "CHARMANDER",
         "name": "Charmander",
-        "number": 338,
+        "number": 340,
         "stats": {
           "HP": 39,
           "Attack": 52,
@@ -155947,7 +156596,7 @@
       "clone": {
         "const": "CHARMANDER_CLONE",
         "name": "Charmander",
-        "number": 361,
+        "number": 363,
         "stats": {
           "HP": 39,
           "Attack": 52,
@@ -156491,7 +157140,7 @@
   {
     "const": "CHARMELEON",
     "name": "Charmeleon",
-    "number": 339,
+    "number": 341,
     "stats": {
       "HP": 58,
       "Attack": 64,
@@ -156998,7 +157647,7 @@
       "normal": {
         "const": "CHARMELEON",
         "name": "Charmeleon",
-        "number": 339,
+        "number": 341,
         "stats": {
           "HP": 58,
           "Attack": 64,
@@ -157505,7 +158154,7 @@
       "clone": {
         "const": "CHARMELEON_CLONE",
         "name": "Charmeleon",
-        "number": 362,
+        "number": 364,
         "stats": {
           "HP": 58,
           "Attack": 64,
@@ -158066,7 +158715,7 @@
   {
     "const": "CHARIZARD",
     "name": "Charizard",
-    "number": 340,
+    "number": 342,
     "stats": {
       "HP": 78,
       "Attack": 84,
@@ -158663,7 +159312,7 @@
       "normal": {
         "const": "CHARIZARD",
         "name": "Charizard",
-        "number": 340,
+        "number": 342,
         "stats": {
           "HP": 78,
           "Attack": 84,
@@ -159260,7 +159909,7 @@
       "clone": {
         "const": "CHARIZARD_CLONE",
         "name": "Charizard",
-        "number": 363,
+        "number": 365,
         "stats": {
           "HP": 78,
           "Attack": 84,
@@ -159843,7 +160492,7 @@
   {
     "const": "SQUIRTLE",
     "name": "Squirtle",
-    "number": 341,
+    "number": 343,
     "stats": {
       "HP": 44,
       "Attack": 48,
@@ -160300,7 +160949,7 @@
       "normal": {
         "const": "SQUIRTLE",
         "name": "Squirtle",
-        "number": 341,
+        "number": 343,
         "stats": {
           "HP": 44,
           "Attack": 48,
@@ -160757,7 +161406,7 @@
       "clone": {
         "const": "SQUIRTLE_CLONE",
         "name": "Squirtle",
-        "number": 364,
+        "number": 366,
         "stats": {
           "HP": 44,
           "Attack": 48,
@@ -161296,7 +161945,7 @@
   {
     "const": "WARTORTLE",
     "name": "Wartortle",
-    "number": 342,
+    "number": 344,
     "stats": {
       "HP": 59,
       "Attack": 63,
@@ -161758,7 +162407,7 @@
       "normal": {
         "const": "WARTORTLE",
         "name": "Wartortle",
-        "number": 342,
+        "number": 344,
         "stats": {
           "HP": 59,
           "Attack": 63,
@@ -162220,7 +162869,7 @@
       "clone": {
         "const": "WARTORTLE_CLONE",
         "name": "Wartortle",
-        "number": 365,
+        "number": 367,
         "stats": {
           "HP": 59,
           "Attack": 63,
@@ -162684,7 +163333,7 @@
   {
     "const": "BLASTOISE",
     "name": "Blastoise",
-    "number": 343,
+    "number": 345,
     "stats": {
       "HP": 79,
       "Attack": 83,
@@ -163183,7 +163832,7 @@
       "normal": {
         "const": "BLASTOISE",
         "name": "Blastoise",
-        "number": 343,
+        "number": 345,
         "stats": {
           "HP": 79,
           "Attack": 83,
@@ -163682,7 +164331,7 @@
       "clone": {
         "const": "BLASTOISE_CLONE",
         "name": "Blastoise",
-        "number": 366,
+        "number": 368,
         "stats": {
           "HP": 79,
           "Attack": 83,
@@ -164183,7 +164832,7 @@
   {
     "const": "ARTICUNO",
     "name": "Articuno",
-    "number": 344,
+    "number": 346,
     "stats": {
       "HP": 90,
       "Attack": 75,
@@ -164620,7 +165269,7 @@
   {
     "const": "ZAPDOS",
     "name": "Zapdos",
-    "number": 345,
+    "number": 347,
     "stats": {
       "HP": 90,
       "Attack": 90,
@@ -165043,7 +165692,7 @@
   {
     "const": "MOLTRES",
     "name": "Moltres",
-    "number": 346,
+    "number": 348,
     "stats": {
       "HP": 90,
       "Attack": 100,
@@ -165580,7 +166229,7 @@
   {
     "const": "RAIKOU",
     "name": "Raikou",
-    "number": 347,
+    "number": 349,
     "stats": {
       "HP": 90,
       "Attack": 85,
@@ -166039,7 +166688,7 @@
   {
     "const": "ENTEI",
     "name": "Entei",
-    "number": 348,
+    "number": 350,
     "stats": {
       "HP": 115,
       "Attack": 115,
@@ -166489,7 +167138,7 @@
   {
     "const": "SUICUNE",
     "name": "Suicune",
-    "number": 349,
+    "number": 351,
     "stats": {
       "HP": 100,
       "Attack": 75,
@@ -166956,7 +167605,7 @@
   {
     "const": "DRATINI",
     "name": "Dratini",
-    "number": 350,
+    "number": 352,
     "stats": {
       "HP": 41,
       "Attack": 64,
@@ -167408,7 +168057,7 @@
   {
     "const": "DRAGONAIR",
     "name": "Dragonair",
-    "number": 351,
+    "number": 353,
     "stats": {
       "HP": 61,
       "Attack": 84,
@@ -167901,7 +168550,7 @@
   {
     "const": "DRAGONITE",
     "name": "Dragonite",
-    "number": 352,
+    "number": 354,
     "stats": {
       "HP": 91,
       "Attack": 134,
@@ -168572,7 +169221,7 @@
   {
     "const": "LARVITAR",
     "name": "Larvitar",
-    "number": 353,
+    "number": 355,
     "stats": {
       "HP": 50,
       "Attack": 64,
@@ -168984,7 +169633,7 @@
   {
     "const": "PUPITAR",
     "name": "Pupitar",
-    "number": 354,
+    "number": 356,
     "stats": {
       "HP": 70,
       "Attack": 84,
@@ -169422,7 +170071,7 @@
   {
     "const": "TYRANITAR",
     "name": "Tyranitar",
-    "number": 355,
+    "number": 357,
     "stats": {
       "HP": 100,
       "Attack": 134,
@@ -170035,7 +170684,7 @@
   {
     "const": "LUGIA",
     "name": "Lugia",
-    "number": 356,
+    "number": 358,
     "stats": {
       "HP": 106,
       "Attack": 90,
@@ -170567,7 +171216,7 @@
   {
     "const": "HO_OH",
     "name": "Ho-Oh",
-    "number": 357,
+    "number": 359,
     "stats": {
       "HP": 106,
       "Attack": 130,
@@ -171103,7 +171752,7 @@
   {
     "const": "MEWTWO",
     "name": "Mewtwo",
-    "number": 358,
+    "number": 360,
     "stats": {
       "HP": 106,
       "Attack": 110,
@@ -171747,7 +172396,7 @@
   {
     "const": "MEW",
     "name": "Mew",
-    "number": 359,
+    "number": 361,
     "stats": {
       "HP": 100,
       "Attack": 100,
@@ -172602,7 +173251,7 @@
   {
     "const": "CELEBI",
     "name": "Celebi",
-    "number": 360,
+    "number": 362,
     "stats": {
       "HP": 100,
       "Attack": 100,
@@ -173071,7 +173720,7 @@
   {
     "const": "SNOVER",
     "name": "Snover",
-    "number": 370,
+    "number": 372,
     "stats": {
       "HP": 60,
       "Attack": 62,
@@ -173456,7 +174105,7 @@
   {
     "const": "ABOMASNOW",
     "name": "Abomasnow",
-    "number": 371,
+    "number": 373,
     "stats": {
       "HP": 90,
       "Attack": 92,
@@ -173880,7 +174529,7 @@
   {
     "const": "SWABLU",
     "name": "Swablu",
-    "number": 372,
+    "number": 374,
     "stats": {
       "HP": 45,
       "Attack": 60,
@@ -174296,7 +174945,7 @@
   {
     "const": "ALTARIA",
     "name": "Altaria",
-    "number": 373,
+    "number": 375,
     "stats": {
       "HP": 75,
       "Attack": 90,
@@ -174786,7 +175435,7 @@
   {
     "const": "APPLIN",
     "name": "Applin",
-    "number": 374,
+    "number": 376,
     "stats": {
       "HP": 40,
       "Attack": 40,
@@ -174994,7 +175643,7 @@
   {
     "const": "DIPPLIN",
     "name": "Dipplin",
-    "number": 375,
+    "number": 377,
     "stats": {
       "HP": 80,
       "Attack": 80,
@@ -175355,7 +176004,7 @@
   {
     "const": "APPLETUN",
     "name": "Appletun",
-    "number": 376,
+    "number": 378,
     "stats": {
       "HP": 110,
       "Attack": 85,
@@ -175785,7 +176434,7 @@
   {
     "const": "FLAPPLE",
     "name": "Flapple",
-    "number": 377,
+    "number": 379,
     "stats": {
       "HP": 70,
       "Attack": 135,
@@ -176173,7 +176822,7 @@
   {
     "const": "HYDRAPPLE",
     "name": "Hydrapple",
-    "number": 378,
+    "number": 380,
     "stats": {
       "HP": 106,
       "Attack": 70,
@@ -176565,7 +177214,7 @@
   {
     "const": "DURALUDON",
     "name": "Duraludon",
-    "number": 379,
+    "number": 381,
     "stats": {
       "HP": 70,
       "Attack": 95,
@@ -176936,7 +177585,7 @@
   {
     "const": "ARCHALUDON",
     "name": "Archaludon",
-    "number": 380,
+    "number": 382,
     "stats": {
       "HP": 90,
       "Attack": 105,
@@ -177311,7 +177960,7 @@
   {
     "const": "SHROOMISH",
     "name": "Shroomish",
-    "number": 381,
+    "number": 383,
     "stats": {
       "HP": 60,
       "Attack": 40,
@@ -177663,7 +178312,7 @@
   {
     "const": "BRELOOM",
     "name": "Breloom",
-    "number": 382,
+    "number": 384,
     "stats": {
       "HP": 60,
       "Attack": 130,
@@ -178144,7 +178793,7 @@
   {
     "const": "BUNEARY",
     "name": "Buneary",
-    "number": 383,
+    "number": 385,
     "stats": {
       "HP": 55,
       "Attack": 66,
@@ -178565,7 +179214,7 @@
   {
     "const": "LOPUNNY",
     "name": "Lopunny",
-    "number": 384,
+    "number": 386,
     "stats": {
       "HP": 65,
       "Attack": 106,
@@ -179092,7 +179741,7 @@
   {
     "const": "NUMEL",
     "name": "Numel",
-    "number": 385,
+    "number": 387,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -179541,7 +180190,7 @@
   {
     "const": "CAMERUPT",
     "name": "Camerupt",
-    "number": 386,
+    "number": 388,
     "stats": {
       "HP": 80,
       "Attack": 100,
@@ -180010,7 +180659,7 @@
   {
     "const": "SIZZLIPEDE",
     "name": "Sizzlipede",
-    "number": 387,
+    "number": 389,
     "stats": {
       "HP": 50,
       "Attack": 65,
@@ -180315,7 +180964,7 @@
   {
     "const": "CENTISKORCH",
     "name": "Centiskorch",
-    "number": 388,
+    "number": 390,
     "stats": {
       "HP": 100,
       "Attack": 115,
@@ -180683,7 +181332,7 @@
   {
     "const": "GRUBBIN",
     "name": "Grubbin",
-    "number": 389,
+    "number": 391,
     "stats": {
       "HP": 47,
       "Attack": 62,
@@ -181003,7 +181652,7 @@
   {
     "const": "CHARJABUG",
     "name": "Charjabug",
-    "number": 390,
+    "number": 392,
     "stats": {
       "HP": 57,
       "Attack": 82,
@@ -181357,7 +182006,7 @@
   {
     "const": "VIKAVOLT",
     "name": "Vikavolt",
-    "number": 391,
+    "number": 393,
     "stats": {
       "HP": 77,
       "Attack": 70,
@@ -181789,7 +182438,7 @@
   {
     "const": "CROAGUNK",
     "name": "Croagunk",
-    "number": 392,
+    "number": 394,
     "stats": {
       "HP": 48,
       "Attack": 61,
@@ -182259,7 +182908,7 @@
   {
     "const": "TOXICROAK",
     "name": "Toxicroak",
-    "number": 393,
+    "number": 395,
     "stats": {
       "HP": 83,
       "Attack": 106,
@@ -182773,7 +183422,7 @@
   {
     "const": "DRIFLOON",
     "name": "Drifloon",
-    "number": 394,
+    "number": 396,
     "stats": {
       "HP": 90,
       "Attack": 50,
@@ -183221,7 +183870,7 @@
   {
     "const": "DRIFBLIM",
     "name": "Drifblim",
-    "number": 395,
+    "number": 397,
     "stats": {
       "HP": 150,
       "Attack": 80,
@@ -183671,7 +184320,7 @@
   {
     "const": "DRILBUR",
     "name": "Drilbur",
-    "number": 396,
+    "number": 398,
     "stats": {
       "HP": 60,
       "Attack": 85,
@@ -184068,7 +184717,7 @@
   {
     "const": "EXCADRILL",
     "name": "Excadrill",
-    "number": 397,
+    "number": 399,
     "stats": {
       "HP": 110,
       "Attack": 135,
@@ -184510,7 +185159,7 @@
   {
     "const": "KOTORA",
     "name": "Kotora",
-    "number": 398,
+    "number": 400,
     "stats": {
       "HP": 80,
       "Attack": 55,
@@ -184975,7 +185624,7 @@
   {
     "const": "RAITORA",
     "name": "Raitora",
-    "number": 399,
+    "number": 401,
     "stats": {
       "HP": 115,
       "Attack": 85,
@@ -185426,7 +186075,7 @@
   {
     "const": "GOROTORA",
     "name": "Gorotora",
-    "number": 400,
+    "number": 402,
     "stats": {
       "HP": 120,
       "Attack": 95,
@@ -185921,7 +186570,7 @@
   {
     "const": "FLETCHLING",
     "name": "Fletchling",
-    "number": 401,
+    "number": 403,
     "stats": {
       "HP": 45,
       "Attack": 50,
@@ -186335,7 +186984,7 @@
   {
     "const": "FLETCHINDER",
     "name": "Fletchinder",
-    "number": 402,
+    "number": 404,
     "stats": {
       "HP": 62,
       "Attack": 73,
@@ -186805,7 +187454,7 @@
   {
     "const": "TALONFLAME",
     "name": "Talonflame",
-    "number": 403,
+    "number": 405,
     "stats": {
       "HP": 78,
       "Attack": 81,
@@ -187236,7 +187885,7 @@
   {
     "const": "TRAPINCH",
     "name": "Trapinch",
-    "number": 404,
+    "number": 406,
     "stats": {
       "HP": 55,
       "Attack": 100,
@@ -187621,7 +188270,7 @@
   {
     "const": "VIBRAVA",
     "name": "Vibrava",
-    "number": 405,
+    "number": 407,
     "stats": {
       "HP": 60,
       "Attack": 85,
@@ -188132,7 +188781,7 @@
   {
     "const": "FLYGON",
     "name": "Flygon",
-    "number": 406,
+    "number": 408,
     "stats": {
       "HP": 80,
       "Attack": 115,
@@ -188707,7 +189356,7 @@
   {
     "const": "SNORUNT",
     "name": "Snorunt",
-    "number": 407,
+    "number": 409,
     "stats": {
       "HP": 50,
       "Attack": 50,
@@ -189087,7 +189736,7 @@
   {
     "const": "FROSLASS",
     "name": "Froslass",
-    "number": 408,
+    "number": 410,
     "stats": {
       "HP": 70,
       "Attack": 70,
@@ -189577,7 +190226,7 @@
   {
     "const": "WIMPOD",
     "name": "Wimpod",
-    "number": 409,
+    "number": 411,
     "stats": {
       "HP": 25,
       "Attack": 35,
@@ -189863,7 +190512,7 @@
   {
     "const": "GOLISOPOD",
     "name": "Golisopod",
-    "number": 410,
+    "number": 412,
     "stats": {
       "HP": 75,
       "Attack": 125,
@@ -190322,807 +190971,212 @@
     ]
   },
   {
-    "const": "SPOINK",
-    "name": "Spoink",
-    "number": 411,
+    "const": "ZORUA",
+    "name": "Hisuian Zorua",
+    "number": 413,
     "stats": {
-      "HP": 60,
-      "Attack": 25,
-      "Defense": 35,
-      "Speed": 60,
-      "Sp. Atk": 70,
-      "Sp. Def": 80
+      "HP": 35,
+      "Attack": 60,
+      "Defense": 40,
+      "Speed": 70,
+      "Sp. Atk": 85,
+      "Sp. Def": 40
     },
     "types": [
-      "Psychic"
+      "Normal",
+      "Ghost"
     ],
     "abilities": [
-      "Thick Fat",
-      "Own Tempo",
-      "Gluttony"
+      "Illusion"
     ],
     "ability_slots": [
       {
-        "name": "Thick Fat",
+        "name": "Illusion",
         "slot": 1
-      },
-      {
-        "name": "Own Tempo",
-        "slot": 2
-      },
-      {
-        "name": "Gluttony",
-        "slot": 3
       }
     ],
     "learnset": [
       {
         "level": 1,
-        "const": "SPLASH",
-        "move": "Splash"
+        "const": "LEER",
+        "move": "Leer"
       },
       {
-        "level": 5,
-        "const": "CONFUSION",
-        "move": "Confusion"
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
       },
       {
-        "level": 7,
-        "const": "PSYWAVE",
-        "move": "Psywave"
+        "level": 4,
+        "const": "TORMENT",
+        "move": "Torment"
       },
       {
-        "level": 10,
-        "const": "GROWL",
-        "move": "Growl"
+        "level": 8,
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
       },
       {
-        "level": 10,
-        "const": "PSYBEAM",
-        "move": "Psybeam"
-      },
-      {
-        "level": 13,
-        "const": "PSYCH_UP",
-        "move": "Psych Up"
+        "level": 12,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
       },
       {
         "level": 16,
-        "const": "CONFUSE_RAY",
-        "move": "Confuse Ray"
+        "const": "CURSE",
+        "move": "Curse"
       },
       {
-        "level": 19,
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
+        "level": 20,
+        "const": "TAUNT",
+        "move": "Taunt"
       },
       {
-        "level": 22,
-        "const": "MIRROR_COAT",
-        "move": "Mirror Coat"
-      },
-      {
-        "level": 25,
-        "const": "EXTRASENSORY",
-        "move": "Extrasensory"
+        "level": 24,
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
       },
       {
         "level": 28,
-        "const": "SIGNAL_BEAM",
-        "move": "Signal Beam"
+        "const": "SPITE",
+        "move": "Spite"
       },
       {
-        "level": 29,
-        "const": "POWER_GEM",
-        "move": "Power Gem"
-      },
-      {
-        "level": 31,
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "level": 31,
-        "const": "SLEEP_TALK",
-        "move": "Sleep Talk"
-      },
-      {
-        "level": 31,
-        "const": "SNORE",
-        "move": "Snore"
-      },
-      {
-        "level": 34,
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
+        "level": 32,
+        "const": "AGILITY",
+        "move": "Agility"
       },
       {
         "level": 36,
-        "const": "TRICK_ROOM",
-        "move": "Trick Room"
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
       },
       {
-        "level": 38,
-        "const": "PSYSHOCK",
-        "move": "Psyshock"
+        "level": 44,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
       },
       {
-        "level": 43,
-        "const": "FUTURE_SIGHT",
-        "move": "Future Sight"
-      },
-      {
-        "level": 46,
-        "const": "TRICK",
-        "move": "Trick"
-      },
-      {
-        "level": 50,
-        "const": "DREAM_EATER",
-        "move": "Dream Eater"
+        "level": 48,
+        "const": "FOUL_PLAY",
+        "move": "Foul Play"
       }
     ],
     "evolutions": [
       {
         "method": "EVOLVE_LEVEL",
         "args": [
-          "32"
+          "30"
         ],
-        "target": "GRUMPIG",
-        "text": "Level 32",
-        "target_name": "Grumpig",
-        "target_slug": "grumpig"
+        "target": "ZOROARK",
+        "text": "Level 30",
+        "target_name": "Hisuian Zoroark",
+        "target_slug": "zoroark"
       }
     ],
     "egg_moves": [
-      "AMNESIA",
-      "SKILL_SWAP",
-      "WHIRLWIND",
-      "CALM_MIND",
-      "ENDURE",
-      "EXTRASENSORY",
-      "FUTURE_SIGHT",
-      "MIRROR_COAT",
-      "SUBSTITUTE",
-      "TRICK",
-      "ZEN_HEADBUTT"
+      "DETECT",
+      "EXTRASENSORY"
     ],
     "tmhm": [
-      "HEADBUTT",
-      "TOXIC",
-      "HIDDEN_POWER",
-      "SUNNY_DAY",
+      "CURSE",
+      "ROAR",
+      "HYPER_BEAM",
       "PROTECT",
       "RAIN_DANCE",
+      "WILL_O_WISP",
       "FACADE",
       "RETURN",
-      "PSYCHIC_M",
+      "DIG",
       "SHADOW_BALL",
-      "SWAGGER",
-      "FLASH_CANNON",
+      "KNOCK_OFF",
+      "SLUDGE_BOMB",
       "SWIFT",
+      "NASTY_PLOT",
       "REST",
-      "ATTRACT",
       "THIEF",
-      "ZEN_HEADBUTT",
-      "POWER_GEM",
-      "FLASH"
+      "HONE_CLAWS"
     ],
     "info": {
-      "catch_rate": 255,
+      "catch_rate": 75,
       "base_exp": 66,
       "items": [
         "NO_ITEM",
         "NO_ITEM"
       ],
-      "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Fast",
+      "gender": "87.5% male, 12.5% female",
+      "egg_cycles": 25,
+      "growth": "Medium Slow",
       "egg_groups": [
         "Field"
       ]
     },
-    "sprite": "assets/pokemon/spoink.png",
+    "sprite": "assets/pokemon/zorua.png",
     "tutor_moves": [
       "SUBSTITUTE",
-      "SLEEP_TALK",
-      "REFLECT",
-      "LIGHT_SCREEN",
-      "THUNDER_WAVE"
+      "SLEEP_TALK"
     ],
     "blackthorn_tutor_moves": [
-      "BODY_SLAM",
-      "BOUNCE",
-      "DAZZLING_GLEAM",
-      "DOUBLE_EDGE",
-      "DOUBLE_TEAM",
-      "ENCORE",
+      "AERIAL_ACE",
+      "CALM_MIND",
+      "CONFUSE_RAY",
+      "DARK_PULSE",
+      "ENDURE",
       "FRUSTRATION",
-      "GRASS_KNOT",
-      "HEAL_BELL",
-      "HYPNOSIS",
+      "GIGA_IMPACT",
+      "HEX",
       "ICY_WIND",
-      "IRON_TAIL",
-      "LUNGE",
-      "MIMIC",
-      "MUD_SHOT",
       "NIGHT_SHADE",
-      "PAY_DAY",
-      "RECYCLE",
-      "SHADOW_PUNCH",
+      "PAIN_SPLIT",
+      "PHANTOMFORCE",
+      "PSYCH_UP",
+      "SCARY_FACE",
+      "SHADOW_CLAW",
+      "SLASH",
       "SNARL",
       "TAKE_DOWN",
-      "TAUNT",
-      "TORMENT",
-      "WILL_O_WISP"
+      "TRICK",
+      "U_TURN"
     ],
     "evolves_from": null,
     "original_types": [
-      "Psychic"
+      "Normal",
+      "Ghost"
     ],
     "updated_types": [
-      "Psychic"
+      "Normal",
+      "Ghost"
     ],
     "updated_stats": {
-      "HP": 60,
-      "Attack": 25,
-      "Defense": 35,
-      "Speed": 60,
-      "Sp. Atk": 70,
-      "Sp. Def": 80
+      "HP": 35,
+      "Attack": 60,
+      "Defense": 40,
+      "Speed": 70,
+      "Sp. Atk": 85,
+      "Sp. Def": 40
     },
     "original_stats": {
-      "HP": 60,
-      "Attack": 25,
-      "Defense": 35,
-      "Speed": 60,
-      "Sp. Atk": 70,
-      "Sp. Def": 80
+      "HP": 35,
+      "Attack": 60,
+      "Defense": 40,
+      "Speed": 70,
+      "Sp. Atk": 85,
+      "Sp. Def": 40
     },
     "original_stats_source": "modern main games",
     "sprite_size": 40,
-    "back": "assets/pokemon/spoink.back.png",
+    "back": "assets/pokemon/zorua.back.png",
     "back_size": 48,
-    "anim": {
-      "sheet": "assets/pokemon/spoink.sheet.png",
-      "size": 40,
-      "frames": 5,
-      "main": [
-        [
-          0,
-          4
-        ],
-        [
-          1,
-          20
-        ],
-        [
-          2,
-          8
-        ],
-        [
-          3,
-          8
-        ],
-        [
-          2,
-          8
-        ],
-        [
-          3,
-          8
-        ]
-      ],
-      "idle": [
-        [
-          0,
-          6
-        ],
-        [
-          4,
-          6
-        ],
-        [
-          0,
-          6
-        ],
-        [
-          4,
-          6
-        ],
-        [
-          0,
-          6
-        ],
-        [
-          4,
-          6
-        ]
-      ],
-      "gap": 18
-    },
     "tmhm_labeled": [
       {
-        "tm": "TM02",
-        "const": "HEADBUTT",
-        "move": "Headbutt"
+        "tm": "TM03",
+        "const": "CURSE",
+        "move": "Curse"
       },
       {
-        "tm": "TM06",
-        "const": "TOXIC",
-        "move": "Toxic"
-      },
-      {
-        "tm": "TM10",
-        "const": "HIDDEN_POWER",
-        "move": "Hidden Power"
-      },
-      {
-        "tm": "TM11",
-        "const": "SUNNY_DAY",
-        "move": "Sunny Day"
-      },
-      {
-        "tm": "TM17",
-        "const": "PROTECT",
-        "move": "Protect"
-      },
-      {
-        "tm": "TM18",
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "tm": "TM21",
-        "const": "FACADE",
-        "move": "Facade"
-      },
-      {
-        "tm": "TM27",
-        "const": "RETURN",
-        "move": "Return"
-      },
-      {
-        "tm": "TM29",
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
-      },
-      {
-        "tm": "TM30",
-        "const": "SHADOW_BALL",
-        "move": "Shadow Ball"
-      },
-      {
-        "tm": "TM32",
-        "const": "SWAGGER",
-        "move": "Swagger"
-      },
-      {
-        "tm": "TM34",
-        "const": "FLASH_CANNON",
-        "move": "Flash Cannon"
-      },
-      {
-        "tm": "TM39",
-        "const": "SWIFT",
-        "move": "Swift"
-      },
-      {
-        "tm": "TM44",
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "tm": "TM45",
-        "const": "ATTRACT",
-        "move": "Attract"
-      },
-      {
-        "tm": "TM46",
-        "const": "THIEF",
-        "move": "Thief"
-      },
-      {
-        "tm": "TM52",
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "tm": "TM53",
-        "const": "POWER_GEM",
-        "move": "Power Gem"
-      },
-      {
-        "tm": "HM05",
-        "const": "FLASH",
-        "move": "Flash"
-      }
-    ]
-  },
-  {
-    "const": "GRUMPIG",
-    "name": "Grumpig",
-    "number": 412,
-    "stats": {
-      "HP": 80,
-      "Attack": 45,
-      "Defense": 75,
-      "Speed": 80,
-      "Sp. Atk": 100,
-      "Sp. Def": 110
-    },
-    "types": [
-      "Psychic"
-    ],
-    "abilities": [
-      "Thick Fat",
-      "Own Tempo",
-      "Prankster"
-    ],
-    "ability_slots": [
-      {
-        "name": "Thick Fat",
-        "slot": 1
-      },
-      {
-        "name": "Own Tempo",
-        "slot": 2
-      },
-      {
-        "name": "Prankster",
-        "slot": 3
-      }
-    ],
-    "learnset": [
-      {
-        "level": 1,
-        "const": "SPLASH",
-        "move": "Splash"
-      },
-      {
-        "level": 1,
-        "const": "PSYWAVE",
-        "move": "Psywave"
-      },
-      {
-        "level": 5,
-        "const": "CONFUSION",
-        "move": "Confusion"
-      },
-      {
-        "level": 10,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 10,
-        "const": "PSYBEAM",
-        "move": "Psybeam"
-      },
-      {
-        "level": 13,
-        "const": "PSYCH_UP",
-        "move": "Psych Up"
-      },
-      {
-        "level": 16,
-        "const": "CONFUSE_RAY",
-        "move": "Confuse Ray"
-      },
-      {
-        "level": 19,
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "level": 20,
-        "const": "THUNDER_WAVE",
-        "move": "Thunder Wave"
-      },
-      {
-        "level": 20,
-        "const": "REFLECT",
-        "move": "Reflect"
-      },
-      {
-        "level": 20,
-        "const": "LIGHT_SCREEN",
-        "move": "Light Screen"
-      },
-      {
-        "level": 22,
-        "const": "MIRROR_COAT",
-        "move": "Mirror Coat"
-      },
-      {
-        "level": 24,
-        "const": "ENCORE",
-        "move": "Encore"
-      },
-      {
-        "level": 24,
-        "const": "TAUNT",
-        "move": "Taunt"
-      },
-      {
-        "level": 25,
-        "const": "EXTRASENSORY",
-        "move": "Extrasensory"
-      },
-      {
-        "level": 26,
-        "const": "SIGNAL_BEAM",
-        "move": "Signal Beam"
-      },
-      {
-        "level": 29,
-        "const": "POWER_GEM",
-        "move": "Power Gem"
-      },
-      {
-        "level": 31,
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "level": 31,
-        "const": "SLEEP_TALK",
-        "move": "Sleep Talk"
-      },
-      {
-        "level": 31,
-        "const": "SNORE",
-        "move": "Snore"
-      },
-      {
-        "level": 34,
-        "const": "TRICK_ROOM",
-        "move": "Trick Room"
-      },
-      {
-        "level": 35,
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
-      },
-      {
-        "level": 42,
-        "const": "PSYSHOCK",
-        "move": "Psyshock"
-      },
-      {
-        "level": 45,
-        "const": "FUTURE_SIGHT",
-        "move": "Future Sight"
-      },
-      {
-        "level": 50,
-        "const": "DREAM_EATER",
-        "move": "Dream Eater"
-      },
-      {
-        "level": 51,
-        "const": "TRICK",
-        "move": "Trick"
-      }
-    ],
-    "evolutions": [],
-    "egg_moves": [
-      "AMNESIA",
-      "SKILL_SWAP",
-      "WHIRLWIND",
-      "CALM_MIND",
-      "ENDURE",
-      "EXTRASENSORY",
-      "FUTURE_SIGHT",
-      "MIRROR_COAT",
-      "SUBSTITUTE",
-      "TRICK",
-      "ZEN_HEADBUTT"
-    ],
-    "tmhm": [
-      "DRAIN_PUNCH",
-      "HEADBUTT",
-      "TOXIC",
-      "HIDDEN_POWER",
-      "SUNNY_DAY",
-      "HYPER_BEAM",
-      "PROTECT",
-      "RAIN_DANCE",
-      "ENERGY_BALL",
-      "FACADE",
-      "RETURN",
-      "DIG",
-      "PSYCHIC_M",
-      "SHADOW_BALL",
-      "MUD_SLAP",
-      "SWAGGER",
-      "ICE_PUNCH",
-      "FLASH_CANNON",
-      "SWIFT",
-      "THUNDERPUNCH",
-      "NASTY_PLOT",
-      "REST",
-      "ATTRACT",
-      "THIEF",
-      "FIRE_PUNCH",
-      "ZEN_HEADBUTT",
-      "POWER_GEM",
-      "FLASH"
-    ],
-    "info": {
-      "catch_rate": 60,
-      "base_exp": 165,
-      "items": [
-        "NO_ITEM",
-        "NO_ITEM"
-      ],
-      "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Fast",
-      "egg_groups": [
-        "Field"
-      ]
-    },
-    "sprite": "assets/pokemon/grumpig.png",
-    "tutor_moves": [
-      "SUBSTITUTE",
-      "SLEEP_TALK",
-      "REFLECT",
-      "LIGHT_SCREEN",
-      "THUNDER_WAVE"
-    ],
-    "blackthorn_tutor_moves": [
-      "BODY_PRESS",
-      "BODY_SLAM",
-      "BOUNCE",
-      "BRICK_BREAK",
-      "BULLDOZE",
-      "COUNTER",
-      "DAZZLING_GLEAM",
-      "DOUBLE_EDGE",
-      "DOUBLE_TEAM",
-      "DYNAMICPUNCH",
-      "EARTH_POWER",
-      "FOCUS_BLAST",
-      "FRUSTRATION",
-      "GIGA_IMPACT",
-      "GRASS_KNOT",
-      "HEAL_BELL",
-      "HYPER_VOICE",
-      "HYPNOSIS",
-      "ICY_WIND",
-      "IRON_TAIL",
-      "LOW_KICK",
-      "LOW_SWEEP",
-      "LUNGE",
-      "MEGA_KICK",
-      "MEGA_PUNCH",
-      "METRONOME",
-      "MIMIC",
-      "MUD_SHOT",
-      "NIGHT_SHADE",
-      "OMINOUS_WIND",
-      "PAY_DAY",
-      "RECYCLE",
-      "SEED_BOMB",
-      "SEISMIC_TOSS",
-      "SHADOW_PUNCH",
-      "SNARL",
-      "TAKE_DOWN",
-      "TORMENT",
-      "WILL_O_WISP"
-    ],
-    "evolves_from": {
-      "const": "SPOINK",
-      "name": "Spoink",
-      "slug": "spoink",
-      "text": "Level 32"
-    },
-    "original_types": [
-      "Psychic"
-    ],
-    "updated_types": [
-      "Psychic"
-    ],
-    "updated_stats": {
-      "HP": 80,
-      "Attack": 45,
-      "Defense": 75,
-      "Speed": 80,
-      "Sp. Atk": 100,
-      "Sp. Def": 110
-    },
-    "original_stats": {
-      "HP": 80,
-      "Attack": 45,
-      "Defense": 65,
-      "Speed": 80,
-      "Sp. Atk": 90,
-      "Sp. Def": 110
-    },
-    "original_stats_source": "modern main games",
-    "sprite_size": 56,
-    "back": "assets/pokemon/grumpig.back.png",
-    "back_size": 48,
-    "anim": {
-      "sheet": "assets/pokemon/grumpig.sheet.png",
-      "size": 56,
-      "frames": 5,
-      "main": [
-        [
-          1,
-          4
-        ],
-        [
-          2,
-          22
-        ],
-        [
-          1,
-          6
-        ],
-        [
-          3,
-          8
-        ],
-        [
-          4,
-          8
-        ],
-        [
-          0,
-          8
-        ],
-        [
-          3,
-          8
-        ],
-        [
-          4,
-          8
-        ],
-        [
-          0,
-          8
-        ]
-      ],
-      "idle": [
-        [
-          3,
-          12
-        ],
-        [
-          4,
-          12
-        ]
-      ],
-      "gap": 18
-    },
-    "tmhm_labeled": [
-      {
-        "tm": "TM01",
-        "const": "DRAIN_PUNCH",
-        "move": "Drain Punch"
-      },
-      {
-        "tm": "TM02",
-        "const": "HEADBUTT",
-        "move": "Headbutt"
-      },
-      {
-        "tm": "TM06",
-        "const": "TOXIC",
-        "move": "Toxic"
-      },
-      {
-        "tm": "TM10",
-        "const": "HIDDEN_POWER",
-        "move": "Hidden Power"
-      },
-      {
-        "tm": "TM11",
-        "const": "SUNNY_DAY",
-        "move": "Sunny Day"
+        "tm": "TM05",
+        "const": "ROAR",
+        "move": "Roar"
       },
       {
         "tm": "TM15",
@@ -191140,9 +191194,320 @@
         "move": "Rain Dance"
       },
       {
-        "tm": "TM19",
-        "const": "ENERGY_BALL",
-        "move": "Energy Ball"
+        "tm": "TM20",
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "tm": "TM36",
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
+      },
+      {
+        "tm": "TM39",
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "tm": "TM42",
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM46",
+        "const": "THIEF",
+        "move": "Thief"
+      },
+      {
+        "tm": "TM50",
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
+      }
+    ]
+  },
+  {
+    "const": "ZOROARK",
+    "name": "Hisuian Zoroark",
+    "number": 414,
+    "stats": {
+      "HP": 55,
+      "Attack": 100,
+      "Defense": 60,
+      "Speed": 110,
+      "Sp. Atk": 125,
+      "Sp. Def": 60
+    },
+    "types": [
+      "Normal",
+      "Ghost"
+    ],
+    "abilities": [
+      "Illusion"
+    ],
+    "ability_slots": [
+      {
+        "name": "Illusion",
+        "slot": 1
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
+      },
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "SHADOW_CLAW",
+        "move": "Shadow Claw"
+      },
+      {
+        "level": 1,
+        "const": "TORMENT",
+        "move": "Torment"
+      },
+      {
+        "level": 1,
+        "const": "U_TURN",
+        "move": "U-turn"
+      },
+      {
+        "level": 12,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
+      },
+      {
+        "level": 16,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 20,
+        "const": "TAUNT",
+        "move": "Taunt"
+      },
+      {
+        "level": 24,
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "level": 28,
+        "const": "SPITE",
+        "move": "Spite"
+      },
+      {
+        "level": 34,
+        "const": "AGILITY",
+        "move": "Agility"
+      },
+      {
+        "level": 40,
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "level": 52,
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "level": 58,
+        "const": "FOUL_PLAY",
+        "move": "Foul Play"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [
+      "DETECT",
+      "EXTRASENSORY"
+    ],
+    "tmhm": [
+      "CURSE",
+      "ROAR",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "HYPER_BEAM",
+      "PROTECT",
+      "RAIN_DANCE",
+      "WILL_O_WISP",
+      "FACADE",
+      "RETURN",
+      "DIG",
+      "PSYCHIC_M",
+      "SHADOW_BALL",
+      "KNOCK_OFF",
+      "SLUDGE_BOMB",
+      "SWIFT",
+      "NASTY_PLOT",
+      "REST",
+      "THIEF",
+      "HONE_CLAWS",
+      "FLAMETHROWER"
+    ],
+    "info": {
+      "catch_rate": 45,
+      "base_exp": 179,
+      "items": [
+        "NO_ITEM",
+        "NO_ITEM"
+      ],
+      "gender": "87.5% male, 12.5% female",
+      "egg_cycles": 20,
+      "growth": "Medium Slow",
+      "egg_groups": [
+        "Field"
+      ]
+    },
+    "sprite": "assets/pokemon/zoroark.png",
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK"
+    ],
+    "blackthorn_tutor_moves": [
+      "AERIAL_ACE",
+      "BODY_SLAM",
+      "BRICK_BREAK",
+      "CALM_MIND",
+      "CONFUSE_RAY",
+      "CRUNCH",
+      "DARK_PULSE",
+      "ENDURE",
+      "FOCUS_BLAST",
+      "FRUSTRATION",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "HEX",
+      "HYPER_VOICE",
+      "ICY_WIND",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "NIGHT_SHADE",
+      "OMINOUS_WIND",
+      "PAIN_SPLIT",
+      "PHANTOMFORCE",
+      "PSYCH_UP",
+      "SCARY_FACE",
+      "SLASH",
+      "SNARL",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TRICK"
+    ],
+    "evolves_from": {
+      "const": "ZORUA",
+      "name": "Hisuian Zorua",
+      "slug": "zorua",
+      "text": "Level 30"
+    },
+    "original_types": [
+      "Normal",
+      "Ghost"
+    ],
+    "updated_types": [
+      "Normal",
+      "Ghost"
+    ],
+    "updated_stats": {
+      "HP": 55,
+      "Attack": 100,
+      "Defense": 60,
+      "Speed": 110,
+      "Sp. Atk": 125,
+      "Sp. Def": 60
+    },
+    "original_stats": {
+      "HP": 55,
+      "Attack": 100,
+      "Defense": 60,
+      "Speed": 110,
+      "Sp. Atk": 125,
+      "Sp. Def": 60
+    },
+    "original_stats_source": "modern main games",
+    "sprite_size": 56,
+    "back": "assets/pokemon/zoroark.back.png",
+    "back_size": 48,
+    "tmhm_labeled": [
+      {
+        "tm": "TM03",
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "tm": "TM05",
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM15",
+        "const": "HYPER_BEAM",
+        "move": "Hyper Beam"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM18",
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "tm": "TM20",
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
       },
       {
         "tm": "TM21",
@@ -191170,34 +191535,19 @@
         "move": "Shadow Ball"
       },
       {
-        "tm": "TM31",
-        "const": "MUD_SLAP",
-        "move": "Mud-Slap"
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
       },
       {
-        "tm": "TM32",
-        "const": "SWAGGER",
-        "move": "Swagger"
-      },
-      {
-        "tm": "TM33",
-        "const": "ICE_PUNCH",
-        "move": "Ice Punch"
-      },
-      {
-        "tm": "TM34",
-        "const": "FLASH_CANNON",
-        "move": "Flash Cannon"
+        "tm": "TM36",
+        "const": "SLUDGE_BOMB",
+        "move": "Sludge Bomb"
       },
       {
         "tm": "TM39",
         "const": "SWIFT",
         "move": "Swift"
-      },
-      {
-        "tm": "TM41",
-        "const": "THUNDERPUNCH",
-        "move": "Thunder Punch"
       },
       {
         "tm": "TM42",
@@ -191210,41 +191560,26 @@
         "move": "Rest"
       },
       {
-        "tm": "TM45",
-        "const": "ATTRACT",
-        "move": "Attract"
-      },
-      {
         "tm": "TM46",
         "const": "THIEF",
         "move": "Thief"
       },
       {
-        "tm": "TM48",
-        "const": "FIRE_PUNCH",
-        "move": "Fire Punch"
+        "tm": "TM50",
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
       },
       {
-        "tm": "TM52",
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "tm": "TM53",
-        "const": "POWER_GEM",
-        "move": "Power Gem"
-      },
-      {
-        "tm": "HM05",
-        "const": "FLASH",
-        "move": "Flash"
+        "tm": "Tutor",
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
       }
     ]
   },
   {
     "const": "PAWNIARD",
     "name": "Pawniard",
-    "number": 413,
+    "number": 415,
     "stats": {
       "HP": 45,
       "Attack": 85,
@@ -191668,7 +192003,7 @@
   {
     "const": "BISHARP",
     "name": "Bisharp",
-    "number": 414,
+    "number": 416,
     "stats": {
       "HP": 65,
       "Attack": 125,
@@ -192088,7 +192423,7 @@
   {
     "const": "KINGAMBIT",
     "name": "Kingambit",
-    "number": 415,
+    "number": 417,
     "stats": {
       "HP": 100,
       "Attack": 135,
@@ -192551,130 +192886,99 @@
     ]
   },
   {
-    "const": "LOTAD",
-    "name": "Lotad",
-    "number": 416,
+    "const": "SEEDOT",
+    "name": "Seedot",
+    "number": 418,
     "stats": {
       "HP": 40,
-      "Attack": 30,
-      "Defense": 30,
+      "Attack": 40,
+      "Defense": 50,
       "Speed": 30,
-      "Sp. Atk": 40,
-      "Sp. Def": 50
+      "Sp. Atk": 30,
+      "Sp. Def": 30
     },
     "types": [
-      "Water",
       "Grass"
     ],
     "abilities": [
-      "Swift Swim",
-      "Rain Dish",
-      "Own Tempo"
+      "Prankster",
+      "Wind Rider",
+      "Technician"
     ],
     "ability_slots": [
       {
-        "name": "Swift Swim",
+        "name": "Prankster",
         "slot": 1
       },
       {
-        "name": "Rain Dish",
+        "name": "Wind Rider",
         "slot": 2
       },
       {
-        "name": "Own Tempo",
+        "name": "Technician",
         "slot": 3
       }
     ],
     "learnset": [
       {
         "level": 1,
+        "const": "GROWTH",
+        "move": "Growth"
+      },
+      {
+        "level": 1,
+        "const": "HARDEN",
+        "move": "Harden"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 3,
         "const": "ABSORB",
         "move": "Absorb"
       },
       {
-        "level": 1,
+        "level": 6,
         "const": "ASTONISH",
         "move": "Astonish"
       },
       {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
+        "level": 12,
+        "const": "ROLLOUT",
+        "move": "Rollout"
       },
       {
-        "level": 6,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 9,
-        "const": "BUBBLE",
-        "move": "Bubble"
-      },
-      {
-        "level": 13,
-        "const": "BULLET_SEED",
-        "move": "Bullet Seed"
-      },
-      {
-        "level": 13,
+        "level": 15,
         "const": "MEGA_DRAIN",
         "move": "Mega Drain"
       },
       {
-        "level": 16,
-        "const": "FLAIL",
-        "move": "Flail"
+        "level": 15,
+        "const": "SYNTHESIS",
+        "move": "Synthesis"
       },
       {
-        "level": 18,
-        "const": "MAGICAL_LEAF",
-        "move": "Magical Leaf"
-      },
-      {
-        "level": 19,
-        "const": "BUBBLEBEAM",
-        "move": "Bubble Beam"
-      },
-      {
-        "level": 22,
-        "const": "GIGA_DRAIN",
-        "move": "Giga Drain"
-      },
-      {
-        "level": 24,
-        "const": "LEECH_SEED",
-        "move": "Leech Seed"
-      },
-      {
-        "level": 25,
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "level": 28,
-        "const": "MIST",
-        "move": "Mist"
-      },
-      {
-        "level": 31,
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "level": 34,
-        "const": "ENERGY_BALL",
-        "move": "Energy Ball"
-      },
-      {
-        "level": 42,
+        "level": 20,
         "const": "SEED_BOMB",
         "move": "Seed Bomb"
       },
       {
-        "level": 44,
-        "const": "SCALD",
-        "move": "Scald"
+        "level": 25,
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
+      },
+      {
+        "level": 30,
+        "const": "EXPLOSION",
+        "move": "Explosion"
+      },
+      {
+        "level": 30,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
       }
     ],
     "evolutions": [
@@ -192683,45 +192987,47 @@
         "args": [
           "14"
         ],
-        "target": "LOMBRE",
+        "target": "NUZLEAF",
         "text": "Level 14",
-        "target_name": "Lombre",
-        "target_slug": "lombre"
+        "target_name": "Nuzleaf",
+        "target_slug": "nuzleaf"
       }
     ],
     "egg_moves": [
-      "SYNTHESIS",
-      "RAZOR_LEAF",
-      "WATER_PULSE",
-      "COUNTER",
-      "FLAIL",
-      "GIGA_DRAIN",
+      "AMNESIA",
+      "BEAT_UP",
+      "BULLET_SEED",
+      "DEFOG",
+      "FALSE_SWIPE",
+      "FOUL_PLAY",
       "LEECH_SEED",
-      "SWEET_SCENT",
-      "WATER_GUN"
+      "NASTY_PLOT",
+      "NIGHT_SLASH",
+      "QUICK_ATTACK",
+      "RAZOR_WIND",
+      "TAKE_DOWN"
     ],
     "tmhm": [
       "HEADBUTT",
+      "CURSE",
       "TOXIC",
+      "ROCK_SMASH",
       "HIDDEN_POWER",
       "SUNNY_DAY",
-      "BLIZZARD",
       "PROTECT",
       "RAIN_DANCE",
       "ENERGY_BALL",
       "FACADE",
       "SOLARBEAM",
       "RETURN",
+      "DIG",
+      "SHADOW_BALL",
       "SWAGGER",
+      "NASTY_PLOT",
       "REST",
       "ATTRACT",
-      "THIEF",
-      "ZEN_HEADBUTT",
-      "WEATHER_BALL",
-      "SURF",
-      "FLASH",
-      "WHIRLPOOL",
-      "ICE_BEAM"
+      "NIGHT_SLASH",
+      "FLASH"
     ],
     "info": {
       "catch_rate": 255,
@@ -192734,109 +193040,102 @@
       "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
-        "Water 1",
+        "Field",
         "Grass"
       ]
     },
-    "sprite": "assets/pokemon/lotad.png",
+    "sprite": "assets/pokemon/seedot.png",
     "tutor_moves": [
       "SUBSTITUTE",
       "SLEEP_TALK"
     ],
     "blackthorn_tutor_moves": [
+      "BIDE",
       "BODY_SLAM",
-      "DISARMING_VOICE",
+      "DEFENSE_CURL",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
       "ENDURE",
       "FRUSTRATION",
+      "GIGA_DRAIN",
       "GRASS_KNOT",
-      "HAIL",
-      "ICY_WIND",
+      "LEAF_STORM",
+      "MAGICAL_LEAF",
       "MIMIC",
+      "SELFDESTRUCT",
       "SNORE",
-      "SWORDS_DANCE",
-      "TAKE_DOWN"
+      "SPITE",
+      "SWORDS_DANCE"
     ],
     "evolves_from": null,
     "original_types": [
-      "Water",
       "Grass"
     ],
     "updated_types": [
-      "Water",
       "Grass"
     ],
     "updated_stats": {
       "HP": 40,
-      "Attack": 30,
-      "Defense": 30,
+      "Attack": 40,
+      "Defense": 50,
       "Speed": 30,
-      "Sp. Atk": 40,
-      "Sp. Def": 50
+      "Sp. Atk": 30,
+      "Sp. Def": 30
     },
     "original_stats": {
       "HP": 40,
-      "Attack": 30,
-      "Defense": 30,
+      "Attack": 40,
+      "Defense": 50,
       "Speed": 30,
-      "Sp. Atk": 40,
-      "Sp. Def": 50
+      "Sp. Atk": 30,
+      "Sp. Def": 30
     },
     "original_stats_source": "modern main games",
     "sprite_size": 40,
-    "back": "assets/pokemon/lotad.back.png",
+    "back": "assets/pokemon/seedot.back.png",
     "back_size": 48,
     "anim": {
-      "sheet": "assets/pokemon/lotad.sheet.png",
+      "sheet": "assets/pokemon/seedot.sheet.png",
       "size": 40,
-      "frames": 4,
+      "frames": 3,
       "main": [
         [
           1,
-          4
+          8
         ],
         [
           2,
-          16
+          8
         ],
         [
           1,
           8
         ],
         [
-          0,
+          2,
           8
         ],
         [
           1,
+          8
+        ],
+        [
+          2,
           8
         ]
       ],
       "idle": [
         [
-          0,
-          6
-        ],
-        [
-          3,
-          6
+          1,
+          10
         ],
         [
           0,
-          6
+          10
         ],
         [
-          3,
-          6
-        ],
-        [
-          0,
-          6
-        ],
-        [
-          3,
-          6
+          1,
+          10
         ]
       ],
       "gap": 18
@@ -192848,9 +193147,19 @@
         "move": "Headbutt"
       },
       {
+        "tm": "TM03",
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
         "tm": "TM06",
         "const": "TOXIC",
         "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
       },
       {
         "tm": "TM10",
@@ -192861,11 +193170,6 @@
         "tm": "TM11",
         "const": "SUNNY_DAY",
         "move": "Sunny Day"
-      },
-      {
-        "tm": "TM14",
-        "const": "BLIZZARD",
-        "move": "Blizzard"
       },
       {
         "tm": "TM17",
@@ -192898,9 +193202,24 @@
         "move": "Return"
       },
       {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
         "tm": "TM32",
         "const": "SWAGGER",
         "move": "Swagger"
+      },
+      {
+        "tm": "TM42",
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
       },
       {
         "tm": "TM44",
@@ -192913,74 +193232,49 @@
         "move": "Attract"
       },
       {
-        "tm": "TM46",
-        "const": "THIEF",
-        "move": "Thief"
-      },
-      {
-        "tm": "TM52",
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "tm": "TM54",
-        "const": "WEATHER_BALL",
-        "move": "Weather Ball"
-      },
-      {
-        "tm": "HM03",
-        "const": "SURF",
-        "move": "Surf"
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
         "tm": "HM05",
         "const": "FLASH",
         "move": "Flash"
-      },
-      {
-        "tm": "HM06",
-        "const": "WHIRLPOOL",
-        "move": "Whirlpool"
-      },
-      {
-        "tm": "Tutor",
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
       }
     ]
   },
   {
-    "const": "LOMBRE",
-    "name": "Lombre",
-    "number": 417,
+    "const": "NUZLEAF",
+    "name": "Nuzleaf",
+    "number": 419,
     "stats": {
-      "HP": 60,
-      "Attack": 50,
-      "Defense": 50,
-      "Speed": 50,
+      "HP": 70,
+      "Attack": 70,
+      "Defense": 40,
+      "Speed": 60,
       "Sp. Atk": 60,
-      "Sp. Def": 70
+      "Sp. Def": 40
     },
     "types": [
-      "Water",
-      "Grass"
+      "Grass",
+      "Dark"
     ],
     "abilities": [
-      "Swift Swim",
-      "Rain Dish",
-      "Own Tempo"
+      "Prankster",
+      "Wind Rider",
+      "Technician"
     ],
     "ability_slots": [
       {
-        "name": "Swift Swim",
+        "name": "Prankster",
         "slot": 1
       },
       {
-        "name": "Rain Dish",
+        "name": "Wind Rider",
         "slot": 2
       },
       {
-        "name": "Own Tempo",
+        "name": "Technician",
         "slot": 3
       }
     ],
@@ -192992,23 +193286,13 @@
       },
       {
         "level": 1,
+        "const": "AIR_CUTTER",
+        "move": "Air Cutter"
+      },
+      {
+        "level": 1,
         "const": "ASTONISH",
         "move": "Astonish"
-      },
-      {
-        "level": 1,
-        "const": "FLAIL",
-        "move": "Flail"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
       },
       {
         "level": 1,
@@ -193016,141 +193300,143 @@
         "move": "Fake Out"
       },
       {
-        "level": 9,
-        "const": "BUBBLE",
-        "move": "Bubble"
+        "level": 1,
+        "const": "GROWTH",
+        "move": "Growth"
       },
       {
-        "level": 9,
-        "const": "MIST",
-        "move": "Mist"
+        "level": 1,
+        "const": "HARDEN",
+        "move": "Harden"
       },
       {
-        "level": 13,
+        "level": 1,
+        "const": "POUND",
+        "move": "Pound"
+      },
+      {
+        "level": 1,
+        "const": "RAZOR_LEAF",
+        "move": "Razor Leaf"
+      },
+      {
+        "level": 1,
+        "const": "SYNTHESIS",
+        "move": "Synthesis"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 12,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 18,
         "const": "MEGA_DRAIN",
         "move": "Mega Drain"
       },
       {
-        "level": 15,
-        "const": "BULLET_SEED",
-        "move": "Bullet Seed"
-      },
-      {
-        "level": 16,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 18,
-        "const": "MAGICAL_LEAF",
-        "move": "Magical Leaf"
+        "level": 20,
+        "const": "RAZOR_WIND",
+        "move": "Razor Wind"
       },
       {
         "level": 20,
-        "const": "BUBBLEBEAM",
-        "move": "Bubble Beam"
+        "const": "TORMENT",
+        "move": "Torment"
       },
       {
         "level": 24,
-        "const": "GIGA_DRAIN",
-        "move": "Giga Drain"
+        "const": "FAINT_ATTACK",
+        "move": "Feint Attack"
       },
       {
-        "level": 30,
-        "const": "LEECH_SEED",
-        "move": "Leech Seed"
+        "level": 26,
+        "const": "LEAF_BLADE",
+        "move": "Leaf Blade"
       },
       {
         "level": 32,
-        "const": "KNOCK_OFF",
-        "move": "Knock Off"
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "level": 35,
+        "const": "EXTRASENSORY",
+        "move": "Extrasensory"
       },
       {
         "level": 36,
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
       },
       {
-        "level": 40,
-        "const": "ENERGY_BALL",
-        "move": "Energy Ball"
-      },
-      {
-        "level": 42,
-        "const": "SEED_BOMB",
-        "move": "Seed Bomb"
-      },
-      {
-        "level": 43,
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "level": 44,
-        "const": "HYDRO_PUMP",
-        "move": "Hydro Pump"
-      },
-      {
-        "level": 46,
-        "const": "SCALD",
-        "move": "Scald"
+        "level": 50,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
       }
     ],
     "evolutions": [
       {
         "method": "EVOLVE_ITEM",
         "args": [
-          "WATER_STONE"
+          "LEAF_STONE"
         ],
-        "target": "LUDICOLO",
-        "text": "Use a Water Stone",
-        "target_name": "Ludicolo",
-        "target_slug": "ludicolo"
+        "target": "SHIFTRY",
+        "text": "Use a Leaf Stone",
+        "target_name": "Shiftry",
+        "target_slug": "shiftry"
       }
     ],
     "egg_moves": [
-      "SYNTHESIS",
-      "RAZOR_LEAF",
-      "WATER_PULSE",
-      "COUNTER",
-      "FLAIL",
-      "GIGA_DRAIN",
+      "AMNESIA",
+      "BEAT_UP",
+      "BULLET_SEED",
+      "DEFOG",
+      "FALSE_SWIPE",
+      "FOUL_PLAY",
       "LEECH_SEED",
-      "SWEET_SCENT",
-      "WATER_GUN"
+      "NASTY_PLOT",
+      "NIGHT_SLASH",
+      "QUICK_ATTACK",
+      "RAZOR_WIND",
+      "TAKE_DOWN"
     ],
     "tmhm": [
-      "DRAIN_PUNCH",
       "HEADBUTT",
+      "CURSE",
+      "ROCK_TOMB",
       "TOXIC",
       "ROCK_SMASH",
       "HIDDEN_POWER",
       "SUNNY_DAY",
-      "BLIZZARD",
+      "HYPER_BEAM",
       "PROTECT",
       "RAIN_DANCE",
       "ENERGY_BALL",
       "FACADE",
       "SOLARBEAM",
       "RETURN",
+      "DIG",
+      "SHADOW_BALL",
       "MUD_SLAP",
       "SWAGGER",
-      "ICE_PUNCH",
       "KNOCK_OFF",
-      "THUNDERPUNCH",
+      "SWIFT",
+      "NASTY_PLOT",
       "REST",
       "ATTRACT",
       "THIEF",
-      "FIRE_PUNCH",
-      "HONE_CLAWS",
-      "ZEN_HEADBUTT",
+      "FURY_CUTTER",
+      "NIGHT_SLASH",
       "WEATHER_BALL",
-      "SURF",
+      "CUT",
       "STRENGTH",
-      "FLASH",
-      "WHIRLPOOL",
-      "WATERFALL",
-      "ICE_BEAM"
+      "FLASH"
     ],
     "info": {
       "catch_rate": 120,
@@ -193163,624 +193449,140 @@
       "egg_cycles": 15,
       "growth": "Medium Slow",
       "egg_groups": [
-        "Water 1",
+        "Field",
         "Grass"
       ]
     },
-    "sprite": "assets/pokemon/lombre.png",
+    "sprite": "assets/pokemon/nuzleaf.png",
     "tutor_moves": [
       "SUBSTITUTE",
       "SLEEP_TALK"
     ],
     "blackthorn_tutor_moves": [
+      "BIDE",
       "BODY_SLAM",
       "BRICK_BREAK",
-      "DISARMING_VOICE",
+      "DARK_PULSE",
+      "DEFENSE_CURL",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
-      "DYNAMICPUNCH",
-      "ENCORE",
       "ENDURE",
+      "EXPLOSION",
       "FRUSTRATION",
+      "GIGA_DRAIN",
       "GRASS_KNOT",
-      "HAIL",
-      "HYPER_VOICE",
-      "ICY_WIND",
+      "LEAF_STORM",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MAGICAL_LEAF",
       "MEGA_KICK",
-      "MEGA_PUNCH",
-      "METRONOME",
       "MIMIC",
-      "MUD_SHOT",
+      "PSYCH_UP",
+      "ROCK_SLIDE",
+      "SCARY_FACE",
+      "SEED_BOMB",
+      "SELFDESTRUCT",
+      "SNARL",
       "SNORE",
-      "SWORDS_DANCE",
-      "TAKE_DOWN"
+      "SOLAR_BLADE",
+      "SPITE",
+      "SWORDS_DANCE"
     ],
     "evolves_from": {
-      "const": "LOTAD",
-      "name": "Lotad",
-      "slug": "lotad",
+      "const": "SEEDOT",
+      "name": "Seedot",
+      "slug": "seedot",
       "text": "Level 14"
     },
     "original_types": [
-      "Water",
-      "Grass"
+      "Grass",
+      "Dark"
     ],
     "updated_types": [
-      "Water",
-      "Grass"
+      "Grass",
+      "Dark"
     ],
     "updated_stats": {
-      "HP": 60,
-      "Attack": 50,
-      "Defense": 50,
-      "Speed": 50,
+      "HP": 70,
+      "Attack": 70,
+      "Defense": 40,
+      "Speed": 60,
       "Sp. Atk": 60,
-      "Sp. Def": 70
+      "Sp. Def": 40
     },
     "original_stats": {
-      "HP": 60,
-      "Attack": 50,
-      "Defense": 50,
-      "Speed": 50,
+      "HP": 70,
+      "Attack": 70,
+      "Defense": 40,
+      "Speed": 60,
       "Sp. Atk": 60,
-      "Sp. Def": 70
+      "Sp. Def": 40
     },
     "original_stats_source": "modern main games",
     "sprite_size": 48,
-    "back": "assets/pokemon/lombre.back.png",
+    "back": "assets/pokemon/nuzleaf.back.png",
     "back_size": 48,
     "anim": {
-      "sheet": "assets/pokemon/lombre.sheet.png",
+      "sheet": "assets/pokemon/nuzleaf.sheet.png",
       "size": 48,
       "frames": 5,
       "main": [
         [
-          1,
-          8
-        ],
-        [
-          2,
-          18
-        ],
-        [
-          3,
-          22
-        ],
-        [
-          2,
-          14
-        ],
-        [
-          1,
-          8
-        ]
-      ],
-      "idle": [
-        [
           0,
-          8
-        ],
-        [
-          4,
-          8
-        ],
-        [
-          0,
-          8
-        ],
-        [
-          4,
-          8
-        ]
-      ],
-      "gap": 18
-    },
-    "tmhm_labeled": [
-      {
-        "tm": "TM01",
-        "const": "DRAIN_PUNCH",
-        "move": "Drain Punch"
-      },
-      {
-        "tm": "TM02",
-        "const": "HEADBUTT",
-        "move": "Headbutt"
-      },
-      {
-        "tm": "TM06",
-        "const": "TOXIC",
-        "move": "Toxic"
-      },
-      {
-        "tm": "TM08",
-        "const": "ROCK_SMASH",
-        "move": "Rock Smash"
-      },
-      {
-        "tm": "TM10",
-        "const": "HIDDEN_POWER",
-        "move": "Hidden Power"
-      },
-      {
-        "tm": "TM11",
-        "const": "SUNNY_DAY",
-        "move": "Sunny Day"
-      },
-      {
-        "tm": "TM14",
-        "const": "BLIZZARD",
-        "move": "Blizzard"
-      },
-      {
-        "tm": "TM17",
-        "const": "PROTECT",
-        "move": "Protect"
-      },
-      {
-        "tm": "TM18",
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "tm": "TM19",
-        "const": "ENERGY_BALL",
-        "move": "Energy Ball"
-      },
-      {
-        "tm": "TM21",
-        "const": "FACADE",
-        "move": "Facade"
-      },
-      {
-        "tm": "TM22",
-        "const": "SOLARBEAM",
-        "move": "Solar Beam"
-      },
-      {
-        "tm": "TM27",
-        "const": "RETURN",
-        "move": "Return"
-      },
-      {
-        "tm": "TM31",
-        "const": "MUD_SLAP",
-        "move": "Mud-Slap"
-      },
-      {
-        "tm": "TM32",
-        "const": "SWAGGER",
-        "move": "Swagger"
-      },
-      {
-        "tm": "TM33",
-        "const": "ICE_PUNCH",
-        "move": "Ice Punch"
-      },
-      {
-        "tm": "TM35",
-        "const": "KNOCK_OFF",
-        "move": "Knock Off"
-      },
-      {
-        "tm": "TM41",
-        "const": "THUNDERPUNCH",
-        "move": "Thunder Punch"
-      },
-      {
-        "tm": "TM44",
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "tm": "TM45",
-        "const": "ATTRACT",
-        "move": "Attract"
-      },
-      {
-        "tm": "TM46",
-        "const": "THIEF",
-        "move": "Thief"
-      },
-      {
-        "tm": "TM48",
-        "const": "FIRE_PUNCH",
-        "move": "Fire Punch"
-      },
-      {
-        "tm": "TM50",
-        "const": "HONE_CLAWS",
-        "move": "Hone Claws"
-      },
-      {
-        "tm": "TM52",
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "tm": "TM54",
-        "const": "WEATHER_BALL",
-        "move": "Weather Ball"
-      },
-      {
-        "tm": "HM03",
-        "const": "SURF",
-        "move": "Surf"
-      },
-      {
-        "tm": "HM04",
-        "const": "STRENGTH",
-        "move": "Strength"
-      },
-      {
-        "tm": "HM05",
-        "const": "FLASH",
-        "move": "Flash"
-      },
-      {
-        "tm": "HM06",
-        "const": "WHIRLPOOL",
-        "move": "Whirlpool"
-      },
-      {
-        "tm": "HM07",
-        "const": "WATERFALL",
-        "move": "Waterfall"
-      },
-      {
-        "tm": "Tutor",
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
-      }
-    ]
-  },
-  {
-    "const": "LUDICOLO",
-    "name": "Ludicolo",
-    "number": 418,
-    "stats": {
-      "HP": 80,
-      "Attack": 90,
-      "Defense": 70,
-      "Speed": 70,
-      "Sp. Atk": 90,
-      "Sp. Def": 100
-    },
-    "types": [
-      "Water",
-      "Grass"
-    ],
-    "abilities": [
-      "Swift Swim",
-      "Rain Dish",
-      "Own Tempo"
-    ],
-    "ability_slots": [
-      {
-        "name": "Swift Swim",
-        "slot": 1
-      },
-      {
-        "name": "Rain Dish",
-        "slot": 2
-      },
-      {
-        "name": "Own Tempo",
-        "slot": 3
-      }
-    ],
-    "learnset": [
-      {
-        "level": 1,
-        "const": "ABSORB",
-        "move": "Absorb"
-      },
-      {
-        "level": 1,
-        "const": "ASTONISH",
-        "move": "Astonish"
-      },
-      {
-        "level": 1,
-        "const": "FLAIL",
-        "move": "Flail"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 1,
-        "const": "FAKE_OUT",
-        "move": "Fake Out"
-      },
-      {
-        "level": 9,
-        "const": "BUBBLE",
-        "move": "Bubble"
-      },
-      {
-        "level": 9,
-        "const": "MIST",
-        "move": "Mist"
-      },
-      {
-        "level": 13,
-        "const": "MEGA_DRAIN",
-        "move": "Mega Drain"
-      },
-      {
-        "level": 15,
-        "const": "BULLET_SEED",
-        "move": "Bullet Seed"
-      },
-      {
-        "level": 16,
-        "const": "FURY_SWIPES",
-        "move": "Fury Swipes"
-      },
-      {
-        "level": 18,
-        "const": "MAGICAL_LEAF",
-        "move": "Magical Leaf"
-      },
-      {
-        "level": 20,
-        "const": "BUBBLEBEAM",
-        "move": "Bubble Beam"
-      },
-      {
-        "level": 24,
-        "const": "GIGA_DRAIN",
-        "move": "Giga Drain"
-      },
-      {
-        "level": 32,
-        "const": "KNOCK_OFF",
-        "move": "Knock Off"
-      },
-      {
-        "level": 36,
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
-      },
-      {
-        "level": 40,
-        "const": "ENERGY_BALL",
-        "move": "Energy Ball"
-      },
-      {
-        "level": 40,
-        "const": "FOCUS_BLAST",
-        "move": "Focus Blast"
-      },
-      {
-        "level": 42,
-        "const": "SEED_BOMB",
-        "move": "Seed Bomb"
-      },
-      {
-        "level": 43,
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "level": 44,
-        "const": "HYDRO_PUMP",
-        "move": "Hydro Pump"
-      },
-      {
-        "level": 46,
-        "const": "SCALD",
-        "move": "Scald"
-      },
-      {
-        "level": 55,
-        "const": "LEAF_STORM",
-        "move": "Leaf Storm"
-      }
-    ],
-    "evolutions": [],
-    "egg_moves": [
-      "SYNTHESIS",
-      "RAZOR_LEAF",
-      "WATER_PULSE",
-      "COUNTER",
-      "FLAIL",
-      "GIGA_DRAIN",
-      "LEECH_SEED",
-      "SWEET_SCENT",
-      "WATER_GUN"
-    ],
-    "tmhm": [
-      "DRAIN_PUNCH",
-      "HEADBUTT",
-      "TOXIC",
-      "ROCK_SMASH",
-      "HIDDEN_POWER",
-      "SUNNY_DAY",
-      "BLIZZARD",
-      "HYPER_BEAM",
-      "PROTECT",
-      "RAIN_DANCE",
-      "ENERGY_BALL",
-      "FACADE",
-      "SOLARBEAM",
-      "RETURN",
-      "MUD_SLAP",
-      "SWAGGER",
-      "ICE_PUNCH",
-      "KNOCK_OFF",
-      "SWIFT",
-      "THUNDERPUNCH",
-      "REST",
-      "ATTRACT",
-      "THIEF",
-      "FIRE_PUNCH",
-      "HONE_CLAWS",
-      "ZEN_HEADBUTT",
-      "WEATHER_BALL",
-      "SURF",
-      "STRENGTH",
-      "FLASH",
-      "WHIRLPOOL",
-      "WATERFALL",
-      "ICE_BEAM"
-    ],
-    "info": {
-      "catch_rate": 45,
-      "base_exp": 240,
-      "items": [
-        "NO_ITEM",
-        "NO_ITEM"
-      ],
-      "gender": "50% male, 50% female",
-      "egg_cycles": 15,
-      "growth": "Medium Slow",
-      "egg_groups": [
-        "Water 1",
-        "Grass"
-      ]
-    },
-    "sprite": "assets/pokemon/ludicolo.png",
-    "tutor_moves": [
-      "SUBSTITUTE",
-      "SLEEP_TALK"
-    ],
-    "blackthorn_tutor_moves": [
-      "AMNESIA",
-      "BODY_SLAM",
-      "BRICK_BREAK",
-      "DISARMING_VOICE",
-      "DOUBLE_EDGE",
-      "DOUBLE_TEAM",
-      "DYNAMICPUNCH",
-      "ENCORE",
-      "ENDURE",
-      "FRUSTRATION",
-      "GIGA_IMPACT",
-      "GRASS_KNOT",
-      "HAIL",
-      "HYPER_VOICE",
-      "ICY_WIND",
-      "MEGA_KICK",
-      "MEGA_PUNCH",
-      "METRONOME",
-      "MIMIC",
-      "MUD_SHOT",
-      "SEISMIC_TOSS",
-      "SNORE",
-      "SWORDS_DANCE",
-      "TAKE_DOWN"
-    ],
-    "evolves_from": {
-      "const": "LOMBRE",
-      "name": "Lombre",
-      "slug": "lombre",
-      "text": "Use a Water Stone"
-    },
-    "original_types": [
-      "Water",
-      "Grass"
-    ],
-    "updated_types": [
-      "Water",
-      "Grass"
-    ],
-    "updated_stats": {
-      "HP": 80,
-      "Attack": 90,
-      "Defense": 70,
-      "Speed": 70,
-      "Sp. Atk": 90,
-      "Sp. Def": 100
-    },
-    "original_stats": {
-      "HP": 80,
-      "Attack": 70,
-      "Defense": 70,
-      "Speed": 70,
-      "Sp. Atk": 90,
-      "Sp. Def": 100
-    },
-    "original_stats_source": "modern main games",
-    "sprite_size": 56,
-    "back": "assets/pokemon/ludicolo.back.png",
-    "back_size": 48,
-    "anim": {
-      "sheet": "assets/pokemon/ludicolo.sheet.png",
-      "size": 56,
-      "frames": 7,
-      "main": [
-        [
-          1,
-          8
-        ],
-        [
-          2,
           4
         ],
         [
-          0,
-          12
-        ],
-        [
-          3,
+          1,
           10
         ],
         [
-          0,
-          10
+          2,
+          6
         ],
         [
-          4,
-          10
+          1,
+          6
         ],
         [
-          0,
-          10
+          2,
+          6
         ],
         [
-          3,
-          10
+          1,
+          6
         ],
         [
-          0,
-          10
+          2,
+          6
         ],
         [
-          4,
-          10
-        ],
-        [
-          0,
-          10
+          1,
+          6
         ]
       ],
       "idle": [
         [
-          5,
-          10
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
         ],
         [
           0,
-          10
-        ],
-        [
-          6,
           6
         ],
         [
-          0,
-          6
-        ],
-        [
-          6,
+          4,
           6
         ]
       ],
@@ -193788,14 +193590,19 @@
     },
     "tmhm_labeled": [
       {
-        "tm": "TM01",
-        "const": "DRAIN_PUNCH",
-        "move": "Drain Punch"
-      },
-      {
         "tm": "TM02",
         "const": "HEADBUTT",
         "move": "Headbutt"
+      },
+      {
+        "tm": "TM03",
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "tm": "TM04",
+        "const": "ROCK_TOMB",
+        "move": "Rock Tomb"
       },
       {
         "tm": "TM06",
@@ -193816,11 +193623,6 @@
         "tm": "TM11",
         "const": "SUNNY_DAY",
         "move": "Sunny Day"
-      },
-      {
-        "tm": "TM14",
-        "const": "BLIZZARD",
-        "move": "Blizzard"
       },
       {
         "tm": "TM15",
@@ -193858,6 +193660,16 @@
         "move": "Return"
       },
       {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
         "tm": "TM31",
         "const": "MUD_SLAP",
         "move": "Mud-Slap"
@@ -193866,11 +193678,6 @@
         "tm": "TM32",
         "const": "SWAGGER",
         "move": "Swagger"
-      },
-      {
-        "tm": "TM33",
-        "const": "ICE_PUNCH",
-        "move": "Ice Punch"
       },
       {
         "tm": "TM35",
@@ -193883,9 +193690,9 @@
         "move": "Swift"
       },
       {
-        "tm": "TM41",
-        "const": "THUNDERPUNCH",
-        "move": "Thunder Punch"
+        "tm": "TM42",
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
       },
       {
         "tm": "TM44",
@@ -193903,19 +193710,14 @@
         "move": "Thief"
       },
       {
-        "tm": "TM48",
-        "const": "FIRE_PUNCH",
-        "move": "Fire Punch"
+        "tm": "TM49",
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
-        "tm": "TM50",
-        "const": "HONE_CLAWS",
-        "move": "Hone Claws"
-      },
-      {
-        "tm": "TM52",
-        "const": "ZEN_HEADBUTT",
-        "move": "Zen Headbutt"
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
         "tm": "TM54",
@@ -193923,9 +193725,9 @@
         "move": "Weather Ball"
       },
       {
-        "tm": "HM03",
-        "const": "SURF",
-        "move": "Surf"
+        "tm": "HM01",
+        "const": "CUT",
+        "move": "Cut"
       },
       {
         "tm": "HM04",
@@ -193936,28 +193738,527 @@
         "tm": "HM05",
         "const": "FLASH",
         "move": "Flash"
+      }
+    ]
+  },
+  {
+    "const": "SHIFTRY",
+    "name": "Shiftry",
+    "number": 420,
+    "stats": {
+      "HP": 90,
+      "Attack": 100,
+      "Defense": 60,
+      "Speed": 80,
+      "Sp. Atk": 90,
+      "Sp. Def": 60
+    },
+    "types": [
+      "Grass",
+      "Dark"
+    ],
+    "abilities": [
+      "Prankster",
+      "Wind Rider",
+      "Technician"
+    ],
+    "ability_slots": [
+      {
+        "name": "Prankster",
+        "slot": 1
       },
       {
-        "tm": "HM06",
-        "const": "WHIRLPOOL",
-        "move": "Whirlpool"
+        "name": "Wind Rider",
+        "slot": 2
       },
       {
-        "tm": "HM07",
-        "const": "WATERFALL",
-        "move": "Waterfall"
+        "name": "Technician",
+        "slot": 3
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "ABSORB",
+        "move": "Absorb"
       },
       {
-        "tm": "Tutor",
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
+        "level": 1,
+        "const": "AIR_CUTTER",
+        "move": "Air Cutter"
+      },
+      {
+        "level": 1,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 1,
+        "const": "GROWTH",
+        "move": "Growth"
+      },
+      {
+        "level": 1,
+        "const": "HARDEN",
+        "move": "Harden"
+      },
+      {
+        "level": 1,
+        "const": "POUND",
+        "move": "Pound"
+      },
+      {
+        "level": 1,
+        "const": "RAZOR_LEAF",
+        "move": "Razor Leaf"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 1,
+        "const": "WEATHER_BALL",
+        "move": "Weather Ball"
+      },
+      {
+        "level": 15,
+        "const": "ROLLOUT",
+        "move": "Rollout"
+      },
+      {
+        "level": 20,
+        "const": "FAKE_OUT",
+        "move": "Fake Out"
+      },
+      {
+        "level": 25,
+        "const": "MEGA_DRAIN",
+        "move": "Mega Drain"
+      },
+      {
+        "level": 25,
+        "const": "TORMENT",
+        "move": "Torment"
+      },
+      {
+        "level": 30,
+        "const": "RAZOR_WIND",
+        "move": "Razor Wind"
+      },
+      {
+        "level": 35,
+        "const": "FAINT_ATTACK",
+        "move": "Feint Attack"
+      },
+      {
+        "level": 40,
+        "const": "LEAF_BLADE",
+        "move": "Leaf Blade"
+      },
+      {
+        "level": 45,
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "level": 50,
+        "const": "EXTRASENSORY",
+        "move": "Extrasensory"
+      },
+      {
+        "level": 55,
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
+      },
+      {
+        "level": 60,
+        "const": "HURRICANE",
+        "move": "Hurricane"
+      },
+      {
+        "level": 65,
+        "const": "LEAF_STORM",
+        "move": "Leaf Storm"
+      },
+      {
+        "level": 70,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [
+      "AMNESIA",
+      "BEAT_UP",
+      "BULLET_SEED",
+      "DEFOG",
+      "FALSE_SWIPE",
+      "FOUL_PLAY",
+      "LEECH_SEED",
+      "NASTY_PLOT",
+      "NIGHT_SLASH",
+      "QUICK_ATTACK",
+      "RAZOR_WIND",
+      "TAKE_DOWN"
+    ],
+    "tmhm": [
+      "HEADBUTT",
+      "CURSE",
+      "ROCK_TOMB",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "HYPER_BEAM",
+      "PROTECT",
+      "RAIN_DANCE",
+      "ENERGY_BALL",
+      "WILL_O_WISP",
+      "FACADE",
+      "SOLARBEAM",
+      "RETURN",
+      "DIG",
+      "SHADOW_BALL",
+      "MUD_SLAP",
+      "SWAGGER",
+      "KNOCK_OFF",
+      "SWIFT",
+      "NASTY_PLOT",
+      "REST",
+      "ATTRACT",
+      "THIEF",
+      "FURY_CUTTER",
+      "NIGHT_SLASH",
+      "WEATHER_BALL",
+      "CUT",
+      "STRENGTH",
+      "FLASH"
+    ],
+    "info": {
+      "catch_rate": 45,
+      "base_exp": 216,
+      "items": [
+        "NO_ITEM",
+        "NO_ITEM"
+      ],
+      "gender": "50% male, 50% female",
+      "egg_cycles": 15,
+      "growth": "Medium Slow",
+      "egg_groups": [
+        "Field",
+        "Grass"
+      ]
+    },
+    "sprite": "assets/pokemon/shiftry.png",
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK"
+    ],
+    "blackthorn_tutor_moves": [
+      "AERIAL_ACE",
+      "AIR_SLASH",
+      "BIDE",
+      "BODY_SLAM",
+      "BOUNCE",
+      "BRICK_BREAK",
+      "CONFUSE_RAY",
+      "DARK_PULSE",
+      "DEFENSE_CURL",
+      "DOUBLE_EDGE",
+      "DOUBLE_TEAM",
+      "ENDURE",
+      "EXPLOSION",
+      "FOCUS_BLAST",
+      "FRUSTRATION",
+      "GIGA_DRAIN",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "HEAT_WAVE",
+      "HEX",
+      "ICY_WIND",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MAGICAL_LEAF",
+      "MEGA_KICK",
+      "MIMIC",
+      "OMINOUS_WIND",
+      "PETAL_BLIZZARD",
+      "PSYCH_UP",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "SCARY_FACE",
+      "SCREECH",
+      "SEED_BOMB",
+      "SELFDESTRUCT",
+      "SNARL",
+      "SNORE",
+      "SOLAR_BLADE",
+      "SPITE",
+      "SWORDS_DANCE",
+      "SYNTHESIS",
+      "TAUNT",
+      "TOXIC_SPIKES",
+      "TWISTER",
+      "VACUUM_WAVE",
+      "WHIRLWIND",
+      "X_SCISSOR"
+    ],
+    "evolves_from": {
+      "const": "NUZLEAF",
+      "name": "Nuzleaf",
+      "slug": "nuzleaf",
+      "text": "Use a Leaf Stone"
+    },
+    "original_types": [
+      "Grass",
+      "Dark"
+    ],
+    "updated_types": [
+      "Grass",
+      "Dark"
+    ],
+    "updated_stats": {
+      "HP": 90,
+      "Attack": 100,
+      "Defense": 60,
+      "Speed": 80,
+      "Sp. Atk": 90,
+      "Sp. Def": 60
+    },
+    "original_stats": {
+      "HP": 90,
+      "Attack": 100,
+      "Defense": 60,
+      "Speed": 80,
+      "Sp. Atk": 90,
+      "Sp. Def": 60
+    },
+    "original_stats_source": "modern main games",
+    "sprite_size": 56,
+    "back": "assets/pokemon/shiftry.back.png",
+    "back_size": 48,
+    "anim": {
+      "sheet": "assets/pokemon/shiftry.sheet.png",
+      "size": 56,
+      "frames": 6,
+      "main": [
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          14
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "idle": [
+        [
+          5,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "gap": 18
+    },
+    "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "tm": "TM03",
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "tm": "TM04",
+        "const": "ROCK_TOMB",
+        "move": "Rock Tomb"
+      },
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM11",
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
+      },
+      {
+        "tm": "TM15",
+        "const": "HYPER_BEAM",
+        "move": "Hyper Beam"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM18",
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "tm": "TM19",
+        "const": "ENERGY_BALL",
+        "move": "Energy Ball"
+      },
+      {
+        "tm": "TM20",
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM22",
+        "const": "SOLARBEAM",
+        "move": "Solar Beam"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "tm": "TM31",
+        "const": "MUD_SLAP",
+        "move": "Mud-Slap"
+      },
+      {
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "tm": "TM39",
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "tm": "TM42",
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM45",
+        "const": "ATTRACT",
+        "move": "Attract"
+      },
+      {
+        "tm": "TM46",
+        "const": "THIEF",
+        "move": "Thief"
+      },
+      {
+        "tm": "TM49",
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "tm": "TM54",
+        "const": "WEATHER_BALL",
+        "move": "Weather Ball"
+      },
+      {
+        "tm": "HM01",
+        "const": "CUT",
+        "move": "Cut"
+      },
+      {
+        "tm": "HM04",
+        "const": "STRENGTH",
+        "move": "Strength"
+      },
+      {
+        "tm": "HM05",
+        "const": "FLASH",
+        "move": "Flash"
       }
     ]
   },
   {
     "const": "SCRAGGY",
     "name": "Scraggy",
-    "number": 419,
+    "number": 421,
     "stats": {
       "HP": 50,
       "Attack": 75,
@@ -194440,7 +194741,7 @@
   {
     "const": "SCRAFTY",
     "name": "Scrafty",
-    "number": 420,
+    "number": 422,
     "stats": {
       "HP": 77,
       "Attack": 90,
@@ -194940,1194 +195241,938 @@
     ]
   },
   {
-    "const": "SPHEAL",
-    "name": "Spheal",
-    "number": 421,
-    "stats": {
-      "HP": 70,
-      "Attack": 40,
-      "Defense": 50,
-      "Speed": 25,
-      "Sp. Atk": 55,
-      "Sp. Def": 50
-    },
-    "types": [
-      "Ice",
-      "Water"
-    ],
-    "abilities": [
-      "Thick Fat",
-      "Ice Body",
-      "Slush Rush"
-    ],
-    "ability_slots": [
-      {
-        "name": "Thick Fat",
-        "slot": 1
-      },
-      {
-        "name": "Ice Body",
-        "slot": 2
-      },
-      {
-        "name": "Slush Rush",
-        "slot": 3
-      }
-    ],
-    "learnset": [
-      {
-        "level": 1,
-        "const": "DEFENSE_CURL",
-        "move": "Defense Curl"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "POWDER_SNOW",
-        "move": "Powder Snow"
-      },
-      {
-        "level": 1,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 7,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 10,
-        "const": "ENCORE",
-        "move": "Encore"
-      },
-      {
-        "level": 16,
-        "const": "WATER_PULSE",
-        "move": "Water Pulse"
-      },
-      {
-        "level": 19,
-        "const": "AURORA_BEAM",
-        "move": "Aurora Beam"
-      },
-      {
-        "level": 22,
-        "const": "BODY_SLAM",
-        "move": "Body Slam"
-      },
-      {
-        "level": 25,
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "level": 25,
-        "const": "SNORE",
-        "move": "Snore"
-      },
-      {
-        "level": 28,
-        "const": "HAIL",
-        "move": "Hail"
-      },
-      {
-        "level": 31,
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
-      },
-      {
-        "level": 34,
-        "const": "AQUA_TAIL",
-        "move": "Aqua Tail"
-      },
-      {
-        "level": 34,
-        "const": "FREEZE_DRY",
-        "move": "Freeze-Dry"
-      },
-      {
-        "level": 37,
-        "const": "BELLY_DRUM",
-        "move": "Belly Drum"
-      },
-      {
-        "level": 40,
-        "const": "BLIZZARD",
-        "move": "Blizzard"
-      },
-      {
-        "level": 40,
-        "const": "SURF",
-        "move": "Surf"
-      }
-    ],
-    "evolutions": [
-      {
-        "method": "EVOLVE_LEVEL",
-        "args": [
-          "32"
-        ],
-        "target": "SEALEO",
-        "text": "Level 32",
-        "target_name": "Sealeo",
-        "target_slug": "sealeo"
-      }
-    ],
-    "egg_moves": [
-      "FISSURE",
-      "ROCK_SLIDE",
-      "SIGNAL_BEAM",
-      "SLEEP_TALK",
-      "YAWN",
-      "BELLY_DRUM",
-      "CURSE",
-      "ROLLOUT",
-      "WATER_PULSE"
-    ],
-    "tmhm": [
-      "HEADBUTT",
-      "CURSE",
-      "ROCK_TOMB",
-      "TOXIC",
-      "ROCK_SMASH",
-      "HIDDEN_POWER",
-      "BLIZZARD",
-      "PROTECT",
-      "RAIN_DANCE",
-      "FACADE",
-      "EARTHQUAKE",
-      "RETURN",
-      "MUD_SLAP",
-      "SWAGGER",
-      "REST",
-      "ATTRACT",
-      "SURF",
-      "STRENGTH",
-      "WHIRLPOOL",
-      "WATERFALL",
-      "ICE_BEAM"
-    ],
-    "info": {
-      "catch_rate": 255,
-      "base_exp": 58,
-      "items": [
-        "NO_ITEM",
-        "NO_ITEM"
-      ],
-      "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Medium Slow",
-      "egg_groups": [
-        "Water 1",
-        "Field"
-      ]
-    },
-    "sprite": "assets/pokemon/spheal.png",
-    "tutor_moves": [
-      "SUBSTITUTE",
-      "SLEEP_TALK"
-    ],
-    "blackthorn_tutor_moves": [
-      "BULLDOZE",
-      "CHARM",
-      "DOUBLE_EDGE",
-      "DOUBLE_TEAM",
-      "ENDURE",
-      "FRUSTRATION",
-      "ICY_WIND",
-      "IRON_TAIL",
-      "LIQUIDATION",
-      "MIMIC",
-      "SUPER_FANG"
-    ],
-    "evolves_from": null,
-    "original_types": [
-      "Ice",
-      "Water"
-    ],
-    "updated_types": [
-      "Ice",
-      "Water"
-    ],
-    "updated_stats": {
-      "HP": 70,
-      "Attack": 40,
-      "Defense": 50,
-      "Speed": 25,
-      "Sp. Atk": 55,
-      "Sp. Def": 50
-    },
-    "original_stats": {
-      "HP": 70,
-      "Attack": 40,
-      "Defense": 50,
-      "Speed": 25,
-      "Sp. Atk": 55,
-      "Sp. Def": 50
-    },
-    "original_stats_source": "modern main games",
-    "sprite_size": 40,
-    "back": "assets/pokemon/spheal.back.png",
-    "back_size": 48,
-    "anim": {
-      "sheet": "assets/pokemon/spheal.sheet.png",
-      "size": 40,
-      "frames": 12,
-      "main": [
-        [
-          0,
-          10
-        ],
-        [
-          1,
-          10
-        ],
-        [
-          2,
-          10
-        ],
-        [
-          3,
-          10
-        ],
-        [
-          4,
-          10
-        ],
-        [
-          5,
-          10
-        ],
-        [
-          6,
-          10
-        ],
-        [
-          7,
-          10
-        ],
-        [
-          8,
-          10
-        ],
-        [
-          9,
-          10
-        ],
-        [
-          10,
-          10
-        ],
-        [
-          7,
-          10
-        ],
-        [
-          8,
-          10
-        ],
-        [
-          9,
-          10
-        ],
-        [
-          10,
-          10
-        ],
-        [
-          1,
-          10
-        ],
-        [
-          0,
-          10
-        ]
-      ],
-      "idle": [
-        [
-          0,
-          16
-        ]
-      ],
-      "gap": 18
-    },
-    "tmhm_labeled": [
-      {
-        "tm": "TM02",
-        "const": "HEADBUTT",
-        "move": "Headbutt"
-      },
-      {
-        "tm": "TM03",
-        "const": "CURSE",
-        "move": "Curse"
-      },
-      {
-        "tm": "TM04",
-        "const": "ROCK_TOMB",
-        "move": "Rock Tomb"
-      },
-      {
-        "tm": "TM06",
-        "const": "TOXIC",
-        "move": "Toxic"
-      },
-      {
-        "tm": "TM08",
-        "const": "ROCK_SMASH",
-        "move": "Rock Smash"
-      },
-      {
-        "tm": "TM10",
-        "const": "HIDDEN_POWER",
-        "move": "Hidden Power"
-      },
-      {
-        "tm": "TM14",
-        "const": "BLIZZARD",
-        "move": "Blizzard"
-      },
-      {
-        "tm": "TM17",
-        "const": "PROTECT",
-        "move": "Protect"
-      },
-      {
-        "tm": "TM18",
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "tm": "TM21",
-        "const": "FACADE",
-        "move": "Facade"
-      },
-      {
-        "tm": "TM26",
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "tm": "TM27",
-        "const": "RETURN",
-        "move": "Return"
-      },
-      {
-        "tm": "TM31",
-        "const": "MUD_SLAP",
-        "move": "Mud-Slap"
-      },
-      {
-        "tm": "TM32",
-        "const": "SWAGGER",
-        "move": "Swagger"
-      },
-      {
-        "tm": "TM44",
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "tm": "TM45",
-        "const": "ATTRACT",
-        "move": "Attract"
-      },
-      {
-        "tm": "HM03",
-        "const": "SURF",
-        "move": "Surf"
-      },
-      {
-        "tm": "HM04",
-        "const": "STRENGTH",
-        "move": "Strength"
-      },
-      {
-        "tm": "HM06",
-        "const": "WHIRLPOOL",
-        "move": "Whirlpool"
-      },
-      {
-        "tm": "HM07",
-        "const": "WATERFALL",
-        "move": "Waterfall"
-      },
-      {
-        "tm": "Tutor",
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
-      }
-    ]
-  },
-  {
-    "const": "SEALEO",
-    "name": "Sealeo",
-    "number": 422,
-    "stats": {
-      "HP": 90,
-      "Attack": 60,
-      "Defense": 70,
-      "Speed": 45,
-      "Sp. Atk": 75,
-      "Sp. Def": 70
-    },
-    "types": [
-      "Ice",
-      "Water"
-    ],
-    "abilities": [
-      "Thick Fat",
-      "Ice Body",
-      "Slush Rush"
-    ],
-    "ability_slots": [
-      {
-        "name": "Thick Fat",
-        "slot": 1
-      },
-      {
-        "name": "Ice Body",
-        "slot": 2
-      },
-      {
-        "name": "Slush Rush",
-        "slot": 3
-      }
-    ],
-    "learnset": [
-      {
-        "level": 1,
-        "const": "DEFENSE_CURL",
-        "move": "Defense Curl"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "POWDER_SNOW",
-        "move": "Powder Snow"
-      },
-      {
-        "level": 1,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 7,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 10,
-        "const": "ENCORE",
-        "move": "Encore"
-      },
-      {
-        "level": 16,
-        "const": "WATER_PULSE",
-        "move": "Water Pulse"
-      },
-      {
-        "level": 19,
-        "const": "AURORA_BEAM",
-        "move": "Aurora Beam"
-      },
-      {
-        "level": 22,
-        "const": "BODY_SLAM",
-        "move": "Body Slam"
-      },
-      {
-        "level": 24,
-        "const": "SWAGGER",
-        "move": "Swagger"
-      },
-      {
-        "level": 26,
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "level": 26,
-        "const": "SNORE",
-        "move": "Snore"
-      },
-      {
-        "level": 30,
-        "const": "HAIL",
-        "move": "Hail"
-      },
-      {
-        "level": 34,
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
-      },
-      {
-        "level": 38,
-        "const": "AQUA_TAIL",
-        "move": "Aqua Tail"
-      },
-      {
-        "level": 38,
-        "const": "FREEZE_DRY",
-        "move": "Freeze-Dry"
-      },
-      {
-        "level": 42,
-        "const": "BELLY_DRUM",
-        "move": "Belly Drum"
-      },
-      {
-        "level": 46,
-        "const": "BLIZZARD",
-        "move": "Blizzard"
-      },
-      {
-        "level": 46,
-        "const": "SURF",
-        "move": "Surf"
-      }
-    ],
-    "evolutions": [
-      {
-        "method": "EVOLVE_LEVEL",
-        "args": [
-          "38"
-        ],
-        "target": "WALREIN",
-        "text": "Level 38",
-        "target_name": "Walrein",
-        "target_slug": "walrein"
-      }
-    ],
-    "egg_moves": [
-      "FISSURE",
-      "ROCK_SLIDE",
-      "SIGNAL_BEAM",
-      "SLEEP_TALK",
-      "YAWN",
-      "BELLY_DRUM",
-      "CURSE",
-      "ROLLOUT",
-      "WATER_PULSE"
-    ],
-    "tmhm": [
-      "HEADBUTT",
-      "CURSE",
-      "ROCK_TOMB",
-      "ROAR",
-      "TOXIC",
-      "ROCK_SMASH",
-      "HIDDEN_POWER",
-      "BLIZZARD",
-      "PROTECT",
-      "RAIN_DANCE",
-      "FACADE",
-      "EARTHQUAKE",
-      "RETURN",
-      "MUD_SLAP",
-      "SWAGGER",
-      "REST",
-      "ATTRACT",
-      "SURF",
-      "STRENGTH",
-      "WHIRLPOOL",
-      "WATERFALL",
-      "ICE_BEAM"
-    ],
-    "info": {
-      "catch_rate": 120,
-      "base_exp": 144,
-      "items": [
-        "NO_ITEM",
-        "NO_ITEM"
-      ],
-      "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Medium Slow",
-      "egg_groups": [
-        "Water 1",
-        "Field"
-      ]
-    },
-    "sprite": "assets/pokemon/sealeo.png",
-    "tutor_moves": [
-      "SUBSTITUTE",
-      "SLEEP_TALK"
-    ],
-    "blackthorn_tutor_moves": [
-      "BULLDOZE",
-      "CHARM",
-      "DOUBLE_EDGE",
-      "DOUBLE_TEAM",
-      "ENDURE",
-      "FRUSTRATION",
-      "ICICLE_SPEAR",
-      "ICY_WIND",
-      "IRON_TAIL",
-      "LIQUIDATION",
-      "MIMIC",
-      "SUPER_FANG"
-    ],
-    "evolves_from": {
-      "const": "SPHEAL",
-      "name": "Spheal",
-      "slug": "spheal",
-      "text": "Level 32"
-    },
-    "original_types": [
-      "Ice",
-      "Water"
-    ],
-    "updated_types": [
-      "Ice",
-      "Water"
-    ],
-    "updated_stats": {
-      "HP": 90,
-      "Attack": 60,
-      "Defense": 70,
-      "Speed": 45,
-      "Sp. Atk": 75,
-      "Sp. Def": 70
-    },
-    "original_stats": {
-      "HP": 90,
-      "Attack": 60,
-      "Defense": 70,
-      "Speed": 45,
-      "Sp. Atk": 75,
-      "Sp. Def": 70
-    },
-    "original_stats_source": "modern main games",
-    "sprite_size": 56,
-    "back": "assets/pokemon/sealeo.back.png",
-    "back_size": 48,
-    "anim": {
-      "sheet": "assets/pokemon/sealeo.sheet.png",
-      "size": 56,
-      "frames": 8,
-      "main": [
-        [
-          0,
-          10
-        ],
-        [
-          1,
-          10
-        ],
-        [
-          2,
-          10
-        ],
-        [
-          3,
-          10
-        ],
-        [
-          4,
-          10
-        ],
-        [
-          5,
-          10
-        ],
-        [
-          6,
-          10
-        ],
-        [
-          4,
-          10
-        ],
-        [
-          5,
-          10
-        ],
-        [
-          6,
-          10
-        ],
-        [
-          7,
-          10
-        ],
-        [
-          0,
-          10
-        ]
-      ],
-      "idle": [
-        [
-          0,
-          16
-        ]
-      ],
-      "gap": 18
-    },
-    "tmhm_labeled": [
-      {
-        "tm": "TM02",
-        "const": "HEADBUTT",
-        "move": "Headbutt"
-      },
-      {
-        "tm": "TM03",
-        "const": "CURSE",
-        "move": "Curse"
-      },
-      {
-        "tm": "TM04",
-        "const": "ROCK_TOMB",
-        "move": "Rock Tomb"
-      },
-      {
-        "tm": "TM05",
-        "const": "ROAR",
-        "move": "Roar"
-      },
-      {
-        "tm": "TM06",
-        "const": "TOXIC",
-        "move": "Toxic"
-      },
-      {
-        "tm": "TM08",
-        "const": "ROCK_SMASH",
-        "move": "Rock Smash"
-      },
-      {
-        "tm": "TM10",
-        "const": "HIDDEN_POWER",
-        "move": "Hidden Power"
-      },
-      {
-        "tm": "TM14",
-        "const": "BLIZZARD",
-        "move": "Blizzard"
-      },
-      {
-        "tm": "TM17",
-        "const": "PROTECT",
-        "move": "Protect"
-      },
-      {
-        "tm": "TM18",
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "tm": "TM21",
-        "const": "FACADE",
-        "move": "Facade"
-      },
-      {
-        "tm": "TM26",
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
-        "tm": "TM27",
-        "const": "RETURN",
-        "move": "Return"
-      },
-      {
-        "tm": "TM31",
-        "const": "MUD_SLAP",
-        "move": "Mud-Slap"
-      },
-      {
-        "tm": "TM32",
-        "const": "SWAGGER",
-        "move": "Swagger"
-      },
-      {
-        "tm": "TM44",
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "tm": "TM45",
-        "const": "ATTRACT",
-        "move": "Attract"
-      },
-      {
-        "tm": "HM03",
-        "const": "SURF",
-        "move": "Surf"
-      },
-      {
-        "tm": "HM04",
-        "const": "STRENGTH",
-        "move": "Strength"
-      },
-      {
-        "tm": "HM06",
-        "const": "WHIRLPOOL",
-        "move": "Whirlpool"
-      },
-      {
-        "tm": "HM07",
-        "const": "WATERFALL",
-        "move": "Waterfall"
-      },
-      {
-        "tm": "Tutor",
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
-      }
-    ]
-  },
-  {
-    "const": "WALREIN",
-    "name": "Walrein",
+    "const": "HONEDGE",
+    "name": "Honedge",
     "number": 423,
     "stats": {
-      "HP": 110,
+      "HP": 45,
       "Attack": 80,
-      "Defense": 90,
-      "Speed": 65,
-      "Sp. Atk": 95,
-      "Sp. Def": 90
+      "Defense": 100,
+      "Speed": 28,
+      "Sp. Atk": 35,
+      "Sp. Def": 37
     },
     "types": [
-      "Ice",
-      "Water"
+      "Steel",
+      "Ghost"
     ],
     "abilities": [
-      "Thick Fat",
-      "Ice Body",
-      "Slush Rush"
+      "No Guard"
     ],
     "ability_slots": [
       {
-        "name": "Thick Fat",
+        "name": "No Guard",
         "slot": 1
-      },
-      {
-        "name": "Ice Body",
-        "slot": 2
-      },
-      {
-        "name": "Slush Rush",
-        "slot": 3
       }
     ],
     "learnset": [
       {
         "level": 1,
-        "const": "DEFENSE_CURL",
-        "move": "Defense Curl"
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
       },
       {
         "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
+        "const": "TACKLE",
+        "move": "Tackle"
       },
       {
-        "level": 1,
-        "const": "ICE_FANG",
-        "move": "Ice Fang"
+        "level": 4,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
       },
       {
-        "level": 1,
-        "const": "POWDER_SNOW",
-        "move": "Powder Snow"
+        "level": 12,
+        "const": "AERIAL_ACE",
+        "move": "Aerial Ace"
       },
       {
-        "level": 1,
-        "const": "WATER_GUN",
-        "move": "Water Gun"
-      },
-      {
-        "level": 7,
-        "const": "ROLLOUT",
-        "move": "Rollout"
-      },
-      {
-        "level": 10,
-        "const": "ENCORE",
-        "move": "Encore"
-      },
-      {
-        "level": 16,
-        "const": "WATER_PULSE",
-        "move": "Water Pulse"
-      },
-      {
-        "level": 18,
-        "const": "AVALANCHE",
-        "move": "Avalanche"
-      },
-      {
-        "level": 19,
-        "const": "AURORA_BEAM",
-        "move": "Aurora Beam"
-      },
-      {
-        "level": 22,
-        "const": "BODY_SLAM",
-        "move": "Body Slam"
+        "level": 20,
+        "const": "SLASH",
+        "move": "Slash"
       },
       {
         "level": 24,
-        "const": "SWAGGER",
-        "move": "Swagger"
-      },
-      {
-        "level": 26,
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "level": 26,
-        "const": "SNORE",
-        "move": "Snore"
-      },
-      {
-        "level": 30,
-        "const": "HAIL",
-        "move": "Hail"
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
         "level": 32,
-        "const": "BODY_PRESS",
-        "move": "Body Press"
+        "const": "IRON_DEFENSE",
+        "move": "Iron Defense"
       },
       {
-        "level": 34,
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
-      },
-      {
-        "level": 38,
-        "const": "AQUA_TAIL",
-        "move": "Aqua Tail"
-      },
-      {
-        "level": 40,
-        "const": "CRUNCH",
-        "move": "Crunch"
+        "level": 36,
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
       },
       {
         "level": 44,
-        "const": "BELLY_DRUM",
-        "move": "Belly Drum"
-      },
-      {
-        "level": 45,
-        "const": "SLACK_OFF",
-        "move": "Slack Off"
-      },
-      {
-        "level": 46,
-        "const": "LIQUIDATION",
-        "move": "Liquidation"
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
       },
       {
         "level": 48,
-        "const": "SURF",
-        "move": "Surf"
+        "const": "SACRED_SWORD",
+        "move": "Sacred Sword"
+      }
+    ],
+    "evolutions": [
+      {
+        "method": "EVOLVE_LEVEL",
+        "args": [
+          "35"
+        ],
+        "target": "DOUBLADE",
+        "text": "Level 35",
+        "target_name": "Doublade",
+        "target_slug": "doublade"
+      }
+    ],
+    "egg_moves": [
+      "DESTINY_BOND",
+      "SHADOW_SNEAK"
+    ],
+    "tmhm": [
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "PROTECT",
+      "RAIN_DANCE",
+      "FACADE",
+      "IRON_HEAD",
+      "RETURN",
+      "SWAGGER",
+      "FLASH_CANNON",
+      "REST",
+      "ATTRACT",
+      "FURY_CUTTER",
+      "NIGHT_SLASH",
+      "CUT"
+    ],
+    "info": {
+      "catch_rate": 180,
+      "base_exp": 65,
+      "items": [
+        "NO_ITEM",
+        "NO_ITEM"
+      ],
+      "gender": "50% male, 50% female",
+      "egg_cycles": 20,
+      "growth": "Medium Fast",
+      "egg_groups": [
+        "Mineral"
+      ]
+    },
+    "sprite": "assets/pokemon/honedge.png",
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK",
+      "REFLECT"
+    ],
+    "blackthorn_tutor_moves": [
+      "DESTINY_BOND",
+      "HEADBUTT",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
+      "DOUBLE_TEAM",
+      "ENDURE",
+      "FALSE_SWIPE",
+      "FRUSTRATION",
+      "GYRO_BALL",
+      "PSYCHO_CUT",
+      "PURSUIT",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "SCREECH",
+      "SHADOW_CLAW",
+      "SNORE",
+      "SOLAR_BLADE",
+      "SPITE"
+    ],
+    "evolves_from": null,
+    "original_types": [
+      "Steel",
+      "Ghost"
+    ],
+    "updated_types": [
+      "Steel",
+      "Ghost"
+    ],
+    "updated_stats": {
+      "HP": 45,
+      "Attack": 80,
+      "Defense": 100,
+      "Speed": 28,
+      "Sp. Atk": 35,
+      "Sp. Def": 37
+    },
+    "original_stats": {
+      "HP": 45,
+      "Attack": 80,
+      "Defense": 100,
+      "Speed": 28,
+      "Sp. Atk": 35,
+      "Sp. Def": 37
+    },
+    "original_stats_source": "modern main games",
+    "sprite_size": 40,
+    "back": "assets/pokemon/honedge.back.png",
+    "back_size": 48,
+    "anim": {
+      "sheet": "assets/pokemon/honedge.sheet.png",
+      "size": 40,
+      "frames": 3,
+      "main": [
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "idle": [
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          6
+        ]
+      ],
+      "gap": 18
+    },
+    "tmhm_labeled": [
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM18",
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM23",
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "tm": "TM34",
+        "const": "FLASH_CANNON",
+        "move": "Flash Cannon"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM45",
+        "const": "ATTRACT",
+        "move": "Attract"
+      },
+      {
+        "tm": "TM49",
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "tm": "HM01",
+        "const": "CUT",
+        "move": "Cut"
+      }
+    ]
+  },
+  {
+    "const": "DOUBLADE",
+    "name": "Doublade",
+    "number": 424,
+    "stats": {
+      "HP": 59,
+      "Attack": 110,
+      "Defense": 150,
+      "Speed": 35,
+      "Sp. Atk": 45,
+      "Sp. Def": 49
+    },
+    "types": [
+      "Steel",
+      "Ghost"
+    ],
+    "abilities": [
+      "No Guard"
+    ],
+    "ability_slots": [
+      {
+        "name": "No Guard",
+        "slot": 1
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "level": 1,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
+      },
+      {
+        "level": 12,
+        "const": "AERIAL_ACE",
+        "move": "Aerial Ace"
+      },
+      {
+        "level": 20,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 24,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 32,
+        "const": "IRON_DEFENSE",
+        "move": "Iron Defense"
+      },
+      {
+        "level": 38,
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
       },
       {
         "level": 50,
-        "const": "BLIZZARD",
-        "move": "Blizzard"
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
       },
       {
         "level": 56,
-        "const": "HYDRO_PUMP",
-        "move": "Hydro Pump"
+        "const": "SACRED_SWORD",
+        "move": "Sacred Sword"
+      }
+    ],
+    "evolutions": [
+      {
+        "method": "EVOLVE_ITEM",
+        "args": [
+          "DUSK_STONE"
+        ],
+        "target": "AEGISLASH",
+        "text": "Use a Dusk Stone",
+        "target_name": "Aegislash",
+        "target_slug": "aegislash"
+      }
+    ],
+    "egg_moves": [
+      "DESTINY_BOND",
+      "SHADOW_SNEAK"
+    ],
+    "tmhm": [
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "PROTECT",
+      "RAIN_DANCE",
+      "FACADE",
+      "IRON_HEAD",
+      "RETURN",
+      "SWAGGER",
+      "FLASH_CANNON",
+      "REST",
+      "ATTRACT",
+      "FURY_CUTTER",
+      "NIGHT_SLASH",
+      "CUT"
+    ],
+    "info": {
+      "catch_rate": 90,
+      "base_exp": 157,
+      "items": [
+        "NO_ITEM",
+        "NO_ITEM"
+      ],
+      "gender": "50% male, 50% female",
+      "egg_cycles": 20,
+      "growth": "Medium Fast",
+      "egg_groups": [
+        "Mineral"
+      ]
+    },
+    "sprite": "assets/pokemon/doublade.png",
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK",
+      "REFLECT"
+    ],
+    "blackthorn_tutor_moves": [
+      "HEADBUTT",
+      "RAZOR_WIND",
+      "ZEN_HEADBUTT",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
+      "DOUBLE_TEAM",
+      "ENDURE",
+      "FALSE_SWIPE",
+      "FRUSTRATION",
+      "GYRO_BALL",
+      "PSYCHO_CUT",
+      "PURSUIT",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "SCREECH",
+      "SHADOW_CLAW",
+      "SNORE",
+      "SOLAR_BLADE",
+      "SPITE"
+    ],
+    "evolves_from": {
+      "const": "HONEDGE",
+      "name": "Honedge",
+      "slug": "honedge",
+      "text": "Level 35"
+    },
+    "original_types": [
+      "Steel",
+      "Ghost"
+    ],
+    "updated_types": [
+      "Steel",
+      "Ghost"
+    ],
+    "updated_stats": {
+      "HP": 59,
+      "Attack": 110,
+      "Defense": 150,
+      "Speed": 35,
+      "Sp. Atk": 45,
+      "Sp. Def": 49
+    },
+    "original_stats": {
+      "HP": 59,
+      "Attack": 110,
+      "Defense": 150,
+      "Speed": 35,
+      "Sp. Atk": 45,
+      "Sp. Def": 49
+    },
+    "original_stats_source": "modern main games",
+    "sprite_size": 48,
+    "back": "assets/pokemon/doublade.back.png",
+    "back_size": 48,
+    "anim": {
+      "sheet": "assets/pokemon/doublade.sheet.png",
+      "size": 48,
+      "frames": 3,
+      "main": [
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "idle": [
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          6
+        ]
+      ],
+      "gap": 18
+    },
+    "tmhm_labeled": [
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM18",
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM23",
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "tm": "TM34",
+        "const": "FLASH_CANNON",
+        "move": "Flash Cannon"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM45",
+        "const": "ATTRACT",
+        "move": "Attract"
+      },
+      {
+        "tm": "TM49",
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "tm": "HM01",
+        "const": "CUT",
+        "move": "Cut"
+      }
+    ]
+  },
+  {
+    "const": "AEGISLASH",
+    "name": "Aegislash",
+    "number": 425,
+    "stats": {
+      "HP": 60,
+      "Attack": 50,
+      "Defense": 140,
+      "Speed": 60,
+      "Sp. Atk": 50,
+      "Sp. Def": 140
+    },
+    "types": [
+      "Steel",
+      "Ghost"
+    ],
+    "abilities": [
+      "Stance Change"
+    ],
+    "ability_slots": [
+      {
+        "name": "Stance Change",
+        "slot": 1
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "AERIAL_ACE",
+        "move": "Aerial Ace"
+      },
+      {
+        "level": 1,
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "level": 1,
+        "const": "HEAD_SMASH",
+        "move": "Head Smash"
+      },
+      {
+        "level": 1,
+        "const": "IRON_DEFENSE",
+        "move": "Iron Defense"
+      },
+      {
+        "level": 1,
+        "const": "IRON_HEAD",
+        "move": "Iron Head"
+      },
+      {
+        "level": 1,
+        "const": "KINGS_SHIELD",
+        "move": "King Shield"
+      },
+      {
+        "level": 1,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 1,
+        "const": "SACRED_SWORD",
+        "move": "Sacred Sword"
+      },
+      {
+        "level": 1,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
+      },
+      {
+        "level": 1,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 1,
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
+      },
+      {
+        "level": 1,
+        "const": "TACKLE",
+        "move": "Tackle"
       }
     ],
     "evolutions": [],
     "egg_moves": [
-      "FISSURE",
-      "ROCK_SLIDE",
-      "SIGNAL_BEAM",
-      "SLEEP_TALK",
-      "YAWN",
-      "BELLY_DRUM",
-      "CURSE",
-      "ROLLOUT",
-      "WATER_PULSE"
+      "DESTINY_BOND",
+      "SHADOW_SNEAK"
     ],
     "tmhm": [
-      "HEADBUTT",
-      "CURSE",
-      "ROCK_TOMB",
-      "ROAR",
       "TOXIC",
       "ROCK_SMASH",
       "HIDDEN_POWER",
-      "BLIZZARD",
+      "SUNNY_DAY",
       "HYPER_BEAM",
       "PROTECT",
       "RAIN_DANCE",
       "FACADE",
       "IRON_HEAD",
-      "EARTHQUAKE",
       "RETURN",
-      "MUD_SLAP",
+      "SHADOW_BALL",
       "SWAGGER",
+      "FLASH_CANNON",
       "REST",
       "ATTRACT",
       "FURY_CUTTER",
-      "SURF",
-      "STRENGTH",
-      "WHIRLPOOL",
-      "WATERFALL",
-      "ICE_BEAM"
+      "NIGHT_SLASH",
+      "CUT"
     ],
     "info": {
       "catch_rate": 45,
-      "base_exp": 255,
+      "base_exp": 234,
       "items": [
         "NO_ITEM",
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
       "egg_cycles": 20,
-      "growth": "Medium Slow",
+      "growth": "Medium Fast",
       "egg_groups": [
-        "Water 1",
-        "Field"
+        "Mineral"
       ]
     },
-    "sprite": "assets/pokemon/walrein.png",
+    "sprite": "assets/pokemon/aegislash.png",
     "tutor_moves": [
       "SUBSTITUTE",
-      "SLEEP_TALK"
+      "SLEEP_TALK",
+      "REFLECT"
     ],
     "blackthorn_tutor_moves": [
-      "BULLDOZE",
-      "CHARM",
-      "DOUBLE_EDGE",
+      "HEADBUTT",
+      "OMINOUS_WIND",
+      "RAZOR_WIND",
+      "ZEN_HEADBUTT",
+      "AIR_SLASH",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
       "DOUBLE_TEAM",
       "ENDURE",
+      "FALSE_SWIPE",
       "FRUSTRATION",
       "GIGA_IMPACT",
-      "HEAVY_SLAM",
-      "ICICLE_SPEAR",
-      "ICY_WIND",
-      "IRON_TAIL",
-      "MIMIC",
-      "SUPER_FANG",
-      "SWORDS_DANCE"
+      "GYRO_BALL",
+      "PSYCHO_CUT",
+      "PURSUIT",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "SCREECH",
+      "SHADOW_CLAW",
+      "SNORE",
+      "SOLAR_BLADE",
+      "SPITE"
     ],
     "evolves_from": {
-      "const": "SEALEO",
-      "name": "Sealeo",
-      "slug": "sealeo",
-      "text": "Level 38"
+      "const": "DOUBLADE",
+      "name": "Doublade",
+      "slug": "doublade",
+      "text": "Use a Dusk Stone"
     },
     "original_types": [
-      "Ice",
-      "Water"
+      "Steel",
+      "Ghost"
     ],
     "updated_types": [
-      "Ice",
-      "Water"
+      "Steel",
+      "Ghost"
     ],
     "updated_stats": {
-      "HP": 110,
-      "Attack": 80,
-      "Defense": 90,
-      "Speed": 65,
-      "Sp. Atk": 95,
-      "Sp. Def": 90
+      "HP": 60,
+      "Attack": 50,
+      "Defense": 140,
+      "Speed": 60,
+      "Sp. Atk": 50,
+      "Sp. Def": 140
     },
     "original_stats": {
-      "HP": 110,
-      "Attack": 80,
-      "Defense": 90,
-      "Speed": 65,
-      "Sp. Atk": 95,
-      "Sp. Def": 90
+      "HP": 60,
+      "Attack": 50,
+      "Defense": 140,
+      "Speed": 60,
+      "Sp. Atk": 50,
+      "Sp. Def": 140
     },
     "original_stats_source": "modern main games",
     "sprite_size": 56,
-    "back": "assets/pokemon/walrein.back.png",
+    "back": "assets/pokemon/aegislash.back.png",
     "back_size": 48,
     "anim": {
-      "sheet": "assets/pokemon/walrein.sheet.png",
+      "sheet": "assets/pokemon/aegislash.sheet.png",
       "size": 56,
-      "frames": 5,
+      "frames": 3,
       "main": [
         [
+          1,
+          6
+        ],
+        [
           0,
-          10
+          6
         ],
         [
           1,
-          10
-        ],
-        [
-          2,
-          10
-        ],
-        [
-          3,
-          10
-        ],
-        [
-          4,
-          10
-        ],
-        [
-          3,
-          10
-        ],
-        [
-          4,
-          10
-        ],
-        [
-          3,
-          10
+          6
         ],
         [
           0,
-          10
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          6
         ]
       ],
       "idle": [
         [
-          0,
-          16
+          1,
+          6
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          6
         ]
       ],
       "gap": 18
     },
     "tmhm_labeled": [
-      {
-        "tm": "TM02",
-        "const": "HEADBUTT",
-        "move": "Headbutt"
-      },
-      {
-        "tm": "TM03",
-        "const": "CURSE",
-        "move": "Curse"
-      },
-      {
-        "tm": "TM04",
-        "const": "ROCK_TOMB",
-        "move": "Rock Tomb"
-      },
-      {
-        "tm": "TM05",
-        "const": "ROAR",
-        "move": "Roar"
-      },
       {
         "tm": "TM06",
         "const": "TOXIC",
@@ -196144,9 +196189,9 @@
         "move": "Hidden Power"
       },
       {
-        "tm": "TM14",
-        "const": "BLIZZARD",
-        "move": "Blizzard"
+        "tm": "TM11",
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
       },
       {
         "tm": "TM15",
@@ -196174,24 +196219,24 @@
         "move": "Iron Head"
       },
       {
-        "tm": "TM26",
-        "const": "EARTHQUAKE",
-        "move": "Earthquake"
-      },
-      {
         "tm": "TM27",
         "const": "RETURN",
         "move": "Return"
       },
       {
-        "tm": "TM31",
-        "const": "MUD_SLAP",
-        "move": "Mud-Slap"
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
       },
       {
         "tm": "TM32",
         "const": "SWAGGER",
         "move": "Swagger"
+      },
+      {
+        "tm": "TM34",
+        "const": "FLASH_CANNON",
+        "move": "Flash Cannon"
       },
       {
         "tm": "TM44",
@@ -196209,36 +196254,21 @@
         "move": "Fury Cutter"
       },
       {
-        "tm": "HM03",
-        "const": "SURF",
-        "move": "Surf"
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
       },
       {
-        "tm": "HM04",
-        "const": "STRENGTH",
-        "move": "Strength"
-      },
-      {
-        "tm": "HM06",
-        "const": "WHIRLPOOL",
-        "move": "Whirlpool"
-      },
-      {
-        "tm": "HM07",
-        "const": "WATERFALL",
-        "move": "Waterfall"
-      },
-      {
-        "tm": "Tutor",
-        "const": "ICE_BEAM",
-        "move": "Ice Beam"
+        "tm": "HM01",
+        "const": "CUT",
+        "move": "Cut"
       }
     ]
   },
   {
     "const": "TEDDIURSABM",
     "name": "Teddiursa",
-    "number": 424,
+    "number": 426,
     "stats": {
       "HP": 60,
       "Attack": 80,
@@ -196716,7 +196746,7 @@
   {
     "const": "URSARINGBM",
     "name": "Ursaring",
-    "number": 425,
+    "number": 427,
     "stats": {
       "HP": 90,
       "Attack": 75,
@@ -196780,9 +196810,19 @@
         "move": "Sweet Scent"
       },
       {
+        "level": 22,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
         "level": 30,
         "const": "WORK_UP",
         "move": "Work Up"
+      },
+      {
+        "level": 33,
+        "const": "MUD_SHOT",
+        "move": "Mud Shot"
       },
       {
         "level": 35,
@@ -196793,6 +196833,11 @@
         "level": 36,
         "const": "HYPER_VOICE",
         "move": "Hyper Voice"
+      },
+      {
+        "level": 39,
+        "const": "BODY_SLAM",
+        "move": "Body Slam"
       },
       {
         "level": 41,
@@ -197176,7 +197221,7 @@
   {
     "const": "URSALUNABM",
     "name": "Ursaluna",
-    "number": 426,
+    "number": 428,
     "stats": {
       "HP": 113,
       "Attack": 70,
@@ -197577,7 +197622,7 @@
   {
     "const": "CETODDLE",
     "name": "Cetoddle",
-    "number": 427,
+    "number": 429,
     "stats": {
       "HP": 108,
       "Attack": 68,
@@ -197940,7 +197985,7 @@
   {
     "const": "CETITAN",
     "name": "Cetitan",
-    "number": 428,
+    "number": 430,
     "stats": {
       "HP": 170,
       "Attack": 113,
@@ -198289,7 +198334,7 @@
   {
     "const": "CORSOLA_GALARIAN",
     "name": "Corsola",
-    "number": 429,
+    "number": 431,
     "stats": {
       "HP": 60,
       "Attack": 55,
@@ -198728,7 +198773,7 @@
   {
     "const": "CURSOLA",
     "name": "Cursola",
-    "number": 430,
+    "number": 432,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -199190,7 +199235,7 @@
   {
     "const": "RATTATA_ALOLAN",
     "name": "Rattata",
-    "number": 431,
+    "number": 433,
     "stats": {
       "HP": 30,
       "Attack": 56,
@@ -199607,7 +199652,7 @@
   {
     "const": "RATICATE_ALOLAN",
     "name": "Raticate",
-    "number": 432,
+    "number": 434,
     "stats": {
       "HP": 80,
       "Attack": 88,
@@ -200064,7 +200109,7 @@
   {
     "const": "RAICHU_ALOLAN",
     "name": "Raichu",
-    "number": 433,
+    "number": 435,
     "stats": {
       "HP": 60,
       "Attack": 85,
@@ -200578,7 +200623,7 @@
   {
     "const": "SANDSHREW_ALOLAN",
     "name": "Sandshrew",
-    "number": 434,
+    "number": 436,
     "stats": {
       "HP": 50,
       "Attack": 75,
@@ -201106,7 +201151,7 @@
   {
     "const": "SANDSLASH_ALOLAN",
     "name": "Sandslash",
-    "number": 435,
+    "number": 437,
     "stats": {
       "HP": 85,
       "Attack": 100,
@@ -201630,7 +201675,7 @@
   {
     "const": "VULPIX_ALOLAN",
     "name": "Vulpix",
-    "number": 436,
+    "number": 438,
     "stats": {
       "HP": 38,
       "Attack": 41,
@@ -202069,7 +202114,7 @@
   {
     "const": "NINETALES_ALOLAN",
     "name": "Ninetales",
-    "number": 437,
+    "number": 439,
     "stats": {
       "HP": 73,
       "Attack": 67,
@@ -202518,7 +202563,7 @@
   {
     "const": "DIGLETT_ALOLAN",
     "name": "Diglett",
-    "number": 438,
+    "number": 440,
     "stats": {
       "HP": 10,
       "Attack": 55,
@@ -202938,7 +202983,7 @@
   {
     "const": "DUGTRIO_ALOLAN",
     "name": "Dugtrio",
-    "number": 439,
+    "number": 441,
     "stats": {
       "HP": 60,
       "Attack": 100,
@@ -203390,7 +203435,7 @@
   {
     "const": "MEOWTH_ALOLAN",
     "name": "Meowth",
-    "number": 440,
+    "number": 442,
     "stats": {
       "HP": 40,
       "Attack": 35,
@@ -203815,7 +203860,7 @@
   {
     "const": "PERSIAN_ALOLAN",
     "name": "Persian",
-    "number": 441,
+    "number": 443,
     "stats": {
       "HP": 70,
       "Attack": 70,
@@ -204284,7 +204329,7 @@
   {
     "const": "GEODUDE_ALOLAN",
     "name": "Geodude",
-    "number": 442,
+    "number": 444,
     "stats": {
       "HP": 40,
       "Attack": 80,
@@ -204726,7 +204771,7 @@
   {
     "const": "GRAVELER_ALOLAN",
     "name": "Graveler",
-    "number": 443,
+    "number": 445,
     "stats": {
       "HP": 55,
       "Attack": 95,
@@ -205220,7 +205265,7 @@
   {
     "const": "GOLEM_ALOLAN",
     "name": "Golem",
-    "number": 444,
+    "number": 446,
     "stats": {
       "HP": 80,
       "Attack": 120,
@@ -205712,7 +205757,7 @@
   {
     "const": "GRIMER_ALOLAN",
     "name": "Grimer",
-    "number": 445,
+    "number": 447,
     "stats": {
       "HP": 80,
       "Attack": 80,
@@ -206171,7 +206216,7 @@
   {
     "const": "MUK_ALOLAN",
     "name": "Muk",
-    "number": 446,
+    "number": 448,
     "stats": {
       "HP": 105,
       "Attack": 105,
@@ -206646,7 +206691,7 @@
   {
     "const": "EXEGGUTOR_ALOLAN",
     "name": "Exeggutor",
-    "number": 447,
+    "number": 449,
     "stats": {
       "HP": 95,
       "Attack": 125,
@@ -207179,7 +207224,7 @@
   {
     "const": "MAROWAK_ALOLAN",
     "name": "Marowak",
-    "number": 448,
+    "number": 450,
     "stats": {
       "HP": 60,
       "Attack": 80,
@@ -207750,7 +207795,7 @@
   {
     "const": "MEOWTH_GALARIAN",
     "name": "Meowth",
-    "number": 449,
+    "number": 451,
     "stats": {
       "HP": 50,
       "Attack": 65,
@@ -208207,7 +208252,7 @@
   {
     "const": "PERRSERKER",
     "name": "Perrserker",
-    "number": 450,
+    "number": 452,
     "stats": {
       "HP": 85,
       "Attack": 110,
@@ -208684,7 +208729,7 @@
   {
     "const": "PONYTA_GALARIAN",
     "name": "Ponyta",
-    "number": 451,
+    "number": 453,
     "stats": {
       "HP": 50,
       "Attack": 85,
@@ -208735,11 +208780,6 @@
         "level": 8,
         "const": "FAIRY_WIND",
         "move": "Fairy Wind"
-      },
-      {
-        "level": 8,
-        "const": "PIXIE_PUNCH",
-        "move": "Pixie Punch"
       },
       {
         "level": 10,
@@ -209020,7 +209060,7 @@
   {
     "const": "RAPIDASH_GALARIAN",
     "name": "Rapidash",
-    "number": 452,
+    "number": 454,
     "stats": {
       "HP": 65,
       "Attack": 105,
@@ -209087,11 +209127,6 @@
         "level": 1,
         "const": "TACKLE",
         "move": "Tackle"
-      },
-      {
-        "level": 1,
-        "const": "PIXIE_PUNCH",
-        "move": "Pixie Punch"
       },
       {
         "level": 1,
@@ -209456,7 +209491,7 @@
   {
     "const": "SLOWPOKE_GALARIAN",
     "name": "Slowpoke",
-    "number": 453,
+    "number": 455,
     "stats": {
       "HP": 90,
       "Attack": 65,
@@ -209938,7 +209973,7 @@
   {
     "const": "SLOWBRO_GALARIAN",
     "name": "Slowbro",
-    "number": 454,
+    "number": 456,
     "stats": {
       "HP": 95,
       "Attack": 100,
@@ -210531,7 +210566,7 @@
   {
     "const": "SLOWKING_GALARIAN",
     "name": "Slowking",
-    "number": 455,
+    "number": 457,
     "stats": {
       "HP": 95,
       "Attack": 65,
@@ -211111,7 +211146,7 @@
   {
     "const": "WEEZING_GALARIAN",
     "name": "Weezing",
-    "number": 456,
+    "number": 458,
     "stats": {
       "HP": 65,
       "Attack": 80,
@@ -211551,7 +211586,7 @@
   {
     "const": "GROWLITHE_HISUIAN",
     "name": "Growlithe",
-    "number": 457,
+    "number": 459,
     "stats": {
       "HP": 60,
       "Attack": 75,
@@ -211965,7 +212000,7 @@
   {
     "const": "ARCANINE_HISUIAN",
     "name": "Arcanine",
-    "number": 458,
+    "number": 460,
     "stats": {
       "HP": 95,
       "Attack": 120,
@@ -212444,7 +212479,7 @@
   {
     "const": "VOLTORB_HISUIAN",
     "name": "Voltorb",
-    "number": 459,
+    "number": 461,
     "stats": {
       "HP": 40,
       "Attack": 30,
@@ -212892,7 +212927,7 @@
   {
     "const": "ELECTRODE_HISUIAN",
     "name": "Electrode",
-    "number": 460,
+    "number": 462,
     "stats": {
       "HP": 60,
       "Attack": 50,
@@ -213336,7 +213371,7 @@
   {
     "const": "TYPHLOSION_HISUIAN",
     "name": "Typhlosion",
-    "number": 461,
+    "number": 463,
     "stats": {
       "HP": 73,
       "Attack": 84,
@@ -213911,7 +213946,7 @@
   {
     "const": "SNEASEL_HISUIAN",
     "name": "Sneasel",
-    "number": 462,
+    "number": 464,
     "stats": {
       "HP": 55,
       "Attack": 95,
@@ -214461,7 +214496,7 @@
   {
     "const": "SNEASLER",
     "name": "Sneasler",
-    "number": 463,
+    "number": 465,
     "stats": {
       "HP": 80,
       "Attack": 130,
@@ -215003,7 +215038,7 @@
   {
     "const": "WOOPER_PALDEAN",
     "name": "Wooper",
-    "number": 464,
+    "number": 466,
     "stats": {
       "HP": 55,
       "Attack": 55,
@@ -215391,7 +215426,7 @@
   {
     "const": "CLODSIRE",
     "name": "Clodsire",
-    "number": 465,
+    "number": 467,
     "stats": {
       "HP": 130,
       "Attack": 75,
@@ -215779,7 +215814,7 @@
   {
     "const": "TAUROS_PALDEAN_FIRE",
     "name": "Tauros",
-    "number": 466,
+    "number": 468,
     "stats": {
       "HP": 75,
       "Attack": 115,
@@ -216281,7 +216316,7 @@
   {
     "const": "TAUROS_PALDEAN_WATER",
     "name": "Tauros",
-    "number": 467,
+    "number": 469,
     "stats": {
       "HP": 75,
       "Attack": 115,
@@ -216775,7 +216810,7 @@
   {
     "const": "BOUNSWEET",
     "name": "Bounsweet",
-    "number": 468,
+    "number": 470,
     "stats": {
       "HP": 42,
       "Attack": 30,
@@ -217098,7 +217133,7 @@
   {
     "const": "STEENEE",
     "name": "Steenee",
-    "number": 469,
+    "number": 471,
     "stats": {
       "HP": 52,
       "Attack": 40,
@@ -217445,7 +217480,7 @@
   {
     "const": "TSAREENA",
     "name": "Tsareena",
-    "number": 470,
+    "number": 472,
     "stats": {
       "HP": 72,
       "Attack": 120,
@@ -217822,7 +217857,7 @@
   {
     "const": "ARON",
     "name": "Aron",
-    "number": 471,
+    "number": 473,
     "stats": {
       "HP": 50,
       "Attack": 70,
@@ -218247,7 +218282,7 @@
   {
     "const": "LAIRON",
     "name": "Lairon",
-    "number": 472,
+    "number": 474,
     "stats": {
       "HP": 60,
       "Attack": 90,
@@ -218695,7 +218730,7 @@
   {
     "const": "AGGRON",
     "name": "Aggron",
-    "number": 473,
+    "number": 475,
     "stats": {
       "HP": 80,
       "Attack": 110,
@@ -219261,7 +219296,7 @@
   {
     "const": "GLIMMET",
     "name": "Glimmet",
-    "number": 474,
+    "number": 476,
     "stats": {
       "HP": 48,
       "Attack": 35,
@@ -219568,7 +219603,7 @@
   {
     "const": "GLIMMORA",
     "name": "Glimmora",
-    "number": 475,
+    "number": 477,
     "stats": {
       "HP": 83,
       "Attack": 55,
@@ -219901,7 +219936,7 @@
   {
     "const": "MAREANIE",
     "name": "Mareanie",
-    "number": 476,
+    "number": 478,
     "stats": {
       "HP": 50,
       "Attack": 53,
@@ -220242,7 +220277,7 @@
   {
     "const": "TOXAPEX",
     "name": "Toxapex",
-    "number": 477,
+    "number": 479,
     "stats": {
       "HP": 50,
       "Attack": 63,
@@ -220616,7 +220651,7 @@
   {
     "const": "ZANGOOSE",
     "name": "Zangoose",
-    "number": 478,
+    "number": 480,
     "stats": {
       "HP": 75,
       "Attack": 125,
@@ -221189,7 +221224,7 @@
   {
     "const": "SEVIPER",
     "name": "Seviper",
-    "number": 479,
+    "number": 481,
     "stats": {
       "HP": 75,
       "Attack": 115,
@@ -221667,7 +221702,7 @@
   {
     "const": "SHUPPET",
     "name": "Shuppet",
-    "number": 480,
+    "number": 482,
     "stats": {
       "HP": 44,
       "Attack": 75,
@@ -222109,7 +222144,7 @@
   {
     "const": "BANETTE",
     "name": "Banette",
-    "number": 481,
+    "number": 483,
     "stats": {
       "HP": 64,
       "Attack": 125,
@@ -222570,7 +222605,7 @@
   {
     "const": "ARCHEN",
     "name": "Archen",
-    "number": 482,
+    "number": 484,
     "stats": {
       "HP": 55,
       "Attack": 112,
@@ -223013,7 +223048,7 @@
   {
     "const": "ARCHEOPS",
     "name": "Archeops",
-    "number": 483,
+    "number": 485,
     "stats": {
       "HP": 75,
       "Attack": 135,
@@ -223501,7 +223536,7 @@
   {
     "const": "TIRTOUGA",
     "name": "Tirtouga",
-    "number": 484,
+    "number": 486,
     "stats": {
       "HP": 54,
       "Attack": 78,
@@ -223937,7 +223972,7 @@
   {
     "const": "CARRACOSTA",
     "name": "Carracosta",
-    "number": 485,
+    "number": 487,
     "stats": {
       "HP": 70,
       "Attack": 117,
@@ -224404,7 +224439,7 @@
   {
     "const": "LITWICK",
     "name": "Litwick",
-    "number": 486,
+    "number": 488,
     "stats": {
       "HP": 50,
       "Attack": 30,
@@ -224805,7 +224840,7 @@
   {
     "const": "LAMPENT",
     "name": "Lampent",
-    "number": 487,
+    "number": 489,
     "stats": {
       "HP": 60,
       "Attack": 40,
@@ -225219,7 +225254,7 @@
   {
     "const": "CHANDELURE",
     "name": "Chandelure",
-    "number": 488,
+    "number": 490,
     "stats": {
       "HP": 60,
       "Attack": 55,
@@ -225677,7 +225712,7 @@
   {
     "const": "JOLTIK",
     "name": "Joltik",
-    "number": 489,
+    "number": 491,
     "stats": {
       "HP": 50,
       "Attack": 47,
@@ -226067,7 +226102,7 @@
   {
     "const": "GALVANTULA",
     "name": "Galvantula",
-    "number": 490,
+    "number": 492,
     "stats": {
       "HP": 70,
       "Attack": 77,
@@ -226437,7 +226472,7 @@
   {
     "const": "MAWILE",
     "name": "Mawile",
-    "number": 491,
+    "number": 493,
     "stats": {
       "HP": 60,
       "Attack": 60,
@@ -226885,7 +226920,7 @@
   {
     "const": "NOIBAT",
     "name": "Noibat",
-    "number": 492,
+    "number": 494,
     "stats": {
       "HP": 40,
       "Attack": 30,
@@ -227307,7 +227342,7 @@
   {
     "const": "NOIVERN",
     "name": "Noivern",
-    "number": 493,
+    "number": 495,
     "stats": {
       "HP": 85,
       "Attack": 60,
@@ -227788,7 +227823,7 @@
   {
     "const": "SALANDIT",
     "name": "Salandit",
-    "number": 494,
+    "number": 496,
     "stats": {
       "HP": 48,
       "Attack": 44,
@@ -228225,7 +228260,7 @@
   {
     "const": "SALAZZLE",
     "name": "Salazzle",
-    "number": 495,
+    "number": 497,
     "stats": {
       "HP": 68,
       "Attack": 64,
@@ -228727,28 +228762,29 @@
     ]
   },
   {
-    "const": "FLITTLE",
-    "name": "Flittle",
-    "number": 496,
+    "const": "SABLEYE",
+    "name": "Sableye",
+    "number": 498,
     "stats": {
-      "HP": 30,
-      "Attack": 35,
-      "Defense": 30,
-      "Speed": 75,
-      "Sp. Atk": 55,
-      "Sp. Def": 30
+      "HP": 60,
+      "Attack": 75,
+      "Defense": 100,
+      "Speed": 50,
+      "Sp. Atk": 75,
+      "Sp. Def": 100
     },
     "types": [
-      "Psychic"
+      "Dark",
+      "Ghost"
     ],
     "abilities": [
-      "Frisk",
+      "Magic Bounce",
       "Keen Eye",
-      "Speed Boost"
+      "Prankster"
     ],
     "ability_slots": [
       {
-        "name": "Frisk",
+        "name": "Magic Bounce",
         "slot": 1
       },
       {
@@ -228756,519 +228792,281 @@
         "slot": 2
       },
       {
-        "name": "Speed Boost",
+        "name": "Prankster",
         "slot": 3
       }
     ],
     "learnset": [
       {
         "level": 1,
-        "const": "CONFUSION",
-        "move": "Confusion"
+        "const": "LEER",
+        "move": "Leer"
       },
       {
         "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
+        "const": "SCRATCH",
+        "move": "Scratch"
       },
       {
-        "level": 1,
-        "const": "PECK",
-        "move": "Peck"
+        "level": 4,
+        "const": "FORESIGHT",
+        "move": "Foresight"
       },
       {
-        "level": 10,
+        "level": 4,
+        "const": "NIGHT_SHADE",
+        "move": "Night Shade"
+      },
+      {
+        "level": 7,
+        "const": "ASTONISH",
+        "move": "Astonish"
+      },
+      {
+        "level": 11,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 13,
+        "const": "DETECT",
+        "move": "Detect"
+      },
+      {
+        "level": 15,
+        "const": "SHADOW_SNEAK",
+        "move": "Shadow Sneak"
+      },
+      {
+        "level": 17,
+        "const": "DISABLE",
+        "move": "Disable"
+      },
+      {
+        "level": 19,
+        "const": "FAINT_ATTACK",
+        "move": "Feint Attack"
+      },
+      {
+        "level": 21,
+        "const": "FAKE_OUT",
+        "move": "Fake Out"
+      },
+      {
+        "level": 25,
+        "const": "SHADOW_CLAW",
+        "move": "Shadow Claw"
+      },
+      {
+        "level": 27,
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "level": 31,
         "const": "CONFUSE_RAY",
         "move": "Confuse Ray"
       },
       {
-        "level": 11,
-        "const": "DISARMING_VOICE",
-        "move": "Disarming Voice"
-      },
-      {
-        "level": 15,
-        "const": "PSYBEAM",
-        "move": "Psybeam"
-      },
-      {
-        "level": 25,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 30,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 34,
-        "const": "SKILL_SWAP",
-        "move": "Skill Swap"
-      },
-      {
-        "level": 36,
-        "const": "TRICK",
-        "move": "Trick"
-      },
-      {
-        "level": 38,
-        "const": "TRICK_ROOM",
-        "move": "Trick Room"
-      },
-      {
-        "level": 40,
-        "const": "CALM_MIND",
-        "move": "Calm Mind"
-      },
-      {
-        "level": 45,
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
-      }
-    ],
-    "evolutions": [
-      {
-        "method": "EVOLVE_LEVEL",
-        "args": [
-          "35"
-        ],
-        "target": "ESPATHRA",
-        "text": "Level 35",
-        "target_name": "Espathra",
-        "target_slug": "espathra"
-      }
-    ],
-    "egg_moves": [
-      "ROOST",
-      "DISARMING_VOICE",
-      "HYPNOSIS"
-    ],
-    "tmhm": [
-      "SUNNY_DAY",
-      "PROTECT",
-      "RAIN_DANCE",
-      "FACADE",
-      "PSYCHIC_M",
-      "MUD_SLAP",
-      "SANDSTORM",
-      "SWIFT",
-      "REST",
-      "THIEF",
-      "ZEN_HEADBUTT"
-    ],
-    "info": {
-      "catch_rate": 120,
-      "base_exp": 51,
-      "items": [
-        "NO_ITEM",
-        "NO_ITEM"
-      ],
-      "gender": "50% male, 50% female",
-      "egg_cycles": 20,
-      "growth": "Medium Slow",
-      "egg_groups": [
-        "Flying"
-      ]
-    },
-    "sprite": "assets/pokemon/flittle.png",
-    "tutor_moves": [
-      "SUBSTITUTE",
-      "SLEEP_TALK",
-      "REFLECT",
-      "LIGHT_SCREEN"
-    ],
-    "blackthorn_tutor_moves": [
-      "BATON_PASS",
-      "ENDURE",
-      "FOUL_PLAY",
-      "PSYSHOCK",
-      "SEED_BOMB",
-      "TAKE_DOWN",
-      "U_TURN"
-    ],
-    "evolves_from": null,
-    "original_types": [
-      "Psychic"
-    ],
-    "updated_types": [
-      "Psychic"
-    ],
-    "updated_stats": {
-      "HP": 30,
-      "Attack": 35,
-      "Defense": 30,
-      "Speed": 75,
-      "Sp. Atk": 55,
-      "Sp. Def": 30
-    },
-    "original_stats": {
-      "HP": 30,
-      "Attack": 35,
-      "Defense": 30,
-      "Speed": 75,
-      "Sp. Atk": 55,
-      "Sp. Def": 30
-    },
-    "original_stats_source": "modern main games",
-    "sprite_size": 40,
-    "back": "assets/pokemon/flittle.back.png",
-    "back_size": 48,
-    "anim": {
-      "sheet": "assets/pokemon/flittle.sheet.png",
-      "size": 40,
-      "frames": 4,
-      "main": [
-        [
-          0,
-          5
-        ],
-        [
-          1,
-          8
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          0,
-          5
-        ],
-        [
-          1,
-          8
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          0,
-          5
-        ],
-        [
-          1,
-          8
-        ],
-        [
-          2,
-          6
-        ]
-      ],
-      "idle": [
-        [
-          0,
-          6
-        ],
-        [
-          3,
-          6
-        ],
-        [
-          0,
-          6
-        ],
-        [
-          3,
-          6
-        ],
-        [
-          0,
-          6
-        ],
-        [
-          3,
-          6
-        ]
-      ],
-      "gap": 18
-    },
-    "tmhm_labeled": [
-      {
-        "tm": "TM11",
-        "const": "SUNNY_DAY",
-        "move": "Sunny Day"
-      },
-      {
-        "tm": "TM17",
-        "const": "PROTECT",
-        "move": "Protect"
-      },
-      {
-        "tm": "TM18",
-        "const": "RAIN_DANCE",
-        "move": "Rain Dance"
-      },
-      {
-        "tm": "TM21",
-        "const": "FACADE",
-        "move": "Facade"
-      },
-      {
-        "tm": "TM29",
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
-      },
-      {
-        "tm": "TM31",
-        "const": "MUD_SLAP",
-        "move": "Mud-Slap"
-      },
-      {
-        "tm": "TM37",
-        "const": "SANDSTORM",
-        "move": "Sandstorm"
-      },
-      {
-        "tm": "TM39",
-        "const": "SWIFT",
-        "move": "Swift"
-      },
-      {
-        "tm": "TM44",
-        "const": "REST",
-        "move": "Rest"
-      },
-      {
-        "tm": "TM46",
-        "const": "THIEF",
-        "move": "Thief"
-      },
-      {
-        "tm": "TM52",
+        "level": 33,
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
-      }
-    ]
-  },
-  {
-    "const": "ESPATHRA",
-    "name": "Espathra",
-    "number": 497,
-    "stats": {
-      "HP": 95,
-      "Attack": 60,
-      "Defense": 60,
-      "Speed": 105,
-      "Sp. Atk": 101,
-      "Sp. Def": 60
-    },
-    "types": [
-      "Psychic"
-    ],
-    "abilities": [
-      "Competitive",
-      "Frisk",
-      "Speed Boost"
-    ],
-    "ability_slots": [
-      {
-        "name": "Competitive",
-        "slot": 1
-      },
-      {
-        "name": "Frisk",
-        "slot": 2
-      },
-      {
-        "name": "Speed Boost",
-        "slot": 3
-      }
-    ],
-    "learnset": [
-      {
-        "level": 1,
-        "const": "CONFUSION",
-        "move": "Confusion"
-      },
-      {
-        "level": 1,
-        "const": "GROWL",
-        "move": "Growl"
-      },
-      {
-        "level": 1,
-        "const": "LUMINA_CRASH",
-        "move": "Lumina Crash"
-      },
-      {
-        "level": 1,
-        "const": "DRILL_PECK",
-        "move": "Drill Peck"
-      },
-      {
-        "level": 1,
-        "const": "PECK",
-        "move": "Peck"
-      },
-      {
-        "level": 10,
-        "const": "CONFUSE_RAY",
-        "move": "Confuse Ray"
-      },
-      {
-        "level": 11,
-        "const": "DISARMING_VOICE",
-        "move": "Disarming Voice"
-      },
-      {
-        "level": 15,
-        "const": "PSYBEAM",
-        "move": "Psybeam"
-      },
-      {
-        "level": 25,
-        "const": "QUICK_ATTACK",
-        "move": "Quick Attack"
-      },
-      {
-        "level": 30,
-        "const": "AGILITY",
-        "move": "Agility"
-      },
-      {
-        "level": 30,
-        "const": "U_TURN",
-        "move": "U-turn"
-      },
-      {
-        "level": 34,
-        "const": "SKILL_SWAP",
-        "move": "Skill Swap"
       },
       {
         "level": 35,
-        "const": "LIGHT_SCREEN",
-        "move": "Light Screen"
+        "const": "POWER_GEM",
+        "move": "Power Gem"
       },
       {
-        "level": 36,
+        "level": 37,
+        "const": "SUCKER_PUNCH",
+        "move": "Sucker Punch"
+      },
+      {
+        "level": 39,
         "const": "TRICK",
         "move": "Trick"
       },
       {
-        "level": 38,
-        "const": "TRICK_ROOM",
-        "move": "Trick Room"
+        "level": 41,
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
       },
       {
-        "level": 40,
-        "const": "HYPER_VOICE",
-        "move": "Hyper Voice"
+        "level": 43,
+        "const": "MEAN_LOOK",
+        "move": "Mean Look"
       },
       {
         "level": 45,
-        "const": "CALM_MIND",
-        "move": "Calm Mind"
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
       },
       {
-        "level": 50,
-        "const": "PSYCHIC_M",
-        "move": "Psychic"
+        "level": 47,
+        "const": "RECOVER",
+        "move": "Recover"
       },
       {
-        "level": 56,
-        "const": "DAZZLING_GLEAM",
-        "move": "Dazzling Gleam"
+        "level": 48,
+        "const": "FOUL_PLAY",
+        "move": "Foul Play"
       }
     ],
     "evolutions": [],
     "egg_moves": [
-      "ROOST",
-      "DISARMING_VOICE",
-      "HYPNOSIS"
+      "MEAN_LOOK",
+      "MOONLIGHT",
+      "NASTY_PLOT",
+      "PSYCH_UP",
+      "RECOVER",
+      "SUCKER_PUNCH",
+      "TORMENT",
+      "TRICK"
     ],
     "tmhm": [
+      "DRAIN_PUNCH",
+      "HEADBUTT",
+      "ROCK_TOMB",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
       "SUNNY_DAY",
       "HYPER_BEAM",
       "PROTECT",
       "RAIN_DANCE",
       "ENERGY_BALL",
+      "WILL_O_WISP",
       "FACADE",
+      "RETURN",
+      "DIG",
       "PSYCHIC_M",
       "SHADOW_BALL",
       "MUD_SLAP",
-      "FLASH_CANNON",
-      "SANDSTORM",
-      "SWIFT",
+      "SWAGGER",
+      "ICE_PUNCH",
+      "KNOCK_OFF",
+      "BULK_UP",
+      "THUNDERPUNCH",
+      "NASTY_PLOT",
       "REST",
+      "ATTRACT",
       "THIEF",
-      "ZEN_HEADBUTT"
+      "FIRE_PUNCH",
+      "FURY_CUTTER",
+      "HONE_CLAWS",
+      "ZEN_HEADBUTT",
+      "POWER_GEM",
+      "CUT",
+      "FLASH"
     ],
     "info": {
       "catch_rate": 45,
-      "base_exp": 168,
+      "base_exp": 133,
       "items": [
         "NO_ITEM",
         "NO_ITEM"
       ],
       "gender": "50% male, 50% female",
-      "egg_cycles": 20,
+      "egg_cycles": 25,
       "growth": "Medium Slow",
       "egg_groups": [
-        "Flying"
+        "Human-Like"
       ]
     },
-    "sprite": "assets/pokemon/espathra.png",
+    "sprite": "assets/pokemon/sableye.png",
     "tutor_moves": [
       "SUBSTITUTE",
       "SLEEP_TALK",
       "REFLECT",
-      "LIGHT_SCREEN"
+      "LIGHT_SCREEN",
+      "THUNDER_WAVE"
     ],
     "blackthorn_tutor_moves": [
+      "MOONLIGHT",
+      "NIGHT_SLASH",
+      "PURSUIT",
+      "SAFEGUARD",
+      "SHADOW_PUNCH",
+      "TACKLE",
       "AERIAL_ACE",
-      "BATON_PASS",
       "BODY_SLAM",
-      "BRAVE_BIRD",
+      "BRICK_BREAK",
+      "CALM_MIND",
+      "COUNTER",
+      "DARK_PULSE",
+      "DAZZLING_GLEAM",
       "DOUBLE_EDGE",
+      "DOUBLE_TEAM",
+      "DREAM_EATER",
+      "DYNAMICPUNCH",
+      "ENCORE",
       "ENDURE",
-      "FOUL_PLAY",
+      "FRUSTRATION",
+      "GIGA_DRAIN",
       "GIGA_IMPACT",
+      "GYRO_BALL",
       "HEX",
+      "ICY_WIND",
+      "INCINERATE",
       "LOW_KICK",
-      "NIGHT_SHADE",
-      "PSYCH_UP",
-      "PSYSHOCK",
-      "SEED_BOMB",
-      "TAKE_DOWN"
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "METAL_CLAW",
+      "METRONOME",
+      "MIMIC",
+      "MUD_SHOT",
+      "NIGHTMARE",
+      "OCTAZOOKA",
+      "OMINOUS_WIND",
+      "PAIN_SPLIT",
+      "PHANTOMFORCE",
+      "POISON_JAB",
+      "PSYBEAM",
+      "SEISMIC_TOSS",
+      "SIGNAL_BEAM",
+      "SKILL_SWAP",
+      "SNARL",
+      "SNORE",
+      "SPITE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "WATER_PULSE",
+      "X_SCISSOR"
     ],
-    "evolves_from": {
-      "const": "FLITTLE",
-      "name": "Flittle",
-      "slug": "flittle",
-      "text": "Level 35"
-    },
+    "evolves_from": null,
     "original_types": [
-      "Psychic"
+      "Dark",
+      "Ghost"
     ],
     "updated_types": [
-      "Psychic"
+      "Dark",
+      "Ghost"
     ],
     "updated_stats": {
-      "HP": 95,
-      "Attack": 60,
-      "Defense": 60,
-      "Speed": 105,
-      "Sp. Atk": 101,
-      "Sp. Def": 60
+      "HP": 60,
+      "Attack": 75,
+      "Defense": 100,
+      "Speed": 50,
+      "Sp. Atk": 75,
+      "Sp. Def": 100
     },
     "original_stats": {
-      "HP": 95,
-      "Attack": 60,
-      "Defense": 60,
-      "Speed": 105,
-      "Sp. Atk": 101,
-      "Sp. Def": 60
+      "HP": 50,
+      "Attack": 75,
+      "Defense": 75,
+      "Speed": 50,
+      "Sp. Atk": 65,
+      "Sp. Def": 65
     },
     "original_stats_source": "modern main games",
-    "sprite_size": 56,
-    "back": "assets/pokemon/espathra.back.png",
+    "sprite_size": 48,
+    "back": "assets/pokemon/sableye.back.png",
     "back_size": 48,
     "anim": {
-      "sheet": "assets/pokemon/espathra.sheet.png",
-      "size": 56,
+      "sheet": "assets/pokemon/sableye.sheet.png",
+      "size": 48,
       "frames": 5,
       "main": [
         [
@@ -229277,78 +229075,96 @@
         ],
         [
           1,
-          8
+          6
         ],
         [
           2,
           6
         ],
         [
-          3,
-          6
-        ],
-        [
           1,
-          8
+          6
         ],
         [
           2,
           6
         ],
         [
-          3,
-          6
-        ],
-        [
           1,
-          8
+          6
         ],
         [
           2,
           6
         ],
         [
-          3,
+          1,
           6
         ],
         [
-          4,
-          4
-        ],
-        [
-          1,
-          4
-        ],
-        [
-          4,
-          4
-        ],
-        [
-          1,
-          4
-        ],
-        [
-          4,
-          4
-        ],
-        [
-          1,
-          4
+          2,
+          6
         ]
       ],
       "idle": [
         [
-          4,
-          12
+          3,
+          6
         ],
         [
-          1,
-          12
+          4,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          0,
+          6
         ]
       ],
       "gap": 18
     },
     "tmhm_labeled": [
+      {
+        "tm": "TM01",
+        "const": "DRAIN_PUNCH",
+        "move": "Drain Punch"
+      },
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "tm": "TM04",
+        "const": "ROCK_TOMB",
+        "move": "Rock Tomb"
+      },
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
       {
         "tm": "TM11",
         "const": "SUNNY_DAY",
@@ -229375,9 +229191,24 @@
         "move": "Energy Ball"
       },
       {
+        "tm": "TM20",
+        "const": "WILL_O_WISP",
+        "move": "Will-O-Wisp"
+      },
+      {
         "tm": "TM21",
         "const": "FACADE",
         "move": "Facade"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
       },
       {
         "tm": "TM29",
@@ -229395,19 +229226,34 @@
         "move": "Mud-Slap"
       },
       {
-        "tm": "TM34",
-        "const": "FLASH_CANNON",
-        "move": "Flash Cannon"
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
       },
       {
-        "tm": "TM37",
-        "const": "SANDSTORM",
-        "move": "Sandstorm"
+        "tm": "TM33",
+        "const": "ICE_PUNCH",
+        "move": "Ice Punch"
       },
       {
-        "tm": "TM39",
-        "const": "SWIFT",
-        "move": "Swift"
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "tm": "TM40",
+        "const": "BULK_UP",
+        "move": "Bulk Up"
+      },
+      {
+        "tm": "TM41",
+        "const": "THUNDERPUNCH",
+        "move": "Thunder Punch"
+      },
+      {
+        "tm": "TM42",
+        "const": "NASTY_PLOT",
+        "move": "Nasty Plot"
       },
       {
         "tm": "TM44",
@@ -229415,21 +229261,56 @@
         "move": "Rest"
       },
       {
+        "tm": "TM45",
+        "const": "ATTRACT",
+        "move": "Attract"
+      },
+      {
         "tm": "TM46",
         "const": "THIEF",
         "move": "Thief"
       },
       {
+        "tm": "TM48",
+        "const": "FIRE_PUNCH",
+        "move": "Fire Punch"
+      },
+      {
+        "tm": "TM49",
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "tm": "TM50",
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
+      },
+      {
         "tm": "TM52",
         "const": "ZEN_HEADBUTT",
         "move": "Zen Headbutt"
+      },
+      {
+        "tm": "TM53",
+        "const": "POWER_GEM",
+        "move": "Power Gem"
+      },
+      {
+        "tm": "HM01",
+        "const": "CUT",
+        "move": "Cut"
+      },
+      {
+        "tm": "HM05",
+        "const": "FLASH",
+        "move": "Flash"
       }
     ]
   },
   {
     "const": "FINIZEN",
     "name": "Finizen",
-    "number": 498,
+    "number": 499,
     "stats": {
       "HP": 70,
       "Attack": 45,
@@ -229795,7 +229676,7 @@
   {
     "const": "PALAFIN",
     "name": "Palafin",
-    "number": 499,
+    "number": 500,
     "stats": {
       "HP": 90,
       "Attack": 120,
@@ -230239,7 +230120,7 @@
   {
     "const": "JIRACHI",
     "name": "Jirachi",
-    "number": 500,
+    "number": 501,
     "stats": {
       "HP": 100,
       "Attack": 100,

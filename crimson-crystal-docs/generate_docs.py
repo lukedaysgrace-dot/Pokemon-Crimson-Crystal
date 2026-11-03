@@ -88,6 +88,8 @@ def parse_pic_anim(path):
   return steps,None
 
 SPECIAL_DISPLAY_NAMES = {
+    'ZORUA': 'Hisuian Zorua',
+    'ZOROARK': 'Hisuian Zoroark',
     # Internal constants whose code-safe names differ from their proper display names.
     'PSYCHIC_M': 'Psychic',
     'FARFETCH_D': "Farfetch'd",
@@ -133,6 +135,7 @@ MOVE_DISPLAY_NAMES = {
     'DUALWINGBEAT': 'Dual Wingbeat', 'PHANTOMFORCE': 'Phantom Force', 'HEADLONGRUSH': 'Headlong Rush',
     'SHELLSIDEARM': 'Shell Side Arm', 'PSYSHIELD': 'Psyshield Bash', 'STRANGESTEAM': 'Strange Steam',
     'BANEFUL_BUNKER': 'Baneful Bunker', 'KOWTOW_CLEAVE': 'Kowtow Cleave',
+    'KINGS_SHIELD': 'King Shield',
 }
 def move_disp(const):
     c=(const or '').strip().upper()
@@ -325,7 +328,7 @@ class Builder:
           self.report['warnings'].append(f'dex_order_new.asm lists unknown species {c}')
           continue
         n+=1; nums[c]=n
-      missing=[c for c in order if c not in nums]
+      missing=[c for c in order if c not in nums and c != 'AEGISLASH_BLADE']
       if missing:
         self.report['warnings'].append(
           f'{len(missing)} species missing from dex_order_new.asm, appended in declared order: '
@@ -1581,7 +1584,10 @@ class Builder:
     # Replace generated files in place, preserving supplemental reports and downloads.
     self.a.mkdir(parents=True,exist_ok=True); base=Path(__file__).parent/'static'; shutil.copy2(base/'style.css',self.a/'style.css'); shutil.copy2(base/'app.js',self.a/'app.js')
     self.tm_index=self.tm_table(); self.ability_desc=self.ability_descriptions(); self._items=self.item_names()
-    order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); self.egg_moves(mons); self.finish_evolutions(mons); self.gameplay_rules(mons); moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons))
+    order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); self.egg_moves(mons); self.finish_evolutions(mons); self.gameplay_rules(mons)
+    # The internal Blade record supplies battle stats/art, not a second catch.
+    mons.pop('AEGISLASH_BLADE', None)
+    moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons))
     for e in wild:
       mon=mons.get(e['const'])
       if mon: e['pokemon']=form_label(mon['const'],mon['name'])

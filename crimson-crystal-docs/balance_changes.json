@@ -1,6 +1,33 @@
 {
-  "date": "2026-10-27",
+  "date": "2026-11-02",
   "pokemon": {
+    "SEEDOT": {
+      "abilities": [
+        {"slot": 1, "before": "CHLOROPHYLL", "after": "PRANKSTER"},
+        {"slot": 2, "before": "EARLY_BIRD", "after": "WIND_RIDER"},
+        {"slot": 3, "before": "PICKPOCKET", "after": "TECHNICIAN"}
+      ]
+    },
+    "NUZLEAF": {
+      "abilities": [
+        {"slot": 1, "before": "CHLOROPHYLL", "after": "PRANKSTER"},
+        {"slot": 2, "before": "EARLY_BIRD", "after": "WIND_RIDER"},
+        {"slot": 3, "before": "PICKPOCKET", "after": "TECHNICIAN"}
+      ]
+    },
+    "SHIFTRY": {
+      "abilities": [
+        {"slot": 1, "before": "CHLOROPHYLL", "after": "PRANKSTER"},
+        {"slot": 3, "before": "PICKPOCKET", "after": "TECHNICIAN"}
+      ]
+    },
+    "SABLEYE": {
+      "stats": {"HP": [50, 60], "Defense": [75, 100], "Sp. Atk": [65, 75], "Sp. Def": [65, 100]},
+      "abilities": [
+        {"slot": 1, "before": "KEEN_EYE", "after": "MAGIC_BOUNCE"},
+        {"slot": 2, "before": "STALL", "after": "KEEN_EYE"}
+      ]
+    },
     "AGGRON": {
       "abilities": [
         {
@@ -792,22 +819,6 @@
         ]
       }
     },
-    "GRUMPIG": {
-      "stats": {
-        "Defense": [
-          65,
-          75
-        ],
-        "Sp. Atk": [
-          90,
-          100
-        ]
-      },
-      "moves": []
-    },
-    "WALREIN": {
-      "moves": []
-    },
     "RAITORA": {
       "moves": [
         {
@@ -943,14 +954,6 @@
         "Speed": [
           100,
           110
-        ]
-      }
-    },
-    "LUDICOLO": {
-      "stats": {
-        "Attack": [
-          70,
-          90
         ]
       }
     },

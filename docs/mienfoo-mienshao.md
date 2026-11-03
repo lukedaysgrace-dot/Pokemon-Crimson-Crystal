@@ -1,6 +1,6 @@
 # Mienfoo and Mienshao
 
-Mienfoo and Mienshao are regional Pokédex **#262 and #263**, immediately
+Mienfoo and Mienshao are regional Pokédex **#264 and #265**, immediately
 after Lucario. Internal indexes **499 and 500** append to the roster, preserving
 existing species IDs. Both fit in the existing 63-byte seen/caught fields;
 the save format and SRAM layout are unchanged.

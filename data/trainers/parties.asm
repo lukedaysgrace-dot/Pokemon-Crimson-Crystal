@@ -550,10 +550,10 @@ WillGroup:
 	db ABILITY_3
 	dw SURF, PSYCHIC_M, FLAMETHROWER, SLACK_OFF
 	db 69
-	dw GRUMPIG
+	dw ESPEON
 	db WISE_GLASSES
 	db ABILITY_1
-	dw PSYCHIC_M, SHADOW_BALL, CALM_MIND, ENERGY_BALL
+	dw PSYCHIC_M, SHADOW_BALL, CALM_MIND, DAZZLING_GLEAM
 	db 70
 	dw WYRDEER
 	db MUSCLE_BAND
@@ -584,12 +584,12 @@ WillGroup:
 	db ABILITY_3
 	dw CALM_MIND, PSYCHIC_M, SURF, SLACK_OFF
 	db 85
-	dw GRUMPIG
+	dw ESPEON
 	db WISE_GLASSES
 	db ABILITY_1
-	dw CALM_MIND, PSYCHIC_M, SHADOW_BALL, ENERGY_BALL
+	dw CALM_MIND, PSYCHIC_M, SHADOW_BALL, DAZZLING_GLEAM
 	db 85
-	dw ESPATHRA
+	dw GARDEVOIR
 	db LEFTOVERS
 	db ABILITY_3
 	dw CALM_MIND, PSYCHIC_M, DAZZLING_GLEAM, SHADOW_BALL
@@ -1069,7 +1069,7 @@ MistyGroup:
 	db ABILITY_1
 	dw SCALD, ICE_BEAM, RECOVER, TOXIC
 	db 52
-	dw WALREIN
+	dw DEWGONG
 	db LEFTOVERS
 	db ABILITY_1
 	dw SURF, ICE_BEAM, BODY_SLAM, PROTECT
@@ -1184,10 +1184,10 @@ ErikaGroup:
 	next_list_item ; ERIKA (1) ERIKA1 - Celadon Gym
 	db "ERIKA@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 59
-	dw LUDICOLO
+	dw SHIFTRY
 	db LEFTOVERS
 	db ABILITY_1
-	dw RAIN_DANCE, SURF, GIGA_DRAIN, ICE_BEAM
+	dw LEAF_BLADE, KNOCK_OFF, SUCKER_PUNCH, SWORDS_DANCE
 	db 60
 	dw JUMPLUFF
 	db LEFTOVERS
@@ -1909,7 +1909,7 @@ LassGroup:
 	next_list_item ; LASS (4) CONNIE1 - Olivine Lighthouse 4F
 	db "CONNIE@", TRAINERTYPE_NORMAL
 	db 31
-	dw LOMBRE
+	dw NUZLEAF
 	db 32
 	dw OCTILLERY
 	db -1 ; end
@@ -1943,8 +1943,8 @@ LassGroup:
 	dw VILEPLUME
 	dw LEAF_STORM, SLUDGE_BOMB, EARTH_POWER, GROWTH
 	db 61
-	dw LUDICOLO
-	dw LEAF_STORM, SURF, ZEN_HEADBUTT, WATERFALL
+	dw SHIFTRY
+	dw LEAF_BLADE, KNOCK_OFF, SUCKER_PUNCH, SWORDS_DANCE
 	db 61
 	dw JUMPLUFF
 	dw LEAF_STORM, AIR_SLASH, SYNTHESIS, U_TURN
@@ -1973,7 +1973,7 @@ LassGroup:
 	next_list_item ; LASS (10) CONNIE2 - Olivine Lighthouse 4F (rematch)
 	db "CONNIE@", TRAINERTYPE_NORMAL
 	db 42
-	dw LUDICOLO
+	dw SHIFTRY
 	db 43
 	dw OCTILLERY
 	db 43
@@ -1983,7 +1983,7 @@ LassGroup:
 	next_list_item ; LASS (11) CONNIE3 - Olivine Lighthouse 4F (rematch)
 	db "CONNIE@", TRAINERTYPE_NORMAL
 	db 55
-	dw LUDICOLO
+	dw SHIFTRY
 	db 55
 	dw OCTILLERY
 	db 56
@@ -2310,8 +2310,8 @@ CooltrainerMGroup:
 	dw WYRDEER
 	dw THRASH, TAKE_DOWN, ZEN_HEADBUTT, HYPNOSIS
 	db 46
-	dw WALREIN
-	dw ICE_BEAM, ICY_WIND, WATER_PULSE, BODY_SLAM
+	dw AEGISLASH
+	dw IRON_HEAD, SHADOW_CLAW, SACRED_SWORD, KINGS_SHIELD
 	db -1 ; end
 
 	next_list_item ; COOLTRAINERM (12) BRIAN - Route 27
@@ -2333,8 +2333,8 @@ CooltrainerMGroup:
 	next_list_item ; COOLTRAINERM (13) SEAN - Fast Ship Cabins_NNW_NNE_NE
 	db "SEAN@", TRAINERTYPE_MOVES
 	db 59
-	dw WALREIN
-	dw SURF, ICE_BEAM, BLIZZARD, WATER_PULSE
+	dw AEGISLASH
+	dw IRON_HEAD, SHADOW_CLAW, SACRED_SWORD, KINGS_SHIELD
 	db 59
 	dw GYARADOS
 	dw WATERFALL, AQUA_TAIL, OUTRAGE, DRAGON_DANCE
@@ -2522,8 +2522,8 @@ CooltrainerFGroup:
 	next_list_item ; COOLTRAINERF (2) LOIS - Lake Of Rage
 	db "LOIS@", TRAINERTYPE_MOVES
 	db 36
-	dw LOMBRE
-	dw BUBBLEBEAM, GIGA_DRAIN, MEGA_DRAIN, WATER_GUN
+	dw NUZLEAF
+	dw RAZOR_LEAF, FAINT_ATTACK, GROWTH, EXTRASENSORY
 	db 37
 	dw SLOWPOKE
 	dw AQUA_TAIL, ZEN_HEADBUTT, HEADBUTT, CURSE
@@ -2661,8 +2661,8 @@ CooltrainerFGroup:
 	dw YANMEGA
 	dw SIGNAL_BEAM, AIR_SLASH, U_TURN, DETECT
 	db 47
-	dw WALREIN
-	dw ICE_BEAM, ICY_WIND, WATER_PULSE, BODY_SLAM
+	dw AEGISLASH
+	dw IRON_HEAD, SHADOW_CLAW, SACRED_SWORD, KINGS_SHIELD
 	db 47
 	dw GLISCOR
 	dw EARTHQUAKE, ACROBATICS, KNOCK_OFF, ROOST
@@ -3017,7 +3017,7 @@ PokemaniacGroup:
 	db 41
 	dw GOLEM
 	db 43
-	dw GRUMPIG
+	dw ZOROARK
 	db -1 ; end
 
 	next_list_item ; POKEMANIAC (14) BRENT4 - Route 43
@@ -3646,7 +3646,7 @@ FisherGroup:
 	next_list_item ; FISHER (6) MARVIN - Route 43
 	db "MARVIN@", TRAINERTYPE_NORMAL
 	db 36
-	dw SEALEO
+	dw SEEL
 	db 36
 	dw GOLDUCK
 	db -1 ; end
@@ -3687,7 +3687,7 @@ FisherGroup:
 	next_list_item ; FISHER (11) EDGAR - Route 44
 	db "EDGAR@", TRAINERTYPE_MOVES
 	db 39
-	dw WALREIN
+	dw DEWGONG
 	dw ICE_BEAM, AURORA_BEAM, WATER_PULSE, REST
 	db 39
 	dw QUAGSIRE
@@ -3709,8 +3709,8 @@ FisherGroup:
 	dw MILOTIC
 	dw HYDRO_PUMP, MOONBLAST, ICE_BEAM, RECOVER
 	db 58
-	dw LUDICOLO
-	dw LEAF_STORM, SURF, ZEN_HEADBUTT, ENERGY_BALL
+	dw GOLDUCK
+	dw HYDRO_PUMP, SURF, ZEN_HEADBUTT, PSYCHIC_M
 	db -1 ; end
 
 	next_list_item ; FISHER (13) MARTIN - Route 12
@@ -3792,7 +3792,7 @@ FisherGroup:
 	db 72
 	dw AZUMARILL
 	db 71
-	dw LUDICOLO
+	dw GOLDUCK
 	db -1 ; end
 
 	next_list_item ; FISHER (20) WILTON2 - Route 44
@@ -3804,7 +3804,7 @@ FisherGroup:
 	db 73
 	dw SEAKING
 	db 74
-	dw WALREIN
+	dw DEWGONG
 	db -1 ; end
 
 	next_list_item ; FISHER (21) SCOTT - Route 26
@@ -3828,7 +3828,7 @@ FisherGroup:
 	dw MANTINE
 	db ABILITY_1
 	db 77
-	dw WALREIN
+	dw DEWGONG
 	db ABILITY_1
 	db 75
 	dw OCTILLERY
@@ -3885,10 +3885,10 @@ FisherGroup:
 	db ABILITY_3
 	dw HYDRO_PUMP, ICE_BEAM, ENERGY_BALL, FIRE_BLAST
 	db 74
-	dw LUDICOLO
+	dw GOLDUCK
 	db LEFTOVERS
 	db ABILITY_1
-	dw RAIN_DANCE, SURF, GIGA_DRAIN, ICE_BEAM
+	dw RAIN_DANCE, SURF, PSYCHIC_M, ICE_BEAM
 	db -1 ; end
 
 	end_list_items
@@ -3900,8 +3900,8 @@ SwimmerMGroup:
 	dw MANTINE
 	dw HYDRO_PUMP, AIR_SLASH, ICE_BEAM, ROOST
 	db 65
-	dw WALREIN
-	dw ICE_BEAM, SURF, BODY_PRESS, CRUNCH
+	dw DEWGONG
+	dw ICE_BEAM, SURF, REST, AQUA_TAIL
 	db -1 ; end
 
 	next_list_item ; SWIMMERM (2) SIMON - Route 40
@@ -3923,7 +3923,7 @@ SwimmerMGroup:
 	next_list_item ; SWIMMERM (4) CHARLIE - Route 41
 	db "CHARLIE@", TRAINERTYPE_NORMAL
 	db 29
-	dw LOMBRE
+	dw PSYDUCK
 	db 29
 	dw KINGLER
 	db -1 ; end
@@ -3949,7 +3949,7 @@ SwimmerMGroup:
 	db 27
 	dw TENTACOOL
 	db 27
-	dw LOMBRE
+	dw PSYDUCK
 	db -1 ; end
 
 	next_list_item ; SWIMMERM (8) MATHEW - Route 41
@@ -4036,7 +4036,7 @@ SwimmerFGroup:
 	db 28
 	dw TENTACOOL
 	db 29
-	dw LOMBRE
+	dw PSYDUCK
 	db -1 ; end
 
 	next_list_item ; SWIMMERF (3) KAYLEE - Route 41
@@ -4070,7 +4070,7 @@ SwimmerFGroup:
 	db 28
 	dw STARYU
 	db 29
-	dw LOMBRE
+	dw PSYDUCK
 	db -1 ; end
 
 	next_list_item ; SWIMMERF (7) WENDY - Route 41
@@ -4089,8 +4089,8 @@ SwimmerFGroup:
 	dw KINGLER
 	dw LIQUIDATION, X_SCISSOR, STRENGTH, METAL_CLAW
 	db 65
-	dw LUDICOLO
-	dw LEAF_STORM, SURF, ZEN_HEADBUTT, ENERGY_BALL
+	dw GOLDUCK
+	dw HYDRO_PUMP, SURF, ZEN_HEADBUTT, PSYCHIC_M
 	db -1 ; end
 
 	next_list_item ; SWIMMERF (9) NICOLE - Route 20
@@ -4108,8 +4108,8 @@ SwimmerFGroup:
 	next_list_item ; SWIMMERF (10) LORI - Route 20
 	db "LORI@", TRAINERTYPE_MOVES
 	db 65
-	dw WALREIN
-	dw ICE_BEAM, SURF, BODY_PRESS, CRUNCH
+	dw DEWGONG
+	dw ICE_BEAM, SURF, REST, AQUA_TAIL
 	db 65
 	dw MILOTIC
 	dw HYDRO_PUMP, MOONBLAST, ICE_BEAM, RECOVER
@@ -4137,24 +4137,24 @@ SwimmerFGroup:
 	dw POLITOED
 	dw HYDRO_PUMP, EARTH_POWER, ICE_BEAM, PSYCHIC_M
 	db 51
-	dw WALREIN
-	dw ICE_BEAM, SURF, BODY_PRESS, CRUNCH
+	dw DEWGONG
+	dw ICE_BEAM, SURF, REST, AQUA_TAIL
 	db -1 ; end
 
 	next_list_item ; SWIMMERF (13) BRIANA - Cerulean Gym
 	db "BRIANA@", TRAINERTYPE_MOVES_ABILITY
 	db 53
-	dw LUDICOLO
+	dw GOLDUCK
 	db ABILITY_1
-	dw LEAF_STORM, SURF, ZEN_HEADBUTT, WATERFALL
+	dw HYDRO_PUMP, SURF, ZEN_HEADBUTT, WATERFALL
 	db 53
 	dw TOXAPEX
 	db ABILITY_3
 	dw LIQUIDATION, POISON_JAB, SCALD, RECOVER
 	db 53
-	dw WALREIN
+	dw DEWGONG
 	db ABILITY_1
-	dw ICE_BEAM, SURF, BODY_PRESS, CRUNCH
+	dw ICE_BEAM, SURF, REST, AQUA_TAIL
 	db -1 ; end
 
 	end_list_items
@@ -4171,7 +4171,7 @@ SailorGroup:
 	next_list_item ; SAILOR (2) HUEY1 - Olivine Lighthouse 2F
 	db "HUEY@", TRAINERTYPE_NORMAL
 	db 32
-	dw SEALEO
+	dw SEEL
 	db 34
 	dw POLIWHIRL
 	db -1 ; end
@@ -4255,7 +4255,7 @@ SailorGroup:
 	next_list_item ; SAILOR (11) HUEY2 - Olivine Lighthouse 2F
 	db "HUEY@", TRAINERTYPE_NORMAL
 	db 42
-	dw WALREIN
+	dw DEWGONG
 	db 43
 	dw POLIWRATH
 	db 41
@@ -4265,7 +4265,7 @@ SailorGroup:
 	next_list_item ; SAILOR (12) HUEY3 - Olivine Lighthouse 2F
 	db "HUEY@", TRAINERTYPE_NORMAL
 	db 74
-	dw WALREIN
+	dw DEWGONG
 	db 73
 	dw POLIWRATH
 	db 73
@@ -4275,7 +4275,7 @@ SailorGroup:
 	next_list_item ; SAILOR (13) HUEY4 - Olivine Lighthouse 2F
 	db "HUEY@", TRAINERTYPE_MOVES
 	db 77
-	dw WALREIN
+	dw DEWGONG
 	dw ICE_BEAM, SURF, BODY_SLAM, REST
 	db 77
 	dw QUAGSIRE
@@ -5303,8 +5303,8 @@ PsychicGroup:
 	dw ALAKAZAM
 	dw PSYCHIC_M, FUTURE_SIGHT, AURA_SPHERE, CALM_MIND
 	db 60
-	dw ESPATHRA
-	dw LUMINA_CRASH, DAZZLING_GLEAM, SHADOW_BALL, CALM_MIND
+	dw GARDEVOIR
+	dw PSYCHIC_M, DAZZLING_GLEAM, SHADOW_BALL, CALM_MIND
 	db -1 ; end
 
 	next_list_item ; PSYCHIC_T (5) GREG - Route 37
@@ -5317,8 +5317,8 @@ PsychicGroup:
 	next_list_item ; PSYCHIC_T (6) NORMAN - Route 39
 	db "NORMAN@", TRAINERTYPE_MOVES
 	db 27
-	dw SPOINK
-	dw PSYBEAM, CONFUSE_RAY, REST, SNORE
+	dw DROWZEE
+	dw CONFUSION, HYPNOSIS, REST, SNORE
 	db 28
 	dw SLOWPOKE
 	dw CONFUSION, WATER_PULSE, HEADBUTT, YAWN
@@ -6087,8 +6087,8 @@ MediumGroup:
 	next_list_item ; MEDIUM (4) REBECCA - Saffron Gym
 	db "REBECCA@", TRAINERTYPE_MOVES
 	db 61
-	dw ESPATHRA
-	dw PSYCHIC_M, SHADOW_BALL, HYPER_VOICE, AGILITY
+	dw SABLEYE
+	dw SHADOW_BALL, FOUL_PLAY, WILL_O_WISP, RECOVER
 	db 61
 	dw SLOWKING
 	dw SURF, PSYCHIC_M, ICE_BEAM, SLACK_OFF

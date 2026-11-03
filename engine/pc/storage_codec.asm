@@ -258,6 +258,7 @@ DecodeSavedMon::
 	ld e, a
 	ld a, [hl]
 	ld d, a
+	farcall NormalizeRetiredRosterIndexDE
 	ld a, e
 	ld [wTempMonSpeciesIndex], a
 	ld a, d

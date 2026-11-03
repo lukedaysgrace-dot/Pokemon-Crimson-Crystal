@@ -897,16 +897,6 @@
         "Crimson:L40"
       ]
     },
-    "SPOINK": {
-      "PSYSHOCK": [
-        "Lumi:L38"
-      ]
-    },
-    "GRUMPIG": {
-      "PSYSHOCK": [
-        "Lumi:L42"
-      ]
-    },
     "OVERQWIL": {
       "POISON_TAIL": [
         "Lumi:L16"
@@ -1210,9 +1200,6 @@
       "U_TURN",
       "ROOST"
     ],
-    "GRUMPIG": [
-      "CALM_MIND"
-    ],
     "BASTIODON": [
       "FISSURE"
     ],
@@ -1341,9 +1328,6 @@
     },
     "EXEGGCUTE": {
       "SKILL_SWAP": 30,
-      "MAGICAL_LEAF": 30
-    },
-    "FLITTLE": {
       "MAGICAL_LEAF": 30
     },
     "FRIGIBAX": {
@@ -1903,12 +1887,6 @@
       "ROOST": [
         "CHARIZARD: level 36",
         "CHARIZARD -> TRAPINCH: egg move"
-      ]
-    },
-    "GRUMPIG": {
-      "CALM_MIND": [
-        "VAPOREON: level 30",
-        "VAPOREON -> SPOINK: egg move"
       ]
     },
     "BASTIODON": {

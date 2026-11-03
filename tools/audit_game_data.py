@@ -274,8 +274,9 @@ def audit_species(audit: Audit) -> None:
         for _, row in directive_rows(read(ROOT / "data/pokemon/dex_order_alpha.asm"), "dw")
         if len(row) == 1
     ]
+    visible_species = [name for name in species if name != 'AEGISLASH_BLADE']
     audit.expect(
-        len(alpha_order) == len(species),
+        len(alpha_order) == len(visible_species),
         f"alphabetical Pokedex order has {len(alpha_order)} records for {len(species)} species",
     )
     audit.expect(
@@ -283,14 +284,14 @@ def audit_species(audit: Audit) -> None:
         "alphabetical Pokedex order contains duplicate species",
     )
     audit.expect(
-        set(alpha_order) == set(species),
+        set(alpha_order) == set(visible_species),
         "alphabetical Pokedex order is not a one-to-one species permutation",
     )
     if len(display_names) == len(species):
         species_index = {name: index for index, name in enumerate(species)}
         names_by_species = dict(zip(species, display_names))
         expected_alpha = sorted(
-            species,
+            visible_species,
             key=lambda name: (names_by_species[name].casefold(), species_index[name]),
         )
         mismatch = next(
@@ -408,7 +409,7 @@ def audit_species(audit: Audit) -> None:
 
     # No species currently breeds outside its evolution root. Incense items are
     # not in this game, so Snorlax eggs always hatch Munchlax.
-    first_stage_exceptions: dict[str, str] = {}
+    first_stage_exceptions: dict[str, str] = {'AEGISLASH_BLADE': 'HONEDGE'}
     for name, first_stage in zip(species, first_stages):
         if name in first_stage_exceptions:
             audit.expect(
@@ -1132,6 +1133,7 @@ def audit_text_lines(audit: Audit, charmap: list[str]) -> None:
 def audit_ezchat(audit: Audit) -> None:
     pokemon_header = read(ROOT / "constants/pokemon_constants.asm").split("NUM_POKEMON", 1)[0]
     species = re.findall(r"^\s*const\s+(\w+)", pokemon_header, re.MULTILINE)
+    species = [name for name in species if name != 'AEGISLASH_BLADE']
 
     order_path = ROOT / "data/pokemon/ezchat_order.asm"
     order_text = read(order_path)

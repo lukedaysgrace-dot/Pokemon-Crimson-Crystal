@@ -252,6 +252,8 @@ def pokeapi_types(slug, rom_types, report):
     return (consts[0], consts[1])
 
 def resolve_types(stem, lumi, rom_types, report):
+    if stem in {"zorua", "zoroark"}:
+        stem += "_hisuian"
     species_norm, tag, api_suffix, is_bm = parse_stem(stem)
     if species_norm in EXCLUDE_TYPES:
         return (None, None)

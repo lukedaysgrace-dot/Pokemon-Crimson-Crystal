@@ -29,6 +29,9 @@ Thumbs.db
 *.map
 *.sav
 
+# Retired Pokemon assets are preserved verbatim, including compiled graphics.
+!/no longer implemented/**
+
 # Temporary build tools
 .tmpbuild/
 .tmpplaytest/

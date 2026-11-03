@@ -1006,11 +1006,11 @@ Unavailable.
 | Brunos Room | **Trainer item** — Elite Four Bruno: Conkeldurr Lv. 69. |
 | Celadon City | **Trainer item** — Officer Hayes: Granbull Lv. 66. |
 | Celadon Gym | **Trainer item** — Leader Erika: Jumpluff Lv. 60. |
-| Celadon Gym | **Trainer item** — Leader Erika: Ludicolo Lv. 59. |
+| Celadon Gym | **Trainer item** — Leader Erika: Shiftry Lv. 59. |
 | Celadon Gym | **Trainer item** — Leader Erika: Vileplume Lv. 60. |
+| Cerulean Gym | **Trainer item** — Leader Misty: Dewgong Lv. 52. |
 | Cerulean Gym | **Trainer item** — Leader Misty: Lanturn Lv. 53. |
 | Cerulean Gym | **Trainer item** — Leader Misty: Milotic Lv. 51. |
-| Cerulean Gym | **Trainer item** — Leader Misty: Walrein Lv. 52. |
 | Cianwood Gym | **Trainer item** — Leader Chuck: Annihilape Lv. 81. One-time gym rematch after defeating Morty’s rematch. |
 | Ecruteak Gym | **Trainer item** — Leader Morty: Dusknoir Lv. 78. One-time gym rematch after defeating Whitney’s rematch. |
 | Ecruteak Gym | **Trainer item** — Leader Morty: Mismagius Lv. 78. One-time gym rematch after defeating Whitney’s rematch. |
@@ -1071,7 +1071,7 @@ Unavailable.
 | Route 34 | **Trainer item** — Camper Todd: Clodsire Lv. 76. |
 | Route 35 | **Trainer item** — Bug Catcher Arnie: Ariados Lv. 76. |
 | Route 36 | **Trainer item** — Schoolboy Alan: Lanturn Lv. 77. |
-| Route 42 | **Trainer item** — Fisher Tully: Ludicolo Lv. 74. |
+| Route 42 | **Trainer item** — Fisher Tully: Golduck Lv. 74. |
 | Route 44 | **Trainer item** — Bird Keeper Vance: Noctowl Lv. 77. |
 | Saffron Gym | **Trainer item** — Leader Sabrina: Farigiraf Lv. 60. |
 | Saffron Gym | **Trainer item** — Leader Sabrina: Hypno Lv. 61. |
@@ -1094,7 +1094,7 @@ Unavailable.
 | Viridian Gym | **Trainer item** — Cooltrainer Cy: Venusaur Lv. 67. |
 | Viridian Gym | **Trainer item** — Cooltrainer Desmond: Lapras Lv. 68. |
 | Viridian Gym | **Trainer item** — Leader: Rhyperior Lv. 67. |
-| Wills Room | **Trainer item** — Elite Four Will: Espathra Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Wills Room | **Trainer item** — Elite Four Will: Gardevoir Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 | Wills Room | **Trainer item** — Elite Four Will: Slowking Lv. 69. |
 | Wills Room | **Trainer item** — Elite Four Will: Slowking Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 | Wills Room | **Trainer item** — Elite Four Will: Xatu Lv. 67. |
@@ -1390,8 +1390,8 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
-| Goldenrod Radio Tower 4F | **Gift / reward** — DJ Mary; after clearing Team Rocket from the Radio Tower. |
 | Goldenrod Dept Store 3F | **Shop** — Repeatable purchase. Cost: ₽1,000. |
+| Goldenrod Radio Tower 4F | **Gift / reward** — DJ Mary; after clearing Team Rocket from the Radio Tower. |
 
 <a id="power_herb"></a>
 ## Power Herb
@@ -1665,5 +1665,5 @@ Unavailable.
 | Violet Gym | **Trainer item** — Leader Falkner: Noctowl Lv. 75. One-time gym rematch after defeating Red. |
 | Viridian Gym | **Trainer item** — Cooltrainer Cy: Kingdra Lv. 67. |
 | Viridian Gym | **Trainer item** — Cooltrainer Desmond: Mismagius Lv. 68. |
-| Wills Room | **Trainer item** — Elite Four Will: Grumpig Lv. 69. |
-| Wills Room | **Trainer item** — Elite Four Will: Grumpig Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Wills Room | **Trainer item** — Elite Four Will: Espeon Lv. 69. |
+| Wills Room | **Trainer item** — Elite Four Will: Espeon Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |

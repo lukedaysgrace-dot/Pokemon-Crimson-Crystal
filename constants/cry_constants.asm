@@ -126,9 +126,6 @@
 	const CRY_CARRACOSTA
 	const CRY_ARCHEN
 	const CRY_ARCHEOPS
-; Paldea (gen 9)
-	const CRY_FLITTLE
-	const CRY_ESPATHRA
 ; More cries imported from Polished Coral
 	const CRY_EXEGGUTOR
 	const CRY_ESPEON
@@ -140,3 +137,5 @@
 	const CRY_TREVENANT
 	const CRY_MIENFOO
 	const CRY_MIENSHAO
+	const CRY_HIPPOPOTAS
+	const CRY_HIPPOWDON

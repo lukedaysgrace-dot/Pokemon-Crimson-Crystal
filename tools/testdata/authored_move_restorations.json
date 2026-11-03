@@ -151,9 +151,6 @@
       "HEADBUTT",
       "SLACK_OFF"
     ],
-    "WALREIN": [
-      "SLACK_OFF"
-    ],
     "CLODSIRE": [
       "ACID_ARMOR"
     ],
@@ -360,12 +357,6 @@
       "FREEZE_DRY"
     ],
     "DEWGONG": [
-      "FREEZE_DRY"
-    ],
-    "SEALEO": [
-      "FREEZE_DRY"
-    ],
-    "SPHEAL": [
       "FREEZE_DRY"
     ],
     "CLOYSTER": [
@@ -1094,24 +1085,6 @@
       [
         46,
         "SUPERPOWER"
-      ]
-    ],
-    "SPHEAL": [
-      [
-        34,
-        "FREEZE_DRY"
-      ]
-    ],
-    "SEALEO": [
-      [
-        38,
-        "FREEZE_DRY"
-      ]
-    ],
-    "WALREIN": [
-      [
-        45,
-        "SLACK_OFF"
       ]
     ],
     "CETITAN": [

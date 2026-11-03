@@ -7675,6 +7675,7 @@ GiveExperiencePoints:
 	ld [wApplyStatLevelMultipliersToEnemy], a
 	call ApplyStatLevelMultiplierOnAllStats
 	callfar ApplyStatusEffectOnPlayerStats
+	farcall ReapplyPlayerStanceAfterLevelUp
 	callfar UpdatePlayerHUD
 	call EmptyBattleTextbox
 	call LoadTileMapToTempTileMap

@@ -155,7 +155,7 @@ test-learnsets: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/audit_canonical_learnsets.py
 	$(BATTLE_TEST_PYTHON) tools/audit_breeding_moves.py
 	$(BATTLE_TEST_PYTHON) tools/test_learnset_variety.py pokecrystal.gbc
-	$(BATTLE_TEST_PYTHON) tools/test_espathra_evolution_move.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_roster_replacements.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_breeding_moves.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_trainer_move_access.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/weight_move_learnsets.py
@@ -214,10 +214,26 @@ test-evolutions: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_evolution_sweep.py pokecrystal.gbc
 
 .PHONY: test-mienfoo
+.PHONY: test-hippos
+test-hippos: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_hippopotas_hippowdon.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_hippopotas_hippowdon.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render tools/battletest/tests/98-hippopotas-hippowdon.yaml
+	$(BATTLE_TEST_PYTHON) tools/battletest/hippo_presentation_checks.py
+
 test-mienfoo: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_mienfoo_mienshao.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_mienfoo_mienshao.py pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render tools/battletest/tests/96-mienfoo-mienshao.yaml
+
+.PHONY: test-roster
+test-roster: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_roster_replacements.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_roster_replacements.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_roster_pokedex.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_roster_pokedex.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py tools/battletest/tests/97-roster-stance-change.yaml
+	$(BATTLE_TEST_PYTHON) tools/battletest/stance_change_checks.py
 
 .PHONY: test-phantump
 test-phantump: pokecrystal.gbc pokecrystal_debug.gbc

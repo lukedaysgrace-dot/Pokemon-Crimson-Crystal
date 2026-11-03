@@ -1085,7 +1085,7 @@ CheckUserIsCharging:
 
 BattleCommand_DoTurn:
 	call CheckUserIsCharging
-	ret nz
+	jp nz, .stance_only
 
 	ld hl, wBattleMonPP
 	ld de, wPlayerSubStatus3
@@ -1110,11 +1110,11 @@ BattleCommand_DoTurn:
 	call GetBattleVar
 	ld bc, STRUGGLE
 	call CompareMove
-	ret z
+	jp z, .stance_only
 
 	ld a, [de]
 	and 1 << SUBSTATUS_IN_LOOP | 1 << SUBSTATUS_RAMPAGE | 1 << SUBSTATUS_BIDE
-	ret nz
+	jp nz, .stance_only
 
 	call .consume_pp
 	ld a, b
@@ -1194,11 +1194,18 @@ BattleCommand_DoTurn:
 	jp nz, EndMoveEffect
 	; fallthrough
 .check_target_block
+	farcall StanceChangeBeforeMove
 	; A few true foe-target status moves have no checkhit command. Run their
 	; priority-immunity gate only after every applicable PP copy is updated,
 	; then end immediately when Armor Tail / Queenly Majesty blocks them.
 	farcall AbilityPreExecutionTargetBlock
 	jp c, EndMoveEffect
+	ret
+
+.stance_only
+	; Called moves, Struggle and continuing attacks skip PP deduction,
+	; but still trigger Stance Change for the move actually being used.
+	farcall StanceChangeBeforeMove
 	ret
 
 .out_of_pp
@@ -2029,13 +2036,22 @@ BattleCommand_CheckHit:
 	call GetBattleVar
 	bit SUBSTATUS_PROTECT, a
 	ret z
+	; King's Shield only stops damaging moves; status moves pass through.
+	farcall KingsShieldAllowsStatus
+	ld a, b
+	and a
+	jr z, .check_phazing
+	xor a
+	ret
+.check_phazing
 	; Roar and Whirlwind bypass Protect. Damaging phazing moves still
 	; respect it, even if they share the force-switch command.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_FORCE_SWITCH
 	jr nz, .check_phantom_force
-	farcall GetMoveCategory
+	farcall GetMoveCategory_b
+	ld a, b
 	cp CATEGORIZE_STATUS
 	ret z
 .check_phantom_force
@@ -2059,6 +2075,7 @@ BattleCommand_CheckHit:
 
 	; Baneful Bunker poisons attackers that made contact
 	farcall BanefulBunkerPunish_Core
+	farcall KingsShieldPunish
 
 	ld a, 1
 	and a

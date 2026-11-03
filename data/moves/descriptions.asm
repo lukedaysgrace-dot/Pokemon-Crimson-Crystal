@@ -448,6 +448,7 @@ MoveDescriptions1:
 	dw GrassKnotDescription
 	dw HeavySlamDescription
 	dw TwinBeamDescription
+	dw KingsShieldDescription
 
 InvalidMoveDescription:
 	db "?@"
@@ -2187,3 +2188,7 @@ HeavySlamDescription:
 TwinBeamDescription:
 	db   "Hits twice. May"
 	next "drop SPCL.DEF each@"
+
+KingsShieldDescription:
+	db   "Guards from hits."
+	next "Contact drops ATK.@"

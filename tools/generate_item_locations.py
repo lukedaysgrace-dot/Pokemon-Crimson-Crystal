@@ -68,7 +68,7 @@ GIFT_NOTES = {
     'RadioTower1F:EXP_SHARE': 'Lucky Number Show second prize; last three or four trainer-ID digits match the drawn number (all five gives the first prize). One prize per week.',
     'RadioTower2F:WISE_GLASSES': 'Buena; speak to her after clearing Team Rocket from the Radio Tower.',
     'RadioTower3F:TM_SUNNY_DAY': 'Woman on 3F; after clearing Team Rocket from the Radio Tower.',
-    'RadioTower4F:PINK_BOW': 'DJ Mary; after clearing Team Rocket from the Radio Tower.',
+    'RadioTower4F:POLKADOT_BOW': 'DJ Mary; after clearing Team Rocket from the Radio Tower.',
     'Route25:SCOPE_LENS': 'Cooltrainer Kevin at the end of Nugget Bridge’s trainer gauntlet; reward before his battle.',
     'Route16:ASSAULT_VEST': 'Cueball Chopper on Cycling Road; defeat him for a one-time gift.',
     'Route27SandstormHouse:TM_SANDSTORM': 'Woman in the house; first party Pokémon’s happiness must be at least 150.',

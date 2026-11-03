@@ -375,20 +375,20 @@ PokemonCries::
 	mon_cry CRY_FROSLASS,    $08f,  $180 ; FROSLASS
 	mon_cry CRY_GROWLITHE,   $0f0,  $081 ; WIMPOD
 	mon_cry CRY_GROWLITHE,   $0ff,  $0c0 ; GOLISOPOD
-	mon_cry CRY_NIDOQUEEN,   $08f,  $090 ; SPOINK
-	mon_cry CRY_NIDOQUEEN,   $077,  $0c0 ; GRUMPIG
+	mon_cry CRY_VULPIX, $080, $0b0 ; ZORUA
+	mon_cry CRY_VILEPLUME, $030, $140 ; ZOROARK
 	mon_cry CRY_KRABBY,      $080,  $0c0 ; PAWNIARD
 	mon_cry CRY_KRABBY,      $000,  $140 ; BISHARP
 	mon_cry CRY_RHYDON,     -$100,  $1a0 ; KINGAMBIT
-	mon_cry CRY_SLOWPOKE,    $000,  $100 ; LOTAD
-	mon_cry CRY_GROWLITHE,   $000,  $100 ; LOMBRE
-	mon_cry CRY_SLOWKING,    $104,  $200 ; LUDICOLO
+	mon_cry CRY_ODDISH, $0a0, $080 ; SEEDOT
+	mon_cry CRY_ODDISH, $020, $100 ; NUZLEAF
+	mon_cry CRY_WEEPINBELL, $030, $160 ; SHIFTRY
 	mon_cry CRY_SLOWKING,    $000,  $100 ; OVERQWIL
 	mon_cry CRY_SCRAGGY,     $0df,  $0c0 ; SCRAGGY
 	mon_cry CRY_SCRAFTY,     $061,  $12c ; SCRAFTY
-	mon_cry CRY_SEEL,        $0aa,  $0ff ; SPHEAL
-	mon_cry CRY_SEEL,        $039,  $140 ; SEALEO
-	mon_cry CRY_SEEL,       -$02c,  $200 ; WALREIN
+	mon_cry CRY_VOLTORB, $060, $090 ; HONEDGE
+	mon_cry CRY_VOLTORB, $020, $0e0 ; DOUBLADE
+	mon_cry CRY_MUK, $000, $140 ; AEGISLASH
 	mon_cry CRY_TEDDIURSA,   $7a2,  $06e ; TEDDIURSABM
 	mon_cry CRY_TEDDIURSA,   $640,  $0d8 ; URSARINGBM
 	mon_cry CRY_TEDDIURSA,   $640,  $0d8 ; URSALUNABM
@@ -483,8 +483,8 @@ PokemonCries::
 	mon_cry CRY_NOIVERN,     $04a,  $084 ; NOIVERN
 	mon_cry CRY_EKANS,       $0a0,  $100 ; SALANDIT
 	mon_cry CRY_EKANS,      -$020,  $180 ; SALAZZLE
-	mon_cry CRY_FLITTLE,         32,   148 ; FLITTLE
-	mon_cry CRY_ESPATHRA,       200,   300 ; ESPATHRA
+	mon_cry CRY_MUK, $050, $0c0 ; SABLEYE
+	mon_cry CRY_MUK, $000, $140 ; AEGISLASH_BLADE
 	mon_cry CRY_FEAROW,      $0a0,  $0c0 ; FINIZEN
 	mon_cry CRY_FEAROW,     -$0c0,  $180 ; PALAFIN
 	mon_cry CRY_MARILL,      $11b,  $120 ; AZURILL
@@ -505,3 +505,5 @@ PokemonCries::
 	mon_cry CRY_TREVENANT, 0, 220 ; TREVENANT (Polished Coral)
 	mon_cry CRY_MIENFOO, 0, 220 ; MIENFOO (Polished Coral)
 	mon_cry CRY_MIENSHAO, 0, 220 ; MIENSHAO (Polished Coral)
+	mon_cry CRY_HIPPOPOTAS, 0, 220 ; HIPPOPOTAS (authored GB adaptation)
+	mon_cry CRY_HIPPOWDON, 0, 220 ; HIPPOWDON (authored GB adaptation)

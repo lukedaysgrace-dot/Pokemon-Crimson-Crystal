@@ -2,7 +2,7 @@
 
 The full-history correction in `tools/testdata/historical_move_access.json`
 supersedes the older preservation and SV-only policies described below. It
-covers all 498 roster entries, mainline games including both Legends titles,
+covers all 502 internal roster records, mainline games including both Legends titles,
 and Lumi 3.0 level-up, egg, machine and tutor tables. Only implemented moves
 are distributed. Unsupported direct assignments are removed; six custom
 species, Pixie Punch and unavoidable custom-evolution carryover are explicit.

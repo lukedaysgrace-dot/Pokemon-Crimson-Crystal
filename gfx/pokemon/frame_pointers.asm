@@ -369,20 +369,20 @@ FramesPointers:
 	dba FroslassFrames
 	dba WimpodFrames
 	dba GolisopodFrames
-	dba SpoinkFrames
-	dba GrumpigFrames
+	dba ZoruaFrames
+	dba ZoroarkFrames
 	dba PawniardFrames
 	dba BisharpFrames
 	dba KingambitFrames
-	dba LotadFrames
-	dba LombreFrames
-	dba LudicoloFrames
+	dba SeedotFrames
+	dba NuzleafFrames
+	dba ShiftryFrames
 	dba OverqwilFrames
 	dba ScraggyFrames
 	dba ScraftyFrames
-	dba SphealFrames
-	dba SealeoFrames
-	dba WalreinFrames
+	dba HonedgeFrames
+	dba DoubladeFrames
+	dba AegislashFrames
 	dba TeddiursabmFrames
 	dba UrsaringbmFrames
 	dba UrsalunabmFrames
@@ -477,8 +477,8 @@ FramesPointers:
 	dba NoivernFrames
 	dba SalanditFrames
 	dba SalazzleFrames
-	dba FlittleFrames
-	dba EspathraFrames
+	dba SableyeFrames
+	dba AegislashBladeFrames
 	dba FinizenFrames
 	dba PalafinFrames
 	dba AzurillFrames
@@ -499,3 +499,5 @@ FramesPointers:
 	dba TrevenantFrames
 	dba MienfooFrames
 	dba MienshaoFrames
+	dba HippopotasFrames
+	dba HippowdonFrames

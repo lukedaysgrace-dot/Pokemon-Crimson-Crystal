@@ -287,25 +287,6 @@
         }
       ]
     },
-    "GRUMPIG": {
-      "choices": [
-        {
-          "move": "ENCORE"
-        },
-        {
-          "move": "TAUNT"
-        },
-        {
-          "move": "THUNDER_WAVE"
-        },
-        {
-          "move": "REFLECT"
-        },
-        {
-          "move": "LIGHT_SCREEN"
-        }
-      ]
-    },
     "ARMAROUGE": {
       "choices": [
         {
@@ -1815,24 +1796,10 @@
         }
       ]
     },
-    "LUDICOLO": {
-      "choices": [
-        {
-          "move": "FOCUS_BLAST"
-        }
-      ]
-    },
     "OVERQWIL": {
       "choices": [
         {
           "move": "SWORDS_DANCE"
-        }
-      ]
-    },
-    "WALREIN": {
-      "choices": [
-        {
-          "move": "BODY_PRESS"
         }
       ]
     },
@@ -2095,13 +2062,6 @@
         },
         {
           "move": "TAUNT"
-        }
-      ]
-    },
-    "ESPATHRA": {
-      "choices": [
-        {
-          "move": "U_TURN"
         }
       ]
     },
@@ -19419,85 +19379,6 @@
         "WHIRLPOOL"
       ]
     },
-    "SPOINK": {
-      "own": [
-        "BOUNCE",
-        "CONFUSE_RAY",
-        "CONFUSION",
-        "EXTRASENSORY",
-        "FUTURE_SIGHT",
-        "GROWL",
-        "MIRROR_COAT",
-        "POWER_GEM",
-        "PSYBEAM",
-        "PSYCHIC_M",
-        "PSYCH_UP",
-        "REST",
-        "SLEEP_TALK",
-        "SNORE",
-        "SPLASH",
-        "TRICK",
-        "ZEN_HEADBUTT"
-      ],
-      "tms": [
-        "ATTRACT",
-        "CURSE",
-        "FACADE",
-        "FLASH",
-        "FLASH_CANNON",
-        "HIDDEN_POWER",
-        "POWER_GEM",
-        "PROTECT",
-        "PSYCHIC_M",
-        "REST",
-        "RETURN",
-        "SHADOW_BALL",
-        "SWAGGER",
-        "TOXIC",
-        "ZEN_HEADBUTT"
-      ]
-    },
-    "GRUMPIG": {
-      "own": [
-        "BOUNCE",
-        "CALM_MIND",
-        "CONFUSE_RAY",
-        "CONFUSION",
-        "EXTRASENSORY",
-        "FUTURE_SIGHT",
-        "GROWL",
-        "MIRROR_COAT",
-        "POWER_GEM",
-        "PSYBEAM",
-        "PSYCHIC_M",
-        "PSYCH_UP",
-        "REST",
-        "SLEEP_TALK",
-        "SNORE",
-        "SPLASH",
-        "TRICK",
-        "ZEN_HEADBUTT"
-      ],
-      "tms": [
-        "ATTRACT",
-        "CURSE",
-        "FACADE",
-        "FLASH",
-        "FLASH_CANNON",
-        "HIDDEN_POWER",
-        "HYPER_BEAM",
-        "NASTY_PLOT",
-        "POWER_GEM",
-        "PROTECT",
-        "PSYCHIC_M",
-        "REST",
-        "RETURN",
-        "SHADOW_BALL",
-        "SWAGGER",
-        "TOXIC",
-        "ZEN_HEADBUTT"
-      ]
-    },
     "PAWNIARD": {
       "own": [
         "FURY_CUTTER",
@@ -19618,138 +19499,6 @@
         "SWAGGER",
         "THIEF",
         "TOXIC",
-        "ZEN_HEADBUTT"
-      ]
-    },
-    "LOTAD": {
-      "own": [
-        "ABSORB",
-        "ASTONISH",
-        "BUBBLE",
-        "BUBBLEBEAM",
-        "BULLET_SEED",
-        "ENERGY_BALL",
-        "FLAIL",
-        "GIGA_DRAIN",
-        "GROWL",
-        "LEECH_SEED",
-        "MEGA_DRAIN",
-        "MIST",
-        "RAIN_DANCE",
-        "WATER_GUN",
-        "ZEN_HEADBUTT"
-      ],
-      "tms": [
-        "ATTRACT",
-        "CURSE",
-        "ENERGY_BALL",
-        "FACADE",
-        "HIDDEN_POWER",
-        "ICE_BEAM",
-        "PROTECT",
-        "RAIN_DANCE",
-        "REST",
-        "RETURN",
-        "SOLARBEAM",
-        "SUNNY_DAY",
-        "SURF",
-        "SWAGGER",
-        "TOXIC",
-        "WATERFALL",
-        "WEATHER_BALL",
-        "WHIRLPOOL",
-        "ZEN_HEADBUTT"
-      ]
-    },
-    "LOMBRE": {
-      "own": [
-        "ABSORB",
-        "ASTONISH",
-        "BUBBLE",
-        "BUBBLEBEAM",
-        "BULLET_SEED",
-        "ENERGY_BALL",
-        "FLAIL",
-        "FURY_SWIPES",
-        "GIGA_DRAIN",
-        "GROWL",
-        "HYDRO_PUMP",
-        "KNOCK_OFF",
-        "LEECH_SEED",
-        "MEGA_DRAIN",
-        "MIST",
-        "RAIN_DANCE",
-        "WATER_GUN",
-        "ZEN_HEADBUTT"
-      ],
-      "tms": [
-        "ATTRACT",
-        "CURSE",
-        "ENERGY_BALL",
-        "FACADE",
-        "HIDDEN_POWER",
-        "HONE_CLAWS",
-        "ICE_BEAM",
-        "KNOCK_OFF",
-        "PROTECT",
-        "RAIN_DANCE",
-        "REST",
-        "RETURN",
-        "SOLARBEAM",
-        "SUNNY_DAY",
-        "SURF",
-        "SWAGGER",
-        "TOXIC",
-        "WATERFALL",
-        "WEATHER_BALL",
-        "WHIRLPOOL",
-        "ZEN_HEADBUTT"
-      ]
-    },
-    "LUDICOLO": {
-      "own": [
-        "ABSORB",
-        "ASTONISH",
-        "BUBBLE",
-        "BUBBLEBEAM",
-        "BULLET_SEED",
-        "ENERGY_BALL",
-        "FLAIL",
-        "FURY_SWIPES",
-        "GIGA_DRAIN",
-        "GROWL",
-        "HYDRO_PUMP",
-        "KNOCK_OFF",
-        "LEAF_STORM",
-        "MEGA_DRAIN",
-        "MIST",
-        "RAIN_DANCE",
-        "WATER_GUN",
-        "WOOD_HAMMER",
-        "ZEN_HEADBUTT"
-      ],
-      "tms": [
-        "ATTRACT",
-        "CURSE",
-        "ENERGY_BALL",
-        "FACADE",
-        "HIDDEN_POWER",
-        "HONE_CLAWS",
-        "HYPER_BEAM",
-        "ICE_BEAM",
-        "KNOCK_OFF",
-        "PROTECT",
-        "RAIN_DANCE",
-        "REST",
-        "RETURN",
-        "SOLARBEAM",
-        "SUNNY_DAY",
-        "SURF",
-        "SWAGGER",
-        "TOXIC",
-        "WATERFALL",
-        "WEATHER_BALL",
-        "WHIRLPOOL",
         "ZEN_HEADBUTT"
       ]
     },
@@ -19900,129 +19649,6 @@
         "TOXIC",
         "WORK_UP",
         "ZEN_HEADBUTT"
-      ]
-    },
-    "SPHEAL": {
-      "own": [
-        "AQUA_TAIL",
-        "AURORA_BEAM",
-        "BELLY_DRUM",
-        "BLIZZARD",
-        "BODY_SLAM",
-        "DEFENSE_CURL",
-        "ENCORE",
-        "FREEZE_DRY",
-        "GROWL",
-        "HAIL",
-        "ICE_BEAM",
-        "POWDER_SNOW",
-        "REST",
-        "ROLLOUT",
-        "SNORE",
-        "SURF",
-        "WATER_GUN",
-        "WATER_PULSE"
-      ],
-      "tms": [
-        "ATTRACT",
-        "BLIZZARD",
-        "CURSE",
-        "FACADE",
-        "HIDDEN_POWER",
-        "ICE_BEAM",
-        "PROTECT",
-        "RAIN_DANCE",
-        "REST",
-        "RETURN",
-        "SURF",
-        "SWAGGER",
-        "TOXIC",
-        "WATERFALL",
-        "WHIRLPOOL"
-      ]
-    },
-    "SEALEO": {
-      "own": [
-        "AQUA_TAIL",
-        "AURORA_BEAM",
-        "BELLY_DRUM",
-        "BLIZZARD",
-        "BODY_SLAM",
-        "DEFENSE_CURL",
-        "ENCORE",
-        "FREEZE_DRY",
-        "GROWL",
-        "HAIL",
-        "ICE_BEAM",
-        "POWDER_SNOW",
-        "REST",
-        "ROLLOUT",
-        "SNORE",
-        "SURF",
-        "SWAGGER",
-        "WATER_GUN",
-        "WATER_PULSE"
-      ],
-      "tms": [
-        "ATTRACT",
-        "BLIZZARD",
-        "CURSE",
-        "FACADE",
-        "HIDDEN_POWER",
-        "ICE_BEAM",
-        "PROTECT",
-        "RAIN_DANCE",
-        "REST",
-        "RETURN",
-        "SURF",
-        "SWAGGER",
-        "TOXIC",
-        "WATERFALL",
-        "WHIRLPOOL"
-      ]
-    },
-    "WALREIN": {
-      "own": [
-        "AQUA_TAIL",
-        "AURORA_BEAM",
-        "BELLY_DRUM",
-        "BLIZZARD",
-        "BODY_SLAM",
-        "CRUNCH",
-        "DEFENSE_CURL",
-        "ENCORE",
-        "FREEZE_DRY",
-        "GROWL",
-        "HAIL",
-        "ICE_BEAM",
-        "ICE_FANG",
-        "POWDER_SNOW",
-        "REST",
-        "ROLLOUT",
-        "SNORE",
-        "SURF",
-        "SWAGGER",
-        "WATER_GUN",
-        "WATER_PULSE"
-      ],
-      "tms": [
-        "ATTRACT",
-        "BLIZZARD",
-        "CURSE",
-        "FACADE",
-        "HIDDEN_POWER",
-        "HYPER_BEAM",
-        "ICE_BEAM",
-        "PROTECT",
-        "RAIN_DANCE",
-        "REST",
-        "RETURN",
-        "STRENGTH",
-        "SURF",
-        "SWAGGER",
-        "TOXIC",
-        "WATERFALL",
-        "WHIRLPOOL"
       ]
     },
     "TEDDIURSABM": {
@@ -24702,79 +24328,6 @@
         "THIEF",
         "TOXIC",
         "WILL_O_WISP"
-      ]
-    },
-    "FLITTLE": {
-      "own": [
-        "AGILITY",
-        "AIR_CUTTER",
-        "CALM_MIND",
-        "CHARM",
-        "CONFUSE_RAY",
-        "CONFUSION",
-        "DAZZLING_GLEAM",
-        "GROWL",
-        "HYPER_VOICE",
-        "PSYBEAM",
-        "PSYCHIC_M",
-        "QUICK_ATTACK"
-      ],
-      "tms": [
-        "ATTRACT",
-        "CURSE",
-        "FACADE",
-        "FLASH",
-        "HIDDEN_POWER",
-        "PROTECT",
-        "PSYCHIC_M",
-        "REST",
-        "RETURN",
-        "SHADOW_BALL",
-        "SUNNY_DAY",
-        "SWAGGER",
-        "SWIFT",
-        "THIEF",
-        "TOXIC",
-        "ZEN_HEADBUTT"
-      ]
-    },
-    "ESPATHRA": {
-      "own": [
-        "AGILITY",
-        "AIR_CUTTER",
-        "CALM_MIND",
-        "CHARM",
-        "CONFUSE_RAY",
-        "CONFUSION",
-        "DAZZLING_GLEAM",
-        "GROWL",
-        "HYPER_VOICE",
-        "LIGHT_SCREEN",
-        "LUMINA_CRASH",
-        "PSYBEAM",
-        "PSYCHIC_M",
-        "PSYSTRIKE",
-        "QUICK_ATTACK"
-      ],
-      "tms": [
-        "ATTRACT",
-        "CURSE",
-        "FACADE",
-        "FLASH",
-        "FLASH_CANNON",
-        "HIDDEN_POWER",
-        "HYPER_BEAM",
-        "PROTECT",
-        "PSYCHIC_M",
-        "REST",
-        "RETURN",
-        "SHADOW_BALL",
-        "SUNNY_DAY",
-        "SWAGGER",
-        "SWIFT",
-        "THIEF",
-        "TOXIC",
-        "ZEN_HEADBUTT"
       ]
     },
     "FINIZEN": {

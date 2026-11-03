@@ -19,6 +19,8 @@ Read this before changing the game. Keep it up to date when something here chang
 - `home.asm` reserves the cartridge header (`ds $0150 - $0104` in `SECTION "Header"`).
   Without it, the linker can put code at $0104-$014F, rgbfix overwrites it, and the ROM
   builds cleanly but crashes on boot. Keep it.
+- The graphics/palette section `bank2` is also exactly full after the hippo family.
+  Its two nearby back-palette dispatches use short jumps to fit the added palettes.
 
 ## Item IDs are 16-bit
 - Bag rows in `wItems` / `wPCItems` are 3 bytes: [index hi, index lo, quantity].
@@ -34,15 +36,58 @@ Read this before changing the game. Keep it up to date when something here chang
   boosts Fairy (there is no Fairy Feather). Keep their saved item indexes stable.
 
 ## Species additions
-- There are 500 internal species indexes. Append new indexes to preserve saved
-  Pokémon; displayed regional numbering is in `data/pokemon/dex_order_new.asm`.
-- Mienfoo/Mienshao are internal 499/500, regional #262/#263, and evolve at level 50.
+- There are 502 internal species indexes and 501 visible Dex entries. Append new
+  indexes for ordinary additions; displayed regional numbering is separate in
+  `data/pokemon/dex_order_new.asm`.
+- The retired Spoink, Lotad, Spheal and Flittle families were explicitly replaced
+  in their old slots by Zorua, Seedot, Honedge and Sableye. Their assets and source
+  receipts are preserved in `no longer implemented/`; do not reintroduce them.
+- AEGISLASH_BLADE is an internal battle-only art/stat record in the extra retired
+  slot. It shares Aegislash's Dex identity and never enters parties or encounters.
+  Saved old Espathra indexes normalize to Sableye on load/PC decode. Other saved
+  species indexes and the v5 save layout stay stable. See
+  `tools/testdata/roster_replacements.json` and `make test-roster`.
+- ZORUA/ZOROARK are specifically the **Hisuian** forms: Normal/Ghost, Illusion,
+  canonical Hisuian stats/weight and form-specific move access. Their stable
+  constants omit a suffix because regular forms are absent. Do not import the
+  regular Dark forms over them. Zoroark learns Shadow Claw on evolution; Nuzleaf
+  learns Razor Leaf. Both also have level-1 reminder entries.
+- Seedot/Nuzleaf/Shiftry have Prankster / Wind Rider / Technician. Hisuian
+  Zorua/Zoroark have Illusion in every slot. Honedge/Doublade have No Guard;
+  only Aegislash has Stance Change and learns King's Shield on evolution
+  (also available from the level-1 reminder). The supplied nine menu icons are
+  wired in `gfx/menu_icons.asm` and reused by the overworld icon pointers.
+- Aegislash enters in Shield, changes before a damaging move or King's Shield,
+  and resets on entry. Its banked WRAM2 flags never replace saved species.
+  Form stats are recalculated from original DVs/stat EXP, including level-ups;
+  Transform copies the current form and Stance Change, but the ability cannot
+  activate while transformed. Struggle and called damaging moves also change
+  form; inability to execute a move (sleep/flinch/paralysis) does not.
+- With animations on, form changes fade only the actor out, load all sprite
+  tiles while hidden, then fade the new form in. Substitute/Minimize and disabled
+  animations retain the instant path. King Shield uses Detect's animation;
+  the display name is `KING SHIELD` to fit the 12-character move-name limit.
+- King's Shield shares Protect's failure counter, allows status moves through,
+  and lowers contact attackers' Attack one stage. Run the native roster check
+  and `tools/battletest/tests/97-roster-stance-change.yaml` after changing it.
+  `tools/battletest/record_stance_change.py` records both native sides with game
+  audio under `_artifacts/roster/stance-change-video/` using private fixtures.
+  `tools/battletest/stance_change_checks.py` compares all five stats and seven
+  stages with ordinary form controls, including status penalties and varied DVs.
+- Mienfoo/Mienshao are internal 499/500, regional #264/#265, and evolve at level 50.
   Their Field/Human-Like groups and supported move provenance are recorded in
   `tools/testdata/mienfoo_mienshao.json`. Run `make test-mienfoo` for native checks.
 - Crimson Mienfoo/Mienshao are Fighting/Fairy with Serene Grace in slot 1;
   Original typing is pure Fighting. Mienshao's Enhanced Speed/Sp. Atk are 115/85,
   while Original retains 105/95. Their requested Fairy/coverage moves are authored
   additions in `tools/testdata/authored_move_restorations.json`.
+- Hippopotas/Hippowdon append at internal 501/502, regional #235/#236 after
+  Donphan, and evolve at level 34. Both are Ground with Sand Stream / Sand Force /
+  Strong Jaw (Lumi 3.0 slots), Slow growth, and Field egg groups. Their complete
+  implemented mainline-history/Lumi move union is recorded in
+  `tools/testdata/hippopotas_hippowdon.json`. Route 45 supplies both species;
+  supplied sprites use one static front frame and official-color shiny palettes.
+  Run `make test-hippos` for the native family and battle checks.
 - The current seen/caught fields are 63 bytes each (capacity 504 species).
   Exceeding that capacity requires reviewing WRAM/SRAM and save migration.
 

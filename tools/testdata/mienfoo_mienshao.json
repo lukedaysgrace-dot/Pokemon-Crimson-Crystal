@@ -17,7 +17,7 @@
   "species": {
     "MIENFOO": {
       "internal_index": 499,
-      "regional_dex": 262,
+      "regional_dex": 264,
       "stats": [
         45,
         85,
@@ -768,7 +768,7 @@
     },
     "MIENSHAO": {
       "internal_index": 500,
-      "regional_dex": 263,
+      "regional_dex": 265,
       "stats": [
         65,
         125,

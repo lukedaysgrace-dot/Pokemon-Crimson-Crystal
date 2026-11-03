@@ -334,6 +334,9 @@ SPECIAL_SLUG = {
 
 # Bloodmoon / custom form label -> PokeAPI slug (or None -> override/unchanged)
 SPECIAL_FORM_LABEL = {
+    # The supplied Zorua/Zoroark sprites and game data are their Hisuian forms.
+    "zorua": "zorua-hisui",
+    "zoroark": "zoroark-hisui",
     "ursalunabm": "ursaluna-bloodmoon",
     "teddiursabm": "teddiursa",
     "ursaringbm": "ursaring",
@@ -560,7 +563,7 @@ def resolve_base_learnset(label_base, lumi, rom_moves, report):
     if low in SPECIAL_FORM_LABEL:
         slug = SPECIAL_FORM_LABEL[low]
         if slug:
-            ls = pokeapi_learnset(slug, prefer_hisui=("hisui" in slug))
+            ls = pokeapi_learnset(slug, prefer_hisui=("hisui" in slug and low not in {"zorua", "zoroark"}))
             if ls:
                 return ("pokeapi:" + slug, moves_to_consts(ls, rom_moves, report))
         if low in FAKEMON_OVERRIDES:
@@ -618,7 +621,7 @@ def canonical_learnset(label_base, rom_moves, report):
         slug = SPECIAL_FORM_LABEL[low]
         if not slug:
             return []
-        ls = pokeapi_learnset(slug, prefer_hisui=("hisui" in slug))
+        ls = pokeapi_learnset(slug, prefer_hisui=("hisui" in slug and low not in {"zorua", "zoroark"}))
         return moves_to_consts(ls or [], rom_moves, report)
 
     species, tag, api_suffix = split_region(label_base)

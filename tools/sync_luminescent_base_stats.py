@@ -35,6 +35,8 @@ def humanize_stem(stem: str) -> str:
 
 
 def candidate_names(stem: str) -> list[str]:
+    if stem in {"zorua", "zoroark"}:
+        return [f"Hisuian {stem.title()}"]
     names = [humanize_stem(stem)]
     parts = stem.split("_")
 

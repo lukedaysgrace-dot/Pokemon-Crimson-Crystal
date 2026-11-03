@@ -482,6 +482,7 @@ BattleAnimations::
 	banim BattleAnim_GrassKnot_PO ; GRASS_KNOT
 	banim BattleAnim_HeavySlam ; HEAVY_SLAM
 	banim BattleAnim_TwinBeam_PC ; TWIN_BEAM
+	banim BattleAnim_Detect ; KINGS_SHIELD
 	banim BattleAnim_SweetScent2
 	banim BattleAnim_StatUp
 	banim BattleAnim_StatDown

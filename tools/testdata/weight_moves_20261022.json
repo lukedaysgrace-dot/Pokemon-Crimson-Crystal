@@ -382,12 +382,6 @@
     "CAMERUPT": [
       "HEAVY_SLAM"
     ],
-    "SPOINK": [
-      "GRASS_KNOT"
-    ],
-    "GRUMPIG": [
-      "GRASS_KNOT"
-    ],
     "PAWNIARD": [
       "GRASS_KNOT"
     ],
@@ -397,23 +391,11 @@
     "KINGAMBIT": [
       "GRASS_KNOT"
     ],
-    "LOTAD": [
-      "GRASS_KNOT"
-    ],
-    "LOMBRE": [
-      "GRASS_KNOT"
-    ],
-    "LUDICOLO": [
-      "GRASS_KNOT"
-    ],
     "SCRAGGY": [
       "GRASS_KNOT"
     ],
     "SCRAFTY": [
       "GRASS_KNOT"
-    ],
-    "WALREIN": [
-      "HEAVY_SLAM"
     ],
     "URSALUNABM": [
       "HEAVY_SLAM"
@@ -5955,89 +5937,6 @@
         }
       ]
     },
-    "SPOINK": {
-      "GRASS_KNOT": [
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "9M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "7M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "6M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "5M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "4M"
-        }
-      ]
-    },
-    "GRUMPIG": {
-      "GRASS_KNOT": [
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "9M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "7M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "6M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "5M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "spoink",
-          "source": "4M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "grumpig",
-          "source": "9M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "grumpig",
-          "source": "7M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "grumpig",
-          "source": "6M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "grumpig",
-          "source": "5M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "grumpig",
-          "source": "4M"
-        }
-      ]
-    },
     "PAWNIARD": {
       "GRASS_KNOT": [
         {
@@ -6180,198 +6079,6 @@
         }
       ]
     },
-    "LOTAD": {
-      "GRASS_KNOT": [
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "9M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "8M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "7M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "6M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "5M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "4M"
-        }
-      ]
-    },
-    "LOMBRE": {
-      "GRASS_KNOT": [
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "9M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "8M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "7M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "6M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "5M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "4M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "9M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "8M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "7M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "6M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "5M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "4M"
-        }
-      ]
-    },
-    "LUDICOLO": {
-      "GRASS_KNOT": [
-        {
-          "reference": "Smogon",
-          "species": "ludicolo",
-          "source": "9M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "ludicolo",
-          "source": "8M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "ludicolo",
-          "source": "7M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "ludicolo",
-          "source": "6M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "ludicolo",
-          "source": "5M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "ludicolo",
-          "source": "4M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "9M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "8M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "7M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "6M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "5M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lotad",
-          "source": "4M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "9M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "8M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "7M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "6M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "5M"
-        },
-        {
-          "reference": "Smogon",
-          "species": "lombre",
-          "source": "4M"
-        }
-      ]
-    },
     "SCRAGGY": {
       "GRASS_KNOT": [
         {
@@ -6452,15 +6159,6 @@
           "reference": "Smogon",
           "species": "scrafty",
           "source": "5M"
-        }
-      ]
-    },
-    "WALREIN": {
-      "HEAVY_SLAM": [
-        {
-          "reference": "Smogon",
-          "species": "walrein",
-          "source": "8M"
         }
       ]
     },

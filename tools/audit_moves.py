@@ -725,7 +725,12 @@ def audit_move_mechanics(audit: Audit) -> None:
     unsafe_pattern = re.compile(
         r"\b(?:farcall|callfar)\s+(?:" + "|".join(unsafe_helpers) + r")\b"
     )
-    for path in sorted(ROOT.rglob("*.asm")):
+    # Scan active assembly sources, excluding archived assets, editor dependencies
+    # and build scratch directories that are not inputs to either ROM.
+    source_paths = list(ROOT.glob('*.asm'))
+    for folder in ('audio', 'constants', 'data', 'engine', 'gfx', 'home', 'lib', 'macros', 'maps', 'mobile'):
+        source_paths.extend((ROOT / folder).rglob('*.asm'))
+    for path in sorted(source_paths):
         # Some generated graphics metadata retains legacy single-byte accents.
         # This scan only looks for ASCII battle helper names, so replacement is
         # safe and prevents unrelated asset text from aborting the move audit.
@@ -971,7 +976,9 @@ def audit_move_availability(audit: Audit, moves: list[str]) -> None:
     # before their distribution pass (see NEW_MOVES_2026-07-29.md).
     first_staged = moves.index("OVERHEAT")
     last_staged = moves.index("DRAGON_TAIL") + 1
-    intentionally_unlearnable = {"STRUGGLE", *moves[first_staged:last_staged]}
+    # Lumina Crash's only family was retired. Keep its saved move index stable;
+    # it has no active trainer or player assignment in the replacement roster.
+    intentionally_unlearnable = {"STRUGGLE", "LUMINA_CRASH", *moves[first_staged:last_staged]}
     missing = sorted(set(moves) - available - intentionally_unlearnable)
     audit.check(not missing, "moves with no player learnset: " + ", ".join(missing))
     audit.count("player-available moves", len(set(moves) & available))

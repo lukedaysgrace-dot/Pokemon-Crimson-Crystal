@@ -1,0 +1,2350 @@
+{
+  "policy": "Replaces retired species slots only; all other internal IDs remain stable. Blade is battle-only and shares Aegislash Dex identity.",
+  "replacements": {
+    "spoink": "zorua",
+    "grumpig": "zoroark",
+    "lotad": "seedot",
+    "lombre": "nuzleaf",
+    "ludicolo": "shiftry",
+    "spheal": "honedge",
+    "sealeo": "doublade",
+    "walrein": "aegislash",
+    "flittle": "sableye",
+    "espathra": "aegislash_blade"
+  },
+  "species": {
+    "ZORUA": {
+      "replaces": "SPOINK",
+      "stats": [
+        35,
+        60,
+        40,
+        70,
+        85,
+        40
+      ],
+      "enhanced_stats": [
+        35,
+        60,
+        40,
+        70,
+        85,
+        40
+      ],
+      "types": [
+        "NORMAL",
+        "GHOST"
+      ],
+      "abilities": [
+        "ILLUSION",
+        "ILLUSION",
+        "ILLUSION"
+      ],
+      "height": 204,
+      "weight_hg": 125,
+      "weight_lbs_x10": 276,
+      "egg_groups": [
+        "GROUND",
+        "GROUND"
+      ],
+      "root": "ZORUA",
+      "level_up": [
+        [
+          1,
+          "LEER"
+        ],
+        [
+          1,
+          "SCRATCH"
+        ],
+        [
+          4,
+          "TORMENT"
+        ],
+        [
+          8,
+          "HONE_CLAWS"
+        ],
+        [
+          12,
+          "SHADOW_SNEAK"
+        ],
+        [
+          16,
+          "CURSE"
+        ],
+        [
+          20,
+          "TAUNT"
+        ],
+        [
+          24,
+          "KNOCK_OFF"
+        ],
+        [
+          28,
+          "SPITE"
+        ],
+        [
+          32,
+          "AGILITY"
+        ],
+        [
+          36,
+          "SHADOW_BALL"
+        ],
+        [
+          44,
+          "NASTY_PLOT"
+        ],
+        [
+          48,
+          "FOUL_PLAY"
+        ]
+      ],
+      "tmhm": [
+        "CURSE",
+        "ROAR",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "WILL_O_WISP",
+        "FACADE",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "KNOCK_OFF",
+        "SLUDGE_BOMB",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "THIEF",
+        "HONE_CLAWS"
+      ],
+      "egg_moves": [
+        "DETECT",
+        "EXTRASENSORY"
+      ],
+      "utility": 3,
+      "expected": [
+        "AERIAL_ACE",
+        "AGILITY",
+        "CALM_MIND",
+        "CONFUSE_RAY",
+        "CURSE",
+        "DARK_PULSE",
+        "DETECT",
+        "DIG",
+        "ENDURE",
+        "EXTRASENSORY",
+        "FACADE",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "GIGA_IMPACT",
+        "HEX",
+        "HONE_CLAWS",
+        "HYPER_BEAM",
+        "ICY_WIND",
+        "KNOCK_OFF",
+        "LEER",
+        "NASTY_PLOT",
+        "NIGHT_SHADE",
+        "PAIN_SPLIT",
+        "PHANTOMFORCE",
+        "PROTECT",
+        "PSYCH_UP",
+        "RAIN_DANCE",
+        "REST",
+        "RETURN",
+        "ROAR",
+        "SCARY_FACE",
+        "SCRATCH",
+        "SHADOW_BALL",
+        "SHADOW_CLAW",
+        "SHADOW_SNEAK",
+        "SLASH",
+        "SLEEP_TALK",
+        "SLUDGE_BOMB",
+        "SNARL",
+        "SPITE",
+        "SUBSTITUTE",
+        "SWIFT",
+        "TAKE_DOWN",
+        "TAUNT",
+        "THIEF",
+        "TORMENT",
+        "TRICK",
+        "U_TURN",
+        "WILL_O_WISP"
+      ],
+      "internal_index": 371,
+      "regional_dex": 413,
+      "tutors": [
+        "AERIAL_ACE",
+        "CALM_MIND",
+        "CONFUSE_RAY",
+        "DARK_PULSE",
+        "ENDURE",
+        "FRUSTRATION",
+        "GIGA_IMPACT",
+        "HEX",
+        "ICY_WIND",
+        "NIGHT_SHADE",
+        "PAIN_SPLIT",
+        "PHANTOMFORCE",
+        "PSYCH_UP",
+        "SCARY_FACE",
+        "SHADOW_CLAW",
+        "SLASH",
+        "SNARL",
+        "TAKE_DOWN",
+        "TRICK",
+        "U_TURN"
+      ],
+      "form": "Hisuian",
+      "source_key": "zoruahisui"
+    },
+    "ZOROARK": {
+      "replaces": "GRUMPIG",
+      "stats": [
+        55,
+        100,
+        60,
+        110,
+        125,
+        60
+      ],
+      "enhanced_stats": [
+        55,
+        100,
+        60,
+        110,
+        125,
+        60
+      ],
+      "types": [
+        "NORMAL",
+        "GHOST"
+      ],
+      "abilities": [
+        "ILLUSION",
+        "ILLUSION",
+        "ILLUSION"
+      ],
+      "height": 503,
+      "weight_hg": 730,
+      "weight_lbs_x10": 1609,
+      "egg_groups": [
+        "GROUND",
+        "GROUND"
+      ],
+      "root": "ZORUA",
+      "level_up": [
+        [
+          1,
+          "HONE_CLAWS"
+        ],
+        [
+          1,
+          "LEER"
+        ],
+        [
+          1,
+          "SCRATCH"
+        ],
+        [
+          1,
+          "SHADOW_CLAW"
+        ],
+        [
+          1,
+          "TORMENT"
+        ],
+        [
+          1,
+          "U_TURN"
+        ],
+        [
+          12,
+          "SHADOW_SNEAK"
+        ],
+        [
+          16,
+          "CURSE"
+        ],
+        [
+          20,
+          "TAUNT"
+        ],
+        [
+          24,
+          "KNOCK_OFF"
+        ],
+        [
+          28,
+          "SPITE"
+        ],
+        [
+          34,
+          "AGILITY"
+        ],
+        [
+          40,
+          "SHADOW_BALL"
+        ],
+        [
+          52,
+          "NASTY_PLOT"
+        ],
+        [
+          58,
+          "FOUL_PLAY"
+        ]
+      ],
+      "tmhm": [
+        "CURSE",
+        "ROAR",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "WILL_O_WISP",
+        "FACADE",
+        "RETURN",
+        "DIG",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "KNOCK_OFF",
+        "SLUDGE_BOMB",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "THIEF",
+        "HONE_CLAWS",
+        "FLAMETHROWER"
+      ],
+      "egg_moves": [],
+      "utility": 3,
+      "expected": [
+        "AERIAL_ACE",
+        "AGILITY",
+        "BODY_SLAM",
+        "BRICK_BREAK",
+        "CALM_MIND",
+        "CONFUSE_RAY",
+        "CRUNCH",
+        "CURSE",
+        "DARK_PULSE",
+        "DETECT",
+        "DIG",
+        "ENDURE",
+        "EXTRASENSORY",
+        "FACADE",
+        "FLAMETHROWER",
+        "FOCUS_BLAST",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "GIGA_IMPACT",
+        "GRASS_KNOT",
+        "HEX",
+        "HIDDEN_POWER",
+        "HONE_CLAWS",
+        "HYPER_BEAM",
+        "HYPER_VOICE",
+        "ICY_WIND",
+        "KNOCK_OFF",
+        "LEER",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "NASTY_PLOT",
+        "NIGHT_SHADE",
+        "OMINOUS_WIND",
+        "PAIN_SPLIT",
+        "PHANTOMFORCE",
+        "PROTECT",
+        "PSYCHIC_M",
+        "PSYCH_UP",
+        "RAIN_DANCE",
+        "REST",
+        "RETURN",
+        "ROAR",
+        "ROCK_SMASH",
+        "SCARY_FACE",
+        "SCRATCH",
+        "SHADOW_BALL",
+        "SHADOW_CLAW",
+        "SHADOW_SNEAK",
+        "SLASH",
+        "SLEEP_TALK",
+        "SLUDGE_BOMB",
+        "SNARL",
+        "SPITE",
+        "SUBSTITUTE",
+        "SWIFT",
+        "SWORDS_DANCE",
+        "TAKE_DOWN",
+        "TAUNT",
+        "THIEF",
+        "TORMENT",
+        "TRICK",
+        "U_TURN",
+        "WILL_O_WISP"
+      ],
+      "internal_index": 372,
+      "regional_dex": 414,
+      "tutors": [
+        "AERIAL_ACE",
+        "BODY_SLAM",
+        "BRICK_BREAK",
+        "CALM_MIND",
+        "CONFUSE_RAY",
+        "CRUNCH",
+        "DARK_PULSE",
+        "ENDURE",
+        "FOCUS_BLAST",
+        "FRUSTRATION",
+        "GIGA_IMPACT",
+        "GRASS_KNOT",
+        "HEX",
+        "HYPER_VOICE",
+        "ICY_WIND",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "NIGHT_SHADE",
+        "OMINOUS_WIND",
+        "PAIN_SPLIT",
+        "PHANTOMFORCE",
+        "PSYCH_UP",
+        "SCARY_FACE",
+        "SLASH",
+        "SNARL",
+        "SWORDS_DANCE",
+        "TAKE_DOWN",
+        "TRICK"
+      ],
+      "form": "Hisuian",
+      "source_key": "zoroarkhisui"
+    },
+    "SEEDOT": {
+      "replaces": "LOTAD",
+      "stats": [
+        40,
+        40,
+        50,
+        30,
+        30,
+        30
+      ],
+      "enhanced_stats": [
+        40,
+        40,
+        50,
+        30,
+        30,
+        30
+      ],
+      "types": [
+        "GRASS",
+        "GRASS"
+      ],
+      "abilities": [
+        "PRANKSTER",
+        "WIND_RIDER",
+        "TECHNICIAN"
+      ],
+      "height": 108,
+      "weight_hg": 40,
+      "weight_lbs_x10": 88,
+      "egg_groups": [
+        "GROUND",
+        "PLANT"
+      ],
+      "root": "SEEDOT",
+      "level_up": [
+        [
+          1,
+          "GROWTH"
+        ],
+        [
+          1,
+          "HARDEN"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          3,
+          "ABSORB"
+        ],
+        [
+          6,
+          "ASTONISH"
+        ],
+        [
+          12,
+          "ROLLOUT"
+        ],
+        [
+          15,
+          "MEGA_DRAIN"
+        ],
+        [
+          15,
+          "SYNTHESIS"
+        ],
+        [
+          20,
+          "SEED_BOMB"
+        ],
+        [
+          25,
+          "SUNNY_DAY"
+        ],
+        [
+          30,
+          "EXPLOSION"
+        ],
+        [
+          30,
+          "SUCKER_PUNCH"
+        ]
+      ],
+      "tmhm": [
+        "HEADBUTT",
+        "CURSE",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "PROTECT",
+        "RAIN_DANCE",
+        "ENERGY_BALL",
+        "FACADE",
+        "SOLARBEAM",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "SWAGGER",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "NIGHT_SLASH",
+        "FLASH"
+      ],
+      "egg_moves": [
+        "AMNESIA",
+        "BEAT_UP",
+        "BULLET_SEED",
+        "DEFOG",
+        "FALSE_SWIPE",
+        "FOUL_PLAY",
+        "LEECH_SEED",
+        "NASTY_PLOT",
+        "NIGHT_SLASH",
+        "QUICK_ATTACK",
+        "RAZOR_WIND",
+        "TAKE_DOWN"
+      ],
+      "utility": 3,
+      "expected": [
+        "ABSORB",
+        "AMNESIA",
+        "ASTONISH",
+        "ATTRACT",
+        "BEAT_UP",
+        "BIDE",
+        "BODY_SLAM",
+        "BULLET_SEED",
+        "CURSE",
+        "DEFENSE_CURL",
+        "DEFOG",
+        "DIG",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "ENERGY_BALL",
+        "EXPLOSION",
+        "FACADE",
+        "FALSE_SWIPE",
+        "FLASH",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "GRASS_KNOT",
+        "GROWTH",
+        "HARDEN",
+        "HEADBUTT",
+        "HIDDEN_POWER",
+        "LEAF_STORM",
+        "LEECH_SEED",
+        "MAGICAL_LEAF",
+        "MEGA_DRAIN",
+        "MIMIC",
+        "NASTY_PLOT",
+        "NIGHT_SLASH",
+        "PROTECT",
+        "QUICK_ATTACK",
+        "RAIN_DANCE",
+        "RAZOR_WIND",
+        "REST",
+        "RETURN",
+        "ROCK_SMASH",
+        "ROLLOUT",
+        "SEED_BOMB",
+        "SELFDESTRUCT",
+        "SHADOW_BALL",
+        "SLEEP_TALK",
+        "SNORE",
+        "SOLARBEAM",
+        "SPITE",
+        "SUBSTITUTE",
+        "SUCKER_PUNCH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "SWORDS_DANCE",
+        "SYNTHESIS",
+        "TACKLE",
+        "TAKE_DOWN",
+        "TOXIC"
+      ],
+      "internal_index": 376,
+      "regional_dex": 418,
+      "tutors": [
+        "BIDE",
+        "BODY_SLAM",
+        "DEFENSE_CURL",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "GRASS_KNOT",
+        "LEAF_STORM",
+        "MAGICAL_LEAF",
+        "MIMIC",
+        "SELFDESTRUCT",
+        "SNORE",
+        "SPITE",
+        "SWORDS_DANCE"
+      ]
+    },
+    "NUZLEAF": {
+      "replaces": "LOMBRE",
+      "stats": [
+        70,
+        70,
+        40,
+        60,
+        60,
+        40
+      ],
+      "enhanced_stats": [
+        70,
+        70,
+        40,
+        60,
+        60,
+        40
+      ],
+      "types": [
+        "GRASS",
+        "DARK"
+      ],
+      "abilities": [
+        "PRANKSTER",
+        "WIND_RIDER",
+        "TECHNICIAN"
+      ],
+      "height": 303,
+      "weight_hg": 280,
+      "weight_lbs_x10": 617,
+      "egg_groups": [
+        "GROUND",
+        "PLANT"
+      ],
+      "root": "SEEDOT",
+      "level_up": [
+        [
+          1,
+          "ABSORB"
+        ],
+        [
+          1,
+          "AIR_CUTTER"
+        ],
+        [
+          1,
+          "ASTONISH"
+        ],
+        [
+          1,
+          "FAKE_OUT"
+        ],
+        [
+          1,
+          "GROWTH"
+        ],
+        [
+          1,
+          "HARDEN"
+        ],
+        [
+          1,
+          "POUND"
+        ],
+        [
+          1,
+          "RAZOR_LEAF"
+        ],
+        [
+          1,
+          "SYNTHESIS"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          12,
+          "ROLLOUT"
+        ],
+        [
+          18,
+          "MEGA_DRAIN"
+        ],
+        [
+          20,
+          "RAZOR_WIND"
+        ],
+        [
+          20,
+          "TORMENT"
+        ],
+        [
+          24,
+          "FAINT_ATTACK"
+        ],
+        [
+          26,
+          "LEAF_BLADE"
+        ],
+        [
+          32,
+          "SWAGGER"
+        ],
+        [
+          35,
+          "EXTRASENSORY"
+        ],
+        [
+          36,
+          "SUNNY_DAY"
+        ],
+        [
+          50,
+          "SUCKER_PUNCH"
+        ]
+      ],
+      "tmhm": [
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "ENERGY_BALL",
+        "FACADE",
+        "SOLARBEAM",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "KNOCK_OFF",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FURY_CUTTER",
+        "NIGHT_SLASH",
+        "WEATHER_BALL",
+        "CUT",
+        "STRENGTH",
+        "FLASH"
+      ],
+      "egg_moves": [],
+      "utility": 3,
+      "expected": [
+        "ABSORB",
+        "AIR_CUTTER",
+        "AMNESIA",
+        "ASTONISH",
+        "ATTRACT",
+        "BEAT_UP",
+        "BIDE",
+        "BODY_SLAM",
+        "BRICK_BREAK",
+        "BULLET_SEED",
+        "CURSE",
+        "CUT",
+        "DARK_PULSE",
+        "DEFENSE_CURL",
+        "DEFOG",
+        "DIG",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "ENERGY_BALL",
+        "EXPLOSION",
+        "EXTRASENSORY",
+        "FACADE",
+        "FAINT_ATTACK",
+        "FAKE_OUT",
+        "FALSE_SWIPE",
+        "FLASH",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "FURY_CUTTER",
+        "GIGA_DRAIN",
+        "GRASS_KNOT",
+        "GROWTH",
+        "HARDEN",
+        "HEADBUTT",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "KNOCK_OFF",
+        "LEAF_BLADE",
+        "LEAF_STORM",
+        "LEECH_SEED",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "MAGICAL_LEAF",
+        "MEGA_DRAIN",
+        "MEGA_KICK",
+        "MIMIC",
+        "MUD_SLAP",
+        "NASTY_PLOT",
+        "NIGHT_SLASH",
+        "POUND",
+        "PROTECT",
+        "PSYCH_UP",
+        "QUICK_ATTACK",
+        "RAIN_DANCE",
+        "RAZOR_LEAF",
+        "RAZOR_WIND",
+        "REST",
+        "RETURN",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "ROCK_TOMB",
+        "ROLLOUT",
+        "SCARY_FACE",
+        "SEED_BOMB",
+        "SELFDESTRUCT",
+        "SHADOW_BALL",
+        "SLEEP_TALK",
+        "SNARL",
+        "SNORE",
+        "SOLARBEAM",
+        "SOLAR_BLADE",
+        "SPITE",
+        "STRENGTH",
+        "SUBSTITUTE",
+        "SUCKER_PUNCH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "SWIFT",
+        "SWORDS_DANCE",
+        "SYNTHESIS",
+        "TACKLE",
+        "TAKE_DOWN",
+        "THIEF",
+        "TORMENT",
+        "TOXIC",
+        "WEATHER_BALL"
+      ],
+      "internal_index": 377,
+      "regional_dex": 419,
+      "tutors": [
+        "BIDE",
+        "BODY_SLAM",
+        "BRICK_BREAK",
+        "DARK_PULSE",
+        "DEFENSE_CURL",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "EXPLOSION",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "GRASS_KNOT",
+        "LEAF_STORM",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "MAGICAL_LEAF",
+        "MEGA_KICK",
+        "MIMIC",
+        "PSYCH_UP",
+        "ROCK_SLIDE",
+        "SCARY_FACE",
+        "SEED_BOMB",
+        "SELFDESTRUCT",
+        "SNARL",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE",
+        "SWORDS_DANCE"
+      ]
+    },
+    "SHIFTRY": {
+      "replaces": "LUDICOLO",
+      "stats": [
+        90,
+        100,
+        60,
+        80,
+        90,
+        60
+      ],
+      "enhanced_stats": [
+        90,
+        100,
+        60,
+        80,
+        90,
+        60
+      ],
+      "types": [
+        "GRASS",
+        "DARK"
+      ],
+      "abilities": [
+        "PRANKSTER",
+        "WIND_RIDER",
+        "TECHNICIAN"
+      ],
+      "height": 403,
+      "weight_hg": 596,
+      "weight_lbs_x10": 1314,
+      "egg_groups": [
+        "GROUND",
+        "PLANT"
+      ],
+      "root": "SEEDOT",
+      "level_up": [
+        [
+          1,
+          "ABSORB"
+        ],
+        [
+          1,
+          "AIR_CUTTER"
+        ],
+        [
+          1,
+          "ASTONISH"
+        ],
+        [
+          1,
+          "GROWTH"
+        ],
+        [
+          1,
+          "HARDEN"
+        ],
+        [
+          1,
+          "POUND"
+        ],
+        [
+          1,
+          "RAZOR_LEAF"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          1,
+          "WEATHER_BALL"
+        ],
+        [
+          15,
+          "ROLLOUT"
+        ],
+        [
+          20,
+          "FAKE_OUT"
+        ],
+        [
+          25,
+          "MEGA_DRAIN"
+        ],
+        [
+          25,
+          "TORMENT"
+        ],
+        [
+          30,
+          "RAZOR_WIND"
+        ],
+        [
+          35,
+          "FAINT_ATTACK"
+        ],
+        [
+          40,
+          "LEAF_BLADE"
+        ],
+        [
+          45,
+          "SWAGGER"
+        ],
+        [
+          50,
+          "EXTRASENSORY"
+        ],
+        [
+          55,
+          "SUNNY_DAY"
+        ],
+        [
+          60,
+          "HURRICANE"
+        ],
+        [
+          65,
+          "LEAF_STORM"
+        ],
+        [
+          70,
+          "SUCKER_PUNCH"
+        ]
+      ],
+      "tmhm": [
+        "HEADBUTT",
+        "CURSE",
+        "ROCK_TOMB",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "ENERGY_BALL",
+        "WILL_O_WISP",
+        "FACADE",
+        "SOLARBEAM",
+        "RETURN",
+        "DIG",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "KNOCK_OFF",
+        "SWIFT",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FURY_CUTTER",
+        "NIGHT_SLASH",
+        "WEATHER_BALL",
+        "CUT",
+        "STRENGTH",
+        "FLASH"
+      ],
+      "egg_moves": [],
+      "utility": 3,
+      "expected": [
+        "ABSORB",
+        "AERIAL_ACE",
+        "AIR_CUTTER",
+        "AIR_SLASH",
+        "AMNESIA",
+        "ASTONISH",
+        "ATTRACT",
+        "BEAT_UP",
+        "BIDE",
+        "BODY_SLAM",
+        "BOUNCE",
+        "BRICK_BREAK",
+        "BULLET_SEED",
+        "CONFUSE_RAY",
+        "CURSE",
+        "CUT",
+        "DARK_PULSE",
+        "DEFENSE_CURL",
+        "DEFOG",
+        "DIG",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "ENERGY_BALL",
+        "EXPLOSION",
+        "EXTRASENSORY",
+        "FACADE",
+        "FAINT_ATTACK",
+        "FAKE_OUT",
+        "FALSE_SWIPE",
+        "FLASH",
+        "FOCUS_BLAST",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "FURY_CUTTER",
+        "GIGA_DRAIN",
+        "GIGA_IMPACT",
+        "GRASS_KNOT",
+        "GROWTH",
+        "HARDEN",
+        "HEADBUTT",
+        "HEAT_WAVE",
+        "HEX",
+        "HIDDEN_POWER",
+        "HURRICANE",
+        "HYPER_BEAM",
+        "ICY_WIND",
+        "KNOCK_OFF",
+        "LEAF_BLADE",
+        "LEAF_STORM",
+        "LEECH_SEED",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "MAGICAL_LEAF",
+        "MEGA_DRAIN",
+        "MEGA_KICK",
+        "MIMIC",
+        "MUD_SLAP",
+        "NASTY_PLOT",
+        "NIGHT_SLASH",
+        "OMINOUS_WIND",
+        "PETAL_BLIZZARD",
+        "POUND",
+        "PROTECT",
+        "PSYCH_UP",
+        "QUICK_ATTACK",
+        "RAIN_DANCE",
+        "RAZOR_LEAF",
+        "RAZOR_WIND",
+        "REST",
+        "RETURN",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "ROCK_TOMB",
+        "ROLLOUT",
+        "SCARY_FACE",
+        "SCREECH",
+        "SEED_BOMB",
+        "SELFDESTRUCT",
+        "SHADOW_BALL",
+        "SLEEP_TALK",
+        "SNARL",
+        "SNORE",
+        "SOLARBEAM",
+        "SOLAR_BLADE",
+        "SPITE",
+        "STRENGTH",
+        "SUBSTITUTE",
+        "SUCKER_PUNCH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "SWIFT",
+        "SWORDS_DANCE",
+        "SYNTHESIS",
+        "TACKLE",
+        "TAKE_DOWN",
+        "TAUNT",
+        "THIEF",
+        "TORMENT",
+        "TOXIC",
+        "TOXIC_SPIKES",
+        "TWISTER",
+        "VACUUM_WAVE",
+        "WEATHER_BALL",
+        "WHIRLWIND",
+        "WILL_O_WISP",
+        "X_SCISSOR"
+      ],
+      "internal_index": 378,
+      "regional_dex": 420,
+      "tutors": [
+        "AERIAL_ACE",
+        "AIR_SLASH",
+        "BIDE",
+        "BODY_SLAM",
+        "BOUNCE",
+        "BRICK_BREAK",
+        "CONFUSE_RAY",
+        "DARK_PULSE",
+        "DEFENSE_CURL",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "EXPLOSION",
+        "FOCUS_BLAST",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "GIGA_IMPACT",
+        "GRASS_KNOT",
+        "HEAT_WAVE",
+        "HEX",
+        "ICY_WIND",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "MAGICAL_LEAF",
+        "MEGA_KICK",
+        "MIMIC",
+        "OMINOUS_WIND",
+        "PETAL_BLIZZARD",
+        "PSYCH_UP",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "SCARY_FACE",
+        "SCREECH",
+        "SEED_BOMB",
+        "SELFDESTRUCT",
+        "SNARL",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE",
+        "SWORDS_DANCE",
+        "SYNTHESIS",
+        "TAUNT",
+        "TOXIC_SPIKES",
+        "TWISTER",
+        "VACUUM_WAVE",
+        "WHIRLWIND",
+        "X_SCISSOR"
+      ]
+    },
+    "HONEDGE": {
+      "replaces": "SPHEAL",
+      "stats": [
+        45,
+        80,
+        100,
+        28,
+        35,
+        37
+      ],
+      "enhanced_stats": [
+        45,
+        80,
+        100,
+        28,
+        35,
+        37
+      ],
+      "types": [
+        "STEEL",
+        "GHOST"
+      ],
+      "abilities": [
+        "NO_GUARD",
+        "NO_GUARD",
+        "NO_GUARD"
+      ],
+      "height": 207,
+      "weight_hg": 20,
+      "weight_lbs_x10": 44,
+      "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+      ],
+      "root": "HONEDGE",
+      "level_up": [
+        [
+          1,
+          "FURY_CUTTER"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          4,
+          "SHADOW_SNEAK"
+        ],
+        [
+          12,
+          "AERIAL_ACE"
+        ],
+        [
+          20,
+          "SLASH"
+        ],
+        [
+          24,
+          "NIGHT_SLASH"
+        ],
+        [
+          32,
+          "IRON_DEFENSE"
+        ],
+        [
+          36,
+          "IRON_HEAD"
+        ],
+        [
+          44,
+          "SWORDS_DANCE"
+        ],
+        [
+          48,
+          "SACRED_SWORD"
+        ]
+      ],
+      "tmhm": [
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "REST",
+        "ATTRACT",
+        "FURY_CUTTER",
+        "NIGHT_SLASH",
+        "CUT"
+      ],
+      "egg_moves": [
+        "DESTINY_BOND",
+        "SHADOW_SNEAK"
+      ],
+      "utility": 7,
+      "expected": [
+        "AERIAL_ACE",
+        "ATTRACT",
+        "BRICK_BREAK",
+        "CLOSE_COMBAT",
+        "CUT",
+        "DESTINY_BOND",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "FACADE",
+        "FALSE_SWIPE",
+        "FLASH_CANNON",
+        "FRUSTRATION",
+        "FURY_CUTTER",
+        "GYRO_BALL",
+        "HEADBUTT",
+        "HIDDEN_POWER",
+        "IRON_DEFENSE",
+        "IRON_HEAD",
+        "NIGHT_SLASH",
+        "PROTECT",
+        "PSYCHO_CUT",
+        "PURSUIT",
+        "RAIN_DANCE",
+        "REFLECT",
+        "REST",
+        "RETURN",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "SACRED_SWORD",
+        "SCREECH",
+        "SHADOW_CLAW",
+        "SHADOW_SNEAK",
+        "SLASH",
+        "SLEEP_TALK",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE",
+        "SUBSTITUTE",
+        "SWAGGER",
+        "SWORDS_DANCE",
+        "TACKLE",
+        "TOXIC"
+      ],
+      "internal_index": 382,
+      "regional_dex": 423,
+      "tutors": [
+        "DESTINY_BOND",
+        "HEADBUTT",
+        "BRICK_BREAK",
+        "CLOSE_COMBAT",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "FALSE_SWIPE",
+        "FRUSTRATION",
+        "GYRO_BALL",
+        "PSYCHO_CUT",
+        "PURSUIT",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "SCREECH",
+        "SHADOW_CLAW",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE"
+      ]
+    },
+    "DOUBLADE": {
+      "replaces": "SEALEO",
+      "stats": [
+        59,
+        110,
+        150,
+        35,
+        45,
+        49
+      ],
+      "enhanced_stats": [
+        59,
+        110,
+        150,
+        35,
+        45,
+        49
+      ],
+      "types": [
+        "STEEL",
+        "GHOST"
+      ],
+      "abilities": [
+        "NO_GUARD",
+        "NO_GUARD",
+        "NO_GUARD"
+      ],
+      "height": 207,
+      "weight_hg": 45,
+      "weight_lbs_x10": 99,
+      "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+      ],
+      "root": "HONEDGE",
+      "level_up": [
+        [
+          1,
+          "FURY_CUTTER"
+        ],
+        [
+          1,
+          "SHADOW_SNEAK"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          12,
+          "AERIAL_ACE"
+        ],
+        [
+          20,
+          "SLASH"
+        ],
+        [
+          24,
+          "NIGHT_SLASH"
+        ],
+        [
+          32,
+          "IRON_DEFENSE"
+        ],
+        [
+          38,
+          "IRON_HEAD"
+        ],
+        [
+          50,
+          "SWORDS_DANCE"
+        ],
+        [
+          56,
+          "SACRED_SWORD"
+        ]
+      ],
+      "tmhm": [
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "REST",
+        "ATTRACT",
+        "FURY_CUTTER",
+        "NIGHT_SLASH",
+        "CUT"
+      ],
+      "egg_moves": [],
+      "utility": 7,
+      "expected": [
+        "AERIAL_ACE",
+        "ATTRACT",
+        "BRICK_BREAK",
+        "CLOSE_COMBAT",
+        "CUT",
+        "DESTINY_BOND",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "FACADE",
+        "FALSE_SWIPE",
+        "FLASH_CANNON",
+        "FRUSTRATION",
+        "FURY_CUTTER",
+        "GYRO_BALL",
+        "HEADBUTT",
+        "HIDDEN_POWER",
+        "IRON_DEFENSE",
+        "IRON_HEAD",
+        "NIGHT_SLASH",
+        "PROTECT",
+        "PSYCHO_CUT",
+        "PURSUIT",
+        "RAIN_DANCE",
+        "RAZOR_WIND",
+        "REFLECT",
+        "REST",
+        "RETURN",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "SACRED_SWORD",
+        "SCREECH",
+        "SHADOW_CLAW",
+        "SHADOW_SNEAK",
+        "SLASH",
+        "SLEEP_TALK",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE",
+        "SUBSTITUTE",
+        "SWAGGER",
+        "SWORDS_DANCE",
+        "TACKLE",
+        "TOXIC",
+        "ZEN_HEADBUTT"
+      ],
+      "internal_index": 383,
+      "regional_dex": 424,
+      "tutors": [
+        "HEADBUTT",
+        "RAZOR_WIND",
+        "ZEN_HEADBUTT",
+        "BRICK_BREAK",
+        "CLOSE_COMBAT",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "FALSE_SWIPE",
+        "FRUSTRATION",
+        "GYRO_BALL",
+        "PSYCHO_CUT",
+        "PURSUIT",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "SCREECH",
+        "SHADOW_CLAW",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE"
+      ]
+    },
+    "AEGISLASH": {
+      "replaces": "WALREIN",
+      "stats": [
+        60,
+        50,
+        140,
+        60,
+        50,
+        140
+      ],
+      "enhanced_stats": [
+        60,
+        50,
+        140,
+        60,
+        50,
+        140
+      ],
+      "types": [
+        "STEEL",
+        "GHOST"
+      ],
+      "abilities": [
+        "STANCE_CHANGE",
+        "STANCE_CHANGE",
+        "STANCE_CHANGE"
+      ],
+      "height": 507,
+      "weight_hg": 530,
+      "weight_lbs_x10": 1168,
+      "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+      ],
+      "root": "HONEDGE",
+      "level_up": [
+        [
+          1,
+          "AERIAL_ACE"
+        ],
+        [
+          1,
+          "FURY_CUTTER"
+        ],
+        [
+          1,
+          "HEAD_SMASH"
+        ],
+        [
+          1,
+          "IRON_DEFENSE"
+        ],
+        [
+          1,
+          "IRON_HEAD"
+        ],
+        [
+          1,
+          "KINGS_SHIELD"
+        ],
+        [
+          1,
+          "NIGHT_SLASH"
+        ],
+        [
+          1,
+          "SACRED_SWORD"
+        ],
+        [
+          1,
+          "SHADOW_SNEAK"
+        ],
+        [
+          1,
+          "SLASH"
+        ],
+        [
+          1,
+          "SWORDS_DANCE"
+        ],
+        [
+          1,
+          "TACKLE"
+        ]
+      ],
+      "tmhm": [
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "SHADOW_BALL",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "REST",
+        "ATTRACT",
+        "FURY_CUTTER",
+        "NIGHT_SLASH",
+        "CUT"
+      ],
+      "egg_moves": [],
+      "utility": 7,
+      "expected": [
+        "AERIAL_ACE",
+        "AIR_SLASH",
+        "ATTRACT",
+        "BRICK_BREAK",
+        "CLOSE_COMBAT",
+        "CUT",
+        "DESTINY_BOND",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "FACADE",
+        "FALSE_SWIPE",
+        "FLASH_CANNON",
+        "FRUSTRATION",
+        "FURY_CUTTER",
+        "GIGA_IMPACT",
+        "GYRO_BALL",
+        "HEADBUTT",
+        "HEAD_SMASH",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "IRON_DEFENSE",
+        "IRON_HEAD",
+        "KINGS_SHIELD",
+        "NIGHT_SLASH",
+        "OMINOUS_WIND",
+        "PROTECT",
+        "PSYCHO_CUT",
+        "PURSUIT",
+        "RAIN_DANCE",
+        "RAZOR_WIND",
+        "REFLECT",
+        "REST",
+        "RETURN",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "SACRED_SWORD",
+        "SCREECH",
+        "SHADOW_BALL",
+        "SHADOW_CLAW",
+        "SHADOW_SNEAK",
+        "SLASH",
+        "SLEEP_TALK",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE",
+        "SUBSTITUTE",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "SWORDS_DANCE",
+        "TACKLE",
+        "TOXIC",
+        "ZEN_HEADBUTT"
+      ],
+      "internal_index": 384,
+      "regional_dex": 425,
+      "tutors": [
+        "HEADBUTT",
+        "OMINOUS_WIND",
+        "RAZOR_WIND",
+        "ZEN_HEADBUTT",
+        "AIR_SLASH",
+        "BRICK_BREAK",
+        "CLOSE_COMBAT",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "FALSE_SWIPE",
+        "FRUSTRATION",
+        "GIGA_IMPACT",
+        "GYRO_BALL",
+        "PSYCHO_CUT",
+        "PURSUIT",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "SCREECH",
+        "SHADOW_CLAW",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE"
+      ]
+    },
+    "SABLEYE": {
+      "replaces": "FLITTLE",
+      "stats": [
+        50,
+        75,
+        75,
+        50,
+        65,
+        65
+      ],
+      "enhanced_stats": [
+        60,
+        75,
+        100,
+        50,
+        75,
+        100
+      ],
+      "types": [
+        "DARK",
+        "GHOST"
+      ],
+      "abilities": [
+        "MAGIC_BOUNCE",
+        "KEEN_EYE",
+        "PRANKSTER"
+      ],
+      "height": 108,
+      "weight_hg": 110,
+      "weight_lbs_x10": 243,
+      "egg_groups": [
+        "HUMANSHAPE",
+        "HUMANSHAPE"
+      ],
+      "root": "SABLEYE",
+      "level_up": [
+        [
+          1,
+          "LEER"
+        ],
+        [
+          1,
+          "SCRATCH"
+        ],
+        [
+          4,
+          "FORESIGHT"
+        ],
+        [
+          4,
+          "NIGHT_SHADE"
+        ],
+        [
+          7,
+          "ASTONISH"
+        ],
+        [
+          11,
+          "FURY_SWIPES"
+        ],
+        [
+          13,
+          "DETECT"
+        ],
+        [
+          15,
+          "SHADOW_SNEAK"
+        ],
+        [
+          17,
+          "DISABLE"
+        ],
+        [
+          19,
+          "FAINT_ATTACK"
+        ],
+        [
+          21,
+          "FAKE_OUT"
+        ],
+        [
+          25,
+          "SHADOW_CLAW"
+        ],
+        [
+          27,
+          "KNOCK_OFF"
+        ],
+        [
+          31,
+          "CONFUSE_RAY"
+        ],
+        [
+          33,
+          "ZEN_HEADBUTT"
+        ],
+        [
+          35,
+          "POWER_GEM"
+        ],
+        [
+          37,
+          "SUCKER_PUNCH"
+        ],
+        [
+          39,
+          "TRICK"
+        ],
+        [
+          41,
+          "SHADOW_BALL"
+        ],
+        [
+          43,
+          "MEAN_LOOK"
+        ],
+        [
+          45,
+          "NASTY_PLOT"
+        ],
+        [
+          47,
+          "RECOVER"
+        ],
+        [
+          48,
+          "FOUL_PLAY"
+        ]
+      ],
+      "tmhm": [
+        "DRAIN_PUNCH",
+        "HEADBUTT",
+        "ROCK_TOMB",
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "ENERGY_BALL",
+        "WILL_O_WISP",
+        "FACADE",
+        "RETURN",
+        "DIG",
+        "PSYCHIC_M",
+        "SHADOW_BALL",
+        "MUD_SLAP",
+        "SWAGGER",
+        "ICE_PUNCH",
+        "KNOCK_OFF",
+        "BULK_UP",
+        "THUNDERPUNCH",
+        "NASTY_PLOT",
+        "REST",
+        "ATTRACT",
+        "THIEF",
+        "FIRE_PUNCH",
+        "FURY_CUTTER",
+        "HONE_CLAWS",
+        "ZEN_HEADBUTT",
+        "POWER_GEM",
+        "CUT",
+        "FLASH"
+      ],
+      "egg_moves": [
+        "MEAN_LOOK",
+        "MOONLIGHT",
+        "NASTY_PLOT",
+        "PSYCH_UP",
+        "RECOVER",
+        "SUCKER_PUNCH",
+        "TORMENT",
+        "TRICK"
+      ],
+      "utility": 31,
+      "expected": [
+        "AERIAL_ACE",
+        "ASTONISH",
+        "ATTRACT",
+        "BODY_SLAM",
+        "BRICK_BREAK",
+        "BULK_UP",
+        "CALM_MIND",
+        "CONFUSE_RAY",
+        "COUNTER",
+        "CUT",
+        "DARK_PULSE",
+        "DAZZLING_GLEAM",
+        "DETECT",
+        "DIG",
+        "DISABLE",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "DRAIN_PUNCH",
+        "DREAM_EATER",
+        "DYNAMICPUNCH",
+        "ENCORE",
+        "ENDURE",
+        "ENERGY_BALL",
+        "FACADE",
+        "FAINT_ATTACK",
+        "FAKE_OUT",
+        "FIRE_PUNCH",
+        "FLASH",
+        "FORESIGHT",
+        "FOUL_PLAY",
+        "FRUSTRATION",
+        "FURY_CUTTER",
+        "FURY_SWIPES",
+        "GIGA_DRAIN",
+        "GIGA_IMPACT",
+        "GYRO_BALL",
+        "HEADBUTT",
+        "HEX",
+        "HIDDEN_POWER",
+        "HONE_CLAWS",
+        "HYPER_BEAM",
+        "ICE_PUNCH",
+        "ICY_WIND",
+        "INCINERATE",
+        "KNOCK_OFF",
+        "LEER",
+        "LIGHT_SCREEN",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "MEAN_LOOK",
+        "MEGA_KICK",
+        "MEGA_PUNCH",
+        "METAL_CLAW",
+        "METRONOME",
+        "MIMIC",
+        "MOONLIGHT",
+        "MUD_SHOT",
+        "MUD_SLAP",
+        "NASTY_PLOT",
+        "NIGHTMARE",
+        "NIGHT_SHADE",
+        "NIGHT_SLASH",
+        "OCTAZOOKA",
+        "OMINOUS_WIND",
+        "PAIN_SPLIT",
+        "PHANTOMFORCE",
+        "POISON_JAB",
+        "POWER_GEM",
+        "PROTECT",
+        "PSYBEAM",
+        "PSYCHIC_M",
+        "PSYCH_UP",
+        "PURSUIT",
+        "RAIN_DANCE",
+        "RECOVER",
+        "REFLECT",
+        "REST",
+        "RETURN",
+        "ROCK_SMASH",
+        "ROCK_TOMB",
+        "SAFEGUARD",
+        "SCRATCH",
+        "SEISMIC_TOSS",
+        "SHADOW_BALL",
+        "SHADOW_CLAW",
+        "SHADOW_PUNCH",
+        "SHADOW_SNEAK",
+        "SIGNAL_BEAM",
+        "SKILL_SWAP",
+        "SLEEP_TALK",
+        "SNARL",
+        "SNORE",
+        "SPITE",
+        "SUBSTITUTE",
+        "SUCKER_PUNCH",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "TACKLE",
+        "TAKE_DOWN",
+        "TAUNT",
+        "THIEF",
+        "THUNDERPUNCH",
+        "THUNDER_WAVE",
+        "TORMENT",
+        "TOXIC",
+        "TRICK",
+        "WATER_PULSE",
+        "WILL_O_WISP",
+        "X_SCISSOR",
+        "ZEN_HEADBUTT"
+      ],
+      "internal_index": 479,
+      "regional_dex": 498,
+      "tutors": [
+        "MOONLIGHT",
+        "NIGHT_SLASH",
+        "PURSUIT",
+        "SAFEGUARD",
+        "SHADOW_PUNCH",
+        "TACKLE",
+        "AERIAL_ACE",
+        "BODY_SLAM",
+        "BRICK_BREAK",
+        "CALM_MIND",
+        "COUNTER",
+        "DARK_PULSE",
+        "DAZZLING_GLEAM",
+        "DOUBLE_EDGE",
+        "DOUBLE_TEAM",
+        "DREAM_EATER",
+        "DYNAMICPUNCH",
+        "ENCORE",
+        "ENDURE",
+        "FRUSTRATION",
+        "GIGA_DRAIN",
+        "GIGA_IMPACT",
+        "GYRO_BALL",
+        "HEX",
+        "ICY_WIND",
+        "INCINERATE",
+        "LOW_KICK",
+        "LOW_SWEEP",
+        "MEGA_KICK",
+        "MEGA_PUNCH",
+        "METAL_CLAW",
+        "METRONOME",
+        "MIMIC",
+        "MUD_SHOT",
+        "NIGHTMARE",
+        "OCTAZOOKA",
+        "OMINOUS_WIND",
+        "PAIN_SPLIT",
+        "PHANTOMFORCE",
+        "POISON_JAB",
+        "PSYBEAM",
+        "SEISMIC_TOSS",
+        "SIGNAL_BEAM",
+        "SKILL_SWAP",
+        "SNARL",
+        "SNORE",
+        "SPITE",
+        "TAKE_DOWN",
+        "TAUNT",
+        "WATER_PULSE",
+        "X_SCISSOR"
+      ]
+    },
+    "AEGISLASH_BLADE": {
+      "replaces": "ESPATHRA",
+      "stats": [
+        60,
+        140,
+        50,
+        60,
+        140,
+        50
+      ],
+      "enhanced_stats": [
+        60,
+        140,
+        50,
+        60,
+        140,
+        50
+      ],
+      "types": [
+        "STEEL",
+        "GHOST"
+      ],
+      "abilities": [
+        "STANCE_CHANGE",
+        "STANCE_CHANGE",
+        "STANCE_CHANGE"
+      ],
+      "height": 507,
+      "weight_hg": 530,
+      "weight_lbs_x10": 1168,
+      "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+      ],
+      "root": "HONEDGE",
+      "level_up": [
+        [
+          1,
+          "AERIAL_ACE"
+        ],
+        [
+          1,
+          "FURY_CUTTER"
+        ],
+        [
+          1,
+          "HEAD_SMASH"
+        ],
+        [
+          1,
+          "IRON_DEFENSE"
+        ],
+        [
+          1,
+          "IRON_HEAD"
+        ],
+        [
+          1,
+          "KINGS_SHIELD"
+        ],
+        [
+          1,
+          "NIGHT_SLASH"
+        ],
+        [
+          1,
+          "SACRED_SWORD"
+        ],
+        [
+          1,
+          "SHADOW_SNEAK"
+        ],
+        [
+          1,
+          "SLASH"
+        ],
+        [
+          1,
+          "SWORDS_DANCE"
+        ],
+        [
+          1,
+          "TACKLE"
+        ]
+      ],
+      "tmhm": [
+        "TOXIC",
+        "ROCK_SMASH",
+        "HIDDEN_POWER",
+        "SUNNY_DAY",
+        "HYPER_BEAM",
+        "PROTECT",
+        "RAIN_DANCE",
+        "FACADE",
+        "IRON_HEAD",
+        "RETURN",
+        "SHADOW_BALL",
+        "SWAGGER",
+        "FLASH_CANNON",
+        "REST",
+        "ATTRACT",
+        "FURY_CUTTER",
+        "NIGHT_SLASH",
+        "CUT"
+      ],
+      "egg_moves": [],
+      "utility": 7,
+      "expected": [
+        "AERIAL_ACE",
+        "AIR_SLASH",
+        "ATTRACT",
+        "BRICK_BREAK",
+        "CLOSE_COMBAT",
+        "CUT",
+        "DESTINY_BOND",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "FACADE",
+        "FALSE_SWIPE",
+        "FLASH_CANNON",
+        "FRUSTRATION",
+        "FURY_CUTTER",
+        "GIGA_IMPACT",
+        "GYRO_BALL",
+        "HEADBUTT",
+        "HEAD_SMASH",
+        "HIDDEN_POWER",
+        "HYPER_BEAM",
+        "IRON_DEFENSE",
+        "IRON_HEAD",
+        "KINGS_SHIELD",
+        "NIGHT_SLASH",
+        "OMINOUS_WIND",
+        "PROTECT",
+        "PSYCHO_CUT",
+        "PURSUIT",
+        "RAIN_DANCE",
+        "RAZOR_WIND",
+        "REFLECT",
+        "REST",
+        "RETURN",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "ROCK_SMASH",
+        "SACRED_SWORD",
+        "SCREECH",
+        "SHADOW_BALL",
+        "SHADOW_CLAW",
+        "SHADOW_SNEAK",
+        "SLASH",
+        "SLEEP_TALK",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE",
+        "SUBSTITUTE",
+        "SUNNY_DAY",
+        "SWAGGER",
+        "SWORDS_DANCE",
+        "TACKLE",
+        "TOXIC",
+        "ZEN_HEADBUTT"
+      ],
+      "internal_index": 480,
+      "regional_dex": 425,
+      "tutors": [
+        "HEADBUTT",
+        "OMINOUS_WIND",
+        "RAZOR_WIND",
+        "ZEN_HEADBUTT",
+        "AIR_SLASH",
+        "BRICK_BREAK",
+        "CLOSE_COMBAT",
+        "DOUBLE_TEAM",
+        "ENDURE",
+        "FALSE_SWIPE",
+        "FRUSTRATION",
+        "GIGA_IMPACT",
+        "GYRO_BALL",
+        "PSYCHO_CUT",
+        "PURSUIT",
+        "REVERSAL",
+        "ROCK_SLIDE",
+        "SCREECH",
+        "SHADOW_CLAW",
+        "SNORE",
+        "SOLAR_BLADE",
+        "SPITE"
+      ]
+    }
+  },
+  "source": {
+    "revisions": {
+      "showdown": "1242c1e2d9763ba5b85d33f13aecb89bae19ae3d",
+      "lumi": "943b9efb70e4ead902603d3572982dcd9bcce6b2"
+    },
+    "files": {
+      "ps_learnsets.ts": "https://raw.githubusercontent.com/smogon/pokemon-showdown/1242c1e2d9763ba5b85d33f13aecb89bae19ae3d/data/learnsets.ts",
+      "ps_pokedex.ts": "https://raw.githubusercontent.com/smogon/pokemon-showdown/1242c1e2d9763ba5b85d33f13aecb89bae19ae3d/data/pokedex.ts",
+      "ps_moves.ts": "https://raw.githubusercontent.com/smogon/pokemon-showdown/1242c1e2d9763ba5b85d33f13aecb89bae19ae3d/data/moves.ts",
+      "gen2_learnsets.ts": "https://raw.githubusercontent.com/smogon/pokemon-showdown/1242c1e2d9763ba5b85d33f13aecb89bae19ae3d/data/mods/gen2/learnsets.ts",
+      "gen7letsgo_learnsets.ts": "https://raw.githubusercontent.com/smogon/pokemon-showdown/1242c1e2d9763ba5b85d33f13aecb89bae19ae3d/data/mods/gen7letsgo/learnsets.ts",
+      "gen8legends_learnsets.ts": "https://raw.githubusercontent.com/smogon/pokemon-showdown/1242c1e2d9763ba5b85d33f13aecb89bae19ae3d/data/mods/gen8legends/learnsets.ts",
+      "gen9legends_learnsets.ts": "https://raw.githubusercontent.com/smogon/pokemon-showdown/1242c1e2d9763ba5b85d33f13aecb89bae19ae3d/data/mods/gen9legends/learnsets.ts",
+      "lumi_WazaOboeTable.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/WazaOboeTable.json",
+      "lumi_PersonalTable.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/PersonalTable.json",
+      "lumi_english_ss_monsname.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/english_ss_monsname.json",
+      "lumi_english_ss_zkn_form.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/english_ss_zkn_form.json",
+      "lumi_moveEnum.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/moveEnum.json",
+      "lumi_TamagoWazaTable.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/TamagoWazaTable.json",
+      "lumi_TMLearnset_consolidated.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/TMLearnset_consolidated.json",
+      "lumi_tutorMoves.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/tutorMoves.json",
+      "lumi_LumiMons.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/LumiMons.json",
+      "lumi_data3.js": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/plugins/pokedex-data-plugin/dex/data3.js",
+      "lumi_english_ss_wazaname.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/english_ss_wazaname.json",
+      "lumi_ItemTable.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/ItemTable.json",
+      "lumi_moveConstants.js": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/plugins/pokedex-data-plugin/dex/moveConstants.js",
+      "lumi_moves.js": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/plugins/pokedex-data-plugin/dex/moves.js",
+      "lumi_moves.json": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__gamedata/gamedata3.0/moves.json",
+      "lumi_pokemon.js": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/plugins/pokedex-data-plugin/dex/pokemon.js"
+    },
+    "sha256": {
+      "gen2_learnsets.ts": "1ebfcdea606f3d583dddfafd4cbe3adf688b4188d1541821e4c6201b4db2e054",
+      "gen7letsgo_learnsets.ts": "ef2965eb8838794deb230c025323c8de4429f5ef5cd333e8cde07a7da4dcf8fc",
+      "gen8legends_learnsets.ts": "13e5ea02044b3da78314f1ef3b790e3551434d9a82ff21a1314ab8943df52b4e",
+      "gen9legends_learnsets.ts": "6e38b656dd26e718761a0c5bd3ca37a7bc59d5cced026d7aaddd90786e2922a2",
+      "lumi_ItemTable.json": "3548561f320be626f8f9ac63d817b499ac44ba7a7fccb54d510b39217366ccc1",
+      "lumi_LumiMons.json": "883ac57861f787cb2c82cfe334e2a4621e0aac1c305a3699f25046c156fa9779",
+      "lumi_PersonalTable.json": "ead14ad1a97cc150f5d1cedfba04e749ead10d47d9203c4d27bf2c10c252d922",
+      "lumi_TMLearnset_consolidated.json": "446e53cb5265cde1a309ac292ab14978aa6f23945b3678c4bb75adaf68b48366",
+      "lumi_TamagoWazaTable.json": "a0592e28fd500e7707ca73b0cab3888cad0cd10bf67f1623c46185bb5c22c934",
+      "lumi_WazaOboeTable.json": "e5a4e72e8dc72c7ef8617022cb42e5f7013faa6ed26df3f8c5f806cb8c4732d3",
+      "lumi_data3.js": "2231b8a2978412e8cdf3fcf4aaedf0f7470bdc32312aaa4a666d0346c9b7370b",
+      "lumi_english_ss_monsname.json": "51b02e4a904551780a8a8276b4f99984090391b1952051fce2fb77aa8a3d528a",
+      "lumi_english_ss_wazaname.json": "10e9783be0352ebff1e6783f9aa9bfde14a7da19483f4bfd0cb43e6581db5334",
+      "lumi_english_ss_zkn_form.json": "c252df9f698d3247924828b551cc39db124a2bdf639c778d23fe2165fc9cffeb",
+      "lumi_moveConstants.js": "3b10e1e5046f4591c473c9e28366371c15addd01dc89758d28027df252b99493",
+      "lumi_moveEnum.json": "477ca90d32ea4d717bf56baf72608aba015e694af47e8142a2d2f6eab783ace9",
+      "lumi_moves.js": "b3606fb35dee9310b6f503fc0b7ed0804b5aa68a7c7ad13155e55f44d8019b3c",
+      "lumi_moves.json": "544c46217550dac49eb12eb699cd75dd6a247730aff9a71b799674cd5c4e7896",
+      "lumi_pokemon.js": "e31b87743c29318a79c660d042985408abd7076800378031337dcccdd0d61453",
+      "lumi_tutorMoves.json": "2fe6a74ef9dd65feb11402d2167a04b50ab3c8b99e1bce2c223e68339353b8ba",
+      "ps_learnsets.ts": "26969c5e9ca7310b701612da8c9cea217b7d43efb8cd22a7e46783a6ca9b386e",
+      "ps_moves.ts": "43b516fdc01721f53f01de555479dd3d248e5e29d2a6f5072a7bd4a3585a5027",
+      "ps_pokedex.ts": "5e572601f4700f99835845eee5cd3e53362e43d885e2753fcc32418f636b83ed"
+    }
+  },
+  "sableye_abilities": "Enhanced Magic Bounce / Keen Eye / Prankster, using implemented abilities.",
+  "battle_only_species": [
+    "AEGISLASH_BLADE"
+  ],
+  "source_notes": {
+    "hisuian_family": "ZORUA/ZOROARK are exclusively Hisuian Normal/Ghost. Stats, weights and SV schedules use their exact PokeAPI Hisuian records; historical pools use zoruahisui/zoroarkhisui. Regular-form compatibility is not pooled.",
+    "lumi_3_comparison": "Independent comparison against TeamLumi __3.0gamedata; exact URLs and hashes in reports/roster-source-verification-2026-11-02.json. Canonical form data resolves copied regular-form rows.",
+    "aegislash": "Modern canonical 140 form stats paired with modern one-stage Kings Shield contact penalty; separate Lumi 3.0 Shield row has legacy 150 defenses."
+  }
+}

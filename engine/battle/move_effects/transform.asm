@@ -77,6 +77,7 @@ BattleCommand_Transform::
 	ret
 
 TransformMonData::
+	farcall CopyOpponentStanceForTransform
 ; Copy the target's ability, moves, DVs, stats and stat stages onto the user.
 ; Sets SUBSTATUS_TRANSFORMED. Used by the move and by Imposter.
 	ld a, BATTLE_VARS_SUBSTATUS5

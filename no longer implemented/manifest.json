@@ -1,0 +1,1010 @@
+[
+  {
+    "path": "data/pokemon/base_stats/espathra.asm",
+    "sha256": "a1898096b4d257c3c4b56acff375eb3456c4444fe2b4e1fa33fc66d84d9b574e"
+  },
+  {
+    "path": "data/pokemon/base_stats/flittle.asm",
+    "sha256": "7a0a03f0c867a58f9bf121961eb79912742e046e698c09a83389614e21ccb5fd"
+  },
+  {
+    "path": "data/pokemon/base_stats/grumpig.asm",
+    "sha256": "1b93a40c3a111a99d44e53e9c49ab3fa7e4c585ea56f66655cf057646ac3e46f"
+  },
+  {
+    "path": "data/pokemon/base_stats/lombre.asm",
+    "sha256": "b27f0ef543d5d079ebf5ec10b3c00de2877d023be2b9ff7d50935379f975d6cb"
+  },
+  {
+    "path": "data/pokemon/base_stats/lotad.asm",
+    "sha256": "691b630dc0ed4a6acb30abfaaffa1d05e8aa3f198385a51aed914120b6eaa508"
+  },
+  {
+    "path": "data/pokemon/base_stats/ludicolo.asm",
+    "sha256": "8d02b5a62b169f721cbd7fd542d00089d8433c31642e909dfc5d4b094eee1ce5"
+  },
+  {
+    "path": "data/pokemon/base_stats/sealeo.asm",
+    "sha256": "91803e814a8440b1eb08b0d39037c2b331231374c183dce395a738e0d51b925c"
+  },
+  {
+    "path": "data/pokemon/base_stats/spheal.asm",
+    "sha256": "37e908516cc5b31a685a568854b0f98103a39323a19b5d4d231397c9a91012cb"
+  },
+  {
+    "path": "data/pokemon/base_stats/spoink.asm",
+    "sha256": "f87f91b529a74117bb6e75f839de3e3ffc346a4678b1b15189d83bb24418eb9f"
+  },
+  {
+    "path": "data/pokemon/base_stats/walrein.asm",
+    "sha256": "0eec2eac066ca3e888fb79367fc56f81a5af9551503c36098947839b688689f6"
+  },
+  {
+    "path": "data/pokemon/dex_entries/espathra.asm",
+    "sha256": "4d40de23c9225497e84e3907f2657828d9a9374fe946931a022685ef62745351"
+  },
+  {
+    "path": "data/pokemon/dex_entries/flittle.asm",
+    "sha256": "a2cd90fc577239e139ae627d138ff3bd57c3cf311384b7255549754d96de3ebe"
+  },
+  {
+    "path": "data/pokemon/dex_entries/grumpig.asm",
+    "sha256": "01f87b3e790e09adf6ae580ddb5c3eb301edc41a40022e9808b4594607547cad"
+  },
+  {
+    "path": "data/pokemon/dex_entries/lombre.asm",
+    "sha256": "ed0c53c11df2b1472979489ebb143b62a97624a97d7bdbedd93e4885afd94f7c"
+  },
+  {
+    "path": "data/pokemon/dex_entries/lotad.asm",
+    "sha256": "8c2145f8f40c1a3605bf159511a7de1dbdeebb677ce6be512f5df92099c06eb8"
+  },
+  {
+    "path": "data/pokemon/dex_entries/ludicolo.asm",
+    "sha256": "3d352759302f147ef24a6b0069c73357df992e53bb3de61eb7aab728ee81c202"
+  },
+  {
+    "path": "data/pokemon/dex_entries/sealeo.asm",
+    "sha256": "1557831fda82d51ed72bde4db752c69d45c9669c77a3fc8ec8014d62ccd05f83"
+  },
+  {
+    "path": "data/pokemon/dex_entries/spheal.asm",
+    "sha256": "a592135a356c769996d616b2211fcd93355cf8637ed1e8fa80f1cd67346230a8"
+  },
+  {
+    "path": "data/pokemon/dex_entries/spoink.asm",
+    "sha256": "2ad47b9da22b1ab6de3dbdebd61744b864ee9ada47446c1cab0908ae4c1eb831"
+  },
+  {
+    "path": "data/pokemon/dex_entries/walrein.asm",
+    "sha256": "e2504f5d759caeea2eb70ce5693abb76a6c53f06adb947e04d0e5b5c62b17d07"
+  },
+  {
+    "path": "docs/assets/pokemon/espathra.back.png",
+    "sha256": "7ba1048971fd17c52f5c906d3e809082287ab1dde2bd8f437036c22755d1be69"
+  },
+  {
+    "path": "docs/assets/pokemon/espathra.png",
+    "sha256": "f8f418aee4c4264f8904d46c11b0b06556a5370d1eb40786fa73d1e87349c138"
+  },
+  {
+    "path": "docs/assets/pokemon/espathra.sheet.png",
+    "sha256": "9c31841c83e94dc6480122a1ade9484bc595021d2f74151d91f9e0a0dff37000"
+  },
+  {
+    "path": "docs/assets/pokemon/flittle.back.png",
+    "sha256": "8533d42dd91e72e015a6b3803bf83ea8acdf27ce519efd94456b2e6da382c348"
+  },
+  {
+    "path": "docs/assets/pokemon/flittle.png",
+    "sha256": "e2e529df209d49f2c22c98ebfdff87b33b311224006802543ad8b47583b512aa"
+  },
+  {
+    "path": "docs/assets/pokemon/flittle.sheet.png",
+    "sha256": "7c16bed9da08259804afce8023a7cbeb3eaf444396af9f863272c427112492c6"
+  },
+  {
+    "path": "docs/assets/pokemon/grumpig.back.png",
+    "sha256": "9f5b3512f01da2edfe3d715d6254a43b99e80c969a737ecc616dda3d9051da92"
+  },
+  {
+    "path": "docs/assets/pokemon/grumpig.png",
+    "sha256": "1ef95b40dafe90fdb14f9337116d33933e4de386474f410ae2958586d67b03c2"
+  },
+  {
+    "path": "docs/assets/pokemon/grumpig.sheet.png",
+    "sha256": "0a56ad47b95246ef5e87e0332769f05d8cb53d8bd6a1630dadd2f9920cf9d443"
+  },
+  {
+    "path": "docs/assets/pokemon/lombre.back.png",
+    "sha256": "2e25424cc969957b7714c7d6b0c4510e946c191673abbb361c5b06a10cd160a0"
+  },
+  {
+    "path": "docs/assets/pokemon/lombre.png",
+    "sha256": "c55c6023a763439b5b96f4e2b5966dc338317f9152dae8681b2ddb3cd8b377e5"
+  },
+  {
+    "path": "docs/assets/pokemon/lombre.sheet.png",
+    "sha256": "331c4544d31091c97209b96a712fcce5b59985c1c1c16179e483738ed71ef6a3"
+  },
+  {
+    "path": "docs/assets/pokemon/lotad.back.png",
+    "sha256": "518aa0df931105ccaab4fcc533233ee7bcc23a52c30ba61e923b70d9d4316f64"
+  },
+  {
+    "path": "docs/assets/pokemon/lotad.png",
+    "sha256": "4bb6e0d18c0551b39f6c2e2fddd034b0e653234bdd9ae4b54a7ecc453c1e3331"
+  },
+  {
+    "path": "docs/assets/pokemon/lotad.sheet.png",
+    "sha256": "e63cc7059339f7eac79ce28a57bf03577ccf52b67389041d990507fdc8eb8f9b"
+  },
+  {
+    "path": "docs/assets/pokemon/ludicolo.back.png",
+    "sha256": "844b21f695c1fe386a63c2bdf9757948bc659f9825b967ce1e0ac15291b5baad"
+  },
+  {
+    "path": "docs/assets/pokemon/ludicolo.png",
+    "sha256": "4475f67ef238c59cc44708e90895007f9b6250aa58e3a2e6e80a1eb25104a82b"
+  },
+  {
+    "path": "docs/assets/pokemon/ludicolo.sheet.png",
+    "sha256": "2401fe7601b801c2f5149d2da739b54cfcccf733af3c3143316aa5ef978d6772"
+  },
+  {
+    "path": "docs/assets/pokemon/sealeo.back.png",
+    "sha256": "c20cadcf4b69690c55dd12d438c37e68754c7f2c4d79a9e50045db17f922b261"
+  },
+  {
+    "path": "docs/assets/pokemon/sealeo.png",
+    "sha256": "423bc65a5eafcd21ea21daa275f3e916914380856ba6abf35f5b9b05dbbb15b0"
+  },
+  {
+    "path": "docs/assets/pokemon/sealeo.sheet.png",
+    "sha256": "d16c7e496ceab0d9720def4ddda40e13e9ed1e5916516cb4e1bd44f084db4623"
+  },
+  {
+    "path": "docs/assets/pokemon/spheal.back.png",
+    "sha256": "53e1d571bac5421d57b8b55498a5a2d64af553614dd39e8ff9320b548c0f23e1"
+  },
+  {
+    "path": "docs/assets/pokemon/spheal.png",
+    "sha256": "9ba2f80ea10edc256c7cc38d1b75cefa28c679b852c94d53c9693700b8fad91d"
+  },
+  {
+    "path": "docs/assets/pokemon/spheal.sheet.png",
+    "sha256": "e5707fd16465a01c37be7f257a70ae645242d78f27ffa6bf311dafd566b303f5"
+  },
+  {
+    "path": "docs/assets/pokemon/spoink.back.png",
+    "sha256": "93b3ccbda7695afe7f804a45e2c4c360d72069cd277a24af0c63cfaceef1aa1b"
+  },
+  {
+    "path": "docs/assets/pokemon/spoink.png",
+    "sha256": "9bf95945da3ca85d0503472834d293b9bed94bf51517307bc37703a7ff8214be"
+  },
+  {
+    "path": "docs/assets/pokemon/spoink.sheet.png",
+    "sha256": "7e402247497b3a87ea6265dc9839b578a2db912137c8172f02c9faef33440a54"
+  },
+  {
+    "path": "docs/assets/pokemon/walrein.back.png",
+    "sha256": "a1c7d264b7bcbbe76c47c8d508bc211fd2901391e18d6529cb5e4c2197dc2f71"
+  },
+  {
+    "path": "docs/assets/pokemon/walrein.png",
+    "sha256": "fc2d522edc3d61d5b9688f8413ee2439aa7837d30b705bb592921932b80852bb"
+  },
+  {
+    "path": "docs/assets/pokemon/walrein.sheet.png",
+    "sha256": "2fdda1d3818dc59e0df403c9c9fed2ca5e8ae3dcc9a77a3879277c7118fa148f"
+  },
+  {
+    "path": "docs/pokemon/espathra.html",
+    "sha256": "54fc1e7aaf73149a192ccc6b296410d7c373644bec58ed7820d8ea78dc4c6f97"
+  },
+  {
+    "path": "docs/pokemon/flittle.html",
+    "sha256": "e933001d1d2db195bc2adc6187aa3d22d05f9a9a7ef4d645cc40234f6fb9e0a7"
+  },
+  {
+    "path": "docs/pokemon/grumpig.html",
+    "sha256": "e12188da1c7e90d06c640b8f8ff853ca0b42e83c627f6e702787dadb140ba7c3"
+  },
+  {
+    "path": "docs/pokemon/lombre.html",
+    "sha256": "455cd00fec0b21922b9e8ec3a5bfae5700923fcb064c782841b47bc07bc34af1"
+  },
+  {
+    "path": "docs/pokemon/lotad.html",
+    "sha256": "7de5dae672e9d241645fb5a1972bec0a51964e984b2ae871e011d636f2a9a0eb"
+  },
+  {
+    "path": "docs/pokemon/ludicolo.html",
+    "sha256": "36d5c47e3b5f1e8dd13234fa5727e1feadcfd4033e250dc9480f84d1b2beda2f"
+  },
+  {
+    "path": "docs/pokemon/sealeo.html",
+    "sha256": "05129aa555cd91a199318a4be39ada04dfa4054e93f0ca3267c9a1d22fdc62bd"
+  },
+  {
+    "path": "docs/pokemon/spheal.html",
+    "sha256": "7a6454fdc5eac1323b06be06ed45f7b3e43fa97aff78187e156f33440aae9243"
+  },
+  {
+    "path": "docs/pokemon/spoink.html",
+    "sha256": "5bb25a0da05b1a0946342719a09f3f4b790248f6f436ec4a38282b935526ef7c"
+  },
+  {
+    "path": "docs/pokemon/walrein.html",
+    "sha256": "647060ae25cab44db883590f3f1f53937d2bbb6292f700ae3178097899231836"
+  },
+  {
+    "path": "gfx/icons/espathra.2bpp",
+    "sha256": "3b1e3642be96d494db2b5a93c48508819c0c0ffded78fbc1d057c6ee3941b892"
+  },
+  {
+    "path": "gfx/icons/espathra.png",
+    "sha256": "057b4afe1eb5d76b91c818e0d5fbb33ccc57219e17ccc439d1b3dc3a796e9f9d"
+  },
+  {
+    "path": "gfx/icons/flittle.2bpp",
+    "sha256": "dfe98a7dfaafca111b87f793652abe38a945311402ef48267d90ca177ea30ca3"
+  },
+  {
+    "path": "gfx/icons/flittle.png",
+    "sha256": "027ec74bab401cab09ba09f1ed62ebc1f6f36008da0d700d2b545957e4846537"
+  },
+  {
+    "path": "gfx/menu_icons/espathra.2bpp",
+    "sha256": "3b1e3642be96d494db2b5a93c48508819c0c0ffded78fbc1d057c6ee3941b892"
+  },
+  {
+    "path": "gfx/menu_icons/espathra.png",
+    "sha256": "057b4afe1eb5d76b91c818e0d5fbb33ccc57219e17ccc439d1b3dc3a796e9f9d"
+  },
+  {
+    "path": "gfx/menu_icons/flittle.2bpp",
+    "sha256": "dfe98a7dfaafca111b87f793652abe38a945311402ef48267d90ca177ea30ca3"
+  },
+  {
+    "path": "gfx/menu_icons/flittle.png",
+    "sha256": "027ec74bab401cab09ba09f1ed62ebc1f6f36008da0d700d2b545957e4846537"
+  },
+  {
+    "path": "gfx/menu_icons/grumpig.2bpp",
+    "sha256": "3920c363acd1f0898d4e70aedcf296dc5b1160524f3e4944e344b8791ce1f3fc"
+  },
+  {
+    "path": "gfx/menu_icons/grumpig.png",
+    "sha256": "a651d86182aaf4df5ef7a72f35fb95f0ad55e180d0fb76a4ee7f34cdbc7556f4"
+  },
+  {
+    "path": "gfx/menu_icons/lombre.2bpp",
+    "sha256": "a3fafcb7b91068ae4c2b4d32ca092f9be0263a230eacc6d3f0dcf50119c3ea3b"
+  },
+  {
+    "path": "gfx/menu_icons/lombre.png",
+    "sha256": "9f4ae3b62366ef1a224558740f1d95a8bc8899d0817cc73354442619629089fe"
+  },
+  {
+    "path": "gfx/menu_icons/lotad.2bpp",
+    "sha256": "3224c7dc17fa8c3d2757da8df62af9ed4f62993caebc9a79ec40827fbfc6b2a6"
+  },
+  {
+    "path": "gfx/menu_icons/lotad.png",
+    "sha256": "62593416794d22e7e87d9960ea84085abffbcb5963d127c264bccc59c6cc1ab4"
+  },
+  {
+    "path": "gfx/menu_icons/ludicolo.2bpp",
+    "sha256": "b2de330b56bde143cc6bd4f024adf2a8425525a26ef35f899717d861bf464314"
+  },
+  {
+    "path": "gfx/menu_icons/ludicolo.png",
+    "sha256": "071ce96426c4409f44388a2b92095f5f141f5f9167815e985d7179309e76128e"
+  },
+  {
+    "path": "gfx/menu_icons/sealeo.2bpp",
+    "sha256": "fdf4df4c15fd1affe319d064b9ddcd88798fc5c4c1434c59cbcdd95f606dcf2e"
+  },
+  {
+    "path": "gfx/menu_icons/sealeo.png",
+    "sha256": "c7e875e32bbe9c251ff789184cbfea8a332393a35420e44ceef4402cdf73640c"
+  },
+  {
+    "path": "gfx/menu_icons/spheal.2bpp",
+    "sha256": "047a2dcc6f56825e7fdf642bb43360a95f404b4931f94a743bf82ce8d62b8783"
+  },
+  {
+    "path": "gfx/menu_icons/spheal.png",
+    "sha256": "7417a1a75a0f99ef60a18fd8149ae7f17cc10f11165af53a42d25b420a2789fc"
+  },
+  {
+    "path": "gfx/menu_icons/spoink.2bpp",
+    "sha256": "15e00f42af7d537f49212fee7a2d5948c1bb6e59bbc7fa18ba23cbff707d8c53"
+  },
+  {
+    "path": "gfx/menu_icons/spoink.png",
+    "sha256": "3c4e6b7d61c4c7339ec7ae3b271e49006523bc629310e6c01f02ceec887ddaa6"
+  },
+  {
+    "path": "gfx/menu_icons/walrein.2bpp",
+    "sha256": "86c67b2ac7dec99a4944acae7faa037ca0270ff580604df408f58de95c2d6581"
+  },
+  {
+    "path": "gfx/menu_icons/walrein.png",
+    "sha256": "77f36b991f4721757da3e6dc600849dbf0e1f5c02477da0535a5f6365eecf901"
+  },
+  {
+    "path": "gfx/pokemon/espathra/anim.asm",
+    "sha256": "5e00e9928f3f2178c552b0ec62220446e44a4587e824a7753b494665ad9f73aa"
+  },
+  {
+    "path": "gfx/pokemon/espathra/anim_idle.asm",
+    "sha256": "36367248454f5557b897e477682ca0b253b01efaad66780218980db03bd39c9b"
+  },
+  {
+    "path": "gfx/pokemon/espathra/back.2bpp",
+    "sha256": "f973155a99807fd4c80c6233c9bea7d9206380e994acc8a3894e5c5bf15cf579"
+  },
+  {
+    "path": "gfx/pokemon/espathra/back.2bpp.lz",
+    "sha256": "8878b9a6eb115fe95b939c18d69afd65cc0e591a6d83727a631878cc89dc6cd8"
+  },
+  {
+    "path": "gfx/pokemon/espathra/back.png",
+    "sha256": "d073c4672deec2ec26f4a3b454bd374aa364f04e43a63fbf324f2bcdf1d51031"
+  },
+  {
+    "path": "gfx/pokemon/espathra/bitmask.asm",
+    "sha256": "2c8aecc779efc2773e8a60c70c2a7cf53d5475f17ee7359b8bf1c4d2bd283727"
+  },
+  {
+    "path": "gfx/pokemon/espathra/frames.asm",
+    "sha256": "455d46dd45891754c6a43bfecbda75638b62f2b6b8f8c1dd5fb2cd3a3ccb28f6"
+  },
+  {
+    "path": "gfx/pokemon/espathra/front.2bpp",
+    "sha256": "efb94e9e4321a18c7df4b5d64ad3740fbd609874278b39656768b84a761375a0"
+  },
+  {
+    "path": "gfx/pokemon/espathra/front.animated.2bpp",
+    "sha256": "da69d0abf544dcc9a99d3d1776d86c5078b2638c239501ea4514818110b8c51b"
+  },
+  {
+    "path": "gfx/pokemon/espathra/front.animated.2bpp.lz",
+    "sha256": "32e851df4f44f822dc68032e8e04137c2b1f206966cc2e575cb032520064d747"
+  },
+  {
+    "path": "gfx/pokemon/espathra/front.animated.tilemap",
+    "sha256": "ad2e7f6a04d962b2800fe518fc982c7a7be586485a81a1627ff3ed66ecc38fa4"
+  },
+  {
+    "path": "gfx/pokemon/espathra/front.dimensions",
+    "sha256": "50e721e49c013f00c62cf59f2163542a9d8df02464efeb615d31051b0fddc326"
+  },
+  {
+    "path": "gfx/pokemon/espathra/front.gbcpal",
+    "sha256": "2ad320bfce3eeed9d191f497e5d1602a10528e808118f7baa12c304a4a68f206"
+  },
+  {
+    "path": "gfx/pokemon/espathra/front.png",
+    "sha256": "9c31841c83e94dc6480122a1ade9484bc595021d2f74151d91f9e0a0dff37000"
+  },
+  {
+    "path": "gfx/pokemon/espathra/shiny.pal",
+    "sha256": "d2d2c60266d4d8a5227bab44b426b6accacf2e7e3ff068628467646ccbe67082"
+  },
+  {
+    "path": "gfx/pokemon/flittle/anim.asm",
+    "sha256": "acb060beb743fab8bfc2cb66c45e90317dce4f328576782862cf9b3eec812045"
+  },
+  {
+    "path": "gfx/pokemon/flittle/anim_idle.asm",
+    "sha256": "3a79153f1e56328b4fba5805f40afb3f692cd2d71bb9c80cd7fba3a0bdd2cccc"
+  },
+  {
+    "path": "gfx/pokemon/flittle/back.2bpp",
+    "sha256": "711df936afc5724e12fac56d269960c235dc9f5ae701d90eb3e3e24e2f9455e1"
+  },
+  {
+    "path": "gfx/pokemon/flittle/back.2bpp.lz",
+    "sha256": "e052591646d7b83122c3dc4e5a7e61645eb125cb140c4aa71433c353783d2b4a"
+  },
+  {
+    "path": "gfx/pokemon/flittle/back.png",
+    "sha256": "8533d42dd91e72e015a6b3803bf83ea8acdf27ce519efd94456b2e6da382c348"
+  },
+  {
+    "path": "gfx/pokemon/flittle/bitmask.asm",
+    "sha256": "cacc111f71e5a1d835add8bfd11893da3b81041c84efaec84a93faa1da750832"
+  },
+  {
+    "path": "gfx/pokemon/flittle/frames.asm",
+    "sha256": "0eb371f0049aefcb6b3d3452074176b8991d1e4e3fb33ea5837793a741b0bcb8"
+  },
+  {
+    "path": "gfx/pokemon/flittle/front.2bpp",
+    "sha256": "539c34af57ac61be7b77ab1a1e9481c5cb793290dfba83cb22edf9a1dacfa459"
+  },
+  {
+    "path": "gfx/pokemon/flittle/front.animated.2bpp",
+    "sha256": "12c475601fb749ec4c2a0690b083578bf715e0ca4a5149f0071e49f9b83b2693"
+  },
+  {
+    "path": "gfx/pokemon/flittle/front.animated.2bpp.lz",
+    "sha256": "78a2a960c6899884c46a2ac531cb3738e47eecde956d74fce4eac880ab1316ec"
+  },
+  {
+    "path": "gfx/pokemon/flittle/front.animated.tilemap",
+    "sha256": "a42450d186a7af971272dbe0821ae290ca7c903f0639af29243aa83d427129d6"
+  },
+  {
+    "path": "gfx/pokemon/flittle/front.dimensions",
+    "sha256": "a25513c7e0f6eaa80a3337ee18081b9e2ed09e00af8531c8f7bb2542764027e7"
+  },
+  {
+    "path": "gfx/pokemon/flittle/front.gbcpal",
+    "sha256": "21fa178225a62a041d3772d0abc1191f98c149dc8f6b76e956017f9695cabf15"
+  },
+  {
+    "path": "gfx/pokemon/flittle/front.png",
+    "sha256": "7c16bed9da08259804afce8023a7cbeb3eaf444396af9f863272c427112492c6"
+  },
+  {
+    "path": "gfx/pokemon/flittle/shiny.pal",
+    "sha256": "cfb3ec4596eb6d63fd31b885a92e321e30ec4e9fb2e4ac4dbfb10d8672d0ec90"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/anim.asm",
+    "sha256": "c04900cb37892482fb65acaf20a87b738e05233b7bf801ab9b5fb714e55d25e2"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/anim_idle.asm",
+    "sha256": "1729c951780d93dd73ed69d46408ad7bff3afa1b7f61f28def04bd125672399f"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/back.2bpp",
+    "sha256": "6e894743146bba9d6b9db223ee6eee1cee697c9cb0bedf38a8fc2915aa815655"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/back.2bpp.lz",
+    "sha256": "8777e8fabf6c74f07d746d2cadcaf16d839e2a45e712e4d1ff037f733590a2ce"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/back.png",
+    "sha256": "307b108f68a57779024fb50b364f16d162a5f5fd9288ef869e293a6b74f72da8"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/bitmask.asm",
+    "sha256": "aa039133231d2c2582a6adcc6642b582b4a61392a0e7acd22927e1672e110686"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/frames.asm",
+    "sha256": "080e45f27cc07eb9447abe73a345395f336606c0032bd2590af12ec4058211f4"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/front.2bpp",
+    "sha256": "e549e41a3afb809b94e51498b829b5546ac4bdbe5bda98d0ce22ddb06fbd2a93"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/front.animated.2bpp",
+    "sha256": "d67e35586e38a4bdcf959f67057de903bf0fbbacec58cadd01804b9d8e7024cb"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/front.animated.2bpp.lz",
+    "sha256": "7239adaa2e851e1c1a4d67c33bdfe40badb07189428657c71934b87a6f7074b6"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/front.animated.tilemap",
+    "sha256": "5c3c6ee1147a943f4d998d0548f0d8d425268f1d94e38f61dae58cbdfb4c6f8e"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/front.dimensions",
+    "sha256": "50e721e49c013f00c62cf59f2163542a9d8df02464efeb615d31051b0fddc326"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/front.gbcpal",
+    "sha256": "68bf1a3be659852822a099f3fe0c9d7aa909411956b593ec71045244a05abdef"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/front.png",
+    "sha256": "0a56ad47b95246ef5e87e0332769f05d8cb53d8bd6a1630dadd2f9920cf9d443"
+  },
+  {
+    "path": "gfx/pokemon/grumpig/shiny.pal",
+    "sha256": "810f3624cd817fa6c176bae80348c321283828e593f00611f31e190ff7196e80"
+  },
+  {
+    "path": "gfx/pokemon/lombre/anim.asm",
+    "sha256": "6be8311c3cbd7633faf718b8089e81ea3d9d57b36d8a480253b8c38219c4bdb3"
+  },
+  {
+    "path": "gfx/pokemon/lombre/anim_idle.asm",
+    "sha256": "f1a62eb66dfa1d0db1804052aac96b2b4c3c5930625f194babf60cfb7428bf2c"
+  },
+  {
+    "path": "gfx/pokemon/lombre/back.2bpp",
+    "sha256": "0deeaee2ddd3462548c5ef216b73c440323713e7fb907441e6def4a916dbf75e"
+  },
+  {
+    "path": "gfx/pokemon/lombre/back.2bpp.lz",
+    "sha256": "8322b4c1f60d72e8824f737ab0215dc001243bdd67b6255f70d455bcbe1f6b3b"
+  },
+  {
+    "path": "gfx/pokemon/lombre/back.png",
+    "sha256": "768f216cca03f92798406d861e509897521b14f7c50fe7707e5f2561c4b38daa"
+  },
+  {
+    "path": "gfx/pokemon/lombre/bitmask.asm",
+    "sha256": "3c785f6a65ce912b92437419f4c897bb474477224882770d4390566a99ebec3b"
+  },
+  {
+    "path": "gfx/pokemon/lombre/frames.asm",
+    "sha256": "d7d3f6137cb24e6054143db8c1725e68cc96376e9eba67f4b481b7fd1383e813"
+  },
+  {
+    "path": "gfx/pokemon/lombre/front.2bpp",
+    "sha256": "e17011cfe151ba45e9e51fe8f90352cba4cb671c879a6b09e9163e0cfe894384"
+  },
+  {
+    "path": "gfx/pokemon/lombre/front.animated.2bpp",
+    "sha256": "52f969dfd4d8ea52a3e07627f2586936c8d6cfba9f555664583aaf496647f2b3"
+  },
+  {
+    "path": "gfx/pokemon/lombre/front.animated.2bpp.lz",
+    "sha256": "cb4af69a7c95e5f8725bbd0f14b6d94d2933a88e6681dc9e3cbcdaeb0b2fbfa7"
+  },
+  {
+    "path": "gfx/pokemon/lombre/front.animated.tilemap",
+    "sha256": "03257c492a7a8b7cb8d66e6890100ec46cf3c2a25b3f86625849f5213cf86abb"
+  },
+  {
+    "path": "gfx/pokemon/lombre/front.dimensions",
+    "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111"
+  },
+  {
+    "path": "gfx/pokemon/lombre/front.gbcpal",
+    "sha256": "126025f4c73c16a88bfa074df13e877546b8ddd8a4d129875096906b030c76ce"
+  },
+  {
+    "path": "gfx/pokemon/lombre/front.png",
+    "sha256": "331c4544d31091c97209b96a712fcce5b59985c1c1c16179e483738ed71ef6a3"
+  },
+  {
+    "path": "gfx/pokemon/lombre/shiny.pal",
+    "sha256": "c73d5525e713521fb7931361142ecffcf5588b3c39c34b107b7a2111e8eeff16"
+  },
+  {
+    "path": "gfx/pokemon/lotad/anim.asm",
+    "sha256": "c3171e8ef3523248839a867d33e04334fec50cbea75f2f0e3e31065a21b4e7f4"
+  },
+  {
+    "path": "gfx/pokemon/lotad/anim_idle.asm",
+    "sha256": "945ba17632c43f1ffa08b27c15a59cfd427f025cf364bf678967276870fc1461"
+  },
+  {
+    "path": "gfx/pokemon/lotad/back.2bpp",
+    "sha256": "afe03dd65c0bc47948880cf585052777cdffc1453f4297744f0e662634423053"
+  },
+  {
+    "path": "gfx/pokemon/lotad/back.2bpp.lz",
+    "sha256": "971f1ba6522b861502fdc52d2755afcc518b09a832832f6d4b9fdbb154ec0c5e"
+  },
+  {
+    "path": "gfx/pokemon/lotad/back.png",
+    "sha256": "2c4745bba0930b0b3e684aac52baf9d4faaa6f277506bc90ec7cfc2800b95f4a"
+  },
+  {
+    "path": "gfx/pokemon/lotad/bitmask.asm",
+    "sha256": "98ee2d64ece2c76e9efc73c85fc2d7a0d87dcade42e3b45b419fe5b64741ba91"
+  },
+  {
+    "path": "gfx/pokemon/lotad/frames.asm",
+    "sha256": "69930f1b7eeeb0d8feff46c370e1305b0586b0e3a6b84dbdc95bb96554bdc28f"
+  },
+  {
+    "path": "gfx/pokemon/lotad/front.2bpp",
+    "sha256": "fd641cc3573d4256efd20812b29256ef2a41bacdae8e1db7ebbacc70462d227e"
+  },
+  {
+    "path": "gfx/pokemon/lotad/front.animated.2bpp",
+    "sha256": "ec525dc13c2321df4c9adb2d977a3242287aba83462eb8e75f4afbd322589c41"
+  },
+  {
+    "path": "gfx/pokemon/lotad/front.animated.2bpp.lz",
+    "sha256": "a1373c0801890090353bdd0cc581d07589373db610deacd09c72c3304dcf142e"
+  },
+  {
+    "path": "gfx/pokemon/lotad/front.animated.tilemap",
+    "sha256": "5ad5da235919ba81cee1926690a84bc8353439632c1851db8db1d0d4199c018c"
+  },
+  {
+    "path": "gfx/pokemon/lotad/front.dimensions",
+    "sha256": "a25513c7e0f6eaa80a3337ee18081b9e2ed09e00af8531c8f7bb2542764027e7"
+  },
+  {
+    "path": "gfx/pokemon/lotad/front.gbcpal",
+    "sha256": "ca841b514d0149b3bbdbd980ba4f33d0a115be846fecca459f79ba5f34e6b74c"
+  },
+  {
+    "path": "gfx/pokemon/lotad/front.png",
+    "sha256": "e63cc7059339f7eac79ce28a57bf03577ccf52b67389041d990507fdc8eb8f9b"
+  },
+  {
+    "path": "gfx/pokemon/lotad/shiny.pal",
+    "sha256": "e91e819c38b12b531b57038715d956f6268528ac370aa6e201daec875b9847fe"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/anim.asm",
+    "sha256": "d52cbd73e539be500cc3d266e077972f513c8bbcded83bd315d0c76bd8696708"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/anim_idle.asm",
+    "sha256": "691f2b817aef8947194f6aa6d7c720c0ca44cc723d40a8ec25e374e210c9cb2b"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/back.2bpp",
+    "sha256": "9b50d4e5f17ab289ec95372db2c3c59835f2c21affc71c40980d1e455e22f401"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/back.2bpp.lz",
+    "sha256": "6c555b167601eff15749bae5514abee53968b9b122ef70653f0ce2e7a882661f"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/back.png",
+    "sha256": "3eb4bde603eda03457ed27e95b36fce6c81dd1d5cf6bce188ca51666ae56c36f"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/bitmask.asm",
+    "sha256": "9d0703d92c98da9b718356780a9d0c7f049e0017303fd11fddb5436b3cef7894"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/frames.asm",
+    "sha256": "94eef5e0b2c4eabfe910f9603fd3d5cd03ba0076d5b62f37ea992c4bfd3c8bc8"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/front.2bpp",
+    "sha256": "b78f0e429bb4f1562e2a18d0952fed62e6458dec4e2b47380c3343ab1f29bb1d"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/front.animated.2bpp",
+    "sha256": "b6fe5a21ccce9e971c7bcfd89d1d93f442b5eb99025901c9615deaa2a426fb93"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/front.animated.2bpp.lz",
+    "sha256": "7d9a4e9efb27b4f302d14c369d6b10da64495686514b02fafac933479177c08d"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/front.animated.tilemap",
+    "sha256": "07723ca0788370b475777c9169cb0bb5382e03032bff3ce9704754555bcfb2e3"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/front.dimensions",
+    "sha256": "50e721e49c013f00c62cf59f2163542a9d8df02464efeb615d31051b0fddc326"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/front.gbcpal",
+    "sha256": "777add3e4b4ed6bdfa5deb940f025f82a7c49e386ff6c74f04a499ed242d2fcc"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/front.png",
+    "sha256": "2401fe7601b801c2f5149d2da739b54cfcccf733af3c3143316aa5ef978d6772"
+  },
+  {
+    "path": "gfx/pokemon/ludicolo/shiny.pal",
+    "sha256": "19bbc6dfcf65753fbdf1325a621a4a347e36aaffaafb7919b32f383bc7ab9e07"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/anim.asm",
+    "sha256": "6a1a4ad611dcb141393ac39391a9a85f580ac6ddad80ca4297fb488ae9b45328"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/anim_idle.asm",
+    "sha256": "3aeb168c72279f2d00abe56ea2f2c9bef6aa4d63f0b200e84b6bd888901e4a00"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/back.2bpp",
+    "sha256": "0679a0c23d91af7a46e5e56382044059274d7b0120967d66fc7d3833fcb46b58"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/back.2bpp.lz",
+    "sha256": "6664a40fe05a54c36020c05649f3818ef020ce0643b9d5ab87cd2ab369081252"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/back.png",
+    "sha256": "f7425f08309c63d2ad52adf66a29d396d22c44c19a305e5e9bb68448e4a42e59"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/bitmask.asm",
+    "sha256": "59dca32bf5df0be1abb784feb6d8e017da51d6f3aacb97503e39ede0a6fda287"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/frames.asm",
+    "sha256": "e14f89538033055da33eaede7dc8acafe1a07ee26cc223474298d5f98b0d96dd"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/front.2bpp",
+    "sha256": "aad3118ea1b02e3e3eb4c67d049bb451f99c8e1b464c7fc1baf6dc8f96f22ab4"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/front.animated.2bpp",
+    "sha256": "16f492464be5b6fee9396f87f3f04658a27bd2c42300feb68a10f080e3d9ea7f"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/front.animated.2bpp.lz",
+    "sha256": "9c103d966ca88bd0fbd7879939c006ebe0e5ab2f8bbca132feec1addc202f1af"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/front.animated.tilemap",
+    "sha256": "b693b5254a863186518066bc7bcd4541d116d53fc91f37b66f8dd6bb270defbd"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/front.dimensions",
+    "sha256": "50e721e49c013f00c62cf59f2163542a9d8df02464efeb615d31051b0fddc326"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/front.gbcpal",
+    "sha256": "fc91cecf1475925578b7b9122fd36da4403eb8f80f93727fb592484764a9f1fc"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/front.png",
+    "sha256": "d16c7e496ceab0d9720def4ddda40e13e9ed1e5916516cb4e1bd44f084db4623"
+  },
+  {
+    "path": "gfx/pokemon/sealeo/shiny.pal",
+    "sha256": "7750c44f56202b7fbc0147bcdcc29c461382dd53b067482d29cd865b7a042193"
+  },
+  {
+    "path": "gfx/pokemon/spheal/anim.asm",
+    "sha256": "8e67fd49d79135b53a80313404b9ca6530174d35a5a467b29c82c5ee62db3c5e"
+  },
+  {
+    "path": "gfx/pokemon/spheal/anim_idle.asm",
+    "sha256": "3aeb168c72279f2d00abe56ea2f2c9bef6aa4d63f0b200e84b6bd888901e4a00"
+  },
+  {
+    "path": "gfx/pokemon/spheal/back.2bpp",
+    "sha256": "7ac57e9c9f67604791194d8f4ff84819380c66649456b0e76236718ee49490ca"
+  },
+  {
+    "path": "gfx/pokemon/spheal/back.2bpp.lz",
+    "sha256": "58d62e6629c280fba48a244e9f93250eaf74e54fd944fd9f9e139f06dddba177"
+  },
+  {
+    "path": "gfx/pokemon/spheal/back.png",
+    "sha256": "442061dc23ea2ba08b65c7b32cd31001c36ee8459d1b4d57578edad813f6a0fd"
+  },
+  {
+    "path": "gfx/pokemon/spheal/bitmask.asm",
+    "sha256": "7bde0cecb9af97dad9a3bb47139f42f0beef334aa2a608f1124b10b8d30886f8"
+  },
+  {
+    "path": "gfx/pokemon/spheal/frames.asm",
+    "sha256": "8b14d698f1e0c770ef79114af9e9d3a8c7737a20a46358bdf2df67ba91a4309f"
+  },
+  {
+    "path": "gfx/pokemon/spheal/front.2bpp",
+    "sha256": "dcf662a8a84ee3687ca0627784c36b66b3bbf6efb06decb574d558a20ff20520"
+  },
+  {
+    "path": "gfx/pokemon/spheal/front.animated.2bpp",
+    "sha256": "7ca68bce971e7d535137c6987b5a550a8c7437ad4a108026edf2348a9c4cbad6"
+  },
+  {
+    "path": "gfx/pokemon/spheal/front.animated.2bpp.lz",
+    "sha256": "5d02bcb16d0243c036a0621af5363ccd35c01321e7eb86f161697d7a0b323cc0"
+  },
+  {
+    "path": "gfx/pokemon/spheal/front.animated.tilemap",
+    "sha256": "b647df3e4ba37ade293f4582b4be9bc4dbef30587191a299b0b81d9a53f3170a"
+  },
+  {
+    "path": "gfx/pokemon/spheal/front.dimensions",
+    "sha256": "a25513c7e0f6eaa80a3337ee18081b9e2ed09e00af8531c8f7bb2542764027e7"
+  },
+  {
+    "path": "gfx/pokemon/spheal/front.gbcpal",
+    "sha256": "823e158c59347aea46cc8f131cee599244c97ecfa5dbe6a5da18b6e0e0a07bab"
+  },
+  {
+    "path": "gfx/pokemon/spheal/front.png",
+    "sha256": "e5707fd16465a01c37be7f257a70ae645242d78f27ffa6bf311dafd566b303f5"
+  },
+  {
+    "path": "gfx/pokemon/spheal/shiny.pal",
+    "sha256": "7750c44f56202b7fbc0147bcdcc29c461382dd53b067482d29cd865b7a042193"
+  },
+  {
+    "path": "gfx/pokemon/spoink/anim.asm",
+    "sha256": "0d10ebe28fda1327bc97b30203c29b51827d380a3bd80726b058313d0dfd14ff"
+  },
+  {
+    "path": "gfx/pokemon/spoink/anim_idle.asm",
+    "sha256": "34e27d2144b066b9435518c6c8274f9d19b441b57ac3d24f2482962b3211eb82"
+  },
+  {
+    "path": "gfx/pokemon/spoink/back.2bpp",
+    "sha256": "18c22a1911e5dd89b00fdb1a28c24b25027a07c4d7c8bbd074cdb3d72cc37fc2"
+  },
+  {
+    "path": "gfx/pokemon/spoink/back.2bpp.lz",
+    "sha256": "27618c4fec52e6ff0016ac4419eca2725bbb48cad47a74a49a743f1b208c2f72"
+  },
+  {
+    "path": "gfx/pokemon/spoink/back.png",
+    "sha256": "430fc3da31b69bedb66866990b35850581cc034b1e3c5f6ad86e6dbe76929985"
+  },
+  {
+    "path": "gfx/pokemon/spoink/bitmask.asm",
+    "sha256": "548ee98a6e6404cb430282b0f1a6d30789746f0dad274d516e1e8d107a9fe1b0"
+  },
+  {
+    "path": "gfx/pokemon/spoink/frames.asm",
+    "sha256": "b916df6224d8a62351c44697efd442465ecc481020a42de8af32e32efdc04cba"
+  },
+  {
+    "path": "gfx/pokemon/spoink/front.2bpp",
+    "sha256": "74e0b9dcb5ca2652fabc7817bd6c48503f9dfe62672ceca1011048d7cd450c4e"
+  },
+  {
+    "path": "gfx/pokemon/spoink/front.animated.2bpp",
+    "sha256": "c09544bd51e54cdc2750f0835eb85ea02d6b34ccdc756e5786352cb6400f23d6"
+  },
+  {
+    "path": "gfx/pokemon/spoink/front.animated.2bpp.lz",
+    "sha256": "19acee02cbfcf772b77f3c2fadda15f7c2e17feb0f62378c2feb4091b9f3fb54"
+  },
+  {
+    "path": "gfx/pokemon/spoink/front.animated.tilemap",
+    "sha256": "cbfbb81c1ccfa511e5a534bbcd211f241c1cedb7d7c5ea9c0adf6cf0889b1591"
+  },
+  {
+    "path": "gfx/pokemon/spoink/front.dimensions",
+    "sha256": "a25513c7e0f6eaa80a3337ee18081b9e2ed09e00af8531c8f7bb2542764027e7"
+  },
+  {
+    "path": "gfx/pokemon/spoink/front.gbcpal",
+    "sha256": "3e9ae046237744c544582a1b51ad3316e81e6deb710fe61210f6d0158f9b8f6b"
+  },
+  {
+    "path": "gfx/pokemon/spoink/front.png",
+    "sha256": "7e402247497b3a87ea6265dc9839b578a2db912137c8172f02c9faef33440a54"
+  },
+  {
+    "path": "gfx/pokemon/spoink/shiny.pal",
+    "sha256": "3c2d891bbf38066c75bbf5111363c81edc59d89f34d91a49a71cc03b08340e4e"
+  },
+  {
+    "path": "gfx/pokemon/walrein/anim.asm",
+    "sha256": "b19c25eefc8093f98e32997340294b6a717fc0f6a68a550a2caea4393d52eece"
+  },
+  {
+    "path": "gfx/pokemon/walrein/anim_idle.asm",
+    "sha256": "3aeb168c72279f2d00abe56ea2f2c9bef6aa4d63f0b200e84b6bd888901e4a00"
+  },
+  {
+    "path": "gfx/pokemon/walrein/back.2bpp",
+    "sha256": "c0c4a39a2971de2e1ad1c547972288b4493c2326a35a4307b6d255bb084a3438"
+  },
+  {
+    "path": "gfx/pokemon/walrein/back.2bpp.lz",
+    "sha256": "9165dce2c33dd8a7b865e743445a384d02b598c17ce4611ae78676f845b7f8a1"
+  },
+  {
+    "path": "gfx/pokemon/walrein/back.png",
+    "sha256": "a1c7d264b7bcbbe76c47c8d508bc211fd2901391e18d6529cb5e4c2197dc2f71"
+  },
+  {
+    "path": "gfx/pokemon/walrein/bitmask.asm",
+    "sha256": "a7a84e3cd176202f6adb493a42a21d9f123f1fe03831368cafb6e0228d8e6461"
+  },
+  {
+    "path": "gfx/pokemon/walrein/frames.asm",
+    "sha256": "bad01cff29681be6af7cd57ae632f64a186e45968a99060da79a3e7e7465084f"
+  },
+  {
+    "path": "gfx/pokemon/walrein/front.2bpp",
+    "sha256": "e68a7804899c8ecaac796d766a9926c9c767484ac0c57b3cdc78d0faa0ba7c50"
+  },
+  {
+    "path": "gfx/pokemon/walrein/front.animated.2bpp",
+    "sha256": "f7f6fe09199fa58278c3007c6c371814a8968f80a516e12325b28752f994af88"
+  },
+  {
+    "path": "gfx/pokemon/walrein/front.animated.2bpp.lz",
+    "sha256": "206d89ae460cee09f3edc8b16c2dbab2125daf6883c4bea9aed85b1fe9ca1724"
+  },
+  {
+    "path": "gfx/pokemon/walrein/front.animated.tilemap",
+    "sha256": "eef4359905187609063b8dbd4b78ffea815235ee9793f1821bf7dc89f914eef5"
+  },
+  {
+    "path": "gfx/pokemon/walrein/front.dimensions",
+    "sha256": "50e721e49c013f00c62cf59f2163542a9d8df02464efeb615d31051b0fddc326"
+  },
+  {
+    "path": "gfx/pokemon/walrein/front.gbcpal",
+    "sha256": "12449510d75aca9bb317d093e73daec4df0fbd8f4cd979d3ea3300cb9194be1e"
+  },
+  {
+    "path": "gfx/pokemon/walrein/front.png",
+    "sha256": "2fdda1d3818dc59e0df403c9c9fed2ca5e8ae3dcc9a77a3879277c7118fa148f"
+  },
+  {
+    "path": "gfx/pokemon/walrein/shiny.pal",
+    "sha256": "7750c44f56202b7fbc0147bcdcc29c461382dd53b067482d29cd865b7a042193"
+  },
+  {
+    "path": "gfx/pokemon/walrein/walrein.png",
+    "sha256": "41cc61a6fde94124a9506fd30007d92e5361051c41ed0c885eef0934b121301f"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_2_extracted/gen3/grumpig.png",
+    "sha256": "93ecfccb1cd2321c285645755178b2672d1b70a50be4afe4b8daa65a34beeb64"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_2_extracted/gen3/lombre.png",
+    "sha256": "6f4e246374b378a5de34683c91c0117c668d428aecdf38fbdc4e844a9ce4829b"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_2_extracted/gen3/lotad.png",
+    "sha256": "33c79f0b005a4bb6df4ba7edb3c7bf5bec82cf9fab51629f55a2eebb78ce51e0"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_2_extracted/gen3/ludicolo.png",
+    "sha256": "2d5d4e45cc6a1d0826c5eed0cf1d6e2d65cd72000efa9a5932de2f555ae90a91"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_2_extracted/gen3/sealeo.png",
+    "sha256": "54917df5ff7914ac0cd3e88455052e67de93548fb8ef62a310ad48d5d377561e"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_2_extracted/gen3/spheal.png",
+    "sha256": "515d879e09e8140c84f1e39487631c672b18012361858f9b5cbd5a9ddf80420f"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_2_extracted/gen3/spoink.png",
+    "sha256": "a67b02c40c31aaa044eda2e7f386c2c9696d9b114eebf2b985ed9ed121d603d8"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_2_extracted/gen3/walrein.png",
+    "sha256": "8672787640124d49592213512c8231b06cb29952fbb6b43911b1cf927cdc9894"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_3_extracted/grumpig.png",
+    "sha256": "93ecfccb1cd2321c285645755178b2672d1b70a50be4afe4b8daa65a34beeb64"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_3_extracted/lombre.png",
+    "sha256": "6f4e246374b378a5de34683c91c0117c668d428aecdf38fbdc4e844a9ce4829b"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_3_extracted/lotad.png",
+    "sha256": "33c79f0b005a4bb6df4ba7edb3c7bf5bec82cf9fab51629f55a2eebb78ce51e0"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_3_extracted/ludicolo.png",
+    "sha256": "2d5d4e45cc6a1d0826c5eed0cf1d6e2d65cd72000efa9a5932de2f555ae90a91"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_3_extracted/sealeo.png",
+    "sha256": "5c9c0b8f8bad4d8fd821630cb45daf4a4390a8fbe657229661c7a376434ec37f"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_3_extracted/spheal.png",
+    "sha256": "c33ca56ab8736d057f54221ed1abfbd676f55c681a5640ceff542e8c325c8341"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_3_extracted/spoink.png",
+    "sha256": "a67b02c40c31aaa044eda2e7f386c2c9696d9b114eebf2b985ed9ed121d603d8"
+  },
+  {
+    "path": "pokemon stuff i need/luigitko_gen1_3_extracted/walrein.png",
+    "sha256": "2a79d625dc42a9f2039f050d626d6488f40df7898e2564b314d92879cde2ee7b"
+  },
+  {
+    "path": "tools/test_espathra_evolution_move.py",
+    "sha256": "696a89b77ed5533c10127fac5544a33a9583cd6e3b95c01f98d972c8fcbe332e"
+  }
+]

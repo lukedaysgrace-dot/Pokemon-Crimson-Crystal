@@ -220,20 +220,20 @@ EggMovePointers2::
 	dw NoEggMoves2 ; FROSLASS
 	dw CanonicalWIMPODEggMoves ; WIMPOD
 	dw NoEggMoves2 ; GOLISOPOD
-	dw CanonicalSPOINKEggMoves ; SPOINK
-	dw NoEggMoves2 ; GRUMPIG
+	dw ZoruaEggMoves ; ZORUA
+	dw NoEggMoves2 ; ZOROARK
 	dw CanonicalPAWNIARDEggMoves ; PAWNIARD
 	dw NoEggMoves2 ; BISHARP
 	dw NoEggMoves2 ; KINGAMBIT
-	dw CanonicalLOTADEggMoves ; LOTAD
-	dw NoEggMoves2 ; LOMBRE
-	dw NoEggMoves2 ; LUDICOLO
+	dw SeedotEggMoves ; SEEDOT
+	dw NoEggMoves2 ; NUZLEAF
+	dw NoEggMoves2 ; SHIFTRY
 	dw NoEggMoves2 ; OVERQWIL
 	dw CanonicalSCRAGGYEggMoves ; SCRAGGY
 	dw NoEggMoves2 ; SCRAFTY
-	dw CanonicalSPHEALEggMoves ; SPHEAL
-	dw NoEggMoves2 ; SEALEO
-	dw NoEggMoves2 ; WALREIN
+	dw HonedgeEggMoves ; HONEDGE
+	dw NoEggMoves2 ; DOUBLADE
+	dw NoEggMoves2 ; AEGISLASH
 	dw CanonicalTEDDIURSABMEggMoves ; TEDDIURSABM
 	dw NoEggMoves2 ; URSARINGBM
 	dw NoEggMoves2 ; URSALUNABM
@@ -328,8 +328,8 @@ EggMovePointers2::
 	dw NoEggMoves2 ; NOIVERN
 	dw CanonicalSALANDITEggMoves ; SALANDIT
 	dw NoEggMoves2 ; SALAZZLE
-	dw CanonicalFLITTLEEggMoves ; FLITTLE
-	dw NoEggMoves2 ; ESPATHRA
+	dw SableyeEggMoves ; SABLEYE
+	dw NoEggMoves2 ; AEGISLASH_BLADE
 	dw CanonicalFINIZENEggMoves ; FINIZEN
 	dw NoEggMoves2 ; PALAFIN
 	dw CanonicalAZURILLEggMoves ; AZURILL
@@ -350,6 +350,8 @@ EggMovePointers2::
 	dw NoEggMoves2 ; TREVENANT
 	dw MienfooEggMoves ; MIENFOO
 	dw NoEggMoves2 ; MIENSHAO
+	dw HippopotasEggMoves ; HIPPOPOTAS
+	dw NoEggMoves2 ; HIPPOWDON
 
 ChikoritaEggMoves:
 	dw VINE_WHIP
@@ -993,13 +995,6 @@ WimpodEggMoves:
 	dw SUPERPOWER
 	dw -1 ; end
 
-SpoinkEggMoves:
-	dw AMNESIA
-	dw SKILL_SWAP
-	dw WHIRLWIND
-	dw CALM_MIND
-	dw -1 ; end
-
 PawniardEggMoves:
 	dw MEAN_LOOK
 	dw PSYCHO_CUT
@@ -1009,27 +1004,12 @@ PawniardEggMoves:
 	dw SUPERPOWER
 	dw -1 ; end
 
-LotadEggMoves:
-	dw SYNTHESIS
-	dw RAZOR_LEAF
-	dw FAKE_OUT
-	dw WATER_PULSE
-	dw -1 ; end
-
 ScraggyEggMoves:
 	dw DETECT
 	dw FAKE_OUT
 	dw FAINT_ATTACK
 	dw COUNTER
 	dw DRAGON_TAIL
-	dw -1 ; end
-
-SphealEggMoves:
-	dw FISSURE
-	dw ROCK_SLIDE
-	dw SIGNAL_BEAM
-	dw SLEEP_TALK
-	dw YAWN
 	dw -1 ; end
 
 TeddiursabmEggMoves:
@@ -1366,14 +1346,6 @@ SalanditEggMoves:
 	dw SAND_ATTACK
 	dw FLAME_CHARGE
 	dw BEAT_UP
-	dw -1 ; end
-
-FlittleEggMoves:
-	dw ROOST
-	dw DISARMING_VOICE
-	dw FUTURE_SIGHT
-	dw MAGICAL_LEAF
-	dw HAZE
 	dw -1 ; end
 
 FinizenEggMoves:
@@ -2542,19 +2514,6 @@ CanonicalWIMPODEggMoves:
 	dw SPIKES
 	dw -1 ; end
 
-CanonicalSPOINKEggMoves:
-	dw AMNESIA
-	dw SKILL_SWAP
-	dw WHIRLWIND
-	dw CALM_MIND
-	dw ENDURE
-	dw EXTRASENSORY
-	dw FUTURE_SIGHT
-	dw MIRROR_COAT
-	dw SUBSTITUTE
-	dw TRICK
-	dw ZEN_HEADBUTT
-	dw -1 ; end
 
 CanonicalPAWNIARDEggMoves:
 	dw MEAN_LOOK
@@ -2566,17 +2525,6 @@ CanonicalPAWNIARDEggMoves:
 	dw STEALTH_ROCK
 	dw -1 ; end
 
-CanonicalLOTADEggMoves:
-	dw SYNTHESIS
-	dw RAZOR_LEAF
-	dw WATER_PULSE
-	dw COUNTER
-	dw FLAIL
-	dw GIGA_DRAIN
-	dw LEECH_SEED
-	dw SWEET_SCENT
-	dw WATER_GUN
-	dw -1 ; end
 
 CanonicalSCRAGGYEggMoves:
 	dw DETECT
@@ -2593,17 +2541,6 @@ CanonicalSCRAGGYEggMoves:
 	dw ZEN_HEADBUTT
 	dw -1 ; end
 
-CanonicalSPHEALEggMoves:
-	dw FISSURE
-	dw ROCK_SLIDE
-	dw SIGNAL_BEAM
-	dw SLEEP_TALK
-	dw YAWN
-	dw BELLY_DRUM
-	dw CURSE
-	dw ROLLOUT
-	dw WATER_PULSE
-	dw -1 ; end
 
 CanonicalTEDDIURSABMEggMoves:
 	dw CRUNCH
@@ -3052,11 +2989,6 @@ CanonicalSALANDITEggMoves:
 	dw MUD_SLAP
 	dw -1 ; end
 
-CanonicalFLITTLEEggMoves:
-	dw ROOST
-	dw DISARMING_VOICE
-	dw HYPNOSIS
-	dw -1 ; end
 
 CanonicalFINIZENEggMoves:
 	dw MIST
@@ -3321,4 +3253,48 @@ MienfooEggMoves:
 	dw KNOCK_OFF
 	dw LOW_KICK
 	dw VITAL_THROW
+	dw -1 ; end
+
+ZoruaEggMoves:
+	dw DETECT
+	dw EXTRASENSORY
+	dw -1 ; end
+
+SeedotEggMoves:
+	dw AMNESIA
+	dw BEAT_UP
+	dw BULLET_SEED
+	dw DEFOG
+	dw FALSE_SWIPE
+	dw FOUL_PLAY
+	dw LEECH_SEED
+	dw NASTY_PLOT
+	dw NIGHT_SLASH
+	dw QUICK_ATTACK
+	dw RAZOR_WIND
+	dw TAKE_DOWN
+	dw -1 ; end
+
+HonedgeEggMoves:
+	dw DESTINY_BOND
+	dw SHADOW_SNEAK
+	dw -1 ; end
+
+SableyeEggMoves:
+	dw MEAN_LOOK
+	dw MOONLIGHT
+	dw NASTY_PLOT
+	dw PSYCH_UP
+	dw RECOVER
+	dw SUCKER_PUNCH
+	dw TORMENT
+	dw TRICK
+	dw -1 ; end
+
+HippopotasEggMoves:
+	dw CURSE
+	dw WHIRLWIND
+	dw SLACK_OFF
+	dw BODY_SLAM
+	dw SLEEP_TALK
 	dw -1 ; end

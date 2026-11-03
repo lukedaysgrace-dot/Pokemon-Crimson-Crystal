@@ -2221,18 +2221,6 @@
    "weight_hg": 1080,
    "dex_lbs_x10": 2381
   },
-  "SPOINK": {
-   "dex_entry": "spoink",
-   "source": "spoink",
-   "weight_hg": 306,
-   "dex_lbs_x10": 675
-  },
-  "GRUMPIG": {
-   "dex_entry": "grumpig",
-   "source": "grumpig",
-   "weight_hg": 715,
-   "dex_lbs_x10": 1576
-  },
   "PAWNIARD": {
    "dex_entry": "pawniard",
    "source": "pawniard",
@@ -2251,24 +2239,6 @@
    "weight_hg": 1200,
    "dex_lbs_x10": 2646
   },
-  "LOTAD": {
-   "dex_entry": "lotad",
-   "source": "lotad",
-   "weight_hg": 26,
-   "dex_lbs_x10": 57
-  },
-  "LOMBRE": {
-   "dex_entry": "lombre",
-   "source": "lombre",
-   "weight_hg": 325,
-   "dex_lbs_x10": 717
-  },
-  "LUDICOLO": {
-   "dex_entry": "ludicolo",
-   "source": "ludicolo",
-   "weight_hg": 550,
-   "dex_lbs_x10": 1213
-  },
   "OVERQWIL": {
    "dex_entry": "overqwil",
    "source": "overqwil",
@@ -2286,24 +2256,6 @@
    "source": "scrafty",
    "weight_hg": 300,
    "dex_lbs_x10": 661
-  },
-  "SPHEAL": {
-   "dex_entry": "spheal",
-   "source": "spheal",
-   "weight_hg": 395,
-   "dex_lbs_x10": 871
-  },
-  "SEALEO": {
-   "dex_entry": "sealeo",
-   "source": "sealeo",
-   "weight_hg": 876,
-   "dex_lbs_x10": 1931
-  },
-  "WALREIN": {
-   "dex_entry": "walrein",
-   "source": "walrein",
-   "weight_hg": 1506,
-   "dex_lbs_x10": 3320
   },
   "TEDDIURSABM": {
    "dex_entry": "teddiursa",
@@ -2869,18 +2821,6 @@
    "weight_hg": 222,
    "dex_lbs_x10": 489
   },
-  "FLITTLE": {
-   "dex_entry": "flittle",
-   "source": "flittle",
-   "weight_hg": 15,
-   "dex_lbs_x10": 33
-  },
-  "ESPATHRA": {
-   "dex_entry": "espathra",
-   "source": "espathra",
-   "weight_hg": 900,
-   "dex_lbs_x10": 1984
-  },
   "FINIZEN": {
    "dex_entry": "finizen",
    "source": "finizen",
@@ -3000,6 +2940,78 @@
    "source": "trevenant",
    "weight_hg": 710,
    "dex_lbs_x10": 1565
+  },
+  "ZORUA": {
+   "dex_entry": "zorua",
+   "source": "zorua-hisui",
+   "weight_hg": 125,
+   "dex_lbs_x10": 276
+  },
+  "ZOROARK": {
+   "dex_entry": "zoroark",
+   "source": "zoroark-hisui",
+   "weight_hg": 730,
+   "dex_lbs_x10": 1609
+  },
+  "SEEDOT": {
+   "dex_entry": "seedot",
+   "source": "seedot",
+   "weight_hg": 40,
+   "dex_lbs_x10": 88
+  },
+  "NUZLEAF": {
+   "dex_entry": "nuzleaf",
+   "source": "nuzleaf",
+   "weight_hg": 280,
+   "dex_lbs_x10": 617
+  },
+  "SHIFTRY": {
+   "dex_entry": "shiftry",
+   "source": "shiftry",
+   "weight_hg": 596,
+   "dex_lbs_x10": 1314
+  },
+  "HONEDGE": {
+   "dex_entry": "honedge",
+   "source": "honedge",
+   "weight_hg": 20,
+   "dex_lbs_x10": 44
+  },
+  "DOUBLADE": {
+   "dex_entry": "doublade",
+   "source": "doublade",
+   "weight_hg": 45,
+   "dex_lbs_x10": 99
+  },
+  "AEGISLASH": {
+   "dex_entry": "aegislash",
+   "source": "aegislash",
+   "weight_hg": 530,
+   "dex_lbs_x10": 1168
+  },
+  "SABLEYE": {
+   "dex_entry": "sableye",
+   "source": "sableye",
+   "weight_hg": 110,
+   "dex_lbs_x10": 243
+  },
+  "AEGISLASH_BLADE": {
+   "dex_entry": "aegislash_blade",
+   "source": "aegislash-blade",
+   "weight_hg": 530,
+   "dex_lbs_x10": 1168
+  },
+  "HIPPOPOTAS": {
+   "dex_entry": "hippopotas",
+   "source": "hippopotas",
+   "weight_hg": 495,
+   "dex_lbs_x10": 1091
+  },
+  "HIPPOWDON": {
+   "dex_entry": "hippowdon",
+   "source": "hippowdon",
+   "weight_hg": 3000,
+   "dex_lbs_x10": 6614
   }
  }
 }

@@ -198,9 +198,9 @@
   assert:
     - wram('wDamageCalcBasePower') == 100
 
-- name: "Heavy Slam: 13.0 kg vs 2.6 kg (exactly 5x) -> 120 power"
-  player: { species: IVYSAUR, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
-  enemy: { species: LOTAD, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+- name: "Heavy Slam: 6.0 kg vs 1.2 kg (exactly 5x) -> 120 power"
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [HEAVY_SLAM] }
+  enemy: { species: SWABLU, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:

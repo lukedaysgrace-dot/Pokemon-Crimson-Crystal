@@ -370,20 +370,20 @@ PokedexDataPointerTable:
 	dba FroslassPokedexEntry
 	dba WimpodPokedexEntry
 	dba GolisopodPokedexEntry
-	dba SpoinkPokedexEntry
-	dba GrumpigPokedexEntry
+	dba ZoruaPokedexEntry
+	dba ZoroarkPokedexEntry
 	dba PawniardPokedexEntry
 	dba BisharpPokedexEntry
 	dba KingambitPokedexEntry
-	dba LotadPokedexEntry
-	dba LombrePokedexEntry
-	dba LudicoloPokedexEntry
+	dba SeedotPokedexEntry
+	dba NuzleafPokedexEntry
+	dba ShiftryPokedexEntry
 	dba OverqwilPokedexEntry
 	dba ScraggyPokedexEntry
 	dba ScraftyPokedexEntry
-	dba SphealPokedexEntry
-	dba SealeoPokedexEntry
-	dba WalreinPokedexEntry
+	dba HonedgePokedexEntry
+	dba DoubladePokedexEntry
+	dba AegislashPokedexEntry
 	dba TeddiursabmPokedexEntry
 	dba UrsaringbmPokedexEntry
 	dba UrsalunabmPokedexEntry
@@ -478,8 +478,8 @@ PokedexDataPointerTable:
 	dba NoivernPokedexEntry
 	dba SalanditPokedexEntry
 	dba SalazzlePokedexEntry
-	dba FlittlePokedexEntry
-	dba EspathraPokedexEntry
+	dba SableyePokedexEntry
+	dba AegislashBladePokedexEntry
 	dba FinizenPokedexEntry
 	dba PalafinPokedexEntry
 	dba AzurillPokedexEntry
@@ -500,3 +500,5 @@ PokedexDataPointerTable:
 	dba TrevenantPokedexEntry
 	dba MienfooPokedexEntry
 	dba MienshaoPokedexEntry
+	dba HippopotasPokedexEntry
+	dba HippowdonPokedexEntry

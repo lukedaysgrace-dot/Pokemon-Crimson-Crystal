@@ -147,14 +147,14 @@
 
 - name: "Residual stages: a weather knockout's replacement does not receive that turn's Ice Body healing"
   player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, substatus: [CURSE], moves: [SPLASH] }
-  player2: { species: SPHEAL, level: 50, ability: ICE_BODY, hp: 50, moves: [SPLASH] }
+  player2: { species: DEWGONG, level: 50, ability: ICE_BODY, hp: 50, moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
   setup_wram: { wPlayerWrapCount: 3 }
   weather: hail
   rng: forced_high
   turns: 1
   assert:
-    - player.species == 'SPHEAL'
+    - player.species == 'DEWGONG'
     - player.ability == 'ICE_BODY'
     - player.hp == player.maxhp // 2
 
@@ -275,26 +275,26 @@
 - name: "Residual stages: player's expired Future Sight is cleared when weather removes its target"
   player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
   enemy: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
-  enemy2: { species: SPHEAL, level: 50, ability: THICK_FAT, hp: 50, moves: [SPLASH] }
+  enemy2: { species: DEWGONG, level: 50, ability: THICK_FAT, hp: 50, moves: [SPLASH] }
   setup_wram: { wPlayerFutureSightCount: 2, wPlayerFutureSightDamage: [0, 20] }
   weather: sandstorm
   rng: forced_high
   turns: 1
   assert:
-    - enemy.species == 'SPHEAL'
+    - enemy.species == 'DEWGONG'
     - enemy.hp == enemy.maxhp // 2
     - wram('wPlayerFutureSightCount') == 0
 
 - name: "Residual stages: enemy's expired Future Sight is cleared when weather removes its target"
   player: { species: TAUROS, level: 50, ability: NO_ABILITY, hp: 5, moves: [SPLASH] }
-  player2: { species: SPHEAL, level: 50, ability: THICK_FAT, hp: 50, moves: [SPLASH] }
+  player2: { species: DEWGONG, level: 50, ability: THICK_FAT, hp: 50, moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
   setup_wram: { wEnemyFutureSightCount: 2, wEnemyFutureSightDamage: [0, 20] }
   weather: sandstorm
   rng: forced_high
   turns: 1
   assert:
-    - player.species == 'SPHEAL'
+    - player.species == 'DEWGONG'
     - player.hp == player.maxhp // 2
     - wram('wEnemyFutureSightCount') == 0
 
@@ -332,14 +332,14 @@
 
 - name: "Residual stages: Hydration's cure window precedes a Perish Song knockout that ends Gas"
   player: { species: TAUROS, level: 50, ability: NEUTRALIZING_GAS, substatus: [PERISH], moves: [SPLASH] }
-  player2: { species: SPHEAL, level: 50, ability: THICK_FAT, moves: [SPLASH] }
+  player2: { species: DEWGONG, level: 50, ability: THICK_FAT, moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: HYDRATION, status_byte: 3, moves: [SPLASH] }
   setup_wram: { wPlayerPerishCount: 1, wNeutralizingGasActive: 1 }
   weather: rain
   rng: forced_high
   turns: 1
   assert:
-    - player.species == 'SPHEAL'
+    - player.species == 'DEWGONG'
     - enemy.status != 0
     - wram('wNeutralizingGasActive') == 0
 
@@ -387,14 +387,14 @@
 - name: "Residual stages: faster suppressed Ice Body cannot heal after a slower weather knockout ends Gas"
   player: { species: TAUROS, level: 50, ability: ICE_BODY, hp: 50, moves: [SPLASH] }
   enemy: { species: SNORLAX, level: 50, ability: NEUTRALIZING_GAS, hp: 5, moves: [SPLASH] }
-  enemy2: { species: SPHEAL, level: 50, ability: THICK_FAT, moves: [SPLASH] }
+  enemy2: { species: DEWGONG, level: 50, ability: THICK_FAT, moves: [SPLASH] }
   setup_wram: { wNeutralizingGasActive: 1 }
   weather: hail
   rng: forced_high
   turns: 1
   assert:
     - player.start_hp - player.hp == player.maxhp // 16
-    - enemy.species == 'SPHEAL'
+    - enemy.species == 'DEWGONG'
     - wram('wNeutralizingGasActive') == 0
 
 - name: "Residual stages: under Trick Room the slower player's last-mon hail knockout ends first"

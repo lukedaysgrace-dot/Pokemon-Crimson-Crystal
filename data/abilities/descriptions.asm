@@ -173,6 +173,8 @@ AbilityDescriptions::
 	dw SupersweetSyrupDescription
 	dw IllusionDescription
 
+	dw StanceChangeDescription
+
 NoAbilityDescription:
 	text "ABILITIES are"
 	next "disabled."
@@ -1020,4 +1022,9 @@ SupersweetSyrupDescription:
 IllusionDescription:
 	text "Disguises itself."
 	next "Break: SPEED up."
+	done
+
+StanceChangeDescription:
+	text "Changes its stance"
+	next "to fight or guard."
 	done

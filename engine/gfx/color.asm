@@ -788,7 +788,7 @@ GetBackpicPalettePointer:
 ; A few mons are colored differently on their back pic than on their front
 ; pic, so they can't share the one species palette; give them their own.
 	and a
-	jp z, GetPlayerOrMonPalettePointer
+	jr z, GetPlayerOrMonPalettePointer
 	push af
 	call GetPokemonIndexFromID ; hl = 16-bit index; bc and de preserved
 	ld a, h
@@ -822,7 +822,7 @@ endr
 
 .no_custom_palette
 	pop af
-	jp GetPlayerOrMonPalettePointer
+	jr GetPlayerOrMonPalettePointer
 
 GetEnemyFrontpicPalettePointer:
 	push de

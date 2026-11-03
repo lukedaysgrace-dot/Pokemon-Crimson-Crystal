@@ -1,0 +1,62 @@
+# Legal entry pairs prove the new species really activate Sand Stream on entry.
+- name: "Hippopotas: native Sand Stream entry"
+  player: { species: HIPPOPOTAS, level: 50, ability: SAND_STREAM, moves: [DIG] }
+  enemy: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 0
+  assert: ["weather == 3"]
+
+- name: "Hippowdon: native opposing Sand Stream entry"
+  player: { species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: HIPPOWDON, level: 50, ability: SAND_STREAM, moves: [DIG] }
+  rng: forced_high
+  turns: 0
+  assert: ["weather == 3"]
+
+- name: "Hippopotas: Ground typing ignores its own sand"
+  player: { species: HIPPOPOTAS, level: 50, ability: SAND_STREAM, moves: [SPLASH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - enemy.hp < enemy.start_hp
+
+- name: "Hippowdon: Strong Jaw control"
+  id: hippo_jaw_control
+  player: { species: HIPPOWDON, level: 50, ability: SAND_FORCE, moves: [CRUNCH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Hippowdon: Lumi Strong Jaw boosts Crunch"
+  player: { species: HIPPOWDON, level: 50, ability: STRONG_JAW, moves: [CRUNCH] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('hippo_jaw_control')['enemy']['damage']"]
+
+- name: "Hippopotas: Sand Force control"
+  id: hippo_sand_control
+  player: { species: HIPPOPOTAS, level: 50, ability: STRONG_JAW, moves: [EARTHQUAKE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Hippopotas: Lumi Sand Force boosts Earthquake"
+  player: { species: HIPPOPOTAS, level: 50, ability: SAND_FORCE, moves: [EARTHQUAKE] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.start_hp - enemy.hp > result('hippo_sand_control')['enemy']['damage']"]
+
+- name: "Hippowdon: Slack Off recovery"
+  player: { species: HIPPOWDON, level: 50, ability: SAND_FORCE, hp: 40, moves: [SLACK_OFF] }
+  enemy: { species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp > player.start_hp"]

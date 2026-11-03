@@ -43,7 +43,7 @@ JohtoWaterWildMons:
 	map_id ILEX_FOREST
 	db 2 percent ; encounter rate
 	dbw 24, PSYDUCK
-	dbw 19, LOTAD
+	dbw 19, PSYDUCK
 	dbw 24, POLIWAG
 
 	map_id MOUNT_MORTAR_1F_OUTSIDE
@@ -85,7 +85,7 @@ JohtoWaterWildMons:
 	map_id SILVER_CAVE_ROOM_2
 	db 2 percent ; encounter rate
 	dbw 80, SLOWKING
-	dbw 84, WALREIN
+	dbw 84, DEWGONG
 	dbw 84, TOXAPEX
 
 	map_id DARK_CAVE_VIOLET_ENTRANCE
@@ -122,7 +122,7 @@ JohtoWaterWildMons:
 	db 2 percent ; encounter rate
 	dbw 24, POLIWAG
 	dbw 19, WOOPER
-	dbw 24, LOTAD
+	dbw 24, PSYDUCK
 
 	map_id ROUTE_32
 	db 6 percent ; encounter rate
@@ -140,7 +140,7 @@ JohtoWaterWildMons:
 	db 4 percent ; encounter rate
 	dbw 24, PSYDUCK
 	dbw 19, POLIWAG
-	dbw 24, LOMBRE
+	dbw 24, GOLDUCK
 
 	map_id ROUTE_40
 	db 6 percent ; encounter rate
@@ -169,7 +169,7 @@ JohtoWaterWildMons:
 	map_id ROUTE_44
 	db 2 percent ; encounter rate
 	dbw 41, GYARADOS
-	dbw 36, LOMBRE
+	dbw 36, GOLDUCK
 	dbw 41, POLIWHIRL
 
 	map_id ROUTE_45
@@ -205,7 +205,7 @@ JohtoWaterWildMons:
 	map_id OLIVINE_CITY
 	db 6 percent ; encounter rate
 	dbw 28, TENTACOOL
-	dbw 23, LOMBRE
+	dbw 23, GOLDUCK
 	dbw 28, SHELLDER
 
 	map_id ECRUTEAK_CITY

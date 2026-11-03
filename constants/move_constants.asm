@@ -449,6 +449,7 @@
 	const GRASS_KNOT
 	const HEAVY_SLAM
 	const TWIN_BEAM
+	const KINGS_SHIELD
 NUM_ATTACKS EQU const_value + -1
 
 	if NUM_ATTACKS > $3fff

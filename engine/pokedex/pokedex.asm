@@ -1847,6 +1847,14 @@ Pokedex_OrderMonsByMode:
 	cp LOW(GOROCHU)
 	jr z, .old_mode_next
 .old_mode_add
+	; Blade is an internal graphics/stat record, not another Pokemon.
+	ld a, b
+	cp HIGH(AEGISLASH_BLADE)
+	jr nz, .visible_species
+	ld a, c
+	cp LOW(AEGISLASH_BLADE)
+	jr z, .old_mode_next
+.visible_species
 	ld a, c
 	ld [hli], a
 	ld a, b
@@ -1870,8 +1878,8 @@ Pokedex_OrderMonsByMode:
 
 	; Find the last seen entry in the displayed order, rather than using the
 	; highest internal ID (Gorochu's appended ID would expose the whole list).
-	ld bc, NUM_POKEMON
-	ld hl, wPokedexOrder + (2 * NUM_POKEMON) - 1
+	ld bc, NUM_POKEDEX_ENTRIES
+	ld hl, wPokedexOrder + (2 * NUM_POKEDEX_ENTRIES) - 1
 .old_mode_last_seen_loop
 	ld a, [hld]
 	ld d, a
@@ -1896,12 +1904,12 @@ Pokedex_OrderMonsByMode:
 .NewMode:
 	ld hl, NewPokedexOrder
 	ld de, wPokedexOrder
-	ld bc, NUM_POKEMON * 2
+	ld bc, NUM_POKEDEX_ENTRIES * 2
 	call CopyBytes
 	ld a, BANK(wPokedexSeen)
 	ldh [rSVBK], a
-	ld bc, NUM_POKEMON
-	ld hl, NewPokedexOrder + (2 * NUM_POKEMON) - 1
+	ld bc, NUM_POKEDEX_ENTRIES
+	ld hl, NewPokedexOrder + (2 * NUM_POKEDEX_ENTRIES) - 1
 .new_mode_last_seen_loop
 	ld a, [hld]
 	ld d, a
@@ -1927,9 +1935,9 @@ Pokedex_OrderMonsByMode:
 Pokedex_ABCMode:
 	; called in the WRAM bank of wPokedexOrder; the function doesn't preserve it
 	ld hl, wDexTempCounter
-	ld a, LOW(-NUM_POKEMON)
+	ld a, LOW(-NUM_POKEDEX_ENTRIES)
 	ld [hli], a
-	ld [hl], HIGH(-NUM_POKEMON)
+	ld [hl], HIGH(-NUM_POKEDEX_ENTRIES)
 	ld bc, AlphabeticalPokedexOrder
 	ld de, wPokedexOrder
 	ld a, BANK(wPokedexSeen)
@@ -1991,14 +1999,22 @@ GetRegionalDexNumber:
 GetRegionalDexNumber_DE::
 ; Same, but takes the species index in de. farcall entry point: the farcall
 ; macro loads hl with the target address, so hl can't carry the argument.
+	ld a, d
+	cp HIGH(AEGISLASH_BLADE)
+	jr nz, .canonical
+	ld a, e
+	cp LOW(AEGISLASH_BLADE)
+	jr nz, .canonical
+	ld de, AEGISLASH
+.canonical
 	ld hl, NewPokedexOrder
 	ld bc, 1
 .loop
 	ld a, c
-	cp LOW(NUM_POKEMON + 1)
+	cp LOW(NUM_POKEDEX_ENTRIES + 1)
 	jr nz, .in_range
 	ld a, b
-	cp HIGH(NUM_POKEMON + 1)
+	cp HIGH(NUM_POKEDEX_ENTRIES + 1)
 	jr z, .not_found
 .in_range
 	ld a, [hli]

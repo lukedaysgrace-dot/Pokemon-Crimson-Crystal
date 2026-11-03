@@ -6558,12 +6558,12 @@
         {
           "location": "Celadon Gym",
           "method": "Trainer item",
-          "details": "Leader Erika: Ludicolo Lv. 59.",
+          "details": "Leader Erika: Shiftry Lv. 59.",
           "source": "data/trainers/parties.asm",
           "line": 1186,
           "trainer_class": "ERIKA",
           "trainer_id": "ERIKA1",
-          "species": "LUDICOLO",
+          "species": "SHIFTRY",
           "map_source": "maps/CeladonGym.asm"
         },
         {
@@ -6576,6 +6576,17 @@
           "trainer_id": "ERIKA1",
           "species": "VILEPLUME",
           "map_source": "maps/CeladonGym.asm"
+        },
+        {
+          "location": "Cerulean Gym",
+          "method": "Trainer item",
+          "details": "Leader Misty: Dewgong Lv. 52.",
+          "source": "data/trainers/parties.asm",
+          "line": 1071,
+          "trainer_class": "MISTY",
+          "trainer_id": "MISTY1",
+          "species": "DEWGONG",
+          "map_source": "maps/CeruleanGym.asm"
         },
         {
           "location": "Cerulean Gym",
@@ -6597,17 +6608,6 @@
           "trainer_class": "MISTY",
           "trainer_id": "MISTY1",
           "species": "MILOTIC",
-          "map_source": "maps/CeruleanGym.asm"
-        },
-        {
-          "location": "Cerulean Gym",
-          "method": "Trainer item",
-          "details": "Leader Misty: Walrein Lv. 52.",
-          "source": "data/trainers/parties.asm",
-          "line": 1071,
-          "trainer_class": "MISTY",
-          "trainer_id": "MISTY1",
-          "species": "WALREIN",
           "map_source": "maps/CeruleanGym.asm"
         },
         {
@@ -7283,12 +7283,12 @@
         {
           "location": "Route 42",
           "method": "Trainer item",
-          "details": "Fisher Tully: Ludicolo Lv. 74.",
+          "details": "Fisher Tully: Golduck Lv. 74.",
           "source": "data/trainers/parties.asm",
           "line": 3887,
           "trainer_class": "FISHER",
           "trainer_id": "TULLY4",
-          "species": "LUDICOLO",
+          "species": "GOLDUCK",
           "map_source": "maps/Route42.asm"
         },
         {
@@ -7536,12 +7536,12 @@
         {
           "location": "Wills Room",
           "method": "Trainer item",
-          "details": "Elite Four Will: Espathra Lv. 85. Elite Four / Champion rematch team after defeating Clair\u2019s rematch.",
+          "details": "Elite Four Will: Gardevoir Lv. 85. Elite Four / Champion rematch team after defeating Clair\u2019s rematch.",
           "source": "data/trainers/parties.asm",
           "line": 591,
           "trainer_class": "WILL",
           "trainer_id": "WILL2",
-          "species": "ESPATHRA",
+          "species": "GARDEVOIR",
           "map_source": "maps/WillsRoom.asm"
         },
         {
@@ -9500,13 +9500,6 @@
       "category": "Held item",
       "sources": [
         {
-          "location": "Goldenrod Radio Tower 4F",
-          "method": "Gift / reward",
-          "details": "DJ Mary; after clearing Team Rocket from the Radio Tower.",
-          "source": "maps/RadioTower4F.asm",
-          "line": 33
-        },
-        {
           "location": "Route 29",
           "method": "Gift / reward",
           "details": "Tuscany; Tuesday.",
@@ -9756,6 +9749,13 @@
           "line": 422,
           "map_source": "maps/GoldenrodDeptStore3F.asm",
           "map_line": 17
+        },
+        {
+          "location": "Goldenrod Radio Tower 4F",
+          "method": "Gift / reward",
+          "details": "DJ Mary; after clearing Team Rocket from the Radio Tower.",
+          "source": "maps/RadioTower4F.asm",
+          "line": 33
         }
       ],
       "description": "Fairy-type moves +20%. (HOLD)",
@@ -11338,23 +11338,23 @@
         {
           "location": "Wills Room",
           "method": "Trainer item",
-          "details": "Elite Four Will: Grumpig Lv. 69.",
+          "details": "Elite Four Will: Espeon Lv. 69.",
           "source": "data/trainers/parties.asm",
           "line": 552,
           "trainer_class": "WILL",
           "trainer_id": "WILL1",
-          "species": "GRUMPIG",
+          "species": "ESPEON",
           "map_source": "maps/WillsRoom.asm"
         },
         {
           "location": "Wills Room",
           "method": "Trainer item",
-          "details": "Elite Four Will: Grumpig Lv. 85. Elite Four / Champion rematch team after defeating Clair\u2019s rematch.",
+          "details": "Elite Four Will: Espeon Lv. 85. Elite Four / Champion rematch team after defeating Clair\u2019s rematch.",
           "source": "data/trainers/parties.asm",
           "line": 586,
           "trainer_class": "WILL",
           "trainer_id": "WILL2",
-          "species": "GRUMPIG",
+          "species": "ESPEON",
           "map_source": "maps/WillsRoom.asm"
         }
       ],

@@ -959,6 +959,15 @@ INCLUDE "data/wild/roammon_maps.asm"
 
 ValidateTempWildMonSpecies:
 	ld a, h
+	cp HIGH(AEGISLASH_BLADE)
+	jr nz, .visible
+	ld a, l
+	cp LOW(AEGISLASH_BLADE)
+	jr nz, .visible
+	scf ; battle-only data must never become a wild encounter
+	ret
+.visible
+	ld a, h
 	or l
 	scf
 	ret z

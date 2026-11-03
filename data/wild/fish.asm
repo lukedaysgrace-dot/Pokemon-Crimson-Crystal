@@ -321,17 +321,17 @@ FishGroups:
 .Ice_Old:
 	dbbw  70 percent + 1, 25, MAGIKARP
 	dbbw  85 percent + 1, 25, SEEL
-	dbbw 100 percent,     28, SPHEAL
+	dbbw 100 percent,     28, SEEL
 .Ice_Good:
 	dbbw  35 percent,     33, MAGIKARP
 	dbbw  70 percent,     33, SEEL
-	dbbw  90 percent + 1, 36, SPHEAL
+	dbbw  90 percent + 1, 36, SEEL
 	dbbw 100 percent,     36, DEWGONG
 .Ice_Super:
 	dbbw  40 percent,     40, SEEL
-	dbbw  70 percent,     42, SEALEO
+	dbbw  70 percent,     42, DEWGONG
 	dbbw  90 percent + 1, 44, DEWGONG
-	dbbw 100 percent,     45, WALREIN
+	dbbw 100 percent,     45, DEWGONG
 
 TimeFishGroups:
 	;     day             nite

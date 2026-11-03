@@ -3234,6 +3234,11 @@ GetMoveCategory::
 	pop hl
 	ret
 
+GetMoveCategory_b::
+	call GetMoveCategory
+	ld b, a
+	ret
+
 CheckUserThirdHP:
 ; carry if the user's HP is at 1/3 max or below
 	push hl

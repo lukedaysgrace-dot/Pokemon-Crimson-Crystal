@@ -217,6 +217,9 @@ SECTION "Crystal Features 1", ROMX
 
 INCLUDE "engine/menus/init_gender.asm"
 INCLUDE "engine/pokemon/gameplay_rules.asm"
+
+SECTION "Roster Replacement Save Support", ROMX
+INCLUDE "engine/pokemon/roster_replacements.asm"
 INCLUDE "engine/items/pack_lyra.asm"
 INCLUDE "engine/events/move_tutor.asm"
 INCLUDE "engine/gfx/crystal_layouts.asm"
@@ -897,6 +900,9 @@ INCLUDE "engine/battle/modern_held_items.asm"
 
 SECTION "Illusion Core", ROMX
 INCLUDE "engine/battle/illusion.asm"
+
+SECTION "Stance Change Core", ROMX
+INCLUDE "engine/battle/stance_change.asm"
 
 SECTION "Perish Song Ability Core", ROMX
 

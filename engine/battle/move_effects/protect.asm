@@ -1,10 +1,13 @@
 BattleCommand_Protect:
 ; protect
+	; Also clears stale variant flags when this attempt fails.
+	farcall ClearUserKingsShield
 	call ProtectChance
 	ret c
 
 	; a plain Protect is not a Baneful Bunker
 	call ClearBunkerFlag
+	farcall MarkUserKingsShield
 
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr

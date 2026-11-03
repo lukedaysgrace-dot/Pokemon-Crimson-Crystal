@@ -372,20 +372,20 @@ MenuIconPointers:
 	dba FroslassMenuIcon
 	dba WimpodMenuIcon
 	dba GolisopodMenuIcon
-	dba SpoinkMenuIcon
-	dba GrumpigMenuIcon
+	dba ZoruaMenuIcon
+	dba ZoroarkMenuIcon
 	dba PawniardMenuIcon
 	dba BisharpMenuIcon
 	dba KingambitMenuIcon
-	dba LotadMenuIcon
-	dba LombreMenuIcon
-	dba LudicoloMenuIcon
+	dba SeedotMenuIcon
+	dba NuzleafMenuIcon
+	dba ShiftryMenuIcon
 	dba OverqwilMenuIcon
 	dba ScraggyMenuIcon
 	dba ScraftyMenuIcon
-	dba SphealMenuIcon
-	dba SealeoMenuIcon
-	dba WalreinMenuIcon
+	dba HonedgeMenuIcon
+	dba DoubladeMenuIcon
+	dba AegislashMenuIcon
 	dba TeddiursabmMenuIcon
 	dba UrsaringbmMenuIcon
 	dba UrsalunabmMenuIcon
@@ -480,8 +480,8 @@ MenuIconPointers:
 	dba NoivernMenuIcon
 	dba SalanditMenuIcon
 	dba SalazzleMenuIcon
-	dba FlittleMenuIcon
-	dba EspathraMenuIcon
+	dba SableyeMenuIcon
+	dba AegislashBladeMenuIcon
 	dba FinizenMenuIcon
 	dba PalafinMenuIcon
 	dba AzurillMenuIcon
@@ -502,3 +502,5 @@ MenuIconPointers:
 	dba TrevenantMenuIcon
 	dba MienfooMenuIcon
 	dba MienshaoMenuIcon
+	dba HippopotasMenuIcon
+	dba HippowdonMenuIcon

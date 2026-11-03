@@ -1,0 +1,928 @@
+{
+  "checks": 142,
+  "species": {
+    "SEEDOT": {
+      "enhanced": [
+        40,
+        40,
+        50,
+        30,
+        30,
+        30
+      ],
+      "canonical": [
+        40,
+        40,
+        50,
+        30,
+        30,
+        30
+      ],
+      "natural": [
+        [
+          1,
+          "GROWTH"
+        ],
+        [
+          1,
+          "HARDEN"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          3,
+          "ABSORB"
+        ],
+        [
+          6,
+          "ASTONISH"
+        ],
+        [
+          12,
+          "ROLLOUT"
+        ],
+        [
+          15,
+          "MEGA_DRAIN"
+        ],
+        [
+          15,
+          "SYNTHESIS"
+        ],
+        [
+          20,
+          "SEED_BOMB"
+        ],
+        [
+          25,
+          "SUNNY_DAY"
+        ],
+        [
+          30,
+          "EXPLOSION"
+        ],
+        [
+          30,
+          "SUCKER_PUNCH"
+        ]
+      ],
+      "height": 108,
+      "weight": 88,
+      "source_moves_checked": 23
+    },
+    "NUZLEAF": {
+      "enhanced": [
+        70,
+        70,
+        40,
+        60,
+        60,
+        40
+      ],
+      "canonical": [
+        70,
+        70,
+        40,
+        60,
+        60,
+        40
+      ],
+      "natural": [
+        [
+          1,
+          "ABSORB"
+        ],
+        [
+          1,
+          "AIR_CUTTER"
+        ],
+        [
+          1,
+          "ASTONISH"
+        ],
+        [
+          1,
+          "FAKE_OUT"
+        ],
+        [
+          1,
+          "GROWTH"
+        ],
+        [
+          1,
+          "HARDEN"
+        ],
+        [
+          1,
+          "POUND"
+        ],
+        [
+          1,
+          "RAZOR_LEAF"
+        ],
+        [
+          1,
+          "SYNTHESIS"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          12,
+          "ROLLOUT"
+        ],
+        [
+          18,
+          "MEGA_DRAIN"
+        ],
+        [
+          20,
+          "RAZOR_WIND"
+        ],
+        [
+          20,
+          "TORMENT"
+        ],
+        [
+          24,
+          "FAINT_ATTACK"
+        ],
+        [
+          26,
+          "LEAF_BLADE"
+        ],
+        [
+          32,
+          "SWAGGER"
+        ],
+        [
+          35,
+          "EXTRASENSORY"
+        ],
+        [
+          36,
+          "SUNNY_DAY"
+        ],
+        [
+          50,
+          "SUCKER_PUNCH"
+        ]
+      ],
+      "height": 303,
+      "weight": 617,
+      "source_moves_checked": 29
+    },
+    "SHIFTRY": {
+      "enhanced": [
+        90,
+        100,
+        60,
+        80,
+        90,
+        60
+      ],
+      "canonical": [
+        90,
+        100,
+        60,
+        80,
+        90,
+        60
+      ],
+      "natural": [
+        [
+          1,
+          "ABSORB"
+        ],
+        [
+          1,
+          "AIR_CUTTER"
+        ],
+        [
+          1,
+          "ASTONISH"
+        ],
+        [
+          1,
+          "GROWTH"
+        ],
+        [
+          1,
+          "HARDEN"
+        ],
+        [
+          1,
+          "POUND"
+        ],
+        [
+          1,
+          "RAZOR_LEAF"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          1,
+          "WEATHER_BALL"
+        ],
+        [
+          15,
+          "ROLLOUT"
+        ],
+        [
+          20,
+          "FAKE_OUT"
+        ],
+        [
+          25,
+          "MEGA_DRAIN"
+        ],
+        [
+          25,
+          "TORMENT"
+        ],
+        [
+          30,
+          "RAZOR_WIND"
+        ],
+        [
+          35,
+          "FAINT_ATTACK"
+        ],
+        [
+          40,
+          "LEAF_BLADE"
+        ],
+        [
+          45,
+          "SWAGGER"
+        ],
+        [
+          50,
+          "EXTRASENSORY"
+        ],
+        [
+          55,
+          "SUNNY_DAY"
+        ],
+        [
+          60,
+          "HURRICANE"
+        ],
+        [
+          65,
+          "LEAF_STORM"
+        ],
+        [
+          70,
+          "SUCKER_PUNCH"
+        ]
+      ],
+      "height": 403,
+      "weight": 1314,
+      "source_moves_checked": 37
+    },
+    "ZORUA": {
+      "enhanced": [
+        35,
+        60,
+        40,
+        70,
+        85,
+        40
+      ],
+      "canonical": [
+        35,
+        60,
+        40,
+        70,
+        85,
+        40
+      ],
+      "natural": [
+        [
+          1,
+          "LEER"
+        ],
+        [
+          1,
+          "SCRATCH"
+        ],
+        [
+          4,
+          "TORMENT"
+        ],
+        [
+          8,
+          "HONE_CLAWS"
+        ],
+        [
+          12,
+          "SHADOW_SNEAK"
+        ],
+        [
+          16,
+          "CURSE"
+        ],
+        [
+          20,
+          "TAUNT"
+        ],
+        [
+          24,
+          "KNOCK_OFF"
+        ],
+        [
+          28,
+          "SPITE"
+        ],
+        [
+          32,
+          "AGILITY"
+        ],
+        [
+          36,
+          "SHADOW_BALL"
+        ],
+        [
+          44,
+          "NASTY_PLOT"
+        ],
+        [
+          48,
+          "FOUL_PLAY"
+        ]
+      ],
+      "height": 204,
+      "weight": 276,
+      "source_moves_checked": 15
+    },
+    "ZOROARK": {
+      "enhanced": [
+        55,
+        100,
+        60,
+        110,
+        125,
+        60
+      ],
+      "canonical": [
+        55,
+        100,
+        60,
+        110,
+        125,
+        60
+      ],
+      "natural": [
+        [
+          1,
+          "HONE_CLAWS"
+        ],
+        [
+          1,
+          "LEER"
+        ],
+        [
+          1,
+          "SCRATCH"
+        ],
+        [
+          1,
+          "SHADOW_CLAW"
+        ],
+        [
+          1,
+          "TORMENT"
+        ],
+        [
+          1,
+          "U_TURN"
+        ],
+        [
+          12,
+          "SHADOW_SNEAK"
+        ],
+        [
+          16,
+          "CURSE"
+        ],
+        [
+          20,
+          "TAUNT"
+        ],
+        [
+          24,
+          "KNOCK_OFF"
+        ],
+        [
+          28,
+          "SPITE"
+        ],
+        [
+          34,
+          "AGILITY"
+        ],
+        [
+          40,
+          "SHADOW_BALL"
+        ],
+        [
+          52,
+          "NASTY_PLOT"
+        ],
+        [
+          58,
+          "FOUL_PLAY"
+        ]
+      ],
+      "height": 503,
+      "weight": 1609,
+      "source_moves_checked": 15
+    },
+    "HONEDGE": {
+      "enhanced": [
+        45,
+        80,
+        100,
+        28,
+        35,
+        37
+      ],
+      "canonical": [
+        45,
+        80,
+        100,
+        28,
+        35,
+        37
+      ],
+      "natural": [
+        [
+          1,
+          "FURY_CUTTER"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          4,
+          "SHADOW_SNEAK"
+        ],
+        [
+          12,
+          "AERIAL_ACE"
+        ],
+        [
+          20,
+          "SLASH"
+        ],
+        [
+          24,
+          "NIGHT_SLASH"
+        ],
+        [
+          32,
+          "IRON_DEFENSE"
+        ],
+        [
+          36,
+          "IRON_HEAD"
+        ],
+        [
+          44,
+          "SWORDS_DANCE"
+        ],
+        [
+          48,
+          "SACRED_SWORD"
+        ]
+      ],
+      "height": 207,
+      "weight": 44,
+      "source_moves_checked": 11
+    },
+    "DOUBLADE": {
+      "enhanced": [
+        59,
+        110,
+        150,
+        35,
+        45,
+        49
+      ],
+      "canonical": [
+        59,
+        110,
+        150,
+        35,
+        45,
+        49
+      ],
+      "natural": [
+        [
+          1,
+          "FURY_CUTTER"
+        ],
+        [
+          1,
+          "SHADOW_SNEAK"
+        ],
+        [
+          1,
+          "TACKLE"
+        ],
+        [
+          12,
+          "AERIAL_ACE"
+        ],
+        [
+          20,
+          "SLASH"
+        ],
+        [
+          24,
+          "NIGHT_SLASH"
+        ],
+        [
+          32,
+          "IRON_DEFENSE"
+        ],
+        [
+          38,
+          "IRON_HEAD"
+        ],
+        [
+          50,
+          "SWORDS_DANCE"
+        ],
+        [
+          56,
+          "SACRED_SWORD"
+        ]
+      ],
+      "height": 207,
+      "weight": 99,
+      "source_moves_checked": 10
+    },
+    "AEGISLASH": {
+      "enhanced": [
+        60,
+        50,
+        140,
+        60,
+        50,
+        140
+      ],
+      "canonical": [
+        60,
+        50,
+        140,
+        60,
+        50,
+        140
+      ],
+      "natural": [
+        [
+          1,
+          "AERIAL_ACE"
+        ],
+        [
+          1,
+          "FURY_CUTTER"
+        ],
+        [
+          1,
+          "HEAD_SMASH"
+        ],
+        [
+          1,
+          "IRON_DEFENSE"
+        ],
+        [
+          1,
+          "IRON_HEAD"
+        ],
+        [
+          1,
+          "KINGS_SHIELD"
+        ],
+        [
+          1,
+          "NIGHT_SLASH"
+        ],
+        [
+          1,
+          "SACRED_SWORD"
+        ],
+        [
+          1,
+          "SHADOW_SNEAK"
+        ],
+        [
+          1,
+          "SLASH"
+        ],
+        [
+          1,
+          "SWORDS_DANCE"
+        ],
+        [
+          1,
+          "TACKLE"
+        ]
+      ],
+      "height": 507,
+      "weight": 1168,
+      "source_moves_checked": 12
+    },
+    "SABLEYE": {
+      "enhanced": [
+        60,
+        75,
+        100,
+        50,
+        75,
+        100
+      ],
+      "canonical": [
+        50,
+        75,
+        75,
+        50,
+        65,
+        65
+      ],
+      "natural": [
+        [
+          1,
+          "LEER"
+        ],
+        [
+          1,
+          "SCRATCH"
+        ],
+        [
+          4,
+          "FORESIGHT"
+        ],
+        [
+          4,
+          "NIGHT_SHADE"
+        ],
+        [
+          7,
+          "ASTONISH"
+        ],
+        [
+          11,
+          "FURY_SWIPES"
+        ],
+        [
+          13,
+          "DETECT"
+        ],
+        [
+          15,
+          "SHADOW_SNEAK"
+        ],
+        [
+          17,
+          "DISABLE"
+        ],
+        [
+          19,
+          "FAINT_ATTACK"
+        ],
+        [
+          21,
+          "FAKE_OUT"
+        ],
+        [
+          25,
+          "SHADOW_CLAW"
+        ],
+        [
+          27,
+          "KNOCK_OFF"
+        ],
+        [
+          31,
+          "CONFUSE_RAY"
+        ],
+        [
+          33,
+          "ZEN_HEADBUTT"
+        ],
+        [
+          35,
+          "POWER_GEM"
+        ],
+        [
+          37,
+          "SUCKER_PUNCH"
+        ],
+        [
+          39,
+          "TRICK"
+        ],
+        [
+          41,
+          "SHADOW_BALL"
+        ],
+        [
+          43,
+          "MEAN_LOOK"
+        ],
+        [
+          45,
+          "NASTY_PLOT"
+        ],
+        [
+          47,
+          "RECOVER"
+        ],
+        [
+          48,
+          "FOUL_PLAY"
+        ]
+      ],
+      "height": 108,
+      "weight": 243,
+      "source_moves_checked": 37
+    },
+    "AEGISLASH_BLADE": {
+      "enhanced": [
+        60,
+        140,
+        50,
+        60,
+        140,
+        50
+      ],
+      "canonical": [
+        60,
+        140,
+        50,
+        60,
+        140,
+        50
+      ],
+      "natural": [
+        [
+          1,
+          "AERIAL_ACE"
+        ],
+        [
+          1,
+          "FURY_CUTTER"
+        ],
+        [
+          1,
+          "HEAD_SMASH"
+        ],
+        [
+          1,
+          "IRON_DEFENSE"
+        ],
+        [
+          1,
+          "IRON_HEAD"
+        ],
+        [
+          1,
+          "KINGS_SHIELD"
+        ],
+        [
+          1,
+          "NIGHT_SLASH"
+        ],
+        [
+          1,
+          "SACRED_SWORD"
+        ],
+        [
+          1,
+          "SHADOW_SNEAK"
+        ],
+        [
+          1,
+          "SLASH"
+        ],
+        [
+          1,
+          "SWORDS_DANCE"
+        ],
+        [
+          1,
+          "TACKLE"
+        ]
+      ],
+      "height": 507,
+      "weight": 1168,
+      "source_moves_checked": 12
+    }
+  },
+  "lumi": {
+    "PersonalTable.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/PersonalTable.json",
+      "sha256": "9a29981838a0b819b1e9abad80905488f2e5047e8522eb898b32b40cd31ba207"
+    },
+    "WazaOboeTable.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/WazaOboeTable.json",
+      "sha256": "22bd14a8d2e2b32b02bc2f115ebbcd82f714a84852cbd24e841219578eae87c6"
+    },
+    "english_ss_monsname.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/english_ss_monsname.json",
+      "sha256": "b854c53627c81c470b547d6ffd4d5a463052b255e65cabf31a238f46242a712f"
+    },
+    "english_ss_zkn_form.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/english_ss_zkn_form.json",
+      "sha256": "af848bd3454f3672313799ec4766049bd3378887e2cdb0e58a1e8d3b76cc754e"
+    },
+    "EvolveTable.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/EvolveTable.json",
+      "sha256": "7f0d9934b9be244347405d5e1af925aba319ffe431cd40e92d43677291b612e4"
+    },
+    "TamagoWazaTable.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/TamagoWazaTable.json",
+      "sha256": "5c9c0c82a3784f8af94b9673b0c58cdf82cafa5773179c43ee7de0fb9ce66669"
+    },
+    "english_ss_typename.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/english_ss_typename.json",
+      "sha256": "5fbbad5e88c119fb2c11d37d22af3f36771dea1399dae3efa7281336749b3dda"
+    },
+    "english_ss_tokusei.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/english_ss_tokusei.json",
+      "sha256": "c1ec7cb9fd4469715ed3b32b02eec498c746c24e9fe3fc2ee70a55f7925e350c"
+    },
+    "tutorMoves.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/tutorMoves.json",
+      "sha256": "2fe6a74ef9dd65feb11402d2167a04b50ab3c8b99e1bce2c223e68339353b8ba"
+    },
+    "ItemTable.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/ItemTable.json",
+      "sha256": "a75fbed2d3a6df0fea3aaa10b40d438a8e9ae2972984496038dc7e5f1769e7da"
+    },
+    "english_ss_wazaname.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/english_ss_wazaname.json",
+      "sha256": "10e9783be0352ebff1e6783f9aa9bfde14a7da19483f4bfd0cb43e6581db5334"
+    },
+    "LumiMons.json": {
+      "url": "https://raw.githubusercontent.com/TeamLumi/luminescent-team/943b9efb70e4ead902603d3572982dcd9bcce6b2/__3.0gamedata/LumiMons.json",
+      "sha256": "883ac57861f787cb2c82cfe334e2a4621e0aac1c305a3699f25046c156fa9779"
+    }
+  },
+  "description": "Independent follow-up source audit. Zorua and Zoroark are exclusively Hisuian; Aegislash uses modern 140 form stats and the modern one-stage contact penalty.",
+  "canonical_sources": {
+    "SEEDOT": {
+      "url": "https://pokeapi.co/api/v2/pokemon/seedot",
+      "sha256": "df42fdd4c7605ba3828400b2b6af313d9a3523f7881817fff3acc9cb500c6315"
+    },
+    "NUZLEAF": {
+      "url": "https://pokeapi.co/api/v2/pokemon/nuzleaf",
+      "sha256": "7cf04b96df7a77f718337e721fd7e7812b279b82b8ba8e5e0dfabc27e37bcbcb"
+    },
+    "SHIFTRY": {
+      "url": "https://pokeapi.co/api/v2/pokemon/shiftry",
+      "sha256": "f4ab7193f1399755d9ad3be365bf97228dea6523d7fbe44ae161e92faba1c26e"
+    },
+    "ZORUA": {
+      "url": "https://pokeapi.co/api/v2/pokemon/zorua-hisui",
+      "sha256": "e0448abecfdf6cc226c173709b1e992ee600989baf5b80cc25cc085dd630093a"
+    },
+    "ZOROARK": {
+      "url": "https://pokeapi.co/api/v2/pokemon/zoroark-hisui",
+      "sha256": "11b3b73c28634090f8b5e9e636f5f66f444d6470b0f60ef0a264507d9be732a2"
+    },
+    "HONEDGE": {
+      "url": "https://pokeapi.co/api/v2/pokemon/honedge",
+      "sha256": "a20ae486cb5aeb500c20fb5887d8dfc052c44160bfd132485c548b55b4678d4a"
+    },
+    "DOUBLADE": {
+      "url": "https://pokeapi.co/api/v2/pokemon/doublade",
+      "sha256": "77690460c98022ae26b2bb01dcd5188dd2262c37d468139c4f9ed46fd4c44b0c"
+    },
+    "AEGISLASH": {
+      "url": "https://pokeapi.co/api/v2/pokemon/aegislash-shield",
+      "sha256": "bb6f2a96cd05a5f131665637ea0fab35a2ad7003bd18c64af58db5eeab61e9fc"
+    },
+    "SABLEYE": {
+      "url": "https://pokeapi.co/api/v2/pokemon/sableye",
+      "sha256": "7905b8cf2ae7de87d3487f57c8cd36f8347b8921d45574717f2630dc12e05e03"
+    },
+    "AEGISLASH_BLADE": {
+      "url": "https://pokeapi.co/api/v2/pokemon/aegislash-blade",
+      "sha256": "a99961ddb7e1bf8fa7c86a55edf6ed67024ea3d96948c1bc376d7a687f2cabfd"
+    }
+  },
+  "form_corrections": {
+    "ZORUA": "Hisuian Normal/Ghost; modern regional moves; Counter and Sucker Punch from copied regular-form Lumi 3.0 egg rows excluded.",
+    "ZOROARK": "Hisuian Normal/Ghost; 73.0 kg; modern regional moves with Shadow Claw on evolution and in the reminder. Regular-form Night Slash in the separate Lumi 3.0 table excluded."
+  }
+}

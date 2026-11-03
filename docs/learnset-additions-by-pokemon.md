@@ -1,8 +1,8 @@
 # Historical move access corrections
 
-All **498 roster entries** were checked against mainline history (including Red/Blue/Yellow, Gold/Silver/Crystal, Let’s Go, Legends: Arceus and Legends: Z-A) and Luminescent Platinum 3.0 level-up, egg, machine and tutor tables.
+All **502 roster entries** were checked against mainline history (including Red/Blue/Yellow, Gold/Silver/Crystal, Let’s Go, Legends: Arceus and Legends: Z-A) and Luminescent Platinum 3.0 level-up, egg, machine and tutor tables.
 
-**1,205 newly obtainable species/move pairs; 1,250 pairs remain removed after authored restorations; 35,651 sourced pairs accessible; zero deferred implemented moves.**
+**1,442 newly obtainable species/move pairs; 1,220 pairs remain removed after authored restorations; 35,916 sourced pairs accessible; zero deferred implemented moves.**
 
 Only moves implemented in this ROM are distributed. This is a union of individual historical access, including event moves; it does not claim every four-move combination is transferable between official games.
 
@@ -16,7 +16,7 @@ Sources: [Team Lumi’s Pokédex](https://luminescent.team/pokedex), [pinned Lum
 
 ## Authored restorations
 
-The project restores 125 level-up entries at their previous levels, 49 machine flags, 28 family egg entries and 4 Blackthorn lessons from before `de9c06cf`. These are deliberate design choices, recorded separately from official and Lumi source evidence.
+The project restores 129 level-up entries at their previous levels, 53 machine flags, 28 family egg entries and 4 Blackthorn lessons from before `de9c06cf`. These are deliberate design choices, recorded separately from official and Lumi source evidence.
 
 Crobat regains Poison Jab. Duskull does not regain Shadow Punch; Chandelure, Cursola and Galarian Corsola do not regain Phantom Force; Mankey does not regain Rage Fist; Victreebel and Tangrowth do not regain Wood Hammer; Altaria does not regain Scale Shot. All four Slowbro/Slowking forms retain Slack Off instead of Recover. Normal pre-evolution inheritance and shared family egg lists still apply.
 
@@ -43,11 +43,20 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Vikavolt:** Nuzzle.
 - **Overqwil:** Bubble, Defense Curl, Headbutt, Mimic, Whirlpool.
 - **Scrafty:** Night Slash.
-- **Walrein:** Freeze-Dry.
 - **Ursaluna (Bloodmoon):** Attract, Belly Drum, Counter, Curse, Cut, Defense Curl, Double Team, Dynamic Punch, Fury Cutter, Headbutt, Hone Claws, Mega Kick, Mega Punch, Metronome, Mimic, Mud-Slap, Rock Smash, Rollout, Seismic Toss, Stealth Rock, Strength, Superpower, Swagger, Tackle, Thrash, Torment, Work Up, Zap Cannon.
 - **Mr. Rime:** Bide, Counter, Curse, Double-Edge, Dynamic Punch, Magical Leaf, Mind Reader, Nightmare, Play Rough, Psywave, Rage, Skull Bash, Submission, Take Down, Teleport.
 - **Sirfetch'd:** Acrobatics, Air Cutter, Baton Pass, Bide, Double Team, Flail, Foresight, Gust, Headbutt, Heat Wave, Mimic, Mirror Move, Mud-Slap, Ominous Wind, Rage, Razor Leaf, Reflect, Take Down, Thief, Twister, Whirlwind, Wish, Yawn.
 - **Galvantula:** Spark.
+- **Hisuian Zorua:** None.
+- **Hisuian Zoroark:** None.
+- **Seedot:** None.
+- **Nuzleaf:** None.
+- **Shiftry:** None.
+- **Honedge:** None.
+- **Doublade:** None.
+- **Aegislash:** None.
+- **Sableye:** None.
+- **Aegislash Blade:** None.
 
 ## Every Pokémon
 
@@ -70,6 +79,20 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 **Removed:** None.
 
 - **Added Blackthorn lessons:** Foresight.
+
+### Aegislash
+
+**Added:** None.
+
+**Removed:** None.
+
+
+### Aegislash Blade
+
+**Added:** None.
+
+**Removed:** None.
+
 
 ### Aerodactyl
 
@@ -504,7 +527,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 **Added:** None.
 
-**Removed:** Amnesia, Calm Mind, Curse, Future Sight, Growl, Iron Head, Rock Tomb, Superpower.
+**Removed:** Amnesia, Calm Mind, Curse, Future Sight, Growl, Iron Head, Pixie Punch, Rock Tomb, Superpower.
 
 - **Removed natural entries:** Growl.
 - **Removed machine flags:** Curse, Iron Head, Rock Tomb.
@@ -1127,6 +1150,13 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Added Blackthorn lessons:** Absorb, Spikes.
 - **Restored natural entries:** Drill Run.
 
+### Doublade
+
+**Added:** None.
+
+**Removed:** None.
+
+
 ### Dragapult
 
 **Added:** Frustration, Shadow Claw.
@@ -1357,16 +1387,6 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 **Removed:** None.
 
 
-### Espathra
-
-**Added:** None.
-
-**Removed:** Air Cutter, Attract, Charm, Curse, Flash, Future Sight, Haze, Hidden Power, Magical Leaf, Return, Swagger, Toxic.
-
-- **Removed natural entries:** Air Cutter, Charm.
-- **Removed machine flags:** Attract, Curse, Flash, Hidden Power, Return, Swagger, Toxic.
-- **Removed family egg entries:** Future Sight, Haze, Magical Leaf.
-
 ### Espeon
 
 **Added:** Disarming Voice, Growth, Rock Smash, Safeguard.
@@ -1419,7 +1439,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 ### Farigiraf
 
-**Added:** None.
+**Added:** Twin Beam.
 
 **Removed:** Psycho Cut.
 
@@ -1509,16 +1529,6 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Removed family egg entries:** Pursuit, Sky Attack.
 - **Added Blackthorn lessons:** Flame Wheel.
 
-### Flittle
-
-**Added:** None.
-
-**Removed:** Air Cutter, Attract, Charm, Curse, Dazzling Gleam, Flash, Future Sight, Haze, Hidden Power, Hyper Voice, Magical Leaf, Return, Shadow Ball, Swagger, Toxic.
-
-- **Removed natural entries:** Air Cutter, Charm, Dazzling Gleam, Hyper Voice, Magical Leaf.
-- **Removed machine flags:** Attract, Curse, Flash, Hidden Power, Return, Shadow Ball, Swagger, Toxic.
-- **Removed family egg entries:** Future Sight, Haze, Magical Leaf.
-
 ### Flygon
 
 **Added:** Hurricane, Hyper Voice, Quiver Dance.
@@ -1570,7 +1580,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 **Added:** Dizzy Punch.
 
-**Removed:** Drain Punch, Iron Head, Rock Tomb.
+**Removed:** Drain Punch, Flame Wheel, Iron Head, Rock Tomb.
 
 - **Removed machine flags:** Drain Punch, Iron Head, Rock Tomb.
 - **Added Blackthorn lessons:** Dizzy Punch.
@@ -1600,7 +1610,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 **Added:** Double Team, Flame Charge, Frustration, Heat Wave, Sunny Day.
 
-**Removed:** Curse, Headbutt, Iron Head.
+**Removed:** Curse, Headbutt, Iron Head, Pixie Punch.
 
 - **Removed machine flags:** Curse, Headbutt, Iron Head.
 - **Added Blackthorn lessons:** Double Team, Flame Charge, Frustration, Heat Wave, Sunny Day.
@@ -1609,7 +1619,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 **Added:** Double Team, Flame Charge, Frustration, Heat Crash, Heat Wave, Overheat, Solar Beam.
 
-**Removed:** Curse, Headbutt, Incinerate, Iron Head.
+**Removed:** Curse, Headbutt, Incinerate, Iron Head, Pixie Punch.
 
 - **Removed natural entries:** Incinerate.
 - **Removed machine flags:** Curse, Headbutt, Iron Head.
@@ -1714,7 +1724,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 ### Girafarig
 
-**Added:** None.
+**Added:** Twin Beam.
 
 **Removed:** Iron Head, Psycho Cut.
 
@@ -1918,17 +1928,6 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Removed family egg entries:** Agility.
 - **Restored natural entries:** Signal Beam.
 
-### Grumpig
-
-**Added:** Hypnosis, Ominous Wind, Pay Day, Shadow Punch, Will-O-Wisp.
-
-**Removed:** Curse, Slack Off, Thunderbolt.
-
-- **Removed natural entries:** Slack Off.
-- **Removed machine flags:** Curse.
-- **Removed fallback lessons:** Thunderbolt.
-- **Added Blackthorn lessons:** Hypnosis, Ominous Wind, Pay Day, Shadow Punch, Will-O-Wisp.
-
 ### Gurdurr
 
 **Added:** Rock Blast.
@@ -1983,6 +1982,20 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Removed family egg entries:** Feint Attack.
 - **Added Blackthorn lessons:** Calm Mind, Mud Shot, Outrage, Skull Bash, Slash.
 - **Restored natural entries:** Hammer Arm, Superpower.
+
+### Hippopotas
+
+**Added:** Amnesia, Attract, Bite, Body Press, Body Slam, Bulldoze, Crunch, Curse, Dig, Double Team, Double-Edge, Earth Power, Earthquake, Endure, Facade, Fire Fang, Fissure, Frustration, Headbutt, Hidden Power, Ice Fang, Iron Tail, Mud Shot, Mud-Slap, Protect, Rest, Return, Roar, Rock Slide, Rock Smash, Rock Tomb, Sand Attack, Sandstorm, Slack Off, Sleep Talk, Snore, Stealth Rock, Stone Edge, Strength, Substitute, Sunny Day, Superpower, Swagger, Tackle, Take Down, Thunder Fang, Toxic, Water Pulse, Weather Ball, Whirlwind, Yawn.
+
+**Removed:** None.
+
+
+### Hippowdon
+
+**Added:** Amnesia, Attract, Bite, Body Press, Body Slam, Bulldoze, Crunch, Curse, Dig, Double Team, Double-Edge, Earth Power, Earthquake, Endure, Facade, Fire Fang, Fissure, Frustration, Giga Impact, Headbutt, Heavy Slam, Hidden Power, Hyper Beam, Hyper Voice, Ice Fang, Iron Head, Iron Tail, Mud Shot, Mud-Slap, Protect, Rest, Return, Roar, Rock Slide, Rock Smash, Rock Tomb, Sand Attack, Sandstorm, Slack Off, Sleep Talk, Snore, Stealth Rock, Stone Edge, Strength, Substitute, Sunny Day, Superpower, Swagger, Tackle, Take Down, Thunder Fang, Toxic, Water Pulse, Weather Ball, Whirlwind, Yawn.
+
+**Removed:** None.
+
 
 ### Hisuian Arcanine
 
@@ -2044,6 +2057,20 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Removed machine flags:** Curse, Headbutt, Rock Tomb, Sunny Day.
 - **Added Blackthorn lessons:** Attract, Bug Buzz, Frustration, Safeguard, Scary Face, Signal Beam, Snore, Sucker Punch, Synthesis.
 
+### Hisuian Zoroark
+
+**Added:** None.
+
+**Removed:** None.
+
+
+### Hisuian Zorua
+
+**Added:** None.
+
+**Removed:** None.
+
+
 ### Hitmonchan
 
 **Added:** None.
@@ -2088,6 +2115,13 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Removed machine flags:** Strength.
 - **Added Blackthorn lessons:** Beat Up, Drill Run.
 - **Restored machine flags:** Knock Off.
+
+### Honedge
+
+**Added:** None.
+
+**Removed:** None.
+
 
 ### Hoothoot
 
@@ -2511,15 +2545,6 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Removed fallback lessons:** Phantom Force.
 - **Added Blackthorn lessons:** Smokescreen.
 
-### Lombre
-
-**Added:** None.
-
-**Removed:** Curse.
-
-- **Removed machine flags:** Curse.
-- **Removed family egg entries:** Fake Out.
-
 ### Lopunny
 
 **Added:** Comet Punch, Cotton Guard, Double-Edge, Draining Kiss, Dynamic Punch, Mach Punch, Seismic Toss, Swords Dance, Tackle.
@@ -2531,15 +2556,6 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Restored natural entries:** Brick Break.
 - **Restored machine flags:** Bulk Up.
 
-### Lotad
-
-**Added:** None.
-
-**Removed:** Curse, Fake Out, Waterfall.
-
-- **Removed machine flags:** Curse, Waterfall.
-- **Removed family egg entries:** Fake Out.
-
 ### Lucario
 
 **Added:** Mach Punch, Seismic Toss.
@@ -2550,16 +2566,6 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Added Blackthorn lessons:** Mach Punch, Seismic Toss.
 - **Restored natural entries:** Sacred Sword.
 - **Restored machine flags:** Iron Head.
-
-### Ludicolo
-
-**Added:** None.
-
-**Removed:** Curse, Wood Hammer.
-
-- **Removed natural entries:** Wood Hammer.
-- **Removed machine flags:** Curse.
-- **Removed family egg entries:** Fake Out.
 
 ### Lugia
 
@@ -2811,6 +2817,24 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Removed machine flags:** Iron Head.
 - **Added Blackthorn lessons:** Comet Punch, Discharge, Vacuum Wave.
 
+### Mienfoo
+
+**Added:** Acrobatics, Aerial Ace, Agility, Attract, Aura Sphere, Baton Pass, Bounce, Brick Break, Bulk Up, Calm Mind, Close Combat, Detect, Dig, Double Slap, Double Team, Drain Punch, Endure, Facade, Fake Out, Focus Blast, Focus Energy, Force Palm, Frustration, Fury Swipes, Grass Knot, Hidden Power, High Jump Kick, Hone Claws, Iron Head, Jump Kick, Knock Off, Low Kick, Low Sweep, Meditate, Mega Kick, Mega Punch, Pixie Punch, Play Rough, Poison Jab, Pound, Protect, Psych Up, Rain Dance, Reflect, Rest, Return, Reversal, Rock Slide, Rock Smash, Rock Tomb, Sleep Talk, Snore, Spirit Break, Stone Edge, Strength, Substitute, Sunny Day, Swagger, Swift, Swords Dance, Take Down, Taunt, Toxic, U-turn, Vital Throw, Work Up, Zen Headbutt.
+
+**Removed:** None.
+
+- **Restored natural entries:** Pixie Punch, Play Rough, Spirit Break.
+- **Restored machine flags:** Iron Head, Zen Headbutt.
+
+### Mienshao
+
+**Added:** Acrobatics, Aerial Ace, Agility, Attract, Aura Sphere, Baton Pass, Blaze Kick, Bounce, Brick Break, Bulk Up, Calm Mind, Close Combat, Detect, Dig, Double Slap, Double Team, Double-Edge, Drain Punch, Endure, Facade, Fake Out, Focus Blast, Focus Energy, Force Palm, Frustration, Fury Swipes, Giga Impact, Grass Knot, Hidden Power, High Jump Kick, Hone Claws, Hyper Beam, Iron Head, Jump Kick, Knock Off, Low Kick, Low Sweep, Meditate, Mega Kick, Mega Punch, Pixie Punch, Play Rough, Poison Jab, Pound, Protect, Psych Up, Rain Dance, Reflect, Rest, Return, Reversal, Rock Slide, Rock Smash, Rock Tomb, Sleep Talk, Snore, Spirit Break, Stone Edge, Strength, Substitute, Sunny Day, Swagger, Swift, Swords Dance, Take Down, Taunt, Toxic, Triple Axel, U-turn, Vacuum Wave, Vital Throw, Work Up, Zen Headbutt.
+
+**Removed:** None.
+
+- **Restored natural entries:** Pixie Punch, Play Rough, Spirit Break.
+- **Restored machine flags:** Iron Head, Zen Headbutt.
+
 ### Milotic
 
 **Added:** Dazzling Gleam, Liquidation.
@@ -3036,6 +3060,13 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Removed machine flags:** Curse, Flash, Roar.
 
 ### Numel
+
+**Added:** None.
+
+**Removed:** None.
+
+
+### Nuzleaf
 
 **Added:** None.
 
@@ -3516,6 +3547,13 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Added Blackthorn lessons:** Frustration, Gust, Razor Wind, Slash.
 - **Restored family egg entries:** Pursuit, Whirlwind.
 
+### Sableye
+
+**Added:** None.
+
+**Removed:** None.
+
+
 ### Salamence
 
 **Added:** Flame Charge, Skull Bash.
@@ -3639,14 +3677,12 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 - **Added Blackthorn lessons:** Thunderbolt.
 
-### Sealeo
+### Seedot
 
-**Added:** Liquidation.
+**Added:** None.
 
 **Removed:** None.
 
-- **Added Blackthorn lessons:** Liquidation.
-- **Restored natural entries:** Freeze-Dry.
 
 ### Seel
 
@@ -3660,7 +3696,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 **Added:** Dizzy Punch.
 
-**Removed:** Drain Punch, Iron Head, Rock Tomb.
+**Removed:** Drain Punch, Flame Wheel, Iron Head, Rock Tomb.
 
 - **Removed machine flags:** Drain Punch, Iron Head, Rock Tomb.
 - **Added Blackthorn lessons:** Dizzy Punch.
@@ -3700,6 +3736,13 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 **Removed:** None.
 
 - **Added Blackthorn lessons:** Body Press, Self-Destruct.
+
+### Shiftry
+
+**Added:** None.
+
+**Removed:** None.
+
 
 ### Shroomish
 
@@ -3802,9 +3845,9 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 ### Smeargle
 
-**Added:** None.
+**Added:** King Shield, Twin Beam.
 
-**Removed:** None.
+**Removed:** Lumina Crash.
 
 
 ### Smoochum
@@ -3884,15 +3927,6 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 - **Added Blackthorn lessons:** Hurricane, Sonic Boom.
 
-### Spheal
-
-**Added:** Liquidation.
-
-**Removed:** None.
-
-- **Added Blackthorn lessons:** Liquidation.
-- **Restored natural entries:** Freeze-Dry.
-
 ### Spinarak
 
 **Added:** False Swipe, Growth, Headbutt.
@@ -3901,15 +3935,6 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 - **Removed machine flags:** Energy Ball, Fury Cutter.
 - **Added Blackthorn lessons:** False Swipe, Growth, Headbutt.
-
-### Spoink
-
-**Added:** Hypnosis, Mud Shot, Pay Day, Shadow Punch, Will-O-Wisp.
-
-**Removed:** Curse.
-
-- **Removed machine flags:** Curse.
-- **Added Blackthorn lessons:** Hypnosis, Mud Shot, Pay Day, Shadow Punch, Will-O-Wisp.
 
 ### Squirtle
 
@@ -4341,7 +4366,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 **Added:** Disarming Voice, Grass Knot, Growth, Knock Off, Ominous Wind, Razor Wind, Rock Smash.
 
-**Removed:** Iron Head.
+**Removed:** Gunk Shot, Iron Head.
 
 - **Removed machine flags:** Iron Head.
 - **Added Blackthorn lessons:** Disarming Voice, Grass Knot, Growth, Knock Off, Ominous Wind, Razor Wind, Rock Smash.
@@ -4388,7 +4413,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 ### Ursaring (Bloodmoon)
 
-**Added:** Stealth Rock, Tackle.
+**Added:** Mud Shot, Stealth Rock, Tackle.
 
 **Removed:** Calm Mind, Crush Claw, Drain Punch, Earth Power, Sandstorm.
 
@@ -4396,6 +4421,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 - **Removed machine flags:** Drain Punch, Sandstorm.
 - **Removed family egg entries:** Belly Drum, Counter, Fury Cutter, Seismic Toss.
 - **Added Blackthorn lessons:** Belly Drum, Counter, Seismic Toss, Stealth Rock, Tackle.
+- **Restored natural entries:** Mud Shot.
 
 ### Vaporeon
 
@@ -4516,15 +4542,6 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 - **Removed machine flags:** Iron Head.
 - **Added Blackthorn lessons:** Flame Wheel, Heal Bell.
-
-### Walrein
-
-**Added:** None.
-
-**Removed:** None.
-
-- **Removed natural entries:** Freeze-Dry.
-- **Restored natural entries:** Slack Off.
 
 ### Wartortle
 

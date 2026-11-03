@@ -44,7 +44,7 @@
 
 - name: "Weather Ball: hail is 100-power Ice"
   player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [WEATHER_BALL] }
-  enemy:  { species: WALREIN, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy:  { species: DEWGONG, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
   weather: hail
   rng: forced_high
   turns: 1
@@ -83,7 +83,7 @@
 
 - name: "Weather Ball: Snow Warning supplies the Ice form"
   player: { species: ABOMASNOW, level: 50, ability: SNOW_WARNING, moves: [WEATHER_BALL] }
-  enemy:  { species: WALREIN, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy:  { species: DEWGONG, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
   rng: forced_high
   turns: 1
   assert:

@@ -61,7 +61,7 @@ def main():
             check(h.rd(h.s('wBaseEggSteps'))==20,species+': hatch cycles')
             check(list(h.rd(h.s('wBaseAbilities'),3))==[con.abilities[a] for a in ('NATURAL_CURE','FRISK','HARVEST')],species+': ability slots')
             regional=h.call('GetRegionalDexNumber_DE',de=con.species_index(species))['hl']
-            check(regional=={'PHANTUMP':289,'TREVENANT':290}[species],species+': regional Dex number')
+            check(regional=={'PHANTUMP':291,'TREVENANT':292}[species],species+': regional Dex number')
             # New high-index flags must occupy the newly inserted bytes.
             flag_bytes=(len(con.species_by_index)+7)//8
             write('wPokedexCaught',bytes(flag_bytes));write('wPokedexSeen',bytes(flag_bytes))

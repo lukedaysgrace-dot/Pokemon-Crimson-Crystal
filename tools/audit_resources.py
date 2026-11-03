@@ -139,9 +139,10 @@ def audit_audio(audit: Audit) -> None:
 
 def audit_binary_references(audit: Audit) -> int:
     references: set[str] = set()
-    for source in ROOT.rglob("*.asm"):
-        if any(part in {".git", ".tmpbuild", "_to_delete"} for part in source.parts):
-            continue
+    sources = list(ROOT.glob('*.asm'))
+    for folder in ('audio', 'constants', 'data', 'engine', 'gfx', 'home', 'lib', 'macros', 'maps', 'mobile'):
+        sources.extend((ROOT / folder).rglob('*.asm'))
+    for source in sources:
         text = source.read_text(encoding="utf-8", errors="replace")
         # Staged assets that are deliberately not part of the build yet
         # (e.g. data/tilesets/shucks.asm) reference generated files.

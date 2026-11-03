@@ -371,20 +371,20 @@
     "FROSLASS",
     "WIMPOD",
     "GOLISOPOD",
-    "SPOINK",
-    "GRUMPIG",
+    "ZORUA",
+    "ZOROARK",
     "PAWNIARD",
     "BISHARP",
     "KINGAMBIT",
-    "LOTAD",
-    "LOMBRE",
-    "LUDICOLO",
+    "SEEDOT",
+    "NUZLEAF",
+    "SHIFTRY",
     "OVERQWIL",
     "SCRAGGY",
     "SCRAFTY",
-    "SPHEAL",
-    "SEALEO",
-    "WALREIN",
+    "HONEDGE",
+    "DOUBLADE",
+    "AEGISLASH",
     "TEDDIURSABM",
     "URSARINGBM",
     "URSALUNABM",
@@ -479,8 +479,8 @@
     "NOIVERN",
     "SALANDIT",
     "SALAZZLE",
-    "FLITTLE",
-    "ESPATHRA",
+    "SABLEYE",
+    "AEGISLASH_BLADE",
     "FINIZEN",
     "PALAFIN",
     "AZURILL",
@@ -500,7 +500,9 @@
     "PHANTUMP",
     "TREVENANT",
     "MIENFOO",
-    "MIENSHAO"
+    "MIENSHAO",
+    "HIPPOPOTAS",
+    "HIPPOWDON"
   ],
   "changes": {
     "SQUIRTLE": {
@@ -2104,20 +2106,6 @@
         "reason": "Optional alternate-stat attack; natural progression favors the special role."
       }
     },
-    "SPOINK": {
-      "BOUNCE": {
-        "before": 26,
-        "after": null,
-        "reason": "Optional alternate-stat attack; natural progression favors the special role."
-      }
-    },
-    "GRUMPIG": {
-      "BOUNCE": {
-        "before": 30,
-        "after": null,
-        "reason": "Optional alternate-stat attack; natural progression favors the special role."
-      }
-    },
     "OVERQWIL": {
       "HYDRO_PUMP": {
         "before": 48,
@@ -3059,12 +3047,6 @@
     "FROSLASS": [
       "PHANTOMFORCE"
     ],
-    "SPOINK": [
-      "BOUNCE"
-    ],
-    "GRUMPIG": [
-      "BOUNCE"
-    ],
     "OVERQWIL": [
       "HYDRO_PUMP"
     ],
@@ -3195,7 +3177,7 @@
       "HEX"
     ]
   },
-  "unchanged_evolutions": "ea6f573a14d63099e454456c26c6b56efd8d3e9d335dbd31a712fda811f3fa6e",
+  "unchanged_evolutions": "7587cd79c5f5234ca49dd4982c3763f8fb9b54663304c8dcdfa0c0feb62ea352",
   "unchanged_level_one": {
     "BULBASAUR": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
     "IVYSAUR": "7f30632e46d95a60521f5defc83a41440fb2615925cc916a7dc359ded4c9bec6",
@@ -3567,20 +3549,12 @@
     "FROSLASS": "975f50f64e2ce718cc6b9341c6776d0588cefbf17f6667feb6b6085927594eda",
     "WIMPOD": "096b5158a01ff98e4bd426de73fa2d5356f5b32c703af464c5fb92adf20822a0",
     "GOLISOPOD": "a2b6e493d3e6fe26042d611538e44ad872f571eb822dfef65d91e912de4f6fb0",
-    "SPOINK": "7d9a83f53e02105339424d3c124fba3e3733faa0da5675b96ba949a3e2192df2",
-    "GRUMPIG": "51e1b49788539b26e75bd686a43a8268764217889181b7565bcce68d650e39ba",
     "PAWNIARD": "bb2fd6724b68989992804b848e290d0f2fab6fdba3bfdf0ed9a8c44603f4fe70",
     "BISHARP": "459ee4f127bc5bc748665f434ae837d7e54cb9be361278e4a559804399845be0",
     "KINGAMBIT": "459ee4f127bc5bc748665f434ae837d7e54cb9be361278e4a559804399845be0",
-    "LOTAD": "aa48901973853253bf97a92e143fe763466955cf9fc710d49cbcad0640eb8054",
-    "LOMBRE": "b83b04567209ec601606903131b10e14ee2e0fdf2a57712a88d489c64914f3ab",
-    "LUDICOLO": "b83b04567209ec601606903131b10e14ee2e0fdf2a57712a88d489c64914f3ab",
     "OVERQWIL": "502a8f0a75ac571ea677916f96a9a5731b53478dd1546e719d9e23aab8da0f00",
     "SCRAGGY": "f11481a1ac4f59ca7563a201efd6cdb967f76d40a54574d56bfa5e77766024c7",
     "SCRAFTY": "f2ee191e9159278e89a56123214afddb21b925475abd622cc007ef28f1d69be4",
-    "SPHEAL": "4a8357a63c8f6fd8f127d6374c6691abb4b00a1739d174d6c42e1cf3104181f9",
-    "SEALEO": "4a8357a63c8f6fd8f127d6374c6691abb4b00a1739d174d6c42e1cf3104181f9",
-    "WALREIN": "48ed001fd75e2b3b30c3eba840d256451243c5c427e97ca59255c2160ab923fb",
     "TEDDIURSABM": "7b8be2131353afe6d66eb5e43f45946adaa312e5dd7f5281fccebd24221f5112",
     "URSARINGBM": "39ace672647a7c7b3f0c9f2f0ff83c6f8154840535484195ec7b8e7f622428a0",
     "URSALUNABM": "39ace672647a7c7b3f0c9f2f0ff83c6f8154840535484195ec7b8e7f622428a0",
@@ -3675,8 +3649,6 @@
     "NOIVERN": "6e74f4c1a502e770f1b77898aee7e7a2c1ee4317f3a024c8993034777742c00d",
     "SALANDIT": "bfd6fc19cad6e86db7889f430f7d4294d68bfa0bbfc320482058da463d2b899f",
     "SALAZZLE": "72eeb27b96fa7e58c718c97536628f81462a6aced919f2c391f46ffca2119afd",
-    "FLITTLE": "94bf5404661219e990771259f31f8ae05e327e00ed3220d4222780ed17347e03",
-    "ESPATHRA": "2f8296d603c0dd192ddc478a23489015a3feb1e924a3bff6b993b569e96f278e",
     "FINIZEN": "478b12d6840dd10cb1f85351f2acb436e589cc66d3bf8791cf56a3427c943f37",
     "PALAFIN": "3f5ac388586f76ea1d18e284a07c9944146c24d4f8637f26983c258e9c56f584",
     "AZURILL": "8b470c8a1877125311ecd298446264c5466c7bb337877ed6dc0c7f6692e42d79",
@@ -3696,7 +3668,19 @@
     "PHANTUMP": "bfaf81c62ffef85fd205ac1d878e5aff4668ca8e89b3c0f2b66106e2a1da19cc",
     "TREVENANT": "20c3264971cac4983b018d3764eb695bdf9f889f0ce92e50aff6b0070c9c6d0e",
     "MIENFOO": "b843a206c1b4166509d6046aa74e9775c560cb377b122c6e41f94f0aefa32943",
-    "MIENSHAO": "007a7dfebc2b1badcf5ee282767888768260514e78912b41d5ca743b54db0b61"
+    "MIENSHAO": "007a7dfebc2b1badcf5ee282767888768260514e78912b41d5ca743b54db0b61",
+    "ZORUA": "bb2fd6724b68989992804b848e290d0f2fab6fdba3bfdf0ed9a8c44603f4fe70",
+    "ZOROARK": "809dfcd2589df825e05ab58ffae20e42ebe0aa32591f387e4f27e76cd358ae2d",
+    "SEEDOT": "b29ede35255b12808c28ad706ee7dc2259bf6cb2fba4b5337cd584577acbf933",
+    "NUZLEAF": "68191bc95ef94b8111ad9023ef994f5d63412770b10dacda90322cbdaf77b897",
+    "SHIFTRY": "d90907e114b5ff4a8f7af7f1048b05e2eef440596448fc0160da184f942f1077",
+    "HONEDGE": "1ce81e6661da9ec78848aba991a85dc1de6797469cdc4ca6bd2da33e52e8c60c",
+    "DOUBLADE": "177476b7e18a03ea41dbf4cb5c1bb43bbc030f7b195a91f9b26c706d520bead3",
+    "AEGISLASH": "8280cdbea83756ba85bdef4d4b2647f101a4108660156e7ab540efe5d8278efb",
+    "SABLEYE": "bb2fd6724b68989992804b848e290d0f2fab6fdba3bfdf0ed9a8c44603f4fe70",
+    "AEGISLASH_BLADE": "8280cdbea83756ba85bdef4d4b2647f101a4108660156e7ab540efe5d8278efb",
+    "HIPPOPOTAS": "124f5e90b5e925fa99d1b596493cf3a2370b289afd889c9e595b642500fda10a",
+    "HIPPOWDON": "fb355c49d7150e3a0022c1c8de7d7702bc7fc4028255ed2e53c7e80779fbf8da"
   },
   "unchanged_runtime": {
     "engine/pokemon/evolve.asm": "3b4fddcf7f5e590dc05a4c25c32214118c406e01d472df5e30595009741fed05",
@@ -3705,6 +3689,8 @@
   },
   "family_additions": {
     "MIENFOO": "Crimson Fighting/Fairy martial arts: Pixie Punch 7, Play Rough 32, Spirit Break 48; Serene Grace; requested Iron Head and Zen Headbutt machines.",
-    "MIENSHAO": "Crimson Enhanced stats move 10 Sp. Atk into Speed (115 Speed / 85 Sp. Atk); Original stats remain canonical. Serene Grace and Fairy progression match Mienfoo."
+    "MIENSHAO": "Crimson Enhanced stats move 10 Sp. Atk into Speed (115 Speed / 85 Sp. Atk); Original stats remain canonical. Serene Grace and Fairy progression match Mienfoo.",
+    "HIPPOPOTAS": "Lumi 3.0 natural progression with Legends Z-A Amnesia; complete supported mainline/Lumi history through existing machine, breeding and tutor routes.",
+    "HIPPOWDON": "Lumi 3.0 natural progression with Legends Z-A Amnesia; complete supported mainline/Lumi history through existing machine, breeding and tutor routes."
   }
 }

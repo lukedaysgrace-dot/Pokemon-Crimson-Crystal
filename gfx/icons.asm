@@ -361,10 +361,10 @@ LopunnyIcon: INCBIN "gfx/icons/lopunny.2bpp" ; TODO: gfx/icons/lopunny.png
 OverqwilIcon: INCBIN "gfx/icons/overqwil.2bpp"
 ScraftyIcon: INCBIN "gfx/icons/scrafty.2bpp"
 ScraggyIcon: INCBIN "gfx/icons/scraggy.2bpp"
-SealeoIcon: INCBIN "gfx/icons/seel.2bpp" ; TODO: gfx/icons/sealeo.png
+DoubladeIcon: INCBIN "gfx/menu_icons/doublade.2bpp"
 SizzlipedeIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/sizzlipede.png
 SnoruntIcon: INCBIN "gfx/icons/snorunt.2bpp"
-SphealIcon: INCBIN "gfx/icons/seel.2bpp" ; TODO: gfx/icons/spheal.png
+HonedgeIcon: INCBIN "gfx/menu_icons/honedge.2bpp"
 SwabluIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/swablu.png
 TalonflameIcon: INCBIN "gfx/icons/bird.2bpp" ; TODO: gfx/icons/talonflame.png
 ToxicroakIcon: INCBIN "gfx/icons/toxicroak.2bpp" ; TODO: gfx/icons/toxicroak.png
@@ -372,7 +372,7 @@ TrapinchIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/trapinch.png
 UrsalunabmIcon: INCBIN "gfx/icons/ursaring.2bpp" ; TODO: gfx/icons/ursalunabm.png
 VibravaIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/vibrava.png
 VikavoltIcon: INCBIN "gfx/icons/bug.2bpp" ; TODO: gfx/icons/vikavolt.png
-WalreinIcon: INCBIN "gfx/icons/dewgong.2bpp" ; TODO: gfx/icons/walrein.png
+AegislashIcon: INCBIN "gfx/menu_icons/aegislash.2bpp"
 WimpodIcon: INCBIN "gfx/icons/wimpod.2bpp" ; TODO: gfx/icons/wimpod.png
 TeddiursabmIcon: INCBIN "gfx/icons/teddiursa.2bpp"
 UrsaringbmIcon: INCBIN "gfx/icons/ursaring.2bpp"
@@ -487,8 +487,8 @@ NoibatIcon: INCBIN "gfx/icons/bat.2bpp" ; TODO: gfx/icons/noibat.png
 NoivernIcon: INCBIN "gfx/icons/bat.2bpp" ; TODO: gfx/icons/noivern.png
 SalanditIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/salandit.png
 SalazzleIcon: INCBIN "gfx/icons/serpent.2bpp" ; TODO: gfx/icons/salazzle.png
-FlittleIcon: INCBIN "gfx/icons/flittle.2bpp"
-EspathraIcon: INCBIN "gfx/icons/espathra.2bpp"
+SableyeIcon: INCBIN "gfx/menu_icons/sableye.2bpp"
+AegislashBladeIcon: INCBIN "gfx/menu_icons/aegislash.2bpp"
 FinizenIcon: INCBIN "gfx/icons/fish.2bpp" ; TODO: gfx/icons/finizen.png
 PalafinIcon: INCBIN "gfx/icons/dewgong.2bpp" ; TODO: gfx/icons/palafin.png
 
@@ -509,3 +509,10 @@ PhantumpIcon: INCBIN "gfx/menu_icons/phantump.2bpp"
 TrevenantIcon: INCBIN "gfx/menu_icons/trevenant.2bpp"
 MienfooIcon: INCBIN "gfx/menu_icons/mienfoo.2bpp"
 MienshaoIcon: INCBIN "gfx/menu_icons/mienshao.2bpp"
+ZoruaIcon: INCBIN "gfx/menu_icons/zorua.2bpp"
+ZoroarkIcon: INCBIN "gfx/menu_icons/zoroark.2bpp"
+SeedotIcon: INCBIN "gfx/menu_icons/seedot.2bpp"
+NuzleafIcon: INCBIN "gfx/menu_icons/nuzleaf.2bpp"
+ShiftryIcon: INCBIN "gfx/menu_icons/shiftry.2bpp"
+HippopotasIcon: INCBIN "gfx/menu_icons/hippopotas.2bpp"
+HippowdonIcon: INCBIN "gfx/menu_icons/hippowdon.2bpp"
