@@ -1,5 +1,56 @@
 # Copy/fill and VBlank optimizations
 
+## Streamed walking updates
+
+Walking now decodes only the entering two-tile row or column directly into
+`wBGMapBuffer` and `wBGMapPalBuffer`. The queue remains 40 bytes per plane;
+horizontal movement uses 36 bytes. The VRAM BG map retains the rest of the
+screen, with its existing wrapping and VBlank upload logic. Queue publication
+happens after both data planes and the destination pointers are ready.
+
+The approach is adapted from
+[Polished Crystal's streamed map renderer](https://github.com/rangi42/polishedcrystal/blob/68ee7ee4412c53811cf1c6b98f99604f2c634327/engine/overworld/stream_map_part.asm).
+Crimson reads its independently banked ROM metatile and attribute tables in
+ROM0; it does not adopt the donor's WRAM table cache or extra walked-patch
+queue entries. Crimson's old walking path did not have that additional patch.
+The address/publishing routines moved to ROMX to keep the fixed bank within
+capacity. The cartridge-header reservation remains intact.
+
+`wTileMap`, `wAttrMap` and the surrounding buffers are not refreshed by walking.
+Full-background uploads are disabled before streaming so those stale buffers
+cannot overwrite the VRAM cache. Text, menus, battles, map entry and scripted
+`reloadmappart` still use the existing full decoder and reanchoring paths.
+New code that consumes a full RAM screen must rebuild it first.
+
+`make test-streamed-map BATTLE_TEST_PYTHON=.venv/bin/python` runs the dedicated
+routine and rendered native checks on both ROMs. Routine tests compare the
+queues against the unchanged full decoder across all 38 tilesets, metatile
+quarters, directions, border blocks and BG wrapping. Synthetic tables also
+exercise non-page-aligned pointers and independent ROM banks `$80`/`$fe`.
+Checks cover queue bounds, bank restoration and deliberately stale RAM screens.
+
+In the isolated hardware-DIV timing check, the old full decoder takes 71 ticks;
+the complete new edge/queue path takes 47/46 ticks vertically and 39 ticks
+horizontally, about 34–45% less CPU time. The old control excludes its later
+edge-copy step, so this is conservative. These are routine timings, not a
+claim of a 34–45% whole-game frame-rate improvement. No save or RAM layout,
+map data, dialogue or player movement speed changes are needed.
+
+Results and screenshots are written under `.tmpbuild/streamed-map/`.
+Both ROMs pass 7,429 routine checks and 1,527 native checks each (17,912
+total). Native checks verify 287 complete screens and 213 scrolling queues
+per ROM, including rain/snow, Pack and textbox restoration, scripted block
+refreshes, two map connections, a door warp and the real wild-battle return.
+The 34 captured screens include a contact sheet for each ROM. Across 32,232
+observed native VBlank updates, OAM completed no later than scanline 151.
+The full existing move/effect/ability battle sweep also passes all 3,665 cases
+with no failures, errors or skips. The final rebuild produces identical ROM
+bytes to those tested. See
+[`reports/streamed-overworld-rendering-2026-11-03.md`](../reports/streamed-overworld-rendering-2026-11-03.md)
+for the complete verification record.
+
+## Existing copy/fill and VBlank changes
+
 The four-byte copy/fill loops are adapted from
 [Polished Crystal's home/copy.asm](https://github.com/Rangi42/polishedcrystal/blob/master/home/copy.asm).
 They stay in ROM0 so banked ROM sources remain accessible without extra bank
