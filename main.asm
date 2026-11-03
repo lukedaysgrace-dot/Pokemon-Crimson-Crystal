@@ -200,6 +200,10 @@ SECTION "Battle Weather Indicator", ROMX
 
 INCLUDE "engine/battle/weather_indicator.asm"
 
+SECTION "Battle Type Icons", ROMX
+
+INCLUDE "engine/battle/type_icons.asm"
+
 
 SECTION "bank10", ROMX
 

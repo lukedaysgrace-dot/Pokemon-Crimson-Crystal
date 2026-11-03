@@ -1,0 +1,23 @@
+; Battle HUD symbol colors, indexed by the game's type constants.
+	RGB 21, 21, 21 ; Normal: light gray
+	RGB 30, 15, 03 ; Fighting: orange
+	RGB 12, 23, 29 ; Flying: light blue
+	RGB 15, 05, 21 ; Poison: dark purple
+	RGB 24, 18, 11 ; Ground: light brown
+	RGB 23, 19, 12 ; Rock: light brown
+	RGB 31, 31, 31 ; BIRD (blank)
+	RGB 19, 25, 08 ; Bug: light green
+	RGB 21, 15, 26 ; Ghost: light purple
+	RGB 07, 20, 21 ; Steel: teal
+	REPT UNUSED_TYPES_END - UNUSED_TYPES
+	RGB 31, 31, 31 ; unused types (blank)
+	ENDR
+	RGB 29, 04, 04 ; Fire: red
+	RGB 05, 15, 28 ; Water: medium blue
+	RGB 05, 17, 07 ; Grass: dark green
+	RGB 30, 24, 02 ; Electric: yellow
+	RGB 27, 06, 16 ; Psychic: dark pink
+	RGB 15, 26, 29 ; Ice: light blue
+	RGB 05, 09, 23 ; Dragon: dark blue
+	RGB 06, 04, 03 ; Dark: very dark brown
+	RGB 30, 19, 25 ; Fairy: light pink

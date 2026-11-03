@@ -20,8 +20,22 @@ Read this before changing the game. Keep it up to date when something here chang
 - `home.asm` reserves the cartridge header (`ds $0150 - $0104` in `SECTION "Header"`).
   Without it, the linker can put code at $0104-$014F, rgbfix overwrites it, and the ROM
   builds cleanly but crashes on boot. Keep it.
-- The graphics/palette section `bank2` is also exactly full after the hippo family.
-  Its two nearby back-palette dispatches use short jumps to fit the added palettes.
+- The graphics/palette section `bank2` remains tight. Battle attribute layout
+  lives in `engine/battle/type_icons.asm` to leave room for palette hooks.
+  Its two nearby back-palette dispatches use short jumps to fit the hippo palettes.
+
+## Battle type icons
+- The supplied 8x8 symbols in `gfx/battle_type_icons/` appear under both names:
+  enemy columns 2/3 on row 1, player columns 10/11 on row 8. Single types leave
+  the second slot blank. Live battle types follow the save's Original/Enhanced
+  rules and type changes; Illusion shows the disguise's rule-aware types.
+- Bank-1 BG tiles $60-$63 hold the four symbols. Palette 5 colors 1/2/3 and
+  EXP palette color 1 provide independent colors; EXP/star art uses only 0/2/3.
+  Preserve these slots when changing animation palettes or attribute restoration.
+  The move info box ends at column 9 and its compact PP row fits inside it.
+- Run `make test-battle-type-icons BATTLE_TEST_PYTHON=.venv/bin/python` for both
+  ROMs, all symbols/colors/slots, typing modes, animation and menu returns.
+  Screenshots and the all-type chart go in `_artifacts/battle-type-icons/`.
 
 ## Streamed overworld rendering
 - Walking decodes only the entering edge into the existing VBlank queues through

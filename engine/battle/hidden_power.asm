@@ -234,7 +234,7 @@ GetHiddenPowerDisplayStats::
 	ret
 
 PrintMoveAccuracyPercent::
-; Print the displayed accuracy for the move info box at 6, 10.
+; Print the displayed accuracy for the compact move info box at 5, 10.
 ; Accuracy is stored as "x percent" (0-255 scale); convert back to 0-100.
 	xor a
 	ldh [hMultiplicand + 0], a
@@ -258,7 +258,7 @@ PrintMoveAccuracyPercent::
 	call Divide
 	ldh a, [hQuotient + 3]
 	ld [wStringBuffer1], a
-	hlcoord 6, 10
+	hlcoord 5, 10
 	ld de, wStringBuffer1
 	lb bc, 1, 3
 	jp PrintNum

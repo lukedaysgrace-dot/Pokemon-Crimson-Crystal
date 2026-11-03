@@ -671,8 +671,8 @@ ENDC
 	lb bc, 4, 10
 	xor a ; PAL_BATTLE_BG_PLAYER
 	call FillBoxWithByte
-	hlcoord 10, 8, wAttrMap
-	lb bc, 4, 1
+	hlcoord 10, 9, wAttrMap
+	lb bc, 3, 1
 	ld a, PAL_BATTLE_BG_PLAYER_HP
 	call FillBoxWithByte
 	call CGBOnly_CopyTilemapAtOnce
@@ -4969,7 +4969,7 @@ DrawPlayerHUD:
 	lb bc, 5, 11
 	call ClearBox
 
-	farcall DrawPlayerHUDBorder
+	farcall DrawPlayerHUDBorderWithTypes
 
 	hlcoord 18, 9
 	ld [hl], $73 ; vertical bar
@@ -5124,7 +5124,7 @@ DrawEnemyHUD:
 	lb bc, 4, 11
 	call ClearBox
 
-	farcall DrawEnemyHUDBorder
+	farcall DrawEnemyHUDBorderWithTypes
 
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurSpecies], a
@@ -6143,7 +6143,7 @@ MoveInfoBox:
 	ldh [hBGMapMode], a
 
 	hlcoord 0, 8
-	lb bc, 3, 9
+	lb bc, 3, 8 ; stop before the player's type icons in column 10
 	call Textbox
 	call MobileTextBorder
 
@@ -6182,11 +6182,10 @@ MoveInfoBox:
 	ret
 
 .PrintPP:
-	hlcoord 2, 11
+	hlcoord 1, 11
 	ld a, "<BOLD_P>"
 	ld [hli], a
 	ld [hli], a
-	inc hl
 	push hl
 	ld de, wStringBuffer1
 	lb bc, 1, 2
