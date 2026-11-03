@@ -181,6 +181,10 @@ SECTION "Battle Core", ROMX
 
 INCLUDE "engine/battle/core.asm"
 
+SECTION "Post-battle Stat EXP", ROMX
+
+INCLUDE "engine/battle/stat_exp.asm"
+
 
 SECTION "Link Battle Record", ROMX
 

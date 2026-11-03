@@ -404,7 +404,9 @@ wBattleMon:: battle_struct wBattleMon ; c62c
 	ds 2
 
 wWildMon:: db ; c64e
-	ds 1
+; Party slots awarded Stat EXP since their last level-up calculation.
+; Battle-only: cleared on entry and consumed at ExitBattle (not saved).
+wPendingStatExpRecalcs:: db
 wEnemyTrainerItem1:: db ; c650
 wEnemyTrainerItem2:: db ; c651
 wEnemyTrainerBaseReward:: db ; c652
