@@ -84,18 +84,29 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	applymovement MAHOGANYMART1F_DRAGON, MovementData_0x6c3f6
 	applymovement MAHOGANYMART1F_BLACK_BELT, MovementData_0x6c3fb
 	pause 15
-	disappear MAHOGANYMART1F_DRAGON
-	pause 15
 	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c407
 	opentext
 	writetext UnknownText_0x6c549
 	waitbutton
 	closetext
-	follow MAHOGANYMART1F_LANCE, PLAYER
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c40a
-	applymovement MAHOGANYMART1F_PHARMACIST, MovementData_0x6c403
-	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c40e
+	; Line up Lance, Dragonite and the player before heading to the stairs.
+	follow MAHOGANYMART1F_LANCE, MAHOGANYMART1F_DRAGON
+	applymovement MAHOGANYMART1F_LANCE, MahoganyMartLanceLeadMovement
 	stopfollow
+	readvar VAR_XCOORD
+	ifequal 4, .PlayerInLine
+	applymovement PLAYER, MahoganyMartPlayerJoinMovement
+.PlayerInLine:
+	follow MAHOGANYMART1F_DRAGON, PLAYER
+	callasm MahoganyMartProcessionFirstLeg
+	callasm MahoganyMartStopLanceMovement
+	applymovement MAHOGANYMART1F_PHARMACIST, MovementData_0x6c403
+	callasm MahoganyMartProcessionSecondLeg
+	callasm MahoganyMartStopLanceMovement
+	stopfollow
+	applymovement MAHOGANYMART1F_DRAGON, MahoganyMartDragonStepAsideMovement
+	applymovement PLAYER, MahoganyMartPlayerJoinMovement
+	turnobject MAHOGANYMART1F_LANCE, LEFT
 	opentext
 	writetext UnknownText_0x6c59e
 	waitbutton
@@ -110,9 +121,14 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 	writetext UnknownText_0x6c5ba
 	waitbutton
 	closetext
+	applymovement MAHOGANYMART1F_DRAGON, MahoganyMartDragonReturnMovement
+	follow MAHOGANYMART1F_LANCE, MAHOGANYMART1F_DRAGON
 	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c412
+	stopfollow
 	playsound SFX_EXIT_BUILDING
 	disappear MAHOGANYMART1F_LANCE
+	applymovement MAHOGANYMART1F_DRAGON, MovementData_0x6c412
+	disappear MAHOGANYMART1F_DRAGON
 	setscene SCENE_MAHOGANYMART1F_NOTHING
 	waitsfx
 	end
@@ -120,42 +136,9 @@ MahoganyMart1FLanceUncoversStaircaseScript:
 MahogayMart1FGrannyScript:
 	faceplayer
 	opentext
-.ChooseStock:
-	writetext MahoganyMart1FGrannyWelcomeText
-	loadmenu .MenuHeader
-	verticalmenu
-	closewindow
-	ifequal 1, .Supplies
-	ifequal 2, .HeldItems
+	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_2
 	closetext
 	end
-
-.Supplies:
-	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_2
-	sjump .ChooseStock
-
-.HeldItems:
-	pokemart MARTTYPE_HELD_ITEMS, MART_MAHOGANY_HELD_ITEMS
-	sjump .ChooseStock
-
-.MenuHeader:
-	db MENU_BACKUP_TILES
-	menu_coords 0, 0, 15, 8
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR
-	db 3 ; items
-	db "SUPPLIES@"
-	db "HELD ITEMS@"
-	db "CANCEL@"
-
-MahoganyMart1FGrannyWelcomeText:
-	text "Welcome, dear!"
-	para "Would you like"
-	line "supplies or gear?"
-	done
 
 MovementData_0x6c3f6:
 	fix_facing
@@ -181,25 +164,115 @@ MovementData_0x6c403:
 	step_end
 
 MovementData_0x6c407:
-	slow_step LEFT
 	turn_head DOWN
 	step_end
 
-MovementData_0x6c40a:
-	slow_step RIGHT
-	slow_step UP
+MahoganyMartLanceLeadMovement:
 	slow_step UP
 	step_end
 
-MovementData_0x6c40e:
+MahoganyMartPlayerJoinMovement:
+	slow_step RIGHT
+	step_end
+
+MahoganyMartDragonFirstLegMovement:
+	slow_step UP
+	step_end
+
+MahoganyMartDragonSecondLegMovement:
+	slow_step UP
 	slow_step UP
 	slow_step RIGHT
+	step_end
+
+MahoganyMartDragonStepAsideMovement:
+	slow_step UP
+	turn_head DOWN
+	step_end
+
+MahoganyMartDragonReturnMovement:
+	; Join Lance from above along the clear floor, avoiding the bookcase below.
 	slow_step RIGHT
 	step_end
 
 MovementData_0x6c412:
 	slow_step RIGHT
 	step_end
+
+; Only one ordinary follow pair exists. Dragonite leads the player while
+; Lance walks a second, map-local RAM movement stream one tile ahead.
+; wc2e6 is the existing secondary movement pointer (SPRITEMOVEDATA_0D).
+MahoganyMartProcessionFirstLeg:
+	ld hl, .LanceMovement
+	ld bc, .End - .LanceMovement
+	ld de, MahoganyMartDragonFirstLegMovement
+	jr MahoganyMartStartProcession
+.LanceMovement:
+	slow_step UP
+	step_sleep 255 ; park until the foreground Dragonite movement finishes
+	step_loop
+.End:
+
+MahoganyMartProcessionSecondLeg:
+	ld hl, .LanceMovement
+	ld bc, .End - .LanceMovement
+	ld de, MahoganyMartDragonSecondLegMovement
+	jr MahoganyMartStartProcession
+.LanceMovement:
+	slow_step UP
+	slow_step RIGHT
+	slow_step RIGHT
+	step_sleep 255
+	step_loop
+.End:
+
+MahoganyMartStartProcession:
+	push de
+	ld de, wMovementBuffer
+	call CopyBytes
+	ld a, LOW(wMovementBuffer)
+	ld [wc2e6], a
+	ld a, HIGH(wMovementBuffer)
+	ld [wc2e6 + 1], a
+	ld c, MAHOGANYMART1F_DRAGON - 1 ; native map-object IDs omit the script player slot
+	farcall SetFlagsForMovement_1
+	ld c, MAHOGANYMART1F_DRAGON - 1
+	farcall _SetFlagsForMovement_2
+	ld a, MAHOGANYMART1F_LANCE - 1
+	call CheckObjectVisibility
+	ld hl, OBJECT_FLAGS2
+	add hl, bc
+	res OBJ_FLAGS2_5, [hl]
+	ld hl, OBJECT_MOVEMENTTYPE
+	add hl, bc
+	ld [hl], SPRITEMOVEDATA_0D
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_00
+	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
+	add hl, bc
+	ld [hl], 0
+	pop hl
+	ld b, BANK(MahoganyMart1F_MapScripts)
+	ld c, MAHOGANYMART1F_DRAGON - 1
+	call GetMovementData
+	ld a, SCRIPT_WAIT_MOVEMENT
+	ld [wScriptMode], a
+	ld hl, wScriptFlags
+	res SCRIPT_RUNNING, [hl]
+	ret
+
+MahoganyMartStopLanceMovement:
+	ld a, MAHOGANYMART1F_LANCE - 1
+	call CheckObjectVisibility
+	ret c
+	ld hl, OBJECT_MOVEMENTTYPE
+	add hl, bc
+	ld [hl], SPRITEMOVEDATA_STANDING_LEFT
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_00
+	ret
 
 UnknownText_0x6c414:
 	text "Hello, kiddo!"

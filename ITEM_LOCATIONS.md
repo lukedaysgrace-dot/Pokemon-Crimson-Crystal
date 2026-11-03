@@ -1,6 +1,6 @@
 # Crimson Crystal — TM and held-item locations
 
-Locations for all 54 TMs and 76 held items. Most ground items and gifts are one-time rewards.
+Locations for all 54 TMs and 70 held items. Most ground items and gifts are one-time rewards.
 
 Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their held items. Trick swaps items; use it to take Air Balloon before a damaging hit pops it.
 
@@ -62,17 +62,14 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [TM52 — Zen Headbutt](#tm_zen_headbutt) | Gift / reward |
 | [TM53 — Power Gem](#tm_power_gem) | Ground pickup |
 | [TM54 — Weather Ball](#tm_weather_ball) | Gift / reward |
-| [Air Balloon](#air_balloon) | Gift / reward, Shop, Trainer item |
+| [Air Balloon](#air_balloon) | Battle Tower prize, Gift / reward, Trainer item |
 | [Amulet Coin](#amulet_coin) | Ground pickup, Wild Pokémon |
-| [Assault Vest](#assault_vest) | Gift / reward, Shop, Trainer item |
+| [Assault Vest](#assault_vest) | Battle Tower prize, Gift / reward, Trainer item |
 | [Berserk Gene](#berserk_gene) | Hidden pickup |
 | [Big Root](#big_root) | Unavailable |
-| [Black Sludge](#black_sludge) | Unavailable |
 | [Blackbelt](#blackbelt) | Gift / reward, Trainer item |
 | [Blackglasses](#blackglasses) | Gift / reward, Trainer item |
-| [Blunderpolcy](#blunder_policy) | Unavailable |
 | [Brick Piece](#brick_piece) | Ground pickup |
-| [Brightpowder](#brightpowder) | Trainer item |
 | [Charcoal](#charcoal) | Gift / reward, Shop, Trainer item |
 | [Choice Band](#choice_band) | Battle Tower prize, Gift / reward, Trainer item |
 | [Choice Scarf](#choice_scarf) | Battle Tower prize, Gift / reward |
@@ -83,21 +80,19 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Damp Rock](#damp_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [Dragon Fang](#dragon_fang) | Ground pickup |
 | [Dragon Scale](#dragon_scale) | Ground pickup, Wild Pokémon |
-| [Eject Button](#eject_button) | Unavailable |
 | [Everstone](#everstone) | Gift / reward, Static wild Pokémon, Wild Pokémon |
-| [Eviolite](#eviolite) | Ground pickup, Shop, Trainer item |
+| [Eviolite](#eviolite) | Battle Tower prize, Ground pickup, Trainer item |
 | [Exp. Share](#exp_share) | Gift / reward |
-| [Expert Belt](#expert_belt) | Gift / reward, Shop, Trainer item |
-| [Flame Orb](#flame_orb) | Ground pickup, Shop, Trainer item |
+| [Expert Belt](#expert_belt) | Battle Tower prize, Gift / reward, Trainer item |
+| [Flame Orb](#flame_orb) | Battle Tower prize, Ground pickup, Trainer item |
 | [Focus Band](#focus_band) | Ground pickup |
 | [Focus Sash](#focus_sash) | Battle Tower prize, Gift / reward, Trainer item |
 | [Hard Stone](#hard_stone) | Gift / reward, Wild Pokémon |
 | [Heat Rock](#heat_rock) | Ground pickup, Mystery Gift |
-| [Heavy Boots](#heavy_duty_boots) | Unavailable |
 | [Icy Rock](#icy_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [King's Rock](#kings_rock) | Gift / reward, Wild Pokémon |
 | [Leftovers](#leftovers) | Hidden pickup, Search trash can, Static wild Pokémon, Trainer item, Wild Pokémon |
-| [Life Orb](#life_orb) | Ground pickup, Shop, Trainer item |
+| [Life Orb](#life_orb) | Battle Tower prize, Ground pickup, Trainer item |
 | [Light Ball](#light_ball) | Trainer item, Wild Pokémon |
 | [Light Clay](#light_clay) | Unavailable |
 | [Loaded Dice](#loaded_dice) | Hidden pickup |
@@ -108,18 +103,17 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Metal Powder](#metal_powder) | Wild Pokémon |
 | [Metronome](#metronome_item) | Unavailable |
 | [Miracle Seed](#miracle_seed) | Gift / reward, Trainer item |
-| [Muscle Band](#muscle_band) | Gift / reward, Shop, Trainer item |
+| [Muscle Band](#muscle_band) | Battle Tower prize, Gift / reward, Trainer item |
 | [Mystic Water](#mystic_water) | Fishing Contest prize, Gift / reward, Ground pickup, Trainer item |
 | [Nevermeltice](#nevermeltice) | Ground pickup, Trainer item |
 | [Pink Bow](#pink_bow) | Gift / reward, Trainer item |
 | [Poison Barb](#poison_barb) | Gift / reward, Wild Pokémon |
 | [Polkadot Bow](#polkadot_bow) | Gift / reward, Shop |
-| [Power Herb](#power_herb) | Unavailable |
+| [Power Herb](#power_herb) | Shop |
 | [Punch Glove](#punching_glove) | Unavailable |
 | [Quick Claw](#quick_claw) | Gift / reward, Trainer item, Wild Pokémon |
-| [Quick Powder](#quick_powder) | Unavailable |
-| [Red Card](#red_card) | Unavailable |
-| [Rocky Helmet](#rocky_helmet) | Gift / reward, Shop, Trainer item |
+| [Quick Powder](#quick_powder) | Wild Pokémon |
+| [Rocky Helmet](#rocky_helmet) | Battle Tower prize, Gift / reward, Trainer item |
 | [Safety Goggl](#safety_goggles) | Unavailable |
 | [Scope Lens](#scope_lens) | Gift / reward, Mystery Gift, Trainer item |
 | [Sharp Beak](#sharp_beak) | Gift / reward, Trainer item, Wild Pokémon |
@@ -130,14 +124,14 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Spell Tag](#spell_tag) | Trainer item, Wild Pokémon |
 | [Stick](#stick) | Trainer item, Wild Pokémon |
 | [Thick Club](#thick_club) | Trainer item, Wild Pokémon |
-| [Throat Spray](#throat_spray) | Unavailable |
-| [Toxic Orb](#toxic_orb) | Ground pickup, Shop |
+| [Throat Spray](#throat_spray) | Shop |
+| [Toxic Orb](#toxic_orb) | Battle Tower prize, Ground pickup |
 | [Twistedspoon](#twistedspoon) | Gift / reward, Trainer item |
 | [Up-Grade](#up_grade) | Gift / reward |
 | [Weak Policy](#weak_policy) | Battle Tower prize, Ground pickup |
-| [White Herb](#white_herb) | Unavailable |
-| [Wide Lens](#wide_lens) | Ground pickup, Shop, Trainer item |
-| [Wise Glasses](#wise_glasses) | Gift / reward, Shop, Trainer item |
+| [White Herb](#white_herb) | Shop |
+| [Wide Lens](#wide_lens) | Battle Tower prize, Ground pickup, Trainer item |
+| [Wise Glasses](#wise_glasses) | Battle Tower prize, Gift / reward, Trainer item |
 
 <a id="tm_drain_punch"></a>
 ## TM01 — Drain Punch
@@ -529,8 +523,8 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 
 | Location | How to obtain |
 | --- | --- |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Goldenrod Dept Store Roof | **Gift / reward** — Collect the red balloon at (15, 0). |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
 | Vermilion Gym | **Trainer item** — Leader Lt.Surge: Magnezone Lv. 55. |
 
 <a id="amulet_coin"></a>
@@ -546,7 +540,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 
 | Location | How to obtain |
 | --- | --- |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽30,000. |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Route 16 | **Gift / reward** — Cueball Chopper on Cycling Road; defeat him for a one-time gift. |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Golisopod Lv. 77. One-time gym rematch after defeating Falkner’s rematch. |
 | Kogas Room | **Trainer item** — Elite Four Koga: Muk (Alolan) Lv. 69. |
@@ -575,11 +569,6 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 
 Unavailable.
 
-<a id="black_sludge"></a>
-## Black Sludge
-
-Unavailable.
-
 <a id="blackbelt"></a>
 ## Blackbelt
 
@@ -600,25 +589,12 @@ Unavailable.
 | Radio Tower 5F | **Trainer item** — Executive Archer: Krookodile Lv. 42. |
 | Route 36 | **Trainer item** — Schoolboy Alan: Kingambit Lv. 74. |
 
-<a id="blunder_policy"></a>
-## Blunderpolcy
-
-Unavailable.
-
 <a id="brick_piece"></a>
 ## Brick Piece
 
 | Location | How to obtain |
 | --- | --- |
 | Goldenrod Dept Store B1F | **Ground pickup** — Basement item ball; access depends on the moving-box layout and the warehouse passage. Tile (9, 13). |
-
-<a id="brightpowder"></a>
-## Brightpowder
-
-| Location | How to obtain |
-| --- | --- |
-| Fuchsia Gym | **Trainer item** — Leader Janine: Crobat Lv. 62. |
-| Kogas Room | **Trainer item** — Elite Four Koga: Crobat Lv. 71. |
 
 <a id="charcoal"></a>
 ## Charcoal
@@ -737,11 +713,6 @@ Unavailable.
 | Whirl Islands SW | **Wild Pokémon** — Kingdra; approx. 5% held-item chance. Super Rod; Any; Lv. 40. |
 | Whirl Islands SW | **Wild Pokémon** — Seadra; approx. 5% held-item chance. Super Rod; Any; Lv. 40. |
 
-<a id="eject_button"></a>
-## Eject Button
-
-Unavailable.
-
 <a id="everstone"></a>
 ## Everstone
 
@@ -790,8 +761,8 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Day Care | **Ground pickup** — Collect the item ball. Tile (3, 3). |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Golbat Lv. 40. |
 | Mt. Moon | **Trainer item** — Rival ?: Golbat Lv. 49. |
 | Silver Cave Outside | **Trainer item** — Elite Four Agatha: Misdreavus Lv. 86. |
@@ -810,7 +781,7 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Route 34 | **Gift / reward** — Surf to the southern beach. Defeat Kate, Irene and Jenn, then speak to Kate. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Machamp Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Toxicroak Lv. 71. |
@@ -829,8 +800,8 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Burned Tower B1F | **Ground pickup** — Basement item ball. Tile (5, 2). |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Conkeldurr Lv. 84. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 | Cianwood Gym | **Trainer item** — Leader Chuck: Conkeldurr Lv. 79. One-time gym rematch after defeating Morty’s rematch. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Ursaluna Lv. 78. One-time gym rematch after defeating Bugsy’s rematch. |
@@ -880,11 +851,6 @@ Unavailable.
 | --- | --- |
 | Pokémon Center 2F delivery NPC | **Mystery Gift** — Unlock Mystery Gift with Carrie on Goldenrod Department Store 5F, then use a compatible infrared session. |
 | Ruins of Alph Ho Oh Item Room | **Ground pickup** — Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage. Tile (5, 6). |
-
-<a id="heavy_duty_boots"></a>
-## Heavy Boots
-
-Unavailable.
 
 <a id="icy_rock"></a>
 ## Icy Rock
@@ -1105,7 +1071,7 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽30,000. |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Team Rocket Base B3F | **Ground pickup** — Collect the item ball. Tile (14, 1). |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Heracross Lv. 77. One-time gym rematch after defeating Falkner’s rematch. |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Scizor Lv. 78. One-time gym rematch after defeating Falkner’s rematch. |
@@ -1277,12 +1243,12 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
-| Cerulean Cave 1F | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 57. |
-| Cerulean Cave 2F | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 59. |
-| Cerulean Cave B1F | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 61. |
-| Route 34 | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 15. |
-| Route 35 | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 17–19. |
-| Route 35 | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass Swarm; Day, Morning, Night; Lv. 17. Condition: Swarm. |
+| Cerulean Cave 1F | **Wild Pokémon** — Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 57. |
+| Cerulean Cave 2F | **Wild Pokémon** — Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 59. |
+| Cerulean Cave B1F | **Wild Pokémon** — Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 61. |
+| Route 34 | **Wild Pokémon** — Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 15. |
+| Route 35 | **Wild Pokémon** — Ditto; approx. 20% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 17–19. |
+| Route 35 | **Wild Pokémon** — Ditto; approx. 20% held-item chance. Grass Swarm; Day, Morning, Night; Lv. 17. Condition: Swarm. |
 
 <a id="metronome_item"></a>
 ## Metronome
@@ -1309,7 +1275,7 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Olivine Port | **Gift / reward** — Sailor beside Machamp on the dock at (8, 9); one-time gift. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Hitmontop Lv. 70. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Hitmontop Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
@@ -1396,7 +1362,9 @@ Unavailable.
 <a id="power_herb"></a>
 ## Power Herb
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Mahogany Mart 1F | **Shop** — Granny’s shop; opens after clearing the Rocket Hideout. Repeatable purchase; unlimited stock. Cost: ₽1,000. |
 
 <a id="punching_glove"></a>
 ## Punch Glove
@@ -1426,19 +1394,21 @@ Unavailable.
 <a id="quick_powder"></a>
 ## Quick Powder
 
-Unavailable.
-
-<a id="red_card"></a>
-## Red Card
-
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Cerulean Cave 1F | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 57. |
+| Cerulean Cave 2F | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 59. |
+| Cerulean Cave B1F | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 61. |
+| Route 34 | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 15. |
+| Route 35 | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 17–19. |
+| Route 35 | **Wild Pokémon** — Ditto; approx. 5% held-item chance. Grass Swarm; Day, Morning, Night; Lv. 17. Condition: Swarm. |
 
 <a id="rocky_helmet"></a>
 ## Rocky Helmet
 
 | Location | How to obtain |
 | --- | --- |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽30,000. |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Route 33 | **Gift / reward** — Defeat Hiker Anthony outside Union Cave, then speak to him. |
 | Cerulean Gym | **Trainer item** — Leader Misty: Gyarados Lv. 52. |
 | Pewter Gym | **Trainer item** — Leader Brock: Golem Lv. 50. |
@@ -1600,15 +1570,17 @@ Unavailable.
 <a id="throat_spray"></a>
 ## Throat Spray
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Mahogany Mart 1F | **Shop** — Granny’s shop; opens after clearing the Rocket Hideout. Repeatable purchase; unlimited stock. Cost: ₽1,000. |
 
 <a id="toxic_orb"></a>
 ## Toxic Orb
 
 | Location | How to obtain |
 | --- | --- |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Goldenrod Underground Warehouse | **Ground pickup** — Warehouse item ball reached during the Radio Tower rescue. Tile (2, 1). |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
 
 <a id="twistedspoon"></a>
 ## Twistedspoon
@@ -1637,14 +1609,16 @@ Unavailable.
 <a id="white_herb"></a>
 ## White Herb
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Mahogany Mart 1F | **Shop** — Granny’s shop; opens after clearing the Rocket Hideout. Repeatable purchase; unlimited stock. Cost: ₽1,000. |
 
 <a id="wide_lens"></a>
 ## Wide Lens
 
 | Location | How to obtain |
 | --- | --- |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Olivine Lighthouse 3F | **Ground pickup** — Collect the item ball. Tile (12, 12). |
 | Fighting Dojo | **Trainer item** — Karate King Kiyo: Hitmontop Lv. 70. |
 
@@ -1653,7 +1627,7 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
-| Mahogany Mart 1F | **Shop** — Granny’s Held Items shop; opens after clearing the Rocket Hideout. Cost: ₽20,000. |
+| Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Radio Tower 2F | **Gift / reward** — Buena; speak to her after clearing Team Rocket from the Radio Tower. |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Vikavolt Lv. 76. One-time gym rematch after defeating Falkner’s rematch. |
 | Celadon City | **Trainer item** — Officer Hayes: Noctowl Lv. 67. |

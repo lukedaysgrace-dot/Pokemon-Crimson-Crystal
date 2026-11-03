@@ -8,7 +8,7 @@
 	const NO_ITEM      ; 00
 	const MASTER_BALL  ; 01
 	const ULTRA_BALL   ; 02
-	const BRIGHTPOWDER ; 03
+	const RETIRED_BRIGHTPOWDER ; $0003: reserved; never reuse saved IDs
 	const GREAT_BALL   ; 04
 	const POKE_BALL    ; 05
 	const DUSK_STONE   ; 06; repurposes the unused TERU-SAMA item slot
@@ -329,22 +329,22 @@ FULL_HEAL_RED  EQU $34 ; X_SPEED
 	const COVERT_CLOAK
 	const CLEAR_AMULET
 	const METRONOME_ITEM
-	const HEAVY_DUTY_BOOTS
-	const RED_CARD
-	const EJECT_BUTTON
+	const RETIRED_HEAVY_DUTY_BOOTS
+	const RETIRED_RED_CARD
+	const RETIRED_EJECT_BUTTON
 	const POWER_HERB
 	const WHITE_HERB
-	const BLACK_SLUDGE
+	const RETIRED_BLACK_SLUDGE
 	const LIGHT_CLAY
 	const THROAT_SPRAY
 	const PUNCHING_GLOVE
 	const QUICK_POWDER
 	const SAFETY_GOGGLES
 	const BIG_ROOT
-	const BLUNDER_POLICY
+	const RETIRED_BLUNDER_POLICY
 	; $012d: retired duplicate HP Berry; resolves to GOLD_BERRY.
 	const_def $12e
-	const CUSTAP_BERRY
-	const SALAC_BERRY
+	const RETIRED_CUSTAP_BERRY
+	const RETIRED_SALAC_BERRY
 NUM_ITEM_INDEXES EQU const_value - 1
 	assert NUM_ITEM_INDEXES < $ff00

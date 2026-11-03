@@ -2,7 +2,7 @@ ItemDescriptions:
 ; entries correspond to item ids
 	dw MasterBallDesc
 	dw UltraBallDesc
-	dw BrightpowderDesc
+	dw QuestionMarkDesc ; retired item
 	dw GreatBallDesc
 	dw PokeBallDesc
 	dw DuskStoneDesc
@@ -288,22 +288,22 @@ ItemDescriptions:
 	dw COVERT_CLOAKDesc
 	dw CLEAR_AMULETDesc
 	dw METRONOME_ITEMDesc
-	dw HEAVY_DUTY_BOOTSDesc
-	dw RED_CARDDesc
-	dw EJECT_BUTTONDesc
+	dw QuestionMarkDesc ; retired item
+	dw QuestionMarkDesc ; retired item
+	dw QuestionMarkDesc ; retired item
 	dw POWER_HERBDesc
 	dw WHITE_HERBDesc
-	dw BLACK_SLUDGEDesc
+	dw QuestionMarkDesc ; retired item
 	dw LIGHT_CLAYDesc
 	dw THROAT_SPRAYDesc
 	dw PUNCHING_GLOVEDesc
 	dw QUICK_POWDERDesc
 	dw SAFETY_GOGGLESDesc
 	dw BIG_ROOTDesc
-	dw BLUNDER_POLICYDesc
+	dw QuestionMarkDesc ; retired item
 	dw QuestionMarkDesc ; retired $012d
-	dw CUSTAP_BERRYDesc
-	dw SALAC_BERRYDesc
+	dw QuestionMarkDesc ; retired item
+	dw QuestionMarkDesc ; retired item
 
 MasterBallDesc:
 	db   "The best BALL. It"
@@ -313,9 +313,6 @@ UltraBallDesc:
 	db   "A BALL with a high"
 	next "rate of success.@"
 
-BrightpowderDesc:
-	db   "Lowers the foe's"
-	next "accuracy. (HOLD)@"
 
 GreatBallDesc:
 	db   "A BALL with a de-"
@@ -1170,17 +1167,8 @@ METRONOME_ITEMDesc:
 	db "Repeat a move to"
 	next "boost it. (HOLD)@"
 
-HEAVY_DUTY_BOOTSDesc:
-	db "Avoids all entry"
-	next "hazards. (HOLD)@"
 
-RED_CARDDesc:
-	db "Hit by a move,"
-	next "ejects foe. (HOLD)@"
 
-EJECT_BUTTONDesc:
-	db "Hit by a move,"
-	next "switches. (HOLD)@"
 
 POWER_HERBDesc:
 	db "Skips charging a"
@@ -1190,9 +1178,6 @@ WHITE_HERBDesc:
 	db "Restores lowered"
 	next "stats once. (HOLD)@"
 
-BLACK_SLUDGEDesc:
-	db "POISON types heal;"
-	next "rest hurt. (HOLD)@"
 
 LIGHT_CLAYDesc:
 	db "Screens last eight"
@@ -1217,16 +1202,3 @@ SAFETY_GOGGLESDesc:
 BIG_ROOTDesc:
 	db "Boosts HP drained"
 	next "from a foe. (HOLD)@"
-
-BLUNDER_POLICYDesc:
-	db "A miss sharply"
-	next "ups SPEED. (HOLD)@"
-
-
-CUSTAP_BERRYDesc:
-	db "Move first once"
-	next "at low HP. (HOLD)@"
-
-SALAC_BERRYDesc:
-	db "Raises SPEED once"
-	next "at low HP. (HOLD)@"

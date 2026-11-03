@@ -1,7 +1,7 @@
 ItemNames::
 	db "MASTER BALL@"
 	db "ULTRA BALL@"
-	db "BRIGHTPOWDER@"
+	db "?@" ; retired $0003
 	db "GREAT BALL@"
 	db "# BALL@"
 	db "DUSK STONE@"
@@ -286,19 +286,19 @@ ItemNames::
 	db "COVERT CLOAK@"
 	db "CLEAR AMULET@"
 	db "METRONOME@"
-	db "HEAVY BOOTS@"
-	db "RED CARD@"
-	db "EJECT BUTTON@"
+	db "?@" ; retired $0120
+	db "?@" ; retired $0121
+	db "?@" ; retired $0122
 	db "POWER HERB@"
 	db "WHITE HERB@"
-	db "BLACK SLUDGE@"
+	db "?@" ; retired $0125
 	db "LIGHT CLAY@"
 	db "THROAT SPRAY@"
 	db "PUNCH GLOVE@"
 	db "QUICK POWDER@"
 	db "SAFETY GOGGL@"
 	db "BIG ROOT@"
-	db "BLUNDERPOLCY@"
+	db "?@" ; retired $012c
 	db "?@" ; retired $012d
-	db "CUSTAP BERRY@"
-	db "SALAC BERRY@"
+	db "?@" ; retired $012e
+	db "?@" ; retired $012f

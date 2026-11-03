@@ -1141,8 +1141,6 @@ PortraitTexts:
 	dba Text_ReceivedGlacierBadge
 	db 0
 ; MahoganyMart1F
-	dba MahoganyMart1FGrannyWelcomeText
-	db 0
 	dba MahogayMart1FBlackBeltText
 	db 0
 	dba MahogayMart1FBlackBeltText_LanceEntered
@@ -1803,6 +1801,8 @@ PortraitTexts:
 	db 0
 	dba GruntM28SeenText
 	db 0
+	dba LanceDragoniteOutrageText
+	db PORTRAIT_LANCE
 	dba LanceGetPasswordText
 	db PORTRAIT_LANCE
 	dba RocketBaseMurkrowText

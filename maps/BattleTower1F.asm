@@ -118,6 +118,7 @@ Script_WalkToBattleTowerElevator:
 Script_GivePlayerHisPrize:
 	setval BATTLETOWERACTION_1C
 	special BattleTowerAction
+.ChoosePrize:
 	writetext Text_ChooseBattleTowerPrize
 	loadmenu BattleTowerPrizeMenuHeader
 	verticalmenu
@@ -127,6 +128,8 @@ Script_GivePlayerHisPrize:
 	ifequal 3, .ChoiceScarf
 	ifequal 4, .FocusSash
 	ifequal 5, .WeaknessPolicy
+	ifequal 6, .GearPrizes
+.HoldPrize:
 	writetext Text_BattleTowerWillHoldPrize
 	waitbutton
 	closetext
@@ -150,6 +153,66 @@ Script_GivePlayerHisPrize:
 
 .WeaknessPolicy:
 	setval WEAK_POLICY
+	sjump .GivePrize
+
+.GearPrizes:
+	loadmenu BattleTowerGearPrizeMenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .Eviolite
+	ifequal 2, .RockyHelmet
+	ifequal 3, .AirBalloon
+	ifequal 4, .MuscleBand
+	ifequal 5, .WiseGlasses
+	ifequal 6, .ExpertBelt
+	ifequal 7, .OrbPrizes
+	ifequal 8, .ChoosePrize
+	sjump .HoldPrize
+
+.OrbPrizes:
+	loadmenu BattleTowerOrbPrizeMenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .FlameOrb
+	ifequal 2, .ToxicOrb
+	ifequal 3, .AssaultVest
+	ifequal 4, .LifeOrb
+	ifequal 5, .WideLens
+	ifequal 6, .GearPrizes
+	sjump .HoldPrize
+
+.Eviolite:
+	setval EVIOLITE
+	sjump .GivePrize
+.RockyHelmet:
+	setval ROCKY_HELMET
+	sjump .GivePrize
+.AirBalloon:
+	setval AIR_BALLOON
+	sjump .GivePrize
+.MuscleBand:
+	setval MUSCLE_BAND
+	sjump .GivePrize
+.WiseGlasses:
+	setval WISE_GLASSES
+	sjump .GivePrize
+.ExpertBelt:
+	setval EXPERT_BELT
+	sjump .GivePrize
+.FlameOrb:
+	setval FLAME_ORB
+	sjump .GivePrize
+.ToxicOrb:
+	setval TOXIC_ORB
+	sjump .GivePrize
+.AssaultVest:
+	setval ASSAULT_VEST
+	sjump .GivePrize
+.LifeOrb:
+	setval LIFE_ORB
+	sjump .GivePrize
+.WideLens:
+	setval WIDE_LENS
 
 .GivePrize:
 	getitemname STRING_BUFFER_4, USE_SCRIPT_VAR
@@ -163,18 +226,52 @@ Script_GivePlayerHisPrize:
 
 BattleTowerPrizeMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 1, 0, 17, 13
+	menu_coords 1, 0, 18, 15
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
-	db 6 ; items
+	db 7 ; items
 	db "CHOICE BAND@"
 	db "CHOICE SPECS@"
 	db "CHOICE SCARF@"
 	db "FOCUS SASH@"
 	db "WEAK POLICY@"
+	db "NEXT PAGE@"
+	db "CANCEL@"
+
+BattleTowerGearPrizeMenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 1, 0, 18, 17
+	dw .MenuData
+	db 1
+.MenuData:
+	db STATICMENU_CURSOR
+	db 8
+	db "EVIOLITE@"
+	db "ROCKY HELMET@"
+	db "AIR BALLOON@"
+	db "MUSCLE BAND@"
+	db "WISE GLASSES@"
+	db "EXPERT BELT@"
+	db "NEXT PAGE@"
+	db "BACK@"
+
+BattleTowerOrbPrizeMenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 1, 0, 18, 15
+	dw .MenuData
+	db 1
+.MenuData:
+	db STATICMENU_CURSOR
+	db 7
+	db "FLAME ORB@"
+	db "TOXIC ORB@"
+	db "ASSAULT VEST@"
+	db "LIFE ORB@"
+	db "WIDE LENS@"
+	db "BACK@"
 	db "CANCEL@"
 
 Script_YourPackIsStuffedFull:

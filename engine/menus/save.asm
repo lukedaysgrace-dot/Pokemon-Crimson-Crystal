@@ -820,7 +820,9 @@ LoadIndexTables:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	jp CloseSRAM
+	call CloseSRAM
+	farcall NormalizeLoadedRetiredItems
+	ret
 
 VerifyChecksum:
 	ld a, BANK(sItemIndexTable)
@@ -923,7 +925,9 @@ LoadBackupIndexTables:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	jp CloseSRAM
+	call CloseSRAM
+	farcall NormalizeLoadedRetiredItems
+	ret
 
 VerifyBackupChecksum:
 	ld a, BANK(sBackupItemIndexTable)

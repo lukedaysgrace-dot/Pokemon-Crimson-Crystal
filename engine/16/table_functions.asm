@@ -132,12 +132,36 @@ _LockMoveID::
 	___conversion_table_lock_ID wMoveIndexTable, MOVE_TABLE
 
 NormalizeRetiredBerryIndex::
-; Old expansion saves may contain the seven removed status Berries. Resolve
-; those reserved indices to their original equivalents, preserving bc/de.
+; Removed items resolve to NO_ITEM; old duplicate Berries keep their original
+; equivalents. Preserve bc/de and all unrelated saved item indexes.
+	ld a, h
+	and a
+	jr nz, .expanded
+	ld a, l
+	cp LOW(RETIRED_BRIGHTPOWDER)
+	ret nz
+.removed
+	ld hl, NO_ITEM
+	ret
+.expanded
 	ld a, h
 	cp $01
 	ret nz
 	ld a, l
+	cp LOW(RETIRED_HEAVY_DUTY_BOOTS)
+	jr z, .removed
+	cp LOW(RETIRED_RED_CARD)
+	jr z, .removed
+	cp LOW(RETIRED_EJECT_BUTTON)
+	jr z, .removed
+	cp LOW(RETIRED_BLACK_SLUDGE)
+	jr z, .removed
+	cp LOW(RETIRED_BLUNDER_POLICY)
+	jr z, .removed
+	cp LOW(RETIRED_CUSTAP_BERRY)
+	jr z, .removed
+	cp LOW(RETIRED_SALAC_BERRY)
+	jr z, .removed
 	cp $2d ; retired Sitrus Berry from the first held-item expansion
 	jr nz, .status_berries
 	ld hl, GOLD_BERRY

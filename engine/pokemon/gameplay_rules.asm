@@ -43,6 +43,9 @@ _GetBaseData::
 	jr .done
 
 .loaded
+; Base held-item slots contain low index bytes. Padding bits 0/1 hold their
+; high bits, allowing expanded items without changing the 32-byte record.
+	call ResolveBaseHeldItemIDs
 ; Replace Pokedex number with the runtime species ID, then apply this save's
 ; selected type/stat rules.
 	ld a, [wCurSpecies]
@@ -53,6 +56,28 @@ _GetBaseData::
 	pop hl
 	pop de
 	pop bc
+	ret
+
+ResolveBaseHeldItemIDs:
+	ld a, [wBasePadding]
+	and %11
+	ld b, a
+	ld a, [wBaseItem1]
+	ld l, a
+	ld a, b
+	and 1
+	ld h, a
+	push bc
+	call GetItemIDFromIndex
+	pop bc
+	ld [wBaseItem1], a
+	ld a, [wBaseItem2]
+	ld l, a
+	ld a, b
+	srl a
+	ld h, a
+	call GetItemIDFromIndex
+	ld [wBaseItem2], a
 	ret
 
 ApplyGameplayRulesToBaseData::
