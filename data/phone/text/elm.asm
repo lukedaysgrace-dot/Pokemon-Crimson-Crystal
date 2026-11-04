@@ -236,6 +236,49 @@ ElmPhoneReturnReminderText:
 	para "Come see me soon!"
 	done
 
+ElmPhoneExpRelayText:
+	text "Hello, <PLAY_G>!"
+	line "It's PROF.ELM!"
+
+	para "I heard you earned"
+	line "your sixth BADGE!"
+	cont "Congratulations!"
+
+	para "You and your team"
+	line "have come so far"
+	cont "since you left!"
+
+	para "I've finished a"
+	line "new invention, and"
+	cont "I thought of you."
+
+	para "Could you swing by"
+	line "my LAB in NEW BARK"
+	cont "TOWN?"
+
+	para "I'd like you to"
+	line "have it. I'll show"
+	cont "you how it works!"
+
+	para "See you soon!"
+	done
+
+ElmPhoneExpRelayReminderText:
+	text "ELM: Hi, <PLAY_G>!"
+
+	para "Your EXP RELAY is"
+	line "ready here at my"
+	cont "LAB in NEW BARK."
+
+	para "It passes training"
+	line "from one #MON"
+	cont "to another."
+
+	para "Drop by when you"
+	line "can! I'd love to"
+	cont "hear how you are."
+	done
+
 ElmPhoneUnusedText:
 	text "Hello, <PLAY_G>?"
 	line "How's it going?"

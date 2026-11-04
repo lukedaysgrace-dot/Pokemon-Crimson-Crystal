@@ -704,6 +704,12 @@ PortraitTexts:
 	db PORTRAIT_ELM
 	dba ElmDirectionsText3
 	db PORTRAIT_ELM
+	dba ElmExpRelayExplainText
+	db PORTRAIT_ELM
+	dba ElmExpRelayGiftText
+	db PORTRAIT_ELM
+	dba ElmExpRelayReminderText
+	db PORTRAIT_ELM
 	dba ElmGiveAbilityCapText1
 	db PORTRAIT_ELM
 	dba ElmGiveAbilityCapText2

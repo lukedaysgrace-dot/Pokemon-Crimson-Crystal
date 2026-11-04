@@ -1,6 +1,11 @@
 ElmPhoneCalleeScript:
 	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_POKERUS, .pokerus
+	checkevent EVENT_GOT_EXP_RELAY_FROM_ELM
+	iftrue .CheckOtherGifts
+	readvar VAR_BADGES
+	ifgreater 5, .relayreminder
+.CheckOtherGifts:
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iffalse .CheckInvitation
 	checkevent EVENT_GOT_MASTER_BALL_FROM_ELM
@@ -72,6 +77,10 @@ ElmPhoneCalleeScript:
 .ticket
 	sjump ElmPhoneReturnInvitationScript
 
+.relayreminder
+	farwritetext ElmPhoneExpRelayReminderText
+	end
+
 ElmPhoneCallerScript:
 	readvar VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_ROBBED, .disaster
@@ -79,6 +88,7 @@ ElmPhoneCallerScript:
 	ifequal SPECIALCALL_WEIRDBROADCAST, .rocket
 	ifequal SPECIALCALL_SSTICKET, .ticket
 	ifequal SPECIALCALL_MASTERBALL, .gift
+	ifequal SPECIALCALL_EXP_RELAY, .exprelay
 	farwritetext ElmPhonePokerusText
 	specialphonecall SPECIALCALL_NONE
 	end
@@ -122,6 +132,12 @@ ElmPhoneCallerScript:
 
 .gift
 	farwritetext ElmPhoneGiftText
+	specialphonecall SPECIALCALL_NONE
+	end
+
+.exprelay
+	farwritetext ElmPhoneExpRelayText
+	setevent EVENT_ELM_CALLED_ABOUT_EXP_RELAY
 	specialphonecall SPECIALCALL_NONE
 	end
 
