@@ -71,7 +71,10 @@ Read this before changing the game. Keep it up to date when something here chang
 
 ## Item IDs are 16-bit
 - Bag rows in `wItems` / `wPCItems` are 3 bytes: [index hi, index lo, quantity].
-  `wBalls` and `wKeyItems` use 1-byte runtime IDs.
+  `wBalls` and `wKeyItems` use 1-byte runtime IDs. `wKeyItems` is a root of
+  `ItemTableGarbageCollection`: EXP RELAY ($0130) has a temporary runtime ID,
+  and every save runs a collection. Any new byte array that can hold an
+  item at TM01 or above must also be added to that collector's roots.
 - `wCurItem`, party held items and `wCurMart` hold 8-bit runtime IDs. Convert with
   `GetItemIDFromIndex` / `GetItemIndexFromID` (home/16bit.asm).
 - Items below TM01 have fixed runtime IDs equal to their index, so `cp SOME_ITEM` on a
@@ -188,18 +191,31 @@ Read this before changing the game. Keep it up to date when something here chang
   the right-hand Seviper to 4,30 and back; talking to it repeats a mutual lunge
   without tile movement or a battle. Only the lower Seviper starts a battle.
   The other flees via column 6, then Zangoose steps once right to 3,30 and faces
-  down toward the player at 3,31. Both battles prevent all escape methods; a whiteout
-  preserves the unfinished encounter, while catching or fainting Zangoose ends it.
-  Five unused EVENT_12A..12E bits hold progress without shifting save offsets.
+  down toward the player at 3,31. Both battles prevent all escape methods.
+  Once the intro trigger has played, re-entering the forest from outside (any
+  warp, Fly/Teleport/Dig/Escape Rope, or a whiteout) before Seviper is beaten
+  means the player abandoned Zangoose: the map callback sets
+  EVENT_VIRIDIAN_FOREST_ZANGOOSE_PERISHED plus all three GONE flags, and the
+  bg_event on Zangoose's tile (2,30) shows ForestRivalryRemainsText. The callback
+  only runs on real entries, not after in-forest battles or on Continue. After
+  Seviper is beaten, a whiteout against Zangoose still preserves the encounter;
+  catching or fainting Zangoose ends it without remains.
+  Six unused EVENT_12A..12F bits hold progress without shifting save offsets.
   The Viridian group's unused swimmer graphics entries now load the supplied
   full walking sheets. New NPC sprite IDs shift the icon range's end to $e6;
   the runtime-only Day-Care sentinels are $e6/$e7, below variables at $f0.
   Run `make test-forest-rivalry`; add `--record` to
   `python3 tools/battletest/forest_rivalry_checks.py` for the complete native
-  event with audio in `_artifacts/forest-rivalry/`. Fixtures clear `hOAMUpdate`
+  event with audio in `_artifacts/forest-rivalry/`. `python3 tools/record_forest_rivalry.py`
+  records two gameplay videos with audio in `_artifacts/forest-rivalry-videos/`: the
+  full event plus leaving/returning, and the abandoned route with the remains text.
+  Fixtures clear `hOAMUpdate`
   after staged map loading; hardware OAM checks prove all three actors render.
 
 ## Intentional choices: do not "fix"
+- Crimson/Enhanced Gallade transfers 25 Sp. Atk into Speed (40/105);
+  Gardevoir transfers 25 Attack into Speed (40/105). Both retain 518 BST.
+  Original stats retain 65 in the respective attacking stat and 80 Speed.
 - Proton's lines keep "damn": `maps/RadioTower4F.asm` ("Damn it! Not to") and
   `maps/SlowpokeWellB1F.asm` ("stopped a damn"). Never change them.
 - Lileep/Cradily are Water 3 + Plant (not official Water 3 only) so STUN SPORE can be bred.

@@ -261,6 +261,7 @@ def main():
                     print('STRUCT', obj['map_object'], list(m.read_bytes('wObjectStructs', 40, obj['slot'] * 40)), flush=True)
             return
         pb.hook_register(*h.sym['Script_writetext'], script_text, None)
+        pb.hook_register(*h.sym['Script_jumptext'], script_text, None)
         pb.hook_register(*h.sym['Script_cry'], script_cry, None)
         h.tick = tick
 
@@ -389,6 +390,59 @@ def main():
         drive(fight_menu)
         check(m.species_index_of(m.read('wEnemyMonSpecies')) == h.con.species_index('ZANGOOSE_SCARRED'),
               'unfinished Zangoose can be challenged again without repeating Seviper')
+
+        def set_flags(*names):
+            for name in names:
+                bit = flags['EVENT_VIRIDIAN_FOREST_' + name]
+                pb.memory[h.sym.addr('wEventFlags') + bit // 8] |= 1 << (bit % 8)
+
+        def enter_forest(method=0xf1):
+            m.write('hMapEntryMethod', method)
+            native_call(h, 'EnterMap')
+            m.write('hOAMUpdate', 0)
+            begin_native_call(h, 'OverworldLoop.loop')
+            h.tick(90)
+
+        # Saw the fight start, then left the forest (any route, including a
+        # whiteout) before beating Seviper: Zangoose perishes for good.
+        baseline.seek(0)
+        pb.load_state(baseline)
+        set_flags('RIVALRY_SEEN')
+        enter_forest()
+        check(not ({9, 10, 11} & set(actors())) and event('ZANGOOSE_PERISHED') and
+              event('ZANGOOSE_GONE') and event('SEVIPER1_GONE') and event('SEVIPER2_GONE'),
+              'leaving before beating Seviper removes the whole encounter')
+        texts.clear()
+        controls.go((6, 30))
+        check(not m.read('wBattleMode') and not texts, 'abandoned trigger never replays')
+        # Walk left into 3,30 so the player faces Zangoose's (now open) tile.
+        controls.go((4, 30))
+        controls.go((3, 30))
+        controls.press('a', hold=4, wait=30)
+        drive(idle)
+        check('ForestRivalryRemainsText' in texts, "Zangoose's remains can be inspected on its tile")
+        pb.screen.image.save(args.output / 'abandoned-remains.png')
+        enter_forest()
+        check(not ({9, 10, 11} & set(actors())) and event('ZANGOOSE_PERISHED'),
+              'abandoned encounter stays gone on later visits')
+
+        # Without the fight having been seen, or once Zangoose is resolved
+        # normally, the remains stay silent and nothing is marked perished.
+        for seen in (False, True):
+            baseline.seek(0)
+            pb.load_state(baseline)
+            if seen:
+                set_flags('RIVALRY_SEEN', 'SEVIPER_BEATEN', 'SEVIPER1_GONE', 'SEVIPER2_GONE', 'ZANGOOSE_GONE')
+            enter_forest()
+            check(not event('ZANGOOSE_PERISHED'),
+                  'untouched or completed encounters are never marked perished')
+        texts.clear()
+        # Walk left into 3,30 so the player faces Zangoose's (now open) tile.
+        controls.go((4, 30))
+        controls.go((3, 30))
+        controls.press('a', hold=4, wait=30)
+        drive(idle)
+        check('ForestRivalryRemainsText' not in texts, 'a caught/defeated Zangoose leaves no remains text')
 
         check(hud_frames > 0, 'live battle type icons checked during the actual event attacks')
         (args.output / 'checks.json').write_text(json.dumps(dict(rom=args.rom.name, checks=checks, video=video,

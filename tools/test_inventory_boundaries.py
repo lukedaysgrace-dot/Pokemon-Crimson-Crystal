@@ -37,11 +37,20 @@ def main():
     def write(name, value):
         h.wr(h.s(name), value)
 
+    # Every live catalogue index: retired indexes normalize to NO_ITEM (or to
+    # an older equivalent) by design, so they are not receivable items.
+    retired = {v for k, v in con.items.items() if k.startswith('RETIRED_')}
+    retired |= set(range(0x111, 0x118)) | {0x12d}
+    expanded = sorted({v for v in con.items.values() if 0x101 <= v < 0xff00})
     items = {}
-    for item in [*range(1, 255), *range(257, 273), *range(280, 285)]:
+    for item in [i for i in [*range(1, 255), *expanded] if i not in retired]:
         write('wCurItem', h.call('GetItemIDFromIndex', hl=item)['a'])
         h.call('CheckItemPocket')
         items[item] = h.rd(h.s('wItemAttributeParamBuffer'))
+
+    def runtime_id(index):
+        # Key Item pocket bytes are runtime IDs, not 16-bit indexes.
+        return h.call('GetItemIDFromIndex', hl=index)['a']
 
     def action(routine, item, quantity=1, pocket='wNumItems', slot=255):
         write('wCurItem', h.call('GetItemIDFromIndex', hl=item)['a'])
@@ -58,14 +67,14 @@ def main():
             h.wr(h.s(pocket) + span, 0x5A)
         payload = [len(rows)]
         for row in rows:
-            payload.extend([row] if key else ([row[0] >> 8, row[0] & 255, row[1]] if width == 3 else row))
+            payload.extend([runtime_id(row)] if key else ([row[0] >> 8, row[0] & 255, row[1]] if width == 3 else row))
         h.wr(h.s(pocket), payload + [255])
         return span
 
     def verify(pocket, span, rows, label, key=False):
         expected = [len(rows)]
         for row in rows:
-            expected.extend([row] if key else ([row[0] >> 8, row[0] & 255, row[1]] if pocket != "wNumBalls" else row))
+            expected.extend([runtime_id(row)] if key else ([row[0] >> 8, row[0] & 255, row[1]] if pocket != "wNumBalls" else row))
         expected.append(255)
         check(h.rd(h.s(pocket), len(expected)) == bytes(expected), label + ': count/entries/terminator')
         check(h.rd(h.s(pocket) - 1) == 0xA5 and h.rd(h.s(pocket) + span) == 0x5A, label + ': adjacent bytes')
@@ -169,7 +178,8 @@ def main():
         seed(pocket, capacity, rows, guards=False)
     keys = [i for i in items if items[i] == 2]
     write('wNumKeyItems', len(keys))
-    write('wKeyItems', keys + [255])
+    # Key Item pocket bytes are runtime IDs (EXP RELAY's is temporary).
+    write('wKeyItems', [runtime_id(i) for i in keys] + [255])
     size = h.s('wTMsHMsEnd') - start
     write('wTMsHMs', [99 if i % 2 else 1 for i in range(size)])
     expected = h.rd(start, end - start)
@@ -183,6 +193,11 @@ def main():
     h.wr(start, bytes(end - start))
     check(not h.call('TryLoadSaveFile', max_frames=600)['c_flag'], 'inventory Save/load failed')
     check(h.rd(start, end - start) == expected, 'inventory Save/load changed pocket bytes')
+    # Saving garbage-collects the item table: Key Item runtime IDs must still
+    # name the same items afterwards (EXP RELAY uses a temporary ID).
+    key_bytes = h.rd(h.s('wKeyItems'), len(keys))
+    check([h.call('GetItemIndexFromID', a=b)['hl'] for b in key_bytes] == keys,
+          'Key Item runtime IDs lost their items across Save/load')
     h.pyboy.stop(save=False)
     print(f'INVENTORY BOUNDARIES: {len(items)} item IDs; {checks} checks; {len(failures)} failures', flush=True)
     return bool(failures)

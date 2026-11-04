@@ -61,6 +61,14 @@ Because your project has substantial custom engine work, the parser is intention
 - The nine clone starter constants are omitted from the Pokédex grid and appear through a **Normal / Clone** toggle on the corresponding starter page.
 - Animated or multi-frame PNGs are cropped to the first complete static front frame.
 
+## November 4 balance adjustments
+
+- Enhanced Gallade moves 25 base Sp. Atk into Speed: 40 Sp. Atk / 105 Speed.
+- Enhanced Gardevoir moves 25 base Attack into Speed: 40 Attack / 105 Speed.
+- Both retain 518 BST. Original stats retain 80 Speed and 65 in the respective
+  attacking stat. The Pokédex, Pokémon Changes guide and JSON exports reflect
+  the Enhanced values and Original comparisons.
+
 ## October 20 balance adjustments
 
 - Enhanced Mew has 100 in every base stat (600 BST), reduced from 720 BST.

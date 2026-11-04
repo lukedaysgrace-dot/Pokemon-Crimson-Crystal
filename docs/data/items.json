@@ -4,7 +4,7 @@
     "tms": 54,
     "hms": 7,
     "held_items": 70,
-    "acquisition_rows": 1638,
+    "acquisition_rows": 1639,
     "no_sources": [
       "BIG_ROOT",
       "CLEAR_AMULET",
@@ -12,8 +12,7 @@
       "LIGHT_CLAY",
       "METRONOME_ITEM",
       "PUNCHING_GLOVE",
-      "SAFETY_GOGGLES",
-      "EXP_RELAY"
+      "SAFETY_GOGGLES"
     ]
   },
   "items": [
@@ -1542,7 +1541,7 @@
           "method": "Gift / reward",
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/ElmsLab.asm",
-          "line": 610
+          "line": 640
         },
         {
           "location": "Radio Tower 1F",
@@ -1628,7 +1627,7 @@
           "method": "Gift / reward",
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/ElmsLab.asm",
-          "line": 723
+          "line": 753
         },
         {
           "location": "Goldenrod Department Store Roof",
@@ -1884,9 +1883,9 @@
         {
           "location": "Viridian Forest",
           "method": "Ground pickup",
-          "details": "Collect the item ball. Tile (1, 31).",
+          "details": "Collect the item ball. Tile (1, 42).",
           "source": "maps/ViridianForest.asm",
-          "line": 80
+          "line": 102
         },
         {
           "location": "Viridian Mart",
@@ -1938,63 +1937,63 @@
           "method": "Gift Pok\u00e9mon",
           "details": "Take the held item from the gift Pok\u00e9mon.",
           "source": "maps/ElmsLab.asm",
-          "line": 214
+          "line": 219
         },
         {
           "location": "Elms Lab",
           "method": "Gift Pok\u00e9mon",
           "details": "Take the held item from the gift Pok\u00e9mon.",
           "source": "maps/ElmsLab.asm",
-          "line": 244
+          "line": 249
         },
         {
           "location": "Elms Lab",
           "method": "Gift Pok\u00e9mon",
           "details": "Take the held item from the gift Pok\u00e9mon.",
           "source": "maps/ElmsLab.asm",
-          "line": 272
+          "line": 277
         },
         {
           "location": "Elms Lab",
           "method": "Gift Pok\u00e9mon",
           "details": "Take the held item from the gift Pok\u00e9mon.",
           "source": "maps/ElmsLab.asm",
-          "line": 312
+          "line": 317
         },
         {
           "location": "Elms Lab",
           "method": "Gift Pok\u00e9mon",
           "details": "Take the held item from the gift Pok\u00e9mon.",
           "source": "maps/ElmsLab.asm",
-          "line": 328
+          "line": 333
         },
         {
           "location": "Elms Lab",
           "method": "Gift Pok\u00e9mon",
           "details": "Take the held item from the gift Pok\u00e9mon.",
           "source": "maps/ElmsLab.asm",
-          "line": 368
+          "line": 373
         },
         {
           "location": "Elms Lab",
           "method": "Gift Pok\u00e9mon",
           "details": "Take the held item from the gift Pok\u00e9mon.",
           "source": "maps/ElmsLab.asm",
-          "line": 384
+          "line": 389
         },
         {
           "location": "Elms Lab",
           "method": "Gift Pok\u00e9mon",
           "details": "Take the held item from the gift Pok\u00e9mon.",
           "source": "maps/ElmsLab.asm",
-          "line": 424
+          "line": 429
         },
         {
           "location": "Elms Lab",
           "method": "Gift Pok\u00e9mon",
           "details": "Take the held item from the gift Pok\u00e9mon.",
           "source": "maps/ElmsLab.asm",
-          "line": 440
+          "line": 445
         },
         {
           "location": "Route 11",
@@ -4510,7 +4509,7 @@
           "method": "Gift / reward",
           "details": "Professor Elm in New Bark Town; show him the hatched Togepi.",
           "source": "maps/ElmsLab.asm",
-          "line": 592
+          "line": 597
         },
         {
           "location": "Team Rocket Base B1F",
@@ -11336,7 +11335,7 @@
           "method": "Gift / reward",
           "details": "Elm gives this after you return the Mystery Egg, provided abilities are enabled for the save.",
           "source": "maps/ElmsLab.asm",
-          "line": 552
+          "line": 557
         }
       ],
       "description": "Changes Pok\u00e9mon's current ABILITY.",
@@ -11473,10 +11472,18 @@
       "const": "EXP_RELAY",
       "name": "Exp Relay",
       "category": "Key item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Elms Lab",
+          "method": "Gift / reward",
+          "details": "Speak to Professor Elm in his New Bark Town lab after earning six total badges in any order; he calls to invite you back.",
+          "source": "maps/ElmsLab.asm",
+          "line": 617
+        }
+      ],
       "description": "Transfers all Stat EXP to a Pok\u00e9mon.",
-      "availability": "No source found",
-      "notes": "Acquisition is intentionally undecided. Reusable outside battle. Choose a donor and a different non-Egg recipient, then confirm. All five Gen 2 Stat EXP values are added to the recipient (each capped at 65,535); all five donor values become zero. Both Pok\u00e9mon\u2019s stats are recalculated. Regular EXP, levels, DVs, moves, abilities, items and happiness stay unchanged. Current HP stays unchanged unless it exceeds the new maximum; fainted Pok\u00e9mon stay fainted."
+      "availability": "World sources",
+      "notes": "Professor Elm calls after six total badges, regardless of order. Speak to him at his New Bark Town lab for this one-time gift. Reusable outside battle. Choose a donor and a different non-Egg recipient, then confirm. All five Gen 2 Stat EXP values are added to the recipient (each capped at 65,535); all five donor values become zero. Both Pok\u00e9mon\u2019s stats are recalculated. Regular EXP, levels, DVs, moves, abilities, items and happiness stay unchanged. Current HP stays unchanged unless it exceeds the new maximum; fainted Pok\u00e9mon stay fainted."
     },
     {
       "const": "GOOD_ROD",
@@ -11658,7 +11665,7 @@
           "method": "Gift / reward",
           "details": "Professor Elm\u2019s story gift; follow the post-Surge travel quest.",
           "source": "maps/ElmsLab.asm",
-          "line": 622
+          "line": 652
         }
       ],
       "description": "A ticket for the S.S.AQUA.",
@@ -12180,7 +12187,7 @@
           "method": "Hidden pickup",
           "details": "Search this tile. Tile (16, 42).",
           "source": "maps/ViridianForest.asm",
-          "line": 86
+          "line": 108
         },
         {
           "location": "Whirl Islands B1F",
@@ -12719,7 +12726,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (25, 8).",
           "source": "maps/ViridianForest.asm",
-          "line": 74
+          "line": 96
         },
         {
           "location": "Viridian Mart",
@@ -13158,7 +13165,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (12, 29).",
           "source": "maps/ViridianForest.asm",
-          "line": 77
+          "line": 99
         },
         {
           "location": "Viridian Mart",
@@ -14073,7 +14080,7 @@
           "method": "Gift / reward",
           "details": "Complete the local conversation or event to receive this item.",
           "source": "maps/ElmsLab.asm",
-          "line": 696
+          "line": 726
         },
         {
           "location": "Goldenrod Dept Store 2F",
@@ -14261,7 +14268,7 @@
           "method": "Hidden pickup",
           "details": "Search this tile. Tile (1, 18).",
           "source": "maps/ViridianForest.asm",
-          "line": 83
+          "line": 105
         }
       ],
       "description": "Raises ATTACK of one Pok\u00e9mon.",

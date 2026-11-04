@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  68, 125,  65,  80,  65, 115
+	db  68, 125,  65, 105,  40, 115
 	;  hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, FIGHTING ; type

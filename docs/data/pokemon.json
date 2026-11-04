@@ -117548,9 +117548,9 @@
     "number": 260,
     "stats": {
       "HP": 68,
-      "Attack": 65,
+      "Attack": 40,
       "Defense": 65,
-      "Speed": 80,
+      "Speed": 105,
       "Sp. Atk": 125,
       "Sp. Def": 115
     },
@@ -117803,9 +117803,9 @@
     ],
     "updated_stats": {
       "HP": 68,
-      "Attack": 65,
+      "Attack": 40,
       "Defense": 65,
-      "Speed": 80,
+      "Speed": 105,
       "Sp. Atk": 125,
       "Sp. Def": 115
     },
@@ -118044,8 +118044,8 @@
       "HP": 68,
       "Attack": 125,
       "Defense": 65,
-      "Speed": 80,
-      "Sp. Atk": 65,
+      "Speed": 105,
+      "Sp. Atk": 40,
       "Sp. Def": 115
     },
     "types": [
@@ -118381,8 +118381,8 @@
       "HP": 68,
       "Attack": 125,
       "Defense": 65,
-      "Speed": 80,
-      "Sp. Atk": 65,
+      "Speed": 105,
+      "Sp. Atk": 40,
       "Sp. Def": 115
     },
     "original_stats": {
@@ -230475,6 +230475,533 @@
         "tm": "Tutor",
         "const": "THUNDERBOLT",
         "move": "Thunderbolt"
+      }
+    ]
+  },
+  {
+    "const": "ZANGOOSE_SCARRED",
+    "name": "Zangoose",
+    "number": 502,
+    "stats": {
+      "HP": 75,
+      "Attack": 125,
+      "Defense": 60,
+      "Speed": 110,
+      "Sp. Atk": 60,
+      "Sp. Def": 60
+    },
+    "types": [
+      "Normal",
+      "Poison"
+    ],
+    "abilities": [
+      "Immunity",
+      "Scrappy",
+      "Sharpness"
+    ],
+    "ability_slots": [
+      {
+        "name": "Immunity",
+        "slot": 1
+      },
+      {
+        "name": "Scrappy",
+        "slot": 2
+      },
+      {
+        "name": "Sharpness",
+        "slot": 3
+      }
+    ],
+    "learnset": [
+      {
+        "level": 1,
+        "const": "LEER",
+        "move": "Leer"
+      },
+      {
+        "level": 1,
+        "const": "SCRATCH",
+        "move": "Scratch"
+      },
+      {
+        "level": 1,
+        "const": "COUNTER",
+        "move": "Counter"
+      },
+      {
+        "level": 1,
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "level": 1,
+        "const": "DISABLE",
+        "move": "Disable"
+      },
+      {
+        "level": 1,
+        "const": "DOUBLE_KICK",
+        "move": "Double Kick"
+      },
+      {
+        "level": 1,
+        "const": "FLAIL",
+        "move": "Flail"
+      },
+      {
+        "level": 1,
+        "const": "FURY_SWIPES",
+        "move": "Fury Swipes"
+      },
+      {
+        "level": 1,
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "level": 4,
+        "const": "QUICK_ATTACK",
+        "move": "Quick Attack"
+      },
+      {
+        "level": 7,
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "level": 12,
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
+      },
+      {
+        "level": 12,
+        "const": "METAL_CLAW",
+        "move": "Metal Claw"
+      },
+      {
+        "level": 12,
+        "const": "PURSUIT",
+        "move": "Pursuit"
+      },
+      {
+        "level": 13,
+        "const": "FALSE_SWIPE",
+        "move": "False Swipe"
+      },
+      {
+        "level": 15,
+        "const": "AERIAL_ACE",
+        "move": "Aerial Ace"
+      },
+      {
+        "level": 16,
+        "const": "SLASH",
+        "move": "Slash"
+      },
+      {
+        "level": 25,
+        "const": "SWORDS_DANCE",
+        "move": "Swords Dance"
+      },
+      {
+        "level": 26,
+        "const": "WORK_UP",
+        "move": "Work Up"
+      },
+      {
+        "level": 28,
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "level": 31,
+        "const": "DETECT",
+        "move": "Detect"
+      },
+      {
+        "level": 33,
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "level": 34,
+        "const": "CRUSH_CLAW",
+        "move": "Crush Claw"
+      },
+      {
+        "level": 34,
+        "const": "X_SCISSOR",
+        "move": "X-Scissor"
+      },
+      {
+        "level": 42,
+        "const": "TAKE_DOWN",
+        "move": "Take Down"
+      },
+      {
+        "level": 43,
+        "const": "CLOSE_COMBAT",
+        "move": "Close Combat"
+      },
+      {
+        "level": 43,
+        "const": "TAUNT",
+        "move": "Taunt"
+      },
+      {
+        "level": 44,
+        "const": "BODY_SLAM",
+        "move": "Body Slam"
+      },
+      {
+        "level": 46,
+        "const": "BELLY_DRUM",
+        "move": "Belly Drum"
+      },
+      {
+        "level": 49,
+        "const": "DOUBLE_EDGE",
+        "move": "Double-Edge"
+      },
+      {
+        "level": 56,
+        "const": "GIGA_IMPACT",
+        "move": "Giga Impact"
+      }
+    ],
+    "evolutions": [],
+    "egg_moves": [
+      "COUNTER",
+      "DISABLE",
+      "DOUBLE_KICK",
+      "FLAIL",
+      "FURY_SWIPES",
+      "RAZOR_WIND",
+      "BELLY_DRUM",
+      "CURSE",
+      "IRON_TAIL",
+      "METAL_CLAW",
+      "NIGHT_SLASH",
+      "ROAR"
+    ],
+    "tmhm": [
+      "HEADBUTT",
+      "CURSE",
+      "ROCK_TOMB",
+      "ROAR",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "WORK_UP",
+      "BLIZZARD",
+      "HYPER_BEAM",
+      "PROTECT",
+      "RAIN_DANCE",
+      "FACADE",
+      "SOLARBEAM",
+      "THUNDER",
+      "RETURN",
+      "DIG",
+      "SHADOW_BALL",
+      "MUD_SLAP",
+      "SWAGGER",
+      "ICE_PUNCH",
+      "KNOCK_OFF",
+      "FIRE_BLAST",
+      "SWIFT",
+      "THUNDERPUNCH",
+      "REST",
+      "ATTRACT",
+      "THIEF",
+      "FIRE_PUNCH",
+      "FURY_CUTTER",
+      "HONE_CLAWS",
+      "NIGHT_SLASH",
+      "ZEN_HEADBUTT",
+      "SURF",
+      "STRENGTH",
+      "FLAMETHROWER",
+      "THUNDERBOLT",
+      "ICE_BEAM"
+    ],
+    "info": {
+      "catch_rate": 90,
+      "base_exp": 160,
+      "items": [
+        "NO_ITEM",
+        "QUICK_CLAW"
+      ],
+      "gender": "50% male, 50% female",
+      "egg_cycles": 20,
+      "growth": "Medium Fast",
+      "egg_groups": [
+        "Field"
+      ]
+    },
+    "sprite": null,
+    "tutor_moves": [
+      "SUBSTITUTE",
+      "SLEEP_TALK",
+      "THUNDER_WAVE"
+    ],
+    "blackthorn_tutor_moves": [
+      "AGILITY",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BRICK_BREAK",
+      "COMET_PUNCH",
+      "DEFENSE_CURL",
+      "DOUBLE_TEAM",
+      "DYNAMICPUNCH",
+      "ENDURE",
+      "FAKE_OUT",
+      "FOCUS_BLAST",
+      "FRUSTRATION",
+      "GIGA_DRAIN",
+      "GRASS_KNOT",
+      "GUNK_SHOT",
+      "ICY_WIND",
+      "INCINERATE",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "MIMIC",
+      "POISON_JAB",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "ROLLOUT",
+      "SEED_BOMB",
+      "SEISMIC_TOSS",
+      "SHADOW_CLAW",
+      "SKULL_BASH",
+      "SNORE",
+      "TACKLE",
+      "WATER_PULSE"
+    ],
+    "evolves_from": null,
+    "original_types": [
+      "Normal",
+      "Poison"
+    ],
+    "updated_types": [
+      "Normal",
+      "Poison"
+    ],
+    "updated_stats": {
+      "HP": 75,
+      "Attack": 125,
+      "Defense": 60,
+      "Speed": 110,
+      "Sp. Atk": 60,
+      "Sp. Def": 60
+    },
+    "original_stats": {
+      "HP": 73,
+      "Attack": 115,
+      "Defense": 60,
+      "Speed": 90,
+      "Sp. Atk": 60,
+      "Sp. Def": 60
+    },
+    "original_stats_source": "modern main games",
+    "tmhm_labeled": [
+      {
+        "tm": "TM02",
+        "const": "HEADBUTT",
+        "move": "Headbutt"
+      },
+      {
+        "tm": "TM03",
+        "const": "CURSE",
+        "move": "Curse"
+      },
+      {
+        "tm": "TM04",
+        "const": "ROCK_TOMB",
+        "move": "Rock Tomb"
+      },
+      {
+        "tm": "TM05",
+        "const": "ROAR",
+        "move": "Roar"
+      },
+      {
+        "tm": "TM06",
+        "const": "TOXIC",
+        "move": "Toxic"
+      },
+      {
+        "tm": "TM08",
+        "const": "ROCK_SMASH",
+        "move": "Rock Smash"
+      },
+      {
+        "tm": "TM10",
+        "const": "HIDDEN_POWER",
+        "move": "Hidden Power"
+      },
+      {
+        "tm": "TM11",
+        "const": "SUNNY_DAY",
+        "move": "Sunny Day"
+      },
+      {
+        "tm": "TM13",
+        "const": "WORK_UP",
+        "move": "Work Up"
+      },
+      {
+        "tm": "TM14",
+        "const": "BLIZZARD",
+        "move": "Blizzard"
+      },
+      {
+        "tm": "TM15",
+        "const": "HYPER_BEAM",
+        "move": "Hyper Beam"
+      },
+      {
+        "tm": "TM17",
+        "const": "PROTECT",
+        "move": "Protect"
+      },
+      {
+        "tm": "TM18",
+        "const": "RAIN_DANCE",
+        "move": "Rain Dance"
+      },
+      {
+        "tm": "TM21",
+        "const": "FACADE",
+        "move": "Facade"
+      },
+      {
+        "tm": "TM22",
+        "const": "SOLARBEAM",
+        "move": "Solar Beam"
+      },
+      {
+        "tm": "TM25",
+        "const": "THUNDER",
+        "move": "Thunder"
+      },
+      {
+        "tm": "TM27",
+        "const": "RETURN",
+        "move": "Return"
+      },
+      {
+        "tm": "TM28",
+        "const": "DIG",
+        "move": "Dig"
+      },
+      {
+        "tm": "TM30",
+        "const": "SHADOW_BALL",
+        "move": "Shadow Ball"
+      },
+      {
+        "tm": "TM31",
+        "const": "MUD_SLAP",
+        "move": "Mud-Slap"
+      },
+      {
+        "tm": "TM32",
+        "const": "SWAGGER",
+        "move": "Swagger"
+      },
+      {
+        "tm": "TM33",
+        "const": "ICE_PUNCH",
+        "move": "Ice Punch"
+      },
+      {
+        "tm": "TM35",
+        "const": "KNOCK_OFF",
+        "move": "Knock Off"
+      },
+      {
+        "tm": "TM38",
+        "const": "FIRE_BLAST",
+        "move": "Fire Blast"
+      },
+      {
+        "tm": "TM39",
+        "const": "SWIFT",
+        "move": "Swift"
+      },
+      {
+        "tm": "TM41",
+        "const": "THUNDERPUNCH",
+        "move": "Thunder Punch"
+      },
+      {
+        "tm": "TM44",
+        "const": "REST",
+        "move": "Rest"
+      },
+      {
+        "tm": "TM45",
+        "const": "ATTRACT",
+        "move": "Attract"
+      },
+      {
+        "tm": "TM46",
+        "const": "THIEF",
+        "move": "Thief"
+      },
+      {
+        "tm": "TM48",
+        "const": "FIRE_PUNCH",
+        "move": "Fire Punch"
+      },
+      {
+        "tm": "TM49",
+        "const": "FURY_CUTTER",
+        "move": "Fury Cutter"
+      },
+      {
+        "tm": "TM50",
+        "const": "HONE_CLAWS",
+        "move": "Hone Claws"
+      },
+      {
+        "tm": "TM51",
+        "const": "NIGHT_SLASH",
+        "move": "Night Slash"
+      },
+      {
+        "tm": "TM52",
+        "const": "ZEN_HEADBUTT",
+        "move": "Zen Headbutt"
+      },
+      {
+        "tm": "HM03",
+        "const": "SURF",
+        "move": "Surf"
+      },
+      {
+        "tm": "HM04",
+        "const": "STRENGTH",
+        "move": "Strength"
+      },
+      {
+        "tm": "Tutor",
+        "const": "FLAMETHROWER",
+        "move": "Flamethrower"
+      },
+      {
+        "tm": "Tutor",
+        "const": "THUNDERBOLT",
+        "move": "Thunderbolt"
+      },
+      {
+        "tm": "Tutor",
+        "const": "ICE_BEAM",
+        "move": "Ice Beam"
       }
     ]
   }

@@ -32,6 +32,9 @@ ViridianForestSeviper1Script:
 ViridianForestSeviper2Script:
 	farsjump ForestRivalrySeviper2
 
+ViridianForestZangooseRemains:
+	farsjump ForestRivalryRemains
+
 TrainerBugCatcherRob:
 	trainer BUG_CATCHER, ROB, EVENT_BEAT_BUG_CATCHER_ROB, BugCatcherRobSeenText, BugCatcherRobBeatenText, 0, .Script
 
@@ -250,7 +253,7 @@ ViridianForest_MapEvents:
 	coord_event 6, 30, -1, ViridianForestRivalryTrigger
 	coord_event 6, 31, -1, ViridianForestRivalryTrigger
 
-	db 8 ; bg events
+	db 9 ; bg events
 	bg_event 24, 40, BGEVENT_READ, ViridianForestTrainerTips1Sign
 	bg_event 16, 32, BGEVENT_READ, ViridianForestUseAntidoteSign
 	bg_event 26, 17, BGEVENT_READ, ViridianForestTrainerTips2Sign
@@ -259,6 +262,8 @@ ViridianForest_MapEvents:
 	bg_event  2,  1, BGEVENT_READ, ViridianForestLeavingSign
 	bg_event  1, 18, BGEVENT_ITEM, ViridianForestHiddenAntidote
 	bg_event 16, 42, BGEVENT_ITEM, ViridianForestHiddenPotion
+	; Zangoose's tile; its object takes priority while it is still there.
+	bg_event  2, 30, BGEVENT_READ, ViridianForestZangooseRemains
 
 	db 11 ; object events
 	object_event 30, 33, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherRob, -1

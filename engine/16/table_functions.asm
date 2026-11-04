@@ -214,8 +214,13 @@ ItemTableGarbageCollection:
 	___conversion_bitmap_check_structs wBreedMon1Item, wBreedMon2 - wBreedMon1, 2, .set_bit
 	___conversion_bitmap_check_values .set_bit, wCurItem, wNamedObjectIndexBuffer, wMenuSelection, wPackUsedItem, wTempMonItem, wBufferMonItem, wBattleMonItem, wEnemyMonItem, wContestMonItem, wCurEnemyItem, wEnemyTrainerItem1, wEnemyTrainerItem2, wScriptVar, wMartItemID, wBillsPC_CursorItem
 	; All bag/PC entries and boxed items contain true indices, not roots.
-	; Mart menus alone retain an array of runtime IDs.
+	; Mart menus retain an array of runtime IDs.
 	___conversion_bitmap_check_structs wCurMart + 1, 1, 14, .set_bit
+	; The Key Item pocket stores 1-byte runtime IDs. Expanded key items
+	; (EXP RELAY) have temporary IDs, so the whole pocket must be a root or
+	; the next collection (every save runs one) frees the ID under it.
+	; Bytes past the $ff terminator only over-protect; $ff is never a slot.
+	___conversion_bitmap_check_structs wKeyItems, 1, MAX_KEY_ITEMS, .set_bit
 IF DEF(DEBUG_BATTLE)
 	ld a, BANK(wDebugPartyBackedUp)
 	ldh [rSVBK], a

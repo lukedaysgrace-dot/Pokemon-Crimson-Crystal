@@ -1,6 +1,12 @@
 {
-  "date": "2026-11-02",
+  "date": "2026-11-04",
   "pokemon": {
+    "GALLADE": {
+      "stats": {"Sp. Atk": [65, 40], "Speed": [80, 105]}
+    },
+    "GARDEVOIR": {
+      "stats": {"Attack": [65, 40], "Speed": [80, 105]}
+    },
     "SEEDOT": {
       "abilities": [
         {"slot": 1, "before": "CHLOROPHYLL", "after": "PRANKSTER"},
