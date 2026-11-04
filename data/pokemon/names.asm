@@ -505,3 +505,4 @@ PokemonNames::
 	db "MIENSHAO@@"
 	db "HIPPOPOTAS"
 	db "HIPPOWDON@"
+	db "ZANGOOSE@@"

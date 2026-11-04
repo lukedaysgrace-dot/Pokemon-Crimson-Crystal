@@ -30,9 +30,3 @@ CheckPokedexStatusMonIndex:
 FlagActionBaseOne:
 	dec de
 	jp FlagAction
-
-GetPokemonFlagIndex:
-	call GetPokemonIndexFromID
-	ld d, h
-	ld e, l
-	ret

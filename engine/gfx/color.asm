@@ -1427,7 +1427,7 @@ LoadMapPals:
 	call FarCopyWRAM
 	call LoadDanceTheatreObjectPalette
 	call LoadRoute4MewPalette
-	farcall LoadRoute31WimpodPalette
+	farcall LoadWimpodAndZangoosePalette
 	farcall LoadMountMortarDuraludonPalette
 	call LoadApricornTreeObjectPalette
 	farcall LoadBurnedTowerAshesPalette

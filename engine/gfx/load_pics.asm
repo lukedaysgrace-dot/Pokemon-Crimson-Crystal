@@ -227,26 +227,44 @@ GetAnimatedEnemyFrontpic:
 	pop bc
 	pop hl
 	ld de, wDecompressScratch
-	ldh a, [hROMBank]
-	ld b, a
-	; if the tiles fit in a single VRAM block ($80 tiles), load them...
 	ld a, c
-	sub 128 - 7 * 7
+	; Bank-1 BG tiles $60-$63 belong to the four HUD type icons.
+	; First fill $31-$5f, skip those four slots, then fill $64-$7f.
+	; Remaining tiles continue at $80 in vTiles4. The old $7f gap is no
+	; longer needed: bank-1 picture cells always refer to actual picture
+	; tiles, while textbox spaces use bank 0. This leaves 252 picture slots.
+	cp $60 - 7 * 7 + 1
 	jr c, .finish
-	; otherwise, load as many as we can...
-	inc a
-	ld [sEnemyFrontPicTileCount], a ; save the remainder
-	ld c, 127 - 7 * 7
-	call Get2bpp
-	; ...and load the rest into vTiles4
-	ld de, wDecompressScratch + (127 - 7 * 7) tiles
+	push hl
+	push bc
+	ld c, $60 - 7 * 7
+	call .Copy
+	pop bc
+	pop hl
+	ld a, c
+	sub $60 - 7 * 7
+	ld c, a
+	ld de, ($64 - 7 * 7) tiles
+	add hl, de
+	ld de, wDecompressScratch + ($60 - 7 * 7) tiles
+	ld a, c
+	cp $80 - $64 + 1
+	jr c, .Copy
+	push bc
+	ld c, $80 - $64
+	call .Copy
+	pop bc
+	ld a, c
+	sub $80 - $64
+	ld c, a
+	ld de, wDecompressScratch + ($80 - 7 * 7 - 4) tiles
 	ld hl, vTiles4
+.Copy:
 	ldh a, [hROMBank]
 	ld b, a
-	ld a, [sEnemyFrontPicTileCount]
-	ld c, a
-.finish
 	jp Get2bpp
+.finish
+	jr .Copy
 
 LoadFrontpicTiles:
 	ld hl, wDecompressScratch

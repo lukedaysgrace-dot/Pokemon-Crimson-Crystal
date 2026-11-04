@@ -3971,6 +3971,8 @@ TryToRunAwayFromBattle:
 	jp z, .can_escape
 	cp BATTLETYPE_TRAP
 	jp z, .cant_escape
+	cp BATTLETYPE_FOREST_RIVALRY
+	jp z, .cant_escape
 	cp BATTLETYPE_CELEBI
 	jp z, .cant_escape
 	cp BATTLETYPE_SHINY
@@ -6826,6 +6828,7 @@ LoadEnemyMon:
 	ld [wEvolutionOldSpecies], a
 ; Fill moves based on level
 	predef FillMoves
+	farcall SetScarredZangooseEncounterMove
 
 .PP:
 ; Trainer battle?

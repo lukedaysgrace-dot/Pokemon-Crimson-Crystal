@@ -504,6 +504,7 @@ TechnicalTutorPointers::
 	dba TechnicalTutor_MIENSHAO ; MIENSHAO
 	dba TechnicalTutor_HIPPOPOTAS ; HIPPOPOTAS
 	dba TechnicalTutor_HIPPOWDON ; HIPPOWDON
+	dba TechnicalTutor_ZANGOOSE ; ZANGOOSE_SCARRED
 assert (@ - TechnicalTutorPointers) == NUM_POKEMON * 3
 
 SECTION "Blackthorn Tutor Moves 1", ROMX

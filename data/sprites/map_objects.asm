@@ -364,3 +364,19 @@ SpriteMovementData::
 	db FIXED_FACING | SLIDING ; flags1
 	db HIGH_PRIORITY ; flags2
 	db 0 ; palette flags
+
+; SPRITEMOVEDATA_POKEMON_DOWN
+	db SPRITEMOVEFN_ANIMATED_STANDING
+	db DOWN
+	db OBJECT_ACTION_STEP
+	db 0 ; scripts may turn the actor while it keeps animating
+	db 0
+	db 0
+
+; SPRITEMOVEDATA_POKEMON_UP
+	db SPRITEMOVEFN_ANIMATED_STANDING
+	db UP
+	db OBJECT_ACTION_STEP
+	db 0
+	db 0
+	db 0

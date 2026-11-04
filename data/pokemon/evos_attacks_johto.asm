@@ -3009,6 +3009,42 @@ EvosAttacksPointers2C::
 	dw MienshaoEvosAttacks
 	dw HippopotasEvosAttacks
 	dw HippowdonEvosAttacks
+	dw ZangooseScarredEvosAttacks
+
+ZangooseScarredEvosAttacks:
+	db 0 ; no more evolutions
+	dbw 1, LEER
+	dbw 1, SCRATCH
+	dbw 1, COUNTER
+	dbw 1, CURSE
+	dbw 1, DISABLE
+	dbw 1, DOUBLE_KICK
+	dbw 1, FLAIL
+	dbw 1, FURY_SWIPES
+	dbw 1, NIGHT_SLASH
+	dbw 4, QUICK_ATTACK
+	dbw 7, FURY_CUTTER
+	dbw 12, HONE_CLAWS
+	dbw 12, METAL_CLAW
+	dbw 12, PURSUIT
+	dbw 13, FALSE_SWIPE
+	dbw 15, AERIAL_ACE
+	dbw 16, SLASH
+	dbw 25, SWORDS_DANCE
+	dbw 26, WORK_UP
+	dbw 28, KNOCK_OFF
+	dbw 31, DETECT
+	dbw 33, FACADE
+	dbw 34, CRUSH_CLAW
+	dbw 34, X_SCISSOR
+	dbw 42, TAKE_DOWN
+	dbw 43, CLOSE_COMBAT
+	dbw 43, TAUNT
+	dbw 44, BODY_SLAM
+	dbw 46, BELLY_DRUM
+	dbw 49, DOUBLE_EDGE
+	dbw 56, GIGA_IMPACT
+	db 0 ; no more level-up moves
 
 ; Initial moves and level-up learnset from Rage Blue.
 GorochuEvosAttacks:

@@ -7,11 +7,30 @@
 	const VIRIDIANFOREST_POKE_BALL3
 	const VIRIDIANFOREST_YOUNGSTER1
 	const VIRIDIANFOREST_YOUNGSTER2
+	const VIRIDIANFOREST_ZANGOOSE
+	const VIRIDIANFOREST_SEVIPER1
+	const VIRIDIANFOREST_SEVIPER2
 
 ViridianForest_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_OBJECTS, .RivalryObjects
+
+.RivalryObjects:
+	farsjump ForestRivalryRestoreObjects
+
+ViridianForestRivalryTrigger:
+	farsjump ForestRivalryTrigger
+
+ViridianForestZangooseScript:
+	farsjump ForestRivalryZangoose
+
+ViridianForestSeviper1Script:
+	farsjump ForestRivalrySeviper1
+
+ViridianForestSeviper2Script:
+	farsjump ForestRivalrySeviper2
 
 TrainerBugCatcherRob:
 	trainer BUG_CATCHER, ROB, EVENT_BEAT_BUG_CATCHER_ROB, BugCatcherRobSeenText, BugCatcherRobBeatenText, 0, .Script
@@ -227,7 +246,9 @@ ViridianForest_MapEvents:
 	warp_event 17, 47, VIRIDIAN_FOREST_SOUTH_GATE, 2
 	warp_event 18, 47, VIRIDIAN_FOREST_SOUTH_GATE, 2
 
-	db 0 ; coord events
+	db 2 ; coord events
+	coord_event 6, 30, -1, ViridianForestRivalryTrigger
+	coord_event 6, 31, -1, ViridianForestRivalryTrigger
 
 	db 8 ; bg events
 	bg_event 24, 40, BGEVENT_READ, ViridianForestTrainerTips1Sign
@@ -239,12 +260,15 @@ ViridianForest_MapEvents:
 	bg_event  1, 18, BGEVENT_ITEM, ViridianForestHiddenAntidote
 	bg_event 16, 42, BGEVENT_ITEM, ViridianForestHiddenPotion
 
-	db 8 ; object events
+	db 11 ; object events
 	object_event 30, 33, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherRob, -1
 	object_event 30, 19, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBugCatcherEd, -1
 	object_event  2, 18, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherDoug, -1
 	object_event 25,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ViridianForestAntidote, EVENT_VIRIDIAN_FOREST_ANTIDOTE
 	object_event 12, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ViridianForestPotion, EVENT_VIRIDIAN_FOREST_POTION
-	object_event  1, 31, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ViridianForestPokeBall, EVENT_VIRIDIAN_FOREST_POKE_BALL
+	object_event  1, 42, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, ViridianForestPokeBall, EVENT_VIRIDIAN_FOREST_POKE_BALL
 	object_event 14, 43, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ViridianForestYoungster1Script, -1
 	object_event 29, 41, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ViridianForestYoungster2Script, -1
+	object_event  2, 30, SPRITE_ZANGOOSE, SPRITEMOVEDATA_POKEMON_DOWN, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_SCRIPT, 0, ViridianForestZangooseScript, EVENT_VIRIDIAN_FOREST_ZANGOOSE_GONE
+	object_event  2, 31, SPRITE_SEVIPER, SPRITEMOVEDATA_POKEMON_UP, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ViridianForestSeviper1Script, EVENT_VIRIDIAN_FOREST_SEVIPER1_GONE
+	object_event  3, 30, SPRITE_SEVIPER, SPRITEMOVEDATA_POKEMON_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ViridianForestSeviper2Script, EVENT_VIRIDIAN_FOREST_SEVIPER2_GONE

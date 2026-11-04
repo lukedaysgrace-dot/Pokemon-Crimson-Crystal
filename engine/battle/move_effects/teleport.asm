@@ -6,6 +6,8 @@ BattleCommand_Teleport:
 	jr z, .failed
 	cp BATTLETYPE_TRAP
 	jr z, .failed
+	cp BATTLETYPE_FOREST_RIVALRY
+	jr z, .failed
 	cp BATTLETYPE_CELEBI
 	jr z, .failed
 	cp BATTLETYPE_SUICUNE

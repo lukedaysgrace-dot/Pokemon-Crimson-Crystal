@@ -503,4 +503,5 @@ PreEvolutionSpecies::
 	dw MIENFOO ; MIENSHAO
 	dw 0 ; HIPPOPOTAS
 	dw HIPPOPOTAS ; HIPPOWDON
+	dw 0 ; ZANGOOSE_SCARRED
 assert (@ - PreEvolutionSpecies) == NUM_POKEMON * 2

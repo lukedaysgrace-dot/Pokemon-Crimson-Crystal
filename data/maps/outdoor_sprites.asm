@@ -75,8 +75,8 @@ ViridianGroupSprites:
 	db SPRITE_GRAMPS
 	db SPRITE_BUG_CATCHER
 	db SPRITE_FIREBREATHER_NEW
-	db SPRITE_SWIMMER_GIRL
-	db SPRITE_SWIMMER_GUY
+	db SPRITE_ZANGOOSE ; forest rivalry; replaces unused swimmer
+	db SPRITE_SEVIPER ; forest rivalry; replaces unused swimmer
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
 

@@ -204,6 +204,172 @@ CopyHUDTypeColor:
 	ld a, BANK(wBGPals2)
 	jp FarCopyWRAM
 
+UpdateBattleTypeIconAnimPals::
+; Animation palette permutations apply to ordinary four-color palettes, but
+; our symbols borrow independent colors from two slots. Rebuild only their
+; display colors after the animation's palette work. Leave base palettes and
+; HP/EXP foreground colors alone. A flat HP palette also hides its type symbols.
+	ldh a, [hCGB]
+	and a
+	ret z
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wEnemyMon)
+	ldh [rSVBK], a
+	ld a, [wBattleMode]
+	and a
+	jr nz, .battle
+	pop af
+	ldh [rSVBK], a
+	ret
+.battle
+	call GetEnemyHUDTypes
+	push bc
+	call GetPlayerHUDTypes
+	push bc
+	ld a, BANK(wBGPals2)
+	ldh [rSVBK], a
+	ld hl, wBGPals2 palette PAL_BATTLE_BG_ENEMY_HP color 0
+	ld de, wBGPals2 palette PAL_BATTLE_BG_5 color 0
+	call .CopyColor
+	ld hl, wBGPals2 palette PAL_BATTLE_BG_PLAYER_HP color 0
+	ld de, wBGPals2 palette PAL_BATTLE_BG_EXP color 0
+	call .CopyColor
+	pop bc
+	push bc
+	ld a, b
+	ld hl, wBGPals2 palette PAL_BATTLE_BG_PLAYER_HP
+	ld de, wBGPals2 palette PAL_BATTLE_BG_5 color 3
+	call .SymbolColor
+	pop bc
+	ld a, c
+	ld hl, wBGPals2 palette PAL_BATTLE_BG_PLAYER_HP
+	ld de, wBGPals2 palette PAL_BATTLE_BG_EXP color 1
+	call .SymbolColor
+	pop bc
+	push bc
+	ld a, b
+	ld hl, wBGPals2 palette PAL_BATTLE_BG_ENEMY_HP
+	ld de, wBGPals2 palette PAL_BATTLE_BG_5 color 1
+	call .SymbolColor
+	pop bc
+	ld a, c
+	ld hl, wBGPals2 palette PAL_BATTLE_BG_ENEMY_HP
+	ld de, wBGPals2 palette PAL_BATTLE_BG_5 color 2
+	call .SymbolColor
+	pop af
+	ldh [rSVBK], a
+	ret
+
+.SymbolColor:
+; a = type, hl = side's HP palette, de = independent display color.
+	push af
+	ld a, [hli]
+	ld c, a
+	ld b, [hl]
+	inc hl
+	rept 3
+	ld a, [hli]
+	cp c
+	jr nz, .visible
+	ld a, [hli]
+	cp b
+	jr nz, .visible
+	endr
+	; No HUD ink is visible: use its background for the symbol too.
+	pop af
+	ld h, b
+	ld l, c
+	ld a, l
+	call .WriteByte
+	ld a, h
+	jp .WriteByte
+.visible
+	pop af
+	cp DARK
+	jr nz, .regular
+	ld a, b
+	or c
+	ld a, DARK
+	jr nz, .regular
+	ld hl, .DarkOnBlack
+	jr .CopyColor
+.regular
+	cp TYPES_END
+	jr c, .valid
+	ld a, BIRD
+.valid
+	ld hl, BattleHUDTypeColors
+	ld bc, PAL_COLOR_SIZE
+	call AddNTimes
+.CopyColor:
+	ld a, [hli]
+	call .WriteByte
+	ld a, [hl]
+.WriteByte:
+	ld c, a
+	ld a, [de]
+	cp c
+	jr z, .unchanged
+	ld a, c
+	ld [de], a
+	ld a, 1
+	ldh [hCGBPalUpdate], a
+.unchanged
+	inc de
+	ret
+.DarkOnBlack:
+	RGB 18, 10, 25
+
+ClearBattleTypeIconCells::
+; ClearActorHud removes the attacker's entire HUD. Reset both type cells to
+; its ordinary HP palette and bank-0 space atomically, including blank slots.
+	ldh a, [hBattleTurn]
+	jr ClearBattleTypeIconCellsForSide
+
+ClearOpponentBattleTypeIconCells::
+	ldh a, [hBattleTurn]
+	xor 1
+	; fall through
+
+ClearBattleTypeIconCellsForSide:
+	ld b, a
+	ldh a, [hCGB]
+	and a
+	ret z
+	ld a, b
+	and a
+	hlcoord 2, 1, wAttrMap
+	ld de, vBGMap0 + 1 * BG_MAP_WIDTH + 2
+	ld c, PAL_BATTLE_BG_ENEMY_HP
+	jr nz, .ready
+	hlcoord 10, 8, wAttrMap
+	ld de, vBGMap0 + 8 * BG_MAP_WIDTH + 10
+	ld c, PAL_BATTLE_BG_PLAYER_HP
+.ready
+	ld b, 2
+.cell
+	ld a, c
+	ld [hli], a
+	di
+.wait
+	ldh a, [rSTAT]
+	and 1 << 1
+	jr nz, .wait
+	ld a, 1
+	ldh [rVBK], a
+	ld a, c
+	ld [de], a
+	xor a
+	ldh [rVBK], a
+	ld a, " "
+	ld [de], a
+	ei
+	inc de
+	dec b
+	jr nz, .cell
+	ret
+
 RestoreBattleTypeIconAttrs::
 ; Check tile IDs so pre-entry trainer/party HUDs are left alone. Repair both
 ; buffers and VRAM after ability banners, full layouts and menu returns.

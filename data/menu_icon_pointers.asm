@@ -504,3 +504,4 @@ MenuIconPointers:
 	dba MienshaoMenuIcon
 	dba HippopotasMenuIcon
 	dba HippowdonMenuIcon
+	dba ZangooseMenuIcon

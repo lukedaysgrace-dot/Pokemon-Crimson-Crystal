@@ -1855,6 +1855,13 @@ Pokedex_OrderMonsByMode:
 	cp LOW(AEGISLASH_BLADE)
 	jr z, .old_mode_next
 .visible_species
+	ld a, b
+	cp HIGH(ZANGOOSE_SCARRED)
+	jr nz, .add_visible_species
+	ld a, c
+	cp LOW(ZANGOOSE_SCARRED)
+	jr z, .old_mode_next
+.add_visible_species
 	ld a, c
 	ld [hli], a
 	ld a, b
@@ -2007,6 +2014,14 @@ GetRegionalDexNumber_DE::
 	jr nz, .canonical
 	ld de, AEGISLASH
 .canonical
+	ld a, d
+	cp HIGH(ZANGOOSE_SCARRED)
+	jr nz, .find_canonical
+	ld a, e
+	cp LOW(ZANGOOSE_SCARRED)
+	jr nz, .find_canonical
+	ld de, ZANGOOSE
+.find_canonical
 	ld hl, NewPokedexOrder
 	ld bc, 1
 .loop

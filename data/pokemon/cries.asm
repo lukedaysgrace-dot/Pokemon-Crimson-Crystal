@@ -507,3 +507,4 @@ PokemonCries::
 	mon_cry CRY_MIENSHAO, 0, 220 ; MIENSHAO (Polished Coral)
 	mon_cry CRY_HIPPOPOTAS, 0, 220 ; HIPPOPOTAS (authored GB adaptation)
 	mon_cry CRY_HIPPOWDON, 0, 220 ; HIPPOWDON (authored GB adaptation)
+	mon_cry CRY_ODDISH, $080, $0e0 ; ZANGOOSE_SCARRED

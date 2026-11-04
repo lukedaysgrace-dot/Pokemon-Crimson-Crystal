@@ -313,11 +313,12 @@
 	const EVENT_CELADON_GIRL_GOT_SODA_POP
 	const EVENT_CELADON_GIRL_GOT_LEMONADE
 	const EVENT_GAVE_SAFFRON_GUARDS_DRINK ; reuse spare bit; preserve save layout
-	const EVENT_12A
-	const EVENT_12B
-	const EVENT_12C
-	const EVENT_12D
-	const EVENT_12E
+	; Forest rivalry reuses five unused bits; preserve all saved event offsets.
+	const EVENT_VIRIDIAN_FOREST_RIVALRY_SEEN ; formerly EVENT_12A
+	const EVENT_VIRIDIAN_FOREST_SEVIPER1_GONE ; formerly EVENT_12B
+	const EVENT_VIRIDIAN_FOREST_SEVIPER2_GONE ; formerly EVENT_12C
+	const EVENT_VIRIDIAN_FOREST_ZANGOOSE_GONE ; formerly EVENT_12D
+	const EVENT_VIRIDIAN_FOREST_SEVIPER_BEATEN ; formerly EVENT_12E
 	const EVENT_12F
 	const EVENT_130
 	const EVENT_131

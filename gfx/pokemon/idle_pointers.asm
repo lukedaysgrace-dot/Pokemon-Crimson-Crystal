@@ -501,3 +501,4 @@ AnimationIdlePointers:
 	dba MienshaoAnimationIdle
 	dba HippopotasAnimationIdle
 	dba HippowdonAnimationIdle
+	dba ZangooseAnimationIdle

@@ -522,8 +522,9 @@ JOHTO_POKEMON EQU const_value
 	const MIENSHAO          ;
 	const HIPPOPOTAS        ; 501
 	const HIPPOWDON         ; 502
+	const ZANGOOSE_SCARRED  ; 503; one-time Viridian Forest form, shares Zangoose's Dex entry
 NUM_POKEMON EQU const_value + -1
-NUM_POKEDEX_ENTRIES EQU NUM_POKEMON - 1 ; Aegislash Blade is battle-only
+NUM_POKEDEX_ENTRIES EQU NUM_POKEMON - 2 ; Blade and scarred Zangoose share existing Dex identities
 
 EGG EQU -3
 

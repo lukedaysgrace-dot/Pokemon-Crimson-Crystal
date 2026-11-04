@@ -510,3 +510,4 @@ MonMenuIconPals:
 	icon_pals PURPLE, RED ; MIENSHAO
 	icon_pals BROWN, GREEN ; HIPPOPOTAS
 	icon_pals BROWN, GREEN ; HIPPOWDON
+	icon_pals GRAY, RED ; ZANGOOSE_SCARRED
