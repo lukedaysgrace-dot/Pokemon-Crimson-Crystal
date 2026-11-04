@@ -4,9 +4,25 @@ DEF FOREST_SEVIPER1 EQU 11
 DEF FOREST_SEVIPER2 EQU 12
 
 ForestRivalryRestoreObjects::
-	; Keep the survivor at its final spot after a whiteout against Zangoose.
+; MAPCALLBACK_OBJECTS runs only when the forest is entered from outside
+; (warps, Fly, Teleport, whiteout returns...), never after an in-forest
+; battle or when continuing a save made inside it.
 	checkevent EVENT_VIRIDIAN_FOREST_ZANGOOSE_GONE
 	iftrue .Done
+	checkevent EVENT_VIRIDIAN_FOREST_RIVALRY_SEEN
+	iffalse .Done
+	checkevent EVENT_VIRIDIAN_FOREST_SEVIPER_BEATEN
+	iftrue .Survivor
+	; The player saw the fight start and left (by any route, including a
+	; whiteout) before helping. Zangoose did not survive; the snakes are gone.
+	setevent EVENT_VIRIDIAN_FOREST_ZANGOOSE_PERISHED
+	setevent EVENT_VIRIDIAN_FOREST_ZANGOOSE_GONE
+	setevent EVENT_VIRIDIAN_FOREST_SEVIPER1_GONE
+	setevent EVENT_VIRIDIAN_FOREST_SEVIPER2_GONE
+	return
+
+.Survivor:
+	; Keep the survivor at its final spot after a whiteout against Zangoose.
 	checkevent EVENT_VIRIDIAN_FOREST_SEVIPER1_GONE
 	iffalse .Done
 	checkevent EVENT_VIRIDIAN_FOREST_SEVIPER2_GONE
@@ -116,6 +132,13 @@ ForestRivalryZangooseBattle:
 	reloadmapafterbattle
 	end
 
+ForestRivalryRemains::
+	checkevent EVENT_VIRIDIAN_FOREST_ZANGOOSE_PERISHED
+	iffalse .Nothing
+	jumptext ForestRivalryRemainsText
+.Nothing:
+	end
+
 ForestRivalryKnockback:
 	fix_facing
 	big_step RIGHT
@@ -169,6 +192,20 @@ ForestRivalryScarredText:
 	line "endured now"
 	cont "courses through"
 	cont "its own claws!"
+	done
+
+ForestRivalryRemainsText:
+	text "Tufts of white fur"
+	line "are scattered"
+	cont "here."
+
+	para "The grass is torn"
+	line "up and stained a"
+	cont "dark red."
+
+	para "ZANGOOSE fought"
+	line "its final battle"
+	cont "here, alone."
 	done
 
 ForestRivalryLunge:
