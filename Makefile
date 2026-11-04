@@ -175,6 +175,8 @@ test-learnsets: pokecrystal.gbc
 
 .PHONY: test-exp-relay
 test-exp-relay: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_exp_relay_quest.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_exp_relay_quest.py pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_exp_relay.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_exp_relay.py pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_item_catalog.py

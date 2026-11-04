@@ -115,6 +115,11 @@ ElmsLab_MapScripts:
 ProfElmScript:
 	faceplayer
 	opentext
+	checkevent EVENT_GOT_EXP_RELAY_FROM_ELM
+	iftrue ElmCheckTicket
+	readvar VAR_BADGES
+	ifgreater 5, ElmGiveExpRelayScript
+ElmCheckTicket:
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue ElmCheckMasterBall
 ; Reach Kanto overland first; Surge's badge unlocks the sea route.
@@ -598,9 +603,34 @@ ElmGiveEverstoneScript:
 	end
 
 ElmScript_CallYou:
+	checkevent EVENT_GOT_EXP_RELAY_FROM_ELM
+	iftrue ElmExpRelayReminderScript
 	writetext ElmText_CallYou
 	waitbutton
 ElmScript_NoRoomForEverstone:
+	closetext
+	end
+
+ElmGiveExpRelayScript:
+	farwritetext ElmExpRelayGiftText
+	buttonsound
+	verbosegiveitem EXP_RELAY
+	iffalse .NoRoom
+	setevent EVENT_GOT_EXP_RELAY_FROM_ELM
+; Visiting before the call must not leave a stale invitation queued.
+	readvar VAR_SPECIALPHONECALL
+	ifnotequal SPECIALCALL_EXP_RELAY, .Explain
+	specialphonecall SPECIALCALL_NONE
+.Explain:
+	farwritetext ElmExpRelayExplainText
+	waitbutton
+.NoRoom:
+	closetext
+	end
+
+ElmExpRelayReminderScript:
+	farwritetext ElmExpRelayReminderText
+	waitbutton
 	closetext
 	end
 
@@ -1479,6 +1509,77 @@ ElmGiveEverstoneText2:
 	line "MON you don't want"
 	cont "to evolve."
 	done
+
+PUSHS
+SECTION "Elm EXP RELAY Text", ROMX
+
+ElmExpRelayGiftText:
+	text "ELM: <PLAY_G>!"
+	line "Look at you!"
+
+	para "Six BADGES! Your"
+	line "team has really"
+	cont "grown together."
+
+	para "But what if a new"
+	line "friend joins you"
+	cont "along the way?"
+
+	para "I made something"
+	line "to help pass that"
+	cont "hard work along."
+
+	para "Here! I'd like you"
+	line "to have this."
+	done
+
+ElmExpRelayExplainText:
+	text "ELM: I call it"
+	line "the EXP RELAY!"
+
+	para "Battles build more"
+	line "than levels. They"
+	cont "build Stat EXP."
+
+	para "That's training"
+	line "that helps raise"
+	cont "a #MON's stats."
+
+	para "The RELAY moves"
+	line "all that training"
+	cont "to a new #MON."
+
+	para "The #MON giving"
+	line "its Stat EXP will"
+	cont "lose all of it."
+
+	para "HP, ATTACK,"
+	line "DEFENSE, SPEED and"
+	cont "SPECIAL training!"
+
+	para "Use it from KEY"
+	line "ITEMS outside of"
+	cont "battle."
+
+	para "A veteran can give"
+	line "a new teammate a"
+	cont "head start."
+
+	para "I wonder who will"
+	line "be joining your"
+	cont "team next!"
+	done
+
+ElmExpRelayReminderText:
+	text "ELM: How's the"
+	line "EXP RELAY working?"
+
+	para "Use it from KEY"
+	line "ITEMS outside of"
+	cont "battle."
+	done
+
+POPS
 
 ElmText_CallYou:
 	text "ELM: <PLAY_G>, I'll"

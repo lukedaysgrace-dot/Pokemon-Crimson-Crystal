@@ -1674,8 +1674,8 @@
 	const EVENT_638
 	const EVENT_639
 	const EVENT_63A
-	const EVENT_63B
-	const EVENT_63C
+	const EVENT_ELM_CALLED_ABOUT_EXP_RELAY ; formerly unused EVENT_63B
+	const EVENT_GOT_EXP_RELAY_FROM_ELM ; formerly unused EVENT_63C
 	const EVENT_DAY_CARE_EVIOLITE ; formerly unused EVENT_63D
 	const EVENT_OLIVINE_LIGHTHOUSE_3F_WIDE_LENS ; formerly unused EVENT_63E
 	const EVENT_BURNED_TOWER_B1F_FLAME_ORB ; formerly unused EVENT_63F

@@ -15,7 +15,7 @@ NOTES = {
     'BICYCLE': 'Choose either the Bicycle or Skateboard at the Goldenrod Bike Shop. The other ride cannot be claimed on the same save.',
     'SKATEBOARD': 'Choose either the Skateboard or Bicycle at the Goldenrod Bike Shop. The other ride cannot be claimed on the same save.',
     'ABILITY_CAP': 'Elm gives this after you return the Mystery Egg, provided abilities are enabled for the save.',
-    'EXP_RELAY': 'Acquisition is intentionally undecided. Reusable outside battle. Choose a donor and a different non-Egg recipient, then confirm. All five Gen 2 Stat EXP values are added to the recipient (each capped at 65,535); all five donor values become zero. Both Pokémon’s stats are recalculated. Regular EXP, levels, DVs, moves, abilities, items and happiness stay unchanged. Current HP stays unchanged unless it exceeds the new maximum; fainted Pokémon stay fainted.',
+    'EXP_RELAY': 'Professor Elm calls after six total badges, regardless of order. Speak to him at his New Bark Town lab for this one-time gift. Reusable outside battle. Choose a donor and a different non-Egg recipient, then confirm. All five Gen 2 Stat EXP values are added to the recipient (each capped at 65,535); all five donor values become zero. Both Pokémon’s stats are recalculated. Regular EXP, levels, DVs, moves, abilities, items and happiness stay unchanged. Current HP stays unchanged unless it exceeds the new maximum; fainted Pokémon stay fainted.',
     'PARK_BALL': 'Receive 20 balls for each Bug-Catching Contest.',
     'SAFARI_BALL': 'Thirty balls are supplied for a paid Safari Game. Remaining balls are taken back when the game ends.',
 }
@@ -32,6 +32,7 @@ GIFT_DETAILS = {
     'SUPER_ROD': 'Speak to the fisherman in the Route 12 Super Rod House.',
     'BICYCLE': NOTES['BICYCLE'], 'SKATEBOARD': NOTES['SKATEBOARD'],
     'ABILITY_CAP': NOTES['ABILITY_CAP'],
+    'EXP_RELAY': 'Speak to Professor Elm in his New Bark Town lab after earning six total badges in any order; he calls to invite you back.',
     'SECRETPOTION': 'Ask the Cianwood pharmacist for medicine for the lighthouse Ampharos.',
     'S_S_TICKET': 'Professor Elm’s story gift; follow the post-Surge travel quest.',
     'MYSTERY_EGG': 'Mr. Pokémon on Route 30; take the Egg back to Elm.',

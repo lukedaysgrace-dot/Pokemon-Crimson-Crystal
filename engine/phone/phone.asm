@@ -226,6 +226,7 @@ GetAvailableCallers:
 	ret
 
 CheckSpecialPhoneCall::
+	call QueueElmExpRelayCall
 	ld a, [wSpecialPhoneCallID]
 	and a
 	jr z, .NoPhoneCall
@@ -280,6 +281,36 @@ CheckSpecialPhoneCall::
 	ld hl, SpecialPhoneCallList
 	ld a, 6
 	call AddNTimes
+	ret
+
+QueueElmExpRelayCall:
+; Check the total, not a particular leader. Also catches existing six-badge
+; saves. Leave other story calls queued; retry after they have been answered.
+	ld a, [wSpecialPhoneCallID]
+	and a
+	ret nz
+	ld de, EVENT_ELM_CALLED_ABOUT_EXP_RELAY
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	ret nz
+	ld de, EVENT_GOT_EXP_RELAY_FROM_ELM
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	ret nz
+	ld hl, wBadges
+	ld b, 2
+	call CountSetBits
+	ld a, [wNumSetBits]
+	cp 6
+	ret c
+	ld a, SPECIALCALL_EXP_RELAY
+	ld [wSpecialPhoneCallID], a
+	xor a
+	ld [wSpecialPhoneCallID + 1], a
 	ret
 
 SpecialCallOnlyWhenOutside:

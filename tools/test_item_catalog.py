@@ -25,7 +25,7 @@ class ItemCatalogTests(unittest.TestCase):
         }
         self.assertEqual(set(self.items), expected)
         self.assertEqual(set(self.catalog['counts']['no_sources']), {
-            'BIG_ROOT', 'CLEAR_AMULET', 'COVERT_CLOAK', 'EXP_RELAY', 'LIGHT_CLAY',
+            'BIG_ROOT', 'CLEAR_AMULET', 'COVERT_CLOAK', 'LIGHT_CLAY',
             'METRONOME_ITEM', 'PUNCHING_GLOVE', 'SAFETY_GOGGLES'})
         self.assertEqual(sum(i['category'] == 'TM' for i in self.items.values()), 54)
         self.assertEqual(sum(i['category'] == 'HM' for i in self.items.values()), 7)
@@ -36,10 +36,11 @@ class ItemCatalogTests(unittest.TestCase):
         self.assertEqual({s['method'] for s in item['sources']}, {'Mystery Gift'})
         self.assertNotIn('maps/GoldenrodPokecenter1F.asm', {s['source'] for s in item['sources']})
 
-    def test_exp_relay_is_documented_without_an_acquisition_yet(self):
+    def test_exp_relay_is_elms_six_badge_gift(self):
         item = self.items['EXP_RELAY']
         self.assertEqual(item['category'], 'Key item')
-        self.assertEqual(item['sources'], [])
+        self.assertEqual({s['source'] for s in item['sources']}, {'maps/ElmsLab.asm'})
+        self.assertIn('six total badges', item['notes'])
         self.assertIn('65,535', item['notes'])
         self.assertIn('Stat EXP', item['description'])
 

@@ -74,12 +74,18 @@ Read this before changing the game. Keep it up to date when something here chang
   or wild powder sources. It tests both ROMs, catalog routes and Quick Powder.
 - All type-boosting held items give 20%. Pink Bow boosts Normal; Polkadot Bow
   boosts Fairy (there is no Fairy Feather). Keep their saved item indexes stable.
-- EXP RELAY ($0130) is a reusable field-only Key Item. Its acquisition location
-  is intentionally undecided; do not add a reward until requested. It transfers
+- EXP RELAY ($0130) is a reusable field-only Key Item. Elm calls once after six
+  total badges, regardless of order, using the outdoor special-call system without
+  replacing other pending calls. Talk to him in the lab for the one-time gift and
+  explanation; existing saves with six or more badges also qualify. It transfers
   all five big-endian Stat EXP words with $ffff saturation, then zeroes the donor and
   recalculates both with the normal stat-mode-aware calculator. Current HP only
   clamps down to the new maximum; it never heals or revives. Run
-  `make test-exp-relay` for native transfer and menu cancellation checks.
+  `make test-exp-relay` for both-ROM quest, transfer and menu cancellation checks.
+  `python3 tools/record_exp_relay_quest.py` records the native outdoor call, lab
+  pickup and repeat instructions with game audio under `_artifacts/exp-relay-quest/`.
+  Use `--no-video --rom pokecrystal_debug.gbc --output _artifacts/exp-relay-quest-debug`
+  for the debug walkthrough. Both scripts use only private emulator state.
 
 ## Battle Stat EXP
 - Battle awards retain all five Gen 2 Stat EXP words, division, Pokérus and

@@ -637,6 +637,8 @@ def main():
                           f'League entrance trigger missing in scene {scene}, badges {count}')
 
             print('[Elm: ticket needs Surge, independent of total badges or Hall of Fame]', flush=True)
+            # The earlier six-badge gift is covered by test_exp_relay_quest.py.
+            event('EVENT_GOT_EXP_RELAY_FROM_ELM', True)
             load('ELMS_LAB')
             event('EVENT_GOT_MASTER_BALL_FROM_ELM', True)
             for hall, count, owned in product((False, True), (0, 7, 8, 9, 15, 16), (False, True)):
