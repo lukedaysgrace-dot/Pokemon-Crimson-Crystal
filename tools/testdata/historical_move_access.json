@@ -36963,6 +36963,109 @@
       "WEATHER_BALL",
       "WHIRLWIND",
       "YAWN"
+    ],
+    "ZANGOOSE_SCARRED": [
+      "AERIAL_ACE",
+      "AGILITY",
+      "ATTRACT",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BELLY_DRUM",
+      "BLIZZARD",
+      "BODY_SLAM",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
+      "COMET_PUNCH",
+      "COUNTER",
+      "CRUSH_CLAW",
+      "CURSE",
+      "DEFENSE_CURL",
+      "DETECT",
+      "DIG",
+      "DISABLE",
+      "DOUBLE_EDGE",
+      "DOUBLE_KICK",
+      "DOUBLE_TEAM",
+      "DYNAMICPUNCH",
+      "ENDURE",
+      "FACADE",
+      "FAKE_OUT",
+      "FALSE_SWIPE",
+      "FIRE_BLAST",
+      "FIRE_PUNCH",
+      "FLAIL",
+      "FLAMETHROWER",
+      "FOCUS_BLAST",
+      "FRUSTRATION",
+      "FURY_CUTTER",
+      "FURY_SWIPES",
+      "GIGA_DRAIN",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "GUNK_SHOT",
+      "HEADBUTT",
+      "HIDDEN_POWER",
+      "HONE_CLAWS",
+      "HYPER_BEAM",
+      "ICE_BEAM",
+      "ICE_PUNCH",
+      "ICY_WIND",
+      "INCINERATE",
+      "IRON_TAIL",
+      "KNOCK_OFF",
+      "LEER",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "METAL_CLAW",
+      "MIMIC",
+      "MUD_SLAP",
+      "NIGHT_SLASH",
+      "POISON_JAB",
+      "PROTECT",
+      "PURSUIT",
+      "QUICK_ATTACK",
+      "RAIN_DANCE",
+      "RAZOR_WIND",
+      "REST",
+      "RETURN",
+      "REVERSAL",
+      "ROAR",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "ROCK_TOMB",
+      "ROLLOUT",
+      "SCRATCH",
+      "SEED_BOMB",
+      "SEISMIC_TOSS",
+      "SHADOW_BALL",
+      "SHADOW_CLAW",
+      "SKULL_BASH",
+      "SLASH",
+      "SLEEP_TALK",
+      "SNORE",
+      "SOLARBEAM",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SURF",
+      "SWAGGER",
+      "SWIFT",
+      "SWORDS_DANCE",
+      "TACKLE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "THIEF",
+      "THUNDER",
+      "THUNDERBOLT",
+      "THUNDERPUNCH",
+      "THUNDER_WAVE",
+      "TOXIC",
+      "WATER_PULSE",
+      "WORK_UP",
+      "X_SCISSOR",
+      "ZEN_HEADBUTT"
     ]
   },
   "lumi_forms": {
@@ -50472,6 +50575,12 @@
       "WEATHER_BALL",
       "WHIRLWIND",
       "YAWN"
+    ],
+    "ZANGOOSE_SCARRED": [
+      "COMET_PUNCH",
+      "FAKE_OUT",
+      "SKULL_BASH",
+      "TACKLE"
     ]
   },
   "removed_access": {
@@ -52568,7 +52677,11 @@
     "PHANTUMP": [],
     "TREVENANT": [],
     "MIENFOO": [],
-    "MIENSHAO": []
+    "MIENSHAO": [],
+    "ZANGOOSE_SCARRED": [
+      "CUT",
+      "DRAIN_PUNCH"
+    ]
   },
   "addition_provenance": {
     "BULBASAUR": {
@@ -60043,6 +60156,20 @@
         "ps_learnsets.ts:hippopotas:5E",
         "gen9legends_learnsets.ts:hippopotas:9M",
         "lumi:449:E"
+      ]
+    },
+    "ZANGOOSE_SCARRED": {
+      "COMET_PUNCH": [
+        "gen9legends_learnsets.ts:zangoose:9M"
+      ],
+      "FAKE_OUT": [
+        "gen9legends_learnsets.ts:zangoose:9M"
+      ],
+      "SKULL_BASH": [
+        "gen9legends_learnsets.ts:zangoose:9M"
+      ],
+      "TACKLE": [
+        "gen9legends_learnsets.ts:zangoose:9L1"
       ]
     }
   },
@@ -98592,6 +98719,109 @@
       "WEATHER_BALL",
       "WHIRLWIND",
       "YAWN"
+    ],
+    "ZANGOOSE_SCARRED": [
+      "AERIAL_ACE",
+      "AGILITY",
+      "ATTRACT",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BELLY_DRUM",
+      "BLIZZARD",
+      "BODY_SLAM",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
+      "COMET_PUNCH",
+      "COUNTER",
+      "CRUSH_CLAW",
+      "CURSE",
+      "DEFENSE_CURL",
+      "DETECT",
+      "DIG",
+      "DISABLE",
+      "DOUBLE_EDGE",
+      "DOUBLE_KICK",
+      "DOUBLE_TEAM",
+      "DYNAMICPUNCH",
+      "ENDURE",
+      "FACADE",
+      "FAKE_OUT",
+      "FALSE_SWIPE",
+      "FIRE_BLAST",
+      "FIRE_PUNCH",
+      "FLAIL",
+      "FLAMETHROWER",
+      "FOCUS_BLAST",
+      "FRUSTRATION",
+      "FURY_CUTTER",
+      "FURY_SWIPES",
+      "GIGA_DRAIN",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "GUNK_SHOT",
+      "HEADBUTT",
+      "HIDDEN_POWER",
+      "HONE_CLAWS",
+      "HYPER_BEAM",
+      "ICE_BEAM",
+      "ICE_PUNCH",
+      "ICY_WIND",
+      "INCINERATE",
+      "IRON_TAIL",
+      "KNOCK_OFF",
+      "LEER",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "METAL_CLAW",
+      "MIMIC",
+      "MUD_SLAP",
+      "NIGHT_SLASH",
+      "POISON_JAB",
+      "PROTECT",
+      "PURSUIT",
+      "QUICK_ATTACK",
+      "RAIN_DANCE",
+      "RAZOR_WIND",
+      "REST",
+      "RETURN",
+      "REVERSAL",
+      "ROAR",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "ROCK_TOMB",
+      "ROLLOUT",
+      "SCRATCH",
+      "SEED_BOMB",
+      "SEISMIC_TOSS",
+      "SHADOW_BALL",
+      "SHADOW_CLAW",
+      "SKULL_BASH",
+      "SLASH",
+      "SLEEP_TALK",
+      "SNORE",
+      "SOLARBEAM",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SURF",
+      "SWAGGER",
+      "SWIFT",
+      "SWORDS_DANCE",
+      "TACKLE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "THIEF",
+      "THUNDER",
+      "THUNDERBOLT",
+      "THUNDERPUNCH",
+      "THUNDER_WAVE",
+      "TOXIC",
+      "WATER_PULSE",
+      "WORK_UP",
+      "X_SCISSOR",
+      "ZEN_HEADBUTT"
     ]
   },
   "final_level_up": {
@@ -141694,6 +141924,132 @@
         61,
         "SUPERPOWER"
       ]
+    ],
+    "ZANGOOSE_SCARRED": [
+      [
+        1,
+        "LEER"
+      ],
+      [
+        1,
+        "SCRATCH"
+      ],
+      [
+        1,
+        "COUNTER"
+      ],
+      [
+        1,
+        "CURSE"
+      ],
+      [
+        1,
+        "DISABLE"
+      ],
+      [
+        1,
+        "DOUBLE_KICK"
+      ],
+      [
+        1,
+        "FLAIL"
+      ],
+      [
+        1,
+        "FURY_SWIPES"
+      ],
+      [
+        1,
+        "NIGHT_SLASH"
+      ],
+      [
+        4,
+        "QUICK_ATTACK"
+      ],
+      [
+        7,
+        "FURY_CUTTER"
+      ],
+      [
+        12,
+        "HONE_CLAWS"
+      ],
+      [
+        12,
+        "METAL_CLAW"
+      ],
+      [
+        12,
+        "PURSUIT"
+      ],
+      [
+        13,
+        "FALSE_SWIPE"
+      ],
+      [
+        15,
+        "AERIAL_ACE"
+      ],
+      [
+        16,
+        "SLASH"
+      ],
+      [
+        25,
+        "SWORDS_DANCE"
+      ],
+      [
+        26,
+        "WORK_UP"
+      ],
+      [
+        28,
+        "KNOCK_OFF"
+      ],
+      [
+        31,
+        "DETECT"
+      ],
+      [
+        33,
+        "FACADE"
+      ],
+      [
+        34,
+        "CRUSH_CLAW"
+      ],
+      [
+        34,
+        "X_SCISSOR"
+      ],
+      [
+        42,
+        "TAKE_DOWN"
+      ],
+      [
+        43,
+        "CLOSE_COMBAT"
+      ],
+      [
+        43,
+        "TAUNT"
+      ],
+      [
+        44,
+        "BODY_SLAM"
+      ],
+      [
+        46,
+        "BELLY_DRUM"
+      ],
+      [
+        49,
+        "DOUBLE_EDGE"
+      ],
+      [
+        56,
+        "GIGA_IMPACT"
+      ]
     ]
   },
   "final_tmhm": {
@@ -154642,6 +154998,47 @@
       "ATTRACT",
       "WEATHER_BALL",
       "STRENGTH"
+    ],
+    "ZANGOOSE_SCARRED": [
+      "HEADBUTT",
+      "CURSE",
+      "ROAR",
+      "TOXIC",
+      "ROCK_SMASH",
+      "HIDDEN_POWER",
+      "SUNNY_DAY",
+      "WORK_UP",
+      "HYPER_BEAM",
+      "PROTECT",
+      "FACADE",
+      "THUNDER",
+      "RETURN",
+      "DIG",
+      "SHADOW_BALL",
+      "MUD_SLAP",
+      "SWAGGER",
+      "ICE_PUNCH",
+      "KNOCK_OFF",
+      "SWIFT",
+      "THUNDERPUNCH",
+      "REST",
+      "ATTRACT",
+      "THIEF",
+      "FIRE_PUNCH",
+      "FURY_CUTTER",
+      "HONE_CLAWS",
+      "NIGHT_SLASH",
+      "ZEN_HEADBUTT",
+      "STRENGTH",
+      "BLIZZARD",
+      "FIRE_BLAST",
+      "FLAMETHROWER",
+      "ICE_BEAM",
+      "RAIN_DANCE",
+      "ROCK_TOMB",
+      "SOLARBEAM",
+      "SURF",
+      "THUNDERBOLT"
     ]
   },
   "final_egg_moves": {
@@ -156984,6 +157381,20 @@
       "SLACK_OFF",
       "BODY_SLAM",
       "SLEEP_TALK"
+    ],
+    "ZANGOOSE_SCARRED": [
+      "COUNTER",
+      "DISABLE",
+      "DOUBLE_KICK",
+      "FLAIL",
+      "FURY_SWIPES",
+      "RAZOR_WIND",
+      "BELLY_DRUM",
+      "CURSE",
+      "IRON_TAIL",
+      "METAL_CLAW",
+      "NIGHT_SLASH",
+      "ROAR"
     ]
   },
   "final_utility": {
@@ -157488,7 +157899,8 @@
     "SABLEYE": 31,
     "AEGISLASH_BLADE": 7,
     "HIPPOPOTAS": 3,
-    "HIPPOWDON": 3
+    "HIPPOWDON": 3,
+    "ZANGOOSE_SCARRED": 19
   },
   "final_tutors": {
     "BULBASAUR": [
@@ -169677,6 +170089,41 @@
       "ROCK_SLIDE",
       "SNORE",
       "STONE_EDGE",
+      "WATER_PULSE"
+    ],
+    "ZANGOOSE_SCARRED": [
+      "AGILITY",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BRICK_BREAK",
+      "COMET_PUNCH",
+      "DEFENSE_CURL",
+      "DOUBLE_TEAM",
+      "DYNAMICPUNCH",
+      "ENDURE",
+      "FAKE_OUT",
+      "FOCUS_BLAST",
+      "FRUSTRATION",
+      "GIGA_DRAIN",
+      "GRASS_KNOT",
+      "GUNK_SHOT",
+      "ICY_WIND",
+      "INCINERATE",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "MIMIC",
+      "POISON_JAB",
+      "REVERSAL",
+      "ROCK_SLIDE",
+      "ROLLOUT",
+      "SEED_BOMB",
+      "SEISMIC_TOSS",
+      "SHADOW_CLAW",
+      "SKULL_BASH",
+      "SNORE",
+      "TACKLE",
       "WATER_PULSE"
     ]
   },
@@ -209325,8 +209772,119 @@
       "ZEN_HEADBUTT"
     ],
     "HIPPOPOTAS": [],
-    "HIPPOWDON": []
+    "HIPPOWDON": [],
+    "ZANGOOSE_SCARRED": [
+      "AERIAL_ACE",
+      "AGILITY",
+      "ATTRACT",
+      "AURA_SPHERE",
+      "BATON_PASS",
+      "BELLY_DRUM",
+      "BLIZZARD",
+      "BODY_SLAM",
+      "BRICK_BREAK",
+      "CLOSE_COMBAT",
+      "COUNTER",
+      "CRUSH_CLAW",
+      "CURSE",
+      "CUT",
+      "DEFENSE_CURL",
+      "DETECT",
+      "DIG",
+      "DISABLE",
+      "DOUBLE_EDGE",
+      "DOUBLE_KICK",
+      "DOUBLE_TEAM",
+      "DRAIN_PUNCH",
+      "DYNAMICPUNCH",
+      "ENDURE",
+      "FACADE",
+      "FALSE_SWIPE",
+      "FIRE_BLAST",
+      "FIRE_PUNCH",
+      "FLAIL",
+      "FLAMETHROWER",
+      "FOCUS_BLAST",
+      "FRUSTRATION",
+      "FURY_CUTTER",
+      "FURY_SWIPES",
+      "GIGA_DRAIN",
+      "GIGA_IMPACT",
+      "GRASS_KNOT",
+      "GUNK_SHOT",
+      "HEADBUTT",
+      "HIDDEN_POWER",
+      "HONE_CLAWS",
+      "HYPER_BEAM",
+      "ICE_BEAM",
+      "ICE_PUNCH",
+      "ICY_WIND",
+      "INCINERATE",
+      "IRON_TAIL",
+      "KNOCK_OFF",
+      "LEER",
+      "LOW_KICK",
+      "LOW_SWEEP",
+      "MEGA_KICK",
+      "MEGA_PUNCH",
+      "METAL_CLAW",
+      "MIMIC",
+      "MUD_SLAP",
+      "NIGHT_SLASH",
+      "POISON_JAB",
+      "PROTECT",
+      "PURSUIT",
+      "QUICK_ATTACK",
+      "RAIN_DANCE",
+      "RAZOR_WIND",
+      "REST",
+      "RETURN",
+      "REVERSAL",
+      "ROAR",
+      "ROCK_SLIDE",
+      "ROCK_SMASH",
+      "ROCK_TOMB",
+      "ROLLOUT",
+      "SCRATCH",
+      "SEED_BOMB",
+      "SEISMIC_TOSS",
+      "SHADOW_BALL",
+      "SHADOW_CLAW",
+      "SLASH",
+      "SLEEP_TALK",
+      "SNORE",
+      "SOLARBEAM",
+      "STRENGTH",
+      "SUBSTITUTE",
+      "SUNNY_DAY",
+      "SURF",
+      "SWAGGER",
+      "SWIFT",
+      "SWORDS_DANCE",
+      "TAKE_DOWN",
+      "TAUNT",
+      "THIEF",
+      "THUNDER",
+      "THUNDERBOLT",
+      "THUNDERPUNCH",
+      "THUNDER_WAVE",
+      "TOXIC",
+      "WATER_PULSE",
+      "WORK_UP",
+      "X_SCISSOR",
+      "ZEN_HEADBUTT"
+    ]
   },
   "authored_restorations": "tools/testdata/authored_move_restorations.json",
-  "roster_replacement_authorization": "User-requested ten retired slots replaced with nine Pokemon and battle-only Aegislash Blade; new Stance Change and Kings Shield hooks are intentional. Other species indexes and save layout stay stable."
+  "roster_replacement_authorization": "User-requested ten retired slots replaced with nine Pokemon and battle-only Aegislash Blade; new Stance Change and Kings Shield hooks are intentional. Other species indexes and save layout stay stable.",
+  "special_encounters": {
+    "ZANGOOSE_SCARRED": {
+      "base_movepool": "ZANGOOSE",
+      "encounter_only_moves": [
+        "DIRE_CLAW"
+      ],
+      "source": "engine/events/forest_rivalry.asm",
+      "policy": "Only the one-time forest individual knows Dire Claw. No level, reminder, tutor, machine or egg route grants it."
+    }
+  }
 }

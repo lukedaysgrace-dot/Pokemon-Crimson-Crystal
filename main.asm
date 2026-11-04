@@ -1020,3 +1020,6 @@ INCLUDE "engine/gfx/burned_tower_palette.asm"
 
 SECTION "Item save upgrade", ROMX
 INCLUDE "engine/menus/item_save_upgrade.asm"
+
+SECTION "Forest Rivalry", ROMX
+INCLUDE "engine/events/forest_rivalry.asm"

@@ -1017,3 +1017,5 @@ PokemonPicPointers::
 	dba HippopotasBackpic
 	dba HippowdonFrontpic
 	dba HippowdonBackpic
+	dba ZangooseFrontpic
+	dba ZangooseBackpic

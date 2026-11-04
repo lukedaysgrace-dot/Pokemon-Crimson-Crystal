@@ -165,3 +165,5 @@ OverworldSprites:
 	overworld_sprite RioluSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite HostessSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite RocketAsleepSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
+	overworld_sprite ZangooseSpriteGFX, 12, WALKING_SPRITE, PAL_OW_ROCK
+	overworld_sprite SeviperSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE

@@ -504,5 +504,6 @@ UtilityTutorCompatibility:
 	db %00000111 ; MIENSHAO
 	db %00000011 ; HIPPOPOTAS
 	db %00000011 ; HIPPOWDON
+	db %00010011 ; ZANGOOSE_SCARRED
 UtilityTutorCompatibilityEnd:
 	assert UtilityTutorCompatibilityEnd - UtilityTutorCompatibility == NUM_POKEMON

@@ -968,6 +968,15 @@ ValidateTempWildMonSpecies:
 	ret
 .visible
 	ld a, h
+	cp HIGH(ZANGOOSE_SCARRED)
+	jr nz, .ordinary_species
+	ld a, l
+	cp LOW(ZANGOOSE_SCARRED)
+	jr nz, .ordinary_species
+	scf ; this individual is available only through the scripted forest event
+	ret
+.ordinary_species
+	ld a, h
 	or l
 	scf
 	ret z

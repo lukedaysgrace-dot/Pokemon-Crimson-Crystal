@@ -85,7 +85,11 @@ test-battle-weather: pokecrystal.gbc pokecrystal_debug.gbc
 
 .PHONY: test-battle-type-icons
 test-battle-type-icons: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_battle_picture_tiles.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_battle_picture_tiles.py pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/type_icon_checks.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/type_icon_animation_checks.py --rom pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/type_icon_animation_checks.py --rom pokecrystal_debug.gbc
 
 .PHONY: test-cap-fast
 test-cap-fast: pokecrystal.gbc pokecrystal_debug.gbc
@@ -243,6 +247,13 @@ test-evolutions: pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_evolution_sweep.py pokecrystal.gbc
 
 .PHONY: test-mienfoo
+.PHONY: test-forest-rivalry
+test-forest-rivalry: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_forest_rivalry.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_forest_rivalry.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/forest_rivalry_checks.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/forest_rivalry_checks.py --rom pokecrystal_debug.gbc --output _artifacts/forest-rivalry-debug
+
 .PHONY: test-hippos
 test-hippos: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_hippopotas_hippowdon.py pokecrystal.gbc

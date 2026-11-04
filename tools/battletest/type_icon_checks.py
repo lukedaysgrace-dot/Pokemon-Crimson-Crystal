@@ -31,6 +31,37 @@ def run(rom):
     out.mkdir(parents=True, exist_ok=True)
     checks = 0
     captures = []
+    watch_names = None
+    live_frames = 0
+    original_tick = h.tick
+    art_cache = {}
+    for name in NAMES:
+        source = (ROOT / 'gfx/battle_type_icons' / (name + '.1bpp')).read_bytes()
+        art_cache[name] = source
+
+    def tick(frames=1):
+        nonlocal live_frames
+        for _ in range(frames):
+            original_tick(1)
+            if watch_names is None or not pb.memory[0xff40] & 0x80:
+                continue
+            visible = 0
+            for slot, ((x, y, tile, palette, color), name) in enumerate(zip(CELLS, watch_names)):
+                if (m.read('wTileMap', y*20+x) != tile or
+                        pb.memory[0, 0x9800+y*32+x] != tile):
+                    continue
+                mask = art_cache[name]
+                if slot in (1, 3) and watch_names[slot] == watch_names[slot-1]: mask = bytes(8)
+                expected = bytes(v for row in mask for v in
+                                 (row if color & 1 else 0, row if color & 2 else 0))
+                check(bytes(pb.memory[1, 0x9600+slot*16:0x9610+slot*16]) == expected,
+                      f'live animation: exact icon art in slot {slot}')
+                check(pb.memory[1, 0x9800+y*32+x] == palette | 8,
+                      f'live animation: hardware icon attribute in slot {slot}')
+                visible += 1
+            live_frames += bool(visible)
+
+    h.tick = tick
 
     def check(ok, message):
         nonlocal checks
@@ -181,8 +212,13 @@ def run(rom):
              ['dark', 'dark', 'water', 'ice']),
             ('psychic-fairy', 'MEW', 'CLEFABLE', 0,
              ['fairy', 'fairy', 'psychic', 'psychic']),
+            ('forest-seviper', 'MEWTWO', 'SEVIPER', 0,
+             ['poison', 'dark', 'psychic', 'psychic']),
+            ('forest-zangoose', 'MEWTWO', 'ZANGOOSE_SCARRED', 0,
+             ['normal', 'poison', 'psychic', 'psychic']),
         ]
         for name, player, enemy, rules, names in cases:
+            watch_names = None
             state = encounter(player, enemy, rules)
             verify(names, name)
             capture(name)
@@ -195,6 +231,7 @@ def run(rom):
             wait(h, lambda: 'FIGHT' in tile_text(h))
             verify(names, name + ': move menu return')
             # A real attack runs the animation and end-of-turn palette restore.
+            watch_names = names
             h.press('a', hold=4, wait=60)
             h.press('down', hold=4, wait=20)
             pp = m.read('wBattleMonPP', 1)
@@ -203,15 +240,21 @@ def run(rom):
                  'FIGHT' in tile_text(h), advance=True)
             verify(names, name + ': animation return')
             # The Pack replaces VRAM and palettes; its ordinary return rebuilds.
+            watch_names = None
             restore(state)
             h.press('down', hold=4, wait=20)
             h.press('a', hold=4, wait=100)
             h.press('b', hold=4, wait=100)
             wait(h, lambda: 'FIGHT' in tile_text(h))
             verify(names, name + ': Pack return')
+            if name.startswith('forest-'):
+                watch_names = names
+                native('GetEnemyMonFrontpic')
+                verify(names, name + ': enemy picture reload')
 
-        (out / 'checks.json').write_text(json.dumps({'checks': checks, 'rom': rom.name}, indent=2))
-        print(f'{rom.name}: {checks} type-icon checks passed', flush=True)
+        check(live_frames > 0, 'live animation frames were inspected')
+        (out / 'checks.json').write_text(json.dumps({'checks': checks, 'live_frames': live_frames, 'rom': rom.name}, indent=2))
+        print(f'{rom.name}: {checks} type-icon checks passed across {live_frames} live frames', flush=True)
         return captures
     finally:
         pb.stop(save=False)

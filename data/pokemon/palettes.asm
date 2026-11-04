@@ -1034,3 +1034,5 @@ INCBIN "gfx/pokemon/hippopotas/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/hippopotas/shiny.pal"
 INCBIN "gfx/pokemon/hippowdon/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/hippowdon/shiny.pal"
+INCBIN "gfx/pokemon/zangoose/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/zangoose/shiny.pal"

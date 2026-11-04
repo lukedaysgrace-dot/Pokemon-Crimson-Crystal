@@ -289,3 +289,13 @@ SECTION "Sleeping Rocket Sprite", ROMX
 RocketAsleepSpriteGFX::       INCBIN "gfx/sprites/rocket_asleep.2bpp"
 RocketAsleepSpriteGFXEnd::
 assert RocketAsleepSpriteGFXEnd - RocketAsleepSpriteGFX == 4 * 16
+
+SECTION "Zangoose Walking Sprite", ROMX
+ZangooseSpriteGFX:: INCBIN "gfx/sprites/zangoose.2bpp"
+ZangooseSpriteGFXEnd::
+assert ZangooseSpriteGFXEnd - ZangooseSpriteGFX == 24 * 16
+
+SECTION "Seviper Walking Sprite", ROMX
+SeviperSpriteGFX:: INCBIN "gfx/sprites/seviper.2bpp"
+SeviperSpriteGFXEnd::
+assert SeviperSpriteGFXEnd - SeviperSpriteGFX == 24 * 16

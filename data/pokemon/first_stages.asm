@@ -502,3 +502,4 @@ FirstEvoStages::
 	dw MIENFOO ; MIENSHAO
 	dw HIPPOPOTAS ; HIPPOPOTAS
 	dw HIPPOPOTAS ; HIPPOWDON
+	dw ZANGOOSE ; ZANGOOSE_SCARRED offspring are ordinary Zangoose

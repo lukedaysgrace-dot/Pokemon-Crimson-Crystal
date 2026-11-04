@@ -10,8 +10,8 @@ Read this before changing the game. Keep it up to date when something here chang
   need `tools/battletest/prepare_mbc30.py` run first.
 
 ## ROM0 (home bank) is almost full
-- Fixed-bank free space is 94 bytes in release and 88 bytes in debug, split into
-  small gaps; the largest gaps are 37 and 16 bytes respectively. Check the `SLACK`
+- Fixed-bank free space is 91 bytes in release and 85 bytes in debug, split into
+  small gaps; the largest gaps are 28 and 18 bytes respectively. Check the `SLACK`
   line for ROM0 in `pokecrystal.map` /
   `pokecrystal_debug.map`.
 - If a build fails with `Unable to place "..." (ROM0 section) anywhere`, ROM0 is out of
@@ -32,10 +32,30 @@ Read this before changing the game. Keep it up to date when something here chang
 - Bank-1 BG tiles $60-$63 hold the four symbols. Palette 5 colors 1/2/3 and
   EXP palette color 1 provide independent colors; EXP/star art uses only 0/2/3.
   Preserve these slots when changing animation palettes or attribute restoration.
+  Animated front pictures skip $60-$63 too: upload $31-$5f, then $64-$7f,
+  then $80-$ff in bank 1, and map animation tile indexes through the same gap.
+  Bank-1 $7f is picture data; textbox spaces use bank 0. The padded animation
+  limit is 252 tiles (Dusknoir fills it). Do not restore the old $7f-only gap.
+  `BitmasksPointers` is uniformly `dw`, including appended/shared forms; its
+  masks live in the same ROM bank. A stray `dba` breaks subsequent animations.
   The move info box ends at column 9 and its compact PP row fits inside it.
+- Animation palette updates rebuild only the symbols' display colors after
+  DMG remapping. Their backgrounds follow the HP palettes; fully flat HP
+  palettes hide their symbols too. Dark uses RGB 18/10/25 on black and its
+  ordinary color otherwise. Clearing either HUD also changes its two icon
+  cells to bank-0 spaces in that side's HP palette: bank-1 $7f is art.
+  Complete the opponent-HUD upload before queued SHOW_MON effects can reset
+  the BG-map third; otherwise the player's HP panel can linger without icons.
 - Run `make test-battle-type-icons BATTLE_TEST_PYTHON=.venv/bin/python` for both
   ROMs, all symbols/colors/slots, typing modes, animation and menu returns.
   Screenshots and the all-type chart go in `_artifacts/battle-type-icons/`.
+  That target also runs `tools/test_battle_picture_tiles.py` for exact native
+  frame maps, pointer widths, VRAM uploads and the largest animation. The HUD
+  suite checks the forest species and explicit enemy-picture reloads.
+  `type_icon_animation_checks.py` checks all 256 BG mappings and both sides of
+  blackout, flash and custom-palette animations. Add `--all-moves` for every
+  move animation, or `--record` for a focused video with native game audio in
+  `_artifacts/type-icon-animation-fix/`. All fixtures use private emulator state.
 
 ## Streamed overworld rendering
 - Walking decodes only the entering edge into the existing VBlank queues through
@@ -102,7 +122,7 @@ Read this before changing the game. Keep it up to date when something here chang
   all levels, caps, sharing, switching, fainting and subsequent battle entry.
 
 ## Species additions
-- There are 502 internal species indexes and 501 visible Dex entries. Append new
+- There are 503 internal species indexes and 501 visible Dex entries. Append new
   indexes for ordinary additions; displayed regional numbering is separate in
   `data/pokemon/dex_order_new.asm`.
 - The retired Spoink, Lotad, Spheal and Flittle families were explicitly replaced
@@ -156,6 +176,28 @@ Read this before changing the game. Keep it up to date when something here chang
   Run `make test-hippos` for the native family and battle checks.
 - The current seen/caught fields are 63 bytes each (capacity 504 species).
   Exceeding that capacity requires reviewing WRAM/SRAM and save migration.
+- ZANGOOSE_SCARRED appends at internal 503 for Viridian Forest's one-time level-50
+  survivor. It is Normal/Poison in both typing modes, shares Zangoose's art,
+  stats/abilities and Dex identity, and retains its form through capture, PC and
+  v5 saves. Its offspring are ordinary pure-Normal Zangoose. Dire Claw is injected
+  only into this wild encounter; neither form learns it by level, reminder,
+  machine, tutor or breeding. Ordinary encounter selection rejects the form.
+  The event uses Zangoose at 2,30 and Seviper at 2,31 / 3,30, with triggers at
+  6,30 / 6,31. All three cycle walking frames in place. Zangoose uses Wimpod's
+  gray body shade with red markings in a forest-local palette. The intro knocks
+  the right-hand Seviper to 4,30 and back; talking to it repeats a mutual lunge
+  without tile movement or a battle. Only the lower Seviper starts a battle.
+  The other flees via column 6, then Zangoose steps once right to 3,30 and faces
+  down toward the player at 3,31. Both battles prevent all escape methods; a whiteout
+  preserves the unfinished encounter, while catching or fainting Zangoose ends it.
+  Five unused EVENT_12A..12E bits hold progress without shifting save offsets.
+  The Viridian group's unused swimmer graphics entries now load the supplied
+  full walking sheets. New NPC sprite IDs shift the icon range's end to $e6;
+  the runtime-only Day-Care sentinels are $e6/$e7, below variables at $f0.
+  Run `make test-forest-rivalry`; add `--record` to
+  `python3 tools/battletest/forest_rivalry_checks.py` for the complete native
+  event with audio in `_artifacts/forest-rivalry/`. Fixtures clear `hOAMUpdate`
+  after staged map loading; hardware OAM checks prove all three actors render.
 
 ## Intentional choices: do not "fix"
 - Proton's lines keep "damn": `maps/RadioTower4F.asm` ("Damn it! Not to") and
@@ -246,7 +288,7 @@ Read this before changing the game. Keep it up to date when something here chang
   native switches/reveals with audio under `_artifacts/illusion/`.
 
 ## Reports
-Modern height/weight references for all 502 slots are in
+Modern height/weight references for all 503 slots are in
 `tools/testdata/species_dimensions.json`. Run `python3 tools/audit_species_dimensions.py
 --rom pokecrystal.gbc --rom pokecrystal_debug.gbc` (also part of `make audit-static`).
 Dipplin is 0.4 m / 4.4 kg; Bloodmoon Ursaluna is 2.7 m / 333.0 kg. PokeAPI

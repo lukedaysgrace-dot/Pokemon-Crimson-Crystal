@@ -497,7 +497,11 @@ BitmasksPointers:
 	dw JirachiBitmasks
 	dw PhantumpBitmasks
 	dw TrevenantBitmasks
-	dba MienfooBitmasks
-	dba MienshaoBitmasks
-	dba HippopotasBitmasks
-	dba HippowdonBitmasks
+	dw MienfooBitmasks
+	dw MienshaoBitmasks
+	dw HippopotasBitmasks
+	dw HippowdonBitmasks
+	dw ZangooseBitmasks
+BitmasksPointersEnd:
+	assert BitmasksPointersEnd - BitmasksPointers == NUM_POKEMON * 2
+	assert BANK(ZangooseBitmasks) == BANK(BitmasksPointers)

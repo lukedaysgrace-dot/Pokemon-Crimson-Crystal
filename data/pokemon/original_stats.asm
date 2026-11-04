@@ -984,6 +984,8 @@ OriginalPokemonStats:
 	db  86,  76,  86,  95, 116,  56
 	dw ZANGOOSE
 	db  73, 115,  60,  90,  60,  60
+	dw ZANGOOSE_SCARRED
+	db  73, 115,  60,  90,  60,  60
 	dw ZAPDOS
 	db  90,  90,  85, 100, 125,  90
 	dw ZUBAT

@@ -501,3 +501,4 @@ FramesPointers:
 	dba MienshaoFrames
 	dba HippopotasFrames
 	dba HippowdonFrames
+	dba ZangooseFrames

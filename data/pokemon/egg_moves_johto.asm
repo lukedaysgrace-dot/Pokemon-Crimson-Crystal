@@ -352,6 +352,7 @@ EggMovePointers2::
 	dw NoEggMoves2 ; MIENSHAO
 	dw HippopotasEggMoves ; HIPPOPOTAS
 	dw NoEggMoves2 ; HIPPOWDON
+	dw NoEggMoves2 ; ZANGOOSE_SCARRED
 
 ChikoritaEggMoves:
 	dw VINE_WHIP

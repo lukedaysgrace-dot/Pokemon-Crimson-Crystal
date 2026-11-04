@@ -502,3 +502,4 @@ PokedexDataPointerTable:
 	dba MienshaoPokedexEntry
 	dba HippopotasPokedexEntry
 	dba HippowdonPokedexEntry
+	dba ZangoosePokedexEntry

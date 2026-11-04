@@ -188,7 +188,21 @@ def audit_pack_palettes(audit: Audit) -> None:
 
 def audit_pokemon_animation_frames(audit: Audit) -> None:
     """Frame zero is the base picture; other frames index a pointer table."""
+    pointers = re.findall(r'^\s*(dw|dba)\s+(\w+)',
+                          (ROOT / 'gfx/pokemon/bitmask_pointers.asm').read_text(), re.M)
+    species = re.findall(r'^\s*const\s+\w+',
+                         (ROOT / 'constants/pokemon_constants.asm').read_text().split('NUM_POKEMON', 1)[0], re.M)
+    audit.check(len(pointers) == len(species) and all(kind == 'dw' for kind, _ in pointers),
+                'BitmasksPointers must contain exactly one two-byte pointer per species')
     for frames in sorted((ROOT / 'gfx/pokemon').rglob('frames.asm')):
+        graphic = frames.parent / 'front.animated.2bpp'
+        dimensions = frames.parent / 'front.dimensions'
+        if graphic.is_file() and dimensions.is_file():
+            side = dimensions.read_bytes()[0] & 15
+            padded_tiles = 49 + graphic.stat().st_size // 16 - side * side
+            audit.check(padded_tiles <= 252,
+                        f'{graphic.relative_to(ROOT)}: {padded_tiles} padded tiles exceed '
+                        'the 252 slots left after reserving the four HUD type icons')
         count = len(re.findall(r'^\s*dw\s+\.frame\d+\s*$', frames.read_text(), re.M))
         for name in ('anim.asm', 'anim_idle.asm'):
             animation = frames.parent / name

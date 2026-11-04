@@ -501,3 +501,4 @@ AnimationPointers:
 	dba MienshaoAnimation
 	dba HippopotasAnimation
 	dba HippowdonAnimation
+	dba ZangooseAnimation

@@ -30,7 +30,7 @@ def layout():
     constants = re.findall(r'^\s*const\s+(\w+)', (ROOT / 'constants/pokemon_constants.asm').read_text(), re.M)
     pointers = re.findall(r'^\s*dba\s+(\w+)', (ROOT / 'data/pokemon/dex_entry_pointers.asm').read_text(), re.M)
     includes = dict(re.findall(r'(\w+)::\s+INCLUDE "([^"]+)"', (ROOT / 'data/pokemon/dex_entries.asm').read_text()))
-    assert len(pointers) == 502
+    assert len(pointers) == len(re.findall(r'^\s*const\s+(\w+)', (ROOT / 'constants/pokemon_constants.asm').read_text().split('NUM_POKEMON', 1)[0], re.M))
     return {name: (label, includes[label]) for name, label in zip(constants, pointers)}
 
 

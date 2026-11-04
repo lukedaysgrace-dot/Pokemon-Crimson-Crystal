@@ -500,3 +500,4 @@ INCBIN "gfx/footprints/mienfoo.1bpp" ; MIENFOO
 INCBIN "gfx/footprints/mienshao.1bpp" ; MIENSHAO
 INCBIN "gfx/footprints/hippopotas.1bpp" ; HIPPOPOTAS
 INCBIN "gfx/footprints/hippowdon.1bpp" ; HIPPOWDON
+INCBIN "gfx/footprints/252.1bpp" ; ZANGOOSE_SCARRED (same as ordinary Zangoose)

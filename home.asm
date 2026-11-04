@@ -249,3 +249,9 @@ INCLUDE "home/mobile.asm"
 INCLUDE "home/moves.asm"
 INCLUDE "home/indirection.asm"
 INCLUDE "home/16bit.asm"
+
+; Keep the canonicalization wrapper in a small ROM0 gap: Home is full.
+SECTION "Pokemon Dex Flag Hook", ROM0
+GetPokemonFlagIndex::
+	farcall_a GetCanonicalPokemonFlagIndex
+	ret

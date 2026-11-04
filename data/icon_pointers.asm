@@ -503,3 +503,4 @@ IconPointers:
 	dba MienshaoIcon
 	dba HippopotasIcon
 	dba HippowdonIcon
+	dba ZangooseIcon

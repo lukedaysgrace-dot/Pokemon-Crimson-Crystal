@@ -2400,6 +2400,9 @@ XAccuracyEffect:
 	jp UseItemText
 
 PokeDollEffect:
+	ld a, [wBattleType]
+	cp BATTLETYPE_FOREST_RIVALRY
+	jp z, WontHaveAnyEffect_NotUsedMessage
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_f4a6

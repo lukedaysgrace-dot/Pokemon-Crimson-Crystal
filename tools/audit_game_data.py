@@ -274,7 +274,7 @@ def audit_species(audit: Audit) -> None:
         for _, row in directive_rows(read(ROOT / "data/pokemon/dex_order_alpha.asm"), "dw")
         if len(row) == 1
     ]
-    visible_species = [name for name in species if name != 'AEGISLASH_BLADE']
+    visible_species = [name for name in species if name not in {'AEGISLASH_BLADE', 'ZANGOOSE_SCARRED'}]
     audit.expect(
         len(alpha_order) == len(visible_species),
         f"alphabetical Pokedex order has {len(alpha_order)} records for {len(species)} species",
@@ -409,7 +409,7 @@ def audit_species(audit: Audit) -> None:
 
     # No species currently breeds outside its evolution root. Incense items are
     # not in this game, so Snorlax eggs always hatch Munchlax.
-    first_stage_exceptions: dict[str, str] = {'AEGISLASH_BLADE': 'HONEDGE'}
+    first_stage_exceptions: dict[str, str] = {'AEGISLASH_BLADE': 'HONEDGE', 'ZANGOOSE_SCARRED': 'ZANGOOSE'}
     for name, first_stage in zip(species, first_stages):
         if name in first_stage_exceptions:
             audit.expect(
@@ -1133,7 +1133,7 @@ def audit_text_lines(audit: Audit, charmap: list[str]) -> None:
 def audit_ezchat(audit: Audit) -> None:
     pokemon_header = read(ROOT / "constants/pokemon_constants.asm").split("NUM_POKEMON", 1)[0]
     species = re.findall(r"^\s*const\s+(\w+)", pokemon_header, re.MULTILINE)
-    species = [name for name in species if name != 'AEGISLASH_BLADE']
+    species = [name for name in species if name not in {'AEGISLASH_BLADE', 'ZANGOOSE_SCARRED'}]
 
     order_path = ROOT / "data/pokemon/ezchat_order.asm"
     order_text = read(order_path)

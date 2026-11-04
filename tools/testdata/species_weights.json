@@ -3012,6 +3012,7 @@
    "source": "hippowdon",
    "weight_hg": 3000,
    "dex_lbs_x10": 6614
-  }
+  },
+    "ZANGOOSE_SCARRED": {"dex_entry":"zangoose","source":"zangoose","weight_hg":403,"dex_lbs_x10":888}
  }
 }

@@ -5390,6 +5390,8 @@ BattleCommand_ForceSwitch:
 	jp z, .fail
 	cp BATTLETYPE_TRAP
 	jp z, .fail
+	cp BATTLETYPE_FOREST_RIVALRY
+	jp z, .fail
 	cp BATTLETYPE_CELEBI
 	jp z, .fail
 	cp BATTLETYPE_SUICUNE
