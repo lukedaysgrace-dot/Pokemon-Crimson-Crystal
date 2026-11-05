@@ -230,6 +230,33 @@ def run(rom):
             h.press('b', hold=4, wait=60)
             wait(h, lambda: 'FIGHT' in tile_text(h))
             verify(names, name + ': move menu return')
+            if name.startswith(('original-', 'enhanced-')):
+                # Enter STATS through the real battle party menu, exercise
+                # every page and move details, then restore the battle HUD.
+                before_pics = [pb.screen.image.crop(box).tobytes() for box in
+                               ((96, 0, 152, 56), (8, 56, 64, 104))]
+                h.press('right', hold=4, wait=20)
+                h.press('a', hold=4, wait=100)
+                h.press('a', hold=4, wait=30)
+                h.press('down', hold=4, wait=20)
+                h.press('a', hold=4, wait=150)
+                check('INFO' in tile_text(h), name + ': battle summary opened')
+                for page in ('STATS', 'MOVES', 'MEMO'):
+                    h.press('right', hold=4, wait=70)
+                    check(page in tile_text(h), name + ': summary ' + page)
+                    if page == 'MOVES':
+                        h.press('a', hold=4, wait=70)
+                        h.press('down', hold=4, wait=50)
+                        h.press('b', hold=4, wait=70)
+                h.press('b', hold=4, wait=100)
+                h.press('b', hold=4, wait=100)
+                wait(h, lambda: 'FIGHT' in tile_text(h))
+                verify(names, name + ': summary return')
+                after_pics = [pb.screen.image.crop(box).tobytes() for box in
+                              ((96, 0, 152, 56), (8, 56, 64, 104))]
+                check(after_pics == before_pics, name + ': both battle pictures restored')
+                capture(name + '-summary-return')
+                restore(state)
             # A real attack runs the animation and end-of-turn palette restore.
             watch_names = names
             h.press('a', hold=4, wait=60)

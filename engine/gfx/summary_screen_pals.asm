@@ -133,11 +133,8 @@ LoadSummaryScreenPals::
 	ld a, BANK(wOBPals2)
 	call FarCopyWRAM
 
-	; The attribute map is pushed together with the tilemap by
-	; HDMATransferAttrMapAndTileMapToWRAMBank3 (see StatsScreen_WaitAnim),
-	; so pages switch in a single clean frame.
-	ld a, $1
-	ldh [hCGBPalUpdate], a
+	; StatsScreen_CommitPage uploads these with both maps. Do not queue
+	; an earlier palette-only VBlank while the old page is still visible.
 	ret
 
 .PageSetup:
@@ -465,6 +462,42 @@ LoadSummaryScreenPals::
 	dec b
 	jr nz, .attr_row
 	ret
+
+LoadStatsMoveInfoPals::
+; Only one type pill is visible in move details. Rebuild it in palette 6
+; and give the category marker palette 7, with the same fill as the box.
+; This leaves the white header and HP palette untouched.
+	ld a, [wStringBuffer2 + MOVE_TYPE]
+	ld de, wSGBPals + 32
+	call LoadSummaryScreenPals.SetBadgePal
+	ld hl, wSGBPals + 8
+	ld de, wSGBPals + 40
+	ld bc, 2
+	call CopyBytes
+	ld a, [wStringBuffer2 + MOVE_CATEGORY]
+	add a
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, CategoryIconPals
+	add hl, bc
+	ld de, wSGBPals + 42
+	ld bc, 4
+	ld a, BANK(CategoryIconPals)
+	call FarCopyBytes
+	xor a
+	ld [wSGBPals + 46], a
+	ld [wSGBPals + 47], a
+	ld hl, wSGBPals + 32
+	ld de, wBGPals1 palette 6
+	ld bc, 2 palettes
+	ld a, BANK(wBGPals1)
+	call FarCopyWRAM
+	ld hl, wSGBPals + 32
+	ld de, wBGPals2 palette 6
+	ld bc, 2 palettes
+	ld a, BANK(wBGPals2)
+	jp FarCopyWRAM
 
 SummaryBarPalette:
 ; the original exp bar colors

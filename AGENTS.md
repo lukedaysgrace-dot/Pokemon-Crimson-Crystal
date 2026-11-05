@@ -224,6 +224,21 @@ Read this before changing the game. Keep it up to date when something here chang
   ball disc and stat dot at $42-$46. OBJ: squares $00-$01, ball $02, cursor $03,
   Pokerus/shiny $04-$05 (OBJ pal 5, every page). Move rows are 8 + 2n at column 2;
   keep `GreenSetup` in sync. `tools/battletest/stat_exp_checks.py` reads the stat rows 8-12.
+- Page changes use `StatsScreen_CommitPage` to upload palettes, both BG maps and
+  OAM in one CGB double-speed VBlank. Keep palette/OAM uploads deferred during
+  page preparation. INFO/MOVES type pills share $4b/$4f/$53/$57; restore EXP
+  tiles only on INFO, whose adjacent pages do not display those tiles.
+  Category graphics are cached at $5d/$79/$7d so browsing details never rewrites
+  a visible icon. Preserve the shared font glyphs at $71/$73/$74 and HP end $6b.
+  Move details rebuild the selected type in BG palette 6 and category in 7;
+  both use the green box fill. Do not put category markers in white palette 0.
+- Run `make test-summary-ui BATTLE_TEST_PYTHON=.venv/bin/python` for both-ROM
+  page/move-detail transitions, PC browsing/eggs/returns and data preservation.
+  `SUMMARY_RECORD=1 PC_UI_OUT=_artifacts/summary-review/video .venv/bin/python
+  tools/test_summary_ui.py pokecrystal.gbc` records the same native inputs with
+  game audio. Captures and per-frame transition sheets stay under that output.
+  `tools/battletest/type_icon_checks.py` also checks native battle-party summary
+  entry/return in both typing modes, including exact restored picture crops.
 
 ## Intentional choices: do not "fix"
 - Crimson/Enhanced Gallade transfers 25 Sp. Atk into Speed (40/105);
