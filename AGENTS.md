@@ -175,7 +175,10 @@ Read this before changing the game. Keep it up to date when something here chang
   Strong Jaw (Lumi 3.0 slots), Slow growth, and Field egg groups. Their complete
   implemented mainline-history/Lumi move union is recorded in
   `tools/testdata/hippopotas_hippowdon.json`. Route 45 supplies both species;
-  supplied sprites use one static front frame and official-color shiny palettes.
+  Hippopotas uses one static front frame; Hippowdon's front.png is a 15-frame
+  strip: squint, jaw-raised roar, geyser small/mid/full pulses (frames 3-11,
+  each paired with a side-vent flow phase) and three idle side-flow phases.
+  Both use official-color shiny palettes.
   Run `make test-hippos` for the native family and battle checks.
 - The current seen/caught fields are 63 bytes each (capacity 504 species).
   Exceeding that capacity requires reviewing WRAM/SRAM and save migration.
