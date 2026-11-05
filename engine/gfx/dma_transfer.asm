@@ -1,3 +1,58 @@
+StatsScreen_CommitPage::
+; Summary pages must commit palettes, both maps and selector sprites together.
+; The ordinary queued HDMA path consumes a separate VBlank for each map and
+; deliberately defers palettes. CGB double speed fits this complete commit
+; into one VBlank; keep the slower-machine path below.
+	ldh a, [hCGB]
+	and a
+	jr z, .slow
+	ldh a, [rKEY1]
+	bit 7, a
+	jr z, .slow
+	ld hl, .Function
+	jp CallInSafeGFXMode
+
+.slow:
+	ld a, 1
+	ldh [hCGBPalUpdate], a
+	jr HDMATransferAttrMapAndTileMapToWRAMBank3
+
+.Function:
+	decoord 0, 0, wAttrMap
+	ld hl, wScratchAttrMap
+	call PadAttrMapForHDMATransfer
+	decoord 0, 0
+	ld hl, wScratchTileMap
+	call PadTilemapForHDMATransfer
+	di
+.wait_visible
+	ldh a, [rLY]
+	cp LY_VBLANK
+	jr nc, .wait_visible
+.wait_vblank
+	ldh a, [rLY]
+	cp LY_VBLANK
+	jr c, .wait_vblank
+	call ForceUpdateCGBPals
+	xor a
+	ldh [rVBK], a
+	ld hl, wScratchTileMap
+	call .CopyMap
+	ld a, 1
+	ldh [rVBK], a
+	ld hl, wScratchAttrMap
+	call .CopyMap
+	call hTransferVirtualOAM
+.complete
+	ei
+	ret
+
+.CopyMap:
+	call _LoadHDMAParameters
+	ld a, (BG_MAP_WIDTH * SCREEN_HEIGHT) / 16 - 1
+	ldh [rHDMA5], a
+	ret
+
 HDMATransferAttrMapAndTileMapToWRAMBank3::
 	ld hl, .Function
 	jp CallInSafeGFXMode

@@ -175,7 +175,9 @@ StatsScreen_WaitAnim:
 	; colors changing first.
 	ld hl, wcf64
 	res 5, [hl]
-	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall StatsScreen_CommitPage
+	xor a
+	ldh [hOAMUpdate], a
 	ret
 
 StatsScreen_SetJumptableIndex:
@@ -456,6 +458,20 @@ StatsScreen_PlaceGenderChar:
 	ret
 
 LoadSummaryScreenGFX:
+	; Cache every category: browsing move details must not rewrite a
+	; visible category graphic before its matching palette is committed.
+	ld de, CategoryIconGFX
+	ld hl, vTiles2 tile $5d
+	lb bc, BANK(CategoryIconGFX), 2
+	call Get2bpp
+	ld de, CategoryIconGFX + 2 tiles
+	ld hl, vTiles2 tile $79
+	lb bc, BANK(CategoryIconGFX), 2
+	call Get2bpp
+	ld de, CategoryIconGFX + 4 tiles
+	ld hl, vTiles2 tile $7d
+	lb bc, BANK(CategoryIconGFX), 2
+	call Get2bpp
 	ld de, SummaryFrameTilesGFX
 	ld hl, vTiles2 tile SUMMARY_TILE_BOX_TL
 	lb bc, BANK(SummaryFrameTilesGFX), 8
@@ -503,6 +519,8 @@ StatsScreenArrowGFX:
 	db %01000000
 
 StatsScreen_LoadGFX:
+	ld a, 1
+	ldh [hOAMUpdate], a ; selector sprites belong to the pending page
 	ld a, [wBaseSpecies]
 	ld [wTempSpecies], a
 	ld [wCurSpecies], a
@@ -517,18 +535,11 @@ StatsScreen_LoadGFX:
 	lb bc, 11, 20
 	call ClearBox
 	call StatsScreen_DrawFrames
-	; the moves page overwrites the exp bar tiles ($55+) with type icons,
-	; so reload them on every page switch
-	ld de, ExpBarGFX
-	ld hl, vTiles2 tile $55
-	lb bc, BANK(ExpBarGFX), 8
-	call Get2bpp_2
 	call .PageTilemap
 	call .LoadPals
 	ld hl, wcf64
 	bit 4, [hl]
 	jr nz, .place_frontpic
-	call SetPalettes
 	; the page squares and ball are OAM sprites, so they show up the
 	; moment they're written: place them last, right before the page's
 	; tile transfer, so the whole screen appears at once
@@ -545,12 +556,7 @@ StatsScreen_LoadGFX:
 	and STAT_PAGE_MASK
 	ld c, a
 	farcall LoadSummaryScreenPals
-	; No DelayFrame here. LoadSummaryScreenPals only flags the palette
-	; upload (hCGBPalUpdate); waiting a frame let the new page's palettes
-	; reach the screen while the old page's tilemap and attributes were
-	; still up, which is what made the type pills flash wrong colors for
-	; a frame on every page switch. Flagging the page transfer straight
-	; away lands the palettes and both maps in the same vblank.
+	; The commit uploads palettes, both maps and OAM in one VBlank.
 	ld hl, wcf64
 	set 5, [hl]
 	ret
@@ -777,8 +783,9 @@ StatsScreen_PlacePageSquares:
 	ret
 
 StatsScreen_LoadTypeIcon:
-; Load the Polished-style type pill for type a (4 tiles, 1bpp) into
-; VRAM slot c (0-3; tiles $4b + c * 4, free on the stats screen).
+; Load a four-tile type pill into slot c (0-1 INFO, 2-5 MOVES).
+; INFO and MOVES share slots: they are never adjacent pages. Only INFO
+; restores EXP graphics, while a STATS or MEMO page is still visible.
 ; Returns the first tile id in a.
 	push bc
 	ld hl, SummaryTypeIconGFX
@@ -788,9 +795,7 @@ StatsScreen_LoadTypeIcon:
 	ld e, l
 	pop bc
 	ld a, c
-	add a
-	add a
-	add $4b
+	call StatsScreen_TypeIconTile
 	push af
 	ld l, a
 	ld h, 0
@@ -804,6 +809,21 @@ StatsScreen_LoadTypeIcon:
 	call Get2bpp_2
 	pop af
 	ret
+
+StatsScreen_TypeIconTile:
+	push hl
+	push de
+	ld e, a
+	ld d, 0
+	ld hl, .Tiles
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	ret
+.Tiles:
+	db $4b, $4f ; INFO: species types
+	db $4b, $4f, $53, $57 ; MOVES: types (overlap EXP, restored only on INFO)
 
 StatsScreen_PlaceTypeIcon:
 ; Write tile ids a, a+1, a+2, a+3 at hl.
@@ -834,6 +854,12 @@ StatsScreen_GetMoveDisplayType:
 ; ================================
 
 StatsScreen_PinkPage:
+	; MOVES borrows the EXP tiles. Restore them only when entering INFO:
+	; neither adjacent page uses them, so no visible graphic can change.
+	ld de, ExpBarGFX
+	ld hl, vTiles2 tile $55
+	lb bc, BANK(ExpBarGFX), 8
+	call Get2bpp_2
 	ld de, .TabString
 	call DrawSummaryTab
 
@@ -1192,9 +1218,8 @@ StatsScreen_GreenPage:
 	add 9
 	call .RowCoord
 	ld a, c
-	add a
-	add a
-	add $4b ; first icon tile for this slot
+	add 2
+	call StatsScreen_TypeIconTile
 	call StatsScreen_PlaceTypeIcon
 	ld de, 6
 	add hl, de
@@ -1243,9 +1268,8 @@ StatsScreen_GreenPage:
 	ret
 
 .LoadMoveTypeIcons:
-; Copy each known move's type pill into icon slot 0-3 (VRAM tiles
-; $4b + slot * 4). One push/pop pair per iteration, and nothing else is
-; live across the calls.
+; Copy each known move's type pill into slots 2-5. Neither adjacent
+; page uses these tiles. No registers are live across the calls.
 	ld c, 0
 .icon_loop
 	ld b, 0
@@ -1260,6 +1284,8 @@ StatsScreen_GreenPage:
 	call StatsScreen_GetMoveDisplayType
 	pop bc
 	push bc
+	inc c
+	inc c
 	call StatsScreen_LoadTypeIcon
 	pop bc
 	inc c
@@ -1334,20 +1360,6 @@ StatsScreen_MoveInfo:
 ; type, power, accuracy and description. A or B returns to the moves list.
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
-	; remember each move's type pill palette from the list layout
-	hlcoord 2, 9, wAttrMap
-	ld de, wStringBuffer4
-	ld b, NUM_MOVES
-.save_pals
-	ld a, [hl]
-	ld [de], a
-	inc de
-	push bc
-	ld bc, 2 * SCREEN_WIDTH
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .save_pals
 	xor a
 	ld [wMenuCursorY], a
 	call .ShowMoveInfo
@@ -1397,8 +1409,6 @@ StatsScreen_MoveInfo:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	; restore the HP bar colors the category icon borrowed
-	farcall RestoreStatsHPPal
 	; redraw the moves page (tiles, attributes and palettes together)
 	ld h, 4
 	jp StatsScreen_SetJumptableIndex
@@ -1420,6 +1430,8 @@ StatsScreen_MoveInfo:
 	ret
 
 .ShowMoveInfo:
+	ld a, 1
+	ldh [hOAMUpdate], a ; keep the old cursor until the page commit
 	; clear the box interior back to plain box colors
 	hlcoord 1, 8
 	lb bc, 9, 18
@@ -1491,44 +1503,34 @@ StatsScreen_MoveInfo:
 	ld a, d
 	ld [wStringBuffer2 + MOVE_POWER], a
 .got_move_data
-	; category icon: colors 1-2 of palette 0, tiles $5b-$5c
+	; Category and type palettes both use the green box background.
+	farcall LoadStatsMoveInfoPals
 	ld a, [wStringBuffer2 + MOVE_CATEGORY]
-	push af
-	farcall_a LoadStatsCategoryPal ; a = category
-	pop af
-	ld hl, CategoryIconGFX
-	ld bc, 2 tiles
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld hl, vTiles2 tile $5b
-	lb bc, BANK(CategoryIconGFX), 2
-	call Get2bpp_2
+	ld e, a
+	ld d, 0
+	ld hl, .CategoryTiles
+	add hl, de
+	ld a, [hl]
 	hlcoord 1, 13
-	ld a, $5b
 	ld [hli], a
 	inc a
 	ld [hl], a
 	hlcoord 1, 13, wAttrMap
-	xor a ; palette 0 (white bg + category colors)
+	ld a, 7 ; category palette, matching the box fill
 	ld [hli], a
 	ld [hl], a
-	; type pill, in the palette the list layout gave it
+	; move details rebuild the selected type in palette 6
 	ld a, [wMenuCursorY]
 	ld c, a
-	ld b, 0
-	ld hl, wStringBuffer4
-	add hl, bc
-	ld a, [hl]
+	ld a, 6
 	hlcoord 4, 13, wAttrMap
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
 	ld a, c
-	add a
-	add a
-	add $4b
+	add 2
+	call StatsScreen_TypeIconTile
 	hlcoord 4, 13
 	call StatsScreen_PlaceTypeIcon
 	; power / accuracy line
@@ -1590,6 +1592,8 @@ StatsScreen_MoveInfo:
 
 .PowAccString:
 	db "   <BOLD_P>/   <PCT>@"
+.CategoryTiles:
+	db $5d, $79, $7d
 .NAString:
 	db "---@"
 
