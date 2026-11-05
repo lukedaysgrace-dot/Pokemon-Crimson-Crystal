@@ -428,10 +428,10 @@ def run(rom):
             h.pb.memory[0xC0F0] = 0xF3
             h.tick(240)
             h.press('right', hold=4, wait=120)
-            check('Attack' in tile_text(h), f'native level {level}: personal stats page opened')
+            check('ATTACK' in tile_text(h), f'native level {level}: personal stats page opened')
             check(m.read_bytes('wTempMonMaxHP', 12) == stored, f'native level {level}: summary uses refreshed stats')
-            # Blue page rows are Attack, Defense, Sp. Atk, Sp. Def, Speed.
-            for row, value in zip(range(4, 9), [stats(0)[i] for i in (1, 2, 4, 5, 3)]):
+            # Stats page box rows 8-12 are Attack, Defense, Sp. Atk, Sp. Def, Speed.
+            for row, value in zip(range(8, 13), [stats(0)[i] for i in (1, 2, 4, 5, 3)]):
                 digits = m.read_bytes('wTileMap', 3, row * 20 + 16)
                 displayed = ''.join(str(v - 0xf6) if 0xf6 <= v <= 0xff else ' ' for v in digits).strip()
                 check(displayed == str(value), f'native level {level}: summary row {row} displays {value}')

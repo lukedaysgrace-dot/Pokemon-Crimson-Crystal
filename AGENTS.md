@@ -212,6 +212,19 @@ Read this before changing the game. Keep it up to date when something here chang
   Fixtures clear `hOAMUpdate`
   after staged map loading; hardware OAM checks prove all three actors render.
 
+## Personal summary (stats) screen
+- Gen 2 style layout in `engine/pokemon/stats_screen.asm`, colors/attributes in
+  `engine/gfx/summary_screen_pals.asm`. Rows 0-6: pokepic + header (row 0 page-colored
+  strip with dex no./level/gender, nickname, species, per-page headline on rows 3-5,
+  page arrows/squares on row 6). Rows 7-17: framed box with a title tab on its top edge.
+- Pages: INFO (types, OT/ID, exp), STATS (status, HP bar, stats, ability), MOVES (held
+  item name, moves; A = move info in the lower box), MEMO (friendship, met data, ball,
+  held item + description). The egg screen uses the same frame with egg colors (page 0).
+- Custom BG tiles: frame $36-$3d (over the unused old page squares), tab/strip caps,
+  ball disc and stat dot at $42-$46. OBJ: squares $00-$01, ball $02, cursor $03,
+  Pokerus/shiny $04-$05 (OBJ pal 5, every page). Move rows are 8 + 2n at column 2;
+  keep `GreenSetup` in sync. `tools/battletest/stat_exp_checks.py` reads the stat rows 8-12.
+
 ## Intentional choices: do not "fix"
 - Crimson/Enhanced Gallade transfers 25 Sp. Atk into Speed (40/105);
   Gardevoir transfers 25 Attack into Speed (40/105). Both retain 518 BST.
