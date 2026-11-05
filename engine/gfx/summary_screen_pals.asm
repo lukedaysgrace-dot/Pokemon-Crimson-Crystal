@@ -1,17 +1,18 @@
-; Polished-style summary screen palettes and attribute map.
+; Gen 2 style summary screen palettes and attribute map.
 ; Reached via farcall from the stats screen.
 ;
 ; BG palette usage on the stats screen:
-;   0: HP bar palette (also plain white/black text)
+;   0: header (white bg, black text) + HP bar colors
 ;   1: mon frontpic palette
 ;   2: exp / friendship bar palette (original bar colors);
-;      type icon 4 on the green page (no exp bar there)
-;   3: side panel palette   (panel fill, accent, white, black)
-;   4: bottom panel palette (accent, panel fill, white, black)
-;   5: type icon 1 / caught ball palette
-;   6: type icon 2 palette
-;   7: Pokérus + shiny palette / type icon 3 on the green page
-; OBJ palettes 0-3: the four page squares (pink, blue, green, orange).
+;      type icon 4 on the moves page (no bars there)
+;   3: content box palette (box fill, page accent, white, black)
+;   4: header strip / title tab palette (accent, black, box fill, white)
+;   5: type icon 1
+;   6: type icon 2
+;   7: friendship heart / type icon 3 on the moves page
+; OBJ palettes 0-3: the four page squares (pink, blue, green, orange),
+; 4: caught ball, 5: Pokerus + shiny star.
 
 LoadSummaryScreenPals::
 ; c = current page (PINK_PAGE to ORANGE_PAGE)
@@ -20,7 +21,7 @@ LoadSummaryScreenPals::
 	ret z
 	ld a, c
 	dec a
-	ld [wBuffer6], a ; zero-based page
+	ld [wBuffer6], a ; zero-based page ($ff = egg)
 
 	; build BG palettes 2-7 in wSGBPals (used as scratch here)
 	ld hl, SummaryBarPalette
@@ -28,28 +29,34 @@ LoadSummaryScreenPals::
 	ld bc, 8
 	call CopyBytes
 	ld a, [wBuffer6]
+	cp NUM_STAT_PAGES
+	jr c, .got_page_colors
+	ld a, NUM_STAT_PAGES ; egg colors
+.got_page_colors
 	ld hl, SummaryPagePals
-	ld bc, 24
+	ld bc, 16
 	call AddNTimes
 	ld de, wSGBPals + 8
 	ld bc, 16
-	call CopyBytes ; side + bottom panel palettes
+	call CopyBytes ; box + strip palettes
+	ld hl, SummaryHeartPalette
 	ld de, wSGBPals + 40
 	ld bc, 8
-	call CopyBytes ; shiny star palette
+	call CopyBytes ; palette 7 default: friendship heart
 	ld hl, wSGBPals + 8
 	ld de, wSGBPals + 24
 	ld bc, 8
-	call CopyBytes ; palette 5 default: same as side panel
+	call CopyBytes ; palette 5 default: same as the box
 	ld hl, wSGBPals + 8
 	ld de, wSGBPals + 32
 	ld bc, 8
-	call CopyBytes ; palette 6 default: same as side panel
+	call CopyBytes ; palette 6 default: same as the box
 
 	call .BaseAttrs
 
 	ld a, [wBuffer6]
-	call .PageSetup
+	cp NUM_STAT_PAGES
+	call c, .PageSetup
 
 	; commit BG palettes 2-7
 	ld hl, wSGBPals
@@ -72,6 +79,17 @@ LoadSummaryScreenPals::
 	ld hl, SummarySquareOBPals
 	ld de, wOBPals2
 	ld bc, 4 palettes
+	ld a, BANK(wOBPals2)
+	call FarCopyWRAM
+	; Pokerus + shiny star sprites
+	ld hl, SummarySymbolOBPal
+	ld de, wOBPals1 palette 5
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
+	ld hl, SummarySymbolOBPal
+	ld de, wOBPals2 palette 5
+	ld bc, 1 palettes
 	ld a, BANK(wOBPals2)
 	call FarCopyWRAM
 
@@ -163,33 +181,47 @@ LoadSummaryScreenPals::
 	lb bc, 7, 7
 	ld a, e
 	call .FillAttrBox
-	; side panel
-	hlcoord 7, 1, wAttrMap
-	lb bc, 11, 13
+	; header strip
+	hlcoord 7, 0, wAttrMap
+	lb bc, 1, 13
+	ld a, $4
+	call .FillAttrBox
+	; content box
+	hlcoord 0, 7, wAttrMap
+	lb bc, 11, 20
 	ld a, $3
 	call .FillAttrBox
-	; bottom panel
-	hlcoord 0, 12, wAttrMap
-	lb bc, 6, 20
-	ld a, $4
-	call .FillAttrBox
-	; bottom tab hump (fixed 6 cells, columns 1-6)
-	hlcoord 1, 11, wAttrMap
-	lb bc, 1, 6
-	ld a, $4
-	call .FillAttrBox
-	ret
+	; title tab: every cell of the box's top row up to the first plain
+	; top edge tile belongs to the tab (caps + label)
+	hlcoord 1, 7
+	ld de, wAttrMap - wTileMap
+.tab_loop
+	ld a, [hl]
+	cp SUMMARY_TILE_BOX_T
+	ret z
+	push hl
+	add hl, de
+	ld [hl], $4
+	pop hl
+	inc hl
+	jr .tab_loop
 
 .PinkSetup:
-	; type badge palettes
+	; type badge palettes; these pills sit on the white header
 	ld a, [wBaseType1]
 	ld de, wSGBPals + 24
 	call .SetBadgePal
 	ld a, [wBaseType2]
 	ld de, wSGBPals + 32
 	call .SetBadgePal
+	ld a, $ff ; white
+	ld [wSGBPals + 24], a
+	ld [wSGBPals + 32], a
+	ld a, $7f
+	ld [wSGBPals + 25], a
+	ld [wSGBPals + 33], a
 	; badge attributes
-	hlcoord 8, 5, wAttrMap
+	hlcoord 8, 4, wAttrMap
 	lb bc, 1, 4
 	ld a, $5
 	call .FillAttrBox
@@ -198,31 +230,24 @@ LoadSummaryScreenPals::
 	ld a, [wBaseType2]
 	cp b
 	jr z, .pink_one_type
-	hlcoord 13, 5, wAttrMap
+	hlcoord 13, 4, wAttrMap
 	lb bc, 1, 4
 	ld a, $6
 	call .FillAttrBox
 .pink_one_type
-	; Pokérus and shiny sparkles cells
-	hlcoord 16, 2, wAttrMap
-	ld [hl], $7
-	hlcoord 17, 2, wAttrMap
-	ld [hl], $7
-	hlcoord 18, 2, wAttrMap
-	ld [hl], $7
+	; the exp bar sits in the box: give its background the box fill
+	ld a, [wSGBPals + 8]
+	ld [wSGBPals + 0], a
+	ld a, [wSGBPals + 9]
+	ld [wSGBPals + 1], a
 	; exp bar row
-	hlcoord 1, 17, wAttrMap
+	hlcoord 1, 15, wAttrMap
 	lb bc, 1, 10
 	ld a, $2
-	call .FillAttrBox
-	ret
+	jp .FillAttrBox
 
 .BlueSetup:
-	; the HP bar keeps its original palette (slot 0)
-	hlcoord 10, 2, wAttrMap
-	lb bc, 1, 9
-	xor a
-	call .FillAttrBox
+	; the HP bar sits on the header and keeps palette 0
 	ret
 
 .GreenSetup:
@@ -327,11 +352,11 @@ LoadSummaryScreenPals::
 	pop bc
 	push bc
 	push de
-	; icon row = name row (2 + 2 * move index) + 1
+	; icon row = name row (8 + 2 * move index) + 1
 	ld a, c
 	add a
-	add 3
-	; hl = wAttrMap + row * SCREEN_WIDTH + column 8
+	add 9
+	; hl = wAttrMap + row * SCREEN_WIDTH + column 2
 	ld l, a
 	ld h, 0
 	ld d, h
@@ -341,7 +366,7 @@ LoadSummaryScreenPals::
 	add hl, de ; x5
 	add hl, hl
 	add hl, hl ; x20
-	ld de, wAttrMap + 8
+	ld de, wAttrMap + 2
 	add hl, de
 	pop de
 	ld a, d
@@ -371,20 +396,21 @@ LoadSummaryScreenPals::
 	ret
 
 .OrangeSetup:
-	; friendship bar row (the shiny indicator is pink-page only)
-	hlcoord 1, 15, wAttrMap
+	; friendship heart + bar on the header
+	hlcoord 8, 4, wAttrMap
+	ld [hl], $7
+	hlcoord 8, 5, wAttrMap
 	lb bc, 1, 8
 	ld a, $2
-	call .FillAttrBox
-	ret
+	jp .FillAttrBox
 
 .SetBadgePal:
 ; Build a type icon palette at de to match SummaryTypeIconGFX (2bpp):
-;   color 0 = side panel fill, so the rounded padding around the pill
-;             blends into the page instead of showing as a white block
+;   color 0 = box fill, so the rounded padding around the pill
+;             blends into the box instead of showing as a white block
 ;   color 1 = white (the pill's lettering)
 ;   color 3 = the type color (the pill body)
-; The side panel palette is already staged at wSGBPals + 8 by the caller.
+; The box palette is already staged at wSGBPals + 8 by the caller.
 ; a = type constant
 	cp TYPES_END
 	jr c, .type_ok
@@ -448,77 +474,84 @@ SummaryBarPalette:
 	RGB 0, 0, 0
 
 SummaryPagePals:
-; per page: side panel palette, bottom panel palette, shiny star palette
+; per page: box palette (fill, accent, white, black),
+; strip/tab palette (accent, black, fill, white)
 	; pink page
-	RGB 31, 26, 30 ; side: pale pink
-	RGB 31, 15, 26 ; accent
+	RGB 31, 27, 30
+	RGB 28, 10, 20
 	RGB 31, 31, 31
 	RGB 0, 0, 0
-	RGB 31, 15, 26 ; bottom: vivid pink
-	RGB 31, 26, 30
+	RGB 28, 10, 20
+	RGB 0, 0, 0
+	RGB 31, 27, 30
+	RGB 31, 31, 31
+	; blue page
+	RGB 25, 30, 31
+	RGB 6, 17, 29
 	RGB 31, 31, 31
 	RGB 0, 0, 0
-	RGB 31, 26, 30 ; symbols: pale pink bg
-	RGB 29, 07, 22 ; Pokérus
-	RGB 4, 15, 31  ; blue shiny sparkles
+	RGB 6, 17, 29
 	RGB 0, 0, 0
-	; blue (cyan) page
-	RGB 24, 31, 31
-	RGB 12, 27, 30
+	RGB 25, 30, 31
 	RGB 31, 31, 31
-	RGB 0, 0, 0
-	RGB 12, 27, 30
-	RGB 24, 31, 31
-	RGB 31, 31, 31
-	RGB 0, 0, 0
-	RGB 24, 31, 31
-	RGB 31, 31, 31
-	RGB 4, 15, 31
-	RGB 0, 0, 0
 	; green page
-	RGB 27, 31, 23
-	RGB 16, 28, 10
+	RGB 26, 31, 23
+	RGB 8, 21, 8
 	RGB 31, 31, 31
 	RGB 0, 0, 0
-	RGB 16, 28, 10
-	RGB 27, 31, 23
-	RGB 31, 31, 31
+	RGB 8, 21, 8
 	RGB 0, 0, 0
-	RGB 27, 31, 23
+	RGB 26, 31, 23
 	RGB 31, 31, 31
-	RGB 4, 15, 31
-	RGB 0, 0, 0
 	; orange page
-	RGB 31, 28, 21
-	RGB 31, 21, 9
+	RGB 31, 28, 22
+	RGB 30, 15, 4
 	RGB 31, 31, 31
 	RGB 0, 0, 0
-	RGB 31, 21, 9
-	RGB 31, 28, 21
+	RGB 30, 15, 4
+	RGB 0, 0, 0
+	RGB 31, 28, 22
+	RGB 31, 31, 31
+	; egg
+	RGB 30, 30, 22
+	RGB 20, 16, 6
 	RGB 31, 31, 31
 	RGB 0, 0, 0
-	RGB 31, 28, 21
+	RGB 20, 16, 6
+	RGB 0, 0, 0
+	RGB 30, 30, 22
 	RGB 31, 31, 31
+
+SummaryHeartPalette:
+	RGB 31, 31, 31
+	RGB 31, 11, 13
+	RGB 24, 4, 8
+	RGB 0, 0, 0
+
+SummarySymbolOBPal:
+; transparent, Pokerus, shiny star, black
+	RGB 31, 31, 31
+	RGB 29, 07, 22
 	RGB 4, 15, 31
 	RGB 0, 0, 0
 
 SummarySquareOBPals:
-; page squares: transparent, white, page color, black
+; page squares: transparent, white, page accent, black
 	RGB 31, 31, 31
 	RGB 31, 31, 31
-	RGB 31, 15, 26 ; pink
+	RGB 28, 10, 20 ; pink
 	RGB 0, 0, 0
 	RGB 31, 31, 31
 	RGB 31, 31, 31
-	RGB 12, 27, 30 ; cyan
+	RGB 6, 17, 29  ; blue
 	RGB 0, 0, 0
 	RGB 31, 31, 31
 	RGB 31, 31, 31
-	RGB 16, 28, 10 ; green
+	RGB 8, 21, 8   ; green
 	RGB 0, 0, 0
 	RGB 31, 31, 31
 	RGB 31, 31, 31
-	RGB 31, 21, 9  ; orange
+	RGB 30, 15, 4  ; orange
 	RGB 0, 0, 0
 
 TypeBadgeColors:
