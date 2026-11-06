@@ -107,40 +107,12 @@ LoadSummaryScreenPals::
 	ld a, BANK(wOBPals2)
 	call FarCopyWRAM
 
-	; Reuse the actual thrown-ball mapping and full battle palette for
-	; both summary balls. Master Ball uses the battle's purple override.
+	; Both summary balls use the exact same palette as their battle ball.
 	ld a, [wTempMonPersonality]
 	and CAUGHT_BALL_MASK
 	farcall_a GetCaughtBallItem ; c = ball item; invalid indexes use Poke Ball
-	ld a, c
-	cp MASTER_BALL
-	jr z, .master_ball
-	ld hl, BallColors
-.find_ball
-	; Read in place: wSGBPals + 8 onward must keep the page colors
-	; that move details reuse for their panel backgrounds.
+	call GetBallPalette
 	ld a, BANK(BallColors)
-	call GetFarByte
-	inc hl
-	cp -1
-	jr z, .found_ball
-	cp c
-	jr z, .found_ball
-	inc hl
-	jr .find_ball
-.found_ball
-	ld a, BANK(BallColors)
-	call GetFarByte
-	sub PAL_BATTLE_OB_GRAY
-	ld hl, BattleObjectPals
-	ld bc, 1 palettes
-	call AddNTimes
-	ld a, BANK(BattleObjectPals)
-	jr .copy_ball
-.master_ball
-	ld hl, MasterBallPurplePal
-	ld a, BANK(MasterBallPurplePal)
-.copy_ball
 	ld de, wSGBPals
 	ld bc, 1 palettes
 	call FarCopyBytes
@@ -642,9 +614,8 @@ TypeBadgeColors:
 	RGB 11, 9, 9   ; DARK
 	RGB 29, 17, 24 ; FAIRY
 
-SetMasterBallOBPal::
-; If wCurItem is a Master Ball, tint the battle ball palette
-; (PAL_BATTLE_OB_GREEN, which BallColors assigns to it) purple.
+SetBallAnimOBPal::
+; Load wCurItem's full palette into the temporary green OBJ slot.
 ; Called from GetBallAnimPal, so it handles rSVBK for wCurItem.
 ; Clobbers a, hl, de, bc.
 	ldh a, [rSVBK]
@@ -652,18 +623,15 @@ SetMasterBallOBPal::
 	ld a, BANK(wCurItem)
 	ldh [rSVBK], a
 	ld a, [wCurItem]
-	ld e, a
+	ld c, a
 	pop af
 	ldh [rSVBK], a
-	ld a, e
-	cp MASTER_BALL
-	ret nz
-	ld hl, MasterBallPurplePal
+	call GetBallPalette
 	jr LoadBallAnimOBPal
 
 RestoreBallOBPal::
 ; Restore the standard green battle object palette after a ball
-; animation is done. Harmless if it was never tinted purple.
+; animation is done. Other battle object palettes are never recolored.
 ; Clobbers a, hl, de, bc.
 	ld hl, BallAnimGreenPal
 	; fallthrough
@@ -683,15 +651,28 @@ LoadBallAnimOBPal:
 	ldh [hCGBPalUpdate], a
 	ret
 
-MasterBallPurplePal:
-	RGB 31, 31, 31
-	RGB 24, 14, 31
-	RGB 14, 6, 22
-	RGB 0, 0, 0
-
 BallAnimGreenPal:
 ; must match the green entry in gfx/battle_anims/battle_anims.pal
 	RGB 31, 31, 31
 	RGB 12, 25, 1
 	RGB 5, 14, 0
 	RGB 0, 0, 0
+
+GetBallPalette:
+; c = ball's runtime item ID; hl = its palette in this bank.
+; Unknown items use the ordinary Poke Ball palette.
+	ld hl, BallColors
+	ld de, 1 palettes
+.loop
+	ld a, [hli]
+	cp -1
+	jr z, .default
+	cp c
+	ret z
+	add hl, de
+	jr .loop
+.default
+	ld hl, PokeBallPal
+	ret
+
+INCLUDE "data/battle_anims/ball_colors.asm"
