@@ -32,7 +32,9 @@ NUM_SUMMARY_TILES     EQU 5
 
 ; OBJ tiles (vTiles0): $00 page square, $01 selected page square,
 ; $02 caught ball icon (OBJ palette 4), $03 move cursor,
-; $04 Pokerus symbol, $05 shiny star (both OBJ palette 5)
+; $04 Pokerus symbol, $05 shiny star (both OBJ palette 5),
+; $06-$09 overworld caught ball (OBJ palette 6, INFO only),
+; $0a-$0d secondary type (OBJ palette 7, INFO only, two-pixel inset)
 
 BattleStatsScreenInit:
 	ld a, [wLinkMode]
@@ -505,6 +507,11 @@ LoadSummaryScreenGFX:
 	ld hl, vTiles0 tile $05
 	lb bc, BANK(ShinyStarGFX), 1
 	call Get2bpp
+	; Full overworld item-ball sprite for the INFO header.
+	ld de, PokeBallSpriteGFX
+	ld hl, vTiles0 tile $06
+	lb bc, BANK(PokeBallSpriteGFX), 4
+	call Get2bpp
 	ret
 
 StatsScreenArrowGFX:
@@ -723,13 +730,9 @@ StatsScreen_PlacePageSquares:
 	cp NUM_STAT_PAGES + 1
 	jr nz, .loop
 
-	; sprite 4: caught ball beside the nickname, on every page
+	; The old nickname ball is no longer displayed.
 	ld hl, wVirtualOAMSprite04
-	lb de, 24, 160 ; y, x: (19, 1)
-	ld a, $02
-	call .PlaceSprite
-	ld a, 4 ; ball OBJ palette
-	ld [hl], a
+	call .HideSprite
 
 	; sprite 5 is the move info cursor; sprites 6-7: Pokerus and shiny,
 	; tucked into the header's right edge
@@ -748,7 +751,9 @@ StatsScreen_PlacePageSquares:
 	call c, .PlaceSprite
 	call nc, .HideSprite
 
-	; sprite 8: a second ball beside the ball name on the memo page
+	call .PlaceInfoBall
+	call .PlaceSecondaryType
+	; sprite 8: the small ball beside the ball name on the memo page
 	ld hl, wVirtualOAMSprite08
 	ld a, [wcf64]
 	and STAT_PAGE_MASK
@@ -760,6 +765,56 @@ StatsScreen_PlacePageSquares:
 	ld a, 4
 	ld [hl], a
 	ret
+
+.PlaceInfoBall:
+	ld hl, wVirtualOAMSprite09
+	ld a, [wcf64]
+	and STAT_PAGE_MASK
+	cp PINK_PAGE
+	jr z, .info_ball
+	; Clear all four pieces when leaving INFO or browsing another mon.
+	ld bc, 4 * 4
+	xor a
+	jp ByteFill
+.info_ball
+	ld de, wVirtualOAMSprite09
+	ld hl, .InfoBallOAM
+	ld bc, 4 * 4
+	jp CopyBytes
+
+.InfoBallOAM:
+	; y, x, tile, palette: 16x16 ball right of the INFO type bars
+	db 40, 134, $06, 6
+	db 40, 142, $07, 6
+	db 48, 134, $08, 6
+	db 48, 142, $09, 6
+
+.PlaceSecondaryType:
+	ld hl, wVirtualOAMSprite13
+	ld a, [wcf64]
+	and STAT_PAGE_MASK
+	cp PINK_PAGE
+	jr nz, .hide_secondary_type
+	ld a, [wBaseType1]
+	ld b, a
+	ld a, [wBaseType2]
+	cp b
+	jr z, .hide_secondary_type
+	ld hl, .SecondaryTypeOAM
+	ld de, wVirtualOAMSprite13
+	ld bc, 4 * 4
+	jp CopyBytes
+.hide_secondary_type
+	ld bc, 4 * 4
+	xor a
+	jp ByteFill
+
+.SecondaryTypeOAM:
+	; Keep the primary at x64; place the secondary at x94, not x96.
+	db 48, 102, $0a, 7
+	db 48, 110, $0b, 7
+	db 48, 118, $0c, 7
+	db 48, 126, $0d, 7
 
 .PlaceSprite:
 ; place tile a at y d, x e with OBJ palette 5; hl -> attributes byte
@@ -786,7 +841,7 @@ StatsScreen_LoadTypeIcon:
 ; Load a four-tile type pill into slot c (0-1 INFO, 2-5 MOVES).
 ; INFO and MOVES share slots: they are never adjacent pages. Only INFO
 ; restores EXP graphics, while a STATS or MEMO page is still visible.
-; Returns the first tile id in a.
+; Returns the first BG tile id in a, except INFO's secondary OBJ slot.
 	push bc
 	ld hl, SummaryTypeIconGFX
 	ld bc, 4 tiles
@@ -794,6 +849,15 @@ StatsScreen_LoadTypeIcon:
 	ld d, h
 	ld e, l
 	pop bc
+	ld a, c
+	cp 1
+	jr nz, .bg_type
+	; INFO's secondary is an OBJ so it can move by two pixels rather
+	; than a whole BG cell. Other type pills keep their ordinary slots.
+	ld hl, vTiles0 tile $0a
+	lb bc, BANK(SummaryTypeIconGFX), 4
+	jp Get2bpp_2
+.bg_type
 	ld a, c
 	call StatsScreen_TypeIconTile
 	push af
@@ -864,8 +928,6 @@ StatsScreen_PinkPage:
 	call DrawSummaryTab
 
 	; --- header: type pills ---
-	ld de, .TypeStr
-	call StatsScreen_PlaceHeaderLabel
 	ld a, [wBaseType1]
 	ld c, 0
 	call StatsScreen_LoadTypeIcon
@@ -878,8 +940,6 @@ StatsScreen_PinkPage:
 	jr z, .one_type
 	ld c, 1
 	call StatsScreen_LoadTypeIcon
-	hlcoord 13, 4
-	call StatsScreen_PlaceTypeIcon
 .one_type
 
 	; --- box: trainer info ---
@@ -892,19 +952,6 @@ StatsScreen_PinkPage:
 	farcall CorrectNickErrors
 	hlcoord 4, 9
 	call PlaceString
-	ld a, [wTempMonCaughtGender]
-	and a
-	jr z, .ot_done
-	cp $7f
-	jr z, .ot_done
-	and $80
-	ld a, "♂"
-	jr z, .got_ot_gender
-	ld a, "♀"
-.got_ot_gender
-	hlcoord 12, 9
-	ld [hl], a
-.ot_done
 
 	ld de, IDNoString
 	hlcoord 1, 10
@@ -989,7 +1036,9 @@ StatsScreen_PinkPage:
 	ldh a, [hQuotient + 1]
 	sbc [hl]
 	ld [wBuffer1], a
-	ret
+	ret nc
+	; An inconsistent level/EXP pair must not wrap into an eight-digit value:
+	; PrintNum supports seven digits and would render a non-digit tile.
 
 .AlreadyAtMaxLevel:
 	ld hl, wBuffer1
@@ -1007,9 +1056,6 @@ StatsScreen_PinkPage:
 
 .TabString:
 	db "INFO@"
-
-.TypeStr:
-	db "TYPE/@"
 
 .ExpPointStr:
 	db "EXP POINTS@"
