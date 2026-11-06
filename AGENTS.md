@@ -231,8 +231,15 @@ Read this before changing the game. Keep it up to date when something here chang
   The 16x16 overworld item-ball sprite sits right of the INFO type bars
   (screen x126/y24),
   using the exact full thrown-ball battle palette (OBJ tiles $06-$09,
-  palette 6, OAM 9-12). INFO and MEMO reuse BallColors / BattleObjectPals
-  and the Master Ball purple override. No ball appears beside the nickname;
+  palette 6, OAM 9-12). INFO, MEMO and battle throws/send-outs share the full
+  per-ball palettes in `data/battle_anims/ball_colors.asm` through `GetBallPalette`.
+  Coral's RGB5 pairs are used except the retained Master/Heavy/Safari colors;
+  Park is yellow over white. Battle balls temporarily use OBJ palette 5 and
+  `RestoreBallOBPal` restores its standard green after each animation. Keep
+  generic move palettes unchanged. `make test-ball-palettes` verifies exact
+  RGB5 colors, native throws/send-outs, cleanup and both summary pages in both
+  ROMs, with previews under `_artifacts/ball-palettes/`. No ball appears beside
+  the nickname;
   MEMO retains its small ball beside the ball name (OBJ $02, palette 4).
   Remaining EXP clamps to zero if current EXP exceeds the next-level threshold,
   preventing subtraction underflow from printing a non-digit tile.

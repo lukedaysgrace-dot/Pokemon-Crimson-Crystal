@@ -467,36 +467,16 @@ BattleAnimFunction_PokeBallBlocked:
 	ret
 
 GetBallAnimPal:
-	; a Master Ball tints its palette slot purple for the throw
+	; Every ball gets its own colors in the temporary green OBJ slot.
+	; RestoreBallOBPal restores that slot after the throw/send-out.
 	push bc
-	farcall SetMasterBallOBPal
+	farcall SetBallAnimOBPal
 	pop bc
-	ld hl, BallColors
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK(wCurItem)
-	ldh [rSVBK], a
-	ld a, [wCurItem]
-	ld e, a
-	pop af
-	ldh [rSVBK], a
-.IsInArray:
-	ld a, [hli]
-	cp -1
-	jr z, .load
-	cp e
-	jr z, .load
-	inc hl
-	jr .IsInArray
-
-.load
-	ld a, [hl]
 	ld hl, BATTLEANIMSTRUCT_PALETTE
 	add hl, bc
-	ld [hl], a
+	ld [hl], PAL_BATTLE_OB_GREEN
+.done
 	ret
-
-INCLUDE "data/battle_anims/ball_colors.asm"
 
 BattleAnimFunction_10:
 	call BattleAnim_AnonJumptable

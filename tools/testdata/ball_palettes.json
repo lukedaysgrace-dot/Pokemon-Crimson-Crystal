@@ -1,0 +1,21 @@
+{
+  "source": "https://github.com/pkmncoraldev/polishedcoral/blob/master/data/battle_anims/ball_colors.asm",
+  "description": "Exact Coral RGB5 pairs except retained Crimson Master/Heavy/Safari and authored yellow-over-white Park. First color is the lower/highlight shade, second is the upper shade; white and black complete every palette.",
+  "retained": ["MASTER_BALL", "HEAVY_BALL", "SAFARI_BALL"],
+  "authored": ["PARK_BALL"],
+  "colors": {
+    "MASTER_BALL": [[24, 14, 31], [14, 6, 22]],
+    "ULTRA_BALL": [[31, 31, 7], [31, 16, 1]],
+    "GREAT_BALL": [[8, 12, 31], [1, 4, 31]],
+    "POKE_BALL": [[31, 19, 24], [30, 10, 6]],
+    "HEAVY_BALL": [[25, 25, 25], [13, 13, 13]],
+    "LEVEL_BALL": [[31, 31, 7], [7, 7, 7]],
+    "LURE_BALL": [[30, 12, 8], [8, 12, 31]],
+    "FAST_BALL": [[31, 31, 0], [31, 7, 0]],
+    "FRIEND_BALL": [[30, 10, 6], [5, 14, 0]],
+    "MOON_BALL": [[31, 31, 7], [8, 12, 31]],
+    "LOVE_BALL": [[31, 22, 29], [31, 12, 20]],
+    "PARK_BALL": [[31, 31, 31], [31, 31, 7]],
+    "SAFARI_BALL": [[12, 25, 1], [5, 14, 0]]
+  }
+}

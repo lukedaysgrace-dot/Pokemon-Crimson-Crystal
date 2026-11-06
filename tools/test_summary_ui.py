@@ -312,8 +312,8 @@ check(u.h.rd(u.MARKER) == 1, 'over-threshold summary returned')
 check(read('wPartyMon1', 100) == before, 'EXP display clamp preserves party data')
 u.h.wr(u.S('wPartyMon1Exp'), original_exp)
 
-# Compare both summary balls with the actual thrown-ball mapping and full
-# battle palettes in the ROM, including Master Ball's purple override.
+# Compare both summary balls with the independent requested RGB5 reference
+# and the shared battle palette table compiled into the ROM.
 rom = Path(pc_harness.ROM).read_bytes()
 
 
@@ -324,9 +324,16 @@ def rom_data(name, n):
 
 
 caught_items = rom_data('CaughtBallItems', 13)
-ball_mapping = rom_data('BallColors', 28)
-ball_mapping = dict(zip(ball_mapping[::2], ball_mapping[1::2]))
-battle_pals = rom_data('BattleObjectPals', 48)
+ball_mapping = rom_data('BallColors', 13 * 9 + 1)
+ball_mapping = {ball_mapping[i]: ball_mapping[i + 1:i + 9] for i in range(0, 13 * 9, 9)}
+item_indexes = _parse_constants(Path(pc_harness.ROOT) / 'constants/item_constants.asm')
+reference = json.loads((Path(pc_harness.ROOT) / 'tools/testdata/ball_palettes.json').read_text())['colors']
+expected_palettes = {}
+for name, pair in reference.items():
+    palette = b''.join((r | g << 5 | b << 10).to_bytes(2, 'little')
+                       for r, g, b in ([31, 31, 31], *pair, [0, 0, 0]))
+    expected_palettes[item_indexes[name]] = palette
+    check(ball_mapping[item_indexes[name]] == palette, f'{name} compiled palette matches requested colors')
 original_personality = read('wPartyMon1Personality')
 for ball in (*range(len(caught_items)), 31):
     u.h.wr(0xff70, 1)
@@ -335,12 +342,12 @@ for ball in (*range(len(caught_items)), 31):
     native_summary()
     page(1)
     ball_index = ball if ball < len(caught_items) else 0
-    pal_offset = (ball_mapping[caught_items[ball_index]] - 2) * 8
-    expected = (rom_data('MasterBallPurplePal', 8) if ball_index == 3 else
-                battle_pals[pal_offset:pal_offset + 8])
+    expected = expected_palettes[caught_items[ball_index]]
     pals = read('wOBPals1', 64)
     check(pals[6 * 8:7 * 8] == expected,
           f'INFO ball {ball} exactly matches its thrown-ball battle palette')
+    check(read('wOBPals2', 64)[6 * 8:7 * 8] == expected,
+          f'INFO ball {ball} commits the same colors to the display buffer')
     old_vbank = u.h.rd(0xff4f)
     u.h.wr(0xff4f, 0)
     check(u.h.rd(0x8060, 64) == (Path(pc_harness.ROOT) / 'gfx/sprites/poke_ball.2bpp').read_bytes()[:64],
@@ -350,6 +357,8 @@ for ball in (*range(len(caught_items)), 31):
     press('left'); page(4)
     check(read('wOBPals1', 64)[4 * 8:5 * 8] == expected,
           f'MEMO ball {ball} exactly matches its thrown-ball battle palette')
+    check(read('wOBPals2', 64)[4 * 8:5 * 8] == expected,
+          f'MEMO ball {ball} commits the same colors to the display buffer')
     capture(f'caught-ball-{ball:02d}-memo')
     press('b', 100)
     check(u.h.rd(u.MARKER) == 1, f'ball {ball} summary returned')

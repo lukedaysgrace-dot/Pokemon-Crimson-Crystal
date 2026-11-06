@@ -4351,7 +4351,7 @@ SendOutPlayerMon:
 	call Call_PlayBattleAnim
 
 .not_shiny
-	; undo the Master Ball purple tint, if the send-out ball used it
+	; restore the temporary ball OBJ slot after the send-out
 	farcall RestoreBallOBPal
 	ld a, MON_SPECIES
 	call GetPartyParamLocation

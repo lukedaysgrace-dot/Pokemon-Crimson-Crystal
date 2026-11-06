@@ -104,6 +104,10 @@ test-summary-ui: pokecrystal.gbc pokecrystal_debug.gbc
 	PC_UI_OUT=_artifacts/summary-review/release $(BATTLE_TEST_PYTHON) tools/test_summary_ui.py pokecrystal.gbc
 	PC_UI_OUT=_artifacts/summary-review/debug $(BATTLE_TEST_PYTHON) tools/test_summary_ui.py pokecrystal_debug.gbc
 
+.PHONY: test-ball-palettes
+test-ball-palettes: test-summary-ui
+	$(BATTLE_TEST_PYTHON) tools/battletest/ball_palette_checks.py
+
 .PHONY: test-kurt-bulk
 test-kurt-bulk: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/kurt_bulk_checks.py
