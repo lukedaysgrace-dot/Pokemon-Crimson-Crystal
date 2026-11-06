@@ -12,7 +12,8 @@
 ;   6: type icon 2
 ;   7: friendship heart / type icon 3 on the moves page
 ; OBJ palettes 0-3: the four page squares (pink, blue, green, orange),
-; 4: caught ball, 5: Pokerus + shiny star.
+; 4: small MEMO ball, 5: Pokerus + shiny star, 6: overworld INFO ball,
+; 7: INFO secondary type (two-pixel inset).
 
 LoadSummaryScreenPals::
 ; c = current page (PINK_PAGE to ORANGE_PAGE)
@@ -70,6 +71,19 @@ LoadSummaryScreenPals::
 	ld a, BANK(wBGPals2)
 	call FarCopyWRAM
 
+	; INFO's secondary pill uses the same type palette as before, but
+	; moves in pixel increments as four sprites on the white header.
+	ld hl, wSGBPals + 32
+	ld de, wOBPals1 palette 7
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
+	ld hl, wSGBPals + 32
+	ld de, wOBPals2 palette 7
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals2)
+	call FarCopyWRAM
+
 	; OBJ palettes for the page squares
 	ld hl, SummarySquareOBPals
 	ld de, wOBPals1
@@ -93,35 +107,43 @@ LoadSummaryScreenPals::
 	ld a, BANK(wOBPals2)
 	call FarCopyWRAM
 
-	; caught ball OBJ palette (slot 4). The party menu ball graphic
-	; keeps its white areas in color 0 (transparent here, so the panel
-	; shows through) and its fill in colors 1-2, matching the layout of
-	; gfx/stats/caught_balls.pal. Built in wSGBPals, which is free again
-	; now that the BG palettes have been committed.
-	ld a, $ff ; white (unused color 0)
-	ld [wSGBPals], a
-	ld a, $7f
-	ld [wSGBPals + 1], a
+	; Reuse the actual thrown-ball mapping and full battle palette for
+	; both summary balls. Master Ball uses the battle's purple override.
 	ld a, [wTempMonPersonality]
 	and CAUGHT_BALL_MASK
-	cp NUM_CAUGHT_BALLS
-	jr c, .ball_ok
-	xor a
-.ball_ok
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld de, SummaryBallColors
-	add hl, de
-	ld a, [hli]
-	ld [wSGBPals + 2], a
-	ld [wSGBPals + 4], a
-	ld a, [hl]
-	ld [wSGBPals + 3], a
-	ld [wSGBPals + 5], a
-	xor a ; black
-	ld [wSGBPals + 6], a
-	ld [wSGBPals + 7], a
+	farcall_a GetCaughtBallItem ; c = ball item; invalid indexes use Poke Ball
+	ld a, c
+	cp MASTER_BALL
+	jr z, .master_ball
+	ld hl, BallColors
+.find_ball
+	; Read in place: wSGBPals + 8 onward must keep the page colors
+	; that move details reuse for their panel backgrounds.
+	ld a, BANK(BallColors)
+	call GetFarByte
+	inc hl
+	cp -1
+	jr z, .found_ball
+	cp c
+	jr z, .found_ball
+	inc hl
+	jr .find_ball
+.found_ball
+	ld a, BANK(BallColors)
+	call GetFarByte
+	sub PAL_BATTLE_OB_GRAY
+	ld hl, BattleObjectPals
+	ld bc, 1 palettes
+	call AddNTimes
+	ld a, BANK(BattleObjectPals)
+	jr .copy_ball
+.master_ball
+	ld hl, MasterBallPurplePal
+	ld a, BANK(MasterBallPurplePal)
+.copy_ball
+	ld de, wSGBPals
+	ld bc, 1 palettes
+	call FarCopyBytes
 	ld hl, wSGBPals
 	ld de, wOBPals1 palette 4
 	ld bc, 1 palettes
@@ -129,6 +151,17 @@ LoadSummaryScreenPals::
 	call FarCopyWRAM
 	ld hl, wSGBPals
 	ld de, wOBPals2 palette 4
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals2)
+	call FarCopyWRAM
+
+	ld hl, wSGBPals
+	ld de, wOBPals1 palette 6
+	ld bc, 1 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
+	ld hl, wSGBPals
+	ld de, wOBPals2 palette 6
 	ld bc, 1 palettes
 	ld a, BANK(wOBPals2)
 	call FarCopyWRAM
@@ -222,16 +255,6 @@ LoadSummaryScreenPals::
 	lb bc, 1, 4
 	ld a, $5
 	call .FillAttrBox
-	ld a, [wBaseType1]
-	ld b, a
-	ld a, [wBaseType2]
-	cp b
-	jr z, .pink_one_type
-	hlcoord 13, 4, wAttrMap
-	lb bc, 1, 4
-	ld a, $6
-	call .FillAttrBox
-.pink_one_type
 	; the exp bar sits in the box: give its background the box fill
 	ld a, [wSGBPals + 8]
 	ld [wSGBPals + 0], a
@@ -672,19 +695,3 @@ BallAnimGreenPal:
 	RGB 12, 25, 1
 	RGB 5, 14, 0
 	RGB 0, 0, 0
-
-SummaryBallColors:
-; one color per CAUGHTBALL_* constant
-	RGB 30, 7, 7   ; POKE (red)
-	RGB 8, 12, 29  ; GREAT (blue)
-	RGB 30, 25, 5  ; ULTRA (yellow)
-	RGB 17, 9, 25  ; MASTER (purple)
-	RGB 13, 14, 16 ; HEAVY (gray)
-	RGB 22, 14, 6  ; LEVEL (brown)
-	RGB 9, 18, 28  ; LURE (blue)
-	RGB 30, 15, 5  ; FAST (orange)
-	RGB 13, 26, 7  ; FRIEND (green)
-	RGB 9, 10, 22  ; MOON (dark blue)
-	RGB 30, 12, 20 ; LOVE (pink)
-	RGB 24, 20, 12 ; PARK (tan)
-	RGB 12, 25, 1  ; SAFARI (green)

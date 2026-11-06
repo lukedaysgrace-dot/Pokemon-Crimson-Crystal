@@ -223,13 +223,27 @@ Read this before changing the game. Keep it up to date when something here chang
 - Pages: INFO (types, OT/ID, exp), STATS (status, HP bar, stats, ability), MOVES (held
   item name, moves; A = move info in the lower box), MEMO (friendship, met data, ball,
   held item + description). The egg screen uses the same frame with egg colors (page 0).
+- INFO shows type bars without a TYPE/ label and no gender symbol beside the OT;
+  the Pokemon's gender remains beside its level in the shared header.
+  The primary type stays at screen x64/y32; the secondary is at x94/y32,
+  two pixels left of the BG grid, using OBJ tiles $0a-$0d, palette 7 and
+  OAM 13-16. Single types and other pages hide those four sprites.
+  The 16x16 overworld item-ball sprite sits right of the INFO type bars
+  (screen x126/y24),
+  using the exact full thrown-ball battle palette (OBJ tiles $06-$09,
+  palette 6, OAM 9-12). INFO and MEMO reuse BallColors / BattleObjectPals
+  and the Master Ball purple override. No ball appears beside the nickname;
+  MEMO retains its small ball beside the ball name (OBJ $02, palette 4).
+  Remaining EXP clamps to zero if current EXP exceeds the next-level threshold,
+  preventing subtraction underflow from printing a non-digit tile.
 - Custom BG tiles: frame $36-$3d (over the unused old page squares), tab/strip caps,
   ball disc and stat dot at $42-$46. OBJ: squares $00-$01, ball $02, cursor $03,
   Pokerus/shiny $04-$05 (OBJ pal 5, every page). Move rows are 8 + 2n at column 2;
   keep `GreenSetup` in sync. `tools/battletest/stat_exp_checks.py` reads the stat rows 8-12.
 - Page changes use `StatsScreen_CommitPage` to upload palettes, both BG maps and
   OAM in one CGB double-speed VBlank. Keep palette/OAM uploads deferred during
-  page preparation. INFO/MOVES type pills share $4b/$4f/$53/$57; restore EXP
+  page preparation. INFO's primary shares BG $4b with MOVES; MOVES uses
+  $4b/$4f/$53/$57, while INFO's secondary uses OBJ $0a-$0d. Restore EXP
   tiles only on INFO, whose adjacent pages do not display those tiles.
   Category graphics are cached at $5d/$79/$7d so browsing details never rewrites
   a visible icon. Preserve the shared font glyphs at $71/$73/$74 and HP end $6b.

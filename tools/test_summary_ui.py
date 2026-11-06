@@ -129,6 +129,35 @@ def page(n):
         check(u.h.rd(u.S('wTileMap') + y * 20) == 0x39, f'page {n} left border row {y}')
         check(u.h.rd(u.S('wTileMap') + y * 20 + 19) == 0x3a, f'page {n} right border row {y}')
     check(u.h.rd(u.S('wVirtualOAMSprite08')) == (96 if n == 4 else 0), 'memo ball visibility')
+    check(read('wVirtualOAMSprite04', 4) == bytes(4), 'nickname ball removed on every page')
+    info_ball = bytes((40, 134, 6, 6, 40, 142, 7, 6, 48, 134, 8, 6, 48, 142, 9, 6))
+    check(read('wVirtualOAMSprite09', 16) == (info_ball if n == 1 else bytes(16)),
+          'overworld ball appears only right of the INFO type bars')
+    check(u.h.rd(0xfe00 + 9 * 4, 16) == (info_ball if n == 1 else bytes(16)),
+          'hardware OAM commits INFO ball visibility')
+    dual_type = n == 1 and read('wBaseType1') != read('wBaseType2')
+    secondary = bytes((48, 102, 10, 7, 48, 110, 11, 7, 48, 118, 12, 7, 48, 126, 13, 7))
+    check(read('wVirtualOAMSprite13', 16) == (secondary if dual_type else bytes(16)),
+          'secondary type uses reference x94 position only on dual-type INFO')
+    check(u.h.rd(0xfe00 + 13 * 4, 16) == (secondary if dual_type else bytes(16)),
+          'hardware OAM commits the two-pixel type inset')
+    if n == 1:
+        check(text(12, 13, 7).strip().isdigit(), 'remaining EXP contains only digits')
+        check(read('wTileMap', 360)[4 * 20 + 8:4 * 20 + 16] ==
+              bytes((0x4b, 0x4c, 0x4d, 0x4e)) + bytes([0x7f] * 4),
+              'primary BG position is unchanged; no secondary BG copy remains')
+        check(read('wAttrMap', 360)[4 * 20 + 8:4 * 20 + 16] ==
+              bytes([5] * 4 + [0] * 4), 'primary BG color and white secondary background')
+        if dual_type:
+            check(read('wOBPals1', 64)[7 * 8:8 * 8] == read('wBGPals1', 64)[6 * 8:7 * 8],
+                  'secondary type retains its independent type palette')
+            old_vbank = u.h.rd(0xff4f)
+            u.h.wr(0xff4f, 0)
+            art = (Path(pc_harness.ROOT) / 'gfx/stats/type_icons.2bpp').read_bytes()
+            type_offset = read('wBaseType2') * 64
+            check(u.h.rd(0x80a0, 64) == art[type_offset:type_offset + 64],
+                  'secondary type preserves exact native lettering and rounded shape')
+            u.h.wr(0xff4f, old_vbank)
 
 
 def open_summary(pos):
@@ -151,6 +180,9 @@ def close_summary(pos):
 u.setup_default()
 move_indexes = _parse_constants(Path(pc_harness.ROOT) / 'constants/move_constants.asm')
 u.h.call('GetStorageBoxMon', bc=0x101)
+# The shared PC fixture uses placeholder EXP regardless of level. Give the
+# preview Charizard its actual level-36 EXP so its next-level display is real.
+u.h.wr(u.S('wTempMonExp'), (40007).to_bytes(3, 'big'))
 for i, name in enumerate(('FLAMETHROWER', 'THUNDERBOLT', 'DRAGON_CLAW', 'RECOVER')):
     move_id = u.h.move_id(move_indexes[name])
     u.h.wr(u.S('wTempMonMoves') + i, move_id)
@@ -177,6 +209,7 @@ if record_video:
 box_before = read('wBillsPC_BoxList', 40)
 open_summary(0x12)
 page(1)
+check(text(12, 13, 7).strip() == '3801', 'level-36 Charizard needs 3801 EXP')
 capture('box-info')
 for n in (2, 3, 4, 1):
     transition('right', f'box-to-{n}')
@@ -263,6 +296,65 @@ for status, label in [(0, 'OK'), (8, 'PSN'), (16, 'BRN'), (32, 'FSB'), (64, 'PAR
     press('b', 100)
     check(u.h.rd(u.MARKER) == 1, f'party {label} summary returned')
     check(read('wPartyMon1', 100) == before, f'party {label} data unchanged')
+
+# An over-threshold EXP value must display zero instead of wrapping into
+# PrintNum's non-digit tiles, without changing the real party record.
+u.h.wr(0xff70, 1)
+original_exp = read('wPartyMon1Exp', 3)
+u.h.wr(u.S('wPartyMon1Exp'), [0xff, 0xff, 0xff])
+before = read('wPartyMon1', 100)
+native_summary()
+page(1)
+check(text(12, 13, 7).strip() == '0', 'over-threshold remaining EXP clamps to zero')
+capture('over-threshold-exp')
+press('b', 100)
+check(u.h.rd(u.MARKER) == 1, 'over-threshold summary returned')
+check(read('wPartyMon1', 100) == before, 'EXP display clamp preserves party data')
+u.h.wr(u.S('wPartyMon1Exp'), original_exp)
+
+# Compare both summary balls with the actual thrown-ball mapping and full
+# battle palettes in the ROM, including Master Ball's purple override.
+rom = Path(pc_harness.ROM).read_bytes()
+
+
+def rom_data(name, n):
+    bank, addr = u.h.sym[name]
+    offset = bank * 0x4000 + addr % 0x4000
+    return rom[offset:offset + n]
+
+
+caught_items = rom_data('CaughtBallItems', 13)
+ball_mapping = rom_data('BallColors', 28)
+ball_mapping = dict(zip(ball_mapping[::2], ball_mapping[1::2]))
+battle_pals = rom_data('BattleObjectPals', 48)
+original_personality = read('wPartyMon1Personality')
+for ball in (*range(len(caught_items)), 31):
+    u.h.wr(0xff70, 1)
+    u.h.wr(u.S('wPartyMon1Personality'), (original_personality & 0xe0) | ball)
+    before = read('wPartyMon1', 100)
+    native_summary()
+    page(1)
+    ball_index = ball if ball < len(caught_items) else 0
+    pal_offset = (ball_mapping[caught_items[ball_index]] - 2) * 8
+    expected = (rom_data('MasterBallPurplePal', 8) if ball_index == 3 else
+                battle_pals[pal_offset:pal_offset + 8])
+    pals = read('wOBPals1', 64)
+    check(pals[6 * 8:7 * 8] == expected,
+          f'INFO ball {ball} exactly matches its thrown-ball battle palette')
+    old_vbank = u.h.rd(0xff4f)
+    u.h.wr(0xff4f, 0)
+    check(u.h.rd(0x8060, 64) == (Path(pc_harness.ROOT) / 'gfx/sprites/poke_ball.2bpp').read_bytes()[:64],
+          f'INFO ball {ball} uses exact overworld sprite tiles')
+    u.h.wr(0xff4f, old_vbank)
+    capture(f'caught-ball-{ball:02d}-info')
+    press('left'); page(4)
+    check(read('wOBPals1', 64)[4 * 8:5 * 8] == expected,
+          f'MEMO ball {ball} exactly matches its thrown-ball battle palette')
+    capture(f'caught-ball-{ball:02d}-memo')
+    press('b', 100)
+    check(u.h.rd(u.MARKER) == 1, f'ball {ball} summary returned')
+    check(read('wPartyMon1', 100) == before, f'ball {ball} summary preserves party data')
+u.h.wr(u.S('wPartyMon1Personality'), original_personality)
 
 check(len(commit_scanlines) > 20, 'atomic page commits observed')
 check(all(144 <= line <= 153 for line in commit_scanlines), f'complete commits fit VBlank: {commit_scanlines}')
