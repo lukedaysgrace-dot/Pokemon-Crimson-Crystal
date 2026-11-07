@@ -65,7 +65,7 @@ press("down"); press("down"); press("down", wait=10)   # ITEM
 press("a", wait=40)
 press("down", wait=10)                        # BAG
 press("a", wait=80, label="bagged")
-press("a", wait=40)                           # dismiss "Moved ... to the BAG."
+press("a", wait=40)                           # dismiss "Moved ... to the PACK."
 check(num_items() == 2, f"two items in the bag (got {num_items()})")
 check(h.rd(S("wPartyMon1Item")) == 0, "Eevee holds nothing")
 

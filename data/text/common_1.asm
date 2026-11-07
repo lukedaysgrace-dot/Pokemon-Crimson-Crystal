@@ -1315,7 +1315,7 @@ _UseAnotherRepelText::
 	text_ram wStringBuffer3
 	text "?"
 
-	line "In BAG: @"
+	line "In PACK: @"
 	text_decimal wStringBuffer4, 2, 4
 	text "@"
 	done

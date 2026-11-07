@@ -805,8 +805,8 @@ SteelySpiritDescription:
 	done
 
 PerishBodyDescription:
-	text "Contact causes Pe-"
-	next "rish Song status."
+	text "Contact triggers"
+	next "PERISH SONG."
 	done
 
 ScreenCleanerDescription:
@@ -820,7 +820,7 @@ SharpnessDescription:
 	done
 
 ArmorTailDescription:
-	text "Stops foes using"
+	text "Blocks foes'"
 	next "priority moves."
 	done
 
@@ -910,7 +910,7 @@ ToxicDebrisDescription:
 	done
 
 QueenlyMajestyDescription:
-	text "Stops foes using"
+	text "Blocks foes'"
 	next "priority moves."
 	done
 

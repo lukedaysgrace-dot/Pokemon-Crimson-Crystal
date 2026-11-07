@@ -394,8 +394,7 @@ CopycatText_RememberScarf:
 	para "I guess you've"
 	line "earned it!"
 	para "Go ahead! It's"
-	line "yours! No hard"
-	cont "feelings."
+	line "all yours!"
 	done
 
 CopycatText_ItsAScream:

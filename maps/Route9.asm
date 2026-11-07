@@ -188,7 +188,7 @@ SchoolGirlHeidiBeatenText:
 
 SchoolGirlHeidiAfterBattleText:
 	text "Our club dug up"
-	line "their fossils"
+	line "my team's fossils"
 	cont "behind the school."
 
 	para "The principal"

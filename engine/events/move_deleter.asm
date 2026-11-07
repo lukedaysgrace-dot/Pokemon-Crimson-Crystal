@@ -644,9 +644,9 @@ EggMoveTutorIntroText:
 	line "TUTOR!"
 
 	para "I teach EGG moves"
-	line "and special moves"
+	line "and rare moves"
 	cont "your #MON can"
-	cont "use."
+	cont "learn."
 
 	para "My fee is ¥5000."
 	line "Interested?"

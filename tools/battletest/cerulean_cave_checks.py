@@ -321,12 +321,11 @@ def main():
         h.pb.screen.image.save(str(OUTPUT / 'mewtwo-bottom-floor.png'))
         c.press('up',hold=4,wait=36)
         c.press('a',hold=4,wait=36)
-        phrases = ['That power','it is familiar','MEW','You have brought','the one from which',
-                   'I was created','But we are not','the same']
+        phrases = ['Mew!']
         seen = set()
         for frame in range(3000):
             text = tile_text(h)
-            if 'CeruleanCaveMewtwoBeforeBattleText' in h.battle.textbox_contexts:
+            if 'CeruleanCaveMewtwoText' in h.battle.textbox_contexts:
                 seen.update(phrase for phrase in phrases if phrase in text)
             if m.read('wBattleMode') and 'FIGHT' in text:
                 break
@@ -335,9 +334,9 @@ def main():
             h.tick(4)
         else:
             raise RuntimeError('Mewtwo dialogue did not reach battle: '+h.where()+'\n'+tile_text(h))
-        check(seen == set(phrases),'Mewtwo delivers all four requested lines before attacking')
+        check(seen == set(phrases),'Mewtwo only cries before attacking, as in Red/Blue')
         check(h.battle.enemy.species == 'MEWTWO' and m.read('wEnemyMonLevel') == 70,'Mewtwo dialogue starts the existing level-70 battle')
-        check(not h.text_overflows,'Mewtwo dialogue fits the textbox')
+        check(not h.text_overflows,'Mewtwo cry text fits the textbox')
         h.pb.screen.image.save(str(OUTPUT / 'mewtwo-battle-after-dialogue.png'))
         stage(['MEW'],True,position=(27,14),map_name='CERULEAN_CAVE_B1F',mewtwo_gone=True)
         check(not any(obj['map_object'] == 1 for obj in c.objects()),'an existing save with Mewtwo gone keeps it gone after relocation')

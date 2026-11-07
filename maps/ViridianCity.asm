@@ -271,12 +271,12 @@ ViridianCitySignText:
 
 ViridianCityDragoonAttackText:
 	text "Go, CHARIZARD!"
-	para "TACKLE!"
+	para "DRAGON CLAW!"
 	done
 
 ViridianCityBirdAttackText:
 	text "Go, PIDGEOT!"
-	para "TACKLE!"
+	para "WING ATTACK!"
 	done
 
 ViridianCityBattleInterruptedMText:

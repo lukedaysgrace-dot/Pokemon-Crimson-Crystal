@@ -718,7 +718,7 @@ EcruteakCityWishingWellNoMoneyText:
 	done
 
 EcruteakCityWishingWellBagFullText:
-	text "Your BAG is full."
+	text "Your PACK is full."
 
 	para "Make room before"
 	line "making a wish."

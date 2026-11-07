@@ -671,10 +671,11 @@ KurtsHouseKurtAskAnotherBatchText:
 KurtsHouseKurtStartBatchText:
 	text "KURT: Let's see…"
 	line "@"
-	text_decimal wStringBuffer5, 2, 4
-	text " @"
 	text_ram wStringBuffer3
-	text "S"
+	text "S,"
+	cont "@"
+	text_decimal wStringBuffer5, 2, 4
+	text " of them."
 
 	para "That's enough for"
 	line "a fine batch of"

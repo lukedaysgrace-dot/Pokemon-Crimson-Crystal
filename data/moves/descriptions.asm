@@ -1935,7 +1935,7 @@ ShadowBoneDescription:
 
 DireClawDescription:
 	db   "May poison, numb"
-	next "or drop asleep.@"
+	next "or put to sleep.@"
 
 BarbBarrageDescription:
 	db   "2x on poisoned"
@@ -2186,8 +2186,8 @@ HeavySlamDescription:
 	next "More if heavier.@"
 
 TwinBeamDescription:
-	db   "Hits twice. May"
-	next "drop SPCL.DEF each@"
+	db   "Hits twice. Each"
+	next "may cut SPCL.DEF.@"
 
 KingsShieldDescription:
 	db   "Guards from hits."

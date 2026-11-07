@@ -838,12 +838,12 @@ AssaultVestDesc:
 	next "no status. (HOLD)@"
 
 FocusSashDesc:
-	db   "May endure from"
-	next "full HP. (HOLD)@"
+	db   "Survives a KO hit"
+	next "at full HP. (HOLD)@"
 
 ExpertBeltDesc:
-	db   "Boosts super-"
-	next "effective. (HOLD)@"
+	db   "Super-effective"
+	next "hits +20%. (HOLD)@"
 
 RockyHelmetDesc:
 	db   "Hurts foes on"
@@ -1046,11 +1046,11 @@ HeatRockDesc:
 
 SmoothRockDesc:
 	db   "Extends sandstorm"
-	next "8 turns. (HOLD)@"
+	next "to 8 turns. (HOLD)@"
 
 IcyRockDesc:
 	db   "Extends hail/snow"
-	next "8 turns. (HOLD)@"
+	next "to 8 turns. (HOLD)@"
 
 TartAppleDesc:
 	db   "Tart apple for"
@@ -1181,7 +1181,7 @@ WHITE_HERBDesc:
 
 
 LIGHT_CLAYDesc:
-	db "Screens last eight"
+	db "Screens last 8"
 	next "turns. (HOLD)@"
 
 THROAT_SPRAYDesc:

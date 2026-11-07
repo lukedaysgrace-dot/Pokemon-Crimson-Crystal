@@ -66,7 +66,7 @@ FriskedItemText:
 	text "<USER>"
 	line "frisked its foe"
 
-	para "and found a"
+	para "and found its"
 	line "@"
 	text_ram wBattleDynamicNameBuffer
 	text "!"

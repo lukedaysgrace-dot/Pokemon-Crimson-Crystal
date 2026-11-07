@@ -237,11 +237,11 @@ def main():
                     tick(40)
                     for _ in range(8):
                         pages.append(text())
-                        if 'Excess is lost' in text():
+                        if 'max is lost' in text():
                             break
                         press('a')
                         tick(30)
-                    check('Excess is lost' in text(), 'confirmation warns about overflow')
+                    check('max is lost' in text(), 'confirmation warns about overflow')
                     tick(40)
                     check(all(name in ''.join(pages) for name in ('MON1', 'MON2')), 'confirmation identifies both mons')
                     if stage == 'success':

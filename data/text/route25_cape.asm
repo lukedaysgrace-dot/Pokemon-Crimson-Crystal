@@ -63,9 +63,9 @@ Route25CrystalMewCaughtText::
 	cont "MEW. Let me see"
 	cont "your #DEX!"
 
-	para "…There it is. OAK"
-	line "is going to have"
-	cont "questions."
+	para "…There it is."
+	line "PROF.OAK is going"
+	cont "to have questions."
 
 	para "When we started, I"
 	line "only thought about"
@@ -99,8 +99,8 @@ Route25CrystalMewEscapedText::
 	cont "But we know it's"
 	cont "real now."
 
-	para "I'll send OAK our"
-	line "notes. This"
+	para "I'll send PROF.OAK"
+	line "our notes. This"
 	cont "sighting still"
 	cont "matters."
 	done

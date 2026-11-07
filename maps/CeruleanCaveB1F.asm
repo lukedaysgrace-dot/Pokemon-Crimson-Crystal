@@ -12,8 +12,6 @@ CeruleanCaveB1F_MapScripts:
 CeruleanCaveMewtwo:
 	faceplayer
 	opentext
-	writetext CeruleanCaveMewtwoBeforeBattleText
-	waitbutton
 	writetext CeruleanCaveMewtwoText
 	cry MEWTWO
 	pause 15
@@ -38,21 +36,7 @@ CeruleanCaveB1FHiddenUltraBall:
 	hiddenitem ULTRA_BALL, EVENT_CERULEAN_CAVE_B1F_HIDDEN_ULTRA_BALL
 
 CeruleanCaveMewtwoText:
-	text "Myuu!"
-	done
-
-CeruleanCaveMewtwoBeforeBattleText:
-	text "That power…"
-	line "it is familiar."
-
-	para "MEW…"
-
-	para "You have brought"
-	line "the one from which"
-	cont "I was created."
-
-	para "But we are not"
-	line "the same."
+	text "Mew!"
 	done
 
 CeruleanCaveB1F_MapEvents:

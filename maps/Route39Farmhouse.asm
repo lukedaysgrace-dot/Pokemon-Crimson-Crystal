@@ -183,8 +183,8 @@ FarmerFText_WorkUpSpeech:
 
 	para "It pumps up your"
 	line "#MON's ATTACK"
-
-	para "and SPCL.ATK both."
+	cont "and SPECIAL ATTACK"
+	cont "both."
 
 	para "You best think how"
 	line "you ought to use"
