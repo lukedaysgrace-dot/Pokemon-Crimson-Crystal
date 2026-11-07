@@ -666,12 +666,6 @@ INCLUDE "engine/gfx/load_font.asm"
 INCLUDE "engine/link/time_capsule.asm"
 
 
-SECTION "Pokemon Footprints", ROMX
-
-Footprints:
-INCLUDE "gfx/footprints.asm"
-
-
 SECTION "bank3F", ROMX
 
 INCLUDE "engine/battle/misc.asm"

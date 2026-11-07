@@ -18,7 +18,7 @@ remains 510. Mienfoo's stats remain canonical. Catch rates, experience yields,
 Medium Slow growth, equal gender ratio, 25 hatch cycles and **Field / Human-Like**
 egg groups follow the main series.
 The Pokédex includes custom two-page descriptions based on their mountain
-training and rapid martial arts, correct height/weight, and species footprints.
+training and rapid martial arts, and correct height/weight.
 
 The level-up progression follows Scarlet/Violet's supported moves, with older
 natural Meditate, DoubleSlap, Swift and Jump Kick retained for variety. Low Kick
@@ -46,8 +46,6 @@ the engine does not implement are listed in the import receipt.
 Supplied front/back sprites, animation frames, normal/shiny palettes and menu
 icons are used directly. Dedicated cries come from
 [Polished Coral](https://github.com/pkmncoraldev/polishedcoral/blob/2191e0eaad134b4cf006709be82f7362cf70248c/audio/cries_2.asm).
-Footprints come from
-[pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion/tree/master/graphics/pokemon).
 Main-series data was checked against [Mienfoo](https://pokemondb.net/pokedex/mienfoo)
 and [Mienshao](https://pokemondb.net/pokedex/mienshao). Move provenance uses the
 project's pinned Pokémon Showdown and Lumi sources. The family receipt is

@@ -19,8 +19,7 @@ Punch. Unimplemented reference moves are recorded in the canonical receipt.
 Front/back animations, normal/shiny palettes and menu icons use the supplied
 artwork. Trevenant's backsprite palette slots were normalized to its front
 palette. Dedicated cries are imported from Polished Coral, rather than reusing
-another species' cry. Footprints come from
-[pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion/tree/master/graphics/pokemon).
+another species' cry.
 
 Horn Leech is a 75-power physical Grass contact move, with 100% accuracy and
 10 PP. It restores half the damage dealt, rounded up, using the existing

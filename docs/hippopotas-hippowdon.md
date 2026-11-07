@@ -23,7 +23,7 @@ Both use the supplied front/back sprites and two-frame menu icons. Each supplied
 front sprite has one frame, so its animation scripts reference only frame zero.
 Normal front/back palette slots are aligned; shiny colors adapt the official
 male sprites' pale yellow/olive and olive/dark green to the Game Boy's two middle
-colors. Footprints are imported, and each species has an authored Game Boy cry.
+colors. Each species has an authored Game Boy cry.
 The cries are original PSG adaptations, not exact sampled main-series audio.
 
 Internal indexes **501/502** preserve every existing species index. Save format
