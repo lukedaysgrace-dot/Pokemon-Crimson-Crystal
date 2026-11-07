@@ -17,7 +17,6 @@
 ; - AnimationIdlePointers (see gfx/pokemon/idle_pointers.asm)
 ; - BitmasksPointers (see gfx/pokemon/bitmask_pointers.asm)
 ; - FramesPointers (see gfx/pokemon/frame_pointers.asm)
-; - Footprints (see gfx/footprints.asm)
 	const_def 1
 	const BULBASAUR  ; 01
 	const IVYSAUR    ; 02

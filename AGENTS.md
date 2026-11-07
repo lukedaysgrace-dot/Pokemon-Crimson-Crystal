@@ -215,6 +215,14 @@ Read this before changing the game. Keep it up to date when something here chang
   Fixtures clear `hOAMUpdate`
   after staged map loading; hardware OAM checks prove all three actors render.
 
+## Pokédex
+- Dex entries use a clear upper-right header, with no per-species corner art or
+  asset table. Preserve that layout on both text pages, species changes, AREA/CRY
+  returns, printer redisplay and new-catch registration.
+- Run `make test-pokedex-ui BATTLE_TEST_PYTHON=.venv/bin/python` for both ROMs.
+  Native page/area/cry/browsing/registration captures and results go under
+  `_artifacts/dex-ui/`; tests use private emulator state and preserve party data.
+
 ## Personal summary (stats) screen
 - Gen 2 style layout in `engine/pokemon/stats_screen.asm`, colors/attributes in
   `engine/gfx/summary_screen_pals.asm`. Rows 0-6: pokepic + header (row 0 page-colored

@@ -397,18 +397,6 @@
     "; Walrein in SILVER_CAVE_ROOM_2's water.",
     "\tdbw 61, LOTAD"
   ],
-  "gfx/footprints.asm": [
-    "INCBIN \"gfx/footprints/252.1bpp\" ; SPOINK",
-    "INCBIN \"gfx/footprints/252.1bpp\" ; GRUMPIG",
-    "INCBIN \"gfx/footprints/252.1bpp\" ; LOTAD",
-    "INCBIN \"gfx/footprints/252.1bpp\" ; LOMBRE",
-    "INCBIN \"gfx/footprints/252.1bpp\" ; LUDICOLO",
-    "INCBIN \"gfx/footprints/252.1bpp\" ; SPHEAL",
-    "INCBIN \"gfx/footprints/252.1bpp\" ; SEALEO",
-    "INCBIN \"gfx/footprints/252.1bpp\" ; WALREIN",
-    "INCBIN \"gfx/footprints/252.1bpp\" ; FLITTLE",
-    "INCBIN \"gfx/footprints/252.1bpp\" ; ESPATHRA"
-  ],
   "gfx/icons.asm": [
     "SealeoIcon: INCBIN \"gfx/icons/seel.2bpp\" ; TODO: gfx/icons/sealeo.png",
     "SphealIcon: INCBIN \"gfx/icons/seel.2bpp\" ; TODO: gfx/icons/spheal.png",

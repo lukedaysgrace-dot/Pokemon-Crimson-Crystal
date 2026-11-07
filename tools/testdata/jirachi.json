@@ -1074,7 +1074,6 @@
     "Tera Blast",
     "Uproar"
   ],
-  "footprint_source": "https://github.com/pret/pokeemerald/blob/master/graphics/pokemon/jirachi/footprint.png",
   "cry": "Synthesized Gen II cry: CRY_ENTEI, pitch $24a, length $091; not a sampled Gen III cry.",
   "artwork": "User supplied front/back/menu PNGs. Shared indexed palette; static battle artwork; red-tag shiny palette.",
   "shiny_palette": {

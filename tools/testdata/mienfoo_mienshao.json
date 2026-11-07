@@ -11,8 +11,7 @@
       "https://pokemondb.net/pokedex/mienfoo",
       "https://pokemondb.net/pokedex/mienshao"
     ],
-    "cries": "https://github.com/pkmncoraldev/polishedcoral/blob/2191e0eaad134b4cf006709be82f7362cf70248c/audio/cries_2.asm",
-    "footprints": "https://github.com/rh-hideout/pokeemerald-expansion/tree/master/graphics/pokemon"
+    "cries": "https://github.com/pkmncoraldev/polishedcoral/blob/2191e0eaad134b4cf006709be82f7362cf70248c/audio/cries_2.asm"
   },
   "species": {
     "MIENFOO": {

@@ -17,7 +17,7 @@ index. Save format 5 and the 63-byte seen/caught fields remain the same size.
 - Mienfoo evolves at level 50, with normal Everstone/cancellation behavior.
 - Mienfoo: Mt. Mortar 1F Inside, level 30, 10% slot at every time of day.
 - Mienshao: Mt. Mortar 2F Inside, level 50, 1% daytime slot.
-- Two-page dex descriptions, proper height/weight and imported footprints.
+- Two-page dex descriptions and proper height/weight.
 - Supplied animated front/back sprites, normal/shiny palettes and menu icons.
 - Dedicated Game Boy cries imported from Polished Coral.
 - All species-indexed graphics, name, cry, dex, ancestry, egg and tutor tables;
@@ -103,4 +103,3 @@ in `.tmpbuild/mienfoo-validation/`. Full-suite and required-static logs are
 - [Mienfoo Scarlet/Violet data cross-check](https://www.serebii.net/pokedex-sv/mienfoo/)
 - [Pinned Pokémon Showdown learnsets](https://github.com/smogon/pokemon-showdown/blob/f7d73fdb20909885b70c4463f3878cf37875068d/data/learnsets.ts)
 - [Dedicated cry source](https://github.com/pkmncoraldev/polishedcoral/blob/2191e0eaad134b4cf006709be82f7362cf70248c/audio/cries_2.asm)
-- [Footprint source](https://github.com/rh-hideout/pokeemerald-expansion/tree/master/graphics/pokemon)

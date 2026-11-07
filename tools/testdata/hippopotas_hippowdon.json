@@ -62,14 +62,6 @@
         "url": "https://raw.githubusercontent.com/pkmncoraldev/polishedcoral/2191e0eaad134b4cf006709be82f7362cf70248c/audio/cries_2.asm",
         "sha256": "3d6c449da8744a80f011b3788bc8cf109a6fa2b2a1124df2e0096195523fc675"
       },
-      "hippopotas-foot.png": {
-        "url": "https://raw.githubusercontent.com/rh-hideout/pokeemerald-expansion/master/graphics/pokemon/hippopotas/footprint.png",
-        "sha256": "4ef3015e2f72ae23f5f5941a771841f735da3959e19ad79fadfaa93d6d674b10"
-      },
-      "hippowdon-foot.png": {
-        "url": "https://raw.githubusercontent.com/rh-hideout/pokeemerald-expansion/master/graphics/pokemon/hippowdon/footprint.png",
-        "sha256": "ae34d201401a45f0e9b40b638ef6d921c7fe4a2309d8dfc989b548f0b2654954"
-      },
       "hippopotas-shiny.png": {
         "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/449.png",
         "sha256": "d425b39e5fff7be05fd6c55fd342d7d9f9b444a25758f7c737f1a4928f3348bb"

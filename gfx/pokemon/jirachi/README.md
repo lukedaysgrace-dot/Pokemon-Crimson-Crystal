@@ -22,4 +22,4 @@ tutor. Jirachi is genderless, cannot breed, and has no egg moves.
 
 Sources and exact acquisition routes: `tools/testdata/jirachi.json`.
 The cry is a synthesized Gen II voice, following the expanded roster's
-existing cry system. The footprint comes from pret/pokeemerald.
+existing cry system.

@@ -308,24 +308,6 @@ def audit_species(audit: Audit) -> None:
             + (f" at position {mismatch}" if mismatch is not None else ""),
         )
 
-    footprint_rows = directive_rows(read(ROOT / "gfx/footprints.asm"), "INCBIN")
-    audit.expect(
-        len(footprint_rows) == len(species),
-        f"footprint table has {len(footprint_rows)} records for {len(species)} species",
-    )
-    for line_number, row in footprint_rows:
-        match = re.fullmatch(r'"([^"]+)"', row[0]) if len(row) == 1 else None
-        audit.expect(match is not None, f"gfx/footprints.asm:{line_number}: malformed footprint include")
-        if match is None:
-            continue
-        footprint = ROOT / match.group(1)
-        audit.expect(footprint.is_file(), f"gfx/footprints.asm:{line_number}: missing {match.group(1)}")
-        if footprint.is_file():
-            audit.expect(
-                footprint.stat().st_size == 32,
-                f"gfx/footprints.asm:{line_number}: {match.group(1)} is not a four-tile 1bpp footprint",
-            )
-
     evolution_files = (
         ROOT / "data/pokemon/evos_attacks_kanto.asm",
         ROOT / "data/pokemon/evos_attacks_johto.asm",

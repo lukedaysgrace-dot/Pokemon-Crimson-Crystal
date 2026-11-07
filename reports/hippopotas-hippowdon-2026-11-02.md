@@ -15,7 +15,7 @@ family regressions/documentation were updated.
 - Hippopotas evolves at level 34, respecting Everstone and cancellation.
 - Route 45: Hippopotas in the 10% morning/day slot at levels 28/30; Hippowdon
   in the 5% daytime slot at level 38. Replaced slots remain available elsewhere.
-- Names, both Dex pages, heights, weights, footprints, ancestry, egg lists,
+- Names, both Dex pages, heights, weights, ancestry, egg lists,
   machines, both tutors, alphabetical/regional sorting, and EZChat registration.
   Hippowdon's category is shortened to HEAVY to fit the ten-cell category field.
 
@@ -93,4 +93,3 @@ dialogue was changed.
 - [Hippopotas data](https://pokemondb.net/pokedex/hippopotas)
 - [Hippowdon data](https://pokemondb.net/pokedex/hippowdon)
 - [Official-color sprite references](https://github.com/PokeAPI/sprites/tree/master/sprites/pokemon/shiny)
-- [Footprint source](https://github.com/rh-hideout/pokeemerald-expansion/tree/master/graphics/pokemon)
