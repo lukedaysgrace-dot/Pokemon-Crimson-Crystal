@@ -140,8 +140,8 @@ VictoryRoadGateEightBadgesText:
 	text "Oh! The eight"
 	line "BADGES of JOHTO!"
 
-	para "Please, go right"
-	line "on through!"
+	para "Please, go on"
+	line "through!"
 
 	para "Turn right for"
 	line "KANTO."

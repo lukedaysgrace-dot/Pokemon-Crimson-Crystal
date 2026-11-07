@@ -329,11 +329,11 @@ CooltrainerfJoyceAfterBattleText:
 	para "so I was feeling"
 	line "confident."
 
-	para "KANTO's eight are"
-	line "my next challenge."
-
 	para "I'll have to try"
 	line "harder next time."
+
+	para "KANTO's eight are"
+	line "my next challenge."
 	done
 
 CooltrainerfBeth1SeenText:

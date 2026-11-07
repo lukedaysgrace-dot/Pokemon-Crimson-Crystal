@@ -458,9 +458,8 @@ Route31WimpodFledText:
 	done
 
 Route31WimpodLikesScentText:
-	text "WIMPOD looks at"
-	line "you with a"
-	cont "peculiar glance."
+	text "WIMPOD gives you"
+	line "a peculiar look."
 
 	para "It seems to like"
 	line "your smell!"

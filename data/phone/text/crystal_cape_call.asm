@@ -8,9 +8,8 @@ CrystalPhoneCapeCallText1::
 	line "ERIKA."
 
 	para "Another KANTO GYM"
-	line "down."
-	cont "Sounds about"
-	cont "right."
+	line "down. No surprise"
+	cont "there."
 
 	para "Listen. I need you"
 	line "at CERULEAN CAPE."
@@ -26,7 +25,7 @@ CrystalPhoneCapeCallText2::
 	cont "many times to"
 	cont "ignore it."
 
-	para "If they're right…"
+	para "If it's true…"
 	line "No. I'll tell you"
 	cont "when I see it."
 

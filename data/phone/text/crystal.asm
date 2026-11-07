@@ -91,8 +91,8 @@ CrystalPhoneStatusIcePathText:
 	para "I'm working from"
 	line "memory."
 
-	para "KANTO's GYMS come"
-	line "next."
+	para "KANTO is next for"
+	line "both of us."
 
 	para "Try to get there"
 	line "before I do!"
@@ -110,7 +110,7 @@ CrystalPhoneStatusCapeText:
 
 	para "Some discoveries"
 	line "don't fit neatly"
-	cont "in a #DEX."
+	cont "into a #DEX."
 	done
 
 CrystalPhoneTipRoute31Text:

@@ -296,10 +296,9 @@ SchoolGirlDebraBeatenText:
 
 SchoolGirlDebraAfterBattleText:
 	text "Someday I'll map"
-	line "every current from"
-	cont "OLIVINE to"
-
-	para "VERMILION."
+	line "every current"
+	cont "between OLIVINE"
+	cont "and VERMILION."
 	done
 
 JugglerFritzSeenText:
@@ -319,7 +318,8 @@ JugglerFritzAfterBattleText:
 
 	para "Even MR.RIME lost"
 	line "his footing! Next"
-	cont "time, the train!"
+	cont "time, I'm taking"
+	cont "the train!"
 	done
 
 SailorGarrettSeenText:

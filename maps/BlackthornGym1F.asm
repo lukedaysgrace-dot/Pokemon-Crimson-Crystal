@@ -293,9 +293,12 @@ BlackthornGymClairText_League:
 	para "From here, go to"
 	line "NEW BARK TOWN."
 
-	para "Then SURF east."
-	line "The route there is"
-	cont "very tough."
+	para "Then SURF east and"
+	line "follow ROUTE 26"
+	cont "north."
+
+	para "The route there is"
+	line "very tough."
 
 	para "Don't you dare"
 	line "lose at the #-"

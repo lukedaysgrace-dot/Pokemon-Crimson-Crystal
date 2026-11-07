@@ -230,8 +230,7 @@ PryceText_IcicleCrashSpeech:
 
 	para "It strikes hard"
 	line "and may make the"
-
-	para "foe flinch."
+	cont "foe flinch."
 
 	para "It demonstrates"
 	line "the harshness of"

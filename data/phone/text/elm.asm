@@ -264,11 +264,12 @@ ElmPhoneExpRelayText:
 	done
 
 ElmPhoneExpRelayReminderText:
-	text "ELM: Hi, <PLAY_G>!"
+	text "Hi, <PLAY_G>!"
+	line "It's PROF.ELM!"
 
 	para "Your EXP RELAY is"
-	line "ready here at my"
-	cont "LAB in NEW BARK."
+	line "waiting at my LAB"
+	cont "in NEW BARK TOWN."
 
 	para "It passes training"
 	line "from one #MON"
@@ -276,7 +277,8 @@ ElmPhoneExpRelayReminderText:
 
 	para "Drop by when you"
 	line "can! I'd love to"
-	cont "hear how you are."
+	cont "hear how you're"
+	cont "doing."
 	done
 
 ElmPhoneUnusedText:
