@@ -206,7 +206,7 @@ def main():
             check(event('EVENT_ROUTE_31_WIMPOD_WAITING') and not battles and not emotes,
                   f'{trigger}: Wimpod waits for A without fleeing or battling early')
             check(any('Route31WimpodLikesScentText' in text for text in h.battle.textbox_contexts),
-                  f'{trigger}: peculiar glance and smell dialogue is displayed')
+                  f'{trigger}: peculiar look and smell dialogue is displayed')
             if trigger == (22, 8):
                 pb.screen.image.save(output / '02-wimpod-approached.png')
                 # The approach leaves both characters facing one another.

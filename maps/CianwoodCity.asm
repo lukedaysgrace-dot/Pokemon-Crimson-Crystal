@@ -531,9 +531,9 @@ CianwoodCityCrystalLossText:
 	done
 
 CianwoodCityCrystalAfterText:
-	text "Hmph. Great notes,"
-	line "shame about the"
-	cont "result."
+	text "Hmph. Soggy notes"
+	line "and a loss. Not"
+	cont "my best day."
 
 	para "Still, my team"
 	line "held up well."

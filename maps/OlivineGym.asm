@@ -242,8 +242,8 @@ Jasmine_MetalCoatOffer:
 
 Jasmine_MetalCoatSpeech:
 	text "It's a METAL COAT."
-	line "STEELIX was just"
-	cont "an ONIX that held"
+	line "My STEELIX was an"
+	cont "ONIX that held"
 	cont "one."
 	done
 

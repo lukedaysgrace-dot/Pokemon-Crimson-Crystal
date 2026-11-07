@@ -518,11 +518,9 @@ GoldenrodGameCornerSlotManiacAfterText:
 	cont "attention…"
 
 	para "They make moves"
-	line "that hit multiple"
-	cont "times more likely"
-	cont "to land the"
-	cont "maximum number of"
-	cont "hits."
+	line "that strike more"
+	cont "than once land"
+	cont "more hits."
 
 	para "Pretty handy when"
 	line "you want to tip"

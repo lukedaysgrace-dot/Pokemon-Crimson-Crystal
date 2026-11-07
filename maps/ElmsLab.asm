@@ -1549,13 +1549,13 @@ ElmExpRelayExplainText:
 	line "all that training"
 	cont "to a new #MON."
 
+	para "It covers HP,"
+	line "ATTACK, DEFENSE,"
+	cont "SPEED and SPECIAL!"
+
 	para "The #MON giving"
 	line "its Stat EXP will"
 	cont "lose all of it."
-
-	para "HP, ATTACK,"
-	line "DEFENSE, SPEED and"
-	cont "SPECIAL training!"
 
 	para "Use it from KEY"
 	line "ITEMS outside of"

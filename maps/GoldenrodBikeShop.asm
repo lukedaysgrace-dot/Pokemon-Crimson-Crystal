@@ -90,8 +90,8 @@ GoldenrodBikeShopClerkAgreedText:
 
 	para "Give me your name"
 	line "and phone number."
-	cont "I'll loan you a"
-	cont "ride!"
+	cont "I'll lend you some"
+	cont "wheels!"
 	done
 
 BorrowedABicycleText:

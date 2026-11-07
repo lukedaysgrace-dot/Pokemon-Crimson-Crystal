@@ -78,7 +78,7 @@ BoarderNoelAfterBattleText:
 	line "three weeks."
 
 	para "I keep saying,"
-	line "\"One more run…\""
+	line "“One more run…”"
 	done
 
 SkierBiancaSeenText:

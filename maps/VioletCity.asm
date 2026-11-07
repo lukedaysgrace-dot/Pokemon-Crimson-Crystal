@@ -450,7 +450,7 @@ VioletCityCrystalNumberText:
 	line "go."
 
 	para "Your #GEAR."
-	line "Give me the"
+	line "Give me your"
 	cont "number."
 
 	para "…Please. Sorry."

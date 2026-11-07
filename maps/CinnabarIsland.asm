@@ -272,7 +272,7 @@ CinnabarIsland_MapEvents:
 	object_event  9,  6, SPRITE_BLUE_CLOAK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlueCloakScript, EVENT_BLUE_CLOAK_IN_CINNABAR
 
 CinnabarIslandBlueNeedBadgesText:
-	text "Defeat all of the"
+	text "Defeat the other"
 	line "KANTO GYM LEADERS"
 	cont "first."
 

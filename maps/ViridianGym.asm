@@ -138,9 +138,16 @@ LeaderBlueBeforeText:
 	line "you conquered all"
 	cont "the GYMS in JOHTO?"
 
+	para "And every other"
+	line "one in KANTO?"
+
 	para "Heh! JOHTO's GYMS"
 	line "must be pretty"
 	cont "pathetic then."
+
+	para "And the rest of"
+	line "KANTO's LEADERS"
+	cont "are getting soft."
 
 	para "Hey, don't worry"
 	line "about it."
@@ -322,8 +329,8 @@ ViridianGym_MapEvents:
 	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
 
 ViridianGymNotReadyText:
-	text "BLUE: Defeat all"
-	line "of the KANTO GYM"
+	text "BLUE: Defeat the"
+	line "other KANTO GYM"
 	cont "LEADERS first."
 
 	para "Then we'll battle!"

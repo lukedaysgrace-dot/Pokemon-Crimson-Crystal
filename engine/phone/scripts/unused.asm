@@ -8,10 +8,11 @@ OakMtSilverPhoneCallerScript:
 	end
 
 OakMtSilverPhoneText:
-	text "OAK: <PLAY_G>!"
+	text "<PLAY_G>! It's"
+	line "PROF.OAK."
 
-	para "I heard of your"
-	line "LEAGUE victory."
+	para "I heard about your"
+	line "LEAGUE victory!"
 
 	para "Please come visit"
 	line "me at my LAB."
