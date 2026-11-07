@@ -128,10 +128,8 @@ HiddenPowerGuyEggText:
 	done
 
 HiddenPowerGuyNoChangeText:
-	text "Hmm… You are not"
-	line "yet ready. Return"
-	cont "when you have"
-	cont "decided."
+	text "Hmm… Return when"
+	line "you have decided."
 	done
 
 HiddenPowerGuyRetuneText:

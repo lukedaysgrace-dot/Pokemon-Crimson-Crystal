@@ -698,22 +698,28 @@ Text_SelectDifficultyNormal::
 Text_SelectDifficultyHard::
 	text "Are you sure?"
 
-	para "SET mode, no"
-	line "items in battle,"
-	cont "GYM LVL caps."
+	para "No battle items."
+	line "No switching when"
+	cont "a foe faints."
+	cont "GYM level caps."
 	done
 
 Text_SelectPokemonTyping::
 	text "Choose #MON"
 	line "typings."
+	para "Original: latest"
+	line "official types."
+	para "Enhanced: some"
+	line "#MON get new"
+	cont "Crimson typings."
 	done
 
 Text_SelectPokemonStats::
 	text "Choose #MON"
 	line "base stats."
-	para "Original: modern"
-	line "main-game stats."
-	para "Updated:"
+	para "Original: latest"
+	line "official stats."
+	para "Enhanced:"
 	line "Crimson's buffs."
 	done
 

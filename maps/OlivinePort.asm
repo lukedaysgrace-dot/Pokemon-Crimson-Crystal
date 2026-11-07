@@ -458,7 +458,7 @@ OlivinePortMuscleBandSailorGiftText:
 	line "this MUSCLE BAND"
 	cont "for years!"
 
-	para "But look at him"
+	para "And look at him"
 	line "now!"
 
 	para "Every muscle's"

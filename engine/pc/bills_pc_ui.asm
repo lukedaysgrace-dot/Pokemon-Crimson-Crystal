@@ -2262,7 +2262,7 @@ BillsPC_MenuStrings:
 	db "READ@"
 	; holding an item
 	db "MOVE@"
-	db "BAG@"
+	db "PACK@"
 	; no item
 	db "GIVE@"
 
@@ -3382,14 +3382,14 @@ BillsPC_CantPutMailIntoPackText:
 	prompt
 
 BillsPC_PackFullText:
-	text "The BAG is full…"
+	text "The PACK is full…"
 	prompt
 
 BillsPC_MovedToPackText:
 	text "Moved @"
 	text_ram wStringBuffer1
 	text_start
-	line "to the BAG."
+	line "to the PACK."
 	prompt
 
 BillsPC_Menu:

@@ -86,7 +86,8 @@ ExpRelayCore::
 	text_ram wStringBuffer1
 	text "?"
 	para "Donor loses all."
-	line "Excess is lost."
+	line "Stat EXP past the"
+	cont "max is lost."
 	done
 
 .SuccessText:

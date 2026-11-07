@@ -123,10 +123,11 @@ CueballChopperSpunkText:
 
 CueballChopperAfterText:
 	text "That vest boosts"
-	line "SPCL.DEF, but the"
-	cont "#MON holding it"
-	cont "can only use"
-	cont "attacking moves!"
+	line "SPECIAL DEFENSE,"
+	cont "but the #MON"
+	cont "holding it can"
+	cont "only use attacking"
+	cont "moves!"
 
 	para "You've earned a"
 	line "spot on this road!"

@@ -47,8 +47,9 @@ CrystalPhoneStatusVioletText:
 	line "first, then UNION"
 	cont "CAVE."
 
-	para "OAK is waiting for"
-	line "my next report."
+	para "PROF.OAK is"
+	line "waiting for my"
+	cont "next report."
 	cont "Better keep"
 	cont "moving!"
 	done

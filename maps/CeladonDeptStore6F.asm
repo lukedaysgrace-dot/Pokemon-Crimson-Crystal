@@ -274,7 +274,7 @@ CeladonDeptStore6FLittleGirlRewardText:
 	done
 
 CeladonDeptStore6FLittleGirlNoRoomText:
-	text "Your BAG is full!"
+	text "Your PACK is full!"
 	line "Keep your drink"
 	cont "for now."
 
