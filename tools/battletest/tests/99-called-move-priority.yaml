@@ -1,0 +1,125 @@
+- name: "Called priority: Prankster Sleep Talk's Tackle remains priority against Queenly Majesty"
+  player: {species: MEW, level: 50, ability: PRANKSTER, status_byte: 3, moves: [SLEEP_TALK, TACKLE]}
+  enemy: {species: MEW, level: 100, ability: QUEENLY_MAJESTY, moves: [SPLASH]}
+  setup_wram: {wBattleMonPP: [10, 0, 0, 0]}
+  move_script: [1]
+  rng: seeded
+  rng_value: 91
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "wram('wEnemyGoesFirst') == 0", "player.pp[0] == 9"]
+
+- name: "Action priority: Pursuit during a switch replaces last turn's Prankster context"
+  player: {species: MEW, level: 100, ability: QUEENLY_MAJESTY, moves: [SPLASH]}
+  player2: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: PRANKSTER, moves: [PURSUIT, GROWL]}
+  setup_wram: {wEnemyMonPP: [0, 40, 0, 0]}
+  turn_setup_wram:
+    1: {wEnemyMonPP: [20, 0, 0, 0]}
+  move_script: [1, "switch:2"]
+  rng: seeded
+  rng_value: 91
+  turns: 2
+  assert: ["wram16('wPartyMon1HP') < player.start_hp", "enemy.pp[0] == 19", "not textbox_seen('IsConfusedText')"]
+
+- name: "Action priority: Future Sight's delayed strike doesn't inherit this turn's Prankster Growl"
+  player: {species: MEW, level: 50, ability: PRANKSTER, moves: [FUTURE_SIGHT, GROWL]}
+  enemy: {species: MEW, level: 100, ability: QUEENLY_MAJESTY, moves: [SPLASH]}
+  move_script: [1, 2, 2]
+  rng: forced_high
+  turns: 3
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[0] == 7"]
+
+- name: "Action priority: acquiring Prankster after ordering doesn't make Growl fail against Dark"
+  player: {species: MEW, level: 100, ability: SYNCHRONIZE, moves: [GROWL]}
+  enemy: {species: SABLEYE, level: 50, ability: PRANKSTER, moves: [SKILL_SWAP]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'PRANKSTER'", "enemy.ability == 'SYNCHRONIZE'", "enemy.stat_levels[0] == 6", "wram('wEnemyGoesFirst') == 1"]
+
+- name: "Priority charging: Queenly Majesty blocks Gale Wings Fly before takeoff"
+  player: {species: TALONFLAME, level: 50, ability: GALE_WINGS, moves: [FLY]}
+  enemy: {species: MEW, level: 100, ability: QUEENLY_MAJESTY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[2] & 64) == 0", "player.pp[0] == 14", "enemy.hp == enemy.start_hp"]
+
+- name: "Priority charging: Armor Tail blocks enemy Gale Wings Fly before takeoff"
+  player: {species: MEW, level: 100, ability: ARMOR_TAIL, moves: [SPLASH]}
+  enemy: {species: TALONFLAME, level: 50, ability: GALE_WINGS, moves: [FLY]}
+  rng: forced_high
+  turns: 1
+  assert: ["(enemy.substatus[2] & 64) == 0", "enemy.pp[0] == 14", "player.hp == player.start_hp"]
+
+- name: "Priority charging: normal-priority Fly still takes off against Queenly Majesty"
+  player: {species: TALONFLAME, level: 50, ability: NO_ABILITY, moves: [FLY]}
+  enemy: {species: MEW, level: 100, ability: QUEENLY_MAJESTY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[2] & 64) != 0", "player.pp[0] == 14"]
+
+- name: "Priority charging: blocked landing clears an already airborne player"
+  player: {species: TALONFLAME, level: 50, ability: NO_ABILITY, moves: [FLY]}
+  enemy: {species: MEW, level: 100, ability: QUEENLY_MAJESTY, moves: [SPLASH]}
+  turn_setup_wram:
+    1: {wPlayerAbility: {ability: GALE_WINGS}}
+  move_script: [1, 1]
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or (player.substatus[2] & 64) != 0
+  assert: ["(player.substatus[2] & 64) == 0", "enemy.hp == enemy.start_hp", "player.pp[0] == 14"]
+
+- name: "Priority charging: blocked landing clears an already airborne enemy"
+  player: {species: MEW, level: 100, ability: ARMOR_TAIL, moves: [SPLASH]}
+  enemy: {species: TALONFLAME, level: 50, ability: NO_ABILITY, moves: [FLY]}
+  turn_setup_wram:
+    1: {wEnemyAbility: {ability: GALE_WINGS}}
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or (enemy.substatus[2] & 64) != 0
+  assert: ["(enemy.substatus[2] & 64) == 0", "player.hp == player.start_hp", "enemy.pp[0] == 14"]
+
+- name: "Priority charging: Bide stores normally and Queenly Majesty blocks only its release"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [BIDE]}
+  enemy: {species: MEW, level: 50, ability: QUEENLY_MAJESTY, moves: [TACKLE]}
+  rng: forced_high
+  turns: 3
+  assert: ["enemy.hp == enemy.start_hp", "player.hp < player.start_hp", "player.pp[0] == 9", "(player.substatus[2] & 1) == 0"]
+
+- name: "Priority charging: Gale Wings Fly still takes off without a priority shield"
+  player: {species: TALONFLAME, level: 50, ability: GALE_WINGS, moves: [FLY]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["(player.substatus[2] & 64) != 0", "player.pp[0] == 14"]
+
+- name: "Called priority: Gale Wings doesn't make Sleep Talk's Peck a priority action"
+  player: {species: TALONFLAME, level: 50, ability: GALE_WINGS, status_byte: 3, moves: [SLEEP_TALK, PECK]}
+  enemy: {species: MEW, level: 100, ability: QUEENLY_MAJESTY, moves: [SPLASH]}
+  setup_wram: {wBattleMonPP: [10, 0, 0, 0]}
+  move_script: [1]
+  rng: seeded
+  rng_value: 91
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "wram('wEnemyGoesFirst') == 1", "player.pp[0] == 9"]
+
+- name: "Called priority: Triage doesn't make Sleep Talk's Mega Drain a priority action"
+  player: {species: MEW, level: 50, ability: TRIAGE, status_byte: 3, moves: [SLEEP_TALK, MEGA_DRAIN]}
+  enemy: {species: MEW, level: 100, ability: ARMOR_TAIL, moves: [SPLASH]}
+  setup_wram: {wBattleMonPP: [10, 0, 0, 0]}
+  move_script: [1]
+  rng: seeded
+  rng_value: 91
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "wram('wEnemyGoesFirst') == 1", "player.pp[0] == 9"]
+
+- name: "Called priority: Prankster Sleep Talk's Tackle is blocked by Dark typing"
+  player: {species: MEW, level: 50, ability: PRANKSTER, status_byte: 3, moves: [SLEEP_TALK, TACKLE]}
+  enemy: {species: UMBREON, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wBattleMonPP: [10, 0, 0, 0]}
+  move_script: [1]
+  rng: seeded
+  rng_value: 91
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "wram('wEnemyGoesFirst') == 0", "player.pp[0] == 9"]

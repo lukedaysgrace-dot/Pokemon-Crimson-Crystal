@@ -173,6 +173,32 @@ Read this before changing the game. Keep it up to date when something here chang
   Run `make test-stat-exp BATTLE_TEST_PYTHON=.venv/bin/python` for both ROMs,
   all levels, caps, sharing, switching, fainting and subsequent battle entry.
 
+## Battle move metadata and priority
+- Hidden Power's move-table row is a placeholder. Use its owner's stored type,
+  fixed 70 power and current stat-based category where appropriate. Forewarn
+  ranks its fixed 70 power; Gale Wings checks the actual owner's type.
+- `wPlayerLastMoveType` / `wEnemyLastMoveType` (WRAM2) record the resolved type
+  alongside last-used move IDs. Conversion2 and its AI use this history, not
+  current weather/abilities or AI-mutated move structs. The bytes are valid
+  only while the corresponding last-move ID is nonzero.
+- The WRAM2 `w*ActionMove` / `w*ActionAbility` fields retain the selected action
+  and effective ability at ordering. Called moves inherit that priority and
+  Prankster origin. Capture also covers Pursuit interception and Giga Hammer
+  reselection; entry clears each incoming side before Imposter can run.
+  Future Sight's delayed hit is independent of this turn's selected action.
+- Foe-target status moves without `checkhit` still need the pre-execution
+  guard (Mimic, Mirror Move, Psych Up, Mean Look, Nightmare, Sketch, Transform
+  and Ghost Curse). Called/continuing actions skip PP, not this guard. Perish
+  Song receives the global priority-shield check without Dark-type immunity.
+  Immediate damaging actions are checked before charge/self-faint commands;
+  Bide's storage and Future Sight's delayed strike retain their own paths.
+- `make test-moves-abilities BATTLE_TEST_JOBS=8` includes every-move semantic
+  outcomes, dynamic-type controls and called-move interactions. The optional
+  `make test-exhaustive-battles BATTLE_TEST_JOBS=8` also plays every move with
+  every ability in both roles and directions; its Cartesian checks establish
+  execution/state integrity, while the focused matrices assert mechanics.
+  All fixtures use private emulator memory, never player saves.
+
 ## Species additions
 - There are 503 internal species indexes and 501 visible Dex entries. Append new
   indexes for ordinary additions; displayed regional numbering is separate in

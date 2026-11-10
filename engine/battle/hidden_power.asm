@@ -235,6 +235,115 @@ GetMoveTypeForOwner:
 	ld a, [wEnemyMonHiddenPowerType]
 	jp ResolveHiddenPowerType
 
+CaptureBattleActionContext::
+; Called before ordering or switching. Keep each action's original move
+; and priority-granting ability across Sleep Talk/Metronome/Mirror Move and
+; ability changes caused by the opponent's earlier action.
+	push af
+	push bc
+	push de
+	push hl
+	farcall GetPlayerAbilityEffective_b
+	push bc
+	farcall GetEnemyAbilityEffective_b
+	ld c, b
+	pop de
+	ld b, d
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerActionMove)
+	ldh [rSVBK], a
+	ld a, [wCurPlayerMove]
+	ld [wPlayerActionMove], a
+	ld a, [wCurEnemyMove]
+	ld [wEnemyActionMove], a
+	ld a, b
+	ld [wPlayerActionAbility], a
+	ld a, c
+	ld [wEnemyActionAbility], a
+	pop af
+	ldh [rSVBK], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+ClearPlayerActionContext::
+	ld a, 0
+	jr ClearActionContext
+ClearEnemyActionContext::
+	ld a, 1
+ClearActionContext:
+; Entry abilities (notably Imposter) are not move actions. Clear this side's
+; old context before they run, including forced mid-turn replacements.
+	push bc
+	push hl
+	ld c, a
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerActionMove)
+	ldh [rSVBK], a
+	ld hl, wPlayerActionMove
+	ld a, c
+	and a
+	jr z, .got_side
+	inc hl
+.got_side
+	ld [hl], 0
+	inc hl
+	inc hl
+	ld [hl], 0
+	pop af
+	ldh [rSVBK], a
+	pop hl
+	pop bc
+	ret
+
+GetUserActionMoveContext::
+; b = original selected move, c = effective ability when it was ordered.
+; Preserve de and the active WRAM bank. Calling moves change wCur*Move.
+	push de
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerActionMove)
+	ldh [rSVBK], a
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wPlayerActionMove]
+	ld b, a
+	ld a, [wPlayerActionAbility]
+	jr z, .got_side
+	ld a, [wEnemyActionMove]
+	ld b, a
+	ld a, [wEnemyActionAbility]
+.got_side
+	ld c, a
+	pop af
+	ldh [rSVBK], a
+	pop de
+	ret
+
+UserActionHasPranksterBoost::
+; z only for an action originally boosted by Prankster. A called attack
+; inherits that flag; a called status move does not gain it retrospectively.
+	push bc
+	push de
+	push hl
+	call GetUserActionMoveContext
+	ld a, c
+	cp PRANKSTER
+	jr nz, .done
+	ld l, b
+	ld a, MOVE_CATEGORY
+	call GetMoveAttribute
+	cp CATEGORIZE_STATUS
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+
 GaleWingsMoveIsFlying::
 ; AbilityCompareMovePriority: b = move id, e = side (0 = player, 1 = enemy).
 ; Returns z if that move is Flying-type for that mon. Preserves bc, de.
@@ -248,23 +357,69 @@ GaleWingsMoveIsFlying::
 
 HiddenPowerOpponentMoveType::
 ; Conversion2: e = the move the user's (hBattleTurn) opponent last used.
-; Returns its type in d (Hidden Power: the opponent's own type).
+; Return the type actually used, including Hidden Power, Weather Ball and
+; ability conversion. Current weather/ability/move structs can have changed
+; since the attack, so never reconstruct historical type from them.
+	push hl
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerLastMoveType)
+	ldh [rSVBK], a
+	ld hl, wEnemyLastMoveType
 	ldh a, [hBattleTurn]
-	xor 1
-	ld d, a
-	call GetMoveTypeForOwner
-	ld d, a
+	and a
+	jr z, .got_side
+	ld hl, wPlayerLastMoveType
+.got_side
+	ld d, [hl]
+	pop af
+	ldh [rSVBK], a
+	pop hl
 	ret
 
 AIConversion2LoadPlayerMoveType::
-; AI_Smart_Conversion2: e = the player's last move. Stores its type (Hidden
-; Power: the player's mon's own) in the player's move struct and selects the
-; player's turn for the type matchup check that follows.
-	ld d, 0
-	call GetMoveTypeForOwner
+; AI scoring uses the same recorded historical type as the executed move.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerLastMoveType)
+	ldh [rSVBK], a
+	ld a, [wPlayerLastMoveType]
+	ld d, a
+	pop af
+	ldh [rSVBK], a
+	ld a, d
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	xor a
 	ldh [hBattleTurn], a
+	ret
+
+RecordUsedMoveType::
+; Called alongside the last-used move ID, after dynamic type resolution.
+; Preserve the last-move pointers and all caller registers and WRAM bank.
+	push af
+	push bc
+	push de
+	push hl
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	ld b, a
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerLastMoveType)
+	ldh [rSVBK], a
+	ld hl, wPlayerLastMoveType
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .got_side
+	inc hl
+.got_side
+	ld [hl], b
+	pop af
+	ldh [rSVBK], a
+	pop hl
+	pop de
+	pop bc
+	pop af
 	ret
 
 GetHiddenPowerDisplayStats::

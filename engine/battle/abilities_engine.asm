@@ -2099,6 +2099,8 @@ AIScoredMoveFails_Core::
 	call GetBattleVar
 	cp EFFECT_CURSE
 	jr z, .curse
+	cp EFFECT_PERISH_SONG
+	jr z, .priority ; global song: priority shields apply, Dark typing doesn't
 	ld hl, AIFoeTargetedStatusEffects
 	ld de, 1
 	call IsInArray
@@ -2204,6 +2206,8 @@ AIFoeTargetedStatusEffects:
 	db EFFECT_FORESIGHT
 	db EFFECT_LOCK_ON
 	db EFFECT_MIMIC
+	db EFFECT_MIRROR_MOVE
+	db EFFECT_PSYCH_UP
 	db EFFECT_PAIN_SPLIT
 	db EFFECT_SKILL_SWAP
 	db EFFECT_TRICK
@@ -3865,14 +3869,19 @@ AbilityPreHitTargetBlock::
 	; Grass powders later, in AbilityAccuracyMods).
 	call GrassBlocksCurrentPowder
 	ret c
+	; The delayed strike is an end-of-turn event, not this turn's selected
+	; action. It cannot inherit priority or Prankster from an unrelated move.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FUTURE_SIGHT
+	ret z ; cp equality also clears carry
 	; Since Gen VII, Dark-type opponents are immune to status moves whose
 	; priority was raised by Prankster. This hook only receives moves that
 	; actually target the opposing Pokemon, so self/side moves remain valid.
 	call GetTrueUserAbility
 	cp PRANKSTER
 	jr nz, .not_prankster
-	call GetMoveCategory
-	cp CATEGORIZE_STATUS
+	farcall UserActionHasPranksterBoost
 	jr nz, .not_prankster
 	ld a, DARK
 	call OpponentIsType
@@ -3882,22 +3891,33 @@ AbilityPreHitTargetBlock::
 .not_prankster
 	; Armor Tail / Queenly Majesty fail increased-priority moves outright.
 	; "Priority" is EFFECTIVE priority, counting Prankster/Gale Wings/Triage.
+	call AbilityPriorityTargetBlock
+	ret c
+	jp AbilityAccuracyMods.status_class_block
+
+AbilityPriorityTargetBlock::
+; Priority shields also block global Perish Song. Keep this check separate
+; from Prankster's Dark immunity and ordinary foe-targeted status classes.
 	call GetOpponentIgnorableAbility
 	cp ARMOR_TAIL
 	jr z, .priority_block
 	cp QUEENLY_MAJESTY
-	jp nz, AbilityAccuracyMods.status_class_block
+	jr nz, .not_blocked
 .priority_block
 	call AbilityAccuracyMods.armor_tail_blocks
-	jr nc, AbilityAccuracyMods.status_class_block
+	ret nc
 	call ShowEnemyAbilityBannerBrief
 	scf
 	ret
+.not_blocked
+	and a
+	ret
 
 AbilityPreExecutionTargetBlock::
-; Some selected-foe status moves do not use checkhit. Carry if one of those
-; is blocked by Armor Tail / Queenly Majesty. Side-targeting hazards and
-; user-targeting moves (including Psych Up) deliberately are not listed.
+; Stop priority-immune damaging actions before charge/self-faint commands,
+; and cover selected-foe status moves without checkhit. Side/user-targeting
+; status moves remain excluded; stored Bide and delayed Future Sight are
+; independent of ordinary immediate damage targeting.
 ; Preserves bc, de and hl so BattleCommand_DoTurn can keep its PP/status
 ; pointers live across this farcall.
 	push hl
@@ -3907,6 +3927,17 @@ AbilityPreExecutionTargetBlock::
 	call GetBattleVar
 	cp EFFECT_CURSE
 	jr z, .curse
+	cp EFFECT_PERISH_SONG
+	jr z, .global_priority
+	cp EFFECT_BIDE
+	jp z, .not_blocked
+	cp EFFECT_FUTURE_SIGHT
+	jp z, .not_blocked
+	call GetMoveCategory
+	cp CATEGORIZE_STATUS
+	jr nz, .check_ability
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
 	ld hl, .effects
 	ld de, 1
 	call IsInArray
@@ -3933,6 +3964,9 @@ AbilityPreExecutionTargetBlock::
 	jr c, .not_blocked
 	call AbilityPreHitTargetBlock
 	jr .done
+.global_priority
+	call AbilityPriorityTargetBlock
+	jr .done
 .not_blocked
 	and a ; nc
 .done
@@ -3942,6 +3976,9 @@ AbilityPreExecutionTargetBlock::
 	ret
 
 .effects
+	db EFFECT_MIMIC
+	db EFFECT_MIRROR_MOVE
+	db EFFECT_PSYCH_UP
 	db EFFECT_MEAN_LOOK
 	db EFFECT_NIGHTMARE
 	db EFFECT_SKETCH
@@ -4101,16 +4138,15 @@ AbilityAccuracyMods::
 ; carry if the attacker's move has increased EFFECTIVE priority
 ; (base priority plus the attacker's Prankster/Gale Wings/Triage boosts)
 	push bc
-	call .armor_tail_move
+	farcall GetUserActionMoveContext ; b = selected move, c = initial ability
+	ld a, b
 	and a
 	jr z, .armor_tail_ok ; no move (item/switch edge case)
+	push bc
 	ld e, a
 	farcall GetMovePriority_e
 	ld d, e ; d = base priority
-	call .armor_tail_move
-	ld b, a ; b = move id
-	call GetTrueUserAbility
-	ld c, a ; c = the attacker's effective ability
+	pop bc
 	ldh a, [hBattleTurn]
 	ld e, a ; whose move it is
 	call AbilityCompareMovePriority.Adjust
@@ -4123,15 +4159,6 @@ AbilityAccuracyMods::
 .armor_tail_ok
 	pop bc
 	and a
-	ret
-
-.armor_tail_move
-; a = the attacker's chosen move id
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [wCurPlayerMove]
-	ret z
-	ld a, [wCurEnemyMove]
 	ret
 
 ReduceAccuracyQuarter_Defender:

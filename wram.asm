@@ -3307,6 +3307,17 @@ wDamageCalcBasePower:: db
 wTransformedAbilityPending:: db
 ; Nonzero only while Cud Chew re-eats a Berry (lets it past Unnerve).
 wCudChewReplaying:: db
+; Actual resolved types when the corresponding last-used move was recorded.
+; Valid only while wLast{Player,Enemy}Move/CounterMove is nonzero. Keeping
+; history separate from move structs survives AI scoring and failed actions.
+wPlayerLastMoveType:: db
+wEnemyLastMoveType:: db
+; Selected action and effective ability at turn ordering. Calling another
+; move must retain the outer action's priority and Prankster origin.
+wPlayerActionMove:: db
+wEnemyActionMove:: db
+wPlayerActionAbility:: db
+wEnemyActionAbility:: db
 
 SECTION "Supreme Overlord History", WRAMX, BANK[2]
 

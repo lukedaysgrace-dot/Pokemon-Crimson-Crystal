@@ -141,7 +141,15 @@ test-moves-abilities: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/audit_ability_text.py
 	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal_debug.gbc
-	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render --jobs $(BATTLE_TEST_JOBS) --all-moves --all-effects --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --outcome-matrix --item-matrix --reaction-matrix --complex-matrix --long-battles --interactions 512
+	$(BATTLE_TEST_PYTHON) tools/test_battle_action_context.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/ai_dynamic_type_checks.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/metronome_priority_checks.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render --jobs $(BATTLE_TEST_JOBS) --all-moves --all-effects --move-semantics --dynamic-type-matrix --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --outcome-matrix --item-matrix --reaction-matrix --complex-matrix --long-battles --interactions 512
+
+.PHONY: test-exhaustive-battles
+test-exhaustive-battles: test-moves-abilities
+	$(BATTLE_TEST_PYTHON) tools/test_battle_instant_text.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/exhaustive_battle_audit.py --mode cartesian --jobs $(BATTLE_TEST_JOBS)
 
 test-deep: pokecrystal_debug.gbc
 	python3 tools/audit_ability_text.py

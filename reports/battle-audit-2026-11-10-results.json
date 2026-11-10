@@ -1,0 +1,66 @@
+{
+  "base_commit": "1747dbc561e0626063f069b4cea43892a618bc60",
+  "rom_sha256": {
+    "pokecrystal.gbc": "d43c89740ba6e6f2f8385f576c93e4f1a5799a6afceee54bbbb6b206c1ea4cd6",
+    "pokecrystal_debug.gbc": "b2f65070c3730dcbe387d415e03d49ed778ac1324dd45873e55466570a817391"
+  },
+  "moves": 444,
+  "ability_entries_including_control": 174,
+  "behavior_subsets": {
+    "dynamic_types": 2256,
+    "called_moves": 440,
+    "priority_targeting": 300
+  },
+  "behavior_battles": {
+    "passed": 36108,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "cartesian_battles": {
+    "passed": 309024,
+    "failed": 0,
+    "workers_completed": 8,
+    "unique_move_side_groups": 888,
+    "scope": "Every move, each ability as attacker and defender, both sides; execution and integrity checks"
+  },
+  "live_illusion_battles": {
+    "passed": 617,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "normal_presentation_comparisons": 54,
+  "native_metronome_battles": 24,
+  "native_ai_conversion2_battles": 4,
+  "native_entry_cleanup_battles": 2,
+  "rendered_evidence_battles": 6,
+  "stance_stat_checks": 532,
+  "gyro_power_checks_per_rom": 18372,
+  "picture_frame_checks_per_rom": 1164,
+  "probability_outcomes": 44032,
+  "wide_lens_checks": 2048,
+  "item_update_checks": 352,
+  "species_weight_records": 503,
+  "weight_move_power_checks": 5828,
+  "log_sha256": {
+    "static-final-abi.log": "17fc4ec318932d81cbca8a5e921c97293b1d57b20da408eaab4475daf25e1ba0",
+    "complete-validated.log": "7fdddd9669fb5f43387d7f45d189b4ca0434f0e5d4a874465192b2fb0c570094",
+    "cartesian-validated.log": "a7cfe65f93c33b9e02b41ed377506dba2771eb115ad504efa95a88fa0213fc0b",
+    "presentation-final.log": "0fb310974b71474614a715a76fc85415e738f340f7a8274add168221ea65e6ac",
+    "action-context-final.log": "02667e30c9b6e7cc5300acc5cc18a5dc133daaee4346bd1df27c0d1b1132d29a",
+    "ai-final.log": "9bf8ca115d3aa0a7cfed2d0e9d0a8072bdd6ace1a574f699895f77d8ccefe80d",
+    "metronome-both-sides-final.log": "d9d27e3af8b1d5d63e38a0838c771769c60297dea6061f65471523ae1b0d6305",
+    "captures-final.log": "7dda93957a4941da236f498314b1c2b73ec2bb604356647de44d461761c688a1",
+    "illusion-final.log": "68656f680e283f7da17b65714ae788271b0b4b8a870f0b551e7a199651c0dacc",
+    "stance-final.log": "192fa64a04f785a79641145f1afa29b88419ac4472d5018ab04d572e1744401a",
+    "gyro-release-final.log": "98f578c29182a577cc98e5630f89c0c7f15c2a1ac528a61f40ab6feb0db79da7",
+    "gyro-debug-final.log": "c0c6b3062ebf041fd9847da4ecb73544492e3c7e46e03b7d5a0b522e9a5a25f2",
+    "picture-release-final.log": "3d04923c528f2ee02d059f8f737c131b930426d3c9261e501e14359f5da73b1a",
+    "picture-debug-final.log": "c9ae9c0d17de862e327062208d652dbd4969d9bd5ccca972ed8f799219ef0a90",
+    "probability-final.log": "e186e3fec0644a76868997180ab4c94c176fe1d8b67a6361fb1f5e2a0242c09e",
+    "wide-lens-final.log": "ea035a1679bc90c96d6c3348cf7969669ba2e300169c8cbbce5bcd18d67a25fd",
+    "hp-item-final.log": "78d5eb61c000a0a33e84595dc4e26ee0cf53329c0612ac79e3b7e7f9bf2f0d76",
+    "weight-final.log": "34ff62b66f7c8ddaf30cc70670370a891017b9d56d381b970700f784554da7e2"
+  }
+}

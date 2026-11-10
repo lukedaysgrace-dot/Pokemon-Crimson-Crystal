@@ -29,6 +29,24 @@ matrices, long battles and 512 mixed battles. The focused cases in
 exclusion, and Heal Bell/Soundproof controls. See
 `reports/moves-abilities-audit.md` at the repository root for results and scope.
 
+The November follow-up adds `--move-semantics` (prepared outcomes for each
+move, on both sides) and `--dynamic-type-matrix` (Hidden Power, Conversion2,
+Forewarn, absorption and called-move priority controls) to that target.
+`make test-exhaustive-battles BATTLE_TEST_JOBS=8` additionally runs every move
+with every ability as attacker and defender on both sides. Its checkpoint
+matrix executes native selection, actions and cleanup; reused setup only
+replaces the initial ability fixture, as the debug tester normally does.
+Entry abilities have separate legal-species tests. Cartesian cases assert
+completion, HP/stage bounds and text/state integrity; they do not establish
+activation for abilities whose prerequisites the fixture does not meet.
+
+Large mechanical runs can opt into `--instant-text --short-delays`. Every
+text command and glyph still executes; fixed presentation pauses retain one
+native VBlank. The Cartesian pass also uses battle scenes off. Run
+`python3 tools/test_battle_instant_text.py` to compare outcomes/text commands
+against ordinary presentation. This acceleration does not certify audio or
+animation timing; those suites keep their normal presentation.
+
 `make test-engine-optimizations` verifies the unrolled copy/fill routines against
 the previous ROM loops, measures their CPU cost, and checks scrolling, palettes,
 simultaneous font/sprite uploads, every tileset animation command, two-part PC

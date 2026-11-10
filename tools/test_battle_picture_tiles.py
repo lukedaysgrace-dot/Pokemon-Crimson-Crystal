@@ -48,6 +48,7 @@ def main():
                  ('SEVIPER', 'seviper', 'Seviper'),
                  ('MIENFOO', 'mienfoo', 'Mienfoo'), ('MIENSHAO', 'mienshao', 'Mienshao'),
                  ('HIPPOPOTAS', 'hippopotas', 'Hippopotas'), ('HIPPOWDON', 'hippowdon', 'Hippowdon'),
+                 ('ARCANINE_HISUIAN', 'arcanine_hisuian', 'ArcanineHisuian'),
                  ('DUSKNOIR', 'dusknoir', 'Dusknoir'), ('FURRET', 'furret', 'Furret'),
                  ('FINIZEN', 'finizen', 'Finizen'),
                  ('BUTTERFREE', 'butterfree', 'Butterfree'),

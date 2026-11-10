@@ -117,6 +117,7 @@ SetUserIllusionSlot:
 	ret
 
 InitPlayerIllusion::
+	farcall ClearPlayerActionContext
 	farcall ResetPlayerStance
 	ldh a, [hBattleTurn]
 	push af
@@ -126,6 +127,7 @@ InitPlayerIllusion::
 	ldh [hBattleTurn], a
 	ret
 InitEnemyIllusion::
+	farcall ClearEnemyActionContext
 	farcall ResetEnemyStance
 	ldh a, [hBattleTurn]
 	push af

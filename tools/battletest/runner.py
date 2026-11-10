@@ -56,12 +56,14 @@ FRAME_CEILING_BATTLE = 60 * 60 * 5  # 5 emulated minutes per test, hard stop
 
 class Harness:
     def __init__(self, verbose=False, cartridge='surrogate', rom_path=None,
-                 sound_emulated=False, emulator_kwargs=None, render=True):
+                 sound_emulated=False, emulator_kwargs=None, render=True, instant_text=False,
+                 short_delays=False):
         rom_path = Path(rom_path or ROM)
         if not rom_path.exists():
             sys.exit("pokecrystal_debug.gbc not found - run `make debug` first")
         self.verbose = verbose
         self.render = render
+        self.instant_text = instant_text
         if cartridge not in ('surrogate', 'mbc30', 'native'):
             raise ValueError('Unknown cartridge mode: ' + cartridge)
         if cartridge == 'mbc30':
@@ -84,6 +86,7 @@ class Harness:
         # Key fixtures to the bytes this emulator actually loaded, including
         # explicit release/alternate ROMs, even if the file is rebuilt later.
         self._rom_key = hashlib.md5(rom_data).hexdigest()[:12]
+        self.rom_sha256 = hashlib.sha256(rom_data).hexdigest()
         if cartridge == 'surrogate' and len(rom_data) > 128 * 0x4000 and rom_data[0x147] in range(0x0f, 0x14):
             rom_data[0x147] = 0x1b  # MBC5 + RAM + battery
             checksum = 0
@@ -101,6 +104,16 @@ class Harness:
         # safe one-shot location and the hook preserves the original opcode.
         self.pb.hook_register(0, 0x100, lambda _context: None, None)
         self.pb.set_emulation_speed(0)
+        if short_delays:
+            # Optional mechanical-matrix accelerator. Keep one real VBlank
+            # per fixed presentation pause; never skip a battle/text command,
+            # animation update, sound wait, move selection or effect routine.
+            def shorten_pause(_context):
+                registers = self.pb.register_file
+                registers.C = 1
+            for symbol in ('DelayFrames', 'WeatherDelayFrames'):
+                bank, address = self.sym[symbol]
+                self.pb.hook_register(bank, address, shorten_pause, None)
         self.battle = Battle(self.pb, self.sym, self.con)
         self.battle.textbox_contexts = set()
         self.battle.textbox_order = []
@@ -245,6 +258,11 @@ class Harness:
     def load_fixture(self):
         self.fixture.seek(0)
         self.pb.load_state(self.fixture)
+        if self.instant_text:
+            # Existing menu flag: print all glyphs and execute every text
+            # command, with no per-letter presentation delay.
+            memory = self.battle.mem
+            memory.write('wOptions', memory.read('wOptions') | 0x10)
         self.text_context = None
         self.text_overflows = []
         self.battle.textbox_contexts.clear()
@@ -442,6 +460,8 @@ def apply_wram_setup(battle, setup):
             if runtime_id is None:
                 raise ValueError(f"setup move {value['move']} is not loaded in this battle")
             battle.mem.write(symbol, runtime_id)
+        elif isinstance(value, dict) and set(value) == {'ability'}:
+            battle.mem.write(symbol, battle.con.ability_id(value['ability']))
         elif isinstance(value, list):
             battle.mem.write_bytes(symbol, value)
         else:
@@ -452,7 +472,7 @@ def load_tests(paths, keyword=None, all_moves=False, all_effects=False, interact
                all_abilities=False, ability_matrix=False, reflection_matrix=False,
                class_matrix=False, textbox_matrix=False, swagger_matrix=False,
                outcome_matrix=False, long_battles=False, item_matrix=False, reaction_matrix=False,
-               complex_matrix=False):
+               complex_matrix=False, move_semantics=False, dynamic_type_matrix=False):
     files = []
     default_dir = Path(__file__).resolve().parent / "tests"
     if not paths:
@@ -497,6 +517,16 @@ def load_tests(paths, keyword=None, all_moves=False, all_effects=False, interact
         tests.extend(generate_reaction_matrix())
     if complex_matrix:
         tests.extend(generate_complex_matrix())
+    if move_semantics:
+        from exhaustive_battle_audit import semantic_tests
+        tests.extend(semantic_tests())
+    if dynamic_type_matrix:
+        from dynamic_type_matrix import generate_dynamic_type_tests
+        from called_move_matrix import generate_called_move_tests
+        from priority_target_matrix import generate_priority_target_tests
+        tests.extend(generate_dynamic_type_tests())
+        tests.extend(generate_called_move_tests())
+        tests.extend(generate_priority_target_tests())
     if keyword:
         selected = {i for i, t in enumerate(tests) if keyword.lower() in t.get("name", "").lower()}
         # A filtered assertion still needs its earlier paired controls.
@@ -541,11 +571,11 @@ def partition_tests(tests, count):
     return [[tests[index] for index in sorted(bucket)] for bucket in buckets]
 
 
-def run_parallel(tests, jobs):
+def run_parallel(tests, jobs, rom_path=None):
     """Run isolated emulators, preserving the normal CLI assertions."""
     jobs = min(jobs, len(tests))
     # Bootstrap once so workers only read the cached fixture.
-    h = Harness()
+    h = Harness(rom_path=rom_path)
     h.ensure_fixture()
     key = h.rom_key()
     h.pb.stop(save=False)
@@ -588,16 +618,25 @@ def run_parallel(tests, jobs):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("paths", nargs="*")
+    ap.add_argument('--rom', type=Path, help='debug ROM to execute, with a matching .sym file')
     ap.add_argument("-k", dest="keyword", help="only tests whose name matches")
     ap.add_argument("-v", dest="verbose", action="store_true")
     ap.add_argument('--no-render', action='store_true',
                     help='skip pixel rendering in automatic battles; retain glyph and gameplay checks')
+    ap.add_argument('--instant-text', action='store_true',
+                    help='use the existing instant-letter flag; retain native text commands and glyph checks')
+    ap.add_argument('--short-delays', action='store_true',
+                    help='mechanics audit: shorten fixed presentation pauses to one native VBlank')
     ap.add_argument('--jobs', type=int, default=1, help='isolated emulator workers; paired controls stay together')
     ap.add_argument('--shard', help=argparse.SUPPRESS)
     ap.add_argument("--all-moves", action="store_true",
                     help="also execute one generated smoke battle per move")
     ap.add_argument("--all-effects", action="store_true",
                     help="also assert one generated scenario per move effect")
+    ap.add_argument('--move-semantics', action='store_true',
+                    help='prepared effect outcomes for every move on both battler sides')
+    ap.add_argument('--dynamic-type-matrix', action='store_true',
+                    help='dynamic types, remembered move types, priority, Forewarn and absorption controls')
     ap.add_argument("--all-abilities", action="store_true",
                     help="exercise every ability on both sides, Gas suppression and Trace")
     ap.add_argument("--ability-matrix", action="store_true",
@@ -630,7 +669,7 @@ def main():
                        args.interactions, args.all_abilities, args.ability_matrix,
                        args.reflection_matrix, args.class_matrix, args.textbox_matrix,
                        args.swagger_matrix, args.outcome_matrix, args.long_battles, args.item_matrix,
-                       args.reaction_matrix, args.complex_matrix)
+                       args.reaction_matrix, args.complex_matrix, args.move_semantics, args.dynamic_type_matrix)
     if not tests:
         sys.exit("no tests found")
     if args.shard:
@@ -639,9 +678,10 @@ def main():
             ap.error('invalid shard')
         tests = partition_tests(tests, count)[index]
     elif args.jobs > 1:
-        sys.exit(run_parallel(tests, args.jobs))
+        sys.exit(run_parallel(tests, args.jobs, args.rom))
 
-    h = Harness(verbose=args.verbose, render=not args.no_render)
+    h = Harness(verbose=args.verbose, rom_path=args.rom, render=not args.no_render, instant_text=args.instant_text,
+                short_delays=args.short_delays)
     t0 = time.monotonic()
     h.ensure_fixture()
     print(f"fixture ready in {time.monotonic()-t0:.1f}s; running {len(tests)} tests")
