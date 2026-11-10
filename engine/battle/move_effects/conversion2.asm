@@ -15,11 +15,12 @@ BattleCommand_Conversion2:
 	and a
 	jr z, .failed
 	push hl
-	ld l, a
-	ld a, MOVE_TYPE
-	call GetMoveAttribute
-	ld d, a
+	ld e, a
+	; d = that move's type; Hidden Power resists the type the opponent's
+	; mon actually used, not the move table's Normal placeholder
+	farcall HiddenPowerOpponentMoveType
 	pop hl
+	ld a, d
 	cp CURSE_T
 	jr z, .failed
 	call AnimateCurrentMove

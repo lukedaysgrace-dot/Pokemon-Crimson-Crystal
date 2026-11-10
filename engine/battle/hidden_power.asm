@@ -216,6 +216,57 @@ HiddenPowerPatchPlayerLastMoveCategory::
 	ld [wEnemyMoveStructCategory], a
 	ret
 
+GetMoveTypeForOwner:
+; e = move id, d = whose active mon knows it (0 = the player's, else the
+; enemy's). Returns a = the move's type: the move table's, except Hidden
+; Power, whose table type is only a Normal placeholder - that mon's own
+; stored type is returned instead. Preserves bc, de.
+	ld l, e
+	ld a, MOVE_EFFECT
+	call GetMoveAttribute
+	cp EFFECT_HIDDEN_POWER
+	ld l, e
+	ld a, MOVE_TYPE
+	jp nz, GetMoveAttribute
+	ld a, d
+	and a
+	ld a, [wBattleMonHiddenPowerType]
+	jp z, ResolveHiddenPowerType
+	ld a, [wEnemyMonHiddenPowerType]
+	jp ResolveHiddenPowerType
+
+GaleWingsMoveIsFlying::
+; AbilityCompareMovePriority: b = move id, e = side (0 = player, 1 = enemy).
+; Returns z if that move is Flying-type for that mon. Preserves bc, de.
+	push de
+	ld d, e
+	ld e, b
+	call GetMoveTypeForOwner
+	pop de
+	cp FLYING
+	ret
+
+HiddenPowerOpponentMoveType::
+; Conversion2: e = the move the user's (hBattleTurn) opponent last used.
+; Returns its type in d (Hidden Power: the opponent's own type).
+	ldh a, [hBattleTurn]
+	xor 1
+	ld d, a
+	call GetMoveTypeForOwner
+	ld d, a
+	ret
+
+AIConversion2LoadPlayerMoveType::
+; AI_Smart_Conversion2: e = the player's last move. Stores its type (Hidden
+; Power: the player's mon's own) in the player's move struct and selects the
+; player's turn for the type matchup check that follows.
+	ld d, 0
+	call GetMoveTypeForOwner
+	ld [wPlayerMoveStruct + MOVE_TYPE], a
+	xor a
+	ldh [hBattleTurn], a
+	ret
+
 GetHiddenPowerDisplayStats::
 ; Returns the values a move info box should display for Hidden Power:
 ; b = category, c = type, d = power.

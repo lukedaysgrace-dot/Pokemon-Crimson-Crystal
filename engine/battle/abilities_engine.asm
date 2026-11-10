@@ -2154,6 +2154,8 @@ AIScoredMoveFails_Core::
 	ld b, a ; move id
 	call GetTrueUserAbility
 	ld c, a
+	ldh a, [hBattleTurn]
+	ld e, a ; whose move it is
 	call AbilityCompareMovePriority.Adjust
 	ld a, d
 	cp BASE_PRIORITY + 1
@@ -4109,6 +4111,8 @@ AbilityAccuracyMods::
 	ld b, a ; b = move id
 	call GetTrueUserAbility
 	ld c, a ; c = the attacker's effective ability
+	ldh a, [hBattleTurn]
+	ld e, a ; whose move it is
 	call AbilityCompareMovePriority.Adjust
 	ld a, d
 	cp BASE_PRIORITY + 1
@@ -6054,6 +6058,7 @@ AbilityCompareMovePriority::
 	ld b, a
 	call GetPlayerAbilityEffective
 	ld c, a
+	ld e, 0 ; the player's move
 	call .Adjust
 	push de
 	ld a, [wCurEnemyMove]
@@ -6064,6 +6069,7 @@ AbilityCompareMovePriority::
 	ld b, a
 	call GetEnemyAbilityEffective
 	ld c, a
+	ld e, 1 ; the enemy's move
 	call .Adjust
 	pop bc ; b = player priority
 	ld a, d ; enemy priority
@@ -6071,7 +6077,8 @@ AbilityCompareMovePriority::
 	ret
 
 .Adjust:
-; b = move id, c = ability, d = priority. Returns adjusted priority in d.
+; b = move id, c = ability, d = priority, e = whose move it is (0 = the
+; player's, 1 = the enemy's). Returns adjusted priority in d.
 	ld a, b
 	and a
 	ret z ; no move chosen (switch/item)
@@ -6097,15 +6104,12 @@ AbilityCompareMovePriority::
 	ret
 
 .gale_wings
-	; +1 priority for Flying-type moves (type as stored in the move data)
-	; Uses GetMoveAttribute: the Moves table is indirect with 7-byte entries,
-	; so the old flat (index-1)*9 read fetched garbage.
+	; +1 priority for Flying-type moves: the type stored in the move data,
+	; or for Hidden Power the type that mon carries (the move table only
+	; holds its Normal placeholder, so a Flying Hidden Power was skipped).
 	push hl
-	ld l, b
-	ld a, MOVE_TYPE
-	call GetMoveAttribute
+	farcall GaleWingsMoveIsFlying ; z if Flying; preserves bc, de
 	pop hl
-	cp FLYING
 	ret nz
 	inc d
 	ret
@@ -8341,6 +8345,8 @@ ForewarnMovePower:
 	jr z, .counter
 	cp EFFECT_STATIC_DAMAGE
 	jr z, .variable ; ROM data stores Sonic Boom/Dragon Rage's fixed damage
+	cp EFFECT_HIDDEN_POWER
+	jr z, .hidden_power ; its table power is a placeholder 1, not "variable"
 	ld l, e
 	ld a, MOVE_POWER
 	call GetMoveAttribute
@@ -8360,6 +8366,9 @@ ForewarnMovePower:
 	jr .done
 .counter
 	ld a, 120
+	jr .done
+.hidden_power
+	ld a, HIDDEN_POWER_BASE_POWER
 	jr .done
 .variable
 	ld a, 80

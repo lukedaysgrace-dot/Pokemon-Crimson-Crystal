@@ -1799,13 +1799,10 @@ AI_Smart_Conversion2:
 	jr z, .asm_38dc9
 
 	push hl
-	ld l, a
-	ld a, MOVE_TYPE
-	call GetMoveAttribute
-	ld [wPlayerMoveStruct + MOVE_TYPE], a
-
-	xor a
-	ldh [hBattleTurn], a
+	ld e, a
+	; the move's type (Hidden Power: the player's mon's own) into the
+	; player's move struct, with the player's turn selected
+	farcall AIConversion2LoadPlayerMoveType
 
 	callfar BattleCheckTypeMatchup
 
