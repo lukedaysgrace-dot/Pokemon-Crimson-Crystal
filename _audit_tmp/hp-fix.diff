@@ -1,0 +1,174 @@
+diff --git a/engine/battle/abilities_engine.asm b/engine/battle/abilities_engine.asm
+index 4fd1aeddb..c1b4df6d0 100644
+--- a/engine/battle/abilities_engine.asm
++++ b/engine/battle/abilities_engine.asm
+@@ -6054,6 +6054,7 @@ AbilityCompareMovePriority::
+ 	ld b, a
+ 	call GetPlayerAbilityEffective
+ 	ld c, a
++	ld e, 0 ; the player's move
+ 	call .Adjust
+ 	push de
+ 	ld a, [wCurEnemyMove]
+@@ -6064,6 +6065,7 @@ AbilityCompareMovePriority::
+ 	ld b, a
+ 	call GetEnemyAbilityEffective
+ 	ld c, a
++	ld e, 1 ; the enemy's move
+ 	call .Adjust
+ 	pop bc ; b = player priority
+ 	ld a, d ; enemy priority
+@@ -6071,7 +6073,8 @@ AbilityCompareMovePriority::
+ 	ret
+ 
+ .Adjust:
+-; b = move id, c = ability, d = priority. Returns adjusted priority in d.
++; b = move id, c = ability, d = priority, e = whose move it is (0 = the
++; player's, 1 = the enemy's). Returns adjusted priority in d.
+ 	ld a, b
+ 	and a
+ 	ret z ; no move chosen (switch/item)
+@@ -6097,15 +6100,12 @@ AbilityCompareMovePriority::
+ 	ret
+ 
+ .gale_wings
+-	; +1 priority for Flying-type moves (type as stored in the move data)
+-	; Uses GetMoveAttribute: the Moves table is indirect with 7-byte entries,
+-	; so the old flat (index-1)*9 read fetched garbage.
++	; +1 priority for Flying-type moves: the type stored in the move data,
++	; or for Hidden Power the type that mon carries (the move table only
++	; holds its Normal placeholder, so a Flying Hidden Power was skipped).
+ 	push hl
+-	ld l, b
+-	ld a, MOVE_TYPE
+-	call GetMoveAttribute
++	farcall GaleWingsMoveIsFlying ; z if Flying; preserves bc, de
+ 	pop hl
+-	cp FLYING
+ 	ret nz
+ 	inc d
+ 	ret
+@@ -8341,6 +8341,8 @@ ForewarnMovePower:
+ 	jr z, .counter
+ 	cp EFFECT_STATIC_DAMAGE
+ 	jr z, .variable ; ROM data stores Sonic Boom/Dragon Rage's fixed damage
++	cp EFFECT_HIDDEN_POWER
++	jr z, .hidden_power ; its table power is a placeholder 1, not "variable"
+ 	ld l, e
+ 	ld a, MOVE_POWER
+ 	call GetMoveAttribute
+@@ -8361,6 +8363,9 @@ ForewarnMovePower:
+ .counter
+ 	ld a, 120
+ 	jr .done
++.hidden_power
++	ld a, HIDDEN_POWER_BASE_POWER
++	jr .done
+ .variable
+ 	ld a, 80
+ .done
+diff --git a/engine/battle/ai/scoring.asm b/engine/battle/ai/scoring.asm
+index 9658be624..7d0d95b75 100644
+--- a/engine/battle/ai/scoring.asm
++++ b/engine/battle/ai/scoring.asm
+@@ -1799,13 +1799,10 @@ AI_Smart_Conversion2:
+ 	jr z, .asm_38dc9
+ 
+ 	push hl
+-	ld l, a
+-	ld a, MOVE_TYPE
+-	call GetMoveAttribute
+-	ld [wPlayerMoveStruct + MOVE_TYPE], a
+-
+-	xor a
+-	ldh [hBattleTurn], a
++	ld e, a
++	; the move's type (Hidden Power: the player's mon's own) into the
++	; player's move struct, with the player's turn selected
++	farcall AIConversion2LoadPlayerMoveType
+ 
+ 	callfar BattleCheckTypeMatchup
+ 
+diff --git a/engine/battle/hidden_power.asm b/engine/battle/hidden_power.asm
+index ab88b8c47..29307f264 100644
+--- a/engine/battle/hidden_power.asm
++++ b/engine/battle/hidden_power.asm
+@@ -216,6 +216,57 @@ HiddenPowerPatchPlayerLastMoveCategory::
+ 	ld [wEnemyMoveStructCategory], a
+ 	ret
+ 
++GetMoveTypeForOwner:
++; e = move id, d = whose active mon knows it (0 = the player's, else the
++; enemy's). Returns a = the move's type: the move table's, except Hidden
++; Power, whose table type is only a Normal placeholder - that mon's own
++; stored type is returned instead. Preserves bc, de.
++	ld l, e
++	ld a, MOVE_EFFECT
++	call GetMoveAttribute
++	cp EFFECT_HIDDEN_POWER
++	ld l, e
++	ld a, MOVE_TYPE
++	jp nz, GetMoveAttribute
++	ld a, d
++	and a
++	ld a, [wBattleMonHiddenPowerType]
++	jp z, ResolveHiddenPowerType
++	ld a, [wEnemyMonHiddenPowerType]
++	jp ResolveHiddenPowerType
++
++GaleWingsMoveIsFlying::
++; AbilityCompareMovePriority: b = move id, e = side (0 = player, 1 = enemy).
++; Returns z if that move is Flying-type for that mon. Preserves bc, de.
++	push de
++	ld d, e
++	ld e, b
++	call GetMoveTypeForOwner
++	pop de
++	cp FLYING
++	ret
++
++HiddenPowerOpponentMoveType::
++; Conversion2: e = the move the user's (hBattleTurn) opponent last used.
++; Returns its type in d (Hidden Power: the opponent's own type).
++	ldh a, [hBattleTurn]
++	xor 1
++	ld d, a
++	call GetMoveTypeForOwner
++	ld d, a
++	ret
++
++AIConversion2LoadPlayerMoveType::
++; AI_Smart_Conversion2: e = the player's last move. Stores its type (Hidden
++; Power: the player's mon's own) in the player's move struct and selects the
++; player's turn for the type matchup check that follows.
++	ld d, 0
++	call GetMoveTypeForOwner
++	ld [wPlayerMoveStruct + MOVE_TYPE], a
++	xor a
++	ldh [hBattleTurn], a
++	ret
++
+ GetHiddenPowerDisplayStats::
+ ; Returns the values a move info box should display for Hidden Power:
+ ; b = category, c = type, d = power.
+diff --git a/engine/battle/move_effects/conversion2.asm b/engine/battle/move_effects/conversion2.asm
+index 9f3c212fe..d541100b2 100644
+--- a/engine/battle/move_effects/conversion2.asm
++++ b/engine/battle/move_effects/conversion2.asm
+@@ -15,11 +15,12 @@ BattleCommand_Conversion2:
+ 	and a
+ 	jr z, .failed
+ 	push hl
+-	ld l, a
+-	ld a, MOVE_TYPE
+-	call GetMoveAttribute
+-	ld d, a
++	ld e, a
++	; d = that move's type; Hidden Power resists the type the opponent's
++	; mon actually used, not the move table's Normal placeholder
++	farcall HiddenPowerOpponentMoveType
+ 	pop hl
++	ld a, d
+ 	cp CURSE_T
+ 	jr z, .failed
+ 	call AnimateCurrentMove
