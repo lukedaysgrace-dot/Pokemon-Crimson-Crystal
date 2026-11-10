@@ -125,6 +125,8 @@ PERFECT_SPDSPC_DV EQU $ff
 ; shiny/gender flags (party: Unused byte; box: PokerusStatus bits 6-7)
 MON_SHINY_FLAG EQU %10000000
 MON_MALE_FLAG  EQU %01000000
+MON_SHINY_FLAG_F EQU 7
+MON_MALE_FLAG_F  EQU 6
 ; ~2% shiny (5 out of 256)
 SHINY_PROBABILITY EQU 2 percent
 ; ~0.5% Pokerus (328 out of 65536), checked as a 16-bit value

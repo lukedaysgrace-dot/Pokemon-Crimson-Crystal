@@ -10,6 +10,15 @@ CheckShininess:
 ; bc = DVs pointer for party/box mons.
 ; Return carry if shiny.
 
+	call GetShinyGenderFlags
+	and MON_SHINY_FLAG
+	ret z
+	scf
+	ret
+
+GetShinyGenderFlags:
+; bc = DVs pointer -> a = that mon's shiny/gender flags byte.
+
 	ld a, b
 	cp HIGH(wEnemyMonDVs)
 	jr nz, .CheckEnemyBackup
@@ -18,7 +27,7 @@ CheckShininess:
 	jr nz, .CheckEnemyBackup
 .EnemyMon:
 	ld a, [wEnemyMonShinyGenderFlags]
-	jr .CheckFlag
+	ret
 
 .CheckEnemyBackup:
 ; a transformed wild mon's own DVs (see GetEnemyMonDVs)
@@ -41,7 +50,7 @@ CheckShininess:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
-	jr .CheckFlag
+	ret
 
 .PartyMon:
 ; Every other caller points bc at a party-struct layout (party, OT party or
@@ -50,15 +59,6 @@ CheckShininess:
 	ld hl, MON_SHINY_GENDER_OFFSET_FROM_DVS
 	add hl, bc
 	ld a, [hl]
-
-.CheckFlag:
-	and MON_SHINY_FLAG
-	jr z, .NotShiny
-	scf
-	ret
-
-.NotShiny:
-	and a
 	ret
 
 ; Keep the legacy unused DV check out of the full palette bank so the
@@ -939,9 +939,22 @@ GetMonNormalOrShinyPalettePointer:
 	call _GetMonPalettePointer
 	pop bc
 	push hl
-	call CheckShininess
+	call GetShinyGenderFlags
 	pop hl
-	ret nc
+; A female Butterfree keeps its species but has its own palette row.
+	ld b, a
+	ld a, l
+	cp LOW(PokemonPalettes + BUTTERFREE * 8)
+	jr nz, .got_row
+	ld a, h
+	cp HIGH(PokemonPalettes + BUTTERFREE * 8)
+	jr nz, .got_row
+	bit MON_MALE_FLAG_F, b
+	jr nz, .got_row
+	ld hl, ButterfreeFemalePalette
+.got_row
+	bit MON_SHINY_FLAG_F, b
+	ret z
 rept 4
 	inc hl
 endr

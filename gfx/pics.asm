@@ -1551,3 +1551,9 @@ SECTION "Hippowdon Pics", ROMX
 
 HippowdonFrontpic: INCBIN "gfx/pokemon/hippowdon/front.animated.2bpp.lz"
 HippowdonBackpic: INCBIN "gfx/pokemon/hippowdon/back.2bpp.lz"
+
+; Female Butterfree is a gender appearance form of BUTTERFREE, not a species.
+SECTION "Butterfree Female Pics", ROMX
+
+ButterfreeFemaleFrontpic: INCBIN "gfx/pokemon/butterfreef/front.animated.2bpp.lz"
+ButterfreeFemaleBackpic: INCBIN "gfx/pokemon/butterfreef/back.2bpp.lz"

@@ -2759,6 +2759,8 @@ Pokedex_LoadSelectedMonTiles:
 	call Pokedex_GetSelectedMon
 	call Pokedex_CheckSeen
 	jr z, .QuestionMark
+	xor a ; no individual mon: show the default appearance
+	ldh [hMonPicFemaleForm], a
 	ld a, [wFirstUnownSeen]
 	ld [wUnownLetter], a
 	ld a, [wTempSpecies]
@@ -2903,6 +2905,8 @@ _NewPokedexEntry:
 	call EnableLCD
 	call WaitBGMap
 	call GetBaseData
+	xor a ; no individual mon: show the default appearance
+	ldh [hMonPicFemaleForm], a
 	ld de, vTiles2
 	predef GetMonFrontpic
 	ld a, SCGB_POKEDEX

@@ -502,3 +502,7 @@ AnimationIdlePointers:
 	dba HippopotasAnimationIdle
 	dba HippowdonAnimationIdle
 	dba ZangooseAnimationIdle
+; Gender appearance forms (graphics-only rows past the last species)
+ButterfreeFemaleAnimationIdlePointer:
+	assert ButterfreeFemaleAnimationIdlePointer == AnimationIdlePointers + (BUTTERFREE_FEMALE_FORM - 1) * 3
+	dba ButterfreeFemaleAnimationIdle

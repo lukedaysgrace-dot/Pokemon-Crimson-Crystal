@@ -502,3 +502,7 @@ AnimationPointers:
 	dba HippopotasAnimation
 	dba HippowdonAnimation
 	dba ZangooseAnimation
+; Gender appearance forms (graphics-only rows past the last species)
+ButterfreeFemaleAnimationPointer:
+	assert ButterfreeFemaleAnimationPointer == AnimationPointers + (BUTTERFREE_FEMALE_FORM - 1) * 3
+	dba ButterfreeFemaleAnimation

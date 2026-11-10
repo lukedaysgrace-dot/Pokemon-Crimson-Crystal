@@ -503,5 +503,9 @@ BitmasksPointers:
 	dw HippowdonBitmasks
 	dw ZangooseBitmasks
 BitmasksPointersEnd:
+; Gender appearance forms (graphics-only rows past the last species)
+	assert BUTTERFREE_FEMALE_FORM == NUM_POKEMON + 1
+	dw ButterfreeFemaleBitmasks
 	assert BitmasksPointersEnd - BitmasksPointers == NUM_POKEMON * 2
 	assert BANK(ZangooseBitmasks) == BANK(BitmasksPointers)
+	assert BANK(ButterfreeFemaleBitmasks) == BANK(BitmasksPointers)

@@ -1547,18 +1547,10 @@ _GetCursorMon:
 	ld a, EGG
 	jr nz, .got_species
 	ld a, [wTempMonSpecies]
-	; wTempMonSpecies is a runtime species ID; compare its 16-bit index
+	; Unown letter and gender appearance form for the picture lookup
 	push af
-	call GetPokemonIndexFromID
-	ld a, l
-	cp LOW(UNOWN)
-	jr nz, .not_unown
-	ld a, h
-	cp HIGH(UNOWN)
-	jr nz, .not_unown
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
-.not_unown
 	pop af
 .got_species
 	ld [wCurPartySpecies], a
@@ -1645,6 +1637,17 @@ _GetCursorMon:
 	jr nz, .got_pal_index
 	ld a, [wTempMonSpecies]
 	call GetPokemonIndexFromID
+	; a female Butterfree uses its own palette row (same species)
+	ld a, l
+	cp LOW(BUTTERFREE)
+	jr nz, .got_pal_index
+	ld a, h
+	cp HIGH(BUTTERFREE)
+	jr nz, .got_pal_index
+	ld a, [wTempMonUnused]
+	and MON_MALE_FLAG
+	jr nz, .got_pal_index
+	ld hl, BUTTERFREE_FEMALE_FORM
 .got_pal_index
 	ld d, h
 	ld e, l

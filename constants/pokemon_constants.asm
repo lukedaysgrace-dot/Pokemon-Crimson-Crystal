@@ -525,6 +525,12 @@ JOHTO_POKEMON EQU const_value
 NUM_POKEMON EQU const_value + -1
 NUM_POKEDEX_ENTRIES EQU NUM_POKEMON - 2 ; Blade and scarred Zangoose share existing Dex identities
 
+; Gender appearance forms are not species. A female BUTTERFREE keeps the
+; BUTTERFREE index everywhere (party, PC, Dex, saves, evolution, breeding);
+; only the picture, animation and palette lookups swap to this extra slot,
+; appended just past the last species in each graphics table.
+BUTTERFREE_FEMALE_FORM EQU NUM_POKEMON + 1
+
 EGG EQU -3
 
 ; limits:

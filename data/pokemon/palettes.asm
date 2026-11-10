@@ -1036,3 +1036,9 @@ INCBIN "gfx/pokemon/hippowdon/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/hippowdon/shiny.pal"
 INCBIN "gfx/pokemon/zangoose/front.gbcpal", middle_colors
 INCLUDE "gfx/pokemon/zangoose/shiny.pal"
+
+; Gender appearance forms (rows past the last species; see constants)
+ButterfreeFemalePalette:
+	assert ButterfreeFemalePalette == PokemonPalettes + BUTTERFREE_FEMALE_FORM * 8
+INCBIN "gfx/pokemon/butterfreef/front.gbcpal", middle_colors
+INCLUDE "gfx/pokemon/butterfreef/shiny.pal"

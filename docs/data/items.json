@@ -1745,14 +1745,14 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (18, 1).",
           "source": "maps/CeruleanCaveB1F.asm",
-          "line": 32
+          "line": 30
         },
         {
           "location": "Cerulean Cave B1F",
           "method": "Hidden pickup",
           "details": "Search this tile. Tile (20, 13).",
           "source": "maps/CeruleanCaveB1F.asm",
-          "line": 38
+          "line": 36
         },
         {
           "location": "Cerulean Mart",
@@ -5098,7 +5098,7 @@
           "map_source": "maps/ViridianGym.asm"
         }
       ],
-      "description": "Boosts supereffective. (HOLD)",
+      "description": "Super-effective hits +20%. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -5284,7 +5284,7 @@
           "map_source": "maps/SilverCaveOutside.asm"
         }
       ],
-      "description": "May endure from full HP. (HOLD)",
+      "description": "Survives a KO hit at full HP. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -5451,7 +5451,7 @@
           "line": 38
         }
       ],
-      "description": "Extends hail/snow 8 turns. (HOLD)",
+      "description": "Extends hail/snow to 8 turns. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -8489,7 +8489,7 @@
       "name": "Light Clay",
       "category": "Held item",
       "sources": [],
-      "description": "Screens last eight turns. (HOLD)",
+      "description": "Screens last 8 turns. (HOLD)",
       "availability": "No source found",
       "notes": ""
     },
@@ -10688,7 +10688,7 @@
           "line": 17
         }
       ],
-      "description": "Extends sandstorm 8 turns. (HOLD)",
+      "description": "Extends sandstorm to 8 turns. (HOLD)",
       "availability": "World sources",
       "notes": ""
     },
@@ -13352,7 +13352,7 @@
           "method": "Ground pickup",
           "details": "Collect the item ball. Tile (16, 9).",
           "source": "maps/CeruleanCaveB1F.asm",
-          "line": 29
+          "line": 27
         },
         {
           "location": "Dragon's Den B1F",
@@ -13648,7 +13648,7 @@
           "method": "Hidden pickup",
           "details": "Search this tile. Tile (4, 3).",
           "source": "maps/CeruleanCaveB1F.asm",
-          "line": 35
+          "line": 33
         },
         {
           "location": "Diglett's Cave",
