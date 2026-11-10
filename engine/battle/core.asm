@@ -466,6 +466,7 @@ EnemyTriesToFlee:
 	ret
 
 DetermineMoveOrder:
+	farcall CaptureBattleActionContext
 	ld a, [wLinkMode]
 	and a
 	jr z, .use_move
@@ -997,6 +998,7 @@ PlayerTurn_EndOpponentProtectEndureDestinyBond:
 .resel_menu_loop
 	call PlayerPickMoveAfterGigaHammerFail
 	jr nz, .resel_menu_loop
+	farcall CaptureBattleActionContext
 	ld a, 1
 	ld [wSkipCheckTurnOnce], a
 	jr .player_move_turn
@@ -4502,7 +4504,7 @@ PursuitSwitch:
 	call GetMoveEffect
 	ld a, b
 	cp EFFECT_PURSUIT
-	jr nz, .done
+	jp nz, .done
 
 	ld a, [wCurBattleMon]
 	push af
@@ -4515,6 +4517,9 @@ PursuitSwitch:
 	ld a, [wLastPlayerMon]
 	ld [wCurBattleMon], a
 .do_turn
+	push hl
+	farcall CaptureBattleActionContext
+	pop hl
 	ld a, BANK(DoPlayerTurn) ; aka BANK(DoEnemyTurn)
 	rst FarCall
 

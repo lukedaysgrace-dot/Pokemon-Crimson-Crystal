@@ -37,6 +37,7 @@ UsedMoveText:
 	ld a, [wTempByteValue]
 	ld [hl], a
 	ld [de], a
+	farcall RecordUsedMoveType
 
 	; Clear Giga Hammer-style reuse lock when this side uses any other effect.
 	ld a, BATTLE_VARS_MOVE_EFFECT

@@ -1199,14 +1199,17 @@ BattleCommand_DoTurn:
 	; priority-immunity gate only after every applicable PP copy is updated,
 	; then end immediately when Armor Tail / Queenly Majesty blocks them.
 	farcall AbilityPreExecutionTargetBlock
-	jp c, EndMoveEffect
-	ret
+	ret nc
+	ld a, 1
+	ld [wAttackMissed], a
+	call ResetDamage
+	jp EndMoveEffect
 
 .stance_only
 	; Called moves, Struggle and continuing attacks skip PP deduction,
-	; but still trigger Stance Change for the move actually being used.
-	farcall StanceChangeBeforeMove
-	ret
+	; while retaining Stance Change and the targeting guard. Called status
+	; moves without checkhit must not bypass priority shields/Dark immunity.
+	jp .check_target_block
 
 .out_of_pp
 	call BattleCommand_MoveDelay
