@@ -2380,6 +2380,11 @@ _PlayCry::
 ; Play cry de using parameters:
 ;	wCryPitch
 ;	wCryLength
+	bit 7, d
+	jr z, .synthesized
+	farcall PlaySampledCry
+	ret
+.synthesized
 
 	call MusicOff
 

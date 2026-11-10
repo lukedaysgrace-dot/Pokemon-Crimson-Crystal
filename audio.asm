@@ -233,6 +233,7 @@ INCLUDE "audio/sfx_crystal.asm"
 SECTION "Cries", ROMX
 
 INCLUDE "data/pokemon/cries.asm"
+INCLUDE "audio/cry_dispatch.asm"
 
 INCLUDE "audio/cries.asm"
 
@@ -257,3 +258,6 @@ INCLUDE "audio/cries_mienfoo_mienshao.asm"
 SECTION "Hippopotas and Hippowdon Cries", ROMX
 
 INCLUDE "audio/cries_hippopotas_hippowdon.asm"
+
+SECTION "Sampled cry controller", ROMX
+INCLUDE "audio/sampled_cries.asm"

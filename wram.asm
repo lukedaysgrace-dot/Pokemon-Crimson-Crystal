@@ -3620,6 +3620,33 @@ wPortraitHeader::      ds PORTRAIT_HEADER_SIZE
 wPortraitBackupTiles:: ds PORTRAIT_FRAME_SIZE * PORTRAIT_FRAME_SIZE
 wPortraitBackupAttrs:: ds PORTRAIT_FRAME_SIZE * PORTRAIT_FRAME_SIZE
 
+SECTION "Sampled cry buffers", WRAMX, BANK[4], ALIGN[4]
+; Never overlap map, picture, save, or battle buffers. Playback switches back
+; to the caller's WRAM bank before returning.
+wDEDTempSamp:: ds 16
+wGetDEDByte:: ds $100
+wDEDSavedWRAMBank:: db
+wDEDFrames:: db
+wDEDTimerTicks:: db
+wDEDAnimRequest:: db
+wDEDAnimEnabled:: db
+wDEDAnimLastFrame:: db
+wDEDAnimReady:: db
+wDEDAnimSource:: dw
+wDEDAnimDestination:: dw
+wDEDAnimTiles:: ds 7 * 7
+wDEDRingRead:: db
+wDEDRingWrite:: db
+wDEDRingCount:: db
+wDEDSourceDone:: db
+wDEDFinished:: db
+wDEDTimerStarted:: db
+wDEDUnderruns:: db
+wDEDPlayedBlocks:: dw
+
+SECTION "Sampled cry ring", WRAMX, BANK[4], ALIGN[8]
+wDEDRingBuffer:: ds $100
+
 INCLUDE "sram.asm"
 
 INCLUDE "hram.asm"

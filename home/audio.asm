@@ -127,50 +127,12 @@ PlayMusic2::
 	ret
 
 PlayCry::
-; Play cry de.
-
+; Play species cry de (zero-based). Keep the public register-preserving API.
 	push hl
 	push de
 	push bc
 	push af
-
-	ldh a, [hROMBank]
-	push af
-
-	; Cries are stuck in one bank.
-	ld a, BANK(PokemonCries)
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
-
-	ld hl, PokemonCries
-rept 6 ; sizeof(mon_cry)
-	add hl, de
-endr
-
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-
-	ld a, [hli]
-	ld [wCryPitch], a
-	ld a, [hli]
-	ld [wCryPitch + 1], a
-	ld a, [hli]
-	ld [wCryLength], a
-	ld a, [hl]
-	ld [wCryLength + 1], a
-
-	ld a, BANK(_PlayCry)
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
-
-	call _PlayCry
-
-	pop af
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
-
+	farcall PlaySpeciesCry
 	pop af
 	pop bc
 	pop de
