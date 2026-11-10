@@ -1,0 +1,54 @@
+diff --git a/crimson-crystal-docs/generate_docs.py b/crimson-crystal-docs/generate_docs.py
+index e5412ea1..deec0459 100644
+--- a/crimson-crystal-docs/generate_docs.py
++++ b/crimson-crystal-docs/generate_docs.py
+@@ -296,6 +296,12 @@ def num(s):
+     try:return int(s.strip().replace('$','0x'),0)
+     except:return None
+ 
++# Internal species records that never appear on the site.
++HIDDEN_SPECIES=('AEGISLASH_BLADE','ZANGOOSE_SCARRED')
++# Species whose art lives in a differently named folder. Unown's own folder has
++# no pictures (each letter has its own), so the site shows Unown Z.
++SPRITE_DIR_OVERRIDES={'UNOWN':'unownz'}
++
+ class Builder:
+   def __init__(self, repo):
+     self.r=repo; self.o=repo/'docs'; self.a=self.o/'assets'; self.report={'warnings':[],'unparsed':[]}
+@@ -328,7 +334,7 @@ class Builder:
+           self.report['warnings'].append(f'dex_order_new.asm lists unknown species {c}')
+           continue
+         n+=1; nums[c]=n
+-      missing=[c for c in order if c not in nums and c != 'AEGISLASH_BLADE']
++      missing=[c for c in order if c not in nums and c not in HIDDEN_SPECIES]
+       if missing:
+         self.report['warnings'].append(
+           f'{len(missing)} species missing from dex_order_new.asm, appended in declared order: '
+@@ -748,7 +754,7 @@ class Builder:
+     dirs={re.sub('[^a-z0-9]','',p.name.lower()):p for p in src.iterdir() if p.is_dir()}
+     for m in mons.values():
+       const_key=re.sub('[^a-z0-9]','',m['const'].lower())
+-      d=dirs.get(const_key)
++      d=dirs.get(SPRITE_DIR_OVERRIDES.get(m['const'],const_key))
+       if not d:
+         same_name=[x for x in mons.values() if x['name'].lower()==m['name'].lower()]
+         if len(same_name)==1:
+@@ -1586,8 +1592,16 @@ class Builder:
+     self.a.mkdir(parents=True,exist_ok=True); base=Path(__file__).parent/'static'; shutil.copy2(base/'style.css',self.a/'style.css'); shutil.copy2(base/'app.js',self.a/'app.js')
+     self.tm_index=self.tm_table(); self.ability_desc=self.ability_descriptions(); self._items=self.item_names()
+     order,names=self.species(); self.dex_numbers=self.dex_order(order); mons=self.base_stats(order,names); self.learnsets(mons); self.egg_moves(mons); self.finish_evolutions(mons); self.gameplay_rules(mons)
+-    # The internal Blade record supplies battle stats/art, not a second catch.
+-    mons.pop('AEGISLASH_BLADE', None)
++    # Internal-only records: the Blade record supplies battle stats/art, and the
++    # scarred Zangoose is a one-time event form. Neither is listed on the site.
++    for hidden in HIDDEN_SPECIES:
++      mons.pop(hidden, None)
++      # Remove pages/art left by older builds so the record is not reachable.
++      for stale in [self.o/'pokemon'/f'{slug(hidden)}.html', *(self.a/'pokemon').glob(f'{slug(hidden)}.*')]:
++        try:
++          stale.unlink(missing_ok=True)
++        except OSError as e:
++          self.report['warnings'].append(f'Could not remove hidden species file {stale}: {e}')
+     moves=self.moves(); self.sprites(mons); wild=self.wild(set(mons))
+     for e in wild:
+       mon=mons.get(e['const'])

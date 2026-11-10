@@ -1,0 +1,924 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index e57c1f7b..e7b9eca8 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -215,6 +215,27 @@ Read this before changing the game. Keep it up to date when something here chang
+   Fixtures clear `hOAMUpdate`
+   after staged map loading; hardware OAM checks prove all three actors render.
+ 
++## Gender appearance forms
++- Female Butterfree (`gfx/pokemon/butterfreef/`) is an appearance of BUTTERFREE,
++  not a species: party/PC/Dex/save data, evolution and breeding all keep the
++  BUTTERFREE index; males and the Dex/Pokepic/mail portraits use the regular art.
++  The female uses graphics-only rows at `BUTTERFREE_FEMALE_FORM`
++  (`NUM_POKEMON + 1`) appended after the last species in PokemonPicPointers,
++  Animation(Idle)Pointers, FramesPointers, BitmasksPointers (after
++  `BitmasksPointersEnd`) and PokemonPalettes; asserts pin each row.
++- Gender comes from the stored MON_MALE_FLAG, never DVs. `GetUnownLetter`
++  (now outside bank14) sets HRAM `hMonPicFemaleForm` from the DV pointer it is
++  given (party/OT/wTempMon layouts, enemy, wild backup, battle mon, both trade
++  mons), so call it before any individual mon's picture load. Species-only
++  pictures clear it. Palettes read the flag through `GetShinyGenderFlags`
++  (bc = DVs) in `GetMonNormalOrShinyPalettePointer`; Bill's PC encodes the
++  female row for its frontpic palette. Party/box menu icons keep species colors.
++- `hMonPicFemaleForm` uses the last free HRAM byte in the debug ROM ($fffe ends
++  the debug tester block). Bank2 now has 2 bytes of slack.
++- Run `python3 tools/test_gender_forms.py` on both ROMs, `tools/test_battle_picture_tiles.py`
++  (exact female animation frames) and `tools/battletest/gender_form_checks.py`
++  (native battles, both sides, normal/shiny; sheet in `_artifacts/gender-forms/`).
++
+ ## Pokédex
+ - Dex entries use a clear upper-right header, with no per-species corner art or
+   asset table. Preserve that layout on both text pages, species changes, AREA/CRY
+diff --git a/constants/pokemon_constants.asm b/constants/pokemon_constants.asm
+index 3db76d45..5faedbf2 100644
+--- a/constants/pokemon_constants.asm
++++ b/constants/pokemon_constants.asm
+@@ -525,6 +525,12 @@ JOHTO_POKEMON EQU const_value
+ NUM_POKEMON EQU const_value + -1
+ NUM_POKEDEX_ENTRIES EQU NUM_POKEMON - 2 ; Blade and scarred Zangoose share existing Dex identities
+ 
++; Gender appearance forms are not species. A female BUTTERFREE keeps the
++; BUTTERFREE index everywhere (party, PC, Dex, saves, evolution, breeding);
++; only the picture, animation and palette lookups swap to this extra slot,
++; appended just past the last species in each graphics table.
++BUTTERFREE_FEMALE_FORM EQU NUM_POKEMON + 1
++
+ EGG EQU -3
+ 
+ ; limits:
+diff --git a/constants/pokemon_data_constants.asm b/constants/pokemon_data_constants.asm
+index ff90ab70..06dfff38 100644
+--- a/constants/pokemon_data_constants.asm
++++ b/constants/pokemon_data_constants.asm
+@@ -125,6 +125,8 @@ PERFECT_SPDSPC_DV EQU $ff
+ ; shiny/gender flags (party: Unused byte; box: PokerusStatus bits 6-7)
+ MON_SHINY_FLAG EQU %10000000
+ MON_MALE_FLAG  EQU %01000000
++MON_SHINY_FLAG_F EQU 7
++MON_MALE_FLAG_F  EQU 6
+ ; ~2% shiny (5 out of 256)
+ SHINY_PROBABILITY EQU 2 percent
+ ; ~0.5% Pokerus (328 out of 65536), checked as a 16-bit value
+diff --git a/data/pokemon/palettes.asm b/data/pokemon/palettes.asm
+index 70cc71d7..43e3495b 100644
+--- a/data/pokemon/palettes.asm
++++ b/data/pokemon/palettes.asm
+@@ -1036,3 +1036,9 @@ INCBIN "gfx/pokemon/hippowdon/front.gbcpal", middle_colors
+ INCLUDE "gfx/pokemon/hippowdon/shiny.pal"
+ INCBIN "gfx/pokemon/zangoose/front.gbcpal", middle_colors
+ INCLUDE "gfx/pokemon/zangoose/shiny.pal"
++
++; Gender appearance forms (rows past the last species; see constants)
++ButterfreeFemalePalette:
++	assert ButterfreeFemalePalette == PokemonPalettes + BUTTERFREE_FEMALE_FORM * 8
++INCBIN "gfx/pokemon/butterfreef/front.gbcpal", middle_colors
++INCLUDE "gfx/pokemon/butterfreef/shiny.pal"
+diff --git a/data/pokemon/pic_pointers.asm b/data/pokemon/pic_pointers.asm
+index d8b8b8b3..9ffe5c80 100644
+--- a/data/pokemon/pic_pointers.asm
++++ b/data/pokemon/pic_pointers.asm
+@@ -1019,3 +1019,8 @@ PokemonPicPointers::
+ 	dba HippowdonBackpic
+ 	dba ZangooseFrontpic
+ 	dba ZangooseBackpic
++; Gender appearance forms (graphics-only rows past the last species)
++ButterfreeFemalePicPointers:
++	assert ButterfreeFemalePicPointers == PokemonPicPointers + BUTTERFREE_FEMALE_FORM * 6
++	dba ButterfreeFemaleFrontpic
++	dba ButterfreeFemaleBackpic
+diff --git a/engine/events/pokepic.asm b/engine/events/pokepic.asm
+index bc17446a..66519b4c 100644
+--- a/engine/events/pokepic.asm
++++ b/engine/events/pokepic.asm
+@@ -11,6 +11,8 @@ Pokepic::
+ 	ld a, [wCurPartySpecies]
+ 	ld [wCurSpecies], a
+ 	call GetBaseData
++	xor a ; no individual mon: show the default appearance
++	ldh [hMonPicFemaleForm], a
+ 	ld de, vTiles1
+ 	predef GetMonFrontpic
+ 	ld a, [wMenuBorderTopCoord]
+diff --git a/engine/gfx/color.asm b/engine/gfx/color.asm
+index 9596a924..b3a2d242 100644
+--- a/engine/gfx/color.asm
++++ b/engine/gfx/color.asm
+@@ -10,6 +10,15 @@ CheckShininess:
+ ; bc = DVs pointer for party/box mons.
+ ; Return carry if shiny.
+ 
++	call GetShinyGenderFlags
++	and MON_SHINY_FLAG
++	ret z
++	scf
++	ret
++
++GetShinyGenderFlags:
++; bc = DVs pointer -> a = that mon's shiny/gender flags byte.
++
+ 	ld a, b
+ 	cp HIGH(wEnemyMonDVs)
+ 	jr nz, .CheckEnemyBackup
+@@ -18,7 +27,7 @@ CheckShininess:
+ 	jr nz, .CheckEnemyBackup
+ .EnemyMon:
+ 	ld a, [wEnemyMonShinyGenderFlags]
+-	jr .CheckFlag
++	ret
+ 
+ .CheckEnemyBackup:
+ ; a transformed wild mon's own DVs (see GetEnemyMonDVs)
+@@ -41,7 +50,7 @@ CheckShininess:
+ 	ld bc, PARTYMON_STRUCT_LENGTH
+ 	call AddNTimes
+ 	ld a, [hl]
+-	jr .CheckFlag
++	ret
+ 
+ .PartyMon:
+ ; Every other caller points bc at a party-struct layout (party, OT party or
+@@ -50,15 +59,6 @@ CheckShininess:
+ 	ld hl, MON_SHINY_GENDER_OFFSET_FROM_DVS
+ 	add hl, bc
+ 	ld a, [hl]
+-
+-.CheckFlag:
+-	and MON_SHINY_FLAG
+-	jr z, .NotShiny
+-	scf
+-	ret
+-
+-.NotShiny:
+-	and a
+ 	ret
+ 
+ ; Keep the legacy unused DV check out of the full palette bank so the
+@@ -939,9 +939,22 @@ GetMonNormalOrShinyPalettePointer:
+ 	call _GetMonPalettePointer
+ 	pop bc
+ 	push hl
+-	call CheckShininess
++	call GetShinyGenderFlags
+ 	pop hl
+-	ret nc
++; A female Butterfree keeps its species but has its own palette row.
++	ld b, a
++	ld a, l
++	cp LOW(PokemonPalettes + BUTTERFREE * 8)
++	jr nz, .got_row
++	ld a, h
++	cp HIGH(PokemonPalettes + BUTTERFREE * 8)
++	jr nz, .got_row
++	bit MON_MALE_FLAG_F, b
++	jr nz, .got_row
++	ld hl, ButterfreeFemalePalette
++.got_row
++	bit MON_SHINY_FLAG_F, b
++	ret z
+ rept 4
+ 	inc hl
+ endr
+diff --git a/engine/gfx/load_pics.asm b/engine/gfx/load_pics.asm
+index d0f5d34e..dd5a8e50 100644
+--- a/engine/gfx/load_pics.asm
++++ b/engine/gfx/load_pics.asm
+@@ -1,5 +1,14 @@
++; Kept out of the tight bank14 so the pic lookups have room for form checks.
++PUSHS
++SECTION "Unown Letter And Pic Form", ROMX
++
+ GetUnownLetter:
+-; Return Unown letter in wUnownLetter based on DVs at hl
++; Return Unown letter in wUnownLetter based on DVs at hl.
++; Every picture load for an individual mon calls this first, so it also
++; records that mon's gender in hMonPicFemaleForm for gender appearance forms.
++	push hl
++	call GetMonPicFemaleFormFromDVs
++	pop hl
+ 
+ ; Take the middle 2 bits of each DV and place them in order:
+ ;	atk  def  spd  spc
+@@ -48,6 +57,65 @@ GetUnownLetter:
+ 	ld [wUnownLetter], a
+ 	ret
+ 
++GetMonPicFemaleFormFromDVs:
++; hl = DVs pointer. Read that mon's shiny/gender flags (the same places
++; CheckShininess reads, plus the trade buffers) and set hMonPicFemaleForm.
++	push bc
++	push de
++	ld de, wEnemyMonDVs
++	call .Match
++	ld a, [wEnemyMonShinyGenderFlags]
++	jr z, .got_flags
++	ld de, wEnemyBackupDVs
++	call .Match
++	ld a, [wEnemyMonShinyGenderFlags]
++	jr z, .got_flags
++	ld de, wPlayerTrademonDVs
++	call .Match
++	ld a, [wPlayerTrademonShinyGender]
++	jr z, .got_flags
++	ld de, wOTTrademonDVs
++	call .Match
++	ld a, [wOTTrademonShinyGender]
++	jr z, .got_flags
++	ld de, wBattleMonDVs
++	call .Match
++	jr nz, .party_layout
++	ld hl, wPartyMon1Unused
++	ld a, [wCurBattleMon]
++	ld bc, PARTYMON_STRUCT_LENGTH
++	call AddNTimes
++	ld a, [hl]
++	jr .got_flags
++
++.party_layout
++; party, OT party and wTempMon (PC, summary, Hall of Fame, trades) layouts
++	ld bc, MON_SHINY_GENDER_OFFSET_FROM_DVS
++	add hl, bc
++	ld a, [hl]
++
++.got_flags
++	and MON_MALE_FLAG
++	ld a, FALSE
++	jr nz, .store
++	inc a ; TRUE
++.store
++	ldh [hMonPicFemaleForm], a
++	pop de
++	pop bc
++	ret
++
++.Match:
++; z if hl == de
++	ld a, l
++	cp e
++	ret nz
++	ld a, h
++	cp d
++	ret
++
++POPS
++
+ GetMonFrontpic:
+ 	ld a, [wCurPartySpecies]
+ 	ld [wCurSpecies], a
+@@ -163,6 +231,18 @@ GetPicIndirectPointer:
+ 	endc
+ 	jr z, .unown
+ .not_unown
++; Gender appearance forms keep their species index; only the pics change.
++	ld a, c
++	cp LOW(BUTTERFREE)
++	jr nz, .no_form
++	ld a, b
++	cp HIGH(BUTTERFREE)
++	jr nz, .no_form
++	ldh a, [hMonPicFemaleForm]
++	and a
++	jr z, .no_form
++	ld bc, BUTTERFREE_FEMALE_FORM
++.no_form
+ 	ld hl, PokemonPicPointers
+ 	ld d, BANK(PokemonPicPointers)
+ .done
+diff --git a/engine/gfx/pic_animation.asm b/engine/gfx/pic_animation.asm
+index 3d5b622e..383b8c52 100644
+--- a/engine/gfx/pic_animation.asm
++++ b/engine/gfx/pic_animation.asm
+@@ -931,7 +931,7 @@ GetMonAnimPointer:
+ 	ld a, [wPokeAnimSpeciesOrUnown]
+ 	ld l, a
+ 	ld h, 0
+-	call nz, GetPokemonIndexFromID
++	call nz, PokeAnim_GetSpeciesFormIndex
+ 
+ ; Entries are dba, so the index is scaled by 3 rather than 2.
+ 	push de
+@@ -1011,7 +1011,7 @@ GetMonFramesPointer:
+ 	ld a, [wPokeAnimSpeciesOrUnown]
+ 	ld l, a
+ 	ld h, 0
+-	call nz, GetPokemonIndexFromID
++	call nz, PokeAnim_GetSpeciesFormIndex
+ 	ld a, c
+ 	ld c, l
+ 	ld b, h
+@@ -1057,7 +1057,7 @@ GetMonBitmaskPointer:
+ 	ld a, [wPokeAnimSpeciesOrUnown]
+ 	ld l, a
+ 	ld h, 0
+-	call nz, GetPokemonIndexFromID
++	call nz, PokeAnim_GetSpeciesFormIndex
+ 	add hl, hl
+ 	add hl, de
+ 	ld a, [wPokeAnimBitmaskBank]
+@@ -1079,6 +1079,23 @@ GetMonBitmaskPointer:
+ 	ld [wPokeAnimBitmaskAddr + 1], a
+ 	ret
+ 
++PokeAnim_GetSpeciesFormIndex:
++; a = species ID -> hl = its row in the animation tables. A gender appearance
++; form (see hMonPicFemaleForm) keeps its species ID but uses its own row.
++; Preserves bc and de.
++	call GetPokemonIndexFromID
++	ld a, l
++	cp LOW(BUTTERFREE)
++	ret nz
++	ld a, h
++	cp HIGH(BUTTERFREE)
++	ret nz
++	ldh a, [hMonPicFemaleForm]
++	and a
++	ret z
++	ld hl, BUTTERFREE_FEMALE_FORM
++	ret
++
+ PokeAnim_GetSpeciesOrUnown:
+ 	call PokeAnim_IsUnown
+ 	jr z, .unown
+diff --git a/engine/pc/bills_pc_ui.asm b/engine/pc/bills_pc_ui.asm
+index 7078b96e..ea176f33 100644
+--- a/engine/pc/bills_pc_ui.asm
++++ b/engine/pc/bills_pc_ui.asm
+@@ -1547,18 +1547,10 @@ _GetCursorMon:
+ 	ld a, EGG
+ 	jr nz, .got_species
+ 	ld a, [wTempMonSpecies]
+-	; wTempMonSpecies is a runtime species ID; compare its 16-bit index
++	; Unown letter and gender appearance form for the picture lookup
+ 	push af
+-	call GetPokemonIndexFromID
+-	ld a, l
+-	cp LOW(UNOWN)
+-	jr nz, .not_unown
+-	ld a, h
+-	cp HIGH(UNOWN)
+-	jr nz, .not_unown
+ 	ld hl, wTempMonDVs
+ 	predef GetUnownLetter
+-.not_unown
+ 	pop af
+ .got_species
+ 	ld [wCurPartySpecies], a
+@@ -1645,6 +1637,17 @@ _GetCursorMon:
+ 	jr nz, .got_pal_index
+ 	ld a, [wTempMonSpecies]
+ 	call GetPokemonIndexFromID
++	; a female Butterfree uses its own palette row (same species)
++	ld a, l
++	cp LOW(BUTTERFREE)
++	jr nz, .got_pal_index
++	ld a, h
++	cp HIGH(BUTTERFREE)
++	jr nz, .got_pal_index
++	ld a, [wTempMonUnused]
++	and MON_MALE_FLAG
++	jr nz, .got_pal_index
++	ld hl, BUTTERFREE_FEMALE_FORM
+ .got_pal_index
+ 	ld d, h
+ 	ld e, l
+diff --git a/engine/pokedex/pokedex.asm b/engine/pokedex/pokedex.asm
+index f77f36e9..48601613 100644
+--- a/engine/pokedex/pokedex.asm
++++ b/engine/pokedex/pokedex.asm
+@@ -2759,6 +2759,8 @@ Pokedex_LoadSelectedMonTiles:
+ 	call Pokedex_GetSelectedMon
+ 	call Pokedex_CheckSeen
+ 	jr z, .QuestionMark
++	xor a ; no individual mon: show the default appearance
++	ldh [hMonPicFemaleForm], a
+ 	ld a, [wFirstUnownSeen]
+ 	ld [wUnownLetter], a
+ 	ld a, [wTempSpecies]
+@@ -2903,6 +2905,8 @@ _NewPokedexEntry:
+ 	call EnableLCD
+ 	call WaitBGMap
+ 	call GetBaseData
++	xor a ; no individual mon: show the default appearance
++	ldh [hMonPicFemaleForm], a
+ 	ld de, vTiles2
+ 	predef GetMonFrontpic
+ 	ld a, SCGB_POKEDEX
+diff --git a/engine/pokemon/evolve.asm b/engine/pokemon/evolve.asm
+index ff2b9dc4..e20fdfee 100644
+--- a/engine/pokemon/evolve.asm
++++ b/engine/pokemon/evolve.asm
+@@ -502,6 +502,9 @@ EvolveAfterBattle_MasterLoop:
+ 	ldh [hBGMapMode], a
+ 	call ClearSprites
+ 
++	; gender appearance form (and Unown letter) for the evolution pics
++	ld hl, wTempMonDVs
++	predef GetUnownLetter
+ 	farcall EvolutionAnimation
+ 
+ 	push af
+diff --git a/engine/pokemon/mail_2.asm b/engine/pokemon/mail_2.asm
+index bc8c1394..13994940 100644
+--- a/engine/pokemon/mail_2.asm
++++ b/engine/pokemon/mail_2.asm
+@@ -568,6 +568,8 @@ LoadPortraitMailGFX:
+ 	ld a, h
+ 	or l
+ 	jr z, .no_portrait
++	xor a ; no individual mon: show the default appearance
++	ldh [hMonPicFemaleForm], a
+ 	hlcoord 1, 10
+ 	call PrepMonFrontpic
+ .no_portrait
+diff --git a/gfx/pics.asm b/gfx/pics.asm
+index 7ed4c89d..a26b4c09 100644
+--- a/gfx/pics.asm
++++ b/gfx/pics.asm
+@@ -1551,3 +1551,9 @@ SECTION "Hippowdon Pics", ROMX
+ 
+ HippowdonFrontpic: INCBIN "gfx/pokemon/hippowdon/front.animated.2bpp.lz"
+ HippowdonBackpic: INCBIN "gfx/pokemon/hippowdon/back.2bpp.lz"
++
++; Female Butterfree is a gender appearance form of BUTTERFREE, not a species.
++SECTION "Butterfree Female Pics", ROMX
++
++ButterfreeFemaleFrontpic: INCBIN "gfx/pokemon/butterfreef/front.animated.2bpp.lz"
++ButterfreeFemaleBackpic: INCBIN "gfx/pokemon/butterfreef/back.2bpp.lz"
+diff --git a/gfx/pokemon/anim_pointers.asm b/gfx/pokemon/anim_pointers.asm
+index 3576b5ec..aec64655 100644
+--- a/gfx/pokemon/anim_pointers.asm
++++ b/gfx/pokemon/anim_pointers.asm
+@@ -502,3 +502,7 @@ AnimationPointers:
+ 	dba HippopotasAnimation
+ 	dba HippowdonAnimation
+ 	dba ZangooseAnimation
++; Gender appearance forms (graphics-only rows past the last species)
++ButterfreeFemaleAnimationPointer:
++	assert ButterfreeFemaleAnimationPointer == AnimationPointers + (BUTTERFREE_FEMALE_FORM - 1) * 3
++	dba ButterfreeFemaleAnimation
+diff --git a/gfx/pokemon/anims.asm b/gfx/pokemon/anims.asm
+index dadfb703..df4e1bb7 100644
+--- a/gfx/pokemon/anims.asm
++++ b/gfx/pokemon/anims.asm
+@@ -501,3 +501,4 @@ MienfooAnimation: INCLUDE "gfx/pokemon/mienfoo/anim.asm"
+ MienshaoAnimation: INCLUDE "gfx/pokemon/mienshao/anim.asm"
+ HippopotasAnimation: INCLUDE "gfx/pokemon/hippopotas/anim.asm"
+ HippowdonAnimation: INCLUDE "gfx/pokemon/hippowdon/anim.asm"
++ButterfreeFemaleAnimation: INCLUDE "gfx/pokemon/butterfreef/anim.asm"
+diff --git a/gfx/pokemon/bitmask_pointers.asm b/gfx/pokemon/bitmask_pointers.asm
+index c1ca9018..9b30eb89 100644
+--- a/gfx/pokemon/bitmask_pointers.asm
++++ b/gfx/pokemon/bitmask_pointers.asm
+@@ -503,5 +503,9 @@ BitmasksPointers:
+ 	dw HippowdonBitmasks
+ 	dw ZangooseBitmasks
+ BitmasksPointersEnd:
++; Gender appearance forms (graphics-only rows past the last species)
++	assert BUTTERFREE_FEMALE_FORM == NUM_POKEMON + 1
++	dw ButterfreeFemaleBitmasks
+ 	assert BitmasksPointersEnd - BitmasksPointers == NUM_POKEMON * 2
+ 	assert BANK(ZangooseBitmasks) == BANK(BitmasksPointers)
++	assert BANK(ButterfreeFemaleBitmasks) == BANK(BitmasksPointers)
+diff --git a/gfx/pokemon/bitmasks.asm b/gfx/pokemon/bitmasks.asm
+index d7f8242c..a1fc56ba 100644
+--- a/gfx/pokemon/bitmasks.asm
++++ b/gfx/pokemon/bitmasks.asm
+@@ -501,3 +501,4 @@ MienfooBitmasks: INCLUDE "gfx/pokemon/mienfoo/bitmask.asm"
+ MienshaoBitmasks: INCLUDE "gfx/pokemon/mienshao/bitmask.asm"
+ HippopotasBitmasks: INCLUDE "gfx/pokemon/hippopotas/bitmask.asm"
+ HippowdonBitmasks: INCLUDE "gfx/pokemon/hippowdon/bitmask.asm"
++ButterfreeFemaleBitmasks: INCLUDE "gfx/pokemon/butterfreef/bitmask.asm"
+diff --git a/gfx/pokemon/butterfreef/anim_idle.asm b/gfx/pokemon/butterfreef/anim_idle.asm
+new file mode 100644
+index 00000000..64cfde92
+--- /dev/null
++++ b/gfx/pokemon/butterfreef/anim_idle.asm
+@@ -0,0 +1,6 @@
++	frame 6, 08
++	frame 7, 08
++	frame 8, 08
++	frame 9, 08
++	frame 0, 08
++	endanim
+diff --git a/gfx/pokemon/butterfreef/normal.pal b/gfx/pokemon/butterfreef/normal.pal
+new file mode 100644
+index 00000000..7ec1ec50
+--- /dev/null
++++ b/gfx/pokemon/butterfreef/normal.pal
+@@ -0,0 +1,2 @@
++	RGB 31, 15, 23
++	RGB 28, 07, 13
+diff --git a/gfx/pokemon/butterfreef/shiny.pal b/gfx/pokemon/butterfreef/shiny.pal
+new file mode 100644
+index 00000000..41becf74
+--- /dev/null
++++ b/gfx/pokemon/butterfreef/shiny.pal
+@@ -0,0 +1,4 @@
++
++	RGB 31, 15, 18
++	RGB 14, 28, 09
++
+diff --git a/gfx/pokemon/frame_pointers.asm b/gfx/pokemon/frame_pointers.asm
+index be7c38f0..e0a5f697 100644
+--- a/gfx/pokemon/frame_pointers.asm
++++ b/gfx/pokemon/frame_pointers.asm
+@@ -502,3 +502,7 @@ FramesPointers:
+ 	dba HippopotasFrames
+ 	dba HippowdonFrames
+ 	dba ZangooseFrames
++; Gender appearance forms (graphics-only rows past the last species)
++ButterfreeFemaleFramesPointer:
++	assert ButterfreeFemaleFramesPointer == FramesPointers + (BUTTERFREE_FEMALE_FORM - 1) * 3
++	dba ButterfreeFemaleFrames
+diff --git a/gfx/pokemon/idle_pointers.asm b/gfx/pokemon/idle_pointers.asm
+index ac52b006..15dd455f 100644
+--- a/gfx/pokemon/idle_pointers.asm
++++ b/gfx/pokemon/idle_pointers.asm
+@@ -502,3 +502,7 @@ AnimationIdlePointers:
+ 	dba HippopotasAnimationIdle
+ 	dba HippowdonAnimationIdle
+ 	dba ZangooseAnimationIdle
++; Gender appearance forms (graphics-only rows past the last species)
++ButterfreeFemaleAnimationIdlePointer:
++	assert ButterfreeFemaleAnimationIdlePointer == AnimationIdlePointers + (BUTTERFREE_FEMALE_FORM - 1) * 3
++	dba ButterfreeFemaleAnimationIdle
+diff --git a/gfx/pokemon/idles.asm b/gfx/pokemon/idles.asm
+index 91010189..6903f2ae 100644
+--- a/gfx/pokemon/idles.asm
++++ b/gfx/pokemon/idles.asm
+@@ -501,3 +501,4 @@ MienfooAnimationIdle: INCLUDE "gfx/pokemon/mienfoo/anim_idle.asm"
+ MienshaoAnimationIdle: INCLUDE "gfx/pokemon/mienshao/anim_idle.asm"
+ HippopotasAnimationIdle: INCLUDE "gfx/pokemon/hippopotas/anim_idle.asm"
+ HippowdonAnimationIdle: INCLUDE "gfx/pokemon/hippowdon/anim_idle.asm"
++ButterfreeFemaleAnimationIdle: INCLUDE "gfx/pokemon/butterfreef/anim_idle.asm"
+diff --git a/gfx/pokemon/kanto_frames.asm b/gfx/pokemon/kanto_frames.asm
+index da80f77e..25ed49e5 100644
+--- a/gfx/pokemon/kanto_frames.asm
++++ b/gfx/pokemon/kanto_frames.asm
+@@ -157,3 +157,4 @@ DragonairFrames:  INCLUDE "gfx/pokemon/dragonair/frames.asm"
+ DragoniteFrames:  INCLUDE "gfx/pokemon/dragonite/frames.asm"
+ MewtwoFrames:     INCLUDE "gfx/pokemon/mewtwo/frames.asm"
+ MewFrames:        INCLUDE "gfx/pokemon/mew/frames.asm"
++ButterfreeFemaleFrames: INCLUDE "gfx/pokemon/butterfreef/frames.asm"
+diff --git a/hram.asm b/hram.asm
+index 9d62066b..0f697076 100644
+--- a/hram.asm
++++ b/hram.asm
+@@ -213,13 +213,18 @@ hFarCallReturnA:: db ; fff4
+ ; hDMATransfer2 = blocks - 1, 0 = none.
+ hDMATransfer2:: db ; fff5
+ 
++; Nonzero when the DVs last passed to GetUnownLetter belong to a female.
++; Picture/animation lookups use it to pick gender appearance forms
++; (see GetMonPicFormIndex). Paths without an individual mon clear it.
++hMonPicFemaleForm:: db ; fff6
++
+ IF DEF(DEBUG_BATTLE)
+ ; Battle tester (debug builds only; see engine/debug/battle_tester.asm).
+ ; HRAM so battle-bank hooks can test them without a WRAM bank switch.
+-hDebugActive::   db ; fff6 ; nonzero = automated debug battle in progress
+-hDebugRNGMode::  db ; fff7 ; 0 = normal, 1 = forced, 2 = seeded stream
+-hDebugRNGValue:: db ; fff8 ; value returned by _BattleRandom in forced mode
+-hDebugSVBK::     db ; fff9 ; caller's rSVBK, saved by tester routines
+-hDebugNum::      dw ; fffa ; scratch: PrintNum source / request base ptr
+-hDebugPtr::      dw ; fffc ; scratch: party struct base ptr
++hDebugActive::   db ; fff7 ; nonzero = automated debug battle in progress
++hDebugRNGMode::  db ; fff8 ; 0 = normal, 1 = forced, 2 = seeded stream
++hDebugRNGValue:: db ; fff9 ; value returned by _BattleRandom in forced mode
++hDebugSVBK::     db ; fffa ; caller's rSVBK, saved by tester routines
++hDebugNum::      dw ; fffb ; scratch: PrintNum source / request base ptr
++hDebugPtr::      dw ; fffd ; scratch: party struct base ptr
+ ENDC
+diff --git a/tools/audit_resources.py b/tools/audit_resources.py
+index a2393206..3674f9a0 100644
+--- a/tools/audit_resources.py
++++ b/tools/audit_resources.py
+@@ -188,12 +188,18 @@ def audit_pack_palettes(audit: Audit) -> None:
+ 
+ def audit_pokemon_animation_frames(audit: Audit) -> None:
+     """Frame zero is the base picture; other frames index a pointer table."""
+-    pointers = re.findall(r'^\s*(dw|dba)\s+(\w+)',
+-                          (ROOT / 'gfx/pokemon/bitmask_pointers.asm').read_text(), re.M)
+-    species = re.findall(r'^\s*const\s+\w+',
+-                         (ROOT / 'constants/pokemon_constants.asm').read_text().split('NUM_POKEMON', 1)[0], re.M)
++    table, forms = (ROOT / 'gfx/pokemon/bitmask_pointers.asm').read_text().split('BitmasksPointersEnd:', 1)
++    pointers = re.findall(r'^\s*(dw|dba)\s+(\w+)', table, re.M)
++    form_pointers = re.findall(r'^\s*(dw|dba)\s+(\w+)', forms, re.M)
++    constants = (ROOT / 'constants/pokemon_constants.asm').read_text()
++    species = re.findall(r'^\s*const\s+\w+', constants.split('NUM_POKEMON', 1)[0], re.M)
+     audit.check(len(pointers) == len(species) and all(kind == 'dw' for kind, _ in pointers),
+                 'BitmasksPointers must contain exactly one two-byte pointer per species')
++    # Gender appearance forms append graphics-only rows after the species table.
++    appearance_forms = re.findall(r'^(\w+_FORM)\s+EQU\s+NUM_POKEMON\s*\+\s*(\d+)', constants, re.M)
++    audit.check(sorted(int(n) for _, n in appearance_forms) == list(range(1, len(form_pointers) + 1))
++                and all(kind == 'dw' for kind, _ in form_pointers),
++                'BitmasksPointers needs exactly one two-byte row per appearance form, in order')
+     for frames in sorted((ROOT / 'gfx/pokemon').rglob('frames.asm')):
+         graphic = frames.parent / 'front.animated.2bpp'
+         dimensions = frames.parent / 'front.dimensions'
+diff --git a/tools/battletest/gender_form_checks.py b/tools/battletest/gender_form_checks.py
+new file mode 100644
+index 00000000..e7b9d858
+--- /dev/null
++++ b/tools/battletest/gender_form_checks.py
+@@ -0,0 +1,87 @@
++#!/usr/bin/env python3
++"""Native battle checks for female Butterfree's gender appearance form.
++
++Both sides, male/female, normal/shiny: exact picture tiles and palettes in a
++real battle, plus a contact sheet under _artifacts/gender-forms/. The battle
++species stays BUTTERFREE throughout. Only private emulator state is used.
++"""
++import re
++import struct
++
++from PIL import Image, ImageDraw
++
++from runner import Harness, ROOT
++from symbols import STATE_WAIT
++
++
++def palette(folder, shiny):
++    if shiny:
++        values = [tuple(map(int, row.split(','))) for row in
++                  re.findall(r'^\s*RGB\s+([\d, ]+)', (folder / 'shiny.pal').read_text(), re.M)]
++        return b''.join(struct.pack('<H', r | g << 5 | b << 10) for r, g, b in values)
++    return (folder / 'front.gbcpal').read_bytes()[2:6]
++
++
++def main():
++    out = ROOT / '_artifacts/gender-forms'
++    out.mkdir(parents=True, exist_ok=True)
++    h = Harness(render=True)
++    h.ensure_fixture()
++    m = h.battle.mem
++    flags = 0x40
++    checks = 0
++    screens = []
++
++    def entry_flags(which):
++        m.write(('wPartyMon' if which == 0 else 'wOTPartyMon') + '1Unused', flags)
++        if which == 1:
++            m.write('wEnemyMonShinyGenderFlags', flags)
++
++    h.pb.hook_register(*h.sym['InitPlayerIllusion'], lambda _: entry_flags(0), None)
++    h.pb.hook_register(*h.sym['InitEnemyIllusion'], lambda _: entry_flags(1), None)
++    try:
++        for female in (False, True):
++            folder = ROOT / 'gfx/pokemon' / ('butterfreef' if female else 'butterfree')
++            for shiny in (False, True):
++                flags = (0x80 if shiny else 0) | (0 if female else 0x40)
++                middle = palette(folder, shiny)
++                for side in (0, 1):
++                    h.load_fixture()
++                    m.write('wOptions', 0xc1)
++                    holder = dict(species='BUTTERFREE', level=50, moves=['GUST'])
++                    other = dict(species='MEW', level=50, ability='NO_ABILITY', moves=['SPLASH'])
++                    assert h.run_battle(dict(player=holder if side == 0 else other,
++                                             enemy=other if side == 0 else holder,
++                                             rng='forced_high', turns=0)) == STATE_WAIT
++                    actual = m.read_bytes('wBGPals1', 4, side * 8 + 2)
++                    assert actual == middle, (female, shiny, side, 'native palette', actual.hex(), middle.hex())
++                    checks += 1
++                    address = 0x9310 if side == 0 else 0x9000
++                    expected = (folder / ('back.2bpp' if side == 0 else 'front.2bpp')).read_bytes()
++                    if side == 1:
++                        expected = expected[:49 * 16]
++                        expected = b''.join(expected[(x*7+y)*16:(x*7+y+1)*16]
++                                            for y in range(7) for x in range(7))
++                    actual = bytes(h.pb.memory[0, address:address+len(expected)])
++                    assert actual == expected, (female, shiny, side, 'native picture tiles')
++                    checks += 1
++                    h.tick(2)
++                    label = (f'Butterfree {"female" if female else "male"} '
++                             f'{"shiny" if shiny else "normal"} {"back" if side == 0 else "front"}')
++                    picture = h.pb.screen.image.convert('RGB').copy()
++                    picture.save(out / (label.lower().replace(' ', '-') + '.png'))
++                    screens.append((label, picture))
++        canvas = Image.new('RGB', (640, 1240), '#16202d')
++        draw = ImageDraw.Draw(canvas)
++        for i, (label, picture) in enumerate(screens):
++            x, y = (i % 2) * 320, (i // 2) * 310
++            draw.text((x+8, y+5), label, fill='white')
++            canvas.paste(picture.resize((320, 288), Image.Resampling.NEAREST), (x, y+22))
++        canvas.save(out / 'battle-sprites.png')
++        print(f'GENDER FORM BATTLES PASSED: {checks} exact native tile and palette checks', flush=True)
++    finally:
++        h.pb.stop(save=False)
++
++
++if __name__ == '__main__':
++    main()
+diff --git a/tools/test_battle_picture_tiles.py b/tools/test_battle_picture_tiles.py
+index f5c39f6b..1f1b5843 100644
+--- a/tools/test_battle_picture_tiles.py
++++ b/tools/test_battle_picture_tiles.py
+@@ -49,8 +49,12 @@ def main():
+                  ('MIENFOO', 'mienfoo', 'Mienfoo'), ('MIENSHAO', 'mienshao', 'Mienshao'),
+                  ('HIPPOPOTAS', 'hippopotas', 'Hippopotas'), ('HIPPOWDON', 'hippowdon', 'Hippowdon'),
+                  ('DUSKNOIR', 'dusknoir', 'Dusknoir'), ('FURRET', 'furret', 'Furret'),
+-                 ('FINIZEN', 'finizen', 'Finizen')]
+-        for species, art, label in cases:
++                 ('FINIZEN', 'finizen', 'Finizen'),
++                 ('BUTTERFREE', 'butterfree', 'Butterfree'),
++                 # Gender appearance form: same species, its own graphics rows.
++                 ('BUTTERFREE', 'butterfreef', 'ButterfreeFemale', 1)]
++        for species, art, label, *female in cases:
++            h.mem[h.s('hMonPicFemaleForm')] = female[0] if female else 0
+             sid = h.species_id(con.species_index(species))
+             write('wCurPartySpecies', sid)
+             write('wCurSpecies', sid)
+diff --git a/tools/test_gender_forms.py b/tools/test_gender_forms.py
+new file mode 100644
+index 00000000..5ccd4b00
+--- /dev/null
++++ b/tools/test_gender_forms.py
+@@ -0,0 +1,188 @@
++#!/usr/bin/env python3
++"""Native checks for gender appearance forms (female Butterfree).
++
++A female BUTTERFREE keeps the BUTTERFREE species everywhere; only its front
++and back pictures, animation rows and palette rows change. This checks:
++
++- GetUnownLetter reads the gender flag from every DV source the game passes
++  (party/OT/wTempMon layouts, enemy, battle mon, wild backup, both trade mons)
++- front/back picture uploads match the female or male source art exactly
++- animation, idle, frame and bitmask rows resolve to the female form only for
++  female Butterfree, never for other species with the same flag
++- normal/shiny, front/back and enemy/player palettes pick the right rows
++
++Only private emulator state is used.
++"""
++from pathlib import Path
++import re
++import sys
++
++from pc_harness import Harness, ROOT
++from battletest.symbols import Constants
++
++MALE, FEMALE, SHINY = 0x40, 0x00, 0x80
++
++
++def gbcpal_middle(path):
++    data = Path(path).read_bytes()
++    return data[2:6]
++
++
++def pal_file(path):
++    out = bytearray()
++    for r, g, b in re.findall(r'RGB\s+(\d+),\s*(\d+),\s*(\d+)', Path(path).read_text()):
++        value = int(r) | int(g) << 5 | int(b) << 10
++        out += value.to_bytes(2, 'little')
++    return bytes(out)
++
++
++def main():
++    root = Path(ROOT)
++    rom = Path(sys.argv[1]) if len(sys.argv) > 1 else root / 'pokecrystal.gbc'
++    h = Harness(rom=str(rom), sym=str(rom.with_suffix('.sym')))
++    h.boot()
++    h.mem[0xff40] = 0  # LCD off: VRAM uploads land immediately
++    con = Constants()
++    checks = 0
++
++    def check(ok, label):
++        nonlocal checks
++        checks += 1
++        assert ok, label
++
++    s = h.s
++    flag = lambda: h.mem[s('hMonPicFemaleForm')]
++    struct_length = s('wPartyMon2') - s('wPartyMon1')
++    butterfree = h.species_id(con.species_index('BUTTERFREE'))
++    caterpie = h.species_id(con.species_index('CATERPIE'))
++    h.build_temp_mon(con.species_index('BUTTERFREE'), [0, 0, 0, 0], shiny_gender=MALE)
++
++    # --- gender flag from every DV source ---------------------------------
++    def letter(hl):
++        h.mem[s('hMonPicFemaleForm')] = 0x55  # poison: must be rewritten
++        h.call('GetUnownLetter', hl=hl)
++        return flag()
++
++    for flags, female in ((MALE, 0), (FEMALE, 1), (MALE | SHINY, 0), (FEMALE | SHINY, 1)):
++        name = ('female' if female else 'male') + (' shiny' if flags & SHINY else '')
++        h.wr(s('wTempMonUnused'), flags)
++        check(letter(s('wTempMonDVs')) == female, f'wTempMon {name}')
++        h.wr(s('wPartyMon1Unused') + 3 * struct_length, flags)
++        check(letter(s('wPartyMon1DVs') + 3 * struct_length) == female, f'party slot 4 {name}')
++        h.wr(s('wOTPartyMon1Unused') + 2 * struct_length, flags)
++        check(letter(s('wOTPartyMon1DVs') + 2 * struct_length) == female, f'OT party slot 3 {name}')
++        h.wr(s('wEnemyMonShinyGenderFlags'), flags)
++        check(letter(s('wEnemyMonDVs')) == female, f'enemy {name}')
++        check(letter(s('wEnemyBackupDVs')) == female, f'wild backup DVs {name}')
++        h.wr(s('wCurBattleMon'), 4)
++        h.wr(s('wPartyMon1Unused') + 4 * struct_length, flags)
++        h.wr(s('wPartyMon1Unused'), flags ^ MALE)  # a different slot must not leak in
++        check(letter(s('wBattleMonDVs')) == female, f'battle mon (slot 5) {name}')
++        h.wr(s('wPlayerTrademonShinyGender'), flags)
++        check(letter(s('wPlayerTrademonDVs')) == female, f'player trademon {name}')
++        h.wr(s('wOTTrademonShinyGender'), flags)
++        check(letter(s('wOTTrademonDVs')) == female, f'OT trademon {name}')
++
++    # GetUnownLetter still computes the same letter as before.
++    h.wr(s('wTempMonDVs'), [0x5a, 0xc3])
++    h.wr(s('wTempMonUnused'), FEMALE)
++    h.call('GetUnownLetter', hl=s('wTempMonDVs'))
++    atk, defense, spd, spc = 0x5, 0xa, 0xc, 0x3
++    raw = ((atk >> 1 & 3) << 6) | ((defense >> 1 & 3) << 4) | ((spd >> 1 & 3) << 2) | (spc >> 1 & 3)
++    check(h.mem[s('wUnownLetter')] == raw // (0xff // 26 + 1) + 1, 'Unown letter unchanged')
++    h.wr(s('wTempMonDVs'), [0xff, 0xff])
++
++    # --- pictures ---------------------------------------------------------
++    def pics(species, flags):
++        h.wr(s('wTempMonUnused'), flags)
++        h.call('GetUnownLetter', hl=s('wTempMonDVs'))
++        h.wr(s('wCurPartySpecies'), species)
++        h.wr(s('wCurSpecies'), species)
++        h.wr(s('wBoxAlignment'), 0)
++        h.mem[0xff4f] = 0
++        h.call('GetMonFrontpic', de=0x9000)
++        front = bytes(h.mem[0, 0x9000:0x9000 + 49 * 16])
++        h.call('GetMonBackpic', de=0x8000)
++        back = bytes(h.mem[0, 0x8000:0x8000 + 36 * 16])
++        return front, back
++
++    def source(art):
++        animated = (root / f'gfx/pokemon/{art}/front.animated.2bpp').read_bytes()
++        side = (root / f'gfx/pokemon/{art}/front.dimensions').read_bytes()[0] & 15
++        assert side == 7, art
++        return animated[:49 * 16], (root / f'gfx/pokemon/{art}/back.2bpp').read_bytes()[:36 * 16]
++
++    female_art, male_art = source('butterfreef'), source('butterfree')
++    check(female_art != male_art, 'female and male art differ')
++    for flags in (FEMALE, FEMALE | SHINY):
++        check(pics(butterfree, flags) == female_art, f'female front/back pics {flags:02x}')
++    for flags in (MALE, MALE | SHINY):
++        check(pics(butterfree, flags) == male_art, f'male front/back pics {flags:02x}')
++    check(pics(caterpie, FEMALE) == pics(caterpie, MALE), 'other species ignore the flag')
++
++    # --- animation rows ---------------------------------------------------
++    def anim_rows(species, flags):
++        h.wr(s('wTempMonUnused'), flags)
++        h.call('GetUnownLetter', hl=s('wTempMonDVs'))
++        h.wr(s('wCurPartySpecies'), species)
++        h.call('PokeAnim_InitPicAttributes', hl=s('wTileMap') + 12)
++        rows = []
++        for idle in (0, 1):
++            h.call('PokeAnim_InitAnim', bc=idle)
++            bank = h.sym.bank('wPokeAnimStruct')
++            def rd(name, n):
++                addr = h.sym.addr(name)
++                return bytes(h.mem[bank, addr:addr + n])
++            rows.append((rd('wPokeAnimPointerBank', 1)[0], int.from_bytes(rd('wPokeAnimPointerAddr', 2), 'little'),
++                         rd('wPokeAnimFramesBank', 1)[0], int.from_bytes(rd('wPokeAnimFramesAddr', 2), 'little'),
++                         rd('wPokeAnimBitmaskBank', 1)[0], int.from_bytes(rd('wPokeAnimBitmaskAddr', 2), 'little')))
++        return rows
++
++    def expected_rows(label):
++        return [h.sym[label + 'Animation'] + h.sym[label + 'Frames'] + h.sym[label + 'Bitmasks'],
++                h.sym[label + 'AnimationIdle'] + h.sym[label + 'Frames'] + h.sym[label + 'Bitmasks']]
++
++    check(anim_rows(butterfree, FEMALE) == expected_rows('ButterfreeFemale'), 'female animation rows')
++    check(anim_rows(butterfree, FEMALE | SHINY) == expected_rows('ButterfreeFemale'), 'female shiny animation rows')
++    check(anim_rows(butterfree, MALE) == expected_rows('Butterfree'), 'male animation rows')
++    check(anim_rows(caterpie, FEMALE) == expected_rows('Caterpie'), 'female Caterpie keeps its rows')
++
++    # --- palettes ---------------------------------------------------------
++    pal_bank, pal_base = h.sym['PokemonPalettes']
++    female_row = h.sym.addr('ButterfreeFemalePalette')
++    male_row = pal_base + con.species_index('BUTTERFREE') * 8
++    check(bytes(h.mem[pal_bank, female_row:female_row + 8]) ==
++          gbcpal_middle(root / 'gfx/pokemon/butterfreef/front.gbcpal') +
++          pal_file(root / 'gfx/pokemon/butterfreef/shiny.pal'), 'female palette row contents')
++
++    def palette(routine, species, dvs):
++        h.set_rom_bank(pal_bank)
++        return h.call(routine, a=species, bc=dvs)['hl']
++
++    for routine in ('GetMonNormalOrShinyPalettePointer', 'GetBackpicPalettePointer',
++                    'GetFrontpicPalettePointer', 'GetPlayerOrMonPalettePointer'):
++        for flags, row in ((MALE, male_row), (MALE | SHINY, male_row + 4),
++                           (FEMALE, female_row), (FEMALE | SHINY, female_row + 4)):
++            h.wr(s('wTempMonUnused'), flags)
++            check(palette(routine, butterfree, s('wTempMonDVs')) == row, f'{routine} tempmon {flags:02x}')
++            h.wr(s('wEnemyMonShinyGenderFlags'), flags)
++            check(palette(routine, butterfree, s('wEnemyMonDVs')) == row, f'{routine} enemy {flags:02x}')
++            h.wr(s('wCurBattleMon'), 1)
++            h.wr(s('wPartyMon1Unused') + struct_length, flags)
++            check(palette(routine, butterfree, s('wBattleMonDVs')) == row, f'{routine} battle mon {flags:02x}')
++        h.wr(s('wTempMonUnused'), FEMALE)
++        check(palette(routine, caterpie, s('wTempMonDVs')) ==
++              pal_base + con.species_index('CATERPIE') * 8, f'{routine}: female Caterpie row')
++    # Species-only lookups (Pokedex, Pokepic, menu) always show the default form.
++    check(palette('GetMonPalettePointer', butterfree, 0) == male_row, 'species-only palette is default')
++    h.wr(s('wTempMonUnused'), FEMALE | SHINY)
++    check(h.call('CheckShininess', bc=s('wTempMonDVs'))['c_flag'], 'CheckShininess shiny')
++    h.wr(s('wTempMonUnused'), MALE)
++    check(not h.call('CheckShininess', bc=s('wTempMonDVs'))['c_flag'], 'CheckShininess not shiny')
++
++    print(f'GENDER FORMS: {checks} checks passed in {rom.name}', flush=True)
++    h.pyboy.stop(save=False)
++
++
++if __name__ == '__main__':
++    main()

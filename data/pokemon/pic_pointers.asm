@@ -1019,3 +1019,8 @@ PokemonPicPointers::
 	dba HippowdonBackpic
 	dba ZangooseFrontpic
 	dba ZangooseBackpic
+; Gender appearance forms (graphics-only rows past the last species)
+ButterfreeFemalePicPointers:
+	assert ButterfreeFemalePicPointers == PokemonPicPointers + BUTTERFREE_FEMALE_FORM * 6
+	dba ButterfreeFemaleFrontpic
+	dba ButterfreeFemaleBackpic

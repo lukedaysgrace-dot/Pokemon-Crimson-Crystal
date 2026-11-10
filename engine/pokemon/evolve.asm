@@ -502,6 +502,9 @@ EvolveAfterBattle_MasterLoop:
 	ldh [hBGMapMode], a
 	call ClearSprites
 
+	; gender appearance form (and Unown letter) for the evolution pics
+	ld hl, wTempMonDVs
+	predef GetUnownLetter
 	farcall EvolutionAnimation
 
 	push af

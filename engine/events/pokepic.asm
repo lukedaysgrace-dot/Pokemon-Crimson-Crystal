@@ -11,6 +11,8 @@ Pokepic::
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
+	xor a ; no individual mon: show the default appearance
+	ldh [hMonPicFemaleForm], a
 	ld de, vTiles1
 	predef GetMonFrontpic
 	ld a, [wMenuBorderTopCoord]

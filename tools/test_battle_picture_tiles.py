@@ -49,8 +49,12 @@ def main():
                  ('MIENFOO', 'mienfoo', 'Mienfoo'), ('MIENSHAO', 'mienshao', 'Mienshao'),
                  ('HIPPOPOTAS', 'hippopotas', 'Hippopotas'), ('HIPPOWDON', 'hippowdon', 'Hippowdon'),
                  ('DUSKNOIR', 'dusknoir', 'Dusknoir'), ('FURRET', 'furret', 'Furret'),
-                 ('FINIZEN', 'finizen', 'Finizen')]
-        for species, art, label in cases:
+                 ('FINIZEN', 'finizen', 'Finizen'),
+                 ('BUTTERFREE', 'butterfree', 'Butterfree'),
+                 # Gender appearance form: same species, its own graphics rows.
+                 ('BUTTERFREE', 'butterfreef', 'ButterfreeFemale', 1)]
+        for species, art, label, *female in cases:
+            h.mem[h.s('hMonPicFemaleForm')] = female[0] if female else 0
             sid = h.species_id(con.species_index(species))
             write('wCurPartySpecies', sid)
             write('wCurSpecies', sid)

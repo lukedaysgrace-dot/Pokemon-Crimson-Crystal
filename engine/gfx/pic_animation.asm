@@ -931,7 +931,7 @@ GetMonAnimPointer:
 	ld a, [wPokeAnimSpeciesOrUnown]
 	ld l, a
 	ld h, 0
-	call nz, GetPokemonIndexFromID
+	call nz, PokeAnim_GetSpeciesFormIndex
 
 ; Entries are dba, so the index is scaled by 3 rather than 2.
 	push de
@@ -1011,7 +1011,7 @@ GetMonFramesPointer:
 	ld a, [wPokeAnimSpeciesOrUnown]
 	ld l, a
 	ld h, 0
-	call nz, GetPokemonIndexFromID
+	call nz, PokeAnim_GetSpeciesFormIndex
 	ld a, c
 	ld c, l
 	ld b, h
@@ -1057,7 +1057,7 @@ GetMonBitmaskPointer:
 	ld a, [wPokeAnimSpeciesOrUnown]
 	ld l, a
 	ld h, 0
-	call nz, GetPokemonIndexFromID
+	call nz, PokeAnim_GetSpeciesFormIndex
 	add hl, hl
 	add hl, de
 	ld a, [wPokeAnimBitmaskBank]
@@ -1077,6 +1077,23 @@ GetMonBitmaskPointer:
 	ld [wPokeAnimBitmaskAddr], a
 	ld a, h
 	ld [wPokeAnimBitmaskAddr + 1], a
+	ret
+
+PokeAnim_GetSpeciesFormIndex:
+; a = species ID -> hl = its row in the animation tables. A gender appearance
+; form (see hMonPicFemaleForm) keeps its species ID but uses its own row.
+; Preserves bc and de.
+	call GetPokemonIndexFromID
+	ld a, l
+	cp LOW(BUTTERFREE)
+	ret nz
+	ld a, h
+	cp HIGH(BUTTERFREE)
+	ret nz
+	ldh a, [hMonPicFemaleForm]
+	and a
+	ret z
+	ld hl, BUTTERFREE_FEMALE_FORM
 	ret
 
 PokeAnim_GetSpeciesOrUnown:

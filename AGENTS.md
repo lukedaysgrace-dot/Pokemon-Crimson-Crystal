@@ -215,6 +215,27 @@ Read this before changing the game. Keep it up to date when something here chang
   Fixtures clear `hOAMUpdate`
   after staged map loading; hardware OAM checks prove all three actors render.
 
+## Gender appearance forms
+- Female Butterfree (`gfx/pokemon/butterfreef/`) is an appearance of BUTTERFREE,
+  not a species: party/PC/Dex/save data, evolution and breeding all keep the
+  BUTTERFREE index; males and the Dex/Pokepic/mail portraits use the regular art.
+  The female uses graphics-only rows at `BUTTERFREE_FEMALE_FORM`
+  (`NUM_POKEMON + 1`) appended after the last species in PokemonPicPointers,
+  Animation(Idle)Pointers, FramesPointers, BitmasksPointers (after
+  `BitmasksPointersEnd`) and PokemonPalettes; asserts pin each row.
+- Gender comes from the stored MON_MALE_FLAG, never DVs. `GetUnownLetter`
+  (now outside bank14) sets HRAM `hMonPicFemaleForm` from the DV pointer it is
+  given (party/OT/wTempMon layouts, enemy, wild backup, battle mon, both trade
+  mons), so call it before any individual mon's picture load. Species-only
+  pictures clear it. Palettes read the flag through `GetShinyGenderFlags`
+  (bc = DVs) in `GetMonNormalOrShinyPalettePointer`; Bill's PC encodes the
+  female row for its frontpic palette. Party/box menu icons keep species colors.
+- `hMonPicFemaleForm` uses the last free HRAM byte in the debug ROM ($fffe ends
+  the debug tester block). Bank2 now has 2 bytes of slack.
+- Run `python3 tools/test_gender_forms.py` on both ROMs, `tools/test_battle_picture_tiles.py`
+  (exact female animation frames) and `tools/battletest/gender_form_checks.py`
+  (native battles, both sides, normal/shiny; sheet in `_artifacts/gender-forms/`).
+
 ## Pokédex
 - Dex entries use a clear upper-right header, with no per-species corner art or
   asset table. Preserve that layout on both text pages, species changes, AREA/CRY

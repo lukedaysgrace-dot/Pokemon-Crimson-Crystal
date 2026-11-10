@@ -213,13 +213,18 @@ hFarCallReturnA:: db ; fff4
 ; hDMATransfer2 = blocks - 1, 0 = none.
 hDMATransfer2:: db ; fff5
 
+; Nonzero when the DVs last passed to GetUnownLetter belong to a female.
+; Picture/animation lookups use it to pick gender appearance forms
+; (see GetMonPicFormIndex). Paths without an individual mon clear it.
+hMonPicFemaleForm:: db ; fff6
+
 IF DEF(DEBUG_BATTLE)
 ; Battle tester (debug builds only; see engine/debug/battle_tester.asm).
 ; HRAM so battle-bank hooks can test them without a WRAM bank switch.
-hDebugActive::   db ; fff6 ; nonzero = automated debug battle in progress
-hDebugRNGMode::  db ; fff7 ; 0 = normal, 1 = forced, 2 = seeded stream
-hDebugRNGValue:: db ; fff8 ; value returned by _BattleRandom in forced mode
-hDebugSVBK::     db ; fff9 ; caller's rSVBK, saved by tester routines
-hDebugNum::      dw ; fffa ; scratch: PrintNum source / request base ptr
-hDebugPtr::      dw ; fffc ; scratch: party struct base ptr
+hDebugActive::   db ; fff7 ; nonzero = automated debug battle in progress
+hDebugRNGMode::  db ; fff8 ; 0 = normal, 1 = forced, 2 = seeded stream
+hDebugRNGValue:: db ; fff9 ; value returned by _BattleRandom in forced mode
+hDebugSVBK::     db ; fffa ; caller's rSVBK, saved by tester routines
+hDebugNum::      dw ; fffb ; scratch: PrintNum source / request base ptr
+hDebugPtr::      dw ; fffd ; scratch: party struct base ptr
 ENDC

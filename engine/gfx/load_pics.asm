@@ -1,5 +1,14 @@
+; Kept out of the tight bank14 so the pic lookups have room for form checks.
+PUSHS
+SECTION "Unown Letter And Pic Form", ROMX
+
 GetUnownLetter:
-; Return Unown letter in wUnownLetter based on DVs at hl
+; Return Unown letter in wUnownLetter based on DVs at hl.
+; Every picture load for an individual mon calls this first, so it also
+; records that mon's gender in hMonPicFemaleForm for gender appearance forms.
+	push hl
+	call GetMonPicFemaleFormFromDVs
+	pop hl
 
 ; Take the middle 2 bits of each DV and place them in order:
 ;	atk  def  spd  spc
@@ -47,6 +56,65 @@ GetUnownLetter:
 	inc a
 	ld [wUnownLetter], a
 	ret
+
+GetMonPicFemaleFormFromDVs:
+; hl = DVs pointer. Read that mon's shiny/gender flags (the same places
+; CheckShininess reads, plus the trade buffers) and set hMonPicFemaleForm.
+	push bc
+	push de
+	ld de, wEnemyMonDVs
+	call .Match
+	ld a, [wEnemyMonShinyGenderFlags]
+	jr z, .got_flags
+	ld de, wEnemyBackupDVs
+	call .Match
+	ld a, [wEnemyMonShinyGenderFlags]
+	jr z, .got_flags
+	ld de, wPlayerTrademonDVs
+	call .Match
+	ld a, [wPlayerTrademonShinyGender]
+	jr z, .got_flags
+	ld de, wOTTrademonDVs
+	call .Match
+	ld a, [wOTTrademonShinyGender]
+	jr z, .got_flags
+	ld de, wBattleMonDVs
+	call .Match
+	jr nz, .party_layout
+	ld hl, wPartyMon1Unused
+	ld a, [wCurBattleMon]
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld a, [hl]
+	jr .got_flags
+
+.party_layout
+; party, OT party and wTempMon (PC, summary, Hall of Fame, trades) layouts
+	ld bc, MON_SHINY_GENDER_OFFSET_FROM_DVS
+	add hl, bc
+	ld a, [hl]
+
+.got_flags
+	and MON_MALE_FLAG
+	ld a, FALSE
+	jr nz, .store
+	inc a ; TRUE
+.store
+	ldh [hMonPicFemaleForm], a
+	pop de
+	pop bc
+	ret
+
+.Match:
+; z if hl == de
+	ld a, l
+	cp e
+	ret nz
+	ld a, h
+	cp d
+	ret
+
+POPS
 
 GetMonFrontpic:
 	ld a, [wCurPartySpecies]
@@ -163,6 +231,18 @@ GetPicIndirectPointer:
 	endc
 	jr z, .unown
 .not_unown
+; Gender appearance forms keep their species index; only the pics change.
+	ld a, c
+	cp LOW(BUTTERFREE)
+	jr nz, .no_form
+	ld a, b
+	cp HIGH(BUTTERFREE)
+	jr nz, .no_form
+	ldh a, [hMonPicFemaleForm]
+	and a
+	jr z, .no_form
+	ld bc, BUTTERFREE_FEMALE_FORM
+.no_form
 	ld hl, PokemonPicPointers
 	ld d, BANK(PokemonPicPointers)
 .done

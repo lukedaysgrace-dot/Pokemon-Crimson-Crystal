@@ -188,12 +188,18 @@ def audit_pack_palettes(audit: Audit) -> None:
 
 def audit_pokemon_animation_frames(audit: Audit) -> None:
     """Frame zero is the base picture; other frames index a pointer table."""
-    pointers = re.findall(r'^\s*(dw|dba)\s+(\w+)',
-                          (ROOT / 'gfx/pokemon/bitmask_pointers.asm').read_text(), re.M)
-    species = re.findall(r'^\s*const\s+\w+',
-                         (ROOT / 'constants/pokemon_constants.asm').read_text().split('NUM_POKEMON', 1)[0], re.M)
+    table, forms = (ROOT / 'gfx/pokemon/bitmask_pointers.asm').read_text().split('BitmasksPointersEnd:', 1)
+    pointers = re.findall(r'^\s*(dw|dba)\s+(\w+)', table, re.M)
+    form_pointers = re.findall(r'^\s*(dw|dba)\s+(\w+)', forms, re.M)
+    constants = (ROOT / 'constants/pokemon_constants.asm').read_text()
+    species = re.findall(r'^\s*const\s+\w+', constants.split('NUM_POKEMON', 1)[0], re.M)
     audit.check(len(pointers) == len(species) and all(kind == 'dw' for kind, _ in pointers),
                 'BitmasksPointers must contain exactly one two-byte pointer per species')
+    # Gender appearance forms append graphics-only rows after the species table.
+    appearance_forms = re.findall(r'^(\w+_FORM)\s+EQU\s+NUM_POKEMON\s*\+\s*(\d+)', constants, re.M)
+    audit.check(sorted(int(n) for _, n in appearance_forms) == list(range(1, len(form_pointers) + 1))
+                and all(kind == 'dw' for kind, _ in form_pointers),
+                'BitmasksPointers needs exactly one two-byte row per appearance form, in order')
     for frames in sorted((ROOT / 'gfx/pokemon').rglob('frames.asm')):
         graphic = frames.parent / 'front.animated.2bpp'
         dimensions = frames.parent / 'front.dimensions'

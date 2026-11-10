@@ -568,6 +568,8 @@ LoadPortraitMailGFX:
 	ld a, h
 	or l
 	jr z, .no_portrait
+	xor a ; no individual mon: show the default appearance
+	ldh [hMonPicFemaleForm], a
 	hlcoord 1, 10
 	call PrepMonFrontpic
 .no_portrait

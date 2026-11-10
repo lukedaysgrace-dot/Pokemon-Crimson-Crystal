@@ -502,3 +502,7 @@ FramesPointers:
 	dba HippopotasFrames
 	dba HippowdonFrames
 	dba ZangooseFrames
+; Gender appearance forms (graphics-only rows past the last species)
+ButterfreeFemaleFramesPointer:
+	assert ButterfreeFemaleFramesPointer == FramesPointers + (BUTTERFREE_FEMALE_FORM - 1) * 3
+	dba ButterfreeFemaleFrames
