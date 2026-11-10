@@ -54,7 +54,21 @@ VBlank::
 	dw VBlank4
 	dw VBlank5
 	dw VBlank6
-	dw VBlank0 ; just in case
+	dw SampledCryVBlank
+
+SampledCryVBlank:
+	ld hl, hVBlankCounter
+	inc [hl]
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wDEDFrames)
+	ldh [rSVBK], a
+	ld hl, wDEDFrames
+	inc [hl]
+	homecall SampledCryUploadPicture
+	pop af
+	ldh [rSVBK], a
+	ret
 
 VBlank0::
 ; normal operation

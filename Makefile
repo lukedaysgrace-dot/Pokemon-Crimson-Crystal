@@ -291,6 +291,15 @@ test-roster: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/battletest/stance_change_checks.py
 
 .PHONY: test-phantump
+.PHONY: test-sampled-cries
+test-sampled-cries: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/sampled_cry_checks.py --rom pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/battletest/sampled_cry_checks.py --rom pokecrystal_debug.gbc
+
+.PHONY: test-cry-animation-sync
+test-cry-animation-sync: test-sampled-cries
+	$(BATTLE_TEST_PYTHON) tools/battletest/record_cry_battles.py --species BAGON GARDEVOIR DUSKNOIR --output _artifacts/cry-animation-sync/checks
+
 test-phantump: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_phantump_trevenant.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_phantump_trevenant.py pokecrystal_debug.gbc

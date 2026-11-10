@@ -52,33 +52,9 @@ _PlayMonCry::
 LoadCry::
 	call GetCryIndex
 	ret c
-
-	ldh a, [hROMBank]
-	push af
-	ld a, BANK(PokemonCries)
-	rst Bankswitch
-
-	ld hl, PokemonCries
-rept 6 ; sizeof(mon_cry)
-	add hl, bc
-endr
-
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-
-	ld a, [hli]
-	ld [wCryPitch], a
-	ld a, [hli]
-	ld [wCryPitch + 1], a
-	ld a, [hli]
-	ld [wCryLength], a
-	ld a, [hl]
-	ld [wCryLength + 1], a
-
-	pop af
-	rst Bankswitch
+	ld e, c
+	ld d, b
+	farcall LoadSpeciesCry
 	and a
 	ret
 

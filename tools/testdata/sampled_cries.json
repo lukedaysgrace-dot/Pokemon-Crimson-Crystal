@@ -1,0 +1,3412 @@
+{
+  "sample_rate": 16384,
+  "format": "Coral DED (4-bit delta + Huffman)",
+  "protected": {
+    "BULBASAUR": "CRY_BULBASAUR,   $080,  $081",
+    "IVYSAUR": "CRY_BULBASAUR,   $020,  $100",
+    "VENUSAUR": "CRY_BULBASAUR,   $000,  $140",
+    "CHARMANDER": "CRY_CHARMANDER,  $060,  $0c0",
+    "CHARMELEON": "CRY_CHARMANDER,  $020,  $0c0",
+    "CHARIZARD": "CRY_CHARMANDER,  $000,  $100",
+    "SQUIRTLE": "CRY_SQUIRTLE,    $060,  $0c0",
+    "WARTORTLE": "CRY_SQUIRTLE,    $020,  $0c0",
+    "BLASTOISE": "CRY_BLASTOISE,   $000,  $100",
+    "CATERPIE": "CRY_CATERPIE,    $080,  $0a0",
+    "METAPOD": "CRY_METAPOD,     $0cc,  $081",
+    "BUTTERFREE": "CRY_CATERPIE,    $077,  $0c0",
+    "WEEDLE": "CRY_WEEDLE,      $0ee,  $081",
+    "KAKUNA": "CRY_BLASTOISE,   $0ff,  $081",
+    "BEEDRILL": "CRY_BLASTOISE,   $060,  $100",
+    "PIDGEY": "CRY_PIDGEY,      $0df,  $084",
+    "PIDGEOTTO": "CRY_PIDGEOTTO,   $028,  $140",
+    "PIDGEOT": "CRY_PIDGEOTTO,   $011,  $17f",
+    "RATTATA": "CRY_RATTATA,     $000,  $100",
+    "RATICATE": "CRY_RATTATA,     $020,  $17f",
+    "SPEAROW": "CRY_SPEAROW,     $000,  $100",
+    "FEAROW": "CRY_FEAROW,      $040,  $120",
+    "EKANS": "CRY_EKANS,       $012,  $0c0",
+    "ARBOK": "CRY_EKANS,       $0e0,  $090",
+    "PIKACHU": "CRY_BULBASAUR,   $0ee,  $081",
+    "RAICHU": "CRY_RAICHU,      $0ee,  $088",
+    "SANDSHREW": "CRY_NIDORAN_M,   $020,  $0c0",
+    "SANDSLASH": "CRY_NIDORAN_M,   $0ff,  $17f",
+    "NIDORAN_F": "CRY_NIDORAN_F,   $000,  $100",
+    "NIDORINA": "CRY_NIDORAN_F,   $02c,  $160",
+    "NIDOQUEEN": "CRY_NIDOQUEEN,   $000,  $100",
+    "NIDORAN_M": "CRY_NIDORAN_M,   $000,  $100",
+    "NIDORINO": "CRY_NIDORAN_M,   $02c,  $140",
+    "NIDOKING": "CRY_RAICHU,      $000,  $100",
+    "CLEFAIRY": "CRY_CLEFAIRY,    $0cc,  $081",
+    "CLEFABLE": "CRY_CLEFAIRY,    $0aa,  $0a0",
+    "VULPIX": "CRY_VULPIX,      $04f,  $090",
+    "NINETALES": "CRY_VULPIX,      $088,  $0e0",
+    "JIGGLYPUFF": "CRY_PIDGEY,      $0ff,  $0b5",
+    "WIGGLYTUFF": "CRY_PIDGEY,      $068,  $0e0",
+    "ZUBAT": "CRY_SQUIRTLE,    $0e0,  $100",
+    "GOLBAT": "CRY_SQUIRTLE,    $0fa,  $100",
+    "ODDISH": "CRY_ODDISH,      $0dd,  $081",
+    "GLOOM": "CRY_ODDISH,      $0aa,  $0c0",
+    "VILEPLUME": "CRY_VILEPLUME,   $022,  $17f",
+    "PARAS": "CRY_PARAS,       $020,  $160",
+    "PARASECT": "CRY_PARAS,       $042,  $17f",
+    "VENONAT": "CRY_VENONAT,     $044,  $0c0",
+    "VENOMOTH": "CRY_VENONAT,     $029,  $100",
+    "DIGLETT": "CRY_DIGLETT,     $0aa,  $081",
+    "DUGTRIO": "CRY_DIGLETT,     $02a,  $090",
+    "MEOWTH": "CRY_CLEFAIRY,    $077,  $090",
+    "PERSIAN": "CRY_CLEFAIRY,    $099,  $17f",
+    "PSYDUCK": "CRY_PSYDUCK,     $020,  $0e0",
+    "GOLDUCK": "CRY_PSYDUCK,     $0ff,  $0c0",
+    "MANKEY": "CRY_NIDOQUEEN,   $0dd,  $0e0",
+    "PRIMEAPE": "CRY_NIDOQUEEN,   $0af,  $0c0",
+    "GROWLITHE": "CRY_GROWLITHE,   $020,  $0c0",
+    "ARCANINE": "CRY_WEEDLE,      $000,  $100",
+    "POLIWAG": "CRY_PIDGEY,      $0ff,  $17f",
+    "POLIWHIRL": "CRY_PIDGEY,      $077,  $0e0",
+    "POLIWRATH": "CRY_PIDGEY,      $000,  $17f",
+    "ABRA": "CRY_METAPOD,     $0c0,  $081",
+    "KADABRA": "CRY_METAPOD,     $0a8,  $140",
+    "ALAKAZAM": "CRY_METAPOD,     $098,  $17f",
+    "MACHOP": "CRY_GROWLITHE,   $0ee,  $081",
+    "MACHOKE": "CRY_GROWLITHE,   $048,  $0e0",
+    "MACHAMP": "CRY_GROWLITHE,   $008,  $140",
+    "BELLSPROUT": "CRY_PSYDUCK,     $055,  $081",
+    "WEEPINBELL": "CRY_WEEPINBELL,  $044,  $0a0",
+    "VICTREEBEL": "CRY_WEEPINBELL,  $066,  $14c",
+    "TENTACOOL": "CRY_VENONAT,     $000,  $100",
+    "TENTACRUEL": "CRY_VENONAT,     $0ee,  $17f",
+    "GEODUDE": "CRY_VULPIX,      $0f0,  $090",
+    "GRAVELER": "CRY_VULPIX,      $000,  $100",
+    "GOLEM": "CRY_GOLEM,       $0e0,  $0c0",
+    "PONYTA": "CRY_WEEPINBELL,  $000,  $100",
+    "RAPIDASH": "CRY_WEEPINBELL,  $020,  $140",
+    "SLOWPOKE": "CRY_SLOWPOKE,    $000,  $100",
+    "SLOWBRO": "CRY_GROWLITHE,   $000,  $100",
+    "MAGNEMITE": "CRY_METAPOD,     $080,  $0e0",
+    "MAGNETON": "CRY_METAPOD,     $020,  $140",
+    "FARFETCH_D": "CRY_SPEAROW,     $0dd,  $081",
+    "DODUO": "CRY_DIGLETT,     $0bb,  $081",
+    "DODRIO": "CRY_DIGLETT,     $099,  $0a0",
+    "SEEL": "CRY_SEEL,        $088,  $140",
+    "DEWGONG": "CRY_SEEL,        $023,  $17f",
+    "GRIMER": "CRY_GRIMER,      $000,  $100",
+    "MUK": "CRY_MUK,         $0ef,  $17f",
+    "SHELLDER": "CRY_FEAROW,      $000,  $100",
+    "CLOYSTER": "CRY_FEAROW,      $06f,  $160",
+    "GASTLY": "CRY_METAPOD,     $000,  $100",
+    "HAUNTER": "CRY_METAPOD,     $030,  $0c0",
+    "GENGAR": "CRY_MUK,         $000,  $17f",
+    "ONIX": "CRY_EKANS,       $0ff,  $140",
+    "DROWZEE": "CRY_EXEGGUTOR,   $088,  $0a0",
+    "HYPNO": "CRY_EXEGGUTOR,   $0ee,  $0c0",
+    "KRABBY": "CRY_KRABBY,      $020,  $160",
+    "KINGLER": "CRY_KRABBY,      $0ee,  $160",
+    "VOLTORB": "CRY_VOLTORB,     $0ed,  $100",
+    "ELECTRODE": "CRY_VOLTORB,     $0a8,  $110",
+    "EXEGGCUTE": "CRY_DIGLETT,     $000,  $100",
+    "EXEGGUTOR": "CRY_EXEGGUTOR,   $000,  $100",
+    "CUBONE": "CRY_CLEFAIRY,    $000,  $100",
+    "MAROWAK": "CRY_ODDISH,      $04f,  $0e0",
+    "HITMONLEE": "CRY_GOLEM,       $080,  $140",
+    "HITMONCHAN": "CRY_SEEL,        $0ee,  $140",
+    "LICKITUNG": "CRY_SEEL,        $000,  $100",
+    "KOFFING": "CRY_GOLEM,       $0e6,  $15d",
+    "WEEZING": "CRY_GOLEM,       $0ff,  $17f",
+    "RHYHORN": "CRY_CHARMANDER,  $000,  $100",
+    "RHYDON": "CRY_RHYDON,      $000,  $100",
+    "CHANSEY": "CRY_PIDGEOTTO,   $00a,  $140",
+    "TANGELA": "CRY_GOLEM,       $000,  $100",
+    "KANGASKHAN": "CRY_KANGASKHAN,  $000,  $100",
+    "HORSEA": "CRY_CLEFAIRY,    $099,  $090",
+    "SEADRA": "CRY_CLEFAIRY,    $03c,  $081",
+    "GOLDEEN": "CRY_CATERPIE,    $080,  $0c0",
+    "SEAKING": "CRY_CATERPIE,    $010,  $17f",
+    "STARYU": "CRY_PARAS,       $002,  $0a0",
+    "STARMIE": "CRY_PARAS,       $000,  $100",
+    "MR__MIME": "CRY_KRABBY,      $008,  $0c0",
+    "SCYTHER": "CRY_CATERPIE,    $000,  $100",
+    "JYNX": "CRY_DROWZEE,     $0ff,  $17f",
+    "ELECTABUZZ": "CRY_VOLTORB,     $08f,  $17f",
+    "MAGMAR": "CRY_CHARMANDER,  $0ff,  $0b0",
+    "PINSIR": "CRY_PIDGEOTTO,   $000,  $100",
+    "TAUROS": "CRY_SQUIRTLE,    $011,  $0c0",
+    "MAGIKARP": "CRY_EKANS,       $080,  $080",
+    "GYARADOS": "CRY_EKANS,       $000,  $100",
+    "LAPRAS": "CRY_LAPRAS,      $000,  $100",
+    "DITTO": "CRY_PIDGEY,      $0ff,  $17f",
+    "EEVEE": "CRY_VENONAT,     $088,  $0e0",
+    "VAPOREON": "CRY_VENONAT,     $0aa,  $17f",
+    "JOLTEON": "CRY_VENONAT,     $03d,  $100",
+    "FLAREON": "CRY_VENONAT,     $010,  $0a0",
+    "PORYGON": "CRY_WEEPINBELL,  $0aa,  $17f",
+    "OMANYTE": "CRY_GROWLITHE,   $0f0,  $081",
+    "OMASTAR": "CRY_GROWLITHE,   $0ff,  $0c0",
+    "KABUTO": "CRY_CATERPIE,    $0bb,  $0c0",
+    "KABUTOPS": "CRY_FEAROW,      $0ee,  $081",
+    "AERODACTYL": "CRY_VILEPLUME,   $020,  $170",
+    "SNORLAX": "CRY_GRIMER,      $055,  $081",
+    "ARTICUNO": "CRY_RAICHU,      $080,  $0c0",
+    "ZAPDOS": "CRY_FEAROW,      $0ff,  $100",
+    "MOLTRES": "CRY_RAICHU,      $0f8,  $0c0",
+    "DRATINI": "CRY_BULBASAUR,   $060,  $0c0",
+    "DRAGONAIR": "CRY_BULBASAUR,   $040,  $100",
+    "DRAGONITE": "CRY_BULBASAUR,   $03c,  $140",
+    "MEWTWO": "CRY_PARAS,       $099,  $17f",
+    "MEW": "CRY_PARAS,       $0ee,  $17f",
+    "CHIKORITA": "CRY_CHIKORITA,  -$010,  $0b0",
+    "BAYLEEF": "CRY_CHIKORITA,  -$022,  $120",
+    "MEGANIUM": "CRY_CHIKORITA,  -$0b7,  $200",
+    "CYNDAQUIL": "CRY_CYNDAQUIL,   $347,  $080",
+    "QUILAVA": "CRY_CYNDAQUIL,   $321,  $120",
+    "TYPHLOSION": "CRY_TYPHLOSION,  $f00,  $0d4",
+    "TOTODILE": "CRY_TOTODILE,    $46c,  $0e8",
+    "CROCONAW": "CRY_TOTODILE,    $440,  $110",
+    "FERALIGATR": "CRY_TOTODILE,    $3fc,  $180",
+    "SENTRET": "CRY_SENTRET,     $08a,  $0b8",
+    "FURRET": "CRY_SENTRET,     $06b,  $102",
+    "HOOTHOOT": "CRY_HOOTHOOT,    $091,  $0d8",
+    "NOCTOWL": "CRY_HOOTHOOT,    $000,  $1a0",
+    "LEDYBA": "CRY_LEDYBA,      $000,  $0de",
+    "LEDIAN": "CRY_LEDYBA,     -$096,  $138",
+    "SPINARAK": "CRY_SPINARAK,    $011,  $200",
+    "ARIADOS": "CRY_SPINARAK,   -$0ae,  $1e2",
+    "CROBAT": "CRY_SQUIRTLE,   -$010,  $140",
+    "CHINCHOU": "CRY_CYNDAQUIL,   $3c9,  $140",
+    "LANTURN": "CRY_CYNDAQUIL,   $2d0,  $110",
+    "PICHU": "CRY_PICHU,       $000,  $140",
+    "CLEFFA": "CRY_CLEFFA,      $061,  $091",
+    "IGGLYBUFF": "CRY_CHIKORITA,   $0e8,  $0e8",
+    "TOGEPI": "CRY_TOGEPI,      $010,  $100",
+    "TOGETIC": "CRY_TOGETIC,     $03b,  $038",
+    "NATU": "CRY_NATU,       -$067,  $100",
+    "XATU": "CRY_NATU,       -$0a7,  $168",
+    "MAREEP": "CRY_MAREEP,      $022,  $0d8",
+    "FLAAFFY": "CRY_MAREEP,     -$007,  $180",
+    "AMPHAROS": "CRY_AMPHAROS,   -$07c,  $0e8",
+    "BELLOSSOM": "CRY_CLEFFA,      $084,  $150",
+    "MARILL": "CRY_MARILL,      $11b,  $120",
+    "AZUMARILL": "CRY_MARILL,      $0b6,  $180",
+    "SUDOWOODO": "CRY_CLEFFA,      $f40,  $180",
+    "POLITOED": "CRY_CLEFFA,     -$2a3,  $1c8",
+    "HOPPIP": "CRY_CLEFFA,      $03b,  $0c8",
+    "SKIPLOOM": "CRY_CLEFFA,      $027,  $138",
+    "JUMPLUFF": "CRY_CLEFFA,      $000,  $180",
+    "AIPOM": "CRY_AIPOM,      -$051,  $0e8",
+    "SUNKERN": "CRY_MARILL,      $12b,  $0b8",
+    "SUNFLORA": "CRY_SUNFLORA,   -$020,  $180",
+    "YANMA": "CRY_TOTODILE,    $031,  $0c8",
+    "WOOPER": "CRY_WOOPER,      $093,  $0af",
+    "QUAGSIRE": "CRY_WOOPER,     -$0c6,  $140",
+    "ESPEON": "CRY_ESPEON,      $0a2,  $140",
+    "UMBREON": "CRY_VENONAT,    -$0e9,  $0f0",
+    "MURKROW": "CRY_MARILL,     -$01f,  $180",
+    "SLOWKING": "CRY_SLOWKING,    $104,  $200",
+    "MISDREAVUS": "CRY_HOOTHOOT,    $130,  $0e8",
+    "UNOWN": "CRY_HOOTHOOT,    $162,  $100",
+    "WOBBUFFET": "CRY_AMPHAROS,    $27b,  $144",
+    "GIRAFARIG": "CRY_GIRAFARIG,   $041,  $200",
+    "PINECO": "CRY_SLOWKING,    $080,  $100",
+    "FORRETRESS": "CRY_SLOWKING,    $000,  $180",
+    "DUNSPARCE": "CRY_DUNSPARCE,   $1c4,  $100",
+    "GLIGAR": "CRY_GLIGAR,     -$102,  $100",
+    "STEELIX": "CRY_TYPHLOSION,  $0ef,  $0f7",
+    "SNUBBULL": "CRY_DUNSPARCE,   $112,  $0e8",
+    "GRANBULL": "CRY_DUNSPARCE,   $000,  $180",
+    "QWILFISH": "CRY_SLOWKING,    $160,  $0e0",
+    "SCIZOR": "CRY_AMPHAROS,    $000,  $160",
+    "SHUCKLE": "CRY_DUNSPARCE,   $290,  $0a8",
+    "HERACROSS": "CRY_AMPHAROS,    $035,  $0e0",
+    "SNEASEL": "CRY_WOOPER,      $053,  $0af",
+    "TEDDIURSA": "CRY_TEDDIURSA,   $7a2,  $06e",
+    "URSARING": "CRY_TEDDIURSA,   $640,  $0d8",
+    "SLUGMA": "CRY_SLUGMA,     -$1d8,  $140",
+    "MAGCARGO": "CRY_MAGCARGO,   -$20d,  $1c0",
+    "SWINUB": "CRY_CYNDAQUIL,   $1fe,  $140",
+    "PILOSWINE": "CRY_MAGCARGO,   -$109,  $100",
+    "CORSOLA": "CRY_MAGCARGO,    $0a1,  $0e8",
+    "REMORAID": "CRY_SUNFLORA,    $00d,  $100",
+    "OCTILLERY": "CRY_TOTODILE,    $000,  $180",
+    "DELIBIRD": "CRY_TEDDIURSA,   $002,  $06a",
+    "MANTINE": "CRY_MANTINE,    -$0be,  $0f0",
+    "SKARMORY": "CRY_AMPHAROS,    $8a9,  $180",
+    "HOUNDOUR": "CRY_CYNDAQUIL,   $039,  $140",
+    "HOUNDOOM": "CRY_TOTODILE,   -$10a,  $100",
+    "KINGDRA": "CRY_SLUGMA,      $2fb,  $100",
+    "PHANPY": "CRY_SENTRET,     $048,  $230",
+    "DONPHAN": "CRY_DONPHAN,     $000,  $1a0",
+    "PORYGON2": "CRY_GIRAFARIG,   $073,  $240",
+    "STANTLER": "CRY_ESPEON,     -$160,  $180",
+    "SMEARGLE": "CRY_PICHU,      -$21a,  $1f0",
+    "TYROGUE": "CRY_AIPOM,       $02c,  $108",
+    "HITMONTOP": "CRY_SLUGMA,      $000,  $100",
+    "SMOOCHUM": "CRY_MARILL,      $068,  $100",
+    "ELEKID": "CRY_SUNFLORA,   -$2d8,  $0b4",
+    "MAGBY": "CRY_TEDDIURSA,   $176,  $03a",
+    "MILTANK": "CRY_GLIGAR,     -$1cd,  $1a0",
+    "BLISSEY": "CRY_SLOWKING,    $293,  $140",
+    "RAIKOU": "CRY_RAIKOU,      $22e,  $120",
+    "ENTEI": "CRY_ENTEI,       $000,  $1a0",
+    "SUICUNE": "CRY_MAGCARGO,    $000,  $180",
+    "LARVITAR": "CRY_RAIKOU,      $05f,  $0d0",
+    "PUPITAR": "CRY_SPINARAK,   -$1db,  $150",
+    "TYRANITAR": "CRY_RAIKOU,     -$100,  $180",
+    "LUGIA": "CRY_TYPHLOSION,  $000,  $100",
+    "HO_OH": "CRY_AIPOM,       $000,  $180",
+    "CELEBI": "CRY_ENTEI,       $14a,  $111",
+    "CHARMANDER_CLONE": "CRY_CHARMANDER,  $060,  $0c0",
+    "CHARMELEON_CLONE": "CRY_CHARMANDER,  $020,  $0c0",
+    "CHARIZARD_CLONE": "CRY_CHARMANDER,  $000,  $100",
+    "SQUIRTLE_CLONE": "CRY_SQUIRTLE,    $060,  $0c0",
+    "WARTORTLE_CLONE": "CRY_SQUIRTLE,    $020,  $0c0",
+    "BLASTOISE_CLONE": "CRY_BLASTOISE,   $000,  $100",
+    "BULBASAUR_CLONE": "CRY_BULBASAUR,   $080,  $081",
+    "IVYSAUR_CLONE": "CRY_BULBASAUR,   $020,  $100",
+    "VENUSAUR_CLONE": "CRY_BULBASAUR,   $000,  $140",
+    "RALTS": "CRY_RALTS,       $060,  $040",
+    "KIRLIA": "CRY_KIRLIA,      $060,  $080",
+    "GALLADE": "CRY_GALLADE,     $020,  $130",
+    "GLACEON": "CRY_GLACEON,     $038,  $24c",
+    "LEAFEON": "CRY_LEAFEON,     $038,  $20c",
+    "SYLVEON": "CRY_SYLVEON,     $000,  $298",
+    "MESMERIA": "CRY_RALTS,      -$0a0,  $190",
+    "PORYGON_Z": "CRY_PORYGONZ,    $000,  $180",
+    "VENIPEDE": "CRY_VENIPEDE,    $096,  $180",
+    "WHIRLIPEDE": "CRY_WHIRLIPEDE,  $096,  $180",
+    "SCOLIPEDE": "CRY_SCOLIPEDE,   $000,  $1c9",
+    "LARVESTA": "CRY_LARVESTA,    $000,  $148",
+    "VOLCARONA": "CRY_VOLCARONA,   $0c3,  $100",
+    "DREEPY": "CRY_DREEPY,      $080,  $0a4",
+    "DRAKLOAK": "CRY_DRAKLOAK,    $03d,  $108",
+    "DRAGAPULT": "CRY_DRAGAPULT,   $080,  $108",
+    "SNOVER": "CRY_SNOVER,      $0aa,  $080",
+    "ABOMASNOW": "CRY_ABOMASNOW,   $0ff,  $0c0",
+    "SWABLU": "CRY_SWABLU,      $0f0,  $080",
+    "ALTARIA": "CRY_ALTARIA,     $0ff,  $100",
+    "SHROOMISH": "CRY_SHROOMISH,   $0ff,  $070",
+    "BRELOOM": "CRY_BRELOOM,     $050,  $116",
+    "BUNEARY": "CRY_BUNEARY,     $000,  $0a4",
+    "LOPUNNY": "CRY_LOPUNNY,     $000,  $100",
+    "NUMEL": "CRY_NUMEL,       $000,  $080",
+    "CAMERUPT": "CRY_CAMERUPT,    $000,  $180",
+    "DRIFLOON": "CRY_DRIFLOON,    $000,  $100",
+    "DRIFBLIM": "CRY_DRIFBLIM,    $0ff,  $0ec",
+    "DRILBUR": "CRY_DRILBUR,     $0ff,  $0c8",
+    "EXCADRILL": "CRY_EXCADRILL,   $058,  $108",
+    "KOTORA": "CRY_PICHU,       $f60,  $200",
+    "RAITORA": "CRY_RAIKOU,      $db3,  $168",
+    "GOROTORA": "CRY_RAIKOU,      $cb3,  $201",
+    "SNORUNT": "CRY_SNORUNT,     $064,  $0d0",
+    "FROSLASS": "CRY_FROSLASS,    $08f,  $180",
+    "SCRAGGY": "CRY_SCRAGGY,     $0df,  $0c0",
+    "SCRAFTY": "CRY_SCRAFTY,     $061,  $12c",
+    "TEDDIURSABM": "CRY_TEDDIURSA,   $7a2,  $06e",
+    "URSARINGBM": "CRY_TEDDIURSA,   $640,  $0d8",
+    "SNEASLER": "CRY_SNEASLER,    $000,  $100",
+    "WATU": "CRY_NATU,       -$087,  $130",
+    "ARON": "CRY_ARON,        $03c,  $070",
+    "LAIRON": "CRY_LAIRON,      $01e,  $070",
+    "AGGRON": "CRY_AGGRON,      $000,  $100",
+    "ARCHEN": "CRY_ARCHEN,         206,   204",
+    "ARCHEOPS": "CRY_ARCHEOPS,       188,   140",
+    "TIRTOUGA": "CRY_TIRTOUGA,       192,   204",
+    "CARRACOSTA": "CRY_CARRACOSTA,      35,   204",
+    "LITWICK": "CRY_LITWICK,     $000,  $100",
+    "LAMPENT": "CRY_LAMPENT,     $000,  $180",
+    "CHANDELURE": "CRY_CHANDELURE,  $0ff,  $180",
+    "JOLTIK": "CRY_JOLTIK,      $000,  $100",
+    "GALVANTULA": "CRY_GALVANTULA,  $000,  $0dc",
+    "NOIBAT": "CRY_NOIBAT,      $0a7,  $084",
+    "NOIVERN": "CRY_NOIVERN,     $04a,  $084",
+    "GOROCHU": "CRY_RAICHU,      $0e0,  $17f",
+    "PHANTUMP": "CRY_PHANTUMP, 119, 220",
+    "TREVENANT": "CRY_TREVENANT, 0, 220",
+    "MIENFOO": "CRY_MIENFOO, 0, 220",
+    "MIENSHAO": "CRY_MIENSHAO, 0, 220",
+    "ZORUA": "CRY_VULPIX, $080, $0b0",
+    "ZOROARK": "CRY_VILEPLUME, $030, $140",
+    "OVERQWIL": "CRY_SLOWKING,    $000,  $100",
+    "CORSOLA_GALARIAN": "CRY_MAGCARGO,    $0a1,  $0e8",
+    "CURSOLA": "CRY_MAGCARGO,   -$044,  $1c0",
+    "MR__RIME": "CRY_KRABBY,      $008,  $0c0",
+    "SIRFETCH_D": "CRY_SPEAROW,     $088,  $0a0",
+    "RATTATA_ALOLAN": "CRY_RATTATA,     $000,  $100",
+    "RATICATE_ALOLAN": "CRY_RATTATA,     $020,  $17f",
+    "RAICHU_ALOLAN": "CRY_RAICHU,      $0ee,  $088",
+    "SANDSHREW_ALOLAN": "CRY_NIDORAN_M,   $020,  $0c0",
+    "SANDSLASH_ALOLAN": "CRY_NIDORAN_M,   $0ff,  $17f",
+    "VULPIX_ALOLAN": "CRY_VULPIX,      $04f,  $090",
+    "NINETALES_ALOLAN": "CRY_VULPIX,      $088,  $0e0",
+    "DIGLETT_ALOLAN": "CRY_DIGLETT,     $0aa,  $081",
+    "DUGTRIO_ALOLAN": "CRY_DIGLETT,     $02a,  $090",
+    "MEOWTH_ALOLAN": "CRY_CLEFAIRY,    $077,  $090",
+    "PERSIAN_ALOLAN": "CRY_CLEFAIRY,    $099,  $17f",
+    "GEODUDE_ALOLAN": "CRY_VULPIX,      $0f0,  $090",
+    "GRAVELER_ALOLAN": "CRY_VULPIX,      $000,  $100",
+    "GOLEM_ALOLAN": "CRY_GOLEM,       $0e0,  $0c0",
+    "GRIMER_ALOLAN": "CRY_GRIMER,      $000,  $100",
+    "MUK_ALOLAN": "CRY_MUK,         $0ef,  $17f",
+    "EXEGGUTOR_ALOLAN": "CRY_DROWZEE,     $000,  $100",
+    "MAROWAK_ALOLAN": "CRY_ODDISH,      $04f,  $0e0",
+    "MEOWTH_GALARIAN": "CRY_CLEFAIRY,    $077,  $090",
+    "PERRSERKER": "CRY_CLEFAIRY,    $099,  $17f",
+    "PONYTA_GALARIAN": "CRY_WEEPINBELL,  $000,  $100",
+    "RAPIDASH_GALARIAN": "CRY_WEEPINBELL,  $020,  $140",
+    "SLOWPOKE_GALARIAN": "CRY_SLOWPOKE,    $000,  $100",
+    "SLOWBRO_GALARIAN": "CRY_GROWLITHE,   $000,  $100",
+    "SLOWKING_GALARIAN": "CRY_SLOWKING,    $104,  $200",
+    "WEEZING_GALARIAN": "CRY_GOLEM,       $0ff,  $17f",
+    "GROWLITHE_HISUIAN": "CRY_GROWLITHE,   $020,  $0c0",
+    "ARCANINE_HISUIAN": "CRY_WEEDLE,      $000,  $100",
+    "VOLTORB_HISUIAN": "CRY_VOLTORB,     $0ed,  $100",
+    "ELECTRODE_HISUIAN": "CRY_VOLTORB,     $0a8,  $110",
+    "TYPHLOSION_HISUIAN": "CRY_TYPHLOSION,  $f00,  $0d4",
+    "SNEASEL_HISUIAN": "CRY_WOOPER,      $053,  $0af",
+    "WOOPER_PALDEAN": "CRY_WOOPER,      $093,  $0af",
+    "CLODSIRE": "CRY_WOOPER,     -$0c6,  $140",
+    "TAUROS_PALDEAN_FIRE": "CRY_SQUIRTLE,    $011,  $0c0",
+    "TAUROS_PALDEAN_WATER": "CRY_SQUIRTLE,    $011,  $0c0"
+  },
+  "replacements": {
+    "HONCHKROW": {
+      "source": "honchkrow",
+      "previous": "CRY_MARILL,     -$0b7,  $140",
+      "index": 261
+    },
+    "AMBIPOM": {
+      "source": "ambipom",
+      "previous": "CRY_AIPOM,      -$051,  $0e8",
+      "index": 262
+    },
+    "ANNIHILAPE": {
+      "source": "annihilape",
+      "previous": "CRY_NIDOQUEEN,   $0af,  $0c0",
+      "index": 263
+    },
+    "BAGON": {
+      "source": "bagon",
+      "previous": "CRY_RAIKOU,      $05f,  $0d0",
+      "index": 264
+    },
+    "SHELGON": {
+      "source": "shelgon",
+      "previous": "CRY_SPINARAK,   -$1db,  $150",
+      "index": 265
+    },
+    "SALAMENCE": {
+      "source": "salamence",
+      "previous": "CRY_RAIKOU,     -$100,  $180",
+      "index": 266
+    },
+    "DUDUNSPARCE": {
+      "source": "dudunsparce-two-segment",
+      "previous": "CRY_DUNSPARCE,   $1c4,  $100",
+      "index": 267
+    },
+    "ELECTIVIRE": {
+      "source": "electivire",
+      "previous": "CRY_VOLTORB,     $080,  $1c2",
+      "index": 268
+    },
+    "FARIGIRAF": {
+      "source": "farigiraf",
+      "previous": "CRY_GIRAFARIG,   $041,  $200",
+      "index": 269
+    },
+    "GARDEVOIR": {
+      "source": "gardevoir",
+      "previous": "CRY_TOGEPI,     -$0a2,  $17c",
+      "index": 272
+    },
+    "GLISCOR": {
+      "source": "gliscor",
+      "previous": "CRY_GLIGAR,     -$06b,  $140",
+      "index": 277
+    },
+    "LICKILICKY": {
+      "source": "lickilicky",
+      "previous": "CRY_SEEL,       -$077,  $17f",
+      "index": 278
+    },
+    "MAGMORTAR": {
+      "source": "magmortar",
+      "previous": "CRY_CHARMANDER,  $077,  $100",
+      "index": 279
+    },
+    "MAGNEZONE": {
+      "source": "magnezone",
+      "previous": "CRY_METAPOD,    -$011,  $200",
+      "index": 280
+    },
+    "MAMOSWINE": {
+      "source": "mamoswine",
+      "previous": "CRY_MAGCARGO,   -$109,  $100",
+      "index": 281
+    },
+    "MISMAGIUS": {
+      "source": "mismagius",
+      "previous": "CRY_HOOTHOOT,    $11b,  $17f",
+      "index": 283
+    },
+    "RHYPERIOR": {
+      "source": "rhyperior",
+      "previous": "CRY_RHYDON,     -$068,  $160",
+      "index": 285
+    },
+    "TANGROWTH": {
+      "source": "tangrowth",
+      "previous": "CRY_GOLEM,       $060,  $140",
+      "index": 289
+    },
+    "TOGEKISS": {
+      "source": "togekiss",
+      "previous": "CRY_TOGETIC,     $060,  $048",
+      "index": 290
+    },
+    "URSALUNA": {
+      "source": "ursaluna",
+      "previous": "CRY_TEDDIURSA,   $3fc,  $100",
+      "index": 291
+    },
+    "WEAVILE": {
+      "source": "weavile",
+      "previous": "CRY_WOOPER,      $000,  $0c0",
+      "index": 292
+    },
+    "WYRDEER": {
+      "source": "wyrdeer",
+      "previous": "CRY_AIPOM,      -$1d8,  $200",
+      "index": 293
+    },
+    "YANMEGA": {
+      "source": "yanmega",
+      "previous": "CRY_TOTODILE,    $031,  $0c8",
+      "index": 294
+    },
+    "LILEEP": {
+      "source": "lileep",
+      "previous": "CRY_DUNSPARCE,   $1cd,  $0d8",
+      "index": 295
+    },
+    "CRADILY": {
+      "source": "cradily",
+      "previous": "CRY_DUNSPARCE,   $1b6,  $110",
+      "index": 296
+    },
+    "ANORITH": {
+      "source": "anorith",
+      "previous": "CRY_CATERPIE,    $093,  $0e0",
+      "index": 297
+    },
+    "ARMALDO": {
+      "source": "armaldo",
+      "previous": "CRY_FEAROW,      $0bd,  $091",
+      "index": 298
+    },
+    "GOLETT": {
+      "source": "golett",
+      "previous": "CRY_GOLEM,       $080,  $120",
+      "index": 299
+    },
+    "GOLURK": {
+      "source": "golurk",
+      "previous": "CRY_GOLEM,      -$100,  $1a0",
+      "index": 300
+    },
+    "DUSKULL": {
+      "source": "duskull",
+      "previous": "CRY_PARAS,       $000,  $0a0",
+      "index": 301
+    },
+    "DUSCLOPS": {
+      "source": "dusclops",
+      "previous": "CRY_PARAS,       $000,  $100",
+      "index": 302
+    },
+    "DUSKNOIR": {
+      "source": "dusknoir",
+      "previous": "CRY_PARAS,      -$02c,  $0c0",
+      "index": 303
+    },
+    "TIMBURR": {
+      "source": "timburr",
+      "previous": "CRY_GROWLITHE,   $080,  $0d0",
+      "index": 304
+    },
+    "GURDURR": {
+      "source": "gurdurr",
+      "previous": "CRY_GROWLITHE,   $020,  $140",
+      "index": 305
+    },
+    "CONKELDURR": {
+      "source": "conkeldurr",
+      "previous": "CRY_GROWLITHE,  -$080,  $1a0",
+      "index": 306
+    },
+    "DEINO": {
+      "source": "deino",
+      "previous": "CRY_RAIKOU,      $080,  $0d0",
+      "index": 309
+    },
+    "ZWEILOUS": {
+      "source": "zweilous",
+      "previous": "CRY_RAIKOU,      $020,  $120",
+      "index": 310
+    },
+    "HYDREIGON": {
+      "source": "hydreigon",
+      "previous": "CRY_RAIKOU,     -$100,  $190",
+      "index": 311
+    },
+    "IMPIDIMP": {
+      "source": "impidimp",
+      "previous": "CRY_AIPOM,       $060,  $0b0",
+      "index": 315
+    },
+    "MORGREM": {
+      "source": "morgrem",
+      "previous": "CRY_DUNSPARCE,   $060,  $120",
+      "index": 316
+    },
+    "GRIMMSNARL": {
+      "source": "grimmsnarl",
+      "previous": "CRY_DUNSPARCE,  -$100,  $190",
+      "index": 317
+    },
+    "TINKATINK": {
+      "source": "tinkatink",
+      "previous": "CRY_RALTS,       $0c0,  $070",
+      "index": 318
+    },
+    "TINKATUFF": {
+      "source": "tinkatuff",
+      "previous": "CRY_KIRLIA,      $080,  $0d0",
+      "index": 319
+    },
+    "TINKATON": {
+      "source": "tinkaton",
+      "previous": "CRY_GOLEM,       $040,  $160",
+      "index": 320
+    },
+    "FRIGIBAX": {
+      "source": "frigibax",
+      "previous": "CRY_SEEL,        $0a0,  $0c0",
+      "index": 321
+    },
+    "ARCTIBAX": {
+      "source": "arctibax",
+      "previous": "CRY_SEEL,        $020,  $130",
+      "index": 322
+    },
+    "BAXCALIBUR": {
+      "source": "baxcalibur",
+      "previous": "CRY_RAIKOU,     -$140,  $190",
+      "index": 323
+    },
+    "CHARCADET": {
+      "source": "charcadet",
+      "previous": "CRY_CHARMANDER,  $120,  $0d0",
+      "index": 324
+    },
+    "ARMAROUGE": {
+      "source": "armarouge",
+      "previous": "CRY_TYPHLOSION,  $100,  $180",
+      "index": 325
+    },
+    "CERULEDGE": {
+      "source": "ceruledge",
+      "previous": "CRY_HOOTHOOT,    $080,  $1c0",
+      "index": 326
+    },
+    "ROOKIDEE": {
+      "source": "rookidee",
+      "previous": "CRY_PIDGEY,      $0c0,  $088",
+      "index": 327
+    },
+    "CORVISQUIRE": {
+      "source": "corvisquire",
+      "previous": "CRY_PIDGEOTTO,   $020,  $130",
+      "index": 328
+    },
+    "CORVIKNIGHT": {
+      "source": "corviknight",
+      "previous": "CRY_FEAROW,     -$080,  $180",
+      "index": 329
+    },
+    "APPLIN": {
+      "source": "applin",
+      "previous": "CRY_PSYDUCK,     $055,  $081",
+      "index": 334
+    },
+    "DIPPLIN": {
+      "source": "dipplin",
+      "previous": "CRY_ODDISH,      $040,  $120",
+      "index": 335
+    },
+    "APPLETUN": {
+      "source": "appletun",
+      "previous": "CRY_WEEPINBELL, -$293,  $06c",
+      "index": 336
+    },
+    "FLAPPLE": {
+      "source": "flapple",
+      "previous": "CRY_WEEPINBELL, -$044,  $0a0",
+      "index": 337
+    },
+    "HYDRAPPLE": {
+      "source": "hydrapple",
+      "previous": "CRY_RAIKOU,     -$040,  $1a0",
+      "index": 338
+    },
+    "DURALUDON": {
+      "source": "duraludon",
+      "previous": "CRY_RHYDON,      $060,  $120",
+      "index": 339
+    },
+    "ARCHALUDON": {
+      "source": "archaludon",
+      "previous": "CRY_RHYDON,     -$040,  $180",
+      "index": 340
+    },
+    "SIZZLIPEDE": {
+      "source": "sizzlipede",
+      "previous": "CRY_DIGLETT,     $0bb,  $081",
+      "index": 347
+    },
+    "CENTISKORCH": {
+      "source": "centiskorch",
+      "previous": "CRY_SLUGMA,     -$080,  $180",
+      "index": 348
+    },
+    "GRUBBIN": {
+      "source": "grubbin",
+      "previous": "CRY_SLOWKING,    $080,  $100",
+      "index": 349
+    },
+    "CHARJABUG": {
+      "source": "charjabug",
+      "previous": "CRY_SQUIRTLE,    $0cc,  $048",
+      "index": 350
+    },
+    "VIKAVOLT": {
+      "source": "vikavolt",
+      "previous": "CRY_PIDGEOTTO,  -$02c,  $100",
+      "index": 351
+    },
+    "CROAGUNK": {
+      "source": "croagunk",
+      "previous": "CRY_PIDGEY,     -$077,  $0e0",
+      "index": 352
+    },
+    "TOXICROAK": {
+      "source": "toxicroak",
+      "previous": "CRY_PIDGEY,     -$0df,  $17f",
+      "index": 353
+    },
+    "FLETCHLING": {
+      "source": "fletchling",
+      "previous": "CRY_SPEAROW,     $14a,  $100",
+      "index": 361
+    },
+    "FLETCHINDER": {
+      "source": "fletchinder",
+      "previous": "CRY_SPEAROW,     $040,  $120",
+      "index": 362
+    },
+    "TALONFLAME": {
+      "source": "talonflame",
+      "previous": "CRY_RAICHU,      $0f8,  $0c0",
+      "index": 363
+    },
+    "TRAPINCH": {
+      "source": "trapinch",
+      "previous": "CRY_CATERPIE,    $000,  $100",
+      "index": 364
+    },
+    "VIBRAVA": {
+      "source": "vibrava",
+      "previous": "CRY_CATERPIE,    $0fc,  $0ac",
+      "index": 365
+    },
+    "FLYGON": {
+      "source": "flygon",
+      "previous": "CRY_CATERPIE,    $0a8,  $156",
+      "index": 366
+    },
+    "WIMPOD": {
+      "source": "wimpod",
+      "previous": "CRY_GROWLITHE,   $0f0,  $081",
+      "index": 369
+    },
+    "GOLISOPOD": {
+      "source": "golisopod",
+      "previous": "CRY_GROWLITHE,   $0ff,  $0c0",
+      "index": 370
+    },
+    "PAWNIARD": {
+      "source": "pawniard",
+      "previous": "CRY_KRABBY,      $080,  $0c0",
+      "index": 373
+    },
+    "BISHARP": {
+      "source": "bisharp",
+      "previous": "CRY_KRABBY,      $000,  $140",
+      "index": 374
+    },
+    "KINGAMBIT": {
+      "source": "kingambit",
+      "previous": "CRY_RHYDON,     -$100,  $1a0",
+      "index": 375
+    },
+    "SEEDOT": {
+      "source": "seedot",
+      "previous": "CRY_ODDISH, $0a0, $080",
+      "index": 376
+    },
+    "NUZLEAF": {
+      "source": "nuzleaf",
+      "previous": "CRY_ODDISH, $020, $100",
+      "index": 377
+    },
+    "SHIFTRY": {
+      "source": "shiftry",
+      "previous": "CRY_WEEPINBELL, $030, $160",
+      "index": 378
+    },
+    "HONEDGE": {
+      "source": "honedge",
+      "previous": "CRY_VOLTORB, $060, $090",
+      "index": 382
+    },
+    "DOUBLADE": {
+      "source": "doublade",
+      "previous": "CRY_VOLTORB, $020, $0e0",
+      "index": 383
+    },
+    "AEGISLASH": {
+      "source": "aegislash",
+      "previous": "CRY_MUK, $000, $140",
+      "index": 384
+    },
+    "URSALUNABM": {
+      "source": "ursaluna-bloodmoon",
+      "previous": "CRY_TEDDIURSA,   $640,  $0d8",
+      "index": 387
+    },
+    "AXEW": {
+      "source": "axew",
+      "previous": "CRY_CHARMANDER,  $060,  $0c0",
+      "index": 388
+    },
+    "FRAXURE": {
+      "source": "fraxure",
+      "previous": "CRY_CHARMANDER,  $020,  $0c0",
+      "index": 389
+    },
+    "HAXORUS": {
+      "source": "haxorus",
+      "previous": "CRY_CHARMANDER,  $000,  $100",
+      "index": 390
+    },
+    "CRANIDOS": {
+      "source": "cranidos",
+      "previous": "CRY_RHYDON,      $080,  $110",
+      "index": 391
+    },
+    "RAMPARDOS": {
+      "source": "rampardos",
+      "previous": "CRY_RHYDON,     -$020,  $170",
+      "index": 392
+    },
+    "SHIELDON": {
+      "source": "shieldon",
+      "previous": "CRY_RHYDON,      $040,  $130",
+      "index": 393
+    },
+    "BASTIODON": {
+      "source": "bastiodon",
+      "previous": "CRY_GOLEM,      -$040,  $190",
+      "index": 394
+    },
+    "CETODDLE": {
+      "source": "cetoddle",
+      "previous": "CRY_SEEL,        $060,  $130",
+      "index": 395
+    },
+    "CETITAN": {
+      "source": "cetitan",
+      "previous": "CRY_LAPRAS,     -$100,  $1c0",
+      "index": 396
+    },
+    "FEEBAS": {
+      "source": "feebas",
+      "previous": "CRY_EKANS,       $055,  $055",
+      "index": 397
+    },
+    "MILOTIC": {
+      "source": "milotic",
+      "previous": "CRY_BULBASAUR,   $000,  $140",
+      "index": 398
+    },
+    "MIMIKYU": {
+      "source": "mimikyu-disguised",
+      "previous": "CRY_BULBASAUR,   $180,  $180",
+      "index": 399
+    },
+    "RIOLU": {
+      "source": "riolu",
+      "previous": "CRY_GROWLITHE,   $020,  $0c0",
+      "index": 404
+    },
+    "LUCARIO": {
+      "source": "lucario",
+      "previous": "CRY_WEEDLE,      $000,  $100",
+      "index": 405
+    },
+    "TYRUNT": {
+      "source": "tyrunt",
+      "previous": "CRY_NIDORAN_F,   $02c,  $160",
+      "index": 406
+    },
+    "TYRANTRUM": {
+      "source": "tyrantrum",
+      "previous": "CRY_RAICHU,      $000,  $100",
+      "index": 407
+    },
+    "AMAURA": {
+      "source": "amaura",
+      "previous": "CRY_LAPRAS,      $080,  $120",
+      "index": 408
+    },
+    "AURORUS": {
+      "source": "aurorus",
+      "previous": "CRY_LAPRAS,     -$040,  $190",
+      "index": 409
+    },
+    "MUNCHLAX": {
+      "source": "munchlax",
+      "previous": "CRY_GRIMER,      $0df,  $091",
+      "index": 410
+    },
+    "TORKOAL": {
+      "source": "torkoal",
+      "previous": "CRY_VOLTORB,     $0ed,  $100",
+      "index": 411
+    },
+    "BOUNSWEET": {
+      "source": "bounsweet",
+      "previous": "CRY_SHROOMISH,   $0c0,  $0a0",
+      "index": 450
+    },
+    "STEENEE": {
+      "source": "steenee",
+      "previous": "CRY_SHROOMISH,   $040,  $100",
+      "index": 451
+    },
+    "TSAREENA": {
+      "source": "tsareena",
+      "previous": "CRY_BRELOOM,    -$040,  $170",
+      "index": 452
+    },
+    "KLEAVOR": {
+      "source": "kleavor",
+      "previous": "CRY_AMPHAROS,   -$020,  $100",
+      "index": 456
+    },
+    "GLIMMET": {
+      "source": "glimmet",
+      "previous": "CRY_MAGCARGO,    $100,  $0f0",
+      "index": 457
+    },
+    "GLIMMORA": {
+      "source": "glimmora",
+      "previous": "CRY_MAGCARGO,   -$060,  $190",
+      "index": 458
+    },
+    "MAREANIE": {
+      "source": "mareanie",
+      "previous": "CRY_SLOWKING,    $100,  $0d0",
+      "index": 459
+    },
+    "TOXAPEX": {
+      "source": "toxapex",
+      "previous": "CRY_SLOWKING,    $040,  $160",
+      "index": 460
+    },
+    "ZANGOOSE": {
+      "source": "zangoose",
+      "previous": "CRY_ODDISH,      $080,  $0e0",
+      "index": 461
+    },
+    "SEVIPER": {
+      "source": "seviper",
+      "previous": "CRY_EKANS,       $27b,  $090",
+      "index": 462
+    },
+    "SHUPPET": {
+      "source": "shuppet",
+      "previous": "CRY_HOOTHOOT,    $162,  $081",
+      "index": 463
+    },
+    "BANETTE": {
+      "source": "banette",
+      "previous": "CRY_MUK,         $079,  $200",
+      "index": 464
+    },
+    "MAWILE": {
+      "source": "mawile",
+      "previous": "CRY_PIDGEOTTO,   $000,  $100",
+      "index": 474
+    },
+    "SALANDIT": {
+      "source": "salandit",
+      "previous": "CRY_EKANS,       $0a0,  $100",
+      "index": 477
+    },
+    "SALAZZLE": {
+      "source": "salazzle",
+      "previous": "CRY_EKANS,      -$020,  $180",
+      "index": 478
+    },
+    "SABLEYE": {
+      "source": "sableye",
+      "previous": "CRY_MUK, $050, $0c0",
+      "index": 479
+    },
+    "AEGISLASH_BLADE": {
+      "source": "aegislash",
+      "previous": "CRY_MUK, $000, $140",
+      "index": 480
+    },
+    "FINIZEN": {
+      "source": "finizen",
+      "previous": "CRY_FEAROW,      $0a0,  $0c0",
+      "index": 481
+    },
+    "PALAFIN": {
+      "source": "palafin-hero",
+      "previous": "CRY_FEAROW,     -$0c0,  $180",
+      "index": 482
+    },
+    "AZURILL": {
+      "source": "azurill",
+      "previous": "CRY_MARILL,      $11b,  $120",
+      "index": 483
+    },
+    "WYNAUT": {
+      "source": "wynaut",
+      "previous": "CRY_AMPHAROS,    $2d0,  $0a0",
+      "index": 484
+    },
+    "BONSLY": {
+      "source": "bonsly",
+      "previous": "CRY_CLEFFA,      $f40,  $091",
+      "index": 485
+    },
+    "MIME_JR_": {
+      "source": "mime-jr",
+      "previous": "CRY_KRABBY,      $008,  $0c0",
+      "index": 486
+    },
+    "HAPPINY": {
+      "source": "happiny",
+      "previous": "CRY_PIDGEOTTO,   $00a,  $140",
+      "index": 487
+    },
+    "MANTYKE": {
+      "source": "mantyke",
+      "previous": "CRY_MANTINE,     $000,  $056",
+      "index": 488
+    },
+    "STARLY": {
+      "source": "starly",
+      "previous": "CRY_PIDGEY,      $0c0,  $088",
+      "index": 489
+    },
+    "STARAVIA": {
+      "source": "staravia",
+      "previous": "CRY_PIDGEOTTO,   $020,  $130",
+      "index": 490
+    },
+    "STARAPTOR": {
+      "source": "staraptor",
+      "previous": "CRY_FEAROW,     -$080,  $180",
+      "index": 491
+    },
+    "SANDILE": {
+      "source": "sandile",
+      "previous": "CRY_TOTODILE,    $580,  $0a0",
+      "index": 492
+    },
+    "KROKOROK": {
+      "source": "krokorok",
+      "previous": "CRY_TOTODILE,    $400,  $120",
+      "index": 493
+    },
+    "KROOKODILE": {
+      "source": "krookodile",
+      "previous": "CRY_TOTODILE,    $280,  $180",
+      "index": 494
+    },
+    "JIRACHI": {
+      "source": "jirachi",
+      "previous": "CRY_ENTEI,       $24a,  $091",
+      "index": 496
+    },
+    "HIPPOPOTAS": {
+      "source": "hippopotas",
+      "previous": "CRY_HIPPOPOTAS, 0, 220",
+      "index": 501
+    },
+    "HIPPOWDON": {
+      "source": "hippowdon",
+      "previous": "CRY_HIPPOWDON, 0, 220",
+      "index": 502
+    },
+    "ZANGOOSE_SCARRED": {
+      "source": "zangoose",
+      "previous": "CRY_ODDISH, $080, $0e0",
+      "index": 503
+    }
+  },
+  "samples": {
+    "ambipom": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/424.ogg",
+      "source_sha256": "dfdfb40caba6cfe1ac9e12cedf136ced44fe6d3a49382f5ecfa2f4861a39a0a0",
+      "sha256": "e49c51f9fdc23e0f4ef0030474dbfb4bda19c7943728bf59af788811fcb871ce",
+      "bytes": 5655,
+      "duration": 0.93865966796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8984602064246209,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "aegislash": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/681.ogg",
+      "source_sha256": "931411737917b759e1d68f725a07e40db6640250047436f95c42552c7a340719",
+      "sha256": "ffe877b6b2de13e761fb1127a8a8450602a8f5dcab82f2cfae6547e1c0bcdd9a",
+      "bytes": 5397,
+      "duration": 1.0638427734375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.889317341597347,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "anorith": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/347.ogg",
+      "source_sha256": "72500e098d62516ecab0beccbc176a941a2ade5cfc82a6c77f97eda18ef6aa8e",
+      "sha256": "a92a8beeb2808bd45deb9d5ac7d888e7d1f7a393836cce9ac07b3bb8db3205d4",
+      "bytes": 2865,
+      "duration": 0.563232421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9328837034456221,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "appletun": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/842.ogg",
+      "source_sha256": "8c4e4026940f7aa30c5a71d75fd46a5534bacbbe1298135bfd79a42b60e761cb",
+      "sha256": "9215044be6bd0e62bb1f3f6094d2ea3b6861c4574f1327588bb3ad08e6de9299",
+      "bytes": 5847,
+      "duration": 1.68701171875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.099961937024086,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "amaura": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/698.ogg",
+      "source_sha256": "72e768e6e55c706baae8abe9ae91cfa2d4df5acad86e4b9127626bda75e72c15",
+      "sha256": "d95b9decd594817147003b199c9468ea9f67a81a4e40a4609aae5960ae749918",
+      "bytes": 6854,
+      "duration": 1.595703125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9682285476866892,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "annihilape": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/979.ogg",
+      "source_sha256": "221c59eed6741e957cf717b6f46dc3668f2041e8f26cd7da7ae49f987885f5d6",
+      "sha256": "dd43ff7aaa5ce5ada65c869749eaefcbd7ae5275cbd20c012329a14f99a92339",
+      "bytes": 6226,
+      "duration": 1.93328857421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.231881569723697,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "armaldo": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/348.ogg",
+      "source_sha256": "e4b2dfbc54314f091543c2c859e1a386c48a41557c898dd9f689b33f4652b52d",
+      "sha256": "7699e04c47b3fa8349199143149796205c69142c603ce47e719f56a3c5121bf4",
+      "bytes": 5469,
+      "duration": 1.0950927734375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8474440441003154,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "arcanine-hisui": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10230.ogg",
+      "source_sha256": "31d53d4e91d38cd65885b05d85656bb6371c413de8fca9dc2fcceb9c63482d46",
+      "sha256": "6bba07f0ee7c45120f3036ad8781058f7c7a74edfe1fa7d587adb565ba0d94b6",
+      "bytes": 4562,
+      "duration": 1.05029296875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.5361735669468881,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "archaludon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1018.ogg",
+      "source_sha256": "a48d6a30e984e6ff38825862640735d7e948fc19decb8c2a9a85af5e5c64c758",
+      "sha256": "1411840839d6c66a1614deca6a3f99f47f9e73f178d9dd99dc4a0b877c72de9d",
+      "bytes": 7746,
+      "duration": 2.25006103515625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0395526198186478,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "applin": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/840.ogg",
+      "source_sha256": "aa054f0d4b194b55c25c83a8e1d081b4a258346f07d33acff971986118be0075",
+      "sha256": "65edf356c5c22f4fe2a87e7a8d4042e8423cfabbba937dc65490998984aab4a5",
+      "bytes": 3401,
+      "duration": 0.87542724609375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.2799668679876917,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "arctibax": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/997.ogg",
+      "source_sha256": "c568a1c7efd491009ffd25d97ac09c3731b93a48d908d6795bdcb3b2b309d3e1",
+      "sha256": "c8debd41456d817d8cda434c26664d86d7debb2ac76b793c5be44811ac4cde41",
+      "bytes": 5418,
+      "duration": 1.256591796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0975443910962106,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "armarouge": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/936.ogg",
+      "source_sha256": "5c14f48275f6a4a970687a5374e26031538664cf5cfc9fd10fef71f24f1d7343",
+      "sha256": "7cf6e70c346e98616232bf0b555ee0e21cf09a7b161887640a0dc914f5b6e472",
+      "bytes": 6980,
+      "duration": 2.01336669921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9934360838073676,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "aurorus": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/699.ogg",
+      "source_sha256": "487da68387d443547688291a63204815d43cf4ac05b7ff29337e2c2265973faa",
+      "sha256": "a921c262ecaa0e60cec1081330beba477a35a56271500d94cd03c5fc9daebaff",
+      "bytes": 12726,
+      "duration": 2.0650634765625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8606109296136562,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "axew": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/610.ogg",
+      "source_sha256": "2c0cfec007f4d44a4a611e091f2e2e41f330c169a707f1fc68403fc365b02245",
+      "sha256": "ef68427bd0139a69bf466c39a543b6ef26f6879b00639fcad9298e53ea926783",
+      "bytes": 2955,
+      "duration": 0.594482421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8517468521808897,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "banette": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/354.ogg",
+      "source_sha256": "892e9d1063eeadb603c6f96ab4d40410499dc1c44c6184a79adb4032110b15d4",
+      "sha256": "0b744cd8bbfcd1cdea41baa8d489f30a86ce6dcd0dc9ae762864f93edcc637bb",
+      "bytes": 5436,
+      "duration": 0.93865966796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8519659074385209,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "bagon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/371.ogg",
+      "source_sha256": "66787f25cf83eade32fb13cbeb8e50132257714c1432d26e10e360fc4f9ee96b",
+      "sha256": "3f98ff45aa2cb50c916b188f2933d1f45291aa2674428edab92a5ba4a6ec5c30",
+      "bytes": 2296,
+      "duration": 0.4693603515625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8854835288169701,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "azurill": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/298.ogg",
+      "source_sha256": "c008e1dbd03a5999b2f5517d581afd4bdf9092de6ad5631e495ba7132738596c",
+      "sha256": "0856ef709fb38be459d05df54584baa29dfb134a81286bc048cdecbb50f641d2",
+      "bytes": 3525,
+      "duration": 0.563232421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9535667015571895,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "bastiodon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/411.ogg",
+      "source_sha256": "d96b7c7cf19b85475e41960af68bb6f864f91f9e53913951f9dbed8b1f7a9258",
+      "sha256": "550a32ffc6df79b9402d887935549b72b0b43736ce973a6720f7442a9cd2088a",
+      "bytes": 7071,
+      "duration": 1.43927001953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8548856625862111,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "baxcalibur": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/998.ogg",
+      "source_sha256": "aade486ed99bceb24c3175f71250b1b7dc0ed126b251d446ed1afa24cd7746b6",
+      "sha256": "8b96fdf0e8d5c90ffbafdd93e82d99f330a2374f6fa9cf4b6201eab114e52fa4",
+      "bytes": 8643,
+      "duration": 2.5230712890625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0970861045954572,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "bounsweet": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/761.ogg",
+      "source_sha256": "7877ac5fc1ca7c8dbac9f09ce1d977c068b55ae93539d4282181fba2a5e8a3d2",
+      "sha256": "fdfa51543a67a91fed3019ff94a6f82e2dbe9f426d335260951ce064f8f2a59b",
+      "bytes": 4137,
+      "duration": 0.85504150390625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8771844589326532,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "bonsly": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/438.ogg",
+      "source_sha256": "9e8b4301eb437deba1c01d82b35dc08508fb15fa99aa57faafb09e0339523a7f",
+      "sha256": "6722bf6719b9a17e2242184093def23e70ade215b7282b65bb346e4885876ea1",
+      "bytes": 3673,
+      "duration": 0.7822265625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8754268616721065,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "bisharp": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/625.ogg",
+      "source_sha256": "40c0069c319f824f722d1bc88ea869f77c363fac9792055e769efb9a04bfcc50",
+      "sha256": "eac76497b01c83270b0dd59cdc08dd412f84db6b1e081e1bf464ef9b675151e4",
+      "bytes": 6487,
+      "duration": 1.15771484375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8859722559303203,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "ceruledge": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/937.ogg",
+      "source_sha256": "8a02caae563afed46df0096ae2b49ed10a1606f54fba5ab80b72f75586bddc75",
+      "sha256": "89fa06b358c846593fe47bbc2b5857fd8e300869b3ae83f199c2d464cbec64b4",
+      "bytes": 6833,
+      "duration": 2.0013427734375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.155570324918525,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "centiskorch": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/851.ogg",
+      "source_sha256": "a146e2aa0299fea7078658c37363a8d208d19aaeb1ba533620ad65cf619ebce9",
+      "sha256": "ec5446c1940ef29d7ee3a3287f96e5873374aa179ad73f69bb4107676947d067",
+      "bytes": 5876,
+      "duration": 1.751953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0657547407378811,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "clodsire": {
+      "source": "polishedcoral",
+      "path": "audio/ded/clodsire.ded",
+      "sha256": "29d2e380b13914091f2f08db254e356ba74b95ccdaa862063e62bb713e8d990f",
+      "bytes": 3566,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "cetitan": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/975.ogg",
+      "source_sha256": "26ddee270eee8730c403e53fe0e35c9c06f995dd785b528492ba037054675243",
+      "sha256": "b16fcdf09487231b7e9e63841f7ab436a2e6dd514c849b7273ba22501dde2e0f",
+      "bytes": 10046,
+      "duration": 3.25726318359375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.062477483930666,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "cetoddle": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/974.ogg",
+      "source_sha256": "9bac360f3884c0a4cc56bb2165cd03d048af7028066e93abbd02e3b2535ae2f5",
+      "sha256": "94502a877c4a2d9947bc4d5400cd6bc31a84e385e904b8b323bf672e3c998707",
+      "bytes": 3337,
+      "duration": 0.93402099609375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0299644325464923,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "charcadet": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/935.ogg",
+      "source_sha256": "030322c16bcdfa79c82ca9ffecef30e6e7746c537d2cae7844073199a932e2bc",
+      "sha256": "4471ceb4c9d8da7897b7b1901637791abf61ca65aaaa31f2274f993bfc9ddde5",
+      "bytes": 5225,
+      "duration": 1.4000244140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.5090853418748764,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "charjabug": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/737.ogg",
+      "source_sha256": "e7e65f3c4a4da629953a3a073c556edeb8f508e71fe753b71573b3706317185f",
+      "sha256": "4c9d446e9ca7f327c43c2076cea50145fcd61215e7a97c257037dae66972b7ef",
+      "bytes": 5636,
+      "duration": 1.1292724609375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8139250563043368,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "conkeldurr": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/534.ogg",
+      "source_sha256": "d6232357a5be5f11c11cd8f36c071edf948686c606dfd4f05ea58ca8fb283a21",
+      "sha256": "b981382b54f5a51fd5a147d86b8d50c9651dd21efd0867efd034580e86420ec1",
+      "bytes": 5009,
+      "duration": 1.40802001953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9526568743254447,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "corsola-galar": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10173.ogg",
+      "source_sha256": "b8402a06aaa3d4378cf5680f2a463438d7e97fcde936609d0392ace7308c55d1",
+      "sha256": "15cc5ce5955d4fbb1f720470dfbf940127bab86e9c61ddb325da7eaa03f195aa",
+      "bytes": 4217,
+      "duration": 0.6937255859375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.910611492109861,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "croagunk": {
+      "source": "polishedcoral",
+      "path": "audio/ded/croagunk.ded",
+      "sha256": "07b2c8409d83f1f479e404b2320513bd150691e116febc713fbfd4764562ca6d",
+      "bytes": 5703,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "cursola": {
+      "source": "polishedcoral",
+      "path": "audio/ded/cursola.ded",
+      "sha256": "a0bb4a6e0cc4836468e713254f5a63fcfad5d8a829dde56c073f14b80a6be134",
+      "bytes": 4440,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "cradily": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/346.ogg",
+      "source_sha256": "3378769ccc37880ffdbc12c49bba03f291f134247a2904399ae17f17b28f4ebe",
+      "sha256": "90ed0a857a192d0fa131449937c6651b545d02e92878b4ada226a6f4e5dd297e",
+      "bytes": 7412,
+      "duration": 1.43927001953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8082515405522148,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "corviknight": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/823.ogg",
+      "source_sha256": "76f4b2a1473ee38dc5e93a3325d390f987387f90c7e90b491661d877d3670dc8",
+      "sha256": "d27b42998bcd4467790371209fda517b4cb2363e049673bbc598f5eafd11552a",
+      "bytes": 7350,
+      "duration": 1.46124267578125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0221109105227415,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "cranidos": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/408.ogg",
+      "source_sha256": "9987f1c2e7a5244d356f70760cd53ad2addfee477dee5ef7e051bea60a1ed5de",
+      "sha256": "dc127e68840388ebf9b4af5513cdd6738477b68f8595fedf844bfce4dd6be8c3",
+      "bytes": 3728,
+      "duration": 0.71966552734375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8960224319881679,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "corvisquire": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/822.ogg",
+      "source_sha256": "29ebda2d3d6eaf5cf278cdb5ea676666d835b1d3b94b5e31b8b81da817e73bea",
+      "sha256": "cec7795c196fc350801baa71890a7d1de992ae74d26b4590377c737da7b454d5",
+      "bytes": 7225,
+      "duration": 1.3936767578125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.024675844308476,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "diglett-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10105.ogg",
+      "source_sha256": "fc27635f89c49650e733fc77f9f8faf5cb23a019c75d4a26a3445d398a580f67",
+      "sha256": "6d91a7313cf1429c25bc4251d17beca62fe7047dc6f33ecd2a37e8f235d25c33",
+      "bytes": 5315,
+      "duration": 1.2503662109375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.621656737135612,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "deino": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/633.ogg",
+      "source_sha256": "af339e6698f735584a54f401417a4c976bd16f5a553b7957c8ffe1ed9fabdb24",
+      "sha256": "ef044bc143d475ce298f30044a27d7d4f80ddba1184e84de87da68a2e5808710",
+      "bytes": 7236,
+      "duration": 1.53314208984375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1029698491056985,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "doublade": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/680.ogg",
+      "source_sha256": "0b0cb0b9a925a9173b3590301e42f58214f48c14a0e4e40c949c0e53587572b1",
+      "sha256": "c3aaa9338a6bc7f77ec8079ecebab1b37253bb6787df89a37f55f97aff87ed5a",
+      "bytes": 5334,
+      "duration": 0.93865966796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8590032210183577,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "dipplin": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1011.ogg",
+      "source_sha256": "78bcea9cc16fb9dcd549adf09a3e3ac4c0e99d9bd508ddf66c4c4706b4c03403",
+      "sha256": "f15d5abfca10f2a406cb3efe8972d790f65273f657aebf4eeba6278a4253bd0e",
+      "bytes": 4996,
+      "duration": 0.9449462890625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1631754054655237,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "electivire": {
+      "source": "polishedcoral",
+      "path": "audio/ded/electivire.ded",
+      "sha256": "5f03d48854bed4463f63a759a569a26f17e97e43ac9dab443a5ebdcf308cd013",
+      "bytes": 7482,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "dugtrio-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10106.ogg",
+      "source_sha256": "81e35241472e40f71c05670683a42cc37cef95d104eb9eee62c7e5667b94db0e",
+      "sha256": "d15b03c0495168bab0529b8c5f64a0952b1ccdc713fc47933f611d0ac8575993",
+      "bytes": 5520,
+      "duration": 1.256591796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.686633798527306,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "dusclops": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/356.ogg",
+      "source_sha256": "c05944f2132954ef0f966c5bc10040409b1e566f45af203204a72cb5d091f67f",
+      "sha256": "89af727d4a0e85340adecfdeb8e4bf4eed8fe343d81060281e6e846814563415",
+      "bytes": 4148,
+      "duration": 0.93865966796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9616810613963059,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "duraludon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/884.ogg",
+      "source_sha256": "5f485926866f599b8dd5a0843e81acbdcdad1561f7b048bfa3fe8f58d1abf91d",
+      "sha256": "65e78b973057f993c4cb0c0ba760aa6c4faf1434c072e7c7124ff54c5ef82ac7",
+      "bytes": 8870,
+      "duration": 1.602783203125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.354407344515843,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "farigiraf": {
+      "source": "polishedcoral",
+      "path": "audio/ded/farigiraf.ded",
+      "sha256": "2216e214e912e7200dde7ab2936419d667ea0ba8bc638533c61ba8004bf77240",
+      "bytes": 5110,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "dusknoir": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/477.ogg",
+      "source_sha256": "1dd61195545eb2ef4f99713399872365aa8d60df557901dfe3e48b511338b4c1",
+      "sha256": "018b7e56481cdbb7ecbb636c6955ba7e9cb4ecefdf96cdc986bcc43fc7cb3439",
+      "bytes": 10850,
+      "duration": 1.97119140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8948531335189109,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "duskull": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/355.ogg",
+      "source_sha256": "51ecd26e4730db87c2ab27a64ac15f89856eaae7ad7bc3e807697583f71e3e98",
+      "sha256": "185401943cfd09dafd63f78c878eb5986b4c168b17ec8e687cd6338107173dc2",
+      "bytes": 3897,
+      "duration": 0.8760986328125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9822986653637349,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "electrode-hisui": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10232.ogg",
+      "source_sha256": "4325709b89c799bd88f3b2308ffa5dbbaa137e7ee940efe0592269ff0bbc9f3b",
+      "sha256": "600ccd52a99b46c32635e3d37f560fdb282fdaaf754b18c00fe6c0befd5d8af2",
+      "bytes": 6045,
+      "duration": 1.3753662109375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.8766238268276803,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "feebas": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/349.ogg",
+      "source_sha256": "fabdfef98d4f5a034eb5875293a377c44c719bea7ed29d77c524626bf58e764a",
+      "sha256": "e929ae6706e1a9a087616d8951f271f1721799128a3469849a1a7e4122ff114b",
+      "bytes": 2275,
+      "duration": 0.43804931640625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8991129827070612,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "exeggutor-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10114.ogg",
+      "source_sha256": "6bbc0a9e115e0de728b53b77619eb5fb01754147ac4dd5ac3e318bf18b040ae1",
+      "sha256": "9b066d5e8fadcf282e763ac624ad976021b6f4fb8240ee82fd4519c8dab1b09b",
+      "bytes": 8479,
+      "duration": 1.64422607421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 2.0615442461800186,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "finizen": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/963.ogg",
+      "source_sha256": "9b9cc2d9bdbb951d0f1329292645567aa5a4c92ccdb7d9b73925c0791d85f28b",
+      "sha256": "510e7d2fa526935799334667ff216f9467db984055a345de68ef0f38667c7f0c",
+      "bytes": 5747,
+      "duration": 1.6141357421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0270316753217619,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "flapple": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/841.ogg",
+      "source_sha256": "117bb2ccc39c5fad3f58c67179393a0033bcb585f0c71758582076598c319688",
+      "sha256": "62ffa7cf3dde228488bf56abcf95322e98a0cd6bcdc096b5e4d059ae13e4d4e5",
+      "bytes": 2968,
+      "duration": 0.69488525390625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9836406781842947,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "fletchling": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/661.ogg",
+      "source_sha256": "a0ede612ec38a7b6b22a122413a8cbc818860431aea3581a35a3446b287561c0",
+      "sha256": "2b9a7f5f7ad34e1f4aaac8d59353463a7a0327d5faeb9b1ecb5b4f090969349c",
+      "bytes": 5503,
+      "duration": 0.7509765625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9242897553389579,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "fletchinder": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/662.ogg",
+      "source_sha256": "d4fb2beef484a809888f43ff33ff7c4d775afb5ff5f968d15f0e4e7d5013eef7",
+      "sha256": "2afe3c80e96a930a17e3ad5f5d37f5ea4ae8dd53843c8eb60fce7ce9494e40f2",
+      "bytes": 4626,
+      "duration": 0.84478759765625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9265895785074377,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "flygon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/330.ogg",
+      "source_sha256": "4218a422e2da9945455690d08109714b17a41189753da4f0360253a5c532a9aa",
+      "sha256": "226302c57f216cee9ee00035af2ce2924342ce5a6b8d2fa0b6893242266c88e5",
+      "bytes": 7289,
+      "duration": 1.34539794921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8310329123659485,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "fraxure": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/611.ogg",
+      "source_sha256": "d599837213413c2f2fce17d1a8291ba000e9b212df0eefecde20565de06a3a84",
+      "sha256": "8927bdd4ee49f14b47e267ae37a88913f8fb82156e1a90366efb720b39ca1aee",
+      "bytes": 6338,
+      "duration": 1.2515869140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8499758133216831,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "frigibax": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/996.ogg",
+      "source_sha256": "c2f6ffb606c05d6a1b88fe4e442a2020eb5309920154f73b398ff9702516a3f0",
+      "sha256": "0a3850310d32e8968c95c052cc40ec2b6f0eb58782ce7450e3c660558a2da38e",
+      "bytes": 3130,
+      "duration": 0.80718994140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0908706357736688,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "gliscor": {
+      "source": "polishedcoral",
+      "path": "audio/ded/gliscor.ded",
+      "sha256": "d0d88874f257bb5eb2839c0faab7910167c7c058875fdc321c35fc16c75d8cf9",
+      "bytes": 5219,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "gardevoir": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/282.ogg",
+      "source_sha256": "93bd2d69970abad8c2be0244b2dad575066d17bc4152951df986b66835f2f914",
+      "sha256": "da1a58df7054856af0668fa52f9a4b503ec7b767c214cb1c293e49535472763d",
+      "bytes": 5960,
+      "duration": 1.31414794921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9160561021621457,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "geodude-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10109.ogg",
+      "source_sha256": "41b6ff2ac6244905c946098eb7966109fadc5ff732d0342a809b36a425bdaf80",
+      "sha256": "db101a0598d37d51910373b22b7b9172a5de7f651382721c4db1302facb29080",
+      "bytes": 6720,
+      "duration": 1.350341796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.8270772343101118,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "glimmet": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/969.ogg",
+      "source_sha256": "c62deab919347c406dc4b0e859ebc3056d70e03b4697bb8c5f5ba2f6d3981a9e",
+      "sha256": "910dfc587293a979455fe6e078985b1e85bf56894f4335d8061fd565ffd222c6",
+      "bytes": 5516,
+      "duration": 1.4344482421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.2605278223344913,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "golem-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10111.ogg",
+      "source_sha256": "707d486d27f89d2d2a836e0edb0c49fcbf4777cf1768de71466137d6cd9cbea7",
+      "sha256": "e6a08221c509cab2dcc1a7ec6e7433b808b4b6a1064f4f1bd2ed1dcac04bdce6",
+      "bytes": 4860,
+      "duration": 1.11279296875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.5960838772889983,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "glimmora": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/970.ogg",
+      "source_sha256": "472dfd4fe8da5bb0d09c9ec9f2e927581cccc6e8b152bf3c6f9e8622eb080824",
+      "sha256": "30040c6b905a5f376d8b8804171c3f1f719a91b67acae4ed6dee3605112e5473",
+      "bytes": 9176,
+      "duration": 2.20135498046875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.2898990929324134,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "golisopod": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/768.ogg",
+      "source_sha256": "4ebae4191107fa16de8bc39543c3bd5931f93a73d94cad3eb23853712d727f61",
+      "sha256": "26d8076121089975845f0a98c8270b11387ba82bbe379d831b34a55fe797be70",
+      "bytes": 6140,
+      "duration": 1.540283203125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9600368017972015,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "golett": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/622.ogg",
+      "source_sha256": "9d9568f9c701f245e2864f70ce638e84981944b311efb883d47a952d58773cb1",
+      "sha256": "2e37df611c6fa0c29a693a3fb7390973116dbba5d4abf833b2eee6befe24ceb0",
+      "bytes": 3693,
+      "duration": 0.8760986328125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8832469490619663,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "golurk": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/623.ogg",
+      "source_sha256": "905a18392bf66aa518d3b8e31cd6c594c8996ba8fe8a3d719b35bc9ba892789c",
+      "sha256": "d8649fe7409aaa6058c0cb7c483020acbb06372cd6060e50d85940d6161234e7",
+      "bytes": 5458,
+      "duration": 1.595703125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8937404542617117,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "graveler-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10110.ogg",
+      "source_sha256": "5ee5a3ba4cb75c05a178c5f2303a761357880bb529b0604bd25452c92e3dc451",
+      "sha256": "052014196906db95b1d695d72c2dcd750807c96cf9296333a245d0db7bc51eb4",
+      "bytes": 7302,
+      "duration": 1.65045166015625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.5997480282646115,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "grimmsnarl": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/861.ogg",
+      "source_sha256": "a98eab21deefb3d1885d925cde70f043533178fee9d67d0ee6431f2ff30ba5fa",
+      "sha256": "d49f5f56cd1ac14e64f4450ddecc5c90d6c8b532bdbfedc8faeec5a58bd54eb0",
+      "bytes": 5109,
+      "duration": 1.49176025390625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0726963197325463,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "growlithe-hisui": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10229.ogg",
+      "source_sha256": "801607e1befb10dea07401bd404b46fafb50b73cce5010e116e5ed74c9e53686",
+      "sha256": "b0f2d17660e922826b63652b6171c67bdb02358952bc3e558ee1be76c5aefec4",
+      "bytes": 4032,
+      "duration": 0.812744140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.249758905170578,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "grubbin": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/736.ogg",
+      "source_sha256": "7945ddddf7be31b7042b17234c2db30ef2e47c86fa8063f28158241984cccd80",
+      "sha256": "523791bf319e68b3cbf4ac9370debef89ba2eb5bec8e690b93a86960cf283753",
+      "bytes": 3862,
+      "duration": 0.791015625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8769859170722037,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "grimer-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10112.ogg",
+      "source_sha256": "d79bc358029276b8cc9a4cc5f75ad22d26c4229188a47969f61eca49bcdb5177",
+      "sha256": "1bffcee7289e90e9e4aa616e2b9670e99f7c677764a29601401d93653d75c72c",
+      "bytes": 2427,
+      "duration": 0.6376953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.4286219421703663,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "honchkrow": {
+      "source": "polishedcoral",
+      "path": "audio/ded/honchkrow.ded",
+      "sha256": "fc7aebc9061aa6ea2ae384f7ad595e73b68b12cc0a7ab93eb511f6242a3ca683",
+      "bytes": 5727,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "gurdurr": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/533.ogg",
+      "source_sha256": "fd0c562320d83c15463bd26515e5f4605f2ab7ddcd0c3223fd2a0513090fa0fd",
+      "sha256": "615ce6cf0d41bc99dfa1a46da44b44192e7a6edf2d04e315a24cc6dac4107740",
+      "bytes": 4732,
+      "duration": 1.376708984375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9129365635342821,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "happiny": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/440.ogg",
+      "source_sha256": "7bdc0127a318b51fd77a9420fd68acc339e29992d47fac5e12c390903f7f981e",
+      "sha256": "4b28eb79cd63fb4b02d2a10cee2dffdca4d59c80cbff950a34ea7aca4d6863ba",
+      "bytes": 3728,
+      "duration": 0.62579345703125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9966698275059769,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "hippopotas": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/449.ogg",
+      "source_sha256": "a4e6e6976a118a85c203bbcb90d635d7a94725adc49007d2d5e3d7394373fbb6",
+      "sha256": "5ad734d3485c9fd67d456ad53e0eb7786f3c90033c9ff408e8ae8fb8d1243f83",
+      "bytes": 7102,
+      "duration": 1.43927001953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8587779333502513,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "haxorus": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/612.ogg",
+      "source_sha256": "cf3203b308fc7a2cac818861e8bd7097af6b73d2485db11fcfb38fa6c6ae11ba",
+      "sha256": "35c37d57bf163d21e78cc1fdec230b5767db68d0ca8a1e1b7726bc21b897188a",
+      "bytes": 6097,
+      "duration": 1.564453125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8713735847933217,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "honedge": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/679.ogg",
+      "source_sha256": "0d963606115f83d39e17869b4cfae9c3f60b07395cd8ee3fb35f381106e7a165",
+      "sha256": "bf20a397e7974f0105ecb3bbc76241432d326b936f9c0a7ae21edbdd713da1e2",
+      "bytes": 4599,
+      "duration": 0.93865966796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8896933138859384,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "hippowdon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/450.ogg",
+      "source_sha256": "47a3a77e36bfad1c16dd7afddd6c7db00386f00e184f03058992a5bf3ab1fa78",
+      "sha256": "3b4b738268d33f525f765664a03a95cd836df5da531658b2c8bf7b0aac8663ab",
+      "bytes": 8751,
+      "duration": 1.6895751953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8598187240579379,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "hydrapple": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1019.ogg",
+      "source_sha256": "0f8b2ee20425b2a516010f6516bfa8aeab6f8e0702681126ce83ab9a913e80d7",
+      "sha256": "b9574f2a2c679c81fa781072e9894ad9916d0d26541f4760c51178b8172c2a86",
+      "bytes": 7257,
+      "duration": 1.9000244140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.171465079005497,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "krokorok": {
+      "source": "polishedcoral",
+      "path": "audio/ded/krokorok.ded",
+      "sha256": "472839c4eadc29c4fc801c7b2cb4e1c00252afcb55b520388856e018d69a5f30",
+      "bytes": 4051,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "hydreigon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/635.ogg",
+      "source_sha256": "ce48a5c2ec5c80783a1b36f2ecfcac743ea35d81517c17deddc9dd6641ea4f76",
+      "sha256": "fceada2cf05ee39717191b018da03a2f99eece4357c2cd2e700f447fe2b64112",
+      "bytes": 9247,
+      "duration": 1.97119140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.859978520910204,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "krookodile": {
+      "source": "polishedcoral",
+      "path": "audio/ded/krookodile.ded",
+      "sha256": "52b25b5b863c2b1bfea81c25f4d9c6b911925887f93d9bdb2a16cf7948e33140",
+      "bytes": 5765,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "impidimp": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/859.ogg",
+      "source_sha256": "08daa36b110ea83dc5111d3f1dcc0dc68102e26e3a304675f8a9f2d193676852",
+      "sha256": "bb0f5ad8d2a8d3fe74ee29f0d22987d28663b3c60dfd7fbedcac406486c8ea22",
+      "bytes": 4664,
+      "duration": 1.04229736328125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1096796374037274,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "jirachi": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/385.ogg",
+      "source_sha256": "9006bd3b8e8581ba0d0fde22d832e6364918bd8bdb552a60a2a82283ee6c6534",
+      "sha256": "c8406d89b1b9a24848c472f72f99cadefa4df3d5a7e6808a4ace5bf834eeb1a6",
+      "bytes": 4193,
+      "duration": 0.71966552734375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8926722497213573,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "magmortar": {
+      "source": "polishedcoral",
+      "path": "audio/ded/magmortar.ded",
+      "sha256": "6eb9cbcdd0aca2f88a16c0b19a8bc222b51d10241318b4b9705f7857631c49b1",
+      "bytes": 5817,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "magnezone": {
+      "source": "polishedcoral",
+      "path": "audio/ded/magnezone.ded",
+      "sha256": "920b41d91c29b65d1ffde85e2c75118791e17be982d3f68f9a15e7c9d3b71039",
+      "bytes": 8287,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "kingambit": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/983.ogg",
+      "source_sha256": "fdce6ff41e971da13bf9117ce912bc67459e45610c826a0e318682dac8cd1890",
+      "sha256": "e1c39d40c3e016c93cd344832a91edbfe9d491eeba3204aaf78e8c64e64b53f4",
+      "bytes": 6686,
+      "duration": 2.0013427734375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0464973516737848,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "mamoswine": {
+      "source": "polishedcoral",
+      "path": "audio/ded/mamoswine.ded",
+      "sha256": "dceb76185eec29ebbff62bf62d0401700a269900d63a591bca172003232b2f8f",
+      "bytes": 6965,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "lickilicky": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/463.ogg",
+      "source_sha256": "f072588e49fb67a1ea6b2aabe6405f290f8a828f870d50ac4250fc0cbc13a7a5",
+      "sha256": "a6b6c80739eaaf442e8c680f73f677f0bb5307dab0513979ae4099a6dbbe78c1",
+      "bytes": 5600,
+      "duration": 1.43927001953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8959193015793164,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "mareanie": {
+      "source": "polishedcoral",
+      "path": "audio/ded/mareanie.ded",
+      "sha256": "fa9190d08e4c8f3f981570b6510f01fc3e0224abd395409becf25ea578659e0c",
+      "bytes": 4428,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "kleavor": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/900.ogg",
+      "source_sha256": "e9354b27c4169800887179d62583aa1e3a94d2eea7f73516d82b44d0e8c7d4bb",
+      "sha256": "2e2f52676e12dc3291941d916e512c7d76bd036a6a9aebba7b639f0f19f82a6b",
+      "bytes": 5033,
+      "duration": 1.06243896484375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9709769812606042,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "lileep": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/345.ogg",
+      "source_sha256": "fd82c6a6ac0b00f793c0878b6b2db1fa13cc63270853dae85668c1140e45fd20",
+      "sha256": "d5e168d5b26c859052f803c4347847df6a546f21729a4344c8b83bddb2ed3c1c",
+      "bytes": 2656,
+      "duration": 0.50067138671875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8538278702831739,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "lucario": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/448.ogg",
+      "source_sha256": "7d4bedfa5e928dcbc193ba15acae5dc0774b57bd099c22b1a9ba107baac88f7c",
+      "sha256": "faee399c86f41c70ea0fec389948525a77c66eceb73208ee21cbd418ae280155",
+      "bytes": 2813,
+      "duration": 0.6571044921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.910672431594933,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "mantyke": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/458.ogg",
+      "source_sha256": "6dde9fd0b7c1503fe5251c0b9517049bf3616a9ff3913634e9db0fef20618c0c",
+      "sha256": "2f61810affb9c0b2b0a316210051925529841584335a3470140693e3bfa74080",
+      "bytes": 3082,
+      "duration": 0.563232421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8446561762082043,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "mawile": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/303.ogg",
+      "source_sha256": "484ed60a4480cc4ba5c68fb25dce2595419322da039a4672e24cbe52ac584389",
+      "sha256": "7b6b07adf1c66dbc53a878c070e07db1d75df3bab667029df72098364e7eaf0c",
+      "bytes": 3745,
+      "duration": 0.6883544921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9417135703389983,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "marowak-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10115.ogg",
+      "source_sha256": "bdf9ecd3820d6f3f4cf2afcd95ecfe23ca4c9fba4e3ddd5504b0171113f79961",
+      "sha256": "89eafb8d8fe00be5e024bb0876833bdaf99243a6869d2d66ee8227b3629bafca",
+      "bytes": 3638,
+      "duration": 0.906494140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.3863531756881387,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "meowth-galar": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10161.ogg",
+      "source_sha256": "e72d520a30d5ed7280162d4e600e925ffb94eb0ba30bd8a984bb1662ffadb2ed",
+      "sha256": "79718066e15aac630ccc29be74b9454faa1ba1c011e3e80286ad09ff0e661ab9",
+      "bytes": 4308,
+      "duration": 0.718994140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.6923534572393644,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "meowth-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10107.ogg",
+      "source_sha256": "e72d520a30d5ed7280162d4e600e925ffb94eb0ba30bd8a984bb1662ffadb2ed",
+      "sha256": "79718066e15aac630ccc29be74b9454faa1ba1c011e3e80286ad09ff0e661ab9",
+      "bytes": 4308,
+      "duration": 0.718994140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.6923534572393644,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "milotic": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/350.ogg",
+      "source_sha256": "f11f9a62f0279a2bb701484bfde4227b7035d6bcc829d25f9ea92c4fee26b4f5",
+      "sha256": "81d663e12ce6768ac2e82c8b14ec7713cb02c3ffe04543931d270d2036b3cc56",
+      "bytes": 9698,
+      "duration": 1.84600830078125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8309389381668708,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "mime-jr": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/439.ogg",
+      "source_sha256": "13dc4a68f1e446009dd79bc862cdfd4f6cf6e0150713bb8e997e0a7c07f6b2b5",
+      "sha256": "e234ead8a5a994ec810156da5244d115a0f099c3819b3ae64061a70916a527ab",
+      "bytes": 4501,
+      "duration": 0.7822265625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9218734401102604,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "munchlax": {
+      "source": "polishedcoral",
+      "path": "audio/ded/munchlax.ded",
+      "sha256": "8a86e66a99569ee7e30586d2d76bce224804d06c365c598038a8934ec689ecda",
+      "bytes": 2094,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "mimikyu-disguised": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/778.ogg",
+      "source_sha256": "bd3ee401eec0319f50aadff58fb9b0a164b94c701d1f53cdad287e327fd14ae4",
+      "sha256": "73895c7f028f94d0cd54ace39ec767bd8118e384e74746dc245999d26a94d821",
+      "bytes": 5235,
+      "duration": 1.15521240234375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9620512124992473,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "morgrem": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/860.ogg",
+      "source_sha256": "93a9ac98e25b49add446fce66bf532928056985219e398528ed61a298aec471c",
+      "sha256": "63f894f8f19d91bd12097a9af6ce83a789902ec08ac72961cef4eaca40ef8034",
+      "bytes": 5788,
+      "duration": 1.0950927734375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.400859880048905,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "mismagius": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/429.ogg",
+      "source_sha256": "b3df840af2474cf83786e0c48366c9418ae379c7b5d7afe3c42ca7a775d17369",
+      "sha256": "3815456ac6b6e2062a618618f609cc075735b8fa631b97d550688eb62d8a598b",
+      "bytes": 7903,
+      "duration": 1.50189208984375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9251120530538829,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "mr-rime": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/866.ogg",
+      "source_sha256": "108daeb1a00ed8e92a097fb4e4161440449ad1f8bbae1809d0fa1928342bb266",
+      "sha256": "6bc382253a2bb0b42027195dd069fe083b6988bfa96415d51c1afc62f7c18fba",
+      "bytes": 5018,
+      "duration": 1.25787353515625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0654603206571565,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "muk-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10113.ogg",
+      "source_sha256": "68653acef5fe182e83546e57542a8f4f9932f82f590990c99127bd4fc3ad87a5",
+      "sha256": "991324e62a2b124de6979dca00781fb66ac2667cdbb16f39d409190e6a7b2430",
+      "bytes": 3641,
+      "duration": 0.95025634765625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.5479143095707744,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "ninetales-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10104.ogg",
+      "source_sha256": "a91b30857b164e3ed2f3fb0eeb6aad6aca59e8d4643dd75d974d2f7f28e61d7f",
+      "sha256": "08cf36d28d23b2f7bbab110aefee7e9b46ed62fc42433a8ebaa45c59ae591a86",
+      "bytes": 5966,
+      "duration": 1.3753662109375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1556015334602259,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "palafin-hero": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/964.ogg",
+      "source_sha256": "a9ea0a2d8c45bc0f038a82fcfc7c2e478c1b69fc54f5a0ccc23d5d9250457bf2",
+      "sha256": "510e7d2fa526935799334667ff216f9467db984055a345de68ef0f38667c7f0c",
+      "bytes": 5747,
+      "duration": 1.6141357421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0270316753217619,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "nuzleaf": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/274.ogg",
+      "source_sha256": "2b90e11c7de14db47faa0337daa860cb0b3b162a6641a30bea869b7a00da1036",
+      "sha256": "7b1c67c9074e6b79c6659fa315d81348d54a80760a400d141c1e67172f8d6dcb",
+      "bytes": 3836,
+      "duration": 0.6571044921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.908326794767197,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "overqwil": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/904.ogg",
+      "source_sha256": "06ecd78d145cfff4cea019dab39c60f23ad7276a7f1e18d2763dd912f57706a1",
+      "sha256": "aadc4c8689dedc1f7f9e35885fcea0c999ebba0b1e048c4b4f10d594f7508767",
+      "bytes": 3315,
+      "duration": 0.80364990234375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.2798487411030357,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "perrserker": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/863.ogg",
+      "source_sha256": "d97c06991b59c14a3e3f0ad4cd742a5db36edf311dfd60f3d22fa3ee5c54f1cc",
+      "sha256": "086aa7f5930e1fb533cae8e9f57f92ae8bcc0a679e04ba5baa688cf4d32fccfa",
+      "bytes": 4773,
+      "duration": 0.8323974609375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1295739482230267,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "persian-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10108.ogg",
+      "source_sha256": "f28d5ef81f2ec4a752c3c5e7855af3e262e3dcc04fea1a8a100fc101df5c6252",
+      "sha256": "57d1f54b05b1611ebc67cf250a57857122d92f648d92f57a2a35ee1342da9308",
+      "bytes": 6126,
+      "duration": 1.06280517578125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.4518336916408094,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "rapidash-galar": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10163.ogg",
+      "source_sha256": "43db7dc4707035f18025b43db27de3ebe5bf86bc7795b2a45e549e8cb00c0b7e",
+      "sha256": "09d79a85f31796f8cab063f198bfecd75796458b1664e5c1f73ad3e6006d7858",
+      "bytes": 5256,
+      "duration": 1.369140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.7755606122638348,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "rampardos": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/409.ogg",
+      "source_sha256": "5589cec9bbbff9fcc6793667681db75fb934b866228a007513a5cd4bdf73174a",
+      "sha256": "478e408d0259040db9c85098cc5638d9a8da0b220dcb21160f0749191bd42eb9",
+      "bytes": 8473,
+      "duration": 1.6583251953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8322939709657455,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "ponyta-galar": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10162.ogg",
+      "source_sha256": "6be79d7172ac8cc9c1584e6303155cffefeed33a279f4e8b55b71e9f2a80e900",
+      "sha256": "3f10d25dfeb82f1eb31bf89bab57b62773748decd7f87d41a3f28424e5538bfd",
+      "bytes": 6589,
+      "duration": 1.53790283203125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.7894461537958934,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "raichu-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10100.ogg",
+      "source_sha256": "7fdd8215c003331221a47203b90a26efbdf9ea4c8393d0a4daae42af0b94a8c0",
+      "sha256": "6493f5a8bdc398549836f1d153296af1e4910253bcb6e4c97db4ff9c8cc6f5e2",
+      "bytes": 6422,
+      "duration": 1.23785400390625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 2.2932504898081314,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "raticate-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10092.ogg",
+      "source_sha256": "58a24056c7b92edde94698d03ae0257188baf014f4124ae6ba1c7db448e4b6e9",
+      "sha256": "fea361b02daf3c7b7dee9fe406d35fa173c2eb2a08826cec0b98159b093cdcc7",
+      "bytes": 3433,
+      "duration": 0.6376953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.7957749574418584,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "rookidee": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/821.ogg",
+      "source_sha256": "ad692f1926b55bc09dc1754cbd7bb8fff36a6c16b93976487b9a699d7e1822ff",
+      "sha256": "782240625a0681dbd060a5584012b44a8f97e3277464d6d78940d45474b5c3d3",
+      "bytes": 10423,
+      "duration": 1.46722412109375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1776854154069967,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "rattata-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10091.ogg",
+      "source_sha256": "87d551514ef9b8e42da154be8b4c2002efea53c558989344126170eecff54aab",
+      "sha256": "99340daf52a81fa33840bd99d7589e31523ead7c6eb17864cb276e776212a350",
+      "bytes": 2254,
+      "duration": 0.47515869140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 2.2260061218988905,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "riolu": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/447.ogg",
+      "source_sha256": "56d0fb14a70a501923d1bade052ee78534686104c296e13135dcffd6ab7c1e9f",
+      "sha256": "4797c6d13d3cb16f3aac74a9010c70296e8e49f40570387fcc0a6212b7a41c40",
+      "bytes": 2638,
+      "duration": 0.4693603515625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8909286700650023,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "rhyperior": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/464.ogg",
+      "source_sha256": "5832929acd2faeb5d78404b4ba6b5f60a16f64cd291e5bf384720f9435b83278",
+      "sha256": "1cc55805b5020a79cd9485fd0c9123a300c02b86a49b2f10a619bc05596649f8",
+      "bytes": 8024,
+      "duration": 1.34539794921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8543205772497343,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "sandile": {
+      "source": "polishedcoral",
+      "path": "audio/ded/sandile.ded",
+      "sha256": "0a255052ead3ae620b89a9ad9d15d69658f56b31926cc6b9e3b37eb637bf5f10",
+      "bytes": 2341,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "pawniard": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/624.ogg",
+      "source_sha256": "10689e742ae4a81274bea335012a50c8a3058e423689b6663f87feac042ba0f4",
+      "sha256": "330b5f56447519003f5ae0aca83d4ad99d126743bdc6be52cae18dec5b520fb8",
+      "bytes": 4324,
+      "duration": 0.81353759765625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1117420596762175,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "salamence": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/373.ogg",
+      "source_sha256": "10a85257e5ba8154bb5a3f55ef1b3b400c577027b6acdb1b107cdf909c711f80",
+      "sha256": "1dc67cb32dfe34553c19b08beb023314c233e6c85af4857a59e9146564e3ecfe",
+      "bytes": 5302,
+      "duration": 1.31414794921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8754231974016233,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "sableye": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/302.ogg",
+      "source_sha256": "5e853c993125608f4206c69c9387ac7ad28061509b5df809d3a750a78dd50ee7",
+      "sha256": "bd616e21b15916252dfa7861e6551905fe34fd7a7bd7f5aac5658dcc5efc9aa6",
+      "bytes": 4187,
+      "duration": 0.6571044921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8406910220250532,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "salazzle": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/758.ogg",
+      "source_sha256": "b6ef758c24023767262ca2c1c5ab2a4a5453ad840074fa0c8e29c68013925f9c",
+      "sha256": "ceca407661262238d5d3c6c1be589add1228d6e110f2b9f888a2bef4b89654aa",
+      "bytes": 8152,
+      "duration": 1.84393310546875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.977368525924568,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "salandit": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/757.ogg",
+      "source_sha256": "b1f778c403d76776ac5154c4821b0dff9976ade1996cb50e745ec45abb4aab04",
+      "sha256": "60d0ade309a8ef7aae7987639dabd36f728cd83ab5fb3052f81d29266966e986",
+      "bytes": 4808,
+      "duration": 1.34405517578125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0203706622546194,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "seedot": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/273.ogg",
+      "source_sha256": "c04bcb8626b2cb0dc6d6929f21c329fb194d02745eedb35d6f9bd11f054e7e35",
+      "sha256": "927b2e03d640c4848c5371304ad4d73c5c29e289e9cfbea26665961da74eaac6",
+      "bytes": 2915,
+      "duration": 0.53192138671875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9194532689927991,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "sandslash-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10102.ogg",
+      "source_sha256": "03812406a22c9abc15a8e683a13d4cde1fe89c6d44c952c6776442fc1044ed94",
+      "sha256": "91f25cf203d4d121514e238acad87b533174a8f302eae77f654135aa3f15d61f",
+      "bytes": 3499,
+      "duration": 0.80645751953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.8594319278335925,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "sandshrew-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10101.ogg",
+      "source_sha256": "1d2fcc16683cad9b24313d86b9ec8f77aa8d7660724e798dc8f60a587c4bb7d2",
+      "sha256": "726b379279e2a00c28eea62619337ab1b7100a8b6570c9cf32f1e37c18c080ff",
+      "bytes": 3042,
+      "duration": 0.56268310546875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 2.1974240359524675,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "seviper": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/336.ogg",
+      "source_sha256": "8059034e97eb0e70ad1a00975155f4efe05196097cb9fbd0c88d313f0cb91044",
+      "sha256": "8624104f4a053e1a733d4b8e8cb107f6a0f6b844ac78414138ebd1ee795457ec",
+      "bytes": 4366,
+      "duration": 0.6571044921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9549600651175496,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "shiftry": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/275.ogg",
+      "source_sha256": "eec8ef3940a8e062eb59f949664bb612aca376a2307fa0a2c61b13580f185a96",
+      "sha256": "85cc769a88519a2b3de8f3de0529a9ef2498a2b21dd94cb382a74b6111d1f8df",
+      "bytes": 5350,
+      "duration": 0.93865966796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8810910675478316,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "sirfetchd": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/865.ogg",
+      "source_sha256": "1b65eaae1ae8d1392008d2a0a3611afde2cc87d15162545d9fb7cbf4f6b9d57a",
+      "sha256": "89999b3dc68c9791ac4e692fa546565f6a3abcc439111280ec3e5753ad6a1590",
+      "bytes": 2585,
+      "duration": 0.66070556640625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1021960179804313,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "shieldon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/410.ogg",
+      "source_sha256": "7dcdf888b8bb23beebfbab4c8a03e14e6ecd6325a1fe964d4d86043ab0f31321",
+      "sha256": "5dcd691908f3fb21157959bf67dd0930cfcb94220efd0f3ceda944947479f6d6",
+      "bytes": 4928,
+      "duration": 0.969970703125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8726280370796649,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "shelgon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/372.ogg",
+      "source_sha256": "4b6e1c092976e17427afe4753ff153134ebee67fb48938fa3dd7a6a944a481fc",
+      "sha256": "e38d62d0f398711327fe25cd081d48b4a64b6096ff39f1181cbb2e487e730f0f",
+      "bytes": 5047,
+      "duration": 1.03253173828125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8455272764916267,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "sizzlipede": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/850.ogg",
+      "source_sha256": "69ed75e9f4b926ae6672a9111877c5fd8c92a95488b53d7c1c3be175f88e4358",
+      "sha256": "39cbeaa070f24e61b1901735d7e24033d51306139924c7733949d3a82b4f5e36",
+      "bytes": 6615,
+      "duration": 1.28521728515625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.3442521735685726,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "shuppet": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/353.ogg",
+      "source_sha256": "bfb0d8ded67c444c55d257864459d35af5da64f6e844b7321f06328d872290b6",
+      "sha256": "ccb4f4acdd2008cab4e2025365677a695eb8476344327dd065cb26d040793d19",
+      "bytes": 4059,
+      "duration": 0.71966552734375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8384524612139803,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "slowbro-galar": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10165.ogg",
+      "source_sha256": "216778d4a4a0db319e9226673fec1c16b899479949984b1627e42603c81f6bc0",
+      "sha256": "a590b3a58c874498a29dc3fd98c5238a1784217d47da782a5836f70c801ab786",
+      "bytes": 4086,
+      "duration": 0.86273193359375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.659396911554361,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "slowking-galar": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10172.ogg",
+      "source_sha256": "13525463508e35cfa828419c0af3f4b014fe5160a9472a489ebfe4a412fcf15f",
+      "sha256": "93212b585b77e9e6f8013b0882b474cc8718bbd9266947f29f0cb5c301fc3dd7",
+      "bytes": 6884,
+      "duration": 1.285400390625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8842579379152757,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "sneasel-hisui": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10235.ogg",
+      "source_sha256": "2fd3f7965a8a52a0c4eb850126c81b05286827d0dc3baf3cba50e4e3503af0bf",
+      "sha256": "a7a6862f7c79ffe1c3edf2cc9c2f5384d1c0af7a62e467c71024b1d3abf855fa",
+      "bytes": 3486,
+      "duration": 0.57537841796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9256404372822197,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "staraptor": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/398.ogg",
+      "source_sha256": "3c81714ee7d77b07f75801adb1c5f1fc24d254f3067b055760452b73d0938b8f",
+      "sha256": "8ace2c77dafa31233ca8ff21cc484c7f8035f14bdb3155f60727ddc38c898804",
+      "bytes": 13482,
+      "duration": 1.752197265625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9062169741969047,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "staravia": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/397.ogg",
+      "source_sha256": "74f7bfd4977d60c67b39fa6b0549c212584c3aa8130cd78fe537e12a116ca90c",
+      "sha256": "bf7a9194b9dae88b608a925ed8ca21403752ebf768db541349538756a3e3c49d",
+      "bytes": 7663,
+      "duration": 1.31414794921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8796963955011463,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "slowpoke-galar": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10164.ogg",
+      "source_sha256": "8e239c0de81d81af370dd99bdbdace2f07e057704bc9d2a4aac8b4833ec200d1",
+      "sha256": "9f0746f35b05736bdbf91944a3bc1099017c25038d01fef0547c06a0b236aca1",
+      "bytes": 2806,
+      "duration": 0.721435546875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0201391660373302,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "starly": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/396.ogg",
+      "source_sha256": "a8a96acd9b138a866869e5193236a73428ce865b91e8250feac60afc5b15f85f",
+      "sha256": "c80a80848712c6eb48353e01c22b27596423521ab046932ec14a55f58c49d61e",
+      "bytes": 7134,
+      "duration": 1.12640380859375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.898718088967969,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "steenee": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/762.ogg",
+      "source_sha256": "f7a0849a6a0067bc5fb6615593b0bf2e4819b3e22ee28901bb71e901baeb8b83",
+      "sha256": "163a76e575173c7ac21d92bd43fe4dc0d1a7b5f5f75cf1e5dd0626a70e7065b9",
+      "bytes": 6795,
+      "duration": 1.205810546875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9685455751582189,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "tauros-paldea-aqua-breed": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10252.ogg",
+      "source_sha256": "3ac8baacad124dee9f19dba3ef59972e8b806178fdf3cad2817f4289156b742d",
+      "sha256": "1875ef5268d88f48b7c70d748d604712439b44f9ddad86508393a509bf084606",
+      "bytes": 4615,
+      "duration": 1.1065673828125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.8329013317361251,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "tauros-paldea-blaze-breed": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10251.ogg",
+      "source_sha256": "3ac8baacad124dee9f19dba3ef59972e8b806178fdf3cad2817f4289156b742d",
+      "sha256": "1875ef5268d88f48b7c70d748d604712439b44f9ddad86508393a509bf084606",
+      "bytes": 4615,
+      "duration": 1.1065673828125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.8329013317361251,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "talonflame": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/663.ogg",
+      "source_sha256": "d96f5a93dc0046caeddaf84ff0f5c235f9bea51b515dacda55304a89c42d7c67",
+      "sha256": "07be21b45b85e36447d10222a480ba134adbbf8d174990faecfe103e0f4a3067",
+      "bytes": 8947,
+      "duration": 1.40802001953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8548171107497127,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "togekiss": {
+      "source": "polishedcoral",
+      "path": "audio/ded/togekiss.ded",
+      "sha256": "6011597f70947d13af28cedba3713680c66bc270a1615054dcd50fffa8278e1c",
+      "bytes": 7171,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "tangrowth": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/465.ogg",
+      "source_sha256": "cdeca3492f3159b9dbf7945fada55730817b8f06e02c4d235a0c87feedff1054",
+      "sha256": "1c225f013913ffe8da1e84f5853ac935ba9b4a96392fe7a6ec73736639960658",
+      "bytes": 5843,
+      "duration": 1.40802001953125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8803274737127894,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "toxapex": {
+      "source": "polishedcoral",
+      "path": "audio/ded/toxapex.ded",
+      "sha256": "b6d1cee9d180eb742e1204773df671255c30e7ed9cb5438e623c35ee9f921d91",
+      "bytes": 7368,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "toxicroak": {
+      "source": "polishedcoral",
+      "path": "audio/ded/toxicroak.ded",
+      "sha256": "b60e0d013f0c03df87c0d873f9d3e7902e78d67488f9cefdb4a8b0aba078cde0",
+      "bytes": 7182,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "timburr": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/532.ogg",
+      "source_sha256": "893ee2e0accaffdee7758f59da3866e8439dae3c603b7e8570a50964035470af",
+      "sha256": "764318daf0a45e0d9815342508b3791ddbcc789be8ebf077d5de6f76f415b801",
+      "bytes": 2449,
+      "duration": 0.563232421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9565657833890445,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "tinkaton": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/959.ogg",
+      "source_sha256": "793159ef1704502d840956512174233be4828b6b8f5389f052e3c59b0e1fd670",
+      "sha256": "abfb209e08a4c48fd910817e4663a835279ebed3acb5b6ed5ec04a71a8c2bd23",
+      "bytes": 5678,
+      "duration": 1.7843017578125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.062801067873286,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "torkoal": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/324.ogg",
+      "source_sha256": "b58b7d970193efbbdeb233c6829e6d77c755efb1831c3eb47b6053b7b8187df2",
+      "sha256": "93dfe8196b8dd8cce49cb2ae51a2549c9fe9a06ea682375d72f8e83920870588",
+      "bytes": 2539,
+      "duration": 0.62579345703125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8553744454479796,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "tinkatink": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/957.ogg",
+      "source_sha256": "d8cc61e9b847b12c593d373fe31a65ebae83f4125e9c525824801d7ffac3814a",
+      "sha256": "5378d325a302a7bf3cb749841fe0de4e52cb3d4d98896ec58ba7fd741238c82c",
+      "bytes": 5691,
+      "duration": 1.60137939453125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1965447350373628,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "tinkatuff": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/958.ogg",
+      "source_sha256": "5e80c6849f69d7744df1c6c8591c6b1576d1895c4a3a2a75d539a011d38704f8",
+      "sha256": "f59a3eacb9b16bcd76fa1389492e1a5e331566ace4f764e78fde69358fdf4014",
+      "bytes": 6067,
+      "duration": 1.8013916015625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0427441329578462,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "trapinch": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/328.ogg",
+      "source_sha256": "b516faab5726f101f740de91bd017f6ec69e3cffe0f991695953d5e24cd3cdb9",
+      "sha256": "a9af2b448c3ae37475fc2fd4ab14c3402be989d25f5d04fd61618c729c972eb6",
+      "bytes": 2637,
+      "duration": 0.563232421875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8783682891938881,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "tyrunt": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/696.ogg",
+      "source_sha256": "f4ed5296cfc089cb02738ba09f5b370a5dc79b411645e07e44cb900d55117693",
+      "sha256": "fdd1664395988534c2cb5216cdfe8eacbb0ca9c8b88c3e5df70704dfedd52025",
+      "bytes": 3442,
+      "duration": 0.62579345703125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8744756232093934,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "typhlosion-hisui": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10233.ogg",
+      "source_sha256": "bae4590652bbc4477e9638b3b7f0b9480e319840a8bde31c68d56c66e28516bb",
+      "sha256": "4db17b7e7101197cf9b495b8c0537eeb80962608b32295370ead3054943da511",
+      "bytes": 8545,
+      "duration": 1.9178466796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8645225904312615,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "tyrantrum": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/697.ogg",
+      "source_sha256": "66ca5ffa5cbe22a4d677bbd7485f1c54ecca10dab8d43ab5a262e6b549926cf5",
+      "sha256": "cda1feac54efafd13c58e05daec4afb74e81896768a53adf41365832b20a3416",
+      "bytes": 7663,
+      "duration": 1.4705810546875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8339083815592447,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "tsareena": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/763.ogg",
+      "source_sha256": "b93f1aaa5da145740144929357b25d9c24854e5179c0489856e82413a757f4b1",
+      "sha256": "aaf808fe07402f58f323117cdad0da41b94fb594577b52b307a358f884cbe9f3",
+      "bytes": 7510,
+      "duration": 1.55926513671875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8561837672135991,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "ursaluna-bloodmoon": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10272.ogg",
+      "source_sha256": "5a051faec16094298fa44682174fc1cd78b3d8c9e088fecc6b81d2294e4f1350",
+      "sha256": "480f8eb93ac29d83923428e899279186ca81d7803c0b62166621f8f5d31ac2b2",
+      "bytes": 5280,
+      "duration": 1.550048828125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.1073423709184822,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "weavile": {
+      "source": "polishedcoral",
+      "path": "audio/ded/weavile.ded",
+      "sha256": "98dc5f5de73081dc3bfe5090c4fafee0232446347d1ca9a895f6b7b3e5eb4111",
+      "bytes": 3185,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "ursaluna": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/901.ogg",
+      "source_sha256": "0e316af65854916ac3297c3f2203741caeb66cb4b43c82d65a1bba3aab3e885e",
+      "sha256": "05dae609321e40e0b9f63ef8c0f21771ba2a0d275ff9ba1b44c31de3aaa1558c",
+      "bytes": 3965,
+      "duration": 1.10809326171875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0552480809276643,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "voltorb-hisui": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10231.ogg",
+      "source_sha256": "a6ade3540ce5456e9928f906e2157dddc4fd244a69dfd12e679ab870bbe66cd8",
+      "sha256": "e724acf8d778cbd948e19ea6a89333351c2c9a5fbdd738dfa42571e1ad30ea62",
+      "bytes": 5329,
+      "duration": 1.287841796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 2.0688316498669113,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "vulpix-alola": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10103.ogg",
+      "source_sha256": "70ed1c7f151d0bf13fe84f3e46c20c4beef810e308075f458bbff32b72469b48",
+      "sha256": "bedea70a2d06512888d87573ebe0308ba98d428ceb335014436cb18d966f917e",
+      "bytes": 5886,
+      "duration": 1.369140625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.3754624914239322,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "vikavolt": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/738.ogg",
+      "source_sha256": "c25a7e8d03b5adc68118b8fd50746a235e2494fcc657ba3dcb33da031c37430d",
+      "sha256": "98e8a4ba41d990cecbc954b922a2368e9abd03b91e24e39e7b534b910e4e15fd",
+      "bytes": 9268,
+      "duration": 1.76544189453125,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.7495159727998789,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "vibrava": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/329.ogg",
+      "source_sha256": "8b51a055fc46d30a2cd9bfa8b7ca5fe98882d9f2b267179938f884f0653a392f",
+      "sha256": "152321476fc9b7acdbc4ca46f81a035e8a029810efcbba747e071c20c0e3fc1b",
+      "bytes": 4803,
+      "duration": 0.93865966796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8163736629017663,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "wyrdeer": {
+      "source": "polishedcoral",
+      "path": "audio/ded/wyrdeer.ded",
+      "sha256": "9c15eea0695ffbb14d66739f1e86375445ec1816080cb211a7f30f46a0a7b744",
+      "bytes": 5159,
+      "sample_rate": 10485.76,
+      "timer_ticks": 100
+    },
+    "weezing-galar": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10167.ogg",
+      "source_sha256": "298e4b24f0da3769ad05677dedcaedd973f3ff5d6a944d571004a5f2d7f71529",
+      "sha256": "dedaefd0a00e344f7f6b5f9492f8015927355b131e8b004e55df21970b01e0b0",
+      "bytes": 5457,
+      "duration": 1.131591796875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 2.1001643612004828,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "wimpod": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/767.ogg",
+      "source_sha256": "d3423a16d041db4fc98a12ba8615bb603b19b8e7e800bf6dbeb336bfd2fcd0e8",
+      "sha256": "efccc1e70b31bd0c5443da65c977f4f69f4bcca46a9f1eb7d1b887bdd050e5e8",
+      "bytes": 2784,
+      "duration": 0.5384521484375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9091126636908496,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "wynaut": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/360.ogg",
+      "source_sha256": "fd81a319066f44c5c76647b32c66a7c56b2d25d9a82abfb35acfdf2308659f3e",
+      "sha256": "9eeea184e7efd5298de07455a34f2a5e7a7184cd941368466728b0dcc99bf900",
+      "bytes": 4020,
+      "duration": 0.7509765625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8802190854422943,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "yanmega": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/469.ogg",
+      "source_sha256": "691ff648c7389c8ad4f84e57b811fbdbcc3065ca251192e4f93a1c4f1d222015",
+      "sha256": "04d3bc1329e57875baf0dedb6f3c2c8e6d49600f2cdd052d27fd18a9fdaaed34",
+      "bytes": 9719,
+      "duration": 1.752197265625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8585139269246116,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "wooper-paldea": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10253.ogg",
+      "source_sha256": "fb9007f6300936889f2ee0a9834e241f57bcb02351fd5261868b2fa1ba319cdf",
+      "sha256": "d7d6ce4c67b4cd9fcfff40a39c57d64447a97d4344415df581477335a5a88de9",
+      "bytes": 3565,
+      "duration": 0.5223388671875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8869780348770793,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "zangoose": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/335.ogg",
+      "source_sha256": "a1311a77155a969ec5139502a88151bc0dfcb060b4f067840a74689b74096899",
+      "sha256": "5926ea5629ac67156bff62de5cedc8c75d6c5f8002481c4d52ba9632a371f690",
+      "bytes": 3346,
+      "duration": 0.6571044921875,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.8941101721537567,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "zoroark-hisui": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10239.ogg",
+      "source_sha256": "dd978287f2217706535c71141ac628ce33a715e440025f14060ff6477875ec1f",
+      "sha256": "51a8ed33802390141062686d4af8aa8ff80102ecb9ad1d583870edb4f958193d",
+      "bytes": 6855,
+      "duration": 1.3837890625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.0863233316125298,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "zorua-hisui": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10238.ogg",
+      "source_sha256": "db4cb7dcd5de3de46508808c2b430ad25b445db6f0fc54f7e95d68db1605f106",
+      "sha256": "ecbcabce48ffa2dddbeb2f0df84d3f0e13c5750d562fe81b7ab8c544b0f19fbb",
+      "bytes": 1988,
+      "duration": 0.45843505859375,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.2015633034100897,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "zweilous": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/634.ogg",
+      "source_sha256": "ba6868c8e23dc49b0eb8d2bc78e496157a44d6cc603b44acba7033a3a4ebf035",
+      "sha256": "aee19122533ed6d27669d66c2bb697d7c8bd2656f2c366fd7fb8512fdeaed9ba",
+      "bytes": 4627,
+      "duration": 1.22027587890625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 0.9030427601377581,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    },
+    "dudunsparce-two-segment": {
+      "source": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/982.ogg",
+      "source_sha256": "3335e67e969298435183e77bd516adc48981948eb7955cbe01c1a22b9e307394",
+      "sha256": "e141cb205b4b867b3dfa89d3fd50f60ff295fd9e621c3e80882bc96cd6b37a3f",
+      "bytes": 8172,
+      "duration": 1.8111572265625,
+      "sample_rate": 16384,
+      "timer_ticks": 64,
+      "gain": 1.118857649024255,
+      "processing": "mono; band-limited resample; DC removal; 92% peak; half-LSB TPDF"
+    }
+  },
+  "asset_hashes": {
+    "audio/cries.asm": "b0475b111921a97c37feb1355101d49528a856987f289f6c9f8c02299414341a",
+    "audio/cries_2.asm": "d9b3188e46952c5696079bc4935f4f1bab9ae9cedf8ab99541db8ccb51302059",
+    "audio/cries_3.asm": "d0c2a5ddf8cf4c33c83760f8a011d2ee6f7eafbb4e271b1b400838d145f22f0c",
+    "audio/cries_hippopotas_hippowdon.asm": "b74d4a6483b302ea94ae5f71ed43ff654ee402259055d7f7f34ce777f4bc52a0",
+    "audio/cries_mienfoo_mienshao.asm": "2b07977d6401971b07a01577332041a367b7b417fd783ff6e5a4d95dc66f8bd8",
+    "audio/cries_phantump_trevenant.asm": "d126fcb9a22de3624b6fcabe47d11f40eab4c14a78a5d636958878623e2ac1b8"
+  },
+  "sample_order": [
+    "aegislash",
+    "amaura",
+    "ambipom",
+    "annihilape",
+    "anorith",
+    "appletun",
+    "applin",
+    "arcanine-hisui",
+    "archaludon",
+    "arctibax",
+    "armaldo",
+    "armarouge",
+    "aurorus",
+    "axew",
+    "azurill",
+    "bagon",
+    "banette",
+    "bastiodon",
+    "baxcalibur",
+    "bisharp",
+    "bonsly",
+    "bounsweet",
+    "centiskorch",
+    "ceruledge",
+    "cetitan",
+    "cetoddle",
+    "charcadet",
+    "charjabug",
+    "clodsire",
+    "conkeldurr",
+    "corsola-galar",
+    "corviknight",
+    "corvisquire",
+    "cradily",
+    "cranidos",
+    "croagunk",
+    "cursola",
+    "deino",
+    "diglett-alola",
+    "dipplin",
+    "doublade",
+    "dudunsparce-two-segment",
+    "dugtrio-alola",
+    "duraludon",
+    "dusclops",
+    "dusknoir",
+    "duskull",
+    "electivire",
+    "electrode-hisui",
+    "exeggutor-alola",
+    "farigiraf",
+    "feebas",
+    "finizen",
+    "flapple",
+    "fletchinder",
+    "fletchling",
+    "flygon",
+    "fraxure",
+    "frigibax",
+    "gardevoir",
+    "geodude-alola",
+    "glimmet",
+    "glimmora",
+    "gliscor",
+    "golem-alola",
+    "golett",
+    "golisopod",
+    "golurk",
+    "graveler-alola",
+    "grimer-alola",
+    "grimmsnarl",
+    "growlithe-hisui",
+    "grubbin",
+    "gurdurr",
+    "happiny",
+    "haxorus",
+    "hippopotas",
+    "hippowdon",
+    "honchkrow",
+    "honedge",
+    "hydrapple",
+    "hydreigon",
+    "impidimp",
+    "jirachi",
+    "kingambit",
+    "kleavor",
+    "krokorok",
+    "krookodile",
+    "lickilicky",
+    "lileep",
+    "lucario",
+    "magmortar",
+    "magnezone",
+    "mamoswine",
+    "mantyke",
+    "mareanie",
+    "marowak-alola",
+    "mawile",
+    "meowth-alola",
+    "meowth-galar",
+    "milotic",
+    "mime-jr",
+    "mimikyu-disguised",
+    "mismagius",
+    "morgrem",
+    "mr-rime",
+    "muk-alola",
+    "munchlax",
+    "ninetales-alola",
+    "nuzleaf",
+    "overqwil",
+    "palafin-hero",
+    "pawniard",
+    "perrserker",
+    "persian-alola",
+    "ponyta-galar",
+    "raichu-alola",
+    "rampardos",
+    "rapidash-galar",
+    "raticate-alola",
+    "rattata-alola",
+    "rhyperior",
+    "riolu",
+    "rookidee",
+    "sableye",
+    "salamence",
+    "salandit",
+    "salazzle",
+    "sandile",
+    "sandshrew-alola",
+    "sandslash-alola",
+    "seedot",
+    "seviper",
+    "shelgon",
+    "shieldon",
+    "shiftry",
+    "shuppet",
+    "sirfetchd",
+    "sizzlipede",
+    "slowbro-galar",
+    "slowking-galar",
+    "slowpoke-galar",
+    "sneasel-hisui",
+    "staraptor",
+    "staravia",
+    "starly",
+    "steenee",
+    "talonflame",
+    "tangrowth",
+    "tauros-paldea-aqua-breed",
+    "tauros-paldea-blaze-breed",
+    "timburr",
+    "tinkatink",
+    "tinkaton",
+    "tinkatuff",
+    "togekiss",
+    "torkoal",
+    "toxapex",
+    "toxicroak",
+    "trapinch",
+    "tsareena",
+    "typhlosion-hisui",
+    "tyrantrum",
+    "tyrunt",
+    "ursaluna",
+    "ursaluna-bloodmoon",
+    "vibrava",
+    "vikavolt",
+    "voltorb-hisui",
+    "vulpix-alola",
+    "weavile",
+    "weezing-galar",
+    "wimpod",
+    "wooper-paldea",
+    "wynaut",
+    "wyrdeer",
+    "yanmega",
+    "zangoose",
+    "zoroark-hisui",
+    "zorua-hisui",
+    "zweilous"
+  ],
+  "restored_regionals": {
+    "ZORUA": {
+      "source": "zorua-hisui",
+      "previous": "CRY_VULPIX, $080, $0b0",
+      "index": 371
+    },
+    "ZOROARK": {
+      "source": "zoroark-hisui",
+      "previous": "CRY_VILEPLUME, $030, $140",
+      "index": 372
+    },
+    "OVERQWIL": {
+      "source": "overqwil",
+      "previous": "CRY_SLOWKING,    $000,  $100",
+      "index": 379
+    },
+    "CORSOLA_GALARIAN": {
+      "source": "corsola-galar",
+      "previous": "CRY_MAGCARGO,    $0a1,  $0e8",
+      "index": 400
+    },
+    "CURSOLA": {
+      "source": "cursola",
+      "previous": "CRY_MAGCARGO,   -$044,  $1c0",
+      "index": 401
+    },
+    "MR__RIME": {
+      "source": "mr-rime",
+      "previous": "CRY_KRABBY,      $008,  $0c0",
+      "index": 402
+    },
+    "SIRFETCH_D": {
+      "source": "sirfetchd",
+      "previous": "CRY_SPEAROW,     $088,  $0a0",
+      "index": 403
+    },
+    "RATTATA_ALOLAN": {
+      "source": "rattata-alola",
+      "previous": "CRY_RATTATA,     $000,  $100",
+      "index": 412
+    },
+    "RATICATE_ALOLAN": {
+      "source": "raticate-alola",
+      "previous": "CRY_RATTATA,     $020,  $17f",
+      "index": 413
+    },
+    "RAICHU_ALOLAN": {
+      "source": "raichu-alola",
+      "previous": "CRY_RAICHU,      $0ee,  $088",
+      "index": 414
+    },
+    "SANDSHREW_ALOLAN": {
+      "source": "sandshrew-alola",
+      "previous": "CRY_NIDORAN_M,   $020,  $0c0",
+      "index": 415
+    },
+    "SANDSLASH_ALOLAN": {
+      "source": "sandslash-alola",
+      "previous": "CRY_NIDORAN_M,   $0ff,  $17f",
+      "index": 416
+    },
+    "VULPIX_ALOLAN": {
+      "source": "vulpix-alola",
+      "previous": "CRY_VULPIX,      $04f,  $090",
+      "index": 417
+    },
+    "NINETALES_ALOLAN": {
+      "source": "ninetales-alola",
+      "previous": "CRY_VULPIX,      $088,  $0e0",
+      "index": 418
+    },
+    "DIGLETT_ALOLAN": {
+      "source": "diglett-alola",
+      "previous": "CRY_DIGLETT,     $0aa,  $081",
+      "index": 419
+    },
+    "DUGTRIO_ALOLAN": {
+      "source": "dugtrio-alola",
+      "previous": "CRY_DIGLETT,     $02a,  $090",
+      "index": 420
+    },
+    "MEOWTH_ALOLAN": {
+      "source": "meowth-alola",
+      "previous": "CRY_CLEFAIRY,    $077,  $090",
+      "index": 421
+    },
+    "PERSIAN_ALOLAN": {
+      "source": "persian-alola",
+      "previous": "CRY_CLEFAIRY,    $099,  $17f",
+      "index": 422
+    },
+    "GEODUDE_ALOLAN": {
+      "source": "geodude-alola",
+      "previous": "CRY_VULPIX,      $0f0,  $090",
+      "index": 423
+    },
+    "GRAVELER_ALOLAN": {
+      "source": "graveler-alola",
+      "previous": "CRY_VULPIX,      $000,  $100",
+      "index": 424
+    },
+    "GOLEM_ALOLAN": {
+      "source": "golem-alola",
+      "previous": "CRY_GOLEM,       $0e0,  $0c0",
+      "index": 425
+    },
+    "GRIMER_ALOLAN": {
+      "source": "grimer-alola",
+      "previous": "CRY_GRIMER,      $000,  $100",
+      "index": 426
+    },
+    "MUK_ALOLAN": {
+      "source": "muk-alola",
+      "previous": "CRY_MUK,         $0ef,  $17f",
+      "index": 427
+    },
+    "EXEGGUTOR_ALOLAN": {
+      "source": "exeggutor-alola",
+      "previous": "CRY_DROWZEE,     $000,  $100",
+      "index": 428
+    },
+    "MAROWAK_ALOLAN": {
+      "source": "marowak-alola",
+      "previous": "CRY_ODDISH,      $04f,  $0e0",
+      "index": 429
+    },
+    "MEOWTH_GALARIAN": {
+      "source": "meowth-galar",
+      "previous": "CRY_CLEFAIRY,    $077,  $090",
+      "index": 430
+    },
+    "PERRSERKER": {
+      "source": "perrserker",
+      "previous": "CRY_CLEFAIRY,    $099,  $17f",
+      "index": 431
+    },
+    "PONYTA_GALARIAN": {
+      "source": "ponyta-galar",
+      "previous": "CRY_WEEPINBELL,  $000,  $100",
+      "index": 432
+    },
+    "RAPIDASH_GALARIAN": {
+      "source": "rapidash-galar",
+      "previous": "CRY_WEEPINBELL,  $020,  $140",
+      "index": 433
+    },
+    "SLOWPOKE_GALARIAN": {
+      "source": "slowpoke-galar",
+      "previous": "CRY_SLOWPOKE,    $000,  $100",
+      "index": 434
+    },
+    "SLOWBRO_GALARIAN": {
+      "source": "slowbro-galar",
+      "previous": "CRY_GROWLITHE,   $000,  $100",
+      "index": 435
+    },
+    "SLOWKING_GALARIAN": {
+      "source": "slowking-galar",
+      "previous": "CRY_SLOWKING,    $104,  $200",
+      "index": 436
+    },
+    "WEEZING_GALARIAN": {
+      "source": "weezing-galar",
+      "previous": "CRY_GOLEM,       $0ff,  $17f",
+      "index": 437
+    },
+    "GROWLITHE_HISUIAN": {
+      "source": "growlithe-hisui",
+      "previous": "CRY_GROWLITHE,   $020,  $0c0",
+      "index": 438
+    },
+    "ARCANINE_HISUIAN": {
+      "source": "arcanine-hisui",
+      "previous": "CRY_WEEDLE,      $000,  $100",
+      "index": 439
+    },
+    "VOLTORB_HISUIAN": {
+      "source": "voltorb-hisui",
+      "previous": "CRY_VOLTORB,     $0ed,  $100",
+      "index": 440
+    },
+    "ELECTRODE_HISUIAN": {
+      "source": "electrode-hisui",
+      "previous": "CRY_VOLTORB,     $0a8,  $110",
+      "index": 441
+    },
+    "TYPHLOSION_HISUIAN": {
+      "source": "typhlosion-hisui",
+      "previous": "CRY_TYPHLOSION,  $f00,  $0d4",
+      "index": 442
+    },
+    "SNEASEL_HISUIAN": {
+      "source": "sneasel-hisui",
+      "previous": "CRY_WOOPER,      $053,  $0af",
+      "index": 443
+    },
+    "WOOPER_PALDEAN": {
+      "source": "wooper-paldea",
+      "previous": "CRY_WOOPER,      $093,  $0af",
+      "index": 445
+    },
+    "CLODSIRE": {
+      "source": "clodsire",
+      "previous": "CRY_WOOPER,     -$0c6,  $140",
+      "index": 446
+    },
+    "TAUROS_PALDEAN_FIRE": {
+      "source": "tauros-paldea-blaze-breed",
+      "previous": "CRY_SQUIRTLE,    $011,  $0c0",
+      "index": 447
+    },
+    "TAUROS_PALDEAN_WATER": {
+      "source": "tauros-paldea-aqua-breed",
+      "previous": "CRY_SQUIRTLE,    $011,  $0c0",
+      "index": 448
+    }
+  }
+}

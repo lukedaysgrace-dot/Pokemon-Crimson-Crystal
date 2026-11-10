@@ -10,8 +10,8 @@ Read this before changing the game. Keep it up to date when something here chang
   need `tools/battletest/prepare_mbc30.py` run first.
 
 ## ROM0 (home bank) is almost full
-- Fixed-bank free space is 91 bytes in release and 85 bytes in debug, split into
-  small gaps; the largest gaps are 28 and 18 bytes respectively. Check the `SLACK`
+- Fixed-bank free space is 109 bytes in release and 103 bytes in debug, split into
+  small gaps. Check the `SLACK`
   line for ROM0 in `pokecrystal.map` /
   `pokecrystal_debug.map`.
 - If a build fails with `Unable to place "..." (ROM0 section) anywhere`, ROM0 is out of
@@ -23,6 +23,55 @@ Read this before changing the game. Keep it up to date when something here chang
 - The graphics/palette section `bank2` remains tight. Battle attribute layout
   lives in `engine/battle/type_icons.asm` to leave room for palette hooks.
   Its two nearby back-palette dispatches use short jumps to fit the hippo palettes.
+
+## Recorded cries
+- Missing official-species/form cries use Coral-format DED recordings, with
+  assignments/source hashes in `tools/testdata/sampled_cries.json`. Preserve the
+  protected original Crystal, clone/custom and existing proper adapted cries.
+  Regional forms and their regional evolutions retain their pre-import cry
+  assignments (including Hisuian Zorua/Zoroark's suffixless constants).
+  Clodsire uses Quagsire's exact cry. `restored_regionals` records the 43
+  restored assignments; `sample_order` keeps all other sampled IDs stable.
+  New encodes are 16.384 kHz; copied Coral samples retain 10.48576 kHz. Normal
+  builds require neither downloads nor the optional scipy/soundfile encoder.
+- Cry header indexes with bit 15 set dispatch to `audio/sampled_cries.asm`;
+  `PlaySpeciesCry` is banked with `PokemonCries` to save ROM0. The copied WRAM4
+  decoder and its dedicated buffers must stay separate from map/picture data.
+  Its 16-byte wave buffer must be aligned to 16 bytes. During playback only,
+  `hSoundKeepalive*` is a saved/restored overlay; bit 7 enables the timer's
+  stream-upload path. VBlank mode 7 is the short playback handler. Preserve
+  timer/interrupt/WRAM restoration, stereo tracks and final-block drain.
+- Sample playback uses a 16-block WRAM4 ring. The timer uploads a complete
+  block without changing the interrupted registers, flags or ROM bank, so
+  normal picture-script calculation can run while audio continues. Sampled
+  PokeAnim cry commands prepare their following Setup/Setup2 before playback;
+  the same native Play/Play2 then advances each frame. VBlank commits only
+  its prepared 7x7 tile snapshot, with timer interrupts allowed. Finish/Idle
+  and full-map DMA stay in the normal loop after playback. Keep the VBlank
+  bank switch stack-based (`homecall`): a nested `farcall` would corrupt the
+  foreground farcall's shared return buffers. No direct VBlank picture work
+  should use those buffers or overwrite the streamed overworld cache.
+- Run `make test-sampled-cries` for both-ROM exact native decoded-block,
+  preservation, duration and sound cleanup checks. `python3
+  tools/battletest/sampled_cry_checks.py --record` creates the searchable
+  listening gallery, compilation and individual emulator WAV recordings in
+  `_artifacts/sampled-cries/`. These use private emulator states only.
+  Listening recordings must use `record_sampled_cries.py` / SameBoy (the
+  `--record` flag delegates to it). PyBoy's streamed-wave sample order and
+  retrigger phase distort the final sound even when decoded blocks pass.
+  SameBoy capture checks compare the final audio with the independently
+  decoded reference; never use the old PyBoy WAVs as listening previews.
+- `python3 tools/battletest/record_cry_battles.py` records 13 remaining changed
+  non-regional cries in native battles using SameBoy, including entrances,
+  picture animation, battle music and a combat turn. Individual MP4s, a joined
+  video, entry screenshots and checks go in `_artifacts/cry-battles/`.
+  The recorder uses a private New Game and native debug battle requests; it
+  never injects direct cry calls, substitutes audio or opens player saves.
+  It asserts visible pose and script changes during each animated cry and
+  zero audio-ring underruns; one-frame art (such as Hippopotas and Jirachi)
+  is explicitly recognized from its native animation script.
+  `make test-cry-animation-sync` runs both-ROM stream checks plus native
+  short/long-cry motion checks and produces fresh videos.
 
 ## Battle type icons
 - The supplied 8x8 symbols in `gfx/battle_type_icons/` appear under both names:

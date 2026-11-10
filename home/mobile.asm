@@ -67,6 +67,9 @@ MobileReceive::
 
 Timer::
 	push af
+	ldh a, [hSoundKeepaliveOn]
+	bit 7, a
+	jr nz, .sampled_cry
 	push bc
 	push de
 	push hl
@@ -116,6 +119,27 @@ Timer::
 	ldh [rTAC], a
 
 .pop_ret
+	pop hl
+	pop de
+	pop bc
+	pop af
+	reti
+
+.sampled_cry
+	push bc
+	push de
+	push hl
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wDEDTempSamp)
+	ldh [rSVBK], a
+	call SampledCryInterrupt
+	jr nc, .sampled_restore
+.sampled_uploaded
+	nop ; Native waveform tests observe the fully uploaded block here.
+.sampled_restore
+	pop af
+	ldh [rSVBK], a
 	pop hl
 	pop de
 	pop bc

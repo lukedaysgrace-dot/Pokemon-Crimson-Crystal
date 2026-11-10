@@ -230,6 +230,9 @@ PokeAnim_Finish:
 	ret
 
 PokeAnim_Cry:
+	xor a
+	call PokeAnim_TrySampledCry
+	ret c
 	ld a, [wPokeAnimSpecies]
 	call _PlayMonCry
 	ld a, [wPokeAnimSceneIndex]
@@ -238,6 +241,9 @@ PokeAnim_Cry:
 	ret
 
 PokeAnim_CryNoWait:
+	ld a, 1
+	call PokeAnim_TrySampledCry
+	ret c
 	ld a, [wPokeAnimSpecies]
 	call PlayMonCry2
 	ld a, [wPokeAnimSceneIndex]
@@ -248,11 +254,82 @@ PokeAnim_CryNoWait:
 PokeAnim_StereoCry:
 	ld a, $f
 	ld [wCryTracks], a
+	ld a, 2
+	call PokeAnim_TrySampledCry
+	ret c
 	ld a, [wPokeAnimSpecies]
 	call PlayStereoCry2
 	ld a, [wPokeAnimSceneIndex]
 	inc a
 	ld [wPokeAnimSceneIndex], a
+	ret
+
+PokeAnim_TrySampledCry:
+; Synth cries keep their original path. Sampled cries run the same first
+; picture animation while the interrupt-driven wave stream plays.
+	push af
+	ld a, [wPokeAnimSpecies]
+	call LoadCry
+	bit 7, d
+	jr z, .ordinary
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
+	call SetUpPokeAnim ; Setup/Setup2, including its normal attribute upload
+	ld hl, wPokeAnimCoord
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	farcall SampledCryPreparePicture
+	pop af
+	and a
+	jr z, .cry
+	dec a
+	jr z, .no_wait
+	ld a, [wPokeAnimSpecies]
+	call PlayStereoCry2
+	jr .done
+.no_wait
+	ld a, [wPokeAnimSpecies]
+	call PlayMonCry2
+	jr .done
+.cry
+	ld a, [wPokeAnimSpecies]
+	call _PlayMonCry
+.done
+	scf
+	ret
+.ordinary
+	pop af
+	and a
+	ret
+
+PokeAnim_SampledCryFrame::
+; Advance only the current first Play/Play2 stage. Finish/Idle can perform
+; full-map DMA and are left to the ordinary animation loop after the cry.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPokeAnimStruct)
+	ldh [rSVBK], a
+	ld a, [wPokeAnimSceneIndex]
+	ld c, a
+	ld b, 0
+	ld hl, wPokeAnimPointer
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, bc
+	ld a, [hl]
+	cp (PokeAnim_Play_ - PokeAnim_SetupCommands) / 2
+	jr z, .play
+	cp (PokeAnim_Play2_ - PokeAnim_SetupCommands) / 2
+	jr nz, .done
+	call PokeAnim_Play2
+	jr .done
+.play
+	call PokeAnim_Play
+.done
+	pop af
+	ldh [rSVBK], a
 	ret
 
 PokeAnim_DeinitFrames:
