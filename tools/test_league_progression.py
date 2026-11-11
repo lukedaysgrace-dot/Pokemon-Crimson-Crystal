@@ -10,7 +10,7 @@ import re
 import sys
 
 from battletest.symbols import Constants, _parse_constants
-from pc_harness import Harness, ROOT
+from pc_harness import Harness, ROOT, enc
 from test_overworld_state import patches
 
 JOHTO_REMATCH_LEADERS = ('FALKNER', 'BUGSY', 'WHITNEY', 'MORTY', 'CHUCK', 'JASMINE', 'PRYCE', 'CLAIR')
@@ -131,6 +131,56 @@ def main():
     native_special = bytes(h.mem[special_bank, special_addr:special_addr + len(presentation['Script_special'])])
     try:
         with patches(h, presentation):
+            print('[League room connections and removed Mt. Silver encounters]', flush=True)
+            league_maps = ('INDIGO_PLATEAU_POKECENTER_1F', 'KOGAS_ROOM', 'BRUNOS_ROOM',
+                           'KARENS_ROOM', 'LORELEIS_ROOM', 'LANCES_ROOM', 'HALL_OF_FAME')
+            for i, name in enumerate(league_maps[:-1]):
+                load(name)
+                bank = read('wMapScriptsBank')
+                ptr = h.rd16(h.s('wCurMapWarpsPointer'))
+                warps = [tuple(h.mem[bank, ptr + j * 5:ptr + (j + 1) * 5])
+                         for j in range(read('wCurMapWarpCount'))]
+                if i == 0:
+                    check(warps[3] == (3, 14, 2, *maps[league_maps[1]]),
+                          'League entrance does not lead to Koga')
+                    continue
+                previous, following = league_maps[i - 1], league_maps[i + 1]
+                y = 23 if name == 'LANCES_ROOM' else 17
+                lower = [(y, 4, 4 if i == 1 else 3, *maps[previous]),
+                         (y, 5, 4, *maps[previous])]
+                upper_y = 1 if name == 'LANCES_ROOM' else 2
+                upper = [(upper_y, 4, 1, *maps[following]),
+                         (upper_y, 5, 2, *maps[following])]
+                check(warps == lower + upper, f'{name}: incorrect compiled warps {warps}')
+            bank, ptr = h.sym['LoreleisRoom_Blocks']
+            check(h.mem[bank, ptr + 42] == 0x1c,
+                  'Lorelei entrance must have two downward warp collisions')
+            load('SILVER_CAVE_OUTSIDE')
+            check(read('wCurMapCoordEventCount') == 0 and read('wCurMapObjectEventCount') == 0
+                  and read('wCurMapSceneScriptCount') == 0,
+                  'Mt. Silver retains its former boss trigger, actors or scenes')
+            check(read('wCurMapWarpCount') == 2 and read('wCurMapBGEventCount') == 3,
+                  'Mt. Silver lost its cave/Pokecenter entrance, signs or hidden item')
+            load('SILVER_CAVE_ROOM_1')
+            check(read('wCurMapCallbackCount') == 0,
+                  'Mt. Silver still runs the retired boss cleanup callback')
+
+            print('[Archer uses Underboss for both trainer parties]', flush=True)
+            write('wLinkMode', 0)
+            write('wInBattleTowerBattle', 0)
+            archer = con.trainer_classes['ARCHER']
+            h.call('GetTrainerClassName', bc=archer)
+            ptr = h.s('wStringBuffer1')
+            check(bytes(h.rd(ptr + i) for i in range(len(enc('UNDERBOSS@')))) == enc('UNDERBOSS@'),
+                  'Archer trainer class is not UNDERBOSS')
+            for ident in (1, 2):
+                write('wOtherTrainerClass', archer)
+                write('wOtherTrainerID', ident)
+                h.call('Battle_GetTrainerName')
+                ptr = h.s('wStringBuffer1')
+                check(bytes(h.rd(ptr + i) for i in range(7)) == enc('ARCHER@'),
+                      f'Archer party {ident}: incorrect battle name')
+
             print('[Blue badge gate, other Kanto gyms without extra checks, and migrated map flags]', flush=True)
             gym_entries = (
                 ('VIRIDIAN_GYM', 'ViridianGymBlueScript', 'ENGINE_EARTHBADGE', 15),
@@ -909,10 +959,10 @@ def main():
 
             print('[League teams: no single gym rematch can activate the higher teams]', flush=True)
             rooms = (
-                ('WILLS_ROOM', 'WillScript_Battle', 'EVENT_BEAT_ELITE_4_WILL', 'WILL', 'WILL_REMATCH'),
                 ('KOGAS_ROOM', 'KogaScript_Battle', 'EVENT_BEAT_ELITE_4_KOGA', 'KOGA', 'KOGA_REMATCH'),
                 ('BRUNOS_ROOM', 'BrunoScript_Battle', 'EVENT_BEAT_ELITE_4_BRUNO', 'BRUNO', 'BRUNO_REMATCH'),
                 ('KARENS_ROOM', 'KarenScript_Battle', 'EVENT_BEAT_ELITE_4_KAREN', 'KAREN', 'KAREN_REMATCH'),
+                ('LORELEIS_ROOM', 'LoreleiScript_Battle', 'EVENT_BEAT_ELITE_4_LORELEI', 'LORELEI', 'LORELEI_REMATCH'),
                 ('LANCES_ROOM', 'LancesRoomLanceScript', 'EVENT_BEAT_CHAMPION_LANCE', 'CHAMPION', 'CHAMPION_REMATCH'),
             )
             for hall, mask in [(False, 255)] + [(True, m) for m in [0, 128, *[255 ^ (1 << i) for i in range(8)], 255]]:
@@ -925,6 +975,20 @@ def main():
                     expected = rematch if hall and mask == 255 else normal
                     check(end == 'startbattle' and read('wOtherTrainerClass') == con.trainer_classes[expected],
                           f'{entry}: wrong team for hall={hall}, mask={mask:#x}')
+
+            print('[Elite Four victories open each exit and prevent repeat battles in the same run]', flush=True)
+            victory_ui = {'Script_startbattle': b'\xc9', 'Script_reloadmapafterbattle': b'\xc9',
+                          'Script_changeblock': consume(3), 'Script_reloadmappart': b'\xc9'}
+            with patches(h, victory_ui):
+                for map_name, entry, defeated, _, _ in rooms[:-1]:
+                    load(map_name)
+                    exit_flag = f'EVENT_{map_name}_EXIT_OPEN'
+                    event(defeated, False)
+                    event(exit_flag, False)
+                    script(entry)
+                    check(event(defeated) and event(exit_flag), f'{entry}: victory did not open exit')
+                    end, _, _ = script(entry, stop_before_battle=True)
+                    check(end != 'startbattle', f'{entry}: defeated member fought again in the same run')
 
             print('[Silver final fight: automatic once, with repeatable Elite Four rematches afterwards]', flush=True)
             var = h.s('wScriptVar')
@@ -968,9 +1032,9 @@ def main():
                                   f'{trigger}: Silver repeated after completion, visit={visit}')
                         script('CheckJohtoRematchesScript')
                         check(bool(read('wScriptVar')), 'League rematch became locked after Silver')
-                        load('WILLS_ROOM')
-                        end, _, _ = script('WillScript_Battle', stop_before_battle=True)
-                        check(end == 'startbattle' and read('wOtherTrainerClass') == con.trainer_classes['WILL_REMATCH'],
+                        load('KOGAS_ROOM')
+                        end, _, _ = script('KogaScript_Battle', stop_before_battle=True)
+                        check(end == 'startbattle' and read('wOtherTrainerClass') == con.trainer_classes['KOGA_REMATCH'],
                               'League rematch could not be started again after Silver')
 
             print('[First Hall of Fame queues Oak without any optional Johto rematches; port state stays independent]', flush=True)
@@ -1093,7 +1157,8 @@ def main():
                 hidden.append(h.mem[bank, ptr])
                 ptr += 1
             check((con.trainer_classes['BROCK'] not in hidden) == (hall or johto == 0xff), 'radio hid Kanto leaders during Kanto')
-            check((con.trainer_classes['WILL'] not in hidden) == hall, 'radio Elite Four recognition milestone')
+            check((con.trainer_classes['LORELEI'] not in hidden) == hall, 'radio Elite Four recognition milestone')
+            check(con.trainer_classes['WILL'] in hidden, 'radio exposed retired Will')
             check(con.trainer_classes['CRYSTAL3'] in hidden and con.trainer_classes['FALKNER_REMATCH'] in hidden,
                   'radio exposed custom story/rematch classes')
 
@@ -1112,7 +1177,7 @@ def main():
         write('wInBattleTowerBattle', 0)
         for trainer, ace in (('BROCK', 50), ('MISTY', 54), ('LT_SURGE', 58), ('ERIKA', 62),
                              ('SABRINA', 62), ('JANINE', 62), ('BLAINE', 66), ('BLUE', 69),
-                             ('WILL', 70), ('KOGA', 71), ('BRUNO', 72), ('KAREN', 72), ('CHAMPION', 73)):
+                             ('KOGA', 71), ('BRUNO', 72), ('KAREN', 72), ('LORELEI', 72), ('CHAMPION', 73)):
             write('wOtherTrainerClass', con.trainer_classes[trainer])
             write('wOtherTrainerID', 1)
             h.call('ReadTrainerParty')
@@ -1125,9 +1190,9 @@ def main():
                 ('WHITNEY_REMATCH', 2, 79), ('MORTY_REMATCH', 2, 80),
                 ('CHUCK_REMATCH', 2, 81), ('JASMINE_REMATCH', 2, 82),
                 ('PRYCE_REMATCH', 2, 83), ('CLAIR_REMATCH', 2, 84),
-                ('WILL', 2, 85), ('KOGA', 2, 85), ('BRUNO', 2, 86),
-                ('KAREN', 2, 86), ('CHAMPION', 2, 87),
-                ('AGATHA', 1, 87), ('LORELEI', 1, 87), ('RED', 1, 90)):
+                ('KOGA_REMATCH', 2, 85), ('BRUNO_REMATCH', 2, 86),
+                ('KAREN_REMATCH', 2, 86), ('LORELEI_REMATCH', 2, 86),
+                ('CHAMPION_REMATCH', 2, 87), ('RED', 1, 90)):
             write('wOtherTrainerClass', con.trainer_classes[trainer])
             write('wOtherTrainerID', ident)
             h.call('ReadTrainerParty')

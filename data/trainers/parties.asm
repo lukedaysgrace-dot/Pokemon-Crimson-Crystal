@@ -527,7 +527,7 @@ ClairGroup:
 PokemonProfGroup:
 
 WillGroup:
-	next_list_item ; WILL (1) WILL1 - Wills Room
+	next_list_item ; WILL (1) WILL1 - retired, not placed on any map
 	db "WILL@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 67
 	dw XATU
@@ -561,7 +561,7 @@ WillGroup:
 	dw ZEN_HEADBUTT, DOUBLE_EDGE, MEGAHORN, AGILITY
 	db -1 ; end
 
-	next_list_item ; WILL (2) WILL2 - Wills Room
+	next_list_item ; WILL (2) WILL2 - retired, not placed on any map
 	db "WILL@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 83
 	dw XATU
@@ -7121,7 +7121,7 @@ NinjaGroup:
 	end_list_items
 
 AgathaGroup:
-	next_list_item ; AGATHA (1) AGATHA1 - Silver Cave Outside
+	next_list_item ; AGATHA (1) AGATHA1 - retired, not placed on any map
 	db "AGATHA@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 85
 	dw GENGAR
@@ -7158,38 +7158,72 @@ AgathaGroup:
 	end_list_items
 
 LoreleiGroup:
-	next_list_item ; LORELEI (1) LORELEI1 - Silver Cave Outside
+	next_list_item ; LORELEI (1) LORELEI1 - Loreleis Room
 	db "LORELEI@", TRAINERTYPE_ITEM_MOVES_ABILITY
-	db 85
-	dw DEWGONG
-	db LEFTOVERS
-	db ABILITY_1
-	dw SURF, ICE_BEAM, REST, SLEEP_TALK
-	db 86
+	db 69
+	dw NINETALES_ALOLAN
+	db ICY_ROCK
+	db ABILITY_3 ; Snow Warning: eight-turn weather for the all-Ice team
+	dw BLIZZARD, MOONBLAST, REFLECT, ENCORE
+	db 70
 	dw CLOYSTER
-	db LIFE_ORB
-	db ABILITY_1
-	dw SHELL_SMASH, ICICLE_SPEAR, ROCK_BLAST, ICE_SHARD
-	db 86
-	dw SLOWBRO
-	db LEFTOVERS
-	db ABILITY_3
-	dw CALM_MIND, SURF, ICE_BEAM, SLACK_OFF
-	db 87
-	dw MESMERIA
-	db WISE_GLASSES
-	db ABILITY_1
-	dw NASTY_PLOT, ICE_BEAM, PSYCHIC_M, LOVELY_KISS
-	db 87
-	dw LAPRAS
-	db ASSAULT_VEST
-	db ABILITY_1
-	dw ICE_BEAM, SURF, THUNDERBOLT, FREEZE_DRY
-	db 87
+	db FOCUS_SASH
+	db ABILITY_1 ; Skill Link; Focus Sash helps secure Shell Smash
+	dw SHELL_SMASH, ICICLE_SPEAR, ROCK_BLAST, LIQUIDATION
+	db 70
 	dw GLACEON
 	db LEFTOVERS
-	db ABILITY_2
-	dw ICE_BEAM, HYPER_VOICE, SHADOW_BALL, PROTECT
+	db ABILITY_2 ; Refrigerate
+	dw HYPER_VOICE, EARTH_POWER, SHADOW_BALL, WISH
+	db 71
+	dw FROSLASS
+	db FOCUS_SASH
+	db ABILITY_1 ; Levitate; also supplies Normal/Fighting immunities
+	dw ICE_BEAM, SHADOW_BALL, THUNDERBOLT, TAUNT
+	db 71
+	dw MESMERIA
+	db WISE_GLASSES
+	db ABILITY_3 ; Bad Dreams pairs with Lovely Kiss
+	dw DREAM_EATER, ICE_BEAM, PSYCHIC_M, LOVELY_KISS
+	db 72
+	dw LAPRAS
+	db ASSAULT_VEST
+	db ABILITY_1 ; Water Absorb
+	dw SURF, FREEZE_DRY, THUNDERBOLT, ICE_SHARD
+	db -1 ; end
+
+	next_list_item ; LORELEI (2) LORELEI2 - Loreleis Room
+	db "LORELEI@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 84
+	dw NINETALES_ALOLAN
+	db ICY_ROCK
+	db ABILITY_3 ; Snow Warning
+	dw BLIZZARD, MOONBLAST, REFLECT, ENCORE
+	db 85
+	dw CLOYSTER
+	db FOCUS_SASH
+	db ABILITY_1 ; Skill Link
+	dw SHELL_SMASH, ICICLE_SPEAR, ROCK_BLAST, LIQUIDATION
+	db 85
+	dw GLACEON
+	db LEFTOVERS
+	db ABILITY_2 ; Refrigerate
+	dw HYPER_VOICE, EARTH_POWER, SHADOW_BALL, CALM_MIND
+	db 86
+	dw FROSLASS
+	db FOCUS_SASH
+	db ABILITY_1 ; Levitate
+	dw ICE_BEAM, SHADOW_BALL, THUNDERBOLT, DESTINY_BOND
+	db 86
+	dw MESMERIA
+	db LIFE_ORB
+	db ABILITY_3 ; Bad Dreams
+	dw DREAM_EATER, ICE_BEAM, PSYCHIC_M, LOVELY_KISS
+	db 86
+	dw LAPRAS
+	db ASSAULT_VEST
+	db ABILITY_1 ; Water Absorb
+	dw HYDRO_PUMP, FREEZE_DRY, THUNDERBOLT, ICE_SHARD
 	db -1 ; end
 
 	end_list_items

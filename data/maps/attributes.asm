@@ -605,7 +605,7 @@ ENDM
 	map_attributes MountMoonGiftShop, MOUNT_MOON_GIFT_SHOP, $00, 0
 	map_attributes TinTowerRoof, TIN_TOWER_ROOF, $00, 0
 	map_attributes IndigoPlateauPokecenter1F, INDIGO_PLATEAU_POKECENTER_1F, $00, 0
-	map_attributes WillsRoom, WILLS_ROOM, $00, 0
+	map_attributes LoreleisRoom, LORELEIS_ROOM, $00, 0
 	map_attributes KogasRoom, KOGAS_ROOM, $00, 0
 	map_attributes BrunosRoom, BRUNOS_ROOM, $00, 0
 	map_attributes KarensRoom, KARENS_ROOM, $00, 0

@@ -727,8 +727,8 @@ BetaRoute23_Blocks:
 IndigoPlateauPokecenter1F_Blocks:
 	INCBIN "maps/IndigoPlateauPokecenter1F.ablk"
 
-WillsRoom_Blocks:
-	INCBIN "maps/WillsRoom.ablk"
+LoreleisRoom_Blocks:
+	INCBIN "maps/LoreleisRoom.ablk"
 
 KogasRoom_Blocks:
 	INCBIN "maps/KogasRoom.ablk"

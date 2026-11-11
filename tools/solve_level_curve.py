@@ -29,8 +29,8 @@ GATES = [
     ("BROCK (1)", "Brock"), ("MISTY (1)", "Misty"), ("LT_SURGE (1)", "Surge"),
     ("ERIKA (1)", "Erika"), ("JANINE (1)", "Janine"), ("SABRINA (1)", "Sabrina"),
     ("BLAINE (1)", "Blaine"), ("BLUE (1)", "Blue"),
-    ("WILL (1)", "Will"), ("KOGA (1)", "Koga"), ("BRUNO (1)", "Bruno"),
-    ("KAREN (1)", "Karen"), ("CHAMPION (1)", "Lance"),
+    ("KOGA (1)", "Koga"), ("BRUNO (1)", "Bruno"),
+    ("KAREN (1)", "Karen"), ("LORELEI (1)", "Lorelei"), ("CHAMPION (1)", "Lance"),
     ("FALKNER (2)", "FalknerR"), ("BUGSY (2)", "BugsyR"),
     ("WHITNEY (2)", "WhitneyR"), ("MORTY (2)", "MortyR"),
     ("CHUCK (2)", "ChuckR"), ("JASMINE (2)", "JasmineR"),
@@ -47,7 +47,7 @@ CAP_GATES = ["Falkner", "Bugsy", "Whitney", "Morty", "Chuck", "Jasmine",
              "Sabrina", "Blaine", "Blue"]
 
 IMPORTANT = re.compile(
-    r"\b(FALKNER|BUGSY|WHITNEY|MORTY|CHUCK|JASMINE|PRYCE|CLAIR|WILL|KOGA|"
+    r"\b(FALKNER|BUGSY|WHITNEY|MORTY|CHUCK|JASMINE|PRYCE|CLAIR|LORELEI|KOGA|"
     r"BRUNO|KAREN|CHAMPION|LANCE|BROCK|MISTY|LT_SURGE|ERIKA|SABRINA|JANINE|"
     r"BLAINE|BLUE|RED|RIVAL1|RIVAL2|CRYSTAL|EXECUTIVEM|EXECUTIVEF|PROTON|"
     r"PETREL|PETRELDIRECTOR|ARIANA|ARCHER)\b")

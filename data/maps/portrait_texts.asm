@@ -1672,16 +1672,6 @@ PortraitTexts:
 ; SilverCaveOutside
 	dba MtSilverSignText
 	db 0
-	dba SilverCaveOutsideAgathaAfterText
-	db PORTRAIT_AGATHA
-	dba SilverCaveOutsideAgathaBeforeText
-	db PORTRAIT_AGATHA
-	dba SilverCaveOutsideLoreleiAfterText
-	db PORTRAIT_LORELEI
-	dba SilverCaveOutsideLoreleiBeforeText
-	db PORTRAIT_LORELEI
-	dba SilverCaveOutsideLoreleiBeginText
-	db PORTRAIT_LORELEI
 ; SilverCaveRoom3
 	dba Red.Text1
 	db PORTRAIT_RED
@@ -2003,11 +1993,11 @@ PortraitTexts:
 	db 0
 	dba ViridianGymNotReadyText
 	db PORTRAIT_BLUE
-; WillsRoom
-	dba WillScript_WillBeforeText
-	db PORTRAIT_WILL
-	dba WillScript_WillDefeatText
-	db PORTRAIT_WILL
+; LoreleisRoom
+	dba LoreleiScript_LoreleiBeforeText
+	db PORTRAIT_LORELEI
+	dba LoreleiScript_LoreleiDefeatText
+	db PORTRAIT_LORELEI
 ; Shared dialogue printed by specials or farwritetext
 	dba ExecutiveM4BeatenText
 	db PORTRAIT_PETREL
