@@ -91,7 +91,12 @@ def extract():
     priorities = {}
     for _, row in rows("data/moves/effects_priorities.asm", "db"):
         if len(row) == 2:
-            priorities[row[0]] = int(row[1].replace("BASE_PRIORITY", "1").replace(" ", "").split("+")[-1]) + (1 if "+" in row[1] else 0)
+            # Rows are "BASE_PRIORITY + n" / "BASE_PRIORITY - n" (modern brackets
+            # -7..+5). Store bracket + 1 so the default below stays 1.
+            expression = row[1].replace(" ", "")
+            if not re.fullmatch(r"BASE_PRIORITY([+-]\d+)?", expression):
+                raise ValueError(f"effects_priorities.asm: unsupported priority {row[1]!r}")
+            priorities[row[0]] = int(expression.removeprefix("BASE_PRIORITY") or 0) + 1
     moves = {}
     for index, (line, row) in enumerate(rows("data/moves/moves.asm", "move"), 1):
         if len(row) != 7:

@@ -2,15 +2,7 @@ BattleCommand_Transform::
 ; transform
 
 	call ClearLastMove
-	farcall CheckIllusionTransformBlocked
-	ld a, b
-	and a
-	jp nz, BattleEffect_ButItFailed
-	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarAddr
-	bit SUBSTATUS_TRANSFORMED, [hl]
-	jp nz, BattleEffect_ButItFailed
-	call CheckHiddenOpponent
+	call CheckTransformFails
 	jp nz, BattleEffect_ButItFailed
 	xor a
 	ld [wNumHits], a
@@ -75,6 +67,30 @@ BattleCommand_Transform::
 	; a newly copied ability starts as if it had just entered
 	farcall TransformedAbilityStart
 	ret
+
+CheckTransformFails::
+; nz if the user cannot copy its opponent right now. Shared by the move and
+; by Imposter, which checks before showing its banner and stays silent.
+; Gen V+: fails if either battler is already transformed, if the target is
+; behind a Substitute (Infiltrator and sound do not help: the copy needs the
+; real target), or is semi-invulnerable; Illusion blocks it on either side.
+	farcall CheckIllusionTransformBlocked
+	ld a, b
+	and a
+	ret nz
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
+	call GetBattleVar
+	bit SUBSTATUS_TRANSFORMED, a
+	ret nz
+	ld a, BATTLE_VARS_SUBSTATUS5
+	call GetBattleVar
+	bit SUBSTATUS_TRANSFORMED, a
+	ret nz
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+	call GetBattleVar
+	bit SUBSTATUS_SUBSTITUTE, a
+	ret nz
+	jp CheckHiddenOpponent
 
 TransformMonData::
 	farcall CopyOpponentStanceForTransform

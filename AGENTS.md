@@ -192,6 +192,25 @@ Read this before changing the game. Keep it up to date when something here chang
   Song receives the global priority-shield check without Dark-type immunity.
   Immediate damaging actions are checked before charge/self-faint commands;
   Bide's storage and Future Sight's delayed strike retain their own paths.
+- Priority uses the modern brackets: `BASE_PRIORITY` is 7 and
+  `data/moves/effects_priorities.asm` stores `BASE_PRIORITY + n` / `- n`.
+  Negative brackets are distinct (Vital Throw -1, Avalanche -4, Counter and
+  Mirror Coat -5, Roar/Whirlwind/Circle Throw/Dragon Tail -6, Trick Room -7);
+  Vital Throw and Extreme Speed (+2) are resolved by move in `GetMovePriority`.
+  Never write a bare number in that table or compare a priority with a literal.
+  `tools/battle-simulator/lab/data.py` parses the same expressions.
+- Phazing in trainer battles works even when its user acts first (Gen V+).
+  `BattleCommand_ForceSwitch` then writes move `$ff` to the dragged side's
+  `wCur*Move`, which `CheckTurn` treats as "end this turn", so the replacement
+  never performs its predecessor's queued action. A Magic Bounce reflection
+  (guard bit 6 of `wDisguiseBusted + 1`) drags the original user and must not
+  cancel anything. Wild battles keep the level-based flee rule.
+- Circle Throw / Dragon Tail do not drag out a target whose Substitute took
+  the hit; Roar and Whirlwind ignore the Substitute.
+- Rest fails while its user is asleep, so Sleep Talk cannot call it to heal.
+- Every guard move must be in `MetronomeExcepts`, including ones that reuse
+  `EFFECT_PROTECT` (King's Shield). `tools/audit_metronome_exceptions.py`
+  checks this and is part of `make audit-static`.
 - `make test-moves-abilities BATTLE_TEST_JOBS=8` includes every-move semantic
   outcomes, dynamic-type controls and called-move interactions. The optional
   `make test-exhaustive-battles BATTLE_TEST_JOBS=8` also plays every move with
@@ -449,6 +468,14 @@ Read this before changing the game. Keep it up to date when something here chang
   active disguise. Substitute damage and residual/recoil damage do not break it.
   Suppression reveals without that damage reward; Gas ending cannot restore a
   disguise. Transform/Imposter fail if either battler has an active disguise.
+- `CheckTransformFails` is the one guard for the move and for Imposter: an
+  active Illusion on either side, either battler already transformed, a
+  semi-invulnerable target, or a target behind a Substitute. Imposter checks
+  it before its banner and stays silent. Ditto's legal slots resolve to
+  Imposter on entry in the harness, so test the move with Mew or Smeargle.
+- A Neutralizing Gas holder that transforms loses Gas: `TransformedAbilityStart`
+  runs `CheckNeutralizingGasEnded` so the foe's blocked entry ability resumes
+  immediately, as it does when the holder switches or faints.
 - Reveals warp the copied sprite with Transform's wave and Dark Pulse's
   `SFX_SPITE`. At the picture-update cue the real sprite/palette appears, then
   the wave contracts around it. Do not add a palette flash. Keep the disguise

@@ -840,8 +840,9 @@ GetMovePriority_e::
 	ret
 
 GetMovePriority:
-; Return BASE_PRIORITY plus the move's normal priority modifier.
-; Vital Throw and similar negative-priority moves use 0.
+; Return BASE_PRIORITY plus the move's modern priority bracket.
+; Negative brackets stay distinct: Vital Throw (-1) acts before Avalanche
+; (-4), Counter/Mirror Coat (-5), phazing (-6) and Trick Room (-7).
 
 	ld b, a
 
@@ -855,7 +856,8 @@ GetMovePriority:
 	endc
 	jr nz, .not_vital_throw
 	ld a, l
-	sub LOW(VITAL_THROW)
+	cp LOW(VITAL_THROW)
+	ld a, BASE_PRIORITY - 1
 	ret z
 
 .not_vital_throw

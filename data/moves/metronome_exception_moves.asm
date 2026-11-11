@@ -14,4 +14,5 @@ MetronomeExcepts:
 	dw SLEEP_TALK
 	dw THIEF
 	dw BANEFUL_BUNKER
+	dw KINGS_SHIELD
 	dw -1

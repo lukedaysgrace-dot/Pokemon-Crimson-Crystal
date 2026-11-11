@@ -1,0 +1,389 @@
+# Interaction audit, 2026-11-10 (second pass): Transform/Imposter guards,
+# Neutralizing Gas lost through Transform, damaging drag-out moves against a
+# Substitute, Rest called by Sleep Talk, and distinct negative priority
+# brackets. See reports/interaction-audit-2026-11-10.md.
+# Ditto's legal slots all resolve to Imposter on entry, so the move cases use
+# Mew or Smeargle as the Transform user.
+
+- name: "Audit 1110b: Transform fails against a Substitute"
+  player: {species: MEW, level: 50, moves: [SPLASH, TRANSFORM]}
+  enemy: {species: BLISSEY, level: 50, moves: [SUBSTITUTE]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.species == 'MEW'
+    - (player.substatus[4] & 8) == 0
+    - player.pp[1] == 9
+
+- name: "Audit 1110b: Transform control without a Substitute"
+  player: {species: MEW, level: 50, moves: [SPLASH, TRANSFORM]}
+  enemy: {species: BLISSEY, level: 50, moves: [SPLASH]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: ["player.species == 'BLISSEY'", "(player.substatus[4] & 8) != 0"]
+
+- name: "Audit 1110b: Imposter does not copy a target behind a Substitute"
+  player: {species: PIKACHU, level: 50, moves: [SPLASH]}
+  player2: {species: DITTO, level: 50, ability: IMPOSTER, moves: [SPLASH]}
+  enemy: {species: BLISSEY, level: 50, moves: [SUBSTITUTE]}
+  move_script: [1, 'switch:2']
+  rng: forced_high
+  turns: 2
+  assert: ["player.species == 'DITTO'", "(player.substatus[4] & 8) == 0", "wram('wInAbility') == 0"]
+
+- name: "Audit 1110b: Transform fails while the user is already transformed"
+  # After turn 2 the enemy's species byte is replaced, so a second successful
+  # Transform would visibly change the player's copied species.
+  player: {species: MEW, level: 50, moves: [TRANSFORM]}
+  enemy: {species: SMEARGLE, level: 50, moves: [SPLASH, TRANSFORM, TACKLE, GROWL]}
+  move_script: [1, 2, 2]
+  turn_setup_wram:
+    2: {wEnemyMonSpecies: 1}
+  rng: forced_high
+  turns: 3
+  turn_assert:
+    - turns_done != 1 or player.species == 'SMEARGLE'
+  assert: ["player.species == 'SMEARGLE'", "player.pp[1] == 3"]
+
+- name: "Audit 1110b: a Gas holder that Transforms releases the foe's Intimidate"
+  player: {species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [TRANSFORM]}
+  enemy: {species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'GYARADOS'
+    - player.stat_levels[0] == 6
+    - enemy.stat_levels[0] == 6
+    - wram('wNeutralizingGasActive') == 0
+    - wram('wInAbility') == 0
+
+- name: "Audit 1110b: an enemy Gas holder that Transforms releases the player's Intimidate"
+  player: {species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [SPLASH]}
+  enemy: {species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [TRANSFORM]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.species == 'GYARADOS'
+    - player.stat_levels[0] == 6
+    - enemy.stat_levels[0] == 6
+    - wram('wNeutralizingGasActive') == 0
+
+- name: "Audit 1110b: Transforming into a Gas holder leaves Gas active"
+  player: {species: GYARADOS, level: 50, ability: INTIMIDATE, moves: [TRANSFORM]}
+  enemy: {species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.species == 'WEEZING'
+    - enemy.stat_levels[0] == 7
+    - wram('wNeutralizingGasActive') == 1
+
+- name: "Audit 1110b: Dragon Tail absorbed by a Substitute does not drag the target out"
+  player: {species: DRAGONITE, level: 50, moves: [SPLASH, DRAGON_TAIL]}
+  enemy: {species: BLISSEY, level: 50, moves: [SUBSTITUTE]}
+  enemy2: {species: SNORLAX, level: 50, moves: [SPLASH]}
+  move_script: [1, 2]
+  rng: seeded
+  turns: 2
+  assert: ["enemy.species == 'BLISSEY'", "not textbox_seen('ButItFailedText')"]
+
+- name: "Audit 1110b: Dragon Tail still drags a target without a Substitute"
+  player: {species: DRAGONITE, level: 50, moves: [DRAGON_TAIL]}
+  enemy: {species: BLISSEY, level: 50, moves: [SPLASH]}
+  enemy2: {species: SNORLAX, level: 50, moves: [SPLASH]}
+  rng: seeded
+  turns: 1
+  assert: ["enemy.species == 'SNORLAX'"]
+
+- name: "Audit 1110b: Roar still drags a target out from behind its Substitute"
+  player: {species: DRAGONITE, level: 50, moves: [SPLASH, ROAR]}
+  enemy: {species: BLISSEY, level: 50, moves: [SUBSTITUTE]}
+  enemy2: {species: SNORLAX, level: 50, moves: [SPLASH]}
+  move_script: [1, 2]
+  rng: seeded
+  turns: 2
+  assert: ["enemy.species == 'SNORLAX'"]
+
+- name: "Audit 1110b: Rest called by Sleep Talk fails without healing or resetting sleep"
+  player: {species: SNORLAX, level: 50, hp: 50, status_byte: 3, moves: [SLEEP_TALK, REST]}
+  enemy: {species: BLISSEY, level: 50, moves: [SPLASH]}
+  rng: seeded
+  turns: 1
+  assert: ["player.hp == player.start_hp", "player.status == 2"]
+
+- name: "Audit 1110b: Rest used while awake still heals, cures and sleeps"
+  player: {species: SNORLAX, level: 50, hp: 50, status_byte: 8, moves: [REST]}
+  enemy: {species: BLISSEY, level: 50, moves: [SPLASH]}
+  rng: seeded
+  turns: 1
+  assert: ["player.hp == player.maxhp", "(player.status & 7) != 0", "(player.status & 8) == 0"]
+
+- name: "Audit 1110b priority: Vital Throw (-1) acts before a faster Counter (-5)"
+  player: {species: ARCANINE, level: 50, moves: [COUNTER]}
+  enemy: {species: SHUCKLE, level: 50, moves: [VITAL_THROW]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 1", "enemy.hp < enemy.start_hp"]
+
+- name: "Audit 1110b priority: Avalanche (-4) acts before a faster Roar (-6)"
+  player: {species: ARCANINE, level: 50, moves: [ROAR]}
+  enemy: {species: SHUCKLE, level: 50, moves: [AVALANCHE]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 1"]
+
+- name: "Audit 1110b priority: Counter (-5) acts before a faster Dragon Tail (-6)"
+  player: {species: SHUCKLE, level: 50, moves: [COUNTER]}
+  enemy: {species: ARCANINE, level: 50, moves: [DRAGON_TAIL]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 0"]
+
+- name: "Audit 1110b priority: Roar (-6) acts before a faster Trick Room (-7)"
+  player: {species: SHUCKLE, level: 50, moves: [ROAR]}
+  enemy: {species: ARCANINE, level: 50, moves: [TRICK_ROOM]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 0"]
+
+- name: "Audit 1110b priority: an ordinary move acts before a faster Vital Throw"
+  player: {species: SHUCKLE, level: 50, moves: [TACKLE]}
+  enemy: {species: ARCANINE, level: 50, moves: [VITAL_THROW]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 0"]
+
+- name: "Audit 1110b priority: equal negative brackets still resolve by Speed"
+  player: {species: SHUCKLE, level: 50, moves: [COUNTER]}
+  enemy: {species: ARCANINE, level: 50, moves: [MIRROR_COAT]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyGoesFirst') == 1"]
+
+- name: "Audit 1110b priority: Queenly Majesty blocks Quick Attack but not Tackle"
+  player: {species: SHIFTRY, level: 50, ability: TECHNICIAN, moves: [QUICK_ATTACK, TACKLE]}
+  enemy: {species: BLISSEY, level: 50, ability: QUEENLY_MAJESTY, moves: [SPLASH]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  turn_assert: ["turns_done != 1 or enemy.hp == enemy.start_hp"]
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit 1110b priority: Queenly Majesty ignores negative-priority Roar and Vital Throw"
+  player: {species: SHIFTRY, level: 50, ability: TECHNICIAN, moves: [VITAL_THROW]}
+  enemy: {species: BLISSEY, level: 50, ability: QUEENLY_MAJESTY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp"]
+
+- name: "Audit 1110b priority: Queenly Majesty leaves self-target Prankster moves and Protect alone"
+  player: {species: SHIFTRY, level: 50, ability: PRANKSTER, moves: [SWORDS_DANCE, PROTECT]}
+  enemy: {species: MACHAMP, level: 50, ability: QUEENLY_MAJESTY, moves: [TACKLE]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  turn_assert: ["turns_done != 1 or player.stat_levels[0] == 9"]
+  assert: ["player.stat_levels[0] == 9", "wram('wInAbility') == 0"]
+
+- name: "Audit 1110b: Illusion survives Iron Barbs and confusion self-damage"
+  player: {species: TOTODILE, level: 50, ability: ILLUSION, moves: [TACKLE]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: BLISSEY, level: 50, ability: IRON_BARBS, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "wram('wPlayerIllusionSlot') == 2", "player.stat_levels[2] == 7"]
+
+- name: "Audit 1110b: Counter damage reveals Illusion and grants its Speed"
+  player: {species: TOTODILE, level: 50, ability: ILLUSION, moves: [TACKLE]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: BLISSEY, level: 50, moves: [COUNTER]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8"]
+
+- name: "Audit 1110b: Stance Change cannot be Traced and stays Shield through a confusion self-hit"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD], substatus: [CONFUSED]}
+  enemy: {species: PORYGON, level: 50, ability: TRACE, moves: [SPLASH]}
+  setup_wram: {wPlayerConfuseCount: 5}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.start_hp", "wram('wPlayerBladeForm') == 0", "enemy.ability == 'TRACE'"]
+
+- name: "Audit 1110b: Stance Change resets to Shield after switching out of Blade"
+  player: {species: AEGISLASH, level: 50, ability: STANCE_CHANGE, moves: [IRON_HEAD, SPLASH]}
+  player2: {species: PIKACHU, level: 50, moves: [SPLASH]}
+  enemy: {species: BLISSEY, level: 50, moves: [SPLASH]}
+  move_script: [1, 'switch:2', 'switch:1']
+  rng: forced_high
+  turns: 3
+  turn_assert:
+    - turns_done != 1 or wram('wPlayerBladeForm') == 1
+  assert: ["wram('wPlayerBladeForm') == 0", "player.species == 'AEGISLASH'", "player.stats['attack'] == player.start_stats['attack']"]
+
+- name: "Audit 1110b phazing: Roar that acts first drags the target, whose queued Trick Room is cancelled"
+  player: {species: SHUCKLE, level: 50, moves: [ROAR]}
+  enemy: {species: ARCANINE, level: 50, moves: [TRICK_ROOM]}
+  enemy2: {species: SNORLAX, level: 50, moves: [TRICK_ROOM]}
+  rng: seeded
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+    - enemy.species == 'SNORLAX'
+    - wram('wTrickRoomTimer') == 0
+    - wram16('wOTPartyMon1PP') >> 8 == 5
+    - enemy.pp[0] == 5
+
+- name: "Audit 1110b phazing: enemy Roar that acts first drags the player, whose queued Trick Room is cancelled"
+  player: {species: ARCANINE, level: 50, moves: [TRICK_ROOM]}
+  player2: {species: SNORLAX, level: 50, moves: [TRICK_ROOM]}
+  enemy: {species: SHUCKLE, level: 50, moves: [ROAR]}
+  enemy2: {species: PIKACHU, level: 50, moves: [SPLASH]}
+  rng: seeded
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 1
+    - player.species == 'SNORLAX'
+    - wram('wTrickRoomTimer') == 0
+    - player.pp[0] == 5
+
+- name: "Audit 1110b phazing: the dragged-in mon acts normally on the following turn"
+  player: {species: SHUCKLE, level: 50, moves: [ROAR, SPLASH]}
+  enemy: {species: ARCANINE, level: 50, moves: [TRICK_ROOM]}
+  enemy2: {species: SNORLAX, level: 50, moves: [TACKLE]}
+  move_script: [1, 2]
+  rng: seeded
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or player.hp == player.start_hp
+  assert: ["enemy.species == 'SNORLAX'", "player.hp < player.start_hp", "enemy.pp[0] == 34"]
+
+- name: "Audit 1110b phazing: faster Dragon Tail drags before the slower Dragon Tail can strike"
+  player: {species: DRAGONITE, level: 50, moves: [DRAGON_TAIL]}
+  enemy: {species: SHUCKLE, level: 50, moves: [DRAGON_TAIL]}
+  enemy2: {species: SNORLAX, level: 50, moves: [DRAGON_TAIL]}
+  player2: {species: PIKACHU, level: 50, moves: [SPLASH]}
+  rng: seeded
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+    - enemy.species == 'SNORLAX'
+    - player.species == 'DRAGONITE'
+    - player.hp == player.start_hp
+
+- name: "Audit 1110b phazing: Roar acting second still drags and the turn completes"
+  player: {species: SHUCKLE, level: 50, moves: [ROAR]}
+  enemy: {species: ARCANINE, level: 50, moves: [TACKLE]}
+  enemy2: {species: SNORLAX, level: 50, moves: [TACKLE]}
+  rng: seeded
+  turns: 1
+  assert: ["enemy.species == 'SNORLAX'", "player.hp < player.start_hp", "wram('wCurEnemyMove') != 255"]
+
+- name: "Audit 1110b phazing: Magic Bounce reflecting a first-acting Roar drags its user and still lets the bouncer act"
+  player: {species: SHUCKLE, level: 50, moves: [ROAR]}
+  player2: {species: PIKACHU, level: 50, moves: [SPLASH]}
+  enemy: {species: ESPEON, level: 50, ability: MAGIC_BOUNCE, moves: [TRICK_ROOM]}
+  enemy2: {species: SNORLAX, level: 50, moves: [SPLASH]}
+  rng: seeded
+  turns: 1
+  assert: ["player.species == 'PIKACHU'", "enemy.species == 'ESPEON'", "wram('wTrickRoomTimer') != 0"]
+
+# A failed secondary-effect roll must stay failed when the hit also triggers
+# a defender reaction (the reactions reset wEffectFailed inside the checkfaint
+# hook, between effectchance and the command that applies the secondary).
+
+- name: "Audit 1110b secondary: STAMINA reaction does not force BODY_SLAM's failed secondary roll"
+  player: {species: MEW, level: 50, moves: [BODY_SLAM]}
+  enemy: {species: SNORLAX, level: 50, ability: STAMINA, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[1] == 8", "enemy.status == 0", "enemy.pp[0] == 39"]
+
+- name: "Audit 1110b secondary: WEAK_ARMOR reaction does not force BODY_SLAM's failed secondary roll"
+  player: {species: MEW, level: 50, moves: [BODY_SLAM]}
+  enemy: {species: SNORLAX, level: 50, ability: WEAK_ARMOR, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[2] == 9", "enemy.status == 0", "enemy.pp[0] == 39"]
+
+- name: "Audit 1110b secondary: JUSTIFIED reaction does not force BITE's failed secondary roll"
+  player: {species: MEW, level: 50, moves: [BITE]}
+  enemy: {species: SNORLAX, level: 50, ability: JUSTIFIED, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[0] == 8", "enemy.status == 0", "enemy.pp[0] == 39"]
+
+- name: "Audit 1110b secondary: RATTLED reaction does not force BITE's failed secondary roll"
+  player: {species: MEW, level: 50, moves: [BITE]}
+  enemy: {species: SNORLAX, level: 50, ability: RATTLED, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[2] == 8", "enemy.status == 0", "enemy.pp[0] == 39"]
+
+- name: "Audit 1110b secondary: TOXIC_DEBRIS reaction does not force BODY_SLAM's failed secondary roll"
+  player: {species: MEW, level: 50, moves: [BODY_SLAM]}
+  enemy: {species: SNORLAX, level: 50, ability: TOXIC_DEBRIS, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "player.screens != 0", "enemy.status == 0", "enemy.pp[0] == 39"]
+
+- name: "Audit 1110b secondary: TANGLING_HAIR reaction does not force BODY_SLAM's failed secondary roll"
+  player: {species: MEW, level: 50, moves: [BODY_SLAM]}
+  enemy: {species: SNORLAX, level: 50, ability: TANGLING_HAIR, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "player.stat_levels[2] == 6", "enemy.status == 0", "enemy.pp[0] == 39"]
+
+- name: "Audit 1110b secondary: control, no reacting ability"
+  player: {species: MEW, level: 50, moves: [BODY_SLAM]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.status == 0"]
+
+- name: "Audit 1110b secondary: a successful roll still applies alongside Stamina"
+  player: {species: MEW, level: 50, moves: [BODY_SLAM]}
+  enemy: {species: SNORLAX, level: 50, ability: STAMINA, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.status == 64", "enemy.stat_levels[1] == 8"]
+
+- name: "Audit 1110b secondary: Illusion reveal does not force Body Slam's paralysis"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [BODY_SLAM]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8", "player.status == 0"]
+
+- name: "Audit 1110b secondary: Illusion reveal does not force Psychic's Sp. Def drop"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [PSYCHIC_M]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.stat_levels[2] == 8", "player.stat_levels[4] == 7"]
+
+- name: "Audit 1110b secondary: enemy Illusion reveal does not force Flamethrower's burn"
+  player: {species: MEW, level: 10, moves: [FLAMETHROWER]}
+  enemy: {species: ZOROARK, level: 100, ability: ILLUSION, moves: [SPLASH]}
+  enemy2: {species: SNORLAX, level: 100, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyIllusionSlot') == 0", "enemy.stat_levels[2] == 8", "enemy.status == 0"]
+
+- name: "Audit 1110b secondary: Illusion reveal at maximum Speed keeps a successful paralysis roll"
+  player: {species: TOTODILE, level: 100, ability: ILLUSION, stages: {spd: 6}, moves: [SPLASH]}
+  player2: {species: GENGAR, level: 50, moves: [SPLASH]}
+  enemy: {species: MEW, level: 10, moves: [BODY_SLAM]}
+  rng: forced_low
+  turns: 1
+  assert: ["wram('wPlayerIllusionSlot') == 0", "player.status == 64"]
+
+- name: "Audit 1110b secondary: Weakness Policy does not force Flamethrower's burn"
+  player: {species: MEW, level: 10, moves: [FLAMETHROWER]}
+  enemy: {species: SCIZOR, level: 100, ability: NO_ABILITY, item: WEAK_POLICY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[0] == 9", "enemy.status == 0"]
