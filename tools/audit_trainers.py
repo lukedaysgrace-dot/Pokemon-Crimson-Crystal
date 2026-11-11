@@ -469,7 +469,7 @@ def validate_parallel_tables(classes, items):
 		"JASMINE_REMATCH": "JASMINE",
 		"PRYCE_REMATCH": "PRYCE",
 		"CLAIR_REMATCH": "CLAIR",
-		"WILL_REMATCH": "WILL",
+		"LORELEI_REMATCH": "LORELEI",
 		"KOGA_REMATCH": "KOGA",
 		"BRUNO_REMATCH": "BRUNO",
 		"KAREN_REMATCH": "KAREN",

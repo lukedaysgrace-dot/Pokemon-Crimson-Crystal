@@ -97,7 +97,7 @@ TrainerGroups:
 	dba JasmineGroup ; JASMINE_REMATCH
 	dba PryceGroup ; PRYCE_REMATCH
 	dba ClairGroup ; CLAIR_REMATCH
-	dba WillGroup ; WILL_REMATCH
+	dba LoreleiGroup ; LORELEI_REMATCH
 	dba KogaGroup ; KOGA_REMATCH
 	dba BrunoGroup ; BRUNO_REMATCH
 	dba KarenGroup ; KAREN_REMATCH

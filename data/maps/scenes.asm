@@ -20,7 +20,7 @@ MapScenes::
 	scene_var ROUTE_16_GATE,                               wRoute16GateSceneID
 	scene_var ROUTE_17_ROUTE_18_GATE,                      wRoute17Route18GateSceneID
 	scene_var INDIGO_PLATEAU_POKECENTER_1F,                wIndigoPlateauPokecenter1FSceneID
-	scene_var WILLS_ROOM,                                  wWillsRoomSceneID
+	scene_var LORELEIS_ROOM,                                  wLoreleisRoomSceneID
 	scene_var KOGAS_ROOM,                                  wKogasRoomSceneID
 	scene_var BRUNOS_ROOM,                                 wBrunosRoomSceneID
 	scene_var KARENS_ROOM,                                 wKarensRoomSceneID

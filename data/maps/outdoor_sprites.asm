@@ -400,12 +400,10 @@ SilverGroupSprites:
 ; - NURSE and OLD_LINK_RECEPTIONIST removed: both are only used by Pokecenter
 ;   1F maps, which are indoor and load their own sprites via AddIndoorSprites.
 ;   Frees 24 tiles, so bank 0 now sits at 104/128.
-; - No reorder needed: Route 28 has no object events and Silver Cave Outside
-;   only uses AGATHA and LORELEI, which are already first among the walkers and
-;   so keep VRAM bank 1. (Both are SPRITEMOVEDATA_STANDING_DOWN anyway.)
+; - Route 28 and Silver Cave Outside have no object events.
 	db SPRITE_SUICUNE
-	db SPRITE_AGATHA ; Silver Cave Outside
-	db SPRITE_LORELEI ; Silver Cave Outside
+	db SPRITE_NONE ; former Mt. Silver Agatha slot
+	db SPRITE_NONE ; former Mt. Silver Lorelei slot
 	db SPRITE_POKEDEX
 	db SPRITE_WILL
 	db SPRITE_KAREN

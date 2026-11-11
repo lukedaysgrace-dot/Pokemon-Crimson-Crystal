@@ -104,7 +104,7 @@ TrainerClassStatExp:
 	dw  5000 ; COSPLAYER        ; 17 pts, +10 @L63 / +14 @L84
 	dw  4096 ; NINJA            ; 16 pts, +11 @L74 / +12 @L77
 	dw 43264 ; AGATHA           ; 52 pts, +46 @L90
-	dw 43264 ; LORELEI          ; 52 pts, +47 @L91
+	dw 24336 ; LORELEI          ; League first challenge
 	dw 46656 ; RED2             ; 54 pts, +54 @L100
 	dw 46656 ; BLUE_CLOAK       ; 54 pts, +53 @L99
 	dw 46656 ; GREEN            ; 54 pts, +52 @L98
@@ -121,7 +121,7 @@ TrainerClassStatExp:
 	dw 44944 ; JASMINE_REMATCH  ; 53 pts, +49 @L94
 	dw 44944 ; PRYCE_REMATCH    ; 53 pts, +50 @L95
 	dw 44944 ; CLAIR_REMATCH    ; 53 pts, +50 @L95
-	dw 44944 ; WILL_REMATCH     ; 53 pts, +50 @L96
+	dw 46656 ; LORELEI_REMATCH  ; League rematch, matching Karen
 	dw 46656 ; KOGA_REMATCH     ; 54 pts, +51 @L96
 	dw 46656 ; BRUNO_REMATCH    ; 54 pts, +52 @L97
 	dw 46656 ; KAREN_REMATCH    ; 54 pts, +52 @L97
