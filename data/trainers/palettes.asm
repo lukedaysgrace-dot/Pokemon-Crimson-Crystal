@@ -110,7 +110,7 @@ INCBIN "gfx/trainers/chuck.gbcpal", middle_colors ; CHUCK_REMATCH
 INCBIN "gfx/trainers/jasmine.gbcpal", middle_colors ; JASMINE_REMATCH
 INCBIN "gfx/trainers/pryce.gbcpal", middle_colors ; PRYCE_REMATCH
 INCBIN "gfx/trainers/clair.gbcpal", middle_colors ; CLAIR_REMATCH
-INCBIN "gfx/trainers/will.gbcpal", middle_colors ; WILL_REMATCH
+INCBIN "gfx/trainers/lorelei.gbcpal", middle_colors ; LORELEI_REMATCH
 INCBIN "gfx/trainers/koga.gbcpal", middle_colors ; KOGA_REMATCH
 INCBIN "gfx/trainers/bruno.gbcpal", middle_colors ; BRUNO_REMATCH
 INCBIN "gfx/trainers/karen.gbcpal", middle_colors ; KAREN_REMATCH

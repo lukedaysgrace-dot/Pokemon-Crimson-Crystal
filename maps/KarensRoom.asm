@@ -132,8 +132,8 @@ KarenScript_KarenDefeatText:
 	line "You understand"
 	cont "what's important."
 
-	para "Go on--the CHAM-"
-	line "PION is waiting."
+	para "Go on--your next"
+	line "challenge awaits."
 	done
 
 KarensRoom_MapEvents:
@@ -142,8 +142,8 @@ KarensRoom_MapEvents:
 	db 4 ; warp events
 	warp_event  4, 17, BRUNOS_ROOM, 3
 	warp_event  5, 17, BRUNOS_ROOM, 4
-	warp_event  4,  2, LANCES_ROOM, 1
-	warp_event  5,  2, LANCES_ROOM, 2
+	warp_event  4,  2, LORELEIS_ROOM, 1
+	warp_event  5,  2, LORELEIS_ROOM, 2
 
 	db 0 ; coord events
 

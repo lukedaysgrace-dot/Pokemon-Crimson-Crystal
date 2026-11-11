@@ -7,16 +7,7 @@
 SilverCaveRoom1_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
-	callback MAPCALLBACK_NEWMAP, .HideAgathaLorelei
-
-.HideAgathaLorelei:
-	checkevent EVENT_BEAT_LORELEI
-	iffalse .Done
-	setevent EVENT_SILVER_CAVE_OUTSIDE_AGATHA
-	setevent EVENT_SILVER_CAVE_OUTSIDE_LORELEI
-.Done:
-	return
+	db 0 ; callbacks
 
 SilverCaveRoom1MaxElixer:
 	itemball MAX_ELIXER

@@ -13,7 +13,7 @@ GymLeaders:
 	db JASMINE
 	db CHUCK
 	db CLAIR
-	db WILL
+	db LORELEI
 	db BRUNO
 	db KAREN
 	db KOGA
@@ -26,15 +26,13 @@ GymLeaders:
 	db JASMINE_REMATCH
 	db PRYCE_REMATCH
 	db CLAIR_REMATCH
-	db WILL_REMATCH
+	db LORELEI_REMATCH
 	db KOGA_REMATCH
 	db BRUNO_REMATCH
 	db KAREN_REMATCH
 	db CHAMPION_REMATCH
 	db RED
 	db RED2
-	db AGATHA
-	db LORELEI
 ; fallthrough
 KantoGymLeaders:
 	db BROCK
