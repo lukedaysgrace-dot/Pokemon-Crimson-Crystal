@@ -221,6 +221,23 @@ ItemTableGarbageCollection:
 	; the next collection (every save runs one) frees the ID under it.
 	; Bytes past the $ff terminator only over-protect; $ff is never a slot.
 	___conversion_bitmap_check_structs wKeyItems, 1, MAX_KEY_ITEMS, .set_bit
+	; Recycle/Harvest history outlives the held item it names: a consumed
+	; Power Herb, White Herb or Throat Spray (temporary IDs) is referenced
+	; by nothing else, so a mid-battle collection would free the ID under
+	; it. Only meaningful during a battle; stale bytes afterwards must not
+	; pin slots. Six bytes per side keeps the unrolled form, which needs no
+	; WRAM1 loop counter while bank 2 is mapped.
+	ld a, [wBattleMode]
+	and a
+	jr z, .no_battle_item_history
+	ld a, BANK(wPlayerRecycleItems)
+	ldh [rSVBK], a
+	___conversion_bitmap_check_structs wPlayerRecycleItems, 1, PARTY_LENGTH, .set_bit
+	___conversion_bitmap_check_structs wEnemyRecycleItems, 1, PARTY_LENGTH, .set_bit
+	___conversion_bitmap_check_values .set_bit, wPlayerConsumedItem, wEnemyConsumedItem
+	ld a, 1
+	ldh [rSVBK], a
+.no_battle_item_history
 IF DEF(DEBUG_BATTLE)
 	ld a, BANK(wDebugPartyBackedUp)
 	ldh [rSVBK], a
