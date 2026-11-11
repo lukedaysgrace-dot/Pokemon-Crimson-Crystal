@@ -121,7 +121,10 @@ CheckHMOwnedForMove:
 	ret nc
 	ld c, a
 	push bc
-	call GetTMHMNumber
+	; HMFieldMoveTable holds true item indexes, not runtime IDs (TM/HM
+	; runtime IDs are dynamic), so GetTMHMNumber must not translate them.
+	assert HM01 + NUM_HMS <= $100
+	sub TM01 - 1
 	ld c, a
 	call CheckTMHM
 	pop bc

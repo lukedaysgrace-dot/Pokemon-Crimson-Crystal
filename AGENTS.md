@@ -128,6 +128,11 @@ Read this before changing the game. Keep it up to date when something here chang
   `GetItemIDFromIndex` / `GetItemIndexFromID` (home/16bit.asm).
 - Items below TM01 have fixed runtime IDs equal to their index, so `cp SOME_ITEM` on a
   runtime ID is only valid for those. Items at $101 and up must be compared as 16-bit indexes.
+- TM/HM runtime IDs are dynamic too. `HMFieldMoveTable` and
+  `HMEventOwnershipTable` (engine/events/field_hm_interaction.asm) hold true
+  item indexes, so `CheckHMOwnedForMove` derives the TM/HM number directly;
+  never pass those bytes to `GetTMHMNumber`, which expects a runtime ID.
+  `tools/test_capture_field_gates.py` covers pocket and story ownership.
 - `hiddenitem` is `dw flag, dw item` (4 bytes). Mart prices: `wMartItem1BCD`..`wMartItem10BCD`
   continue into `wMartExtraPrices` (14 items max).
 - Save format version is 5.

@@ -87,14 +87,18 @@ def main():
 
         # The complete visible regional and alphabetical tables each contain
         # unique visible entries; the extra internal record is not an extra catch.
-        visible_count = con.species['NUM_POKEMON'] - 1
+        # AEGISLASH_BLADE and ZANGOOSE_SCARRED are internal forms without
+        # Dex entries of their own.
+        hidden_forms = ['AEGISLASH_BLADE', 'ZANGOOSE_SCARRED']
+        visible_count = con.species['NUM_POKEMON'] - len(hidden_forms)
         for table in ['NewPokedexOrder', 'AlphabeticalPokedexOrder']:
             bank, address = h.sym[table]
             offset = bank * 0x4000 + (address & 0x3fff)
             raw = rom.read_bytes()[offset:offset + visible_count * 2]
             indexes = [int.from_bytes(raw[i:i+2], 'little') for i in range(0, len(raw), 2)]
             check(len(set(indexes)) == visible_count, table + ': unique entries')
-            check(con.species_index('AEGISLASH_BLADE') not in indexes, table + ': hidden form')
+            for form in hidden_forms:
+                check(con.species_index(form) not in indexes, table + ': hidden form ' + form)
 
         # Normalize old Espathra seen/caught flags without losing Sableye's.
         for table in ['wPokedexSeen', 'wPokedexCaught']:
