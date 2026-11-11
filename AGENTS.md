@@ -128,6 +128,9 @@ Read this before changing the game. Keep it up to date when something here chang
   `GetItemIDFromIndex` / `GetItemIndexFromID` (home/16bit.asm).
 - Items below TM01 have fixed runtime IDs equal to their index, so `cp SOME_ITEM` on a
   runtime ID is only valid for those. Items at $101 and up must be compared as 16-bit indexes.
+- The bank-2 battle history bytes (`wPlayerRecycleItems`, `wEnemyRecycleItems`,
+  `w*ConsumedItem`) are collector roots while `wBattleMode` is nonzero, so a
+  consumed Power Herb/White Herb/Throat Spray stays valid for Recycle.
 - TM/HM runtime IDs are dynamic too. `HMFieldMoveTable` and
   `HMEventOwnershipTable` (engine/events/field_hm_interaction.asm) hold true
   item indexes, so `CheckHMOwnedForMove` derives the TM/HM number directly;
