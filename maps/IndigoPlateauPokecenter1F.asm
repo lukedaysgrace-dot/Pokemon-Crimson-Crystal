@@ -19,14 +19,14 @@ IndigoPlateauPokecenter1F_MapScripts:
 
 .PrepareElite4:
 	setscene SCENE_DEFAULT
-	setmapscene WILLS_ROOM, SCENE_DEFAULT
+	setmapscene LORELEIS_ROOM, SCENE_DEFAULT
 	setmapscene KOGAS_ROOM, SCENE_DEFAULT
 	setmapscene BRUNOS_ROOM, SCENE_DEFAULT
 	setmapscene KARENS_ROOM, SCENE_DEFAULT
 	setmapscene LANCES_ROOM, SCENE_DEFAULT
 	setmapscene HALL_OF_FAME, SCENE_DEFAULT
-	clearevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
-	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
+	clearevent EVENT_LORELEIS_ROOM_ENTRANCE_CLOSED
+	clearevent EVENT_LORELEIS_ROOM_EXIT_OPEN
 	clearevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_KOGAS_ROOM_EXIT_OPEN
 	clearevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
@@ -35,7 +35,7 @@ IndigoPlateauPokecenter1F_MapScripts:
 	clearevent EVENT_KARENS_ROOM_EXIT_OPEN
 	clearevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_LANCES_ROOM_EXIT_OPEN
-	clearevent EVENT_BEAT_ELITE_4_WILL
+	clearevent EVENT_BEAT_ELITE_4_LORELEI
 	clearevent EVENT_BEAT_ELITE_4_KOGA
 	clearevent EVENT_BEAT_ELITE_4_BRUNO
 	clearevent EVENT_BEAT_ELITE_4_KAREN
@@ -47,7 +47,7 @@ PlateauRivalBattle1:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse PlateauRivalScriptDone
 ; Silver only shows up once the Elite Four rematch is live, so this is the last
-; fight before Will's room reopens.
+; fight before Koga's room reopens.
 	farscall CheckJohtoRematchesScript
 	iffalse PlateauRivalScriptDone
 	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
@@ -67,7 +67,7 @@ PlateauRivalBattle2:
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse PlateauRivalScriptDone
 ; Silver only shows up once the Elite Four rematch is live, so this is the last
-; fight before Will's room reopens.
+; fight before Koga's room reopens.
 	farscall CheckJohtoRematchesScript
 	iffalse PlateauRivalScriptDone
 	checkevent EVENT_BEAT_RIVAL_AT_INDIGO_PLATEAU
@@ -363,7 +363,7 @@ IndigoPlateauPokecenter1F_MapEvents:
 	warp_event  5, 13, ROUTE_23, 1
 	warp_event  6, 13, ROUTE_23, 2
 	warp_event  0, 13, POKECENTER_2F, 1
-	warp_event 14,  3, WILLS_ROOM, 1
+	warp_event 14,  3, KOGAS_ROOM, 2
 
 	db 3 ; coord events
 	coord_event 14,  4, -1, IndigoPlateauBadgeCheck

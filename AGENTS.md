@@ -128,6 +128,14 @@ Read this before changing the game. Keep it up to date when something here chang
   `GetItemIDFromIndex` / `GetItemIndexFromID` (home/16bit.asm).
 - Items below TM01 have fixed runtime IDs equal to their index, so `cp SOME_ITEM` on a
   runtime ID is only valid for those. Items at $101 and up must be compared as 16-bit indexes.
+- The bank-2 battle history bytes (`wPlayerRecycleItems`, `wEnemyRecycleItems`,
+  `w*ConsumedItem`) are collector roots while `wBattleMode` is nonzero, so a
+  consumed Power Herb/White Herb/Throat Spray stays valid for Recycle.
+- TM/HM runtime IDs are dynamic too. `HMFieldMoveTable` and
+  `HMEventOwnershipTable` (engine/events/field_hm_interaction.asm) hold true
+  item indexes, so `CheckHMOwnedForMove` derives the TM/HM number directly;
+  never pass those bytes to `GetTMHMNumber`, which expects a runtime ID.
+  `tools/test_capture_field_gates.py` covers pocket and story ownership.
 - `hiddenitem` is `dw flag, dw item` (4 bytes). Mart prices: `wMartItem1BCD`..`wMartItem10BCD`
   continue into `wMartExtraPrices` (14 items max).
 - Save format version is 5.
@@ -388,6 +396,27 @@ Read this before changing the game. Keep it up to date when something here chang
   entry/return in both typing modes, including exact restored picture crops.
 
 ## Intentional choices: do not "fix"
+- The League order is Koga, Bruno, Karen, Lorelei, then Champion Lance.
+  Lorelei occupies the renamed `LoreleisRoom` (Will's old map ID); its lower
+  entrance uses the two-column passage block. Map IDs, scene bytes and event-bit
+  offsets remain stable. The former Will rematch class slot is `LORELEI_REMATCH`.
+  Lorelei's first/rematch teams are levels 69-72 / 84-86 with League Stat EXP.
+  Both teams are ordered Alolan Ninetales (Snow Warning), Cloyster (Skill Link),
+  Glaceon (Refrigerate), Froslass (Levitate), Mesmeria (Bad Dreams), Lapras
+  (Water Absorb). Ninetales carries Icy Rock with Reflect/Encore support;
+  Cloyster carries Focus Sash and Shell Smash with Icicle Spear/Rock Blast/
+  Liquidation. Mesmeria uses Dream Eater instead of Nasty Plot on both teams;
+  Lovely Kiss has an intentional global accuracy of 80%. Keep Mesmeria's
+  Lovely Kiss/Dream Eater and Glaceon's Hyper Voice paired
+  with their abilities. Lapras is the ace; first/rematch level ranges stay fixed.
+  Trainer party held-item fields are still single-byte indexes, so do not put
+  extended items such as White Herb directly into their `db` item fields.
+  Will has no active League encounter. Agatha and Lorelei's Mt. Silver actors,
+  battles, healing sequence, dialogue and cleanup callback are removed; their
+  old event bits remain reserved. Run `tools/test_league_progression.py` on both
+  ROMs for room connections, team selection, repeat challenges and progression.
+- Archer's displayed trainer class is `UNDERBOSS`, giving `UNDERBOSS ARCHER`
+  in battle. His `ARCHER` class ID and both party IDs stay unchanged.
 - Crimson/Enhanced Gallade transfers 25 Sp. Atk into Speed (40/105);
   Gardevoir transfers 25 Attack into Speed (40/105). Both retain 518 BST.
   Original stats retain 65 in the respective attacking stat and 80 Speed.

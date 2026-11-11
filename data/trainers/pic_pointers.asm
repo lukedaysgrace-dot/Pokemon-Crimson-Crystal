@@ -97,7 +97,7 @@ TrainerPicPointers::
 	dba JasminePic ; JASMINE_REMATCH
 	dba PrycePic ; PRYCE_REMATCH
 	dba ClairPic ; CLAIR_REMATCH
-	dba WillPic ; WILL_REMATCH
+	dba LoreleiPic ; LORELEI_REMATCH
 	dba KogaPic ; KOGA_REMATCH
 	dba BrunoPic ; BRUNO_REMATCH
 	dba KarenPic ; KAREN_REMATCH

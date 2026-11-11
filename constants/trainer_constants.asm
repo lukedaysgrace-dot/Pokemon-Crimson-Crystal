@@ -761,6 +761,7 @@ CRYSTAL2_4_TOTODILE EQU CRYSTAL_4_TOTODILE
 
 	trainerclass LORELEI ; 4f
 	const LORELEI1
+	const LORELEI2
 
 	trainerclass RED2 ; 50
 	const RED2_1
@@ -845,8 +846,8 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 	trainerclass CLAIR_REMATCH
 ; Rematch team for CLAIR (party index CLAIR2 in ClairGroup).
 
-	trainerclass WILL_REMATCH
-; Rematch team for WILL (party index WILL2 in WillGroup).
+	trainerclass LORELEI_REMATCH
+; Rematch team for LORELEI (party index LORELEI2 in LoreleiGroup).
 
 	trainerclass KOGA_REMATCH
 ; Rematch team for KOGA (party index KOGA2 in KogaGroup).

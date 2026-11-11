@@ -6,7 +6,7 @@ PnPAlwaysHidden: MACRO
 	db RIVAL3
 	db PETREL_DIRECTOR
 	db AGATHA
-	db LORELEI
+	db WILL ; retired League member
 	db RED2
 	db BLUE_CLOAK
 	db GREEN
@@ -18,7 +18,7 @@ PnPAlwaysHidden: MACRO
 	db JASMINE_REMATCH
 	db PRYCE_REMATCH
 	db CLAIR_REMATCH
-	db WILL_REMATCH
+	db LORELEI_REMATCH
 	db KOGA_REMATCH
 	db BRUNO_REMATCH
 	db KAREN_REMATCH
@@ -32,7 +32,7 @@ ENDM
 
 PnP_HiddenPeople:
 	PnPAlwaysHidden
-	db WILL
+	db LORELEI
 	db BRUNO
 	db KAREN
 	db KOGA
@@ -49,7 +49,7 @@ PnP_HiddenPeople:
 
 PnP_HiddenPeople_Kanto:
 	PnPAlwaysHidden
-	db WILL
+	db LORELEI
 	db BRUNO
 	db KAREN
 	db KOGA

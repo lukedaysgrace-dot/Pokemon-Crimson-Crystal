@@ -72,7 +72,7 @@ TrainerClassNames::
 	db "EXECUTIVE@"
 	db "EXECUTIVE@"
 	db "EXECUTIVE@"
-	db "EXECUTIVE@"
+	db "UNDERBOSS@" ; ARCHER
 	db "EXECUTIVE@"
 	db "HEX MANIAC@"
 	db "COSPLAYER@"

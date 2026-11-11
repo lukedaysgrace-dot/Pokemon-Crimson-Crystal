@@ -2811,7 +2811,7 @@ wSaffronMagnetTrainStationSceneID::               db ; d97b
 wRoute16GateSceneID::                             db ; d97c
 wRoute17Route18GateSceneID::                      db ; d97d
 wIndigoPlateauPokecenter1FSceneID::               db ; d97e
-wWillsRoomSceneID::                               db ; d97f
+wLoreleisRoomSceneID::                               db ; d97f
 wKogasRoomSceneID::                               db ; d980
 wBrunosRoomSceneID::                              db ; d981
 wKarensRoomSceneID::                              db ; d982

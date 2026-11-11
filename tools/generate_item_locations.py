@@ -399,8 +399,8 @@ def generate(repo, builder=None, write=True):
                     required = {'FALKNER2': 'Red', 'BUGSY2': 'Falkner’s rematch', 'WHITNEY2': 'Bugsy’s rematch', 'MORTY2': 'Whitney’s rematch',
                                 'CHUCK2': 'Morty’s rematch', 'JASMINE2': 'Chuck’s rematch', 'PRYCE2': 'Jasmine’s rematch', 'CLAIR2': 'Pryce’s rematch'}
                     detail += f' One-time gym rematch after defeating {required[trainer_id]}.'
-                elif trainer_id in {'WILL2', 'KOGA2', 'BRUNO2', 'KAREN2', 'LANCE2'}:
-                    detail += ' Elite Four / Champion rematch team after defeating Clair’s rematch.'
+                elif trainer_id in {'KOGA2', 'BRUNO2', 'KAREN2', 'LORELEI2', 'LANCE2'}:
+                    detail += ' Elite Four / Champion rematch team after defeating all eight Johto gym rematches.'
                 add(item, mapname(stem), 'Trainer item', detail, 'data/trainers/parties.asm', number,
                     trainer_class=trainer_class, trainer_id=trainer_id, species=species,
                     map_source=maps[stem].relative_to(repo).as_posix())
