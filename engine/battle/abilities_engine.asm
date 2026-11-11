@@ -750,6 +750,11 @@ RunPendingTraceUpdatesBoth:
 ImposterAbility:
 ; Banner briefly, then Transform (wave deform + sprite swap).
 ; BattleCommand_Transform plays the anim itself; skip TransformedText.
+	; Imposter simply does not activate when the copy is impossible (an
+	; active Illusion, a transformed or semi-invulnerable target, or one
+	; behind a Substitute): no banner and no "But it failed!".
+	farcall CheckTransformFails
+	ret nz
 	call ShowAbilityBannerBrief
 	; $ff: never a move animation ID (MOVE_TABLE_MINIMUM_RESERVED_INDEX), so
 	; it can't be mistaken for the one usedmovetext leaves here
@@ -4625,6 +4630,21 @@ GetUserMaxHPFraction:
 
 RunContactAbilitiesHook::
 ; Runs after damage is applied. Turn = attacker.
+; effectchance has already rolled this hit's secondary effect, and the
+; command that applies it (paralyzetarget, flinchtarget, a stat drop, ...)
+; runs after checkfaint. The reactions below reset wEffectFailed so their own
+; capped stat changes cannot leak, which also erased a failed roll: any hit
+; that triggered Stamina, Weak Armor, Justified, Rattled, Toxic Debris,
+; Tangling Hair, a Weakness Policy or an Illusion reveal then applied its
+; secondary effect every time. Keep the roll's result across the whole hook.
+	ld a, [wEffectFailed]
+	push af
+	call RunContactAbilitiesHookBody
+	pop af
+	ld [wEffectFailed], a
+	ret
+
+RunContactAbilitiesHookBody:
 	; deferred Disguise reveal: now that the move animation has played,
 	; bust the disguise, swap the sprite and print the texts
 	ld hl, wDisguiseBusted + 1
@@ -6805,6 +6825,11 @@ TransformedAbilityStart::
 ; itself (a switch-in-only trigger). After the move, live holders' HP
 ; items update (Klutz/Unnerve/Ripen may have come or gone); Imposter's
 ; own entry processing already does that.
+	; A Neutralizing Gas holder that just transformed no longer has Gas.
+	; End the field suppression now, as a switch or faint would, so the
+	; foe's blocked entry ability (Intimidate, weather, ...) resumes at once
+	; instead of waiting for the next entry. No-op while Gas is still out.
+	call CheckNeutralizingGasEnded
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wTransformedAbilityPending)

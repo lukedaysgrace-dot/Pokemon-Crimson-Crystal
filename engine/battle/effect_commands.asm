@@ -5388,6 +5388,17 @@ SetBattleDraw:
 BattleCommand_ForceSwitch:
 ; forceswitch
 
+	; Circle Throw / Dragon Tail only drag out a target they actually hit.
+	; A hit absorbed (or broken) by its Substitute leaves it in place.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_CIRCLE_THROW
+	jr nz, .not_absorbed_by_substitute
+	ld a, [wHitSubstitute]
+	and a
+	ret nz
+.not_absorbed_by_substitute
+
 	ld a, [wBattleType]
 	cp BATTLETYPE_SHINY
 	jp z, .fail
@@ -5444,14 +5455,9 @@ BattleCommand_ForceSwitch:
 .trainer
 ; FindAliveEnemyMons lives in the "Enemy Trainers" bank (engine/battle/ai/switch.asm)
 	farcall FindAliveEnemyMons
-	jr c, .switch_fail
-	ld a, [wDisguiseBusted + 1]
-	bit 6, a
-	jr nz, .enemy_switch_ready
-	ld a, [wEnemyGoesFirst]
-	and a
-	jr z, .switch_fail
-.enemy_switch_ready
+	jp c, .fail
+	; Gen V+: phazing works even when its user acts first. The replacement
+	; then loses the action its predecessor had queued (see below).
 	call UpdateEnemyMonInParty
 	ld a, $1
 	ld [wKickCounter], a
@@ -5500,10 +5506,20 @@ BattleCommand_ForceSwitch:
 	; Cloud Nine refresh...). ForceEnemySwitch left the turn on the enemy
 	; (incoming) side via ShowSetEnemyMonAndSendOutAnimation's SetEnemyTurn.
 	ld hl, SpikesDamageAndEntryAbilities
-	jp CallBattleCore
-
-.switch_fail
-	jp .fail
+	call CallBattleCore
+	; If the player acted first, the dragged-in mon must not carry out the
+	; move its predecessor selected: move $ff ends that turn in CheckTurn.
+	; A reflected phaze (Magic Bounce guard) drags the original user, whose
+	; action is already running, so leave its move alone.
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	ret nz
+	ld a, [wEnemyGoesFirst]
+	and a
+	ret nz
+	ld a, $ff
+	ld [wCurEnemyMove], a
+	ret
 
 .force_player_switch
 	ld a, [wAttackMissed]
@@ -5550,14 +5566,6 @@ BattleCommand_ForceSwitch:
 	call CheckPlayerHasMonToSwitchTo
 	jp c, .fail
 
-	ld a, [wDisguiseBusted + 1]
-	bit 6, a
-	jr nz, .player_switch_ready
-	ld a, [wEnemyGoesFirst]
-	cp $1
-	jr z, .switch_fail
-
-.player_switch_ready
 	call UpdateBattleMonInParty
 	ld a, $1
 	ld [wKickCounter], a
@@ -5609,7 +5617,17 @@ BattleCommand_ForceSwitch:
 	; SendOutPlayerMon already ran SetPlayerTurn, so the turn holder is the
 	; incoming side here, matching every other entry-ability site.
 	ld hl, SpikesDamageAndEntryAbilities
-	jp CallBattleCore
+	call CallBattleCore
+	; Enemy acted first: cancel the action the player's previous mon queued.
+	ld a, [wDisguiseBusted + 1]
+	bit 6, a
+	ret nz
+	ld a, [wEnemyGoesFirst]
+	and a
+	ret z
+	ld a, $ff
+	ld [wCurPlayerMove], a
+	ret
 
 .fail
 	call BattleCommand_LowerSub
@@ -6451,6 +6469,13 @@ BattleCommand_Heal:
 	ld bc, REST
 	call CompareMove
 	jr nz, .not_rest
+
+	; Rest called by Sleep Talk fails: the user is already asleep (Gen III+).
+	; It must not refill HP or restart the sleep counter.
+	ld a, BATTLE_VARS_STATUS
+	call GetBattleVar
+	and SLP
+	jp nz, BattleEffect_ButItFailed
 
 	; Rest fails for Insomnia / Vital Spirit users (canon)
 	farcall UserCantRest
