@@ -4251,13 +4251,15 @@ BillsPC_MustSaveToContinue:
 	done
 
 BillsPC_SwapPartyMonMail:
-; Swaps the Mail data of party slots d and e (1-based).
+; Swaps the Mail data of party slots c and e (1-based): the destination and
+; source of an item move within the party. (d is the source's box id, 0 here;
+; indexing with it reached past sPartyMail into the player/rival names.)
 	push hl
 	push de
 	push bc
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
-	ld a, d
+	ld a, c
 	dec a
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH
