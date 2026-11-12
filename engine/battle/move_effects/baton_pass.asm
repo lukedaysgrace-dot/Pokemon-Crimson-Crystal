@@ -168,10 +168,18 @@ ResetBatonPassStatus:
 	call GetBattleVarAddr
 	res SUBSTATUS_TRANSFORMED, [hl]
 	res SUBSTATUS_ENCORED, [hl]
-	; Modern rule: bad poison is not passed by Baton Pass. (If the incoming
-	; mon is itself badly poisoned, its own slot bit re-arms toxic on its
-	; next regular switch-in; see ToxicRestore*_Core.)
+	; Bad poison belongs to the individual, not the pass. Entry has already
+	; restored the replacement's own poison history, so clearing the passer's
+	; flag must be followed by restoring that incoming slot again.
 	res SUBSTATUS_TOXIC, [hl]
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy_toxic
+	farcall ToxicRestorePlayer_Core
+	jr .toxic_done
+.enemy_toxic
+	farcall ToxicRestoreEnemy_Core
+.toxic_done
 
 	; New mon hasn't used a move yet.
 	ld a, BATTLE_VARS_LAST_MOVE

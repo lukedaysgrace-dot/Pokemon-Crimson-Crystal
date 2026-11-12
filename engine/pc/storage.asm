@@ -937,7 +937,10 @@ UpdateStorageBoxMonFromTemp::
 	ld a, [wTempMonSlot]
 	ld c, a
 	and a
-	ret z ; nothing loaded: report failure (nz)
+	jr nz, .loaded
+	or 1 ; nothing loaded: report failure (nz)
+	ret
+.loaded
 	ld a, [wTempMonBox]
 	ld b, a
 	and a

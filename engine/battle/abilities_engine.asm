@@ -1351,6 +1351,13 @@ AbilityPreventsSleep::
 .abilities
 	db INSOMNIA, VITAL_SPIRIT, LEAF_GUARD, -1
 
+AbilityPreventsSleepResidual::
+; Yawn's delayed sleep is not part of the originating move. The active
+; foe's Mold Breaker cannot suppress the drowsy holder's sleep immunity.
+	ld hl, AbilityPreventsSleep.abilities
+	call GetOpponentAbility
+	jr CheckStatusPrevention.got_ability
+
 AbilityPreventsParalysis::
 	ld hl, .abilities
 	jr CheckStatusPrevention
@@ -1412,6 +1419,7 @@ AbilityPreventsAttraction::
 CheckStatusPrevention:
 ; hl = -1-terminated ability list. Carry if the defender's ability matches.
 	call GetOpponentIgnorableAbility
+.got_ability
 	and a
 	ret z ; nc
 	ld b, a
@@ -5279,7 +5287,11 @@ CheckContactMoveID::
 
 PoisonTouchAbility:
 ; attacker ability: 30% to poison the defender
-	; Like other added effects, Poison Touch cannot penetrate Shield Dust.
+	; Poison Touch is not a move secondary, but both Covert Cloak and
+	; Shield Dust specifically block it. Use the effective held-item getter
+	; so a Cloak disabled by Klutz does not protect its holder.
+	farcall ModernCloakOpp_Core
+	ret z
 	call GetOpponentAbility
 	cp SHIELD_DUST
 	ret z

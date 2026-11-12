@@ -15,13 +15,21 @@ BattleCommand_Curse:
 
 	ld a, [de]
 	cp GHOST
-	jr z, .ghost
+	jp z, .ghost
 	inc de
 	ld a, [de]
 	cp GHOST
-	jr z, .ghost
+	jp z, .ghost
 
-; If no stats can be increased, don't.
+; Fail only when all three changes are capped in their actual direction.
+; Contrary reverses each one, and Speed can change even if the Attack and
+; Defense boosts are already capped.
+	push bc
+	farcall GetTrueUserAbility_b
+	ld a, b
+	pop bc
+	cp CONTRARY
+	jr z, .contrary_caps
 
 ; Attack
 	ld a, [bc]
@@ -32,7 +40,26 @@ BattleCommand_Curse:
 	inc bc
 	ld a, [bc]
 	cp MAX_STAT_LEVEL
-	jr nc, .cantraise
+	jr c, .raise
+; Speed
+	inc bc
+	ld a, [bc]
+	cp 1 ; -6
+	jp z, .cantraise
+	jr .raise
+
+.contrary_caps
+	ld a, [bc]
+	cp 1 ; -6
+	jr nz, .raise
+	inc bc
+	ld a, [bc]
+	cp 1 ; -6
+	jr nz, .raise
+	inc bc
+	ld a, [bc]
+	cp MAX_STAT_LEVEL
+	jp nc, .cantraise
 
 .raise
 
@@ -47,9 +74,8 @@ BattleCommand_Curse:
 	; savemiss scope so the deferred Speed drop is recognised as
 	; self-inflicted (no Defiant/Competitive) - audit 2026-08-28 #4
 	call BattleCommand_SaveMiss
-	ld a, SPEED
-	call LowerStat
 	call BattleCommand_SwitchTurn
+	call BattleCommand_SpeedDown
 	call BattleCommand_StatDownMessage
 	call ResetMiss
 	call BattleCommand_SwitchTurn
@@ -92,7 +118,7 @@ BattleCommand_Curse:
 
 .cantraise
 
-; Can't raise either stat.
+; None of the three stat changes can take effect.
 
 	ld b, ABILITY + 1
 	call GetStatName

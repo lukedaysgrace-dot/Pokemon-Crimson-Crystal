@@ -1109,6 +1109,11 @@ PortraitTexts:
 	db PORTRAIT_LANCE
 	dba UnknownText_0x1813c5
 	db 0
+; LoreleisRoom
+	dba LoreleiScript_LoreleiBeforeText
+	db PORTRAIT_LORELEI
+	dba LoreleiScript_LoreleiDefeatText
+	db PORTRAIT_LORELEI
 ; MahoganyGym
 	dba BoarderBradAfterBattleText
 	db 0
@@ -1669,9 +1674,6 @@ PortraitTexts:
 	db 0
 	dba SeafoamGymGuyWinText2
 	db 0
-; SilverCaveOutside
-	dba MtSilverSignText
-	db 0
 ; SilverCaveRoom3
 	dba Red.Text1
 	db PORTRAIT_RED
@@ -1993,11 +1995,6 @@ PortraitTexts:
 	db 0
 	dba ViridianGymNotReadyText
 	db PORTRAIT_BLUE
-; LoreleisRoom
-	dba LoreleiScript_LoreleiBeforeText
-	db PORTRAIT_LORELEI
-	dba LoreleiScript_LoreleiDefeatText
-	db PORTRAIT_LORELEI
 ; Shared dialogue printed by specials or farwritetext
 	dba ExecutiveM4BeatenText
 	db PORTRAIT_PETREL
