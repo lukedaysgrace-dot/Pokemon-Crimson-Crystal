@@ -83,7 +83,8 @@ InitRecycleItems_Core:
 	ld a, BANK(wPlayerRecycleItems)
 	ldh [rSVBK], a
 	ld hl, wPlayerRecycleItems
-	ld bc, PARTY_LENGTH * 2
+	assert wPlayerRecycleItems + PARTY_LENGTH * 2 == wPlayerKnockedOffItems
+	ld bc, PARTY_LENGTH * 3 ; both Recycle arrays and wPlayerKnockedOffItems
 	xor a
 	call ByteFill
 	pop af

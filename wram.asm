@@ -3261,6 +3261,10 @@ wEnemyConsumedItem:: db
 ; Recycle remembers consumption per party member across field changes.
 wPlayerRecycleItems:: ds PARTY_LENGTH
 wEnemyRecycleItems:: ds PARTY_LENGTH
+; Items an opponent's Knock Off removed from the player's party members.
+; They cannot be used again this battle; ExitBattle hands them back. Must
+; directly follow the Recycle arrays (cleared together at battle start).
+wPlayerKnockedOffItems:: ds PARTY_LENGTH
 ; Per-party-slot once-per-battle state for Supersweet Syrup.
 wPlayerSyrupUsedFlags:: db
 wEnemySyrupUsedFlags:: db
