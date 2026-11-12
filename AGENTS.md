@@ -420,6 +420,24 @@ Read this before changing the game. Keep it up to date when something here chang
   `python3 tools/record_league_rooms.py` on both ROMs; see
   `docs/elite-four-chambers.md`.
 
+## Animated trainer pictures
+- `TrainerPicAnimations` (`engine/battle/trainer_pic_anim.asm`) lists classes
+  whose battle picture animates; CHAMPION and CHAMPION_REMATCH share Lance's.
+  The source is a vertical 56-pixel-wide strip
+  (`gfx/trainers/animated/champion/front.png`, 6 frames, built with
+  `rgbgfx -h`, so each 8-pixel column stores every frame's 7 tiles in turn)
+  plus `anim.asm` (`frame index, duration` ... `endanim`). Frame 0 must equal the
+  static `gfx/trainers/champion.png`, which every other picture user loads.
+- The animation plays after the intro shine (before "wants to battle") and after
+  the defeat slide-in, and is skipped with battle animations off. Each step
+  gathers its 49 tiles into `wDecompressScratch` and queues one VBlank GDMA to
+  bank-0 vTiles2 $00-$30. Tile maps, attributes and palettes never change, so the
+  last frame is held through text and slide-outs like an ordinary static pic.
+- `python3 tools/record_lance_trainer_anim.py` stages a private New Game at
+  Lance's room, walks to him with buttons only, matches every recorded frame
+  against the strip and checks the scripted order/durations. The SameBoy video
+  with game audio and a native frame sheet go in `_artifacts/lance-trainer-anim/`.
+
 ## Intentional choices: do not "fix"
 - The League order is Koga, Bruno, Karen, Lorelei, then Champion Lance.
   Lorelei occupies the renamed `LoreleisRoom` (Will's old map ID); its lower

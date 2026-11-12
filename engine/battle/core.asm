@@ -7009,7 +7009,7 @@ BattleWinSlideInEnemyTrainerFrontpic:
 	inc c
 	ld a, c
 	cp 7
-	ret z
+	jr z, .animate
 	xor a
 	ldh [hBGMapMode], a
 	ldh [hBGMapThird], a
@@ -7034,6 +7034,10 @@ BattleWinSlideInEnemyTrainerFrontpic:
 	pop bc
 	dec hl
 	jr .outer_loop
+
+.animate
+	farcall AnimateTrainerFrontpic
+	ret
 
 .CopyColumn:
 	push hl
@@ -9438,6 +9442,8 @@ BattleStartMessage:
 
 	ld c, 20
 	call DelayFrames
+
+	farcall AnimateTrainerFrontpic
 
 	farcall Battle_GetTrainerName
 
