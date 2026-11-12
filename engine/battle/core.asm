@@ -8752,6 +8752,8 @@ Unreferenced_Function3f662:
 ExitBattle:
 	; After all combat/party HP synchronization, before evolution or healing.
 	farcall RecalculatePartyStatExpAfterBattle
+	; Knock Off only removes the player's item for the battle.
+	farcall RestoreKnockedOffItems_Core
 	call .HandleEndOfBattle
 	call CleanUpBattleRAM
 	ret

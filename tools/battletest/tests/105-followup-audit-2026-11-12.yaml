@@ -1,0 +1,499 @@
+# Follow-up review of the November 12 audit.
+#
+# Part 1 covers a defect found in this pass: Yawn's delayed sleep and Taunt's
+# wear-off message ran for a battler that had already fainted earlier in the
+# same end-of-turn sequence (weather damage here). Fainted slots stay empty
+# until every residual phase has finished, so the handlers must skip them, as
+# Wish already does.
+#
+# Part 2 adds behavioral assertions the first audit's cases did not make for
+# its own fixes: recalculated battle stats, protection bypass on self-drops,
+# every PP-Up value, Baton Pass poison controls and guard-counter resets.
+
+# ---- Part 1: pending Yawn / Taunt and a slot that fainted this turn --------
+
+- name: "Followup 1112: pending Yawn skips a player mon that fainted to weather"
+  player: {species: MAGIKARP, level: 50, hp: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  player2: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerYawnCount: 1}
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.species == 'SANDSLASH'"
+    - "player.status == 0"
+    - "wram16('wPartyMon1HP') == 0"
+    - "wram('wPartyMon1Status') == 0"
+    - "wram('wPlayerYawnCount') == 0"
+    - "not textbox_seen('FellAsleepText')"
+
+- name: "Followup 1112: pending Yawn skips an enemy mon that fainted to weather"
+  player: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MAGIKARP, level: 50, hp: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy2: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wEnemyYawnCount: 1}
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.species == 'SANDSLASH'"
+    - "enemy.status == 0"
+    - "wram16('wOTPartyMon1HP') == 0"
+    - "wram('wOTPartyMon1Status') == 0"
+    - "wram('wEnemyYawnCount') == 0"
+    - "not textbox_seen('FellAsleepText')"
+
+- name: "Followup 1112 control: a living drowsy player mon still falls asleep in weather"
+  player: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerYawnCount: 1}
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - "(player.status & 7) != 0"
+    - "textbox_seen('FellAsleepText')"
+
+- name: "Followup 1112 control: a living drowsy enemy mon still falls asleep in weather"
+  player: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wEnemyYawnCount: 1}
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - "(enemy.status & 7) != 0"
+    - "textbox_seen('FellAsleepText')"
+
+# The sleep roll must not be drawn for the empty slot either: the seeded
+# stream ends the turn at the same position as a battle with no Yawn pending.
+- id: followup_yawn_rng_control
+  name: "Followup 1112 control: weather faint without a pending Yawn"
+  player: {species: MAGIKARP, level: 50, hp: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  player2: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  weather: sandstorm
+  rng: seeded
+  rng_value: 7
+  turns: 1
+  assert:
+    - "player.species == 'SANDSLASH'"
+
+- name: "Followup 1112: a fainted drowsy mon consumes no sleep roll"
+  player: {species: MAGIKARP, level: 50, hp: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  player2: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerYawnCount: 1}
+  weather: sandstorm
+  rng: seeded
+  rng_value: 7
+  turns: 1
+  assert:
+    - "player.species == 'SANDSLASH'"
+    - "wram('wLinkBattleRNCount') == result('followup_yawn_rng_control')['rng_count']"
+
+- name: "Followup 1112: Taunt expires silently on a player mon that fainted to weather"
+  player: {species: MAGIKARP, level: 50, hp: 2, ability: NO_ABILITY, moves: [TACKLE]}
+  player2: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SANDSLASH, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerTauntCount: 1}
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.species == 'SANDSLASH'"
+    - "wram16('wPartyMon1HP') == 0"
+    - "wram('wPlayerTauntCount') == 0"
+    - "not textbox_seen('BattleText_ShookOffTheTaunt')"
+
+- name: "Followup 1112: Taunt expires silently on an enemy mon that fainted to weather"
+  player: {species: SANDSLASH, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MAGIKARP, level: 50, hp: 2, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy2: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wEnemyTauntCount: 1}
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.species == 'SANDSLASH'"
+    - "wram16('wOTPartyMon1HP') == 0"
+    - "wram('wEnemyTauntCount') == 0"
+    - "not textbox_seen('BattleText_ShookOffTheTaunt')"
+
+- name: "Followup 1112 control: a living player mon still shakes off Taunt"
+  player: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy: {species: SANDSLASH, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerTauntCount: 1}
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - "wram('wPlayerTauntCount') == 0"
+    - "textbox_seen('BattleText_ShookOffTheTaunt')"
+
+- name: "Followup 1112 control: a living enemy mon still shakes off Taunt"
+  player: {species: SANDSLASH, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: SANDSLASH, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  setup_wram: {wEnemyTauntCount: 1}
+  weather: sandstorm
+  rng: forced_high
+  turns: 1
+  assert:
+    - "wram('wEnemyTauntCount') == 0"
+    - "textbox_seen('BattleText_ShookOffTheTaunt')"
+
+# ---- Part 2: additional assertions for the first audit's fixes -------------
+
+# Curse: the stage changes must reach the recalculated battle stats.
+- name: "Followup 1112: Curse recalculates all three battle stats"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.stat_levels[0] == 8 and player.stat_levels[1] == 8 and player.stat_levels[2] == 6"
+    - "player.stats['attack'] == player.start_stats['attack'] * 3 // 2"
+    - "player.stats['defense'] == player.start_stats['defense'] * 3 // 2"
+    - "player.stats['speed'] == player.start_stats['speed'] * 66 // 100"
+
+- name: "Followup 1112: enemy Curse recalculates all three battle stats"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.stat_levels[0] == 8 and enemy.stat_levels[1] == 8 and enemy.stat_levels[2] == 6"
+    - "enemy.stats['attack'] == enemy.start_stats['attack'] * 3 // 2"
+    - "enemy.stats['defense'] == enemy.start_stats['defense'] * 3 // 2"
+    - "enemy.stats['speed'] == enemy.start_stats['speed'] * 66 // 100"
+
+- name: "Followup 1112: Contrary Curse recalculates the reversed battle stats"
+  player: {species: MEW, level: 50, ability: CONTRARY, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.stats['attack'] == player.start_stats['attack'] * 66 // 100"
+    - "player.stats['defense'] == player.start_stats['defense'] * 66 // 100"
+    - "player.stats['speed'] == player.start_stats['speed'] * 3 // 2"
+
+- name: "Followup 1112: enemy Contrary Curse recalculates the reversed battle stats"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: CONTRARY, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.stats['attack'] == enemy.start_stats['attack'] * 66 // 100"
+    - "enemy.stats['defense'] == enemy.start_stats['defense'] * 66 // 100"
+    - "enemy.stats['speed'] == enemy.start_stats['speed'] * 3 // 2"
+
+# The Speed change now runs through the targeted stat-drop command with the
+# turn switched. It is still a self-inflicted drop: the user's own Mist,
+# Substitute and Clear Body do not block it, and the foe's Defiant, which
+# reacts to drops it suffers, is not involved.
+- name: "Followup 1112: Curse's Speed drop ignores the user's own Mist and Substitute"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [MIST, SUBSTITUTE], moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerSubstituteHP: 40}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 8", "player.stat_levels[1] == 8", "player.stat_levels[2] == 6"]
+
+- name: "Followup 1112: enemy Curse's Speed drop ignores its own Mist and Substitute"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [MIST, SUBSTITUTE], moves: [CURSE]}
+  setup_wram: {wEnemySubstituteHP: 40}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 8", "enemy.stat_levels[1] == 8", "enemy.stat_levels[2] == 6"]
+
+- name: "Followup 1112: Clear Body does not block its holder's own Curse"
+  player: {species: MEW, level: 50, ability: CLEAR_BODY, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.stat_levels[0] == 8 and player.stat_levels[1] == 8 and player.stat_levels[2] == 6"
+    - "not ability_seen('CLEAR_BODY')"
+
+- name: "Followup 1112: enemy Clear Body does not block its holder's own Curse"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: CLEAR_BODY, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.stat_levels[0] == 8 and enemy.stat_levels[1] == 8 and enemy.stat_levels[2] == 6"
+    - "not ability_seen('CLEAR_BODY')"
+
+- name: "Followup 1112: Curse's own Speed drop does not trigger Defiant"
+  player: {species: MEW, level: 50, ability: DEFIANT, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: DEFIANT, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.stat_levels[0] == 8 and player.stat_levels[1] == 8 and player.stat_levels[2] == 6"
+    - "enemy.stat_levels[0] == 7"
+    - "not ability_seen('DEFIANT')"
+
+- name: "Followup 1112: enemy Curse's own Speed drop does not trigger Defiant"
+  player: {species: MAGIKARP, level: 50, ability: DEFIANT, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: DEFIANT, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.stat_levels[0] == 8 and enemy.stat_levels[1] == 8 and enemy.stat_levels[2] == 6"
+    - "player.stat_levels[0] == 7"
+    - "not ability_seen('DEFIANT')"
+
+# A capped Speed drop must not cancel the two raises that follow it.
+- name: "Followup 1112: Curse at minimum Speed still raises Attack and Defense"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, stages: {spd: -6}, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 8", "player.stat_levels[1] == 8", "player.stat_levels[2] == 1"]
+
+- name: "Followup 1112: enemy Curse at minimum Speed still raises Attack and Defense"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, stages: {spd: -6}, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 8", "enemy.stat_levels[1] == 8", "enemy.stat_levels[2] == 1"]
+
+# Disable: every PP-Up value on an exhausted move, plus a full-PP-Up control.
+- name: "Followup 1112: Disable rejects an exhausted move with two PP Ups (enemy)"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [DISABLE]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wLastEnemyCounterMove: {move: SPLASH}, wEnemyMonPP: 128, wOTPartyMon1PP: 128}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyDisableCount') == 0", "not textbox_seen('WasDisabledText')"]
+
+- name: "Followup 1112: Disable rejects an exhausted move with three PP Ups (enemy)"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [DISABLE]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wLastEnemyCounterMove: {move: SPLASH}, wEnemyMonPP: 192, wOTPartyMon1PP: 192}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyDisableCount') == 0", "not textbox_seen('WasDisabledText')"]
+
+- name: "Followup 1112: Disable rejects an exhausted move with two PP Ups (player)"
+  player: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [DISABLE]}
+  setup_wram: {wLastPlayerCounterMove: {move: SPLASH}, wBattleMonPP: 128, wPartyMon1PP: 128}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerDisableCount') == 0", "not textbox_seen('WasDisabledText')"]
+
+- name: "Followup 1112: Disable rejects an exhausted move with three PP Ups (player)"
+  player: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [DISABLE]}
+  setup_wram: {wLastPlayerCounterMove: {move: SPLASH}, wBattleMonPP: 192, wPartyMon1PP: 192}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerDisableCount') == 0", "not textbox_seen('WasDisabledText')"]
+
+- name: "Followup 1112 control: Disable accepts one PP left with three PP Ups"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [DISABLE]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wLastEnemyCounterMove: {move: SPLASH}, wEnemyMonPP: 193, wOTPartyMon1PP: 193}
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyDisableCount') != 0", "textbox_seen('WasDisabledText')"]
+
+# Baton Pass: the restore must not upgrade ordinary poison, poison a healthy
+# replacement, or keep a history bit for a replacement whose poison was cured.
+- name: "Followup 1112: Baton Pass leaves the incoming mon's ordinary poison ordinary"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [BATON_PASS]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, status_byte: 8, moves: [SPLASH]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.species == 'SNORLAX'"
+    - "player.status == 8"
+    - "(player.substatus[4] & 1) == 0"
+    - "wram('wPlayerToxicSlots') == 0"
+
+- name: "Followup 1112: enemy Baton Pass leaves the incoming mon's ordinary poison ordinary"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [BATON_PASS]}
+  enemy2: {species: SNORLAX, level: 50, ability: NO_ABILITY, status_byte: 8, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.species == 'SNORLAX'"
+    - "enemy.status == 8"
+    - "(enemy.substatus[4] & 1) == 0"
+    - "wram('wEnemyToxicSlots') == 0"
+
+- name: "Followup 1112: a badly poisoned passer leaves a healthy replacement healthy"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 8, substatus: [TOXIC], moves: [BATON_PASS]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerToxicSlots: 1}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.species == 'SNORLAX'"
+    - "player.status == 0"
+    - "(player.substatus[4] & 1) == 0"
+    - "player.hp == player.maxhp"
+    - "wram('wPlayerToxicSlots') == 1"
+
+- name: "Followup 1112: a badly poisoned enemy passer leaves a healthy replacement healthy"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 8, substatus: [TOXIC], moves: [BATON_PASS]}
+  enemy2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wEnemyToxicSlots: 1}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.species == 'SNORLAX'"
+    - "enemy.status == 0"
+    - "(enemy.substatus[4] & 1) == 0"
+    - "enemy.hp == enemy.maxhp"
+    - "wram('wEnemyToxicSlots') == 1"
+
+- name: "Followup 1112: Baton Pass drops a stale bad-poison bit for a cured replacement"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [BATON_PASS]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerToxicSlots: 2}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.species == 'SNORLAX'"
+    - "player.status == 0"
+    - "(player.substatus[4] & 1) == 0"
+    - "wram('wPlayerToxicSlots') == 0"
+
+- name: "Followup 1112: enemy Baton Pass drops a stale bad-poison bit for a cured replacement"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [BATON_PASS]}
+  enemy2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wEnemyToxicSlots: 2}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.species == 'SNORLAX'"
+    - "enemy.status == 0"
+    - "(enemy.substatus[4] & 1) == 0"
+    - "wram('wEnemyToxicSlots') == 0"
+
+# Guard counter: a failed attempt and a switch both reset it.
+- name: "Followup 1112: a failed Bunker resets the guard chance for the next one"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [BANEFUL_BUNKER]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  move_script: [1, 1, 1]
+  rng: forced_high
+  turns: 3
+  turn_assert:
+    - "turns_done != 1 or wram('wPlayerProtectCount') == 1"
+    - "turns_done != 2 or wram('wPlayerProtectCount') == 0"
+    - "turns_done != 3 or wram('wPlayerProtectCount') == 1"
+  assert:
+    - "wram('wPlayerProtectCount') == 1"
+
+- name: "Followup 1112: switching out resets the Bunker guard chance"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [BANEFUL_BUNKER]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MAGIKARP, level: 5, ability: NO_ABILITY, moves: [TACKLE]}
+  move_script: [1, "switch:2", "switch:1", 1]
+  rng: forced_high
+  turns: 4
+  turn_assert:
+    - "turns_done != 1 or wram('wPlayerProtectCount') == 1"
+    - "turns_done != 2 or wram('wPlayerProtectCount') == 0"
+  assert:
+    - "player.species == 'MEW'"
+    - "wram('wPlayerProtectCount') == 1"
+    - "not textbox_seen('ButItFailedText')"
+
+# Poison Touch is a contact reaction: no contact or a Substitute means no
+# poison, and Neutralizing Gas suppresses the ability itself.
+- name: "Followup 1112: Poison Touch needs contact (player)"
+  player: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [SWIFT]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.maxhp", "enemy.status == 0"]
+
+- name: "Followup 1112: Poison Touch needs contact (enemy)"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [SWIFT]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.maxhp", "player.status == 0"]
+
+- name: "Followup 1112: Poison Touch does not reach through a Substitute (player)"
+  player: {species: SNORLAX, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SUBSTITUTE]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.status == 0", "(enemy.substatus[3] & 16) != 0"]
+
+- name: "Followup 1112: Poison Touch does not reach through a Substitute (enemy)"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SUBSTITUTE]}
+  enemy: {species: SNORLAX, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.status == 0", "(player.substatus[3] & 16) != 0"]
+
+- name: "Followup 1112: Neutralizing Gas suppresses Poison Touch (player)"
+  player: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  enemy: {species: WEEZING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.hp < enemy.maxhp", "enemy.status == 0"]
+
+- name: "Followup 1112: Neutralizing Gas suppresses Poison Touch (enemy)"
+  player: {species: WEEZING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.hp < player.maxhp", "player.status == 0"]
+
+# Delayed Yawn: a status gained before resolution wins, and Neutralizing Gas
+# still suppresses the drowsy holder's Leaf Guard when the sleep resolves.
+- name: "Followup 1112: a status gained while drowsy cancels the pending sleep (enemy)"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [YAWN, THUNDER_WAVE]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert:
+    - "enemy.status == 64"
+    - "wram('wEnemyYawnCount') == 0"
+    - "not textbox_seen('FellAsleepText')"
+
+- name: "Followup 1112: Gas suppresses Leaf Guard when delayed sleep resolves (enemy)"
+  player: {species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [YAWN, SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: LEAF_GUARD, moves: [SPLASH]}
+  move_script: [1, 2]
+  weather: sun
+  rng: forced_high
+  turns: 2
+  assert:
+    - "(enemy.status & 7) != 0"
+
+- name: "Followup 1112: Gas suppresses Leaf Guard when delayed sleep resolves (player)"
+  player: {species: SNORLAX, level: 100, ability: LEAF_GUARD, moves: [SPLASH]}
+  enemy: {species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [YAWN]}
+  weather: sun
+  rng: forced_high
+  turns: 2
+  assert:
+    - "(player.status & 7) != 0"
+
+- name: "Followup 1112 control: Leaf Guard blocks ordinary Yawn in sun (enemy)"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [YAWN, SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: LEAF_GUARD, moves: [SPLASH]}
+  move_script: [1, 2]
+  weather: sun
+  rng: forced_high
+  turns: 2
+  assert:
+    - "enemy.status == 0"
+    - "wram('wEnemyYawnCount') == 0"

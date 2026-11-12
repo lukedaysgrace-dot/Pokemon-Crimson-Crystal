@@ -491,19 +491,25 @@ def main():
         herb = runtime(con.items['POWER_HERB'])
         spray = runtime(con.items['THROAT_SPRAY'])
         herb2 = runtime(con.items['WHITE_HERB'])
+        glove = runtime(con.items['PUNCHING_GLOVE'])
         for other in ('BIG_ROOT', 'LIGHT_CLAY', 'COVERT_CLOAK'):  # push them out of the recent list
             runtime(con.items[other])
         bank, address = h.sym['wPlayerRecycleItems']
-        for offset in range(12):
+        for offset in range(18):  # both Recycle arrays, then wPlayerKnockedOffItems
             h.mem[bank, address + offset] = 0
         h.mem[bank, address + 5] = herb
         bank, address = h.sym['wEnemyRecycleItems']
         h.mem[bank, address] = herb2
         bank, address = h.sym['wEnemyConsumedItem']
         h.mem[bank, address] = spray
+        # An item knocked off the player's mon is held by nothing until
+        # ExitBattle returns it.
+        bank, address = h.sym['wPlayerKnockedOffItems']
+        h.mem[bank, address + 3] = glove
         write('wBattleMode', battle_mode)
         h.call('ForceGarbageCollection')
-        for item, name in ((herb, 'POWER_HERB'), (herb2, 'WHITE_HERB'), (spray, 'THROAT_SPRAY')):
+        for item, name in ((herb, 'POWER_HERB'), (herb2, 'WHITE_HERB'), (spray, 'THROAT_SPRAY'),
+                           (glove, 'PUNCHING_GLOVE')):
             index = h.call('GetItemIndexFromID', a=item)['hl']
             check(index == (con.items[name] if kept else 0),
                   f'{name} history after collection, battle mode {battle_mode}: {index:#x}')

@@ -229,11 +229,13 @@ ItemTableGarbageCollection:
 	; WRAM1 loop counter while bank 2 is mapped.
 	ld a, [wBattleMode]
 	and a
-	jr z, .no_battle_item_history
+	jp z, .no_battle_item_history
 	ld a, BANK(wPlayerRecycleItems)
 	ldh [rSVBK], a
 	___conversion_bitmap_check_structs wPlayerRecycleItems, 1, PARTY_LENGTH, .set_bit
 	___conversion_bitmap_check_structs wEnemyRecycleItems, 1, PARTY_LENGTH, .set_bit
+	; A knocked-off item is held by nothing until ExitBattle returns it.
+	___conversion_bitmap_check_structs wPlayerKnockedOffItems, 1, PARTY_LENGTH, .set_bit
 	___conversion_bitmap_check_values .set_bit, wPlayerConsumedItem, wEnemyConsumedItem
 	ld a, 1
 	ldh [rSVBK], a

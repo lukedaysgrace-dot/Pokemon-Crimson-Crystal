@@ -129,8 +129,9 @@ Read this before changing the game. Keep it up to date when something here chang
 - Items below TM01 have fixed runtime IDs equal to their index, so `cp SOME_ITEM` on a
   runtime ID is only valid for those. Items at $101 and up must be compared as 16-bit indexes.
 - The bank-2 battle history bytes (`wPlayerRecycleItems`, `wEnemyRecycleItems`,
-  `w*ConsumedItem`) are collector roots while `wBattleMode` is nonzero, so a
-  consumed Power Herb/White Herb/Throat Spray stays valid for Recycle.
+  `wPlayerKnockedOffItems`, `w*ConsumedItem`) are collector roots while
+  `wBattleMode` is nonzero, so a consumed Power Herb/White Herb/Throat Spray
+  stays valid for Recycle and a knocked-off one can be returned.
 - TM/HM runtime IDs are dynamic too. `HMFieldMoveTable` and
   `HMEventOwnershipTable` (engine/events/field_hm_interaction.asm) hold true
   item indexes, so `CheckHMOwnedForMove` derives the TM/HM number directly;
@@ -247,6 +248,19 @@ Read this before changing the game. Keep it up to date when something here chang
 - Yawn checks Safeguard when drowsiness lands, not when pending sleep resolves.
   Delayed sleep uses effective abilities without Mold Breaker's move-only bypass.
   Poison Touch respects an effective Covert Cloak as well as Shield Dust.
+- An opponent's Knock Off removes the player's item for the battle only. The
+  item is cleared from the battle and party records (no Recycle, no effect on
+  re-entry) and remembered per party slot in `wPlayerKnockedOffItems`;
+  `RestoreKnockedOffItems_Core` returns it from `ExitBattle` on every outcome,
+  unless that mon now holds something else. Incinerate still destroys a Berry.
+  An enemy's Thief/Pickpocket still keeps what it takes, and the player's own
+  Knock Off/Thief against trainers and wild mons are unchanged (Gen 2 rule).
+  Run `tools/battletest/tests/106-knock-off-return-2026-11-12.yaml`.
+- Fainted slots stay empty until every end-of-turn phase has finished, so each
+  residual handler must skip a battler with 0 HP. Wish, Taunt's wear-off
+  message and Yawn's delayed sleep all check it (`HandleWishBoth_Core`,
+  `HandleNewEndTurnEffects_Core`); a fainted mon's Taunt still expires, silently,
+  and its pending sleep draws no RNG. Keep that guard in any new handler.
 - Every guard move must be in `MetronomeExcepts`, including ones that reuse
   `EFFECT_PROTECT` (King's Shield). `tools/audit_metronome_exceptions.py`
   checks this and is part of `make audit-static`.
@@ -509,6 +523,16 @@ Read this before changing the game. Keep it up to date when something here chang
 - Entry tests must use a legal species/ability pair. Arbitrary lead ability
   overrides are applied after entry; a post-entry ability assertion alone
   does not prove that ability was active during switch-in effects.
+- Auto mode chooses the player's move in `DebugChoosePlayerMove` and never
+  opens `MoveSelectionScreen`. YAML cases therefore do not exercise the
+  player's selection-time refusals (`CheckPlayerChoiceLock_Core`,
+  `CheckPlayerMoveRestrictions_Core`: Choice lock, Assault Vest, Taunt/Torment
+  menu refusals); `wPlayerChoiceLockedMove` stays 0 in them. The enemy's
+  equivalents run normally. Test the player side with a native-menu script.
+- `hBattleTurn` is whatever the last end-of-turn handler left when a turn
+  starts (often 1). Selection code that needs the player must set it;
+  `MoveSelectionScreen` does, through `MoveInfoBox`, before the Choice-lock and
+  Assault Vest checks read the "user" item. Keep that order.
 - A PyBoy hook can fire twice for one object when an interrupt lands on the hooked
   instruction. In animation tests, more spawns than queue attempts is not a bug. Only
   attempts greater than spawns means an object was dropped.

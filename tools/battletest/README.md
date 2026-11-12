@@ -70,6 +70,17 @@ renderer and change the displayed pixels. It checks map re-entry and the
 saved-data layout, and captures the placement and animated preview under
 `.tmpbuild/olivine-muscle-band/`.
 
+`tests/105-followup-audit-2026-11-12.yaml` covers end-of-turn Yawn and Taunt
+against a slot that fainted to weather, plus extra assertions for the
+November 12 fixes. `python3 tools/battletest/choice_lock_menu_checks.py`
+tests the player's Choice lock through the real Fight menu: auto mode picks
+the player's move without opening the move menu, so YAML cases cannot reach
+the player's selection-time refusals. See
+`reports/followup-audit-2026-11-12.md`.
+`tests/106-knock-off-return-2026-11-12.yaml` checks that an item an opponent
+knocked off the player's Pokemon is unusable for the battle and returned
+afterwards, using `wDebugResultParty1Item` for the post-battle party item.
+
 Spider Web's focused placement, poison, immunity, item and clearing cases
 live in `tests/84-spider-web.yaml`. To also test native switch-ins against
 every ability on both sides:

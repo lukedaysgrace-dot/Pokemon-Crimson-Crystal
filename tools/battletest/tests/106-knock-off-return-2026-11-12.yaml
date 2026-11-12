@@ -1,0 +1,121 @@
+# An opponent's Knock Off removes the player's held item for the rest of the
+# battle only. ExitBattle returns it to the same party member on every
+# outcome. Incinerate still destroys a Berry, and an enemy's Thief still
+# keeps what it steals. wDebugResultParty1Item is party slot 1's item after
+# the battle has ended.
+
+- name: "Knock Off return: the item is unusable for the rest of the battle"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: LEFTOVERS, moves: [RECYCLE]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  rng: forced_high
+  turns: 2
+  assert:
+    - "player.item == 'NO_ITEM'"
+    - "wram('wPartyMon1Item') == 0"
+    - "wram('wPlayerKnockedOffItems') == item_id('LEFTOVERS')"
+    - "player.hp < player.maxhp"
+    - "textbox_seen('ButItFailedText')"
+
+- name: "Knock Off return: a knocked-off item comes back after a wild battle"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: LEFTOVERS, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, hp: 1, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "textbox_seen('KnockedOffItemText')"
+    - "wram('wDebugResultParty1Item') == item_id('LEFTOVERS')"
+    - "wram('wPlayerKnockedOffItems') == 0"
+
+- name: "Knock Off return: a knocked-off item comes back after a trainer battle"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: LEFTOVERS, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, hp: 1, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  enemy2: {species: MAGIKARP, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 3
+  assert:
+    - "textbox_seen('KnockedOffItemText')"
+    - "wram('wDebugResultParty1Item') == item_id('LEFTOVERS')"
+
+- name: "Knock Off return: the item comes back to a benched party member"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: LEFTOVERS, moves: [SPLASH]}
+  player2: {species: MEW, level: 100, ability: NO_ABILITY, item: BERRY, moves: [TACKLE]}
+  enemy: {species: MEW, level: 20, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  move_script: [1, "switch:2", 1, 1]
+  rng: forced_high
+  turns: 4
+  assert:
+    - "wram('wDebugResultParty1Item') == item_id('LEFTOVERS')"
+
+- name: "Knock Off return: the item comes back after a lost battle"
+  player: {species: RATTATA, level: 2, ability: NO_ABILITY, item: LEFTOVERS, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "textbox_seen('KnockedOffItemText')"
+    - "wram('wDebugResultParty1Item') == item_id('LEFTOVERS')"
+
+- name: "Knock Off return: an extended item survives and comes back"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: THROAT_SPRAY, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, hp: 1, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "textbox_seen('KnockedOffItemText')"
+    - "wram('wDebugResultParty1Item') != 0"
+
+- name: "Knock Off return: an item gained after the Knock Off is kept instead"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: LEFTOVERS, moves: [THIEF]}
+  enemy: {species: MEW, level: 50, hp: 1, ability: NO_ABILITY, item: NUGGET, moves: [KNOCK_OFF]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "textbox_seen('KnockedOffItemText')"
+    - "textbox_seen('StoleText')"
+    - "wram('wDebugResultParty1Item') == item_id('NUGGET')"
+
+- name: "Knock Off return control: Incinerate still destroys the player's Berry"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: BERRY, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, hp: 1, ability: NO_ABILITY, moves: [INCINERATE]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "textbox_seen('IncineratedBerryText')"
+    - "wram('wDebugResultParty1Item') == 0"
+
+- name: "Knock Off return control: an enemy's Thief still keeps the item"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: LEFTOVERS, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, hp: 1, ability: NO_ABILITY, moves: [THIEF]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "textbox_seen('StoleText')"
+    - "wram('wDebugResultParty1Item') == 0"
+
+- name: "Knock Off return control: nothing is created for an itemless target"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, hp: 1, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "not textbox_seen('KnockedOffItemText')"
+    - "wram('wDebugResultParty1Item') == 0"
+
+- name: "Knock Off return control: an untouched item is unchanged after battle"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: LEFTOVERS, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, hp: 1, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "wram('wDebugResultParty1Item') == item_id('LEFTOVERS')"
+
+- name: "Knock Off return control: the player's Knock Off still removes a trainer's item"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [KNOCK_OFF]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: LEFTOVERS, moves: [SPLASH]}
+  enemy2: {species: MAGIKARP, level: 2, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.item == 'NO_ITEM'"
+    - "wram('wOTPartyMon1Item') == 0"
+    - "wram('wPlayerKnockedOffItems') == 0"

@@ -468,6 +468,9 @@ BattleKnockOff_Core:
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .target_is_enemy
+	; The player's item is only knocked off for this battle (Incinerate
+	; really destroys its Berry). Remember it for ExitBattle.
+	call RecordKnockedOffItem
 	ld a, MON_ITEM
 	call BattlePartyAttr
 	jr .remove
@@ -499,6 +502,75 @@ BattleKnockOff_Core:
 .sticky_hold
 	pop de
 	farcall StickyHoldAnnounce_Core
+	ret
+
+RecordKnockedOffItem:
+; Turn = the enemy using Knock Off. Store the active player mon's party
+; item in its wPlayerKnockedOffItems slot before the caller clears it.
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_INCINERATE
+	ret z
+	ld a, [wCurBattleMon]
+	cp PARTY_LENGTH
+	ret nc
+	ld a, MON_ITEM
+	call BattlePartyAttr
+	ld b, [hl]
+	ld a, [wCurBattleMon]
+	ld e, a
+	ld d, 0
+	ld hl, wPlayerKnockedOffItems
+	add hl, de
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wPlayerKnockedOffItems)
+	ldh [rSVBK], a
+	ld [hl], b
+	pop af
+	ldh [rSVBK], a
+	ret
+
+RestoreKnockedOffItems_Core::
+; Farcalled from ExitBattle on every outcome. Each party member gets back
+; the item an opponent knocked off, unless it has since come to hold
+; something else (Thief, Trick, Pickpocket); that newer item is kept.
+	ldh a, [rSVBK]
+	push af
+	ld c, 0
+.loop
+	ld a, BANK(wPlayerKnockedOffItems)
+	ldh [rSVBK], a
+	ld hl, wPlayerKnockedOffItems
+	ld b, 0
+	add hl, bc
+	ld d, [hl]
+	ld [hl], b
+	ld a, 1
+	ldh [rSVBK], a
+	ld a, d
+	and a
+	jr z, .next
+	ld a, [wPartyCount]
+	dec a
+	cp c
+	jr c, .next
+	push bc
+	ld hl, wPartyMon1Item
+	ld a, c
+	call GetPartyLocation
+	pop bc
+	ld a, [hl]
+	and a
+	jr nz, .next
+	ld [hl], d
+.next
+	inc c
+	ld a, c
+	cp PARTY_LENGTH
+	jr c, .loop
+	pop af
+	ldh [rSVBK], a
 	ret
 
 BattleRoost_Core:
@@ -1747,6 +1819,12 @@ HandleNewEndTurnEffects_Core:
 	ret z
 	dec [hl]
 	ret nz
+	; A mon that fainted earlier in this end-of-turn sequence (weather,
+	; residual damage) is still in its slot. Its Taunt expires silently.
+	ld hl, wBattleMonHP
+	ld a, [hli]
+	or [hl]
+	ret z
 	xor a
 	ldh [hBattleTurn], a
 	ld hl, BattleText_ShookOffTheTaunt
@@ -1759,6 +1837,10 @@ HandleNewEndTurnEffects_Core:
 	ret z
 	dec [hl]
 	ret nz
+	ld hl, wEnemyMonHP
+	ld a, [hli]
+	or [hl]
+	ret z
 	ld a, 1
 	ldh [hBattleTurn], a
 	ld hl, BattleText_ShookOffTheTaunt
@@ -1774,6 +1856,12 @@ HandleNewEndTurnEffects_Core:
 	ret z
 	dec [hl]
 	ret nz
+	; Pending sleep cannot land on a mon that has already fainted this
+	; turn: no sleep roll, animation, text or status on the empty slot.
+	ld hl, wBattleMonHP
+	ld a, [hli]
+	or [hl]
+	ret z
 	; the player mon falls asleep: run from the ENEMY's perspective so the
 	; opponent-relative sleep helpers apply to the player mon
 	ld a, 1
@@ -1790,6 +1878,10 @@ HandleNewEndTurnEffects_Core:
 	ret z
 	dec [hl]
 	ret nz
+	ld hl, wEnemyMonHP
+	ld a, [hli]
+	or [hl]
+	ret z
 	xor a
 	ldh [hBattleTurn], a
 	; fallthrough
