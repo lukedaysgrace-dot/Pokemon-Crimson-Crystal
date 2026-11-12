@@ -19,11 +19,11 @@ KogasRoom_MapScripts:
 .KogasRoomDoors:
 	checkevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
-	changeblock 4, 14, $2a ; wall
+	changeblock 4, 14, $2e ; sliding doors slam shut
 .KeepEntranceOpen:
 	checkevent EVENT_KOGAS_ROOM_EXIT_OPEN
 	iffalse .KeepExitClosed
-	changeblock 4, 2, $16 ; open door
+	changeblock 4, 2, $2d ; doors slide open
 .KeepExitClosed:
 	return
 
@@ -32,7 +32,7 @@ KogasRoom_MapScripts:
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock 4, 14, $2a ; wall
+	changeblock 4, 14, $2e ; sliding doors slam shut
 	reloadmappart
 	closetext
 	setscene SCENE_FINISHED
@@ -64,7 +64,7 @@ KogaScript_Battle:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock 4, 2, $16 ; open door
+	changeblock 4, 2, $2d ; doors slide open
 	reloadmappart
 	closetext
 	setevent EVENT_KOGAS_ROOM_EXIT_OPEN

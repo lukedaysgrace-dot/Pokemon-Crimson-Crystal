@@ -37,6 +37,12 @@
 	const TILESET_OMANYTE_WORD_ROOM    ; 23
 	const TILESET_AERODACTYL_WORD_ROOM ; 24
 	const TILESET_CERULEAN_CAVE
+	const TILESET_KOGAS_ROOM           ; Elite Four chambers each have a dedicated tileset
+	const TILESET_BRUNOS_ROOM
+	const TILESET_KARENS_ROOM
+	const TILESET_LORELEIS_ROOM
+	const TILESET_LANCES_ROOM
+NUM_LEAGUE_ROOM_TILESETS EQU TILESET_LANCES_ROOM - TILESET_KOGAS_ROOM + 1
 
 ; bg palette values (see gfx/tilesets/*_palette_map.asm)
 ; TilesetBGPalette indexes (see gfx/tilesets/bg_tiles.pal)

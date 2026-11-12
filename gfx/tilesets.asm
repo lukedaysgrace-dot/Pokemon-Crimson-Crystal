@@ -549,3 +549,87 @@ TilesetCeruleanCaveColl:
 	INCBIN "data/tilesets/cerulean_cave_collision.bin"
 TilesetCeruleanCaveAttr:
 	INCBIN "data/tilesets/cerulean_cave_attributes.bin"
+
+
+; Elite Four chambers: one dedicated tileset per room (see tools/e4_rooms/).
+; Each part floats in its own section so the linker can pack them.
+
+SECTION "Tileset Kogas Room GFX", ROMX
+TilesetKogasRoomGFX::
+INCBIN "gfx/tilesets/kogas_room.2bpp.lz"
+
+SECTION "Tileset Kogas Room Meta", ROMX
+TilesetKogasRoomMeta::
+INCBIN "data/tilesets/kogas_room_metatiles.bin"
+
+SECTION "Tileset Kogas Room Attr", ROMX
+TilesetKogasRoomAttr::
+INCBIN "data/tilesets/kogas_room_attributes.bin"
+
+SECTION "Tileset Kogas Room Coll", ROMX
+TilesetKogasRoomColl::
+INCLUDE "data/tilesets/kogas_room_collision.asm"
+
+SECTION "Tileset Brunos Room GFX", ROMX
+TilesetBrunosRoomGFX::
+INCBIN "gfx/tilesets/brunos_room.2bpp.lz"
+
+SECTION "Tileset Brunos Room Meta", ROMX
+TilesetBrunosRoomMeta::
+INCBIN "data/tilesets/brunos_room_metatiles.bin"
+
+SECTION "Tileset Brunos Room Attr", ROMX
+TilesetBrunosRoomAttr::
+INCBIN "data/tilesets/brunos_room_attributes.bin"
+
+SECTION "Tileset Brunos Room Coll", ROMX
+TilesetBrunosRoomColl::
+INCLUDE "data/tilesets/brunos_room_collision.asm"
+
+SECTION "Tileset Karens Room GFX", ROMX
+TilesetKarensRoomGFX::
+INCBIN "gfx/tilesets/karens_room.2bpp.lz"
+
+SECTION "Tileset Karens Room Meta", ROMX
+TilesetKarensRoomMeta::
+INCBIN "data/tilesets/karens_room_metatiles.bin"
+
+SECTION "Tileset Karens Room Attr", ROMX
+TilesetKarensRoomAttr::
+INCBIN "data/tilesets/karens_room_attributes.bin"
+
+SECTION "Tileset Karens Room Coll", ROMX
+TilesetKarensRoomColl::
+INCLUDE "data/tilesets/karens_room_collision.asm"
+
+SECTION "Tileset Loreleis Room GFX", ROMX
+TilesetLoreleisRoomGFX::
+INCBIN "gfx/tilesets/loreleis_room.2bpp.lz"
+
+SECTION "Tileset Loreleis Room Meta", ROMX
+TilesetLoreleisRoomMeta::
+INCBIN "data/tilesets/loreleis_room_metatiles.bin"
+
+SECTION "Tileset Loreleis Room Attr", ROMX
+TilesetLoreleisRoomAttr::
+INCBIN "data/tilesets/loreleis_room_attributes.bin"
+
+SECTION "Tileset Loreleis Room Coll", ROMX
+TilesetLoreleisRoomColl::
+INCLUDE "data/tilesets/loreleis_room_collision.asm"
+
+SECTION "Tileset Lances Room GFX", ROMX
+TilesetLancesRoomGFX::
+INCBIN "gfx/tilesets/lances_room.2bpp.lz"
+
+SECTION "Tileset Lances Room Meta", ROMX
+TilesetLancesRoomMeta::
+INCBIN "data/tilesets/lances_room_metatiles.bin"
+
+SECTION "Tileset Lances Room Attr", ROMX
+TilesetLancesRoomAttr::
+INCBIN "data/tilesets/lances_room_attributes.bin"
+
+SECTION "Tileset Lances Room Coll", ROMX
+TilesetLancesRoomColl::
+INCLUDE "data/tilesets/lances_room_collision.asm"

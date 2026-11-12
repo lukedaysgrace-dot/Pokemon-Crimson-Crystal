@@ -48,3 +48,8 @@ Tilesets::
 	tileset TilesetOmanyteWordRoom
 	tileset TilesetAerodactylWordRoom
 	tileset TilesetCeruleanCave
+	tileset TilesetKogasRoom
+	tileset TilesetBrunosRoom
+	tileset TilesetKarensRoom
+	tileset TilesetLoreleisRoom
+	tileset TilesetLancesRoom
