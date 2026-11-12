@@ -721,7 +721,23 @@ RetrieveBreedmon:
 	dec a
 	ld [wCurPartyMon], a
 	farcall HealPartyMon
+	; Clamp the experience total to the level it came back at when that is
+	; the level cap (MAX_LEVEL, or the Hard Mode cap that CalcLevel applied in
+	; GetBreedMon*LevelGrowth): steps walked past the cap aren't banked, so
+	; the mon can't jump levels the moment the cap rises. Same rule as battle
+	; experience. A mon that was left above the cap keeps what it had.
+	ld a, [wLevelCap]
+	and a
+	jr nz, .got_level_cap
+	ld a, MAX_LEVEL
+.got_level_cap
+	ld d, a
+	ld a, [wCurPartyLevel]
+	cp d
+	jr c, .got_clamp_level
+	jr z, .got_clamp_level
 	ld d, MAX_LEVEL
+.got_clamp_level
 	callfar CalcExpAtLevel
 	pop bc
 	ld hl, MON_EXP + 2
@@ -1487,6 +1503,11 @@ GivePoke::
 	jr .done
 
 .failed
+	; The boxed mon is stored first and rewritten once its item, OT, caught
+	; data and nickname are set, which takes a second database record. Refuse
+	; up front if that isn't available, rather than silently dropping the edits.
+	farcall CheckStorageSpaceForCapture
+	jp c, .FailedToGiveMon
 	ld a, [wCurPartySpecies]
 	ld [wTempEnemyMonSpecies], a
 	callfar LoadEnemyMon

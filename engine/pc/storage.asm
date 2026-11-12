@@ -1570,6 +1570,28 @@ CheckStorageSpaceForCapture::
 	scf
 	ret
 
+CountFreeSlotsInReceivingBox::
+; Returns in a the number of empty slots in the box that would receive the
+; next stored mon (see NewStorageBoxPointer); 0 if no mon can be stored.
+	call NewStorageBoxPointer ; b = box
+	ld a, 0
+	ret c
+	ld c, 1
+	ld l, 0
+.loop
+	call GetStorageBoxPointer ; preserves bc, hl
+	ld a, e
+	and a
+	jr nz, .occupied
+	inc l
+.occupied
+	inc c
+	ld a, c
+	cp MONS_PER_BOX + 1
+	jr nz, .loop
+	ld a, l
+	ret
+
 GetStorageBoxMonID::
 ; Cheap read of box b slot c's OT ID (de) and egg flag (a, nonzero = Egg)
 ; without decoding. Returns z if the slot is empty. Preserves bc, hl.

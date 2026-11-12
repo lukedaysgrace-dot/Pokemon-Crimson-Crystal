@@ -1,4 +1,6 @@
 GetBreedMon1LevelGrowth:
+	; the cap may have risen (new badge) since it was last computed
+	farcall UpdateLevelCap
 	ld hl, wBreedMon1Stats
 	ld de, wTempMon
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -19,6 +21,7 @@ GetBreedMon1LevelGrowth:
 	ret
 
 GetBreedMon2LevelGrowth:
+	farcall UpdateLevelCap
 	ld hl, wBreedMon2Stats
 	ld de, wTempMon
 	ld bc, BOXMON_STRUCT_LENGTH
