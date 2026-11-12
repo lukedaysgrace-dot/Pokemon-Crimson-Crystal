@@ -741,8 +741,11 @@ PokeBallEffect:
 	farcall UpdateStorageBoxMonFromTemp
 
 	; Flag a full storage system for the battle result (Bill's phone call).
+	; (c|nz only means the database needs a save: there is still room, and
+	; the next ball throw explains that itself.)
 	farcall NewStorageBoxPointer
 	jr nc, .BoxNotFullYet
+	jr nz, .BoxNotFullYet
 	ld hl, wBattleResult
 	set BATTLERESULT_BOX_FULL, [hl]
 .BoxNotFullYet:

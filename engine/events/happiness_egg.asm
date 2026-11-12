@@ -139,15 +139,32 @@ StepHappiness::
 	jr nz, .loop
 	ret
 
+DayCareStep_GetLevelCap:
+; a = the current level cap (MAX_LEVEL outside Hard Mode). Preserves hl.
+	push hl
+	farcall UpdateLevelCap
+	pop hl
+	ld a, [wLevelCap]
+	and a
+	ret nz
+	ld a, MAX_LEVEL
+	ret
+
 DayCareStep::
 ; Raise the experience of Day-Care Pokémon every counted overworld step.
+
+; A mon left at or above the Hard Mode level cap gains nothing, like a party
+; mon at the cap in battle. (One left below the cap keeps gaining here; its
+; total is clamped to the cap when it is taken back, see RetrieveBreedmon.)
+	call DayCareStep_GetLevelCap
+	ld c, a
 
 	ld a, [wDayCareMan]
 	bit DAYCAREMAN_HAS_MON_F, a
 	jr z, .day_care_lady
 
 	ld a, [wBreedMon1Level] ; level
-	cp MAX_LEVEL
+	cp c
 	jr nc, .day_care_lady
 	ld hl, wBreedMon1Exp + 2 ; exp
 	inc [hl]
@@ -169,7 +186,7 @@ DayCareStep::
 	jr z, .check_egg
 
 	ld a, [wBreedMon2Level] ; level
-	cp MAX_LEVEL
+	cp c
 	jr nc, .check_egg
 	ld hl, wBreedMon2Exp + 2 ; exp
 	inc [hl]

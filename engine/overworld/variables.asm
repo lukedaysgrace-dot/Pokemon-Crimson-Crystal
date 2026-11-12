@@ -138,13 +138,14 @@ _GetVarAction::
 	ret
 
 .BoxFreeSpace:
-; Nonzero if a caught mon can be stored right now (a free slot in some box
-; and enough database room); 0 if the storage system is full or the game
-; must be saved first. Scripts only compare this against 0.
+; 0 if a caught mon can't be stored right now (every box is full, or the
+; database needs a save first). Otherwise the number of free slots in the box
+; the next stored mon goes to (the current box, or the next one with room).
+; Most scripts only compare this against 0; Bill's phone call prints it.
 	farcall CheckStorageSpaceForCapture
 	ld a, 0
 	jr c, .got_box_space
-	inc a
+	farcall CountFreeSlotsInReceivingBox
 .got_box_space
 	jp .loadstringbuffer2
 

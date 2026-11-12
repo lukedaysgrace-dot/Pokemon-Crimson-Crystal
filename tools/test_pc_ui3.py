@@ -94,8 +94,18 @@ check(h.rd(S("wBillsPC_CursorItem")) == MAIL, "still holding the Mail")
 press("b", wait=80, label="mail_aborted")     # put it back
 check(h.rd(S("wBillsPC_CursorHeldBox")) == 0, "nothing held after B")
 
-print("[menu ITEM > TAKE Mail: send to PC mailbox]")
+print("[menu RELEASE: refused while the party mon holds Mail]")
 press("select", wait=20)                       # MENU mode
+goto(0x30, "on_eevee")
+press("a", wait=30)
+press("down"); press("down"); press("down"); press("down", wait=10)   # RELEASE
+press("a", wait=80, label="release_mail_refused")
+press("up", wait=10)                           # would pick YES if a prompt had opened
+press("a", wait=60)
+check(h.rd(S("wPartyCount")) == 2, f"Eevee was not released (party count {h.rd(S('wPartyCount'))})")
+check(h.rd(S("wPartyMon1Item")) == MAIL, "Eevee still holds the Mail")
+
+print("[menu ITEM > TAKE Mail: send to PC mailbox]")
 goto(0x30, "on_eevee")
 press("a", wait=30); press("down"); press("down"); press("down", wait=10)
 press("a", wait=40, label="mail_menu")         # ITEM -> MOVE/TAKE/READ/CANCEL

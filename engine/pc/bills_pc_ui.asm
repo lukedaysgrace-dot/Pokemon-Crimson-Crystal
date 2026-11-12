@@ -3698,6 +3698,13 @@ BillsPC_Release:
 	dec a ; RELEASE_EGG
 	jr z, .print
 
+	; A party mon's Mail (and its message) would vanish with it. Stored mons
+	; never hold Mail, so this is the same rule as depositing.
+	ld a, [wTempMonItem]
+	farcall_a StorageItemIsMail
+	ld hl, BillsPC_SwapStorage.IsHoldingMail
+	jr c, .print
+
 	; The slot can't be empty: the menu wouldn't have opened
 	call BillsPC_HideCursorAndMode
 	ld hl, .ReallyReleaseMon

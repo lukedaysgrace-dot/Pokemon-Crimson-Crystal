@@ -1,0 +1,557 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 47e80fc..38146b9 100755
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -167,6 +167,25 @@ Read this before changing the game. Keep it up to date when something here chang
+   Use `--no-video --rom pokecrystal_debug.gbc --output _artifacts/exp-relay-quest-debug`
+   for the debug walkthrough. Both scripts use only private emulator state.
+ 
++## PC storage, catches and the Day-Care
++- Changing a stored mon (item, nickname, caught data) writes a new database
++  record, so storing and then editing a fresh mon needs two free records.
++  `CheckStorageSpaceForCapture` guarantees both; ball throws and `GivePoke`'s
++  box path call it first. A boxed contest catch is nicknamed before it is
++  stored, so it needs only one.
++- `VAR_BOXSPACE` is 0 when nothing can be stored, otherwise the free slots in
++  the box the next mon goes to (`CountFreeSlotsInReceivingBox`). Bill's phone
++  call prints it; other scripts only test it against 0. Bill's automatic
++  "BOX is full" call fires only when every box is full, not when the database
++  merely needs a save.
++- A party mon holding Mail can't be released from the PC (same rule as deposit).
++- Hard Mode: Day-Care mons at or above the level cap gain no step EXP, and one
++  taken back at the cap has its EXP clamped to that level's total, as battle
++  EXP is. `DayCareStep` and `GetBreedMon*LevelGrowth` refresh `wLevelCap`.
++- Eggs come out of the PC with 0 HP (`CalcTempmonStats` keys on
++  `wCurPartySpecies` = EGG); `CheckPlayerPartyForFitMon` relies on that.
++- Run `python3 tools/test_pc_followups.py` on both ROMs after touching these.
++
+ ## Battle Stat EXP
+ - Battle awards retain all five Gen 2 Stat EXP words, division, Pokérus and
+   saturation rules. Hard Mode caps and level 100 block regular EXP only;
+diff --git a/engine/events/happiness_egg.asm b/engine/events/happiness_egg.asm
+index a05d25f..a0e6376 100755
+--- a/engine/events/happiness_egg.asm
++++ b/engine/events/happiness_egg.asm
+@@ -139,15 +139,32 @@ StepHappiness::
+ 	jr nz, .loop
+ 	ret
+ 
++DayCareStep_GetLevelCap:
++; a = the current level cap (MAX_LEVEL outside Hard Mode). Preserves hl.
++	push hl
++	farcall UpdateLevelCap
++	pop hl
++	ld a, [wLevelCap]
++	and a
++	ret nz
++	ld a, MAX_LEVEL
++	ret
++
+ DayCareStep::
+ ; Raise the experience of Day-Care Pokémon every counted overworld step.
+ 
++; A mon left at or above the Hard Mode level cap gains nothing, like a party
++; mon at the cap in battle. (One left below the cap keeps gaining here; its
++; total is clamped to the cap when it is taken back, see RetrieveBreedmon.)
++	call DayCareStep_GetLevelCap
++	ld c, a
++
+ 	ld a, [wDayCareMan]
+ 	bit DAYCAREMAN_HAS_MON_F, a
+ 	jr z, .day_care_lady
+ 
+ 	ld a, [wBreedMon1Level] ; level
+-	cp MAX_LEVEL
++	cp c
+ 	jr nc, .day_care_lady
+ 	ld hl, wBreedMon1Exp + 2 ; exp
+ 	inc [hl]
+@@ -169,7 +186,7 @@ DayCareStep::
+ 	jr z, .check_egg
+ 
+ 	ld a, [wBreedMon2Level] ; level
+-	cp MAX_LEVEL
++	cp c
+ 	jr nc, .check_egg
+ 	ld hl, wBreedMon2Exp + 2 ; exp
+ 	inc [hl]
+diff --git a/engine/items/item_effects.asm b/engine/items/item_effects.asm
+index 7553e1c..117d744 100755
+--- a/engine/items/item_effects.asm
++++ b/engine/items/item_effects.asm
+@@ -741,8 +741,11 @@ PokeBallEffect:
+ 	farcall UpdateStorageBoxMonFromTemp
+ 
+ 	; Flag a full storage system for the battle result (Bill's phone call).
++	; (c|nz only means the database needs a save: there is still room, and
++	; the next ball throw explains that itself.)
+ 	farcall NewStorageBoxPointer
+ 	jr nc, .BoxNotFullYet
++	jr nz, .BoxNotFullYet
+ 	ld hl, wBattleResult
+ 	set BATTLERESULT_BOX_FULL, [hl]
+ .BoxNotFullYet:
+diff --git a/engine/overworld/variables.asm b/engine/overworld/variables.asm
+index ba6506e..6ae9537 100755
+--- a/engine/overworld/variables.asm
++++ b/engine/overworld/variables.asm
+@@ -138,13 +138,14 @@ _GetVarAction::
+ 	ret
+ 
+ .BoxFreeSpace:
+-; Nonzero if a caught mon can be stored right now (a free slot in some box
+-; and enough database room); 0 if the storage system is full or the game
+-; must be saved first. Scripts only compare this against 0.
++; 0 if a caught mon can't be stored right now (every box is full, or the
++; database needs a save first). Otherwise the number of free slots in the box
++; the next stored mon goes to (the current box, or the next one with room).
++; Most scripts only compare this against 0; Bill's phone call prints it.
+ 	farcall CheckStorageSpaceForCapture
+ 	ld a, 0
+ 	jr c, .got_box_space
+-	inc a
++	farcall CountFreeSlotsInReceivingBox
+ .got_box_space
+ 	jp .loadstringbuffer2
+ 
+diff --git a/engine/pc/bills_pc_ui.asm b/engine/pc/bills_pc_ui.asm
+index 181a3ac..8d8c95e 100755
+--- a/engine/pc/bills_pc_ui.asm
++++ b/engine/pc/bills_pc_ui.asm
+@@ -3698,6 +3698,13 @@ BillsPC_Release:
+ 	dec a ; RELEASE_EGG
+ 	jr z, .print
+ 
++	; A party mon's Mail (and its message) would vanish with it. Stored mons
++	; never hold Mail, so this is the same rule as depositing.
++	ld a, [wTempMonItem]
++	farcall_a StorageItemIsMail
++	ld hl, BillsPC_SwapStorage.IsHoldingMail
++	jr c, .print
++
+ 	; The slot can't be empty: the menu wouldn't have opened
+ 	call BillsPC_HideCursorAndMode
+ 	ld hl, .ReallyReleaseMon
+diff --git a/engine/pc/storage.asm b/engine/pc/storage.asm
+index aa4f532..da04640 100755
+--- a/engine/pc/storage.asm
++++ b/engine/pc/storage.asm
+@@ -1570,6 +1570,28 @@ CheckStorageSpaceForCapture::
+ 	scf
+ 	ret
+ 
++CountFreeSlotsInReceivingBox::
++; Returns in a the number of empty slots in the box that would receive the
++; next stored mon (see NewStorageBoxPointer); 0 if no mon can be stored.
++	call NewStorageBoxPointer ; b = box
++	ld a, 0
++	ret c
++	ld c, 1
++	ld l, 0
++.loop
++	call GetStorageBoxPointer ; preserves bc, hl
++	ld a, e
++	and a
++	jr nz, .occupied
++	inc l
++.occupied
++	inc c
++	ld a, c
++	cp MONS_PER_BOX + 1
++	jr nz, .loop
++	ld a, l
++	ret
++
+ GetStorageBoxMonID::
+ ; Cheap read of box b slot c's OT ID (de) and egg flag (a, nonzero = Egg)
+ ; without decoding. Returns z if the slot is empty. Preserves bc, hl.
+diff --git a/engine/pokemon/breedmon_level_growth.asm b/engine/pokemon/breedmon_level_growth.asm
+index bf20f67..1f903dd 100755
+--- a/engine/pokemon/breedmon_level_growth.asm
++++ b/engine/pokemon/breedmon_level_growth.asm
+@@ -1,4 +1,6 @@
+ GetBreedMon1LevelGrowth:
++	; the cap may have risen (new badge) since it was last computed
++	farcall UpdateLevelCap
+ 	ld hl, wBreedMon1Stats
+ 	ld de, wTempMon
+ 	ld bc, BOXMON_STRUCT_LENGTH
+@@ -19,6 +21,7 @@ GetBreedMon1LevelGrowth:
+ 	ret
+ 
+ GetBreedMon2LevelGrowth:
++	farcall UpdateLevelCap
+ 	ld hl, wBreedMon2Stats
+ 	ld de, wTempMon
+ 	ld bc, BOXMON_STRUCT_LENGTH
+diff --git a/engine/pokemon/caught_data.asm b/engine/pokemon/caught_data.asm
+index 1108b62..2f83484 100755
+--- a/engine/pokemon/caught_data.asm
++++ b/engine/pokemon/caught_data.asm
+@@ -133,9 +133,11 @@ CheckPartyFullAfterContest:
+ 	and CAUGHT_GENDER_MASK
+ 	or b
+ 	ld [hl], a
+-	farcall AddTempMonToStorage
+-	cp PCSTORE_FULL
+-	jr nc, .BoxFull
++	; Make sure it can be stored before offering a nickname, and store it
++	; only once, with the nickname already in place: rewriting a stored mon
++	; takes a second database record, and without one the nickname was lost.
++	farcall NewStorageBoxPointer
++	jr c, .BoxFull
+ 	call GiveANickname_YesNo
+ 	jr c, .Box_SkipNickname
+ 	ld a, TEMPMON
+@@ -146,9 +148,11 @@ CheckPartyFullAfterContest:
+ 	ld de, wTempMonNickname
+ 	ld bc, MON_NAME_LENGTH
+ 	call CopyBytes
+-	farcall UpdateStorageBoxMonFromTemp
+ 
+ .Box_SkipNickname:
++	farcall AddTempMonToStorage
++	cp PCSTORE_FULL
++	jr nc, .BoxFull
+ 	farcall CurBoxFullCheck
+ 	xor a
+ 	ld [wContestMon], a
+diff --git a/engine/pokemon/move_mon.asm b/engine/pokemon/move_mon.asm
+index 0a599ba..157972b 100755
+--- a/engine/pokemon/move_mon.asm
++++ b/engine/pokemon/move_mon.asm
+@@ -721,7 +721,23 @@ RetrieveBreedmon:
+ 	dec a
+ 	ld [wCurPartyMon], a
+ 	farcall HealPartyMon
++	; Clamp the experience total to the level it came back at when that is
++	; the level cap (MAX_LEVEL, or the Hard Mode cap that CalcLevel applied in
++	; GetBreedMon*LevelGrowth): steps walked past the cap aren't banked, so
++	; the mon can't jump levels the moment the cap rises. Same rule as battle
++	; experience. A mon that was left above the cap keeps what it had.
++	ld a, [wLevelCap]
++	and a
++	jr nz, .got_level_cap
++	ld a, MAX_LEVEL
++.got_level_cap
++	ld d, a
++	ld a, [wCurPartyLevel]
++	cp d
++	jr c, .got_clamp_level
++	jr z, .got_clamp_level
+ 	ld d, MAX_LEVEL
++.got_clamp_level
+ 	callfar CalcExpAtLevel
+ 	pop bc
+ 	ld hl, MON_EXP + 2
+@@ -1487,6 +1503,11 @@ GivePoke::
+ 	jr .done
+ 
+ .failed
++	; The boxed mon is stored first and rewritten once its item, OT, caught
++	; data and nickname are set, which takes a second database record. Refuse
++	; up front if that isn't available, rather than silently dropping the edits.
++	farcall CheckStorageSpaceForCapture
++	jp c, .FailedToGiveMon
+ 	ld a, [wCurPartySpecies]
+ 	ld [wTempEnemyMonSpecies], a
+ 	callfar LoadEnemyMon
+diff --git a/gfx/pokemon/raikou/anim_idle.asm b/gfx/pokemon/raikou/anim_idle.asm
+index e3944e8..bec8402 100755
+--- a/gfx/pokemon/raikou/anim_idle.asm
++++ b/gfx/pokemon/raikou/anim_idle.asm
+@@ -1,7 +1,6 @@
+ 	frame 4, 20
+-	frame 5, 08
+-	frame 6, 08
++	frame 5, 16
+ 	frame 4, 05
+-	frame 6, 05
++	frame 5, 05
+ 	frame 4, 30
+ 	endanim
+diff --git a/tools/test_pc_followups.py b/tools/test_pc_followups.py
+new file mode 100644
+index 0000000..b0ba422
+--- /dev/null
++++ b/tools/test_pc_followups.py
+@@ -0,0 +1,254 @@
++#!/usr/bin/env python3
++"""Follow-up checks for the storage audit: Bill's phone box-space variable,
++boxed gifts needing two database records, Eggs coming out of the PC, and the
++Day-Care under the Hard Mode level cap.
++
++Run: python3 tools/test_pc_followups.py [rom]
++Uses tools/pc_harness.py (private emulator state; no save file is touched).
++"""
++import os
++import sys
++
++sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
++from pc_harness import Harness, enc  # noqa: E402
++
++PASS = 0
++FAIL = 0
++
++
++def check(cond, msg):
++    global PASS, FAIL
++    if cond:
++        PASS += 1
++    else:
++        FAIL += 1
++        print("  FAIL:", msg)
++
++
++def section(name):
++    print(f"[{name}]")
++
++
++h = Harness()
++h.boot()
++S = h.s
++MONS_PER_BOX = 20
++PARTYMON_LEN = 48
++HARD_MODE_BIT = 3  # STATUSFLAGS2_HARD_MODE_F
++
++
++def set_party_empty():
++    h.wr(S("wPartyCount"), 0)
++    h.wr(S("wPartySpecies"), 0xFF)
++
++
++def exp_at_level(species_id, level):
++    h.wr(S("wCurSpecies"), species_id)
++    h.call("GetBaseData")
++    h.call("CalcExpAtLevel", de=level << 8)
++    p = h.rd(S("hProduct") + 1, 3)
++    return (p[0] << 16) | (p[1] << 8) | p[2]
++
++
++def box_free_var():
++    """What VAR_BOXSPACE hands to scripts."""
++    r = h.call("CheckStorageSpaceForCapture")
++    if r["c_flag"]:
++        return 0
++    return h.call("CountFreeSlotsInReceivingBox")["a"]
++
++
++# ---------------------------------------------------------------------------
++section("VAR_BOXSPACE counts the receiving box's free slots")
++h.wr(S("wCurBox"), 0)
++set_party_empty()
++h.call("InitializeBoxes")
++check(box_free_var() == MONS_PER_BOX, f"empty box: {MONS_PER_BOX} free (got {box_free_var()})")
++for i in range(3):
++    h.build_temp_mon(1 + i, [33, 0, 0, 0], level=5)
++    h.call("AddTempMonToStorage")
++check(box_free_var() == MONS_PER_BOX - 3, f"three stored: 17 free (got {box_free_var()})")
++for i in range(MONS_PER_BOX - 4):
++    h.build_temp_mon(10 + i, [33, 0, 0, 0], level=5)
++    h.call("AddTempMonToStorage")
++check(box_free_var() == 1, f"nineteen stored: 1 free (got {box_free_var()})")
++h.build_temp_mon(40, [33, 0, 0, 0], level=5)
++h.call("AddTempMonToStorage")
++check(box_free_var() == MONS_PER_BOX, f"current box full: reports the next box, 20 free (got {box_free_var()})")
++r = h.call("CountFreeSlotsInReceivingBox")
++check(h.rd(S("wCurBox")) == 0, "counting does not switch the current box")
++
++# ---------------------------------------------------------------------------
++section("Catch with a full party: stored, edited and rolled into the next box")
++h.wr(S("wCurBox"), 0)
++h.call("InitializeBoxes")
++for i in range(MONS_PER_BOX):
++    h.build_temp_mon(1 + i, [33, 0, 0, 0], level=5)
++    h.call("AddTempMonToStorage")
++CAUGHT_INDEX = 300
++caught_sid = h.species_id(CAUGHT_INDEX)
++h.wr(S("wPlayerID"), [0xBE, 0xEF])
++h.wr(S("wPlayerName"), enc("LUKE@@@@@@@"))
++h.wr(S("wEnemyMon"), bytes(48))
++h.wr(S("wEnemyMonSpecies"), caught_sid)
++h.wr(S("wEnemyMonMoves"), [h.move_id(33), h.move_id(260), 0, 0])
++h.wr(S("wEnemyMonDVs"), [0x12, 0x34])
++h.wr(S("wEnemyMonPersonality"), 0x20)
++h.wr(S("wEnemyMonHiddenPowerType"), 9)
++h.wr(S("wEnemyMonShinyGenderFlags"), 0x80)
++h.wr(S("wCurPartySpecies"), caught_sid)
++h.wr(S("wCurPartyLevel"), 23)
++r = h.call("CheckStorageSpaceForCapture")
++check(not r["c_flag"], "capture allowed: another box has room")
++r = h.call("SendMonIntoBox", max_frames=600)
++check(r["c_flag"] and r["a"] == 1, f"stored in another box (carry, PCSTORE_OTHER_BOX): c={r['c_flag']} a={r['a']}")
++check(h.rd(S("wTempMonBox")) == 2 and h.rd(S("wTempMonSlot")) == 1, "went to box 2 slot 1")
++h.call("SetBoxMonCaughtData")
++h.wr(S("wCurItem"), 2)  # ULTRA_BALL (CAUGHTBALL index 2)
++h.call("SetCaughtBall", bc=S("wTempMonPersonality"))
++h.wr(S("wTempMonNickname"), enc("CATCH@@@@@@"))
++old_ptr = h.box_pointer(2, 1)
++r = h.call("UpdateStorageBoxMonFromTemp")
++check(r["z"], "caught data and nickname committed")
++check(h.box_pointer(2, 1) != old_ptr and h.box_pointer(2, 1)[1] != 0, "commit wrote a fresh record (copy on write)")
++r = h.call("NewStorageBoxPointer")
++check(not r["c_flag"], "storage not reported full")
++r = h.call("CurBoxFullCheck")
++check(not r["z"] and h.rd(S("wCurBox")) == 1, f"current box switched to box 2 ({h.rd(S('wCurBox'))})")
++check(h.rd(S("wStringBuffer1"), 6) == enc("BOX 1@"), "old box name ready for the '<BOX> is full.' text")
++h.wr(S("wTempMon"), bytes(50))
++r = h.call("GetStorageBoxMon", bc=0x0201)
++tm = h.temp_mon()
++check(not r["z"] and not r["c_flag"], "stored catch decodes cleanly")
++check(tm["idx"] == CAUGHT_INDEX and tm["level"] == 23, f"species/level kept ({tm['idx']}, {tm['level']})")
++check(tm["nick"][:6] == enc("CATCH@") and tm["ot"][:5] == enc("LUKE@"), "nickname and OT kept")
++check(tm["id"] == 0xEFBE, f"OT ID kept ({tm['id']:04x})")
++check(tm["unused"] == 0x80 and tm["hidden_power"] == 9, "shiny/gender flags and Hidden Power type kept")
++check(tm["personality"] & 0x1F == 2 and tm["personality"] & 0xE0 == 0x20, f"ball and ability bits kept ({tm['personality']:02x})")
++check(tm["caught"][0] & 0x3F == 23, f"caught level recorded ({tm['caught'][0] & 0x3F})")
++exp = (tm["exp"][0] << 16) | (tm["exp"][1] << 8) | tm["exp"][2]
++check(exp == exp_at_level(caught_sid, 23), "EXP matches the caught level")
++check(tm["hp"] == tm["maxhp"] and tm["maxhp"] > 0, "stored catch is healthy")
++check(box_free_var() == MONS_PER_BOX - 1, f"Bill's count follows the new current box (got {box_free_var()})")
++
++# ---------------------------------------------------------------------------
++section("Egg withdrawn from the PC has 0 HP and can't count as a fighter")
++h.wr(S("wCurBox"), 1)
++h.build_temp_mon(7, [33, 0, 0, 0], level=5, egg=1, nick="EGG@@@@@@@@")
++h.call("AddTempMonToStorage")
++egg_box, egg_slot = h.rd(S("wTempMonBox")), h.rd(S("wTempMonSlot"))
++# party: one fainted mon
++h.build_temp_mon(4, [33, 0, 0, 0], level=12)
++set_party_empty()
++h.wr(S("wPartyCount"), 1)
++h.wr(S("wPartySpecies"), [h.rd(S("wTempMon")), 0xFF])
++h.wr(S("wPartyMon1"), h.rd(S("wTempMon"), PARTYMON_LEN))
++h.wr(S("wPartyMon1HP"), [0, 0])
++# withdraw the egg into the party
++r = h.call("SwapStorageBoxSlots", bc=0x0000, de=(egg_box << 8) | egg_slot)
++check(r["a"] == 0, f"withdraw succeeded (a={r['a']})")
++check(h.rd(S("wPartyCount")) == 2, "party has two members")
++check(h.rd(S("wPartySpecies") + 1) == 0xFD, f"second party species is EGG ({h.rd(S('wPartySpecies') + 1):02x})")
++hp = h.rd(S("wPartyMon2HP"), 2)
++check(hp == b"\x00\x00", f"withdrawn Egg has 0 HP (got {hp.hex()})")
++r = h.call("CheckPlayerPartyForFitMon")
++check(r["d"] == 0, "a fainted mon plus a PC Egg is not a usable party")
++
++# ---------------------------------------------------------------------------
++section("Day-Care under the Hard Mode level cap")
++flags = h.rd(S("wStatusFlags2"))
++h.wr(S("wStatusFlags2"), flags | (1 << HARD_MODE_BIT))
++h.wr(S("wBadges"), [0, 0])  # no badges: cap 10
++sid = h.species_id(1)  # Bulbasaur
++set_party_empty()
++cap_exp = exp_at_level(sid, 10)
++big_exp = exp_at_level(sid, 30)
++
++
++def put_breedmon1(level, exp):
++    d = bytearray(32)
++    d[0] = sid
++    d[2] = h.move_id(33)
++    d[8:11] = [(exp >> 16) & 0xFF, (exp >> 8) & 0xFF, exp & 0xFF]
++    d[21:23] = [0xFF, 0xFF]
++    d[27] = 70
++    d[31] = level
++    h.wr(S("wBreedMon1Stats"), d)
++    h.wr(S("wBreedMon1Nick"), enc("BULBA@@@@@@"))
++    h.wr(S("wBreedMon1Nick") + 11, enc("LUKE@@@@@@@"))
++    h.wr(S("wDayCareMan"), h.rd(S("wDayCareMan")) | 1)  # DAYCAREMAN_HAS_MON_F
++
++
++def retrieve_from_man():
++    """RetrieveMonFromDayCareMan without its SFX wait (no sound in the harness)."""
++    h.wr(S("wCurPartySpecies"), h.rd(S("wBreedMon1Stats")))
++    r = h.call("GetBreedMon1LevelGrowth")
++    h.wr(S("wd002"), r["b"])
++    h.wr(S("wCurPartyLevel"), r["e"])
++    h.wr(S("wPokemonWithdrawDepositParameter"), 0)
++    h.call("RetrieveBreedmon", max_frames=600)
++
++
++def breed_exp():
++    e = h.rd(S("wBreedMon1Stats") + 8, 3)
++    return (e[0] << 16) | (e[1] << 8) | e[2]
++
++
++# a mon left below the cap still gains a point per counted step
++h.wr(S("wDayCareMan"), 0)
++h.wr(S("wDayCareLady"), 0)
++put_breedmon1(5, exp_at_level(sid, 5))
++before = breed_exp()
++h.call("DayCareStep")
++check(breed_exp() == before + 1, f"below the cap: +1 EXP per step ({before} -> {breed_exp()})")
++check(h.rd(S("wLevelCap")) == 10, f"cap refreshed to 10 (got {h.rd(S('wLevelCap'))})")
++
++# one left at the cap gains nothing
++put_breedmon1(10, cap_exp)
++h.call("DayCareStep")
++check(breed_exp() == cap_exp, f"at the cap: no EXP ({cap_exp} -> {breed_exp()})")
++
++# one left above the cap gains nothing either, and isn't lowered
++put_breedmon1(14, exp_at_level(sid, 14))
++h.call("DayCareStep")
++check(breed_exp() == exp_at_level(sid, 14), "above the cap: no EXP")
++r = h.call("GetBreedMon1LevelGrowth")
++check(r["e"] == 14 and r["d"] == 0, f"above the cap: level kept, no growth (level {r['e']}, +{r['d']})")
++
++# taking back a mon whose total ran past the cap clamps the total
++put_breedmon1(5, big_exp)
++h.wr(S("wLevelCap"), 3)  # stale value: must be refreshed
++r = h.call("GetBreedMon1LevelGrowth")
++check(r["e"] == 10 and r["d"] == 5, f"growth stops at the cap (level {r['e']}, +{r['d']})")
++set_party_empty()
++retrieve_from_man()
++check(h.rd(S("wPartyCount")) == 1, "mon returned to the party")
++check(h.rd(S("wPartyMon1Level")) == 10, f"returned at level 10 (got {h.rd(S('wPartyMon1Level'))})")
++e = h.rd(S("wPartyMon1Exp"), 3)
++got = (e[0] << 16) | (e[1] << 8) | e[2]
++check(got == cap_exp, f"EXP clamped to the cap level's total ({got} vs {cap_exp}; banked was {big_exp})")
++
++# below the cap nothing is clamped
++mid_exp = exp_at_level(sid, 8) + 7
++put_breedmon1(5, mid_exp)
++set_party_empty()
++retrieve_from_man()
++e = h.rd(S("wPartyMon1Exp"), 3)
++got = (e[0] << 16) | (e[1] << 8) | e[2]
++check(h.rd(S("wPartyMon1Level")) == 8 and got == mid_exp, f"below the cap: level 8, EXP untouched ({got} vs {mid_exp})")
++
++# Normal Mode: unchanged behaviour (cap 100)
++h.wr(S("wStatusFlags2"), flags & ~(1 << HARD_MODE_BIT) & 0xFF)
++put_breedmon1(5, big_exp)
++set_party_empty()
++retrieve_from_man()
++e = h.rd(S("wPartyMon1Exp"), 3)
++got = (e[0] << 16) | (e[1] << 8) | e[2]
++check(h.rd(S("wPartyMon1Level")) == 30 and got == big_exp, f"Normal Mode: level 30, EXP kept (level {h.rd(S('wPartyMon1Level'))})")
++put_breedmon1(30, big_exp)
++h.call("DayCareStep")
++check(breed_exp() == big_exp + 1, "Normal Mode: steps still give EXP")
++h.wr(S("wStatusFlags2"), flags)
++
++print(f"\n{PASS} passed, {FAIL} failed, {h.calls} routine calls")
++sys.exit(1 if FAIL else 0)
+diff --git a/tools/test_pc_ui3.py b/tools/test_pc_ui3.py
+index 858295d..8565dd1 100755
+--- a/tools/test_pc_ui3.py
++++ b/tools/test_pc_ui3.py
+@@ -94,9 +94,19 @@ check(h.rd(S("wBillsPC_CursorItem")) == MAIL, "still holding the Mail")
+ press("b", wait=80, label="mail_aborted")     # put it back
+ check(h.rd(S("wBillsPC_CursorHeldBox")) == 0, "nothing held after B")
+ 
+-print("[menu ITEM > TAKE Mail: send to PC mailbox]")
++print("[menu RELEASE: refused while the party mon holds Mail]")
+ press("select", wait=20)                       # MENU mode
+ goto(0x30, "on_eevee")
++press("a", wait=30)
++press("down"); press("down"); press("down"); press("down", wait=10)   # RELEASE
++press("a", wait=80, label="release_mail_refused")
++press("up", wait=10)                           # would pick YES if a prompt had opened
++press("a", wait=60)
++check(h.rd(S("wPartyCount")) == 2, f"Eevee was not released (party count {h.rd(S('wPartyCount'))})")
++check(h.rd(S("wPartyMon1Item")) == MAIL, "Eevee still holds the Mail")
++
++print("[menu ITEM > TAKE Mail: send to PC mailbox]")
++goto(0x30, "on_eevee")
+ press("a", wait=30); press("down"); press("down"); press("down", wait=10)
+ press("a", wait=40, label="mail_menu")         # ITEM -> MOVE/TAKE/READ/CANCEL
+ press("down", wait=10)

@@ -133,9 +133,11 @@ CheckPartyFullAfterContest:
 	and CAUGHT_GENDER_MASK
 	or b
 	ld [hl], a
-	farcall AddTempMonToStorage
-	cp PCSTORE_FULL
-	jr nc, .BoxFull
+	; Make sure it can be stored before offering a nickname, and store it
+	; only once, with the nickname already in place: rewriting a stored mon
+	; takes a second database record, and without one the nickname was lost.
+	farcall NewStorageBoxPointer
+	jr c, .BoxFull
 	call GiveANickname_YesNo
 	jr c, .Box_SkipNickname
 	ld a, TEMPMON
@@ -146,9 +148,11 @@ CheckPartyFullAfterContest:
 	ld de, wTempMonNickname
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
-	farcall UpdateStorageBoxMonFromTemp
 
 .Box_SkipNickname:
+	farcall AddTempMonToStorage
+	cp PCSTORE_FULL
+	jr nc, .BoxFull
 	farcall CurBoxFullCheck
 	xor a
 	ld [wContestMon], a

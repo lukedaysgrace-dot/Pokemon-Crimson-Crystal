@@ -167,6 +167,25 @@ Read this before changing the game. Keep it up to date when something here chang
   Use `--no-video --rom pokecrystal_debug.gbc --output _artifacts/exp-relay-quest-debug`
   for the debug walkthrough. Both scripts use only private emulator state.
 
+## PC storage, catches and the Day-Care
+- Changing a stored mon (item, nickname, caught data) writes a new database
+  record, so storing and then editing a fresh mon needs two free records.
+  `CheckStorageSpaceForCapture` guarantees both; ball throws and `GivePoke`'s
+  box path call it first. A boxed contest catch is nicknamed before it is
+  stored, so it needs only one.
+- `VAR_BOXSPACE` is 0 when nothing can be stored, otherwise the free slots in
+  the box the next mon goes to (`CountFreeSlotsInReceivingBox`). Bill's phone
+  call prints it; other scripts only test it against 0. Bill's automatic
+  "BOX is full" call fires only when every box is full, not when the database
+  merely needs a save.
+- A party mon holding Mail can't be released from the PC (same rule as deposit).
+- Hard Mode: Day-Care mons at or above the level cap gain no step EXP, and one
+  taken back at the cap has its EXP clamped to that level's total, as battle
+  EXP is. `DayCareStep` and `GetBreedMon*LevelGrowth` refresh `wLevelCap`.
+- Eggs come out of the PC with 0 HP (`CalcTempmonStats` keys on
+  `wCurPartySpecies` = EGG); `CheckPlayerPartyForFitMon` relies on that.
+- Run `python3 tools/test_pc_followups.py` on both ROMs after touching these.
+
 ## Battle Stat EXP
 - Battle awards retain all five Gen 2 Stat EXP words, division, Pokérus and
   saturation rules. Hard Mode caps and level 100 block regular EXP only;
