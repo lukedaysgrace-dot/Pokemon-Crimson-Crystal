@@ -153,7 +153,9 @@ def main():
                          (upper_y, 5, 2, *maps[following])]
                 check(warps == lower + upper, f'{name}: incorrect compiled warps {warps}')
             bank, ptr = h.sym['LoreleisRoom_Blocks']
-            check(h.mem[bank, ptr + 42] == 0x1c,
+            coll_bank, coll_ptr = h.sym['TilesetLoreleisRoomColl']
+            entrance = h.mem[bank, ptr + 42]
+            check([h.mem[coll_bank, coll_ptr + entrance * 4 + 2 + i] for i in range(2)] == [0x70, 0x70],
                   'Lorelei entrance must have two downward warp collisions')
             load('SILVER_CAVE_OUTSIDE')
             check(read('wCurMapCoordEventCount') == 0 and read('wCurMapObjectEventCount') == 0

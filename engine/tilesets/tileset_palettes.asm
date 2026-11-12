@@ -18,7 +18,12 @@ LoadSpecialMapPalette:
 	jp z, .johto_modern
 	cp TILESET_KANTO
 	jp z, .kanto
-	jp .do_nothing
+	sub TILESET_KOGAS_ROOM
+	cp NUM_LEAGUE_ROOM_TILESETS
+	jp nc, .do_nothing
+	farcall LoadLeagueRoomPalette
+	scf
+	ret
 
 .johto
 	ld hl, JohtoTilesetPalette

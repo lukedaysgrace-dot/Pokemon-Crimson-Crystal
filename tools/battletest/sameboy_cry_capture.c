@@ -56,3 +56,16 @@ void *cry_pixels(Capture*c){return c->pixels;}
 size_t cry_state_size(Capture*c){return GB_get_save_state_size(c->gb);}
 void cry_save(Capture*c,void*p){GB_save_state_to_buffer(c->gb,p);}
 int cry_load(Capture*c,const void*p,size_t size){return GB_load_state_from_buffer(c->gb,p,size);}
+/* Private fixture setup, before recording. Running footage uses key masks only. */
+unsigned cry_register(Capture*c,unsigned index,unsigned value,unsigned write){
+    GB_registers_t *r=GB_get_registers(c->gb);
+    uint16_t *reg;
+    switch(index){
+        case 0:reg=&r->pc;break; case 1:reg=&r->sp;break;
+        case 2:reg=&r->af;break; case 3:reg=&r->bc;break;
+        case 4:reg=&r->de;break; default:reg=&r->hl;break;
+    }
+    if(write)*reg=value;
+    return *reg;
+}
+void cry_resume(Capture*c){c->gb->halted=false;c->gb->stopped=false;c->gb->ime=true;}

@@ -675,6 +675,12 @@ INCLUDE "engine/events/play_slow_cry.asm"
 INCLUDE "engine/events/magikarp.asm"
 INCLUDE "engine/tilesets/tileset_anims.asm"
 INCLUDE "engine/events/npc_trade.asm"
+
+
+SECTION "Mom Phone", ROMX
+
+; Moved out of bank3F (only reached by farcall) to make room for the
+; Elite Four chamber tile animations.
 INCLUDE "engine/events/mom_phone.asm"
 
 
@@ -1017,3 +1023,6 @@ INCLUDE "engine/menus/item_save_upgrade.asm"
 
 SECTION "Forest Rivalry", ROMX
 INCLUDE "engine/events/forest_rivalry.asm"
+
+INCLUDE "engine/tilesets/league_room_palettes.asm"
+INCLUDE "engine/tilesets/league_room_anims.asm"

@@ -156,12 +156,12 @@ wMapTimeOfDay:: db
 
 wAlwaysCatchCheat:: db ; nonzero = 100% catch rate with any ball
 wPlayerInvincibleCheat:: db ; bit 0 = player battle Pokemon cannot drop below 1 HP
-	ds 1
+wLeagueAnimLastVBlank:: db ; Elite Four room animations: last hVBlankCounter seen
 
 wPrinterConnectionOpen:: db
 wPrinterOpcode:: db
 
-	ds 1
+wLeagueAnimCounterHi:: db ; Elite Four room animations: hVBlankCounter wraps
 
 wDisableTextAcceleration:: db
 wPrevLandmark:: db

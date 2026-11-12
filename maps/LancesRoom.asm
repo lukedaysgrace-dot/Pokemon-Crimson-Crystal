@@ -21,11 +21,11 @@ LancesRoom_MapScripts:
 .LancesRoomDoors:
 	checkevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
-	changeblock 4, 22, $34 ; wall
+	changeblock 4, 22, $3a ; dragon gate closes
 .KeepEntranceOpen:
 	checkevent EVENT_LANCES_ROOM_EXIT_OPEN
 	iffalse .KeepExitClosed
-	changeblock 4, 0, $0b ; open door
+	changeblock 4, 0, $39 ; the dragon's jaws open
 .KeepExitClosed:
 	return
 
@@ -34,7 +34,7 @@ LancesRoom_MapScripts:
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock 4, 22, $34 ; wall
+	changeblock 4, 22, $3a ; dragon gate closes
 	reloadmappart
 	closetext
 	setscene SCENE_LANCESROOM_APPROACH_LANCE
@@ -88,7 +88,7 @@ LancesRoomLanceScript:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock 4, 0, $0b ; open door
+	changeblock 4, 0, $39 ; the dragon's jaws open
 	reloadmappart
 	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED

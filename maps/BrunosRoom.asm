@@ -19,11 +19,11 @@ BrunosRoom_MapScripts:
 .BrunosRoomDoors:
 	checkevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
-	changeblock 4, 14, $2a ; wall
+	changeblock 4, 14, $2d ; boulder seals the tunnel
 .KeepEntranceOpen:
 	checkevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	iffalse .KeepExitClosed
-	changeblock 4, 2, $16 ; open door
+	changeblock 4, 2, $2c ; stone seal opens
 .KeepExitClosed:
 	return
 
@@ -32,7 +32,7 @@ BrunosRoom_MapScripts:
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock 4, 14, $2a ; wall
+	changeblock 4, 14, $2d ; boulder seals the tunnel
 	reloadmappart
 	closetext
 	setscene SCENE_FINISHED
@@ -64,7 +64,7 @@ BrunoScript_Battle:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock 4, 2, $16 ; open door
+	changeblock 4, 2, $2c ; stone seal opens
 	reloadmappart
 	closetext
 	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
