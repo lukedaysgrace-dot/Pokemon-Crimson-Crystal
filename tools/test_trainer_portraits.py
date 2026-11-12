@@ -31,13 +31,18 @@ class PortraitCoverage(unittest.TestCase):
         return {portraits.decide(mf, label, speaker, self.names)[0]
                 for speaker, _ in self.uses[mapname, label]}
 
-    def test_all_portrait_assets_have_dialogue(self):
+    def test_active_portrait_assets_have_dialogue(self):
         used = set()
         for mapname, label in self.uses:
             for decision in self.decisions(mapname, label):
                 if decision[0] == 'portrait':
                     used.add(decision[1])
-        self.assertEqual(used, self.names)
+        # AGENTS.md preserves these assets while deliberately retiring Will's
+        # League encounter and Agatha's Mt. Silver actor/dialogue. The current
+        # League is Koga, Bruno, Karen, Lorelei and Lance.
+        inactive = {'AGATHA', 'WILL'}
+        self.assertTrue(inactive <= self.names)
+        self.assertEqual(used, self.names - inactive)
         self.assertEqual({p.stem.upper() for p in (ROOT / 'gfx/trainer_portraits').glob('*.portrait')}, self.names)
 
     def test_no_ambiguous_speakers(self):

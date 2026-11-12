@@ -724,6 +724,8 @@ ENDC
 	jr z, .continue_protect
 	cp EFFECT_ENDURE
 	jr z, .continue_protect
+	cp EFFECT_BANEFUL_BUNKER
+	jr z, .continue_protect
 	xor a
 	ld [wPlayerProtectCount], a
 	jr .continue_protect
@@ -5800,6 +5802,8 @@ PlayerPickMoveAfterGigaHammerFail:
 	jr z, .retry_protect_done
 	cp EFFECT_ENDURE
 	jr z, .retry_protect_done
+	cp EFFECT_BANEFUL_BUNKER
+	jr z, .retry_protect_done
 	xor a
 	ld [wPlayerProtectCount], a
 .retry_protect_done
@@ -6399,6 +6403,8 @@ ParseEnemyAction:
 	cp EFFECT_PROTECT
 	ret z
 	cp EFFECT_ENDURE
+	ret z
+	cp EFFECT_BANEFUL_BUNKER
 	ret z
 	xor a
 	ld [wEnemyProtectCount], a

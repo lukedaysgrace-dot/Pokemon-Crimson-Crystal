@@ -1,0 +1,151 @@
+# Native controls for ability/item interactions found in the November 12 audit.
+
+- name: "Ability audit: Covert Cloak blocks player's Poison Touch"
+  player: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: COVERT_CLOAK, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.status == 0
+
+- name: "Ability audit: Covert Cloak blocks enemy's Poison Touch"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, item: COVERT_CLOAK, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - player.status == 0
+
+- name: "Ability audit control: player's Poison Touch poisons without a Cloak"
+  player: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+
+- name: "Ability audit control: enemy's Poison Touch poisons without a Cloak"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - (player.status & 8) != 0
+
+- name: "Ability audit control: Klutz disables enemy's Covert Cloak"
+  player: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, ability: KLUTZ, item: COVERT_CLOAK, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - (enemy.status & 8) != 0
+
+- name: "Ability audit control: Klutz disables player's Covert Cloak"
+  player: {species: SNORLAX, level: 100, ability: KLUTZ, item: COVERT_CLOAK, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - (player.status & 8) != 0
+
+- name: "Ability audit control: Shield Dust blocks player's Poison Touch"
+  player: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  enemy: {species: SNORLAX, level: 100, ability: SHIELD_DUST, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.status == 0
+
+- name: "Ability audit control: Shield Dust blocks enemy's Poison Touch"
+  player: {species: SNORLAX, level: 100, ability: SHIELD_DUST, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: POISON_TOUCH, moves: [TACKLE]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.status == 0
+
+- name: "Ability audit: delayed player Yawn respects Leaf Guard despite Mold Breaker"
+  player: {species: MEW, level: 50, ability: MOLD_BREAKER, moves: [YAWN, SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: LEAF_GUARD, moves: [SPLASH]}
+  move_script: [1, 2]
+  weather: sun
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or wram('wEnemyYawnCount') == 1
+  assert:
+    - enemy.status == 0
+    - wram('wEnemyYawnCount') == 0
+
+- name: "Ability audit: delayed enemy Yawn respects Leaf Guard despite Mold Breaker"
+  player: {species: SNORLAX, level: 100, ability: LEAF_GUARD, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: MOLD_BREAKER, moves: [YAWN]}
+  weather: sun
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or wram('wPlayerYawnCount') == 1
+  assert:
+    - player.status == 0
+    - wram('wPlayerYawnCount') == 0
+
+- name: "Ability audit control: Leaf Guard permits player Yawn outside sun"
+  player: {species: MEW, level: 50, ability: MOLD_BREAKER, moves: [YAWN, SPLASH]}
+  enemy: {species: SNORLAX, level: 100, ability: LEAF_GUARD, moves: [SPLASH]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert:
+    - (enemy.status & 7) != 0
+
+- name: "Ability audit control: Leaf Guard permits enemy Yawn outside sun"
+  player: {species: SNORLAX, level: 100, ability: LEAF_GUARD, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: MOLD_BREAKER, moves: [YAWN]}
+  rng: forced_high
+  turns: 2
+  assert:
+    - (player.status & 7) != 0
+
+- name: "Ability audit: Safeguard after Yawn cannot cancel pending sleep"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH, SAFEGUARD]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [YAWN]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or wram('wPlayerYawnCount') == 1
+  assert:
+    - (player.status & 7) != 0
+    - player.screens != 0
+
+- name: "Ability audit control: Safeguard before Yawn blocks drowsiness"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SAFEGUARD]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [YAWN]}
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.status == 0
+    - wram('wPlayerYawnCount') == 0
+
+- name: "Ability audit: enemy Safeguard after Yawn cannot cancel pending sleep"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [YAWN, SPLASH]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SAFEGUARD]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or wram('wEnemyYawnCount') == 1
+  assert:
+    - (enemy.status & 7) != 0
+    - enemy.screens != 0
+
+- name: "Ability audit control: enemy Safeguard before Yawn blocks drowsiness"
+  player: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [YAWN]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SAFEGUARD]}
+  rng: forced_high
+  turns: 2
+  assert:
+    - enemy.status == 0
+    - wram('wEnemyYawnCount') == 0

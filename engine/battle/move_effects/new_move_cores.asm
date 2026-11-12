@@ -1802,15 +1802,12 @@ HandleNewEndTurnEffects_Core:
 	and a
 	ret nz ; got a status in the meantime
 	push hl
-	farcall SafeCheckSafeguard_Core
-	pop hl
-	ret nz
-	push hl
 	; Drowsiness has already landed (and may already have been reflected).
-	; Its delayed sleep is not a new reflectable move.
+	; Its delayed sleep is not a new reflectable move, and a Safeguard
+	; raised after Yawn landed cannot cancel the pending sleep.
 	ld hl, wDisguiseBusted + 1
 	set 6, [hl]
-	farcall AbilityPreventsSleep
+	farcall AbilityPreventsSleepResidual
 	ld hl, wDisguiseBusted + 1
 	res 6, [hl]
 	pop hl

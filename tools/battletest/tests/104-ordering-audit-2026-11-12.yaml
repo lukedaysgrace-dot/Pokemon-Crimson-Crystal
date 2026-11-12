@@ -1,0 +1,76 @@
+# Baneful Bunker shares the consecutive-use counter with every other guard.
+- name: "Audit 1112: repeated player Bunker uses the reduced guard chance"
+  player: {species: MEW, level: 50, moves: [BANEFUL_BUNKER]}
+  enemy: {species: MEW, level: 50, moves: [SWIFT]}
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or player.hp == player.start_hp
+  assert:
+    - player.hp < player.start_hp
+    - wram('wPlayerProtectCount') == 0
+
+- name: "Audit 1112: repeated enemy Bunker uses the reduced guard chance"
+  player: {species: MEW, level: 50, moves: [SWIFT]}
+  enemy: {species: MEW, level: 50, moves: [BANEFUL_BUNKER]}
+  rng: forced_high
+  turns: 2
+  turn_assert:
+    - turns_done != 1 or enemy.hp == enemy.start_hp
+  assert:
+    - enemy.hp < enemy.start_hp
+    - wram('wEnemyProtectCount') == 0
+
+- name: "Audit 1112: Protect then Bunker shares the guard chance"
+  player: {species: MEW, level: 50, moves: [PROTECT, BANEFUL_BUNKER]}
+  enemy: {species: MEW, level: 50, moves: [SWIFT]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: [player.hp < player.start_hp, "wram('wPlayerProtectCount') == 0"]
+
+- name: "Audit 1112: Endure then Bunker shares the guard chance"
+  player: {species: MEW, level: 50, moves: [ENDURE, BANEFUL_BUNKER]}
+  enemy: {species: MEW, level: 50, moves: [SWIFT]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: ["wram('wPlayerProtectCount') == 0", "textbox_seen('ButItFailedText')"]
+
+- name: "Audit 1112: King Shield then Bunker shares the guard chance"
+  player: {species: MEW, level: 50, moves: [KINGS_SHIELD, BANEFUL_BUNKER]}
+  enemy: {species: MEW, level: 50, moves: [SWIFT]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: [player.hp < player.start_hp, "wram('wPlayerProtectCount') == 0"]
+
+- name: "Audit 1112: Bunker then Protect retains its existing guard chance"
+  player: {species: MEW, level: 50, moves: [BANEFUL_BUNKER, PROTECT]}
+  enemy: {species: MEW, level: 50, moves: [SWIFT]}
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert: [player.hp < player.start_hp, "wram('wPlayerProtectCount') == 0"]
+
+- name: "Audit 1112: player Bunker can succeed at the reduced guard chance"
+  player: {species: MEW, level: 50, moves: [BANEFUL_BUNKER]}
+  enemy: {species: MEW, level: 50, moves: [SWIFT]}
+  rng: forced_low
+  turns: 2
+  assert: [player.hp == player.start_hp, "wram('wPlayerProtectCount') == 2"]
+
+- name: "Audit 1112: enemy Bunker can succeed at the reduced guard chance"
+  player: {species: MEW, level: 50, moves: [SWIFT]}
+  enemy: {species: MEW, level: 50, moves: [BANEFUL_BUNKER]}
+  rng: forced_low
+  turns: 2
+  assert: [enemy.hp == enemy.start_hp, "wram('wEnemyProtectCount') == 2"]
+
+- name: "Audit 1112: an intervening move resets the Bunker guard chance"
+  player: {species: MEW, level: 50, moves: [BANEFUL_BUNKER, SPLASH]}
+  enemy: {species: MEW, level: 50, moves: [SWIFT]}
+  move_script: [1, 2, 1]
+  rng: forced_high
+  turns: 3
+  assert: ["wram('wPlayerProtectCount') == 1"]

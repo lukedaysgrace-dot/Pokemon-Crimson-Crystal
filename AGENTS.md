@@ -179,6 +179,8 @@ Read this before changing the game. Keep it up to date when something here chang
   "BOX is full" call fires only when every box is full, not when the database
   merely needs a save.
 - A party mon holding Mail can't be released from the PC (same rule as deposit).
+- `UpdateStorageBoxMonFromTemp` returns NZ for an unloaded slot 0, without
+  committing or changing party/box data; Z always means a successful update.
 - Hard Mode: Day-Care mons at or above the level cap gain no step EXP, and one
   taken back at the cap has its EXP clamped to that level's total, as battle
   EXP is. `DayCareStep` and `GetBreedMon*LevelGrowth` refresh `wLevelCap`.
@@ -235,6 +237,16 @@ Read this before changing the game. Keep it up to date when something here chang
 - Circle Throw / Dragon Tail do not drag out a target whose Substitute took
   the hit; Roar and Whirlwind ignore the Substitute.
 - Rest fails while its user is asleep, so Sleep Talk cannot call it to heal.
+- Protect, Detect, King's Shield, Endure and Baneful Bunker share the consecutive
+  guard counter. Preserve it in both move-selection paths and player reselection.
+- Disable checks only `PP_MASK`; PP-Up bits cannot make an exhausted move eligible.
+- Non-Ghost Curse considers all three stat changes at their actual caps and
+  routes its self-inflicted Speed change through the Contrary-aware command.
+- Baton Pass restores the incoming party slot's own bad-poison history after
+  discarding the outgoing mon's flag. It never transfers the passer's poison.
+- Yawn checks Safeguard when drowsiness lands, not when pending sleep resolves.
+  Delayed sleep uses effective abilities without Mold Breaker's move-only bypass.
+  Poison Touch respects an effective Covert Cloak as well as Shield Dust.
 - Every guard move must be in `MetronomeExcepts`, including ones that reuse
   `EFFECT_PROTECT` (King's Shield). `tools/audit_metronome_exceptions.py`
   checks this and is part of `make audit-static`.

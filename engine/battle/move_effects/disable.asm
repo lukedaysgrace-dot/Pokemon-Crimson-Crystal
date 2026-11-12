@@ -49,7 +49,7 @@ BattleCommand_Disable:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	and a
+	and PP_MASK
 	jr z, .failed
 ; Modern Disable: fixed 4 turns (low nibble = turn counter, high nibble =
 ; disabled move slot; keep the packing intact).

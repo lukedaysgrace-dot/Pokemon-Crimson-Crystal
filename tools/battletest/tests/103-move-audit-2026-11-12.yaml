@@ -1,0 +1,188 @@
+# Baton Pass discards the outgoing mon's bad poison, while retaining the
+# incoming mon's own per-party poison history just like an ordinary switch.
+- name: "Audit 1112: player Baton Pass preserves incoming bad poison"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [BATON_PASS]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, status_byte: 8, moves: [SPLASH]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerToxicSlots: 2}
+  move_script: [1, 1]
+  rng: forced_high
+  turns: 2
+  assert:
+    - "player.species == 'SNORLAX'"
+    - "(player.substatus[4] & 1) != 0"
+    - "wram('wPlayerToxicCount') == 2"
+    - "wram('wPlayerToxicSlots') == 2"
+
+- name: "Audit 1112: enemy Baton Pass preserves incoming bad poison"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [BATON_PASS]}
+  enemy2: {species: SNORLAX, level: 50, ability: NO_ABILITY, status_byte: 8, moves: [SPLASH]}
+  setup_wram: {wEnemyToxicSlots: 2}
+  rng: forced_high
+  turns: 2
+  assert:
+    - "enemy.species == 'SNORLAX'"
+    - "(enemy.substatus[4] & 1) != 0"
+    - "wram('wEnemyToxicCount') == 2"
+    - "wram('wEnemyToxicSlots') == 2"
+
+- name: "Audit 1112 control: player Baton Pass does not pass outgoing bad poison"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 8, substatus: [TOXIC], moves: [BATON_PASS]}
+  player2: {species: SNORLAX, level: 50, ability: NO_ABILITY, status_byte: 8, moves: [SPLASH]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerToxicSlots: 1}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "player.species == 'SNORLAX'"
+    - "player.status == 8"
+    - "(player.substatus[4] & 1) == 0"
+    - "wram('wPlayerToxicSlots') == 1"
+
+- name: "Audit 1112 control: enemy Baton Pass does not pass outgoing bad poison"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 8, substatus: [TOXIC], moves: [BATON_PASS]}
+  enemy2: {species: SNORLAX, level: 50, ability: NO_ABILITY, status_byte: 8, moves: [SPLASH]}
+  setup_wram: {wEnemyToxicSlots: 1}
+  rng: forced_high
+  turns: 1
+  assert:
+    - "enemy.species == 'SNORLAX'"
+    - "enemy.status == 8"
+    - "(enemy.substatus[4] & 1) == 0"
+    - "wram('wEnemyToxicSlots') == 1"
+
+# The top two PP bits record PP Ups. They do not make an exhausted move
+# eligible for Disable.
+- name: "Audit 1112: Disable rejects an exhausted PP-Up move on the enemy"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [DISABLE]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram:
+    wLastEnemyCounterMove: {move: SPLASH}
+    wEnemyMonPP: 64
+    wOTPartyMon1PP: 64
+  rng: forced_high
+  turns: 1
+  assert:
+    - "wram('wEnemyDisableCount') == 0"
+    - "not textbox_seen('WasDisabledText')"
+
+- name: "Audit 1112: Curse can still lower Speed at maximum Attack and Defense"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, stages: {atk: 6, def: 6}, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 13", "player.stat_levels[1] == 13", "player.stat_levels[2] == 6"]
+
+- name: "Audit 1112: enemy Curse can still lower Speed at maximum Attack and Defense"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, stages: {atk: 6, def: 6}, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 13", "enemy.stat_levels[1] == 13", "enemy.stat_levels[2] == 6"]
+
+- name: "Audit 1112: Contrary Curse lowers maximum Attack and Defense"
+  player: {species: MEW, level: 50, ability: CONTRARY, stages: {atk: 6, def: 6}, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 12", "player.stat_levels[1] == 12", "player.stat_levels[2] == 8"]
+
+- name: "Audit 1112: enemy Contrary Curse lowers maximum Attack and Defense"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: CONTRARY, stages: {atk: 6, def: 6}, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 12", "enemy.stat_levels[1] == 12", "enemy.stat_levels[2] == 8"]
+
+- name: "Audit 1112: Contrary reverses all three Curse changes from neutral stages"
+  player: {species: MEW, level: 50, ability: CONTRARY, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 6", "player.stat_levels[1] == 6", "player.stat_levels[2] == 8"]
+
+- name: "Audit 1112: enemy Contrary reverses all three Curse changes from neutral stages"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: CONTRARY, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 6", "enemy.stat_levels[1] == 6", "enemy.stat_levels[2] == 8"]
+
+- name: "Audit 1112: capped Contrary Curse Speed does not invert the following Attack drop"
+  player: {species: MEW, level: 50, ability: CONTRARY, stages: {spd: 6}, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 6", "player.stat_levels[1] == 6", "player.stat_levels[2] == 13"]
+
+- name: "Audit 1112: enemy capped Contrary Curse Speed does not invert the following Attack drop"
+  player: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: CONTRARY, stages: {spd: 6}, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 6", "enemy.stat_levels[1] == 6", "enemy.stat_levels[2] == 13"]
+
+- name: "Audit 1112: enemy Disable rejects an exhausted PP-Up move on the player"
+  player: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [DISABLE]}
+  setup_wram:
+    wLastPlayerCounterMove: {move: SPLASH}
+    wBattleMonPP: 64
+    wPartyMon1PP: 64
+  rng: forced_high
+  turns: 1
+  assert:
+    - "wram('wPlayerDisableCount') == 0"
+    - "not textbox_seen('WasDisabledText')"
+
+- name: "Audit 1112 control: Disable accepts a PP-Up move with PP remaining"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [DISABLE]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram:
+    wLastEnemyCounterMove: {move: SPLASH}
+    wEnemyMonPP: 65
+    wOTPartyMon1PP: 65
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wEnemyDisableCount') != 0", "textbox_seen('WasDisabledText')"]
+
+- name: "Audit 1112 control: enemy Disable accepts a PP-Up move with PP remaining"
+  player: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [DISABLE]}
+  setup_wram:
+    wLastPlayerCounterMove: {move: SPLASH}
+    wBattleMonPP: 65
+    wPartyMon1PP: 65
+  rng: forced_high
+  turns: 1
+  assert: ["wram('wPlayerDisableCount') != 0", "textbox_seen('WasDisabledText')"]
+
+- name: "Audit 1112 control: Curse fails when all three changes are capped"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, stages: {atk: 6, def: 6, spd: -6}, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 13", "player.stat_levels[1] == 13", "player.stat_levels[2] == 1", "textbox_seen('WontRiseAnymoreText')"]
+
+- name: "Audit 1112 control: Contrary Curse fails when all reversed changes are capped"
+  player: {species: MEW, level: 50, ability: CONTRARY, stages: {atk: -6, def: -6, spd: 6}, moves: [CURSE]}
+  enemy: {species: MAGIKARP, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 1", "player.stat_levels[1] == 1", "player.stat_levels[2] == 13", "textbox_seen('WontRiseAnymoreText')"]
+
+- name: "Audit 1112 control: Gas suppresses Contrary during the Curse cap check"
+  player: {species: MEW, level: 50, ability: CONTRARY, stages: {atk: 6, def: 6}, moves: [CURSE]}
+  enemy: {species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.stat_levels[0] == 13", "player.stat_levels[1] == 13", "player.stat_levels[2] == 6"]
+
+- name: "Audit 1112 control: Gas suppresses enemy Contrary during the Curse cap check"
+  player: {species: WEEZING, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: CONTRARY, stages: {atk: 6, def: 6}, moves: [CURSE]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.stat_levels[0] == 13", "enemy.stat_levels[1] == 13", "enemy.stat_levels[2] == 6"]

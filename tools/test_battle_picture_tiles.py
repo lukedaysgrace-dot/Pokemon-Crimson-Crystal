@@ -43,7 +43,8 @@ def main():
     def setattr_bank(): h.mem[0xff70] = h.sym.bank('wPokeAnimStruct')
 
     try:
-        cases = [('ZANGOOSE', 'zangoose', 'Zangoose'),
+        cases = [('ENTEI', 'entei', 'Entei'),
+                 ('ZANGOOSE', 'zangoose', 'Zangoose'),
                  ('ZANGOOSE_SCARRED', 'zangoose', 'Zangoose'),
                  ('SEVIPER', 'seviper', 'Seviper'),
                  ('MIENFOO', 'mienfoo', 'Mienfoo'), ('MIENSHAO', 'mienshao', 'Mienshao'),

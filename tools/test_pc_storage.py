@@ -94,6 +94,27 @@ check(h.free_entries() == 508, f"all records free after init (got {h.free_entrie
 check(h.rd(S("wPokeDB1UsedEntries")) == 0, "bitmap cleared")
 
 # ---------------------------------------------------------------------------
+section("An unloaded temporary mon cannot be committed")
+party_start = S("wPartyCount")
+party_size = S("wPartyMonNicknames") + 6 * 11 - party_start
+box_bank, box_start = h.sym["sNewBox1"]
+box_size = S("sNewBoxEnd") - box_start
+for box in (0, 1):
+    h.wr(S("wTempMonBox"), box)
+    h.wr(S("wTempMonSlot"), 0)  # no loaded party or box slot
+    party_before = h.rd(party_start, party_size)
+    boxes_before = h.sram(box_bank, box_start, box_size)
+    free_before = h.free_entries()
+    r = h.call("UpdateStorageBoxMonFromTemp")
+    check(not r["z"], f"unloaded mon (box {box}): reports failure")
+    check(h.rd(party_start, party_size) == party_before,
+          f"unloaded mon (box {box}): party unchanged")
+    check(h.sram(box_bank, box_start, box_size) == boxes_before,
+          f"unloaded mon (box {box}): box pointers unchanged")
+    check(h.free_entries() == free_before,
+          f"unloaded mon (box {box}): no record allocated")
+
+# ---------------------------------------------------------------------------
 section("Round trip: high species/move indexes, PP ups, egg")
 SPECIES_HI = 300  # > 255
 MOVES = [10, 260, 400, 0]
