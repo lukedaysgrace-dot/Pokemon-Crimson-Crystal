@@ -1,7 +1,24 @@
-"""Build the unregistered Shucks map from pinned online Gen 2 tiles.
+"""Build the unregistered Shucks bar map in Gold/Silver/Crystal style.
 
-Run with Python 3 + Pillow. No existing project tileset is read or modified.
-The source inputs and their provenance live in gfx/tilesets/shucks_sources/.
+Run with Python 3 + Pillow:  python3 tools/build_shucks.py
+
+Layout: 10 x 8 blocks (20 x 16 movement cells), the same footprint class as
+Goldenrod's Game Corner or a Department Store floor.
+
+Art direction follows the original Crystal interiors:
+  * The room is composed in "true colour" from a small set of shared colours,
+    then every 8x8 tile is assigned whichever of the eight palettes holds all of
+    its colours. Like Crystal, every palette that can touch the floor shares the
+    floor's two colours and black, so furniture sits cleanly on the boards.
+  * Wall panels, floorboards, the back-bar grill/sink, fridge, radio, potted
+    palms, the stage boards and the exit rug are copied from vanilla Crystal
+    tiles (pinned copies in gfx/tilesets/shucks_sources/crystal_*).
+  * The bar-specific fixtures (bottle shelves, taps, counter, curtain, speaker
+    stacks, marquee footlights, dance floor, pool table, cue rack, cafe tables
+    and signage) are hand-pixelled here in the same 4-shade, black-outlined style.
+
+No existing project tileset is modified, and the map stays out of every map
+table until it is given an entrance.
 """
 from collections import deque
 from pathlib import Path
@@ -9,330 +26,872 @@ import hashlib
 import json
 import re
 
-from PIL import Image, ImageDraw
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = ROOT / 'gfx/tilesets/shucks_sources'
-WIDTH, HEIGHT = 24, 18  # 16-pixel movement cells; 12 x 9 map blocks.
+WIDTH, HEIGHT = 20, 16           # 16-pixel movement cells
+BW, BH = WIDTH // 2, HEIGHT // 2  # 32-pixel map blocks
+ENTRANCE = [(9, 15), (10, 15)]    # rug cells reserved for the future exit warps
+
+# ---------------------------------------------------------------- colours ---
+C = {
+    'L': (27, 24, 18),  # floor light / cream highlight
+    'd': (21, 17, 10),  # floorboard seam / light wood
+    'w': (14, 10, 5),   # dark wood
+    'k': (6, 4, 4),     # outline black
+    'W': (30, 29, 27),  # appliance white
+    'g': (20, 20, 21),  # light grey
+    'G': (11, 11, 13),  # dark grey
+    'r': (28, 8, 8),    # red
+    'n': (8, 19, 6),    # bottle / leaf green
+    'f': (16, 26, 11),  # felt highlight
+    'm': (7, 18, 9),    # felt
+    'y': (31, 27, 8),   # yellow
+    'o': (29, 14, 3),   # orange
+    'p': (29, 16, 25),  # curtain pink
+    'u': (15, 7, 21),   # curtain purple
+}
 PALETTES = [
-    [(30,28,26),(21,20,20),(13,12,13),(4,3,5)],
-    [(30,28,26),(27,14,18),(15,5,9),(4,3,5)],
-    [(27,29,22),(16,23,14),(7,14,9),(4,3,5)],
-    [(29,29,31),(18,20,28),(9,11,19),(4,3,5)],
-    [(31,29,23),(28,23,13),(19,13,7),(4,3,5)],
-    [(30,28,24),(25,20,14),(15,10,8),(4,3,5)],
-    [(30,27,30),(23,17,24),(13,8,15),(4,3,5)],
-    [(31,31,16),(31,31,16),(14,9,0),(0,0,0)],
+    'WgGk',  # 0 grey: fridge, stove, radio, speakers
+    'Ldrk',  # 1 red: stools, rug, red bottles, cafe tables
+    'Ldnk',  # 2 green: palms, green bottles
+    'fmwk',  # 3 felt: pool table
+    'Lyok',  # 4 yellow: dance floor, marquee lights
+    'Ldwk',  # 5 brown: floor, walls, woodwork (preferred for shared tiles)
+    'Lpuk',  # 6 purple: stage curtain
 ]
-source_data = {}
-for name in ('game_corner', 'hotel', 'traditional_house'):
-    source_data[name] = (
-        Image.open(SOURCES / f'{name}.png').convert('L'),
-        (SOURCES / f'{name}_metatiles.bin').read_bytes(),
-        (SOURCES / f'{name}_attributes.bin').read_bytes(),
-    )
+PREFERENCE = [5, 1, 2, 0, 3, 4, 6]
+TEXT_PALETTE = [(31, 31, 16), (31, 31, 16), (14, 9, 0), (0, 0, 0)]
+
+# ---------------------------------------------------------------- canvas ----
+canvas = [['L'] * (WIDTH * 16) for _ in range(HEIGHT * 16)]
+collision = [['FLOOR'] * WIDTH for _ in range(HEIGHT)]
 
 
-def source(name, block, quadrant=None, palette=None):
-    """Bake upstream CGB flips into pixels, preserving all original pixel art."""
-    atlas, meta, attr = source_data[name]
-    gray, pals = Image.new('L', (32,32)), Image.new('L', (4,4))
+def setcoll(x, y, w, h, kind):
+    for cy in range(y, y + h):
+        for cx in range(x, x + w):
+            collision[cy][cx] = kind
+
+
+def art(rows, x, y, solid=None, cells=None):
+    """Draw ASCII art (colour letters, '.' = transparent) at pixel x, y."""
+    width = len(rows[0])
+    for dy, row in enumerate(rows):
+        assert len(row) == width, ('ragged art row', row)
+        for dx, ch in enumerate(row):
+            if ch != '.':
+                assert ch in C, ('unknown colour', ch)
+                canvas[y + dy][x + dx] = ch
+    if solid:
+        cx, cy = x // 16, y // 16
+        w, h = cells if cells else (width // 16, len(rows) // 16)
+        setcoll(cx, cy, w, h, solid)
+
+
+def cell(rows, cx, cy, solid=None):
+    art(rows, cx * 16, cy * 16, solid, (1, len(rows) // 16 or 1))
+
+
+# ------------------------------------------------------ vanilla imports ----
+_sources = {}
+
+
+def source_block(name, block):
+    """Return a 32x32 grid of (palette, shade) from a pinned Crystal tileset."""
+    if name not in _sources:
+        _sources[name] = (
+            Image.open(SOURCES / f'crystal_{name}.png').convert('L'),
+            (SOURCES / f'crystal_{name}_metatiles.bin').read_bytes(),
+            (SOURCES / f'crystal_{name}_attributes.bin').read_bytes(),
+        )
+    atlas, meta, attr = _sources[name]
+    grid = [[None] * 32 for _ in range(32)]
     for i in range(16):
-        tile, a = meta[block*16+i], attr[block*16+i]
-        assert not a & 8, 'This importer expects bank-zero upstream art'
-        x, y = tile%16*8, tile//16*8
-        part = atlas.crop((x,y,x+8,y+8))
+        tile, a = meta[block * 16 + i], attr[block * 16 + i]
+        index = tile + 128 if a & 8 else tile
+        part = atlas.crop((index % 16 * 8, index // 16 * 8, index % 16 * 8 + 8, index // 16 * 8 + 8))
         if a & 32:
             part = part.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
         if a & 64:
             part = part.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
-        gray.paste(part, (i%4*8, i//4*8))
-        pals.putpixel((i%4,i//4), (a&7) if palette is None else palette)
-    if quadrant is not None:
-        x,y = quadrant%2*16, quadrant//2*16
-        return gray.crop((x,y,x+16,y+16)), pals.crop((x//8,y//8,x//8+2,y//8+2))
-    return gray,pals
+        for py in range(8):
+            for px in range(8):
+                shade = (255 - part.getpixel((px, py))) // 85
+                grid[i // 4 * 8 + py][i % 4 * 8 + px] = (a & 7, shade)
+    return grid
 
 
-def custom(width, height, palette, draw):
-    art = Image.new('L', (width,height), 255)
-    draw(ImageDraw.Draw(art))
-    return art, Image.new('L', (width//8,height//8), palette)
+def vanilla(name, block, sx, sy, w, h, colours, mask_floor=None):
+    """Convert part of a Crystal block to colour-letter rows.
+
+    colours maps source palette -> 4-letter string (shade 0..3).
+    mask_floor = (name, block) of a plain-floor block in the same tileset;
+    floor pixels connected to the region's border become transparent.
+    """
+    grid = source_block(name, block)
+    rows = [[colours[grid[sy + y][sx + x][0]][grid[sy + y][sx + x][1]] for x in range(w)] for y in range(h)]
+    if mask_floor:
+        floor = source_block(*mask_floor)
+        same = [[grid[sy + y][sx + x][1] == floor[sy + y][sx + x][1] for x in range(w)] for y in range(h)]
+        seen, queue = set(), deque()
+        for y in range(h):
+            for x in range(w):
+                if (x in (0, w - 1) or y in (0, h - 1)) and same[y][x]:
+                    seen.add((x, y))
+                    queue.append((x, y))
+        while queue:
+            x, y = queue.popleft()
+            for nx, ny in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+                if 0 <= nx < w and 0 <= ny < h and same[ny][nx] and (nx, ny) not in seen:
+                    seen.add((nx, ny))
+                    queue.append((nx, ny))
+        for x, y in seen:
+            rows[y][x] = '.'
+    return [''.join(r) for r in rows]
 
 
-floor = source('traditional_house', 0x08, 0, 5)
-void = custom(16,16,0,lambda d:d.rectangle((0,0,15,15),fill=0))
-wall = source('hotel',0x04,0,5)
-stool = source('game_corner',0x0d,1,1)
-counter = source('game_corner',0x0b,0,5)
-gray = Image.new('L',(WIDTH*16,HEIGHT*16),0)
-attrs = Image.new('L',(WIDTH*2,HEIGHT*2),0)
-collision = [['WALL']*WIDTH for _ in range(HEIGHT)]
+WOOD = {5: 'Ldwk'}  # Crystal brown -> Shucks brown
+# Goldenrod Game Corner's inset floor tiles, in the bar's cream and tan.
+FLOOR = vanilla('game_corner', 0x01, 0, 0, 16, 16, {0: 'Lddk'})
+WALL = vanilla('players_house', 0x05, 0, 0, 16, 16, WOOD)           # wood panelling
+STAGE = vanilla('traditional_house', 0x20, 0, 0, 16, 16, {5: 'Ldwk'})  # dance-theatre boards
+
+for cy in range(HEIGHT):
+    for cx in range(WIDTH):
+        cell(WALL if cy == 0 else FLOOR, cx, cy, 'WALL' if cy == 0 else None)
+
+# ------------------------------------------------------------ back bar -----
+# Fridge, radio and the stove/sink unit are Crystal's own kitchen furniture.
+APPLIANCE = {0: 'WgGk', 5: 'Ldwk'}
+fridge = vanilla('players_house', 0x0f, 0, 0, 16, 32, APPLIANCE)
+grill = vanilla('players_house', 0x07, 0, 0, 32, 32, APPLIANCE)
+radio = vanilla('players_house', 0x1a, 0, 0, 16, 32, APPLIANCE)
 
 
-def put(x,y,asset,solid='FLOOR'):
-    art,pals = asset
-    gray.paste(art,(x*16,y*16))
-    attrs.paste(pals,(x*2,y*2))
-    for cy in range(y,y+art.height//16):
-        for cx in range(x,x+art.width//16):
-            collision[cy][cx] = solid
+def bottle_shelf(colours, layout):
+    """16x32 liquor shelf on a Crystal bookshelf frame.
+
+    colours: bottle colour per shelf, as (left tile, right tile). Each 8x8 tile
+    holds one bottle colour so it can take the matching red or green palette.
+    layout: bottle x-offsets per shelf (3 pixels wide, kept inside the frame).
+    """
+    rows = []
+    for shelf in range(3):
+        body = [list('kdkkkkkkkkkkkkdk') for _ in range(6)]
+        for x in layout[shelf]:
+            assert 2 <= x and x + 2 <= 13 and (x + 2 < 8 or x >= 8), ('bottle crosses a tile', x)
+            colour = colours[shelf][0 if x < 8 else 1]
+            body[1][x + 1] = colour
+            body[2][x:x + 3] = [colour] * 3
+            body[3][x:x + 3] = [colour, 'L', colour]
+            body[4][x:x + 3] = [colour, 'L', colour]
+            body[5][x:x + 3] = [colour] * 3
+        rows += [list('kkkkkkkkkkkkkkkk')] + body + [list('kddddddddddddddk')]
+    rows += [list(r) for r in (  # cupboard base standing on the boards
+        'kkkkkkkkkkkkkkkk',
+        'kddddddkkddddddk',
+        'kdwwwwdkkdwwwwdk',
+        'kdwwkwdkkdwkwwdk',
+        'kdwwwwdkkdwwwwdk',
+        'kddddddkkddddddk',
+        'kkkkkkkkkkkkkkkk',
+        'dddddddddddddddd',
+    )]
+    assert len(rows) == 32
+    return [''.join(r) for r in rows]
 
 
-for y in range(1,17):
-    for x in range(1,23):
-        put(x,y,floor)
-for x in range(1,23):
-    put(x,1,wall,'WALL')
-    put(x,2,wall,'WALL')
+shelves = [
+    bottle_shelf((('n', 'r'), ('r', 'n'), ('n', 'r')), ([2, 5, 8, 11], [3, 10], [2, 5, 8, 11])),
+    bottle_shelf((('r', 'n'), ('n', 'r'), ('r', 'n')), ([3, 10], [2, 5, 8, 11], [3, 10])),
+    bottle_shelf((('n', 'n'), ('r', 'r'), ('n', 'r')), ([2, 5, 8, 11], [2, 5, 10], [3, 8, 11])),
+]
+art(fridge, 0 * 16, 0, 'WALL', (1, 2))
+for i, shelf in enumerate(shelves):
+    art(shelf, (1 + i) * 16, 0, 'WALL', (1, 2))
 
-# A bottle wall, spirits cabinet, and chalk menu above the working bar.
-# The shelves come from the online Gen 2 set; bottles are matching additions.
-def bottles(d):
-    d.rectangle((0,0,31,31), fill=85)
-    for row in (0,16):
-        d.rectangle((0,row+13,31,row+15), fill=0)
-        d.line((0,row+12,31,row+12),fill=170)
-        for x in (2,10,18,26):
-            d.rectangle((x+1,row+1,x+2,row+3),fill=0)
-            d.rectangle((x,row+4,x+3,row+11),fill=0)
-            d.rectangle((x+1,row+4,x+2,row+10),fill=170)
-            d.line((x+1,row+7,x+2,row+7),fill=255)
-bottle_art,bottle_pal=custom(32,32,5,bottles)
-for y in range(4):
-    for x in range(4):
-        bottle_pal.putpixel((x,y),2 if x%2==0 else 5)
-for x in (2,4,6):
-    put(x,1,(bottle_art,bottle_pal),'WALL')
-put(8,1,source('game_corner',0x1e,palette=5),'WALL')
+SHELL_SIGN = [  # scallop-shell emblem hung on the panelling
+    '.kkkkkkkkkkkkkk.',
+    'kwwwwwwwwwwwwwwk',
+    'kwkkkkkkkkkkkkwk',
+    'kwkkkkLLLLkkkkwk',
+    'kwkkkLLdLdLkkkwk',
+    'kwkkLdLdLdLdkkwk',
+    'kwkLLdLdLdLdLkwk',
+    'kwkLdLdLdLdLdkwk',
+    'kwkkdLdLdLdLkkwk',
+    'kwkkkdddddddkkwk',
+    'kwkkkkkLLkkkkkwk',
+    'kwkkkkLddLkkkkwk',
+    'kwkkkkkkkkkkkkwk',
+    'kwwwwwwwwwwwwwwk',
+    '.kkkkkkkkkkkkkk.',
+    '................',
+]
+cell(SHELL_SIGN, 4, 0)
+art(grill, 5 * 16, 0, 'WALL', (2, 2))
+art(radio, 7 * 16, 0, 'WALL', (1, 2))
 
-def menu(d):
-    d.rectangle((0,0,15,31),fill=0)
-    d.rectangle((1,1,14,30),fill=170)
-    d.rectangle((3,3,12,28),fill=0)
-    for y,length in ((5,7),(9,5),(13,7),(17,4),(21,6),(25,5)):
-        d.line((4,y,4+length,y),fill=255)
-put(10,1,custom(16,32,5,menu),'WALL')
-for x in range(2,11):
-    put(x,5,counter,'COUNTER')
-for x in (3,5,7,9):
-    put(x,6,stool,'WALL')
+# ------------------------------------------------------------ bar counter ---
+COUNTER = [
+    'kkkkkkkkkkkkkkkk',
+    'LLLLLLLLLLLLLLLL',
+    'dddddddddddddddd',
+    'dddddddddddddddd',
+    'dddddddddddddddd',
+    'dddddddddddddddd',
+    'wwwwwwwwwwwwwwww',
+    'kkkkkkkkkkkkkkkk',
+    'wwwwwwwwwwwwwwww',
+    'wdwwwwwdwdwwwwwd',
+    'wdwwwwwdwdwwwwwd',
+    'wdwwwwwdwdwwwwwd',
+    'wkwwwwwkwkwwwwwk',
+    'wwwwwwwwwwwwwwww',
+    'kkkkkkkkkkkkkkkk',
+    'dddddddddddddddd',
+]
 
-# Beer taps and tankards on the counter, kept at four shades per 8px tile.
-def tap(d):
-    d.rectangle((3,2,5,5),fill=0)
-    d.rectangle((4,5,6,11),fill=0)
-    d.rectangle((5,5,10,6),fill=0)
-    d.rectangle((9,6,10,8),fill=0)
-    d.rectangle((2,12,11,13),fill=0)
-    d.line((4,7,4,10),fill=255)
-tap_art,tap_pal = counter[0].copy(),counter[1].copy()
-tap(ImageDraw.Draw(tap_art))
-put(4,5,(tap_art,tap_pal),'COUNTER')
-put(8,5,(tap_art,tap_pal),'COUNTER')
 
-# Raised performance stage: burgundy curtain, wood floor, front fascia,
-# a central two-cell stair, and two freestanding speaker stacks.
-def curtain(d):
-    d.rectangle((0,0,15,31),fill=85)
-    for x in (0,7,14):
-        d.line((x,2,x,29),fill=0)
-    for x in (3,10):
-        d.line((x,2,x,27),fill=170)
-    d.rectangle((0,0,15,2),fill=0)
-    d.line((0,3,15,3),fill=255)
-    d.line((0,30,15,30),fill=170)
-    d.line((0,31,15,31),fill=0)
-for x in range(15,22):
-    put(x,1,custom(16,32,1,curtain),'WALL')
-for y in range(3,7):
-    for x in range(15,22):
-        put(x,y,(floor[0],Image.new('L',(2,2),4)))
+def left_capped(rows):
+    """Close the west end of the counter (outline plus a lit edge)."""
+    out = []
+    for y, row in enumerate(rows):
+        row = list(row)
+        if y < 15:
+            row[0] = 'k'
+            if 0 < y < 6:
+                row[1] = 'L'
+        out.append(''.join(row))
+    return out
 
-def speaker(d):
-    d.rectangle((1,0,14,30),fill=0)
-    d.rectangle((2,1,13,29),fill=85)
-    for y in (8,22):
-        d.ellipse((3,y-5,12,y+4),fill=0)
-        d.ellipse((5,y-3,10,y+2),fill=170)
-        d.rectangle((7,y-1,8,y),fill=0)
-    d.point((3,2),fill=255)
-for x in (14,22):
-    put(x,3,custom(16,32,0,speaker),'WALL')
-    for y in (5,6):
-        put(x,y,custom(16,16,5,lambda d:(d.rectangle((0,0,15,15),fill=85),d.line((0,1,15,1),fill=255))),'WALL')
 
-def fascia(d):
-    d.rectangle((0,0,15,7),fill=85)
-    d.line((0,0,15,0),fill=255)
-    d.line((0,7,15,7),fill=0)
-    d.rectangle((1,2,14,5),outline=170)
-    d.rectangle((0,8,15,15),fill=170)
-    d.line((0,8,15,8),fill=0)
-for x in range(15,22):
-    put(x,7,custom(16,16,5,fascia),'WALL')
-def stairs(d):
-    d.rectangle((0,0,15,15),fill=170)
-    for y in (0,5,10):
-        d.line((0,y,15,y),fill=255)
-        d.line((0,y+3,15,y+3),fill=0)
-for x in (18,19):
-    put(x,7,custom(16,16,5,stairs))
+COUNTER_END = [  # the counter returns north to close off the staff side
+    'kkkkkkkkkkkkkkkk',
+    'kLLLLLLLLLLLLLdk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+    'kLddddddddddddwk',
+]
+COUNTER_CORNER = [
+    'kLddddddddddddwk',
+    'LLddddddddddddwk',
+    'dddddddddddddddk',
+    'dddddddddddddddk',
+    'dddddddddddddddk',
+    'dddddddddddddddk',
+    'wwwwwwwwwwwwwwwk',
+    'kkkkkkkkkkkkkkkk',
+    'wwwwwwwwwwwwwwwk',
+    'wdwwwwwdwdwwwwdk',
+    'wdwwwwwdwdwwwwdk',
+    'wdwwwwwdwdwwwwdk',
+    'wkwwwwwkwkwwwwkk',
+    'wwwwwwwwwwwwwwwk',
+    'kkkkkkkkkkkkkkkk',
+    'dddddddddddddddd',
+]
+for x in range(0, 8):
+    cell(left_capped(COUNTER) if x == 0 else COUNTER, x, 3, 'COUNTER')
+cell(COUNTER_CORNER, 8, 3, 'COUNTER')
+cell(COUNTER_END, 8, 2, 'COUNTER')
 
-# Small checker dance floor below the stage.
-def dance(d):
-    d.rectangle((0,0,15,15),fill=170)
-    d.rectangle((0,0,7,7),fill=255)
-    d.rectangle((8,8,15,15),fill=255)
-    d.line((0,15,15,15),fill=85)
-for y in range(8,11):
-    for x in range(15,22):
-        put(x,y,custom(16,16,6,dance))
+TAP = [  # beer tower: knob, handle, spout and drip tray
+    '......kk........',
+    '.....kLLk.......',
+    '.....kddk.......',
+    '.....kddk.......',
+    '......kk........',
+    '....kkkkkkk.....',
+    '....kLLLLLkk....',
+    '....kkkkkkLk....',
+    '..........kk....',
+]
+MUGS = [
+    '..kkkk....kkkk..',
+    '..kLLkk...kLLkk.',
+    '..kLLkLk..kLLkLk',
+    '..kddkk...kddkk.',
+    '..kkkk....kkkk..',
+]
+for x in (2, 5):
+    art(TAP, x * 16, 2 * 16 + 7)
+art(MUGS, 7 * 16, 3 * 16 + 1)
 
-# A six-pocket billiards table with a cue ball, object balls, and a cue.
-def pool(d):
-    d.rectangle((0,2,63,44),fill=0)
-    d.rectangle((1,1,62,42),fill=170)
-    d.rectangle((2,2,61,40),outline=255,width=2)
-    d.rectangle((5,5,58,36),fill=85)
-    d.rectangle((7,7,56,34),fill=170)
-    d.line((1,43,62,43),fill=85)
-    d.rectangle((4,44,10,47),fill=0)
-    d.rectangle((53,44,59,47),fill=0)
-    for x,y in ((6,6),(31,5),(57,6),(6,35),(31,36),(57,35)):
-        d.ellipse((x-2,y-2,x+2,y+2),fill=0)
-    for x,y in ((20,20),(40,17),(43,20),(37,20),(40,23)):
-        d.rectangle((x,y,x+1,y+1),fill=255)
-        d.point((x+2,y+1),fill=0)
-    d.line((13,28,27,14),fill=255)
-pool_art,pool_pal=custom(64,48,5,pool)
-for y in range(1,4):
-    for x in range(1,7):
-        pool_pal.putpixel((x,y),2)
-put(3,10,(pool_art,pool_pal),'WALL')
-def cues(d):
-    d.rectangle((1,0,14,31),fill=85)
-    for x in (3,7,11):
-        d.line((x,1,x,28),fill=255)
-        d.line((x+1,12,x+1,28),fill=170)
-    for y in (8,25):
-        d.rectangle((1,y,14,y+2),fill=0)
-put(1,10,custom(16,32,5,cues),'WALL')
+BAR_STOOL = [
+    '................',
+    '................',
+    '................',
+    '.....kkkkkk.....',
+    '....krrrrrrk....',
+    '...krrLLLrrrk...',
+    '...krrrrrrrrk...',
+    '...kkrrrrrrkk...',
+    '....kkkkkkkk....',
+    '......kddk......',
+    '......kddk......',
+    '......kddk......',
+    '....kkkddkkk....',
+    '....kddddddk....',
+    '.....kkkkkk.....',
+    '................',
+]
+for x in (1, 3, 5, 7):
+    cell(BAR_STOOL, x, 4)
 
-# Two cafe seating islands, using the online set's round tables and stools.
-for x in (16,20):
-    put(x,12,source('game_corner',0x26,palette=5),'WALL')
-    put(x,11,stool,'WALL')
-    put(x+1,14,stool,'WALL')
-put(2,15,source('hotel',0x1c,palette=5),'WALL')
+# Crystal's potted palm, re-potted in terracotta.
+PALM = vanilla('house', 0x06, 0, 0, 16, 16, {2: 'Lnnk', 6: 'Lrdk', 1: 'Ldrk'}, mask_floor=('house', 0x0f)) + [
+    '......kdLk......',
+    '......kdLk......',
+    '...kkkkkkkkkk...',
+    '..kLLLLLLLLLLk..',
+    '..kdrrrrrrrrdk..',
+    '..kkkkkkkkkkkk..',
+    '...krLrrrrrdk...',
+    '...krLrrrrrdk...',
+    '...krrrrrrrdk...',
+    '....krrrrrdk....',
+    '....krrrrrdk....',
+    '....kkkkkkkk....',
+    '................',
+    '................',
+    '................',
+    '................',
+]
+art(PALM, 9 * 16, 1 * 16, 'WALL', (1, 2))
 
-# Entrance mat is only artwork: no warp or exit collision until connected.
-def carpet(d):
-    d.rectangle((0,0,31,47),fill=85)
-    d.rectangle((1,1,30,46),outline=255)
-    d.rectangle((3,3,28,44),outline=170)
-put(11,15,custom(32,48,1,carpet))
+# ----------------------------------------------------------------- stage ----
+for cy in range(2, 4):
+    for cx in range(11, 20):
+        cell(STAGE, cx, cy)
 
-# Package only tiles actually used; no flips or second-bank dependencies.
-tiles = [bytes(64)]  # Tile zero is solid black; block zero is the border.
-lookup = {tiles[0]: 0}
-meta, attributes, collisions = bytearray(), bytearray(), []
-blocks = [(bytes(16),bytes(16),('WALL',)*4)]
-for by in range(HEIGHT//2):
-    for bx in range(WIDTH//2):
-        block_meta, block_attr = bytearray(), bytearray()
-        for ty in range(4):
-            for tx in range(4):
-                x,y = bx*32+tx*8, by*32+ty*8
-                tile = gray.crop((x,y,x+8,y+8)).tobytes()
-                if tile not in lookup:
-                    lookup[tile]=len(tiles)
-                    tiles.append(tile)
-                block_meta.append(lookup[tile])
-                block_attr.append(attrs.getpixel((x//8,y//8)))
-        coll = tuple(collision[by*2+dy][bx*2+dx] for dy,dx in ((0,0),(0,1),(1,0),(1,1)))
-        entry=(bytes(block_meta),bytes(block_attr),coll)
+CURTAIN = [  # velvet stage curtain with a scalloped valance
+    'kkkkkkkkkkkkkkkk',
+    'LpLpLpLpLpLpLpLp',
+    'pppppppppppppppp',
+    'uuuuuuuuuuuuuuuu',
+    'pppppppppppppppp',
+    'uuuuuuuuuuuuuuuu',
+    'kuuuuuukkuuuuuuk',
+    'pkuuuukppkuuuukp',
+    'upkkkkpuupkkkkpu',
+    'uupLpuuuuupLpuuu',
+    'uupLpuuuuupLpuuu',
+    'kupLpuukkupLpuuk',
+    'kupLpuukkupLpuuk',
+    'kupLpuukkupLpuuk',
+    'kuppLuukkuppLuuk',
+    'kuppLuukkuppLuuk',
+    'kuppLuukkuppLuuk',
+    'kupppuukkupppuuk',
+    'kupppuukkupppuuk',
+    'kupppuukkupppuuk',
+    'kuppuuukkuppuuuk',
+    'kuppuuukkuppuuuk',
+    'kuppuuukkuppuuuk',
+    'kupuuuukkupuuuuk',
+    'kupuuuukkupuuuuk',
+    'kupuuuukkupuuuuk',
+    'kuuuuuukkuuuuuuk',
+    'kuuuuuukkuuuuuuk',
+    'kpuuuupkkpuuuupk',
+    'kuppppukkuppppuk',
+    'kkuuuukkkkuuuukk',
+    'kkkkkkkkkkkkkkkk',
+]
+for cx in range(11, 20):
+    art(CURTAIN, cx * 16, 0, 'WALL', (1, 2))
+
+SPEAKER = [
+    'kkkkkkkkkkkkkkkk',
+    'kWggggggggggggGk',
+    'kgGGGGGGGGGGGGGk',
+    'kgGGGGkkkkGGGGGk',
+    'kgGGGkggGGkGGGGk',
+    'kgGGGkgWGGkGGGGk',
+    'kgGGGkGGGGkGGGGk',
+    'kgGGGGkkkkGGGGGk',
+    'kgGGGGGGGGGGGGGk',
+    'kgGGkkkkkkkkGGGk',
+    'kgGkgggggggGkGGk',
+    'kgkgGGGGGGGGGkGk',
+    'kgkgGGkkkkGGGkGk',
+    'kgkgGkgWgGkGGkGk',
+    'kgkgGkWgGGkGGkGk',
+    'kgkgGkgGGGkGGkGk',
+    'kgkgGGkkkkGGGkGk',
+    'kgkGGGGGGGGGGkGk',
+    'kgGkGGGGGGGGkGGk',
+    'kgGGkkkkkkkkGGGk',
+    'kgGGGGGGGGGGGGGk',
+    'kgGGkkkkkkkkGGGk',
+    'kgGkgggggggGkGGk',
+    'kgkgGGkkkkGGGkGk',
+    'kgkgGkgWgGkGGkGk',
+    'kgkgGkGGGGkGGkGk',
+    'kgkgGGkkkkGGGkGk',
+    'kgGkGGGGGGGGkGGk',
+    'kgGGkkkkkkkkGGGk',
+    'kgGGGGGGGGGGGGGk',
+    'kGGGGGGGGGGGGGGk',
+    'kkkkkkkkkkkkkkkk',
+]
+for cx in (11, 19):
+    art(SPEAKER, cx * 16, 2 * 16, 'WALL', (1, 2))
+
+MARQUEE = [  # stage lip with a run of marquee bulbs
+    'dddddddddddddddd',
+    'kkkkkkkkkkkkkkkk',
+    'LLLLLLLLLLLLLLLL',
+    'dddddddddddddddd',
+    'wwwwwwwwwwwwwwww',
+    'kkkkkkkkkkkkkkkk',
+    'kkkkkkkkkkkkkkkk',
+    'kkkkkkkkkkkkkkkk',
+    'kokkkkokkokkkkok',
+    'oyokkoyooyokkoyo',
+    'yLyookoyyLyookoy',
+    'oyokkoyooyokkoyo',
+    'kokkkkokkokkkkok',
+    'kkkkkkkkkkkkkkkk',
+    'oooooooooooooooo',
+    'kkkkkkkkkkkkkkkk',
+]
+STEPS = [
+    'dddddddddddddddd',
+    'kkkkkkkkkkkkkkkk',
+    'LLLLLLLLLLLLLLLL',
+    'dddddddddddddddd',
+    'wwwwwwwwwwwwwwww',
+    'kkkkkkkkkkkkkkkk',
+    'LLLLLLLLLLLLLLLL',
+    'dddddddddddddddd',
+    'wwwwwwwwwwwwwwww',
+    'kkkkkkkkkkkkkkkk',
+    'LLLLLLLLLLLLLLLL',
+    'dddddddddddddddd',
+    'wwwwwwwwwwwwwwww',
+    'kkkkkkkkkkkkkkkk',
+    'dddddddddddddddd',
+    'dddddddddddddddd',
+]
+for cx in range(11, 20):
+    cell(STEPS if cx == 15 else MARQUEE, cx, 4, None if cx == 15 else 'WALL')
+
+DANCE = [  # bevelled light-up tiles: yellow and cream
+    'LLLLLLLoLLLLLLLy',
+    'LyyyyyyoLLLLLLLy',
+    'LyyyyyyoLLLLLLLy',
+    'LyyyyyyoLLLLLLLy',
+    'LyyyyyyoLLLLLLLy',
+    'LyyyyyyoLLLLLLLy',
+    'LyyyyyyoLLLLLLLy',
+    'ooooooooyyyyyyyo',
+    'LLLLLLLyLLLLLLLo',
+    'LLLLLLLyLyyyyyyo',
+    'LLLLLLLyLyyyyyyo',
+    'LLLLLLLyLyyyyyyo',
+    'LLLLLLLyLyyyyyyo',
+    'LLLLLLLyLyyyyyyo',
+    'LLLLLLLyLyyyyyyo',
+    'yyyyyyyooooooooo',
+]
+DANCE_EDGE = [  # front edge of the dance floor
+    'kkkkkkkkkkkkkkkk',
+    'dddddddddddddddd',
+]
+for cy in range(5, 7):
+    for cx in range(12, 19):
+        cell(DANCE, cx, cy)
+for cx in range(12, 19):
+    art(DANCE_EDGE, cx * 16, 7 * 16)
+
+for x in (11, 19):  # palms bracket the dance floor
+    art(PALM, x * 16, 5 * 16, 'WALL', (1, 2))
+
+# --------------------------------------------------------- billiards -------
+def pool_table():
+    """64x48 six-pocket table: felt and rails in the felt palette, the
+    skirt and legs in brown so they sit on the floorboards."""
+    w = 64
+    g = [['m'] * w for _ in range(40)]
+    for y in range(40):
+        for x in range(w):
+            if x in (0, w - 1) or y in (0, 39):
+                g[y][x] = 'k'
+            elif x < 6 or x > w - 7 or y < 6 or y > 33:
+                g[y][x] = 'w'
+            elif x in (6, w - 7) or y in (6, 33):
+                g[y][x] = 'k'          # cushion edge
+            elif x == 7 or y == 7:
+                g[y][x] = 'f'          # felt catching the light
+    pocket = ['.kkk.', 'kkkkk', 'kkkkk', 'kkkkk', '.kkk.']
+    for px, py in ((1, 1), (29, 0), (58, 1), (1, 34), (29, 35), (58, 34)):
+        for dy, row in enumerate(pocket):
+            for dx, ch in enumerate(row):
+                if ch == 'k':
+                    g[py + dy][px + dx] = 'k'
+    for x in (16, 44):     # rail sights
+        g[3][x] = g[36][x] = 'f'
+    for y in (19,):
+        g[y][3] = g[y][60] = 'f'
+    # racked balls (triangle) and the cue ball
+    for bx, by in ((40, 19), (43, 17), (43, 21), (46, 15), (46, 19), (46, 23)):
+        g[by][bx:bx + 2] = ['f', 'w']
+        g[by + 1][bx:bx + 2] = ['w', 'k']
+    g[19][17:19] = ['f', 'f']
+    g[20][17:19] = ['f', 'w']
+    for i in range(14):      # cue lying along the felt
+        g[27 - i // 2][12 + i] = 'w' if i < 12 else 'f'
+    skirt = [
+        'k' + 'd' * 62 + 'k',
+        'k' + 'w' * 62 + 'k',
+        'k' * 64,
+        '..kwwk' + '.' * 52 + 'kwwk..',
+        '..kwwk' + '.' * 52 + 'kwwk..',
+        '..kddk' + '.' * 52 + 'kddk..',
+        '..kkkk' + '.' * 52 + 'kkkk..',
+        '.' * 64,
+    ]
+    return [''.join(r) for r in g] + skirt
+
+
+art(pool_table(), 3 * 16, 8 * 16, 'WALL', (4, 3))
+
+CUE_RACK = [  # floor-standing cue rack
+    '................',
+    '...kk..kk..kk...',
+    '..kLLkkLLkkLLk..',
+    '..kddkkddkkddk..',
+    '.kkkkkkkkkkkkkk.',
+    '.kLddddddddddwk.',
+    '.kkkkkkkkkkkkkk.',
+    '...kdk.kdk.kdk..',
+    '...kdk.kdk.kdk..',
+    '...kdk.kdk.kdk..',
+    '...kdk.kdk.kdk..',
+    '...kdk.kdk.kdk..',
+    '...kdk.kdk.kdk..',
+    '...kdk.kdk.kdk..',
+    '...kdk.kdk.kdk..',
+    '...kdk.kdk.kdk..',
+    '...kwk.kwk.kwk..',
+    '...kwk.kwk.kwk..',
+    '...kwk.kwk.kwk..',
+    '..kwwwkwwwkwwwk.',
+    '..kwwwkwwwkwwwk.',
+    '.kkkkkkkkkkkkkk.',
+    '.kLddddddddddwk.',
+    '.kdwwwwwwwwwwwk.',
+    '.kdwwwwwwwwwwwk.',
+    '.kwwwwwwwwwwwwk.',
+    '.kkkkkkkkkkkkkk.',
+    '..kk........kk..',
+    '..kk........kk..',
+    '................',
+    '................',
+    '................',
+]
+art(CUE_RACK, 1 * 16, 8 * 16, 'WALL', (1, 2))
+
+# -------------------------------------------------------------- cafe -------
+def cafe_table():
+    """32x32 round cloth-topped table with a wooden pedestal and a flower vase."""
+    g = [['.'] * 32 for _ in range(32)]
+    cx, cy, rx, ry = 15.5, 17.5, 14.5, 5.5   # low, flat top
+
+    def inside(x, y):
+        return ((x - cx) / rx) ** 2 + ((y - cy) / ry) ** 2 <= 1.0
+    for y in range(32):
+        for x in range(32):
+            if inside(x, y):
+                edge = not all(inside(x + dx, y + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+                g[y][x] = 'k' if edge else 'L'
+    for y in range(32):     # cloth hem: a tan ring just inside the near rim
+        for x in range(32):
+            if g[y][x] == 'L' and y > cy and not inside(x, y + 2):
+                g[y][x] = 'd'
+    for x in range(32):     # visible thickness of the near edge
+        bottom = max((y for y in range(32) if inside(x, y)), default=None)
+        if bottom is not None and x not in (0, 31):
+            g[bottom + 1][x] = 'w'
+            g[bottom + 2][x] = 'w'
+            g[bottom + 3][x] = 'k'
+    pedestal = [  # short stem from the underside of the top to the foot
+        '............kddwwk..............',
+        '............kddwwk..............',
+        '...........kkddwwkk.............',
+        '.........kkddddddwwwkk..........',
+        '.........kkkkkkkkkkkkk..........',
+    ]
+    top_bottom = max(y for y in range(32) for x in range(32) if g[y][x] != '.')
+    for dy, row in enumerate(pedestal):
+        for dx, ch in enumerate(row):
+            if ch != '.':
+                g[top_bottom + 1 + dy][dx + 1] = ch
+    vase = [  # red flowers in a little vase, centre of the table
+        '..k.k..',
+        '.krkrk.',
+        'krkrkrk',
+        '.kkrkk.',
+        '..kdk..',
+        '..kdk..',
+        '..kkk..',
+    ]
+    for dy, row in enumerate(vase):
+        for dx, ch in enumerate(row):
+            if ch != '.':
+                g[int(cy) - 6 + dy][13 + dx] = ch
+    return [''.join(r) for r in g]
+
+
+CHAIR = [  # side-on chair facing east; an NPC standing here reads as seated
+    '................',
+    '.kkk............',
+    '.kLdk...........',
+    '.kdrk...........',
+    '.krrk...........',
+    '.krrk...........',
+    '.krrk...........',
+    '.krrkkkkkkkkkk..',
+    '.krrrLLLLLLLLrk.',
+    '.krrrrrrrrrrrrk.',
+    '.kkkkkkkkkkkkkk.',
+    '.kddddddddddddk.',
+    '.kkkkkkkkkkkkkk.',
+    '..kdk......kdk..',
+    '..kdk......kdk..',
+    '..kkk......kkk..',
+]
+CHAIR_WEST = [row[::-1] for row in CHAIR]
+CAFE_SETS = [(11, 9), (17, 9), (17, 12), (2, 13)]   # table's top-left cell
+TABLE = cafe_table()
+for tx, ty in CAFE_SETS:
+    art(TABLE, tx * 16, ty * 16, 'WALL', (2, 2))
+    cell(CHAIR, tx - 1, ty + 1)       # faces the table from the west
+    cell(CHAIR_WEST, tx + 2, ty + 1)  # faces the table from the east
+
+# Potted palms flank the doorway, as in Crystal's larger interiors.
+for x in (7, 12):
+    art(PALM, x * 16, 14 * 16, 'WALL', (1, 2))
+
+# Crystal's red exit rug; warp-free until the map is given an entrance.
+RUG = vanilla('house', 0x0b, 0, 16, 32, 16, {1: 'Ldrk'})
+art(RUG, 9 * 16, 15 * 16)
+
+MENU = [
+    'kkkkkkkkkkkkkkkk',
+    'kwwwwwwwwwwwwwwk',
+    'kwkkkkkkkkkkkkwk',
+    'kwkLLkLLLkLLkkwk',
+    'kwkkkkkkkkkkkkwk',
+    'kwkLkLLkkLLLkkwk',
+    'kwkkkkkkkkkkkkwk',
+    'kwkLLLkkLLkLkkwk',
+    'kwkkkkkkkkkkkkwk',
+    'kwkLLkkLLLLkkkwk',
+    'kwkkkkkkkkkkkkwk',
+    'kwwwwwwwwwwwwwwk',
+    'kkkkkkkkkkkkkkkk',
+    '................',
+    '................',
+    '................',
+]
+cell(MENU, 10, 0)
+
+# ------------------------------------------------------ tile packing -------
+# Shucks is always lit for night, whatever the clock says. The art above is
+# authored in daylight colours; this pass applies Crystal's own night grading
+# (about half brightness, shadows pushed toward blue-violet, outlines to pure
+# black, fitted to the day/nite pairs in gfx/tilesets/bg_tiles.pal). Light
+# sources are exempt, so the stage stays the brightest thing in the room.
+NIGHT_LIGHTING = {
+    4: None,   # marquee bulbs and the light-up dance floor: full brightness
+    6: 0.75,   # stage curtain: caught in the stage lights
+}
+
+
+def to_night(rgb, strength=0.5):
+    if strength is None:
+        return rgb
+    r, g, b = rgb
+    lum = (r + g + b) / 93
+    return (round(r * strength), round(g * (strength - 0.03)),
+            min(31, round(b * strength + 9 * lum)))
+
+
+pal_rgb = [[(0, 0, 0) if ch == 'k' else to_night(C[ch], NIGHT_LIGHTING.get(i, 0.5))
+            for ch in p] for i, p in enumerate(PALETTES)]
+
+
+def tile_palette(tx, ty):
+    letters = {canvas[ty * 8 + y][tx * 8 + x] for y in range(8) for x in range(8)}
+    for p in PREFERENCE:
+        if letters <= set(PALETTES[p]):
+            return p
+    raise SystemExit(f'tile ({tx},{ty}) at cell ({tx//2},{ty//2}) needs colours {sorted(letters)}; '
+                     'no Shucks palette holds them all')
+
+
+def flips(data):
+    rows = [data[i:i + 8] for i in range(0, 64, 8)]
+    h = b''.join(r[::-1] for r in rows)
+    v = b''.join(rows[::-1])
+    hv = b''.join(r[::-1] for r in rows[::-1])
+    return ((data, 0), (h, 0x20), (v, 0x40), (hv, 0x60))
+
+
+tiles = [bytes(64)]          # tile 0: blank (colour 0), border uses it
+lookup = {tiles[0]: (0, 0)}
+tile_meta = [[0] * (WIDTH * 2) for _ in range(HEIGHT * 2)]
+tile_attr = [[0] * (WIDTH * 2) for _ in range(HEIGHT * 2)]
+for ty in range(HEIGHT * 2):
+    for tx in range(WIDTH * 2):
+        p = tile_palette(tx, ty)
+        data = bytes(PALETTES[p].index(canvas[ty * 8 + y][tx * 8 + x]) for y in range(8) for x in range(8))
+        found = None
+        for variant, bits in flips(data):
+            if variant in lookup:
+                index, base = lookup[variant]
+                found = (index, base ^ bits)
+                break
+        if not found:
+            index = len(tiles)
+            tiles.append(data)
+            lookup[data] = (index, 0)
+            found = (index, 0)
+        index, bits = found
+        bank = 0
+        if index >= 0x7f:          # $7f stays free; overflow goes to VRAM bank 1
+            bank, index = 8, index - 0x7f
+        tile_meta[ty][tx] = index
+        tile_attr[ty][tx] = p | bank | bits
+assert len(tiles) <= 0x7f + 0x60, f'{len(tiles)} tiles'
+
+# Blocks: block 0 is the all-black border.
+BORDER_TILE = len(tiles)  # appended black tile for the border block
+tiles.append(bytes([3]) * 64)
+bt_index, bt_bank = (BORDER_TILE, 0) if BORDER_TILE < 0x7f else (BORDER_TILE - 0x7f, 8)
+blocks = [(bytes([bt_index]) * 16, bytes([5 | bt_bank]) * 16, ('WALL',) * 4)]
+map_data = bytearray()
+for by in range(BH):
+    for bx in range(BW):
+        meta = bytes(tile_meta[by * 4 + i // 4][bx * 4 + i % 4] for i in range(16))
+        attr = bytes(tile_attr[by * 4 + i // 4][bx * 4 + i % 4] for i in range(16))
+        coll = tuple(collision[by * 2 + dy][bx * 2 + dx] for dy, dx in ((0, 0), (0, 1), (1, 0), (1, 1)))
+        entry = (meta, attr, coll)
         if entry not in blocks:
             blocks.append(entry)
-        collisions.append(coll)
-        meta.extend(block_meta)
-        attributes.extend(block_attr)
-assert len(tiles)<=127, f'{len(tiles)} tiles overlaps the engine-reserved tile $7f'
-assert len(blocks)<256
-map_data=bytes(blocks.index((bytes(meta[i:i+16]),bytes(attributes[i:i+16]),collisions[i//16])) for i in range(0,len(meta),16))
-atlas=Image.new('L',(128,128),255)
-for n,tile in enumerate(tiles):
-    atlas.paste(Image.frombytes('L',(8,8),tile),(n%16*8,n//16*8))
-atlas.save(ROOT/'gfx/tilesets/shucks.png')
-(ROOT/'data/tilesets/shucks_metatiles.bin').write_bytes(b''.join(b[0] for b in blocks))
-(ROOT/'data/tilesets/shucks_attributes.bin').write_bytes(b''.join(b[1] for b in blocks))
-(ROOT/'data/tilesets/shucks_collision.asm').write_text(''.join(
-    '\ttilecoll '+', '.join(b[2])+f' ; {i:02x}\n' for i,b in enumerate(blocks)))
-(ROOT/'maps/Shucks.ablk').write_bytes(map_data)
-(ROOT/'gfx/tilesets/shucks.pal').write_text('; Dedicated interior palettes, eight palettes of four CGB colors.\n'+''.join(
-    '\tRGB '+', '.join(f'{v:02d}' for c in palette for v in c)+'\n' for palette in PALETTES))
+        map_data.append(blocks.index(entry))
+assert len(blocks) < 256
 
-# RGBDS source PNG convention: white=0, light gray=1, dark gray=2, black=3.
-raw=bytearray()
-for n in range(256):
-    tile=atlas.crop((n%16*8,n//16*8,n%16*8+8,n//16*8+8))
+# Export ---------------------------------------------------------------------
+(ROOT / 'data/tilesets/shucks_metatiles.bin').write_bytes(b''.join(b[0] for b in blocks))
+(ROOT / 'data/tilesets/shucks_attributes.bin').write_bytes(b''.join(b[1] for b in blocks))
+(ROOT / 'data/tilesets/shucks_collision.asm').write_text(''.join(
+    '\ttilecoll ' + ', '.join(b[2]) + f' ; {i:02x}\n' for i, b in enumerate(blocks)))
+(ROOT / 'maps/Shucks.ablk').write_bytes(bytes(map_data))
+(ROOT / 'gfx/tilesets/shucks.pal').write_text(
+    '; Shucks interior palettes, always night-lit (gray, red, green, felt, yellow, brown, purple, text).\n'
+    + ''.join('\tRGB ' + ', '.join(f'{v:02d}' for c in p for v in c) + '\n'
+              for p in pal_rgb + [TEXT_PALETTE]))
+
+# Atlas: VRAM bank 0 tiles in slots $00-$7e, bank 1 tiles from slot $80.
+atlas = Image.new('L', (128, 128), 255)
+SHADE = [255, 170, 85, 0]
+for n, data in enumerate(tiles):
+    slot = n if n < 0x7f else n - 0x7f + 0x80
+    img = Image.new('L', (8, 8))
+    img.putdata([SHADE[v] for v in data])
+    atlas.paste(img, (slot % 16 * 8, slot // 16 * 8))
+atlas.save(ROOT / 'gfx/tilesets/shucks.png')
+raw = bytearray()
+for slot in range(256):
     for y in range(8):
-        a=b=0
+        a = b = 0
         for x in range(8):
-            v=(255-tile.getpixel((x,y)))//85
-            a|=(v&1)<<(7-x);b|=(v>>1)<<(7-x)
-        raw.extend((a,b))
-(ROOT/'gfx/tilesets/shucks.2bpp').write_bytes(raw)
-# Valid Crystal LZ literal commands; the normal make rule can optimize later.
-(ROOT/'gfx/tilesets/shucks.2bpp.lz').write_bytes(b''.join(bytes([len(raw[i:i+32])-1])+raw[i:i+32] for i in range(0,len(raw),32))+b'\xff')
+            v = (255 - atlas.getpixel((slot % 16 * 8 + x, slot // 16 * 8 + y))) // 85
+            a |= (v & 1) << (7 - x)
+            b |= (v >> 1) << (7 - x)
+        raw.extend((a, b))
+(ROOT / 'gfx/tilesets/shucks.2bpp').write_bytes(raw)
+# Valid Crystal LZ literal commands; the normal make rule can optimise later.
+(ROOT / 'gfx/tilesets/shucks.2bpp.lz').write_bytes(
+    b''.join(bytes([len(raw[i:i + 32]) - 1]) + raw[i:i + 32] for i in range(0, len(raw), 32)) + b'\xff')
 
-# Re-render from the exported binary files, so preview also verifies packing.
-map_data=(ROOT/'maps/Shucks.ablk').read_bytes()
-export_meta=(ROOT/'data/tilesets/shucks_metatiles.bin').read_bytes()
-export_attr=(ROOT/'data/tilesets/shucks_attributes.bin').read_bytes()
-assert len(map_data)==108 and len(export_meta)==len(export_attr)==len(blocks)*16
-assert set(atlas.get_flattened_data()) <= {0,85,170,255}
-render=Image.new('RGB',gray.size)
-for bi,block in enumerate(map_data):
-    bm=export_meta[block*16:block*16+16]
-    ba=export_attr[block*16:block*16+16]
-    for i,(tile,pal) in enumerate(zip(bm,ba)):
-        art=Image.frombytes('L',(8,8),tiles[tile]).convert('RGB')
-        art.putdata([tuple(round(v*255/31) for v in PALETTES[pal][(255-c[0])//85]) for c in art.get_flattened_data()])
-        render.paste(art,((bi%(WIDTH//2))*32+i%4*8,(bi//(WIDTH//2))*32+i//4*8))
-render.save(ROOT/'maps/Shucks.preview.png')
-render.resize((WIDTH*48,HEIGHT*48),Image.Resampling.NEAREST).save(ROOT/'maps/Shucks.preview-3x.png')
+# Re-render from the exported files so the preview also verifies packing.
+map_bin = (ROOT / 'maps/Shucks.ablk').read_bytes()
+meta_bin = (ROOT / 'data/tilesets/shucks_metatiles.bin').read_bytes()
+attr_bin = (ROOT / 'data/tilesets/shucks_attributes.bin').read_bytes()
+all_pals = [[tuple(round(v * 255 / 31) for v in c) for c in p] for p in pal_rgb + [TEXT_PALETTE]]
+render = Image.new('RGB', (WIDTH * 16 + 64, HEIGHT * 16 + 64))
+for by in range(-1, BH + 1):
+    for bx in range(-1, BW + 1):
+        block = map_bin[by * BW + bx] if 0 <= bx < BW and 0 <= by < BH else 0
+        for i in range(16):
+            t, a = meta_bin[block * 16 + i], attr_bin[block * 16 + i]
+            slot = t + 0x80 if a & 8 else t
+            tile = atlas.crop((slot % 16 * 8, slot // 16 * 8, slot % 16 * 8 + 8, slot // 16 * 8 + 8))
+            if a & 0x20:
+                tile = tile.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+            if a & 0x40:
+                tile = tile.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+            img = Image.new('RGB', (8, 8))
+            img.putdata([all_pals[a & 7][(255 - v) // 85] for v in tile.get_flattened_data()])
+            render.paste(img, ((bx + 1) * 32 + i % 4 * 8, (by + 1) * 32 + i // 4 * 8))
+PREVIEW = ROOT / '_artifacts/shucks'
+PREVIEW.mkdir(parents=True, exist_ok=True)
+render.save(PREVIEW / 'Shucks.preview.png')
+render.resize((render.width * 3, render.height * 3), Image.Resampling.NEAREST).save(PREVIEW / 'Shucks.preview-3x.png')
 
-# Every floor tile, stage step, and point of interest must be reachable.
-seen={(11,17)};queue=deque(seen)
+# Validation -----------------------------------------------------------------
+STAFF = {(x, y) for x in range(0, 9) for y in (1, 2)}  # behind the bar
+seen = set(ENTRANCE)
+queue = deque(seen)
 while queue:
-    x,y=queue.popleft()
-    for nx,ny in ((x-1,y),(x+1,y),(x,y-1),(x,y+1)):
-        if 0<=nx<WIDTH and 0<=ny<HEIGHT and collision[ny][nx]=='FLOOR' and (nx,ny) not in seen:
-            seen.add((nx,ny));queue.append((nx,ny))
-floors={(x,y) for y in range(HEIGHT) for x in range(WIDTH) if collision[y][x]=='FLOOR'}
-assert seen==floors, ('disconnected floor',floors-seen)
-asm=(ROOT/'maps/Shucks.asm').read_text()
-objects=[(int(x),int(y)) for x,y in re.findall(r'object_event\s+(\d+),\s*(\d+)',asm)]
-assert len(objects)==len(set(objects))
-for x,y in objects:
-    assert (x,y) in seen, ('object not on accessible floor',x,y)
-for x,y in re.findall(r'bg_event\s+(\d+),\s*(\d+)',asm):
-    x,y=int(x),int(y)
-    assert any((x+dx,y+dy) in seen for dx,dy in ((-1,0),(1,0),(0,-1),(0,1))), ('unreachable background event',x,y)
-for text in re.findall(r'^\s*(?:text|line|cont) "([^"]*)"',asm,re.M):
-    assert len(text)<=18, ('text exceeds Crystal textbox width',text)
-for x,y in ((4,5),(8,5),(3,10),(6,12),(10,2)):
-    assert any((x+dx,y+dy) in seen for dx,dy in ((-1,0),(1,0),(0,-1),(0,1))), ('unreachable fixture',x,y)
-assert 'warp_event' not in re.sub(r';[^\n]*','',asm)
-for table in ('constants/map_constants.asm','constants/tileset_constants.asm',
-              'data/maps/maps.asm','data/maps/scripts.asm','data/maps/blocks.asm',
-              'data/maps/attributes.asm','data/tilesets.asm','gfx/tilesets.asm'):
-    assert not re.search(r'Shucks|SHUCKS', (ROOT/table).read_text()), ('draft accidentally registered',table)
-receipt={'map':'Shucks','blocks':[12,9],'movement_cells':[WIDTH,HEIGHT],
-         'unique_graphic_tiles':len(tiles),'unique_blocks':len(blocks),
-         'reachable_floor_cells':len(seen),'objects':len(objects),'warps':0,
-         'upstream_commit':(SOURCES/'commit.txt').read_text().strip(),
-         'source_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(SOURCES.glob('*')) if p.suffix in ('.png','.bin')}}
-(ROOT/'maps/Shucks.validation.json').write_text(json.dumps(receipt,indent=2)+'\n')
-print(json.dumps(receipt,indent=2))
+    x, y = queue.popleft()
+    for nx, ny in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+        if 0 <= nx < WIDTH and 0 <= ny < HEIGHT and collision[ny][nx] == 'FLOOR' and (nx, ny) not in seen:
+            seen.add((nx, ny))
+            queue.append((nx, ny))
+floors = {(x, y) for y in range(HEIGHT) for x in range(WIDTH) if collision[y][x] == 'FLOOR'}
+assert floors - seen <= STAFF, ('disconnected public floor', sorted(floors - seen - STAFF))
+assert not (seen & STAFF), 'the staff side of the bar is reachable'
+asm = (ROOT / 'maps/Shucks.asm').read_text()
+objects = [(int(x), int(y)) for x, y in re.findall(r'object_event\s+(\d+),\s*(\d+)', asm)]
+assert len(objects) == len(set(objects))
+for x, y in objects:
+    assert (x, y) in floors, ('object not on floor', x, y)
+for x, y in re.findall(r'bg_event\s+(\d+),\s*(\d+)', asm):
+    x, y = int(x), int(y)
+    assert any((x + dx, y + dy) in seen for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1))), ('unreachable bg event', x, y)
+for text in re.findall(r'^\s*(?:text|line|cont|para) "([^"]*)"', asm, re.M):
+    assert len(text) <= 18, ('text exceeds Crystal textbox width', text)
+assert 'warp_event' not in re.sub(r';[^\n]*', '', asm)
+for table in ('constants/map_constants.asm', 'constants/tileset_constants.asm',
+              'data/maps/maps.asm', 'data/maps/scripts.asm', 'data/maps/blocks.asm',
+              'data/maps/attributes.asm', 'data/tilesets.asm', 'gfx/tilesets.asm'):
+    assert not re.search(r'Shucks|SHUCKS', (ROOT / table).read_text()), ('draft accidentally registered', table)
+receipt = {
+    'map': 'Shucks', 'blocks': [BW, BH], 'movement_cells': [WIDTH, HEIGHT],
+    'unique_graphic_tiles': len(tiles), 'unique_blocks': len(blocks),
+    'reachable_floor_cells': len(seen), 'objects': len(objects), 'warps': 0,
+    'entrance_cells': ENTRANCE,
+    'source_sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                      for p in sorted(SOURCES.glob('crystal_*'))},
+}
+(ROOT / 'maps/Shucks.validation.json').write_text(json.dumps(receipt, indent=2) + '\n')
+print(json.dumps(receipt, indent=2))

@@ -167,3 +167,4 @@ OverworldSprites:
 	overworld_sprite RocketAsleepSpriteGFX, 4, STILL_SPRITE, PAL_OW_BROWN
 	overworld_sprite ZangooseSpriteGFX, 12, WALKING_SPRITE, PAL_OW_ROCK
 	overworld_sprite SeviperSpriteGFX, 12, WALKING_SPRITE, PAL_OW_PURPLE
+	overworld_sprite ShuckleSignSpriteGFX, 4, STILL_SPRITE, PAL_OW_ROCK

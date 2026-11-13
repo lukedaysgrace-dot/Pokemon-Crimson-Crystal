@@ -710,3 +710,24 @@ confirmations. Battle weights derive from Dex pounds, so keep
 retain authored dimensions, and regional forms must use form-specific sources.
 
 Past audits are in `reports/` (`full-audit-*.md`, `full-sweep-*.md`).
+
+## Shucks bar and its Goldenrod facade
+- `tools/build_shucks.py` regenerates the unregistered Shucks interior (tileset,
+  blocks, night-graded palette). It reads only `gfx/tilesets/shucks_sources/`.
+- `tools/build_goldenrod_shucks.py` draws the SHUCKS street front on Goldenrod
+  City blocks (3..5,10), writing only johto_modern tile slots no johto_modern
+  or battle_tower_outside block references (4 such slots remain) and appending
+  metatiles $99-$9b; it drops its own old blocks first, so it is idempotent.
+  It also generates `gfx/sprites/shuckle_sign.png` and the two
+  `gfx/overworld/shuckle_sign*.pal` files.
+- The neon Shuckle is object SPRITE_SHUCKLE_SIGN at (10,20) (it took the
+  wandering Youngster's slot; Goldenrod is at the 15-object limit) in the
+  GoldenrodGroupSprites list, using the rock OBJ palette, which no Goldenrod
+  object or effect uses. SPRITE_SHUCKLE_SIGN took SPRITE_GROWLITHE's ID (never
+  placed); only SPRITE_UNOWN/GEODUDE moved up by one.
+  `LoadGoldenrodShuckleSignPalette` (chained from LoadWimpodAndZangoosePalette,
+  since bank 2 is full) loads it switched off; at night `AnimateShucksNeonSign` fades the hardware
+  rock palette through the pulse table (skipped while rOBP0 isn't %11100100).
+  Check with `python3 tools/test_goldenrod_shucks_neon.py <rom>` from tools/.
+- "Tileset Data 5" is pinned to bank $2d and nearly full; Traditional House was
+  moved to the floating "Tileset Data 20" to make room for johto_modern growth.

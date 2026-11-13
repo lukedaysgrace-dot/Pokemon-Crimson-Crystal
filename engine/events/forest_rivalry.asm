@@ -279,6 +279,9 @@ LoadWimpodAndZangoosePalette::
 	jp FarCopyWRAM
 .Wimpod:
 	farcall LoadRoute31WimpodPalette
+	; Bank 2 (LoadMapPals) is full, so further map-specific object palettes
+	; chain from here.
+	farcall LoadGoldenrodShuckleSignPalette
 	ret
 .GrayRed:
 	RGB 31,31,31, 24,24,24, 31,07,01, 00,00,00

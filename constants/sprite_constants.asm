@@ -161,13 +161,14 @@ SPRITE_FOSSIL EQU SPRITE_PAPER ; reuse the otherwise-unused paper sprite slot
 	const SPRITE_ROCKET_ASLEEP
 	const SPRITE_ZANGOOSE
 	const SPRITE_SEVIPER
+	const SPRITE_SHUCKLE_SIGN ; Goldenrod's neon Shuckle (SHUCKS bar)
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)
 SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80
 	const SPRITE_GEODUDE ; 81
-	const SPRITE_GROWLITHE ; 82
+; SPRITE_GROWLITHE was never placed on a map; its slot went to SPRITE_SHUCKLE_SIGN.
 	const SPRITE_WEEDLE ; 83
 	const SPRITE_SHELLDER ; 84
 	const SPRITE_ODDISH ; 85
