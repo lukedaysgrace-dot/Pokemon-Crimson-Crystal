@@ -380,3 +380,13 @@ SpriteMovementData::
 	db 0
 	db 0
 	db 0
+
+; SPRITEMOVEDATA_STILL_BG_ALIGNED
+; As SPRITEMOVEDATA_STILL, but drawn four pixels lower so the sprite lines up
+; with background tiles, e.g. Goldenrod's neon Shuckle sitting in its sign.
+	db SPRITEMOVEFN_STANDING ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND_BG_ALIGNED ; action
+	db FIXED_FACING | SLIDING ; flags1
+	db 0 ; flags2
+	db 0 ; palette flags
