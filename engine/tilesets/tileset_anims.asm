@@ -51,7 +51,7 @@ TilesetJohtoModernAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  AnimateShucksNeonSign
 	dw NULL,  WaitTileAnimation
-	dw NULL,  AnimateShucksNeonSign
+	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
@@ -667,8 +667,8 @@ GetForestTreeFrame:
 	ret
 
 AnimateShucksNeonSign:
-; Goldenrod's neon Shuckle sign (an object in the rock OBJ palette) fades from
-; dark to fully lit and back at night: 16 steps each way, ~2 seconds a breath.
+; Goldenrod's neon Shuckle sign (an object in the rock OBJ palette) switches
+; on and off at night: 128 frames each (~2 seconds), following hVBlankCounter.
 ; By day LoadGoldenrodShuckleSignPalette leaves it switched off.
 	ld a, [wMapGroup]
 	cp GROUP_GOLDENROD_CITY
@@ -688,24 +688,12 @@ AnimateShucksNeonSign:
 	ldh a, [rOBP0]
 	cp %11100100
 	ret nz
+	ld hl, ShucksNeonSignOff
 	ldh a, [hVBlankCounter]
-	rrca
-	rrca
-	and %11111
-	cp 16
-	jr c, .got_step ; rising: 0-15
-	cpl
-	and %1111 ; falling: 15-0
-.got_step
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld e, l
-	ld d, h
-	add hl, hl
-	add hl, de ; 6 bytes per step
-	ld de, ShucksNeonSignPulse
-	add hl, de
+	add a ; bit 7 -> carry: on for the upper half of each 256-frame cycle
+	jr nc, .got_colours
+	ld hl, ShucksNeonSignOff + 3 * PAL_COLOR_SIZE ; on
+.got_colours
 	ld a, (1 << rOBPI_AUTO_INCREMENT) | (PAL_OW_ROCK palettes color 1)
 	ldh [rOBPI], a
 rept 3 * PAL_COLOR_SIZE
@@ -714,8 +702,8 @@ rept 3 * PAL_COLOR_SIZE
 endr
 	ret
 
-ShucksNeonSignPulse:
-INCLUDE "gfx/overworld/shuckle_sign_pulse.pal"
+ShucksNeonSignOff:
+INCLUDE "gfx/overworld/shuckle_sign_blink.pal"
 
 AnimateFlowerTile:
 ; No parameters.

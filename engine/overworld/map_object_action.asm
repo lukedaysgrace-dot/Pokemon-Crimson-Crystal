@@ -22,6 +22,7 @@ ObjectActionPairPointers:
 	dw SetFacingFishingBoat,           SetFacingFishingBoatStill
 	dw SetFacingApricorn,              SetFacingApricorn
 	dw SetFacingApricornOneTone,       SetFacingApricornOneTone
+	dw SetFacingStandBGAligned,        SetFacingStandBGAligned
 
 SetFacingStanding:
 	ld hl, OBJECT_FACING_STEP
@@ -255,6 +256,16 @@ SetFacingFishingBoatStill:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
+	ret
+
+SetFacingStandBGAligned:
+; Standing still, but four pixels lower: standing sprites are normally drawn
+; four pixels above their tile, which would misalign a sprite that sits in
+; background art (Goldenrod's neon Shuckle in its sign board).
+	call SetFacingCurrent
+	ld hl, OBJECT_SPRITE_Y_OFFSET
+	add hl, bc
+	ld [hl], 4
 	ret
 
 SetFacingApricorn:

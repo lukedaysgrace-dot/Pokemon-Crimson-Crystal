@@ -178,6 +178,7 @@ MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 	const SPRITEMOVEDATA_APRICORN_ONE_TONE    ; 2c
 	const SPRITEMOVEDATA_POKEMON_DOWN         ; 2d; walking frames in place
 	const SPRITEMOVEDATA_POKEMON_UP           ; 2e
+	const SPRITEMOVEDATA_STILL_BG_ALIGNED     ; 2f; still, 4px lower to sit on BG tiles
 NUM_SPRITEMOVEDATA EQU const_value
 
 ; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)
@@ -272,6 +273,7 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const OBJECT_ACTION_FISHING_BOAT  ; 13
 	const OBJECT_ACTION_APRICORN      ; 14
 	const OBJECT_ACTION_APRICORN_ONE_TONE ; 15
+	const OBJECT_ACTION_STAND_BG_ALIGNED  ; 16
 
 ; Facings indexes (see data/sprites/facings.asm)
 	const_def

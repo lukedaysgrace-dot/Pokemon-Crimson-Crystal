@@ -3,9 +3,9 @@
 
 * LoadGoldenrodShuckleSignPalette puts the switched-off colours in the rock
   OBJ slot for each time of day, only in Goldenrod City.
-* AnimateShucksNeonSign fades the hardware rock palette through the generated
-  pulse table at night (rising then falling with hVBlankCounter) and leaves it
-  alone by day, on other maps and while object palettes are faded.
+* AnimateShucksNeonSign switches the hardware rock palette between the
+  generated off and on colours at night (bit 7 of hVBlankCounter, ~2 s each)
+  and leaves it alone by day, on other maps and while object palettes fade.
 * The object exists, uses the sign sprite and the rock palette.
 
 Uses private emulator memory; no player saves are opened.
@@ -38,7 +38,7 @@ def main():
     sprite_pals = _parse_constants(ROOT / 'constants/sprite_data_constants.asm')
     rock = sprite_pals['PAL_OW_ROCK']
     statics = rgb_rows(ROOT / 'gfx/overworld/shuckle_sign.pal')
-    pulse = rgb_rows(ROOT / 'gfx/overworld/shuckle_sign_pulse.pal')
+    blink = rgb_rows(ROOT / 'gfx/overworld/shuckle_sign_blink.pal')
     checks = 0
 
     def check(condition, label):
@@ -83,8 +83,9 @@ def main():
         return data
 
     try:
-        check(len(statics) == 4 and len(pulse) == 16, 'generated palette tables have the wrong size')
-        check(pulse[0] == statics[2][2:], 'the pulse does not start from the dark night colours')
+        check(len(statics) == 4 and len(blink) == 2, 'generated palette tables have the wrong size')
+        check(blink[0] == statics[2][2:], 'the off colours differ from the night palette')
+        check(blink[0] != blink[1], 'the sign has no on colours')
         bank = h.sym.bank('wOBPals1')
         slot = h.s('wOBPals1') + rock * 8
         for location in (goldenrod, other):
@@ -110,15 +111,13 @@ def main():
                         h.wr(h.s('hVBlankCounter'), counter)
                         write_obj_colours(sentinel)
                         h.call('AnimateShucksNeonSign')
-                        step = (counter >> 2) & 31
-                        step = step if step < 16 else 31 - step
                         active = location == goldenrod and daytime >= 2 and not faded
-                        expected = pulse[step] if active else sentinel
+                        expected = blink[counter >> 7] if active else sentinel
                         check(read_obj_colours() == expected,
-                              f'pulse: map={location}, time={daytime}, faded={faded}, counter={counter}')
+                              f'blink: map={location}, time={daytime}, faded={faded}, counter={counter}')
 
         source = (ROOT / 'maps/GoldenrodCity.asm').read_text()
-        check(re.search(r'object_event 10, 20, SPRITE_SHUCKLE_SIGN, SPRITEMOVEDATA_STILL,.*PAL_NPC_ROCK', source),
+        check(re.search(r'object_event 10, 20, SPRITE_SHUCKLE_SIGN, SPRITEMOVEDATA_STILL_BG_ALIGNED,.*PAL_NPC_ROCK', source),
               'Goldenrod is missing the neon Shuckle sign object')
         print(f'GOLDENROD SHUCKS NEON: {checks} checks passed in {rom.name}', flush=True)
     finally:

@@ -719,15 +719,17 @@ Past audits are in `reports/` (`full-audit-*.md`, `full-sweep-*.md`).
   or battle_tower_outside block references (4 such slots remain) and appending
   metatiles $99-$9b; it drops its own old blocks first, so it is idempotent.
   It also generates `gfx/sprites/shuckle_sign.png` and the two
-  `gfx/overworld/shuckle_sign*.pal` files.
-- The neon Shuckle is object SPRITE_SHUCKLE_SIGN at (10,20) (it took the
+  `gfx/overworld/shuckle_sign*.pal` files (day/night base, night off/on).
+- The neon Shuckle is object SPRITE_SHUCKLE_SIGN at (10,20), using
+  SPRITEMOVEDATA_STILL_BG_ALIGNED (drawn 4px lower, so it sits in its board) (it took the
   wandering Youngster's slot; Goldenrod is at the 15-object limit) in the
   GoldenrodGroupSprites list, using the rock OBJ palette, which no Goldenrod
   object or effect uses. SPRITE_SHUCKLE_SIGN took SPRITE_GROWLITHE's ID (never
   placed); only SPRITE_UNOWN/GEODUDE moved up by one.
   `LoadGoldenrodShuckleSignPalette` (chained from LoadWimpodAndZangoosePalette,
-  since bank 2 is full) loads it switched off; at night `AnimateShucksNeonSign` fades the hardware
-  rock palette through the pulse table (skipped while rOBP0 isn't %11100100).
+  since bank 2 is full) loads it switched off; at night `AnimateShucksNeonSign` switches the
+  hardware rock palette off/on every 128 frames (bit 7 of hVBlankCounter),
+  skipped while rOBP0 isn't %11100100.
   Check with `python3 tools/test_goldenrod_shucks_neon.py <rom>` from tools/.
 - "Tileset Data 5" is pinned to bank $2d and nearly full; Traditional House was
   moved to the floating "Tileset Data 20" to make room for johto_modern growth.
