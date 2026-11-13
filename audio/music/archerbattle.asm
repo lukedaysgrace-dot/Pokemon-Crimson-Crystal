@@ -1,4 +1,4 @@
-; Rocket Executive Theme - Crimson Crystal (new; not hooked up).
+; Archer Battle - Crimson Crystal. Underboss Archer's battle theme (Rocket Executive Theme v3; also on the player's room radio).
 ; A minor / A Phrygian. tempo 156, notetype 12: ~123 BPM.
 ; Intro 4 (swells, grunt slither + hammer) | Main 8 (deep A-G#-E theme)
 ; | Lead-up 8 (climbing line, swelling arps, snare roll, one beat of silence)
@@ -9,13 +9,13 @@
 ; Ch1 uses sound_duty from the loop point on (constant patterns stand in for
 ; dutycycle). Ch4: drumkit 6 (Rocket kit in drumkits.asm).
 
-Music_RocketExecutiveTheme:
-	musicheader 4, 1, Music_RocketExecutiveTheme_Ch1
-	musicheader 1, 2, Music_RocketExecutiveTheme_Ch2
-	musicheader 1, 3, Music_RocketExecutiveTheme_Ch3
-	musicheader 1, 4, Music_RocketExecutiveTheme_Ch4
+Music_ArcherBattle:
+	musicheader 4, 1, Music_ArcherBattle_Ch1
+	musicheader 1, 2, Music_ArcherBattle_Ch2
+	musicheader 1, 3, Music_ArcherBattle_Ch3
+	musicheader 1, 4, Music_ArcherBattle_Ch4
 
-Music_RocketExecutiveTheme_Ch1:
+Music_ArcherBattle_Ch1:
 	tempo 156
 	volume $77
 	dutycycle $2
@@ -25,7 +25,7 @@ Music_RocketExecutiveTheme_Ch1:
 	note E_, 16
 	intensity $2f
 	note F_, 16
-Music_RocketExecutiveTheme_Ch1_Loop:
+Music_ArcherBattle_Ch1_Loop:
 	sound_duty 1, 1, 1, 1
 	intensity $51
 	octave 3
@@ -686,9 +686,9 @@ Music_RocketExecutiveTheme_Ch1_Loop:
 	note G#, 2
 	intensity $c4
 	note B_, 2
-	loopchannel 0, Music_RocketExecutiveTheme_Ch1_Loop
+	loopchannel 0, Music_ArcherBattle_Ch1_Loop
 
-Music_RocketExecutiveTheme_Ch2:
+Music_ArcherBattle_Ch2:
 	dutycycle $2
 	vibrato $12, $64
 	notetype $c, $2f
@@ -697,7 +697,7 @@ Music_RocketExecutiveTheme_Ch2:
 	note A_, 16
 	intensity $2f
 	note A#, 16
-Music_RocketExecutiveTheme_Ch2_Loop:
+Music_ArcherBattle_Ch2_Loop:
 	dutycycle $2
 	intensity $c2
 	octave 2
@@ -1375,9 +1375,9 @@ Music_RocketExecutiveTheme_Ch2_Loop:
 	note G#, 2
 	intensity $d4
 	note B_, 2
-	loopchannel 0, Music_RocketExecutiveTheme_Ch2_Loop
+	loopchannel 0, Music_ArcherBattle_Ch2_Loop
 
-Music_RocketExecutiveTheme_Ch3:
+Music_ArcherBattle_Ch3:
 	notetype $c, $1b
 	octave 1
 	note A_, 2
@@ -1388,7 +1388,7 @@ Music_RocketExecutiveTheme_Ch3:
 	note __, 1
 	note A_, 2
 	note __, 11
-Music_RocketExecutiveTheme_Ch3_Loop:
+Music_ArcherBattle_Ch3_Loop:
 	intensity $1b
 	octave 1
 	note A_, 6
@@ -2586,9 +2586,9 @@ Music_RocketExecutiveTheme_Ch3_Loop:
 	intensity $1b
 	note B_, 4
 	notetype $c, $1b
-	loopchannel 0, Music_RocketExecutiveTheme_Ch3_Loop
+	loopchannel 0, Music_ArcherBattle_Ch3_Loop
 
-Music_RocketExecutiveTheme_Ch4:
+Music_ArcherBattle_Ch4:
 	togglenoise 6
 	notetype $c
 	note C_, 3
@@ -2597,7 +2597,7 @@ Music_RocketExecutiveTheme_Ch4:
 	note C_, 9
 	note G#, 2
 	note G#, 2
-Music_RocketExecutiveTheme_Ch4_Loop:
+Music_ArcherBattle_Ch4_Loop:
 	note C_, 6
 	note C_, 4
 	note C#, 2
@@ -2917,4 +2917,4 @@ Music_RocketExecutiveTheme_Ch4_Loop:
 	note F#, 1
 	note G#, 1
 	note G#, 1
-	loopchannel 0, Music_RocketExecutiveTheme_Ch4_Loop
+	loopchannel 0, Music_ArcherBattle_Ch4_Loop

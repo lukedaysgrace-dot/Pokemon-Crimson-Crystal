@@ -95,20 +95,20 @@ PlayBattleMusic:
 	cp RED
 	jp z, .done
 
-	; The four named admins get their own Rocket Executive theme.
-	ld de, MUSIC_ROCKET_EXECUTIVE_BATTLE
+	; Underboss Archer gets his own theme.
+	ld de, MUSIC_ARCHER_BATTLE
+	cp ARCHER
+	jp z, .done
+
+	; Every other Team Rocket class, the other named admins included, gets the
+	; Rocket theme: vanilla left out the Executives and Scientists.
+	ld de, MUSIC_ROCKET_BATTLE
 	cp PROTON
 	jp z, .done
 	cp PETREL
 	jp z, .done
 	cp ARIANA
 	jp z, .done
-	cp ARCHER
-	jp z, .done
-
-	; Every other Team Rocket class gets the Rocket theme: vanilla left out
-	; the Executives and Scientists.
-	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
 	jp z, .done
 	cp GRUNTF
