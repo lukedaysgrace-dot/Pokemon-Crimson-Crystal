@@ -3,6 +3,8 @@
 ; Reuse TilesetHouseAnim in the eventual tileset table entry. Animation
 ; tables belong in the engine's animation bank, not in this asset bank.
 ; Regenerate all graphics/blocks with: python tools/build_shucks.py
+; The palette is night-graded at build time: Shucks is always lit for night.
+; Register the map with PALETTE_NITE and load TilesetShucksPalette for it.
 
 SECTION "Shucks Tileset", ROMX
 TilesetShucksGFX:

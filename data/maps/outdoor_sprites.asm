@@ -507,7 +507,7 @@ GoldenrodGroupSprites:
 	db SPRITE_POKE_BALL
 	db SPRITE_DAY_CARE_MON_2
 	db SPRITE_COOLTRAINER_F
-	db SPRITE_NONE
+	db SPRITE_SHUCKLE_SIGN ; neon sign on the SHUCKS bar (was a free slot)
 	db SPRITE_NURSE
 	db SPRITE_NONE ; free slot (old link receptionist was unused filler)
 	db SPRITE_BIG_LAPRAS

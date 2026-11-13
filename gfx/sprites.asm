@@ -299,3 +299,9 @@ SECTION "Seviper Walking Sprite", ROMX
 SeviperSpriteGFX:: INCBIN "gfx/sprites/seviper.2bpp"
 SeviperSpriteGFXEnd::
 assert SeviperSpriteGFXEnd - SeviperSpriteGFX == 24 * 16
+
+; Neon sign drawn from Shuckle's menu icon (tools/build_goldenrod_shucks.py).
+SECTION "Shuckle Sign Sprite", ROMX
+ShuckleSignSpriteGFX:: INCBIN "gfx/sprites/shuckle_sign.2bpp"
+ShuckleSignSpriteGFXEnd::
+assert ShuckleSignSpriteGFXEnd - ShuckleSignSpriteGFX == 4 * 16

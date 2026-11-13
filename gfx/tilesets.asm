@@ -229,6 +229,11 @@ INCBIN "data/tilesets/johto_modern_metatiles.bin"
 TilesetJohtoModernColl:
 INCLUDE "data/tilesets/johto_modern_collision.asm"
 
+; Traditional House lives in its own floating section so "Tileset Data 5"
+; (pinned to bank $2d) has room for johto_modern growth, e.g. the SHUCKS
+; facade in Goldenrod. Each tileset pointer is a dba, so any bank works.
+SECTION "Tileset Data 20", ROMX
+
 TilesetTraditionalHouseGFX:
 INCBIN "gfx/tilesets/traditional_house.2bpp.lz"
 

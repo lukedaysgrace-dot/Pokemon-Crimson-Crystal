@@ -1,27 +1,28 @@
 # Shucks source artwork
 
-Pinned online source: [Rangi42/polishedcrystal](https://github.com/Rangi42/polishedcrystal)
-at commit `435bb9061592246dec0c5c5cf813389e7d17de4a`.
+Shucks is drawn in Gold/Silver/Crystal style. `tools/build_shucks.py` reads only
+the pinned `crystal_*` copies in this folder; it never reads or modifies the
+project's live tilesets, so later edits to those tilesets cannot change Shucks.
 
-The three PNGs and their matching block/attribute files were downloaded from
-that repository, not copied from this project's existing tilesets:
+Vanilla Crystal pieces (copied from this project's `gfx/tilesets/` and
+`data/tilesets/` on 2026-11-12):
 
-- `gfx/tilesets/game_corner.png`: counter, stools, round tables, cabinet.
-- `gfx/tilesets/hotel.png`: wall and extra cabinet.
-- `gfx/tilesets/traditional_house.png`: wood floor.
-- Matching `data/tilesets/*_metatiles.bin` and `*_attributes.bin` files identify
-  the original graphic arrangement, colors, and flips.
+- `crystal_game_corner.*`: Goldenrod Game Corner's inset floor tiles.
+- `crystal_players_house.*`: wood wall panelling, fridge, stove/sink unit
+  and radio.
+- `crystal_traditional_house.*`: the Ecruteak Dance Theater stage boards.
+- `crystal_house.*`: potted-palm fronds and the red exit rug.
 
-Credit the Polished Crystal team, Rangi42, and the original Pokémon Gold,
-Silver, and Crystal artists at Game Freak. The upstream credit list is retained
-as `CREDITS.md`; it additionally credits JaceDeane and Luna for overworld tiles.
-These are Pokémon fan-project assets, not an independently licensed CC0 pack.
-No new permission or ownership claim is made for the upstream art.
+Hand-pixelled in `tools/build_shucks.py` to match (4 shades, black outlines):
+bottle shelves, beer taps and mugs, bar counter, shell sign, chalk menu, velvet
+curtain, speaker stacks, marquee footlights and steps, dance floor,
+pool table, cue rack, cloth-topped cafe tables, side-on cafe chairs (sized so
+a seated NPC sprite fits on them), bar stools and terracotta plant pots.
 
-The pool table, cue rack, bottle details, taps, curtain, speakers, stage fascia,
-stairs, dance floor and entrance mat are additions made for this map. They are
-encoded in `tools/build_shucks.py` and use the same four-shade pixel grid.
-The rejected generic Game Boy tavern pack is not used in this map.
+Colour works like Crystal's interiors: every palette that touches the floor
+shares the floor's two colours and black, and the builder assigns each 8x8
+tile whichever palette holds all of its colours (it stops with an error naming
+the cell if none does). Each input's SHA-256 is recorded in
+`maps/Shucks.validation.json`; previews are written to `_artifacts/shucks/`.
 
-Each exact downloaded input's SHA-256 is recorded in
-`maps/Shucks.validation.json`. `commit.txt` records the upstream revision.
+Original art by Game Freak; these are Pokémon fan-project assets.

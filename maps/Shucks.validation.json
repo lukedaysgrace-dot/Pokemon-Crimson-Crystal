@@ -1,28 +1,40 @@
 {
   "map": "Shucks",
   "blocks": [
-    12,
-    9
+    10,
+    8
   ],
   "movement_cells": [
-    24,
-    18
+    20,
+    16
   ],
-  "unique_graphic_tiles": 121,
-  "unique_blocks": 53,
-  "reachable_floor_cells": 254,
-  "objects": 6,
+  "unique_graphic_tiles": 138,
+  "unique_blocks": 46,
+  "reachable_floor_cells": 212,
+  "objects": 7,
   "warps": 0,
-  "upstream_commit": "435bb9061592246dec0c5c5cf813389e7d17de4a",
+  "entrance_cells": [
+    [
+      9,
+      15
+    ],
+    [
+      10,
+      15
+    ]
+  ],
   "source_sha256": {
-    "game_corner.png": "11590727f0230b56aff922cc552df0108a6cc203ef5de3b335775eaf58d9e1e9",
-    "game_corner_attributes.bin": "d2f66b349af9c24e94c977669a15ef2507d8a534e6dc85aae69cdf26b33e0455",
-    "game_corner_metatiles.bin": "f6814475c647734a22003ebb32d8bc9a18764741f6633b685f5cf4b4371d70f4",
-    "hotel.png": "66c57f9f655574833288e0913bee2e17399dd7c73fc180c7d90bbfb9527d9d18",
-    "hotel_attributes.bin": "e3d0128e182daf5bbbd24f053e6faf93edcf67d198b6f91ed747aaa597da3520",
-    "hotel_metatiles.bin": "0ed9d86d8bb89f1104309bf18c3aab00db630aaee7424b7853617dc05649ac7c",
-    "traditional_house.png": "8e62e4fffe18e2135083ffacc43437ccd678a2a7c72fcc975fcd20bc995cc241",
-    "traditional_house_attributes.bin": "77389e8028aad05014203cbca03ef1b280bd9d8a975ee19269855ebb550df4e8",
-    "traditional_house_metatiles.bin": "e41d61a5fa3b0cc12a95e331d8352925280d55b391cdfbf27850de84940bb28a"
+    "crystal_game_corner.png": "cc9fe8be9e371ab2a920576924a83d211728f5ebe09317e0443015cc1d3872c9",
+    "crystal_game_corner_attributes.bin": "7e3bfcac8282c8b999e3159cefe7b642be83f6518c58fc8246c0b9f8fc83c46f",
+    "crystal_game_corner_metatiles.bin": "bd7dd307f8c1ee461bb3db1cb5effcfbe0cd9dbcd9f5bfdd5588fda34b384733",
+    "crystal_house.png": "a193509f6fda7b1d139fddec2fbb991e48a7a13f5a6d84ce16d30e817794203b",
+    "crystal_house_attributes.bin": "4b0813de490e02c1cfad6ce0c0076c89388a72fa6ad7e118370b1adbf1a255d1",
+    "crystal_house_metatiles.bin": "4bd587c242bfc010682fd1bff2f79667cf7e5b8ae851bcb070e2055d2ed3e4aa",
+    "crystal_players_house.png": "b7a9d1ca1d197bdb069cfb8156758dc237192b87ae21c4baa49fe15a78152627",
+    "crystal_players_house_attributes.bin": "303ecbb16ee421807fcba35d2f4f8a9776f08e50006287121e901fb0ad3e38ff",
+    "crystal_players_house_metatiles.bin": "26d702fa49fe0693e20e0b08a883b9f36f84a0f7b893bfaa372209e3dd4d2e62",
+    "crystal_traditional_house.png": "17bf45d2ccfe45fe6b1b03281d4f906fd4b43ef0d9f177a895545ca07716f502",
+    "crystal_traditional_house_attributes.bin": "559fbb09aeafbcd59cae12a7b7c7512c4e8165d77b7e47371a9ec8af90822ed8",
+    "crystal_traditional_house_metatiles.bin": "57e15cfe2af0f5a14b6ccf251d7b452d31889756775f9b2c2b21d97d9faaab03"
   }
 }

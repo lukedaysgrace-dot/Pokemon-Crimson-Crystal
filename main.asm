@@ -1027,6 +1027,9 @@ INCLUDE "engine/events/forest_rivalry.asm"
 INCLUDE "engine/tilesets/league_room_palettes.asm"
 INCLUDE "engine/tilesets/league_room_anims.asm"
 
+SECTION "Goldenrod Shuckle Sign Palette", ROMX
+INCLUDE "engine/events/goldenrod_shuckle_sign.asm"
+
 SECTION "Trainer Pic Animations", ROMX
 INCLUDE "engine/battle/trainer_pic_anim.asm"
 

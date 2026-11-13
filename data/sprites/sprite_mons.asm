@@ -2,7 +2,6 @@ SpriteMons:
 ; entries correspond to SPRITE_* constants past SPRITE_POKEMON
 	dw UNOWN
 	dw GEODUDE
-	dw GROWLITHE
 	dw WEEDLE
 	dw SHELLDER
 	dw ODDISH
