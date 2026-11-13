@@ -46,7 +46,7 @@ CASES = [
     ('crystal', 'CRYSTAL3', 'CRYSTAL3_CYNDAQUIL', 'ROUTE_25', (48, 8),
      ['EVENT_ROUTE_25_CRYSTAL'], 'MUSIC_CRYSTAL_BATTLE'),
     ('archer', 'ARCHER', 'ARCHER2', 'RADIO_TOWER_5F', (12, 5),
-     ['EVENT_RADIO_TOWER_ROCKET_TAKEOVER'], 'MUSIC_ROCKET_EXECUTIVE_BATTLE'),
+     ['EVENT_RADIO_TOWER_ROCKET_TAKEOVER'], 'MUSIC_ARCHER_BATTLE'),
     ('rival', 'RIVAL1', 'RIVAL1_5_TOTODILE', 'VICTORY_ROAD', (18, 14),
      ['EVENT_RIVAL_VICTORY_ROAD'], 'MUSIC_RIVAL_BATTLE'),
     ('eusine', 'MYSTICALMAN', 'EUSINE2', 'ECRUTEAK_CITY', (32, 5),
@@ -83,6 +83,7 @@ def main():
     parser.add_argument('--only', default='')
     parser.add_argument('--name', default='Luke', help="player name shown under the portrait")
     parser.add_argument('--rival', default='SILVER', help='rival name (a fresh New Game has none)')
+    parser.add_argument('--tail', type=int, default=90, help='frames to keep recording after the Fight menu appears')
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     ids = trainer_ids()
@@ -169,7 +170,7 @@ def main():
             assert watch['vs'] and not watch['white'], (name, 'white frames before the VS', watch['white'])
             assert watch['cues'] or watch['drums'], (name, 'drumless theme should carry the VS cues')
             song = int.from_bytes(s.m.read_bytes('wChannel1MusicID', 2), 'little')
-            s.tick(90)
+            s.tick(args.tail)
             record = s.movie.finish()
             s.movie = None
             if theme:
