@@ -58,3 +58,32 @@ CrimsonVSFrame24: INCBIN "gfx/battle_vs/frame24.bin"
 	assert @ - CrimsonVSFrame24 == 2944
 CrimsonVSFrame25: INCBIN "gfx/battle_vs/frame25.bin"
 	assert @ - CrimsonVSFrame25 == 2944
+CrimsonVSFrame26: INCBIN "gfx/battle_vs/frame26.bin"
+	assert @ - CrimsonVSFrame26 == 2944
+CrimsonVSFrame27: INCBIN "gfx/battle_vs/frame27.bin"
+	assert @ - CrimsonVSFrame27 == 2944
+SECTION "Crimson VS frames 7", ROMX, ALIGN[4]
+CrimsonVSFrame28: INCBIN "gfx/battle_vs/frame28.bin"
+	assert @ - CrimsonVSFrame28 == 2944
+CrimsonVSFrame29: INCBIN "gfx/battle_vs/frame29.bin"
+	assert @ - CrimsonVSFrame29 == 2944
+CrimsonVSFrame30: INCBIN "gfx/battle_vs/frame30.bin"
+	assert @ - CrimsonVSFrame30 == 2944
+CrimsonVSFrame31: INCBIN "gfx/battle_vs/frame31.bin"
+	assert @ - CrimsonVSFrame31 == 2944
+SECTION "Crimson VS frames 8", ROMX, ALIGN[4]
+CrimsonVSFrame32: INCBIN "gfx/battle_vs/frame32.bin"
+	assert @ - CrimsonVSFrame32 == 2944
+CrimsonVSFrame33: INCBIN "gfx/battle_vs/frame33.bin"
+	assert @ - CrimsonVSFrame33 == 2944
+CrimsonVSFrame34: INCBIN "gfx/battle_vs/frame34.bin"
+	assert @ - CrimsonVSFrame34 == 2944
+CrimsonVSFrame35: INCBIN "gfx/battle_vs/frame35.bin"
+	assert @ - CrimsonVSFrame35 == 2944
+SECTION "Crimson VS frames 9", ROMX, ALIGN[4]
+CrimsonVSFrame36: INCBIN "gfx/battle_vs/frame36.bin"
+	assert @ - CrimsonVSFrame36 == 2944
+CrimsonVSFrame37: INCBIN "gfx/battle_vs/frame37.bin"
+	assert @ - CrimsonVSFrame37 == 2944
+CrimsonVSFrame38: INCBIN "gfx/battle_vs/frame38.bin"
+	assert @ - CrimsonVSFrame38 == 2944

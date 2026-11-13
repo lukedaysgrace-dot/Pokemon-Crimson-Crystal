@@ -8,8 +8,13 @@ CRIMSON_VS_ATTR EQUS "CRIMSON_VS_MAP + BG_MAP_WIDTH * SCREEN_HEIGHT"
 CRIMSON_VS_BYTES EQU CRIMSON_VS_TILES * 16 + 2 * BG_MAP_WIDTH * SCREEN_HEIGHT
 CRIMSON_VS_NAMES EQUS "wTileMap + 17 * SCREEN_WIDTH"
 CRIMSON_VS_BANK EQUS "wTileMap + 16 * SCREEN_WIDTH"
+CRIMSON_VS_SHOWN EQUS "wTileMap + 16 * SCREEN_WIDTH + 1"
+; Bank-1 tiles 0-$76: player and opponent pictures, 20 name glyphs, a blank.
+CRIMSON_VS_PORTRAITS EQU 2 * 7 * 7 + 21
 
-CrimsonVSIntro::
+CrimsonVSWillPlay::
+; Returns carry if this battle opens with the VS interstitial. DoBattleTransition
+; asks first, so these battles cut straight from the overworld into the VS.
 	ldh a, [hCGB]
 	and a
 	ret z
@@ -23,8 +28,61 @@ CrimsonVSIntro::
 	and a
 	ret nz
 	farcall CheckBattleScene
-	ret c
-	call CrimsonVSIsBoss
+	ccf
+	ret nc
+	jp CrimsonVSIsBoss
+
+CrimsonVSFlash::
+; DoBattleTransition asks this first. For VS battles, play the ordinary
+; trainer-battle flash (three flashes of the overworld's own palettes, as
+; StartTrainerBattle_Flash does) and return carry, so the caller skips the
+; spin/wave/speckle outro and cuts straight to black and into the VS.
+; Otherwise return nc and the normal transition runs.
+	call CrimsonVSWillPlay
+	ret nc
+	ld a, [wTimeOfDayPalset]
+	cp %11111111 ; dark caves never flash, as in the native transition
+	jr z, .done
+	ld c, 3
+.flash
+	ld hl, .pals
+	ld b, .pals_end - .pals
+.step
+	ld a, [hli]
+	ld [wBGP], a
+	push bc
+	push hl
+	call DmgToCgbBGPals
+	ld c, 2 ; the native jumptable advances one table entry every two frames
+	call DelayFrames
+	pop hl
+	pop bc
+	dec b
+	jr nz, .step
+	dec c
+	jr nz, .flash
+.done
+	scf
+	ret
+
+.pals
+; Same steps as StartTrainerBattle_Flash.pals (engine/battle/battle_transition.asm).
+	dc 3, 3, 2, 1
+	dc 3, 3, 3, 2
+	dc 3, 3, 3, 3
+	dc 3, 3, 3, 2
+	dc 3, 3, 2, 1
+	dc 3, 2, 1, 0
+	dc 2, 1, 0, 0
+	dc 1, 0, 0, 0
+	dc 0, 0, 0, 0
+	dc 1, 0, 0, 0
+	dc 2, 1, 0, 0
+	dc 3, 2, 1, 0
+.pals_end
+
+CrimsonVSIntro::
+	call CrimsonVSWillPlay
 	ret nc
 
 	ldh a, [rSVBK]
@@ -48,8 +106,12 @@ CrimsonVSIntro::
 	ldh [hWY], a
 	ldh [rWY], a
 	call ClearSprites
-	call DisableLCD
+	; The LCD stays on: a CGB with its LCD off shows white, which would blink
+	; between the transition and the VS. The transition left every BG colour
+	; black, so nothing loaded below is visible until the first frame and its
+	; palettes are committed. Sprites are simply switched off.
 	ld hl, rLCDC
+	res rLCDC_SPRITES_ENABLE, [hl]
 	res rLCDC_WINDOW_ENABLE, [hl]
 	res rLCDC_BG_TILEMAP, [hl]
 	res rLCDC_TILE_DATA, [hl] ; signed tiles rooted at $9000
@@ -57,27 +119,11 @@ CrimsonVSIntro::
 	ld a, 1
 	ldh [rSVBK], a
 	call CrimsonVSPrepareNames
+	call CrimsonVSUploadPortraits
 	call CrimsonVSLoadPalettes
 	xor a
 	ld [CRIMSON_VS_BANK], a
-	; Start from an empty dark field while the first frame is prepared.
-	xor a
-	ldh [rVBK], a
-	ld hl, $8800
-	ld bc, 16
-	call ByteFill
-	ld hl, vBGMap0
-	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
-	ld a, $80
-	call ByteFill
-	ld a, 1
-	ldh [rVBK], a
-	ld hl, vBGMap0
-	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
-	xor a
-	call ByteFill
-	ldh [rVBK], a
-	call EnableLCD
+	ld [CRIMSON_VS_SHOWN], a
 	ld hl, CrimsonVSFrames
 .next
 	ld a, [hli]
@@ -116,6 +162,16 @@ CrimsonVSIntro::
 	call CopyBytes
 .commit
 	call CrimsonVSCommit
+	ld a, [CRIMSON_VS_SHOWN]
+	and a
+	jr nz, .shown
+	; Reveal the palettes only once the first frame's maps are in place.
+	inc a
+	ld [CRIMSON_VS_SHOWN], a
+	call DelayFrame
+	ld a, 1
+	ldh [hCGBPalUpdate], a
+.shown
 	pop bc
 	push bc
 	call CrimsonVSSound
@@ -159,6 +215,8 @@ CrimsonVSIntro::
 	ret
 
 CrimsonVSIsBoss:
+; Important individuals only. IsGymLeader covers every Johto/Kanto leader,
+; the Elite Four, Lance, all rematches, Red, Blue, Blue (cloak) and Green.
 	ld a, [wOtherTrainerClass]
 	and a
 	ret z
@@ -172,18 +230,28 @@ CrimsonVSIsBoss:
 	db RIVAL1
 	db RIVAL2
 	db RIVAL3
+	db CRYSTAL
+	db CRYSTAL2
+	db CRYSTAL3
 	db PROTON
 	db PETREL
+	db PETREL_DIRECTOR ; Petrel disguised as the Radio Tower director
 	db ARIANA
 	db ARCHER
 	db EXECUTIVEM
 	db EXECUTIVEF
-	db CRYSTAL
-	db CRYSTAL2
-	db CRYSTAL3
+	db MYSTICALMAN ; Eusine
+	db WILL ; unused League classes, kept in case they return
+	db AGATHA
 	db -1
 
 CrimsonVSSound:
+; Both cues live on the noise channel alone, so pulse 1/2 and wave music
+; voices are never muted. Themes with their own drums (Crystal, Rocket
+; Executive) keep the noise channel too: the VS then plays silently over them.
+	ld a, [wChannel4Flags1]
+	bit SOUND_CHANNEL_ON, a
+	ret nz
 	bit 1, b
 	ld de, SFX_CRIMSON_VS_LOCK
 	jp nz, PlaySFX
@@ -193,9 +261,14 @@ CrimsonVSSound:
 	ret
 
 CrimsonVSLoadPictures:
+; Gather bank-1 tiles 0-$76 (both pictures; name glyphs are added later) in
+; WRAM6. CrimsonVSUploadPortraits then copies them during VBlank. The player
+; and trainer selectors live in WRAM1, so they are read before switching.
+	ldh a, [rSVBK]
+	push af
 	ld a, 1
-	ldh [rVBK], a
-	ld de, GoldPic
+	ldh [rSVBK], a
+	ld hl, GoldPic
 	ld b, BANK(GoldPic)
 	ld a, [wPlayerSpriteSetupFlags]
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
@@ -203,27 +276,25 @@ CrimsonVSLoadPictures:
 	ld a, [wPlayerGender]
 	cp PLAYERGENDER_MINT
 	jr nz, .indigo
-	ld de, MintPic
+	ld hl, MintPic
 	ld b, BANK(MintPic)
 	jr .player
 .indigo
 	cp PLAYERGENDER_INDIGO
 	jr nz, .lyra
-	ld de, IndigoPic
+	ld hl, IndigoPic
 	ld b, BANK(IndigoPic)
 	jr .player
 .lyra
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .player
-	ld de, LyraPic
+	ld hl, LyraPic
 	ld b, BANK(LyraPic)
 .player
-	ld hl, vTiles2
-	ld c, 49
-	call Get2bpp
+	push hl
+	push bc
 	ld a, [wOtherTrainerClass]
 	ld [wTrainerClass], a
-	; GetTrainerPic waits for VBlank, so decompress directly while LCD is off.
 	dec a
 	ld hl, TrainerPicPointers
 	ld bc, 3
@@ -234,24 +305,85 @@ CrimsonVSLoadPictures:
 	inc hl
 	ld a, BANK(TrainerPicPointers)
 	call GetFarHalfword
+	push hl
 	ld a, BANK(wDecompressScratch)
 	ldh [rSVBK], a
-	pop af
-	ld de, wDecompressScratch
-	call FarDecompress
-	ld de, wDecompressScratch
-	ld hl, vTiles2 tile 49
-	ld b, BANK(CrimsonVSLoadPictures)
-	ld c, 49
-	call Get2bpp
-	xor a
-	ldh [hBGMapMode], a
-	ld hl, vTiles2 tile $62
-	ld bc, 21 tiles ; 20 individual name glyphs, then a shared blank at $76
+	ld hl, wDecompressScratch
+	ld bc, CRIMSON_VS_PORTRAITS tiles
 	xor a
 	call ByteFill
+	pop hl
+	pop af
+	ld de, wDecompressScratch tile 7 * 7
+	call FarDecompress
+	pop bc
+	pop hl
+	ld a, b
+	ld de, wDecompressScratch
+	ld bc, 7 * 7 tiles
+	call FarCopyBytes
 	xor a
+	ldh [hBGMapMode], a
+	pop af
+	ldh [rSVBK], a
+	ret
+
+CrimsonVSUploadPortraits:
+; Copy the WRAM6 portrait buffer to bank-1 tiles 0-$76 with two GDMAs, each
+; started at the top of its own VBlank (immediately if the LCD is off).
+	ldh a, [rSVBK]
+	push af
+	ldh a, [rVBK]
+	push af
+	ld a, BANK(wDecompressScratch)
+	ldh [rSVBK], a
+	ld a, 1
 	ldh [rVBK], a
+	ld hl, wDecompressScratch
+	ld de, vTiles2
+	ld b, 64
+	call .dma
+	ld hl, wDecompressScratch tile 64
+	ld de, vTiles2 tile 64
+	ld b, CRIMSON_VS_PORTRAITS - 64
+	call .dma
+	pop af
+	ldh [rVBK], a
+	pop af
+	ldh [rSVBK], a
+	ret
+
+.dma
+; hl = source, de = VRAM destination, b = tiles (at most 64 per VBlank).
+	ldh a, [rLCDC]
+	bit rLCDC_ENABLE, a
+	jr z, .start
+	di
+.visible
+	ldh a, [rLY]
+	cp LY_VBLANK
+	jr nc, .visible
+.vblank
+	ldh a, [rLY]
+	cp LY_VBLANK
+	jr c, .vblank
+	call .start
+	ei
+	ret
+
+.start
+	ld a, h
+	ldh [rHDMA1], a
+	ld a, l
+	ldh [rHDMA2], a
+	ld a, d
+	and $1f
+	ldh [rHDMA3], a
+	ld a, e
+	ldh [rHDMA4], a
+	ld a, b
+	dec a
+	ldh [rHDMA5], a
 	ret
 
 CrimsonVSLoadPalettes:
@@ -282,13 +414,11 @@ CrimsonVSLoadPalettes:
 	ld de, wBGPals2
 	ld bc, 8 palettes
 	call CopyBytes
-	ld a, 1
-	ldh [hCGBPalUpdate], a
+	; CrimsonVSIntro requests the upload once the first frame is committed.
 	ret
 
 CrimsonVSPrepareNames:
-	ld a, 1
-	ldh [rVBK], a
+; Name map row in wTileMap; each glyph goes into the WRAM6 portrait buffer.
 	ld hl, CRIMSON_VS_NAMES
 	ld bc, SCREEN_WIDTH
 	ld a, $76
@@ -319,10 +449,7 @@ CrimsonVSPrepareNames:
 	call .length
 	ld b, 13
 	call .position
-	call .draw
-	xor a
-	ldh [rVBK], a
-	ret
+	jp .draw
 .length
 	; Keep the actual spelling/case entered by the player, up to the field limit.
 	push de
@@ -384,7 +511,7 @@ CrimsonVSPrepareNames:
 rept 4
 	add hl, hl
 endr
-	ld bc, vTiles2
+	ld bc, wDecompressScratch
 	add hl, bc
 	pop af
 	call CrimsonVSLoadNameGlyph
@@ -398,9 +525,9 @@ endr
 	ret
 
 CrimsonVSLoadNameGlyph:
-; a = actual game character; hl = its dedicated bank-1 VRAM tile, LCD off.
+; a = actual game character; hl = its tile in the WRAM6 portrait buffer.
 	sub $80
-	ret c ; spaces use the zeroed tile
+	ret c ; spaces keep the zeroed tile
 	push hl
 	ld l, a
 	ld h, 0
@@ -409,12 +536,16 @@ rept 4
 endr
 	ld de, CrimsonVSFont
 	add hl, de
-	ld d, h
-	ld e, l
-	pop hl
-	ld b, BANK(CrimsonVSFont)
-	ld c, 1
-	jp Get2bpp
+	pop de
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wDecompressScratch)
+	ldh [rSVBK], a
+	ld bc, 1 tiles
+	call CopyBytes ; CrimsonVSFont shares this ROM bank
+	pop af
+	ldh [rSVBK], a
+	ret
 
 CrimsonVSCommit:
 ; Double-buffer graphics at $8800-$8eff across both VRAM banks. The visible
@@ -496,16 +627,8 @@ CrimsonVSCommit:
 	ldh [rHDMA5], a
 	ret
 
-CrimsonVSPalettes:
-	RGB 2,1,3, 11,2,5, 26,4,8, 31,31,31
-	RGB 2,1,3, 5,5,8, 13,14,17, 28,28,30
-	RGB 2,1,3, 11,2,5, 26,4,8, 31,31,31
-	RGB 2,1,3, 11,2,5, 26,4,8, 31,31,31
-	RGB 31,31,31, 0,0,0, 0,0,0, 0,0,0
-	RGB 31,31,31, 0,0,0, 0,0,0, 0,0,0
-	RGB 2,1,3, 11,2,5, 26,4,8, 31,31,31
-	RGB 2,1,3, 11,2,5, 26,4,8, 31,31,31
-	assert @ - CrimsonVSPalettes == 8 palettes
+; Arena, gunmetal, generated ruby palettes 2/3/6/7 and portrait templates 4/5.
+INCLUDE "gfx/battle_vs/palettes.asm"
 
 CrimsonVSFont: INCBIN "gfx/battle_vs/font.bin"
 INCLUDE "gfx/battle_vs/frames.asm"

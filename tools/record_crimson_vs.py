@@ -11,7 +11,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 import imageio_ffmpeg
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +31,12 @@ WHITE_VS=[(x,y) for y in range(144) for x in range(160) if VS_MASK.getpixel((x,y
 CRYSTAL_MASK=Image.new('1',(160,144))
 ImageDraw.Draw(CRYSTAL_MASK).polygon(CRYSTAL_OUTER,fill=1)
 CRYSTAL_PIXELS=[(x,y) for y in range(144) for x in range(160) if CRYSTAL_MASK.getpixel((x,y))]
+# The ruby's dark keyline: still frames may shine and twinkle, never move.
+CRYSTAL_KEYLINE=Image.new('L',(160,144))
+ImageDraw.Draw(CRYSTAL_KEYLINE).polygon(CRYSTAL_OUTER,fill=255)
+CRYSTAL_HALO=CRYSTAL_KEYLINE.filter(ImageFilter.MaxFilter(3))
+CRYSTAL_RIM=[(x,y) for y in range(144) for x in range(160)
+             if CRYSTAL_HALO.getpixel((x,y)) and not CRYSTAL_KEYLINE.getpixel((x,y))]
 
 
 def check_vs_scene(session,raw,image):
@@ -89,8 +95,17 @@ def main():
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     manifest = json.loads((ROOT/'gfx/battle_vs/manifest.json').read_text())
-    for row in manifest['frames']:
-        assert tuple(row['crystal_offset'])==IMPACT_SHAKE.get(row['frame'],(0,0)),('shake timing',row)
+    rows=manifest['frames']
+    LAST=len(rows)-1
+    shake_frames=[r['frame'] for r in rows if r['kind']=='lock'][:len(IMPACT_SHAKE)]
+    assert [tuple(rows[k]['crystal_offset']) for k in shake_frames]==list(IMPACT_SHAKE),'shake timing'
+    for row in rows:
+        if row['frame'] not in shake_frames:
+            assert tuple(row['crystal_offset'])==(0,0),('only the lock frames jolt',row)
+    still_frames=[r['frame'] for r in rows if r['still']]
+    assert still_frames==list(range(shake_frames[-1]+1,LAST+1)),'the ruby settles right after its jolts'
+    sound_frames={r['frame']:r['sound'] for r in rows if r['sound']}
+    assert sorted(sound_frames.values())==[2,4] and min(sound_frames,key=sound_frames.get)==shake_frames[0],sound_frames
     gfx_size = manifest['frame_bytes']-1152
     maps, frames = {}, {}
     for frame in manifest['frames']:
@@ -124,10 +139,14 @@ def main():
             s.invoke('PlayBattleMusic')
             assert int.from_bytes(s.m.read_bytes('wChannel1MusicID',2),'little')==MUSIC[theme],trainer
         s.load(base)
-        positive=['FALKNER','CLAIR','KOGA','LORELEI','CHAMPION','CHAMPION_REMATCH',
-                  'FALKNER_REMATCH','RED','RED2','BLUE','RIVAL1','RIVAL2','RIVAL3',
-                  'PROTON','PETREL','ARIANA','ARCHER','CRYSTAL3']
-        negative=['TRAINER_NONE','YOUNGSTER','GRUNTM','SCIENTIST','CAL','HOSTESS']
+        positive=['FALKNER','CLAIR','KOGA','LORELEI','BRUNO','KAREN','CHAMPION','CHAMPION_REMATCH',
+                  'FALKNER_REMATCH','LORELEI_REMATCH','KAREN_REMATCH','BROCK','JANINE','BLAINE',
+                  'RED','RED2','BLUE','BLUE_CLOAK','GREEN','RIVAL1','RIVAL2','RIVAL3',
+                  'CRYSTAL','CRYSTAL2','CRYSTAL3','PROTON','PETREL','PETREL_DIRECTOR','ARIANA',
+                  'ARCHER','EXECUTIVEM','EXECUTIVEF','MYSTICALMAN']
+        negative=['TRAINER_NONE','YOUNGSTER','GRUNTM','GRUNTF','SCIENTIST','CAL','HOSTESS',
+                  'KIMONO_GIRL','SAGE','CUEBALL','COOLTRAINERM','BLACKBELT_T',
+                  'ELDER','KARATE_KING','SLOT_MANIAC']
         for name in positive+negative:
             s.m.write('wOtherTrainerClass',classes[name])
             s.invoke('CrimsonVSIsBoss')
@@ -141,6 +160,7 @@ def main():
             s.m.write('wOtherTrainerClass',classes[trainer])
             s.invoke('DisableLCD')
             s.invoke('CrimsonVSLoadPictures')
+            s.invoke('CrimsonVSUploadPortraits')
             s.memory[0xff4f]=1
             actual=bytes(s.memory[0x9000:0x9310])
             assert actual==(ROOT/f'gfx/player/{player}.2bpp').read_bytes(),player
@@ -163,6 +183,7 @@ def main():
             s.m.write_bytes('wPlayerName',game_name(name))
             s.m.write('wOtherTrainerID',1)
             s.invoke('CrimsonVSPrepareNames')
+            s.invoke('CrimsonVSUploadPortraits')
             raw=s.m.read_bytes('wTileMap',20,340)
             s.memory[0xff4f]=1
             check_name(s,bytes(448)+raw,name,(7-len(name))//2)
@@ -171,6 +192,7 @@ def main():
             s.m.write('wOtherTrainerClass',classes['RIVAL1'])
             s.m.write_bytes('wRivalName',game_name('RIVAL-1234'))
             s.invoke('CrimsonVSPrepareNames')
+            s.invoke('CrimsonVSUploadPortraits')
             raw=s.m.read_bytes('wTileMap',20,340)
             s.memory[0xff4f]=1
             check_name(s,bytes(448)+raw,'RIVAL-1234',10)
@@ -193,11 +215,11 @@ def main():
                 s.memory[0xff4f]=0
                 shown=bytes(s.memory[0x9800:0x9a40])
                 final_frame=False
-                if signature(shown)==signature(frames[25][gfx_size:gfx_size+576]):
+                if signature(shown)==signature(frames[LAST][gfx_size:gfx_size+576]):
                     s.memory[0xff4f]=1
                     bank=(s.memory[0x9800]&8)>>3
                     s.memory[0xff4f]=bank
-                    final_frame=bytes(s.memory[0x8800:0x8800+gfx_size])==frames[25][:gfx_size]
+                    final_frame=bytes(s.memory[0x8800:0x8800+gfx_size])==frames[LAST][:gfx_size]
                 s.memory[0xff4f]=old_vbk
                 if final_frame:
                     image=s.image()
@@ -209,6 +231,11 @@ def main():
             assert best is not None and checked,('native character preview',player)
             portraits.append((player,best))
             best.resize((640,576),Image.Resampling.NEAREST).save(args.output/f'player-{player}.png')
+        for name in positive+negative:
+            s.load(base)
+            s.m.write('wOtherTrainerClass',classes[name])
+            s.invoke('CrimsonVSWillPlay')
+            assert bool(s.reg('AF')&0x10)==(name in positive),('wipe skipped only for VS trainers',name)
         for disabled in ['options','ordinary','link','tower']:
             s.load(base)
             s.m.write('wOtherTrainerClass',classes['CHAMPION'])
@@ -221,6 +248,8 @@ def main():
             before=bytes(s.memory[0x8800:0x8f00])
             s.invoke('CrimsonVSIntro')
             assert before==bytes(s.memory[0x8800:0x8f00]),disabled
+            s.invoke('CrimsonVSWillPlay')
+            assert not s.reg('AF')&0x10,('disabled VS keeps the overworld wipe',disabled)
         s.load(base)
         demo_name='Luke'
         s.m.write_bytes('wPlayerName',game_name(demo_name))
@@ -285,12 +314,17 @@ def main():
                         seen.append((s.frames,frame))
                         expected=bytes(a if a&8 else a|bank_flag for a in frames[frame][gfx_size+576:])
                         assert attrs==expected,('attributes',frame)
-                        if frame==25:check_vs_scene(s,raw,shot)
-                        if frame in (4,12):
-                            expected_sound=SFX['SFX_CRIMSON_VS_FORM' if frame==4 else 'SFX_CRIMSON_VS_LOCK']
+                        if frame==LAST:check_vs_scene(s,raw,shot)
+                        if frame in sound_frames:
+                            expected_sound=SFX['SFX_CRIMSON_VS_FORM' if sound_frames[frame]==4 else 'SFX_CRIMSON_VS_LOCK']
                             assert s.m.read('wCurSFX')==expected_sound,('sound cue',frame)
+                            if sound_frames[frame]==2:
+                                # The impact is noise-only: pulse 1/2 and wave keep the music.
+                                for channel in (5,6,7):
+                                    assert not s.m.read(f'wChannel{channel}Flags1')&1,('lock steals a music voice',channel)
+                                assert s.m.read('wChannel8Flags1')&1,'lock impact must play on noise'
                     last=frame
-                    if frame==25:
+                    if frame==LAST:
                         # Portrait bytes are the actual source sprites, in bank 1.
                         s.memory[0xff4f]=1
                         player=bytes(s.memory[0x9000:0x9310])
@@ -312,25 +346,28 @@ def main():
         s.until(lambda:'FIGHT' in tile_text(s),limit=18000,dialogue=True)
         s.tick(90) # Hold after the fully revealed opponent and native Fight menu.
         record=s.movie.finish();s.movie=None
-        assert [k for _,k in seen]==list(range(26)),seen
+        assert [k for _,k in seen]==list(range(LAST+1)),seen
         assert len(animation)>70,'The reveal must animate at native frame timing'
         assert len(border_frames)>=60,('textbox slide observations',len(border_frames))
         assert len(border_masks)==1,('textbox frame moved during trainer slide',len(border_masks))
         assert len(sliding_pictures)>20,'pinning the frame must preserve trainer motion'
         gem=lambda image:tuple(image.getpixel(point) for point in CRYSTAL_PIXELS)
-        assert len({gem(captures[k]) for k in IMPACT_SHAKE})>1,'crystal must shake on assembly'
-        assert len({gem(captures[k]) for k in range(16,26)})==1,'crystal must stay still after its short shake'
+        assert len({gem(captures[k]) for k in shake_frames})>1,'crystal must shake on assembly'
+        rim=lambda image:tuple(image.getpixel(point) for point in CRYSTAL_RIM)
+        assert len({rim(captures[k]) for k in still_frames})==1,'crystal must stay still after its short shake'
+        assert len({gem(captures[k]) for k in still_frames})>1,'the settled ruby shines and twinkles'
         assert music_started is not None and music_started<start,('music starts before reveal',music_started,start)
         assert len(fades)>=12,('smooth fade steps',len(fades))
         for before,after in zip(fades,fades[1:]):
             assert all(y>=x for a,b in zip(rgb5(before),rgb5(after)) for x,y in zip(a,b)),'fade must be monotonic'
         assert all(color==(31,31,31) for color in rgb5(fades[-1])),'fade must meet the native white battle entrance'
-        captures[25].resize((640,576),Image.Resampling.NEAREST).save(args.output/'finished.png')
+        captures[LAST].resize((640,576),Image.Resampling.NEAREST).save(args.output/'finished.png')
         animation[0].save(args.output/'crimson-vs.gif',save_all=True,append_images=animation[1:],
                           duration=[round((i+1)*200/FPS)*10-round(i*200/FPS)*10
                                     for i in range(len(animation))],loop=0,optimize=False)
         sheet=Image.new('RGB',(640*4,576*2))
-        for i,k in enumerate([2,5,8,10,12,16,21,25]):
+        picks=[2,8,12,16,shake_frames[0],shake_frames[2],still_frames[3],LAST]
+        for i,k in enumerate(picks):
             shot=captures[k].resize((640,576),Image.Resampling.NEAREST)
             sheet.paste(shot,(i%4*640,i//4*576))
         sheet.save(args.output/'formation-sheet.png')
@@ -349,17 +386,17 @@ def main():
                     all_four_player_portraits=True,disabled_paths=['options','ordinary','link','tower'],
                     all_players_mirrored_only_in_vs=True,complete_V_and_S_pure_white=True,
                     canonical_player_and_enemy_palettes=True,custom_name_case_and_symbols=True,
-                    smooth_fade_steps=len(fades),formation_and_lock_sounds=True,
+                    smooth_fade_steps=len(fades),formation_and_lock_sounds=True,noise_only_lock_keeps_music=True,
                     trainer_theme_selection=music_cases,music_starts_before_reveal=music_started,
                     music_continues_through_battle_entry=True,
                     both_portraits_match_source=True,reached_fight_menu=True,
                     preview_runs_through_opponent_sendout=True,final_hold_frames=90,
                     pinned_textbox_frames=len(border_frames),distinct_textbox_shapes=len(border_masks),
                     trainer_slide_preserved=True,
-                    crystal_impact_shake=True,crystal_settled_after_frame=16,
+                    crystal_impact_shake=True,crystal_settled_after_frame=still_frames[0],
                     movie_start=movie_start,sequence_start=start,sequence_end=end,video=record)
         (args.output/'results.json').write_text(json.dumps(result,indent=2)+'\n')
-        print('PASS: all 26 VS frames, exact trainer portraits, boss selection and native battle handoff',flush=True)
+        print(f'PASS: all {LAST+1} VS frames, exact trainer portraits, boss selection and native battle handoff',flush=True)
         for stale in ['failure.png','failure.txt']:
             (args.output/stale).unlink(missing_ok=True)
     except Exception:

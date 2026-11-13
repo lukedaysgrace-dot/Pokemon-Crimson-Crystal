@@ -466,19 +466,41 @@ Read this before changing the game. Keep it up to date when something here chang
   `docs/elite-four-chambers.md`.
 
 ## Crimson VS intro
-- Important trainers receive `engine/battle/crimson_vs.asm` after the overworld
-  transition: Gym/League leaders and rematches, rivals, Rocket admins/Executives,
-  Red and Crystal. Ordinary/wild, link and Tower battles skip it, as does turning
-  battle animations off. All four playable front portraits and the opponent's
+- Important individual trainers receive `engine/battle/crimson_vs.asm`
+  (`CrimsonVSIsBoss`): every `IsGymLeader` class (Johto/Kanto leaders, Elite
+  Four, Lance, all rematches, Red, Blue, Blue in the cloak, Green), the rival
+  classes, all three Crystal classes, Proton/Petrel/Petrel as Director/Ariana/
+  Archer and the Executives and Eusine (MYSTICALMAN), plus the unused
+  WILL/AGATHA. Generic classes, Trainer House Cal, Elder Li, Karate King Kiyo
+  and Slot Maniac Lucky deliberately do not. Ordinary/wild, link and Tower
+  battles skip it, as does turning battle animations off. For VS battles
+  `DoBattleTransition` calls `CrimsonVSFlash`: the native three trainer
+  flashes (a copy of `StartTrainerBattle_Flash`'s steps, none in dark caves),
+  then no spin/wave/speckle outro, straight to black and into the VS;
+  everyone else keeps the full transition. The VS loads with the LCD on
+  (black palettes until its first frame is committed): a CGB with the LCD
+  off shows white, which used to blink before the VS. Portrait/name tiles are
+  gathered in WRAM6 and sent by `CrimsonVSUploadPortraits` with two
+  VBlank-timed GDMAs; selectors such as `wOtherTrainerClass` live in WRAM1, so
+  read them before switching `rSVBK`. All four playable front portraits and the opponent's
   existing picture/palette are used, with actual matchup names.
-- Edit `tools/vs_intro/build.py` for the authored ruby facets, VS lettering,
-  opposing streaks and timing; regenerate `gfx/battle_vs/`. Keep the ruby's
-  octagonal outline and bevels aligned to their shared vertices. Both
+- Edit `tools/vs_intro/build.py` for the authored ruby, VS lettering,
+  opposing streaks and timing; regenerate `gfx/battle_vs/` (39 frames). The
+  ruby is a step cut (girdle, two crown steps, table with pavilion
+  reflections) sharing one set of 45-degree octagon corners, lit from the
+  upper left, drawn in seven logical colours. The script solves BG palettes
+  2/3/6/7 per tile (written to `gfx/battle_vs/palettes.asm`); palette 0 stays
+  the arena, 1 the rails/names, 4/5 the portraits. Sequence: aperture, 15
+  formation frames (core of light, shards gather, girdle frame closes in),
+  a white-hot lock with light burst and shock ring, a diagonal shine sweep,
+  then twinkles and the long hold. Effects never draw over the portrait
+  stages, and cells under portraits/names spend no background tiles. Both
   letters are solid RGB 31/31/31, with no shaded lower halves. Player columns
   are reversed and use CGB X-flip only in this screen's map; the source picture,
   opponent and ordinary game portraits are unchanged. Keep the crystal's
-  four short lock-frame jolts local to its own layer (frames 12-15);
-  frame 16 onward must remain centered and still. The portraits, names and
+  four short lock-frame jolts local to its own layer (the first four `lock`
+  frames in the manifest); every later frame keeps the ruby's keyline exactly
+  still (shine/twinkles may change its face). The portraits, names and
   frame never shake. Keep its side clearance so no jolt clips either portrait.
   Keep the rails free of branding/slogan text. The 112 background tiles double-buffer
   at $8800-$8eff in both VRAM banks; bank-1 portrait tiles 0-97, name glyphs
@@ -494,15 +516,19 @@ Read this before changing the game. Keep it up to date when something here chang
   the graphics and both maps in one VBlank. Restore LCDC, LCD hooks, banks and
   trainer class before battle setup.
   `make test-crimson-vs` records both ROMs through a native Lance encounter and
-  verifies all 26 maps/attributes/graphics, all player portraits and canonical
+  verifies all 39 maps/attributes/graphics, all player portraits and canonical
   palettes, mirrored player cells, white glyph pixels, custom names, selection
   and disabled paths. Dedicated cues in `audio/sfx_crimson_vs.asm` accompany
-  formation and locking: the approved quiet air/glass whoosh on pulse 2 + noise
-  stays unchanged; locking uses a short descending thump and low noise impact,
-  without a high bell/ting. Its approved attack is followed by a quiet 20-frame
-  (~0.335-second) decay tail. Formation preserves the music lead and bass. The lock ID
-  has higher priority. The native interpolated fade uses 12 steps into white,
-  matching the ordinary trainer entrance. `BattleIntro` starts the trainer's
+  formation (glass glints from periodic noise in a rising air swell) and
+  locking (crack/thump/rumble with a quiet 20-frame decay tail, no high
+  bell/ting). Both use only the noise channel: an SFX channel mutes the
+  matching music voice, which stays silent until its next note (the old
+  pulse cues dropped up to ~60% of a theme). `CrimsonVSSound` also skips both
+  cues whenever the theme's own noise/drum channel is on (Crystal and Rocket
+  Executive themes), so no VS theme ever loses a voice. The lock ID has
+  higher priority.
+  The native interpolated fade uses 12 steps into white, matching the ordinary
+  trainer entrance. `BattleIntro` starts the trainer's
   assigned battle music before the first overworld transition; never restart it
   inside VS or on battle entry. Tests cover the Gym/Kanto/Champion/rival/Rocket/
   Crystal music routes and continuity. Tests check both sound cues, monotonic
@@ -511,6 +537,14 @@ Read this before changing the game. Keep it up to date when something here chang
   previews through the complete trainer entrance and first opposing Pokemon's
   send-out, then hold the native Fight menu for 90 frames; never use a fixed
   two-second tail after VS, which cuts off the opponent's reveal.
+  `python3 tools/record_crimson_vs_showcase.py` records a gallery (Lance, Clair,
+  Crystal, Archer, the rival, Eusine) in each trainer's own map, starting the
+  battle with the same `loadtrainer`/`startbattle` script commands their map
+  scripts use, and checks each one's battle theme, the three flashes, that no
+  white frame appears before the VS, and that until the trainer slide no
+  music voice is taken (no SFX on pulse/wave; noise only without drums).
+  Videos go under
+  `_artifacts/vs-intro/showcase/`; `--only clair,archer` records a subset.
 - The ordinary `engine/battle/sliding_intro.asm` slide pins the textbox from
   scanline 96 downward. The HBlank table is applied to the *next* scanline,
   so entry 95 must already be zero (bands are 62/33/49), including its initial

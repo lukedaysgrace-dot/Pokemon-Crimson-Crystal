@@ -61,10 +61,10 @@ all: pokecrystal.gbc
 gfx/battle_vs/data.asm: tools/vs_intro/build.py gfx/font/font.png
 	$(BATTLE_TEST_PYTHON) tools/vs_intro/build.py
 
-gfx/battle_vs/frames.asm gfx/battle_vs/font.bin: gfx/battle_vs/data.asm
+gfx/battle_vs/frames.asm gfx/battle_vs/font.bin gfx/battle_vs/palettes.asm: gfx/battle_vs/data.asm
 	@test -f $@ || $(BATTLE_TEST_PYTHON) tools/vs_intro/build.py
 
-main.o main_debug.o: gfx/battle_vs/data.asm gfx/battle_vs/frames.asm gfx/battle_vs/font.bin
+main.o main_debug.o: gfx/battle_vs/data.asm gfx/battle_vs/frames.asm gfx/battle_vs/font.bin gfx/battle_vs/palettes.asm
 
 .PHONY: test-crimson-vs
 test-crimson-vs: pokecrystal.gbc pokecrystal_debug.gbc
