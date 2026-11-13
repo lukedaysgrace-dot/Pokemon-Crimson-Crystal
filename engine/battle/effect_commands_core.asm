@@ -2918,6 +2918,16 @@ DoubleStatIfSpeciesHoldingItem:
 	cp c
 	ret nz
 
+	; These species items have HELD_NONE, so their raw ID is needed below.
+	; GetUserItem still returns that ID's address when Klutz suppresses it.
+	; Check the effective ability explicitly before reading the raw item.
+	push hl
+	farcall GetTrueUserAbility_b
+	ld a, b
+	pop hl
+	cp KLUTZ
+	ret z
+
 	push hl
 	callfar GetUserItem
 	ld a, [hl]

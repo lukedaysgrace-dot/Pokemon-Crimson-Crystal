@@ -22,7 +22,6 @@ OCTOBER_DAMAGE_MOVES = ("PSYSHOCK", "VACUUM_WAVE", "DISCHARGE", "LAVA_PLUME",
     "PETAL_BLIZZARD", "BLAZE_KICK", "SKY_UPPERCUT", "POISON_TAIL", "OMINOUS_WIND")
 MOVES += OCTOBER_DAMAGE_MOVES + ("COTTON_GUARD", "COSMIC_POWER", "TAIL_GLOW", "RECYCLE")
 MOLD_MOVES += OCTOBER_DAMAGE_MOVES
-THERMAL_MOVES = ("FLAMETHROWER", "LAVA_PLUME", "ERUPTION", "BLAZE_KICK")
 
 
 def generate_ability_matrix(constants=None):
@@ -69,12 +68,6 @@ def generate_ability_matrix(constants=None):
                 if family in ("Gas", "Mold"):
                     for side in ("player", "enemy"):
                         for field in ("hp", "stat_levels", "pp", "item", "screens"):
-                            # Mold Breaker bypasses burn protection, while
-                            # Thermal Exchange still raises Attack after a hit.
-                            if (family == "Mold" and ability == "THERMAL_EXCHANGE"
-                                    and move in THERMAL_MOVES and side == "enemy"
-                                    and field == "stat_levels"):
-                                continue
                             test["assert"].append(
                                 f"{side}.{field} == result('matrix_{family}_{move}')['{side}']['{field}']")
                         if family == "Gas":
@@ -82,8 +75,6 @@ def generate_ability_matrix(constants=None):
                                 test["assert"].append(
                                     f"{side}.{field} == result('matrix_{family}_{move}')['{side}']['{field}']")
                     test["assert"].append(f"weather_raw == result('matrix_{family}_{move}')['weather']")
-                    if family == "Mold" and ability == "THERMAL_EXCHANGE" and move in THERMAL_MOVES:
-                        test["assert"].append("enemy.stat_levels == [8, 7, 7, 7, 7, 7, 7]")
                 tests.append(test)
 
     for ability in abilities:

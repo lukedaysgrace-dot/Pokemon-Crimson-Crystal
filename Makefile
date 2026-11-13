@@ -260,6 +260,9 @@ gfx/sprites/karate_king.2bpp: gfx/sprites/karate_king.png tools/grayscale_sprite
 gfx/tilesets/johto.2bpp: gfx/tilesets/johto.png tools/grayscale_sprite.py tools/pokemontools/png.py
 	python3 tools/grayscale_sprite.py $< $@
 
+gfx/tilesets/route39_windmill.2bpp: gfx/tilesets/route39_windmill.png tools/grayscale_sprite.py tools/pokemontools/png.py
+	python3 tools/grayscale_sprite.py $< $@
+
 # Riolu's source has walking poses up/left/down; Crystal loads down/up/left.
 gfx/sprites/riolu.2bpp: gfx/sprites/riolu.png tools/reorder_sprite_frames.py Makefile
 	$(RGBGFX) $(rgbgfx) -o $@ $<

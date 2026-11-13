@@ -6216,7 +6216,7 @@ CheckPlayerHasUsableMoves:
 	ld hl, STRUGGLE
 	call GetMoveIDFromIndex
 	ld [wCurPlayerMove], a
-	; Taunt/Torment can forbid everything that still has PP
+	; Status and held-item restrictions can forbid every move with PP.
 	farcall PlayerMustStruggleExtra_Core
 	jr c, .force_struggle
 	ld a, [wPlayerDisableCount]

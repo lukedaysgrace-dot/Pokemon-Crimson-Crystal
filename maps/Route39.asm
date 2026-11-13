@@ -353,7 +353,7 @@ Route39_MapEvents:
 	db 4 ; bg events
 	bg_event  5, 31, BGEVENT_READ, Route39TrainerTips
 	bg_event  9,  5, BGEVENT_READ, MoomooFarmSign
-	bg_event 15,  7, BGEVENT_READ, Route39Sign
+	bg_event 15,  9, BGEVENT_READ, Route39Sign
 	bg_event  5, 13, BGEVENT_ITEM, Route39HiddenNugget
 
 	db 10 ; object events

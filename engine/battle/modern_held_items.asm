@@ -453,8 +453,18 @@ ModernPowerHerbUse_Core::
 	call GetBattleVar
 	cp EFFECT_SKULL_BASH
 	jp nz, ModernConsumeUserItem_Core
+	; A capped charge-turn boost must not mark the damaging move as missed.
+	ld a, [wAttackMissed]
+	push af
+	ld a, [wEffectFailed]
+	push af
 	ld b, DEFENSE
-	jp ModernRaiseUserStat_Core
+	call ModernRaiseUserStat_Core
+	pop af
+	ld [wEffectFailed], a
+	pop af
+	ld [wAttackMissed], a
+	ret
 
 ModernBlunderPolicy_Core::
 ; Only reached by the accuracy roll, never Protect/type/semi-invulnerability.
@@ -542,17 +552,20 @@ ModernThroatSpray_Core::
 	and a
 	ret nz
 .used
-	ld hl, wPlayerStatLevels + SP_ATTACK
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got
-	ld hl, wEnemyStatLevels + SP_ATTACK
-.got
-	ld a, [hl]
-	cp 13
-	ret z
+	; A successful sound move uses the item even if its boost is capped.
+	; Contrary may lower Special Attack from +6, so the ordinary stat
+	; command must resolve the direction and cap after consumption.
+	ld a, [wAttackMissed]
+	push af
+	ld a, [wEffectFailed]
+	push af
 	ld b, SP_ATTACK
-	jp ModernRaiseUserStat_Core
+	call ModernRaiseUserStat_Core
+	pop af
+	ld [wEffectFailed], a
+	pop af
+	ld [wAttackMissed], a
+	ret
 
 ModernBlackSludge_Core::
 	farcall UserHasFainted
