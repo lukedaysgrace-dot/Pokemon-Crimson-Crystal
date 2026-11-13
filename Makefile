@@ -57,6 +57,20 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 
 all: pokecrystal.gbc
 
+# Native boss interstitial assets are generated from authored pixel geometry.
+gfx/battle_vs/data.asm: tools/vs_intro/build.py gfx/font/font.png
+	$(BATTLE_TEST_PYTHON) tools/vs_intro/build.py
+
+gfx/battle_vs/frames.asm gfx/battle_vs/font.bin: gfx/battle_vs/data.asm
+	@test -f $@ || $(BATTLE_TEST_PYTHON) tools/vs_intro/build.py
+
+main.o main_debug.o: gfx/battle_vs/data.asm gfx/battle_vs/frames.asm gfx/battle_vs/font.bin
+
+.PHONY: test-crimson-vs
+test-crimson-vs: pokecrystal.gbc pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/record_crimson_vs.py --rom pokecrystal.gbc --output _artifacts/vs-intro/release
+	$(BATTLE_TEST_PYTHON) tools/record_crimson_vs.py --rom pokecrystal_debug.gbc --output _artifacts/vs-intro/debug
+
 data/pokemon/pre_evolutions.asm: tools/generate_pre_evolutions.py tools/audit_learnset_variety.py constants/pokemon_constants.asm data/pokemon/first_stages.asm data/pokemon/evos_attacks_kanto.asm data/pokemon/evos_attacks_johto.asm data/pokemon/evos_attacks_clones.asm
 	$(BATTLE_TEST_PYTHON) tools/generate_pre_evolutions.py
 

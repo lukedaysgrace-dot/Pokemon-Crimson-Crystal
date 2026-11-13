@@ -1,0 +1,291 @@
+{
+  "frame_bytes": 2944,
+  "frames": [
+    {
+      "frame": 0,
+      "tiles": 34,
+      "duration": 4,
+      "names": false,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 1,
+      "tiles": 31,
+      "duration": 4,
+      "names": false,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 2,
+      "tiles": 42,
+      "duration": 4,
+      "names": false,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 3,
+      "tiles": 38,
+      "duration": 4,
+      "names": false,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 4,
+      "tiles": 63,
+      "duration": 4,
+      "names": false,
+      "sound": 4,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 5,
+      "tiles": 64,
+      "duration": 4,
+      "names": false,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 6,
+      "tiles": 73,
+      "duration": 4,
+      "names": false,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 7,
+      "tiles": 76,
+      "duration": 4,
+      "names": false,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 8,
+      "tiles": 88,
+      "duration": 4,
+      "names": false,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 9,
+      "tiles": 100,
+      "duration": 4,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 10,
+      "tiles": 108,
+      "duration": 4,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 11,
+      "tiles": 101,
+      "duration": 4,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 12,
+      "tiles": 82,
+      "duration": 1,
+      "names": true,
+      "sound": 2,
+      "crystal_offset": [
+        1,
+        -2
+      ]
+    },
+    {
+      "frame": 13,
+      "tiles": 84,
+      "duration": 1,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        -1,
+        2
+      ]
+    },
+    {
+      "frame": 14,
+      "tiles": 83,
+      "duration": 1,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        1,
+        -1
+      ]
+    },
+    {
+      "frame": 15,
+      "tiles": 83,
+      "duration": 1,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        -1,
+        1
+      ]
+    },
+    {
+      "frame": 16,
+      "tiles": 84,
+      "duration": 3,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 17,
+      "tiles": 84,
+      "duration": 3,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 18,
+      "tiles": 85,
+      "duration": 3,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 19,
+      "tiles": 85,
+      "duration": 3,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 20,
+      "tiles": 84,
+      "duration": 3,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 21,
+      "tiles": 84,
+      "duration": 3,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 22,
+      "tiles": 83,
+      "duration": 3,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 23,
+      "tiles": 83,
+      "duration": 3,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 24,
+      "tiles": 84,
+      "duration": 3,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "frame": 25,
+      "tiles": 84,
+      "duration": 35,
+      "names": true,
+      "sound": 0,
+      "crystal_offset": [
+        0,
+        0
+      ]
+    }
+  ]
+}

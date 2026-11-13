@@ -22,6 +22,7 @@ FindFirstAliveMonAndStartBattle:
 	call UpdateSprites
 	call DelayFrame
 	predef DoBattleTransition
+	farcall CrimsonVSIntro
 	ld hl, wVramState
 	res VRAMSTATE_SUPPRESS_WEATHER_F, [hl]
 	farcall _LoadBattleFontsHPBar

@@ -465,6 +465,58 @@ Read this before changing the game. Keep it up to date when something here chang
   `python3 tools/record_league_rooms.py` on both ROMs; see
   `docs/elite-four-chambers.md`.
 
+## Crimson VS intro
+- Important trainers receive `engine/battle/crimson_vs.asm` after the overworld
+  transition: Gym/League leaders and rematches, rivals, Rocket admins/Executives,
+  Red and Crystal. Ordinary/wild, link and Tower battles skip it, as does turning
+  battle animations off. All four playable front portraits and the opponent's
+  existing picture/palette are used, with actual matchup names.
+- Edit `tools/vs_intro/build.py` for the authored ruby facets, VS lettering,
+  opposing streaks and timing; regenerate `gfx/battle_vs/`. Keep the ruby's
+  octagonal outline and bevels aligned to their shared vertices. Both
+  letters are solid RGB 31/31/31, with no shaded lower halves. Player columns
+  are reversed and use CGB X-flip only in this screen's map; the source picture,
+  opponent and ordinary game portraits are unchanged. Keep the crystal's
+  four short lock-frame jolts local to its own layer (frames 12-15);
+  frame 16 onward must remain centered and still. The portraits, names and
+  frame never shake. Keep its side clearance so no jolt clips either portrait.
+  Keep the rails free of branding/slogan text. The 112 background tiles double-buffer
+  at $8800-$8eff in both VRAM banks; bank-1 portrait tiles 0-97, name glyphs
+  $62-$75 and blank $76 never overlap them. Only the actual name glyphs are loaded,
+  preserving the player's case, digits and punctuation. Names are centered under
+  their portraits, without role labels. Palette lookups must use `farcall_a`:
+  plain `farcall` loses the player/species selector or opposing trainer class.
+  WRAM6 prepares each frame; one VBlank uploads hidden
+  graphics and another commits both maps. GDMA takes 32 PPU dots per 16 bytes,
+  including at double CPU speed. Frame samplers must restore the previous VBK:
+  a frame boundary can land while the foreground awaits its queued tile DMA,
+  and forcing bank 0 redirects that upload into the wrong bank. Never combine
+  the graphics and both maps in one VBlank. Restore LCDC, LCD hooks, banks and
+  trainer class before battle setup.
+  `make test-crimson-vs` records both ROMs through a native Lance encounter and
+  verifies all 26 maps/attributes/graphics, all player portraits and canonical
+  palettes, mirrored player cells, white glyph pixels, custom names, selection
+  and disabled paths. Dedicated cues in `audio/sfx_crimson_vs.asm` accompany
+  formation and locking: the approved quiet air/glass whoosh on pulse 2 + noise
+  stays unchanged; locking uses a short descending thump and low noise impact,
+  without a high bell/ting. Its approved attack is followed by a quiet 20-frame
+  (~0.335-second) decay tail. Formation preserves the music lead and bass. The lock ID
+  has higher priority. The native interpolated fade uses 12 steps into white,
+  matching the ordinary trainer entrance. `BattleIntro` starts the trainer's
+  assigned battle music before the first overworld transition; never restart it
+  inside VS or on battle entry. Tests cover the Gym/Kanto/Champion/rival/Rocket/
+  Crystal music routes and continuity. Tests check both sound cues, monotonic
+  fade steps and the Fight-menu handoff. SameBoy previews with game
+  audio go under `_artifacts/vs-intro/`; player saves are never opened. Export
+  previews through the complete trainer entrance and first opposing Pokemon's
+  send-out, then hold the native Fight menu for 90 frames; never use a fixed
+  two-second tail after VS, which cuts off the opponent's reveal.
+- The ordinary `engine/battle/sliding_intro.asm` slide pins the textbox from
+  scanline 96 downward. The HBlank table is applied to the *next* scanline,
+  so entry 95 must already be zero (bands are 62/33/49), including its initial
+  setup. Starting zeros at entry 96 scrolls the textbox's first row for the
+  entire entrance. Keep the trainer motion while the whole frame stays still.
+
 ## Animated trainer pictures
 - `TrainerPicAnimations` (`engine/battle/trainer_pic_anim.asm`) lists classes
   whose battle picture animates; CHAMPION and CHAMPION_REMATCH share Lance's.

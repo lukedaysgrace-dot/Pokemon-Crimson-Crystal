@@ -229,6 +229,9 @@ SECTION "Crystal Sound Effects", ROMX
 
 INCLUDE "audio/sfx_crystal.asm"
 
+SECTION "Crimson VS Sound Effects", ROMX
+INCLUDE "audio/sfx_crimson_vs.asm"
+
 
 SECTION "Cries", ROMX
 

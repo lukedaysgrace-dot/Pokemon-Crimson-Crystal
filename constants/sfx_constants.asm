@@ -218,6 +218,8 @@
 	const SFX_RAIN_DANCE_FAST             ; d4 (weather at 2x animation speed)
 	const SFX_GEN1_GLARE
 	const SFX_DIRE_CLAW_BUBBLES
+	const SFX_CRIMSON_VS_LOCK
+	const SFX_CRIMSON_VS_FORM
 
 ; polishedcrystal-compatible alias
 SFX_BUBBLE_BEAM EQU SFX_BUBBLEBEAM

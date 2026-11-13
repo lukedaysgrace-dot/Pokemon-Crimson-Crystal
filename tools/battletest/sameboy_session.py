@@ -105,6 +105,9 @@ class Session:
         else:
             raise RuntimeError('SameBoy New Game did not finish')
         assert m.read('wGameplayRules') == 0
+        # Release recordings stage native gameplay directly; there is no DEBUG menu.
+        if 'wDebugState' not in self.sym.by_name:
+            return
         for _ in range(80):
             if m.read('wDebugState') == 1: return
             press(32, 4, 10)
