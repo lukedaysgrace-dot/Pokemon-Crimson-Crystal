@@ -69,11 +69,11 @@ BattleIntroSlidingPics:
 	ret
 
 .subfunction4
-	ld hl, wLYOverrides
-	ld a, $90
-	ld bc, SCREEN_HEIGHT_PX
-	call ByteFill
-	ret
+	; Prepare the split before the first visible frame, including the pinned
+	; textbox. Filling every line with $90 briefly scrolled its first scanline.
+	ld d, $90
+	ld e, $72
+	jp .subfunction5
 
 .subfunction5
 	ld hl, wLYOverrides
@@ -84,13 +84,15 @@ BattleIntroSlidingPics:
 	dec c
 	jr nz, .loop4
 	ld a, e
-	ld c, $22 ; 34
+	; The HBlank handler applies entry LY to the NEXT scanline. Entry 95 must
+	; already be zero so the textbox's top line (96) never inherits picture SCX.
+	ld c, $21 ; 33
 .loop5
 	ld [hli], a
 	dec c
 	jr nz, .loop5
 	xor a
-	ld c, $30 ; 48
+	ld c, $31 ; 49
 .loop6
 	ld [hli], a
 	dec c

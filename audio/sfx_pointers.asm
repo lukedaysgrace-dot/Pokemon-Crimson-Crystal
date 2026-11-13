@@ -216,3 +216,5 @@ SFX:
 	dba Sfx_RainDanceFast
 	dba Sfx_Gen1Glare
 	dba Sfx_DireClawBubbles
+	dba Sfx_CrimsonVSLock
+	dba Sfx_CrimsonVSForm

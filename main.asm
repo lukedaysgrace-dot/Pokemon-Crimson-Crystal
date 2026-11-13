@@ -1029,3 +1029,7 @@ INCLUDE "engine/tilesets/league_room_anims.asm"
 
 SECTION "Trainer Pic Animations", ROMX
 INCLUDE "engine/battle/trainer_pic_anim.asm"
+
+SECTION "Crimson VS intro", ROMX
+INCLUDE "engine/battle/crimson_vs.asm"
+INCLUDE "gfx/battle_vs/data.asm"
