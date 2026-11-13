@@ -9,23 +9,23 @@ CrimsonVSFrames:
 	dba CrimsonVSFrame03
 	db 4, 0
 	dba CrimsonVSFrame04
-	db 4, 4
+	db 1, 4
 	dba CrimsonVSFrame05
-	db 4, 0
+	db 1, 0
 	dba CrimsonVSFrame06
-	db 4, 0
+	db 1, 0
 	dba CrimsonVSFrame07
-	db 4, 0
+	db 1, 0
 	dba CrimsonVSFrame08
-	db 4, 0
+	db 1, 0
 	dba CrimsonVSFrame09
-	db 4, 1
+	db 1, 0
 	dba CrimsonVSFrame10
-	db 4, 1
+	db 1, 0
 	dba CrimsonVSFrame11
-	db 4, 1
+	db 1, 1
 	dba CrimsonVSFrame12
-	db 1, 3
+	db 1, 1
 	dba CrimsonVSFrame13
 	db 1, 1
 	dba CrimsonVSFrame14
@@ -33,23 +33,49 @@ CrimsonVSFrames:
 	dba CrimsonVSFrame15
 	db 1, 1
 	dba CrimsonVSFrame16
-	db 3, 1
+	db 1, 1
 	dba CrimsonVSFrame17
-	db 3, 1
+	db 1, 1
 	dba CrimsonVSFrame18
-	db 3, 1
+	db 1, 1
 	dba CrimsonVSFrame19
-	db 3, 1
+	db 1, 3
 	dba CrimsonVSFrame20
-	db 3, 1
+	db 1, 1
 	dba CrimsonVSFrame21
-	db 3, 1
+	db 1, 1
 	dba CrimsonVSFrame22
-	db 3, 1
+	db 1, 1
 	dba CrimsonVSFrame23
-	db 3, 1
+	db 1, 1
 	dba CrimsonVSFrame24
-	db 3, 1
+	db 1, 1
 	dba CrimsonVSFrame25
-	db 35, 1
+	db 1, 1
+	dba CrimsonVSFrame26
+	db 1, 1
+	dba CrimsonVSFrame27
+	db 1, 1
+	dba CrimsonVSFrame28
+	db 1, 1
+	dba CrimsonVSFrame29
+	db 1, 1
+	dba CrimsonVSFrame30
+	db 1, 1
+	dba CrimsonVSFrame31
+	db 1, 1
+	dba CrimsonVSFrame32
+	db 3, 1
+	dba CrimsonVSFrame33
+	db 3, 1
+	dba CrimsonVSFrame34
+	db 3, 1
+	dba CrimsonVSFrame35
+	db 3, 1
+	dba CrimsonVSFrame36
+	db 3, 1
+	dba CrimsonVSFrame37
+	db 3, 1
+	dba CrimsonVSFrame38
+	db 26, 1
 	db -1

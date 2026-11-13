@@ -22,6 +22,10 @@ DoBattleTransition:
 	ld a, [hl]
 	push af
 	ld [hl], $1
+	; Important trainers keep the usual three flashes but skip the spin/wave/
+	; speckle outro: the screen then cuts to black for the Crimson VS.
+	farcall CrimsonVSFlash
+	jr c, .done
 
 .loop
 	ld a, [wJumptableIndex]

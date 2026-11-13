@@ -60,10 +60,10 @@ all: pokecrystal.gbc
 gfx/battle_vs/data.asm: tools/vs_intro/build.py gfx/font/font.png
 	$(BATTLE_TEST_PYTHON) tools/vs_intro/build.py
 
-gfx/battle_vs/frames.asm gfx/battle_vs/font.bin: gfx/battle_vs/data.asm
+gfx/battle_vs/frames.asm gfx/battle_vs/font.bin gfx/battle_vs/palettes.asm: gfx/battle_vs/data.asm
 	@test -f $@ || $(BATTLE_TEST_PYTHON) tools/vs_intro/build.py
 
-main.o main_debug.o: gfx/battle_vs/data.asm gfx/battle_vs/frames.asm gfx/battle_vs/font.bin
+main.o main_debug.o: gfx/battle_vs/data.asm gfx/battle_vs/frames.asm gfx/battle_vs/font.bin gfx/battle_vs/palettes.asm
 
 data/pokemon/pre_evolutions.asm: tools/generate_pre_evolutions.py tools/audit_learnset_variety.py constants/pokemon_constants.asm data/pokemon/first_stages.asm data/pokemon/evos_attacks_kanto.asm data/pokemon/evos_attacks_johto.asm data/pokemon/evos_attacks_clones.asm
 	$(BATTLE_TEST_PYTHON) tools/generate_pre_evolutions.py
