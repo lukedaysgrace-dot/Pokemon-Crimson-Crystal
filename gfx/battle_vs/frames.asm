@@ -76,6 +76,20 @@ CrimsonVSFrames:
 	db 3, 1
 	dba CrimsonVSFrame37
 	db 3, 1
+	db -1
+CrimsonVSLoopFrames:
 	dba CrimsonVSFrame38
-	db 26, 1
+	db 2, 1
+	dba CrimsonVSFrame39
+	db 2, 1
+	dba CrimsonVSFrame40
+	db 2, 1
+	dba CrimsonVSFrame41
+	db 2, 1
+	dba CrimsonVSFrame42
+	db 2, 1
+	dba CrimsonVSFrame43
+	db 2, 1
+	dba CrimsonVSFrame44
+	db 2, 1
 	db -1

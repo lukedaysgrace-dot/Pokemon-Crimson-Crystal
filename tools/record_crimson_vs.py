@@ -96,14 +96,19 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     manifest = json.loads((ROOT/'gfx/battle_vs/manifest.json').read_text())
     rows=manifest['frames']
-    LAST=len(rows)-1
+    # The authored frames play once; the settled streak loop then cycles for
+    # the final hold and on through the whole white fade.
+    MAIN=[r['frame'] for r in rows if not r.get('loop')]
+    LOOP=[r['frame'] for r in rows if r.get('loop')]
+    assert LOOP and MAIN==list(range(len(MAIN))) and LOOP==list(range(len(MAIN),len(rows))),'loop follows the authored frames'
+    LAST=LOOP[0]
     shake_frames=[r['frame'] for r in rows if r['kind']=='lock'][:len(IMPACT_SHAKE)]
     assert [tuple(rows[k]['crystal_offset']) for k in shake_frames]==list(IMPACT_SHAKE),'shake timing'
     for row in rows:
         if row['frame'] not in shake_frames:
             assert tuple(row['crystal_offset'])==(0,0),('only the lock frames jolt',row)
     still_frames=[r['frame'] for r in rows if r['still']]
-    assert still_frames==list(range(shake_frames[-1]+1,LAST+1)),'the ruby settles right after its jolts'
+    assert still_frames==list(range(shake_frames[-1]+1,len(rows))),'the ruby settles right after its jolts'
     sound_frames={r['frame']:r['sound'] for r in rows if r['sound']}
     assert sorted(sound_frames.values())==[2,4] and min(sound_frames,key=sound_frames.get)==shake_frames[0],sound_frames
     gfx_size = manifest['frame_bytes']-1152
@@ -118,6 +123,7 @@ def main():
     animation=[]
     portraits=[]
     fades=[]
+    fade_commits=[]  # (fade steps already shown, loop frame) for each loop commit
     border_frames=[]
     border_masks=set()
     sliding_pictures=set()
@@ -289,6 +295,11 @@ def main():
                 if song==MUSIC['MUSIC_CHAMPION_BATTLE'] and music_started is None:music_started=s.frames
                 if start is not None:
                     assert song==MUSIC['MUSIC_CHAMPION_BATTLE'],'battle music must continue through the reveal and entrance'
+                if last in LOOP and not (fades and all(c==(31,31,31) for c in rgb5(fades[-1]))):
+                    # Every fade step, including those that land while a
+                    # commit is mid-way (VBK 1), until the screen is white.
+                    palette=s.m.read_bytes('wBGPals2',64)
+                    if not fades or fades[-1]!=palette:fades.append(palette)
                 if s.memory[0xff4f] & 1:
                     if start is not None:preview_frame(s.image())
                     continue
@@ -302,7 +313,12 @@ def main():
                     s.memory[0xff4f]=bank_flag>>3
                     graphics=bytes(s.memory[0x8800:0x8800+gfx_size])
                     s.memory[0xff4f]=0
-                    frame=next((k for k in candidates if frames[k][:gfx_size]==graphics),None)
+                    matches=[k for k in candidates if frames[k][:gfx_size]==graphics]
+                    # A loop frame may repeat an earlier frame's exact art;
+                    # prefer the frame on screen, then its scheduled successor.
+                    successor=0 if last is None else (LOOP[0] if last==MAIN[-1] else
+                              LOOP[(LOOP.index(last)+1)%len(LOOP)] if last in LOOP else last+1)
+                    frame=next((k for k in (last,successor) if k in matches),matches[0] if matches else None)
                 if frame is not None:
                     if start is None: start=s.frames
                     end=s.frames
@@ -323,7 +339,10 @@ def main():
                                 for channel in (5,6,7):
                                     assert not s.m.read(f'wChannel{channel}Flags1')&1,('lock steals a music voice',channel)
                                 assert s.m.read('wChannel8Flags1')&1,'lock impact must play on noise'
+                    if frame in LOOP and frame!=last:fade_commits.append((len(fades),frame))
                     last=frame
+                    if frame in LOOP and not fades:
+                        fades.append(s.m.read_bytes('wBGPals2',64))
                     if frame==LAST:
                         # Portrait bytes are the actual source sprites, in bank 1.
                         s.memory[0xff4f]=1
@@ -334,8 +353,6 @@ def main():
                         check_name(s,raw,demo_name,(7-len(demo_name))//2)
                         check_name(s,raw,'LANCE',14)
                         s.memory[0xff4f]=0
-                        palette=s.m.read_bytes('wBGPals2',64)
-                        if not fades or fades[-1]!=palette:fades.append(palette)
                 elif start is not None:preview_frame(s.image())
         s.tick=tick
         movie_start=s.frames
@@ -346,7 +363,14 @@ def main():
         s.until(lambda:'FIGHT' in tile_text(s),limit=18000,dialogue=True)
         s.tick(90) # Hold after the fully revealed opponent and native Fight menu.
         record=s.movie.finish();s.movie=None
-        assert [k for _,k in seen]==list(range(LAST+1)),seen
+        shown=[k for _,k in seen]
+        assert shown[:len(MAIN)]==MAIN,seen
+        assert shown[len(MAIN):]==[LOOP[i%len(LOOP)] for i in range(len(shown)-len(MAIN))],seen
+        # The streaks never stop early: the loop keeps committing new frames
+        # throughout the fade, up to its last steps before full white.
+        during=[k for steps,k in fade_commits if 1<steps<len(fades)]
+        assert len(set(during))>=5,('streaks must keep moving through the fade',fade_commits)
+        assert max(steps for steps,_ in fade_commits)>=len(fades)-3,('streaks stop before white',fade_commits)
         assert len(animation)>70,'The reveal must animate at native frame timing'
         assert len(border_frames)>=60,('textbox slide observations',len(border_frames))
         assert len(border_masks)==1,('textbox frame moved during trainer slide',len(border_masks))
@@ -386,7 +410,7 @@ def main():
                     all_four_player_portraits=True,disabled_paths=['options','ordinary','link','tower'],
                     all_players_mirrored_only_in_vs=True,complete_V_and_S_pure_white=True,
                     canonical_player_and_enemy_palettes=True,custom_name_case_and_symbols=True,
-                    smooth_fade_steps=len(fades),formation_and_lock_sounds=True,noise_only_lock_keeps_music=True,
+                    smooth_fade_steps=len(fades),streak_loop_commits_during_fade=fade_commits,formation_and_lock_sounds=True,noise_only_lock_keeps_music=True,
                     trainer_theme_selection=music_cases,music_starts_before_reveal=music_started,
                     music_continues_through_battle_entry=True,
                     both_portraits_match_source=True,reached_fight_menu=True,
@@ -396,7 +420,7 @@ def main():
                     crystal_impact_shake=True,crystal_settled_after_frame=still_frames[0],
                     movie_start=movie_start,sequence_start=start,sequence_end=end,video=record)
         (args.output/'results.json').write_text(json.dumps(result,indent=2)+'\n')
-        print(f'PASS: all {LAST+1} VS frames, exact trainer portraits, boss selection and native battle handoff',flush=True)
+        print(f'PASS: all {len(rows)} VS frames, exact trainer portraits, boss selection and native battle handoff',flush=True)
         for stale in ['failure.png','failure.txt']:
             (args.output/stale).unlink(missing_ok=True)
     except Exception:

@@ -515,7 +515,8 @@ Read this before changing the game. Keep it up to date when something here chang
   read them before switching `rSVBK`. All four playable front portraits and the opponent's
   existing picture/palette are used, with actual matchup names.
 - Edit `tools/vs_intro/build.py` for the authored ruby, VS lettering,
-  opposing streaks and timing; regenerate `gfx/battle_vs/` (39 frames). The
+  opposing streaks and timing; regenerate `gfx/battle_vs/` (38 authored
+  frames plus a 7-frame streak loop, 45 in all). The
   ruby is a step cut (girdle, two crown steps, table with pavilion
   reflections) sharing one set of 45-degree octagon corners, lit from the
   upper left, drawn in seven logical colours. The script solves BG palettes
@@ -523,7 +524,17 @@ Read this before changing the game. Keep it up to date when something here chang
   the arena, 1 the rails/names, 4/5 the portraits. Sequence: aperture, 15
   formation frames (core of light, shards gather, girdle frame closes in),
   a white-hot lock with light burst and shock ring, a diagonal shine sweep,
-  then twinkles and the long hold. Effects never draw over the portrait
+  then twinkles and the settled streak loop. `CrimsonVSLoopFrames` is one
+  seamless 32-pixel streak period (`LOOP_FRAMES`, ruby static). The engine
+  cycles it once as the final hold (`CRIMSON_VS_LOOP_HOLD`) and keeps
+  cycling it underneath the white fade, so the red streaks never stop before
+  the screen is fully white. Loop frames are prefetched right after each
+  commit, giving a fixed four-frame period: map commit (V), two free VBlanks,
+  tile GDMA. `CrimsonVSFadeStep` (engine/gfx/fade.asm) steps only the BG
+  palettes (sprites are off; the last step whitens OBJ too); one step is
+  raised with the map commit (`CRIMSON_VS_PAL`, uploaded after the maps in
+  the same VBlank) and one on V+2, never with the tile GDMA. That keeps the
+  native 12 steps at an even two-frame cadence (24 frames). Effects never draw over the portrait
   stages, and cells under portraits/names spend no background tiles. Both
   letters are solid RGB 31/31/31, with no shaded lower halves. Player columns
   are reversed and use CGB X-flip only in this screen's map; the source picture,
@@ -546,7 +557,8 @@ Read this before changing the game. Keep it up to date when something here chang
   the graphics and both maps in one VBlank. Restore LCDC, LCD hooks, banks and
   trainer class before battle setup.
   `make test-crimson-vs` records both ROMs through a native Lance encounter and
-  verifies all 39 maps/attributes/graphics, all player portraits and canonical
+  verifies all 45 maps/attributes/graphics (the loop cycling through the
+  fade, still committing new frames until two frames before white), all player portraits and canonical
   palettes, mirrored player cells, white glyph pixels, custom names, selection
   and disabled paths. Dedicated cues in `audio/sfx_crimson_vs.asm` accompany
   formation (glass glints from periodic noise in a rising air swell) and
@@ -558,7 +570,7 @@ Read this before changing the game. Keep it up to date when something here chang
   Executive themes), so no VS theme ever loses a voice. The lock ID has
   higher priority.
   The native interpolated fade uses 12 steps into white, matching the ordinary
-  trainer entrance. `BattleIntro` starts the trainer's
+  trainer entrance, with the streak loop still running beneath it. `BattleIntro` starts the trainer's
   assigned battle music before the first overworld transition; never restart it
   inside VS or on battle entry. Tests cover the Gym/Kanto/Champion/rival/Rocket/
   Crystal music routes and continuity. Tests check both sound cues, monotonic
