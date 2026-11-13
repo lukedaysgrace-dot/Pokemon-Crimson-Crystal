@@ -19,11 +19,11 @@ LoreleisRoom_MapScripts:
 .LoreleisRoomDoors:
 	checkevent EVENT_LORELEIS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepEntranceOpen
-	changeblock 4, 14, $2f ; ice wall seals the way
+	changeblock 4, 14, $2e ; ice wall seals the way
 .KeepEntranceOpen:
 	checkevent EVENT_LORELEIS_ROOM_EXIT_OPEN
 	iffalse .KeepExitClosed
-	changeblock 4, 2, $2e ; ice door opens
+	changeblock 4, 2, $2d ; ice door opens
 .KeepExitClosed:
 	return
 
@@ -32,7 +32,7 @@ LoreleisRoom_MapScripts:
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock 4, 14, $2f ; ice wall seals the way
+	changeblock 4, 14, $2e ; ice wall seals the way
 	reloadmappart
 	closetext
 	setscene SCENE_FINISHED
@@ -64,7 +64,7 @@ LoreleiScript_Battle:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock 4, 2, $2e ; ice door opens
+	changeblock 4, 2, $2d ; ice door opens
 	reloadmappart
 	closetext
 	setevent EVENT_LORELEIS_ROOM_EXIT_OPEN

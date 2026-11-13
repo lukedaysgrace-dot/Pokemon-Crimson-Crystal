@@ -8,7 +8,7 @@ PALS = [
     [W2, (31, 24, 4), (19, 10, 4), K2],               # 2 gold metal
     [W2, (31, 31, 7), (31, 16, 1), (19, 19, 19)],     # 3 fire (flicker); colour 3 = floor grey
     [W2, (26, 24, 17), (21, 17, 7), K2],              # 4 stone pillars / stairs (Gen 2 brown)
-    [W2, (18, 24, 9), (9, 13, 0), K2],                # 5 (spare)
+    [(31, 31, 22), (30, 10, 6), (31, 26, 8), K2],     # 5 Dragonair banner crests: cream, crimson, gold
     [W2, (24, 8, 6), (16, 4, 4), K2],                 # 6 red brick walls
 ]
 # Dragonite statues/reliefs reuse the game's own Dragonite overworld sprite
@@ -63,7 +63,7 @@ PEDESTAL = [
     ".32222222222223.",
     "3333333333333333",
 ]
-FLOOR, CRIM, GOLD, FIRE, GRAN, JADE, WALLP = range(7)
+FLOOR, CRIM, GOLD, FIRE, GRAN, CREST, WALLP = range(7)
 W, H = 20, 48
 cv = Canvas(W, H)
 S = full(cv)
@@ -131,21 +131,18 @@ cv.hline(0, 31, 80, 3)
 cv.hline(0, 30, 80, 2)
 # hanging crimson banners in the corners (x 4..27, y 0..47)
 def banner(c, x0, y0, w, h):
-    c.setpal(x0 // 8, y0 // 8, w // 8, h // 8, CRIM)
-    for y in range(y0, y0 + h):
-        for x in range(x0, x0 + w):
-            v = WALLTEX[y % 16][x % 16] if y < 32 else SLAB[y % 16][x % 16]
-            c.px[y, x] = 3 if v in '23' else 2
+    """Corner banner in the crest palette (gold is colour 2 there)."""
+    c.setpal(x0 // 8, y0 // 8, w // 8, h // 8, CREST)
+    c.px[y0:y0 + h, x0:x0 + w] = 3
     # swallow-free pointed end with an even 2:1 slope on both sides
     rise = (w // 2 - 1 - 3) // 2
     body = pmask(S, [(x0 + 3, y0 + 2), (x0 + w - 4, y0 + 2), (x0 + w - 4, y0 + h - 1 - rise),
                      (x0 + w // 2, y0 + h - 1), (x0 + w // 2 - 1, y0 + h - 1), (x0 + 3, y0 + h - 1 - rise)])
     c.px[body] = 1
     c.px[edge_of(body)] = 3
-    inner = body & ~shift(body, 2, 0) | body & ~shift(body, -2, 0)
-    c.px[(body & ~(shift(body, 2, 0) & shift(body, -2, 0) & shift(body, 0, -2))) & ~edge_of(body)] = 0
-    c.rect(x0, y0, w, 2, 0)
-    c.hline(x0, y0 + 2, w, 2)
+    c.px[(body & ~(shift(body, 2, 0) & shift(body, -2, 0) & shift(body, 0, -2))) & ~edge_of(body)] = 2
+    c.rect(x0, y0, w, 2, 2)
+    c.hline(x0, y0 + 2, w, 3)
     return body
 b = banner(cv, 0, 0, 32, 32)
 # below the banner: the side wall continues at x 0..15, the stone floor
@@ -156,23 +153,41 @@ cv.vline(15, 32, 16, 3)
 cv.vline(14, 32, 16, 2)
 cv.setpal(2, 4, 2, 4, FLOOR)
 cv.tex(16, 32, 16, 32, SLAB)
-# gold dragon sigil on the banner (simple coiled serpent)
-SIG = [
-    "....000.....",
-    "...0..00....",
-    "..0....0....",
-    "..0..000....",
-    "...00..0....",
-    ".....0.0....",
-    "....0..0..0.",
-    "...0..0..00.",
-    "..0..0..0.0.",
-    "..0.0..0..0.",
-    "...0..0..0..",
-    "....00..0...",
-    "......00....",
+# Dragonair crest for the corner banners: the head of the game's own
+# Dragonair front sprite (gfx/pokemon/dragonair/front.png), mirrored and
+# re-coloured as embroidery: cream wing-fins and horn (0), yellow-gold head
+# (2), black outline (3) on the crimson banner (1). The right banner is its
+# mirror image, so both face the great doors.
+DRAGONAIR_CREST = [
+    "..............3........",
+    "...33........302.......",
+    "..303.......3203.......",
+    ".30002......32003......",
+    ".30003.....323203......",
+    "3030003....323203......",
+    "30030003..3333203......",
+    "32002003332222233.333..",
+    ".32000003222222233003..",
+    ".3323220322222230003...",
+    ".323223023222223223....",
+    "..33223223222222332....",
+    "...32222232333222223...",
+    "....32223233302222003..",
+    ".....33322333032220003.",
+    ".....322223233322220002",
+    "......32222333322222223",
+    "......32222222222222223",
+    ".......222222222222223.",
+    ".......32222222222233..",
+    ".......322222223333....",
+    ".......32222333........",
+    ".......322230003.......",
+    ".......322230023.......",
+    "........32223333.......",
+    ".........3223..........",
+    "..........33...........",
 ]
-cv.stamp(10, 12, SIG)
+cv.stamp(4, 3, DRAGONAIR_CREST)
 
 # shrine alcoves flanking the door (x 40..54): a gold Dragonite standing on
 # a short plinth against a warm bronze backdrop, centred on column 47
@@ -300,6 +315,62 @@ def brazier(c, x0, y0, tall=True):
     c.px[edge_of(legL) | edge_of(legR)] = 3
     c.rect(x0 + 6, y0 + 18, 4, 2, 2)
 brazier(cv, 16, 32)
+# Narrow wall banners: a front-facing gold Dragonair (wing-fins and horn)
+# whose body winds down the banner to the tail gems.
+DRAGONAIR_PENNANT = [
+    "3....3....3",
+    "30..303..03",
+    "300.303.003",
+    "30033333003",
+    ".303000303.",
+    "..3000003..",
+    "..3300033..",
+    "..3030303..",
+    "..3000003..",
+    "...30003...",
+    "....303....",
+    "....333....",
+    "...32223...",
+    "...32223...",
+    "...30003...",
+    "...30003...",
+    "..3000003..",
+    "..3000003..",
+    "..3000003..",
+    "..3000003..",
+    "...300003..",
+    "...3000003.",
+    "....300003.",
+    "....300003.",
+    "....300003.",
+    ".....300003",
+    ".....300003",
+    ".....300003",
+    ".....300023",
+    "....300003.",
+    "....300003.",
+    "...3000023.",
+    "...300023..",
+    "..300003...",
+    "..300023...",
+    "..30003....",
+    "..30003....",
+    "..30003....",
+    "..30003....",
+    "..30003....",
+    "..300003...",
+    "...30003...",
+    "...30003...",
+    "....3003...",
+    "....3333...",
+    "....3223...",
+    "....3223...",
+    ".....33....",
+    ".....33....",
+    "....3223...",
+    "....3223...",
+    ".....33....",
+]
 # side wall columns x 0..15 rows 2-23: crimson-brown wall with banners
 cv.setpal(0, 6, 2, 42, WALLP)
 cv.tex(0, 48, 16, 336, WALLTEX)
@@ -308,14 +379,12 @@ cv.vline(14, 48, 336, 2)
 for (by, bh) in [(120, 64), (264, 64)]:
     cv.setpal(0, by // 8, 2, bh // 8, CRIM)
     cv.px[rmask(S, 0, by, 16, bh)] = 3
-    body = pmask(S, [(1, by + 2), (13, by + 2), (13, by + bh - 7), (7, by + bh - 1), (1, by + bh - 7)])
+    body = pmask(S, [(0, by + 2), (14, by + 2), (14, by + bh - 8), (7, by + bh - 1), (0, by + bh - 8)])
     cv.px[body] = 1
     cv.px[edge_of(body)] = 3
     cv.px[(body & ~(shift(body, 2, 0) & shift(body, -2, 0))) & ~edge_of(body)] = 0
     cv.rect(0, by, 16, 2, 0)
-    for k in range(3):
-        cy_ = by + 14 + k * 14
-        cv.stamp(4, cy_, [".00..", "0..0.", "..0..", ".0..0", "..00."])
+    cv.stamp(2, by + 5, DRAGONAIR_PENNANT)
 # summit side (x 0..15, rows 2-3): pillar stub of the rear wall
 cv.setpal(0, 4, 2, 2, WALLP)
 
