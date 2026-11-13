@@ -107,6 +107,43 @@ _DoFadePalettes::
 ; waiting on it forever.
 	jp DelayFrame
 
+CrimsonVSFadeStep::
+; One white-fade step for the VS intro, which paces its own steps between
+; animation frames. c = steps remaining, including this one (the last step
+; lands exactly on white). The caller raises hCGBPalUpdate. Only the BG
+; palettes are visible there (sprites are off), so only they are stepped,
+; which halves the work; the last step also whitens the OBJ palettes, ending
+; exactly where FadeToWhitePals would.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wBGPals2)
+	ldh [rSVBK], a
+	ld a, PALFADE_TO_WHITE | PALFADE_BG
+	ldh [hPalFadeMode], a
+	ld a, c
+	ld [wPalFadeDelayFrames], a
+	push bc
+	call FadePalettesStep
+	pop bc
+	dec c
+	jr nz, .done
+	ld hl, wOBPals2
+	ld b, 8 palettes
+.white
+	ld a, LOW(PALRGB_WHITE)
+	ld [hli], a
+	ld a, HIGH(PALRGB_WHITE)
+	ld [hli], a
+	dec b
+	dec b
+	jr nz, .white
+.done
+	ld a, PALFADE_TO_WHITE
+	ldh [hPalFadeMode], a
+	pop af
+	ldh [rSVBK], a
+	ret
+
 FadePalettesInit:
 ; No matter what, we always take up to 31 color fade steps.
 ; Evenly divide DelayFrames in case the fade duration is more.

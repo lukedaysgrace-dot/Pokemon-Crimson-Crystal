@@ -9,8 +9,19 @@ CRIMSON_VS_BYTES EQU CRIMSON_VS_TILES * 16 + 2 * BG_MAP_WIDTH * SCREEN_HEIGHT
 CRIMSON_VS_NAMES EQUS "wTileMap + 17 * SCREEN_WIDTH"
 CRIMSON_VS_BANK EQUS "wTileMap + 16 * SCREEN_WIDTH"
 CRIMSON_VS_SHOWN EQUS "wTileMap + 16 * SCREEN_WIDTH + 1"
+CRIMSON_VS_PAL EQUS "wTileMap + 16 * SCREEN_WIDTH + 2" ; raise palettes with the next map commit
+CRIMSON_VS_STAMP EQUS "wTileMap + 16 * SCREEN_WIDTH + 3" ; hVBlankCounter at the last commit
 ; Bank-1 tiles 0-$76: player and opponent pictures, 20 name glyphs, a blank.
 CRIMSON_VS_PORTRAITS EQU 2 * 7 * 7 + 21
+; After the authored frames, CrimsonVSLoopFrames (one seamless streak period)
+; cycles for the final hold, then keeps cycling through the white fade so the
+; streaks never stop before the screen is fully white. Each loop frame is
+; prefetched straight after the previous commit, so the loop runs at a fixed
+; four-frame period: commit (V), two free VBlanks, then the tile GDMA. Fade
+; steps land on V (raised with the map commit) and V+2, every second frame:
+; twelve steps at the native two-frame cadence, 24 frames as before.
+CRIMSON_VS_LOOP_HOLD EQU 7 ; loop frames shown before the fade starts
+CRIMSON_VS_FADE_STEPS EQU 12
 
 CrimsonVSWillPlay::
 ; Returns carry if this battle opens with the VS interstitial. DoBattleTransition
@@ -124,66 +135,108 @@ CrimsonVSIntro::
 	xor a
 	ld [CRIMSON_VS_BANK], a
 	ld [CRIMSON_VS_SHOWN], a
+	ld [CRIMSON_VS_PAL], a
 	ld hl, CrimsonVSFrames
 .next
-	ld a, [hli]
-	cp -1
-	jr z, .done
-	push af
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld c, a ; visible hold time
-	ld a, [hli]
-	ld b, a ; bit 0: names; bits 1/2: crystal impact / formation sounds
+	call CrimsonVSShowFrame
+	jr c, .settled
 	push hl
-	push bc
-	ld h, d
-	ld l, e
-	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
-	pop bc
-	pop de ; next descriptor
-	pop af ; graphics bank
-	push de
-	push bc
-	ld de, wDecompressScratch
-	ld bc, CRIMSON_VS_BYTES
-	call FarCopyBytes
-	pop bc
-	push bc
-	bit 0, b
-	jr z, .commit
-	ld hl, CRIMSON_VS_NAMES
-	ld de, CRIMSON_VS_MAP + 14 * BG_MAP_WIDTH
-	ld bc, SCREEN_WIDTH
-	call CopyBytes
-.commit
-	call CrimsonVSCommit
-	ld a, [CRIMSON_VS_SHOWN]
-	and a
-	jr nz, .shown
-	; Reveal the palettes only once the first frame's maps are in place.
-	inc a
-	ld [CRIMSON_VS_SHOWN], a
-	call DelayFrame
-	ld a, 1
-	ldh [hCGBPalUpdate], a
-.shown
-	pop bc
-	push bc
-	call CrimsonVSSound
-	pop bc
 	call DelayFrames
 	pop hl
 	jr .next
-.done
-	; Use the game's interpolated RGB fade, then let the normal trainer slide
-	; enter from the same white field. Twelve steps are paced over 24 frames.
-	ld c, 12
-	call FadeToWhitePals
+
+.settled
+	; The settled screen keeps its streaks moving: one full loop period as
+	; the final hold, then the loop continues underneath the white fade.
+	ld hl, CrimsonVSLoopFrames
+	call .load_loop
+	ld d, CRIMSON_VS_LOOP_HOLD + CRIMSON_VS_FADE_STEPS / 2 ; loop commits
+	ld e, CRIMSON_VS_FADE_STEPS ; fade steps remaining
+.loop
+	ld a, d
+	cp CRIMSON_VS_FADE_STEPS / 2 + 1
+	jr nc, .commit_loop
+	; This step is raised between the tile GDMA and the map commit, so it
+	; appears together with the new frame.
+	call .fade_step
+	ld a, 1
+	ld [CRIMSON_VS_PAL], a
+.commit_loop
+	push de
+	push bc ; c = this frame's hold
+	push hl
+	call CrimsonVSCommit
+	ldh a, [hVBlankCounter]
+	ld [CRIMSON_VS_STAMP], a
+	pop hl
+	pop bc
+	pop de
+	; The second step of each frame shows two frames after the first. It is
+	; prepared now (the first step has just been uploaded) and raised once
+	; the next VBlank has passed.
+	ld a, d
+	cp CRIMSON_VS_FADE_STEPS / 2 + 1
+	call c, .fade_step
+	push de
+	push bc
+	call .load_loop ; prefetch the next loop frame while this one shows
+	pop bc
+	pop de
+	push bc
+	ld c, 1
+	call .wait
+	pop bc
+	ld a, d
+	cp CRIMSON_VS_FADE_STEPS / 2 + 1
+	jr nc, .no_step
+	ld a, 1
+	ldh [hCGBPalUpdate], a
+.no_step
+	call .wait ; until the frame's hold has elapsed
+	dec d
+	jr nz, .loop
+	; The last step was white: hold it one more frame, as the native fade's
+	; final two-frame step does, before the ordinary trainer slide.
+	call DelayFrame
+	jr .white
+
+.fade_step
+; One interpolated step toward white; e = steps remaining (decremented).
+	push bc
+	push de
+	push hl
+	ld c, e
+	farcall CrimsonVSFadeStep
+	pop hl
+	pop de
+	pop bc
+	dec e
+	ret
+
+.wait
+; Wait until c VBlanks have passed since the last commit.
+	push hl
+.wait_frame
+	ld a, [CRIMSON_VS_STAMP]
+	ld l, a
+	ldh a, [hVBlankCounter]
+	sub l
+	cp c
+	jr nc, .waited
+	call DelayFrame
+	jr .wait_frame
+.waited
+	pop hl
+	ret
+
+.load_loop
+; hl = loop descriptor: prefetch it (wrapping at the end); c = its hold time.
+	call CrimsonVSLoadFrame
+	ret nc
+	ld hl, CrimsonVSLoopFrames
+	jr .load_loop
+
+.white
 	call DisableLCD
 	; Remove bank-1 portrait attributes before the ordinary battle setup.
 	ld a, 1
@@ -212,6 +265,81 @@ CrimsonVSIntro::
 	ldh [rVBK], a
 	pop af
 	ldh [rSVBK], a
+	ret
+
+CrimsonVSShowFrame:
+; hl = frame descriptor. At the -1 terminator, return carry. Otherwise show
+; the frame and play its cue; return nc, hl = next descriptor, c = hold time.
+	call CrimsonVSLoadFrame
+	ret c
+	push bc
+	push hl
+	call CrimsonVSCommit
+	ld a, [CRIMSON_VS_SHOWN]
+	and a
+	jr nz, .shown
+	; Reveal the palettes only once the first frame's maps are in place.
+	inc a
+	ld [CRIMSON_VS_SHOWN], a
+	call DelayFrame
+	ld a, 1
+	ldh [hCGBPalUpdate], a
+.shown
+	pop hl
+	pop bc
+	push bc
+	push hl
+	call CrimsonVSSound
+	pop hl
+	pop bc
+	and a
+	ret
+
+CrimsonVSLoadFrame:
+; hl = frame descriptor. At the -1 terminator, return carry. Otherwise copy
+; the frame (and the name row) into WRAM6 for CrimsonVSCommit; return nc,
+; hl = next descriptor, c = hold time, b = flags.
+	ld a, [hli]
+	cp -1
+	jr nz, .frame
+	scf
+	ret
+.frame
+	push af
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld c, a ; visible hold time
+	ld a, [hli]
+	ld b, a ; bit 0: names; bits 1/2: crystal impact / formation sounds
+	push hl
+	push bc
+	ld h, d
+	ld l, e
+	ld a, BANK(wDecompressScratch)
+	ldh [rSVBK], a
+	pop bc
+	pop de ; next descriptor
+	pop af ; graphics bank
+	push de
+	push bc
+	ld de, wDecompressScratch
+	ld bc, CRIMSON_VS_BYTES
+	call FarCopyBytes
+	pop bc
+	push bc
+	bit 0, b
+	jr z, .loaded
+	ld hl, CRIMSON_VS_NAMES
+	ld de, CRIMSON_VS_MAP + 14 * BG_MAP_WIDTH
+	ld bc, SCREEN_WIDTH
+	call CopyBytes
+.loaded
+	pop bc
+	pop hl
+	and a
 	ret
 
 CrimsonVSIsBoss:
@@ -588,6 +716,15 @@ CrimsonVSCommit:
 	and a
 	jr nz, .wait
 	di
+	; A fade step queued for this frame uploads in the same VBlank as its
+	; maps (after them: 2304 dots of map DMA leave room for the palettes),
+	; never alongside the tile GDMA.
+	ld a, [CRIMSON_VS_PAL]
+	and a
+	jr z, .visible
+	ldh [hCGBPalUpdate], a
+	xor a
+	ld [CRIMSON_VS_PAL], a
 .visible
 	ldh a, [rLY]
 	cp LY_VBLANK
