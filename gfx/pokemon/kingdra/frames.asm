@@ -13,13 +13,13 @@
 .frame3
 	db $02 ; bitmask
 	db $00, $00, $3f, $40, $00, $39, $3a, $3b, $41, $42, $3c, $3d
-	db $3e, $43
+	db $3e
 .frame4
 	db $03 ; bitmask
-	db $44, $45, $46, $47
+	db $43, $44, $45, $46
 .frame5
 	db $04 ; bitmask
-	db $48
+	db $47
 .frame6
 	db $05 ; bitmask
-	db $49, $4a
+	db $48, $49
