@@ -1,0 +1,91 @@
+# Stench rolls independently of the damaging move's non-flinch secondary.
+# 40 misses Ember's 10% burn but its modulo-ten Stench roll is zero.
+# Its low two bits also select the populated first enemy move slot.
+- name: "Second ability pass: Stench flinches after player Ember misses burn"
+  player: {species: MEW, level: 50, ability: STENCH, moves: [EMBER]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.status == 0", "player.hp == player.start_hp", "enemy.pp[0] == 35"]
+
+- name: "Second ability pass: Stench flinches after enemy Ember misses burn"
+  player: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy: {species: MEW, level: 50, ability: STENCH, moves: [EMBER]}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.status == 0", "enemy.hp == enemy.start_hp", "player.pp[0] == 35"]
+
+- name: "Second ability pass control: Ember without Stench allows enemy action"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [EMBER]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.status == 0", "player.hp < player.start_hp", "enemy.pp[0] == 34"]
+
+- name: "Second ability pass control: Stench preserves Ember's successful burn roll"
+  player: {species: MEW, level: 50, ability: STENCH, moves: [EMBER]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  rng: forced
+  rng_value: 20
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "(enemy.status & 16) != 0", "player.hp == player.start_hp"]
+
+- name: "Second ability pass control: Inner Focus blocks independent Stench"
+  player: {species: MEW, level: 50, ability: STENCH, moves: [EMBER]}
+  enemy: {species: SNORLAX, level: 50, ability: INNER_FOCUS, moves: [TACKLE]}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.status == 0", "player.hp < player.start_hp", "enemy.pp[0] == 34"]
+
+- name: "Second ability pass control: Covert Cloak blocks independent Stench"
+  player: {species: MEW, level: 50, ability: STENCH, moves: [EMBER]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, item: COVERT_CLOAK, moves: [TACKLE]}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.status == 0", "player.hp < player.start_hp", "enemy.pp[0] == 34"]
+
+- name: "Second ability pass control: Klutz disables Covert Cloak against Stench"
+  player: {species: MEW, level: 50, ability: STENCH, moves: [EMBER]}
+  enemy: {species: SNORLAX, level: 50, ability: KLUTZ, item: COVERT_CLOAK, moves: [TACKLE]}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.status == 0", "player.hp == player.start_hp", "enemy.pp[0] == 35"]
+
+- name: "Second ability pass control: Stench cannot flinch through Substitute"
+  player: {species: MEW, level: 50, ability: STENCH, moves: [EMBER]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE], substatus: [SUBSTITUTE]}
+  setup_wram: {wEnemySubstituteHP: 100}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "enemy.status == 0", "player.hp < player.start_hp", "enemy.pp[0] == 34"]
+
+- name: "Second ability pass control: Stench flinches without a native secondary"
+  player: {species: MEW, level: 50, ability: STENCH, moves: [AERIAL_ACE]}
+  enemy: {species: SNORLAX, level: 50, ability: NO_ABILITY, moves: [TACKLE]}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "player.hp == player.start_hp", "enemy.pp[0] == 35"]
+
+- name: "Second ability pass control: Shield Dust blocks independent Stench"
+  player: {species: MEW, level: 50, ability: STENCH, moves: [EMBER]}
+  enemy: {species: SNORLAX, level: 50, ability: SHIELD_DUST, moves: [TACKLE]}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.status == 0", "player.hp < player.start_hp", "enemy.pp[0] == 34"]
+
+- name: "Second ability pass control: Gas suppresses independent Stench"
+  player: {species: MEW, level: 50, ability: STENCH, moves: [EMBER]}
+  enemy: {species: SNORLAX, level: 50, ability: NEUTRALIZING_GAS, moves: [TACKLE]}
+  rng: forced
+  rng_value: 40
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.status == 0", "player.hp < player.start_hp", "enemy.pp[0] == 34"]

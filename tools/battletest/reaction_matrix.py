@@ -35,12 +35,18 @@ def generate_reaction_matrix():
                 test["assert"].append("enemy.hp > 0")
                 # Gas ends after the committed hit's defender reactions,
                 # including Explosion/Selfdestruct, whose user already has 0 HP.
-                suppressed = source == "NEUTRALIZING_GAS"
+                # Thermal Exchange is breakable for both its Fire-hit boost
+                # and its burn immunity. The other reactions are unignorable.
+                suppressed = (source == "NEUTRALIZING_GAS" or
+                              source == "MOLD_BREAKER" and ability == "THERMAL_EXCHANGE")
                 for i in range(7):
                     delta = 0 if suppressed else changes.get(i, 0)
                     expected = f"min(13, max(1, result('{control_id}')['enemy']['stat_levels'][{i}] + {delta} * wram('wEnemyRageFistHits')))"
                     test["assert"].append(f"enemy.stat_levels[{i}] == {expected}")
-                if suppressed:
+                # Mold Breaker only suspends Thermal Exchange during the
+                # move; the ability cures a burn again at the move-end update.
+                # Only Gas keeps status/damage identical to the control.
+                if source == "NEUTRALIZING_GAS":
                     test["assert"] += [f"enemy.hp == result('{control_id}')['enemy']['hp']",
                                        f"enemy.status == result('{control_id}')['enemy']['status']"]
                 tests.append(test)

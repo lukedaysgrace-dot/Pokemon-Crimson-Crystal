@@ -1,0 +1,143 @@
+# Thermal Exchange is ignorable for its Fire-hit Attack boost as well as burn
+# prevention. High RNG prevents Ember's burn, isolating the hit reaction.
+- name: "Ability audit: Mold Breaker bypasses enemy Thermal Exchange hit boost"
+  player: {species: MEW, level: 30, ability: MOLD_BREAKER, moves: [EMBER]}
+  enemy: {species: BAXCALIBUR, level: 100, ability: THERMAL_EXCHANGE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[0] == 7"]
+
+- name: "Ability audit: Mold Breaker bypasses player Thermal Exchange hit boost"
+  player: {species: BAXCALIBUR, level: 100, ability: THERMAL_EXCHANGE, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, ability: MOLD_BREAKER, moves: [EMBER]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.stat_levels[0] == 7"]
+
+- name: "Ability audit: ordinary Fire hit raises enemy Thermal Exchange Attack"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [EMBER]}
+  enemy: {species: BAXCALIBUR, level: 100, ability: THERMAL_EXCHANGE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[0] == 8"]
+
+- name: "Ability audit: ordinary Fire hit raises player Thermal Exchange Attack"
+  player: {species: BAXCALIBUR, level: 100, ability: THERMAL_EXCHANGE, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, ability: NO_ABILITY, moves: [EMBER]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.stat_levels[0] == 8"]
+
+- name: "Ability audit: Gas suppresses enemy Thermal Exchange hit boost"
+  player: {species: WEEZING, level: 30, ability: NEUTRALIZING_GAS, moves: [EMBER]}
+  enemy: {species: BAXCALIBUR, level: 100, ability: THERMAL_EXCHANGE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[0] == 7"]
+
+- name: "Ability audit: Gas suppresses player Thermal Exchange hit boost"
+  player: {species: BAXCALIBUR, level: 100, ability: THERMAL_EXCHANGE, moves: [SPLASH]}
+  enemy: {species: WEEZING, level: 30, ability: NEUTRALIZING_GAS, moves: [EMBER]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.stat_levels[0] == 7"]
+
+# An ability can be acquired through Skill Swap. Absorbers and move-class
+# blockers use TryHit before natural type immunity (Gen VII onward).
+- name: "Ability audit: Ground enemy Lightning Rod still absorbs Electric"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [THUNDERBOLT]}
+  enemy: {species: RHYDON, level: 100, ability: LIGHTNING_ROD, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "enemy.stat_levels[3] == 8", "ability_seen('LIGHTNING_ROD')"]
+
+- name: "Ability audit: Ground player Lightning Rod still absorbs Electric"
+  player: {species: RHYDON, level: 100, ability: LIGHTNING_ROD, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, ability: NO_ABILITY, moves: [THUNDERBOLT]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp == player.start_hp", "player.stat_levels[3] == 8", "ability_seen('LIGHTNING_ROD')"]
+
+- name: "Ability audit: Ground enemy Volt Absorb heals from Electric"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [THUNDERBOLT]}
+  enemy: {species: RHYDON, level: 100, hp: 50, ability: VOLT_ABSORB, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp > enemy.start_hp", "ability_seen('VOLT_ABSORB')"]
+
+- name: "Ability audit: Ground player Volt Absorb heals from Electric"
+  player: {species: RHYDON, level: 100, hp: 50, ability: VOLT_ABSORB, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, ability: NO_ABILITY, moves: [THUNDERBOLT]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp > player.start_hp", "ability_seen('VOLT_ABSORB')"]
+
+- name: "Ability audit: Mold Breaker keeps Ground immunity without Lightning Rod boost"
+  player: {species: MEW, level: 30, ability: MOLD_BREAKER, moves: [THUNDERBOLT]}
+  enemy: {species: RHYDON, level: 100, ability: LIGHTNING_ROD, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "enemy.stat_levels[3] == 7", "not ability_seen('LIGHTNING_ROD')"]
+
+- name: "Ability audit: Gas keeps Ground immunity without Volt Absorb healing"
+  player: {species: WEEZING, level: 30, ability: NEUTRALIZING_GAS, moves: [THUNDERBOLT]}
+  enemy: {species: RHYDON, level: 100, hp: 50, ability: VOLT_ABSORB, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "not ability_seen('VOLT_ABSORB')"]
+
+- name: "Ability audit: Ghost Soundproof blocks Normal sound before type immunity"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [HYPER_VOICE]}
+  enemy: {species: GENGAR, level: 100, ability: SOUNDPROOF, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "ability_seen('SOUNDPROOF')"]
+
+- name: "Ability audit: Flying Levitate stays silent against natural Ground immunity"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [EARTHQUAKE]}
+  enemy: {species: PIDGEOT, level: 100, ability: LEVITATE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "not ability_seen('LEVITATE')"]
+
+- name: "Ability audit: immune Ghost Disguise stays intact against Normal damage"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy: {species: MIMIKYU, level: 100, ability: DISGUISE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "not ability_seen('DISGUISE')", "(wram('wDisguiseBusted') & 2) == 0"]
+
+- name: "Ability audit: Mold Breaker does not bypass enemy Stamina"
+  player: {species: MEW, level: 30, ability: MOLD_BREAKER, moves: [EMBER]}
+  enemy: {species: RHYDON, level: 100, ability: STAMINA, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp < enemy.start_hp", "enemy.stat_levels[1] == 8"]
+
+- name: "Ability audit: Mold Breaker does not bypass player Stamina"
+  player: {species: RHYDON, level: 100, ability: STAMINA, moves: [SPLASH]}
+  enemy: {species: MEW, level: 30, ability: MOLD_BREAKER, moves: [EMBER]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp < player.start_hp", "player.stat_levels[1] == 8"]
+
+- name: "Ability audit: Ground Lightning Rod absorbs Thunder Wave too"
+  player: {species: MEW, level: 30, ability: NO_ABILITY, moves: [THUNDER_WAVE]}
+  enemy: {species: RHYDON, level: 100, ability: LIGHTNING_ROD, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.hp == enemy.start_hp", "enemy.stat_levels[3] == 8", "enemy.status == 0"]
+
+- name: "Ability audit: Protect prevents Ground Lightning Rod absorption"
+  player: {species: RHYDON, level: 100, ability: LIGHTNING_ROD, moves: [PROTECT]}
+  enemy: {species: MEW, level: 30, ability: NO_ABILITY, moves: [THUNDERBOLT]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp == player.start_hp", "player.stat_levels[3] == 7", "not ability_seen('LIGHTNING_ROD')"]
+
+- name: "Ability audit: Dig prevents Ground Lightning Rod absorption"
+  player: {species: RHYDON, level: 100, ability: LIGHTNING_ROD, moves: [DIG]}
+  enemy: {species: MEW, level: 5, ability: NO_ABILITY, moves: [THUNDERBOLT]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.hp == player.start_hp", "player.stat_levels[3] == 7", "not ability_seen('LIGHTNING_ROD')"]

@@ -1,0 +1,661 @@
+# Held items must obey effective abilities and preserve the move's result.
+# Damage pairs share forced RNG; Gas restores the boost, opposing Mold Breaker does not.
+
+- name: "Species item Klutz: player PIKACHU physical control"
+  id: item_klutz_pikachu_physical_player_control
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Species item Klutz: player PIKACHU physical active"
+  id: item_klutz_pikachu_physical_player_active
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('item_klutz_pikachu_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player PIKACHU physical klutz"
+  player: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_pikachu_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player PIKACHU physical gas"
+  player: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_pikachu_physical_player_active')['enemy']['damage']
+
+- name: "Species item Klutz: player PIKACHU physical mold"
+  player: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_pikachu_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: enemy PIKACHU physical control"
+  id: item_klutz_pikachu_physical_enemy_control
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > 2
+
+- name: "Species item Klutz: enemy PIKACHU physical active"
+  id: item_klutz_pikachu_physical_enemy_active
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: NO_ABILITY, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > result('item_klutz_pikachu_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy PIKACHU physical klutz"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_pikachu_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy PIKACHU physical gas"
+  player: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_pikachu_physical_enemy_active')['player']['damage']
+
+- name: "Species item Klutz: enemy PIKACHU physical mold"
+  player: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_pikachu_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: player PIKACHU special control"
+  id: item_klutz_pikachu_special_player_control
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [THUNDERSHOCK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Species item Klutz: player PIKACHU special active"
+  id: item_klutz_pikachu_special_player_active
+  player: { species: PIKACHU, level: 50, ability: NO_ABILITY, item: LIGHT_BALL, moves: [THUNDERSHOCK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('item_klutz_pikachu_special_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player PIKACHU special klutz"
+  player: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [THUNDERSHOCK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_pikachu_special_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player PIKACHU special gas"
+  player: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [THUNDERSHOCK] }
+  enemy: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_pikachu_special_player_active')['enemy']['damage']
+
+- name: "Species item Klutz: player PIKACHU special mold"
+  player: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [THUNDERSHOCK] }
+  enemy: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_pikachu_special_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: enemy PIKACHU special control"
+  id: item_klutz_pikachu_special_enemy_control
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: NO_ABILITY, moves: [THUNDERSHOCK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > 2
+
+- name: "Species item Klutz: enemy PIKACHU special active"
+  id: item_klutz_pikachu_special_enemy_active
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: NO_ABILITY, item: LIGHT_BALL, moves: [THUNDERSHOCK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > result('item_klutz_pikachu_special_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy PIKACHU special klutz"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [THUNDERSHOCK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_pikachu_special_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy PIKACHU special gas"
+  player: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [THUNDERSHOCK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_pikachu_special_enemy_active')['player']['damage']
+
+- name: "Species item Klutz: enemy PIKACHU special mold"
+  player: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  enemy: { species: PIKACHU, level: 50, ability: KLUTZ, item: LIGHT_BALL, moves: [THUNDERSHOCK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_pikachu_special_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: player CUBONE physical control"
+  id: item_klutz_cubone_physical_player_control
+  player: { species: CUBONE, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Species item Klutz: player CUBONE physical active"
+  id: item_klutz_cubone_physical_player_active
+  player: { species: CUBONE, level: 50, ability: NO_ABILITY, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('item_klutz_cubone_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player CUBONE physical klutz"
+  player: { species: CUBONE, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_cubone_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player CUBONE physical gas"
+  player: { species: CUBONE, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_cubone_physical_player_active')['enemy']['damage']
+
+- name: "Species item Klutz: player CUBONE physical mold"
+  player: { species: CUBONE, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_cubone_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: enemy CUBONE physical control"
+  id: item_klutz_cubone_physical_enemy_control
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: CUBONE, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > 2
+
+- name: "Species item Klutz: enemy CUBONE physical active"
+  id: item_klutz_cubone_physical_enemy_active
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: CUBONE, level: 50, ability: NO_ABILITY, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > result('item_klutz_cubone_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy CUBONE physical klutz"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: CUBONE, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_cubone_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy CUBONE physical gas"
+  player: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  enemy: { species: CUBONE, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_cubone_physical_enemy_active')['player']['damage']
+
+- name: "Species item Klutz: enemy CUBONE physical mold"
+  player: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  enemy: { species: CUBONE, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_cubone_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: player MAROWAK physical control"
+  id: item_klutz_marowak_physical_player_control
+  player: { species: MAROWAK, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Species item Klutz: player MAROWAK physical active"
+  id: item_klutz_marowak_physical_player_active
+  player: { species: MAROWAK, level: 50, ability: NO_ABILITY, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('item_klutz_marowak_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player MAROWAK physical klutz"
+  player: { species: MAROWAK, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_marowak_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player MAROWAK physical gas"
+  player: { species: MAROWAK, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_marowak_physical_player_active')['enemy']['damage']
+
+- name: "Species item Klutz: player MAROWAK physical mold"
+  player: { species: MAROWAK, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_marowak_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: enemy MAROWAK physical control"
+  id: item_klutz_marowak_physical_enemy_control
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MAROWAK, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > 2
+
+- name: "Species item Klutz: enemy MAROWAK physical active"
+  id: item_klutz_marowak_physical_enemy_active
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MAROWAK, level: 50, ability: NO_ABILITY, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > result('item_klutz_marowak_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy MAROWAK physical klutz"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MAROWAK, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_marowak_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy MAROWAK physical gas"
+  player: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  enemy: { species: MAROWAK, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_marowak_physical_enemy_active')['player']['damage']
+
+- name: "Species item Klutz: enemy MAROWAK physical mold"
+  player: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  enemy: { species: MAROWAK, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_marowak_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: player MAROWAK_ALOLAN physical control"
+  id: item_klutz_marowak_alolan_physical_player_control
+  player: { species: MAROWAK_ALOLAN, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > 2
+
+- name: "Species item Klutz: player MAROWAK_ALOLAN physical active"
+  id: item_klutz_marowak_alolan_physical_player_active
+  player: { species: MAROWAK_ALOLAN, level: 50, ability: NO_ABILITY, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp > result('item_klutz_marowak_alolan_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player MAROWAK_ALOLAN physical klutz"
+  player: { species: MAROWAK_ALOLAN, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_marowak_alolan_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: player MAROWAK_ALOLAN physical gas"
+  player: { species: MAROWAK_ALOLAN, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_marowak_alolan_physical_player_active')['enemy']['damage']
+
+- name: "Species item Klutz: player MAROWAK_ALOLAN physical mold"
+  player: { species: MAROWAK_ALOLAN, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  enemy: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('item_klutz_marowak_alolan_physical_player_control')['enemy']['damage']
+
+- name: "Species item Klutz: enemy MAROWAK_ALOLAN physical control"
+  id: item_klutz_marowak_alolan_physical_enemy_control
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MAROWAK_ALOLAN, level: 50, ability: NO_ABILITY, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > 2
+
+- name: "Species item Klutz: enemy MAROWAK_ALOLAN physical active"
+  id: item_klutz_marowak_alolan_physical_enemy_active
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MAROWAK_ALOLAN, level: 50, ability: NO_ABILITY, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp > result('item_klutz_marowak_alolan_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy MAROWAK_ALOLAN physical klutz"
+  player: { species: MACHAMP, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MAROWAK_ALOLAN, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_marowak_alolan_physical_enemy_control')['player']['damage']
+
+- name: "Species item Klutz: enemy MAROWAK_ALOLAN physical gas"
+  player: { species: MACHAMP, level: 50, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  enemy: { species: MAROWAK_ALOLAN, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_marowak_alolan_physical_enemy_active')['player']['damage']
+
+- name: "Species item Klutz: enemy MAROWAK_ALOLAN physical mold"
+  player: { species: MACHAMP, level: 50, ability: MOLD_BREAKER, moves: [SPLASH] }
+  enemy: { species: MAROWAK_ALOLAN, level: 50, ability: KLUTZ, item: THICK_CLUB, moves: [QUICK_ATTACK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('item_klutz_marowak_alolan_physical_enemy_control')['player']['damage']
+
+
+# A Power Herb skips charging even when Skull Bash's Defense increase cannot apply.
+
+- name: "Power Herb Skull Bash: player capped"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: 6 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.item == 'NO_ITEM'
+    - player.pp[0] == 14
+    - player.stat_levels[1] == 13
+
+- name: "Power Herb Skull Bash: player normal"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: 0 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.item == 'NO_ITEM'
+    - player.pp[0] == 14
+    - player.stat_levels[1] == 8
+
+- name: "Power Herb Skull Bash: player contrary_minimum"
+  player: { species: MEW, level: 50, ability: CONTRARY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: -6 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.item == 'NO_ITEM'
+    - player.pp[0] == 14
+    - player.stat_levels[1] == 1
+
+- name: "Power Herb Skull Bash: player near_cap"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: 5 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.item == 'NO_ITEM'
+    - player.pp[0] == 14
+    - player.stat_levels[1] == 13
+
+- name: "Power Herb Skull Bash: player protected"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: 6 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [PROTECT] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp == enemy.start_hp
+    - player.item == 'NO_ITEM'
+    - player.pp[0] == 14
+    - player.stat_levels[1] == 13
+
+- name: "Power Herb Skull Bash: enemy capped"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - enemy.item == 'NO_ITEM'
+    - enemy.pp[0] == 14
+    - enemy.stat_levels[1] == 13
+
+- name: "Power Herb Skull Bash: enemy normal"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: 0 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - enemy.item == 'NO_ITEM'
+    - enemy.pp[0] == 14
+    - enemy.stat_levels[1] == 8
+
+- name: "Power Herb Skull Bash: enemy contrary_minimum"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: CONTRARY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: -6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - enemy.item == 'NO_ITEM'
+    - enemy.pp[0] == 14
+    - enemy.stat_levels[1] == 1
+
+- name: "Power Herb Skull Bash: enemy near_cap"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: 5 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - enemy.item == 'NO_ITEM'
+    - enemy.pp[0] == 14
+    - enemy.stat_levels[1] == 13
+
+- name: "Power Herb Skull Bash: enemy protected"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [PROTECT] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: POWER_HERB, moves: [SKULL_BASH], stages: { def: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp == player.start_hp
+    - enemy.item == 'NO_ITEM'
+    - enemy.pp[0] == 14
+    - enemy.stat_levels[1] == 13
+
+# Capped Policy boosts must leave the triggering move's later hits/effects intact.
+
+- name: "Weakness Policy hit integrity: player control"
+  id: policy_multihit_player_control
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  enemy: { species: LICKILICKY, level: 100, ability: NO_ABILITY, item: NO_ITEM, moves: [SPLASH], stages: { satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+
+- name: "Weakness Policy hit integrity: player special_capped"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  enemy: { species: LICKILICKY, level: 100, ability: NO_ABILITY, item: WEAK_POLICY, moves: [SPLASH], stages: { satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('policy_multihit_player_control')['enemy']['damage']
+    - enemy.item == 'NO_ITEM'
+    - enemy.stat_levels[0] == 9
+    - enemy.stat_levels[3] == 13
+
+- name: "Weakness Policy hit integrity: player attack_capped"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  enemy: { species: LICKILICKY, level: 100, ability: NO_ABILITY, item: WEAK_POLICY, moves: [SPLASH], stages: { atk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('policy_multihit_player_control')['enemy']['damage']
+    - enemy.item == 'NO_ITEM'
+    - enemy.stat_levels[0] == 13
+    - enemy.stat_levels[3] == 9
+
+- name: "Weakness Policy hit integrity: player both_capped"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  enemy: { species: LICKILICKY, level: 100, ability: NO_ABILITY, item: WEAK_POLICY, moves: [SPLASH], stages: { atk: 6, satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.start_hp - enemy.hp == result('policy_multihit_player_control')['enemy']['damage']
+    - enemy.item == 'NO_ITEM'
+    - enemy.stat_levels[0] == 13
+    - enemy.stat_levels[3] == 13
+
+- name: "Weakness Policy hit integrity: player stat_secondary_control"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [PSYCHIC_M] }
+  enemy: { species: TENTACRUEL, level: 100, ability: NO_ABILITY, item: NO_ITEM, moves: [SPLASH], stages: { satk: 6 } }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels[4] == 6
+    - enemy.item == 'NO_ITEM'
+
+- name: "Weakness Policy hit integrity: player stat_secondary_capped"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, moves: [PSYCHIC_M] }
+  enemy: { species: TENTACRUEL, level: 100, ability: NO_ABILITY, item: WEAK_POLICY, moves: [SPLASH], stages: { satk: 6 } }
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.stat_levels[4] == 6
+    - enemy.item == 'NO_ITEM'
+
+- name: "Weakness Policy hit integrity: enemy control"
+  id: policy_multihit_enemy_control
+  player: { species: LICKILICKY, level: 100, ability: NO_ABILITY, item: NO_ITEM, moves: [SPLASH], stages: { satk: 6 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+
+- name: "Weakness Policy hit integrity: enemy special_capped"
+  player: { species: LICKILICKY, level: 100, ability: NO_ABILITY, item: WEAK_POLICY, moves: [SPLASH], stages: { satk: 6 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('policy_multihit_enemy_control')['player']['damage']
+    - player.item == 'NO_ITEM'
+    - player.stat_levels[0] == 9
+    - player.stat_levels[3] == 13
+
+- name: "Weakness Policy hit integrity: enemy attack_capped"
+  player: { species: LICKILICKY, level: 100, ability: NO_ABILITY, item: WEAK_POLICY, moves: [SPLASH], stages: { atk: 6 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('policy_multihit_enemy_control')['player']['damage']
+    - player.item == 'NO_ITEM'
+    - player.stat_levels[0] == 13
+    - player.stat_levels[3] == 9
+
+- name: "Weakness Policy hit integrity: enemy both_capped"
+  player: { species: LICKILICKY, level: 100, ability: NO_ABILITY, item: WEAK_POLICY, moves: [SPLASH], stages: { atk: 6, satk: 6 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [DOUBLE_KICK] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.start_hp - player.hp == result('policy_multihit_enemy_control')['player']['damage']
+    - player.item == 'NO_ITEM'
+    - player.stat_levels[0] == 13
+    - player.stat_levels[3] == 13
+
+- name: "Weakness Policy hit integrity: enemy stat_secondary_control"
+  player: { species: TENTACRUEL, level: 100, ability: NO_ABILITY, item: NO_ITEM, moves: [SPLASH], stages: { satk: 6 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [PSYCHIC_M] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - player.stat_levels[4] == 6
+    - player.item == 'NO_ITEM'
+
+- name: "Weakness Policy hit integrity: enemy stat_secondary_capped"
+  player: { species: TENTACRUEL, level: 100, ability: NO_ABILITY, item: WEAK_POLICY, moves: [SPLASH], stages: { satk: 6 } }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, moves: [PSYCHIC_M] }
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - player.stat_levels[4] == 6
+    - player.item == 'NO_ITEM'

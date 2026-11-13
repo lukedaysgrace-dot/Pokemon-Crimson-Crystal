@@ -1,6 +1,13 @@
 BattleCommand_Nightmare:
 ; nightmare
 
+; Nightmare has no checkhit command, but Protect and Baneful Bunker
+; still block it. A sleeping target can use either through Sleep Talk.
+; Reuse the shared guard so King's Shield still allows status moves.
+
+	call BattleCommand_CheckHit.Protect
+	jr nz, .failed
+
 ; Can't hit an absent opponent.
 
 	call CheckHiddenOpponent

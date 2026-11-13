@@ -1873,15 +1873,22 @@ RunNullificationAbilities::
 	jp RunDamageModifiers
 
 .CheckNullification:
-	ld a, [wTypeModifier]
-	and $7f
-	jr nz, .not_immune
-	and a ; clear carry
-	ret
-.not_immune
 	call GetOpponentIgnorableAbility
 	and a
 	ret z
+	ld b, a
+	ld a, [wTypeModifier]
+	and $7f
+	ld a, b
+	jr nz, .not_immune
+	; Absorbers and move-class blockers resolve before natural type
+	; immunity. A Ground Lightning Rod/Volt Absorb holder still gains its
+	; boost/heal. Levitate and Disguise instead belong after that immunity.
+	cp LEVITATE
+	jr z, .not_immune_done
+	cp DISGUISE
+	jr z, .not_immune_done
+.not_immune
 	cp DISGUISE
 	jr nz, .not_disguise
 	; Disguise only blocks damage. Status scripts run `stab` but never
@@ -2349,6 +2356,12 @@ CheckPlayerMoveRestrictions_Core:
 ; b = selected move. Carry + hl = reason text if the Assault Vest, Taunt
 ; or Torment forbids selecting it. (Replaces the old Assault Vest-only
 ; CheckPlayerAssaultVestMove_Core.)
+	ld a, [wPlayerGigaHammerLock]
+	and a
+	jr z, .not_giga_locked
+	cp b
+	jr z, .torment_blocked
+.not_giga_locked
 	push bc
 	callfar GetUserItem
 	ld a, b
@@ -2400,17 +2413,20 @@ CheckPlayerMoveRestrictions_Core:
 	ret
 
 PlayerMustStruggleExtra_Core:
-; Carry if Taunt/Torment (on top of PP and Disable) leave the player
-; without a single selectable move, forcing Struggle.
-	ld a, [wPlayerTauntCount]
-	and a
-	jr nz, .restricted
-	ld a, [wPlayerSubStatus2]
-	bit SUBSTATUS_TORMENTED, a
-	jr nz, .restricted
-	and a
+; Carry if PP, Disable, status restrictions and the effective held item
+; leave no selectable move. Check their intersection, without setting a
+; Choice lock while merely scanning the menu. This runs before MoveInfoBox
+; sets the player's turn, so preserve the caller's turn explicitly.
+	ldh a, [hBattleTurn]
+	push af
+	xor a
+	ldh [hBattleTurn], a
+	call .check
+	pop bc
+	ld a, b
+	ldh [hBattleTurn], a
 	ret
-.restricted
+.check
 	ld hl, wBattleMonMoves
 	ld de, wBattleMonPP
 	ld c, 0
@@ -2425,27 +2441,22 @@ PlayerMustStruggleExtra_Core:
 	ld a, [wDisabledMove]
 	cp b
 	jr z, .next
-	ld a, [wPlayerTauntCount]
-	and a
-	jr z, .not_taunted
 	push bc
 	push de
 	push hl
-	ld l, b
-	ld a, MOVE_CATEGORY
-	call GetMoveAttribute
+	call CheckPlayerMoveRestrictions_Core
 	pop hl
 	pop de
 	pop bc
-	cp CATEGORIZE_STATUS
-	jr z, .next
-.not_taunted
-	ld a, [wPlayerSubStatus2]
-	bit SUBSTATUS_TORMENTED, a
-	jr z, .legal
-	ld a, [wLastPlayerMove]
-	cp b
-	jr z, .next
+	jr c, .next
+	push bc
+	push de
+	push hl
+	call .choice_allowed
+	pop hl
+	pop de
+	pop bc
+	jr c, .next
 .legal
 	and a
 	ret
@@ -2456,6 +2467,35 @@ PlayerMustStruggleExtra_Core:
 	ld a, c
 	cp NUM_MOVES
 	jr c, .loop
+	scf
+	ret
+.choice_allowed
+	push bc
+	callfar GetUserItem
+	ld a, b
+	sub HELD_CHOICE_BAND
+	cp HELD_CHOICE_SCARF - HELD_CHOICE_BAND + 1
+	pop bc
+	jr nc, .choice_unlocked
+	ld a, [wPlayerChoiceLockedMove]
+	and a
+	ret z
+	cp b
+	ret z
+	; A move overwritten by Mimic/Sketch no longer enforces an old lock,
+	; matching CheckPlayerChoiceLock_Core when a selection is made.
+	ld hl, wBattleMonMoves
+	ld b, NUM_MOVES
+.find_lock
+	cp [hl]
+	jr z, .choice_blocked
+	inc hl
+	dec b
+	jr nz, .find_lock
+.choice_unlocked
+	and a
+	ret
+.choice_blocked
 	scf
 	ret
 
@@ -2530,73 +2570,72 @@ CheckPlayerChoiceLock_Core:
 
 
 HandleEnemyHeldMoveLocks_Core:
-	call .item_locks
-	; Taunt: a taunted enemy must not pick a status move
-	ld a, [wEnemyTauntCount]
-	and a
-	jr z, .no_taunt
-	ld a, [wCurEnemyMove]
-	call EnemyMoveIsStatus
-	jr nc, .no_taunt
-	call FindFirstEnemyDamagingMove
-	jr c, .no_taunt
-	jp ForceEnemyStruggle
-.no_taunt
-	; Torment: not the same move twice in a row
-	ld a, [wEnemySubStatus2]
-	bit SUBSTATUS_TORMENTED, a
-	ret z
-	push bc
-	ld hl, STRUGGLE
-	call GetMoveIDFromIndex
-	ld b, a
-	ld a, [wCurEnemyMove]
-	cp b
-	pop bc
-	ret z ; Struggle is always legal
-	ld b, a
-	ld a, [wLastEnemyMove]
-	and a
-	ret z
-	cp b
-	ret nz
-	call FindEnemyMoveNotB
-	ret c
-	jp ForceEnemyStruggle
-
-.item_locks
 	call SetEnemyTurn
 	callfar GetUserItem
 	ld a, b
-	cp HELD_ASSAULT_VEST
-	jr z, .assault_vest
 	sub HELD_CHOICE_BAND
 	cp HELD_CHOICE_SCARF - HELD_CHOICE_BAND + 1
 	jr nc, .not_choice
 	ld a, [wEnemyChoiceLockedMove]
 	and a
 	jr nz, .use_locked
+.new_choice
+	; Choose a move that meets all restrictions before establishing a new
+	; lock. Selection still establishes the lock even if execution fails.
+	call SelectLegalEnemyMove
 	ld a, [wCurEnemyMove]
-	and a
-	ret z
+	push af
+	ld hl, STRUGGLE
+	call GetMoveIDFromIndex
+	pop bc
+	cp b
+	ret z ; forced Struggle must not establish a Choice lock
+	ld a, b
 	ld [wEnemyChoiceLockedMove], a
 	ret
 .use_locked
 	ld b, a
-	call FindEnemyMoveWithPP
+	call SelectedEnemyMoveWithPP
+	jr c, .check_locked
+	ld a, c
+	cp NUM_MOVES
+	jr nz, ForceEnemyStruggle
+	; Mimic/Sketch can overwrite the locked move. Match the player's
+	; selection path: a missing move releases the stale lock, whereas
+	; a present move with no PP or Disable still forces Struggle.
+	xor a
+	ld [wEnemyChoiceLockedMove], a
+	jr .new_choice
+.check_locked
+	ld a, b
+	ld [wCurEnemyMove], a
+	; Taunt and Torment cannot release an existing Choice lock. If the
+	; locked move is forbidden, the holder has to use Struggle.
+	call EnemyMoveMeetsRestrictions
 	ret c
 	jr ForceEnemyStruggle
 .not_choice
 	xor a
 	ld [wEnemyChoiceLockedMove], a
-	ret
-.assault_vest
-	xor a
-	ld [wEnemyChoiceLockedMove], a
+	; Klutz/Gas are handled by GetUserItem, including during the scan.
+	; Keep the AI's choice whenever it satisfies every active restriction.
+SelectLegalEnemyMove:
 	ld a, [wCurEnemyMove]
-	call EnemyMoveIsStatus
-	ret nc
-	call FindFirstEnemyDamagingMove
+	cp $ff
+	ret z ; link partner skipped its turn
+	ld b, a
+	push bc
+	ld hl, STRUGGLE
+	call GetMoveIDFromIndex
+	pop bc
+	cp b
+	ret z ; Struggle is always legal
+	call SelectedEnemyMoveWithPP
+	jr nc, .find_another
+	call EnemyMoveMeetsRestrictions
+	ret c
+.find_another
+	call FindLegalEnemyMove
 	ret c
 	; fallthrough
 ForceEnemyStruggle:
@@ -2605,8 +2644,38 @@ ForceEnemyStruggle:
 	ld [wCurEnemyMove], a
 	ret
 
+SelectedEnemyMoveWithPP:
+; Preserve a valid selected slot: Mimic can create duplicate move IDs,
+; and choosing the second copy must spend that copy's PP. Encore may
+; leave a stale slot number, in which case locate its selected move.
+	ld a, [wCurEnemyMoveNum]
+	cp NUM_MOVES
+	jr nc, FindEnemyMoveWithPP
+	ld c, a ; distinguish a present unusable move from a missing Choice lock
+	ld e, a
+	ld d, 0
+	ld hl, wEnemyMonMoves
+	add hl, de
+	ld a, [hl]
+	cp b
+	jr nz, FindEnemyMoveWithPP
+	ld a, [wEnemyDisabledMove]
+	cp b
+	jr z, .no
+	ld hl, wEnemyMonPP
+	add hl, de
+	ld a, [hl]
+	and PP_MASK
+	jr z, FindEnemyMoveWithPP ; another copy of this move may still have PP
+	scf
+	ret
+.no
+	and a
+	ret
+
 FindEnemyMoveWithPP:
-; b = move id. Carry if the enemy can use it.
+; b = move id. Carry if the enemy can use it. On failure c = NUM_MOVES
+; when absent, or its slot when present but exhausted/disabled.
 	ld hl, wEnemyMonMoves
 	ld de, wEnemyMonPP
 	ld c, 0
@@ -2619,7 +2688,7 @@ FindEnemyMoveWithPP:
 	jr z, .no
 	ld a, [de]
 	and PP_MASK
-	jr z, .no
+	jr z, .next
 	ld a, c
 	ld [wCurEnemyMoveNum], a
 	ld a, b
@@ -2632,13 +2701,27 @@ FindEnemyMoveWithPP:
 	ld a, c
 	cp NUM_MOVES
 	jr c, .loop
+	; A full PP scan can fail even when the move is present in several
+	; exhausted slots. Check presence separately before releasing a stale
+	; Choice lock: only an absent move may leave c = NUM_MOVES on failure.
+	ld hl, wEnemyMonMoves
+	ld c, 0
+.presence
+	ld a, [hli]
+	cp b
+	jr z, .no
+	inc c
+	ld a, c
+	cp NUM_MOVES
+	jr c, .presence
 .no
 	and a
 	ret
 
-FindEnemyMoveNotB:
-; b = forbidden move id. Carry if a usable other move was found and
-; loaded into wCurEnemyMove(Num). Respects PP, Disable and Taunt.
+FindLegalEnemyMove:
+; Carry if a selectable move was found and loaded into wCurEnemyMove(Num).
+; Check PP, Disable, Taunt, Torment and Assault Vest together: replacing a
+; move for one restriction must never bypass a different restriction.
 	ld hl, wEnemyMonMoves
 	ld de, wEnemyMonPP
 	ld c, 0
@@ -2646,40 +2729,22 @@ FindEnemyMoveNotB:
 	ld a, [hl]
 	and a
 	jr z, .next
-	cp b
-	jr z, .next
-	push bc
 	ld b, a
 	ld a, [wEnemyDisabledMove]
 	cp b
-	jr z, .next_pop
+	jr z, .next
 	ld a, [de]
 	and PP_MASK
-	jr z, .next_pop
-	ld a, [wEnemyTauntCount]
-	and a
-	jr z, .usable
-	ld a, b
-	push hl
-	push de
-	call EnemyMoveIsStatus ; clobbers hl
-	pop de
-	pop hl
-	jr c, .next_pop
+	jr z, .next
+	call EnemyMoveMeetsRestrictions
+	jr nc, .next
 .usable
 	ld a, c
-	pop bc
-	; a still holds c? no - reload slot below
-	ld a, [hl]
-	push af
-	ld a, c
 	ld [wCurEnemyMoveNum], a
-	pop af
+	ld a, b
 	ld [wCurEnemyMove], a
 	scf
 	ret
-.next_pop
-	pop bc
 .next
 	inc hl
 	inc de
@@ -2690,54 +2755,57 @@ FindEnemyMoveNotB:
 	and a
 	ret
 
-FindFirstEnemyDamagingMove:
-	ld hl, wEnemyMonMoves
-	ld de, wEnemyMonPP
-	ld c, 0
-.loop
-	ld a, [hli]
+EnemyMoveMeetsRestrictions:
+; b = candidate move. Carry if Taunt, Torment and the effective item
+; allow it. Preserve all registers needed by the moves/PP slot scan.
+	ld a, [wEnemyGigaHammerLock]
 	and a
-	jr z, .next
-	ld b, a
-	ld a, [wEnemyDisabledMove]
+	jr z, .not_giga_locked
 	cp b
-	jr z, .next
-	ld a, [de]
-	and PP_MASK
-	jr z, .next
-	ld a, b
+	jr nz, .not_giga_locked
+	and a
+	ret
+.not_giga_locked
 	push hl
 	push de
-	call EnemyMoveIsStatus ; clobbers hl (GetMoveAttribute)
-	pop de
-	pop hl
-	jr c, .next
-	ld a, c
-	ld [wCurEnemyMoveNum], a
+	push bc
+	push bc
+	callfar GetUserItem
 	ld a, b
-	ld [wCurEnemyMove], a
-	scf
-	ret
-.next
-	inc de
-	inc c
-	ld a, c
-	cp NUM_MOVES
-	jr c, .loop
+	pop bc
+	cp HELD_ASSAULT_VEST
+	jr z, .check_status
+	ld a, [wEnemyTauntCount]
 	and a
-	ret
-
-EnemyMoveIsStatus:
-; Carry if move a is status.
-	ld l, a
+	jr z, .torment
+.check_status
+	ld l, b
+	push bc
 	ld a, MOVE_CATEGORY
 	call GetMoveAttribute
+	pop bc
 	cp CATEGORIZE_STATUS
-	jr z, .status
+	jr z, .blocked
+.torment
+	ld a, [wEnemySubStatus2]
+	bit SUBSTATUS_TORMENTED, a
+	jr z, .allowed
+	ld a, [wLastEnemyMove]
 	and a
-	ret
-.status
+	jr z, .allowed
+	cp b
+	jr z, .blocked
+.allowed
+	pop bc
+	pop de
+	pop hl
 	scf
+	ret
+.blocked
+	pop bc
+	pop de
+	pop hl
+	and a
 	ret
 
 RunDamageModifiers:
@@ -4560,6 +4628,10 @@ WeaknessPolicyBoost:
 	ld a, b
 	cp HELD_WEAKNESS_POLICY
 	ret nz
+	; A capped item boost is independent of the hit that activated it.
+	; Keep its failure from stopping the remaining hits or secondaries.
+	ld a, [wAttackMissed]
+	push af
 	ld a, [hl]
 	call AbilityBufferItemName
 	callfar ConsumeHeldItem
@@ -4579,6 +4651,8 @@ WeaknessPolicyBoost:
 	farcall BattleCommand_SpecialAttackUp2
 	farcall BattleCommand_StatUpMessage
 	farcall FlushStatMessages_Core
+	pop af
+	ld [wAttackMissed], a
 	jp SwitchTurn
 
 RockyHelmetDamage:
@@ -4687,7 +4761,9 @@ RunContactAbilitiesHookBody:
 	cp STENCH
 	call z, StenchAbility
 	; defender on-hit abilities (any damaging move, contact or not)
-	call GetOpponentAbility
+	; Thermal Exchange's Fire-hit boost is ignorable too, not just its burn
+	; immunity. Other reactions below have no IGNORABLE flag and still run.
+	call GetOpponentIgnorableAbility
 	; Cursed Body and Toxic Debris still have a useful effect when the hit
 	; knocks their holder out. Stat-changing reactions do not.
 	cp CURSED_BODY
@@ -8571,7 +8647,16 @@ StenchAbility:
 	ret nz
 	; Reuse the regular handler for sleep, Substitute/Infiltrator, action
 	; order, Shield Dust/Inner Focus and recharge handling.
+	; Stench's successful roll is independent of the move's own secondary
+	; roll. A failed Ember burn must not cancel this flinch, and this proc
+	; must not turn that failed burn into a success later in the script.
+	ld a, [wEffectFailed]
+	push af
+	xor a
+	ld [wEffectFailed], a
 	farcall BattleCommand_FlinchTarget
+	pop af
+	ld [wEffectFailed], a
 	ret
 
 .native_flinch_effects

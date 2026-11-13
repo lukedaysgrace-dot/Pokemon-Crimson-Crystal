@@ -1,0 +1,156 @@
+# Existing locks are staged as the result of a prior turn. Native enemy
+# selection must satisfy every active restriction at once.
+
+- name: "Selection audit 11-13: Taunt cannot free an enemy from its Choice status lock"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [SPLASH, TACKLE]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: SPLASH}, wEnemyTauntCount: 3}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "player.hp < player.start_hp", "enemy.pp[0] == enemy.start_pp[0]", "enemy.pp[1] == enemy.start_pp[1]"]
+
+- name: "Selection audit 11-13: Torment cannot free an enemy from its Choice attack lock"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [TACKLE, GROWL]}
+  setup_wram: {wEnemySubStatus2: 2, wEnemyChoiceLockedMove: {move: TACKLE}, wLastEnemyMove: {move: TACKLE}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "player.hp < player.start_hp", "enemy.pp[0] == enemy.start_pp[0]", "enemy.pp[1] == enemy.start_pp[1]"]
+
+- name: "Selection audit 11-13: Assault Vest and Torment together force enemy Struggle"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: ASSAULT_VEST, moves: [TACKLE, SPLASH]}
+  setup_wram: {wEnemySubStatus2: 2, wLastEnemyMove: {move: TACKLE}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "player.hp < player.start_hp", "enemy.pp[0] == enemy.start_pp[0]", "enemy.pp[1] == enemy.start_pp[1]"]
+
+- name: "Selection audit 11-13: Assault Vest and Torment still allow another attack"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: ASSAULT_VEST, moves: [TACKLE, SPLASH, SCRATCH]}
+  setup_wram: {wEnemySubStatus2: 2, wLastEnemyMove: {move: TACKLE}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'SCRATCH'", "player.hp < player.start_hp", "enemy.pp[2] == enemy.start_pp[2] - 1"]
+
+- name: "Selection audit 11-13: Klutz disables enemy Choice lock when taunted"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: KLUTZ, item: CHOICE_BAND, moves: [SPLASH, TACKLE]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: SPLASH}, wEnemyTauntCount: 3}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'TACKLE'", "enemy.pp[1] == enemy.start_pp[1] - 1"]
+
+- name: "Selection audit 11-13: Klutz allows a tormented enemy to use status under Vest"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: KLUTZ, item: ASSAULT_VEST, moves: [TACKLE, SPLASH]}
+  setup_wram: {wEnemySubStatus2: 2, wLastEnemyMove: {move: TACKLE}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'SPLASH'", "player.hp == player.start_hp", "enemy.pp[1] == enemy.start_pp[1] - 1"]
+
+- name: "Selection audit 11-13: Gas restores a Klutz enemy's Choice restriction"
+  player: {species: WEEZING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: KLUTZ, item: CHOICE_BAND, moves: [SPLASH, TACKLE]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: SPLASH}, wEnemyTauntCount: 3}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "player.hp < player.start_hp", "enemy.pp[1] == enemy.start_pp[1]"]
+
+- name: "Selection audit 11-13: Gas restores a Klutz enemy's Vest restriction"
+  player: {species: WEEZING, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: KLUTZ, item: ASSAULT_VEST, moves: [TACKLE, SPLASH]}
+  setup_wram: {wEnemySubStatus2: 2, wLastEnemyMove: {move: TACKLE}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "player.hp < player.start_hp", "enemy.pp[1] == enemy.start_pp[1]"]
+
+- name: "Selection audit 11-13: an enemy's first Choice lock uses a selectable move"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [SPLASH, TACKLE]}
+  setup_wram: {wEnemyTauntCount: 3}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'TACKLE'", "wram('wEnemyChoiceLockedMove') == wram('wCurEnemyMove')", "enemy.pp[1] == enemy.start_pp[1] - 1"]
+
+- name: "Selection audit 11-13: an exhausted enemy Choice lock still forces Struggle"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [TACKLE, SPLASH]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: TACKLE}, wEnemyMonPP: [0, 40, 0, 0]}
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "player.hp < player.start_hp", "enemy.pp[1] == enemy.start_pp[1]"]
+
+- name: "Selection audit 11-13: a disabled enemy Choice lock still forces Struggle"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [TACKLE, SPLASH]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: TACKLE}, wEnemyDisabledMove: {move: TACKLE}, wEnemyDisableCount: 20}
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "player.hp < player.start_hp", "enemy.pp[0] == enemy.start_pp[0]", "enemy.pp[1] == enemy.start_pp[1]"]
+
+- name: "Selection audit 11-13: a valid second duplicate move keeps its own PP slot"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [TACKLE, TACKLE]}
+  rng: forced_high
+  rng_value: 181
+  turns: 1
+  assert: ["enemy_move() == 'TACKLE'", "enemy.pp[0] == enemy.start_pp[0]", "enemy.pp[1] == enemy.start_pp[1] - 1"]
+
+- name: "Selection audit 11-13: an active Choice lock keeps the second duplicate's PP slot"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [TACKLE, TACKLE]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: TACKLE}}
+  rng: forced_high
+  rng_value: 181
+  turns: 1
+  assert: ["enemy_move() == 'TACKLE'", "enemy.pp[0] == enemy.start_pp[0]", "enemy.pp[1] == enemy.start_pp[1] - 1"]
+
+- name: "Selection audit 11-13: an exhausted first Choice copy does not hide a usable second copy"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [TACKLE, TACKLE, SPLASH]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: TACKLE}, wEnemyMonPP: [0, 35, 40, 0]}
+  rng: forced_high
+  rng_value: 182
+  turns: 1
+  assert: ["enemy_move() == 'TACKLE'", "enemy.pp[0] == 0", "enemy.pp[1] == enemy.start_pp[1] - 1", "enemy.pp[2] == enemy.start_pp[2]"]
+
+- name: "Selection audit 11-13: an exhausted second Choice copy does not hide a usable first copy"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [TACKLE, TACKLE, SPLASH]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: TACKLE}, wEnemyMonPP: [35, 0, 40, 0]}
+  rng: forced_high
+  rng_value: 182
+  turns: 1
+  assert: ["enemy_move() == 'TACKLE'", "enemy.pp[0] == enemy.start_pp[0] - 1", "enemy.pp[1] == 0", "enemy.pp[2] == enemy.start_pp[2]"]
+
+- name: "Selection audit 11-13: two exhausted Choice copies retain their lock and force Struggle"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [TACKLE, TACKLE, SPLASH]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: TACKLE}, wEnemyMonPP: [0, 0, 40, 0]}
+  rng: forced_high
+  rng_value: 182
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "wram('wEnemyChoiceLockedMove') == wram('wEnemyMonMoves')", "enemy.pp[0] == 0", "enemy.pp[1] == 0", "enemy.pp[2] == enemy.start_pp[2]"]
+
+- name: "Selection audit 11-13: Disable blocks both duplicate Choice copies"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [TACKLE, TACKLE, SPLASH]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: TACKLE}, wEnemyDisabledMove: {move: TACKLE}, wEnemyDisableCount: 20}
+  rng: forced_high
+  rng_value: 182
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "wram('wEnemyChoiceLockedMove') == wram('wEnemyMonMoves')", "enemy.pp[0] == enemy.start_pp[0]", "enemy.pp[1] == enemy.start_pp[1]", "enemy.pp[2] == enemy.start_pp[2]"]
+
+- name: "Selection audit 11-13: Choice Mimic can use its copied move on the next turn"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, item: CHOICE_BAND, moves: [MIMIC]}
+  rng: forced_high
+  turns: 2
+  assert:
+    - enemy_move() == 'TACKLE'
+    - enemy.moves[0] == 'TACKLE'
+    - enemy.pp[0] == 8
+    - wram('wEnemyChoiceLockedMove') == wram('wCurEnemyMove')

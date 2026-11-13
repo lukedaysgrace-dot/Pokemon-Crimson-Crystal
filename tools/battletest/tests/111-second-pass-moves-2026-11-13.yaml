@@ -1,0 +1,81 @@
+# Second focused pass: Spite's reflectable effect must use the same complete
+# Magic Bounce path as other reflected status moves. Keep legacy 2-5 PP loss.
+
+- name: "Second move pass: enemy Magic Bounce reflects Spite"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPITE]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["ability_seen('MAGIC_BOUNCE')", "player.start_pp[0] - player.pp[0] == 3", "enemy.start_pp[0] - enemy.pp[0] == 1", "enemy_move() == 'SPLASH'", "(wram('wDisguiseBusted', 1) & 64) == 0"]
+
+- name: "Second move pass: player Magic Bounce reflects Spite"
+  player: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPITE]}
+  rng: forced_high
+  turns: 1
+  assert: ["ability_seen('MAGIC_BOUNCE')", "enemy.start_pp[0] - enemy.pp[0] == 3", "player.start_pp[0] - player.pp[0] == 1", "enemy_move() == 'SPITE'", "(wram('wDisguiseBusted', 1) & 64) == 0"]
+
+- name: "Second move pass: reflected Spite bypasses both Substitutes"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPITE]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, substatus: [SUBSTITUTE], moves: [SPLASH]}
+  setup_wram: {wPlayerSubstituteHP: 100, wEnemySubstituteHP: 100}
+  rng: forced_high
+  turns: 1
+  assert: ["ability_seen('MAGIC_BOUNCE')", "player.start_pp[0] - player.pp[0] == 3", "enemy.start_pp[0] - enemy.pp[0] == 1", "wram('wPlayerSubstituteHP') == 100", "wram('wEnemySubstituteHP') == 100"]
+
+- name: "Second move pass control: Mold Breaker bypasses Spite reflection"
+  player: {species: MEW, level: 50, ability: MOLD_BREAKER, moves: [SPITE]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["not ability_seen('MAGIC_BOUNCE')", "player.start_pp[0] - player.pp[0] == 1", "enemy.start_pp[0] - enemy.pp[0] == 3"]
+
+- name: "Second move pass control: Gas suppresses Spite reflection"
+  player: {species: MEW, level: 50, ability: NEUTRALIZING_GAS, moves: [SPITE]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["not ability_seen('MAGIC_BOUNCE')", "player.start_pp[0] - player.pp[0] == 1", "enemy.start_pp[0] - enemy.pp[0] == 3"]
+
+- name: "Second move pass control: Protect blocks Spite before reflection"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPITE]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [PROTECT]}
+  rng: forced_high
+  turns: 1
+  assert: ["not ability_seen('MAGIC_BOUNCE')", "player.start_pp[0] - player.pp[0] == 1", "enemy.start_pp[0] - enemy.pp[0] == 1"]
+
+- name: "Second move pass: two Magic Bounce holders reflect Spite only once"
+  player: {species: ESPEON, level: 50, ability: MAGIC_BOUNCE, moves: [SPITE]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [SPLASH]}
+  rng: forced_high
+  turns: 1
+  assert: ["ability_seen('MAGIC_BOUNCE')", "player.start_pp[0] - player.pp[0] == 3", "enemy.start_pp[0] - enemy.pp[0] == 1", "(wram('wDisguiseBusted', 1) & 64) == 0", "wram('wInAbility') == 0"]
+
+- name: "Second move pass control: ordinary Spite bypasses both Substitutes"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPITE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, substatus: [SUBSTITUTE], moves: [SPLASH]}
+  setup_wram: {wPlayerSubstituteHP: 100, wEnemySubstituteHP: 100}
+  rng: forced_high
+  turns: 1
+  assert: ["not ability_seen('MAGIC_BOUNCE')", "player.start_pp[0] - player.pp[0] == 1", "enemy.start_pp[0] - enemy.pp[0] == 3", "wram('wPlayerSubstituteHP') == 100", "wram('wEnemySubstituteHP') == 100"]
+
+- name: "Second move pass: King Shield permits Spite reflection"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPITE]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [KINGS_SHIELD]}
+  rng: forced_high
+  turns: 1
+  assert: ["ability_seen('MAGIC_BOUNCE')", "player.start_pp[0] - player.pp[0] == 3", "enemy.start_pp[0] - enemy.pp[0] == 1"]
+
+- name: "Second move pass: enemy King Shield permits Taunt reflection"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, moves: [TAUNT]}
+  enemy: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [KINGS_SHIELD]}
+  rng: forced_high
+  turns: 1
+  assert: ["ability_seen('MAGIC_BOUNCE')", "wram('wPlayerTauntCount') == 3", "wram('wEnemyTauntCount') == 0"]
+
+- name: "Second move pass: player King Shield permits Taunt reflection"
+  player: {species: ESPEON, level: 100, ability: MAGIC_BOUNCE, moves: [KINGS_SHIELD]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [TAUNT]}
+  rng: forced_high
+  turns: 1
+  assert: ["ability_seen('MAGIC_BOUNCE')", "wram('wEnemyTauntCount') == 3", "wram('wPlayerTauntCount') == 0"]

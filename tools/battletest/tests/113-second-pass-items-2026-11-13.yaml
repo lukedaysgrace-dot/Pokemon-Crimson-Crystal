@@ -1,0 +1,140 @@
+# Throat Spray is used after a successful sound move even at a stat cap.
+# Contrary changes the boost's direction; it does not prevent item use.
+
+- name: "Second item pass: player capped Throat Spray is consumed"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  enemy: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.item == 'NO_ITEM'
+    - player.stat_levels[3] == 13
+
+- name: "Second item pass: enemy capped Throat Spray is consumed"
+  player: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - enemy.item == 'NO_ITEM'
+    - enemy.stat_levels[3] == 13
+
+- name: "Second item pass: player Contrary Throat Spray lowers capped Special Attack"
+  player: { species: MEW, level: 50, ability: CONTRARY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  enemy: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.stat_levels[3] == 12
+
+- name: "Second item pass: enemy Contrary Throat Spray lowers capped Special Attack"
+  player: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: CONTRARY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - enemy.stat_levels[3] == 12
+
+- name: "Second item pass: player Contrary Throat Spray at minimum still consumes"
+  player: { species: MEW, level: 50, ability: CONTRARY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: -6 } }
+  enemy: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert:
+    - player.item == 'NO_ITEM'
+    - player.stat_levels[3] == 1
+
+- name: "Second item pass: enemy Contrary Throat Spray at minimum still consumes"
+  player: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: CONTRARY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: -6 } }
+  rng: forced_high
+  turns: 1
+  assert:
+    - enemy.item == 'NO_ITEM'
+    - enemy.stat_levels[3] == 1
+
+- name: "Second item pass: capped Throat Spray remains suppressed by player Klutz"
+  player: { species: MEW, level: 50, ability: KLUTZ, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  enemy: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: [player.item == 'THROAT_SPRAY', 'player.stat_levels[3] == 13']
+
+- name: "Second item pass: capped Throat Spray remains suppressed by enemy Klutz"
+  player: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: KLUTZ, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert: [enemy.item == 'THROAT_SPRAY', 'enemy.stat_levels[3] == 13']
+
+- name: "Second item pass: Gas restores player capped Throat Spray"
+  player: { species: MEW, level: 50, ability: KLUTZ, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  enemy: { species: BLISSEY, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: [player.item == 'NO_ITEM', 'player.stat_levels[3] == 13']
+
+- name: "Second item pass: Gas restores enemy capped Throat Spray"
+  player: { species: BLISSEY, level: 100, ability: NEUTRALIZING_GAS, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: KLUTZ, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert: [enemy.item == 'NO_ITEM', 'enemy.stat_levels[3] == 13']
+
+- name: "Second item pass: player capped Throat Spray does not activate into Protect"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  enemy: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [PROTECT] }
+  rng: forced_high
+  turns: 1
+  assert: [player.item == 'THROAT_SPRAY', enemy.hp == enemy.start_hp]
+
+- name: "Second item pass: enemy capped Throat Spray does not activate into Protect"
+  player: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [PROTECT] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert: [enemy.item == 'THROAT_SPRAY', player.hp == player.start_hp]
+
+- name: "Second item pass: player capped Throat Spray does not activate into immunity"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  enemy: { species: GENGAR, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: [player.item == 'THROAT_SPRAY', enemy.hp == enemy.start_hp]
+
+- name: "Second item pass: enemy capped Throat Spray does not activate into immunity"
+  player: { species: GENGAR, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: NO_ABILITY, item: THROAT_SPRAY, moves: [HYPER_VOICE], stages: { satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert: [enemy.item == 'THROAT_SPRAY', player.hp == player.start_hp]
+
+- name: "Second item pass: player capped Throat Spray remains suppressed by Sheer Force"
+  player: { species: MEW, level: 50, ability: SHEER_FORCE, item: THROAT_SPRAY, moves: [BUG_BUZZ], stages: { satk: 6 } }
+  enemy: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  rng: forced_high
+  turns: 1
+  assert: [player.item == 'THROAT_SPRAY', enemy.hp < enemy.start_hp]
+
+- name: "Second item pass: enemy capped Throat Spray remains suppressed by Sheer Force"
+  player: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  enemy: { species: MEW, level: 50, ability: SHEER_FORCE, item: THROAT_SPRAY, moves: [BUG_BUZZ], stages: { satk: 6 } }
+  rng: forced_high
+  turns: 1
+  assert: [enemy.item == 'THROAT_SPRAY', player.hp < player.start_hp]
+
+- name: "Second item pass: player capped Throat Spray records per-slot Recycle history"
+  player: { species: MEW, level: 50, ability: NO_ABILITY, item: THROAT_SPRAY, moves: [HYPER_VOICE, RECYCLE], stages: { satk: 6 } }
+  enemy: { species: BLISSEY, level: 100, ability: NO_ABILITY, moves: [SPLASH] }
+  move_script: [1, 2]
+  rng: forced_high
+  turns: 2
+  assert:
+    - player.item == 'THROAT_SPRAY'
+    - wram('wPlayerRecycleItems') == 0
+    - wram('wPartyMon1Item') == wram('wBattleMonItem')
+    - textbox_seen('BattleRecycle_Core.restored')

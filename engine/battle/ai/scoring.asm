@@ -1652,6 +1652,7 @@ AI_Smart_Spite:
 .asm_38cfb
 	pop hl
 	ld a, [de]
+	and PP_MASK
 	cp $6
 	jr c, .asm_38d0d
 	cp $f

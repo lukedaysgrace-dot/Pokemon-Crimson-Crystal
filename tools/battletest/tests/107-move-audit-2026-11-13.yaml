@@ -1,0 +1,98 @@
+# Focused move targeting regressions. Sleep Talk legally calls Protect at
+# normal priority, allowing a sleeping target to protect before Nightmare.
+
+- name: "Move audit 11-13: Nightmare respects a sleeping player's Protect"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, PROTECT]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [NIGHTMARE]}
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - textbox_seen('ProtectedItselfText')
+    - (player.substatus[0] & 1) == 0
+    - player.hp == player.start_hp
+
+- name: "Move audit 11-13: Nightmare respects a sleeping enemy's Protect"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [NIGHTMARE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, PROTECT]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy_class: FALKNER
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - textbox_seen('ProtectedItselfText')
+    - (enemy.substatus[0] & 1) == 0
+    - enemy.hp == enemy.start_hp
+
+- name: "Move audit 11-13: Nightmare respects a sleeping player's Baneful Bunker"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, BANEFUL_BUNKER]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [NIGHTMARE]}
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - textbox_seen('ProtectedItselfText')
+    - (player.substatus[0] & 1) == 0
+    - player.hp == player.start_hp
+
+- name: "Move audit 11-13: Nightmare respects a sleeping enemy's Baneful Bunker"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [NIGHTMARE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, BANEFUL_BUNKER]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy_class: FALKNER
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - textbox_seen('ProtectedItselfText')
+    - (enemy.substatus[0] & 1) == 0
+    - enemy.hp == enemy.start_hp
+
+- name: "Move audit 11-13: Nightmare remains a status move through player King Shield"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, KINGS_SHIELD]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [NIGHTMARE]}
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - textbox_seen('ProtectedItselfText')
+    - (player.substatus[0] & 1) != 0
+    - player.start_hp - player.hp == player.maxhp // 4
+
+- name: "Move audit 11-13: Nightmare remains a status move through enemy King Shield"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [NIGHTMARE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, KINGS_SHIELD]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy_class: FALKNER
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - textbox_seen('ProtectedItselfText')
+    - (enemy.substatus[0] & 1) != 0
+    - enemy.start_hp - enemy.hp == enemy.maxhp // 4
+
+- name: "Move audit 11-13: No Guard Nightmare cannot bypass player Protect"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, PROTECT]}
+  enemy: {species: MEW, level: 50, ability: NO_GUARD, moves: [NIGHTMARE]}
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - textbox_seen('ProtectedItselfText')
+    - (player.substatus[0] & 1) == 0
+    - player.hp == player.start_hp
+
+- name: "Move audit 11-13: No Guard Nightmare cannot bypass enemy Protect"
+  player: {species: MEW, level: 50, ability: NO_GUARD, substatus: [CANT_RUN], moves: [NIGHTMARE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SLEEP_TALK, PROTECT]}
+  enemy2: {species: MEW, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy_class: FALKNER
+  rng: seeded
+  rng_value: 29
+  turns: 1
+  assert:
+    - textbox_seen('ProtectedItselfText')
+    - (enemy.substatus[0] & 1) == 0
+    - enemy.hp == enemy.start_hp

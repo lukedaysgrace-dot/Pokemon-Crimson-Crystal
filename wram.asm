@@ -1736,7 +1736,7 @@ wOBP1:: db
 
 wNumHits:: db
 
-wSilentCryptPulseTimer:: db ; reclaimed padding byte; see AnimateSilentCryptLights
+wSilentCryptPulseTimer:: db ; reclaimed padding byte; see AnimateSilentCryptLights (also League palette phase, Route 39 windmill frame)
 
 wOptions:: ; cfcc
 ; bit 0-2: number of frames to delay when printing text

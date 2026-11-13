@@ -1,0 +1,835 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index db635a434..813ad2078 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -264,6 +264,36 @@ Read this before changing the game. Keep it up to date when something here chang
+ - Every guard move must be in `MetronomeExcepts`, including ones that reuse
+   `EFFECT_PROTECT` (King's Shield). `tools/audit_metronome_exceptions.py`
+   checks this and is part of `make audit-static`.
++- Player and enemy selection must satisfy PP, Disable, Taunt, Torment and
++  effective held-item restrictions together. A blocked Choice lock forces
++  Struggle; Assault Vest cannot leave a status-only player stuck in the menu.
++  The player's availability scan preserves `hBattleTurn` and never establishes
++  a Choice lock. Enemy selection preserves a legal selected duplicate move's
++  PP slot (Mimic can duplicate IDs), and releases a stale lock if Mimic or
++  Sketch removed that move. Exhausted duplicate slots do not hide a usable
++  copy; distinguish absent moves from present but disabled/exhausted moves.
++  Run `tools/test_battle_selection_restrictions.py`
++  on both ROMs and `tools/battletest/move_restriction_menu_checks.py` for the
++  actual Fight menu; auto-mode YAML cannot cover the player menu.
++- Nightmare respects Protect and Baneful Bunker, including Sleep Talk calls;
++  King's Shield still permits status moves. Thermal Exchange's Fire-hit boost
++  is bypassed by Mold Breaker. Absorbers and move-class blockers run before
++  natural type immunity, while Disguise and Levitate remain after it.
++- Light Ball and Thick Club obey effective Klutz. A capped Power Herb Skull
++  Bash boost or Weakness Policy boost must preserve the triggering move's
++  failure state, so damage, subsequent hits and secondaries still execute.
++  `tools/test_held_item_hit_integrity.py` checks both ROMs' native routines.
++  Regression fixtures `107` through `110` dated `2026-11-13` cover these fixes.
++  Spite's AI reads only `PP_MASK`, independently of the target's PP-Up bits.
++- Magic Bounce reflects Spite; King's Shield permits status reflection just
++  as it permits ordinary status moves. Protect/Baneful Bunker still block it.
++- Stench's added flinch roll is independent of the move's own secondary roll;
++  preserve that secondary's `wEffectFailed` around the flinch helper.
++- Successful sound use consumes Throat Spray even at a stat cap. Resolve
++  Contrary through the normal boost command and preserve the move's failure
++  flags around the item boost. Giga Hammer/Doom Desire cooldowns participate
++  in both sides' legal-move scans: an otherwise locked Choice user Struggles.
++  Fixtures `111` through `114` cover the second November 13 interaction pass.
+ - `make test-moves-abilities BATTLE_TEST_JOBS=8` includes every-move semantic
+   outcomes, dynamic-type controls and called-move interactions. The optional
+   `make test-exhaustive-battles BATTLE_TEST_JOBS=8` also plays every move with
+diff --git a/Makefile b/Makefile
+index 7f87cc50c..2fda73b05 100644
+--- a/Makefile
++++ b/Makefile
+@@ -156,6 +156,11 @@ test-moves-abilities: pokecrystal.gbc pokecrystal_debug.gbc
+ 	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal.gbc
+ 	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal_debug.gbc
+ 	$(BATTLE_TEST_PYTHON) tools/test_battle_action_context.py
++	$(BATTLE_TEST_PYTHON) tools/test_battle_selection_restrictions.py pokecrystal.gbc
++	$(BATTLE_TEST_PYTHON) tools/test_battle_selection_restrictions.py pokecrystal_debug.gbc
++	$(BATTLE_TEST_PYTHON) tools/test_held_item_hit_integrity.py
++	$(BATTLE_TEST_PYTHON) tools/battletest/choice_lock_menu_checks.py
++	$(BATTLE_TEST_PYTHON) tools/battletest/move_restriction_menu_checks.py
+ 	$(BATTLE_TEST_PYTHON) tools/battletest/ai_dynamic_type_checks.py
+ 	$(BATTLE_TEST_PYTHON) tools/battletest/metronome_priority_checks.py
+ 	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render --jobs $(BATTLE_TEST_JOBS) --all-moves --all-effects --move-semantics --dynamic-type-matrix --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --outcome-matrix --item-matrix --reaction-matrix --complex-matrix --long-battles --interactions 512
+diff --git a/engine/battle/abilities_engine.asm b/engine/battle/abilities_engine.asm
+index 17d6b4e57..5125d035c 100644
+--- a/engine/battle/abilities_engine.asm
++++ b/engine/battle/abilities_engine.asm
+@@ -1873,15 +1873,22 @@ RunNullificationAbilities::
+ 	jp RunDamageModifiers
+ 
+ .CheckNullification:
++	call GetOpponentIgnorableAbility
++	and a
++	ret z
++	ld b, a
+ 	ld a, [wTypeModifier]
+ 	and $7f
++	ld a, b
+ 	jr nz, .not_immune
+-	and a ; clear carry
+-	ret
++	; Absorbers and move-class blockers resolve before natural type
++	; immunity. A Ground Lightning Rod/Volt Absorb holder still gains its
++	; boost/heal. Levitate and Disguise instead belong after that immunity.
++	cp LEVITATE
++	jr z, .not_immune_done
++	cp DISGUISE
++	jr z, .not_immune_done
+ .not_immune
+-	call GetOpponentIgnorableAbility
+-	and a
+-	ret z
+ 	cp DISGUISE
+ 	jr nz, .not_disguise
+ 	; Disguise only blocks damage. Status scripts run `stab` but never
+@@ -2349,6 +2356,12 @@ CheckPlayerMoveRestrictions_Core:
+ ; b = selected move. Carry + hl = reason text if the Assault Vest, Taunt
+ ; or Torment forbids selecting it. (Replaces the old Assault Vest-only
+ ; CheckPlayerAssaultVestMove_Core.)
++	ld a, [wPlayerGigaHammerLock]
++	and a
++	jr z, .not_giga_locked
++	cp b
++	jr z, .torment_blocked
++.not_giga_locked
+ 	push bc
+ 	callfar GetUserItem
+ 	ld a, b
+@@ -2400,17 +2413,20 @@ CheckPlayerMoveRestrictions_Core:
+ 	ret
+ 
+ PlayerMustStruggleExtra_Core:
+-; Carry if Taunt/Torment (on top of PP and Disable) leave the player
+-; without a single selectable move, forcing Struggle.
+-	ld a, [wPlayerTauntCount]
+-	and a
+-	jr nz, .restricted
+-	ld a, [wPlayerSubStatus2]
+-	bit SUBSTATUS_TORMENTED, a
+-	jr nz, .restricted
+-	and a
++; Carry if PP, Disable, status restrictions and the effective held item
++; leave no selectable move. Check their intersection, without setting a
++; Choice lock while merely scanning the menu. This runs before MoveInfoBox
++; sets the player's turn, so preserve the caller's turn explicitly.
++	ldh a, [hBattleTurn]
++	push af
++	xor a
++	ldh [hBattleTurn], a
++	call .check
++	pop bc
++	ld a, b
++	ldh [hBattleTurn], a
+ 	ret
+-.restricted
++.check
+ 	ld hl, wBattleMonMoves
+ 	ld de, wBattleMonPP
+ 	ld c, 0
+@@ -2425,27 +2441,22 @@ PlayerMustStruggleExtra_Core:
+ 	ld a, [wDisabledMove]
+ 	cp b
+ 	jr z, .next
+-	ld a, [wPlayerTauntCount]
+-	and a
+-	jr z, .not_taunted
+ 	push bc
+ 	push de
+ 	push hl
+-	ld l, b
+-	ld a, MOVE_CATEGORY
+-	call GetMoveAttribute
++	call CheckPlayerMoveRestrictions_Core
+ 	pop hl
+ 	pop de
+ 	pop bc
+-	cp CATEGORIZE_STATUS
+-	jr z, .next
+-.not_taunted
+-	ld a, [wPlayerSubStatus2]
+-	bit SUBSTATUS_TORMENTED, a
+-	jr z, .legal
+-	ld a, [wLastPlayerMove]
+-	cp b
+-	jr z, .next
++	jr c, .next
++	push bc
++	push de
++	push hl
++	call .choice_allowed
++	pop hl
++	pop de
++	pop bc
++	jr c, .next
+ .legal
+ 	and a
+ 	ret
+@@ -2458,6 +2469,35 @@ PlayerMustStruggleExtra_Core:
+ 	jr c, .loop
+ 	scf
+ 	ret
++.choice_allowed
++	push bc
++	callfar GetUserItem
++	ld a, b
++	sub HELD_CHOICE_BAND
++	cp HELD_CHOICE_SCARF - HELD_CHOICE_BAND + 1
++	pop bc
++	jr nc, .choice_unlocked
++	ld a, [wPlayerChoiceLockedMove]
++	and a
++	ret z
++	cp b
++	ret z
++	; A move overwritten by Mimic/Sketch no longer enforces an old lock,
++	; matching CheckPlayerChoiceLock_Core when a selection is made.
++	ld hl, wBattleMonMoves
++	ld b, NUM_MOVES
++.find_lock
++	cp [hl]
++	jr z, .choice_blocked
++	inc hl
++	dec b
++	jr nz, .find_lock
++.choice_unlocked
++	and a
++	ret
++.choice_blocked
++	scf
++	ret
+ 
+ CheckPlayerChoiceLock_Core:
+ ; b = selected move. Carry if a Choice item locks another move.
+@@ -2530,73 +2570,72 @@ CheckPlayerChoiceLock_Core:
+ 
+ 
+ HandleEnemyHeldMoveLocks_Core:
+-	call .item_locks
+-	; Taunt: a taunted enemy must not pick a status move
+-	ld a, [wEnemyTauntCount]
+-	and a
+-	jr z, .no_taunt
+-	ld a, [wCurEnemyMove]
+-	call EnemyMoveIsStatus
+-	jr nc, .no_taunt
+-	call FindFirstEnemyDamagingMove
+-	jr c, .no_taunt
+-	jp ForceEnemyStruggle
+-.no_taunt
+-	; Torment: not the same move twice in a row
+-	ld a, [wEnemySubStatus2]
+-	bit SUBSTATUS_TORMENTED, a
+-	ret z
+-	push bc
+-	ld hl, STRUGGLE
+-	call GetMoveIDFromIndex
+-	ld b, a
+-	ld a, [wCurEnemyMove]
+-	cp b
+-	pop bc
+-	ret z ; Struggle is always legal
+-	ld b, a
+-	ld a, [wLastEnemyMove]
+-	and a
+-	ret z
+-	cp b
+-	ret nz
+-	call FindEnemyMoveNotB
+-	ret c
+-	jp ForceEnemyStruggle
+-
+-.item_locks
+ 	call SetEnemyTurn
+ 	callfar GetUserItem
+ 	ld a, b
+-	cp HELD_ASSAULT_VEST
+-	jr z, .assault_vest
+ 	sub HELD_CHOICE_BAND
+ 	cp HELD_CHOICE_SCARF - HELD_CHOICE_BAND + 1
+ 	jr nc, .not_choice
+ 	ld a, [wEnemyChoiceLockedMove]
+ 	and a
+ 	jr nz, .use_locked
++.new_choice
++	; Choose a move that meets all restrictions before establishing a new
++	; lock. Selection still establishes the lock even if execution fails.
++	call SelectLegalEnemyMove
+ 	ld a, [wCurEnemyMove]
+-	and a
+-	ret z
++	push af
++	ld hl, STRUGGLE
++	call GetMoveIDFromIndex
++	pop bc
++	cp b
++	ret z ; forced Struggle must not establish a Choice lock
++	ld a, b
+ 	ld [wEnemyChoiceLockedMove], a
+ 	ret
+ .use_locked
+ 	ld b, a
+-	call FindEnemyMoveWithPP
++	call SelectedEnemyMoveWithPP
++	jr c, .check_locked
++	ld a, c
++	cp NUM_MOVES
++	jr nz, ForceEnemyStruggle
++	; Mimic/Sketch can overwrite the locked move. Match the player's
++	; selection path: a missing move releases the stale lock, whereas
++	; a present move with no PP or Disable still forces Struggle.
++	xor a
++	ld [wEnemyChoiceLockedMove], a
++	jr .new_choice
++.check_locked
++	ld a, b
++	ld [wCurEnemyMove], a
++	; Taunt and Torment cannot release an existing Choice lock. If the
++	; locked move is forbidden, the holder has to use Struggle.
++	call EnemyMoveMeetsRestrictions
+ 	ret c
+ 	jr ForceEnemyStruggle
+ .not_choice
+ 	xor a
+ 	ld [wEnemyChoiceLockedMove], a
+-	ret
+-.assault_vest
+-	xor a
+-	ld [wEnemyChoiceLockedMove], a
++	; Klutz/Gas are handled by GetUserItem, including during the scan.
++	; Keep the AI's choice whenever it satisfies every active restriction.
++SelectLegalEnemyMove:
+ 	ld a, [wCurEnemyMove]
+-	call EnemyMoveIsStatus
+-	ret nc
+-	call FindFirstEnemyDamagingMove
++	cp $ff
++	ret z ; link partner skipped its turn
++	ld b, a
++	push bc
++	ld hl, STRUGGLE
++	call GetMoveIDFromIndex
++	pop bc
++	cp b
++	ret z ; Struggle is always legal
++	call SelectedEnemyMoveWithPP
++	jr nc, .find_another
++	call EnemyMoveMeetsRestrictions
++	ret c
++.find_another
++	call FindLegalEnemyMove
+ 	ret c
+ 	; fallthrough
+ ForceEnemyStruggle:
+@@ -2605,97 +2644,89 @@ ForceEnemyStruggle:
+ 	ld [wCurEnemyMove], a
+ 	ret
+ 
+-FindEnemyMoveWithPP:
+-; b = move id. Carry if the enemy can use it.
++SelectedEnemyMoveWithPP:
++; Preserve a valid selected slot: Mimic can create duplicate move IDs,
++; and choosing the second copy must spend that copy's PP. Encore may
++; leave a stale slot number, in which case locate its selected move.
++	ld a, [wCurEnemyMoveNum]
++	cp NUM_MOVES
++	jr nc, FindEnemyMoveWithPP
++	ld c, a ; distinguish a present unusable move from a missing Choice lock
++	ld e, a
++	ld d, 0
+ 	ld hl, wEnemyMonMoves
+-	ld de, wEnemyMonPP
+-	ld c, 0
+-.loop
+-	ld a, [hli]
++	add hl, de
++	ld a, [hl]
+ 	cp b
+-	jr nz, .next
++	jr nz, FindEnemyMoveWithPP
+ 	ld a, [wEnemyDisabledMove]
+ 	cp b
+ 	jr z, .no
+-	ld a, [de]
++	ld hl, wEnemyMonPP
++	add hl, de
++	ld a, [hl]
+ 	and PP_MASK
+-	jr z, .no
+-	ld a, c
+-	ld [wCurEnemyMoveNum], a
+-	ld a, b
+-	ld [wCurEnemyMove], a
++	jr z, FindEnemyMoveWithPP ; another copy of this move may still have PP
+ 	scf
+ 	ret
+-.next
+-	inc de
+-	inc c
+-	ld a, c
+-	cp NUM_MOVES
+-	jr c, .loop
+ .no
+ 	and a
+ 	ret
+ 
+-FindEnemyMoveNotB:
+-; b = forbidden move id. Carry if a usable other move was found and
+-; loaded into wCurEnemyMove(Num). Respects PP, Disable and Taunt.
++FindEnemyMoveWithPP:
++; b = move id. Carry if the enemy can use it. On failure c = NUM_MOVES
++; when absent, or its slot when present but exhausted/disabled.
+ 	ld hl, wEnemyMonMoves
+ 	ld de, wEnemyMonPP
+ 	ld c, 0
+ .loop
+-	ld a, [hl]
+-	and a
+-	jr z, .next
++	ld a, [hli]
+ 	cp b
+-	jr z, .next
+-	push bc
+-	ld b, a
++	jr nz, .next
+ 	ld a, [wEnemyDisabledMove]
+ 	cp b
+-	jr z, .next_pop
++	jr z, .no
+ 	ld a, [de]
+ 	and PP_MASK
+-	jr z, .next_pop
+-	ld a, [wEnemyTauntCount]
+-	and a
+-	jr z, .usable
+-	ld a, b
+-	push hl
+-	push de
+-	call EnemyMoveIsStatus ; clobbers hl
+-	pop de
+-	pop hl
+-	jr c, .next_pop
+-.usable
+-	ld a, c
+-	pop bc
+-	; a still holds c? no - reload slot below
+-	ld a, [hl]
+-	push af
++	jr z, .next
+ 	ld a, c
+ 	ld [wCurEnemyMoveNum], a
+-	pop af
++	ld a, b
+ 	ld [wCurEnemyMove], a
+ 	scf
+ 	ret
+-.next_pop
+-	pop bc
+ .next
+-	inc hl
+ 	inc de
+ 	inc c
+ 	ld a, c
+ 	cp NUM_MOVES
+ 	jr c, .loop
++	; A full PP scan can fail even when the move is present in several
++	; exhausted slots. Check presence separately before releasing a stale
++	; Choice lock: only an absent move may leave c = NUM_MOVES on failure.
++	ld hl, wEnemyMonMoves
++	ld c, 0
++.presence
++	ld a, [hli]
++	cp b
++	jr z, .no
++	inc c
++	ld a, c
++	cp NUM_MOVES
++	jr c, .presence
++.no
+ 	and a
+ 	ret
+ 
+-FindFirstEnemyDamagingMove:
++FindLegalEnemyMove:
++; Carry if a selectable move was found and loaded into wCurEnemyMove(Num).
++; Check PP, Disable, Taunt, Torment and Assault Vest together: replacing a
++; move for one restriction must never bypass a different restriction.
+ 	ld hl, wEnemyMonMoves
+ 	ld de, wEnemyMonPP
+ 	ld c, 0
+ .loop
+-	ld a, [hli]
++	ld a, [hl]
+ 	and a
+ 	jr z, .next
+ 	ld b, a
+@@ -2705,13 +2736,9 @@ FindFirstEnemyDamagingMove:
+ 	ld a, [de]
+ 	and PP_MASK
+ 	jr z, .next
+-	ld a, b
+-	push hl
+-	push de
+-	call EnemyMoveIsStatus ; clobbers hl (GetMoveAttribute)
+-	pop de
+-	pop hl
+-	jr c, .next
++	call EnemyMoveMeetsRestrictions
++	jr nc, .next
++.usable
+ 	ld a, c
+ 	ld [wCurEnemyMoveNum], a
+ 	ld a, b
+@@ -2719,6 +2746,7 @@ FindFirstEnemyDamagingMove:
+ 	scf
+ 	ret
+ .next
++	inc hl
+ 	inc de
+ 	inc c
+ 	ld a, c
+@@ -2727,18 +2755,58 @@ FindFirstEnemyDamagingMove:
+ 	and a
+ 	ret
+ 
+-EnemyMoveIsStatus:
+-; Carry if move a is status.
+-	ld l, a
++EnemyMoveMeetsRestrictions:
++; b = candidate move. Carry if Taunt, Torment and the effective item
++; allow it. Preserve all registers needed by the moves/PP slot scan.
++	ld a, [wEnemyGigaHammerLock]
++	and a
++	jr z, .not_giga_locked
++	cp b
++	jr nz, .not_giga_locked
++	and a
++	ret
++.not_giga_locked
++	push hl
++	push de
++	push bc
++	push bc
++	callfar GetUserItem
++	ld a, b
++	pop bc
++	cp HELD_ASSAULT_VEST
++	jr z, .check_status
++	ld a, [wEnemyTauntCount]
++	and a
++	jr z, .torment
++.check_status
++	ld l, b
++	push bc
+ 	ld a, MOVE_CATEGORY
+ 	call GetMoveAttribute
++	pop bc
+ 	cp CATEGORIZE_STATUS
+-	jr z, .status
++	jr z, .blocked
++.torment
++	ld a, [wEnemySubStatus2]
++	bit SUBSTATUS_TORMENTED, a
++	jr z, .allowed
++	ld a, [wLastEnemyMove]
+ 	and a
+-	ret
+-.status
++	jr z, .allowed
++	cp b
++	jr z, .blocked
++.allowed
++	pop bc
++	pop de
++	pop hl
+ 	scf
+ 	ret
++.blocked
++	pop bc
++	pop de
++	pop hl
++	and a
++	ret
+ 
+ RunDamageModifiers:
+ ; Apply ability-based damage modifiers to wCurDamage.
+@@ -4560,6 +4628,10 @@ WeaknessPolicyBoost:
+ 	ld a, b
+ 	cp HELD_WEAKNESS_POLICY
+ 	ret nz
++	; A capped item boost is independent of the hit that activated it.
++	; Keep its failure from stopping the remaining hits or secondaries.
++	ld a, [wAttackMissed]
++	push af
+ 	ld a, [hl]
+ 	call AbilityBufferItemName
+ 	callfar ConsumeHeldItem
+@@ -4579,6 +4651,8 @@ WeaknessPolicyBoost:
+ 	farcall BattleCommand_SpecialAttackUp2
+ 	farcall BattleCommand_StatUpMessage
+ 	farcall FlushStatMessages_Core
++	pop af
++	ld [wAttackMissed], a
+ 	jp SwitchTurn
+ 
+ RockyHelmetDamage:
+@@ -4687,7 +4761,9 @@ RunContactAbilitiesHookBody:
+ 	cp STENCH
+ 	call z, StenchAbility
+ 	; defender on-hit abilities (any damaging move, contact or not)
+-	call GetOpponentAbility
++	; Thermal Exchange's Fire-hit boost is ignorable too, not just its burn
++	; immunity. Other reactions below have no IGNORABLE flag and still run.
++	call GetOpponentIgnorableAbility
+ 	; Cursed Body and Toxic Debris still have a useful effect when the hit
+ 	; knocks their holder out. Stat-changing reactions do not.
+ 	cp CURSED_BODY
+@@ -8571,7 +8647,16 @@ StenchAbility:
+ 	ret nz
+ 	; Reuse the regular handler for sleep, Substitute/Infiltrator, action
+ 	; order, Shield Dust/Inner Focus and recharge handling.
++	; Stench's successful roll is independent of the move's own secondary
++	; roll. A failed Ember burn must not cancel this flinch, and this proc
++	; must not turn that failed burn into a success later in the script.
++	ld a, [wEffectFailed]
++	push af
++	xor a
++	ld [wEffectFailed], a
+ 	farcall BattleCommand_FlinchTarget
++	pop af
++	ld [wEffectFailed], a
+ 	ret
+ 
+ .native_flinch_effects
+diff --git a/engine/battle/ai/scoring.asm b/engine/battle/ai/scoring.asm
+index 7d0d95b75..477b39d08 100644
+--- a/engine/battle/ai/scoring.asm
++++ b/engine/battle/ai/scoring.asm
+@@ -1652,6 +1652,7 @@ AI_Smart_Spite:
+ .asm_38cfb
+ 	pop hl
+ 	ld a, [de]
++	and PP_MASK
+ 	cp $6
+ 	jr c, .asm_38d0d
+ 	cp $f
+diff --git a/engine/battle/core.asm b/engine/battle/core.asm
+index 68aef996e..24ce37a92 100644
+--- a/engine/battle/core.asm
++++ b/engine/battle/core.asm
+@@ -6216,7 +6216,7 @@ CheckPlayerHasUsableMoves:
+ 	ld hl, STRUGGLE
+ 	call GetMoveIDFromIndex
+ 	ld [wCurPlayerMove], a
+-	; Taunt/Torment can forbid everything that still has PP
++	; Status and held-item restrictions can forbid every move with PP.
+ 	farcall PlayerMustStruggleExtra_Core
+ 	jr c, .force_struggle
+ 	ld a, [wPlayerDisableCount]
+diff --git a/engine/battle/effect_commands_core.asm b/engine/battle/effect_commands_core.asm
+index 36a5f0978..639a99427 100644
+--- a/engine/battle/effect_commands_core.asm
++++ b/engine/battle/effect_commands_core.asm
+@@ -2918,6 +2918,16 @@ DoubleStatIfSpeciesHoldingItem:
+ 	cp c
+ 	ret nz
+ 
++	; These species items have HELD_NONE, so their raw ID is needed below.
++	; GetUserItem still returns that ID's address when Klutz suppresses it.
++	; Check the effective ability explicitly before reading the raw item.
++	push hl
++	farcall GetTrueUserAbility_b
++	ld a, b
++	pop hl
++	cp KLUTZ
++	ret z
++
+ 	push hl
+ 	callfar GetUserItem
+ 	ld a, [hl]
+diff --git a/engine/battle/modern_held_items.asm b/engine/battle/modern_held_items.asm
+index ca5ce4bea..cedcd44c9 100644
+--- a/engine/battle/modern_held_items.asm
++++ b/engine/battle/modern_held_items.asm
+@@ -453,8 +453,18 @@ ModernPowerHerbUse_Core::
+ 	call GetBattleVar
+ 	cp EFFECT_SKULL_BASH
+ 	jp nz, ModernConsumeUserItem_Core
++	; A capped charge-turn boost must not mark the damaging move as missed.
++	ld a, [wAttackMissed]
++	push af
++	ld a, [wEffectFailed]
++	push af
+ 	ld b, DEFENSE
+-	jp ModernRaiseUserStat_Core
++	call ModernRaiseUserStat_Core
++	pop af
++	ld [wEffectFailed], a
++	pop af
++	ld [wAttackMissed], a
++	ret
+ 
+ ModernBlunderPolicy_Core::
+ ; Only reached by the accuracy roll, never Protect/type/semi-invulnerability.
+@@ -542,17 +552,20 @@ ModernThroatSpray_Core::
+ 	and a
+ 	ret nz
+ .used
+-	ld hl, wPlayerStatLevels + SP_ATTACK
+-	ldh a, [hBattleTurn]
+-	and a
+-	jr z, .got
+-	ld hl, wEnemyStatLevels + SP_ATTACK
+-.got
+-	ld a, [hl]
+-	cp 13
+-	ret z
++	; A successful sound move uses the item even if its boost is capped.
++	; Contrary may lower Special Attack from +6, so the ordinary stat
++	; command must resolve the direction and cap after consumption.
++	ld a, [wAttackMissed]
++	push af
++	ld a, [wEffectFailed]
++	push af
+ 	ld b, SP_ATTACK
+-	jp ModernRaiseUserStat_Core
++	call ModernRaiseUserStat_Core
++	pop af
++	ld [wEffectFailed], a
++	pop af
++	ld [wAttackMissed], a
++	ret
+ 
+ ModernBlackSludge_Core::
+ 	farcall UserHasFainted
+diff --git a/engine/battle/move_effects/new_move_cores.asm b/engine/battle/move_effects/new_move_cores.asm
+index 5fa175411..dccc6d5cf 100644
+--- a/engine/battle/move_effects/new_move_cores.asm
++++ b/engine/battle/move_effects/new_move_cores.asm
+@@ -1218,6 +1218,14 @@ TryMagicBounceCommand_Core::
+ 	call GetBattleVar
+ 	bit SUBSTATUS_PROTECT, a
+ 	jr z, .protect_checked
++	; King's Shield lets status moves reach its holder, including the
++	; holder's Magic Bounce. Match the ordinary hit-check protection gate.
++	push bc
++	farcall KingsShieldAllowsStatus
++	ld a, b
++	pop bc
++	and a
++	jr nz, .protect_checked
+ 	ld a, BATTLE_VARS_MOVE_EFFECT
+ 	call GetBattleVar
+ 	ld hl, .protect_bypass
+@@ -1289,7 +1297,7 @@ TryMagicBounceCommand_Core::
+ 	db EFFECT_SP_ATK_DOWN, EFFECT_SP_DEF_DOWN, EFFECT_ACCURACY_DOWN, EFFECT_EVASION_DOWN
+ 	db EFFECT_ATTACK_DOWN_2, EFFECT_DEFENSE_DOWN_2, EFFECT_SPEED_DOWN_2
+ 	db EFFECT_SP_ATK_DOWN_2, EFFECT_SP_DEF_DOWN_2, EFFECT_ACCURACY_DOWN_2, EFFECT_EVASION_DOWN_2
+-	db EFFECT_LEECH_SEED, EFFECT_DISABLE, EFFECT_ENCORE, EFFECT_FORESIGHT
++	db EFFECT_LEECH_SEED, EFFECT_DISABLE, EFFECT_ENCORE, EFFECT_FORESIGHT, EFFECT_SPITE
+ 	db EFFECT_TORMENT, EFFECT_TAUNT, EFFECT_YAWN, EFFECT_DEFOG
+ 	db EFFECT_SPIKES, EFFECT_TOXIC_SPIKES, EFFECT_STEALTH_ROCK
+ 	db EFFECT_STICKY_WEB, EFFECT_SPIDER_WEB, EFFECT_MEAN_LOOK, EFFECT_FORCE_SWITCH, -1
+diff --git a/engine/battle/move_effects/nightmare.asm b/engine/battle/move_effects/nightmare.asm
+index 9354b15bb..7ba1affca 100644
+--- a/engine/battle/move_effects/nightmare.asm
++++ b/engine/battle/move_effects/nightmare.asm
+@@ -1,6 +1,13 @@
+ BattleCommand_Nightmare:
+ ; nightmare
+ 
++; Nightmare has no checkhit command, but Protect and Baneful Bunker
++; still block it. A sleeping target can use either through Sleep Talk.
++; Reuse the shared guard so King's Shield still allows status moves.
++
++	call BattleCommand_CheckHit.Protect
++	jr nz, .failed
++
+ ; Can't hit an absent opponent.
+ 
+ 	call CheckHiddenOpponent
+diff --git a/maps/Route39.ablk b/maps/Route39.ablk
+index feb4ac8ec..09cc8eeca 100644
+--- a/maps/Route39.ablk
++++ b/maps/Route39.ablk
+@@ -1 +1 @@
+-@AABFHIxJDDGHI@AABDFDF@ADFDHIIIIJDDNDRWWRWWRWW\<GAAB@
+\ No newline at end of file
++@AAAABFHIxJDGHI@AABDFDF@ADFDHIIIIJDDNDRWWRWWRWW\<GAAB@
+\ No newline at end of file
+diff --git a/maps/Route39.asm b/maps/Route39.asm
+index 6a42f997e..50e8388ed 100644
+--- a/maps/Route39.asm
++++ b/maps/Route39.asm
+@@ -353,7 +353,7 @@ Route39_MapEvents:
+ 	db 4 ; bg events
+ 	bg_event  5, 31, BGEVENT_READ, Route39TrainerTips
+ 	bg_event  9,  5, BGEVENT_READ, MoomooFarmSign
+-	bg_event 15,  7, BGEVENT_READ, Route39Sign
++	bg_event 15,  9, BGEVENT_READ, Route39Sign
+ 	bg_event  5, 13, BGEVENT_ITEM, Route39HiddenNugget
+ 
+ 	db 10 ; object events
+diff --git a/tools/battletest/ability_matrix.py b/tools/battletest/ability_matrix.py
+index 73aa31ef2..509c29d8b 100644
+--- a/tools/battletest/ability_matrix.py
++++ b/tools/battletest/ability_matrix.py
+@@ -22,7 +22,6 @@ OCTOBER_DAMAGE_MOVES = ("PSYSHOCK", "VACUUM_WAVE", "DISCHARGE", "LAVA_PLUME",
+     "PETAL_BLIZZARD", "BLAZE_KICK", "SKY_UPPERCUT", "POISON_TAIL", "OMINOUS_WIND")
+ MOVES += OCTOBER_DAMAGE_MOVES + ("COTTON_GUARD", "COSMIC_POWER", "TAIL_GLOW", "RECYCLE")
+ MOLD_MOVES += OCTOBER_DAMAGE_MOVES
+-THERMAL_MOVES = ("FLAMETHROWER", "LAVA_PLUME", "ERUPTION", "BLAZE_KICK")
+ 
+ 
+ def generate_ability_matrix(constants=None):
+@@ -69,12 +68,6 @@ def generate_ability_matrix(constants=None):
+                 if family in ("Gas", "Mold"):
+                     for side in ("player", "enemy"):
+                         for field in ("hp", "stat_levels", "pp", "item", "screens"):
+-                            # Mold Breaker bypasses burn protection, while
+-                            # Thermal Exchange still raises Attack after a hit.
+-                            if (family == "Mold" and ability == "THERMAL_EXCHANGE"
+-                                    and move in THERMAL_MOVES and side == "enemy"
+-                                    and field == "stat_levels"):
+-                                continue
+                             test["assert"].append(
+                                 f"{side}.{field} == result('matrix_{family}_{move}')['{side}']['{field}']")
+                         if family == "Gas":
+@@ -82,8 +75,6 @@ def generate_ability_matrix(constants=None):
+                                 test["assert"].append(
+                                     f"{side}.{field} == result('matrix_{family}_{move}')['{side}']['{field}']")
+                     test["assert"].append(f"weather_raw == result('matrix_{family}_{move}')['weather']")
+-                    if family == "Mold" and ability == "THERMAL_EXCHANGE" and move in THERMAL_MOVES:
+-                        test["assert"].append("enemy.stat_levels == [8, 7, 7, 7, 7, 7, 7]")
+                 tests.append(test)
+ 
+     for ability in abilities:
+diff --git a/tools/battletest/reaction_matrix.py b/tools/battletest/reaction_matrix.py
+index b376fa883..f988a123b 100644
+--- a/tools/battletest/reaction_matrix.py
++++ b/tools/battletest/reaction_matrix.py
+@@ -35,12 +35,18 @@ def generate_reaction_matrix():
+                 test["assert"].append("enemy.hp > 0")
+                 # Gas ends after the committed hit's defender reactions,
+                 # including Explosion/Selfdestruct, whose user already has 0 HP.
+-                suppressed = source == "NEUTRALIZING_GAS"
++                # Thermal Exchange is breakable for both its Fire-hit boost
++                # and its burn immunity. The other reactions are unignorable.
++                suppressed = (source == "NEUTRALIZING_GAS" or
++                              source == "MOLD_BREAKER" and ability == "THERMAL_EXCHANGE")
+                 for i in range(7):
+                     delta = 0 if suppressed else changes.get(i, 0)
+                     expected = f"min(13, max(1, result('{control_id}')['enemy']['stat_levels'][{i}] + {delta} * wram('wEnemyRageFistHits')))"
+                     test["assert"].append(f"enemy.stat_levels[{i}] == {expected}")
+-                if suppressed:
++                # Mold Breaker only suspends Thermal Exchange during the
++                # move; the ability cures a burn again at the move-end update.
++                # Only Gas keeps status/damage identical to the control.
++                if source == "NEUTRALIZING_GAS":
+                     test["assert"] += [f"enemy.hp == result('{control_id}')['enemy']['hp']",
+                                        f"enemy.status == result('{control_id}')['enemy']['status']"]
+                 tests.append(test)

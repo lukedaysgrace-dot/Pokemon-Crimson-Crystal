@@ -1,0 +1,39 @@
+- name: "Second selection pass: enemy Choice Giga Hammer must Struggle on cooldown"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [GIGA_HAMMER, SPLASH]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: GIGA_HAMMER}, wEnemyGigaHammerLock: {move: GIGA_HAMMER}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "enemy.pp[0] == enemy.start_pp[0]", "player.hp < player.start_hp"]
+
+- name: "Second selection pass: enemy Choice Doom Desire must Struggle on cooldown"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_SPECS, moves: [DOOM_DESIRE, SPLASH]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: DOOM_DESIRE}, wEnemyGigaHammerLock: {move: DOOM_DESIRE}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'STRUGGLE'", "enemy.pp[0] == enemy.start_pp[0]", "player.hp < player.start_hp"]
+
+- name: "Second selection pass: ordinary enemy can use an alternate during cooldown"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, moves: [GIGA_HAMMER, TACKLE]}
+  setup_wram: {wEnemyGigaHammerLock: {move: GIGA_HAMMER}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'TACKLE'", "enemy.pp[0] == enemy.start_pp[0]", "player.hp < player.start_hp"]
+
+- name: "Second selection pass: Klutz permits an alternate despite a dormant Choice lock"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: KLUTZ, item: CHOICE_BAND, moves: [GIGA_HAMMER, TACKLE]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: GIGA_HAMMER}, wEnemyGigaHammerLock: {move: GIGA_HAMMER}}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy_move() == 'TACKLE'", "enemy.pp[0] == enemy.start_pp[0]", "player.hp < player.start_hp"]
+
+- name: "Second selection pass: Struggle clears cooldown for the following Choice attack"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, item: CHOICE_BAND, moves: [GIGA_HAMMER, SPLASH]}
+  setup_wram: {wEnemyChoiceLockedMove: {move: GIGA_HAMMER}, wEnemyGigaHammerLock: {move: GIGA_HAMMER}}
+  rng: forced_high
+  turns: 2
+  assert: ["enemy_move() == 'GIGA_HAMMER'", "enemy.pp[0] == enemy.start_pp[0] - 1", "player.hp < player.start_hp"]

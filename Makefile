@@ -156,6 +156,11 @@ test-moves-abilities: pokecrystal.gbc pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_gyro_ball.py pokecrystal_debug.gbc
 	$(BATTLE_TEST_PYTHON) tools/test_battle_action_context.py
+	$(BATTLE_TEST_PYTHON) tools/test_battle_selection_restrictions.py pokecrystal.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_battle_selection_restrictions.py pokecrystal_debug.gbc
+	$(BATTLE_TEST_PYTHON) tools/test_held_item_hit_integrity.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/choice_lock_menu_checks.py
+	$(BATTLE_TEST_PYTHON) tools/battletest/move_restriction_menu_checks.py
 	$(BATTLE_TEST_PYTHON) tools/battletest/ai_dynamic_type_checks.py
 	$(BATTLE_TEST_PYTHON) tools/battletest/metronome_priority_checks.py
 	$(BATTLE_TEST_PYTHON) tools/battletest/runner.py --no-render --jobs $(BATTLE_TEST_JOBS) --all-moves --all-effects --move-semantics --dynamic-type-matrix --all-abilities --ability-matrix --reflection-matrix --class-matrix --textbox-matrix --swagger-matrix --outcome-matrix --item-matrix --reaction-matrix --complex-matrix --long-battles --interactions 512
@@ -566,6 +571,9 @@ gfx/sprites/karate_king.2bpp: gfx/sprites/karate_king.png tools/grayscale_sprite
 
 # This sheet also contains a few near-gray export pixels (84 and 173).
 gfx/tilesets/johto.2bpp: gfx/tilesets/johto.png tools/grayscale_sprite.py tools/pokemontools/png.py
+	python3 tools/grayscale_sprite.py $< $@
+
+gfx/tilesets/route39_windmill.2bpp: gfx/tilesets/route39_windmill.png tools/grayscale_sprite.py tools/pokemontools/png.py
 	python3 tools/grayscale_sprite.py $< $@
 
 # Riolu's source has walking poses up/left/down; Crystal loads down/up/left.

@@ -103,9 +103,11 @@ TilesetForestAnim:
 TilesetJohtoAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  AnimateSilentCryptLights
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
-	dw NULL,  WaitTileAnimation
+	; Route 39 windmill sails (engine/tilesets/league_room_anims.asm). Only the
+	; first slot normally uploads; the others retry if VBlank started late.
+	dw Route39WindmillAnim, LeagueRoomAnimTrampoline
+	dw Route39WindmillAnim, LeagueRoomAnimTrampoline
+	dw Route39WindmillAnim, LeagueRoomAnimTrampoline
 	dw NULL,  AnimateFlowerTile
 	dw WhirlpoolFrames1, AnimateWhirlpoolTile
 	dw WhirlpoolFrames2, AnimateWhirlpoolTile

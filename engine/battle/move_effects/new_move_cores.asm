@@ -1218,6 +1218,14 @@ TryMagicBounceCommand_Core::
 	call GetBattleVar
 	bit SUBSTATUS_PROTECT, a
 	jr z, .protect_checked
+	; King's Shield lets status moves reach its holder, including the
+	; holder's Magic Bounce. Match the ordinary hit-check protection gate.
+	push bc
+	farcall KingsShieldAllowsStatus
+	ld a, b
+	pop bc
+	and a
+	jr nz, .protect_checked
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	ld hl, .protect_bypass
@@ -1289,7 +1297,7 @@ TryMagicBounceCommand_Core::
 	db EFFECT_SP_ATK_DOWN, EFFECT_SP_DEF_DOWN, EFFECT_ACCURACY_DOWN, EFFECT_EVASION_DOWN
 	db EFFECT_ATTACK_DOWN_2, EFFECT_DEFENSE_DOWN_2, EFFECT_SPEED_DOWN_2
 	db EFFECT_SP_ATK_DOWN_2, EFFECT_SP_DEF_DOWN_2, EFFECT_ACCURACY_DOWN_2, EFFECT_EVASION_DOWN_2
-	db EFFECT_LEECH_SEED, EFFECT_DISABLE, EFFECT_ENCORE, EFFECT_FORESIGHT
+	db EFFECT_LEECH_SEED, EFFECT_DISABLE, EFFECT_ENCORE, EFFECT_FORESIGHT, EFFECT_SPITE
 	db EFFECT_TORMENT, EFFECT_TAUNT, EFFECT_YAWN, EFFECT_DEFOG
 	db EFFECT_SPIKES, EFFECT_TOXIC_SPIKES, EFFECT_STEALTH_ROCK
 	db EFFECT_STICKY_WEB, EFFECT_SPIDER_WEB, EFFECT_MEAN_LOOK, EFFECT_FORCE_SWITCH, -1

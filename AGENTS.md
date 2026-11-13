@@ -264,6 +264,36 @@ Read this before changing the game. Keep it up to date when something here chang
 - Every guard move must be in `MetronomeExcepts`, including ones that reuse
   `EFFECT_PROTECT` (King's Shield). `tools/audit_metronome_exceptions.py`
   checks this and is part of `make audit-static`.
+- Player and enemy selection must satisfy PP, Disable, Taunt, Torment and
+  effective held-item restrictions together. A blocked Choice lock forces
+  Struggle; Assault Vest cannot leave a status-only player stuck in the menu.
+  The player's availability scan preserves `hBattleTurn` and never establishes
+  a Choice lock. Enemy selection preserves a legal selected duplicate move's
+  PP slot (Mimic can duplicate IDs), and releases a stale lock if Mimic or
+  Sketch removed that move. Exhausted duplicate slots do not hide a usable
+  copy; distinguish absent moves from present but disabled/exhausted moves.
+  Run `tools/test_battle_selection_restrictions.py`
+  on both ROMs and `tools/battletest/move_restriction_menu_checks.py` for the
+  actual Fight menu; auto-mode YAML cannot cover the player menu.
+- Nightmare respects Protect and Baneful Bunker, including Sleep Talk calls;
+  King's Shield still permits status moves. Thermal Exchange's Fire-hit boost
+  is bypassed by Mold Breaker. Absorbers and move-class blockers run before
+  natural type immunity, while Disguise and Levitate remain after it.
+- Light Ball and Thick Club obey effective Klutz. A capped Power Herb Skull
+  Bash boost or Weakness Policy boost must preserve the triggering move's
+  failure state, so damage, subsequent hits and secondaries still execute.
+  `tools/test_held_item_hit_integrity.py` checks both ROMs' native routines.
+  Regression fixtures `107` through `110` dated `2026-11-13` cover these fixes.
+  Spite's AI reads only `PP_MASK`, independently of the target's PP-Up bits.
+- Magic Bounce reflects Spite; King's Shield permits status reflection just
+  as it permits ordinary status moves. Protect/Baneful Bunker still block it.
+- Stench's added flinch roll is independent of the move's own secondary roll;
+  preserve that secondary's `wEffectFailed` around the flinch helper.
+- Successful sound use consumes Throat Spray even at a stat cap. Resolve
+  Contrary through the normal boost command and preserve the move's failure
+  flags around the item boost. Giga Hammer/Doom Desire cooldowns participate
+  in both sides' legal-move scans: an otherwise locked Choice user Struggles.
+  Fixtures `111` through `114` cover the second November 13 interaction pass.
 - `make test-moves-abilities BATTLE_TEST_JOBS=8` includes every-move semantic
   outcomes, dynamic-type controls and called-move interactions. The optional
   `make test-exhaustive-battles BATTLE_TEST_JOBS=8` also plays every move with
@@ -733,3 +763,25 @@ Past audits are in `reports/` (`full-audit-*.md`, `full-sweep-*.md`).
   Check with `python3 tools/test_goldenrod_shucks_neon.py <rom>` from tools/.
 - "Tileset Data 5" is pinned to bank $2d and nearly full; Traditional House was
   moved to the floating "Tileset Data 20" to make room for johto_modern growth.
+
+## Route 39 windmill
+- `tools/build_route39_windmill.py` draws the Moomoo Farm windmill (Route 39
+  squares 10,2-13,5 = blocks 5..6,1..2) and its sails procedurally, in gray
+  (ground/plaster/sails), red (cap, tile rows 1-2) and brown (door) Johto
+  palettes. Sails use only colours 0 and 3 so they match across palettes.
+  It writes VRAM-bank-1 slots of `gfx/tilesets/johto.png` that no Johto block
+  references, Johto blocks $c7-$ca (all WALL), `maps/Route39.ablk`,
+  `gfx/tilesets/route39_windmill.png` (8 frames x 32 tiles) and
+  `data/tilesets/route39_windmill_runs.asm`. It is idempotent; edit the script,
+  not its outputs.
+- Animation: three `TilesetJohtoAnim` slots hand `Route39WindmillAnim` to
+  `LeagueRoomAnimTrampoline` (descriptor type `LEAGUE_ANIM_WINDMILL`).
+  `AnimateRoute39Windmill` runs only on Route 39 and shows frame
+  `wTileAnimationTimer & 7` (one step per 13-VBlank Johto cycle, ~7 s per turn):
+  when it changes, three GDMAs (bank-1 runs $02-$13, $64-$6f, $19-$1a) copy the
+  whole 512-byte frame in one VBlank, skipped if LY >= LY_VBLANK + 3 (the other
+  slots retry). `wSilentCryptPulseTimer` holds the frame shown. Frames are
+  `ALIGN 4` for GDMA and indexed by $200, so keep 32 tiles per frame.
+- `python3 tools/record_route39_windmill.py [rom]` checks every frame and its
+  timing in native VRAM, the windmill's collision and the Route 38 connection,
+  and writes a day/night GIF to `_artifacts/route39-windmill/`.
