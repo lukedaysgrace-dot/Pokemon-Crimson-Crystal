@@ -5983,12 +5983,6 @@ MoveSelectionScreen:
 	ld a, [hl]
 	and PP_MASK
 	jr z, .no_pp_left
-	ld a, [wPlayerDisableCount]
-	swap a
-	and $f
-	dec a
-	cp c
-	jr z, .move_disabled
 	ld a, [wMenuCursorY]
 	ld hl, wBattleMonMoves
 	ld c, a
@@ -5996,6 +5990,11 @@ MoveSelectionScreen:
 	add hl, bc
 	ld a, [hl]
 	ld b, a
+	; Disable blocks the move ID, including copies produced by Mimic.
+	; A slot-only check allowed another copy to waste the player's turn.
+	ld a, [wDisabledMove]
+	cp b
+	jr z, .move_disabled
 	; Assault Vest, Taunt and Torment selection blocks (hl = text on carry)
 	callfar CheckPlayerMoveRestrictions_Core
 	jr c, .selection_blocked

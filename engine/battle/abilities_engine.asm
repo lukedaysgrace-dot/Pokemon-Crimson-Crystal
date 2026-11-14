@@ -2544,21 +2544,33 @@ CheckPlayerChoiceLock_Core:
 .find_locked
 	ld a, [hli]
 	cp c
-	jr z, .found_locked
+	jr nz, .next_locked
+	ld a, [de]
+	and PP_MASK
+	jr nz, .found_locked
+.next_locked
 	inc de
 	dec b
 	jr nz, .find_locked
-	; the locked move is gone (e.g. overwritten): drop the lock
+	; No usable copy: distinguish exhausted duplicates from an overwritten
+	; move before releasing the lock. A later copy may have its own PP.
 	pop bc
+	ld a, c
+	ld hl, wBattleMonMoves
+	ld c, NUM_MOVES
+.locked_present
+	cp [hl]
+	jr z, .must_struggle
+	inc hl
+	dec c
+	jr nz, .locked_present
+	; the locked move is gone (e.g. overwritten): drop the lock
 	ld a, b
 	ld [wPlayerChoiceLockedMove], a
 	and a
 	ret
 .found_locked
 	pop bc
-	ld a, [de]
-	and PP_MASK
-	jr z, .must_struggle
 	scf
 	ret
 .must_struggle
@@ -3375,7 +3387,8 @@ CheckUserThirdHP:
 
 ; ---- wCurDamage fraction helpers ----
 DamagePercent:
-; a = percent multiplier for wCurDamage. Preserves de.
+; a = percent multiplier for wCurDamage. Preserve zero damage, otherwise
+; clamp to 1..$ffff like the other damage helpers. Preserves bc/de/hl.
 	push hl
 	push bc
 	push de
@@ -3393,10 +3406,31 @@ DamagePercent:
 	ld b, 4
 	call Divide
 	ld hl, wCurDamage
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 1]
+	and a
+	jr z, .in_range
+	ld a, $ff
 	ld [hli], a
-	ldh a, [hQuotient + 3]
 	ld [hl], a
+	jr .done
+.in_range
+	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
+	ld c, a
+	or b
+	jr nz, .store
+	ld a, [hli]
+	or [hl]
+	dec hl
+	jr z, .store
+	inc c
+.store
+	ld a, b
+	ld [hli], a
+	ld a, c
+	ld [hl], a
+.done
 	pop de
 	pop bc
 	pop hl

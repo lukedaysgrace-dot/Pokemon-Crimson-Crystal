@@ -509,6 +509,8 @@ def load_tests(paths, keyword=None, all_moves=False, all_effects=False, interact
         tests.extend(generate_swagger_matrix())
     if outcome_matrix:
         tests.extend(generate_outcome_matrix())
+        from self_stat_boundary_matrix import generate_self_stat_boundary_matrix
+        tests.extend(generate_self_stat_boundary_matrix())
     if long_battles:
         tests.extend(generate_long_tests())
     if item_matrix:

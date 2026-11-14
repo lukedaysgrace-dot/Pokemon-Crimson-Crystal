@@ -2751,6 +2751,7 @@ ScaleShot:
 	switchturn
 	statdownmessage
 	switchturn
+	resetmiss
 	speedup
 	statupmessage
 	restoremiss

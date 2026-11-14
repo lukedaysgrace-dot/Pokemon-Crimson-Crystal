@@ -16,6 +16,11 @@ BattleCommand_FuryCutter:
 	farcall CheckParentalBondSecondHit_Core
 	pop hl
 	jr c, .same_use
+	; PP recovery can sustain a chain beyond 255 uses. Keep its byte at
+	; the power cap, or wraparound restarts Technician and underflows below.
+	ld a, [hl]
+	cp 3
+	jr nc, .same_use
 	inc [hl]
 .same_use
 

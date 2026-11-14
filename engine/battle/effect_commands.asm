@@ -244,6 +244,20 @@ BattleCommand_CheckTurn:
 	jp nz, CheckEnemyTurn
 
 CheckPlayerTurn:
+	; Disable advances even when recharge, sleep or flinch ends this action.
+	ld hl, wPlayerDisableCount
+	ld a, [hl]
+	and a
+	jr z, .not_disabled
+	dec a
+	ld [hl], a
+	and $f
+	jr nz, .not_disabled
+	ld [hl], a
+	ld [wDisabledMove], a
+	ld hl, DisabledNoMoreText
+	call StdBattleTextbox
+.not_disabled
 	ld hl, wPlayerSubStatus4
 	bit SUBSTATUS_RECHARGE, [hl]
 	jr z, .no_recharge
@@ -323,23 +337,6 @@ CheckPlayerTurn:
 	jp EndTurn
 
 .not_flinched
-
-	ld hl, wPlayerDisableCount
-	ld a, [hl]
-	and a
-	jr z, .not_disabled
-
-	dec a
-	ld [hl], a
-	and $f
-	jr nz, .not_disabled
-
-	ld [hl], a
-	ld [wDisabledMove], a
-	ld hl, DisabledNoMoreText
-	call StdBattleTextbox
-
-.not_disabled
 
 	ld a, [wPlayerSubStatus3]
 	add a
@@ -480,6 +477,19 @@ OpponentCantMove:
 	jp BattleCommand_SwitchTurn
 
 CheckEnemyTurn:
+	ld hl, wEnemyDisableCount
+	ld a, [hl]
+	and a
+	jr z, .not_disabled
+	dec a
+	ld [hl], a
+	and $f
+	jr nz, .not_disabled
+	ld [hl], a
+	ld [wEnemyDisabledMove], a
+	ld hl, DisabledNoMoreText
+	call StdBattleTextbox
+.not_disabled
 	ld hl, wEnemySubStatus4
 	bit SUBSTATUS_RECHARGE, [hl]
 	jr z, .no_recharge
@@ -557,24 +567,6 @@ CheckEnemyTurn:
 	jp EndTurn
 
 .not_flinched
-
-	ld hl, wEnemyDisableCount
-	ld a, [hl]
-	and a
-	jr z, .not_disabled
-
-	dec a
-	ld [hl], a
-	and $f
-	jr nz, .not_disabled
-
-	ld [hl], a
-	ld [wEnemyDisabledMove], a
-
-	ld hl, DisabledNoMoreText
-	call StdBattleTextbox
-
-.not_disabled
 
 	ld a, [wEnemySubStatus3]
 	add a ; bit SUBSTATUS_CONFUSED
@@ -5879,6 +5871,13 @@ BattleCommand_HeldFlinch:
 	; a user KO'd by contact recoil can't flinch anyone (audit #21)
 	farcall UserHasFainted
 	ret z
+	; A late flinch must not cancel recharge after the target already acted.
+	call CheckOpponentWentFirst
+	ret nz
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVar
+	and SLP
+	ret nz
 
 	call GetUserItem
 	ld a, b
@@ -5896,11 +5895,7 @@ BattleCommand_HeldFlinch:
 
 	call CheckSubstituteOpp
 	ret nz
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVarAddr
-	ld d, h
-	ld e, l
-	call GetUserItem
+	; c still holds the first GetUserItem's chance across these checks.
 	call BattleRandom
 	cp c
 	ret nc

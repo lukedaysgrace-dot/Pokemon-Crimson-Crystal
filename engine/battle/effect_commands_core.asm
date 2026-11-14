@@ -944,6 +944,7 @@ BattleScaleShotKO_Core:
 	callfar BattleCommand_SwitchTurn
 	callfar BattleCommand_StatDownMessage
 	callfar BattleCommand_SwitchTurn
+	callfar BattleCommand_ResetMiss
 	callfar BattleCommand_SpeedUp
 	callfar BattleCommand_StatUpMessage
 	callfar BattleCommand_RestoreMiss
