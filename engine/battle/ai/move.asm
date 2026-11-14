@@ -148,9 +148,10 @@ AIChooseMove:
 
 ; Universal scoring layer, applied to ALL trainers regardless of AI flags.
 ; Uses the real damage formula to prefer guaranteed KOs and the strongest
-; damaging move.
+; damaging move; elite trainers then add their board tactics
+; (AI_UniversalLayer, engine/battle/ai/elite_tactics.asm).
 .UniversalLayer:
-	ld hl, AI_SmartDamageKO
+	ld hl, AI_UniversalLayer
 	ld a, BANK(AIScoring)
 	call FarCall_hl
 	; fallthrough

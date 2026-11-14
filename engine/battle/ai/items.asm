@@ -43,6 +43,9 @@ AI_SwitchOrTryItem:
 	ld bc, NUM_TRAINER_ATTRIBUTES
 	call AddNTimes
 .ok
+	; elite trainers switch deliberately, never on a dice roll
+	call AIEliteCheck
+	jp c, AIEliteSwitchOrItem
 	bit SWITCH_OFTEN_F, [hl]
 	jp nz, SwitchOften
 	bit SWITCH_RARELY_F, [hl]

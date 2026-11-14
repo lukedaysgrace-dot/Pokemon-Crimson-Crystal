@@ -75,6 +75,11 @@ AI_Setup:
 ; 50% chance to greatly encourage stat-up moves during the first turn of enemy's Pokemon.
 ; 50% chance to greatly encourage stat-down moves during the first turn of player's Pokemon.
 ; Almost 90% chance to greatly discourage stat-modifying moves otherwise.
+; Elite trainers skip this turn-count heuristic: AI_EliteTactics judges
+; setup from the board (is it safe to boost?) instead.
+
+	call AIEliteCheck
+	ret c
 
 	ld hl, wBuffer1 - 1
 	ld de, wEnemyMonMoves
@@ -166,7 +171,7 @@ AI_Setup:
 	jr .checkmove
 
 .discourage
-	call BattleRandom
+	call AIScoringRandom
 	cp 12 percent
 	jr c, .checkmove
 	inc [hl]
@@ -518,7 +523,7 @@ AI_Smart_LeechHit:
 	ret
 
 .asm_38815
-	call BattleRandom
+	call AIScoringRandom
 	cp 39 percent + 1
 	ret c
 
@@ -655,7 +660,7 @@ AI_Smart_Selfdestruct:
 
 ; If enemy's HP is between 25% and 50%,
 ; over 90% chance to greatly discourage this move.
-	call BattleRandom
+	call AIScoringRandom
 	cp 9 percent - 2
 	ret c
 
@@ -669,7 +674,7 @@ AI_Smart_DreamEater:
 ; 90% chance to greatly encourage this move.
 ; The AI_Basic layer will make sure that
 ; Dream Eater is only used against sleeping targets.
-	call BattleRandom
+	call AIScoringRandom
 	cp 10 percent
 	ret c
 	dec [hl]
@@ -693,7 +698,7 @@ AI_Smart_EvasionUp:
 	jr nz, .asm_388ef
 
 ; ...70% chance to greatly encourage this move if player is not badly poisoned.
-	call BattleRandom
+	call AIScoringRandom
 	cp 70 percent
 	jr nc, .asm_38911
 
@@ -709,7 +714,7 @@ AI_Smart_EvasionUp:
 	jr nc, .asm_3890f
 
 ; If enemy's HP is above 25% but not full, 4% chance to greatly encourage this move.
-	call BattleRandom
+	call AIScoringRandom
 	cp 4 percent
 	jr c, .asm_388ef
 
@@ -769,7 +774,7 @@ AI_Smart_EvasionUp:
 ; 70% chance to greatly encourage this move.
 ; This would counter any previous discouragement.
 .asm_38938
-	call BattleRandom
+	call AIScoringRandom
 	cp 31 percent + 1
 	ret c
 	dec [hl]
@@ -840,7 +845,7 @@ AI_Smart_MirrorMove:
 	call AICompareSpeed
 	ret nc
 
-	call BattleRandom
+	call AIScoringRandom
 	cp 10 percent
 	ret c
 
@@ -862,7 +867,7 @@ AI_Smart_AccuracyDown:
 	jr nz, .asm_3899d
 
 ; ...70% chance to greatly encourage this move if player is not badly poisoned.
-	call BattleRandom
+	call AIScoringRandom
 	cp 70 percent
 	jr nc, .asm_389bf
 
@@ -878,7 +883,7 @@ AI_Smart_AccuracyDown:
 	jr nc, .asm_389bd
 
 ; If player's HP is above 25% but not full, 4% chance to greatly encourage this move.
-	call BattleRandom
+	call AIScoringRandom
 	cp 4 percent
 	jr c, .asm_3899d
 
@@ -934,7 +939,7 @@ AI_Smart_AccuracyDown:
 ; 70% chance to greatly encourage this move.
 ; This would counter any previous discouragement.
 .asm_389e6
-	call BattleRandom
+	call AIScoringRandom
 	cp 31 percent + 1
 	ret c
 	dec [hl]
@@ -993,7 +998,7 @@ AI_Smart_ResetStats:
 
 .asm_38a12
 	pop hl
-	call BattleRandom
+	call AIScoringRandom
 	cp 16 percent
 	ret c
 	dec [hl]
@@ -1012,7 +1017,7 @@ AI_Smart_Bide:
 
 	call AICheckEnemyMaxHP
 	ret c
-	call BattleRandom
+	call AIScoringRandom
 	cp 10 percent
 	ret c
 	inc [hl]
@@ -1050,7 +1055,7 @@ AI_Smart_Moonlight:
 	ret
 
 .asm_38a45
-	call BattleRandom
+	call AIScoringRandom
 	cp 10 percent
 	ret c
 	dec [hl]
@@ -1076,7 +1081,7 @@ AI_Smart_Reflect:
 	jp z, AIDiscourageMove
 	call AICheckEnemyMaxHP
 	ret c
-	call BattleRandom
+	call AIScoringRandom
 	cp 8 percent
 	ret c
 	inc [hl]
@@ -1173,7 +1178,7 @@ AI_Smart_Unused2B:
 	ret c
 
 .asm_38acd
-	call BattleRandom
+	call AIScoringRandom
 	cp 79 percent - 1
 	ret c
 
@@ -1192,7 +1197,7 @@ AI_Smart_Confuse:
 ; 90% chance to discourage this move if player's HP is between 25% and 50%.
 	call AICheckPlayerHalfHP
 	ret c
-	call BattleRandom
+	call AIScoringRandom
 	cp 10 percent
 	jr c, .asm_38ae7
 	inc [hl]
@@ -1319,7 +1324,7 @@ AI_Smart_SpeedDownHit:
 	ret nz
 	call AICompareSpeed
 	ret c
-	call BattleRandom
+	call AIScoringRandom
 	cp 12 percent
 	ret c
 	dec [hl]
@@ -1351,7 +1356,7 @@ AI_Smart_HyperBeam:
 
 .asm_38b72
 ; If enemy's HP is above 50%, discourage this move at random
-	call BattleRandom
+	call AIScoringRandom
 	cp 16 percent
 	ret c
 	inc [hl]
@@ -1497,7 +1502,7 @@ AI_Smart_Counter:
 	jr nz, .asm_38c38
 
 .asm_38c30
-	call BattleRandom
+	call AIScoringRandom
 	cp 39 percent + 1
 	jr c, .asm_38c38
 
@@ -1549,7 +1554,7 @@ AI_Smart_Encore:
 	jr nc, .asm_38c81
 
 .asm_38c78
-	call BattleRandom
+	call AIScoringRandom
 	cp 28 percent - 1
 	ret c
 	dec [hl]
@@ -1658,7 +1663,7 @@ AI_Smart_Spite:
 	cp $f
 	jr nc, .asm_38d0b
 
-	call BattleRandom
+	call AIScoringRandom
 	cp 39 percent + 1
 	ret nc
 
@@ -1667,7 +1672,7 @@ AI_Smart_Spite:
 	ret
 
 .asm_38d0d
-	call BattleRandom
+	call AIScoringRandom
 	cp 39 percent + 1
 	ret c
 	dec [hl]
@@ -1820,7 +1825,7 @@ AI_Smart_Conversion2:
 	ret
 
 .asm_38dc9
-	call BattleRandom
+	call AIScoringRandom
 	cp 10 percent
 	ret c
 	inc [hl]
@@ -1838,7 +1843,7 @@ AI_Smart_Disable:
 	pop hl
 	jr nc, .asm_38dee
 
-	call BattleRandom
+	call AIScoringRandom
 	cp 39 percent + 1
 	ret c
 	dec [hl]
@@ -1850,7 +1855,7 @@ AI_Smart_Disable:
 	ret nz
 
 .asm_38df3
-	call BattleRandom
+	call AIScoringRandom
 	cp 8 percent
 	ret c
 	inc [hl]
@@ -2065,7 +2070,7 @@ AI_Smart_Protect:
 	inc [hl]
 
 .asm_38f14
-	call BattleRandom
+	call AIScoringRandom
 	cp 8 percent
 	ret c
 	inc [hl]
@@ -2087,14 +2092,14 @@ AI_Smart_Foresight:
 	cp GHOST
 	jr z, .asm_38f41
 
-	call BattleRandom
+	call AIScoringRandom
 	cp 8 percent
 	ret c
 	inc [hl]
 	ret
 
 .asm_38f41
-	call BattleRandom
+	call AIScoringRandom
 	cp 39 percent + 1
 	ret c
 	dec [hl]
@@ -2312,7 +2317,7 @@ AI_Smart_Rollout:
 	jr nc, .asm_39020
 
 ; Otherwise, 80% chance to greatly encourage this move.
-	call BattleRandom
+	call AIScoringRandom
 	cp 79 percent - 1
 	ret nc
 	dec [hl]
@@ -2340,7 +2345,7 @@ AI_Smart_Attract:
 	ret
 
 .first_turn
-	call BattleRandom
+	call AIScoringRandom
 	cp 79 percent - 1
 	ret nc
 	dec [hl]
@@ -2706,7 +2711,7 @@ AI_Smart_MirrorCoat:
 	jr nz, .asm_391d2
 
 .asm_391ca
-	call BattleRandom
+	call AIScoringRandom
 	cp 100
 	jr c, .asm_391d2
 	dec [hl]
@@ -2798,7 +2803,7 @@ AI_Smart_Solarbeam:
 	cp WEATHER_RAIN
 	ret nz
 
-	call BattleRandom
+	call AIScoringRandom
 	cp 10 percent
 	ret c
 
@@ -2822,7 +2827,7 @@ AI_Smart_Thunder:
 	cp WEATHER_SUN
 	ret nz
 
-	call BattleRandom
+	call AIScoringRandom
 	cp 10 percent
 	ret c
 
@@ -3507,7 +3512,7 @@ AI_Cautious:
 	pop hl
 	jr nc, .asm_39425
 
-	call BattleRandom
+	call AIScoringRandom
 	cp 90 percent + 1
 	jr nc, .asm_39425
 
@@ -3659,7 +3664,7 @@ AI_Risky:
 	jr c, .nextmove
 
 ; Else, 80% chance to exclude them.
-	call BattleRandom
+	call AIScoringRandom
 	cp 79 percent - 1
 	jr c, .nextmove
 
@@ -4966,13 +4971,13 @@ AIGetEnemyMove:
 
 AI_80_20:
 ; Was 80/20; now the AI takes the smart branch 95% of the time.
-	call BattleRandom
+	call AIScoringRandom
 	cp 5 percent
 	ret
 
 AI_50_50:
 ; Was a coin flip; now the AI takes the smart branch 85% of the time.
-	call BattleRandom
+	call AIScoringRandom
 	cp 15 percent
 	ret
 

@@ -1132,6 +1132,11 @@ AIPickPostKOSwitchIn::
 ; the matchup helpers assume the enemy's perspective, like every other
 ; caller (AI_SwitchOrTryItem runs right after SetEnemyTurn)
 	call SetEnemyTurn
+; score every healthy candidate against the player's known and likely
+; attacks, its typing, speed and HP (see AIEliteBenchScore)
+	call AIElitePickBestBench
+	jr c, .store
+; fallback: the type-matchup tiers
 ; ideal: healthy, resists the player, and carries a super-effective move
 	call CheckAbleToSwitch.FindGoodCandidate
 	jr nz, .no_ideal

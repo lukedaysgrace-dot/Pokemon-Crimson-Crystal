@@ -1331,6 +1331,21 @@ wCreditsPos:: db
 wCreditsUnusedCD21::
 wAIDamagePrediction:: db ; nonzero only while the AI predicts damage; suppresses absorb-ability procs in BattleCommand_Stab (credits-only slot, safe to reuse in battle)
 wCreditsTimer:: db
+; Elite AI scratch (engine/battle/ai/elite_tactics.asm). Like
+; wAIDamagePrediction above, these credits-only bytes are reused in battle:
+; every field is rebuilt from the board at the start of each AI decision and
+; is never read after that decision returns.
+wAIEliteFlags:: db
+wAIElitePlayerDmg:: dw ; big-endian, like wCurDamage
+wAIElitePlayerPrioDmg:: dw
+wAIEliteThreatType:: db ; type of the player's strongest predicted hit ($ff = none)
+wAIEliteThreatTypes:: ds NUM_MOVES + 3 ; known/guessed damaging types, $ff-terminated
+wAIEliteMoveDmg:: ds NUM_MOVES * 2 ; per enemy move slot, big-endian
+wAIEliteMoveInfo:: ds NUM_MOVES
+wAIEliteSavedMove:: ds MOVE_LENGTH ; wPlayerMoveStruct while predicting
+wAIEliteMode:: db ; 1 = wBuffer1 holds live move scores
+wAIEliteBest:: db ; best bench index while scanning
+wAIEliteScratchEnd::
 
 NEXTU ; cd20
 ; mobile data
