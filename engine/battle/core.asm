@@ -621,6 +621,8 @@ ParsePlayerAction:
 	ld hl, wPlayerSubStatus5
 	bit SUBSTATUS_ENCORED, [hl]
 	jr z, .not_encored
+	farcall ResolvePlayerEncoreSlot_Core
+	jr nc, .not_encored
 	ld a, [wLastPlayerMove]
 	ld [wCurPlayerMove], a
 	jr .encored

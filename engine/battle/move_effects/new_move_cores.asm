@@ -149,6 +149,10 @@ AIPredictVariableMovePower_Core:
 ; Called after EnemyAttackDamage has loaded b/c/d/e. These live power helpers
 ; deliberately preserve b, c and e, so the normal damage formula can follow.
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_RETURN
+	jr z, .happiness
+	cp EFFECT_FRUSTRATION
+	jr z, .frustration
 	cp EFFECT_GYRO_BALL
 	jp z, BattleGyroBall_Core
 	cp EFFECT_RAGE_FIST
@@ -159,6 +163,12 @@ AIPredictVariableMovePower_Core:
 	jp z, BattleLowKickPower_Core
 	cp EFFECT_HEAVY_SLAM
 	jp z, BattleHeavySlamPower_Core
+	ret
+.happiness
+	callfar BattleCommand_HappinessPower
+	ret
+.frustration
+	callfar BattleCommand_FrustrationPower
 	ret
 
 AIPredictVariableMoveDamage_Core:

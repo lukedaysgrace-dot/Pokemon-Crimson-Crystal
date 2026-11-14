@@ -472,7 +472,7 @@ def load_tests(paths, keyword=None, all_moves=False, all_effects=False, interact
                all_abilities=False, ability_matrix=False, reflection_matrix=False,
                class_matrix=False, textbox_matrix=False, swagger_matrix=False,
                outcome_matrix=False, long_battles=False, item_matrix=False, reaction_matrix=False,
-               complex_matrix=False, move_semantics=False, dynamic_type_matrix=False):
+               complex_matrix=False, move_semantics=False, dynamic_type_matrix=False, battle_depth_matrix=False):
     files = []
     default_dir = Path(__file__).resolve().parent / "tests"
     if not paths:
@@ -529,6 +529,9 @@ def load_tests(paths, keyword=None, all_moves=False, all_effects=False, interact
         tests.extend(generate_dynamic_type_tests())
         tests.extend(generate_called_move_tests())
         tests.extend(generate_priority_target_tests())
+    if battle_depth_matrix:
+        from battle_depth_matrix import generate_battle_depth_tests
+        tests.extend(generate_battle_depth_tests())
     if keyword:
         selected = {i for i, t in enumerate(tests) if keyword.lower() in t.get("name", "").lower()}
         # A filtered assertion still needs its earlier paired controls.
@@ -661,6 +664,8 @@ def main():
                     help="per-hit Stamina, Weak Armor, Justified, Rattled and Thermal Exchange outcomes")
     ap.add_argument("--complex-matrix", action="store_true",
                     help="multi-hit ability/item combinations and new 12-turn mixed battles")
+    ap.add_argument('--battle-depth-matrix', action='store_true',
+                    help='exact fixed/counter/delayed/recoil/drain, contact KO, called and cleanup outcomes')
     ap.add_argument("--interactions", type=int, metavar="N", default=0,
                     help="also run N deterministic mixed-mechanic stress battles")
     args = ap.parse_args()
@@ -671,7 +676,8 @@ def main():
                        args.interactions, args.all_abilities, args.ability_matrix,
                        args.reflection_matrix, args.class_matrix, args.textbox_matrix,
                        args.swagger_matrix, args.outcome_matrix, args.long_battles, args.item_matrix,
-                       args.reaction_matrix, args.complex_matrix, args.move_semantics, args.dynamic_type_matrix)
+                       args.reaction_matrix, args.complex_matrix, args.move_semantics, args.dynamic_type_matrix,
+                       args.battle_depth_matrix)
     if not tests:
         sys.exit("no tests found")
     if args.shard:

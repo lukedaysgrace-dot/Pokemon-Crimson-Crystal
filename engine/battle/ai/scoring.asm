@@ -3204,6 +3204,15 @@ AI_Aggressive:
 INCLUDE "data/battle/ai/reckless_moves.asm"
 
 AIDamageCalc:
+	; The live STAB/type path records a miss for natural immunity. Scoring
+	; must not leak that scratch result into the battle action being chosen.
+	ld a, [wAttackMissed]
+	push af
+	ld a, [wEffectFailed]
+	push af
+	xor a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
 	ld a, 1
 	ldh [hBattleTurn], a
 	ld [wAIDamagePrediction], a
@@ -3212,19 +3221,42 @@ AIDamageCalc:
 	ld hl, ConstantDamageEffects
 	call IsInArray
 	jr nc, .formula
+	; Fixed damage ignores nonzero effectiveness, but still respects natural
+	; immunities, exactly like the live script's resettypematchup command.
+	; Use the pure matchup reader: prediction must not set wAttackMissed.
+	callfar BattleCheckTypeMatchup
+	ld a, [wTypeMatchup]
+	and a
+	jr z, .immune
 	callfar BattleCommand_ConstantDamage
+	jr .done
+.immune
+	callfar ResetDamage
 	jr .done
 
 .formula
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_REVERSAL
+	jr z, .reversal
 	callfar AIPredictVariableMoveCategory_Core
 	callfar EnemyAttackDamage
 	callfar AIPredictVariableMovePower_Core
 	callfar BattleCommand_DamageCalc
 	callfar BattleCommand_Stab
 	callfar AIPredictVariableMoveDamage_Core
+	jr .done
+.reversal
+	; Flail/Reversal's live command derives HP-scaled power and then runs
+	; the ordinary stat loader and formula. It restores the table placeholder.
+	callfar BattleCommand_ConstantDamage
+	callfar BattleCommand_Stab
 .done
 	xor a
 	ld [wAIDamagePrediction], a
+	pop af
+	ld [wEffectFailed], a
+	pop af
+	ld [wAttackMissed], a
 	ret
 
 INCLUDE "data/battle/ai/constant_damage_effects.asm"

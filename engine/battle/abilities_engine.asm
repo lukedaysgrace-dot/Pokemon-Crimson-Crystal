@@ -2581,6 +2581,47 @@ CheckPlayerChoiceLock_Core:
 	ret
 
 
+ResolvePlayerEncoreSlot_Core::
+; Keep a valid selected duplicate. If the moves were reordered/replaced,
+; recover Encore's move slot before PP is checked or charged. Use the same
+; first-match lookup as Encore application, without skipping exhausted copies.
+	ld a, [wLastPlayerMove]
+	ld b, a
+	and a
+	jr z, .ended
+	ld a, [wCurMoveNum]
+	cp NUM_MOVES
+	jr nc, .search
+	ld e, a
+	ld d, 0
+	ld hl, wBattleMonMoves
+	add hl, de
+	ld a, [hl]
+	cp b
+	jr z, .found
+.search
+	ld hl, wBattleMonMoves
+	ld e, 0
+.loop
+	ld a, [hli]
+	cp b
+	jr z, .found
+	inc e
+	ld a, e
+	cp NUM_MOVES
+	jr c, .loop
+.ended
+	ld hl, wPlayerSubStatus5
+	res SUBSTATUS_ENCORED, [hl]
+	xor a
+	ld [wPlayerEncoreCount], a
+	ret
+.found
+	ld a, e
+	ld [wCurMoveNum], a
+	scf
+	ret
+
 HandleEnemyHeldMoveLocks_Core:
 	call SetEnemyTurn
 	callfar GetUserItem
@@ -2823,6 +2864,12 @@ EnemyMoveMeetsRestrictions:
 RunDamageModifiers:
 ; Apply ability-based damage modifiers to wCurDamage.
 ; Attacker = current turn holder. Physical/special moves only.
+	; A minimum-one reduction cannot turn a type immunity back into damage.
+	; This also keeps the AI's pure estimate at zero for an immune target.
+	ld hl, wCurDamage
+	ld a, [hli]
+	or [hl]
+	ret z
 	call GetMoveCategory
 	cp CATEGORIZE_STATUS
 	ret z

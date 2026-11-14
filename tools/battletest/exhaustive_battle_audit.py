@@ -40,11 +40,17 @@ def mirror(test):
         if y is not None:
             test[a] = y
     pairs = {'player': 'enemy', 'enemy': 'player', 'wPlayer': 'wEnemy',
-             'wEnemy': 'wPlayer', 'wBattleMon': 'wEnemyMon', 'wEnemyMon': 'wBattleMon'}
+             'wEnemy': 'wPlayer', 'wBattleMon': 'wEnemyMon', 'wEnemyMon': 'wBattleMon',
+             'wCurMoveNum': 'wCurEnemyMoveNum', 'wCurEnemyMoveNum': 'wCurMoveNum',
+             'wLastPlayer': 'wLastEnemy', 'wLastEnemy': 'wLastPlayer',
+             'wDisabledMove': 'wEnemyDisabledMove', 'wEnemyDisabledMove': 'wDisabledMove',
+             'wPartyMon': 'wOTPartyMon', 'wOTPartyMon': 'wPartyMon'}
 
     def exchange(value):
         value = value.replace("wram('wEnemyGoesFirst')", '(1 - __ORDER__)')
-        value = re.sub(r'wBattleMon|wEnemyMon|wPlayer|wEnemy|\bplayer\b|\benemy\b',
+        value = re.sub(r'wCurEnemyMoveNum|wCurMoveNum|wEnemyDisabledMove|wDisabledMove|'
+                       r'wLastPlayer|wLastEnemy|wOTPartyMon|wPartyMon|'
+                       r'wBattleMon|wEnemyMon|wPlayer|wEnemy|\bplayer\b|\benemy\b',
                        lambda match: pairs[match[0]], value)
         return value.replace('__ORDER__', "wram('wEnemyGoesFirst')")
 
