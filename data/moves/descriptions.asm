@@ -319,7 +319,7 @@ MoveDescriptions1:
 	dw AstonishDescription
 	dw FacadeDescription
 	dw FlameChargeDescription
-	dw BraveBirdDescription
+	dw FlareBlitzDescription
 	dw EarthPowerDescription
 	dw EarthPowerDescription
 	dw GigaImpactDescription
@@ -1788,6 +1788,10 @@ AstonishDescription:
 AvalancheDescription:
 	db   "Damage doubles if"
 	next "user is hit first.@"
+
+FlareBlitzDescription:
+	db   "Recoil charge that"
+	next "may burn the foe.@"
 
 BraveBirdDescription:
 	db   "A charge that also"

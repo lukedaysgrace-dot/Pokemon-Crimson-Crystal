@@ -6081,7 +6081,7 @@ MediumGroup:
 	db ABILITY_3
 	db 24
 	dw MISDREAVUS
-	db ABILITY_2
+	db ABILITY_3
 	db -1 ; end
 
 	next_list_item ; MEDIUM (4) REBECCA - Saffron Gym
@@ -6955,7 +6955,7 @@ HexManiacGroup:
 	dw CONFUSE_RAY, VENOSHOCK, CURSE, SUCKER_PUNCH
 	db 24
 	dw MISDREAVUS
-	db ABILITY_2
+	db ABILITY_3
 	dw PSYBEAM, CONFUSE_RAY, DRAINING_KISS, PAIN_SPLIT
 	db -1 ; end
 
@@ -6984,7 +6984,7 @@ HexManiacGroup:
 	dw CURSE, SHADOW_SNEAK, SPITE, WILL_O_WISP
 	db 23
 	dw MISDREAVUS
-	db ABILITY_2
+	db ABILITY_3
 	dw PSYBEAM, CONFUSE_RAY, DRAINING_KISS, PAIN_SPLIT
 	db -1 ; end
 
