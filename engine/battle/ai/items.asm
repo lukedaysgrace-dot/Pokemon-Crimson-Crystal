@@ -12,6 +12,14 @@ AI_SwitchOrTryItem:
 	farcall CheckEnemyLockedIn
 	ret nz
 
+	; Ghosts ignore binding and Mean Look, just as on the player's switch
+	; path. CheckPlayerTrapsEnemy below also exempts them from abilities.
+	ld a, [wEnemyMonType1]
+	cp GHOST
+	jr z, .check_trap_ability
+	ld a, [wEnemyMonType2]
+	cp GHOST
+	jr z, .check_trap_ability
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, DontSwitch
@@ -20,6 +28,7 @@ AI_SwitchOrTryItem:
 	and a
 	jr nz, DontSwitch
 
+.check_trap_ability
 	; trapping abilities (Shadow Tag/Arena Trap/Magnet Pull)
 	farcall CheckPlayerTrapsEnemy
 	jr c, DontSwitch

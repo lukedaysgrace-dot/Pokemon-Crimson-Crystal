@@ -1,0 +1,75 @@
+index,name,effect,parameter,source_references
+30,LUCKY_PUNCH,HELD_NONE,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands.asm; engine/battle/effect_commands_core.asm
+35,METAL_POWDER,HELD_METAL_POWDER,10,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands_core.asm
+73,QUICK_CLAW,HELD_QUICK_CLAW,60,constants/item_constants.asm; data/items/attributes.asm; engine/battle/core.asm
+74,PSNCUREBERRY,HELD_HEAL_POISON,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/battle/held_heal_status.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/modern_held_items.asm
+76,SOFT_SAND,HELD_GROUND_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+77,SHARP_BEAK,HELD_FLYING_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+78,PRZCUREBERRY,HELD_HEAL_PARALYZE,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/battle/held_heal_status.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/modern_held_items.asm
+79,BURNT_BERRY,HELD_HEAL_FREEZE,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/battle/held_heal_status.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/modern_held_items.asm
+80,ICE_BERRY,HELD_HEAL_BURN,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/battle/held_heal_status.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/modern_held_items.asm
+81,POISON_BARB,HELD_POISON_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+82,KINGS_ROCK,HELD_FLINCH,30,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/effect_commands.asm
+83,BITTER_BERRY,HELD_HEAL_CONFUSION,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/core.asm; engine/battle/effect_commands.asm; engine/battle/modern_held_items.asm
+84,MINT_BERRY,HELD_HEAL_SLEEP,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/battle/held_heal_status.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/modern_held_items.asm
+88,SILVERPOWDER,HELD_BUG_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+91,AMULET_COIN,HELD_AMULET_COIN,10,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+94,CLEANSE_TAG,HELD_CLEANSE_TAG,0,constants/item_constants.asm; data/items/attributes.asm
+95,MYSTIC_WATER,HELD_WATER_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+96,TWISTEDSPOON,HELD_PSYCHIC_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+98,BLACKBELT,HELD_FIGHTING_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+102,BLACKGLASSES,HELD_DARK_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+104,PINK_BOW,HELD_NORMAL_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+105,STICK,HELD_NONE,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands.asm; engine/battle/effect_commands_core.asm
+106,SMOKE_BALL,HELD_ESCAPE,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/core.asm
+107,NEVERMELTICE,HELD_ICE_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+108,MAGNET,HELD_ELECTRIC_BOOST,20,constants/item_constants.asm; data/abilities/names.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+109,MIRACLEBERRY,HELD_HEAL_STATUS,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/battle/held_heal_status.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/core.asm; engine/battle/effect_commands.asm; engine/battle/modern_held_items.asm
+113,SPELL_TAG,HELD_GHOST_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+117,MIRACLE_SEED,HELD_GRASS_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+118,THICK_CLUB,HELD_NONE,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands_core.asm
+119,FOCUS_BAND,HELD_FOCUS_BAND,30,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands.asm
+125,HARD_STONE,HELD_ROCK_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+136,LOADED_DICE,HELD_LOADED_DICE,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands_core.asm
+137,CHOICE_BAND,HELD_CHOICE_BAND,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+138,CHARCOAL,HELD_FIRE_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+139,BERRY_JUICE,HELD_BERRY,20,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/core.asm
+140,SCOPE_LENS,HELD_CRITICAL_UP,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/effect_commands.asm
+141,CHOICE_SPECS,HELD_CHOICE_SPECS,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+142,CHOICE_SCARF,HELD_CHOICE_SCARF,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+143,METAL_COAT,HELD_STEEL_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+144,DRAGON_FANG,HELD_DRAGON_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+145,EVIOLITE,HELD_EVIOLITE,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands_core.asm
+146,LEFTOVERS,HELD_LEFTOVERS,10,constants/item_constants.asm; data/items/attributes.asm; engine/battle/core.asm
+147,ASSAULT_VEST,HELD_ASSAULT_VEST,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/effect_commands_core.asm
+148,FOCUS_SASH,HELD_FOCUS_SASH,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm
+149,EXPERT_BELT,HELD_EXPERT_BELT,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+150,MYSTERYBERRY,HELD_RESTORE_PP,-1,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/core.asm; engine/battle/modern_held_items.asm; engine/battle/move_effects/cud_chew_core.asm
+153,ROCKY_HELMET,HELD_ROCKY_HELMET,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+154,LIFE_ORB,HELD_LIFE_ORB,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+155,WEAK_POLICY,HELD_WEAKNESS_POLICY,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+162,AIR_BALLOON,HELD_AIR_BALLOON,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/effect_commands_core.asm; engine/battle/move_effects/new_move_cores.asm
+163,LIGHT_BALL,HELD_NONE,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands_core.asm
+170,WIDE_LENS,HELD_WIDE_LENS,10,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+171,MUSCLE_BAND,HELD_MUSCLE_BAND,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+173,BERRY,HELD_BERRY,10,constants/item_constants.asm; data/abilities/descriptions.asm; data/battle/held_consumables.asm; data/items/attributes.asm; data/moves/descriptions.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/core.asm; engine/battle/modern_held_items.asm
+174,GOLD_BERRY,HELD_GOLD_BERRY,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm; engine/battle/modern_held_items.asm
+176,WISE_GLASSES,HELD_WISE_GLASSES,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+179,FLAME_ORB,HELD_FLAME_ORB,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands_core.asm
+186,DAMP_ROCK,HELD_WEATHER_ROCK,WEATHER_RAIN,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+187,HEAT_ROCK,HELD_WEATHER_ROCK,WEATHER_SUN,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+188,SMOOTH_ROCK,HELD_WEATHER_ROCK,WEATHER_SANDSTORM,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+189,ICY_ROCK,HELD_WEATHER_ROCK,WEATHER_HAIL,constants/item_constants.asm; data/items/attributes.asm; engine/battle/abilities_engine.asm
+190,TOXIC_ORB,HELD_TOXIC_ORB,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/effect_commands_core.asm
+260,POLKADOT_BOW,HELD_FAIRY_BOOST,20,constants/item_constants.asm; data/items/attributes.asm; data/types/type_boost_items.asm
+285,COVERT_CLOAK,HELD_COVERT_CLOAK,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+286,CLEAR_AMULET,HELD_CLEAR_AMULET,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+287,METRONOME_ITEM,HELD_METRONOME,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+291,POWER_HERB,HELD_POWER_HERB,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+292,WHITE_HERB,HELD_WHITE_HERB,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+294,LIGHT_CLAY,HELD_LIGHT_CLAY,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+295,THROAT_SPRAY,HELD_THROAT_SPRAY,0,constants/item_constants.asm; data/battle/held_consumables.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+296,PUNCHING_GLOVE,HELD_PUNCHING_GLOVE,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+297,QUICK_POWDER,HELD_QUICK_POWDER,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+298,SAFETY_GOGGLES,HELD_SAFETY_GOGGLES,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm
+299,BIG_ROOT,HELD_BIG_ROOT,0,constants/item_constants.asm; data/items/attributes.asm; engine/battle/modern_held_items.asm

@@ -1,0 +1,175 @@
+index,name,flags,source_references
+0,NO_ABILITY,07,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/core.asm; home/abilities.asm; wram.asm
+1,DRIZZLE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+2,SPEED_BOOST,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+3,BATTLE_ARMOR,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+4,STURDY,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm
+5,DAMP,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+6,LIMBER,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+7,SAND_VEIL,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+8,STATIC,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+9,VOLT_ABSORB,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+10,WATER_ABSORB,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+11,OBLIVIOUS,50,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/move_effects/new_move_cores.asm
+12,CLOUD_NINE,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+13,COMPOUND_EYES,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+14,INSOMNIA,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+15,IMMUNITY,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm; engine/battle/move_effects/new_move_cores.asm
+16,FLASH_FIRE,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+17,OWN_TEMPO,50,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm
+18,INTIMIDATE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+19,SHADOW_TAG,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+20,LEVITATE,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/effect_commands_core.asm; engine/battle/move_effects/new_move_cores.asm
+21,EFFECT_SPORE,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+22,SYNCHRONIZE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+23,CLEAR_BODY,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+24,NATURAL_CURE,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+25,LIGHTNING_ROD,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+26,SERENE_GRACE,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+27,SWIFT_SWIM,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+28,CHLOROPHYLL,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+29,TRACE,03,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+30,HUGE_POWER,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+31,POISON_POINT,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+32,INNER_FOCUS,50,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+33,MAGMA_ARMOR,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+34,WATER_VEIL,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm
+35,MAGNET_PULL,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+36,SOUNDPROOF,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/move_effects/perish_song_core.asm
+37,RAIN_DISH,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+38,SAND_STREAM,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+39,PRESSURE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+40,THICK_FAT,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+41,FLAME_BODY,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+42,KEEN_EYE,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+43,HYPER_CUTTER,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+44,PICKUP,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+45,HUSTLE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+46,CUTE_CHARM,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+47,SHED_SKIN,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+48,GUTS,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+49,MARVEL_SCALE,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+50,OVERGROW,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+51,BLAZE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; data/moves/names.asm; engine/battle/abilities_engine.asm
+52,TORRENT,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+53,SWARM,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+54,ROCK_HEAD,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+55,DROUGHT,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+56,ARENA_TRAP,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+57,VITAL_SPIRIT,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+58,WHITE_SMOKE,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+59,SHELL_ARMOR,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+60,TANGLED_FEET,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+61,MOTOR_DRIVE,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+62,RIVALRY,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+63,STEADFAST,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+64,SNOW_CLOAK,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+65,ANGER_POINT,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+66,DRY_SKIN,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+67,IRON_FIST,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+68,POISON_HEAL,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+69,ADAPTABILITY,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+70,SKILL_LINK,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/effect_commands_core.asm
+71,HYDRATION,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+72,SOLAR_POWER,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+73,QUICK_FEET,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+74,SNIPER,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+75,MAGIC_GUARD,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/effect_commands.asm; engine/battle/effect_commands_core.asm; engine/battle/modern_held_items.asm
+76,NO_GUARD,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+77,TECHNICIAN,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+78,MOLD_BREAKER,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+79,SUPER_LUCK,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+80,AFTERMATH,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+81,TINTED_LENS,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+82,FILTER,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+83,SCRAPPY,40,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+84,ICE_BODY,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+85,SOLID_ROCK,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+86,SNOW_WARNING,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+87,HONEY_GATHER,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+88,FRISK,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+89,RECKLESS,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+90,BAD_DREAMS,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+91,SHEER_FORCE,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/effect_commands.asm; engine/battle/effect_commands_core.asm; engine/battle/modern_held_items.asm
+92,CONTRARY,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands.asm; engine/battle/move_effects/belly_drum.asm; engine/battle/move_effects/curse.asm
+93,UNNERVE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+94,DEFIANT,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+95,CURSED_BODY,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+96,WEAK_ARMOR,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+97,MULTISCALE,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+98,OVERCOAT,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+99,POISON_TOUCH,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+100,REGENERATOR,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+101,BIG_PECKS,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+102,SAND_RUSH,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+103,WONDER_SKIN,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+104,ANALYTIC,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+105,IMPOSTER,03,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+106,MOXIE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+107,JUSTIFIED,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+108,RATTLED,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+109,MAGIC_BOUNCE,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/ai/scoring.asm; engine/battle/move_effects/new_move_cores.asm
+110,SAP_SIPPER,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+111,PRANKSTER,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/hidden_power.asm
+112,SAND_FORCE,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+113,FUR_COAT,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+114,BULLETPROOF,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+115,COMPETITIVE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+116,MEGA_LAUNCHER,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+117,TOUGH_CLAWS,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+118,PIXILATE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+119,PARENTAL_BOND,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/move_effects/parental_bond_core.asm
+120,BERSERK,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+121,SLUSH_RUSH,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+122,GALVANIZE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+123,FLUFFY,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+124,TANGLING_HAIR,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+125,SCREEN_CLEANER,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+126,STEELY_SPIRIT,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+127,PERISH_BODY,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+128,NEUTRALIZING_GAS,2f,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/move_effects/selfdestruct.asm
+129,PASTEL_VEIL,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm; engine/battle/move_effects/new_move_cores.asm
+130,WIND_RIDER,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+131,SHARPNESS,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+132,ARMOR_TAIL,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+133,MINDS_EYE,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+134,MEGA_SOL,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/effect_commands.asm; engine/battle/effect_commands_core.asm; engine/battle/move_effects/new_move_cores.asm
+135,REFRIGERATE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+136,AERILATE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+137,DISGUISE,3f,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+138,GALE_WINGS,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+139,MERCILESS,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+140,MIRROR_ARMOR,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+141,STORM_DRAIN,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+142,STAMINA,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+143,STRONG_JAW,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+144,SUPREME_OVERLORD,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+145,THERMAL_EXCHANGE,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm
+146,TRIAGE,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+147,IRON_BARBS,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+148,POISON_PUPPETEER,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+149,TOXIC_DEBRIS,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+150,QUEENLY_MAJESTY,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+151,GLUTTONY,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/ai/scoring.asm; engine/battle/modern_held_items.asm
+152,RUN_AWAY,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+153,INFILTRATOR,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands.asm; engine/battle/effect_commands_core.asm
+154,LEAF_GUARD,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm; engine/battle/move_effects/new_move_cores.asm
+155,EARLY_BIRD,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+156,UNAWARE,10,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm
+157,STENCH,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+158,ANTICIPATION,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+159,PICKPOCKET,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+160,SHIELD_DUST,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+161,CORROSION,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/effect_commands_core.asm
+162,HARVEST,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+163,DOWNLOAD,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+164,SUCTION_CUPS,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/modern_held_items.asm
+165,STICKY_HOLD,10,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/move_effects/new_move_cores.asm; engine/battle/move_effects/thief.asm
+166,UNBURDEN,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+167,KLUTZ,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/core.asm; engine/battle/effect_commands.asm; engine/battle/effect_commands_core.asm; engine/battle/legacy_core.asm
+168,RIPEN,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm; engine/battle/modern_held_items.asm
+169,CUD_CHEW,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm; engine/battle/ai/scoring.asm
+170,FOREWARN,00,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/abilities_engine.asm
+171,SUPERSWEET_SYRUP,00,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/abilities_engine.asm
+172,ILLUSION,07,constants/ability_constants.asm; data/abilities/flags.asm; data/abilities/names.asm; engine/battle/illusion.asm
+173,STANCE_CHANGE,0f,constants/ability_constants.asm; data/abilities/flags.asm; engine/battle/stance_change.asm

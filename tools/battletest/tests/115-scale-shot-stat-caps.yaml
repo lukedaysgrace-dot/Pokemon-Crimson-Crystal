@@ -1,0 +1,98 @@
+# Each independent self-stat change must resolve even if the other is capped.
+- name: "Scale Shot caps: player minimum Defense still raises Speed"
+  player: {species: MEW, level: 50, ability: SKILL_LINK, stages: {def: -6}, moves: [SCALE_SHOT]}
+  enemy: {species: SHUCKLE, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - player.stat_levels[1] == 1
+    - player.stat_levels[2] == 8
+
+- name: "Scale Shot caps: enemy minimum Defense still raises Speed"
+  player: {species: SHUCKLE, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: SKILL_LINK, stages: {def: -6}, moves: [SCALE_SHOT]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - enemy.stat_levels[1] == 1
+    - enemy.stat_levels[2] == 8
+
+- name: "Scale Shot control: player's White Herb removes only the Defense drop"
+  player: {species: MEW, level: 50, ability: SKILL_LINK, item: WHITE_HERB, moves: [SCALE_SHOT]}
+  enemy: {species: SHUCKLE, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels[1] == 7", "player.stat_levels[2] == 8", "player.item == 'NO_ITEM'"]
+
+- name: "Scale Shot control: enemy's White Herb removes only the Defense drop"
+  player: {species: SHUCKLE, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: SKILL_LINK, item: WHITE_HERB, moves: [SCALE_SHOT]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels[1] == 7", "enemy.stat_levels[2] == 8", "enemy.item == 'NO_ITEM'"]
+
+- name: "Scale Shot control: enemy Protect prevents both player stat changes"
+  player: {species: MEW, level: 50, ability: SKILL_LINK, moves: [SCALE_SHOT]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [PROTECT]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels == [7] * 7", "enemy.hp == enemy.start_hp"]
+
+- name: "Scale Shot control: player Protect prevents both enemy stat changes"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [PROTECT]}
+  enemy: {species: MEW, level: 50, ability: SKILL_LINK, moves: [SCALE_SHOT]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels == [7] * 7", "player.hp == player.start_hp"]
+
+- name: "Scale Shot control: immune enemy prevents both player stat changes"
+  player: {species: MEW, level: 50, ability: SKILL_LINK, moves: [SCALE_SHOT]}
+  enemy: {species: CLEFABLE, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert: ["player.stat_levels == [7] * 7", "enemy.hp == enemy.start_hp"]
+
+- name: "Scale Shot control: immune player prevents both enemy stat changes"
+  player: {species: CLEFABLE, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: SKILL_LINK, moves: [SCALE_SHOT]}
+  rng: forced_low
+  turns: 1
+  assert: ["enemy.stat_levels == [7] * 7", "player.hp == player.start_hp"]
+
+- name: "Scale Shot control: a player miss prevents both stat changes"
+  player: {species: MEW, level: 50, ability: SKILL_LINK, moves: [SCALE_SHOT]}
+  enemy: {species: SHUCKLE, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced
+  rng_value: 244
+  turns: 1
+  assert: ["player.stat_levels == [7] * 7", "enemy.hp == enemy.start_hp"]
+
+- name: "Scale Shot control: an enemy miss prevents both stat changes"
+  player: {species: SHUCKLE, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: SKILL_LINK, moves: [SCALE_SHOT]}
+  rng: forced
+  rng_value: 244
+  turns: 1
+  assert: ["enemy.stat_levels == [7] * 7", "player.hp == player.start_hp"]
+
+- name: "Scale Shot caps: player minimum Defense still raises Speed on KO"
+  player: {species: MEW, level: 100, ability: SKILL_LINK, stages: {def: -6}, moves: [SCALE_SHOT]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, hp: 1, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp == 0
+    - player.stat_levels[1] == 1
+    - player.stat_levels[2] == 8
+
+- name: "Scale Shot caps: enemy minimum Defense still raises Speed on KO"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, hp: 1, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: SKILL_LINK, stages: {def: -6}, moves: [SCALE_SHOT]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp == 0
+    - enemy.stat_levels[1] == 1
+    - enemy.stat_levels[2] == 8

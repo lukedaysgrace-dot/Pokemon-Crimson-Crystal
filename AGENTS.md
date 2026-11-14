@@ -275,6 +275,13 @@ Read this before changing the game. Keep it up to date when something here chang
   Run `tools/test_battle_selection_restrictions.py`
   on both ROMs and `tools/battletest/move_restriction_menu_checks.py` for the
   actual Fight menu; auto-mode YAML cannot cover the player menu.
+  `tools/test_duplicate_move_restrictions.py` checks both ROMs' duplicate PP,
+  Choice locks, native Mimic/Sketch and existing Encore/Disable lookup policy.
+  The player's Choice rejection scan must search every duplicate before
+  forcing Struggle; only a truly absent move releases the lock. The Fight
+  menu checks Disable by move ID so another Mimic copy cannot spend a turn
+  failing. `move_restriction_menu_checks.py --duplicates-only` covers both
+  refusals and exact selected-slot PP with real buttons.
 - Nightmare respects Protect and Baneful Bunker, including Sleep Talk calls;
   King's Shield still permits status moves. Thermal Exchange's Fire-hit boost
   is bypassed by Mold Breaker. Absorbers and move-class blockers run before
@@ -294,6 +301,35 @@ Read this before changing the game. Keep it up to date when something here chang
   flags around the item boost. Giga Hammer/Doom Desire cooldowns participate
   in both sides' legal-move scans: an otherwise locked Choice user Struggles.
   Fixtures `111` through `114` cover the second November 13 interaction pass.
+- Scale Shot's Defense drop and Speed raise are independent at stat caps,
+  including Contrary and a KO on the final hit. Reset temporary failure flags
+  between them in both its script and `BattleScaleShotKO_Core`.
+  Disable/Cursed Body countdowns advance before recharge, sleep and flinch.
+  King's Rock checks sleep and action order before flinching: a late proc must
+  never remove a faster target's recharge. Trainer Ghosts ignore binding and
+  Mean Look in `AI_SwitchOrTryItem`, matching the player's recall rules.
+  `DamagePercent` saturates at $ffff and retains at least 1 for nonzero damage;
+  zero stays zero. This also protects Mega Sol's rain/Water adjustment.
+  Fixtures `115`–`118`, `tools/test_battle_damage_boundaries.py` and
+  `tools/test_battle_interruption_integrity.py` cover these interactions.
+  `self_stat_boundary_matrix.py` adds every damaging self-stat move's mixed
+  caps and Contrary controls to `--outcome-matrix`.
+  Fury Cutter's stored use count caps at 3: PP recovery must not wrap it on
+  use 256, restart Technician, or underflow the damage loop. The native
+  damage-boundary test executes 300 consecutive uses on each side.
+  Effect Commands (bank $0d) is full in debug, with 16 bytes free in release;
+  put further command bodies in an overflow bank.
+  Prankster's Dark immunity requires both captured Prankster action origin
+  and the user's current effective Prankster. Ability loss permits the move;
+  late acquisition does not retroactively boost it. Fixture `119` covers both.
+- `make test-damage-pipeline BATTLE_TEST_JOBS=8` compares an independent
+  integer oracle with full native debug battle turns: chosen stats, formula,
+  weather/critical/STAB/types/items/abilities, every 217..255 variation roll,
+  and immediate HP loss. Both orientations cover screens, burn/frostbite,
+  Unaware, defensive weather/items and stacked saturation. The fixture seeds
+  coherent raw/staged stats and facility EXP suppression; it does not replace
+  damage routines or certify every move/ability. Results are written under
+  `_artifacts/damage-pipeline/`. Also included in `test-moves-abilities`.
 - `make test-moves-abilities BATTLE_TEST_JOBS=8` includes every-move semantic
   outcomes, dynamic-type controls and called-move interactions. The optional
   `make test-exhaustive-battles BATTLE_TEST_JOBS=8` also plays every move with

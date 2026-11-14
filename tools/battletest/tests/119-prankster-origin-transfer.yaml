@@ -1,0 +1,70 @@
+# Priority origin persists, but Dark immunity also requires live Prankster.
+- name: "Prankster origin control: player ability loss permits Growl against Dark"
+  player: {species: MEW, level: 50, ability: PRANKSTER, moves: [GROWL, SKILL_SWAP]}
+  enemy: {species: UMBREON, level: 100, ability: GALE_WINGS, moves: [MIRROR_MOVE]}
+  setup_wram: {wLastPlayerCounterMove: {move: SKILL_SWAP}}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 1
+    - player.ability == 'GALE_WINGS'
+    - enemy.ability == 'PRANKSTER'
+    - enemy.stat_levels[0] == 6
+
+- name: "Prankster origin control: enemy ability loss permits Growl against Dark"
+  player: {species: UMBREON, level: 100, ability: GALE_WINGS, moves: [MIRROR_MOVE]}
+  enemy: {species: MEW, level: 50, ability: PRANKSTER, moves: [GROWL, SKILL_SWAP]}
+  setup_wram: {wLastEnemyCounterMove: {move: SKILL_SWAP}, wEnemyMonPP: [40, 0, 0, 0]}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyGoesFirst') == 0
+    - enemy.ability == 'GALE_WINGS'
+    - player.ability == 'PRANKSTER'
+    - player.stat_levels[0] == 6
+
+- name: "Prankster origin control: ability loss still permits Growl against Psychic"
+  player: {species: MEW, level: 50, ability: PRANKSTER, moves: [GROWL, SKILL_SWAP]}
+  enemy: {species: MEW, level: 100, ability: GALE_WINGS, moves: [MIRROR_MOVE]}
+  setup_wram: {wLastPlayerCounterMove: {move: SKILL_SWAP}}
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'GALE_WINGS'", "enemy.ability == 'PRANKSTER'", "enemy.stat_levels[0] == 6"]
+
+- name: "Prankster origin control: enemy ability loss permits Growl against Psychic"
+  player: {species: MEW, level: 100, ability: GALE_WINGS, moves: [MIRROR_MOVE]}
+  enemy: {species: MEW, level: 50, ability: PRANKSTER, moves: [GROWL, SKILL_SWAP]}
+  setup_wram: {wLastEnemyCounterMove: {move: SKILL_SWAP}, wEnemyMonPP: [40, 0, 0, 0]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.ability == 'GALE_WINGS'", "player.ability == 'PRANKSTER'", "player.stat_levels[0] == 6"]
+
+- name: "Prankster origin control: player gains Prankster after ordering against Dark"
+  player: {species: MEW, level: 100, ability: SYNCHRONIZE, moves: [GROWL]}
+  enemy: {species: SABLEYE, level: 50, ability: PRANKSTER, moves: [SKILL_SWAP]}
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'PRANKSTER'", "enemy.ability == 'SYNCHRONIZE'", "enemy.stat_levels[0] == 6"]
+
+- name: "Prankster origin control: enemy gains Prankster after ordering against Dark"
+  player: {species: SABLEYE, level: 50, ability: PRANKSTER, moves: [SKILL_SWAP]}
+  enemy: {species: MEW, level: 100, ability: SYNCHRONIZE, moves: [GROWL]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.ability == 'PRANKSTER'", "player.ability == 'SYNCHRONIZE'", "player.stat_levels[0] == 6"]
+
+- name: "Prankster origin control: ability loss permits player Psych Up against Dark"
+  player: {species: MEW, level: 50, ability: PRANKSTER, moves: [PSYCH_UP, SKILL_SWAP]}
+  enemy: {species: UMBREON, level: 100, ability: GALE_WINGS, stages: {atk: 2}, moves: [MIRROR_MOVE]}
+  setup_wram: {wLastPlayerCounterMove: {move: SKILL_SWAP}}
+  rng: forced_high
+  turns: 1
+  assert: ["player.ability == 'GALE_WINGS'", "enemy.ability == 'PRANKSTER'", "player.stat_levels[0] == 9"]
+
+- name: "Prankster origin control: ability loss permits enemy Psych Up against Dark"
+  player: {species: UMBREON, level: 100, ability: GALE_WINGS, stages: {atk: 2}, moves: [MIRROR_MOVE]}
+  enemy: {species: MEW, level: 50, ability: PRANKSTER, moves: [PSYCH_UP, SKILL_SWAP]}
+  setup_wram: {wLastEnemyCounterMove: {move: SKILL_SWAP}, wEnemyMonPP: [10, 0, 0, 0]}
+  rng: forced_high
+  turns: 1
+  assert: ["enemy.ability == 'GALE_WINGS'", "player.ability == 'PRANKSTER'", "enemy.stat_levels[0] == 9"]

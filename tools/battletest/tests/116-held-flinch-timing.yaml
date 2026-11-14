@@ -1,0 +1,58 @@
+# A flinch is confined to an unspent action in the current turn.
+- name: "Held flinch: slower player cannot cancel the enemy's recharge"
+  player: {species: SHUCKLE, level: 50, ability: NO_ABILITY, item: KINGS_ROCK, moves: [AERIAL_ACE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [HYPER_BEAM]}
+  rng: forced_low
+  turns: 2
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.pp[0] == enemy.start_pp[0] - 1
+    - (enemy.substatus[2] & 8) == 0
+
+- name: "Held flinch: slower enemy cannot cancel the player's recharge"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [HYPER_BEAM]}
+  enemy: {species: SHUCKLE, level: 50, ability: NO_ABILITY, item: KINGS_ROCK, moves: [AERIAL_ACE]}
+  rng: forced_low
+  turns: 2
+  assert:
+    - player.hp < player.start_hp
+    - player.pp[0] == player.start_pp[0] - 1
+    - (player.substatus[2] & 8) == 0
+
+- name: "Held flinch: sleeping enemy does not retain a flinch"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, item: KINGS_ROCK, moves: [AERIAL_ACE]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - (enemy.substatus[2] & 8) == 0
+
+- name: "Held flinch: sleeping player does not retain a flinch"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, status_byte: 7, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, item: KINGS_ROCK, moves: [AERIAL_ACE]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - (player.substatus[2] & 8) == 0
+
+- name: "Held flinch control: faster player still flinches an awake enemy"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, item: KINGS_ROCK, moves: [AERIAL_ACE]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.hp < enemy.start_hp
+    - enemy.pp[0] == enemy.start_pp[0]
+    - textbox_seen('FlinchedText')
+
+- name: "Held flinch control: faster enemy still flinches an awake player"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, item: KINGS_ROCK, moves: [AERIAL_ACE]}
+  rng: forced_low
+  turns: 1
+  assert:
+    - player.hp < player.start_hp
+    - player.pp[0] == player.start_pp[0]
+    - textbox_seen('FlinchedText')

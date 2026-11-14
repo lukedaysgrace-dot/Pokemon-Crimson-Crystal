@@ -1,0 +1,51 @@
+# A Ghost trainer mon can recall through binding and Mean Look, like the player.
+- name: "Ghost AI control: untrapped Perish Song user switches before fainting"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: GENGAR, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH]}
+  enemy2: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy_class: FALKNER
+  setup_wram: {wEnemyPerishCount: 1}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.species == 'SNORLAX'
+    - wram16('wOTPartyMon1HP') > 0
+    - not textbox_seen('PerishCountText')
+
+- name: "Ghost AI: binding cannot prevent a primary Ghost from switching"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH, WRAP]}
+  enemy: {species: GENGAR, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH]}
+  enemy2: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy_class: FALKNER
+  setup_wram: {wEnemyPerishCount: 1, wEnemyWrapCount: 3, wEnemyTrappingMove: {move: WRAP}}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.species == 'SNORLAX'
+    - wram16('wOTPartyMon1HP') > 0
+    - not textbox_seen('PerishCountText')
+
+- name: "Ghost AI: Mean Look cannot prevent a secondary Ghost from switching"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, substatus: [CANT_RUN], moves: [SPLASH]}
+  enemy: {species: ZORUA, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH]}
+  enemy2: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy_class: FALKNER
+  setup_wram: {wEnemyPerishCount: 1}
+  rng: forced_low
+  turns: 1
+  assert:
+    - enemy.species == 'SNORLAX'
+    - wram16('wOTPartyMon1HP') > 0
+    - not textbox_seen('PerishCountText')
+
+- name: "Ghost AI control: binding still prevents a Normal type from switching"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [SPLASH, WRAP]}
+  enemy: {species: MEOWTH, level: 50, ability: NO_ABILITY, substatus: [PERISH], moves: [SPLASH]}
+  enemy2: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [TACKLE]}
+  enemy_class: FALKNER
+  setup_wram: {wEnemyPerishCount: 1, wEnemyWrapCount: 3, wEnemyTrappingMove: {move: WRAP}}
+  rng: forced_low
+  turns: 1
+  assert:
+    - wram16('wOTPartyMon1HP') == 0
+    - textbox_seen('PerishCountText')

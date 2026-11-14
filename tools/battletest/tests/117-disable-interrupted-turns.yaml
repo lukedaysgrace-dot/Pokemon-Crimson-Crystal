@@ -1,0 +1,62 @@
+# Timed Disable/Cursed Body state advances even when another cause stops action.
+- name: "Disable clock: sleeping player still loses one duration tick"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 7, moves: [SPLASH, TACKLE]}
+  enemy: {species: SHUCKLE, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerDisableCount: 36, wDisabledMove: {move: TACKLE}}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wPlayerDisableCount') == 35
+    - (player.status & 7) == 6
+
+- name: "Disable clock: sleeping enemy still loses one duration tick"
+  player: {species: SHUCKLE, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 7, moves: [SPLASH, TACKLE]}
+  setup_wram: {wEnemyDisableCount: 36, wEnemyDisabledMove: {move: TACKLE}}
+  rng: forced_high
+  turns: 1
+  assert:
+    - wram('wEnemyDisableCount') == 35
+    - (enemy.status & 7) == 6
+
+- name: "Disable clock: flinching enemy still loses one duration tick"
+  player: {species: MEW, level: 100, ability: NO_ABILITY, moves: [FAKE_OUT]}
+  enemy: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH, TACKLE]}
+  setup_wram: {wEnemyDisableCount: 36, wEnemyDisabledMove: {move: TACKLE}}
+  rng: forced_low
+  turns: 1
+  assert:
+    - textbox_seen('FlinchedText')
+    - wram('wEnemyDisableCount') == 35
+
+- name: "Disable clock: flinching player still loses one duration tick"
+  player: {species: SNORLAX, level: 100, ability: NO_ABILITY, moves: [SPLASH, TACKLE]}
+  enemy: {species: MEW, level: 100, ability: NO_ABILITY, moves: [FAKE_OUT]}
+  setup_wram: {wPlayerDisableCount: 36, wDisabledMove: {move: TACKLE}}
+  rng: forced_low
+  turns: 1
+  assert:
+    - textbox_seen('FlinchedText')
+    - wram('wPlayerDisableCount') == 35
+
+- name: "Disable clock: sleeping player expires after four opportunities"
+  player: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 7, moves: [SPLASH, TACKLE]}
+  enemy: {species: SHUCKLE, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  setup_wram: {wPlayerDisableCount: 36, wDisabledMove: {move: TACKLE}}
+  rng: forced_high
+  turns: 4
+  assert:
+    - wram('wPlayerDisableCount') == 0
+    - wram('wDisabledMove') == 0
+    - textbox_seen('DisabledNoMoreText')
+
+- name: "Disable clock: sleeping enemy expires after four opportunities"
+  player: {species: SHUCKLE, level: 50, ability: NO_ABILITY, moves: [SPLASH]}
+  enemy: {species: MEW, level: 50, ability: NO_ABILITY, status_byte: 7, moves: [SPLASH, TACKLE]}
+  setup_wram: {wEnemyDisableCount: 36, wEnemyDisabledMove: {move: TACKLE}}
+  rng: forced_high
+  turns: 4
+  assert:
+    - wram('wEnemyDisableCount') == 0
+    - wram('wEnemyDisabledMove') == 0
+    - textbox_seen('DisabledNoMoreText')

@@ -21,6 +21,7 @@ from ui_checks import tile_text
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--rom', type=Path)
+    parser.add_argument('--duplicates-only', action='store_true')
     parser.add_argument('--output', type=Path, default=ROOT / '_artifacts/move-restriction-menu')
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -46,6 +47,11 @@ def main():
         if case.get('torment'):
             m.write('wPlayerSubStatus2', m.read('wPlayerSubStatus2') | 2)
             m.write('wLastPlayerMove', m.read('wBattleMonMoves', case['torment'] - 1))
+        if case.get('pp'):
+            m.write_bytes('wBattleMonPP', case['pp'] + [0] * (4 - len(case['pp'])))
+        if case.get('disabled'):
+            m.write('wDisabledMove', m.read('wBattleMonMoves', case['disabled'] - 1))
+            m.write('wPlayerDisableCount', (case['disabled'] << 4) | 4)
         m.write('hBattleTurn', 1)  # menu entry can inherit the enemy perspective
         state['pp'] = list(h.battle.player.pp)
 
@@ -54,7 +60,11 @@ def main():
         if m.read('hBattleTurn') == 0:
             state['used'].append(m.move_index_of(m.read('wCurPlayerMove')))
 
-    for symbol, callback in (('BattleMenu', fight_menu), ('BattleCommand_UsedMoveText', used_move)):
+    def move_menu(_):
+        state['move_menus'] += 1
+
+    for symbol, callback in (('BattleMenu', fight_menu), ('BattleCommand_UsedMoveText', used_move),
+                              ('MoveSelectionScreen', move_menu)):
         bank, address = h.sym[symbol]
         h.pb.hook_register(bank, address, callback, None)
 
@@ -82,13 +92,29 @@ def main():
         dict(name='choice-torment-legal', moves=['TACKLE', 'SPLASH'], item='CHOICE_BAND', lock=1,
              torment=2, expected='TACKLE'),
     ]
+    cases += [
+        dict(name='duplicate-second-copy', moves=['TACKLE', 'TACKLE', 'POUND'],
+             pp=[3, 7, 35], slot=2, expected='TACKLE'),
+        dict(name='duplicate-choice-second-copy', moves=['TACKLE', 'TACKLE', 'POUND'],
+             pp=[0xc0, 7, 35], item='CHOICE_BAND', lock=1, slot=2, expected='TACKLE'),
+        dict(name='duplicate-choice-reject-other', moves=['TACKLE', 'TACKLE', 'POUND'],
+             pp=[0xc0, 7, 35], item='CHOICE_BAND', lock=1, rejected_slot=3, slot=2, expected='TACKLE'),
+        dict(name='duplicate-disable-reject-copy', moves=['TACKLE', 'TACKLE', 'POUND'],
+             pp=[3, 7, 35], disabled=1, rejected_slot=2, slot=3, expected='POUND'),
+        dict(name='duplicate-disable-all', moves=['TACKLE', 'TACKLE'],
+             pp=[3, 7], disabled=1, expected='STRUGGLE'),
+        dict(name='duplicate-choice-exhausted', moves=['TACKLE', 'TACKLE', 'POUND'],
+             pp=[0xc0, 0x80, 35], item='CHOICE_BAND', lock=1, expected='STRUGGLE'),
+    ]
+    if args.duplicates_only:
+        cases = [case for case in cases if case['name'].startswith('duplicate-')]
     checks = failures = 0
     results = []
     try:
         for case in cases:
             h.load_fixture()
             state.clear()
-            state.update(case=case, pending=False, menus=0, used=[])
+            state.update(case=case, pending=False, menus=0, move_menus=0, used=[], rejected=False)
             m = h.battle.mem
             m.write('wOptions', 0x41)  # Set mode, animations off
             player = dict(species='MEW', level=50, ability='NO_ABILITY', moves=case['moves'])
@@ -116,8 +142,19 @@ def main():
                     h.tick(60)
                     h.pb.screen.image.save(str(args.output / (case['name'] + '-fight.png')))
                     h.press('a', hold=8, wait=80)
+                    if case.get('rejected_slot'):
+                        for _ in range((case['rejected_slot'] - m.read('wMenuCursorY')) % len(case['moves'])):
+                            h.press('down', hold=8, wait=20)
+                        h.press('a', hold=8, wait=20)
+                        for _ in range(100):
+                            if state['move_menus'] >= 2 or state['used'] or state['menus'] >= 2:
+                                break
+                            h.pb.button('a', 2)
+                            h.tick(4)
+                        state['rejected'] = state['move_menus'] >= 2 and not state['used'] and state['menus'] == 1
+                        h.tick(60)
                     if case.get('slot', 1) != 1:
-                        for _ in range((case['slot'] - m.read('wMenuCursorY')) % 4):
+                        for _ in range((case['slot'] - m.read('wMenuCursorY')) % len(case['moves'])):
                             h.press('down', hold=8, wait=20)
                     h.press('a', hold=8, wait=20)
                     clicked = True
@@ -143,6 +180,11 @@ def main():
             else:
                 slot = case.get('slot', 1) - 1
                 assertions.append((actual_pp[slot] == state['pp'][slot] - 1, 'legal move spent one PP'))
+                if case['name'].startswith('duplicate-'):
+                    assertions.append((all(value == state['pp'][i] for i, value in enumerate(actual_pp) if i != slot),
+                                       'other duplicate slots preserved PP'))
+            if case.get('rejected_slot'):
+                assertions.append((state['rejected'], 'rejected illegal copy/Choice move without spending the turn'))
             messages = []
             for passed, message in assertions:
                 checks += 1
