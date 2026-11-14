@@ -3209,15 +3209,18 @@ AI_Aggressive:
 INCLUDE "data/battle/ai/reckless_moves.asm"
 
 AIDamageCalc:
-	; The live STAB/type path records a miss for natural immunity. Scoring
-	; must not leak that scratch result into the battle action being chosen.
+	; The live helpers use miss, effect and critical flags as scratch.
+	; Score a fresh noncritical hit, then restore the caller's live flags.
 	ld a, [wAttackMissed]
 	push af
 	ld a, [wEffectFailed]
 	push af
+	ld a, [wCriticalHit]
+	push af
 	xor a
 	ld [wAttackMissed], a
 	ld [wEffectFailed], a
+	ld [wCriticalHit], a
 	ld a, 1
 	ldh [hBattleTurn], a
 	ld [wAIDamagePrediction], a
@@ -3234,6 +3237,7 @@ AIDamageCalc:
 	and a
 	jr z, .immune
 	callfar BattleCommand_ConstantDamage
+	callfar DirectDamageDisguise_Core
 	jr .done
 .immune
 	callfar ResetDamage
@@ -3258,6 +3262,8 @@ AIDamageCalc:
 .done
 	xor a
 	ld [wAIDamagePrediction], a
+	pop af
+	ld [wCriticalHit], a
 	pop af
 	ld [wEffectFailed], a
 	pop af

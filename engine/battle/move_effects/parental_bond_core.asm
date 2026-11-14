@@ -33,6 +33,16 @@ WriteParentalBondState:
 	ret
 
 PrepareParentalBond_Core::
+	; This initializer runs for every DoMove, including called/reflected
+	; scripts. CriticalText keeps the preceding hit's flag for Anger Point;
+	; fixed damage and Flail/Reversal have no critical command to reset it.
+	; Clear it while WRAM1 is still selected, before switching to state bank 2.
+	xor a
+	ld [wCriticalHit], a
+	; A missed prior stab can arm a Disguise reveal without applying a hit.
+	; Discard that pending presentation, retaining the reflection guard bit.
+	ld hl, wDisguiseBusted + 1
+	res 7, [hl]
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wParentalBondState)

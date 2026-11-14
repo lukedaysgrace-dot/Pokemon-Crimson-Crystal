@@ -6439,11 +6439,12 @@ DisguiseBlock:
 	ld a, h
 	cp HIGH(MIMIKYU)
 	jr nz, .no_block
-	; A normal hit is caught by the Substitute. Infiltrator reaches the
-	; holder, so Disguise still blocks that first direct hit.
-	call GetOpponentAbility
-	cp INFILTRATOR
-	jr z, .check_busted
+	; Match damage routing: sound moves and Infiltrator reach the holder
+	; through Substitute, so Disguise must absorb that first direct hit.
+	call SwitchTurn
+	call UserMoveBypassesSubstitute_Core
+	call SwitchTurn
+	jr c, .check_busted
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a

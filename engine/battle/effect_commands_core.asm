@@ -1230,6 +1230,7 @@ DittoMetalPowder_Core::
 
 EndureFocusSashInEffect_Core:
 ; Carry if ApplyDamage should proceed to damage. b = survival message id.
+	call DirectDamageDisguise_Core
 	; A hit its Substitute takes never reaches the holder's HP: Endure,
 	; Sturdy, Focus Sash and Focus Band don't come into play (a full-HP
 	; holder must not lose its Sash, or show Sturdy, to a Substitute hit).
@@ -1314,6 +1315,30 @@ EndureFocusSashInEffect_Core:
 	ret
 .not_sash
 	and a
+	ret
+
+DirectDamageDisguise_Core::
+; ApplyDamage only handles direct move hits; confusion and residual damage
+; use the underlying HP routines. Fixed, counter, stored and OHKO damage
+; can skip (or overwrite) stab's Disguise check, so enforce the shield here
+; too, without running any ordinary damage modifiers. The Gen II delayed
+; Future Sight path deliberately retains its existing stored-hit behavior.
+	ld a, [wAttackMissed]
+	and a
+	ret nz
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FUTURE_SIGHT
+	ret z
+	ld hl, wCurDamage
+	ld a, [hli]
+	or [hl]
+	ret z
+	farcall GetOppIgnorableAbility_b
+	ld a, b
+	cp DISGUISE
+	ret nz
+	farcall DisguiseBlock
 	ret
 
 BattleStartHail_Core:

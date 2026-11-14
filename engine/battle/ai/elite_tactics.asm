@@ -928,6 +928,8 @@ AIElitePredictPlayerThreat:
 	push af
 	ld a, [wTypeMatchup]
 	push af
+	ld a, [wBattleAnimParam]
+	push af
 
 ; A Choice-locked player can only repeat its locked move.
 	ld a, [wPlayerChoiceLockedMove]
@@ -964,6 +966,8 @@ AIElitePredictPlayerThreat:
 
 .restore
 	pop af
+	ld [wBattleAnimParam], a
+	pop af
 	ld [wTypeMatchup], a
 	pop af
 	ld [wTypeModifier], a
@@ -983,20 +987,7 @@ AIElitePredictPlayerThreat:
 .TryRevealedMove:
 ; a = a move the player has already used.
 	ld [wCurPlayerMove], a
-	ld de, wPlayerMoveStruct
-	call GetMoveData
-	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
-	cp EFFECT_HIDDEN_POWER
-	jr nz, .not_hidden_power
-; Seen in action, Hidden Power shows its type; its power is fixed.
-	ld a, [wPlayerMoveStruct + MOVE_ANIM]
-	call GetPlayerMoveTypeIfDamaging
-	ld [wPlayerMoveStruct + MOVE_TYPE], a
-	ld a, HIDDEN_POWER_BASE_POWER
-	ld [wPlayerMoveStruct + MOVE_POWER], a
-	call AIEliteGuessPlayerCategory
-	ld [wPlayerMoveStruct + MOVE_CATEGORY], a
-.not_hidden_power
+	call AIEliteLoadPlayerKnownMove
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	ld hl, ConstantDamageEffects
 	ld de, 1
@@ -1076,14 +1067,23 @@ AIElitePredictPlayerThreat:
 AIEliteBuildThreatTypes:
 ; Fill only wAIEliteThreatTypes (no damage prediction): the damaging types
 ; the player has shown, plus its own types as guessed attacks.
+	ld hl, wPlayerMoveStruct
+	ld de, wAIEliteSavedMove
+	ld bc, MOVE_LENGTH
+	call CopyBytes
+	ldh a, [hBattleTurn]
+	push af
+	ld a, [wBattleAnimParam]
+	push af
 	ld a, $ff
 	ld [wAIEliteThreatTypes], a
 	ld a, [wPlayerChoiceLockedMove]
 	and a
 	jr z, .revealed
-	call GetPlayerMoveTypeIfDamaging
-	ret z
-	jp AIEliteAddThreatType
+	call AIEliteLoadPlayerKnownMove
+	jr z, .done
+	call AIEliteAddThreatType
+	jr .done
 .revealed
 	ld hl, wPlayerUsedMoves
 	ld b, NUM_MOVES
@@ -1093,7 +1093,7 @@ AIEliteBuildThreatTypes:
 	jr z, .guesses
 	push hl
 	push bc
-	call GetPlayerMoveTypeIfDamaging
+	call AIEliteLoadPlayerKnownMove
 	call nz, AIEliteAddThreatType
 	pop bc
 	pop hl
@@ -1105,8 +1105,35 @@ AIEliteBuildThreatTypes:
 	call c, AIEliteAddThreatType
 	ld a, [wBattleMonType2]
 	call AIEliteIsRealType
-	ret nc
-	jp AIEliteAddThreatType
+	call c, AIEliteAddThreatType
+.done
+	pop af
+	ld [wBattleAnimParam], a
+	pop af
+	ldh [hBattleTurn], a
+	ld hl, wAIEliteSavedMove
+	ld de, wPlayerMoveStruct
+	ld bc, MOVE_LENGTH
+	jp CopyBytes
+
+AIEliteLoadPlayerKnownMove:
+; Load known move a with the player's actual weather, type conversion and
+; Hidden Power settings. Return its type in a, nz for a damaging move.
+; Both callers save/restore the player's live move struct and animation
+; parameter; this loader neither reads nor changes an unrevealed move slot.
+	ld de, wPlayerMoveStruct
+	call GetMoveData
+	xor a
+	ldh [hBattleTurn], a
+	farcall WeatherBallUpdateMoveStruct
+	farcall AbilityConvertMoveType
+	farcall HiddenPowerUpdateMoveStruct
+	ld a, [wPlayerMoveStruct + MOVE_TYPE]
+	ld b, a
+	ld a, [wPlayerMoveStruct + MOVE_POWER]
+	and a
+	ld a, b
+	ret
 
 AIEliteIsRealType:
 ; carry if a is a real battle type (not Bird, an unused slot or out of
@@ -1228,14 +1255,18 @@ AIElitePlayerMoveDamage:
 	and a
 	jr z, .immune
 	callfar BattleCommand_ConstantDamage
+	callfar DirectDamageDisguise_Core
 	jr .done
 .immune
 	callfar ResetDamage
 	jr .done
 .formula
+	callfar AIPredictVariableMoveCategory_Core
 	callfar PlayerAttackDamage
+	callfar AIPredictVariableMovePower_Core
 	callfar BattleCommand_DamageCalc
 	callfar BattleCommand_Stab
+	callfar AIPredictVariableMoveDamage_Core
 .done
 	xor a
 	ld [wAIDamagePrediction], a

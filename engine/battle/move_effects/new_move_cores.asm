@@ -118,11 +118,12 @@ WeatherBallPatchEnemyMoveStruct::
 
 AIPredictVariableMoveCategory_Core:
 ; Hidden Power: type, power and category all come from the user; the same
-; patch AIGetEnemyMove applies (idempotent, in case the struct was reloaded).
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+; owner-aware patch execution applies (idempotent if already resolved).
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
 	cp EFFECT_HIDDEN_POWER
 	jr nz, .not_hidden_power
-	farcall HiddenPowerPatchEnemyMoveStruct
+	farcall HiddenPowerUpdateMoveStruct
 	ret
 .not_hidden_power
 ; Shell Side Arm chooses its category before damage stats are loaded. Reuse the
@@ -146,9 +147,10 @@ endr
 	ret
 
 AIPredictVariableMovePower_Core:
-; Called after EnemyAttackDamage has loaded b/c/d/e. These live power helpers
+; Called after either AttackDamage has loaded b/c/d/e. These live power helpers
 ; deliberately preserve b, c and e, so the normal damage formula can follow.
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
 	cp EFFECT_RETURN
 	jr z, .happiness
 	cp EFFECT_FRUSTRATION
@@ -177,7 +179,8 @@ AIPredictVariableMoveDamage_Core:
 ; not execution of their stateful live commands during AI scoring. Avalanche
 ; is also omitted because move selection happens before this turn's order and
 ; hit state exist; its live helper would read stale previous-turn state.
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
 	cp EFFECT_ACROBATICS
 	jr z, .conditional
 	cp EFFECT_FACADE
