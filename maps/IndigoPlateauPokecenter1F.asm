@@ -157,7 +157,7 @@ IndigoPlateauBadgeCheck:
 	writetext IndigoPlateauNeedBadgesText
 	waitbutton
 	closetext
-	applymovement PLAYER, IndigoPlateauStepDownMovement
+	applymovement PLAYER, IndigoPlateauStepBackMovement
 	end
 .Ready:
 	checkevent EVENT_BEAT_ELITE_FOUR
@@ -168,12 +168,13 @@ IndigoPlateauBadgeCheck:
 	farwritetext Route23GrampsText
 	waitbutton
 	closetext
-	applymovement PLAYER, IndigoPlateauStepDownMovement
+	applymovement PLAYER, IndigoPlateauStepBackMovement
 .Done:
 	end
 
-IndigoPlateauStepDownMovement:
-	step DOWN
+IndigoPlateauStepBackMovement:
+; Both guarded tiles have open floor to their right.
+	step RIGHT
 	step_end
 
 IndigoPlateauNeedBadgesText:
@@ -365,8 +366,11 @@ IndigoPlateauPokecenter1F_MapEvents:
 	warp_event  0, 13, POKECENTER_2F, 1
 	warp_event 14,  3, KOGAS_ROOM, 2
 
-	db 3 ; coord events
-	coord_event 14,  4, -1, IndigoPlateauBadgeCheck
+	db 4 ; coord events
+; The stairs at (14, 3) can only be entered from (15, 3) or (14, 2);
+; (14, 4) below them is a wall, so guard those two tiles instead.
+	coord_event 15,  3, -1, IndigoPlateauBadgeCheck
+	coord_event 14,  2, -1, IndigoPlateauBadgeCheck
 	coord_event 16,  4, SCENE_DEFAULT, PlateauRivalBattle1
 	coord_event 17,  4, SCENE_DEFAULT, PlateauRivalBattle2
 
