@@ -1,6 +1,9 @@
-	frame 2, 05
-	frame 3, 05
-	frame 4, 05
-	frame 5, 05
-	frame 6, 05
+; Short burst of the same fast wingbeat.
+	frame 1, 02
+	frame 2, 02
+	frame 1, 02
+	frame 2, 02
+	frame 1, 02
+	frame 2, 02
+	frame 0, 06
 	endanim

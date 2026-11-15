@@ -1,13 +1,13 @@
-	frame 1, 05
-	frame 2, 25
-	frame 1, 05
-	frame 0, 05
-	frame 3, 07
-	frame 4, 07
+; GIF: lower the jaw, drool, then work the jaw before settling.
+	frame 0, 18
+	frame 1, 12
+	frame 2, 18
+	frame 3, 06
+	frame 4, 18
+	frame 1, 12
 	frame 5, 06
-	frame 6, 05
-	frame 7, 04
-	frame 8, 03
-	frame 9, 05
-	frame 10, 05
+	frame 1, 06
+	frame 5, 06
+	frame 1, 06
+	frame 0, 12
 	endanim

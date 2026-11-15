@@ -1,5 +1,8 @@
-	frame 0, 45
-	frame 1, 05
-	frame 2, 50
-	frame 1, 05
+; Short jaw movement using the new frame order.
+	frame 1, 12
+	frame 5, 06
+	frame 1, 06
+	frame 5, 06
+	frame 1, 06
+	frame 0, 12
 	endanim
