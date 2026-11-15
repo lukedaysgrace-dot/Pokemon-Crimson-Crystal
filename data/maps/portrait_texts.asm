@@ -1874,10 +1874,6 @@ PortraitTexts:
 	dba VermilionGymTrashCanText
 	db 0
 ; VictoryRoad
-	dba BattleGirlKiraAfterBattleText
-	db 0
-	dba BattleGirlKiraSeenText
-	db 0
 	dba BattleGirlMinaAfterBattleText
 	db 0
 	dba BattleGirlMinaSeenText
@@ -1889,6 +1885,14 @@ PortraitTexts:
 	dba CooltrainerMAdrianAfterBattleText
 	db 0
 	dba CooltrainerMAdrianSeenText
+	db 0
+	dba DuelistIreliaAfterBattleText
+	db 0
+	dba DuelistIreliaSeenText
+	db 0
+	dba DuelistSoniaAfterBattleText
+	db 0
+	dba DuelistSoniaSeenText
 	db 0
 	dba TamerDevinAfterBattleText
 	db 0

@@ -4559,7 +4559,7 @@ HikerGroup:
 	dw EARTHQUAKE, POISON_JAB, THUNDERBOLT, ICE_PUNCH
 	db -1 ; end
 
-	next_list_item ; HIKER (14) NOLAND - Fast Ship Cabins_NNW_NNE_NE
+	next_list_item ; HIKER (14) NOLAND - unused legacy entry; replaced by DUELIST_IRIS
 	db "NOLAND@", TRAINERTYPE_MOVES
 	db 58
 	dw GOLEM
@@ -7366,7 +7366,7 @@ BattleGirlGroup:
 	dw AURA_SPHERE, CLOSE_COMBAT, DRAGON_PULSE, CALM_MIND
 	db -1 ; end
 
-	next_list_item ; BATTLE_GIRL (3) KIRA - Victory Road
+	next_list_item ; BATTLE_GIRL (3) KIRA - unused legacy entry; replaced by DUELIST_SONIA
 	db "KIRA@", TRAINERTYPE_MOVES_ABILITY
 	db 68
 	dw HITMONLEE
@@ -8868,13 +8868,71 @@ SECTION "Duelist Trainer Parties", ROMX
 
 DuelistGroup:
 	next_list_item ; DUELIST (1) DUELIST_PAIGE - Route 25 (Nugget Bridge 5)
-	db "PAIGE@", TRAINERTYPE_MOVES
+	db "PAIGE@", TRAINERTYPE_MOVES_ABILITY
+	db 51
+	dw GALLADE
+	db ABILITY_2 ; Sharpness
+	dw SACRED_SWORD, PSYCHO_CUT, NIGHT_SLASH, SWORDS_DANCE
 	db 51
 	dw VAPOREON
-	dw HYDRO_PUMP, ICE_BEAM, SHADOW_BALL, ACID_ARMOR
+	db ABILITY_1 ; Water Absorb
+	dw SCALD, ICE_BEAM, SHADOW_BALL, CALM_MIND
 	db 52
-	dw DEWGONG
-	dw ICE_BEAM, SURF, MEGAHORN, AQUA_JET
+	dw AEGISLASH
+	db ABILITY_1 ; Stance Change
+	dw KINGS_SHIELD, SHADOW_SNEAK, IRON_HEAD, SACRED_SWORD
+	db -1 ; end
+
+	next_list_item ; DUELIST (2) DUELIST_IRIS - Fast Ship Cabins_NNW_NNE_NE
+	db "IRIS@", TRAINERTYPE_MOVES_ABILITY
+	db 58
+	dw SCYTHER
+	db ABILITY_1 ; Technician
+	dw DUALWINGBEAT, U_TURN, QUICK_ATTACK, SWORDS_DANCE
+	db 58
+	dw SIRFETCH_D
+	db ABILITY_3 ; Scrappy
+	dw CLOSE_COMBAT, BRAVE_BIRD, LEAF_BLADE, KNOCK_OFF
+	db 58
+	dw GOLISOPOD
+	db ABILITY_3 ; Tough Claws
+	dw FIRST_IMPRESSION, LIQUIDATION, LEECH_LIFE, AQUA_JET
+	db -1 ; end
+
+	next_list_item ; DUELIST (3) DUELIST_IRELIA - Victory Road
+	db "IRELIA@", TRAINERTYPE_MOVES_ABILITY
+	db 68
+	dw TSAREENA
+	db ABILITY_2 ; Moxie
+	dw POWER_WHIP, HI_JUMP_KICK, TRIPLE_AXEL, U_TURN
+	db 68
+	dw KABUTOPS
+	db ABILITY_3 ; Tough Claws
+	dw LIQUIDATION, STONE_EDGE, AQUA_JET, SWORDS_DANCE
+	db 69
+	dw LOPUNNY
+	db ABILITY_3 ; Adaptability
+	dw HEADBUTT, CLOSE_COMBAT, ICE_PUNCH, FAKE_OUT
+	db 70
+	dw SCIZOR
+	db ABILITY_1 ; Technician
+	dw BULLET_PUNCH, BUG_BITE, CLOSE_COMBAT, SWORDS_DANCE
+	db -1 ; end
+
+	next_list_item ; DUELIST (4) DUELIST_SONIA - Victory Road
+	db "SONIA@", TRAINERTYPE_MOVES_ABILITY
+	db 68
+	dw ZANGOOSE
+	db ABILITY_3 ; Sharpness
+	dw SLASH, NIGHT_SLASH, CLOSE_COMBAT, SWORDS_DANCE
+	db 69
+	dw LUCARIO
+	db ABILITY_1 ; Adaptability
+	dw AURA_SPHERE, FLASH_CANNON, DARK_PULSE, NASTY_PLOT
+	db 70
+	dw PERRSERKER
+	db ABILITY_2 ; Tough Claws
+	dw IRON_HEAD, CLOSE_COMBAT, SEED_BOMB, SWORDS_DANCE
 	db -1 ; end
 
 	end_list_items

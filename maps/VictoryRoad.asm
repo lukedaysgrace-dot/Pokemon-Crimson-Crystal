@@ -7,10 +7,11 @@
 	const VICTORYROAD_POKE_BALL5
 	const VICTORYROAD_TAMER_DEVIN
 	const VICTORYROAD_TAMER_ROLF
-	const VICTORYROAD_BATTLE_GIRL_KIRA
+	const VICTORYROAD_DUELIST_SONIA
 	const VICTORYROAD_BATTLE_GIRL_MINA
 	const VICTORYROAD_COOLTRAINER_M_ADRIAN
 	const VICTORYROAD_COOLTRAINER_F_SELENE
+	const VICTORYROAD_DUELIST_IRELIA
 
 VictoryRoad_MapScripts:
 	db 2 ; scene scripts
@@ -118,12 +119,19 @@ TrainerTamerRolf:
 	endifjustbattled
 	jumptextfaceplayer TamerRolfAfterBattleText
 
-TrainerBattleGirlKira:
-	trainer BATTLE_GIRL, KIRA, EVENT_BEAT_BATTLE_GIRL_KIRA, BattleGirlKiraSeenText, BattleGirlKiraBeatenText, 0, .Script
+TrainerDuelistSonia:
+	trainer DUELIST, DUELIST_SONIA, EVENT_BEAT_BATTLE_GIRL_KIRA, DuelistSoniaSeenText, DuelistSoniaBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
-	jumptextfaceplayer BattleGirlKiraAfterBattleText
+	jumptextfaceplayer DuelistSoniaAfterBattleText
+
+TrainerDuelistIrelia:
+	trainer DUELIST, DUELIST_IRELIA, EVENT_BEAT_DUELIST_IRELIA, DuelistIreliaSeenText, DuelistIreliaBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	jumptextfaceplayer DuelistIreliaAfterBattleText
 
 TrainerBattleGirlMina:
 	trainer BATTLE_GIRL, MINA, EVENT_BEAT_BATTLE_GIRL_MINA, BattleGirlMinaSeenText, BattleGirlMinaBeatenText, 0, .Script
@@ -253,22 +261,44 @@ TamerRolfAfterBattleText:
 	line "ever since."
 	done
 
-BattleGirlKiraSeenText:
-	text "My legs are tired."
-	line "My #MON aren't."
-	cont "Let's battle!"
+DuelistSoniaSeenText:
+	text "Strength is easy"
+	line "to show."
+
+	para "Control is harder."
+	line "Let me see yours!"
 	done
 
-BattleGirlKiraBeatenText:
-	text "My legs gave out"
-	line "first!"
+DuelistSoniaBeatenText:
+	text "You kept your"
+	line "composure!"
 	done
 
-BattleGirlKiraAfterBattleText:
-	text "All those steps"
-	line "weren't enough. I"
-	cont "need battle"
-	cont "practice, too!"
+DuelistSoniaAfterBattleText:
+	text "A duelist needs"
+	line "more than power."
+
+	para "You knew exactly"
+	line "when to strike!"
+	done
+
+DuelistIreliaSeenText:
+	text "Strength alone"
+	line "won't carry you"
+	cont "to the LEAGUE."
+
+	para "En garde!"
+	done
+
+DuelistIreliaBeatenText:
+	text "A clean victory!"
+	line "Well fought!"
+	done
+
+DuelistIreliaAfterBattleText:
+	text "The LEAGUE awaits."
+	line "Keep your focus"
+	cont "sharp."
 	done
 
 BattleGirlMinaSeenText:
@@ -407,7 +437,7 @@ VictoryRoad_MapEvents:
 	bg_event  3, 29, BGEVENT_ITEM, VictoryRoadHiddenMaxPotion
 	bg_event  3, 65, BGEVENT_ITEM, VictoryRoadHiddenFullHeal
 
-	db 12 ; object events
+	db 13 ; object events
 	object_event 18, 13, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
 	object_event  3, 28, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadTMEarthquake, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
 	object_event 12, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadMaxRevive, EVENT_VICTORY_ROAD_MAX_REVIVE
@@ -416,7 +446,8 @@ VictoryRoad_MapEvents:
 	object_event  7, 38, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadHPUp, EVENT_VICTORY_ROAD_HP_UP
 	object_event  9, 60, SPRITE_TAMER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerTamerDevin, -1
 	object_event  2, 48, SPRITE_TAMER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 5, TrainerTamerRolf, -1
-	object_event 14, 34, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerBattleGirlKira, -1
+	object_event 14, 34, SPRITE_DUELIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerDuelistSonia, -1
 	object_event 16, 42, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerBattleGirlMina, -1
 	object_event 12, 12, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainerMAdrian, -1
 	object_event  4, 14, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainerFSelene, -1
+	object_event  1, 26, SPRITE_DUELIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerDuelistIrelia, -1

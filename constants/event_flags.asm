@@ -2285,4 +2285,7 @@ EVENT_ROUTE_31_WIMPOD_WAITING EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 ; The wandering Duraludon in Kiyo's old training area is a one-time encounter.
 	const EVENT_MOUNT_MORTAR_DURALUDON
 
+; Victory Road's additional Duelist uses the last bit of the existing array.
+	const EVENT_BEAT_DUELIST_IRELIA
+
 NUM_EVENTS EQU const_value
