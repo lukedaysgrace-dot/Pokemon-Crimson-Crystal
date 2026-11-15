@@ -162,6 +162,7 @@ SPRITE_FOSSIL EQU SPRITE_PAPER ; reuse the otherwise-unused paper sprite slot
 	const SPRITE_ZANGOOSE
 	const SPRITE_SEVIPER
 	const SPRITE_SHUCKLE_SIGN ; Goldenrod's neon Shuckle (SHUCKS bar)
+	const SPRITE_DUELIST
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 ; (shifted up to make room for new NPC sprites; hex comments below are stale)
@@ -235,13 +236,14 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_ZAPDOS ; c2
 	const SPRITE_MACHAMP
 	const SPRITE_STARYU
-	assert const_value <= $e6, "Pokemon sprites overlap Day-Care sprite IDs"
+	assert const_value <= $e7, "Pokemon sprites overlap Day-Care sprite IDs"
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 ; Keep these special IDs above the NPC and Pokemon icon tables.
-	const_def $e6
-	const SPRITE_DAY_CARE_MON_1 ; e6
-	const SPRITE_DAY_CARE_MON_2 ; e7
+	const_def $e7
+	const SPRITE_DAY_CARE_MON_1 ; e7
+	const SPRITE_DAY_CARE_MON_2 ; e8
+	assert const_value <= $f0, "Day-Care sprites overlap variable sprite IDs"
 
 ; wVariableSprites indexes (see wram.asm)
 	const_def $f0

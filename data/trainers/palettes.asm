@@ -121,3 +121,4 @@ INCBIN "gfx/trainers/cueball.gbcpal", middle_colors ; CUEBALL
 INCBIN "gfx/trainers/karate_king.gbcpal", middle_colors ; KARATE_KING
 INCBIN "gfx/trainers/slot_maniac.gbcpal", middle_colors ; SLOT_MANIAC
 INCBIN "gfx/trainers/hostess.gbcpal", middle_colors ; HOSTESS
+INCBIN "gfx/trainers/duelist.gbcpal", middle_colors ; DUELIST

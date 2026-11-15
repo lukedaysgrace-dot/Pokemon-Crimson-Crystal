@@ -182,7 +182,7 @@ CeruleanGroupSprites:
 	db SPRITE_COOLTRAINER_F ; Cerulean City (standing; never steps)
 	db SPRITE_COSPLAYER ; Route 4/25
 	db SPRITE_BIRD_KEEPER_NEW ; Route 4
-	db SPRITE_LASS ; Route 25
+	db SPRITE_DUELIST ; Route 25's fifth challenger; replaces the Lass slot
 	db SPRITE_COOLTRAINER_M_NEW ; Route 25
 	db SPRITE_MISTY ; Route 25
 	db SPRITE_POKEFAN_M ; Route 25

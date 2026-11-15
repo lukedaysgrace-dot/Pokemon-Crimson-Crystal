@@ -268,6 +268,11 @@ gfx/sprites/riolu.2bpp: gfx/sprites/riolu.png tools/reorder_sprite_frames.py Mak
 	$(RGBGFX) $(rgbgfx) -o $@ $<
 	python3 tools/reorder_sprite_frames.py $@ 0 1 2 5 3 4
 
+# Duelist's sheet pairs standing/stepping poses for down, up, then left.
+gfx/sprites/duelistow.2bpp: gfx/sprites/duelistow.png tools/reorder_sprite_frames.py Makefile
+	$(RGBGFX) $(rgbgfx) -o $@ $<
+	python3 tools/reorder_sprite_frames.py $@ 0 2 4 1 3 5
+
 # Wimpod's colored source uses gray as visible color 1, never transparency.
 gfx/sprites/wimpod.2bpp: gfx/sprites/wimpod.png tools/wimpod_sprite.py tools/pokemontools/png.py
 	python3 tools/wimpod_sprite.py $< $@

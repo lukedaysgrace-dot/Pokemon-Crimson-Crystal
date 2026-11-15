@@ -108,3 +108,4 @@ BTTrainerClassGenders:
 	db MALE ; KARATE_KING
 	db MALE ; SLOT_MANIAC
 	db FEMALE ; HOSTESS
+	db FEMALE ; DUELIST

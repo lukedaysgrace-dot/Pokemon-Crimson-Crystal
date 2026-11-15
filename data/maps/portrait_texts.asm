@@ -1506,13 +1506,13 @@ PortraitTexts:
 	db 0
 	dba CosplayerNoelleSeenText
 	db 0
+	dba DuelistPaigeAfterBattleText
+	db 0
+	dba DuelistPaigeSeenText
+	db 0
 	dba JugglerSilasAfterBattleText
 	db 0
 	dba JugglerSilasSeenText
-	db 0
-	dba LassPaigeAfterBattleText
-	db 0
-	dba LassPaigeSeenText
 	db 0
 	dba PokefanmDustinAfterBattleText
 	db 0

@@ -883,4 +883,7 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 	trainerclass HOSTESS
 ; Reserved class only; individual trainers and teams will be added later.
 
+	trainerclass DUELIST
+	const DUELIST_PAIGE
+
 NUM_TRAINER_CLASSES EQU __enum__

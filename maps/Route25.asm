@@ -4,8 +4,8 @@
 	const ROUTE25_PICNICKER
 	const ROUTE25_POKEFAN_M
 	const ROUTE25_COSPLAYER
-	const ROUTE25_LASS
 	const ROUTE25_JUGGLER
+	const ROUTE25_DUELIST
 	const ROUTE25_SUPER_NERD
 	const ROUTE25_COOLTRAINER_M2
 	const ROUTE25_POKE_BALL
@@ -451,13 +451,14 @@ TrainerSchoolGirlNadia:
 	closetext
 	end
 
-TrainerLassPaige:
-	trainer LASS, PAIGE, EVENT_BEAT_LASS_PAIGE, LassPaigeSeenText, LassPaigeBeatenText, 0, .Script
+; Reuse Paige's existing defeat flag so completed battles stay completed.
+TrainerDuelistPaige:
+	trainer DUELIST, DUELIST_PAIGE, EVENT_BEAT_LASS_PAIGE, DuelistPaigeSeenText, DuelistPaigeBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext LassPaigeAfterBattleText
+	writetext DuelistPaigeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -798,28 +799,40 @@ CosplayerNoelleAfterBattleText:
 	line "out of it!"
 	done
 
-LassPaigeSeenText:
-	text "I'm No. 4!"
-	line "Getting tired?"
+DuelistPaigeSeenText:
+	text "So, you've bested"
+	line "the other four"
+	cont "challengers?"
+
+	para "Impressive. But a"
+	line "true duelist knows"
+	cont "that victory"
+	cont "requires more than"
+	cont "strength."
+
+	para "En garde! Let's"
+	line "see if your skill"
+	cont "matches your"
+	cont "determination!"
 	done
 
-LassPaigeBeatenText:
-	text "I lost too…"
+DuelistPaigeBeatenText:
+	text "A flawless finish!"
+	line "I concede!"
 	done
 
-LassPaigeAfterBattleText:
-	text "You still had all"
-	line "that energy after"
-	cont "three battles?"
-
-	para "I need to train"
-	line "longer!"
+DuelistPaigeAfterBattleText:
+	text "Five victories"
+	line "without a single"
+	cont "defeat! You've"
+	cont "certainly earned"
+	cont "your prize."
 	done
 
 JugglerSilasSeenText:
-	text "I'm the last in"
-	line "line, but I tell"
-	cont "you, I'm tough!"
+	text "I'm No. 4!"
+	line "Can you keep up"
+	cont "with my juggling?"
 	done
 
 JugglerSilasBeatenText:
@@ -828,8 +841,8 @@ JugglerSilasBeatenText:
 	done
 
 JugglerSilasAfterBattleText:
-	text "Five battles and"
-	line "you never lost"
+	text "Four battles and"
+	line "you haven't lost"
 	cont "your rhythm!"
 
 	para "That's a tough act"
@@ -937,8 +950,8 @@ Route25_MapEvents:
 	object_event 12,  8, SPRITE_SCHOOL_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolGirlNadia, -1
 	object_event 16, 11, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokefanmDustin, -1
 	object_event 21,  8, SPRITE_COSPLAYER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCosplayerNoelle, -1
-	object_event 26,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassPaige, -1
-	object_event 28,  4, SPRITE_JUGGLER_NEW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerJugglerSilas, -1
+	object_event 26,  8, SPRITE_JUGGLER_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerJugglerSilas, -1
+	object_event 28,  4, SPRITE_DUELIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerDuelistPaige, -1
 	object_event 31,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerSupernerdPat, -1
 	object_event 37,  8, SPRITE_COOLTRAINER_M_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerCooltrainermKevin, -1
 	object_event 32,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route25Protein, EVENT_ROUTE_25_PROTEIN

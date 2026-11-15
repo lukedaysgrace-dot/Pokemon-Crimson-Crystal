@@ -1517,6 +1517,9 @@ SlotManiacPic: INCBIN "gfx/trainers/slot_maniac.2bpp.lz"
 SECTION "Hostess Trainer Pic", ROMX
 HostessPic: INCBIN "gfx/trainers/hostess.2bpp.lz"
 
+SECTION "Duelist Trainer Pic", ROMX
+DuelistPic: INCBIN "gfx/trainers/duelist.2bpp.lz"
+
 SECTION "Jirachi Pics", ROMX
 
 JirachiFrontpic: INCBIN "gfx/pokemon/jirachi/front.animated.2bpp.lz"

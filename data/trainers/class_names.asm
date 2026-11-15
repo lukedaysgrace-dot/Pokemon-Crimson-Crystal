@@ -106,3 +106,4 @@ TrainerClassNames::
 	db "KARATE KING@"
 	db "SLOT MANIAC@"
 	db "HOSTESS@"
+	db "DUELIST@"

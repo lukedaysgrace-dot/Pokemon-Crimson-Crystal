@@ -132,3 +132,4 @@ TrainerClassStatExp:
 	dw 10000 ; KARATE_KING ; 25 pts in Hard Mode
 	dw     0 ; SLOT_MANIAC
 	dw     0 ; HOSTESS
+	dw     0 ; DUELIST ; retains Paige's former Lass-class Stat EXP

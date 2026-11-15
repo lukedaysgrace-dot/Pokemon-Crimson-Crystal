@@ -305,3 +305,8 @@ SECTION "Shuckle Sign Sprite", ROMX
 ShuckleSignSpriteGFX:: INCBIN "gfx/sprites/shuckle_sign.2bpp"
 ShuckleSignSpriteGFXEnd::
 assert ShuckleSignSpriteGFXEnd - ShuckleSignSpriteGFX == 4 * 16
+
+SECTION "Duelist Walking Sprite", ROMX
+DuelistSpriteGFX:: INCBIN "gfx/sprites/duelistow.2bpp"
+DuelistSpriteGFXEnd::
+assert DuelistSpriteGFXEnd - DuelistSpriteGFX == 24 * 16

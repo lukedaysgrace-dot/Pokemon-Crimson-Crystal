@@ -2071,7 +2071,7 @@ LassGroup:
 	dw FORRETRESS
 	db -1 ; end
 
-	next_list_item ; LASS (18) PAIGE - Route 25
+	next_list_item ; LASS (18) PAIGE - unused legacy entry; now DUELIST
 	db "PAIGE@", TRAINERTYPE_MOVES
 	db 51
 	dw VAPOREON
@@ -5000,7 +5000,7 @@ JugglerGroup:
 	dw HYPER_VOICE, DRAINING_KISS, FIRE_BLAST, ICE_BEAM
 	db -1 ; end
 
-	next_list_item ; JUGGLER (9) SILAS - Route 25 (Nugget Bridge 2)
+	next_list_item ; JUGGLER (9) SILAS - Route 25 (Nugget Bridge 4)
 	db "SILAS@", TRAINERTYPE_MOVES
 	db 52
 	dw STARMIE
@@ -8862,4 +8862,19 @@ SlotManiacGroup:
 
 ; Reserved for later: no trainer entries or Pokemon teams.
 HostessGroup:
+	end_list_items
+
+SECTION "Duelist Trainer Parties", ROMX
+
+DuelistGroup:
+	next_list_item ; DUELIST (1) DUELIST_PAIGE - Route 25 (Nugget Bridge 5)
+	db "PAIGE@", TRAINERTYPE_MOVES
+	db 51
+	dw VAPOREON
+	dw HYDRO_PUMP, ICE_BEAM, SHADOW_BALL, ACID_ARMOR
+	db 52
+	dw DEWGONG
+	dw ICE_BEAM, SURF, MEGAHORN, AQUA_JET
+	db -1 ; end
+
 	end_list_items

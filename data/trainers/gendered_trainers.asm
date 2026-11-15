@@ -47,4 +47,5 @@ FemaleTrainers:
 	db BATTLE_GIRL
 	db SCHOOL_GIRL
 	db HOSTESS
+	db DUELIST
 .End
