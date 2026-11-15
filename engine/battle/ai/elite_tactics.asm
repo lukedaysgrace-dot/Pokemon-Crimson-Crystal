@@ -33,7 +33,7 @@
 	const_def
 	const ELITE_MOVE_DAMAGING_F
 	const ELITE_MOVE_KO_F        ; KOs even on a low damage roll
-	const ELITE_MOVE_FIRST_F     ; resolves before a normal-priority player move
+	const ELITE_MOVE_FIRST_F     ; beats normal and revealed damaging priorities
 	const ELITE_MOVE_PRIORITY_F  ; positive priority bracket
 	const ELITE_MOVE_USABLE_F    ; selectable, and no other layer objects to it
 
@@ -704,8 +704,8 @@ AIEliteDmgKOsUs:
 
 AIEliteAssessSlot:
 ; c = slot. Writes wAIEliteMoveInfo[c] and wAIEliteMoveDmg[c]: damage
-; (real formula, max roll), a KO on a low roll, whether it resolves before a
-; normal-priority player move, and usability.
+; (real formula, max roll), a KO on a low roll, whether it beats normal and
+; known player priorities, and usability.
 	ld b, 0
 	ld hl, wAIEliteMoveDmg
 	add hl, bc
@@ -751,14 +751,13 @@ AIEliteAssessSlot:
 	ld a, [wCurDamage + 1]
 	ld [hl], a
 	ld e, a
-; Turn order: positive priority always goes first; normal priority goes
-; first only if we're faster and no revealed priority attack KOs us.
+; Compare effective priority with normal attacks and revealed damaging
+; moves. A faster Quick Attack or a higher bracket can beat our priority.
 	push de
 	push bc
 	ld a, [wEnemyMoveStruct + MOVE_ANIM]
-	ld e, a
-	farcall GetMovePriority_e
-	ld a, e
+	ld e, 1 ; enemy owner; never the player's pending action
+	call AIEliteMovePriority
 	pop bc
 	pop de
 	ld hl, wAIEliteMoveInfo
@@ -766,15 +765,18 @@ AIEliteAssessSlot:
 	cp BASE_PRIORITY + 1
 	jr c, .not_priority
 	set ELITE_MOVE_PRIORITY_F, [hl]
-	set ELITE_MOVE_FIRST_F, [hl]
-	jr .got_order
 .not_priority
-	cp BASE_PRIORITY
-	jr nz, .got_order ; negative priority: moves last
-	ld a, [wAIEliteFlags]
-	and 1 << ELITE_ENEMY_FASTER_F | 1 << ELITE_PLAYER_PRIO_KO_F
-	cp 1 << ELITE_ENEMY_FASTER_F
+	push bc
+	ld b, a
+	ld a, [wAIElitePlayerPriority]
+	cp b ; carry if our move has the higher priority
+	pop bc
+	jr c, .first
 	jr nz, .got_order
+	ld a, [wAIEliteFlags]
+	bit ELITE_ENEMY_FASTER_F, a
+	jr z, .got_order ; speed ties are not a guaranteed first strike
+.first
 	set ELITE_MOVE_FIRST_F, [hl]
 .got_order
 ; Moves that don't hit this turn, or that sacrifice the user, are never
@@ -817,10 +819,13 @@ AIEliteAssessSlot:
 	db -1 ; end
 
 .Usable:
-; carry if slot c can be chosen this turn. Preserves bc.
+; carry if slot c can be chosen this turn (hBattleTurn = enemy).
+; Apply the same restrictions in both assessment modes. Preserves bc.
+	call .from_state
+	ret nc
 	ld a, [wAIEliteMode]
 	and a
-	jr z, .from_state
+	jr z, .yes
 	ld hl, wBuffer1
 	ld b, 0
 	add hl, bc
@@ -844,14 +849,56 @@ AIEliteAssessSlot:
 .not_disabled
 	ld a, [wEnemyChoiceLockedMove]
 	and a
-	jr z, .yes
+	jr z, .restrictions
 	cp [hl]
-	jr z, .yes
+	jr nz, .no
+.restrictions
+; Shared with native selection: cooldown, Taunt, Torment and effective
+; Assault Vest. Speculation must not establish a lock or change the pick.
+	push bc
+	push hl
+	ld b, [hl]
+	farcall EnemyMoveMeetsRestrictions
+	pop hl
+	pop bc
+	ret
 .no
 	and a
 	ret
 .yes
 	scf
+	ret
+
+AIEliteMovePriority:
+; a = known move id, e = owner (0 player, 1 enemy). Return its effective
+; priority in a, preserving bc/de/hl and the live turn/move state. Use the
+; same pure adjustment as native ordering, including Gale Wings/Triage.
+	push bc
+	push de
+	push hl
+	ld b, a
+	push bc
+	push de
+	ld e, a
+	farcall GetMovePriority_e
+	ld a, e
+	pop de
+	ld d, a
+	pop bc
+	ld a, e
+	and a
+	jr z, .player
+	call AIGetEnemyAbility
+	jr .adjust
+.player
+	call AIGetPlayerAbilityEffective
+.adjust
+	ld c, a
+	farcall AbilityCompareMovePriority.Adjust
+	ld a, d
+	pop hl
+	pop de
+	pop bc
 	ret
 
 AIEliteLowRollKOs:
@@ -908,6 +955,9 @@ AIElitePredictPlayerThreat:
 	ld hl, wAIElitePlayerPrioDmg
 	ld [hli], a
 	ld [hl], a
+	ld a, BASE_PRIORITY
+	ld [wAIElitePlayerPriority], a
+	xor a
 	dec a
 	ld [wAIEliteThreatType], a
 	ld [wAIEliteThreatTypes], a
@@ -998,19 +1048,36 @@ AIElitePredictPlayerThreat:
 	ret z
 	ld a, [wPlayerMoveStruct + MOVE_POWER]
 	cp 2
-	ret c ; status, or a variable power the AI can't read off the screen
+	jr nc, .predict
+	and a
+	ret z ; status
+; Supported variable-power moves have a one-power table placeholder.
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	ld hl, .VariablePowerEffects
+	ld de, 1
+	call IsInArray
+	ret nc
 .predict
 	ld a, [wPlayerMoveStruct + MOVE_TYPE]
 	call AIEliteAddThreatType
 	call AIElitePlayerMoveDamage ; de = damage
 	push de
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
-	ld e, a
-	farcall GetMovePriority_e
-	ld a, e
+	ld e, 0 ; revealed player's move, not its pending choice
+	call AIEliteMovePriority
 	pop de
 	cp BASE_PRIORITY + 1
 	jr c, .keep_strongest
+	ld b, a
+	ld a, d
+	or e
+	jr z, .keep_strongest ; an immune hit does not threaten a first strike
+	ld a, [wAIElitePlayerPriority]
+	cp b
+	jr nc, .got_priority
+	ld a, b
+	ld [wAIElitePlayerPriority], a
+.got_priority
 	ld hl, wAIElitePlayerPrioDmg
 	call AIEliteKeepMax
 .keep_strongest
@@ -1020,6 +1087,15 @@ AIElitePredictPlayerThreat:
 	ld a, [wPlayerMoveStruct + MOVE_TYPE]
 	ld [wAIEliteThreatType], a
 	ret
+
+.VariablePowerEffects:
+	db EFFECT_RETURN
+	db EFFECT_FRUSTRATION
+	db EFFECT_REVERSAL
+	db EFFECT_LOW_KICK
+	db EFFECT_HEAVY_SLAM
+	db EFFECT_GYRO_BALL
+	db -1
 
 .TryGuess:
 ; a = one of the player's types. Unless a revealed attack already covers it,
@@ -1261,12 +1337,21 @@ AIElitePlayerMoveDamage:
 	callfar ResetDamage
 	jr .done
 .formula
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_REVERSAL
+	jr z, .reversal
 	callfar AIPredictVariableMoveCategory_Core
 	callfar PlayerAttackDamage
 	callfar AIPredictVariableMovePower_Core
 	callfar BattleCommand_DamageCalc
 	callfar BattleCommand_Stab
 	callfar AIPredictVariableMoveDamage_Core
+	jr .done
+.reversal
+; The live Flail/Reversal command derives power from this owner's HP,
+; loads its stats and applies the formula, restoring the table placeholder.
+	callfar BattleCommand_ConstantDamage
+	callfar BattleCommand_Stab
 .done
 	xor a
 	ld [wAIDamagePrediction], a

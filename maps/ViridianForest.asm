@@ -74,21 +74,6 @@ ViridianForestYoungster1Script:
 ViridianForestYoungster2Script:
 	jumptextfaceplayer ViridianForestYoungster2Text
 
-ViridianForestTrainerTips1Sign:
-	jumptext ViridianForestTrainerTips1Text
-
-ViridianForestUseAntidoteSign:
-	jumptext ViridianForestUseAntidoteSignText
-
-ViridianForestTrainerTips2Sign:
-	jumptext ViridianForestTrainerTips2Text
-
-ViridianForestTrainerTips3Sign:
-	jumptext ViridianForestTrainerTips3Text
-
-ViridianForestTrainerTips4Sign:
-	jumptext ViridianForestTrainerTips4Text
-
 ViridianForestLeavingSign:
 	jumptext ViridianForestLeavingSignText
 
@@ -101,11 +86,11 @@ ViridianForestPotion:
 ViridianForestPokeBall:
 	itemball ULTRA_BALL
 
-ViridianForestHiddenAntidote:
-	hiddenitem PROTEIN, EVENT_VIRIDIAN_FOREST_HIDDEN_ANTIDOTE
+ViridianForestHiddenPPUp:
+	hiddenitem PP_UP, EVENT_VIRIDIAN_FOREST_HIDDEN_ANTIDOTE
 
-ViridianForestHiddenPotion:
-	hiddenitem CALCIUM, EVENT_VIRIDIAN_FOREST_HIDDEN_POTION
+ViridianForestHiddenRareCandy:
+	hiddenitem RARE_CANDY, EVENT_VIRIDIAN_FOREST_HIDDEN_POTION
 
 BugCatcherRobSeenText:
 	text "Hey! Those #MON"
@@ -187,51 +172,6 @@ ViridianForestYoungster2Text:
 	cont "Bring extras!"
 	done
 
-ViridianForestTrainerTips1Text:
-	text "TRAINER TIPS"
-
-	para "If you want to"
-	line "avoid battles,"
-	cont "stay away from"
-	cont "grassy areas!"
-	done
-
-ViridianForestUseAntidoteSignText:
-	text "For poison, use"
-	line "ANTIDOTE! Get it"
-	cont "at #MON MARTs!"
-	done
-
-ViridianForestTrainerTips2Text:
-	text "TRAINER TIPS"
-
-	para "Contact PROF.OAK"
-	line "via PC to get"
-	cont "your #DEX"
-	cont "evaluated!"
-	done
-
-ViridianForestTrainerTips3Text:
-	text "TRAINER TIPS"
-
-	para "No stealing of"
-	line "#MON from"
-	cont "other trainers!"
-	cont "Catch only wild"
-	cont "#MON!"
-	done
-
-ViridianForestTrainerTips4Text:
-	text "TRAINER TIPS"
-
-	para "Weaken #MON"
-	line "before attempting"
-	cont "capture!"
-
-	para "When healthy,"
-	line "they may escape!"
-	done
-
 ViridianForestLeavingSignText:
 	text "LEAVING"
 	line "VIRIDIAN FOREST"
@@ -253,15 +193,10 @@ ViridianForest_MapEvents:
 	coord_event 6, 30, -1, ViridianForestRivalryTrigger
 	coord_event 6, 31, -1, ViridianForestRivalryTrigger
 
-	db 9 ; bg events
-	bg_event 24, 40, BGEVENT_READ, ViridianForestTrainerTips1Sign
-	bg_event 16, 32, BGEVENT_READ, ViridianForestUseAntidoteSign
-	bg_event 26, 17, BGEVENT_READ, ViridianForestTrainerTips2Sign
-	bg_event  4, 24, BGEVENT_READ, ViridianForestTrainerTips3Sign
-	bg_event 18, 44, BGEVENT_READ, ViridianForestTrainerTips4Sign
+	db 4 ; bg events
 	bg_event  2,  1, BGEVENT_READ, ViridianForestLeavingSign
-	bg_event  1, 18, BGEVENT_ITEM, ViridianForestHiddenAntidote
-	bg_event 16, 42, BGEVENT_ITEM, ViridianForestHiddenPotion
+	bg_event  1, 18, BGEVENT_ITEM, ViridianForestHiddenPPUp
+	bg_event 16, 42, BGEVENT_ITEM, ViridianForestHiddenRareCandy
 	; Zangoose's tile; its object takes priority while it is still there.
 	bg_event  2, 30, BGEVENT_READ, ViridianForestZangooseRemains
 

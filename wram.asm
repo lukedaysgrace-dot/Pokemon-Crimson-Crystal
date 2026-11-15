@@ -1345,6 +1345,7 @@ wAIEliteMoveInfo:: ds NUM_MOVES
 wAIEliteSavedMove:: ds MOVE_LENGTH ; wPlayerMoveStruct while predicting
 wAIEliteMode:: db ; 1 = wBuffer1 holds live move scores
 wAIEliteBest:: db ; best bench index while scanning
+wAIElitePlayerPriority:: db ; highest damaging revealed priority, at least BASE_PRIORITY
 wAIEliteScratchEnd::
 
 NEXTU ; cd20
