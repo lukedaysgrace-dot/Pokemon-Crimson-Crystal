@@ -1,6 +1,6 @@
-; Background palettes for the five Elite Four chambers. Each chamber has its
-; own tileset (TILESET_KOGAS_ROOM .. TILESET_LANCES_ROOM, consecutive), so
-; these palettes never touch any other map. Palette 7 stays the text palette.
+; Background palettes for the five Elite Four chambers and Cerulean Gym. Each
+; has its own tileset (TILESET_KOGAS_ROOM .. TILESET_CERULEAN_GYM, consecutive),
+; so these palettes never touch any other map. Palette 7 stays the text palette.
 
 SECTION "League Room Palettes", ROMX
 
@@ -26,3 +26,4 @@ INCLUDE "gfx/tilesets/brunos_room.pal"
 INCLUDE "gfx/tilesets/karens_room.pal"
 INCLUDE "gfx/tilesets/loreleis_room.pal"
 INCLUDE "gfx/tilesets/lances_room.pal"
+INCLUDE "gfx/tilesets/cerulean_gym.pal" ; TILESET_CERULEAN_GYM follows the chambers

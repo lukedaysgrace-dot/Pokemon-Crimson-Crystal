@@ -53,3 +53,4 @@ Tilesets::
 	tileset TilesetKarensRoom
 	tileset TilesetLoreleisRoom
 	tileset TilesetLancesRoom
+	tileset TilesetCeruleanGym

@@ -1,0 +1,46 @@
+{
+  "builder": "tools/build_cerulean_gym.py",
+  "sources": {
+    "crystal_port.png": "5be66704e19f71ceea7416cd50daf7091d0e51ab742289c0c2f1aac7676b6059",
+    "crystal_port_attributes.bin": "4dc364ea45d8db32e7170a2e35dcbe1c1f4d7982c0e9ef984106af3d0025bfcc",
+    "crystal_port_metatiles.bin": "15aa459f029bf4c9ded0a86240cfc5618702cbbcc8dc718263303024d27cb77f",
+    "tcg1_water_club.png": "cc4f73032f0337f52045b75dc84acdda1a14b5daf36066a4a3e457de57970ff4",
+    "tcg2_water_club.png": "d5ad2a4097282d645ea3eb93b7df21342f5ad90b312d96402067a380821db9db"
+  },
+  "tiles": 49,
+  "animated_tiles": [
+    "$01",
+    "$02",
+    "$03",
+    "$04",
+    "$05",
+    "$06",
+    "$07",
+    "$08",
+    "$09",
+    "$0a",
+    "$0b",
+    "$0c",
+    "$0d",
+    "$0e"
+  ],
+  "blocks": 29,
+  "layout": [
+    "##########",
+    "..........",
+    ".~~~~~~~~.",
+    ".~~~..~~~.",
+    ".~......~.",
+    ".~~~~~~.~.",
+    ".~~~~~~.~.",
+    ".~......~.",
+    ".~.~~.~~~.",
+    ".~.~~.~~~.",
+    ".~..HH~~~.",
+    ".~~~HH~~~.",
+    ".~S.HH.S~.",
+    ".~S.HH.S~.",
+    "..........",
+    "....vv...."
+  ]
+}

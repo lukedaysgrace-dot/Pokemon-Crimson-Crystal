@@ -19,7 +19,7 @@ LoadSpecialMapPalette:
 	cp TILESET_KANTO
 	jp z, .kanto
 	sub TILESET_KOGAS_ROOM
-	cp NUM_LEAGUE_ROOM_TILESETS
+	cp NUM_LEAGUE_PALETTE_TILESETS ; Elite Four chambers and Cerulean Gym
 	jp nc, .do_nothing
 	farcall LoadLeagueRoomPalette
 	scf
