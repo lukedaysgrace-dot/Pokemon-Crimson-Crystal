@@ -390,6 +390,12 @@ PortraitTexts:
 	db 0
 	dba DanceTheatreGrannyText
 	db 0
+	dba KimonoChallengeInvitationText
+	db PORTRAIT_KIMONO_GIRL
+	dba KimonoChallengeMetronomeText
+	db PORTRAIT_KIMONO_GIRL
+	dba KimonoChallengeWonText
+	db PORTRAIT_KIMONO_GIRL
 	dba KimonoGirlFuyuAfterBattleText
 	db PORTRAIT_KIMONO_GIRL
 	dba KimonoGirlFuyuSeenText

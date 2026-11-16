@@ -15,95 +15,378 @@
 DanceTheatre_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_NEWMAP, KimonoChallengeLeaveTheatre
 
 TrainerKimonoGirlNaoko2:
-	trainer KIMONO_GIRL, NAOKO2, EVENT_BEAT_KIMONO_GIRL_NAOKO, KimonoGirlNaoko2SeenText, KimonoGirlNaoko2BeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
+	faceplayer
+	scall KimonoChallengeIntroduction
+	checkevent EVENT_BEAT_KIMONO_GIRL_NAOKO
+	iftrue .AfterBattle
+	writetext KimonoGirlNaoko2SeenText
+	waitbutton
+	closetext
+	winlosstext KimonoGirlNaoko2BeatenText, 0
+	loadtrainer KIMONO_GIRL, NAOKO2
+	startbattle
+	iftrue .Lost
+	setevent EVENT_BEAT_KIMONO_GIRL_NAOKO
+	reloadmapafterbattle
 	opentext
+	scall KimonoChallengeCheckComplete
+	iffalse .AfterBattle
+	setevent EVENT_KIMONO_METRONOME_NAOKO
+.AfterBattle:
+	checkevent EVENT_KIMONO_METRONOME_NAOKO
+	iftrue KimonoChallengeGiveMetronome
 	writetext KimonoGirlNaoko2AfterBattleText
 	waitbutton
 	closetext
 	end
+.Lost:
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+	reloadmapafterbattle
+	end
 
 TrainerKimonoGirlSayo:
-	trainer KIMONO_GIRL, SAYO, EVENT_BEAT_KIMONO_GIRL_SAYO, KimonoGirlSayoSeenText, KimonoGirlSayoBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
+	faceplayer
+	scall KimonoChallengeIntroduction
+	checkevent EVENT_BEAT_KIMONO_GIRL_SAYO
+	iftrue .AfterBattle
+	writetext KimonoGirlSayoSeenText
+	waitbutton
+	closetext
+	winlosstext KimonoGirlSayoBeatenText, 0
+	loadtrainer KIMONO_GIRL, SAYO
+	startbattle
+	iftrue .Lost
+	setevent EVENT_BEAT_KIMONO_GIRL_SAYO
+	reloadmapafterbattle
 	opentext
+	scall KimonoChallengeCheckComplete
+	iffalse .AfterBattle
+	setevent EVENT_KIMONO_METRONOME_SAYO
+.AfterBattle:
+	checkevent EVENT_KIMONO_METRONOME_SAYO
+	iftrue KimonoChallengeGiveMetronome
 	writetext KimonoGirlSayoAfterBattleText
 	waitbutton
 	closetext
 	end
+.Lost:
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+	reloadmapafterbattle
+	end
 
 TrainerKimonoGirlZuki:
-	trainer KIMONO_GIRL, ZUKI, EVENT_BEAT_KIMONO_GIRL_ZUKI, KimonoGirlZukiSeenText, KimonoGirlZukiBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
+	faceplayer
+	scall KimonoChallengeIntroduction
+	checkevent EVENT_BEAT_KIMONO_GIRL_ZUKI
+	iftrue .AfterBattle
+	writetext KimonoGirlZukiSeenText
+	waitbutton
+	closetext
+	winlosstext KimonoGirlZukiBeatenText, 0
+	loadtrainer KIMONO_GIRL, ZUKI
+	startbattle
+	iftrue .Lost
+	setevent EVENT_BEAT_KIMONO_GIRL_ZUKI
+	reloadmapafterbattle
 	opentext
+	scall KimonoChallengeCheckComplete
+	iffalse .AfterBattle
+	setevent EVENT_KIMONO_METRONOME_ZUKI
+.AfterBattle:
+	checkevent EVENT_KIMONO_METRONOME_ZUKI
+	iftrue KimonoChallengeGiveMetronome
 	writetext KimonoGirlZukiAfterBattleText
 	waitbutton
 	closetext
 	end
+.Lost:
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+	reloadmapafterbattle
+	end
 
 TrainerKimonoGirlKuni:
-	trainer KIMONO_GIRL, KUNI, EVENT_BEAT_KIMONO_GIRL_KUNI, KimonoGirlKuniSeenText, KimonoGirlKuniBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
+	faceplayer
+	scall KimonoChallengeIntroduction
+	checkevent EVENT_BEAT_KIMONO_GIRL_KUNI
+	iftrue .AfterBattle
+	writetext KimonoGirlKuniSeenText
+	waitbutton
+	closetext
+	winlosstext KimonoGirlKuniBeatenText, 0
+	loadtrainer KIMONO_GIRL, KUNI
+	startbattle
+	iftrue .Lost
+	setevent EVENT_BEAT_KIMONO_GIRL_KUNI
+	reloadmapafterbattle
 	opentext
+	scall KimonoChallengeCheckComplete
+	iffalse .AfterBattle
+	setevent EVENT_KIMONO_METRONOME_KUNI
+.AfterBattle:
+	checkevent EVENT_KIMONO_METRONOME_KUNI
+	iftrue KimonoChallengeGiveMetronome
 	writetext KimonoGirlKuniAfterBattleText
 	waitbutton
 	closetext
 	end
+.Lost:
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+	reloadmapafterbattle
+	end
 
 TrainerKimonoGirlMiki:
-	trainer KIMONO_GIRL, MIKI, EVENT_BEAT_KIMONO_GIRL_MIKI, KimonoGirlMikiSeenText, KimonoGirlMikiBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
+	faceplayer
+	scall KimonoChallengeIntroduction
+	checkevent EVENT_BEAT_KIMONO_GIRL_MIKI
+	iftrue .AfterBattle
+	writetext KimonoGirlMikiSeenText
+	waitbutton
+	closetext
+	winlosstext KimonoGirlMikiBeatenText, 0
+	loadtrainer KIMONO_GIRL, MIKI
+	startbattle
+	iftrue .Lost
+	setevent EVENT_BEAT_KIMONO_GIRL_MIKI
+	reloadmapafterbattle
 	opentext
+	scall KimonoChallengeCheckComplete
+	iffalse .AfterBattle
+	setevent EVENT_KIMONO_METRONOME_MIKI
+.AfterBattle:
+	checkevent EVENT_KIMONO_METRONOME_MIKI
+	iftrue KimonoChallengeGiveMetronome
 	writetext KimonoGirlMikiAfterBattleText
 	waitbutton
 	closetext
 	end
+.Lost:
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+	reloadmapafterbattle
+	end
 
 TrainerKimonoGirlFuyu:
-	trainer KIMONO_GIRL, FUYU, EVENT_BEAT_KIMONO_GIRL_FUYU, KimonoGirlFuyuSeenText, KimonoGirlFuyuBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
+	faceplayer
+	scall KimonoChallengeIntroduction
+	checkevent EVENT_BEAT_KIMONO_GIRL_FUYU
+	iftrue .AfterBattle
+	writetext KimonoGirlFuyuSeenText
+	waitbutton
+	closetext
+	winlosstext KimonoGirlFuyuBeatenText, 0
+	loadtrainer KIMONO_GIRL, FUYU
+	startbattle
+	iftrue .Lost
+	setevent EVENT_BEAT_KIMONO_GIRL_FUYU
+	reloadmapafterbattle
 	opentext
+	scall KimonoChallengeCheckComplete
+	iffalse .AfterBattle
+	setevent EVENT_KIMONO_METRONOME_FUYU
+.AfterBattle:
+	checkevent EVENT_KIMONO_METRONOME_FUYU
+	iftrue KimonoChallengeGiveMetronome
 	writetext KimonoGirlFuyuAfterBattleText
 	waitbutton
 	closetext
 	end
+.Lost:
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+	reloadmapafterbattle
+	end
 
 TrainerKimonoGirlHana:
-	trainer KIMONO_GIRL, HANA, EVENT_BEAT_KIMONO_GIRL_HANA, KimonoGirlHanaSeenText, KimonoGirlHanaBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
+	faceplayer
+	scall KimonoChallengeIntroduction
+	checkevent EVENT_BEAT_KIMONO_GIRL_HANA
+	iftrue .AfterBattle
+	writetext KimonoGirlHanaSeenText
+	waitbutton
+	closetext
+	winlosstext KimonoGirlHanaBeatenText, 0
+	loadtrainer KIMONO_GIRL, HANA
+	startbattle
+	iftrue .Lost
+	setevent EVENT_BEAT_KIMONO_GIRL_HANA
+	reloadmapafterbattle
 	opentext
+	scall KimonoChallengeCheckComplete
+	iffalse .AfterBattle
+	setevent EVENT_KIMONO_METRONOME_HANA
+.AfterBattle:
+	checkevent EVENT_KIMONO_METRONOME_HANA
+	iftrue KimonoChallengeGiveMetronome
 	writetext KimonoGirlHanaAfterBattleText
 	waitbutton
 	closetext
 	end
+.Lost:
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+	reloadmapafterbattle
+	end
 
 TrainerKimonoGirlYumi:
-	trainer KIMONO_GIRL, YUMI, EVENT_BEAT_KIMONO_GIRL_YUMI, KimonoGirlYumiSeenText, KimonoGirlYumiBeatenText, 0, .Script
-
-.Script:
-	endifjustbattled
+	faceplayer
+	scall KimonoChallengeIntroduction
+	checkevent EVENT_BEAT_KIMONO_GIRL_YUMI
+	iftrue .AfterBattle
+	writetext KimonoGirlYumiSeenText
+	waitbutton
+	closetext
+	winlosstext KimonoGirlYumiBeatenText, 0
+	loadtrainer KIMONO_GIRL, YUMI
+	startbattle
+	iftrue .Lost
+	setevent EVENT_BEAT_KIMONO_GIRL_YUMI
+	reloadmapafterbattle
 	opentext
+	scall KimonoChallengeCheckComplete
+	iffalse .AfterBattle
+	setevent EVENT_KIMONO_METRONOME_YUMI
+.AfterBattle:
+	checkevent EVENT_KIMONO_METRONOME_YUMI
+	iftrue KimonoChallengeGiveMetronome
 	writetext KimonoGirlYumiAfterBattleText
 	waitbutton
 	closetext
 	end
+.Lost:
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+	reloadmapafterbattle
+	end
+
+; A genuine map entry after starting is a forfeiture. Battle/menu reloads
+; and Continue use other setup paths and do not run MAPCALLBACK_NEWMAP.
+; Ecruteak City's entry callback also calls this as soon as the player exits.
+KimonoChallengeLeaveTheatre:
+	checkevent EVENT_KIMONO_CHALLENGE_STARTED
+	iffalse .Done
+	checkevent EVENT_KIMONO_CHALLENGE_COMPLETE
+	iftrue .Done
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+.Done:
+	return
+
+KimonoChallengeIntroduction:
+	opentext
+	checkevent EVENT_KIMONO_CHALLENGE_STARTED
+	iftrue .Done
+	setevent EVENT_KIMONO_CHALLENGE_STARTED
+; Previously beaten girls on existing saves cannot count toward a new run.
+	checkevent EVENT_BEAT_KIMONO_GIRL_NAOKO
+	iftrue .AlreadyBattled
+	checkevent EVENT_BEAT_KIMONO_GIRL_SAYO
+	iftrue .AlreadyBattled
+	checkevent EVENT_BEAT_KIMONO_GIRL_ZUKI
+	iftrue .AlreadyBattled
+	checkevent EVENT_BEAT_KIMONO_GIRL_KUNI
+	iftrue .AlreadyBattled
+	checkevent EVENT_BEAT_KIMONO_GIRL_MIKI
+	iftrue .AlreadyBattled
+	checkevent EVENT_BEAT_KIMONO_GIRL_FUYU
+	iftrue .AlreadyBattled
+	checkevent EVENT_BEAT_KIMONO_GIRL_HANA
+	iftrue .AlreadyBattled
+	checkevent EVENT_BEAT_KIMONO_GIRL_YUMI
+	iftrue .AlreadyBattled
+	writetext KimonoChallengeInvitationText
+	buttonsound
+.Done:
+	return
+.AlreadyBattled:
+	setevent EVENT_KIMONO_CHALLENGE_FAILED
+	return
+
+KimonoChallengeCheckComplete:
+	checkevent EVENT_KIMONO_CHALLENGE_FAILED
+	iftrue .NoPrize
+	checkevent EVENT_KIMONO_CHALLENGE_COMPLETE
+	iftrue .NoPrize
+	checkevent EVENT_BEAT_KIMONO_GIRL_NAOKO
+	iffalse .NoPrize
+	checkevent EVENT_BEAT_KIMONO_GIRL_SAYO
+	iffalse .NoPrize
+	checkevent EVENT_BEAT_KIMONO_GIRL_ZUKI
+	iffalse .NoPrize
+	checkevent EVENT_BEAT_KIMONO_GIRL_KUNI
+	iffalse .NoPrize
+	checkevent EVENT_BEAT_KIMONO_GIRL_MIKI
+	iffalse .NoPrize
+	checkevent EVENT_BEAT_KIMONO_GIRL_FUYU
+	iffalse .NoPrize
+	checkevent EVENT_BEAT_KIMONO_GIRL_HANA
+	iffalse .NoPrize
+	checkevent EVENT_BEAT_KIMONO_GIRL_YUMI
+	iffalse .NoPrize
+	setevent EVENT_KIMONO_CHALLENGE_COMPLETE
+	return
+.NoPrize:
+	setval FALSE
+	return
+
+KimonoChallengeGiveMetronome:
+	checkevent EVENT_GOT_KIMONO_METRONOME
+	iftrue .Thanks
+	writetext KimonoChallengeWonText
+	buttonsound
+	verbosegiveitem METRONOME_ITEM
+	iffalse .Done
+	setevent EVENT_GOT_KIMONO_METRONOME
+.Thanks:
+	writetext KimonoChallengeMetronomeText
+	waitbutton
+.Done:
+	closetext
+	end
+
+KimonoChallengeInvitationText:
+	text "We KIMONO GIRLS"
+	line "have a special"
+	cont "challenge for"
+	cont "skilled trainers."
+
+	para "Defeat all eight"
+	line "of us without"
+	cont "healing your"
+	cont "#MON or leaving"
+	cont "this hall."
+
+	para "Succeed, and a"
+	line "special gift shall"
+	cont "be yours."
+
+	para "Shall we begin?"
+	done
+
+KimonoChallengeWonText:
+	text "How splendid!"
+
+	para "You have defeated"
+	line "all eight of us"
+	cont "without resting!"
+
+	para "Such discipline"
+	line "deserves"
+	cont "recognition."
+
+	para "Please accept this"
+	line "gift from us all!"
+	done
+
+KimonoChallengeMetronomeText:
+	text "The METRONOME"
+	line "rewards patience"
+	cont "and rhythm."
+
+	para "A #MON that"
+	line "repeats the same"
+	cont "move will find its"
+	cont "power growing with"
+	cont "each use."
+	done
 
 DanceTheaterSurfGuy:
 	faceplayer
@@ -451,15 +734,15 @@ DanceTheatre_MapEvents:
 	bg_event  6,  6, BGEVENT_UP, DanceTheatreFancyPanel
 
 	db 12 ; object events
-	object_event  1,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlNaoko2, -1
-	object_event  2,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlSayo, -1
-	object_event  6,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlZuki, -1
-	object_event  9,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlKuni, -1
-	object_event 10,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlMiki, -1
-	object_event  4,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlFuyu, -1
-	object_event  3,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlHana, -1
+	object_event  1,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerKimonoGirlNaoko2, -1
+	object_event  2,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, TrainerKimonoGirlSayo, -1
+	object_event  6,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, TrainerKimonoGirlZuki, -1
+	object_event  9,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TrainerKimonoGirlKuni, -1
+	object_event 10,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrainerKimonoGirlMiki, -1
+	object_event  4,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TrainerKimonoGirlFuyu, -1
+	object_event  3,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrainerKimonoGirlHana, -1
 	; This map replaces the otherwise-unused rock OBJ slot with pink.
-	object_event  7,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlYumi, -1
+	object_event  7,  1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_SCRIPT, 0, TrainerKimonoGirlYumi, -1
 	object_event  7, 11, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheaterSurfGuy, -1
 	object_event  6,  8, SPRITE_RHYDON, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, DanceTheaterRhydon, -1
 	object_event 10, 11, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DanceTheatreCooltrainerMScript, -1

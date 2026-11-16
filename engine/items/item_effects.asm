@@ -2935,6 +2935,7 @@ UseItemText:
 	call Play_SFX_FULL_HEAL
 	call WaitPressAorB_BlinkCursor
 UseDisposableItem:
+	farcall KimonoChallengeUsedItem
 	ld hl, wNumItems
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a

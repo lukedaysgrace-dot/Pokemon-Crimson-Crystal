@@ -13,6 +13,7 @@
 	const ROUTE32_FISHER5
 	const ROUTE32_FRIEDA
 	const ROUTE32_POKE_BALL2
+	const ROUTE32_SAFETY_GOGGLES
 
 Route32_MapScripts:
 	db 3 ; scene scripts
@@ -494,6 +495,9 @@ Route32GreatBall:
 Route32Repel:
 	itemball REPEL
 
+Route32SafetyGoggles:
+	itemball SAFETY_GOGGLES
+
 Route32Sign:
 	jumptext Route32SignText
 
@@ -950,7 +954,7 @@ Route32_MapEvents:
 	bg_event 12, 67, BGEVENT_ITEM, Route32HiddenGreatBall
 	bg_event 11, 40, BGEVENT_ITEM, Route32HiddenSuperPotion
 
-	db 14 ; object events
+	db 15 ; object events
 	object_event  8, 49, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherJustin, -1
 	object_event 12, 56, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerFisherRalph1, -1
 	object_event  6, 48, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherHenry, -1
@@ -965,3 +969,4 @@ Route32_MapEvents:
 	object_event 15, 13, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route32RoarTMGuyScript, -1
 	object_event 12, 67, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FriedaScript, EVENT_ROUTE_32_FRIEDA_OF_FRIDAY
 	object_event  3, 30, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route32Repel, EVENT_ROUTE_32_REPEL
+	object_event  8, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route32SafetyGoggles, EVENT_ROUTE_32_SAFETY_GOGGLES

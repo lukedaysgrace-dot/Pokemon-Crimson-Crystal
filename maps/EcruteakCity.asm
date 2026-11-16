@@ -18,6 +18,7 @@ EcruteakCity_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .Eusine
 
 .FlyPoint:
+	farscall KimonoChallengeLeaveTheatre
 	setflag ENGINE_FLYPOINT_ECRUTEAK
 	return
 

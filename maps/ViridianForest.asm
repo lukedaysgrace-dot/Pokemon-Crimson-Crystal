@@ -92,6 +92,9 @@ ViridianForestHiddenPPUp:
 ViridianForestHiddenRareCandy:
 	hiddenitem RARE_CANDY, EVENT_VIRIDIAN_FOREST_HIDDEN_POTION
 
+ViridianForestHiddenBigRoot:
+	hiddenitem BIG_ROOT, EVENT_VIRIDIAN_FOREST_HIDDEN_BIG_ROOT
+
 BugCatcherRobSeenText:
 	text "Hey! Those #MON"
 	line "look ready to go!"
@@ -193,12 +196,13 @@ ViridianForest_MapEvents:
 	coord_event 6, 30, -1, ViridianForestRivalryTrigger
 	coord_event 6, 31, -1, ViridianForestRivalryTrigger
 
-	db 4 ; bg events
+	db 5 ; bg events
 	bg_event  2,  1, BGEVENT_READ, ViridianForestLeavingSign
 	bg_event  1, 18, BGEVENT_ITEM, ViridianForestHiddenPPUp
 	bg_event 16, 42, BGEVENT_ITEM, ViridianForestHiddenRareCandy
 	; Zangoose's tile; its object takes priority while it is still there.
 	bg_event  2, 30, BGEVENT_READ, ViridianForestZangooseRemains
+	bg_event  9,  6, BGEVENT_ITEM, ViridianForestHiddenBigRoot
 
 	db 11 ; object events
 	object_event 30, 33, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherRob, -1

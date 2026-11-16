@@ -9,11 +9,15 @@
 	const MOUNTMORTAR1FINSIDE_SUPER_NERD2
 	const MOUNTMORTAR1FINSIDE_POKE_BALL6
 	const MOUNTMORTAR1FINSIDE_POKE_BALL7
+	const MOUNTMORTAR1FINSIDE_PUNCHING_GLOVE
 
 MountMortar1FInside_MapScripts:
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
+
+MountMortar1FInsidePunchingGlove:
+	itemball PUNCHING_GLOVE
 
 TrainerPokemaniacMiller:
 	trainer POKEMANIAC, MILLER, EVENT_BEAT_POKEMANIAC_MILLER, PokemaniacMillerSeenText, PokemaniacMillerBeatenText, 0, .Script
@@ -130,7 +134,7 @@ MountMortar1FInside_MapEvents:
 	db 1 ; bg events
 	bg_event 30, 11, BGEVENT_ITEM, MountMortar1FInsideHiddenMaxRepel
 
-	db 10 ; object events
+	db 11 ; object events
 	object_event 21, 43, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MountMortar1FBoulder, -1
 	object_event 35, 38, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FInsideEscapeRope, EVENT_MOUNT_MORTAR_1F_INSIDE_ESCAPE_ROPE
 	object_event 16, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FInsideMaxRevive, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_REVIVE
@@ -141,3 +145,4 @@ MountMortar1FInside_MapEvents:
 	object_event 24, 28, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerSupernerdMarkus, -1
 	object_event  8, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FInsideIron, EVENT_MOUNT_MORTAR_1F_INSIDE_IRON
 	object_event 17, 17, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FInsideUltraBall, EVENT_MOUNT_MORTAR_1F_INSIDE_ULTRA_BALL
+	object_event 17, 31, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FInsidePunchingGlove, EVENT_MOUNT_MORTAR_1F_INSIDE_PUNCHING_GLOVE

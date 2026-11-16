@@ -10,7 +10,7 @@ RuinsOfAlphKabutoItemRoom_MapScripts:
 	db 0 ; callbacks
 
 RuinsOfAlphKabutoItemRoomBerry:
-	itemball BERRY
+	itemball LIGHT_CLAY
 
 RuinsOfAlphKabutoItemRoomPsncureberry:
 	itemball PSNCUREBERRY

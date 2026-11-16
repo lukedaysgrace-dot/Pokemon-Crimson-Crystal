@@ -158,3 +158,7 @@
 	tilecoll WALL, WALL, WALL, WALL ; 9d
 	tilecoll FLOOR, FLOOR, WALL, WALL ; 9e
 	tilecoll WALL, WALL, WALL, WALL ; 9f
+	tilecoll WALL, WALL, WALL, WALL ; a0 Great Tree canopy
+	tilecoll WALL, FLOOR, WALL, FLOOR ; a1 canopy edge
+	tilecoll FLOOR, WALL, FLOOR, FLOOR ; a2 trunk / hidden Big Root
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a3 floor around tree

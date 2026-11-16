@@ -369,7 +369,7 @@ TeamRocketBaseB3FProtein:
 	itemball PROTEIN
 
 TeamRocketBaseB3FXSpecial:
-	itemball X_SPECIAL
+	itemball COVERT_CLOAK
 
 TeamRocketBaseB3FFullHeal:
 	itemball FULL_HEAL
