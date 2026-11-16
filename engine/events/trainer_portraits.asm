@@ -620,10 +620,15 @@ TrainerPortrait_HideForMovement::
 TrainerPortrait_TakeDown:
 ; Put the map back under the portrait, show that, then hand back what the
 ; portrait borrowed.
-	call TrainerPortrait_RestoreMap
+	ldh a, [hBGMapMode]
+	push af
 	xor a
+	ldh [hBGMapMode], a ; never upload a partly restored portrait rectangle
 	ld [wPortraitShown], a
-	call ApplyTilemap
+	call TrainerPortrait_RestoreMap
+	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	pop af
+	ldh [hBGMapMode], a
 	call SafeUpdateSprites
 	; fallthrough
 

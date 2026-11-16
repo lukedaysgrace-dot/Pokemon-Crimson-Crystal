@@ -154,6 +154,49 @@ WriteHUDTypeTileByte:
 	inc de
 	ret
 
+WriteHUDTypeCell:
+; de = BG cell, b = icon tile, c = attribute. Publish both banks together:
+; the old bank-0 space ($7f) is picture data in bank 1, not a blank tile.
+; Sync to early VBlank or the start of HBlank so both writes finish before
+; VRAM becomes inaccessible. No interrupt may see only half of this pair.
+	di
+	ldh a, [rLCDC]
+	bit rLCDC_ENABLE, a
+	jr z, .write
+	ldh a, [rLY]
+	cp LY_VBLANK
+	jr c, .active
+	cp LY_VBLANK + 7
+	jr c, .write
+.active
+.wait_busy
+	ldh a, [rLY]
+	cp LY_VBLANK
+	jr nc, .retry
+	ldh a, [rSTAT]
+	and %10
+	jr z, .wait_busy
+.wait_free
+	ldh a, [rSTAT]
+	and %10
+	jr nz, .wait_free
+.write
+	xor a
+	ldh [rVBK], a
+	ld a, b
+	ld [de], a
+	ld a, 1
+	ldh [rVBK], a
+	ld a, c
+	ld [de], a
+	xor a
+	ldh [rVBK], a
+	ei
+	ret
+.retry
+	ei
+	jr WriteHUDTypeCell
+
 RefreshBattleTypeIconPals::
 ; Also called after default animation palettes are reloaded. Copy only our
 ; four colors to both buffers; never reset a Pokemon or move-info palette.
@@ -373,6 +416,8 @@ ClearBattleTypeIconCellsForSide:
 RestoreBattleTypeIconAttrs::
 ; Check tile IDs so pre-entry trainer/party HUDs are left alone. Repair both
 ; buffers and VRAM after ability banners, full layouts and menu returns.
+; Commit the matching hardware tile with its attribute: the buffered HUD can
+; be ready before the ordinary BG upload has replaced the old blank cells.
 	ld hl, .Cells
 	ld b, 4
 .cell
@@ -393,14 +438,14 @@ RestoreBattleTypeIconAttrs::
 	add hl, de
 	pop af
 	ld [hl], a
+	ld b, c
 	ld c, a
 	pop hl
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld a, c
-	call WriteHUDTypeTileByte
+	call WriteHUDTypeCell
 	jr .done_cell
 .next
 	inc hl

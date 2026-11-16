@@ -32,8 +32,13 @@ FindFirstAliveMonAndStartBattle:
 	call ClearTileMap
 	xor a
 	ldh [hBGMapMode], a
+	; The window still contains the overworld/transition map. Keep it hidden
+	; until InitBattleDisplay has replaced it; battle palettes would expose
+	; its old frame-edge tiles during enemy and back-picture setup.
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ldh [rWY], a
+	xor a
 	ldh [hMapAnims], a
 	ret
 

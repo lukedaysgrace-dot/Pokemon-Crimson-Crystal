@@ -1,5 +1,6 @@
+CommitTilemapAndAttrmap::
 StatsScreen_CommitPage::
-; Summary pages must commit palettes, both maps and selector sprites together.
+; Summary pages and overworld text commit palettes, both maps and OAM together.
 ; The ordinary queued HDMA path consumes a separate VBlank for each map and
 ; deliberately defers palettes. CGB double speed fits this complete commit
 ; into one VBlank; keep the slower-machine path below.
@@ -201,10 +202,16 @@ Mobile_ReloadMapPart:
 
 OpenAndCloseMenu_HDMATransferTileMapAndAttrMap::
 ; OpenText
-; (An experiment replaced this with CGBOnly_CopyTilemapAtOnce for speed,
-; but that helper assumes a $xx00-aligned BG map anchor; this runs against
-; re-anchored/scrolled maps too and corrupted the screen. The padded HDMA
-; transfer below handles arbitrary anchors correctly.)
+; Commit both maps in one VBlank at CGB double speed. Separate HBlank
+; transfers expose a portrait with its restored map attributes for a frame.
+; Keep the padded maps: text can use a scrolled, non-$xx00-aligned anchor.
+	ldh a, [hCGB]
+	and a
+	jr z, .slow
+	ldh a, [rKEY1]
+	bit 7, a
+	jp nz, CommitTilemapAndAttrmap
+.slow
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
