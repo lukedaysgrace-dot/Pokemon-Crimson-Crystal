@@ -2285,6 +2285,7 @@ DewgongEvosAttacks:
 	dbw 30, FLIP_TURN
 	dbw 31, TAKE_DOWN
 	dbw 35, SAFEGUARD
+	dbw 36, SLACK_OFF
 	dbw 38, FREEZE_DRY
 	dbw 42, LIQUIDATION
 	dbw 45, HAIL

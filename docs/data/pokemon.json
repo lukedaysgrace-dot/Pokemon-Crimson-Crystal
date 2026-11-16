@@ -7214,7 +7214,7 @@
       "Defense": 65,
       "Speed": 115,
       "Sp. Atk": 61,
-      "Sp. Def": 61
+      "Sp. Def": 71
     },
     "types": [
       "Normal",
@@ -7437,7 +7437,7 @@
       "Defense": 65,
       "Speed": 115,
       "Sp. Atk": 61,
-      "Sp. Def": 61
+      "Sp. Def": 71
     },
     "original_stats": {
       "HP": 65,
@@ -9395,7 +9395,7 @@
     "name": "Raticate",
     "number": 22,
     "stats": {
-      "HP": 65,
+      "HP": 75,
       "Attack": 97,
       "Defense": 70,
       "Speed": 113,
@@ -9624,7 +9624,7 @@
       "Normal"
     ],
     "updated_stats": {
-      "HP": 65,
+      "HP": 75,
       "Attack": 97,
       "Defense": 70,
       "Speed": 113,
@@ -21752,11 +21752,11 @@
     "name": "Wigglytuff",
     "number": 50,
     "stats": {
-      "HP": 115,
-      "Attack": 60,
+      "HP": 122,
+      "Attack": 88,
       "Defense": 75,
-      "Speed": 55,
-      "Sp. Atk": 88,
+      "Speed": 45,
+      "Sp. Atk": 70,
       "Sp. Def": 80
     },
     "types": [
@@ -22039,11 +22039,11 @@
       "Fairy"
     ],
     "updated_stats": {
-      "HP": 115,
-      "Attack": 60,
+      "HP": 122,
+      "Attack": 88,
       "Defense": 75,
-      "Speed": 55,
-      "Sp. Atk": 88,
+      "Speed": 45,
+      "Sp. Atk": 70,
       "Sp. Def": 80
     },
     "original_stats": {
@@ -24335,7 +24335,7 @@
     "number": 55,
     "stats": {
       "HP": 85,
-      "Attack": 100,
+      "Attack": 110,
       "Defense": 110,
       "Speed": 65,
       "Sp. Atk": 45,
@@ -24604,7 +24604,7 @@
     ],
     "updated_stats": {
       "HP": 85,
-      "Attack": 100,
+      "Attack": 110,
       "Defense": 110,
       "Speed": 65,
       "Sp. Atk": 45,
@@ -26142,7 +26142,7 @@
     ],
     "abilities": [
       "Intimidate",
-      "Shed Skin",
+      "Moxie",
       "Merciless"
     ],
     "ability_slots": [
@@ -26151,7 +26151,7 @@
         "slot": 1
       },
       {
-        "name": "Shed Skin",
+        "name": "Moxie",
         "slot": 2
       },
       {
@@ -26637,20 +26637,20 @@
     "number": 60,
     "stats": {
       "HP": 70,
-      "Attack": 110,
+      "Attack": 120,
       "Defense": 75,
-      "Speed": 80,
+      "Speed": 95,
       "Sp. Atk": 55,
       "Sp. Def": 80
     },
     "types": [
       "Poison",
-      "Dark"
+      "Ground"
     ],
     "abilities": [
       "Intimidate",
-      "Shed Skin",
-      "Strong Jaw"
+      "Moxie",
+      "Merciless"
     ],
     "ability_slots": [
       {
@@ -26658,11 +26658,11 @@
         "slot": 1
       },
       {
-        "name": "Shed Skin",
+        "name": "Moxie",
         "slot": 2
       },
       {
-        "name": "Strong Jaw",
+        "name": "Merciless",
         "slot": 3
       }
     ],
@@ -26874,13 +26874,13 @@
     ],
     "updated_types": [
       "Poison",
-      "Dark"
+      "Ground"
     ],
     "updated_stats": {
       "HP": 70,
-      "Attack": 110,
+      "Attack": 120,
       "Defense": 75,
-      "Speed": 80,
+      "Speed": 95,
       "Sp. Atk": 55,
       "Sp. Def": 80
     },
@@ -29877,12 +29877,12 @@
     "name": "Quagsire",
     "number": 67,
     "stats": {
-      "HP": 95,
+      "HP": 110,
       "Attack": 95,
       "Defense": 95,
-      "Speed": 35,
+      "Speed": 20,
       "Sp. Atk": 65,
-      "Sp. Def": 65
+      "Sp. Def": 85
     },
     "types": [
       "Water",
@@ -30135,12 +30135,12 @@
       "Ground"
     ],
     "updated_stats": {
-      "HP": 95,
+      "HP": 110,
       "Attack": 95,
       "Defense": 95,
-      "Speed": 35,
+      "Speed": 20,
       "Sp. Atk": 65,
-      "Sp. Def": 65
+      "Sp. Def": 85
     },
     "original_stats": {
       "HP": 95,
@@ -31828,6 +31828,11 @@
         "level": 1,
         "const": "COSMIC_POWER",
         "move": "Cosmic Power"
+      },
+      {
+        "level": 20,
+        "const": "PSYCHIC_M",
+        "move": "Psychic"
       }
     ],
     "evolutions": [],
@@ -39930,10 +39935,10 @@
     "number": 91,
     "stats": {
       "HP": 85,
-      "Attack": 75,
+      "Attack": 90,
       "Defense": 80,
       "Speed": 78,
-      "Sp. Atk": 102,
+      "Sp. Atk": 87,
       "Sp. Def": 75
     },
     "types": [
@@ -40145,10 +40150,10 @@
     ],
     "updated_stats": {
       "HP": 85,
-      "Attack": 75,
+      "Attack": 90,
       "Defense": 80,
       "Speed": 78,
-      "Sp. Atk": 102,
+      "Sp. Atk": 87,
       "Sp. Def": 75
     },
     "original_stats": {
@@ -56279,7 +56284,7 @@
       "HP": 65,
       "Attack": 125,
       "Defense": 100,
-      "Speed": 85,
+      "Speed": 95,
       "Sp. Atk": 55,
       "Sp. Def": 70
     },
@@ -56510,7 +56515,7 @@
       "HP": 65,
       "Attack": 125,
       "Defense": 100,
-      "Speed": 85,
+      "Speed": 95,
       "Sp. Atk": 55,
       "Sp. Def": 70
     },
@@ -91246,6 +91251,7 @@
       "BIND",
       "BOUNCE",
       "BUBBLE",
+      "DARK_PULSE",
       "DEFENSE_CURL",
       "DOUBLE_EDGE",
       "DOUBLE_TEAM",
@@ -92840,6 +92846,11 @@
         "level": 35,
         "const": "SAFEGUARD",
         "move": "Safeguard"
+      },
+      {
+        "level": 36,
+        "const": "SLACK_OFF",
+        "move": "Slack Off"
       },
       {
         "level": 38,
@@ -180335,7 +180346,7 @@
     "name": "Camerupt",
     "number": 388,
     "stats": {
-      "HP": 80,
+      "HP": 90,
       "Attack": 100,
       "Defense": 70,
       "Speed": 40,
@@ -180595,7 +180606,7 @@
       "Ground"
     ],
     "updated_stats": {
-      "HP": 80,
+      "HP": 90,
       "Attack": 100,
       "Defense": 70,
       "Speed": 40,
@@ -199879,7 +199890,7 @@
     "name": "Raticate",
     "number": 434,
     "stats": {
-      "HP": 80,
+      "HP": 90,
       "Attack": 88,
       "Defense": 80,
       "Speed": 82,
@@ -200103,7 +200114,7 @@
       "Normal"
     ],
     "updated_stats": {
-      "HP": 80,
+      "HP": 90,
       "Attack": 88,
       "Defense": 80,
       "Speed": 82,
@@ -215655,7 +215666,7 @@
     "stats": {
       "HP": 130,
       "Attack": 75,
-      "Defense": 60,
+      "Defense": 80,
       "Speed": 20,
       "Sp. Atk": 65,
       "Sp. Def": 100
@@ -215883,7 +215894,7 @@
     "updated_stats": {
       "HP": 130,
       "Attack": 75,
-      "Defense": 60,
+      "Defense": 80,
       "Speed": 20,
       "Sp. Atk": 65,
       "Sp. Def": 100
@@ -222371,7 +222382,7 @@
     "name": "Banette",
     "number": 483,
     "stats": {
-      "HP": 64,
+      "HP": 74,
       "Attack": 125,
       "Defense": 65,
       "Speed": 70,
@@ -222612,7 +222623,7 @@
       "Normal"
     ],
     "updated_stats": {
-      "HP": 64,
+      "HP": 74,
       "Attack": 125,
       "Defense": 65,
       "Speed": 70,

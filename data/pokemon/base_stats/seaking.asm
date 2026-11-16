@@ -1,6 +1,6 @@
 	db 0 ; species ID placeholder
 
-	db  85,  75,  80,  78, 102,  75
+	db  85,  90,  80,  78,  87,  75
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER ; type

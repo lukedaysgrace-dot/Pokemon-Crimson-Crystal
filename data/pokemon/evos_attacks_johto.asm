@@ -1379,6 +1379,7 @@ UnownEvosAttacks:
 	dbw 1, EARTH_POWER
 	dbw 1, HIDDEN_POWER
 	dbw 1, COSMIC_POWER
+	dbw 20, PSYCHIC_M
 	db 0 ; no more level-up moves
 
 WobbuffetEvosAttacks:

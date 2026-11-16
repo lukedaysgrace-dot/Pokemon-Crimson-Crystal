@@ -1,9 +1,9 @@
 	db 0 ; species ID placeholder
 
-	db  70, 110,  75,  80,  55,  80
+	db  70, 120,  75,  95,  55,  80
 	;   hp  atk  def  spd  sat  sdf
 
-	db POISON, DARK ; type
+	db POISON, GROUND ; type
 	db 90 ; catch rate
 	db 157 ; base exp
 	db NO_ITEM, NO_ITEM ; items
@@ -12,7 +12,7 @@
 	db 20 ; step cycles to hatch
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/arbok/front.dimensions"
-	abilities_for ARBOK, INTIMIDATE, SHED_SKIN, STRONG_JAW
+	abilities_for ARBOK, INTIMIDATE, MOXIE, MERCILESS
 	db 0 ; padding
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_DRAGON ; egg groups
