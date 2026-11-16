@@ -820,7 +820,8 @@ AIEliteAssessSlot:
 
 .Usable:
 ; carry if slot c can be chosen this turn (hBattleTurn = enemy).
-; Apply the same restrictions in both assessment modes. Preserves bc.
+; The candidate's move struct is loaded. Apply the same restrictions and
+; target-failure guard in both assessment modes. Preserves bc.
 	call .from_state
 	ret nc
 	ld a, [wAIEliteMode]
@@ -859,6 +860,13 @@ AIEliteAssessSlot:
 	push hl
 	ld b, [hl]
 	farcall EnemyMoveMeetsRestrictions
+	jr nc, .restore_restrictions
+; Switch assessment has no live score penalty from AI_Abilities. A move
+; stopped by the target (including ability-raised priority into a shield)
+; cannot justify staying for a first-strike KO. This check has no effects.
+	farcall AIScoredMoveFails_Core
+	ccf ; carry if the candidate can land
+.restore_restrictions
 	pop hl
 	pop bc
 	ret
