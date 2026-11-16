@@ -544,18 +544,17 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | Route 16 | **Gift / reward** — Cueball Chopper on Cycling Road; defeat him for a one-time gift. |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Golisopod Lv. 77. One-time gym rematch after defeating Falkner’s rematch. |
 | Kogas Room | **Trainer item** — Elite Four Koga: Muk (Alolan) Lv. 69. |
-| Kogas Room | **Trainer item** — Elite Four Koga: Muk (Alolan) Lv. 84. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Kogas Room | **Trainer item** — Elite Four Koga: Muk (Alolan) Lv. 84. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Lapras Lv. 72. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Lapras Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Mahogany Gym | **Trainer item** — Leader Pryce: Lapras Lv. 83. One-time gym rematch after defeating Jasmine’s rematch. |
 | Pallet Town | **Trainer item** — Red: Lapras Lv. 85. |
 | Route 16 | **Trainer item** — Cueball Chopper: Machamp Lv. 67. |
 | Route 20 | **Trainer item** — Green: Lanturn Lv. 82. |
 | Route 20 | **Trainer item** — Green: Wigglytuff Lv. 80. |
 | Route 25 | **Trainer item** — Crystal Crystal: Tyranitar Lv. 69. |
-| Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Lapras Lv. 87. |
 | Viridian Gym | **Trainer item** — Cooltrainer Landon: Blastoise Lv. 67. |
 | Viridian Gym | **Trainer item** — Cooltrainer Landon: Golisopod Lv. 67. |
-| Wills Room | **Trainer item** — Elite Four Will: Farigiraf Lv. 68. |
-| Wills Room | **Trainer item** — Elite Four Will: Farigiraf Lv. 84. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 
 <a id="berserk_gene"></a>
 ## Berserk Gene
@@ -585,8 +584,8 @@ Unavailable.
 | --- | --- |
 | Dark Cave Blackthorn Entrance | **Gift / reward** — Talk to the pharmacist in the Blackthorn-side chamber. Tile (7, 3). |
 | Karens Room | **Trainer item** — Elite Four Karen: Houndoom Lv. 71. |
-| Radio Tower 5F | **Trainer item** — Executive Archer: Kingambit Lv. 42. |
-| Radio Tower 5F | **Trainer item** — Executive Archer: Krookodile Lv. 42. |
+| Radio Tower 5F | **Trainer item** — Underboss Archer: Kingambit Lv. 42. |
+| Radio Tower 5F | **Trainer item** — Underboss Archer: Krookodile Lv. 42. |
 | Route 36 | **Trainer item** — Schoolboy Alan: Kingambit Lv. 74. |
 
 <a id="brick_piece"></a>
@@ -612,8 +611,8 @@ Unavailable.
 | Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Typhlosion Lv. 85. |
 | Mt. Moon | **Trainer item** — Rival ?: Ceruledge Lv. 51. |
 | Mt. Moon | **Trainer item** — Rival ?: Typhlosion Lv. 53. |
-| Radio Tower 5F | **Trainer item** — Executive Archer: Houndoom Lv. 43. |
 | Radio Tower 5F | **Trainer item** — Executive Ariana: Salazzle Lv. 42. |
+| Radio Tower 5F | **Trainer item** — Underboss Archer: Houndoom Lv. 43. |
 | Route 16 | **Trainer item** — Biker Axle: Houndoom Lv. 61. |
 | Route 16 | **Trainer item** — Biker Rusty: Magmortar Lv. 61. |
 | Route 25 | **Trainer item** — Crystal Crystal: Typhlosion Lv. 70. |
@@ -765,7 +764,6 @@ Unavailable.
 | Day Care | **Ground pickup** — Collect the item ball. Tile (3, 3). |
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Golbat Lv. 40. |
 | Mt. Moon | **Trainer item** — Rival ?: Golbat Lv. 49. |
-| Silver Cave Outside | **Trainer item** — Elite Four Agatha: Misdreavus Lv. 86. |
 | Victory Road | **Trainer item** — Rival ?: Golbat Lv. 68. |
 
 <a id="exp_share"></a>
@@ -783,7 +781,7 @@ Unavailable.
 | --- | --- |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Route 34 | **Gift / reward** — Surf to the southern beach. Defeat Kate, Irene and Jenn, then speak to Kate. |
-| Brunos Room | **Trainer item** — Elite Four Bruno: Machamp Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Brunos Room | **Trainer item** — Elite Four Bruno: Machamp Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Toxicroak Lv. 71. |
 | Celadon City | **Trainer item** — Officer Hayes: Lucario Lv. 68. |
 | Pewter Gym | **Trainer item** — Leader Brock: Armaldo Lv. 49. |
@@ -802,7 +800,7 @@ Unavailable.
 | --- | --- |
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Burned Tower B1F | **Ground pickup** — Basement item ball. Tile (5, 2). |
-| Brunos Room | **Trainer item** — Elite Four Bruno: Conkeldurr Lv. 84. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Brunos Room | **Trainer item** — Elite Four Bruno: Conkeldurr Lv. 84. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Cianwood Gym | **Trainer item** — Leader Chuck: Conkeldurr Lv. 79. One-time gym rematch after defeating Morty’s rematch. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Ursaluna Lv. 78. One-time gym rematch after defeating Bugsy’s rematch. |
 | Route 35 | **Trainer item** — Bug Catcher Arnie: Heracross Lv. 77. |
@@ -823,11 +821,14 @@ Unavailable.
 | Gravekeepers House | **Gift / reward** — Gravekeeper in Silent Crypt; clean both gravestones before entering his house. Tile (2, 4). |
 | Fighting Dojo | **Trainer item** — Karate King Kiyo: Breloom Lv. 68. |
 | Kogas Room | **Trainer item** — Elite Four Koga: Glimmora Lv. 68. |
-| Kogas Room | **Trainer item** — Elite Four Koga: Glimmora Lv. 83. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Kogas Room | **Trainer item** — Elite Four Koga: Glimmora Lv. 83. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Cloyster Lv. 70. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Cloyster Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Froslass Lv. 71. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Froslass Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Pewter Gym | **Trainer item** — Leader Brock: Aerodactyl Lv. 47. |
 | Route 27 | **Trainer item** — Bird Keeper Jose: Delibird Lv. 74. |
 | Route 35 | **Trainer item** — Bug Catcher Arnie: Ledian Lv. 74. |
-| Silver Cave Outside | **Trainer item** — Elite Four Agatha: Gengar Lv. 85. |
 
 <a id="hard_stone"></a>
 ## Hard Stone
@@ -859,6 +860,8 @@ Unavailable.
 | --- | --- |
 | Pokémon Center 2F delivery NPC | **Mystery Gift** — Unlock Mystery Gift with Carrie on Goldenrod Department Store 5F, then use a compatible infrared session. |
 | Ruins of Alph Ho Oh Item Room | **Ground pickup** — Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage. Tile (2, 6). |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Ninetales (Alolan) Lv. 69. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Ninetales (Alolan) Lv. 84. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Mahogany Gym | **Trainer item** — Leader Pryce: Ninetales (Alolan) Lv. 35. |
 | Mahogany Gym | **Trainer item** — Leader Pryce: Ninetales (Alolan) Lv. 81. One-time gym rematch after defeating Jasmine’s rematch. |
 
@@ -968,7 +971,7 @@ Unavailable.
 | Blackthorn Gym 1F | **Trainer item** — Leader Clair: Altaria Lv. 82. One-time gym rematch after defeating Pryce’s rematch. |
 | Blackthorn Gym 1F | **Trainer item** — Leader Clair: Archaludon Lv. 83. One-time gym rematch after defeating Pryce’s rematch. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Annihilape Lv. 71. |
-| Brunos Room | **Trainer item** — Elite Four Bruno: Annihilape Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Brunos Room | **Trainer item** — Elite Four Bruno: Annihilape Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Conkeldurr Lv. 69. |
 | Celadon City | **Trainer item** — Officer Hayes: Granbull Lv. 66. |
 | Celadon Gym | **Trainer item** — Leader Erika: Jumpluff Lv. 60. |
@@ -995,19 +998,21 @@ Unavailable.
 | Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Slowking (Galarian) Lv. 83. |
 | Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Slowking Lv. 83. |
 | Karens Room | **Trainer item** — Elite Four Karen: Grimmsnarl Lv. 71. |
-| Karens Room | **Trainer item** — Elite Four Karen: Grimmsnarl Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Karens Room | **Trainer item** — Elite Four Karen: Grimmsnarl Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Karens Room | **Trainer item** — Elite Four Karen: Kingambit Lv. 72. |
-| Karens Room | **Trainer item** — Elite Four Karen: Kingambit Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Karens Room | **Trainer item** — Elite Four Karen: Kingambit Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Karens Room | **Trainer item** — Elite Four Karen: Umbreon Lv. 69. |
-| Karens Room | **Trainer item** — Elite Four Karen: Umbreon Lv. 84. Elite Four / Champion rematch team after defeating Clair’s rematch. |
-| Kogas Room | **Trainer item** — Elite Four Koga: Crobat Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Karens Room | **Trainer item** — Elite Four Karen: Umbreon Lv. 84. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Kogas Room | **Trainer item** — Elite Four Koga: Crobat Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Kogas Room | **Trainer item** — Elite Four Koga: Tentacruel Lv. 70. |
-| Kogas Room | **Trainer item** — Elite Four Koga: Tentacruel Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Kogas Room | **Trainer item** — Elite Four Koga: Tentacruel Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Lances Room | **Trainer item** — Champion Lance: Archaludon Lv. 71. |
-| Lances Room | **Trainer item** — Champion Lance: Archaludon Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Lances Room | **Trainer item** — Champion Lance: Archaludon Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Lances Room | **Trainer item** — Champion Lance: Baxcalibur Lv. 72. |
-| Lances Room | **Trainer item** — Champion Lance: Baxcalibur Lv. 87. Elite Four / Champion rematch team after defeating Clair’s rematch. |
-| Lances Room | **Trainer item** — Champion Lance: Dragonite Lv. 87. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Lances Room | **Trainer item** — Champion Lance: Baxcalibur Lv. 87. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Lances Room | **Trainer item** — Champion Lance: Dragonite Lv. 87. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Glaceon Lv. 70. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Glaceon Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Mahogany Gym | **Trainer item** — Leader Pryce: Cetitan Lv. 36. |
 | Mt. Moon | **Trainer item** — Rival ?: Slowking (Galarian) Lv. 51. |
 | Mt. Moon | **Trainer item** — Rival ?: Slowking Lv. 51. |
@@ -1017,8 +1022,8 @@ Unavailable.
 | Pewter Gym | **Trainer item** — Leader Brock: Bastiodon Lv. 49. |
 | Pewter Gym | **Trainer item** — Leader Brock: Cradily Lv. 48. |
 | Pewter Gym | **Trainer item** — Leader Brock: Kabutops Lv. 48. |
-| Radio Tower 5F | **Trainer item** — Executive Archer: Dusknoir Lv. 41. |
 | Radio Tower 5F | **Trainer item** — Executive Ariana: Toxapex Lv. 43. |
+| Radio Tower 5F | **Trainer item** — Underboss Archer: Dusknoir Lv. 41. |
 | Route 16 | **Trainer item** — Biker Axle: Weezing Lv. 60. |
 | Route 16 | **Trainer item** — Biker Rusty: Arbok Lv. 60. |
 | Route 16 | **Trainer item** — Biker Rusty: Muk Lv. 61. |
@@ -1044,11 +1049,6 @@ Unavailable.
 | Saffron Gym | **Trainer item** — Leader Sabrina: Mesmeria Lv. 59. |
 | Saffron Gym | **Trainer item** — Leader Sabrina: Wobbuffet Lv. 61. |
 | Seafoam Gym | **Trainer item** — Leader Blaine: Torkoal Lv. 65. |
-| Silver Cave Outside | **Trainer item** — Elite Four Agatha: Arbok Lv. 86. |
-| Silver Cave Outside | **Trainer item** — Elite Four Agatha: Crobat Lv. 87. |
-| Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Dewgong Lv. 85. |
-| Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Glaceon Lv. 87. |
-| Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Slowbro Lv. 86. |
 | Silver Cave Room 3 | **Trainer item** — Pokémon Trainer: Snorlax Lv. 89. |
 | Trainer House B1F | **Trainer item** — Pokémon Trainer Cal: Meganium Lv. 50. |
 | Vermilion City | **Trainer item** — Cooltrainer Chantz: Kangaskhan Lv. 52. |
@@ -1060,11 +1060,6 @@ Unavailable.
 | Viridian Gym | **Trainer item** — Cooltrainer Cy: Venusaur Lv. 67. |
 | Viridian Gym | **Trainer item** — Cooltrainer Desmond: Lapras Lv. 68. |
 | Viridian Gym | **Trainer item** — Leader: Rhyperior Lv. 67. |
-| Wills Room | **Trainer item** — Elite Four Will: Gardevoir Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
-| Wills Room | **Trainer item** — Elite Four Will: Slowking Lv. 69. |
-| Wills Room | **Trainer item** — Elite Four Will: Slowking Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
-| Wills Room | **Trainer item** — Elite Four Will: Xatu Lv. 67. |
-| Wills Room | **Trainer item** — Elite Four Will: Xatu Lv. 83. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 
 <a id="life_orb"></a>
 ## Life Orb
@@ -1080,8 +1075,8 @@ Unavailable.
 | Blackthorn Gym 1F | **Trainer item** — Leader Clair: Noivern Lv. 82. One-time gym rematch after defeating Pryce’s rematch. |
 | Blackthorn Gym 1F | **Trainer item** — Leader Clair: Salamence Lv. 84. One-time gym rematch after defeating Pryce’s rematch. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Lucario Lv. 70. |
-| Brunos Room | **Trainer item** — Elite Four Bruno: Lucario Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
-| Brunos Room | **Trainer item** — Elite Four Bruno: Toxicroak Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Brunos Room | **Trainer item** — Elite Four Bruno: Lucario Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Brunos Room | **Trainer item** — Elite Four Bruno: Toxicroak Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Celadon Gym | **Trainer item** — Leader Erika: Tsareena Lv. 62. |
 | Celadon Gym | **Trainer item** — Leader Erika: Victreebel Lv. 61. |
 | Cerulean Gym | **Trainer item** — Leader Misty: Starmie Lv. 54. |
@@ -1102,19 +1097,20 @@ Unavailable.
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Ambipom Lv. 77. One-time gym rematch after defeating Bugsy’s rematch. |
 | Goldenrod Gym | **Trainer item** — Leader Whitney: Lopunny Lv. 78. One-time gym rematch after defeating Bugsy’s rematch. |
 | Karens Room | **Trainer item** — Elite Four Karen: Honchkrow Lv. 70. |
-| Karens Room | **Trainer item** — Elite Four Karen: Honchkrow Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
-| Karens Room | **Trainer item** — Elite Four Karen: Houndoom Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Karens Room | **Trainer item** — Elite Four Karen: Honchkrow Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Karens Room | **Trainer item** — Elite Four Karen: Houndoom Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Karens Room | **Trainer item** — Elite Four Karen: Weavile Lv. 70. |
-| Karens Room | **Trainer item** — Elite Four Karen: Weavile Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Karens Room | **Trainer item** — Elite Four Karen: Weavile Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Kogas Room | **Trainer item** — Elite Four Koga: Salazzle Lv. 70. |
-| Kogas Room | **Trainer item** — Elite Four Koga: Salazzle Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Kogas Room | **Trainer item** — Elite Four Koga: Salazzle Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Kogas Room | **Trainer item** — Elite Four Koga: Scolipede Lv. 69. |
-| Kogas Room | **Trainer item** — Elite Four Koga: Scolipede Lv. 84. Elite Four / Champion rematch team after defeating Clair’s rematch. |
-| Lances Room | **Trainer item** — Champion Lance: Dragapult Lv. 87. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Kogas Room | **Trainer item** — Elite Four Koga: Scolipede Lv. 84. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Lances Room | **Trainer item** — Champion Lance: Dragapult Lv. 87. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Lances Room | **Trainer item** — Champion Lance: Haxorus Lv. 70. |
-| Lances Room | **Trainer item** — Champion Lance: Hydreigon Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Lances Room | **Trainer item** — Champion Lance: Hydreigon Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Lances Room | **Trainer item** — Champion Lance: Salamence Lv. 71. |
-| Lances Room | **Trainer item** — Champion Lance: Salamence Lv. 86. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Lances Room | **Trainer item** — Champion Lance: Salamence Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Mesmeria Lv. 86. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Mahogany Gym | **Trainer item** — Leader Pryce: Cloyster Lv. 81. One-time gym rematch after defeating Jasmine’s rematch. |
 | Mahogany Gym | **Trainer item** — Leader Pryce: Glaceon Lv. 82. One-time gym rematch after defeating Jasmine’s rematch. |
 | Mahogany Gym | **Trainer item** — Leader Pryce: Mamoswine Lv. 83. One-time gym rematch after defeating Jasmine’s rematch. |
@@ -1138,8 +1134,6 @@ Unavailable.
 | Seafoam Gym | **Trainer item** — Leader Blaine: Arcanine Lv. 64. |
 | Seafoam Gym | **Trainer item** — Leader Blaine: Magmortar Lv. 66. |
 | Seafoam Gym | **Trainer item** — Leader Blaine: Rapidash Lv. 65. |
-| Silver Cave Outside | **Trainer item** — Elite Four Agatha: Gengar Lv. 87. |
-| Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Cloyster Lv. 86. |
 | Trainer House B1F | **Trainer item** — Pokémon Trainer Cal: Feraligatr Lv. 50. |
 | Vermilion City | **Trainer item** — Cooltrainer Chantz: Ursaluna Lv. 53. |
 | Vermilion Gym | **Trainer item** — Leader Lt.Surge: Electivire Lv. 56. |
@@ -1153,8 +1147,6 @@ Unavailable.
 | Viridian Gym | **Trainer item** — Leader: Electivire Lv. 69. |
 | Viridian Gym | **Trainer item** — Leader: Gyarados Lv. 67. |
 | Viridian Gym | **Trainer item** — Leader: Pidgeot Lv. 66. |
-| Wills Room | **Trainer item** — Elite Four Will: Gallade Lv. 68. |
-| Wills Room | **Trainer item** — Elite Four Will: Gallade Lv. 84. Elite Four / Champion rematch team after defeating Clair’s rematch. |
 
 <a id="light_ball"></a>
 ## Light Ball
@@ -1278,14 +1270,13 @@ Unavailable.
 | Battle Tower 1F | **Battle Tower prize** — Choose one item after completing a seven-win challenge; repeatable on subsequent completed challenges. |
 | Olivine Port | **Gift / reward** — Sailor beside Machamp on the dock at (8, 9); one-time gift. |
 | Brunos Room | **Trainer item** — Elite Four Bruno: Hitmontop Lv. 70. |
-| Brunos Room | **Trainer item** — Elite Four Bruno: Hitmontop Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
+| Brunos Room | **Trainer item** — Elite Four Bruno: Hitmontop Lv. 85. Elite Four / Champion rematch team after defeating all eight Johto gym rematches. |
 | Cerulean Gym | **Trainer item** — Leader Misty: Azumarill Lv. 53. |
 | Cianwood Gym | **Trainer item** — Leader Chuck: Machamp Lv. 79. One-time gym rematch after defeating Morty’s rematch. |
 | Cianwood Gym | **Trainer item** — Leader Chuck: Poliwrath Lv. 81. One-time gym rematch after defeating Morty’s rematch. |
 | Radio Tower 5F | **Trainer item** — Executive Ariana: Weavile Lv. 43. |
 | Route 34 | **Trainer item** — Camper Todd: Kangaskhan Lv. 77. |
 | Viridian Gym | **Trainer item** — Leader: Scizor Lv. 68. |
-| Wills Room | **Trainer item** — Elite Four Will: Wyrdeer Lv. 70. |
 
 <a id="mystic_water"></a>
 ## Mystic Water
@@ -1483,8 +1474,8 @@ Unavailable.
 | Silver Cave Outside | **Wild Pokémon** — Fearow; approx. 5% held-item chance. Headbutt (Rare Tree); Any; Lv. 50. |
 | Tin Tower 2F | **Wild Pokémon** — Fearow; approx. 5% held-item chance. Grass / Cave; Day, Morning, Night; Lv. 53–54. |
 | Tin Tower 3F | **Wild Pokémon** — Fearow; approx. 5% held-item chance. Grass / Cave; Day; Lv. 53. |
-| Radio Tower 5F | **Trainer item** — Executive Archer: Crobat Lv. 41. |
 | Radio Tower 5F | **Trainer item** — Executive Ariana: Honchkrow Lv. 42. |
+| Radio Tower 5F | **Trainer item** — Underboss Archer: Crobat Lv. 41. |
 | Route 16 | **Trainer item** — Biker Axle: Crobat Lv. 61. |
 | Route 27 | **Trainer item** — Bird Keeper Jose: Talonflame Lv. 74. |
 
@@ -1536,7 +1527,6 @@ Unavailable.
 | Goldenrod Underground Switch Room Entrances | **Trainer item** — Rival ?: Gengar Lv. 41. |
 | Indigo Plateau Pokecenter 1F | **Trainer item** — Rival ?: Gengar Lv. 83. |
 | Mt. Moon | **Trainer item** — Rival ?: Gengar Lv. 51. |
-| Silver Cave Outside | **Trainer item** — Elite Four Agatha: Haunter Lv. 87. |
 | Victory Road | **Trainer item** — Rival ?: Gengar Lv. 69. |
 
 <a id="stick"></a>
@@ -1631,13 +1621,11 @@ Unavailable.
 | Radio Tower 2F | **Gift / reward** — Buena; speak to her after clearing Team Rocket from the Radio Tower. |
 | Azalea Gym | **Trainer item** — Leader Bugsy: Vikavolt Lv. 76. One-time gym rematch after defeating Falkner’s rematch. |
 | Celadon City | **Trainer item** — Officer Hayes: Noctowl Lv. 67. |
+| Loreleis Room | **Trainer item** — Elite Four Lorelei: Mesmeria Lv. 71. |
 | Olivine Gym | **Trainer item** — Leader Jasmine: Magnezone Lv. 80. One-time gym rematch after defeating Chuck’s rematch. |
 | Route 42 | **Trainer item** — Fisher Tully: Octillery Lv. 77. |
 | Route 44 | **Trainer item** — Bird Keeper Vance: Pidgeot Lv. 76. |
 | Seafoam Gym | **Trainer item** — Leader Blaine: Armarouge Lv. 64. |
-| Silver Cave Outside | **Trainer item** — Elite Four Lorelei: Mesmeria Lv. 87. |
 | Violet Gym | **Trainer item** — Leader Falkner: Noctowl Lv. 75. One-time gym rematch after defeating Red. |
 | Viridian Gym | **Trainer item** — Cooltrainer Cy: Kingdra Lv. 67. |
 | Viridian Gym | **Trainer item** — Cooltrainer Desmond: Mismagius Lv. 68. |
-| Wills Room | **Trainer item** — Elite Four Will: Espeon Lv. 69. |
-| Wills Room | **Trainer item** — Elite Four Will: Espeon Lv. 85. Elite Four / Champion rematch team after defeating Clair’s rematch. |
