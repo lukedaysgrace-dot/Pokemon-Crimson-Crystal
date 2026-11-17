@@ -26,40 +26,22 @@ def hook(h, name, fn):
 
 
 def new_game(h, rules, hard=False):
-    stage = [None]
     completed = []
-    choices = {'InitPokemonTyping': 1 if rules & 1 else 2,
-               'InitPokemonStats': 1 if rules & 2 else 2,
-               'InitPokemonAbilities': 2 if rules & 4 else 1}
-    for name in ['InitDifficulty', *choices]:
-        hook(h, name, lambda _, name=name: stage.__setitem__(0, name))
-        hook(h, name + '.done', lambda _, name=name:
-             (completed.append((name, h.battle.mem.read('wGameplayRules'))), stage.__setitem__(0, None)))
     h.tick(400)
     for iteration in range(2400):
         m, text = h.battle.mem, tile_text(h)
         if (m.read('wMapGroup'), m.read('wMapNumber'), m.read('wMapStatus')) == (24, 7, 2):
             h.tick(120)
             return completed
-        name = stage[0]
-        if name in choices and (('Original' in text and 'Enhanced' in text)
-                                or ('On' in text and 'Off' in text)):
-            # Menu drawing and its default cursor must finish before input.
+        if 'NEW GAME OPTIONS' in text:
             h.tick(40)
-            if m.read('wMenuCursorY') != choices[name]:
+            for row, toggle in enumerate((hard, rules & 1, rules & 2, rules & 4)):
+                if toggle:
+                    h.press('right', hold=4, wait=24)
+                completed.append((('Difficulty', 'Typing', 'Stats', 'Abilities')[row],
+                                  m.read('wGameplayRules')))
                 h.press('down', hold=4, wait=24)
             h.press('a', hold=4, wait=24)
-        elif name == 'InitDifficulty':
-            if 'Normal' in text and 'Hard' in text and not ('YES' in text and 'NO' in text):
-                h.tick(40)
-                if m.read('wMenuCursorY') != (2 if hard else 1):
-                    h.press('down', hold=4, wait=24)
-                h.press('a', hold=4, wait=24)
-            elif 'YES' in text and 'NO' in text:
-                h.press('up', hold=4, wait=16)
-                h.press('a', hold=4, wait=20)
-            else:
-                h.press('a', hold=4, wait=20)
         else:
             if iteration % 12 == 11:
                 h.press('start', hold=4, wait=12)
@@ -207,7 +189,7 @@ def main():
                 print('FAIL ' + failures[-1], flush=True)
         try:
             completed = new_game(h, rules)
-            check(len(completed) == 4, 'all four choice screens completed')
+            check(len(completed) == 4, 'all four settings selected on the options page')
             check(h.battle.mem.read('wGameplayRules') == rules, 'New Game applied chosen rules')
             check(h.battle.mem.read('wPartyCount') == 0, 'fresh game has no staged party')
             h.pb.screen.image.save(str(OUTPUT / f'{rules}-new.png'))

@@ -63,10 +63,7 @@ NewGame:
 	ld [wDebugFlags], a
 	call ResetWRAM
 	call NewGame_ClearTileMapEtc
-	call SelectDifficulty
-	call SelectPokemonTyping
-	call SelectPokemonStats
-	call SelectPokemonAbilities
+	farcall InitNewGameOptions
 	farcall UpdateLevelCap
 	call AreYouABoyOrAreYouAGirl
 	call OakSpeech
@@ -115,29 +112,6 @@ ConfirmPlayerChoice:
 SoThisIsYouText:
 	text_far Text_SoThisIsYou
 	text_end
-
-SelectDifficulty:
-	farcall Mobile_AlwaysReturnNotCarry ; some mobile stuff
-	jr c, .ok
-	farcall InitDifficulty
-	ret
-
-.ok
-	ld c, 0
-	farcall InitMobileProfile ; mobile
-	ret
-
-SelectPokemonTyping:
-	farcall InitPokemonTyping
-	ret
-
-SelectPokemonStats:
-	farcall InitPokemonStats
-	ret
-
-SelectPokemonAbilities:
-	farcall InitPokemonAbilities
-	ret
 
 ResetWRAM:
 	xor a

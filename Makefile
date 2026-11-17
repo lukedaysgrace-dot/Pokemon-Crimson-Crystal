@@ -55,6 +55,7 @@ crystal_debug_obj := $(crystal_obj:%.o=%_debug.o)
 .SECONDARY:
 
 all: pokecrystal.gbc
+debug: pokecrystal_debug.gbc
 
 # Native boss interstitial assets are generated from authored pixel geometry.
 gfx/battle_vs/data.asm: tools/vs_intro/build.py gfx/font/font.png
@@ -68,11 +69,6 @@ main.o main_debug.o: gfx/battle_vs/data.asm gfx/battle_vs/frames.asm gfx/battle_
 data/pokemon/pre_evolutions.asm: tools/generate_pre_evolutions.py tools/audit_learnset_variety.py constants/pokemon_constants.asm data/pokemon/first_stages.asm data/pokemon/evos_attacks_kanto.asm data/pokemon/evos_attacks_johto.asm data/pokemon/evos_attacks_clones.asm
 	$(BATTLE_TEST_PYTHON) tools/generate_pre_evolutions.py
 
-debug: pokecrystal_debug.gbc
-
-# RTC integration needs Cython/setuptools and a C compiler to prepare a
-# private emulator adapter. The ordinary battle harness remains unchanged.
-# Install the isolated PyBoy 2.8.1 dependency first; see battletest/README.md.
 clean: tidy
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete

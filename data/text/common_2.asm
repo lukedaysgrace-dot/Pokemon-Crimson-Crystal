@@ -676,8 +676,8 @@ Text_YouCantUseItInABattle::
 	prompt
 
 Text_AreYouABoyOrAreYouAGirl::
-	text "Which trainer"
-	line "are you?"
+	text "Are you a boy?"
+	line "Or a girl?"
 	done
 
 Text_SoThisIsYou::

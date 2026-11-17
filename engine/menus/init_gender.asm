@@ -22,7 +22,8 @@ InitCrystalData:
 INCLUDE "mobile/mobile_12.asm"
 
 ; Character select screen, in the style of Polished Crystal: all four player
-; trainer pics are drawn side by side and a ▼ cursor picks between them.
+; trainer pics are drawn side by side. First pick the boy/girl pair, then
+; pick one of the two trainers in that pair. wBuffer1 is 0/1 for these stages.
 ;
 ; Each pic is 7x7 tiles, but four of those would need 196 tiles and only 128
 ; are addressable for the BG. The middle five columns of each pic are used
@@ -31,8 +32,8 @@ INCLUDE "mobile/mobile_12.asm"
 ; VRAM bank 1 and reached through the bank bit in the attribute map.
 ;
 ; Each character gets its own BG palette so everyone keeps their own colors.
-; The three that are not selected have their colors blended halfway to white,
-; which is how Polished Crystal dims the choices you are not on.
+; Unselected trainers have their colors blended halfway to white; in the
+; first stage both trainers in the selected pair keep their full colors.
 
 NUM_CHARSELECT_CHOICES     EQU 4
 CHARSELECT_PIC_WIDTH       EQU 5 ; tiles
@@ -63,12 +64,20 @@ InitGender:
 	xor a
 .valid
 	ld [wPlayerGender], a
+	xor a
+	ld [wBuffer1], a
 
 	call LoadGenderScreenPal
 	call CharSelect_LoadTextPalette
 	call CharSelect_FillBackground
 	call CharSelect_LoadPics
 	call CharSelect_PlacePics
+	hlcoord 3, 1
+	ld de, .Boy
+	call PlaceString
+	hlcoord 13, 1
+	ld de, .Girl
+	call PlaceString
 	call CharSelect_PlaceArrow
 	call CharSelect_LoadCharPals
 	call WaitBGMap2
@@ -81,6 +90,9 @@ InitGender:
 	call DelayFrames
 	ret
 
+.Boy: db "BOY@"
+.Girl: db "GIRL@"
+
 CharSelect_Loop:
 	ld a, 1
 	ldh [hBGMapMode], a
@@ -88,8 +100,10 @@ CharSelect_Loop:
 	call DelayFrame
 	call GetJoypad
 	ldh a, [hJoyPressed]
-	and A_BUTTON
-	ret nz
+	bit A_BUTTON_F, a
+	jr nz, .accept
+	bit B_BUTTON_F, a
+	jr nz, .back
 	ldh a, [hJoyPressed]
 	bit D_RIGHT_F, a
 	jr nz, .right
@@ -99,26 +113,81 @@ CharSelect_Loop:
 ; left
 	ld a, [wPlayerGender]
 	call CharSelectOrderLookup
+	ld b, a
+	ld a, [wBuffer1]
 	and a
-	jr z, .loop ; already on the leftmost choice
+	ld a, b
+	jr z, .pair_left
+	bit 0, a
+	jr z, .loop ; first trainer in the selected pair
 	dec a
+	jr .move
+.pair_left
+	bit 1, a
+	jr z, .loop
+	sub 2
 	jr .move
 
 .right
 	ld a, [wPlayerGender]
 	call CharSelectOrderLookup
-	cp NUM_CHARSELECT_CHOICES - 1
-	jr z, .loop ; already on the rightmost choice
+	ld b, a
+	ld a, [wBuffer1]
+	and a
+	ld a, b
+	jr z, .pair_right
+	bit 0, a
+	jr nz, .loop ; second trainer in the selected pair
 	inc a
+	jr .move
+.pair_right
+	bit 1, a
+	jr nz, .loop
+	add 2
 
 .move
 	call CharSelectOrderLookup ; index back to a wPlayerGender value
 	ld [wPlayerGender], a
+.refresh
 	call CharSelect_PlaceArrow
 	call CharSelect_LoadCharPals
 	ld a, %11100100
 	call DmgToCgbBGPals
-	jr .loop
+	jp .loop
+
+.accept
+	ld a, [wBuffer1]
+	and a
+	ret nz
+	inc a
+	ld [wBuffer1], a
+	ld a, [wPlayerGender]
+	bit PLAYERGENDER_FEMALE_F, a
+	ld hl, .WhichBoy
+	jr z, .prompt
+	ld hl, .WhichGirl
+.prompt
+	call PrintText
+	jr .refresh
+
+.back
+	ld a, [wBuffer1]
+	and a
+	jp z, .loop
+	xor a
+	ld [wBuffer1], a
+	ld hl, TextJump_AreYouABoyOrAreYouAGirl
+	jr .prompt
+
+.WhichBoy:
+	text "Which boy"
+	line "are you?"
+	done
+
+.WhichGirl:
+	text "Which girl"
+	line "are you?"
+	done
 
 CharSelect_LoadPics:
 ; VRAM is written directly with the LCD off, so the fourth pic can go into
@@ -221,19 +290,32 @@ CharSelect_FillPicAttrs:
 
 CharSelect_PlaceArrow:
 ; erase every cursor slot, then place one over the current choice
+	hlcoord 0, CHARSELECT_ARROW_ROW
+	ld bc, SCREEN_WIDTH
 	ld a, " "
-	ldcoord_a 2, CHARSELECT_ARROW_ROW
-	ldcoord_a 7, CHARSELECT_ARROW_ROW
-	ldcoord_a 12, CHARSELECT_ARROW_ROW
-	ldcoord_a 17, CHARSELECT_ARROW_ROW
+	call ByteFill
 
 	ld a, [wPlayerGender]
 	call CharSelectOrderLookup
+	ld b, a
+	ld a, [wBuffer1]
+	and a
+	ld a, b
+	jr nz, .trainer
+	and 2
+	ld e, a
+	add a
+	add a
+	add e
+	add 4
+	jr .place
+.trainer
 	ld e, a
 	add a
 	add a
 	add e ; index * 5, one pic width apart
 	add 2 ; centred over the pic
+.place
 	ld e, a
 	ld d, 0
 	hlcoord 0, CHARSELECT_ARROW_ROW
@@ -274,10 +356,18 @@ CharSelect_LoadTextPalette:
 	RGB 00, 00, 00
 
 CharSelect_LoadCharPals:
-; Rebuild BG palettes 1-4, dimming everyone except the current choice.
+; Rebuild BG palettes 1-4, highlighting the current pair or single trainer.
 ; wPlayerGender is read here, before rSVBK is switched to the palette bank.
 	ld a, [wPlayerGender]
 	call CharSelectOrderLookup
+	ld d, a
+	ld a, [wBuffer1]
+	and a
+	ld a, d
+	jr nz, .trainer
+	and 2
+	or $80 ; marks pair selection for the palette comparison
+.trainer
 	ld b, a
 	ld c, 0
 .loop
@@ -291,7 +381,7 @@ CharSelect_LoadCharPals:
 	ret
 
 CharSelect_LoadOneCharPal:
-; b = the selected choice, c = the choice being loaded
+; b = selected choice, or $80 | pair's first choice; c = choice being loaded
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
@@ -333,8 +423,16 @@ CharSelect_LoadOneCharPal:
 	pop hl ; back to color 1
 
 	ld a, b
+	bit 7, a
+	jr z, .compare
+	xor c
+	and 2
+	jr z, .selected
+	jr .dim
+.compare
 	cp c
 	jr z, .selected
+.dim
 	ld a, NUM_PAL_COLORS - 1
 	call CharSelect_LightenColors
 .selected
@@ -437,204 +535,10 @@ CharSelectPicPointers:
 	db 0
 
 TextJump_AreYouABoyOrAreYouAGirl:
-	; Which trainer are you?
 	text_far Text_AreYouABoyOrAreYouAGirl
 	text_end
 
-InitDifficulty:
-	call InitGenderScreen
-	call LoadGenderScreenPal
-	call LoadGenderScreenLightBlueTile
-	call WaitBGMap2
-	call SetPalettes
-	ld hl, TextJump_SelectDifficulty
-	call PrintText
-	ld hl, .MenuHeader
-	call LoadMenuHeader
-	call WaitBGMap2
-	call VerticalMenu
-	call CloseWindow
-	ld a, [wMenuCursorY]
-	dec a
-	jr nz, .confirm_hard
-	ld hl, TextJump_SelectDifficultyNormal
-	call PrintText
-	call YesNoBox
-	jr c, InitDifficulty
-	ld de, ENGINE_HARD_MODE
-	ld b, RESET_FLAG
-	farcall EngineFlagAction
-	jr .done
-
-.confirm_hard
-	ld hl, TextJump_SelectDifficultyHard
-	call PrintText
-	call YesNoBox
-	jr c, InitDifficulty
-	ld de, ENGINE_HARD_MODE
-	ld b, SET_FLAG
-	farcall EngineFlagAction
-
-.done
-	ld c, 10
-	call DelayFrames
-	ret
-
-.MenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 5, 4, 14, 9
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 2 ; items
-	db "Normal@"
-	db "Hard@"
-
-TextJump_SelectDifficulty:
-	text_far Text_SelectDifficulty
-	text_end
-
-TextJump_SelectDifficultyNormal:
-	text_far Text_SelectDifficultyNormal
-	text_end
-
-TextJump_SelectDifficultyHard:
-	text_far Text_SelectDifficultyHard
-	text_end
-
-InitPokemonTyping:
-	call InitGenderScreen
-	call LoadGenderScreenPal
-	call LoadGenderScreenLightBlueTile
-	call WaitBGMap2
-	call SetPalettes
-	ld hl, TextJump_SelectPokemonTyping
-	call PrintText
-	ld hl, .MenuHeader
-	call LoadMenuHeader
-	call WaitBGMap2
-	call VerticalMenu
-	call CloseWindow
-	ld hl, wGameplayRules
-	ld a, [wMenuCursorY]
-	dec a
-	jr nz, .revamped
-	set GAMEPLAYRULES_ORIGINAL_TYPES_F, [hl]
-	jr .done
-
-.revamped
-	res GAMEPLAYRULES_ORIGINAL_TYPES_F, [hl]
-
-.done
-	ld c, 10
-	call DelayFrames
-	ret
-
-.MenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 4, 4, 15, 9
-	dw .MenuData
-	db 2 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 2 ; items
-	db "Original@"
-	db "Enhanced@"
-
-TextJump_SelectPokemonTyping:
-	text_far Text_SelectPokemonTyping
-	text_end
-
-InitPokemonStats:
-	call InitGenderScreen
-	call LoadGenderScreenPal
-	call LoadGenderScreenLightBlueTile
-	call WaitBGMap2
-	call SetPalettes
-	ld hl, TextJump_SelectPokemonStats
-	call PrintText
-	ld hl, .MenuHeader
-	call LoadMenuHeader
-	call WaitBGMap2
-	call VerticalMenu
-	call CloseWindow
-	ld hl, wGameplayRules
-	ld a, [wMenuCursorY]
-	dec a
-	jr nz, .updated
-	set GAMEPLAYRULES_ORIGINAL_STATS_F, [hl]
-	jr .done
-
-.updated
-	res GAMEPLAYRULES_ORIGINAL_STATS_F, [hl]
-
-.done
-	ld c, 10
-	call DelayFrames
-	ret
-
-.MenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 4, 4, 15, 9
-	dw .MenuData
-	db 2 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 2 ; items
-	db "Original@"
-	db "Enhanced@"
-
-TextJump_SelectPokemonStats:
-	text_far Text_SelectPokemonStats
-	text_end
-
-InitPokemonAbilities:
-	call InitGenderScreen
-	call LoadGenderScreenPal
-	call LoadGenderScreenLightBlueTile
-	call WaitBGMap2
-	call SetPalettes
-	ld hl, TextJump_SelectPokemonAbilities
-	call PrintText
-	ld hl, .MenuHeader
-	call LoadMenuHeader
-	call WaitBGMap2
-	call VerticalMenu
-	call CloseWindow
-	ld hl, wGameplayRules
-	ld a, [wMenuCursorY]
-	dec a
-	jr nz, .off
-	res GAMEPLAYRULES_NO_ABILITIES_F, [hl]
-	jr .done
-
-.off
-	set GAMEPLAYRULES_NO_ABILITIES_F, [hl]
-
-.done
-	ld c, 10
-	call DelayFrames
-	ret
-
-.MenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 5, 4, 14, 9
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 2 ; items
-	db "On@"
-	db "Off@"
-
-TextJump_SelectPokemonAbilities:
-	text_far Text_SelectPokemonAbilities
-	text_end
+INCLUDE "engine/menus/new_game_options.asm"
 
 InitGenderScreen:
 	ld a, $10
