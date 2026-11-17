@@ -19,7 +19,8 @@ GetTrainerDVs:
 	ret
 
 GetTrainerStatExp:
-; Return the stat exp of wOtherTrainerClass in bc, stored big endian
+; Return authored fallback stat exp of wOtherTrainerClass in bc, big endian.
+; Party-matched classes bypass this via ApplyTrainerStatExpCore.
 ; (b = high byte, c = low byte) so it can be written straight into a
 ; party struct.
 ; Trainer stat exp is a Hard Mode bonus only: in Normal mode every
@@ -45,12 +46,6 @@ GetTrainerStatExp:
 	ret
 
 .got_class
-	push hl
-	push de
-	farcall GetOpenProgressionLeaderStatExp
-	pop de
-	pop hl
-	ret c
 	ld a, [wOtherTrainerClass]
 	push hl
 	dec a
@@ -65,6 +60,13 @@ GetTrainerStatExp:
 	ld c, a
 	ld b, [hl]
 
+	pop hl
+
+; Bound authored themed-generic bonuses to the actual encounter level.
+	push hl
+	push de
+	farcall ClampTrainerStatExpToLevel
+	pop de
 	pop hl
 	ret
 

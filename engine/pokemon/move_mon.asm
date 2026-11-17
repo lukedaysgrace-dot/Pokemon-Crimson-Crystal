@@ -1224,33 +1224,12 @@ ComputeNPCTrademonStats:
 	ret
 
 ApplyTrainerStatExp:
-; Give the mon whose party struct starts at hl the stat exp of the trainer
-; class it belongs to (see data/trainers/stat_exp.asm). Player-owned mons are
-; left at zero, which is what TryAddMonToParty already filled in.
-; Preserves hl.
-
+; Apply authored generic training or the Hard Mode party-matching policy.
+; Player-owned mons are untouched. Preserves hl.
 	push hl
-	ld a, [wMonType]
-	and $f
-	cp OTPARTYMON
-	jr nz, .done
-
-	push hl
-	farcall GetTrainerStatExp ; big endian stat exp in bc
-	pop hl
-
-	ld de, MON_STAT_EXP
-	add hl, de
-	ld d, (MON_DVS - MON_STAT_EXP) / 2
-.loop
-	ld a, b
-	ld [hli], a
-	ld a, c
-	ld [hli], a
-	dec d
-	jr nz, .loop
-
-.done
+	ld d, h
+	ld e, l
+	farcall ApplyTrainerStatExpCore
 	pop hl
 	ret
 

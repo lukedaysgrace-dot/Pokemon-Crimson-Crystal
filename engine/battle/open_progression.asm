@@ -99,47 +99,38 @@ SelectOpenProgressionParty::
 	xor a
 	ret
 
-GetOpenProgressionLeaderStatExp::
-; Carry with bc = the current tier's Hard Mode Stat EXP. Other trainers,
-; rematches and out-of-region uses retain their class's ordinary value.
-	ld a, [wOtherTrainerID]
-	cp 1
-	jr nz, .ordinary
-	ld a, [wOtherTrainerClass]
-	ld de, (GROUP_CIANWOOD_GYM << 8) | MAP_CIANWOOD_GYM
-	cp CHUCK
-	jr z, .map
-	ld de, (GROUP_OLIVINE_GYM << 8) | MAP_OLIVINE_GYM
-	cp JASMINE
-	jr z, .map
-	ld de, (GROUP_MAHOGANY_GYM << 8) | MAP_MAHOGANY_GYM
-	cp PRYCE
-	jr nz, .ordinary
-.map
-	ld a, [wMapGroup]
-	cp d
-	jr nz, .ordinary
-	ld a, [wMapNumber]
-	cp e
-	jr nz, .ordinary
-	call GetOpenProgressionStage
-	cp 3
-	jr nc, .ordinary
-	add a
-	ld e, a
-	ld d, 0
-	ld hl, .stat_exp
-	add hl, de
+ClampTrainerStatExpToLevel::
+; bc = authored generic training. Return the smaller of that and this party
+; member's level allowance. Normal Mode returns zero before reaching here.
+; wCurPartyLevel is the actual selected (including open-tier) mon's level.
+	ld hl, TrainerStatExpLevelLimits
+.next
+	ld a, [wCurPartyLevel]
+	cp [hl]
+	jr c, .found
+	jr z, .found
+	inc hl
+	inc hl
+	inc hl
+	jr .next
+.found
+	inc hl
 	ld a, [hli]
-	ld c, a
-	ld b, [hl]
-	scf
+	ld e, a
+	ld d, [hl]
+	ld a, b
+	cp d
+	ret c
+	jr nz, .limit
+	ld a, c
+	cp e
+	ret c
+.limit
+	ld b, d
+	ld c, e
 	ret
-.ordinary
-	and a
-	ret
-.stat_exp
-	dw 7744, 11664, 14400
+
+INCLUDE "data/trainers/stat_exp_limits.asm"
 
 ClampOpenProgressionWildLevel::
 ; Bound newly accessible encounters to the same tier as the region's trainers.

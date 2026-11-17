@@ -4868,17 +4868,17 @@ FirebreatherGroup:
 
 	next_list_item ; FIREBREATHER (9) DICK - Burned Tower 1F (restored G/S)
 	db "DICK@", TRAINERTYPE_NORMAL
-	db 17
+	db 23
 	dw CHARMELEON
 	db -1 ; end
 
 	next_list_item ; FIREBREATHER (10) NED - Burned Tower 1F (restored G/S)
 	db "NED@", TRAINERTYPE_NORMAL
-	db 15
+	db 21
 	dw KOFFING
-	db 16
+	db 22
 	dw GROWLITHE
-	db 15
+	db 21
 	dw KOFFING
 	db -1 ; end
 

@@ -7363,7 +7363,7 @@ GiveExperiencePoints:
 	ld a, MAX_LEVEL
 	ld [wLevelCap], a
 .no_level100_cap
-	call .EvenlyDivideExpAmongParticipants
+	farcall DivideExperienceAndStatExp
 	xor a
 	ld [wCurPartyMon], a
 	ld bc, wPartyMon1Species
@@ -7774,63 +7774,9 @@ GiveExperiencePoints:
 .done
 	jp ResetBattleParticipants
 
-.EvenlyDivideExpAmongParticipants:
-; count number of battle participants
-	ld a, [wBattleParticipantsNotFainted]
-	ld b, a
-	ld c, PARTY_LENGTH
-	ld de, 0
-.count_loop
-	push bc
-	push de
-	ld a, e
-	ld hl, wPartyMon1Level
-	call GetPartyLocation
-	ld a, [wLevelCap]
-	ld b, a
-	ld a, [hl]
-	cp b
-	pop de
-	pop bc
-	jr c, .gains_exp
-	srl b
-	ld a, d
-	jr .no_exp
-
-.gains_exp
-	xor a
-	srl b
-	adc d
-	ld d, a
-.no_exp
-	inc e
-	dec c
-	jr nz, .count_loop
-	cp 2
-	ret c
-
-	ld [wTempByteValue], a
-	ld hl, wEnemyMonBaseStats
-	ld c, wEnemyMonShinyGenderFlags - wEnemyMonBaseStats ; fits wBackupEnemyMonBaseStats
-.base_stat_division_loop
-	xor a
-	ldh [hDividend + 0], a
-	ld a, [hl]
-	ldh [hDividend + 1], a
-	ld a, [wTempByteValue]
-	ldh [hDivisor], a
-	ld b, 2
-	call Divide
-	ldh a, [hQuotient + 3]
-	ld [hli], a
-	dec c
-	jr nz, .base_stat_division_loop
-	ret
-
 TrainerBoostExp:
-; Trainer battles give 1.5x exp normally, 2x on Hard Mode. Hard Mode caps
-; levels per badge, so without the larger share the player cannot reach the
-; cap from trainer battles alone and is forced to grind wild Pokemon.
+; Normal trainer bonus is 1.5x. Hard Mode budgets a growing party (six by
+; gym 6) against accessible first-clear trainers at each badge checkpoint.
 	push hl
 	push de
 	push bc
@@ -7842,8 +7788,11 @@ TrainerBoostExp:
 	pop de
 	pop hl
 	and a
-	jr nz, DoubleExp
-	; fallthrough to BoostExp
+	jr z, BoostExp
+	push hl
+	farcall HardModeTrainerExp
+	pop hl
+	ret
 
 BoostExp:
 ; Multiply experience by 1.5x
@@ -7863,17 +7812,10 @@ BoostExp:
 	adc b
 	ldh [hProduct + 2], a
 	pop bc
-	ret
-
-DoubleExp:
-; Multiply experience by 2x, saturating rather than wrapping.
-	ldh a, [hProduct + 3]
-	add a
-	ldh [hProduct + 3], a
-	ldh a, [hProduct + 2]
-	adc a
-	ldh [hProduct + 2], a
 	ret nc
+	jr SaturateExp
+
+SaturateExp:
 ; overflowed 16 bits; clamp to the largest value the exp bar can show
 	ld a, $ff
 	ldh [hProduct + 2], a

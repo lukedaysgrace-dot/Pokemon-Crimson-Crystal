@@ -92,6 +92,81 @@ HardModeLevelCaps:
 	db 69 ; Blue
 	assert @ - HardModeLevelCaps == NUM_BADGES
 
+HardModeTrainerExp::
+; Input/output: 16-bit EXP in hProduct + 2/3. Preserve the party pointer
+; and caller registers, including after CountSetBits/Multiply. Stat EXP
+; and wild rewards do not use this multiplier.
+	push bc
+	push de
+	push hl
+	ld hl, wBadges
+	ld b, 2
+	call CountSetBits
+	cp NUM_BADGES + 1
+	jr c, .valid_badges
+	ld a, NUM_BADGES
+.valid_badges
+	ld e, a
+	ld d, 0
+	ld hl, HardModeTrainerExpMultipliers
+	add hl, de
+	ld a, [hl]
+	ld c, a
+; The Lighthouse can already be cleared on the way to Chuck. A second- or
+; third-position Jasmine must be trainable from the three gym trainers alone.
+; Scope the extra reward to her gym instead of inflating the whole region.
+	ld a, [wMapGroup]
+	cp GROUP_OLIVINE_GYM
+	jr nz, .got_multiplier
+	ld a, [wMapNumber]
+	cp MAP_OLIVINE_GYM
+	jr nz, .got_multiplier
+	ld a, e
+	sub 5
+	cp 2
+	jr nc, .got_multiplier
+	ld e, a
+	ld hl, HardModeJasmineGymExpMultipliers
+	add hl, de
+	ld c, [hl]
+.got_multiplier
+	ld a, c
+	ldh [hMultiplier], a
+	xor a
+	ldh [hMultiplicand], a
+	call Multiply
+	ldh a, [hProduct]
+	ld b, a
+	ldh a, [hProduct + 1]
+	or b
+	jr z, .done
+	ld a, $ff
+	ldh [hProduct + 2], a
+	ldh [hProduct + 3], a
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+
+HardModeTrainerExpMultipliers:
+; Total badges, 0-16. Includes the trainer bonus (not stacked with 1.5x).
+; Growing party (2/3/4/4/5, then six from gym 6), Slow growth, no trade/Egg
+; or rematches assumed, with room to skip trainers.
+; Open Johto is tested in all six orders. Kanto's three cap-62 gyms share a
+; pool; sparse Surge/Blaine/Blue approaches need more than the long routes.
+	db 2, 3, 4, 3 ; Falkner through Morty
+	db 4, 6, 8   ; open Johto (sparse Jasmine gym has a local allowance below)
+	db 3, 5, 3   ; Clair, Brock, Misty (no optional downhill routes assumed)
+	db 16, 20, 3, 3 ; Surge, first central gym, remaining two at the same cap
+	db 10, 8     ; Blaine, Blue
+	db 8         ; League / postgame (no progression cap)
+	assert @ - HardModeTrainerExpMultipliers == NUM_BADGES + 1
+
+HardModeJasmineGymExpMultipliers:
+; Five / six badges, only inside Olivine Gym. No flags or party scaling.
+	db 28, 32
+
 CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e
 	ld a, d

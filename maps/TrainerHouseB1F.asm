@@ -14,9 +14,20 @@ TrainerHouseB1F_MapScripts:
 TrainerHouseReceptionistScript:
 	turnobject PLAYER, UP
 	opentext
+.TrainingAccess:
+	checkflag ENGINE_HARD_MODE
+	iffalse .DailyChallenge
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iffalse .DailyChallenge
+; Postgame has no new level cap or guaranteed unused route trainers.
+; Allow immediate preparation for the rematches without changing daily flags.
+	writetext TrainerHouseB1FPostgameTrainingText
+	sjump .IntroduceOpponent
+.DailyChallenge:
 	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	iftrue .FoughtTooManyTimes
 	writetext TrainerHouseB1FIntroText
+.IntroduceOpponent:
 	buttonsound
 	special TrainerHouse
 	iffalse .GetCal3Name
@@ -116,6 +127,14 @@ TrainerHouseB1FIntroText:
 	para "You may battle a"
 	line "trainer once per"
 	cont "day."
+	done
+
+TrainerHouseB1FPostgameTrainingText:
+	text "Welcome, CHAMPION!"
+
+	para "Train here as often"
+	line "as you like for"
+	cont "your next battle."
 	done
 
 TrainerHouseB1FYourOpponentIsText:

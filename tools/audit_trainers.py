@@ -379,6 +379,10 @@ def validate_script_references(classes, owners, class_pointer):
 			for line_number, line in enumerate(source_lines(path), 1):
 				code = without_comment(line)
 				for pattern in patterns:
+					# Class/bonus metadata is validated separately; its second
+					# byte is not a trainer-party ID.
+					if path == ROOT / "data/trainers/stat_exp_matching.asm" and pattern is patterns[-1]:
+						continue
 					match = pattern.match(code)
 					if not match or match.group(1) not in actual_classes:
 						continue
@@ -398,6 +402,7 @@ def validate_script_references(classes, owners, class_pointer):
 
 def validate_parallel_tables(classes, items):
 	actual = classes[1:]
+	validate_stat_exp_matching_policy(actual)
 
 	path = ROOT / "data/trainers/dvs.asm"
 	dv_rows = []
@@ -505,6 +510,38 @@ def validate_parallel_tables(classes, items):
 
 	validate_attributes(classes, items)
 	validate_personality_bit()
+
+
+def validate_stat_exp_matching_policy(classes):
+	path = ROOT / "data/trainers/stat_exp_matching.asm"
+	seen = set()
+	terminated = False
+	exact = {"COOLTRAINERM", "COOLTRAINERF", "DUELIST"}
+	for line_number, line in enumerate(source_lines(path), 1):
+		code = without_comment(line)
+		if code == "db -1":
+			terminated = True
+			continue
+		if not code.startswith("db "):
+			continue
+		match = re.fullmatch(r"db\s+(\w+),\s*(\d+)", code)
+		if not match or terminated:
+			fail(path, line_number, "malformed matching policy or data after sentinel")
+			continue
+		trainer_class, bonus = match.groups()
+		if trainer_class not in classes or trainer_class in seen:
+			fail(path, line_number, f"unknown or duplicate matching class {trainer_class}")
+		seen.add(trainer_class)
+		if int(bonus) != (0 if trainer_class in exact else 2):
+			fail(path, line_number, f"wrong training bonus for {trainer_class}")
+	required = exact | {cls for cls in classes if cls.endswith("_REMATCH")}
+	required |= {"FALKNER", "BUGSY", "WHITNEY", "MORTY", "CHUCK", "JASMINE", "PRYCE", "CLAIR",
+	             "BROCK", "MISTY", "LT_SURGE", "ERIKA", "JANINE", "SABRINA", "BLAINE", "BLUE",
+	             "RIVAL1", "RIVAL2", "RIVAL3", "CRYSTAL", "CRYSTAL2", "CRYSTAL3", "PROTON",
+	             "PETREL", "ARIANA", "ARCHER", "PETREL_DIRECTOR", "LORELEI", "KOGA", "BRUNO",
+	             "KAREN", "CHAMPION", "RED", "RED2", "GREEN", "BLUE_CLOAK"}
+	if not terminated or required - seen:
+		fail(path, 0, f"missing matching policies/sentinel: {sorted(required - seen)}")
 
 
 def validate_attributes(classes, items):
