@@ -3,25 +3,41 @@ DEF FOREST_ZANGOOSE EQU 10
 DEF FOREST_SEVIPER1 EQU 11
 DEF FOREST_SEVIPER2 EQU 12
 
-ForestRivalryRestoreObjects::
-; MAPCALLBACK_OBJECTS runs only when the forest is entered from outside
+ForestRivalryResolveOutcome::
+; MAPCALLBACK_NEWMAP runs only when the forest is entered from outside
 ; (warps, Fly, Teleport, whiteout returns...), never after an in-forest
-; battle or when continuing a save made inside it.
+; battle or when continuing a save made inside it. Resolve this before
+; MAPCALLBACK_TILES so the remains appear on the first return as well.
 	checkevent EVENT_VIRIDIAN_FOREST_ZANGOOSE_GONE
 	iftrue .Done
 	checkevent EVENT_VIRIDIAN_FOREST_RIVALRY_SEEN
 	iffalse .Done
 	checkevent EVENT_VIRIDIAN_FOREST_SEVIPER_BEATEN
-	iftrue .Survivor
+	iftrue .Done
 	; The player saw the fight start and left (by any route, including a
 	; whiteout) before helping. Zangoose did not survive; the snakes are gone.
 	setevent EVENT_VIRIDIAN_FOREST_ZANGOOSE_PERISHED
 	setevent EVENT_VIRIDIAN_FOREST_ZANGOOSE_GONE
 	setevent EVENT_VIRIDIAN_FOREST_SEVIPER1_GONE
 	setevent EVENT_VIRIDIAN_FOREST_SEVIPER2_GONE
+	; The tile callback below draws the remains from the saved outcome.
+	return
+.Done:
 	return
 
-.Survivor:
+ForestRivalryRemainsTiles::
+	checkevent EVENT_VIRIDIAN_FOREST_ZANGOOSE_PERISHED
+	iffalse .Done
+	; Only the upper-left 16x16 quadrant differs from the normal $93 floor.
+	changeblock 2, 30, $a4
+.Done:
+	return
+
+ForestRivalryRestoreObjects::
+	checkevent EVENT_VIRIDIAN_FOREST_ZANGOOSE_GONE
+	iftrue .Done
+	checkevent EVENT_VIRIDIAN_FOREST_SEVIPER_BEATEN
+	iffalse .Done
 	; Keep the survivor at its final spot after a whiteout against Zangoose.
 	checkevent EVENT_VIRIDIAN_FOREST_SEVIPER1_GONE
 	iffalse .Done

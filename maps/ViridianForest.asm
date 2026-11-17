@@ -14,8 +14,16 @@
 ViridianForest_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 3 ; callbacks
+	callback MAPCALLBACK_NEWMAP, .RivalryOutcome
+	callback MAPCALLBACK_TILES, .RivalryRemains
 	callback MAPCALLBACK_OBJECTS, .RivalryObjects
+
+.RivalryOutcome:
+	farsjump ForestRivalryResolveOutcome
+
+.RivalryRemains:
+	farsjump ForestRivalryRemainsTiles
 
 .RivalryObjects:
 	farsjump ForestRivalryRestoreObjects

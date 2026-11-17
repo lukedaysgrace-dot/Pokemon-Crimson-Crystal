@@ -162,3 +162,4 @@
 	tilecoll WALL, FLOOR, WALL, FLOOR ; a1 canopy edge
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; a2 trunk / hidden Big Root
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a3 floor around tree
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; a4 Zangoose remains (event only)
