@@ -72,15 +72,15 @@ UpdateLevelCap::
 HardModeLevelCaps:
 ; Indexed by total badge count before Blue awards the sixteenth badge.
 ; Erika, Janine and Sabrina share a tier so any order works.
-; All sixteen badges use ordinary leveling, without progression caps.
+; Owning all sixteen badges ends the progression caps.
 ; tools/audit_exp_economy.py reads this table for EXP screening estimates.
 	db 10 ; Falkner
 	db 16 ; Bugsy
 	db 20 ; Whitney
 	db 25 ; Morty
-	db 30 ; Chuck
-	db 34 ; Jasmine
-	db 38 ; Pryce
+	db 30 ; Chuck / Jasmine / Pryce, first
+	db 34 ; Chuck / Jasmine / Pryce, second
+	db 38 ; Chuck / Jasmine / Pryce, third
 	db 45 ; Clair
 	db 50 ; Brock
 	db 54 ; Misty

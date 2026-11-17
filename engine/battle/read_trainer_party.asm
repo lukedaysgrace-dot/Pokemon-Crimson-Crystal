@@ -55,6 +55,7 @@ ReadTrainerParty:
 	jr .skip_trainer
 .got_trainer
 	inc hl
+	call SelectLocalOpenProgressionParty
 
 .skip_name
 	call GetNextTrainerDataByte
@@ -133,6 +134,7 @@ SetTrainerBattleLevel:
 
 .got_trainer
 	inc hl ; record length
+	call SelectLocalOpenProgressionParty
 .skip_name
 	call GetNextTrainerDataByte
 	cp "@"
@@ -141,6 +143,27 @@ SetTrainerBattleLevel:
 	call GetNextTrainerDataByte ; trainer type
 	call GetNextTrainerDataByte ; first party member's level
 	ld [wCurPartyLevel], a
+	ret
+
+SelectLocalOpenProgressionParty:
+; Override only an explicitly listed map/class/ID, at battle start. Both the
+; transition and party reader use this path. Identity and defeated flags stay
+; unchanged, and the original pointer survives every rejected override.
+	push bc
+	push de
+	push hl
+	farcall SelectOpenProgressionParty
+	and a
+	jr z, .original
+	ld [wTrainerGroupBank], a
+	pop de ; discard original pointer, keep the selected hl
+	pop de
+	pop bc
+	ret
+.original
+	pop hl
+	pop de
+	pop bc
 	ret
 
 GetTrainerPartyID:

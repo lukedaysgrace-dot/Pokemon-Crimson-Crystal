@@ -6466,6 +6466,8 @@ LoadEnemyMon:
 	bit 0, a
 	jp nz, InitEnemyMon
 
+	farcall ClampOpenProgressionWildLevel
+
 ; Make sure everything knows what species we're working with
 	ld a, [wTempEnemyMonSpecies]
 	ld [wEnemyMonSpecies], a

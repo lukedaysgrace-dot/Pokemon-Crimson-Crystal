@@ -46,6 +46,13 @@ GetTrainerStatExp:
 
 .got_class
 	push hl
+	push de
+	farcall GetOpenProgressionLeaderStatExp
+	pop de
+	pop hl
+	ret c
+	ld a, [wOtherTrainerClass]
+	push hl
 	dec a
 	ld c, a
 	ld b, 0

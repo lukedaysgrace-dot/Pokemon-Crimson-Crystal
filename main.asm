@@ -1038,3 +1038,7 @@ INCLUDE "engine/battle/trainer_pic_anim.asm"
 SECTION "Crimson VS intro", ROMX
 INCLUDE "engine/battle/crimson_vs.asm"
 INCLUDE "gfx/battle_vs/data.asm"
+
+SECTION "Open Progression Selection", ROMX
+INCLUDE "engine/battle/open_progression.asm"
+INCLUDE "data/trainers/open_progression.asm"

@@ -15,12 +15,8 @@ OlivineLighthouse6F_MapScripts:
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue .ShowHealthyAmphy
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	checkevent EVENT_JASMINE_RECEIVED_SECRETPOTION
-	iftrue .JasmineWaiting
-	setevent EVENT_OLIVINE_LIGHTHOUSE_JASMINE
-	return
-
-.JasmineWaiting:
+	; Jasmine stays with Amphy. The entrance is always open, and older saves
+	; with a completed outdoor handoff can finish the same healing scene here.
 	clearevent EVENT_OLIVINE_LIGHTHOUSE_JASMINE
 	return
 
@@ -32,10 +28,18 @@ OlivineLighthouse6F_MapScripts:
 OlivineLighthouseJasmine:
 	faceplayer
 	opentext
-	; Also guard an older save resumed with Jasmine already loaded upstairs.
 	checkevent EVENT_JASMINE_RECEIVED_SECRETPOTION
+	iftrue .HealAmphy
+	checkitem SECRETPOTION
 	iffalse .MedicineNotDelivered
-	; The medicine was already handed over outside the lighthouse.
+	farwritetext JasmineCureAmphyText
+	yesorno
+	iffalse .Declined
+	farwritetext PlayerHandedSecretpotionText
+	buttonsound
+	takeitem SECRETPOTION
+	setevent EVENT_JASMINE_RECEIVED_SECRETPOTION
+.HealAmphy:
 	writetext JasmineDontBeOffendedText
 	waitbutton
 	closetext
@@ -93,7 +97,28 @@ OlivineLighthouseJasmine:
 	end
 
 .MedicineNotDelivered:
-	farsjump OlivineCityJasmineMedicineRequest
+	sjump OlivineLighthouseJasmineMedicineRequest
+
+.Declined:
+	farwritetext JasmineISeeText
+	waitbutton
+	closetext
+	end
+
+OlivineLighthouseJasmineMedicineRequest:
+	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+	iftrue .ExplainedSickness
+	writetext JasmineCianwoodPharmacyText
+	waitbutton
+	closetext
+	setevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
+	end
+
+.ExplainedSickness:
+	writetext JasmineGetSomeMedicineText
+	waitbutton
+	closetext
+	end
 
 OlivineLighthouseUnusedDummyScript:
 ; unused
@@ -157,6 +182,86 @@ MovementData_0x60c79:
 	slow_step UP
 	step_sleep 8
 	step_end
+
+JasmineCianwoodPharmacyText:
+	text "JASMINE: …Oh!"
+	line "Hello…"
+
+	para "…I'm sorry to"
+	line "trouble you, but…"
+	cont "I need your help,"
+	cont "and I have no one"
+	cont "else to turn to."
+
+	para "The #MON that"
+	line "lights this"
+	cont "LIGHTHOUSE…"
+
+	para "AMPHY… has become"
+	line "terribly ill."
+
+	para "…I'm very worried"
+	line "about her…"
+
+	para "I've heard there's"
+	line "a wonderful"
+	cont "PHARMACY in"
+	cont "CIANWOOD CITY that"
+	cont "makes special"
+	cont "medicine."
+
+	para "…But I can't leave"
+	line "AMPHY alone for"
+	cont "very long…"
+
+	para "…Would you please"
+	line "go to CIANWOOD and"
+	cont "bring back some"
+	cont "medicine?"
+
+	para "…I'd be ever so"
+	line "grateful…"
+	done
+
+JasmineGetSomeMedicineText:
+	text "JASMINE: …Have you"
+	line "been to the"
+	cont "PHARMACY in"
+	cont "CIANWOOD yet?"
+
+	para "…AMPHY is still"
+	line "very sick…"
+
+	para "…Please hurry…"
+	done
+
+JasmineCureAmphyText:
+	text "JASMINE: …Oh! Is"
+	line "that medicine for"
+	cont "AMPHY?"
+	done
+
+JasmineThankGoodnessText:
+	text "JASMINE: …Thank"
+	line "goodness!"
+
+	para "…Please, come"
+	line "inside!"
+
+	para "Meet me upstairs"
+	line "so we can give it"
+	cont "to her right away!"
+	done
+
+PlayerHandedSecretpotionText:
+	text "<PLAYER> handed the"
+	line "SECRETPOTION to"
+	cont "JASMINE."
+	done
+
+JasmineISeeText:
+	text "JASMINE: …I see…"
+	done
 
 JasmineDontBeOffendedText:
 	text "JASMINE: …Um,"
