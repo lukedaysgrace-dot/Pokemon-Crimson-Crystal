@@ -3605,7 +3605,7 @@ FlareonEvosAttacks:
 	db 0 ; no more level-up moves
 
 PorygonEvosAttacks:
-	dbbw EVOLVE_LEVEL, 30, PORYGON2
+	dbbw EVOLVE_ITEM, UP_GRADE, PORYGON2
 	db 0 ; no more evolutions
 	dbw 1, CONVERSION
 	dbw 1, CONVERSION2

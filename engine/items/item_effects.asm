@@ -267,6 +267,7 @@ ItemEffects:
 	dw NoEffect ; CUSTAP_BERRY
 	dw NoEffect ; SALAC_BERRY
 	dw ExpRelayEffect ; EXP_RELAY
+	dw EvoStoneEffect ; DUBIOUS_DISC
 
 ExpRelayEffect:
 	farcall ExpRelayCore

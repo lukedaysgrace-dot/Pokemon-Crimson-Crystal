@@ -13,15 +13,15 @@ SilphCoReceptionistScript:
 SilphCoOfficerScript:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_UP_GRADE
-	iftrue .GotUpGrade
+	checkevent EVENT_GOT_DUBIOUS_DISC
+	iftrue .GotDubiousDisc
 	writetext SilphCoOfficerText
 	buttonsound
-	verbosegiveitem UP_GRADE
+	verbosegiveitem DUBIOUS_DISC
 	iffalse .NoRoom
-	setevent EVENT_GOT_UP_GRADE
-.GotUpGrade:
-	writetext SilphCoOfficerText_GotUpGrade
+	setevent EVENT_GOT_DUBIOUS_DISC
+.GotDubiousDisc:
+	writetext SilphCoOfficerText_GotDubiousDisc
 	waitbutton
 .NoRoom:
 	closetext
@@ -45,7 +45,7 @@ SilphCoOfficerText:
 	line "little souvenir."
 	done
 
-SilphCoOfficerText_GotUpGrade:
+SilphCoOfficerText_GotDubiousDisc:
 	text "It's SILPH CO.'s"
 	line "latest product."
 

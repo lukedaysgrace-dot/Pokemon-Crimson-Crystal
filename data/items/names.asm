@@ -303,3 +303,4 @@ ItemNames::
 	db "?@" ; retired $012e
 	db "?@" ; retired $012f
 	db "EXP RELAY@"
+	db "DUBIOUS DISC@"

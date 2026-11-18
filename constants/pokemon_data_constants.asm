@@ -245,6 +245,10 @@ NUM_HOF_TEAMS EQU 30
 	const EVOLVE_HOLDING
 	const EVOLVE_PARTY
 
+; EVOLVE_ITEM stores its item in one byte, so expanded (16-bit) items
+; use a marker byte that the evolution code resolves to the full index.
+EVOITEM_DUBIOUS_DISC EQU $ff
+
 ; EVOLVE_HAPPINESS triggers
 	const_def 1
 	const TR_ANYTIME

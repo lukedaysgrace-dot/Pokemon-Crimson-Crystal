@@ -231,9 +231,7 @@ EvolveAfterBattle_MasterLoop:
 
 .item
 	call GetNextEvoAttackByte
-	ld b, a
-	ld a, [wCurItem]
-	cp b
+	call EvoItemMatchesCurItem
 	jp nz, .skip_evolution_species
 
 	ld a, [wForceEvolution]
@@ -1078,9 +1076,7 @@ DetermineEvolutionItemResults::
 	cp EVOLVE_ITEM
 	jr nz, .skip_species_parameter
 	call GetNextEvoAttackByte
-	ld b, a	
-	ld a, [wCurItem]
-	cp b
+	call EvoItemMatchesCurItem
 	jr nz, .skip_species
 	ldh a, [hTemp]
 	call GetFarHalfword
@@ -1096,6 +1092,30 @@ DetermineEvolutionItemResults::
 	inc hl
 	inc hl
 	jr .loop
+
+EvoItemMatchesCurItem:
+; in: a = EVOLVE_ITEM parameter byte; out: z if [wCurItem] is that item.
+; Legacy items compare by their fixed runtime ID; marker bytes compare the
+; full 16-bit index. Clobbers af and b; preserves hl, de and c.
+	cp EVOITEM_DUBIOUS_DISC
+	jr z, .dubious_disc
+	ld b, a
+	ld a, [wCurItem]
+	cp b
+	ret
+
+.dubious_disc
+	push hl
+	ld a, [wCurItem]
+	call GetItemIndexFromID
+	ld a, h
+	cp HIGH(DUBIOUS_DISC)
+	jr nz, .done
+	ld a, l
+	cp LOW(DUBIOUS_DISC)
+.done
+	pop hl
+	ret
 
 GetNextEvoAttackByte:
 	ldh a, [hTemp]

@@ -62,3 +62,5 @@
 	tilecoll WALL, WALL, FLOOR, WALL ; 3d
 	tilecoll WALL, FLOOR, WALL, WALL ; 3e
 	tilecoll FLOOR, COUNTER, COUNTER, COUNTER ; 3f
+	tilecoll WALL, WALL, FLOOR, FLOOR ; 40 table with Up-Grade disc (Rocket Base B3F)
+	tilecoll WALL, WALL, FLOOR, FLOOR ; 41 table after the Up-Grade disc is taken

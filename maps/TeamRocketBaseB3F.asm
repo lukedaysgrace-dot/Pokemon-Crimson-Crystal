@@ -55,6 +55,10 @@ TeamRocketBaseB3F_MapScripts:
 .CheckGiovanniDoor:
 	; Set the variable before LoadGraphics sorts and allocates sprite tiles.
 	callasm LanceDragoniteSetRocketVariable
+	checkevent EVENT_GOT_UP_GRADE
+	iffalse .UpGradeStillOnTable
+	changeblock 22, 6, $41 ; empty table, disc taken
+.UpGradeStillOnTable:
 	checkevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
 	iftrue .OpenSesame
 	return
@@ -364,6 +368,23 @@ TeamRocketBaseB3FLockedDoor:
 
 TeamRocketBaseB3FOathScript:
 	jumpstd teamrocketoath
+
+TeamRocketBaseB3FUpGrade:
+	conditional_event EVENT_GOT_UP_GRADE, .Script
+
+.Script:
+	opentext
+	verbosegiveitem UP_GRADE
+	iffalse .NoRoom
+	setevent EVENT_GOT_UP_GRADE
+	closetext
+	changeblock 22, 6, $41 ; empty table, disc taken
+	reloadmappart
+	end
+
+.NoRoom:
+	closetext
+	end
 
 TeamRocketBaseB3FProtein:
 	itemball PROTEIN
@@ -769,7 +790,7 @@ TeamRocketBaseB3F_MapEvents:
 	coord_event 11,  8, SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS, RocketBaseBossRight
 	coord_event  8, 10, SCENE_TEAMROCKETBASEB3F_RIVAL_ENCOUNTER, RocketBaseRival
 
-	db 10 ; bg events
+	db 11 ; bg events
 	bg_event 10,  9, BGEVENT_IFNOTSET, TeamRocketBaseB3FLockedDoor
 	bg_event 11,  9, BGEVENT_IFNOTSET, TeamRocketBaseB3FLockedDoor
 	bg_event 10,  1, BGEVENT_READ, TeamRocketBaseB3FOathScript
@@ -780,6 +801,7 @@ TeamRocketBaseB3F_MapEvents:
 	bg_event  5, 13, BGEVENT_READ, TeamRocketBaseB3FOathScript
 	bg_event  6, 13, BGEVENT_READ, TeamRocketBaseB3FOathScript
 	bg_event  7, 13, BGEVENT_READ, TeamRocketBaseB3FOathScript
+	bg_event 22,  6, BGEVENT_IFNOTSET, TeamRocketBaseB3FUpGrade
 
 	db 16 ; object events
 	object_event 25, 14, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceGetPasswordScript, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS

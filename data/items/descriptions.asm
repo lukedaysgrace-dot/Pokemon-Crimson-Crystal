@@ -305,6 +305,7 @@ ItemDescriptions:
 	dw QuestionMarkDesc ; retired item
 	dw QuestionMarkDesc ; retired item
 	dw EXP_RELAYDesc
+	dw DUBIOUS_DISCDesc
 
 MasterBallDesc:
 	db   "The best BALL. It"
@@ -1207,3 +1208,7 @@ BIG_ROOTDesc:
 EXP_RELAYDesc:
 	db "Transfers all Stat"
 	next "EXP to a #MON.@"
+
+DUBIOUS_DISCDesc:
+	db   "A transparent disc"
+	next "of dubious data.@"

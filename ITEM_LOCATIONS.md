@@ -80,6 +80,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Damp Rock](#damp_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [Dragon Fang](#dragon_fang) | Ground pickup |
 | [Dragon Scale](#dragon_scale) | Ground pickup, Wild Pokémon |
+| [Dubious Disc](#dubious_disc) | Gift / reward |
 | [Everstone](#everstone) | Gift / reward, Static wild Pokémon, Wild Pokémon |
 | [Eviolite](#eviolite) | Battle Tower prize, Ground pickup, Trainer item |
 | [Exp. Share](#exp_share) | Gift / reward |
@@ -127,7 +128,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Throat Spray](#throat_spray) | Shop |
 | [Toxic Orb](#toxic_orb) | Battle Tower prize, Ground pickup |
 | [Twistedspoon](#twistedspoon) | Gift / reward, Trainer item |
-| [Up-Grade](#up_grade) | Gift / reward |
+| [Up-Grade](#up_grade) | Ground pickup |
 | [Weak Policy](#weak_policy) | Battle Tower prize, Ground pickup |
 | [White Herb](#white_herb) | Shop |
 | [Wide Lens](#wide_lens) | Battle Tower prize, Ground pickup, Trainer item |
@@ -672,6 +673,13 @@ Unavailable.
 | Pokémon Center 2F delivery NPC | **Mystery Gift** — Unlock Mystery Gift with Carrie on Goldenrod Department Store 5F, then use a compatible infrared session. |
 | Ruins of Alph Ho Oh Item Room | **Ground pickup** — Ho-Oh puzzle’s secret chamber; put Ho-Oh first in the party to open the passage. Tile (5, 4). |
 | Route 42 | **Trainer item** — Fisher Tully: Kingdra Lv. 73. |
+
+<a id="dubious_disc"></a>
+## Dubious Disc
+
+| Location | How to obtain |
+| --- | --- |
+| Silph Co 1F | **Gift / reward** — Officer inside Silph Co. in Saffron City; talk to him. Tile (13, 1). |
 
 <a id="dragon_fang"></a>
 ## Dragon Fang
@@ -1586,7 +1594,7 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
-| Silph Co 1F | **Gift / reward** — Officer inside Silph Co. in Saffron City; talk to him. Tile (13, 1). |
+| Team Rocket Base B3F | **Ground pickup** — Disc lying on a lab table; face the table and press A. Tile (22, 6). |
 
 <a id="weak_policy"></a>
 ## Weak Policy
