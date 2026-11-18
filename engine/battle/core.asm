@@ -2285,9 +2285,7 @@ DoubleSwitch:
 	cp USING_EXTERNAL_CLOCK
 	jr z, .player_1
 	call ClearSprites
-	hlcoord 1, 0
-	lb bc, 4, 10
-	call ClearBox
+	farcall ClearEnemyBattleHUD
 	call PlayerPartyMonEntrance
 	ld a, $1
 	call EnemyPartyMonEntrance
@@ -2473,9 +2471,7 @@ FaintYourPokemon:
 	ld a, [wBattleMonSpecies]
 	call PlayStereoCry
 	call PlayerMonFaintedAnimation
-	hlcoord 9, 7
-	lb bc, 5, 11
-	call ClearBox
+	farcall ClearPlayerBattleHUD
 	ld hl, BattleText_MonFainted
 	jp StdBattleTextbox
 
@@ -2487,9 +2483,7 @@ FaintEnemyPokemon:
 	call EnemyMonFaintedAnimation
 	ld de, SFX_FAINT
 	call PlaySFX
-	hlcoord 1, 0
-	lb bc, 4, 10
-	call ClearBox
+	farcall ClearEnemyBattleHUD
 	ld hl, BattleText_EnemyMonFainted
 	jp StdBattleTextbox
 
@@ -3160,6 +3154,7 @@ LostBattle:
 	hlcoord 0, 0
 	lb bc, 8, 21
 	call ClearBox
+	farcall ClearEnemyBattleTypeIconCells
 	call BattleWinSlideInEnemyTrainerFrontpic
 
 	ld c, 40
@@ -3183,6 +3178,7 @@ ENDC
 	hlcoord 0, 0
 	lb bc, 8, 21
 	call ClearBox
+	farcall ClearEnemyBattleTypeIconCells
 	call BattleWinSlideInEnemyTrainerFrontpic
 
 	ld c, 40
@@ -3235,6 +3231,7 @@ ENDC
 	hlcoord 0, 0
 	lb bc, 8, 21
 	call ClearBox
+	farcall ClearEnemyBattleTypeIconCells
 	call BattleWinSlideInEnemyTrainerFrontpic
 
 	ld c, 40
@@ -3792,9 +3789,7 @@ ClearEnemyMonBox:
 	ldh [hBGMapMode], a
 	call ExitMenu
 	call ClearSprites
-	hlcoord 1, 0
-	lb bc, 4, 10
-	call ClearBox
+	farcall ClearEnemyBattleHUD
 	call WaitBGMap
 	jp FinishBattleAnim
 
@@ -4560,6 +4555,7 @@ PursuitSwitch:
 	pop af
 	ld [wCurBattleMon], a
 	call PlayerMonFaintedAnimation
+	farcall ClearPlayerBattleHUD
 	ld hl, BattleText_MonFainted
 	jr .done_fainted
 
@@ -4576,6 +4572,7 @@ PursuitSwitch:
 	call PlaySFX
 	call WaitSFX
 	call EnemyMonFaintedAnimation
+	farcall ClearEnemyBattleHUD
 	ld hl, BattleText_EnemyMonFainted
 
 .done_fainted
@@ -5697,9 +5694,7 @@ BattleMonEntrance:
 	call RecallPlayerMon
 .ok
 
-	hlcoord 9, 7
-	lb bc, 5, 11
-	call ClearBox
+	farcall ClearPlayerBattleHUD
 
 	ld a, [wCurBattleMon]
 	ld [wCurPartyMon], a
@@ -5722,9 +5717,7 @@ PassedBattleMonEntrance:
 	ld c, 50
 	call DelayFrames
 
-	hlcoord 9, 7
-	lb bc, 5, 11
-	call ClearBox
+	farcall ClearPlayerBattleHUD
 
 	ld a, [wCurPartyMon]
 	ld [wCurBattleMon], a

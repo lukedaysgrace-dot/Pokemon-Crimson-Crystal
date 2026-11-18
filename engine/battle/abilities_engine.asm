@@ -6988,6 +6988,13 @@ TransformCopyAbility::
 	ret
 
 TransformedAbilityStart::
+; Animations-off Imposter has no animation HUD redraw. Refresh after copied
+; entry abilities finish so the first menu shows the new type art and colors.
+	call .StartCopiedAbility
+	farcall RefreshBattleTypeIcons
+	ret
+
+.StartCopiedAbility:
 ; Farcalled by BattleCommand_Transform once the transformation is shown.
 ; As in Gen V onward, an ability Transform/Imposter just copied starts as
 ; if it had entered: Intimidate, weather, Download, Trace, Frisk, ... It is

@@ -364,9 +364,31 @@ UpdateBattleTypeIconAnimPals::
 .DarkOnBlack:
 	RGB 18, 10, 25
 
+ClearPlayerBattleHUD::
+	hlcoord 9, 7
+	lb bc, 5, 11
+	call ClearBox
+	jr ClearPlayerBattleTypeIconCells
+
+ClearEnemyBattleHUD::
+	hlcoord 1, 0
+	lb bc, 4, 11
+	call ClearBox
+	jr ClearEnemyBattleTypeIconCells
+
+ClearPlayerBattleTypeIconCells::
+; Faint/switch cleanup names the side explicitly; hBattleTurn may name the
+; Pokemon that dealt the final blow instead of the HUD being removed.
+	xor a
+	jr ClearBattleTypeIconCellsForSide
+
+ClearEnemyBattleTypeIconCells::
+	ld a, 1
+	jr ClearBattleTypeIconCellsForSide
+
 ClearBattleTypeIconCells::
-; ClearActorHud removes the attacker's entire HUD. Reset both type cells to
-; its ordinary HP palette and bank-0 space atomically, including blank slots.
+; Reset both type cells to their ordinary HP palette and bank-0 spaces,
+; including blank slots, whenever a battle HUD is removed.
 	ldh a, [hBattleTurn]
 	jr ClearBattleTypeIconCellsForSide
 
@@ -394,20 +416,12 @@ ClearBattleTypeIconCellsForSide:
 .cell
 	ld a, c
 	ld [hli], a
-	di
-.wait
-	ldh a, [rSTAT]
-	and 1 << 1
-	jr nz, .wait
-	ld a, 1
-	ldh [rVBK], a
-	ld a, c
-	ld [de], a
-	xor a
-	ldh [rVBK], a
-	ld a, " "
-	ld [de], a
-	ei
+	; Use the same early-VBlank/HBlank transaction as icon publication;
+	; a late HBlank must not expose only one half of the tile/attribute pair.
+	push bc
+	ld b, " "
+	call WriteHUDTypeCell
+	pop bc
 	inc de
 	dec b
 	jr nz, .cell
