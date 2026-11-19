@@ -1,5 +1,7 @@
 # Modern held items
 
+> Current availability (November 18, 2026): the shop lists and item roster below describe an older implementation. See [the current held-item guide](../HELD_ITEM_LOCATIONS.md) for acquisition and [item availability](../UNOBTAINABLE_ITEMS.md) for retired items and save-specific limits.
+
 The 18 new items have appended item indices ($011d–$012f). Existing item indices,
 save format, inventory quantities, and saved progress keep their identities.
 The retired Sitrus index $012d is reserved and converts to Gold Berry on load,

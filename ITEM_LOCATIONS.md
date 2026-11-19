@@ -4,6 +4,8 @@ Locations for all 54 TMs and 70 held items. Most ground items and gifts are one-
 
 Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their held items. Trick swaps items; use it to take Air Balloon before a damaging hit pops it.
 
+Source audit: November 18, 2026. All 70 listed held items have a player acquisition source. Metronome is a missable challenge reward; see its entry. The compact held-item list, including held berries and Berry Juice, is in [HELD_ITEM_LOCATIONS.md](HELD_ITEM_LOCATIONS.md).
+
 ## Quick index
 
 | Item | Sources |
@@ -66,7 +68,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Amulet Coin](#amulet_coin) | Ground pickup, Wild Pokémon |
 | [Assault Vest](#assault_vest) | Battle Tower prize, Gift / reward, Trainer item |
 | [Berserk Gene](#berserk_gene) | Hidden pickup |
-| [Big Root](#big_root) | Unavailable |
+| [Big Root](#big_root) | Hidden pickup |
 | [Blackbelt](#blackbelt) | Gift / reward, Trainer item |
 | [Blackglasses](#blackglasses) | Gift / reward, Trainer item |
 | [Brick Piece](#brick_piece) | Ground pickup |
@@ -75,8 +77,8 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Choice Scarf](#choice_scarf) | Battle Tower prize, Gift / reward |
 | [Choice Specs](#choice_specs) | Battle Tower prize, Gift / reward |
 | [Cleanse Tag](#cleanse_tag) | Gift / reward |
-| [Clear Amulet](#clear_amulet) | Unavailable |
-| [Covert Cloak](#covert_cloak) | Unavailable |
+| [Clear Amulet](#clear_amulet) | Ground pickup |
+| [Covert Cloak](#covert_cloak) | Ground pickup |
 | [Damp Rock](#damp_rock) | Ground pickup, Mystery Gift, Trainer item |
 | [Dragon Fang](#dragon_fang) | Ground pickup |
 | [Dragon Scale](#dragon_scale) | Ground pickup, Wild Pokémon |
@@ -95,14 +97,14 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Leftovers](#leftovers) | Hidden pickup, Search trash can, Static wild Pokémon, Trainer item, Wild Pokémon |
 | [Life Orb](#life_orb) | Battle Tower prize, Ground pickup, Trainer item |
 | [Light Ball](#light_ball) | Trainer item, Wild Pokémon |
-| [Light Clay](#light_clay) | Unavailable |
+| [Light Clay](#light_clay) | Ground pickup |
 | [Loaded Dice](#loaded_dice) | Hidden pickup |
 | [Lucky Egg](#lucky_egg) | Wild Pokémon |
 | [Lucky Punch](#lucky_punch) | Wild Pokémon |
 | [Magnet](#magnet) | Gift / reward, Trainer item, Wild Pokémon |
 | [Metal Coat](#metal_coat) | Gift / reward, In-game trade, Wild Pokémon |
 | [Metal Powder](#metal_powder) | Wild Pokémon |
-| [Metronome](#metronome_item) | Unavailable |
+| [Metronome](#metronome_item) | Gift / reward |
 | [Miracle Seed](#miracle_seed) | Gift / reward, Trainer item |
 | [Muscle Band](#muscle_band) | Battle Tower prize, Gift / reward, Trainer item |
 | [Mystic Water](#mystic_water) | Fishing Contest prize, Gift / reward, Ground pickup, Trainer item |
@@ -111,11 +113,11 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Poison Barb](#poison_barb) | Gift / reward, Wild Pokémon |
 | [Polkadot Bow](#polkadot_bow) | Gift / reward, Shop |
 | [Power Herb](#power_herb) | Shop |
-| [Punch Glove](#punching_glove) | Unavailable |
+| [Punch Glove](#punching_glove) | Ground pickup |
 | [Quick Claw](#quick_claw) | Gift / reward, Trainer item, Wild Pokémon |
 | [Quick Powder](#quick_powder) | Wild Pokémon |
 | [Rocky Helmet](#rocky_helmet) | Battle Tower prize, Gift / reward, Trainer item |
-| [Safety Goggl](#safety_goggles) | Unavailable |
+| [Safety Goggl](#safety_goggles) | Ground pickup |
 | [Scope Lens](#scope_lens) | Gift / reward, Mystery Gift, Trainer item |
 | [Sharp Beak](#sharp_beak) | Gift / reward, Trainer item, Wild Pokémon |
 | [Silverpowder](#silverpowder) | Wild Pokémon |
@@ -567,7 +569,9 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 <a id="big_root"></a>
 ## Big Root
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Viridian Forest | **Hidden pickup** — Search tile (9, 6), near the northern end of the forest. |
 
 <a id="blackbelt"></a>
 ## Blackbelt
@@ -658,12 +662,16 @@ Unavailable.
 <a id="clear_amulet"></a>
 ## Clear Amulet
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Burned Tower 1F | **Ground pickup** — Collect the item ball at (14, 1). |
 
 <a id="covert_cloak"></a>
 ## Covert Cloak
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Team Rocket Base B3F | **Ground pickup** — Collect the item ball at (3, 12). |
 
 <a id="damp_rock"></a>
 ## Damp Rock
@@ -1171,7 +1179,9 @@ Unavailable.
 <a id="light_clay"></a>
 ## Light Clay
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Ruins of Alph Kabuto Item Room | **Ground pickup** — Use Flash in the Kabuto chamber to open its secret room; collect the item ball at (2, 6). |
 
 <a id="loaded_dice"></a>
 ## Loaded Dice
@@ -1253,7 +1263,9 @@ Unavailable.
 <a id="metronome_item"></a>
 ## Metronome
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Dance Theatre (Ecruteak City) | **Gift / reward** — Defeat all eight Kimono Girls without using healing items, losing or leaving the hall. The last girl defeated gives Metronome. Missable: leaving or using healing items during the challenge permanently fails it; previously defeated girls on an older save also prevent a new run. |
 
 <a id="miracle_seed"></a>
 ## Miracle Seed
@@ -1368,7 +1380,9 @@ Unavailable.
 <a id="punching_glove"></a>
 ## Punch Glove
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Mt. Mortar 1F Inside | **Ground pickup** — Collect the item ball at (17, 31). |
 
 <a id="quick_claw"></a>
 ## Quick Claw
@@ -1419,7 +1433,9 @@ Unavailable.
 <a id="safety_goggles"></a>
 ## Safety Goggl
 
-Unavailable.
+| Location | How to obtain |
+| --- | --- |
+| Route 32 | **Ground pickup** — Collect the item ball at (8, 10). |
 
 <a id="scope_lens"></a>
 ## Scope Lens

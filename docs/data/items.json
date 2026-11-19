@@ -4,16 +4,8 @@
     "tms": 54,
     "hms": 7,
     "held_items": 70,
-    "acquisition_rows": 1627,
-    "no_sources": [
-      "BIG_ROOT",
-      "CLEAR_AMULET",
-      "COVERT_CLOAK",
-      "LIGHT_CLAY",
-      "METRONOME_ITEM",
-      "PUNCHING_GLOVE",
-      "SAFETY_GOGGLES"
-    ]
+    "acquisition_rows": 1632,
+    "no_sources": []
   },
   "items": [
     {
@@ -58,7 +50,7 @@
         {
           "location": "Dance Theatre",
           "method": "Gift / reward",
-          "details": "Defeat all five Kimono Girls, then speak to the man in the Dance Theatre.",
+          "details": "Defeat all eight Kimono Girls, then speak to the man in the Dance Theatre. Surf does not require the unbroken Metronome challenge.",
           "source": "maps/DanceTheatre.asm",
           "line": 150
         }
@@ -2045,13 +2037,6 @@
           "line": 6
         },
         {
-          "location": "Ruins of Alph Kabuto Item Room",
-          "method": "Ground pickup",
-          "details": "Collect the item ball. Tile (2, 6).",
-          "source": "maps/RuinsOfAlphKabutoItemRoom.asm",
-          "line": 13
-        },
-        {
           "location": "Pok\u00e9mon Center 2F delivery NPC",
           "method": "Mystery Gift",
           "details": "Random Mystery Gift pool; unlock with Carrie on Goldenrod Department Store 5F on Game Boy Color, then use a compatible infrared session.",
@@ -3687,9 +3672,17 @@
       "const": "BIG_ROOT",
       "name": "Big Root",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Viridian Forest",
+          "method": "Hidden pickup",
+          "details": "Search tile (9, 6), near the northern end of the forest.",
+          "source": "maps/ViridianForest.asm",
+          "line": 104
+        }
+      ],
       "description": "Boosts HP drained from a foe. (HOLD)",
-      "availability": "No source found",
+      "availability": "World sources",
       "notes": ""
     },
     {
@@ -4148,18 +4141,34 @@
       "const": "CLEAR_AMULET",
       "name": "Clear Amulet",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Burned Tower 1F",
+          "method": "Ground pickup",
+          "details": "Collect the item ball at (14, 1).",
+          "source": "maps/BurnedTower1F.asm",
+          "line": 222
+        }
+      ],
       "description": "Prevents a foe's stat drops. (HOLD)",
-      "availability": "No source found",
+      "availability": "World sources",
       "notes": ""
     },
     {
       "const": "COVERT_CLOAK",
       "name": "Covert Cloak",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Team Rocket Base B3F",
+          "method": "Ground pickup",
+          "details": "Collect the item ball at (3, 12).",
+          "source": "maps/TeamRocketBaseB3F.asm",
+          "line": 372
+        }
+      ],
       "description": "Blocks extra move effects. (HOLD)",
-      "availability": "No source found",
+      "availability": "World sources",
       "notes": ""
     },
     {
@@ -8400,9 +8409,17 @@
       "const": "LIGHT_CLAY",
       "name": "Light Clay",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Ruins of Alph Kabuto Item Room",
+          "method": "Ground pickup",
+          "details": "Use Flash in the Kabuto chamber to open its secret room; collect the item ball at (2, 6).",
+          "source": "maps/RuinsOfAlphKabutoItemRoom.asm",
+          "line": 13
+        }
+      ],
       "description": "Screens last 8 turns. (HOLD)",
-      "availability": "No source found",
+      "availability": "World sources",
       "notes": ""
     },
     {
@@ -8871,10 +8888,18 @@
       "const": "METRONOME_ITEM",
       "name": "Metronome",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Dance Theatre (Ecruteak City)",
+          "method": "Gift / reward",
+          "details": "Defeat all eight Kimono Girls without using healing items, losing or leaving the hall. The last girl defeated gives Metronome. Missable: leaving or using healing items during the challenge permanently fails it; previously defeated girls on an older save also prevent a new run.",
+          "source": "maps/DanceTheatre.asm",
+          "line": 335
+        }
+      ],
       "description": "Repeat a move to boost it. (HOLD)",
-      "availability": "No source found",
-      "notes": ""
+      "availability": "World sources",
+      "notes": "Missable challenge reward."
     },
     {
       "const": "MIRACLE_SEED",
@@ -9575,9 +9600,17 @@
       "const": "PUNCHING_GLOVE",
       "name": "Punch Glove",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Mt. Mortar 1F Inside",
+          "method": "Ground pickup",
+          "details": "Collect the item ball at (17, 31).",
+          "source": "maps/MountMortar1FInside.asm",
+          "line": 20
+        }
+      ],
       "description": "Boosts punches. No contact. (HOLD)",
-      "availability": "No source found",
+      "availability": "World sources",
       "notes": ""
     },
     {
@@ -9892,9 +9925,17 @@
       "const": "SAFETY_GOGGLES",
       "name": "Safety Goggl",
       "category": "Held item",
-      "sources": [],
+      "sources": [
+        {
+          "location": "Route 32",
+          "method": "Ground pickup",
+          "details": "Collect the item ball at (8, 10).",
+          "source": "maps/Route32.asm",
+          "line": 499
+        }
+      ],
       "description": "Blocks powders and weather. (HOLD)",
-      "availability": "No source found",
+      "availability": "World sources",
       "notes": ""
     },
     {
@@ -16383,13 +16424,6 @@
           "details": "Repeatable purchase. Cost: \u20bd350.",
           "source": "data/items/marts.asm",
           "line": 120
-        },
-        {
-          "location": "Team Rocket Base B3F",
-          "method": "Ground pickup",
-          "details": "Collect the item ball. Tile (3, 12).",
-          "source": "maps/TeamRocketBaseB3F.asm",
-          "line": 372
         },
         {
           "location": "Underground Path",
