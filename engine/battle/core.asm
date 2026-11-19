@@ -207,6 +207,7 @@ ENDC
 	; after the hit), so don't let last turn's crit leak into the AI's
 	; damage predictions below
 	ld [wCriticalHit], a
+	ld [wAISabrinaRead], a ; Sabrina hasn't read this turn's action yet
 	farcall PromoteCudChewFlags
 	farcall ResetCounterHitHistory_Core
 
@@ -740,6 +741,7 @@ ENDC
 	call .reset_lock_counters
 
 .continue_protect
+	farcall AISabrinaMindRead
 	call ParseEnemyAction
 	xor a
 	ret
@@ -5632,6 +5634,8 @@ PlayerSwitch:
 	call CloseWindow
 
 .not_linked
+	farcall AISabrinaReadsSwitch
+	jr c, .sabrina_reads_switch
 	call ParseEnemyAction
 	ld a, [wLinkMode]
 	and a
@@ -5639,6 +5643,14 @@ PlayerSwitch:
 
 .switch
 	call BattleMonEntrance
+	and a
+	ret
+
+.sabrina_reads_switch
+; Sabrina picks her move only once she sees the incoming Pokemon.
+	call BattleMonEntrance
+	farcall AISabrinaMindRead
+	call ParseEnemyAction
 	and a
 	ret
 

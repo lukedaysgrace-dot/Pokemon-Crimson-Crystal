@@ -37,6 +37,13 @@
 	const ELITE_MOVE_PRIORITY_F  ; positive priority bracket
 	const ELITE_MOVE_USABLE_F    ; selectable, and no other layer objects to it
 
+; wAISabrinaRead / AISabrinaRead values (Sabrina only; see sabrina.asm)
+	const_def
+	const SABRINA_READ_NONE    ; not Sabrina: the usual elite AI
+	const SABRINA_READ_MOVESET ; Sabrina, no action read: knows all four moves
+	const SABRINA_READ_ATTACK  ; she has read the move the player committed to
+	const SABRINA_READ_IDLE    ; she has read that no hit comes this turn
+
 ELITE_MOVE_KO_FIRST_MASK EQU 1 << ELITE_MOVE_KO_F | 1 << ELITE_MOVE_FIRST_F | 1 << ELITE_MOVE_USABLE_F
 ELITE_MOVE_PRIO_HIT_MASK EQU 1 << ELITE_MOVE_PRIORITY_F | 1 << ELITE_MOVE_DAMAGING_F | 1 << ELITE_MOVE_USABLE_F
 ELITE_MOVE_LIVE_HIT_MASK EQU 1 << ELITE_MOVE_DAMAGING_F | 1 << ELITE_MOVE_USABLE_F
@@ -64,11 +71,13 @@ AIScoringRandom:
 
 AI_UniversalLayer:
 ; Final move-scoring layer for every trainer (see AIChooseMove). Everyone
-; gets the universal damage layer; elite trainers then apply their tactics.
+; gets the universal damage layer; elite trainers then apply their tactics,
+; and Sabrina her psychic reads on top (engine/battle/ai/sabrina.asm).
 	call AI_SmartDamageKO
 	call AIEliteCheck
 	ret nc
-	; fallthrough
+	call AI_EliteTactics
+	jp AI_SabrinaPsychicLayer
 
 AI_EliteTactics:
 	ld b, 1 ; wBuffer1 holds this turn's live scores
@@ -317,6 +326,10 @@ AIEliteIsSetupMove:
 AIEliteDoomed:
 ; carry if the player's predicted hit lands (and KOs) before any of our
 ; normal-priority moves resolve.
+; Sabrina knows when no hit is coming at all this turn.
+	call AISabrinaRead
+	cp SABRINA_READ_IDLE
+	jr z, .no
 	ld a, [wAIEliteFlags]
 	bit ELITE_PLAYER_PRIO_KO_F, a
 	jr nz, .yes
@@ -477,7 +490,12 @@ AIEliteSwitchOrItem:
 ; AI_SwitchOrTryItem's switch decision for elite trainers. Switches are
 ; deliberate, never a dice roll; otherwise fall through to item use.
 	call CheckAbleToSwitch
+	call AISabrinaBeginRead
 	call AIEliteDecideSwitch
+	push af
+	xor a
+	ld [wAISabrinaRead], a
+	pop af
 	jp nc, DontSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f
@@ -543,6 +561,10 @@ AIEliteDecideSwitch:
 ; A clean KO beats any switch.
 	bit ELITE_WE_KO_FIRST_F, a
 	jr nz, .stay
+; So does a move that Sabrina's read makes decisive.
+	call AISabrinaKeyRead
+	jr c, .stay
+	ld a, [wAIEliteFlags]
 ; Sack a mon that falls next turn anyway at a quarter HP or less: its KO
 ; hands the next one a free entrance.
 	and 1 << ELITE_PLAYER_KOS_F | 1 << ELITE_PLAYER_PRIO_KO_F
@@ -562,7 +584,11 @@ AIEliteDecideSwitch:
 .threat_switch
 	ld a, [wAIEliteFlags]
 	and 1 << ELITE_PLAYER_KOS_F | 1 << ELITE_PLAYER_PRIO_KO_F
-	jr z, .stay
+	jr nz, .threatened
+; Sabrina also dodges a read hit that takes half her HP.
+	call AISabrinaHeavyHitRead
+	jr nc, .stay
+.threatened
 ; Preserve a healthy mon by bringing in something that walls the hit.
 	call AICheckEnemyHalfHP ; carry if above half
 	jr nc, .stay
@@ -612,6 +638,7 @@ AIEliteAssess:
 	set ELITE_ENEMY_FASTER_F, [hl]
 .not_faster
 	call AIEliteSetThreatFlags
+	call AISabrinaIdleTurn
 	ld c, 0
 .slot_loop
 	push bc
@@ -989,6 +1016,14 @@ AIElitePredictPlayerThreat:
 	ld a, [wBattleAnimParam]
 	push af
 
+; Sabrina reads the player's mind instead (engine/battle/ai/sabrina.asm).
+	call AISabrinaRead
+	and a
+	jr z, .fair
+	call AISabrinaPredictThreat
+	jr .restore
+
+.fair
 ; A Choice-locked player can only repeat its locked move.
 	ld a, [wPlayerChoiceLockedMove]
 	and a
@@ -1161,6 +1196,13 @@ AIEliteBuildThreatTypes:
 	push af
 	ld a, $ff
 	ld [wAIEliteThreatTypes], a
+; Sabrina knows every move the player's Pokemon has.
+	call AISabrinaRead
+	and a
+	jr z, .fair
+	call AISabrinaAddMovesetTypes
+	jr .done
+.fair
 	ld a, [wPlayerChoiceLockedMove]
 	and a
 	jr z, .revealed
