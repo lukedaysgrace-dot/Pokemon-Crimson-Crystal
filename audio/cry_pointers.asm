@@ -130,5 +130,3 @@ Cries:
 	dba Cry_Trevenant
 	dba Cry_Mienfoo
 	dba Cry_Mienshao
-	dba Cry_Hippopotas
-	dba Cry_Hippowdon

@@ -265,99 +265,99 @@ PokemonCries::
 	mon_cry CRY_BULBASAUR,   $080,  $081 ; BULBASAUR_CLONE
 	mon_cry CRY_BULBASAUR,   $020,  $100 ; IVYSAUR_CLONE
 	mon_cry CRY_BULBASAUR,   $000,  $140 ; VENUSAUR_CLONE
-	mon_cry $8000 | 78, 0, $100 ; HONCHKROW (sampled)
-	mon_cry $8000 | 2, 0, $100 ; AMBIPOM (sampled)
-	mon_cry $8000 | 3, 0, $100 ; ANNIHILAPE (sampled)
-	mon_cry $8000 | 15, 0, $100 ; BAGON (sampled)
-	mon_cry $8000 | 133, 0, $100 ; SHELGON (sampled)
-	mon_cry $8000 | 125, 0, $100 ; SALAMENCE (sampled)
-	mon_cry $8000 | 41, 0, $100 ; DUDUNSPARCE (sampled)
-	mon_cry $8000 | 47, 0, $100 ; ELECTIVIRE (sampled)
-	mon_cry $8000 | 50, 0, $100 ; FARIGIRAF (sampled)
+	mon_cry CRY_ARCHEN,     -$1e0,  $280 ; HONCHKROW
+	mon_cry CRY_RALTS,       $0a0,  $0a0 ; AMBIPOM
+	mon_cry CRY_TREVENANT,  -$0c0,  $100 ; ANNIHILAPE
+	mon_cry CRY_SEEL,        $0b0,  $0a0 ; BAGON
+	mon_cry CRY_SEEL,        $0d0,  $180 ; SHELGON
+	mon_cry CRY_SEEL,       -$140,  $200 ; SALAMENCE
+	mon_cry CRY_PHANTUMP,   -$160,  $140 ; DUDUNSPARCE
+	mon_cry CRY_SHROOMISH,   $070,  $240 ; ELECTIVIRE
+	mon_cry CRY_GROWLITHE,   $090,  $1e0 ; FARIGIRAF
 	mon_cry CRY_RALTS,       $060,  $040 ; RALTS
 	mon_cry CRY_KIRLIA,      $060,  $080 ; KIRLIA
-	mon_cry $8000 | 59, 0, $100 ; GARDEVOIR (sampled)
+	mon_cry CRY_KIRLIA,     -$010,  $140 ; GARDEVOIR
 	mon_cry CRY_GALLADE,     $020,  $130 ; GALLADE
 	mon_cry CRY_GLACEON,     $038,  $24c ; GLACEON
 	mon_cry CRY_LEAFEON,     $038,  $20c ; LEAFEON
 	mon_cry CRY_SYLVEON,     $000,  $298 ; SYLVEON
-	mon_cry $8000 | 63, 0, $100 ; GLISCOR (sampled)
-	mon_cry $8000 | 88, 0, $100 ; LICKILICKY (sampled)
-	mon_cry $8000 | 91, 0, $100 ; MAGMORTAR (sampled)
-	mon_cry $8000 | 92, 0, $100 ; MAGNEZONE (sampled)
-	mon_cry $8000 | 93, 0, $100 ; MAMOSWINE (sampled)
+	mon_cry CRY_RAIKOU,      $0c0,  $200 ; GLISCOR
+	mon_cry CRY_SEEL,        $030,  $200 ; LICKILICKY
+	mon_cry CRY_CHARMANDER,  $010,  $1a0 ; MAGMORTAR
+	mon_cry CRY_METAPOD,    -$0a0,  $1a0 ; MAGNEZONE
+	mon_cry CRY_EKANS,      -$120,  $1e0 ; MAMOSWINE
 	mon_cry CRY_RALTS,      -$0a0,  $190 ; MESMERIA
-	mon_cry $8000 | 103, 0, $100 ; MISMAGIUS (sampled)
+	mon_cry CRY_RAICHU,     -$100,  $140 ; MISMAGIUS
 	mon_cry CRY_PORYGONZ,    $000,  $180 ; PORYGON_Z
-	mon_cry $8000 | 121, 0, $100 ; RHYPERIOR (sampled)
+	mon_cry CRY_WHIRLIPEDE, -$160,  $1c0 ; RHYPERIOR
 	mon_cry CRY_VENIPEDE,    $096,  $180 ; VENIPEDE
 	mon_cry CRY_WHIRLIPEDE,  $096,  $180 ; WHIRLIPEDE
 	mon_cry CRY_SCOLIPEDE,   $000,  $1c9 ; SCOLIPEDE
-	mon_cry $8000 | 148, 0, $100 ; TANGROWTH (sampled)
-	mon_cry $8000 | 155, 0, $100 ; TOGEKISS (sampled)
-	mon_cry $8000 | 164, 0, $100 ; URSALUNA (sampled)
-	mon_cry $8000 | 170, 0, $100 ; WEAVILE (sampled)
-	mon_cry $8000 | 175, 0, $100 ; WYRDEER (sampled)
-	mon_cry $8000 | 176, 0, $100 ; YANMEGA (sampled)
-	mon_cry $8000 | 89, 0, $100 ; LILEEP (sampled)
-	mon_cry $8000 | 33, 0, $100 ; CRADILY (sampled)
-	mon_cry $8000 | 4, 0, $100 ; ANORITH (sampled)
-	mon_cry $8000 | 10, 0, $100 ; ARMALDO (sampled)
-	mon_cry $8000 | 65, 0, $100 ; GOLETT (sampled)
-	mon_cry $8000 | 67, 0, $100 ; GOLURK (sampled)
-	mon_cry $8000 | 46, 0, $100 ; DUSKULL (sampled)
-	mon_cry $8000 | 44, 0, $100 ; DUSCLOPS (sampled)
-	mon_cry $8000 | 45, 0, $100 ; DUSKNOIR (sampled)
-	mon_cry $8000 | 151, 0, $100 ; TIMBURR (sampled)
-	mon_cry $8000 | 73, 0, $100 ; GURDURR (sampled)
-	mon_cry $8000 | 29, 0, $100 ; CONKELDURR (sampled)
+	mon_cry CRY_GOLEM,      -$100,  $200 ; TANGROWTH
+	mon_cry CRY_PARAS,       $030,  $200 ; TOGEKISS
+	mon_cry CRY_ODDISH,     -$200,  $100 ; URSALUNA
+	mon_cry CRY_BULBASAUR,   $000,  $100 ; WEAVILE
+	mon_cry CRY_ESPEON,     -$100,  $180 ; WYRDEER
+	mon_cry CRY_TOTODILE,   -$040,  $240 ; YANMEGA
+	mon_cry CRY_VENIPEDE,   -$030,  $160 ; LILEEP
+	mon_cry CRY_PHANTUMP,   -$160,  $100 ; CRADILY
+	mon_cry CRY_ARON,        $060,  $0a0 ; ANORITH
+	mon_cry CRY_TEDDIURSA,  -$010,  $0a0 ; ARMALDO
+	mon_cry CRY_VILEPLUME,   $0b0,  $100 ; GOLETT
+	mon_cry CRY_VILEPLUME,   $0b0,  $200 ; GOLURK
+	mon_cry CRY_WEEDLE,      $010,  $100 ; DUSKULL
+	mon_cry CRY_WEEDLE,     -$200,  $120 ; DUSCLOPS
+	mon_cry CRY_WEEDLE,      $000,  $280 ; DUSKNOIR
+	mon_cry CRY_HOOTHOOT,    $060,  $0e0 ; TIMBURR
+	mon_cry CRY_HOOTHOOT,   -$200,  $1e0 ; GURDURR
+	mon_cry CRY_HOOTHOOT,   -$1c0,  $200 ; CONKELDURR
 	mon_cry CRY_LARVESTA,    $000,  $148 ; LARVESTA
 	mon_cry CRY_VOLCARONA,   $0c3,  $100 ; VOLCARONA
-	mon_cry $8000 | 37, 0, $100 ; DEINO (sampled)
-	mon_cry $8000 | 180, 0, $100 ; ZWEILOUS (sampled)
-	mon_cry $8000 | 81, 0, $100 ; HYDREIGON (sampled)
+	mon_cry CRY_WHIRLIPEDE,  $0a0,  $200 ; DEINO
+	mon_cry CRY_WHIRLIPEDE, -$1c0,  $180 ; ZWEILOUS
+	mon_cry CRY_WHIRLIPEDE, -$1a0,  $280 ; HYDREIGON
 	mon_cry CRY_DREEPY,      $080,  $0a4 ; DREEPY
 	mon_cry CRY_DRAKLOAK,    $03d,  $108 ; DRAKLOAK
 	mon_cry CRY_DRAGAPULT,   $080,  $108 ; DRAGAPULT
-	mon_cry $8000 | 82, 0, $100 ; IMPIDIMP (sampled)
-	mon_cry $8000 | 104, 0, $100 ; MORGREM (sampled)
-	mon_cry $8000 | 70, 0, $100 ; GRIMMSNARL (sampled)
-	mon_cry $8000 | 152, 0, $100 ; TINKATINK (sampled)
-	mon_cry $8000 | 154, 0, $100 ; TINKATUFF (sampled)
-	mon_cry $8000 | 153, 0, $100 ; TINKATON (sampled)
-	mon_cry $8000 | 58, 0, $100 ; FRIGIBAX (sampled)
-	mon_cry $8000 | 9, 0, $100 ; ARCTIBAX (sampled)
-	mon_cry $8000 | 18, 0, $100 ; BAXCALIBUR (sampled)
-	mon_cry $8000 | 26, 0, $100 ; CHARCADET (sampled)
-	mon_cry $8000 | 11, 0, $100 ; ARMAROUGE (sampled)
-	mon_cry $8000 | 23, 0, $100 ; CERULEDGE (sampled)
-	mon_cry $8000 | 123, 0, $100 ; ROOKIDEE (sampled)
-	mon_cry $8000 | 32, 0, $100 ; CORVISQUIRE (sampled)
-	mon_cry $8000 | 31, 0, $100 ; CORVIKNIGHT (sampled)
+	mon_cry CRY_SWABLU,      $0e0,  $140 ; IMPIDIMP
+	mon_cry CRY_DRAKLOAK,   -$0e0,  $0e0 ; MORGREM
+	mon_cry CRY_BLASTOISE,  -$180,  $1a0 ; GRIMMSNARL
+	mon_cry CRY_CYNDAQUIL,  -$020,  $280 ; TINKATINK
+	mon_cry CRY_MIENFOO,    -$1a0,  $160 ; TINKATUFF
+	mon_cry CRY_LITWICK,     $0f0,  $280 ; TINKATON
+	mon_cry CRY_SNORUNT,     $0d0,  $0a0 ; FRIGIBAX
+	mon_cry CRY_AIPOM,      -$010,  $1e0 ; ARCTIBAX
+	mon_cry CRY_ABOMASNOW,   $0e0,  $140 ; BAXCALIBUR
+	mon_cry CRY_AMPHAROS,    $0a0,  $1e0 ; CHARCADET
+	mon_cry CRY_DUNSPARCE,  -$1e0,  $280 ; ARMAROUGE
+	mon_cry CRY_DRAGAPULT,   $0a0,  $100 ; CERULEDGE
+	mon_cry CRY_SWABLU,      $0f0,  $280 ; ROOKIDEE
+	mon_cry CRY_MIENSHAO,    $080,  $160 ; CORVISQUIRE
+	mon_cry CRY_AGGRON,     -$010,  $120 ; CORVIKNIGHT
 	mon_cry CRY_SNOVER,      $0aa,  $080 ; SNOVER
 	mon_cry CRY_ABOMASNOW,   $0ff,  $0c0 ; ABOMASNOW
 	mon_cry CRY_SWABLU,      $0f0,  $080 ; SWABLU
 	mon_cry CRY_ALTARIA,     $0ff,  $100 ; ALTARIA
-	mon_cry $8000 | 6, 0, $100 ; APPLIN (sampled)
-	mon_cry $8000 | 39, 0, $100 ; DIPPLIN (sampled)
-	mon_cry $8000 | 5, 0, $100 ; APPLETUN (sampled)
-	mon_cry $8000 | 53, 0, $100 ; FLAPPLE (sampled)
-	mon_cry $8000 | 80, 0, $100 ; HYDRAPPLE (sampled)
-	mon_cry $8000 | 43, 0, $100 ; DURALUDON (sampled)
-	mon_cry $8000 | 8, 0, $100 ; ARCHALUDON (sampled)
+	mon_cry CRY_MANTINE,     $000,  $120 ; APPLIN
+	mon_cry CRY_CLEFAIRY,    $080,  $140 ; DIPPLIN
+	mon_cry CRY_TYPHLOSION, -$080,  $100 ; APPLETUN
+	mon_cry CRY_MUK,        -$010,  $0c0 ; FLAPPLE
+	mon_cry CRY_DROWZEE,     $020,  $120 ; HYDRAPPLE
+	mon_cry CRY_DRAGAPULT,   $020,  $100 ; DURALUDON
+	mon_cry CRY_DRAGAPULT,  -$180,  $160 ; ARCHALUDON
 	mon_cry CRY_SHROOMISH,   $0ff,  $070 ; SHROOMISH
 	mon_cry CRY_BRELOOM,     $050,  $116 ; BRELOOM
 	mon_cry CRY_BUNEARY,     $000,  $0a4 ; BUNEARY
 	mon_cry CRY_LOPUNNY,     $000,  $100 ; LOPUNNY
 	mon_cry CRY_NUMEL,       $000,  $080 ; NUMEL
 	mon_cry CRY_CAMERUPT,    $000,  $180 ; CAMERUPT
-	mon_cry $8000 | 138, 0, $100 ; SIZZLIPEDE (sampled)
-	mon_cry $8000 | 22, 0, $100 ; CENTISKORCH (sampled)
-	mon_cry $8000 | 72, 0, $100 ; GRUBBIN (sampled)
-	mon_cry $8000 | 27, 0, $100 ; CHARJABUG (sampled)
-	mon_cry $8000 | 167, 0, $100 ; VIKAVOLT (sampled)
-	mon_cry $8000 | 35, 0, $100 ; CROAGUNK (sampled)
-	mon_cry $8000 | 158, 0, $100 ; TOXICROAK (sampled)
+	mon_cry CRY_SYLVEON,    -$020,  $240 ; SIZZLIPEDE
+	mon_cry CRY_ARCHEOPS,   -$200,  $100 ; CENTISKORCH
+	mon_cry CRY_VENONAT,    -$200,  $100 ; GRUBBIN
+	mon_cry CRY_VENONAT,     $010,  $1a0 ; CHARJABUG
+	mon_cry CRY_VENONAT,    -$200,  $1e0 ; VIKAVOLT
+	mon_cry CRY_LAIRON,     -$020,  $080 ; CROAGUNK
+	mon_cry CRY_SCOLIPEDE,  -$010,  $180 ; TOXICROAK
 	mon_cry CRY_DRIFLOON,    $000,  $100 ; DRIFLOON
 	mon_cry CRY_DRIFBLIM,    $0ff,  $0ec ; DRIFBLIM
 	mon_cry CRY_DRILBUR,     $0ff,  $0c8 ; DRILBUR
@@ -365,57 +365,57 @@ PokemonCries::
 	mon_cry CRY_PICHU,       $f60,  $200 ; KOTORA
 	mon_cry CRY_RAIKOU,      $db3,  $168 ; RAITORA
 	mon_cry CRY_RAIKOU,      $cb3,  $201 ; GOROTORA
-	mon_cry $8000 | 55, 0, $100 ; FLETCHLING (sampled)
-	mon_cry $8000 | 54, 0, $100 ; FLETCHINDER (sampled)
-	mon_cry $8000 | 147, 0, $100 ; TALONFLAME (sampled)
-	mon_cry $8000 | 159, 0, $100 ; TRAPINCH (sampled)
-	mon_cry $8000 | 166, 0, $100 ; VIBRAVA (sampled)
-	mon_cry $8000 | 56, 0, $100 ; FLYGON (sampled)
+	mon_cry CRY_ARON,        $080,  $0e0 ; FLETCHLING
+	mon_cry CRY_SCRAGGY,     $0b0,  $120 ; FLETCHINDER
+	mon_cry CRY_KIRLIA,      $080,  $160 ; TALONFLAME
+	mon_cry CRY_NIDORAN_M,  -$0c0,  $120 ; TRAPINCH
+	mon_cry CRY_KANGASKHAN, -$010,  $080 ; VIBRAVA
+	mon_cry CRY_AGGRON,      $0f0,  $100 ; FLYGON
 	mon_cry CRY_SNORUNT,     $064,  $0d0 ; SNORUNT
 	mon_cry CRY_FROSLASS,    $08f,  $180 ; FROSLASS
-	mon_cry $8000 | 172, 0, $100 ; WIMPOD (sampled)
-	mon_cry $8000 | 66, 0, $100 ; GOLISOPOD (sampled)
+	mon_cry CRY_MAREEP,      $060,  $140 ; WIMPOD
+	mon_cry CRY_LAPRAS,     -$1e0,  $280 ; GOLISOPOD
 	mon_cry CRY_VULPIX, $080, $0b0 ; ZORUA
 	mon_cry CRY_VILEPLUME, $030, $140 ; ZOROARK
-	mon_cry $8000 | 112, 0, $100 ; PAWNIARD (sampled)
-	mon_cry $8000 | 19, 0, $100 ; BISHARP (sampled)
-	mon_cry $8000 | 84, 0, $100 ; KINGAMBIT (sampled)
-	mon_cry $8000 | 131, 0, $100 ; SEEDOT (sampled)
-	mon_cry $8000 | 109, 0, $100 ; NUZLEAF (sampled)
-	mon_cry $8000 | 135, 0, $100 ; SHIFTRY (sampled)
+	mon_cry CRY_MAREEP,      $090,  $1c0 ; PAWNIARD
+	mon_cry CRY_VILEPLUME,   $000,  $160 ; BISHARP
+	mon_cry CRY_BLASTOISE,  -$1c0,  $200 ; KINGAMBIT
+	mon_cry CRY_SUNFLORA,   -$010,  $0e0 ; SEEDOT
+	mon_cry CRY_SUNFLORA,   -$020,  $120 ; NUZLEAF
+	mon_cry CRY_SUNFLORA,   -$0c0,  $1e0 ; SHIFTRY
 	mon_cry CRY_SLOWKING,    $000,  $100 ; OVERQWIL
 	mon_cry CRY_SCRAGGY,     $0df,  $0c0 ; SCRAGGY
 	mon_cry CRY_SCRAFTY,     $061,  $12c ; SCRAFTY
-	mon_cry $8000 | 79, 0, $100 ; HONEDGE (sampled)
-	mon_cry $8000 | 40, 0, $100 ; DOUBLADE (sampled)
-	mon_cry $8000 | 0, 0, $100 ; AEGISLASH (sampled)
+	mon_cry CRY_MIENSHAO,    $0f0,  $0e0 ; HONEDGE
+	mon_cry CRY_MIENFOO,     $0f0,  $0c0 ; DOUBLADE
+	mon_cry CRY_KRABBY,     -$120,  $140 ; AEGISLASH
 	mon_cry CRY_TEDDIURSA,   $7a2,  $06e ; TEDDIURSABM
 	mon_cry CRY_TEDDIURSA,   $640,  $0d8 ; URSARINGBM
-	mon_cry $8000 | 165, 0, $100 ; URSALUNABM (sampled)
-	mon_cry $8000 | 13, 0, $100 ; AXEW (sampled)
-	mon_cry $8000 | 57, 0, $100 ; FRAXURE (sampled)
-	mon_cry $8000 | 75, 0, $100 ; HAXORUS (sampled)
-	mon_cry $8000 | 34, 0, $100 ; CRANIDOS (sampled)
-	mon_cry $8000 | 117, 0, $100 ; RAMPARDOS (sampled)
-	mon_cry $8000 | 134, 0, $100 ; SHIELDON (sampled)
-	mon_cry $8000 | 17, 0, $100 ; BASTIODON (sampled)
-	mon_cry $8000 | 25, 0, $100 ; CETODDLE (sampled)
-	mon_cry $8000 | 24, 0, $100 ; CETITAN (sampled)
-	mon_cry $8000 | 51, 0, $100 ; FEEBAS (sampled)
-	mon_cry $8000 | 100, 0, $100 ; MILOTIC (sampled)
-	mon_cry $8000 | 102, 0, $100 ; MIMIKYU (sampled)
+	mon_cry CRY_ODDISH,      $020,  $1c0 ; URSALUNABM
+	mon_cry CRY_MUK,         $0f0,  $0e0 ; AXEW
+	mon_cry CRY_ENTEI,      -$120,  $280 ; FRAXURE
+	mon_cry CRY_DUNSPARCE,  -$200,  $200 ; HAXORUS
+	mon_cry CRY_CHARMANDER,  $0f0,  $080 ; CRANIDOS
+	mon_cry CRY_CHARMANDER,  $010,  $1e0 ; RAMPARDOS
+	mon_cry CRY_PIDGEOTTO,   $000,  $1c0 ; SHIELDON
+	mon_cry CRY_VILEPLUME,   $040,  $1e0 ; BASTIODON
+	mon_cry CRY_CLEFAIRY,   -$0a0,  $120 ; CETODDLE
+	mon_cry CRY_VULPIX,     -$1a0,  $280 ; CETITAN
+	mon_cry CRY_SCRAGGY,    -$140,  $0a0 ; FEEBAS
+	mon_cry CRY_SCOLIPEDE,  -$100,  $200 ; MILOTIC
+	mon_cry CRY_NIDOQUEEN,   $0a0,  $140 ; MIMIKYU
 	mon_cry CRY_MAGCARGO,    $0a1,  $0e8 ; CORSOLA_GALARIAN
 	mon_cry CRY_MAGCARGO,   -$044,  $1c0 ; CURSOLA
 	mon_cry CRY_KRABBY,      $008,  $0c0 ; MR__RIME
 	mon_cry CRY_SPEAROW,     $088,  $0a0 ; SIRFETCH_D
-	mon_cry $8000 | 122, 0, $100 ; RIOLU (sampled)
-	mon_cry $8000 | 90, 0, $100 ; LUCARIO (sampled)
-	mon_cry $8000 | 163, 0, $100 ; TYRUNT (sampled)
-	mon_cry $8000 | 162, 0, $100 ; TYRANTRUM (sampled)
-	mon_cry $8000 | 1, 0, $100 ; AMAURA (sampled)
-	mon_cry $8000 | 12, 0, $100 ; AURORUS (sampled)
-	mon_cry $8000 | 107, 0, $100 ; MUNCHLAX (sampled)
-	mon_cry $8000 | 156, 0, $100 ; TORKOAL (sampled)
+	mon_cry CRY_SNEASLER,   -$010,  $140 ; RIOLU
+	mon_cry CRY_SNEASLER,   -$0e0,  $200 ; LUCARIO
+	mon_cry CRY_RATTATA,     $040,  $200 ; TYRUNT
+	mon_cry CRY_DRIFBLIM,   -$120,  $0e0 ; TYRANTRUM
+	mon_cry CRY_NOIBAT,      $050,  $0c0 ; AMAURA
+	mon_cry CRY_NOIBAT,     -$010,  $100 ; AURORUS
+	mon_cry CRY_GRIMER,     -$120,  $120 ; MUNCHLAX
+	mon_cry CRY_MARILL,     -$1c0,  $0c0 ; TORKOAL
 	mon_cry CRY_RATTATA,     $000,  $100 ; RATTATA_ALOLAN
 	mon_cry CRY_RATTATA,     $020,  $17f ; RATICATE_ALOLAN
 	mon_cry CRY_RAICHU,      $0ee,  $088 ; RAICHU_ALOLAN
@@ -454,21 +454,21 @@ PokemonCries::
 	mon_cry CRY_SQUIRTLE,    $011,  $0c0 ; TAUROS_PALDEAN_FIRE
 	mon_cry CRY_SQUIRTLE,    $011,  $0c0 ; TAUROS_PALDEAN_WATER
 	mon_cry CRY_NATU,       -$087,  $130 ; WATU
-	mon_cry $8000 | 21, 0, $100 ; BOUNSWEET (sampled)
-	mon_cry $8000 | 146, 0, $100 ; STEENEE (sampled)
-	mon_cry $8000 | 160, 0, $100 ; TSAREENA (sampled)
+	mon_cry CRY_DIGLETT,    -$080,  $0e0 ; BOUNSWEET
+	mon_cry CRY_NATU,        $000,  $240 ; STEENEE
+	mon_cry CRY_LARVESTA,   -$0a0,  $280 ; TSAREENA
 	mon_cry CRY_ARON,        $03c,  $070 ; ARON
 	mon_cry CRY_LAIRON,      $01e,  $070 ; LAIRON
 	mon_cry CRY_AGGRON,      $000,  $100 ; AGGRON
-	mon_cry $8000 | 85, 0, $100 ; KLEAVOR (sampled)
-	mon_cry $8000 | 61, 0, $100 ; GLIMMET (sampled)
-	mon_cry $8000 | 62, 0, $100 ; GLIMMORA (sampled)
-	mon_cry $8000 | 95, 0, $100 ; MAREANIE (sampled)
-	mon_cry $8000 | 157, 0, $100 ; TOXAPEX (sampled)
-	mon_cry $8000 | 177, 0, $100 ; ZANGOOSE (sampled)
-	mon_cry $8000 | 132, 0, $100 ; SEVIPER (sampled)
-	mon_cry $8000 | 136, 0, $100 ; SHUPPET (sampled)
-	mon_cry $8000 | 16, 0, $100 ; BANETTE (sampled)
+	mon_cry CRY_FEAROW,      $010,  $120 ; KLEAVOR
+	mon_cry CRY_EXEGGUTOR,   $0c0,  $0c0 ; GLIMMET
+	mon_cry CRY_EXEGGUTOR,   $010,  $080 ; GLIMMORA
+	mon_cry CRY_KANGASKHAN, -$120,  $080 ; MAREANIE
+	mon_cry CRY_KANGASKHAN,  $0f0,  $200 ; TOXAPEX
+	mon_cry CRY_SCRAGGY,     $0c0,  $0e0 ; ZANGOOSE
+	mon_cry CRY_PICHU,      -$020,  $280 ; SEVIPER
+	mon_cry CRY_BRELOOM,     $030,  $0a0 ; SHUPPET
+	mon_cry CRY_NATU,       -$010,  $1c0 ; BANETTE
 	mon_cry CRY_ARCHEN,         206,   204 ; ARCHEN
 	mon_cry CRY_ARCHEOPS,       188,   140 ; ARCHEOPS
 	mon_cry CRY_TIRTOUGA,       192,   204 ; TIRTOUGA
@@ -478,33 +478,33 @@ PokemonCries::
 	mon_cry CRY_CHANDELURE,  $0ff,  $180 ; CHANDELURE
 	mon_cry CRY_JOLTIK,      $000,  $100 ; JOLTIK
 	mon_cry CRY_GALVANTULA,  $000,  $0dc ; GALVANTULA
-	mon_cry $8000 | 97, 0, $100 ; MAWILE (sampled)
+	mon_cry CRY_CATERPIE,   -$010,  $0c0 ; MAWILE
 	mon_cry CRY_NOIBAT,      $0a7,  $084 ; NOIBAT
 	mon_cry CRY_NOIVERN,     $04a,  $084 ; NOIVERN
-	mon_cry $8000 | 126, 0, $100 ; SALANDIT (sampled)
-	mon_cry $8000 | 127, 0, $100 ; SALAZZLE (sampled)
-	mon_cry $8000 | 124, 0, $100 ; SABLEYE (sampled)
-	mon_cry $8000 | 0, 0, $100 ; AEGISLASH_BLADE (sampled)
-	mon_cry $8000 | 52, 0, $100 ; FINIZEN (sampled)
-	mon_cry $8000 | 111, 0, $100 ; PALAFIN (sampled)
-	mon_cry $8000 | 14, 0, $100 ; AZURILL (sampled)
-	mon_cry $8000 | 174, 0, $100 ; WYNAUT (sampled)
-	mon_cry $8000 | 20, 0, $100 ; BONSLY (sampled)
-	mon_cry $8000 | 101, 0, $100 ; MIME_JR_ (sampled)
-	mon_cry $8000 | 74, 0, $100 ; HAPPINY (sampled)
-	mon_cry $8000 | 94, 0, $100 ; MANTYKE (sampled)
-	mon_cry $8000 | 145, 0, $100 ; STARLY (sampled)
-	mon_cry $8000 | 144, 0, $100 ; STARAVIA (sampled)
-	mon_cry $8000 | 143, 0, $100 ; STARAPTOR (sampled)
-	mon_cry $8000 | 128, 0, $100 ; SANDILE (sampled)
-	mon_cry $8000 | 86, 0, $100 ; KROKOROK (sampled)
-	mon_cry $8000 | 87, 0, $100 ; KROOKODILE (sampled)
+	mon_cry CRY_GLACEON,     $080,  $1e0 ; SALANDIT
+	mon_cry CRY_DREEPY,     -$0a0,  $200 ; SALAZZLE
+	mon_cry CRY_CATERPIE,   -$010,  $0a0 ; SABLEYE
+	mon_cry CRY_KRABBY,     -$120,  $140 ; AEGISLASH_BLADE
+	mon_cry CRY_LARVESTA,   -$080,  $240 ; FINIZEN
+	mon_cry CRY_EXCADRILL,  -$060,  $100 ; PALAFIN
+	mon_cry CRY_NATU,        $010,  $100 ; AZURILL
+	mon_cry CRY_WEEPINBELL,  $050,  $0e0 ; WYNAUT
+	mon_cry CRY_CLEFFA,      $020,  $180 ; BONSLY
+	mon_cry CRY_NIDORAN_M,   $010,  $1e0 ; MIME_JR_
+	mon_cry CRY_PIDGEOTTO,  -$010,  $100 ; HAPPINY
+	mon_cry CRY_ALTARIA,    -$100,  $0a0 ; MANTYKE
+	mon_cry CRY_SYLVEON,    -$040,  $240 ; STARLY
+	mon_cry CRY_MIENSHAO,    $0d0,  $140 ; STARAVIA
+	mon_cry CRY_MANTINE,    -$020,  $240 ; STARAPTOR
+	mon_cry CRY_MIENSHAO,    $0b0,  $080 ; SANDILE
+	mon_cry CRY_SQUIRTLE,   -$200,  $100 ; KROKOROK
+	mon_cry CRY_EKANS,      -$030,  $1a0 ; KROOKODILE
 	mon_cry CRY_RAICHU,      $0e0,  $17f ; GOROCHU (Rage Blue length $ff + $80)
-	mon_cry $8000 | 83, 0, $100 ; JIRACHI (sampled)
+	mon_cry CRY_ARON,        $040,  $0c0 ; JIRACHI
 	mon_cry CRY_PHANTUMP, 119, 220 ; PHANTUMP (Polished Coral)
 	mon_cry CRY_TREVENANT, 0, 220 ; TREVENANT (Polished Coral)
 	mon_cry CRY_MIENFOO, 0, 220 ; MIENFOO (Polished Coral)
 	mon_cry CRY_MIENSHAO, 0, 220 ; MIENSHAO (Polished Coral)
-	mon_cry $8000 | 76, 0, $100 ; HIPPOPOTAS (sampled)
-	mon_cry $8000 | 77, 0, $100 ; HIPPOWDON (sampled)
-	mon_cry $8000 | 177, 0, $100 ; ZANGOOSE_SCARRED (sampled)
+	mon_cry CRY_FROSLASS,   -$0e0,  $140 ; HIPPOPOTAS
+	mon_cry CRY_FROSLASS,   -$140,  $0c0 ; HIPPOWDON
+	mon_cry CRY_SCRAGGY,     $0c0,  $0e0 ; ZANGOOSE_SCARRED
