@@ -35,6 +35,9 @@ BattleCheckRampage_Core:
 	ld a, b
 	cp OWN_TEMPO
 	jr z, .continue_rampage
+	; so does a held Stout Charm
+	farcall ModernConfuseCharmUser_Core
+	jr z, .continue_rampage
 
 	; NOTE: the callfar/farcall macros above load their TARGET ADDRESS
 	; into hl, so the SUBSTATUS3 pointer fetched at the top of this

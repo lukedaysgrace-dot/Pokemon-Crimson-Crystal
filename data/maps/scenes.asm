@@ -55,7 +55,7 @@ MapScenes::
 	scene_var BATTLE_TOWER_BATTLE_ROOM,                    wBattleTowerBattleRoomSceneID
 	scene_var BATTLE_TOWER_ELEVATOR,                       wBattleTowerElevatorSceneID
 	scene_var BATTLE_TOWER_HALLWAY,                        wBattleTowerHallwaySceneID
-	scene_var BATTLE_TOWER_OUTSIDE,                        wBattleTowerOutsideSceneID ; unused
+	scene_var SHUCKS,                                      wShucksSceneID ; reuses Battle Tower Outside's unused byte
 	scene_var ROUTE_43_GATE,                               wRoute43GateSceneID
 	scene_var MOUNT_MOON,                                  wMountMoonSceneID
 	scene_var SPROUT_TOWER_3F,                             wSproutTower3FSceneID

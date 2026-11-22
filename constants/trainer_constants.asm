@@ -881,7 +881,31 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 	const SLOT_MANIAC_LUCKY
 
 	trainerclass HOSTESS
-; Reserved class only; individual trainers and teams will be added later.
+; Shucks' Friday-night stage challenge. Each hostess has HOSTESS_TIERS
+; consecutive records; scripts load the first one and GetTrainerPartyID adds
+; the player's party-average tier (below 20, 20s, 30s ... 60s, 70+).
+	const HOSTESS_CORAL_1
+	const HOSTESS_CORAL_2
+	const HOSTESS_CORAL_3
+	const HOSTESS_CORAL_4
+	const HOSTESS_CORAL_5
+	const HOSTESS_CORAL_6
+	const HOSTESS_CORAL_7
+	const HOSTESS_SCARLET_1
+	const HOSTESS_SCARLET_2
+	const HOSTESS_SCARLET_3
+	const HOSTESS_SCARLET_4
+	const HOSTESS_SCARLET_5
+	const HOSTESS_SCARLET_6
+	const HOSTESS_SCARLET_7
+	const HOSTESS_VOLTA_1
+	const HOSTESS_VOLTA_2
+	const HOSTESS_VOLTA_3
+	const HOSTESS_VOLTA_4
+	const HOSTESS_VOLTA_5
+	const HOSTESS_VOLTA_6
+	const HOSTESS_VOLTA_7
+HOSTESS_TIERS EQU 7
 
 	trainerclass DUELIST
 	const DUELIST_PAIGE

@@ -350,5 +350,6 @@ FULL_HEAL_RED  EQU $34 ; X_SPEED
 	const DUBIOUS_DISC
 	const SHUCKS_SPECIAL
 	const SHUCKS_RESERVE
+	const STOUT_CHARM ; Shucks' Friday hostess challenge prize
 NUM_ITEM_INDEXES EQU const_value - 1
 	assert NUM_ITEM_INDEXES < $ff00

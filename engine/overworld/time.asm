@@ -96,6 +96,23 @@ CheckDailyResetTimer::
 	call UpdateShucksReserveStock
 	pop af
 	ret nc
+	; Shucks' Friday show runs past midnight: the reset that first reaches
+	; Saturday's overnight hours (one day after the last reset) keeps that
+	; shift's state, and any other reset clears it.
+	ld b, 0
+	ld a, [wDaysSince]
+	cp 1
+	jr nz, .clear_shucks_shift
+	ldh a, [hHours]
+	cp MORN_HOUR
+	jr nc, .clear_shucks_shift
+	call GetWeekday
+	cp SATURDAY ; the Friday shift's overnight hours
+	jr nz, .clear_shucks_shift
+	ld a, [wSwarmFlags]
+	and SWARMFLAGS_SHUCKS_SHIFT_MASK
+	ld b, a
+.clear_shucks_shift
 	xor a
 	ld [wWeatherRandomDay], a
 	ld hl, wWeatherDailyFlags
@@ -103,7 +120,8 @@ CheckDailyResetTimer::
 	ld hl, wDailyFlags1
 	ld [hli], a ; wDailyFlags1
 	ld [hli], a ; wDailyFlags2
-	ld [hli], a ; wSwarmFlags
+	ld [hl], b  ; wSwarmFlags (only the Shucks shift bits survive)
+	inc hl
 	ld [hl], a  ; wFishingContestDailyFlags
 	ld hl, wDailyRematchFlags
 rept 4

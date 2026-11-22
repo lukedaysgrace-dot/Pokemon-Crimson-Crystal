@@ -270,6 +270,7 @@ ItemEffects:
 	dw EvoStoneEffect ; DUBIOUS_DISC
 	dw ShucksSpecialEffect
 	dw ShucksReserveEffect
+	dw NoEffect ; STOUT_CHARM
 
 ExpRelayEffect:
 	farcall ExpRelayCore

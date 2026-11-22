@@ -142,6 +142,7 @@ SetTrainerBattleLevel:
 
 	call GetNextTrainerDataByte ; trainer type
 	call GetNextTrainerDataByte ; first party member's level
+	call ScaleHostessPartyLevel
 	ld [wCurPartyLevel], a
 	ret
 
@@ -169,9 +170,12 @@ SelectLocalOpenProgressionParty:
 GetTrainerPartyID:
 ; Return the party record to read in a. The Trainer House's CAL3 grows with
 ; the player: CAL3-CAL6 are chosen by the highest level in the player's party
-; (below 60, 60s, 70s, 80+). Every other trainer uses wOtherTrainerID.
-; Preserves bc, de, hl.
+; (below 60, 60s, 70s, 80+). Shucks' hostesses add a tier chosen by the
+; party's average level (see GetHostessTier). Every other trainer uses
+; wOtherTrainerID. Preserves bc, de, hl.
 	ld a, [wOtherTrainerClass]
+	cp HOSTESS
+	jr z, .hostess
 	cp CAL
 	jr nz, .default
 	ld a, [wOtherTrainerID]
@@ -219,6 +223,129 @@ GetTrainerPartyID:
 	ld a, [wOtherTrainerID]
 	ret
 
+.hostess
+	push bc
+	call GetHostessTier
+	ld b, a
+	ld a, [wOtherTrainerID]
+	add b
+	pop bc
+	ret
+
+GetHostessTier:
+; a = 0 (average below 20), 1 (20s) ... 5 (60s), 6 (70+). Preserves bc, de, hl.
+	call GetPartyAverageLevel
+	push bc
+	ld b, -1
+.tens
+	inc b
+	sub 10
+	jr nc, .tens
+	; b = average / 10
+	ld a, b
+	sub 1
+	jr nc, .not_low
+	xor a
+.not_low
+	cp HOSTESS_TIERS
+	jr c, .done
+	ld a, HOSTESS_TIERS - 1
+.done
+	pop bc
+	ret
+
+ScaleHostessPartyLevel:
+; a = level byte from trainer data. Hostess level bytes are bonuses over the
+; player's non-Egg party average; every other class keeps its fixed level.
+; Returns the level to use, capped at MAX_LEVEL. Preserves bc, de, hl.
+	push bc
+	ld b, a
+	ld a, [wOtherTrainerClass]
+	cp HOSTESS
+	ld a, b
+	jr nz, .done
+	call GetPartyAverageLevel
+	add b
+	jr c, .cap
+	cp MAX_LEVEL + 1
+	jr c, .done
+.cap
+	ld a, MAX_LEVEL
+.done
+	pop bc
+	ret
+
+GetPartyAverageLevel::
+; a = rounded-down average level of the player's non-Egg party members,
+; fainted members included (at least 1). Preserves bc, de, hl.
+	push bc
+	push de
+	push hl
+	ld de, 0 ; level sum
+	ld c, 0 ; counted members
+	ld a, [wPartyCount]
+	and a
+	jr z, .divide
+	cp PARTY_LENGTH + 1
+	jr nc, .divide
+	ld b, a
+	ld hl, wPartySpecies
+.loop
+	ld a, [hl]
+	cp EGG
+	jr z, .next
+	push hl
+	ld a, l
+	sub LOW(wPartySpecies)
+	ld hl, wPartyMon1Level
+	push bc
+	ld bc, PARTYMON_STRUCT_LENGTH
+	and a
+	jr z, .got_mon
+.find_mon
+	add hl, bc
+	dec a
+	jr nz, .find_mon
+.got_mon
+	pop bc
+	ld a, [hl]
+	add e
+	ld e, a
+	jr nc, .no_carry
+	inc d
+.no_carry
+	inc c
+	pop hl
+.next
+	inc hl
+	dec b
+	jr nz, .loop
+
+.divide
+	ld a, c
+	and a
+	jr z, .minimum
+	ld b, -1
+.subtract
+	inc b
+	ld a, e
+	sub c
+	ld e, a
+	jr nc, .subtract
+	dec d
+	bit 7, d
+	jr z, .subtract
+	ld a, b
+	and a
+	jr nz, .done
+.minimum
+	ld a, 1
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+
 ReadTrainerPartyPieces:
 	ld h, d
 	ld l, e
@@ -228,6 +355,7 @@ ReadTrainerPartyPieces:
 	cp $ff
 	ret z
 
+	call ScaleHostessPartyLevel
 	ld [wCurPartyLevel], a
 	call GetNextTrainerDataByte
 	push hl

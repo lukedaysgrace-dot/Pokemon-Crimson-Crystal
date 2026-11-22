@@ -62,6 +62,7 @@ TrainerStatExpMatchingPolicy:
 	db ELDER, 2
 	db KIMONO_GIRL, 2
 	db KARATE_KING, 2
+	db HOSTESS, 2
 	db COOLTRAINERM, 0
 	db COOLTRAINERF, 0
 	db DUELIST, 0

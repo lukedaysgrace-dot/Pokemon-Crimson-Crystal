@@ -155,3 +155,8 @@ SCENE_FINISHED EQU 1
 	const_def 1
 	const SCENE_FASTSHIP1F_ENTER_SHIP   ; 1
 	const SCENE_FASTSHIP1F_MEET_GRANDPA ; 2
+
+; wShucksSceneID
+	const_def
+	const SCENE_SHUCKS_NOTHING        ; 0
+	const SCENE_SHUCKS_FRIDAY_BRAWL   ; 1

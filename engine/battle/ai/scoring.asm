@@ -4590,6 +4590,8 @@ AI_Elite:
 	ld a, e
 	cp OWN_TEMPO
 	jp z, .dismiss
+	call AIPlayerHoldsStoutCharm
+	jp c, .dismiss
 	jp .done
 
 .attract
@@ -4951,6 +4953,27 @@ AIPlayerHoldsBerry:
 	and a ; nc
 	ret
 .berry
+	scf
+	ret
+
+AIPlayerHoldsStoutCharm:
+; carry if the player's held item prevents confusion (Stout Charm).
+; Preserves bc, de, hl.
+	push hl
+	push de
+	push bc
+	ld a, [wBattleMonItem]
+	ld b, a
+	callfar GetItemHeldEffect
+	ld a, b
+	pop bc
+	pop de
+	pop hl
+	cp HELD_PREVENT_CONFUSE
+	jr z, .charm
+	and a ; nc
+	ret
+.charm
 	scf
 	ret
 

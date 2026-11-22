@@ -393,11 +393,38 @@ ModernGogglesUser_Core::
 	ret
 
 ModernCloakOpp_Core::
+; z if the opponent's effective held item blocks additional move effects:
+; Covert Cloak, or the Stout Charm (HELD_PREVENT_CONFUSE).
 	push hl
 	push bc
 	callfar GetOpponentItem
 	ld a, b
 	cp HELD_COVERT_CLOAK
+	jr z, .done
+	cp HELD_PREVENT_CONFUSE
+.done
+	pop bc
+	pop hl
+	ret
+
+ModernConfuseCharmOpp_Core::
+; z if the opponent's effective held item prevents confusion (Stout Charm).
+	push hl
+	push bc
+	callfar GetOpponentItem
+	ld a, b
+	cp HELD_PREVENT_CONFUSE
+	pop bc
+	pop hl
+	ret
+
+ModernConfuseCharmUser_Core::
+; z if the turn holder's effective held item prevents confusion (Stout Charm).
+	push hl
+	push bc
+	callfar GetUserItem
+	ld a, b
+	cp HELD_PREVENT_CONFUSE
 	pop bc
 	pop hl
 	ret

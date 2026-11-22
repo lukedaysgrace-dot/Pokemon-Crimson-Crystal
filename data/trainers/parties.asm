@@ -8860,8 +8860,339 @@ SlotManiacGroup:
 
 	end_list_items
 
-; Reserved for later: no trainer entries or Pokemon teams.
 HostessGroup:
+; Shucks' Friday-night stage challenge (maps/Shucks.asm). Level bytes are
+; bonuses over the player's non-Egg party average, not fixed levels: see
+; ScaleHostessPartyLevel. GetTrainerPartyID picks the tier record by average.
+	next_list_item ; HOSTESS (1) HOSTESS_CORAL_1 - Shucks, Water, party average below 20
+	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 1 ; party average +1
+	dw GOLDEEN
+	db BERRY
+	db ABILITY_1 ; Swift Swim
+	dw WATER_PULSE, HORN_ATTACK, SUPERSONIC, FLAIL
+	db 2 ; party average +2
+	dw MARILL
+	db MYSTIC_WATER
+	db ABILITY_2 ; Thick Fat
+	dw BUBBLEBEAM, AQUA_JET, DEFENSE_CURL, ROLLOUT
+	db -1 ; end
+
+	next_list_item ; HOSTESS (2) HOSTESS_CORAL_2 - Shucks, Water, party average 20-29
+	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 1 ; party average +1
+	dw STARYU
+	db BERRY
+	db ABILITY_1 ; Natural Cure
+	dw WATER_PULSE, PSYBEAM, RECOVER, SWIFT
+	db 2 ; party average +2
+	dw AZUMARILL
+	db MYSTIC_WATER
+	db ABILITY_2 ; Thick Fat
+	dw AQUA_TAIL, DRAINING_KISS, AQUA_JET, BODY_SLAM
+	db -1 ; end
+
+	next_list_item ; HOSTESS (3) HOSTESS_CORAL_3 - Shucks, Water, party average 30-39
+	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 1 ; party average +1
+	dw STARMIE
+	db LEFTOVERS
+	db ABILITY_1 ; Natural Cure
+	dw SCALD, PSYCHIC_M, RECOVER, THUNDERBOLT
+	db 2 ; party average +2
+	dw AZUMARILL
+	db MYSTIC_WATER
+	db ABILITY_1 ; Huge Power
+	dw AQUA_TAIL, PLAY_ROUGH, AQUA_JET, ICE_PUNCH
+	db -1 ; end
+
+	next_list_item ; HOSTESS (4) HOSTESS_CORAL_4 - Shucks, Water, party average 40-49
+	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 1 ; party average +1
+	dw STARMIE
+	db WISE_GLASSES
+	db ABILITY_2 ; Analytic
+	dw HYDRO_PUMP, PSYCHIC_M, THUNDERBOLT, RECOVER
+	db 2 ; party average +2
+	dw MILOTIC
+	db LEFTOVERS
+	db ABILITY_1 ; Marvel Scale
+	dw SCALD, MOONBLAST, RECOVER, ICE_BEAM
+	db -1 ; end
+
+	next_list_item ; HOSTESS (5) HOSTESS_CORAL_5 - Shucks, Water, party average 50-59
+	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 1 ; party average +1
+	dw STARMIE
+	db LIFE_ORB
+	db ABILITY_2 ; Analytic
+	dw HYDRO_PUMP, PSYCHIC_M, THUNDERBOLT, ICE_BEAM
+	db 2 ; party average +2
+	dw MILOTIC
+	db FLAME_ORB
+	db ABILITY_1 ; Marvel Scale
+	dw SCALD, MOONBLAST, RECOVER, CALM_MIND
+	db -1 ; end
+
+	next_list_item ; HOSTESS (6) HOSTESS_CORAL_6 - Shucks, Water, party average 60-69
+	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 1 ; party average +1
+	dw KINGDRA
+	db SCOPE_LENS
+	db ABILITY_2 ; Sniper
+	dw HYDRO_PUMP, DRAGON_PULSE, ICE_BEAM, FOCUS_ENERGY
+	db 2 ; party average +2
+	dw MILOTIC
+	db LEFTOVERS
+	db ABILITY_2 ; Competitive
+	dw SCALD, MOONBLAST, RECOVER, CALM_MIND
+	db -1 ; end
+
+	next_list_item ; HOSTESS (7) HOSTESS_CORAL_7 - Shucks, Water, party average 70+
+	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 1 ; party average +1
+	dw KINGDRA
+	db DAMP_ROCK
+	db ABILITY_1 ; Swift Swim
+	dw RAIN_DANCE, HYDRO_PUMP, DRACO_METEOR, ICE_BEAM
+	db 2 ; party average +2
+	dw MILOTIC
+	db FLAME_ORB
+	db ABILITY_1 ; Marvel Scale
+	dw HYDRO_PUMP, MOONBLAST, RECOVER, ICE_BEAM
+	db -1 ; end
+
+	next_list_item ; HOSTESS (8) HOSTESS_SCARLET_1 - Shucks, Fire, party average below 20
+	db "SCARLET@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw VULPIX
+	db BERRY
+	db ABILITY_1 ; Drought
+	dw EMBER, QUICK_ATTACK, CONFUSE_RAY, FIRE_SPIN
+	db 3 ; party average +3
+	dw SALANDIT
+	db CHARCOAL
+	db ABILITY_1 ; Corrosion
+	dw EMBER, SMOG, TOXIC, DOUBLESLAP
+	db -1 ; end
+
+	next_list_item ; HOSTESS (9) HOSTESS_SCARLET_2 - Shucks, Fire, party average 20-29
+	db "SCARLET@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw NINETALES
+	db BERRY
+	db ABILITY_1 ; Drought
+	dw FLAMETHROWER, EXTRASENSORY, CONFUSE_RAY, WILL_O_WISP
+	db 3 ; party average +3
+	dw SALANDIT
+	db CHARCOAL
+	db ABILITY_2 ; Poison Puppeteer
+	dw INCINERATE, VENOSHOCK, TOXIC, DRAGON_RAGE
+	db -1 ; end
+
+	next_list_item ; HOSTESS (10) HOSTESS_SCARLET_3 - Shucks, Fire, party average 30-39
+	db "SCARLET@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw NINETALES
+	db HEAT_ROCK
+	db ABILITY_1 ; Drought
+	dw FLAMETHROWER, EXTRASENSORY, DAZZLING_GLEAM, CALM_MIND
+	db 3 ; party average +3
+	dw SALAZZLE
+	db CHARCOAL
+	db ABILITY_2 ; Poison Puppeteer
+	dw FLAMETHROWER, VENOSHOCK, TOXIC, NASTY_PLOT
+	db -1 ; end
+
+	next_list_item ; HOSTESS (11) HOSTESS_SCARLET_4 - Shucks, Fire, party average 40-49
+	db "SCARLET@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw NINETALES
+	db HEAT_ROCK
+	db ABILITY_1 ; Drought
+	dw FLAMETHROWER, SOLARBEAM, NASTY_PLOT, EXTRASENSORY
+	db 3 ; party average +3
+	dw SALAZZLE
+	db LIFE_ORB
+	db ABILITY_1 ; Corrosion
+	dw FLAMETHROWER, SLUDGE_BOMB, NASTY_PLOT, TOXIC
+	db -1 ; end
+
+	next_list_item ; HOSTESS (12) HOSTESS_SCARLET_5 - Shucks, Fire, party average 50-59
+	db "SCARLET@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw NINETALES
+	db HEAT_ROCK
+	db ABILITY_1 ; Drought
+	dw FLAMETHROWER, SOLARBEAM, NASTY_PLOT, DAZZLING_GLEAM
+	db 3 ; party average +3
+	dw SALAZZLE
+	db LIFE_ORB
+	db ABILITY_2 ; Poison Puppeteer
+	dw FLAMETHROWER, SLUDGE_BOMB, NASTY_PLOT, DRAGON_PULSE
+	db -1 ; end
+
+	next_list_item ; HOSTESS (13) HOSTESS_SCARLET_6 - Shucks, Fire, party average 60-69
+	db "SCARLET@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw NINETALES
+	db WISE_GLASSES
+	db ABILITY_1 ; Drought
+	dw FIRE_BLAST, SOLARBEAM, NASTY_PLOT, MOONBLAST
+	db 3 ; party average +3
+	dw SALAZZLE
+	db LIFE_ORB
+	db ABILITY_2 ; Poison Puppeteer
+	dw FIRE_BLAST, SLUDGE_BOMB, NASTY_PLOT, DRAGON_PULSE
+	db -1 ; end
+
+	next_list_item ; HOSTESS (14) HOSTESS_SCARLET_7 - Shucks, Fire, party average 70+
+	db "SCARLET@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw NINETALES
+	db HEAT_ROCK
+	db ABILITY_1 ; Drought
+	dw FIRE_BLAST, SOLARBEAM, NASTY_PLOT, MOONBLAST
+	db 3 ; party average +3
+	dw SALAZZLE
+	db FOCUS_SASH
+	db ABILITY_2 ; Poison Puppeteer
+	dw FIRE_BLAST, SLUDGE_BOMB, NASTY_PLOT, SHADOW_BALL
+	db -1 ; end
+
+	next_list_item ; HOSTESS (15) HOSTESS_VOLTA_1 - Shucks, Electric, party average below 20
+	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw CHINCHOU
+	db BERRY
+	db ABILITY_1 ; Volt Absorb
+	dw SPARK, WATER_GUN, THUNDER_WAVE, CONFUSE_RAY
+	db 3 ; party average +3
+	dw MAREEP
+	db MAGNET
+	db ABILITY_1 ; Static
+	dw THUNDERSHOCK, COTTON_SPORE, THUNDER_WAVE, TACKLE
+	db 4 ; party average +4
+	dw PIKACHU
+	db LIGHT_BALL
+	db ABILITY_1 ; Static
+	dw SPARK, QUICK_ATTACK, NUZZLE, DOUBLE_KICK
+	db -1 ; end
+
+	next_list_item ; HOSTESS (16) HOSTESS_VOLTA_2 - Shucks, Electric, party average 20-29
+	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw LANTURN
+	db LEFTOVERS
+	db ABILITY_1 ; Volt Absorb
+	dw SPARK, BUBBLEBEAM, CONFUSE_RAY, THUNDER_WAVE
+	db 3 ; party average +3
+	dw FLAAFFY
+	db MAGNET
+	db ABILITY_1 ; Static
+	dw THUNDERPUNCH, FIRE_PUNCH, CONFUSE_RAY, COTTON_SPORE
+	db 4 ; party average +4
+	dw RAICHU
+	db MAGNET
+	db ABILITY_1 ; Static
+	dw THUNDERBOLT, QUICK_ATTACK, IRON_TAIL, THUNDER_WAVE
+	db -1 ; end
+
+	next_list_item ; HOSTESS (17) HOSTESS_VOLTA_3 - Shucks, Electric, party average 30-39
+	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw LANTURN
+	db LEFTOVERS
+	db ABILITY_1 ; Volt Absorb
+	dw DISCHARGE, SURF, CONFUSE_RAY, THUNDER_WAVE
+	db 3 ; party average +3
+	dw FLAAFFY
+	db EVIOLITE
+	db ABILITY_2 ; Fluffy
+	dw DISCHARGE, POWER_GEM, CONFUSE_RAY, COTTON_SPORE
+	db 4 ; party average +4
+	dw RAICHU
+	db MAGNET
+	db ABILITY_1 ; Static
+	dw THUNDERBOLT, SURF, NASTY_PLOT, QUICK_ATTACK
+	db -1 ; end
+
+	next_list_item ; HOSTESS (18) HOSTESS_VOLTA_4 - Shucks, Electric, party average 40-49
+	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw LANTURN
+	db LEFTOVERS
+	db ABILITY_1 ; Volt Absorb
+	dw THUNDERBOLT, SURF, ICE_BEAM, THUNDER_WAVE
+	db 3 ; party average +3
+	dw AMPHAROS
+	db WISE_GLASSES
+	db ABILITY_1 ; Static
+	dw THUNDERBOLT, DRAGON_PULSE, POWER_GEM, FOCUS_BLAST
+	db 4 ; party average +4
+	dw JOLTEON
+	db MAGNET
+	db ABILITY_1 ; Volt Absorb
+	dw THUNDERBOLT, SHADOW_BALL, VOLT_SWITCH, CALM_MIND
+	db -1 ; end
+
+	next_list_item ; HOSTESS (19) HOSTESS_VOLTA_5 - Shucks, Electric, party average 50-59
+	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw LANTURN
+	db LEFTOVERS
+	db ABILITY_1 ; Volt Absorb
+	dw THUNDERBOLT, SURF, ICE_BEAM, TAIL_GLOW
+	db 3 ; party average +3
+	dw AMPHAROS
+	db WISE_GLASSES
+	db ABILITY_2 ; Mold Breaker
+	dw THUNDERBOLT, DRAGON_PULSE, FOCUS_BLAST, DAZZLING_GLEAM
+	db 4 ; party average +4
+	dw JOLTEON
+	db LIFE_ORB
+	db ABILITY_1 ; Volt Absorb
+	dw THUNDERBOLT, SHADOW_BALL, CALM_MIND, VOLT_SWITCH
+	db -1 ; end
+
+	next_list_item ; HOSTESS (20) HOSTESS_VOLTA_6 - Shucks, Electric, party average 60-69
+	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw LANTURN
+	db LEFTOVERS
+	db ABILITY_1 ; Volt Absorb
+	dw THUNDERBOLT, HYDRO_PUMP, ICE_BEAM, TAIL_GLOW
+	db 3 ; party average +3
+	dw AMPHAROS
+	db LEFTOVERS
+	db ABILITY_1 ; Static
+	dw THUNDERBOLT, DRAGON_PULSE, FOCUS_BLAST, COTTON_GUARD
+	db 4 ; party average +4
+	dw JOLTEON
+	db LIFE_ORB
+	db ABILITY_1 ; Volt Absorb
+	dw THUNDERBOLT, SHADOW_BALL, CALM_MIND, SIGNAL_BEAM
+	db -1 ; end
+
+	next_list_item ; HOSTESS (21) HOSTESS_VOLTA_7 - Shucks, Electric, party average 70+
+	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	db 2 ; party average +2
+	dw LANTURN
+	db LEFTOVERS
+	db ABILITY_1 ; Volt Absorb
+	dw THUNDER, HYDRO_PUMP, ICE_BEAM, TAIL_GLOW
+	db 3 ; party average +3
+	dw AMPHAROS
+	db WISE_GLASSES
+	db ABILITY_2 ; Mold Breaker
+	dw THUNDERBOLT, DRAGON_PULSE, FOCUS_BLAST, DAZZLING_GLEAM
+	db 4 ; party average +4
+	dw JOLTEON
+	db CHOICE_SPECS
+	db ABILITY_1 ; Volt Absorb
+	dw THUNDERBOLT, SHADOW_BALL, SIGNAL_BEAM, VOLT_SWITCH
+	db -1 ; end
+
 	end_list_items
 
 SECTION "Duelist Trainer Parties", ROMX

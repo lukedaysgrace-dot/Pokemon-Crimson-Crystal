@@ -1,6 +1,6 @@
 # Crimson Crystal — TM and held-item locations
 
-Locations for all 54 TMs and 70 held items. Most ground items and gifts are one-time rewards.
+Locations for all 54 TMs and 71 held items. Most ground items and gifts are one-time rewards.
 
 Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their held items. Trick swaps items; use it to take Air Balloon before a damaging hit pops it.
 
@@ -124,6 +124,7 @@ Catch wild Pokémon or use Thief with an empty-handed Pokémon to take their hel
 | [Soft Sand](#soft_sand) | Ground pickup, Wild Pokémon |
 | [Spell Tag](#spell_tag) | Trainer item, Wild Pokémon |
 | [Stick](#stick) | Trainer item, Wild Pokémon |
+| [Stout Charm](#stout_charm) | Gift / reward |
 | [Thick Club](#thick_club) | Trainer item, Wild Pokémon |
 | [Throat Spray](#throat_spray) | Shop |
 | [Toxic Orb](#toxic_orb) | Battle Tower prize, Ground pickup |
@@ -1545,6 +1546,13 @@ Unavailable.
 | Ilex Forest | **Wild Pokémon** — Farfetch'd; approx. 5% held-item chance. Grass / Cave; Morning; Lv. 16. |
 | Fighting Dojo | **Trainer item** — Karate King Kiyo: Sirfetch'd Lv. 67. |
 | Route 27 | **Trainer item** — Bird Keeper Jose: Farfetch'd Lv. 74. |
+
+<a id="stout_charm"></a>
+## Stout Charm
+
+| Location | How to obtain |
+| --- | --- |
+| Shucks | **Gift / reward** — Beat Coral, Scarlet and Volta back to back in the Friday-night stage show (Friday 6 PM – Saturday 4 AM). First win only; later Fridays award a PP Up. |
 
 <a id="thick_club"></a>
 ## Thick Club

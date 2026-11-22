@@ -308,6 +308,7 @@ ItemDescriptions:
 	dw DUBIOUS_DISCDesc
 	dw SHUCKS_SPECIALDesc
 	dw SHUCKS_RESERVEDesc
+	dw STOUT_CHARMDesc
 
 MasterBallDesc:
 	db   "The best BALL. It"
@@ -1222,3 +1223,7 @@ SHUCKS_SPECIALDesc:
 SHUCKS_RESERVEDesc:
 	db   "Heals 50 HP and"
 	next "adds 5 friendship.@"
+
+STOUT_CHARMDesc:
+	db   "Blocks move extra"
+	next "effects, confusion@"

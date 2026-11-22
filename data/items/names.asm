@@ -306,3 +306,4 @@ ItemNames::
 	db "DUBIOUS DISC@"
 	db "SHUCK'S SPC.@"
 	db "SHUCK'S RSV.@"
+	db "STOUT CHARM@"

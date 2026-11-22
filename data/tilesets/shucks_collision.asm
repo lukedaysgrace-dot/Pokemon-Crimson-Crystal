@@ -44,3 +44,5 @@
 	tilecoll FLOOR, FLOOR, FLOOR, WARP_CARPET_DOWN ; 2b
 	tilecoll FLOOR, FLOOR, WARP_CARPET_DOWN, FLOOR ; 2c
 	tilecoll WALL, FLOOR, WALL, FLOOR ; 2d
+	tilecoll WALL, WALL, WALL, WALL ; 2e (curtain drawn back, left)
+	tilecoll WALL, WALL, WALL, WALL ; 2f (curtain drawn back, right)

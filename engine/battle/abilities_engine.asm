@@ -5694,6 +5694,8 @@ TryConfuseOpponent:
 	ret nz ; Safeguard blocks confusion (audit 2026-08-28 #10)
 	call AbilityPreventsConfusion
 	ret c
+	farcall ModernConfuseCharmOpp_Core
+	ret z ; a held Stout Charm prevents confusion from any source
 	call ShowAbilityBannerBrief
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVarAddr

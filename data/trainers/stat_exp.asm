@@ -111,5 +111,5 @@ TrainerClassStatExp:
 	dw  6400 ; CUEBALL          ; up to 20 points (level-limited)
 	dw     0 ; KARATE_KING      ; party match + 2 points
 	dw     0 ; SLOT_MANIAC
-	dw     0 ; HOSTESS
+	dw     0 ; HOSTESS          ; party match + 2 points
 	dw     0 ; DUELIST          ; exact party match

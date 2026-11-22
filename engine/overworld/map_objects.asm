@@ -646,7 +646,14 @@ MapObjectMovementPattern:
 	call EndSpriteMovement
 	ld hl, OBJECT_ACTION
 	add hl, bc
+	; Keep the BG-aligned action (Goldenrod's neon Shuckle): replacing it with
+	; OBJECT_ACTION_STAND left the sprite 4px too high whenever the object was
+	; spawned by scrolling in over a map connection instead of a warp.
+	ld a, [hl]
+	cp OBJECT_ACTION_STAND_BG_ALIGNED
+	jr z, .standing_keep_action
 	ld [hl], OBJECT_ACTION_STAND
+.standing_keep_action
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_05
