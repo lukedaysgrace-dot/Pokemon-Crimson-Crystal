@@ -137,3 +137,13 @@
 	const CRY_TREVENANT
 	const CRY_MIENFOO
 	const CRY_MIENSHAO
+; Kalos (gen 6), authored from the official cries
+	const CRY_FLETCHLING
+	const CRY_FLETCHINDER
+	const CRY_TALONFLAME
+; authored from the official cries
+	const CRY_ZANGOOSE
+	const CRY_SEVIPER
+	const CRY_SABLEYE
+	const CRY_TINKATUFF
+	const CRY_TINKATON

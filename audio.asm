@@ -252,3 +252,19 @@ INCLUDE "audio/cries_phantump_trevenant.asm"
 SECTION "Mienfoo and Mienshao Cries", ROMX
 
 INCLUDE "audio/cries_mienfoo_mienshao.asm"
+
+SECTION "Fletchling Line Cries", ROMX
+
+INCLUDE "audio/cries_fletchling_line.asm"
+
+SECTION "Zangoose and Seviper Cries", ROMX
+
+INCLUDE "audio/cries_zangoose_seviper.asm"
+
+SECTION "Sableye Cries", ROMX
+
+INCLUDE "audio/cries_sableye.asm"
+
+SECTION "Tinkatuff and Tinkaton Cries", ROMX
+
+INCLUDE "audio/cries_tinkatuff_tinkaton.asm"

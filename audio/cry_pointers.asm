@@ -130,3 +130,13 @@ Cries:
 	dba Cry_Trevenant
 	dba Cry_Mienfoo
 	dba Cry_Mienshao
+; Kalos (gen 6), authored from the official cries
+	dba Cry_Fletchling
+	dba Cry_Fletchinder
+	dba Cry_Talonflame
+; authored from the official cries
+	dba Cry_Zangoose
+	dba Cry_Seviper
+	dba Cry_Sableye
+	dba Cry_Tinkatuff
+	dba Cry_Tinkaton
