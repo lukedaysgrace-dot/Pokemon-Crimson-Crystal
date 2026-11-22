@@ -651,3 +651,5 @@ TilesetCeruleanGymAttr::
 INCBIN "data/tilesets/cerulean_gym_attributes.bin"
 TilesetCeruleanGymColl::
 INCLUDE "data/tilesets/cerulean_gym_collision.asm"
+
+INCLUDE "data/tilesets/shucks.asm"

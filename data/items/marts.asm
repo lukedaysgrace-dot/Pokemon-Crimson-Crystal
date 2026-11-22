@@ -39,6 +39,7 @@ Marts:
 	dw MartExpanded1
 	dw MartExpanded2
 	dw MartExpanded3
+	dw MartShucks
 .End
 
 MartCherrygrove:
@@ -446,5 +447,11 @@ MartExpanded3:
 	dw COMET_SHARD
 	dw BIG_NUGGET
 	dw PEARL_STRING
+	dw -1
+
+MartShucks:
+	db 2
+	dw SHUCKS_SPECIAL
+	dw SHUCKS_RESERVE
 	dw -1
 

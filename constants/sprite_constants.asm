@@ -239,11 +239,12 @@ SPRITE_POKEMON EQU const_value
 	assert const_value <= $e7, "Pokemon sprites overlap Day-Care sprite IDs"
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
-; Keep these special IDs above the NPC and Pokemon icon tables.
 	const_def $e7
 	const SPRITE_DAY_CARE_MON_1 ; e7
 	const SPRITE_DAY_CARE_MON_2 ; e8
-	assert const_value <= $f0, "Day-Care sprites overlap variable sprite IDs"
+	const SPRITE_SHUCKLE        ; e9; resumes the SpriteMons table after Day-Care
+	const SPRITE_GAMBLER        ; ea; extended NPC ID
+	assert const_value <= $f0, "Overworld sprites overlap variable sprite IDs"
 
 ; wVariableSprites indexes (see wram.asm)
 	const_def $f0

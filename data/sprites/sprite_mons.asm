@@ -68,3 +68,5 @@ SpriteMons:
 	dw ZAPDOS
 	dw MACHAMP
 	dw STARYU
+	dw 0, 0 ; Day-Care sprites take their species from the save
+	dw SHUCKLE

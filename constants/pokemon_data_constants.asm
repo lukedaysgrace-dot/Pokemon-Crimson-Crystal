@@ -336,6 +336,7 @@ const_value = 1
 	const HAPPINESS_REVIVALHERB       ; 11
 	const HAPPINESS_GROOMING          ; 12
 	const HAPPINESS_GAINLEVELATHOME   ; 13
+	const HAPPINESS_SHUCKS_RESERVE    ; 14
 
 ; significant happiness values
 BASE_HAPPINESS        EQU 70

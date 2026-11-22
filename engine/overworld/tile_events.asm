@@ -49,7 +49,7 @@ CheckWarpFacingDown:
 	db COLL_CAVE
 	db COLL_CAVE_74
 	db COLL_WARP_PANEL
-	db COLL_DOOR_75
+	db COLL_NIGHT_DOOR
 	db COLL_DOOR_7D
 	db -1
 
@@ -93,6 +93,8 @@ GetWarpSFX::
 	ld a, [wPlayerStandingTile]
 	ld de, SFX_ENTER_DOOR
 	cp COLL_DOOR
+	ret z
+	cp COLL_NIGHT_DOOR
 	ret z
 	ld de, SFX_WARP_TO
 	cp COLL_WARP_PANEL

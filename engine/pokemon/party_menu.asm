@@ -893,6 +893,7 @@ PrintPartyMenuActionText:
 	dw .Text_Revitalized
 	dw .Text_GrewToLevel
 	dw .Text_CameToItsSenses
+	dw .Text_EnjoyedTheDrink
 
 .Text_RecoveredSomeHP:
 	; recovered @ HP!
@@ -943,6 +944,12 @@ PrintPartyMenuActionText:
 	; came to its senses.
 	text_far _CameToItsSensesText
 	text_end
+
+.Text_EnjoyedTheDrink:
+	text_ram wStringBuffer1
+	text_start
+	line "enjoyed the drink!"
+	done
 
 .PrintText:
 	ld e, a

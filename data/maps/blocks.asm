@@ -1100,3 +1100,8 @@ CeruleanCave2F_Blocks:
 	INCBIN "maps/CeruleanCave2F.ablk"
 CeruleanCaveB1F_Blocks:
 	INCBIN "maps/CeruleanCaveB1F.ablk"
+
+SECTION "Shucks Map Blocks", ROMX
+
+Shucks_Blocks:
+	INCBIN "maps/Shucks.ablk"

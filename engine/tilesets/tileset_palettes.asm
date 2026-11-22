@@ -18,6 +18,8 @@ LoadSpecialMapPalette:
 	jp z, .johto_modern
 	cp TILESET_KANTO
 	jp z, .kanto
+	cp TILESET_SHUCKS
+	jp z, .shucks
 	sub TILESET_KOGAS_ROOM
 	cp NUM_LEAGUE_PALETTE_TILESETS ; Elite Four chambers and Cerulean Gym
 	jp nc, .do_nothing
@@ -112,6 +114,11 @@ LoadSpecialMapPalette:
 
 .mansion_mobile
 	call LoadMansionPalette
+	scf
+	ret
+
+.shucks
+	farcall LoadShucksPalette
 	scf
 	ret
 

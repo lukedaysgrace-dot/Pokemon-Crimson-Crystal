@@ -100,6 +100,7 @@ HMENURETURN_ASM    EQU %11111111
 	const PARTYMENUTEXT_REVIVE
 	const PARTYMENUTEXT_LEVEL_UP
 	const PARTYMENUTEXT_HEAL_CONFUSION
+	const PARTYMENUTEXT_SHUCKS_RESERVE
 
 ; Naming types (see engine/menus/naming_screen.asm)
 	const_def

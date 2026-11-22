@@ -604,8 +604,8 @@ LoadWeatherGraphics::
 	ret
 
 AnimateWeatherOnIdle::
-; Redraw overworld sprites so weather stays consistent while the game
-; idles in a textbox or a window menu (farcalled from the
+; Redraw overworld sprites so weather and animated Shucks NPCs stay active
+; while the game idles in a textbox (farcalled from the
 ; UpdateWeatherSprites stub in home). Full-screen interfaces (Pokedex,
 ; party, Pack, Trainer Card, battles, ...) clear wVramState bit 0,
 ; which turns this into a no-op there. Runs at most once per frame no
@@ -613,9 +613,6 @@ AnimateWeatherOnIdle::
 ; The caller preserves af and hl; bc and de are preserved here.
 	push bc
 	push de
-	ldh a, [hCurWeather]
-	cp OW_WEATHER_RAIN
-	jr c, .done ; NONE, HARSH_SUN and OVERCAST have no particles
 	; wVramState and the object structs UpdateSprites walks live in WRAMX
 	; bank 1. Request2bpp, WaitSFX and friends reach this from code that has
 	; another WRAM bank switched in (battle setup, ability banners, the intro
@@ -635,6 +632,21 @@ AnimateWeatherOnIdle::
 	jr nz, .done
 	bit 0, a
 	jr z, .done
+	ld b, a
+	ldh a, [hCurWeather]
+	cp OW_WEATHER_RAIN
+	ld a, b
+	jr nc, .check_window
+	bit VRAMSTATE_SPEECH_TEXTBOX_F, a
+	jr z, .done
+	ld a, [wMapGroup]
+	cp GROUP_SHUCKS
+	jr nz, .done
+	ld a, [wMapNumber]
+	cp MAP_SHUCKS
+	jr nz, .done
+	jr .may_take_oam_lock
+.check_window
 	; Two kinds of caller are allowed through. A conversation is one, and it may
 	; take the OAM lock over (see below). The other is the plain overworld with no
 	; window up at all, which is where a script sits when it pauses or plays a cry

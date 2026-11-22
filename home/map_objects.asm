@@ -95,6 +95,16 @@ CheckOnWater::
 GetTileCollision::
 ; Get the collision type of tile a.
 
+	cp COLL_NIGHT_DOOR
+	jr nz, .table
+	ld a, [wTimeOfDay]
+	cp NITE_F
+	ld a, LANDTILE
+	ret z
+	ld a, WALLTILE
+	ret
+
+.table
 	push de
 	push hl
 
@@ -189,6 +199,8 @@ CheckWaterfallTile::
 CheckStandingOnEntrance::
 	ld a, [wPlayerStandingTile]
 	cp COLL_DOOR
+	ret z
+	cp COLL_NIGHT_DOOR
 	ret z
 	cp COLL_DOOR_79
 	ret z

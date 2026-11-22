@@ -22,7 +22,8 @@ OpenMartDialog::
 	dw BargainShop
 	dw Pharmacist
 	dw RooftopSale
-	dw HeldItemShop
+	dw BuyOnlyMart ; MARTTYPE_HELD_ITEMS (with special prices)
+	dw BuyOnlyMart ; MARTTYPE_SHUCKS
 
 MartDialog:
 	ld a, MARTTYPE_STANDARD
@@ -73,7 +74,7 @@ Pharmacist:
 	call MartTextbox
 	ret
 
-HeldItemShop:
+BuyOnlyMart:
 ; buy-only mart with no greeting; the NPC script provides its own intro text
 	call FarReadMart
 	call LoadStandardMenuHeader
@@ -391,6 +392,8 @@ LoadBuyMenuText:
 	ret
 
 MartAskPurchaseQuantity:
+	call IsShucksReservePurchase
+	jp z, ShucksReserveAskPurchaseQuantity
 	call GetMartDialogGroup ; gets a pointer from GetMartDialogGroup.MartTextFunctionPointers
 	inc hl
 	inc hl
@@ -419,6 +422,7 @@ GetMartDialogGroup:
 	dwb .PharmacyPointers, 0
 	dwb .StandardMartPointers, 2
 	dwb .StandardMartPointers, 0 ; MARTTYPE_HELD_ITEMS
+	dwb .StandardMartPointers, 0 ; MARTTYPE_SHUCKS
 
 .StandardMartPointers:
 	dw Text_Mart_HowMany
@@ -474,10 +478,14 @@ BuyMenuLoop:
 	jr z, .useless_pointer
 
 .useless_pointer
+	call CheckShucksMartHours
+	jr c, .set_carry
 	call MartAskPurchaseQuantity
 	jr c, .cancel
 	call MartConfirmPurchase
 	jr c, .cancel
+	call CheckShucksMartHours
+	jr c, .set_carry
 	ld de, wMoney
 	ld bc, hMoneyTemp
 	ld a, 3 ; useless load
@@ -486,11 +494,11 @@ BuyMenuLoop:
 	ld hl, wNumItems
 	call ReceiveItem
 	jr nc, .insufficient_bag_space
-	call RecordBargainShopPurchase
 	call PlayTransactionSound
 	ld de, wMoney
 	ld bc, hMoneyTemp
 	call TakeMoney
+	call RecordLimitedStockPurchase
 	ld a, MARTTEXT_HERE_YOU_GO
 	call LoadBuyMenuText
 	call JoyWaitAorB
@@ -518,9 +526,10 @@ BuyMenuLoop:
 	and a
 	ret
 
-RecordBargainShopPurchase:
-; Only the limited-stock bargain shop owns this one-byte bitmap. Ordinary
-; and held-item shops have unlimited stock, including rows beyond bit 7.
+RecordLimitedStockPurchase:
+	call IsShucksReservePurchase
+	jr z, .reserve
+	; Only the bargain shop owns this stock bitmap.
 	ld a, [wMartType]
 	cp MARTTYPE_BARGAIN
 	ret nz
@@ -530,6 +539,77 @@ RecordBargainShopPurchase:
 	ld b, SET_FLAG
 	ld hl, wBargainShopFlags
 	jp FlagAction
+.reserve
+	ldh a, [hHours]
+	cp MORN_HOUR
+	ld a, SHUCKS_RESERVE_SOLD_OVERNIGHT
+	jr c, .record_reserve
+	ld a, SHUCKS_RESERVE_SOLD_EVENING
+.record_reserve
+	ld [wShucksReserveStock], a
+	ret
+
+IsShucksReservePurchase:
+	ld a, [wMartType]
+	cp MARTTYPE_SHUCKS
+	ret nz
+	ld a, [wCurItem]
+	call GetItemIndexFromID
+	ld a, h
+	cp HIGH(SHUCKS_RESERVE)
+	ret nz
+	ld a, l
+	cp LOW(SHUCKS_RESERVE)
+	ret
+
+CheckShucksMartHours:
+	ld a, [wMartType]
+	cp MARTTYPE_SHUCKS
+	jr z, .check_time
+	and a
+	ret
+.check_time
+	call UpdateTime
+	farcall CheckDailyResetTimer
+	ld a, [wTimeOfDay]
+	cp NITE_F
+	ret z
+	ld hl, Text_ShucksClosed
+	call PrintText
+	call JoyWaitAorB
+	scf
+	ret
+
+ShucksReserveAskPurchaseQuantity:
+	ld a, [wShucksReserveStock]
+	and a
+	jr nz, .sold_out
+	ld a, 1
+	ld [wItemQuantityChangeBuffer], a
+	farcall GetItemPrice
+	xor a
+	ldh [hMoneyTemp], a
+	ld a, d
+	ldh [hMoneyTemp + 1], a
+	ld a, e
+	ldh [hMoneyTemp + 2], a
+	ret
+.sold_out
+	ld hl, Text_ShucksReserveSoldOut
+	call PrintText
+	call JoyWaitAorB
+	scf
+	ret
+
+Text_ShucksClosed::
+	text "We're closed"
+	line "until night."
+	done
+
+Text_ShucksReserveSoldOut:
+	text "Reserve is sold"
+	line "out for tonight."
+	done
 
 StandardMartAskPurchaseQuantity:
 	ld a, [wMartType]

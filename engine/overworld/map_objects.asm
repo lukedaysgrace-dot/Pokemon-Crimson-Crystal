@@ -160,6 +160,11 @@ Function4440:
 	bit INVISIBLE_F, [hl]
 	jp nz, SetFacingStanding
 asm_4448:
+	ld hl, OBJECT_MOVEMENTTYPE
+	add hl, bc
+	ld a, [hl]
+	cp SPRITEMOVEDATA_ANIMATED_DOWN
+	jp z, SetFacingStepAction
 	ld de, ObjectActionPairPointers + 2 ; use second column
 	jr _HandleObjectAction
 

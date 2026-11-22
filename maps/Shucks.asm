@@ -1,36 +1,214 @@
-; Standalone draft: 10 x 8 blocks, 20 x 16 movement cells (GSC-style interior).
-; Dedicated tileset: Shucks (see data/tilesets/shucks.asm).
-; Border block: $00 (solid black, all WALL).
-; Deliberately absent from all map tables; no warps or world connections.
-; Future entrance: the red rug at (9,15), (10,15). Both are ordinary FLOOR now.
-; Regenerate graphics/blocks with: python tools/build_shucks.py
-; Always night: shucks.pal is night-graded at build time (stage lights stay
-; bright), so the bar looks the same at every hour. When registering, give the
-; map entry PALETTE_NITE too, e.g.
-;	map Shucks, TILESET_SHUCKS, INDOOR, <landmark>, <music>, FALSE, PALETTE_NITE, FISHGROUP_NONE
-; and load TilesetShucksPalette from LoadSpecialMapPalette for TILESET_SHUCKS.
-
 	object_const_def
 	const SHUCKS_BARTENDER
-	const SHUCKS_DANCER1
-	const SHUCKS_DANCER2
+	const SHUCKS_HOSTESS
+	const SHUCKS_STAGE_DANCER
 	const SHUCKS_POOL_PLAYER
 	const SHUCKS_SAILOR
 	const SHUCKS_PATRON
 	const SHUCKS_REGULAR
+	const SHUCKS_DANCING_PATRON
+	const SHUCKS_GAMEBOY_KID
+	const SHUCKS_SHUCKLE
+	const SHUCKS_GAMBLER
 
 Shucks_MapScripts:
 	db 0 ; scene scripts
 	db 0 ; callbacks
 
 ShucksBartenderScript:
-	jumptextfaceplayer ShucksBartenderText
+	faceplayer
+	checktime NITE
+	iffalse .Closed
+	opentext
+	writetext ShucksBartenderText
+	waitbutton
+	scall ShucksShuckleGreeting
+	writetext ShucksBartenderShopText
+	waitbutton
+	pokemart MARTTYPE_SHUCKS, MART_SHUCKS
+	closetext
+	turnobject SHUCKS_BARTENDER, DOWN
+	end
+.Closed:
+	farjumptext Text_ShucksClosed
 
-ShucksDancerScript:
-	jumptextfaceplayer ShucksDancerText
+ShucksDancingPatronScript:
+	opentext
+	writetext ShucksDancingPatronJamText
+	waitbutton
+	callasm ShucksStopDancing
+	faceplayer
+	writetext ShucksDancingPatronGrooveText
+	waitbutton
+	turnobject SHUCKS_DANCING_PATRON, DOWN
+	callasm ShucksResumeDancing
+	closetext
+	end
+
+ShucksStopDancing:
+	ld a, SHUCKS_DANCING_PATRON - 1
+	call CheckObjectVisibility
+	ret c
+	ld hl, OBJECT_FLAGS1
+	add hl, bc
+	set SLIDING_F, [hl] ; hold the standing frame while he talks
+	ret
+
+ShucksResumeDancing:
+	ld a, SHUCKS_DANCING_PATRON - 1
+	call CheckObjectVisibility
+	ret c
+	ld hl, OBJECT_FLAGS1
+	add hl, bc
+	res SLIDING_F, [hl]
+	ret
+
+ShucksGameboyKidScript:
+	faceplayer
+	opentext
+	writetext ShucksGameboyKidText
+	waitbutton
+	turnobject SHUCKS_GAMEBOY_KID, DOWN
+	writetext ShucksBartenderReplyText
+	waitbutton
+	writetext ShucksShuckleQuestionText
+	cry SHUCKLE
+	waitbutton
+	closetext
+	end
+
+ShucksShuckleScript:
+	opentext
+	scall ShucksShuckleGreeting
+	closetext
+	end
+
+ShucksShuckleGreeting:
+	cry SHUCKLE
+	writetext ShucksShuckleGreetingText
+	waitbutton
+	end
+
+ShucksHostessScript:
+	jumptextfaceplayer ShucksHostessText
+
+ShucksStageDancerScript:
+	jumptext ShucksStageDancerText
 
 ShucksPoolPlayerScript:
 	jumptextfaceplayer ShucksPoolPlayerText
+
+ShucksGamblerScript:
+	faceplayer
+	opentext
+	writetext ShucksGamblerText
+	waitbutton
+	callasm ShucksPutGamblerToSleep
+	closetext
+	pause 20
+	readvar VAR_YCOORD
+	ifnotequal 10, .Approach
+	applymovement PLAYER, ShucksMakeRoomMovement
+.Approach:
+	callasm ShucksKeepPoolPlayerOnMap
+	applymovement SHUCKS_POOL_PLAYER, ShucksPoolPlayerApproachMovement
+	opentext
+	writetext ShucksPoolPlayerEscortText
+	waitbutton
+	callasm ShucksWakeGambler
+	closetext
+	callasm ShucksKeepGamblerOnMap
+	follow SHUCKS_POOL_PLAYER, SHUCKS_GAMBLER
+	applymovement SHUCKS_POOL_PLAYER, ShucksEscortToExitMovement
+	pause 12
+	stopfollow
+	disappear SHUCKS_POOL_PLAYER
+	applymovement SHUCKS_GAMBLER, ShucksGamblerExitMovement
+	disappear SHUCKS_GAMBLER
+	end
+
+ShucksPutGamblerToSleep:
+	ld a, SPRITE_GAMBLER_ASLEEP
+	jr ShucksSetGamblerSprite
+
+ShucksWakeGambler:
+	ld a, SPRITE_GAMBLER
+ShucksSetGamblerSprite:
+	push af
+	ld a, SHUCKS_GAMBLER - 1
+	call CheckObjectVisibility
+	jr c, .missing
+	pop af
+	ld e, a
+	call GetSpriteVTile
+	ret c
+	ld hl, OBJECT_SPRITE_TILE
+	add hl, bc
+	ld [hl], a
+	ld hl, OBJECT_SPRITE
+	add hl, bc
+	ld [hl], e
+	; The sleeping sheet has a single facing. The awake gambler faces his escort.
+	ld a, OW_DOWN
+	call SetSpriteDirection
+	jp UpdateSprites
+.missing
+	pop af
+	ret
+
+ShucksKeepPoolPlayerOnMap:
+	ld a, SHUCKS_POOL_PLAYER - 1
+	jr ShucksKeepEscortObjectOnMap
+
+ShucksKeepGamblerOnMap:
+	ld a, SHUCKS_GAMBLER - 1
+ShucksKeepEscortObjectOnMap:
+	push af
+	call CheckObjectVisibility
+	jr nc, .pin
+	pop af
+	push af
+	call _CopyObjectStruct
+	pop af
+	push af
+	call CheckObjectVisibility
+.pin
+	; The escort continues to the rug even beyond the player's viewport.
+	jr c, .done
+	ld hl, OBJECT_FLAGS1
+	add hl, bc
+	set WONT_DELETE_F, [hl]
+.done
+	pop af
+	ret
+
+ShucksMakeRoomMovement:
+	step LEFT
+	turn_head RIGHT
+	step_end
+
+ShucksPoolPlayerApproachMovement:
+	step DOWN
+	step DOWN
+rept 5
+	step LEFT
+endr
+	step UP
+	step_end
+
+ShucksEscortToExitMovement:
+	step DOWN
+rept 7
+	step RIGHT
+endr
+rept 4
+	step DOWN
+endr
+	step_end
+
+ShucksGamblerExitMovement:
+	step DOWN
+	step_end
 
 ShucksSailorScript:
 	jumptextfaceplayer ShucksSailorText
@@ -57,28 +235,138 @@ ShucksSpeakerScript:
 	jumptext ShucksSpeakerText
 
 ShucksBartenderText:
-	text "Welcome to SHUCKS."
-
-	para "Sodas, juices and"
-	line "MOOMOO MILK on the"
-	cont "shelf behind me."
-
-	para "The stage show"
-	line "starts at dusk."
+	text "Hey there kiddo,"
+	line "the name's BUCK"
+	cont "and this here's my"
+	cont "partner in crime"
+	cont "SHUCK!"
 	done
 
-ShucksDancerText:
-	text "We're rehearsing"
-	line "for tonight's set."
-	para "Find a seat and"
-	line "enjoy the music!"
+ShucksBartenderShopText:
+	text "You're a little"
+	line "young to be in"
+	cont "here but no"
+	cont "worries, we have"
+	cont "options for kids."
+
+	para "What would you"
+	line "like?"
+	done
+
+ShucksDancingPatronJamText:
+	text "oh yeah, this is"
+	line "my jam!"
+	done
+
+ShucksDancingPatronGrooveText:
+	text "Hey buddy, you"
+	line "mind not throwing"
+	cont "off my groove?"
+	done
+
+ShucksGameboyKidText:
+	text "Dad says I spend"
+	line "too much time"
+	cont "playing video"
+	cont "games."
+
+	para "He runs a bar with"
+	line "a SHUCKLE."
+
+	para "Who's the weird"
+	line "one here?"
+	done
+
+ShucksBartenderReplyText:
+	text "BUCK: I heard that!"
+
+	para "Ol' Shuck here"
+	line "works harder than"
+	cont "you do!"
+	done
+
+ShucksShuckleQuestionText:
+	text "SHUCK?"
+	done
+
+ShucksShuckleGreetingText:
+	text "SHUCK!"
+	done
+
+ShucksHostessText:
+	text "Hey there hon,"
+	line "anything I can get"
+	cont "you from the kids"
+	cont "menu?"
+	done
+
+ShucksStageDancerText:
+	text "Well hey there"
+	line "sweetie! Looking"
+	cont "for a little"
+	cont "excitement?"
+
+	para "On Friday nights,"
+	line "we spice things up"
+	cont "with a special"
+	cont "battle challenge!"
+
+	para "Beat all the"
+	line "ladies and I'll"
+	cont "make sure you"
+	cont "leave with"
+	cont "something worth"
+	cont "your trouble!"
+
+	para "So bring your"
+	line "toughest #MON"
+	cont "and show us what"
+	cont "you got!"
 	done
 
 ShucksPoolPlayerText:
-	text "A clean break and"
-	line "a little patience."
-	para "That's my entire"
-	line "pool strategy."
+	text "This old coot"
+	line "comes in here all"
+	cont "the time and"
+	cont "always gets tanked"
+	cont "before he even"
+	cont "manages to start"
+	cont "the game."
+	done
+
+ShucksPoolPlayerEscortText:
+	text "You'd think by now"
+	line "BUCK wouldn't"
+	cont "allow him in here,"
+	cont "but he's too"
+	cont "kindhearted to"
+	cont "kick him out."
+
+	para "I guess I'll help"
+	line "the poor guy out"
+	cont "this time."
+	done
+
+ShucksGamblerText:
+	text "H-hey! Wanna play"
+	line "a round?"
+
+	para "I used to be the"
+	line "best pool player"
+	cont "in JOHTO!"
+
+	para "Watch this shot!"
+	line "I'll show ya how"
+	cont "it's done!"
+
+	para "…Wait. Why are"
+	line "there three cue"
+	cont "balls?"
+
+	para "HIC!"
+
+	para "…I think I need"
+	line "to sit down…"
 	done
 
 ShucksSailorText:
@@ -109,12 +397,18 @@ ShucksRegularText:
 ShucksMenuText:
 	text "SHUCKS"
 
-	para "SODA - JUICE -"
-	line "MOOMOO MILK -"
-	cont "WATER"
+	para "SHUCK'S SPECIAL"
+	line "¥800"
+	cont "Our signature"
+	cont "drink."
 
-	para "Pool tables and"
-	line "live stage shows."
+	para "Ol' Shuck's secret"
+	line "recipe. Don't ask"
+	cont "what's in it!"
+
+	para "SHUCK'S RESERVE"
+	line "¥1,500"
+	cont "One per night."
 	done
 
 ShucksPoolTableText:
@@ -143,7 +437,9 @@ ShucksSpeakerText:
 
 Shucks_MapEvents:
 	db 0, 0 ; filler
-	db 0 ; warp events -- reserved until the map is placed
+	db 2 ; warp events
+	warp_event  9, 15, GOLDENROD_CITY, 16
+	warp_event 10, 15, GOLDENROD_CITY, 16
 	db 0 ; coord events
 	db 9 ; bg events
 	bg_event 10,  0, BGEVENT_UP, ShucksMenuScript
@@ -155,11 +451,15 @@ Shucks_MapEvents:
 	bg_event  2,  3, BGEVENT_READ, ShucksBottleShelfScript
 	bg_event 11,  3, BGEVENT_READ, ShucksSpeakerScript
 	bg_event 19,  3, BGEVENT_READ, ShucksSpeakerScript
-	db 7 ; object events
-	object_event  4,  2, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksBartenderScript, -1
-	object_event 14,  2, SPRITE_HOSTESS, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksDancerScript, -1
-	object_event 16,  3, SPRITE_HOSTESS, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksDancerScript, -1
-	object_event  7,  9, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksPoolPlayerScript, -1
-	object_event  3,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksSailorScript, -1
+	db 11 ; object events
+	object_event  4,  2, SPRITE_SILPH_WORKER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksBartenderScript, -1
+	object_event  8,  7, SPRITE_HOSTESS, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksHostessScript, -1
+	object_event 14,  3, SPRITE_HOSTESS, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksStageDancerScript, -1
+	object_event  7,  9, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksPoolPlayerScript, -1
+	object_event  1,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksSailorScript, -1
 	object_event 10, 10, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksPatronScript, -1
 	object_event 19, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksRegularScript, -1
+	object_event 13,  5, SPRITE_FAT_GUY, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksDancingPatronScript, -1
+	object_event  5,  4, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksGameboyKidScript, -1
+	object_event  3,  2, SPRITE_SHUCKLE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksShuckleScript, -1
+	object_event  2,  9, SPRITE_GAMBLER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksGamblerScript, -1

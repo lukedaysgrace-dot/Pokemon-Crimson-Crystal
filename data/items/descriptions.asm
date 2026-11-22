@@ -306,6 +306,8 @@ ItemDescriptions:
 	dw QuestionMarkDesc ; retired item
 	dw EXP_RELAYDesc
 	dw DUBIOUS_DISCDesc
+	dw SHUCKS_SPECIALDesc
+	dw SHUCKS_RESERVEDesc
 
 MasterBallDesc:
 	db   "The best BALL. It"
@@ -1212,3 +1214,11 @@ EXP_RELAYDesc:
 DUBIOUS_DISCDesc:
 	db   "A transparent disc"
 	next "of dubious data.@"
+
+SHUCKS_SPECIALDesc:
+	db   "50 HP+cures status"
+	next "75 HP if healthy.@"
+
+SHUCKS_RESERVEDesc:
+	db   "Heals 50 HP and"
+	next "adds 5 friendship.@"

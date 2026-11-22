@@ -43,6 +43,7 @@
 	const TILESET_LORELEIS_ROOM
 	const TILESET_LANCES_ROOM
 	const TILESET_CERULEAN_GYM         ; TCG swimming pool (tools/build_cerulean_gym.py)
+	const TILESET_SHUCKS
 NUM_LEAGUE_ROOM_TILESETS EQU TILESET_LANCES_ROOM - TILESET_KOGAS_ROOM + 1
 ; Tilesets from TILESET_KOGAS_ROOM up to here load a whole BG palette set
 ; from LeagueRoomPalettes (engine/tilesets/league_room_palettes.asm).

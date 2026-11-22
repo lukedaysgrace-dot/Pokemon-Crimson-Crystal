@@ -179,6 +179,7 @@ MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 	const SPRITEMOVEDATA_POKEMON_DOWN         ; 2d; walking frames in place
 	const SPRITEMOVEDATA_POKEMON_UP           ; 2e
 	const SPRITEMOVEDATA_STILL_BG_ALIGNED     ; 2f; still, 4px lower to sit on BG tiles
+	const SPRITEMOVEDATA_ANIMATED_DOWN        ; 30; walking frames in place, including during text
 NUM_SPRITEMOVEDATA EQU const_value
 
 ; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)

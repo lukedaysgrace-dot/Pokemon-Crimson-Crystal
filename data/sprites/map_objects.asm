@@ -390,3 +390,11 @@ SpriteMovementData::
 	db FIXED_FACING | SLIDING ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
+
+; SPRITEMOVEDATA_ANIMATED_DOWN
+	db SPRITEMOVEFN_ANIMATED_STANDING
+	db DOWN
+	db OBJECT_ACTION_STEP
+	db 0
+	db 0
+	db 0

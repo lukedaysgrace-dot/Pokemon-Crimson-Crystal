@@ -3001,7 +3001,7 @@ wDailyFlags1:: db
 wDailyFlags2:: db
 wSwarmFlags:: db
 wFishingContestDailyFlags:: db ; also cleared by CheckDailyResetTimer
-	ds 1
+wShucksReserveStock:: db ; 0 if available, otherwise SHUCKS_RESERVE_SOLD_*
 wTimerEventStartDay:: db
 	ds 3
 

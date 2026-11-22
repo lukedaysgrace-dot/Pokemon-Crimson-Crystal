@@ -385,6 +385,11 @@ INCLUDE "maps/BluesHouse.asm"
 INCLUDE "maps/OaksLab.asm"
 
 
+SECTION "Shucks Map Scripts", ROMX
+
+INCLUDE "maps/Shucks.asm"
+
+
 SECTION "Map Scripts 20", ROMX
 
 INCLUDE "maps/CherrygroveCity.asm"

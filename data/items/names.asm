@@ -304,3 +304,5 @@ ItemNames::
 	db "?@" ; retired $012f
 	db "EXP RELAY@"
 	db "DUBIOUS DISC@"
+	db "SHUCK'S SPC.@"
+	db "SHUCK'S RSV.@"

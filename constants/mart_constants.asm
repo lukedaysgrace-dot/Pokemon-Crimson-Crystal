@@ -6,6 +6,7 @@
 	const MARTTYPE_PHARMACY
 	const MARTTYPE_ROOFTOP
 	const MARTTYPE_HELD_ITEMS
+	const MARTTYPE_SHUCKS
 
 ; Marts indexes (see data/items/marts.asm)
 	const_def
@@ -48,3 +49,4 @@
 	const MART_EXPANDED_1
 	const MART_EXPANDED_2
 	const MART_EXPANDED_3
+	const MART_SHUCKS

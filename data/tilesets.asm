@@ -54,3 +54,4 @@ Tilesets::
 	tileset TilesetLoreleisRoom
 	tileset TilesetLancesRoom
 	tileset TilesetCeruleanGym
+	tileset TilesetShucks

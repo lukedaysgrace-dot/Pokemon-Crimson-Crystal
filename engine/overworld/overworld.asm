@@ -143,6 +143,12 @@ AddIndoorSprites:
 	ld a, [hl]
 	and a
 	jr z, .skip
+	cp SPRITE_GAMBLER
+	jr nz, .add
+	; Keep both poses loaded so the live object can switch without reloading graphics.
+	call AddSpriteGFX
+	ld a, SPRITE_GAMBLER_ASLEEP
+.add
 	call AddSpriteGFX
 .skip
 	ld de, OBJECT_LENGTH
@@ -210,12 +216,7 @@ GetSprite:
 	call GetIndigoPlayerSprite
 	ret c
 
-	ld hl, OverworldSprites + SPRITEDATA_ADDR
-	dec a
-	ld c, a
-	ld b, 0
-	ld a, NUM_SPRITEDATA_FIELDS
-	call AddNTimes
+	call GetNPCSpriteData
 	; load the address into de
 	ld a, [hli]
 	ld e, a
@@ -236,6 +237,17 @@ GetSprite:
 	ld l, [hl]
 	ld h, a
 	ret
+
+GetNPCSpriteData:
+	ld hl, GamblerSpriteData
+	cp SPRITE_GAMBLER
+	ret z
+	ld hl, OverworldSprites
+	dec a
+	ld c, a
+	ld b, 0
+	ld a, NUM_SPRITEDATA_FIELDS
+	jp AddNTimes
 
 GetIndigoPlayerSprite:
 	ld d, a
@@ -331,6 +343,8 @@ GetMintPlayerSprite:
 GetMonSprite:
 ; Return carry if a monster sprite was loaded.
 
+	cp SPRITE_GAMBLER
+	jr z, .Normal
 	cp SPRITE_POKEMON
 	jr c, .Normal
 	cp SPRITE_DAY_CARE_MON_1
@@ -418,17 +432,17 @@ _DoesSpriteHaveFacings::
 ; Checks to see whether we can apply a facing to a sprite.
 ; Carry skips the second sprite table for still/big sprites.
 	call ResolveVariableSprite
+	cp SPRITE_GAMBLER
+	jr z, .npc
 	cp SPRITE_POKEMON
 	jr nc, .only_down
 
+.npc
 	push hl
 	push bc
-	ld hl, OverworldSprites + SPRITEDATA_TYPE
-	dec a
-	ld c, a
-	ld b, 0
-	ld a, NUM_SPRITEDATA_FIELDS
-	call AddNTimes
+	call GetNPCSpriteData
+	ld bc, SPRITEDATA_TYPE
+	add hl, bc
 	ld a, [hl]
 	pop bc
 	pop hl
@@ -450,6 +464,8 @@ GetOverworldSpriteType::
 ; Resolve variable NPCs and return their declared type without touching the
 ; caller's object/graphics pointers. SpriteMons use two-frame icon animation.
 	call ResolveVariableSprite
+	cp SPRITE_GAMBLER
+	jr z, .npc
 	cp SPRITE_POKEMON
 	jr c, .npc
 	ld a, MON_ICON_SPRITE
@@ -457,12 +473,9 @@ GetOverworldSpriteType::
 .npc
 	push hl
 	push bc
-	ld hl, OverworldSprites + SPRITEDATA_TYPE
-	dec a
-	ld c, a
-	ld b, 0
-	ld a, NUM_SPRITEDATA_FIELDS
-	call AddNTimes
+	call GetNPCSpriteData
+	ld bc, SPRITEDATA_TYPE
+	add hl, bc
 	ld a, [hl]
 	pop bc
 	pop hl
@@ -515,12 +528,9 @@ _GetSpritePalette::
 .not_indigo
 	ld a, b ; the resolved sprite id, NOT c (see above)
 
-	ld hl, OverworldSprites + SPRITEDATA_PALETTE
-	dec a
-	ld c, a
-	ld b, 0
-	ld a, NUM_SPRITEDATA_FIELDS
-	call AddNTimes
+	call GetNPCSpriteData
+	ld bc, SPRITEDATA_PALETTE
+	add hl, bc
 	ld c, [hl]
 	ret
 

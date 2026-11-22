@@ -268,6 +268,8 @@ ItemEffects:
 	dw NoEffect ; SALAC_BERRY
 	dw ExpRelayEffect ; EXP_RELAY
 	dw EvoStoneEffect ; DUBIOUS_DISC
+	dw ShucksSpecialEffect
+	dw ShucksReserveEffect
 
 ExpRelayEffect:
 	farcall ExpRelayCore
@@ -1724,6 +1726,22 @@ BattlemonRestoreHealth:
 	ret
 
 HealStatus:
+	call ClearBattleMonStatus
+	ret nc
+	call GetItemHealingAction
+	ld a, c
+	cp %11111111
+	jr nz, .not_full_heal
+	ld hl, wPlayerSubStatus3
+	res SUBSTATUS_CONFUSED, [hl]
+.not_full_heal
+RecalculateHealedBattleMonStats:
+	push bc
+	farcall CalcPlayerStats
+	pop bc
+	ret
+
+ClearBattleMonStatus:
 	call IsItemUsedOnBattleMon
 	ret nc
 	xor a
@@ -1733,16 +1751,7 @@ HealStatus:
 	farcall ToxicClearPlayer_Core
 	ld hl, wPlayerSubStatus1
 	res SUBSTATUS_NIGHTMARE, [hl]
-	call GetItemHealingAction
-	ld a, c
-	cp %11111111
-	jr nz, .not_full_heal
-	ld hl, wPlayerSubStatus3
-	res SUBSTATUS_CONFUSED, [hl]
-.not_full_heal
-	push bc
-	farcall CalcPlayerStats
-	pop bc
+	scf
 	ret
 
 GetItemHealingAction:
@@ -1907,6 +1916,73 @@ RestoreHPEffect:
 	call ItemRestoreHP
 	jp StatusHealer_Jumptable
 
+ShucksSpecialEffect:
+	call SelectShucksDrinkTarget
+	jp nz, StatusHealer_Jumptable
+	ld a, MON_STATUS
+	call GetPartyParamLocation
+	ld a, [hl]
+	and a
+	jr z, .no_status
+	ld [hl], 0
+	call ClearBattleMonStatus
+	call c, RecalculateHealedBattleMonStats
+	call IsMonAtFullHealth
+	ld a, PARTYMENUTEXT_HEAL_ALL
+	jr nc, FinishShucksDrink
+	ld de, 50
+	jr HealWithShucksDrink
+.no_status
+	call IsMonAtFullHealth
+	jp nc, StatusHealer_NoEffect
+	ld de, 75
+	jr HealWithShucksDrink
+
+ShucksReserveEffect:
+	call SelectShucksDrinkTarget
+	jp nz, StatusHealer_Jumptable
+	call IsMonAtFullHealth
+	push af
+	jr c, .raise_friendship
+	ld a, MON_HAPPINESS
+	call GetPartyParamLocation
+	ld a, [hl]
+	cp 255
+	jr nz, .raise_friendship
+	pop af
+	jp StatusHealer_NoEffect
+.raise_friendship
+	ld c, HAPPINESS_SHUCKS_RESERVE
+	farcall ChangeHappiness
+	pop af
+	ld a, PARTYMENUTEXT_SHUCKS_RESERVE
+	jr nc, FinishShucksDrink
+	ld de, 50
+
+HealWithShucksDrink:
+	call ApplyHPHealingItem
+	jp StatusHealer_Jumptable
+
+FinishShucksDrink:
+	push af
+	call Play_SFX_FULL_HEAL
+	pop af
+	call FinishHealingItem
+	jp StatusHealer_Jumptable
+
+SelectShucksDrinkTarget:
+	ld b, PARTYMENUACTION_HEALING_ITEM
+	call UseItem_SelectMon
+	ld a, 2
+	jr c, .done
+	call IsMonFainted
+	ld a, 1
+	jr z, .done
+	xor a
+.done
+	and a
+	ret
+
 EnergypowderEffect:
 	ld c, HAPPINESS_BITTERPOWDER
 	jr EnergypowderEnergyRootCommon
@@ -1942,13 +2018,15 @@ ItemRestoreHP:
 	ld a, 1
 	ret nc
 
+	farcall GetHealingItemAmount
+ApplyHPHealingItem:
 	xor a
 	ld [wLowHealthAlarm], a
-	call GetHealingItemAmount
 	call RestoreHealth
 	call BattlemonRestoreHealth
 	call HealHP_SFX_GFX
 	ld a, PARTYMENUTEXT_HEAL_HP
+FinishHealingItem:
 	ld [wPartyMenuActionText], a
 	call ItemActionTextWaitButton
 	call UseDisposableItem
@@ -2235,6 +2313,9 @@ GetOneFifthMaxHP:
 	pop bc
 	ret
 
+PUSHS
+SECTION "Healing Item Amounts", ROMX
+
 GetHealingItemAmount:
 	push hl
 	ld a, [wCurItem]
@@ -2288,6 +2369,8 @@ GetHealingItemAmount:
 	ret
 
 INCLUDE "data/items/heal_hp.asm"
+
+POPS
 
 Softboiled_MilkDrinkFunction:
 ; Softboiled/Milk Drink in the field

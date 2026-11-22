@@ -224,6 +224,11 @@ GamblerAsleepSpriteGFX::      INCBIN "gfx/sprites/gambler_asleep.2bpp"
 GamblerAsleepSpriteGFXEnd::
 assert GamblerAsleepSpriteGFXEnd - GamblerAsleepSpriteGFX == 4 * 16
 
+SECTION "Gambler Walking Sprite", ROMX
+GamblerSpriteGFX:: INCBIN "gfx/sprites/gambler.2bpp"
+.end
+assert .end - GamblerSpriteGFX == 24 * 16
+
 SECTION "Balloon Sprite", ROMX
 ; Two 16x16 frames, animated in place by SPRITEMOVEDATA_POKEMON.
 BalloonSpriteGFX::             INCBIN "gfx/sprites/balloon.2bpp"

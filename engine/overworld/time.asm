@@ -92,6 +92,9 @@ RestartDailyResetTimer:
 CheckDailyResetTimer::
 	ld hl, wDailyResetTimer
 	call CheckDayDependentEventHL
+	push af
+	call UpdateShucksReserveStock
+	pop af
 	ret nc
 	xor a
 	ld [wWeatherRandomDay], a
@@ -101,7 +104,7 @@ CheckDailyResetTimer::
 	ld [hli], a ; wDailyFlags1
 	ld [hli], a ; wDailyFlags2
 	ld [hli], a ; wSwarmFlags
-	ld [hl], a  ; wSwarmFlags + 1
+	ld [hl], a  ; wFishingContestDailyFlags
 	ld hl, wDailyRematchFlags
 rept 4
 	ld [hli], a
@@ -124,6 +127,48 @@ endr
 	call SampleKenjiBreakCountdown
 .DontRestartKenjiBreakCountdown:
 	jr RestartDailyResetTimer
+
+UpdateShucksReserveStock:
+	ld hl, wShucksReserveStock
+	ld a, [hl]
+	and a
+	ret z
+	cp SHUCKS_RESERVE_SOLD_LEGACY
+	jr nz, .check_day
+	; Older saves stored a calendar-day flag. Use the saved hour to place
+	; that purchase in the evening or the previous night's overnight hours.
+	ld a, [wRTC + 1]
+	cp NITE_HOUR
+	ld a, SHUCKS_RESERVE_SOLD_OVERNIGHT
+	jr c, .migrate
+	ld a, SHUCKS_RESERVE_SOLD_EVENING
+.migrate
+	ld [hl], a
+.check_day
+	ld a, [wDaysSince]
+	and a
+	jr z, .same_day
+	dec a
+	jr nz, .restock
+	ldh a, [hHours]
+	cp MORN_HOUR
+	jr nc, .restock
+	; The evening purchase still counts after midnight on the same shift.
+	ld a, [hl]
+	cp SHUCKS_RESERVE_SOLD_EVENING
+	jr nz, .restock
+	ld [hl], SHUCKS_RESERVE_SOLD_OVERNIGHT
+	ret
+.same_day
+	ldh a, [hHours]
+	cp MORN_HOUR
+	ret c
+	ld a, [hl]
+	cp SHUCKS_RESERVE_SOLD_OVERNIGHT
+	ret nz
+.restock
+	ld [hl], 0
+	ret
 
 SampleKenjiBreakCountdown:
 ; Generate a random number between 3 and 6
