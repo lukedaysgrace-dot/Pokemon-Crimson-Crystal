@@ -102,6 +102,9 @@ ShucksGamblerScript:
 	faceplayer
 	opentext
 	writetext ShucksGamblerText
+	buttonsound
+	turnobject SHUCKS_GAMBLER, RIGHT
+	writetext ShucksGamblerAfterShotText
 	waitbutton
 	callasm ShucksPutGamblerToSleep
 	closetext
@@ -358,8 +361,10 @@ ShucksGamblerText:
 	para "Watch this shot!"
 	line "I'll show ya how"
 	cont "it's done!"
+	done
 
-	para "…Wait. Why are"
+ShucksGamblerAfterShotText:
+	text "…Wait. Why are"
 	line "there three cue"
 	cont "balls?"
 
@@ -461,5 +466,5 @@ Shucks_MapEvents:
 	object_event 19, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksRegularScript, -1
 	object_event 13,  5, SPRITE_FAT_GUY, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksDancingPatronScript, -1
 	object_event  5,  4, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksGameboyKidScript, -1
-	object_event  3,  2, SPRITE_SHUCKLE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksShuckleScript, -1
+	object_event  3,  2, SPRITE_SHUCKLE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksShuckleScript, -1
 	object_event  2,  9, SPRITE_GAMBLER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksGamblerScript, -1
