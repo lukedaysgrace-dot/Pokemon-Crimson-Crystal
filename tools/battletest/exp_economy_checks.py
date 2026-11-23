@@ -82,6 +82,19 @@ def main():
                     check(result() == min(65535, expected + expected // 2), "Lucky Egg saturation")
                 call(h, "UpdateLevelCap")
                 check(m.read("wLevelCap") == (caps[n] if hard and n < 16 else 100), f"cap {hard}/{n}")
+        # CalcLevel must enforce the absolute ceiling even with a bad cached
+        # cap and more EXP than a Pokémon can normally acquire.
+        species = call(h, "GetPokemonIDFromIndex", HL=h.con.species_index("TOTODILE"))
+        m.write("wTempMonSpecies", species)
+        for cap, expected in ((0, 100), (1, 1), (10, 10), (100, 100), (101, 100), (130, 100), (255, 100)):
+            m.write("wLevelCap", cap)
+            m.write_bytes("wTempMonExp", bytes([0xff] * 3))
+            call(h, "CalcLevel")
+            actual = h.pb.register_file.D
+            check(actual == expected, f"CalcLevel with cached cap {cap}: {actual} != {expected}")
+        m.write_bytes("wTempMonExp", (179).to_bytes(3, "big"))  # Totodile's level-6 threshold.
+        call(h, "CalcLevel")
+        check(h.pb.register_file.D == 6, "CalcLevel still uses the EXP threshold with an invalid cap")
         # All 100 valid levels, both sides of every training threshold.
         for level in range(1, 101):
             limit = next(v for max_level, v in limits if level <= max_level)

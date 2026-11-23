@@ -5,16 +5,13 @@ CalcLevel:
 	ld d, 1
 .next_level
 	inc d
-	ld a, [wLevelCap]
-	and a
-	jr nz, .got_level_cap
-	ld a, MAX_LEVEL
-
-.got_level_cap
-	inc a
-	ld b, a
+	; Enforce the absolute ceiling even if the cached cap is out of range.
 	ld a, d
-	cp b
+	cp MAX_LEVEL + 1
+	jr z, .got_level
+	ld a, [wLevelCap]
+	inc a
+	cp d
 	jr z, .got_level
 	call CalcExpAtLevel
 	push hl

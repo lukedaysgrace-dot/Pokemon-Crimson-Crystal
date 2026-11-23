@@ -470,8 +470,8 @@ GoldenrodCityShucksDoorText:
 	text "The door is"
 	line "locked. There's a"
 	cont "sign that says"
-	cont "\"Only open at"
-	cont "night.\""
+	cont "“Only open at"
+	cont "night.”"
 	done
 
 GoldenrodCityNameRaterSignText:
