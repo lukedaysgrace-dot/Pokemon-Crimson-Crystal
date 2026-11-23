@@ -58,64 +58,6 @@ def choose(h, slot, initial_pp):
     wait(h, lambda: h.battle.player.pp[slot - 1] < initial_pp and "FIGHT" in tile_text(h), advance=True)
 
 
-def faint_type_icon_cleanup(h, output):
-    """KO through the real move menu; inspect both HUD buffers and VRAM."""
-    output = Path(output)
-    output.mkdir(parents=True, exist_ok=True)
-    results = []
-    for side in ('enemy', 'player'):
-        h.load_fixture()
-        m = h.battle.mem
-        m.write('wOptions', 1)
-        test = {
-            'player': {'species': 'FERALIGATR', 'level': 50, 'ability': 'NO_ABILITY',
-                       'moves': ['WATERFALL' if side == 'enemy' else 'SPLASH'],
-                       'hp': 100 if side == 'enemy' else 1},
-            'player2': {'species': 'PORYGON', 'level': 50, 'moves': ['TACKLE']},
-            'enemy': {'species': 'HOUNDOOM', 'level': 20 if side == 'enemy' else 100,
-                      'ability': 'NO_ABILITY', 'moves': ['SPLASH' if side == 'enemy' else 'THUNDERBOLT'],
-                      'hp': 1 if side == 'enemy' else 100},
-            'rng': 'forced_low', 'turns': 1,
-        }
-        Request(h.battle).write(test)
-        m.write('wDebugBattleFlags', 0)
-        wait(h, lambda: 'FIGHT' in tile_text(h), advance=True)
-        x, y, first_tile = (2, 1, 0x60) if side == 'enemy' else (10, 8, 0x62)
-        palette_cell = 2 * 20 + 8 if side == 'enemy' else 9 * 20 + 18
-        palette = m.read('wAttrMap', palette_cell) & 7
-        assert list(m.read_bytes('wTileMap', 2, y * 20 + x)) == [first_tile, first_tile + 1]
-        observed = []
-        target = h.sym.addr('BattleText_EnemyMonFainted' if side == 'enemy' else 'BattleText_MonFainted')
-
-        def on_text(_):
-            if h.pb.register_file.HL != target:
-                return
-            bg = 0x9800 + y * 32 + x
-            observed.append({
-                'tiles': list(m.read_bytes('wTileMap', 2, y * 20 + x)),
-                'attrs': list(m.read_bytes('wAttrMap', 2, y * 20 + x)),
-                'vram_tiles': [h.pb.memory[0, bg + i] for i in range(2)],
-                'vram_attrs': [h.pb.memory[1, bg + i] for i in range(2)],
-            })
-
-        bank, address = h.sym['StdBattleTextbox']
-        h.pb.hook_register(bank, address, on_text, None)
-        try:
-            h.press('a', hold=8, wait=80)
-            move = test['player']['moves'][0]
-            wait(h, lambda: move in tile_text(h))
-            h.press('a', hold=8, wait=20)
-            wait(h, lambda: bool(observed), advance=True)
-        finally:
-            h.pb.hook_deregister(bank, address)
-        expected = dict(tiles=[0x7f, 0x7f], attrs=[palette, palette],
-                        vram_tiles=[0x7f, 0x7f], vram_attrs=[palette, palette])
-        errors = [] if observed[-1] == expected else [f'{observed[-1]} != {expected}']
-        h.pb.screen.image.save(str(output / f'{side}-faint-type-icons.png'))
-        results.append((f'{side} faint type icons', errors))
-    return results
-
-
 def main():
     h = Harness()
     h.ensure_fixture()
@@ -182,15 +124,6 @@ def main():
     h.press("a", hold=8, wait=20)
     wait(h, lambda: h.battle.player.species == "PORYGON" and "FIGHT" in tile_text(h), advance=True)
     verify("switch through party menu", snapshot, ["player.species == 'PORYGON'", "player.ability == 'MAGIC_BOUNCE'", "textbox_seen('TraceActivationText')", "wram('wInAbility') == 0"])
-
-    for name, errors in faint_type_icon_cleanup(h, output):
-        assertions += 4
-        if errors:
-            failed += 1
-            print(f'FAIL UI {name}: {errors}')
-        else:
-            passed += 1
-            print(f'PASS UI {name}')
 
     print(f"{passed} UI scenarios passed, {failed} failed; {assertions} assertions")
     h.pb.stop(save=False)

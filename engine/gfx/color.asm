@@ -869,12 +869,29 @@ GetFrontpicPalettePointer:
 	ld a, [wTrainerClass]
 
 GetTrainerPalettePointer:
+	cp HOSTESS
+	jr z, .hostess
+.table
 	ld l, a
 	ld h, 0
 	add hl, hl
 	add hl, hl
 	ld bc, TrainerPalettes
 	add hl, bc
+	ret
+
+.hostess
+; Shucks' three Friday hostesses share one pic. Nami keeps the class palette
+; (blue); Scarlet and Elektra wear their overworld colours. Returns a = HOSTESS.
+	ld a, [wOtherTrainerID]
+	ld hl, HostessElektraPalette
+	cp HOSTESS_ELEKTRA_1
+	jr nc, .got_hostess
+	ld hl, HostessScarletPalette
+	cp HOSTESS_SCARLET_1
+.got_hostess
+	ld a, HOSTESS
+	jr c, .table
 	ret
 
 GetMonPalettePointer:
@@ -1439,6 +1456,7 @@ LoadMapPals:
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	call LoadDanceTheatreObjectPalette
+	farcall LoadShucksObjectPalette
 	call LoadRoute4MewPalette
 	farcall LoadWimpodAndZangoosePalette
 	farcall LoadMountMortarDuraludonPalette

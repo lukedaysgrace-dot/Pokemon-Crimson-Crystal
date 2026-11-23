@@ -85,7 +85,7 @@ _CGB_BattleColors:
 	ld [wSGBPredef], a
 	call ApplyPals
 _CGB_FinishBattleScreenLayout:
-	farcall BattleScreenLayoutWithTypes
+	farcall FinishBattleScreenLayout
 	ret
 
 InitPartyMenuBGPal7:
@@ -133,7 +133,6 @@ LoadAllDefaultBattlePalettes:
 	pop bc
 	dec c
 	jr nz, .loop
-	farcall RefreshBattleTypeIconPals
 	ret
 
 LoadDefaultBattlePalette::

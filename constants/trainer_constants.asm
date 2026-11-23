@@ -884,13 +884,13 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 ; Shucks' Friday-night stage challenge. Each hostess has HOSTESS_TIERS
 ; consecutive records; scripts load the first one and GetTrainerPartyID adds
 ; the player's party-average tier (below 20, 20s, 30s ... 60s, 70+).
-	const HOSTESS_CORAL_1
-	const HOSTESS_CORAL_2
-	const HOSTESS_CORAL_3
-	const HOSTESS_CORAL_4
-	const HOSTESS_CORAL_5
-	const HOSTESS_CORAL_6
-	const HOSTESS_CORAL_7
+	const HOSTESS_NAMI_1
+	const HOSTESS_NAMI_2
+	const HOSTESS_NAMI_3
+	const HOSTESS_NAMI_4
+	const HOSTESS_NAMI_5
+	const HOSTESS_NAMI_6
+	const HOSTESS_NAMI_7
 	const HOSTESS_SCARLET_1
 	const HOSTESS_SCARLET_2
 	const HOSTESS_SCARLET_3
@@ -898,13 +898,13 @@ RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
 	const HOSTESS_SCARLET_5
 	const HOSTESS_SCARLET_6
 	const HOSTESS_SCARLET_7
-	const HOSTESS_VOLTA_1
-	const HOSTESS_VOLTA_2
-	const HOSTESS_VOLTA_3
-	const HOSTESS_VOLTA_4
-	const HOSTESS_VOLTA_5
-	const HOSTESS_VOLTA_6
-	const HOSTESS_VOLTA_7
+	const HOSTESS_ELEKTRA_1
+	const HOSTESS_ELEKTRA_2
+	const HOSTESS_ELEKTRA_3
+	const HOSTESS_ELEKTRA_4
+	const HOSTESS_ELEKTRA_5
+	const HOSTESS_ELEKTRA_6
+	const HOSTESS_ELEKTRA_7
 HOSTESS_TIERS EQU 7
 
 	trainerclass DUELIST

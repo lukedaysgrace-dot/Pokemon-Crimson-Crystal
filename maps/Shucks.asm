@@ -17,7 +17,7 @@
 
 ; Friday-night personas. ShucksFridayCast rewrites these weekday-only objects
 ; on entry during the Friday shift, so the show needs no extra object slots.
-SHUCKS_STAGE_HOSTESS EQU SHUCKS_STAGE_DANCER   ; CORAL, then SCARLET, then VOLTA
+SHUCKS_STAGE_HOSTESS EQU SHUCKS_STAGE_DANCER   ; NAMI, then SCARLET, then ELEKTRA
 SHUCKS_BRAWLER       EQU SHUCKS_DANCING_PATRON
 SHUCKS_FRIDAY_TEACHER        EQU SHUCKS_SAILOR
 SHUCKS_FRIDAY_COOLTRAINER_F1 EQU SHUCKS_PATRON
@@ -58,8 +58,8 @@ Shucks_MapScripts:
 	return
 
 .AlreadyWon:
-	; VOLTA, the last hostess, holds the stage for the rest of the night.
-	callasm ShucksStageHostessAsVolta
+	; ELEKTRA, the last hostess, holds the stage for the rest of the night.
+	callasm ShucksStageHostessAsElektra
 .BrawlSeen:
 	setevent EVENT_SHUCKS_BRAWLER_GONE
 .FridayNightDone:
@@ -310,7 +310,7 @@ ShucksSpeakerScript:
 ; Friday night show ------------------------------------------------------------
 
 ShucksFridayBrawlScene:
-; Coord event at the foot of the stage stairs (15, 5): CORAL's #MON sends the
+; Coord event at the foot of the stage stairs (15, 5): NAMI's #MON sends the
 ; brawler flying off the stage just as the player walks up.
 	turnobject PLAYER, UP
 	playsound SFX_WATER_GUN
@@ -341,10 +341,10 @@ ShucksFridayHostessScript:
 	iftrue ShucksHostessGivePrize
 	callasm ShucksGetShiftState
 	ifequal SHUCKS_SHIFT_WON, .AlreadyWon
-	writetext ShucksCoralWelcomeText
+	writetext ShucksNamiWelcomeText
 	yesorno
 	iffalse .Declined
-	writetext ShucksCoralCurtainsText
+	writetext ShucksNamiCurtainsText
 	waitbutton
 	closetext
 	; Open the curtains for the show.
@@ -355,13 +355,13 @@ ShucksFridayHostessScript:
 	setevent EVENT_SHUCKS_CURTAINS_OPEN
 	waitsfx
 
-	; Round 1: CORAL (Water)
-	winlosstext ShucksCoralBeatenText, 0
-	loadtrainer HOSTESS, HOSTESS_CORAL_1
+	; Round 1: NAMI (Water)
+	winlosstext ShucksNamiBeatenText, 0
+	loadtrainer HOSTESS, HOSTESS_NAMI_1
 	startbattle
 	reloadmapafterbattle
 	opentext
-	writetext ShucksCoralAfterText
+	writetext ShucksNamiAfterText
 	waitbutton
 	closetext
 	applymovement SHUCKS_STAGE_HOSTESS, ShucksHostessExitMovement
@@ -387,31 +387,31 @@ ShucksFridayHostessScript:
 	disappear SHUCKS_STAGE_HOSTESS
 	pause 20
 
-	; Round 3: VOLTA (Electric)
-	callasm ShucksStageHostessAsVolta
+	; Round 3: ELEKTRA (Electric)
+	callasm ShucksStageHostessAsElektra
 	scall ShucksNextHostessEnters
 	opentext
-	writetext ShucksVoltaIntroText
+	writetext ShucksElektraIntroText
 	waitbutton
 	closetext
-	winlosstext ShucksVoltaBeatenText, 0
-	loadtrainer HOSTESS, HOSTESS_VOLTA_1
+	winlosstext ShucksElektraBeatenText, 0
+	loadtrainer HOSTESS, HOSTESS_ELEKTRA_1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_SHUCKS_PRIZE_OWED
 	opentext
-	writetext ShucksVoltaAfterText
+	writetext ShucksElektraAfterText
 	waitbutton
 	sjump ShucksHostessGivePrize
 
 .AlreadyWon:
-	writetext ShucksVoltaComeBackText
+	writetext ShucksElektraComeBackText
 	waitbutton
 	closetext
 	end
 
 .Declined:
-	writetext ShucksCoralDeclinedText
+	writetext ShucksNamiDeclinedText
 	waitbutton
 	closetext
 	end
@@ -440,7 +440,7 @@ ShucksHostessGivePrize:
 .Claimed:
 	clearevent EVENT_SHUCKS_PRIZE_OWED
 	callasm ShucksSetChallengeWon
-	writetext ShucksVoltaComeBackText
+	writetext ShucksElektraComeBackText
 	waitbutton
 	closetext
 	end
@@ -521,8 +521,8 @@ ShucksStageHostessAsScarlet:
 	ld a, PAL_NPC_RED
 	jr ShucksSetStageHostessColor
 
-ShucksStageHostessAsVolta:
-	ld a, PAL_NPC_BROWN
+ShucksStageHostessAsElektra:
+	ld a, PAL_NPC_ROCK ; Shucks loads dark yellow here (LoadShucksObjectPalette)
 ShucksSetStageHostessColor:
 ; The next appear (or the map's object load) copies this colour into the
 ; hostess' object struct; the same object plays all three hostesses.
@@ -830,8 +830,8 @@ ShucksBrawlerOnStageText:
 	line "turn, buddy!"
 	done
 
-ShucksCoralWelcomeText:
-	text "CORAL: Well hey"
+ShucksNamiWelcomeText:
+	text "NAMI: Well hey"
 	line "there, sugar!"
 
 	para "It's Friday night,"
@@ -851,27 +851,27 @@ ShucksCoralWelcomeText:
 	line "the spotlight?"
 	done
 
-ShucksCoralCurtainsText:
-	text "CORAL: Ooh, I like"
+ShucksNamiCurtainsText:
+	text "NAMI: Ooh, I like"
 	line "your nerve!"
 
 	para "Raise the"
 	line "curtains, boys!"
 	done
 
-ShucksCoralDeclinedText:
-	text "CORAL: Aww. The"
+ShucksNamiDeclinedText:
+	text "NAMI: Aww. The"
 	line "spotlight will be"
 	cont "waiting, hon."
 	done
 
-ShucksCoralBeatenText:
+ShucksNamiBeatenText:
 	text "My, my! You made"
 	line "quite a splash!"
 	done
 
-ShucksCoralAfterText:
-	text "CORAL: Not bad,"
+ShucksNamiAfterText:
+	text "NAMI: Not bad,"
 	line "sugar. But the"
 	cont "night's young."
 
@@ -882,7 +882,7 @@ ShucksCoralAfterText:
 ShucksScarletIntroText:
 	text "SCARLET: So you're"
 	line "the one who got"
-	cont "past CORAL?"
+	cont "past NAMI?"
 
 	para "Things are about"
 	line "to heat up, hot"
@@ -903,22 +903,23 @@ ShucksScarletAfterText:
 	cont "wire. Good luck!"
 	done
 
-ShucksVoltaIntroText:
-	text "VOLTA: The crowd's"
-	line "buzzing about you!"
+ShucksElektraIntroText:
+	text "ELEKTRA: The"
+	line "crowd's buzzing"
+	cont "about you!"
 
 	para "Let's give them a"
 	line "finale they'll"
 	cont "never forget!"
 	done
 
-ShucksVoltaBeatenText:
+ShucksElektraBeatenText:
 	text "Wow! What a"
 	line "shocking finish!"
 	done
 
-ShucksVoltaAfterText:
-	text "VOLTA: You beat"
+ShucksElektraAfterText:
+	text "ELEKTRA: You beat"
 	line "all three of us!"
 	cont "That doesn't"
 	cont "happen often."
@@ -929,7 +930,7 @@ ShucksVoltaAfterText:
 	done
 
 ShucksStoutCharmExplainText:
-	text "VOLTA: Hold onto"
+	text "ELEKTRA: Hold onto"
 	line "that STOUT CHARM."
 
 	para "A #MON holding"
@@ -950,9 +951,10 @@ ShucksStoutCharmExplainText:
 	cont "don't get cocky!"
 	done
 
-ShucksVoltaComeBackText:
-	text "VOLTA: That's the"
-	line "show for tonight!"
+ShucksElektraComeBackText:
+	text "ELEKTRA: That's"
+	line "the show for"
+	cont "tonight!"
 
 	para "Come back next"
 	line "Friday and try"
@@ -960,8 +962,9 @@ ShucksVoltaComeBackText:
 	done
 
 ShucksPrizeBagFullText:
-	text "VOLTA: Your BAG's"
-	line "stuffed, hon!"
+	text "ELEKTRA: Your"
+	line "BAG's stuffed,"
+	cont "hon!"
 
 	para "Make some room and"
 	line "talk to me before"
@@ -988,7 +991,7 @@ ShucksFridayCooltrainerF1Text:
 	done
 
 ShucksFridayCooltrainerF2Text:
-	text "First up is CORAL,"
+	text "First up is NAMI,"
 	line "the WATER-type"
 	cont "hostess."
 
@@ -1004,11 +1007,11 @@ ShucksFridayCooltrainerMText:
 
 	para "Ration your items"
 	line "or you'll never"
-	cont "reach VOLTA."
+	cont "reach ELEKTRA."
 	done
 
 ShucksFridayCooltrainerF3Text:
-	text "VOLTA closes the"
+	text "ELEKTRA closes the"
 	line "show with her"
 	cont "ELECTRIC #MON."
 

@@ -217,10 +217,6 @@ BattleAnimClearHud:
 	call BattleAnimDelayFrame
 	call WaitTop
 	call ClearActorHud
-
-BattleAnimUploadClearedHud:
-	xor a
-	ldh [hBGMapThird], a
 	ld a, $1
 	ldh [hBGMapMode], a
 	call BattleAnimDelayFrame
@@ -269,10 +265,6 @@ BattleAnimRequestPals:
 	ld a, [wOBP0]
 	cp b
 	call nz, BattleAnim_SetOBPals
-	; DMG palette remapping must not turn the HUD's independent symbol
-	; colors into tile backgrounds. Follow each HP display's current fade.
-	farcall UpdateBattleTypeIconAnimPals
-.typeicons_ready
 	ret
 
 BattleAnimDelayFrame:
@@ -299,10 +291,7 @@ ClearActorHud:
 	hlcoord 9, 7
 	lb bc, 5, 11
 .clear
-	call ClearBox
-	; Cleared cells use bank-0 spaces, not bank-1 picture tile $7f.
-	farcall ClearBattleTypeIconCells
-	ret
+	jp ClearBox
 
 Unreferenced_Functioncc220:
 	xor a
@@ -484,11 +473,7 @@ BattleAnimCmd_ClearOpponentHUD:
 	hlcoord 1, 0
 	lb bc, 4, 11
 .clear
-	call ClearBox
-	farcall ClearOpponentBattleTypeIconCells
-	; Complete the HUD upload before SHOW_MON can reset the BG-map third.
-	; Otherwise the player's HP display can remain visible without its icons.
-	jp BattleAnimUploadClearedHud
+	jp ClearBox
 
 BattleAnimCmd_SetBgPal:
 ; anim_setbgpal slot, custom_id (ported from polishedcrystal)

@@ -675,10 +675,14 @@ ENDC
 	lb bc, 4, 10
 	xor a ; PAL_BATTLE_BG_PLAYER
 	call FillBoxWithByte
-	hlcoord 10, 9, wAttrMap
+	hlcoord 10, 8, wAttrMap
 	lb bc, 3, 1
 	ld a, PAL_BATTLE_BG_PLAYER_HP
 	call FillBoxWithByte
+	; (10, 11) is the EXP bar's first cell, not part of the HP box. Giving it
+	; the HP palette turned the start of the bar red/yellow at low HP.
+	ld a, PAL_BATTLE_BG_EXP
+	ldcoord_a 10, 11, wAttrMap
 	call CGBOnly_CopyTilemapAtOnce
 	ld a, $1
 	ldh [hCGBPalUpdate], a
@@ -2287,7 +2291,9 @@ DoubleSwitch:
 	cp USING_EXTERNAL_CLOCK
 	jr z, .player_1
 	call ClearSprites
-	farcall ClearEnemyBattleHUD
+	hlcoord 1, 0
+	lb bc, 4, 11
+	call ClearBox
 	call PlayerPartyMonEntrance
 	ld a, $1
 	call EnemyPartyMonEntrance
@@ -2473,7 +2479,9 @@ FaintYourPokemon:
 	ld a, [wBattleMonSpecies]
 	call PlayStereoCry
 	call PlayerMonFaintedAnimation
-	farcall ClearPlayerBattleHUD
+	hlcoord 9, 7
+	lb bc, 5, 11
+	call ClearBox
 	ld hl, BattleText_MonFainted
 	jp StdBattleTextbox
 
@@ -2485,7 +2493,9 @@ FaintEnemyPokemon:
 	call EnemyMonFaintedAnimation
 	ld de, SFX_FAINT
 	call PlaySFX
-	farcall ClearEnemyBattleHUD
+	hlcoord 1, 0
+	lb bc, 4, 11
+	call ClearBox
 	ld hl, BattleText_EnemyMonFainted
 	jp StdBattleTextbox
 
@@ -3156,7 +3166,6 @@ LostBattle:
 	hlcoord 0, 0
 	lb bc, 8, 21
 	call ClearBox
-	farcall ClearEnemyBattleTypeIconCells
 	call BattleWinSlideInEnemyTrainerFrontpic
 
 	ld c, 40
@@ -3180,7 +3189,6 @@ ENDC
 	hlcoord 0, 0
 	lb bc, 8, 21
 	call ClearBox
-	farcall ClearEnemyBattleTypeIconCells
 	call BattleWinSlideInEnemyTrainerFrontpic
 
 	ld c, 40
@@ -3233,7 +3241,6 @@ ENDC
 	hlcoord 0, 0
 	lb bc, 8, 21
 	call ClearBox
-	farcall ClearEnemyBattleTypeIconCells
 	call BattleWinSlideInEnemyTrainerFrontpic
 
 	ld c, 40
@@ -3791,7 +3798,9 @@ ClearEnemyMonBox:
 	ldh [hBGMapMode], a
 	call ExitMenu
 	call ClearSprites
-	farcall ClearEnemyBattleHUD
+	hlcoord 1, 0
+	lb bc, 4, 11
+	call ClearBox
 	call WaitBGMap
 	jp FinishBattleAnim
 
@@ -4557,7 +4566,6 @@ PursuitSwitch:
 	pop af
 	ld [wCurBattleMon], a
 	call PlayerMonFaintedAnimation
-	farcall ClearPlayerBattleHUD
 	ld hl, BattleText_MonFainted
 	jr .done_fainted
 
@@ -4574,7 +4582,6 @@ PursuitSwitch:
 	call PlaySFX
 	call WaitSFX
 	call EnemyMonFaintedAnimation
-	farcall ClearEnemyBattleHUD
 	ld hl, BattleText_EnemyMonFainted
 
 .done_fainted
@@ -4981,7 +4988,7 @@ DrawPlayerHUD:
 	lb bc, 5, 11
 	call ClearBox
 
-	farcall DrawPlayerHUDBorderWithTypes
+	farcall DrawPlayerHUDBorder
 
 	hlcoord 18, 9
 	ld [hl], $73 ; vertical bar
@@ -5136,7 +5143,7 @@ DrawEnemyHUD:
 	lb bc, 4, 11
 	call ClearBox
 
-	farcall DrawEnemyHUDBorderWithTypes
+	farcall DrawEnemyHUDBorder
 
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurSpecies], a
@@ -5706,7 +5713,9 @@ BattleMonEntrance:
 	call RecallPlayerMon
 .ok
 
-	farcall ClearPlayerBattleHUD
+	hlcoord 9, 7
+	lb bc, 5, 11
+	call ClearBox
 
 	ld a, [wCurBattleMon]
 	ld [wCurPartyMon], a
@@ -5729,7 +5738,9 @@ PassedBattleMonEntrance:
 	ld c, 50
 	call DelayFrames
 
-	farcall ClearPlayerBattleHUD
+	hlcoord 9, 7
+	lb bc, 5, 11
+	call ClearBox
 
 	ld a, [wCurPartyMon]
 	ld [wCurBattleMon], a
@@ -6162,7 +6173,7 @@ MoveInfoBox:
 	ldh [hBGMapMode], a
 
 	hlcoord 0, 8
-	lb bc, 3, 8 ; stop before the player's type icons in column 10
+	lb bc, 3, 9
 	call Textbox
 	call MobileTextBorder
 
@@ -6201,10 +6212,11 @@ MoveInfoBox:
 	ret
 
 .PrintPP:
-	hlcoord 1, 11
+	hlcoord 2, 11
 	ld a, "<BOLD_P>"
 	ld [hli], a
 	ld [hli], a
+	inc hl
 	push hl
 	ld de, wStringBuffer1
 	lb bc, 1, 2

@@ -203,9 +203,9 @@ SECTION "Battle Weather Indicator", ROMX
 
 INCLUDE "engine/battle/weather_indicator.asm"
 
-SECTION "Battle Type Icons", ROMX
+SECTION "Battle Screen Layout", ROMX
 
-INCLUDE "engine/battle/type_icons.asm"
+INCLUDE "engine/battle/battle_screen_layout.asm"
 
 
 SECTION "bank10", ROMX
@@ -1026,6 +1026,7 @@ INCLUDE "engine/menus/item_save_upgrade.asm"
 
 SECTION "Forest Rivalry", ROMX
 INCLUDE "engine/events/forest_rivalry.asm"
+INCLUDE "engine/events/shucks_palette.asm"
 
 INCLUDE "engine/tilesets/league_room_palettes.asm"
 INCLUDE "engine/tilesets/league_room_anims.asm"

@@ -1552,7 +1552,7 @@ Unavailable.
 
 | Location | How to obtain |
 | --- | --- |
-| Shucks | **Gift / reward** — Beat Coral, Scarlet and Volta back to back in the Friday-night stage show (Friday 6 PM – Saturday 4 AM). First win only; later Fridays award a PP Up. |
+| Shucks | **Gift / reward** — Beat Nami, Scarlet and Elektra back to back in the Friday-night stage show (Friday 6 PM – Saturday 4 AM). First win only; later Fridays award a PP Up. |
 
 <a id="thick_club"></a>
 ## Thick Club

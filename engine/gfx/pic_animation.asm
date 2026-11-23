@@ -633,11 +633,8 @@ PokeAnim_ConvertAndApplyBitmask:
 	ld hl, wPokeAnimGraphicStartTile
 	add [hl]
 	pop hl
-	; Match GetAnimatedEnemyFrontpic's four reserved HUD type-icon slots.
-	cp $60
-	jr c, .store_tile
-	add 4
-.store_tile
+	cp $7f
+	sbc -1 ;increment if no carry
 	ld [hl], a
 	ret
 

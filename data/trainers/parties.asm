@@ -8864,8 +8864,8 @@ HostessGroup:
 ; Shucks' Friday-night stage challenge (maps/Shucks.asm). Level bytes are
 ; bonuses over the player's non-Egg party average, not fixed levels: see
 ; ScaleHostessPartyLevel. GetTrainerPartyID picks the tier record by average.
-	next_list_item ; HOSTESS (1) HOSTESS_CORAL_1 - Shucks, Water, party average below 20
-	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (1) HOSTESS_NAMI_1 - Shucks, Water, party average below 20
+	db "NAMI@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 1 ; party average +1
 	dw GOLDEEN
 	db BERRY
@@ -8878,8 +8878,8 @@ HostessGroup:
 	dw BUBBLEBEAM, AQUA_JET, DEFENSE_CURL, ROLLOUT
 	db -1 ; end
 
-	next_list_item ; HOSTESS (2) HOSTESS_CORAL_2 - Shucks, Water, party average 20-29
-	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (2) HOSTESS_NAMI_2 - Shucks, Water, party average 20-29
+	db "NAMI@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 1 ; party average +1
 	dw STARYU
 	db BERRY
@@ -8892,8 +8892,8 @@ HostessGroup:
 	dw AQUA_TAIL, DRAINING_KISS, AQUA_JET, BODY_SLAM
 	db -1 ; end
 
-	next_list_item ; HOSTESS (3) HOSTESS_CORAL_3 - Shucks, Water, party average 30-39
-	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (3) HOSTESS_NAMI_3 - Shucks, Water, party average 30-39
+	db "NAMI@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 1 ; party average +1
 	dw STARMIE
 	db LEFTOVERS
@@ -8906,8 +8906,8 @@ HostessGroup:
 	dw AQUA_TAIL, PLAY_ROUGH, AQUA_JET, ICE_PUNCH
 	db -1 ; end
 
-	next_list_item ; HOSTESS (4) HOSTESS_CORAL_4 - Shucks, Water, party average 40-49
-	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (4) HOSTESS_NAMI_4 - Shucks, Water, party average 40-49
+	db "NAMI@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 1 ; party average +1
 	dw STARMIE
 	db WISE_GLASSES
@@ -8920,8 +8920,8 @@ HostessGroup:
 	dw SCALD, MOONBLAST, RECOVER, ICE_BEAM
 	db -1 ; end
 
-	next_list_item ; HOSTESS (5) HOSTESS_CORAL_5 - Shucks, Water, party average 50-59
-	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (5) HOSTESS_NAMI_5 - Shucks, Water, party average 50-59
+	db "NAMI@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 1 ; party average +1
 	dw STARMIE
 	db LIFE_ORB
@@ -8934,8 +8934,8 @@ HostessGroup:
 	dw SCALD, MOONBLAST, RECOVER, CALM_MIND
 	db -1 ; end
 
-	next_list_item ; HOSTESS (6) HOSTESS_CORAL_6 - Shucks, Water, party average 60-69
-	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (6) HOSTESS_NAMI_6 - Shucks, Water, party average 60-69
+	db "NAMI@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 1 ; party average +1
 	dw KINGDRA
 	db SCOPE_LENS
@@ -8948,8 +8948,8 @@ HostessGroup:
 	dw SCALD, MOONBLAST, RECOVER, CALM_MIND
 	db -1 ; end
 
-	next_list_item ; HOSTESS (7) HOSTESS_CORAL_7 - Shucks, Water, party average 70+
-	db "CORAL@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (7) HOSTESS_NAMI_7 - Shucks, Water, party average 70+
+	db "NAMI@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 1 ; party average +1
 	dw KINGDRA
 	db DAMP_ROCK
@@ -9060,8 +9060,8 @@ HostessGroup:
 	dw FIRE_BLAST, SLUDGE_BOMB, NASTY_PLOT, SHADOW_BALL
 	db -1 ; end
 
-	next_list_item ; HOSTESS (15) HOSTESS_VOLTA_1 - Shucks, Electric, party average below 20
-	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (15) HOSTESS_ELEKTRA_1 - Shucks, Electric, party average below 20
+	db "ELEKTRA@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 2 ; party average +2
 	dw CHINCHOU
 	db BERRY
@@ -9079,8 +9079,8 @@ HostessGroup:
 	dw SPARK, QUICK_ATTACK, NUZZLE, DOUBLE_KICK
 	db -1 ; end
 
-	next_list_item ; HOSTESS (16) HOSTESS_VOLTA_2 - Shucks, Electric, party average 20-29
-	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (16) HOSTESS_ELEKTRA_2 - Shucks, Electric, party average 20-29
+	db "ELEKTRA@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 2 ; party average +2
 	dw LANTURN
 	db LEFTOVERS
@@ -9098,8 +9098,8 @@ HostessGroup:
 	dw THUNDERBOLT, QUICK_ATTACK, IRON_TAIL, THUNDER_WAVE
 	db -1 ; end
 
-	next_list_item ; HOSTESS (17) HOSTESS_VOLTA_3 - Shucks, Electric, party average 30-39
-	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (17) HOSTESS_ELEKTRA_3 - Shucks, Electric, party average 30-39
+	db "ELEKTRA@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 2 ; party average +2
 	dw LANTURN
 	db LEFTOVERS
@@ -9117,8 +9117,8 @@ HostessGroup:
 	dw THUNDERBOLT, SURF, NASTY_PLOT, QUICK_ATTACK
 	db -1 ; end
 
-	next_list_item ; HOSTESS (18) HOSTESS_VOLTA_4 - Shucks, Electric, party average 40-49
-	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (18) HOSTESS_ELEKTRA_4 - Shucks, Electric, party average 40-49
+	db "ELEKTRA@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 2 ; party average +2
 	dw LANTURN
 	db LEFTOVERS
@@ -9136,8 +9136,8 @@ HostessGroup:
 	dw THUNDERBOLT, SHADOW_BALL, VOLT_SWITCH, CALM_MIND
 	db -1 ; end
 
-	next_list_item ; HOSTESS (19) HOSTESS_VOLTA_5 - Shucks, Electric, party average 50-59
-	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (19) HOSTESS_ELEKTRA_5 - Shucks, Electric, party average 50-59
+	db "ELEKTRA@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 2 ; party average +2
 	dw LANTURN
 	db LEFTOVERS
@@ -9155,8 +9155,8 @@ HostessGroup:
 	dw THUNDERBOLT, SHADOW_BALL, CALM_MIND, VOLT_SWITCH
 	db -1 ; end
 
-	next_list_item ; HOSTESS (20) HOSTESS_VOLTA_6 - Shucks, Electric, party average 60-69
-	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (20) HOSTESS_ELEKTRA_6 - Shucks, Electric, party average 60-69
+	db "ELEKTRA@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 2 ; party average +2
 	dw LANTURN
 	db LEFTOVERS
@@ -9174,8 +9174,8 @@ HostessGroup:
 	dw THUNDERBOLT, SHADOW_BALL, CALM_MIND, SIGNAL_BEAM
 	db -1 ; end
 
-	next_list_item ; HOSTESS (21) HOSTESS_VOLTA_7 - Shucks, Electric, party average 70+
-	db "VOLTA@", TRAINERTYPE_ITEM_MOVES_ABILITY
+	next_list_item ; HOSTESS (21) HOSTESS_ELEKTRA_7 - Shucks, Electric, party average 70+
+	db "ELEKTRA@", TRAINERTYPE_ITEM_MOVES_ABILITY
 	db 2 ; party average +2
 	dw LANTURN
 	db LEFTOVERS
