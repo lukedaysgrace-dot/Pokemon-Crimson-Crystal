@@ -1208,8 +1208,8 @@ ParasEvosAttacks:
 	dbw 7, ABSORB
 	dbw 10, POISONPOWDER
 	dbw 10, STUN_SPORE
+	dbw 10, BUG_BITE
 	dbw 12, BULLET_SEED
-	dbw 13, BUG_BITE
 	dbw 15, VENOSHOCK
 	dbw 22, SLASH
 	dbw 25, LEECH_LIFE
@@ -1636,6 +1636,7 @@ AbraEvosAttacks:
 	dbbw EVOLVE_LEVEL, 16, KADABRA
 	db 0 ; no more evolutions
 	dbw 1, TELEPORT
+	dbw 8, CONFUSION
 	dbw 26, SIGNAL_BEAM
 	dbw 30, SKILL_SWAP
 	dbw 32, CALM_MIND

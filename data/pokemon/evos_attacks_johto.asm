@@ -1376,6 +1376,7 @@ UnownEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, HIDDEN_POWER
 	dbw 13, ANCIENTPOWER
+	dbw 16, CONFUSION
 	dbw 23, COSMIC_POWER
 	dbw 34, PSYCHIC_M
 	db 0 ; no more level-up moves
@@ -3554,7 +3555,7 @@ MawileEvosAttacks:
 	db 0 ; no more level-up moves
 
 NoibatEvosAttacks:
-	dbbw EVOLVE_LEVEL, 48, NOIVERN
+	dbbw EVOLVE_LEVEL, 40, NOIVERN
 	db 0 ; no more evolutions
 	dbw 1, ABSORB
 	dbw 1, TACKLE
@@ -3563,7 +3564,8 @@ NoibatEvosAttacks:
 	dbw 12, DOUBLE_TEAM
 	dbw 13, WING_ATTACK
 	dbw 17, AGILITY
-	dbw 24, AIR_CUTTER
+	dbw 18, AIR_CUTTER
+	dbw 22, DRAGONBREATH
 	dbw 25, RAZOR_WIND
 	dbw 26, LEECH_LIFE
 	dbw 29, WHIRLWIND
@@ -5748,7 +5750,7 @@ CharcadetEvosAttacks:
 	dbw 16, WILL_O_WISP
 	dbw 18, FLAME_CHARGE
 	dbw 20, NIGHT_SHADE
-	dbw 26, INCINERATE
+	dbw 22, INCINERATE
 	dbw 30, DESTINY_BOND
 	dbw 30, SPITE
 	dbw 32, LAVA_PLUME
@@ -7198,8 +7200,8 @@ WimpodEvosAttacks:
 	dbw 1, DEFENSE_CURL
 	dbw 1, SAND_ATTACK
 	dbw 1, STRUGGLE_BUG
-	dbw 18, BUG_BITE
-	dbw 24, AQUA_JET
+	dbw 10, BUG_BITE
+	dbw 15, AQUA_JET
 	dbw 42, LEECH_LIFE
 	db 0 ; no more level-up moves
 
@@ -9073,9 +9075,9 @@ SteeneeEvosAttacks:
 	dbw 16, SWEET_SCENT
 	dbw 20, MAGICAL_LEAF
 	dbw 24, DOUBLESLAP
+	dbw 24, SEED_BOMB
 	dbw 26, GIGA_DRAIN
 	dbw 28, STOMP
-	dbw 42, SEED_BOMB
 	dbw 46, LEAF_STORM
 	db 0 ; no more level-up moves
 

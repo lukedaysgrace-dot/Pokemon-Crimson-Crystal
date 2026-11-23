@@ -7,16 +7,16 @@ MintPlayerPalette:
 	RGB 03, 15, 30 ; blue (for a mint-green Mint, use RGB 10, 26, 19)
 
 HostessScarletPalette:
-; Shucks' Scarlet: the HOSTESS pic in her overworld red (PAL_NPC_RED).
-	RGB 31, 22, 19 ; skin
-	RGB 31, 07, 01 ; red
+; Shucks' Scarlet: the HOSTESS pic in the colours of hostess_red.png.
+; Keep in sync with ShucksHostessPalettes (engine/events/shucks_palette.asm).
+	RGB 30, 21, 18 ; skin
+	RGB 22, 08, 08 ; red
 
 HostessElektraPalette:
-; Shucks' Elektra: the HOSTESS pic in the colours of hostess_yellow.png.
-; (Written out because that png's indexed palette is stored dark-to-light,
-; so its .gbcpal would list the colours in the wrong order.)
-	RGB 31, 22, 19 ; skin
-	RGB 21, 16, 03 ; yellow
+; Shucks' Elektra: the HOSTESS pic in the colours of hostess_purple.png.
+; Keep in sync with ShucksHostessPalettes (engine/events/shucks_palette.asm).
+	RGB 30, 21, 18 ; skin
+	RGB 20, 01, 19 ; purple
 
 TrainerPalettes:
 ; entries correspond to trainer classes

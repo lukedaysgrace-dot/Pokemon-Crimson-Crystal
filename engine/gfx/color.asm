@@ -882,7 +882,9 @@ GetTrainerPalettePointer:
 
 .hostess
 ; Shucks' three Friday hostesses share one pic. Nami keeps the class palette
-; (blue); Scarlet and Elektra wear their overworld colours. Returns a = HOSTESS.
+; (hostess.png, blue); Scarlet and Elektra use hostess_red.png's and
+; hostess_purple.png's colours. Their overworld sprites wear the same colours
+; (LoadShucksObjectPalette). Returns a = HOSTESS.
 	ld a, [wOtherTrainerID]
 	ld hl, HostessElektraPalette
 	cp HOSTESS_ELEKTRA_1

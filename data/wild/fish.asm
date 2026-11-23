@@ -105,7 +105,7 @@ FishGroups:
 .Qwilfish_Swarm_Old:
 	dbbw  70 percent + 1,  5, MAGIKARP
 	dbbw  85 percent + 1,  5, MAGIKARP
-	dbbw 100 percent,      5, QWILFISH
+	dbbw 100 percent,      5, TENTACOOL
 .Qwilfish_Swarm_Good:
 	dbbw  35 percent,     20, MAGIKARP
 	dbbw  70 percent,     20, QWILFISH
@@ -183,7 +183,7 @@ FishGroups:
 .Qwilfish_Old:
 	dbbw  70 percent + 1, 10, MAGIKARP
 	dbbw  85 percent + 1, 10, TENTACOOL
-	dbbw 100 percent,     10, QWILFISH
+	dbbw 100 percent,     10, GOLDEEN
 .Qwilfish_Good:
 	dbbw  35 percent,     20, MAGIKARP
 	dbbw  70 percent,     20, TENTACOOL
@@ -349,7 +349,7 @@ TimeFishGroups:
 	dbwbw 40, QWILFISH,   40, QWILFISH   ; 11
 	dbwbw 20, REMORAID,   20, REMORAID   ; 12
 	dbwbw 40, REMORAID,   40, REMORAID   ; 13
-	dbwbw 20, GYARADOS,   20, GYARADOS   ; 14
+	dbwbw 20, POLIWAG,    20, POLIWAG    ; 14
 	dbwbw 40, GYARADOS,   40, GYARADOS   ; 15
 	dbwbw 20, MAGIKARP,   20, MAGIKARP   ; 16 - unused (was DRATINI, for .Dratini_2)
 	dbwbw 40, MAGIKARP,   40, MAGIKARP   ; 17 - unused (was DRATINI, for .Dratini_2)

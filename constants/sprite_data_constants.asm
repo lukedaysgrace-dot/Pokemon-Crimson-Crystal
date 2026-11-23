@@ -49,5 +49,12 @@ DEF PAL_NPC_APRICORN EQU PAL_NPC_ROCK
 DEF PAL_OW_PURPLE EQU PAL_OW_PINK
 DEF PAL_NPC_PURPLE EQU PAL_NPC_PINK
 
+; Shucks repaints these OBJ slots with its hostesses' battle-pic colours
+; (LoadShucksObjectPalette). The bar has no tree or rock objects, and its
+; purple slot becomes Elektra's purple.
+DEF PAL_NPC_NAMI    EQU PAL_NPC_TREE
+DEF PAL_NPC_SCARLET EQU PAL_NPC_ROCK
+DEF PAL_NPC_ELEKTRA EQU PAL_NPC_PURPLE
+
 ; Town Map reserves OBJ palette 7 for the selected playable character.
 DEF PAL_TOWN_MAP_PLAYER EQU 7

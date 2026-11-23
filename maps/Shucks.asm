@@ -1,6 +1,6 @@
 	object_const_def
 	const SHUCKS_BARTENDER
-	const SHUCKS_HOSTESS
+	const SHUCKS_HOSTESS ; SCARLET, waiting tables on weekdays
 	const SHUCKS_STAGE_DANCER
 	const SHUCKS_POOL_PLAYER
 	const SHUCKS_SAILOR
@@ -11,7 +11,7 @@
 	const SHUCKS_SHUCKLE
 	const SHUCKS_GAMBLER
 	const SHUCKS_COUNTER_COOLTRAINER
-	const SHUCKS_TABLE_TEACHER
+	const SHUCKS_WAITRESS_ELEKTRA ; ELEKTRA, waiting tables on weekdays
 	const SHUCKS_CORNER_POKEFAN
 	const SHUCKS_CORNER_COOLTRAINER
 
@@ -50,6 +50,8 @@ Shucks_MapScripts:
 	setscene SCENE_SHUCKS_NOTHING
 	callasm ShucksCheckFridayNight
 	iffalse .FridayNightDone
+	; SCARLET and ELEKTRA are backstage getting ready for the show.
+	setevent EVENT_SHUCKS_WAITRESSES_OFF
 	callasm ShucksApplyFridayCast
 	callasm ShucksGetShiftState
 	ifequal SHUCKS_SHIFT_WON, .AlreadyWon
@@ -283,8 +285,8 @@ ShucksRegularScript:
 ShucksCounterCooltrainerScript:
 	jumptextfaceplayer ShucksCounterCooltrainerText
 
-ShucksTableTeacherScript:
-	jumptextfaceplayer ShucksTableTeacherText
+ShucksWaitressElektraScript:
+	jumptextfaceplayer ShucksWaitressElektraText
 
 ShucksCornerPokefanScript:
 	jumptextfaceplayer ShucksCornerPokefanText
@@ -518,11 +520,11 @@ ShucksSetChallengeWon:
 	ret
 
 ShucksStageHostessAsScarlet:
-	ld a, PAL_NPC_RED
+	ld a, PAL_NPC_SCARLET ; hostess_red.png colours (LoadShucksObjectPalette)
 	jr ShucksSetStageHostessColor
 
 ShucksStageHostessAsElektra:
-	ld a, PAL_NPC_ROCK ; Shucks loads dark yellow here (LoadShucksObjectPalette)
+	ld a, PAL_NPC_ELEKTRA ; hostess_purple.png colours (LoadShucksObjectPalette)
 ShucksSetStageHostessColor:
 ; The next appear (or the map's object load) copies this colour into the
 ; hostess' object struct; the same object plays all three hostesses.
@@ -560,7 +562,7 @@ ShucksApplyFridayCast:
 
 ShucksFridayCast:
 	db SHUCKS_STAGE_HOSTESS
-	object_event 15,  2, SPRITE_HOSTESS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksFridayHostessScript, EVENT_SHUCKS_STAGE_HOSTESS_GONE
+	object_event 15,  2, SPRITE_HOSTESS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_NAMI, OBJECTTYPE_SCRIPT, 0, ShucksFridayHostessScript, EVENT_SHUCKS_STAGE_HOSTESS_GONE
 	db SHUCKS_BRAWLER
 	object_event 15,  3, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksBrawlerScript, EVENT_SHUCKS_BRAWLER_GONE
 	db SHUCKS_FRIDAY_TEACHER
@@ -1028,13 +1030,14 @@ ShucksCounterCooltrainerText:
 	line "knows my order!"
 	done
 
-ShucksTableTeacherText:
-	text "My class is out"
-	line "for the day."
+ShucksWaitressElektraText:
+	text "Coming through,"
+	line "hon!"
 
-	para "I'm staying right"
-	line "here till my tea"
-	cont "goes cold."
+	para "Waiting tables"
+	line "all week keeps me"
+	cont "charged up for"
+	cont "the Friday show!"
 	done
 
 ShucksCornerPokefanText:
@@ -1075,8 +1078,8 @@ Shucks_MapEvents:
 	bg_event 19,  3, BGEVENT_READ, ShucksSpeakerScript
 	db 15 ; object events
 	object_event  4,  2, SPRITE_SILPH_WORKER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksBartenderScript, -1
-	object_event  8,  7, SPRITE_HOSTESS, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksHostessScript, -1
-	object_event 14,  3, SPRITE_HOSTESS, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksStageDancerScript, -1
+	object_event  8,  7, SPRITE_HOSTESS, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_SCARLET, OBJECTTYPE_SCRIPT, 0, ShucksHostessScript, EVENT_SHUCKS_WAITRESSES_OFF
+	object_event 14,  3, SPRITE_HOSTESS, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_NAMI, OBJECTTYPE_SCRIPT, 0, ShucksStageDancerScript, -1
 	object_event  7,  9, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksPoolPlayerScript, -1
 	object_event  1,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksSailorScript, -1
 	object_event 10, 10, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksPatronScript, -1
@@ -1086,6 +1089,6 @@ Shucks_MapEvents:
 	object_event  3,  2, SPRITE_SHUCKLE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksShuckleScript, -1
 	object_event  2,  9, SPRITE_GAMBLER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksGamblerScript, -1
 	object_event  3,  4, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksCounterCooltrainerScript, -1
-	object_event 16, 10, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ShucksTableTeacherScript, -1
+	object_event 14, 12, SPRITE_HOSTESS, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_ELEKTRA, OBJECTTYPE_SCRIPT, 0, ShucksWaitressElektraScript, EVENT_SHUCKS_WAITRESSES_OFF
 	object_event  1, 14, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksCornerPokefanScript, -1
 	object_event  4, 14, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ShucksCornerCooltrainerScript, -1
