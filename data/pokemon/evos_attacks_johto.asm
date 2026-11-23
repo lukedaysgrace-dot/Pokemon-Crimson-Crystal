@@ -6288,7 +6288,7 @@ DuraludonEvosAttacks:
 	db 0 ; no more level-up moves
 
 KotoraEvosAttacks:
-	dbbw EVOLVE_LEVEL, 31, RAITORA
+	dbbw EVOLVE_LEVEL, 25, RAITORA
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, TAIL_WHIP
@@ -6689,7 +6689,7 @@ ShiftryEvosAttacks:
 	db 0 ; no more level-up moves
 
 RaitoraEvosAttacks:
-	dbbw EVOLVE_LEVEL, 45, GOROTORA
+	dbbw EVOLVE_LEVEL, 38, GOROTORA
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, TAIL_WHIP
