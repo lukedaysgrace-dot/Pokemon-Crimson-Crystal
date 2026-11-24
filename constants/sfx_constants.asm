@@ -220,6 +220,7 @@
 	const SFX_DIRE_CLAW_BUBBLES
 	const SFX_CRIMSON_VS_LOCK
 	const SFX_CRIMSON_VS_FORM
+	const SFX_CURTAIN_OPEN
 
 ; polishedcrystal-compatible alias
 SFX_BUBBLE_BEAM EQU SFX_BUBBLEBEAM

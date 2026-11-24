@@ -349,10 +349,10 @@ ShucksFridayHostessScript:
 	writetext ShucksNamiCurtainsText
 	waitbutton
 	closetext
-	; Open the curtains for the show.
-	playsound SFX_WALL_OPEN
+	; Open the curtains for the show; the swoosh starts as they part.
 	changeblock 14, 0, SHUCKS_CURTAIN_OPEN_LEFT
 	changeblock 16, 0, SHUCKS_CURTAIN_OPEN_RIGHT
+	playsound SFX_CURTAIN_OPEN
 	reloadmappart
 	setevent EVENT_SHUCKS_CURTAINS_OPEN
 	waitsfx
@@ -595,13 +595,9 @@ ShucksBrawlerStumbleMovement:
 	step_end
 
 ShucksBrawlerLeaveMovement:
-rept 7
-	step DOWN
-endr
-rept 5
-	step LEFT
-endr
-rept 3
+; He storms off the dance floor, then vanishes (disappear) instead of
+; walking all the way to the door.
+rept 6
 	step DOWN
 endr
 	step_end
@@ -834,7 +830,7 @@ ShucksBrawlerOnStageText:
 
 ShucksNamiWelcomeText:
 	text "NAMI: Well hey"
-	line "there, sugar!"
+	line "there, hon!"
 
 	para "It's Friday night,"
 	line "so it's time for"
@@ -857,8 +853,8 @@ ShucksNamiCurtainsText:
 	text "NAMI: Ooh, I like"
 	line "your nerve!"
 
-	para "Raise the"
-	line "curtains, boys!"
+	para "Open the"
+	line "curtains, girls!"
 	done
 
 ShucksNamiDeclinedText:
@@ -874,7 +870,7 @@ ShucksNamiBeatenText:
 
 ShucksNamiAfterText:
 	text "NAMI: Not bad,"
-	line "sugar. But the"
+	line "hon. But the"
 	cont "night's young."
 
 	para "Don't you go"

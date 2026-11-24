@@ -218,3 +218,4 @@ SFX:
 	dba Sfx_DireClawBubbles
 	dba Sfx_CrimsonVSLock
 	dba Sfx_CrimsonVSForm
+	dba Sfx_CurtainOpen
