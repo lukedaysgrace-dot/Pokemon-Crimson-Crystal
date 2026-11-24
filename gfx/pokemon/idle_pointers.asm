@@ -358,7 +358,7 @@ AnimationIdlePointers:
 	dba ExcadrillAnimationIdle
 	dba KotoraAnimationIdle
 	dba RaitoraAnimationIdle
-	dba GorotoraAnimationIdle
+	dba KamitoraAnimationIdle
 	dba FletchlingAnimationIdle
 	dba FletchinderAnimationIdle
 	dba TalonflameAnimationIdle

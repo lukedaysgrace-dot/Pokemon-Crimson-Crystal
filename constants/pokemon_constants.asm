@@ -378,7 +378,7 @@ JOHTO_POKEMON EQU const_value
 	const EXCADRILL  ;
 	const KOTORA     ;
 	const RAITORA    ;
-	const GOROTORA   ;
+	const KAMITORA   ;
 	const FLETCHLING ;
 	const FLETCHINDER ;
 	const TALONFLAME ;

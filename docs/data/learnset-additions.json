@@ -4025,14 +4025,6 @@
       "breeding_fallbacks": {}
     },
     {
-      "species": "GOROTORA",
-      "name": "Gorotora",
-      "newly_available": [],
-      "removed_moves": [],
-      "new_tutor_routes": [],
-      "breeding_fallbacks": {}
-    },
-    {
       "species": "GRANBULL",
       "name": "Granbull",
       "newly_available": [],
@@ -4953,6 +4945,14 @@
       "new_tutor_routes": [
         "FACADE"
       ],
+      "breeding_fallbacks": {}
+    },
+    {
+      "species": "KAMITORA",
+      "name": "Kamitora",
+      "newly_available": [],
+      "removed_moves": [],
+      "new_tutor_routes": [],
       "breeding_fallbacks": {}
     },
     {

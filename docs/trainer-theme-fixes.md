@@ -19,7 +19,7 @@ Every replacement with custom moves has a species-appropriate set checked agains
 | <a id="finding-7"></a>7 | Cosplayer Pixie | Golduck → Smeargle; Tauros → Sylveon | Uses the costume-designer option: Smeargle and ribbon-themed Sylveon, with matching dialogue. |
 | <a id="finding-8"></a>8 | Cosplayer Noelle | Exeggutor → Smeargle | Smeargle sketches mascot outfits; the dialogue explicitly explains surfer Raichu and winter Glaceon costumes. |
 | <a id="finding-9"></a>9 | Juggler Irwin | Elekid → Voltorb; Flaaffy → Aipom; Electabuzz → Electrode; Ampharos → Ambipom; Electivire → Electrode | Both mismatching evolution lines were replaced across all four stored tiers; the horse and singer remain circus partners. |
-| <a id="finding-10"></a>10 | Juggler Fritz | Gorotora → Electrode; Noctowl → Mr. Rime | Dialogue now describes balancing Electrode and Mr. Rime losing his footing aboard the ship. |
+| <a id="finding-10"></a>10 | Juggler Fritz | Kamitora → Electrode; Noctowl → Mr. Rime | Dialogue now describes balancing Electrode and Mr. Rime losing his footing aboard the ship. |
 | <a id="finding-11"></a>11 | Juggler Silas | Golduck → Mr. Mime | New species gets suitable moves; original levels and party size retained. |
 | <a id="finding-12"></a>12 | Youngster Jimmy | Galarian Slowking → Dodrio | New species gets suitable moves; original levels and party size retained. |
 | <a id="finding-13"></a>13 | Youngster Owen | Toxapex → Sandslash; Mamoswine → Tauros | New species gets suitable moves; original levels and party size retained. |

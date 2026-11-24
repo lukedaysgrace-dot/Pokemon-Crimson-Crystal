@@ -359,7 +359,7 @@ PokedexDataPointerTable:
 	dba ExcadrillPokedexEntry
 	dba KotoraPokedexEntry
 	dba RaitoraPokedexEntry
-	dba GorotoraPokedexEntry
+	dba KamitoraPokedexEntry
 	dba FletchlingPokedexEntry
 	dba FletchinderPokedexEntry
 	dba TalonflamePokedexEntry

@@ -358,7 +358,7 @@ AnimationPointers:
 	dba ExcadrillAnimation
 	dba KotoraAnimation
 	dba RaitoraAnimation
-	dba GorotoraAnimation
+	dba KamitoraAnimation
 	dba FletchlingAnimation
 	dba FletchinderAnimation
 	dba TalonflameAnimation

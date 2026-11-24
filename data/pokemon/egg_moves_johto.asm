@@ -209,7 +209,7 @@ EggMovePointers2::
 	dw NoEggMoves2 ; EXCADRILL
 	dw KotoraEggMoves ; KOTORA
 	dw NoEggMoves2 ; RAITORA
-	dw NoEggMoves2 ; GOROTORA
+	dw NoEggMoves2 ; KAMITORA
 	dw CanonicalFLETCHLINGEggMoves ; FLETCHLING
 	dw NoEggMoves2 ; FLETCHINDER
 	dw NoEggMoves2 ; TALONFLAME

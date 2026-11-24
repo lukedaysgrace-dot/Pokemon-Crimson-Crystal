@@ -360,7 +360,7 @@ IconPointers:
 	dba ExcadrillIcon
 	dba QuadrupedIcon ; KOTORA
 	dba QuadrupedIcon ; RAITORA
-	dba QuadrupedIcon ; GOROTORA
+	dba QuadrupedIcon ; KAMITORA
 	dba FletchlingIcon
 	dba FletchinderIcon
 	dba TalonflameIcon

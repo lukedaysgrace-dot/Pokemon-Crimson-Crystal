@@ -731,8 +731,8 @@ PokemonPicPointers::
 	dba KotoraBackpic
 	dba RaitoraFrontpic
 	dba RaitoraBackpic
-	dba GorotoraFrontpic
-	dba GorotoraBackpic
+	dba KamitoraFrontpic
+	dba KamitoraBackpic
 	dba FletchlingFrontpic
 	dba FletchlingBackpic
 	dba FletchinderFrontpic

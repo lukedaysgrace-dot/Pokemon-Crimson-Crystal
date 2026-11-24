@@ -362,7 +362,7 @@ PokemonNames::
 	db "EXCADRILL@"
 	db "KOTORA@@@@"
 	db "RAITORA@@@"
-	db "GOROTORA@@"
+	db "KAMITORA@@"
 	db "FLETCHLING"
 	db "FLETCHINDR"
 	db "TALONFLAME"

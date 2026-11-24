@@ -361,7 +361,7 @@ TechnicalTutorPointers::
 	dba TechnicalTutor_EXCADRILL ; EXCADRILL
 	dba TechnicalTutor_None ; KOTORA
 	dba TechnicalTutor_None ; RAITORA
-	dba TechnicalTutor_None ; GOROTORA
+	dba TechnicalTutor_None ; KAMITORA
 	dba TechnicalTutor_FLETCHLING ; FLETCHLING
 	dba TechnicalTutor_FLETCHINDER ; FLETCHINDER
 	dba TechnicalTutor_TALONFLAME ; TALONFLAME

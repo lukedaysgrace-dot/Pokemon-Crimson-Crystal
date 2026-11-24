@@ -105,6 +105,11 @@ PlayBattleMusic:
 	cp ARCHER
 	jp z, .done
 
+	; Shucks' Friday-night hostesses battle to their own club track.
+	ld de, MUSIC_HOSTESS_BATTLE
+	cp HOSTESS
+	jp z, .done
+
 	; Every other Team Rocket class, the other named admins included, gets the
 	; Rocket theme: vanilla left out the Executives and Scientists.
 	ld de, MUSIC_ROCKET_BATTLE

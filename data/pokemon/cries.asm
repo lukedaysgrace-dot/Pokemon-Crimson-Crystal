@@ -364,7 +364,7 @@ PokemonCries::
 	mon_cry CRY_EXCADRILL,   $058,  $108 ; EXCADRILL
 	mon_cry CRY_PICHU,       $f60,  $200 ; KOTORA
 	mon_cry CRY_RAIKOU,      $db3,  $168 ; RAITORA
-	mon_cry CRY_RAIKOU,      $cb3,  $201 ; GOROTORA
+	mon_cry CRY_RAIKOU,      $cb3,  $201 ; KAMITORA
 	mon_cry CRY_FLETCHLING,  $000,  $100 ; FLETCHLING
 	mon_cry CRY_FLETCHINDER, $000,  $100 ; FLETCHINDER
 	mon_cry CRY_TALONFLAME,  $000,  $100 ; TALONFLAME

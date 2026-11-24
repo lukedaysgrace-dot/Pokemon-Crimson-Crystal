@@ -367,7 +367,7 @@ MonMenuIconPals:
 	icon_pals BROWN , GRAY   ; EXCADRILL
 	icon_pals RED,   BROWN  ; KOTORA
 	icon_pals RED,   BROWN  ; RAITORA
-	icon_pals RED,   BROWN  ; GOROTORA
+	icon_pals RED,   BROWN  ; KAMITORA
 	icon_pals RED   , GRAY   ; FLETCHLING
 	icon_pals RED   , GRAY   ; FLETCHINDER
 	icon_pals RED   , GRAY   ; TALONFLAME

@@ -4113,7 +4113,7 @@ EvosAttacksPointers2E::
 	dw ExcadrillEvosAttacks
 	dw KotoraEvosAttacks
 	dw RaitoraEvosAttacks
-	dw GorotoraEvosAttacks
+	dw KamitoraEvosAttacks
 	dw FletchlingEvosAttacks
 	dw FletchinderEvosAttacks
 	dw TalonflameEvosAttacks
@@ -6691,7 +6691,7 @@ ShiftryEvosAttacks:
 	db 0 ; no more level-up moves
 
 RaitoraEvosAttacks:
-	dbbw EVOLVE_LEVEL, 38, GOROTORA
+	dbbw EVOLVE_LEVEL, 38, KAMITORA
 	db 0 ; no more evolutions
 	dbw 1, TACKLE
 	dbw 1, TAIL_WHIP
@@ -6716,7 +6716,7 @@ RaitoraEvosAttacks:
 	dbw 60, WILD_CHARGE
 	db 0 ; no more level-up moves
 
-GorotoraEvosAttacks:
+KamitoraEvosAttacks:
 	db 0 ; no more evolutions
 	dbw 1, CRUNCH
 	dbw 1, TACKLE

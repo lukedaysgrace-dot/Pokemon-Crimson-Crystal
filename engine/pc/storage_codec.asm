@@ -339,6 +339,9 @@ endr
 	ld [de], a
 	pop hl
 	call CloseSRAM
+	ld a, [wTempMonSpecies]
+	ld de, wTempMonNickname
+	farcall_a NormalizeKamitoraNickname
 
 	; current PP
 	call RestoreTempMonPP

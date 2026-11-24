@@ -28,7 +28,7 @@ Seventeen combinations use level-up, two use compatible egg inheritance, and ten
 | Galarian Slowking | Recover | 50 | The same late regeneration placement, before Slack Off. |
 | Applin | Growth | 10 | Plant growth setup between Defense Curl and Twister, supporting its draining attacks. |
 
-Family consistency: Cleffa and Clefable also gain Fairy Wind at 5; Mismagius gains it at 7; Gastly and Haunter gain Sludge at 16; Chikorita gains Mega Drain at 14 and Meganium at 16; Raitora and Gorotora gain Slack Off at 24. Clone Charizard mirrors Draco Meteor at 64. Including these supporting placements, there are **27 new level-up rows**. The Move Reminder includes the new moves when the relevant level is reached and retains normal pre-evolution access.
+Family consistency: Cleffa and Clefable also gain Fairy Wind at 5; Mismagius gains it at 7; Gastly and Haunter gain Sludge at 16; Chikorita gains Mega Drain at 14 and Meganium at 16; Raitora and Kamitora gain Slack Off at 24. Clone Charizard mirrors Draco Meteor at 64. Including these supporting placements, there are **27 new level-up rows**. The Move Reminder includes the new moves when the relevant level is reached and retains normal pre-evolution access.
 
 ## Egg moves
 

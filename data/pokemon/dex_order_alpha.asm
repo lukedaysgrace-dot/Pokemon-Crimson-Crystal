@@ -171,7 +171,6 @@ AlphabeticalPokedexOrder:
 	dw GOLISOPOD
 	dw GOLURK
 	dw GOROCHU
-	dw GOROTORA
 	dw GRANBULL
 	dw GRAVELER
 	dw GRAVELER_ALOLAN
@@ -217,6 +216,7 @@ AlphabeticalPokedexOrder:
 	dw KABUTOPS
 	dw KADABRA
 	dw KAKUNA
+	dw KAMITORA
 	dw KANGASKHAN
 	dw KINGAMBIT
 	dw KINGDRA

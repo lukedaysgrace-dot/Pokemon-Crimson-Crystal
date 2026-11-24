@@ -1021,6 +1021,9 @@ INCLUDE "data/pokemon/technical_tutor.asm"
 SECTION "Burned Tower Ashes Palette", ROMX
 INCLUDE "engine/gfx/burned_tower_palette.asm"
 
+SECTION "Map Object Palettes", ROMX
+INCLUDE "engine/gfx/map_object_palettes.asm"
+
 SECTION "Item save upgrade", ROMX
 INCLUDE "engine/menus/item_save_upgrade.asm"
 

@@ -482,6 +482,9 @@ DisplayHOFMon:
 	call CopyBytes
 	ld a, "@"
 	ld [wStringBuffer2 + 10], a
+	ld a, [wTempMonSpecies]
+	ld de, wStringBuffer2
+	farcall_a NormalizeKamitoraNickname
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "

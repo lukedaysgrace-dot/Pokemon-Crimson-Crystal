@@ -57,10 +57,77 @@ NormalizeLoadedRoster::
 	ld de, AEGISLASH_BLADE - 1
 	ld b, RESET_FLAG
 	call FlagAction
+	call NormalizeLoadedKamitoraNames
 	call RecalculateReplacementPartyStats
 	pop af
 	ldh [rSVBK], a
 	ret
+
+NormalizeLoadedKamitoraNames:
+	ld a, [wPartyCount]
+	and a
+	jr z, .daycare
+	ld b, a
+	ld hl, wPartyMon1Species
+	ld de, wPartyMonNicknames
+.party
+	push bc
+	push hl
+	push de
+	ld a, [hl]
+	call NormalizeKamitoraNickname
+	pop hl
+	ld bc, MON_NAME_LENGTH
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	ld bc, PARTYMON_STRUCT_LENGTH
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .party
+.daycare
+	ld a, [wBreedMon1Species]
+	ld de, wBreedMon1Nick
+	call NormalizeKamitoraNickname
+	ld a, [wBreedMon2Species]
+	ld de, wBreedMon2Nick
+	; fallthrough
+
+NormalizeKamitoraNickname::
+; a = species ID, de = nickname buffer. Update the exact old default name.
+	call GetPokemonIndexFromID
+	ld a, h
+	cp HIGH(KAMITORA)
+	ret nz
+	ld a, l
+	cp LOW(KAMITORA)
+	ret nz
+	push de
+	ld hl, .OldDefaultName
+	ld b, .OldDefaultNameEnd - .OldDefaultName
+.compare
+	ld a, [de]
+	cp [hl]
+	inc hl
+	inc de
+	jr nz, .done
+	dec b
+	jr nz, .compare
+	pop de
+	; Both names share the suffix and terminator.
+	ld hl, .NewPrefix
+	ld bc, .NewPrefixEnd - .NewPrefix
+	jp CopyBytes
+.done
+	pop de
+	ret
+
+.OldDefaultName: db "GORO", "TORA@"
+.OldDefaultNameEnd:
+.NewPrefix: db "KAMI"
+.NewPrefixEnd:
 
 RecalculateReplacementPartyStats:
 ; Existing saves must not retain retired species' stats after remapping.

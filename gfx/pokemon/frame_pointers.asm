@@ -358,7 +358,7 @@ FramesPointers:
 	dba ExcadrillFrames
 	dba KotoraFrames
 	dba RaitoraFrames
-	dba GorotoraFrames
+	dba KamitoraFrames
 	dba FletchlingFrames
 	dba FletchinderFrames
 	dba TalonflameFrames

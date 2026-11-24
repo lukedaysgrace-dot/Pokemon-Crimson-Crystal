@@ -27,7 +27,7 @@ Reviewed 20 October 2026 from the current local source.
 | [7](#finding-7) | B | Cosplayer Pixie — neither Pokémon establishes the costume | Golduck, Tauros | No costume, disguise or named reference ties either partner to her character. |
 | [8](#finding-8) | B | Cosplayer Noelle — disconnected costume partners | Exeggutor, Alolan Raichu, Glaceon | A tropical tree, surfer and ice fox need an explicit shared costume concept. |
 | [9](#finding-9) | B | Juggler Irwin — electric animals obscure the juggling act | Elekid, Flaaffy, Electabuzz, Ampharos, Electivire | A trainer introducing ball dexterity has no ball-prop partner. |
-| [10](#finding-10) | B | Juggler Fritz — team reads more like a Psychic/Tamer hybrid | Gorotora, Noctowl | Tiger/owl partners need an act; Electrode and Mr. Rime read more clearly. |
+| [10](#finding-10) | B | Juggler Fritz — team reads more like a Psychic/Tamer hybrid | Kamitora, Noctowl | Tiger/owl partners need an act; Electrode and Mr. Rime read more clearly. |
 | [11](#finding-11) | B | Juggler Silas — Golduck is the weakest stage-act link | Golduck | Golduck is the weakest performance link beside a spinning star and fire prop. |
 | [12](#finding-12) | B | Youngster Jimmy — slow occult king beside a runner | Galarian Slowking | A slow occult king is a weak personality match for a wind-fast runner. |
 | [13](#finding-13) | B | Youngster Owen — team lacks ordinary route-kid identity | Toxapex, Mamoswine | Reef predator plus snow mammoth gives a generic route child no clear concept. |
@@ -225,15 +225,15 @@ Irwin specifically introduces ball dexterity. His electric humanoid/sheep lines 
 
 ### 10. [B] Juggler Fritz — team reads more like a Psychic/Tamer hybrid
 
-**Questionable slots:** Gorotora, Noctowl.
+**Questionable slots:** Kamitora, Noctowl.
 
 A tiger and an owl do not explain a juggling act by themselves. Espeon is reasonably defensible as a telekinetic stage partner. His current dialogue is about seasickness, so it supplies no circus act to connect the animals.
 
 **Current parties:**
 
-- [FRITZ](C:/Users/luked/Documents/GitHub/Pokemon-Crimson-Crystal/data/trainers/parties.asm:4836) — Fast Ship B1F; map: FastShipB1F — Gorotora 56, Noctowl 56, Espeon 58.
+- [FRITZ](C:/Users/luked/Documents/GitHub/Pokemon-Crimson-Crystal/data/trainers/parties.asm:4836) — Fast Ship B1F; map: FastShipB1F — Kamitora 56, Noctowl 56, Espeon 58.
 
-**Suggested change:** Gorotora Lv.56 → Electrode Lv.56; Noctowl Lv.56 → Mr. Rime Lv.56. Keep Espeon, and give Fritz a short line about balancing his act on a rocking ship.
+**Suggested change:** Kamitora Lv.56 → Electrode Lv.56; Noctowl Lv.56 → Mr. Rime Lv.56. Keep Espeon, and give Fritz a short line about balancing his act on a rocking ship.
 
 **Alternative species:** Electrode, Mr. Mime, Mr. Rime, Ambipom.
 
@@ -639,7 +639,7 @@ The party is explicitly marked unplaced. Alolan Ninetales, Noctowl and Mr. Mime 
 | Pokéfan Alex / Nidoking, Slowking and Kingambit | All three support his explicit regal/king theme. |
 | Pokéfan Carter / Blastoise, Charizard and Venusaur | Fully evolved Kanto starters preserve the collector's three-starter identity, even though he names their basic forms in conversation. |
 | Pokémaniac Issac / Furret | His specific hook is a freshly groomed Pokémon. Furret fits haircuts and companionship; rare-species policing would miss that context. |
-| Juggler Horton / Electric animals | Vermilion Gym explicitly supplies the Electric specialist context. Electivire, Ampharos, Gorotora and Lanturn all meet it. Electrode could sharpen his juggling identity, but this is lower priority than the Jugglers listed above. |
+| Juggler Horton / Electric animals | Vermilion Gym explicitly supplies the Electric specialist context. Electivire, Ampharos, Kamitora and Lanturn all meet it. Electrode could sharpen his juggling identity, but this is lower priority than the Jugglers listed above. |
 | Jugglers Marco and Leon / Espeon, Clefable, Xatu, Galarian Rapidash and Wigglytuff | Magic, telekinetic tricks, circus animals and singing can form a coherent broader stage act. Leon's Rapidash is Fairy/Fire here; it does not need Psychic typing for this class. |
 | Cosplayers Daisy and Pearl / Ditto, Mimikyu and Clefable | Daisy explicitly uses Ditto to achieve costume looks; Mimikyu is a costume creature. Pearl explicitly calls Clefable her dream cosplay partner. |
 | Tamers / Tauros forms, Tyranitar, Snorlax, Dragonite, Persian, Kleavor and other beasts | Their actual stories emphasize unruly, fierce, big or ancient beasts. This supports varied creature types rather than one elemental type. |

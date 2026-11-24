@@ -215,6 +215,11 @@ SECTION "Archer Battle Music", ROMX
 INCLUDE "audio/music/archerbattle.asm"
 
 
+SECTION "Hostess Battle Music", ROMX
+
+INCLUDE "audio/music/hostessbattle.asm"
+
+
 SECTION "Sound Effects", ROMX
 
 INCLUDE "audio/sfx.asm"

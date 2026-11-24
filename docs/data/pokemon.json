@@ -185923,10 +185923,10 @@
         "args": [
           "45"
         ],
-        "target": "GOROTORA",
+        "target": "KAMITORA",
         "text": "Level 45",
-        "target_name": "Gorotora",
-        "target_slug": "gorotora"
+        "target_name": "Kamitora",
+        "target_slug": "kamitora"
       }
     ],
     "egg_moves": [
@@ -186227,8 +186227,8 @@
     ]
   },
   {
-    "const": "GOROTORA",
-    "name": "Gorotora",
+    "const": "KAMITORA",
+    "name": "Kamitora",
     "number": 402,
     "stats": {
       "HP": 120,
@@ -186437,7 +186437,7 @@
         "Field"
       ]
     },
-    "sprite": "assets/pokemon/gorotora.png",
+    "sprite": "assets/pokemon/kamitora.png",
     "tutor_moves": [
       "SUBSTITUTE",
       "SLEEP_TALK",
@@ -186476,10 +186476,10 @@
     },
     "original_stats_source": "custom species",
     "sprite_size": 56,
-    "back": "assets/pokemon/gorotora.back.png",
+    "back": "assets/pokemon/kamitora.back.png",
     "back_size": 48,
     "anim": {
-      "sheet": "assets/pokemon/gorotora.sheet.png",
+      "sheet": "assets/pokemon/kamitora.sheet.png",
       "size": 56,
       "frames": 5,
       "main": [

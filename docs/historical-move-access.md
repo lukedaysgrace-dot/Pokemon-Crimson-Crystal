@@ -1864,7 +1864,7 @@ make test-learnsets BATTLE_TEST_PYTHON=.venv/bin/python
 
 - **Added Blackthorn lessons:** Body Slam, Brick Break, Calm Mind, Counter, Defense Curl, Detect, Double-Edge, Draining Kiss, Dynamic Punch, Frustration, Giga Impact, Grass Knot, Hyper Voice, Mega Kick, Mega Punch, Mimic, Pay Day, Play Rough, Rage, Rollout, Safeguard, Seismic Toss, Sing, Skull Bash, Snore, Submission, Sweet Scent, Take Down, Yawn.
 
-### Gorotora
+### Kamitora
 
 **Added:** None.
 

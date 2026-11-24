@@ -361,7 +361,7 @@ MenuIconPointers:
 	dba ExcadrillMenuIcon
 	dba KotoraMenuIcon
 	dba RaitoraMenuIcon
-	dba GorotoraMenuIcon
+	dba KamitoraMenuIcon
 	dba FletchlingMenuIcon
 	dba FletchinderMenuIcon
 	dba TalonflameMenuIcon

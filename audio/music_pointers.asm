@@ -122,3 +122,4 @@ Music:
 	dba Music_GreenEncounter         ; MUSIC_GREEN_ENCOUNTER
 	dba Music_MeetBlueCloak           ; MUSIC_MEET_BLUE_CLOAK
 	dba Music_ArcherBattle            ; MUSIC_ARCHER_BATTLE
+	dba Music_HostessBattle           ; MUSIC_HOSTESS_BATTLE

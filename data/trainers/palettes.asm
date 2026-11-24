@@ -134,3 +134,20 @@ INCBIN "gfx/trainers/karate_king.gbcpal", middle_colors ; KARATE_KING
 INCBIN "gfx/trainers/slot_maniac.gbcpal", middle_colors ; SLOT_MANIAC
 INCBIN "gfx/trainers/hostess.gbcpal", middle_colors ; HOSTESS
 INCBIN "gfx/trainers/duelist.gbcpal", middle_colors ; DUELIST
+
+KimonoGirlPalettes:
+; The Dance Theatre's Kimono Girls, indexed by trainer ID (NAOKO1 = 1).
+; Must directly follow the TrainerPalettes entries: GetTrainerPalettePointer
+; reaches these as extra TrainerPalettes indexes.
+; Skin from kimono_girl.png; kimono in each girl's overworld colour
+; (npc_sprites.pal day palettes, and DanceTheatrePinkPalette for Yumi).
+; Keep in sync with the object_event palettes in maps/DanceTheatre.asm.
+	RGB 29, 19, 15, 31, 07, 01 ; NAOKO1: red    (PAL_NPC_RED)
+	RGB 29, 19, 15, 31, 07, 01 ; NAOKO2: red    (PAL_NPC_RED)
+	RGB 29, 19, 15, 17, 08, 28 ; SAYO:   purple (PAL_NPC_PURPLE)
+	RGB 29, 19, 15, 17, 08, 28 ; ZUKI:   purple (PAL_NPC_PURPLE)
+	RGB 29, 19, 15, 10, 09, 31 ; KUNI:   blue   (PAL_NPC_BLUE)
+	RGB 29, 19, 15, 07, 23, 03 ; MIKI:   green  (PAL_NPC_GREEN)
+	RGB 29, 19, 15, 10, 09, 31 ; FUYU:   blue   (PAL_NPC_BLUE)
+	RGB 29, 19, 15, 07, 23, 03 ; HANA:   green  (PAL_NPC_GREEN)
+	RGB 29, 19, 15, 31, 15, 26 ; YUMI:   pink   (DanceTheatrePinkPalette)
