@@ -172,3 +172,6 @@ OverworldSprites:
 
 GamblerSpriteData:
 	overworld_sprite GamblerSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+
+HostessDanceSpriteData:
+	overworld_sprite HostessDanceSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE

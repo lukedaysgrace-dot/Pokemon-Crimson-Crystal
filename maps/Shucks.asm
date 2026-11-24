@@ -1,6 +1,6 @@
 	object_const_def
 	const SHUCKS_BARTENDER
-	const SHUCKS_HOSTESS ; SCARLET, waiting tables on weekdays
+	const SHUCKS_STAGE_SCARLET
 	const SHUCKS_STAGE_DANCER
 	const SHUCKS_POOL_PLAYER
 	const SHUCKS_SAILOR
@@ -149,11 +149,63 @@ ShucksShuckleGreeting:
 	waitbutton
 	end
 
-ShucksHostessScript:
-	jumptextfaceplayer ShucksHostessText
+ShucksScarletStageDancerScript:
+	scall ShucksStartStageDialogue
+	writetext ShucksScarletStageDancerText
+	sjump ShucksFinishStageDialogue
 
 ShucksStageDancerScript:
-	jumptext ShucksStageDancerText
+	scall ShucksStartStageDialogue
+	writetext ShucksStageDancerText
+ShucksFinishStageDialogue:
+	waitbutton
+	closetext
+	callasm ShucksResumeStageDance
+	end
+
+ShucksStartStageDialogue:
+	faceplayer
+	callasm ShucksPauseStageDance
+	opentext
+	end
+
+ShucksPauseStageDance:
+	ldh a, [hLastTalked]
+	call CheckObjectVisibility
+	ret c
+	ld hl, OBJECT_FLAGS1
+	add hl, bc
+	set SLIDING_F, [hl] ; use the standing pose during dialogue
+	call GetSpriteDirection
+	cp OW_DOWN
+	jp z, UpdateSprites ; frame 1 of the dance sheet already faces front
+	ld a, SPRITE_HOSTESS ; also loaded for Elektra
+	jr ShucksSetStageDancerSprite
+
+ShucksResumeStageDance:
+	ldh a, [hLastTalked]
+	call CheckObjectVisibility
+	ret c
+	ld a, OW_DOWN
+	call SetSpriteDirection
+	ld hl, OBJECT_FLAGS1
+	add hl, bc
+	res SLIDING_F, [hl]
+	ld hl, OBJECT_STEP_FRAME
+	add hl, bc
+	ld [hl], 0
+	ld a, SPRITE_HOSTESS_DANCE
+ShucksSetStageDancerSprite:
+	ld e, a
+	call GetSpriteVTile
+	ret c
+	ld hl, OBJECT_SPRITE_TILE
+	add hl, bc
+	ld [hl], a
+	ld hl, OBJECT_SPRITE
+	add hl, bc
+	ld [hl], e
+	jp UpdateSprites
 
 ShucksPoolPlayerScript:
 	jumptextfaceplayer ShucksPoolPlayerText
@@ -671,11 +723,9 @@ ShucksShuckleGreetingText:
 	text "SHUCK!"
 	done
 
-ShucksHostessText:
-	text "Hey there hon,"
-	line "anything I can get"
-	cont "you from the kids"
-	cont "menu?"
+ShucksScarletStageDancerText:
+	text "Hey there, hon!"
+	line "Enjoying the show?"
 	done
 
 ShucksStageDancerText:
@@ -1074,8 +1124,8 @@ Shucks_MapEvents:
 	bg_event 19,  3, BGEVENT_READ, ShucksSpeakerScript
 	db 15 ; object events
 	object_event  4,  2, SPRITE_SILPH_WORKER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksBartenderScript, -1
-	object_event  8,  7, SPRITE_HOSTESS, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_SCARLET, OBJECTTYPE_SCRIPT, 0, ShucksHostessScript, EVENT_SHUCKS_WAITRESSES_OFF
-	object_event 14,  3, SPRITE_HOSTESS, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_NAMI, OBJECTTYPE_SCRIPT, 0, ShucksStageDancerScript, -1
+	object_event 16,  3, SPRITE_HOSTESS_DANCE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_SCARLET, OBJECTTYPE_SCRIPT, 0, ShucksScarletStageDancerScript, EVENT_SHUCKS_WAITRESSES_OFF
+	object_event 14,  3, SPRITE_HOSTESS_DANCE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_NAMI, OBJECTTYPE_SCRIPT, 0, ShucksStageDancerScript, -1
 	object_event  7,  9, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksPoolPlayerScript, -1
 	object_event  1,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksSailorScript, -1
 	object_event 10, 10, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksPatronScript, -1

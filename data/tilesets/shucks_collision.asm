@@ -17,8 +17,8 @@
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 10
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 11
 	tilecoll FLOOR, WALL, FLOOR, WALL ; 12
-	tilecoll WALL, WALL, FLOOR, FLOOR ; 13
-	tilecoll WALL, FLOOR, FLOOR, FLOOR ; 14
+	tilecoll COUNTER, WALL, FLOOR, FLOOR ; 13 (talk across the stage edge)
+	tilecoll COUNTER, FLOOR, FLOOR, FLOOR ; 14 (talk across the stage edge)
 	tilecoll WALL, WALL, FLOOR, WALL ; 15
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; 16
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 17

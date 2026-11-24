@@ -57,6 +57,8 @@ SetFacingStepAction:
 	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
+	cp SPRITE_HOSTESS_DANCE
+	jr z, SetFacingHostessDance
 	farcall_a GetOverworldSpriteType
 	cp MON_ICON_SPRITE
 	jp z, SetFacingBounce
@@ -79,6 +81,25 @@ SetFacingStepAction:
 	call GetSpriteDirection
 	or FACING_STEP_DOWN_0 ; useless
 	or d
+	ld hl, OBJECT_FACING_STEP
+	add hl, bc
+	ld [hl], a
+	ret
+
+SetFacingHostessDance:
+	ld hl, OBJECT_STEP_FRAME
+	add hl, bc
+	inc [hl]
+	; Cycle front, first dance pose, front, second dance pose. Each pose
+	; lasts 16 updates. The dance poses use the standing up and left tile slots.
+	ld a, FACING_STEP_DOWN_0
+	bit 4, [hl]
+	jr z, .show_pose
+	bit 5, [hl]
+	ld a, FACING_STEP_UP_0
+	jr z, .show_pose
+	ld a, FACING_STEP_LEFT_0
+.show_pose
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a

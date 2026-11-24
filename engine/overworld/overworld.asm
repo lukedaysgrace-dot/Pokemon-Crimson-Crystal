@@ -242,6 +242,9 @@ GetNPCSpriteData:
 	ld hl, GamblerSpriteData
 	cp SPRITE_GAMBLER
 	ret z
+	ld hl, HostessDanceSpriteData
+	cp SPRITE_HOSTESS_DANCE
+	ret z
 	ld hl, OverworldSprites
 	dec a
 	ld c, a
@@ -345,6 +348,8 @@ GetMonSprite:
 
 	cp SPRITE_GAMBLER
 	jr z, .Normal
+	cp SPRITE_HOSTESS_DANCE
+	jr z, .Normal
 	cp SPRITE_POKEMON
 	jr c, .Normal
 	cp SPRITE_DAY_CARE_MON_1
@@ -434,6 +439,8 @@ _DoesSpriteHaveFacings::
 	call ResolveVariableSprite
 	cp SPRITE_GAMBLER
 	jr z, .npc
+	cp SPRITE_HOSTESS_DANCE
+	jr z, .npc
 	cp SPRITE_POKEMON
 	jr nc, .only_down
 
@@ -465,6 +472,8 @@ GetOverworldSpriteType::
 ; caller's object/graphics pointers. SpriteMons use two-frame icon animation.
 	call ResolveVariableSprite
 	cp SPRITE_GAMBLER
+	jr z, .npc
+	cp SPRITE_HOSTESS_DANCE
 	jr z, .npc
 	cp SPRITE_POKEMON
 	jr c, .npc

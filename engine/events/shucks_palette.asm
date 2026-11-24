@@ -1,9 +1,8 @@
 LoadShucksObjectPalette::
-; Shucks' hostesses wear the exact colours of their battle pics: skin plus
-; hair/outfit from hostess.png (Nami), hostess_red.png (Scarlet) and
-; hostess_purple.png (Elektra). The bar has no tree or rock objects, so those
-; slots hold Nami and Scarlet; Elektra takes over the purple slot (which the
-; FAT_GUY dancer and a Friday COOLTRAINER_F share). See PAL_NPC_NAMI etc.
+; Shucks' hostesses wear the hair and outfit colours of their battle pics.
+; Use the standard skin tone from gfx/overworld/npc_sprites.pal in all three.
+; The tree and rock slots hold Nami and Scarlet. Elektra uses the purple
+; slot, which the FAT_GUY dancer and a Friday COOLTRAINER_F also use.
 	ld a, [wMapGroup]
 	cp GROUP_SHUCKS
 	jr nz, LoadKarensRoomObjectPalette
@@ -22,10 +21,9 @@ LoadShucksObjectPalette::
 	jp FarCopyWRAM
 
 ShucksHostessPalettes:
-; Keep in sync with hostess.png / HostessScarletPalette / HostessElektraPalette.
-	RGB 31,31,31, 30,21,18, 09,15,21, 00,00,00 ; Nami:    PAL_OW_TREE
-	RGB 31,31,31, 30,21,18, 22,08,08, 00,00,00 ; Scarlet: PAL_OW_ROCK
-	RGB 31,31,31, 30,21,18, 20,01,19, 00,00,00 ; Elektra: PAL_OW_PURPLE
+	RGB 31,31,31, 31,19,10, 09,15,21, 00,00,00 ; Nami:    PAL_OW_TREE
+	RGB 31,31,31, 31,19,10, 22,08,08, 00,00,00 ; Scarlet: PAL_OW_ROCK
+	RGB 31,31,31, 31,19,10, 20,01,19, 00,00,00 ; Elektra: PAL_OW_PURPLE
 
 LoadKarensRoomObjectPalette:
 ; Karen's Room has no rock-paletted objects, so its OBJ rock slot holds
