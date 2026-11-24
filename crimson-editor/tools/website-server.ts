@@ -14,6 +14,7 @@ const types: Record<string, string> = {
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
+  '.wav': 'audio/wav',
 };
 createServer((request, response) => {
   try {
