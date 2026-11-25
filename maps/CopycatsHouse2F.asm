@@ -364,8 +364,9 @@ CopycatText_Male_3:
 CopycatText_NoStealingScarf:
 	text "COPYCAT: Hey!"
 	para "Didn't anyone"
-	line "teach you stealing"
-	cont "is wrong?!"
+	line "teach you that"
+	cont "stealing is"
+	cont "wrong?!"
 	done
 
 CopycatText_OfferScarf:

@@ -533,7 +533,7 @@ BoarderSpencerBeatenText:
 	done
 
 BoarderSpencerAfterBattleText:
-	text "ICE #MON keep"
+	text "Ice #MON keep"
 	line "their cool no"
 	cont "matter what."
 	done

@@ -517,7 +517,7 @@ GoldenrodGameCornerSlotManiacAfterText:
 	cont "a little too much"
 	cont "attention…"
 
-	para "They make moves"
+	para "With them, moves"
 	line "that strike more"
 	cont "than once land"
 	cont "more hits."

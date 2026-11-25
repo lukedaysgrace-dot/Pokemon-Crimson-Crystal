@@ -4253,8 +4253,8 @@ BillsPC_LastPartyMon:
 	prompt
 
 BillsPC_MustSaveToContinue:
-	text "Save the game to"
-	line "do this?"
+	text "You must save"
+	line "first. Save now?"
 	done
 
 BillsPC_SwapPartyMonMail:

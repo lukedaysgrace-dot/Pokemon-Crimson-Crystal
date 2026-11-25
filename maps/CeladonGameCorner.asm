@@ -219,8 +219,8 @@ CeladonGameCornerFisherFullCoinCaseText:
 	text "Hey, your COIN"
 	line "CASE is full, kid."
 
-	para "You must be riding"
-	line "a winning streak"
+	para "You must be on a"
+	line "winning streak,"
 	cont "too."
 	done
 

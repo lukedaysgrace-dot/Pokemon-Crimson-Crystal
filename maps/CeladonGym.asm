@@ -211,7 +211,7 @@ SchoolGirlTanyaBeatenText:
 
 SchoolGirlTanyaAfterBattleText:
 	text "Each of my #MON"
-	line "uses GRASS moves"
+	line "uses grass moves"
 	cont "in different ways."
 
 	para "That's bio-"

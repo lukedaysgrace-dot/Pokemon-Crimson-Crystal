@@ -213,8 +213,8 @@ SchoolGirlSharonSeenText:
 	done
 
 SchoolGirlSharonBeatenText:
-	text "You colored beyond"
-	line "my plan…"
+	text "You colored"
+	line "outside my lines…"
 	done
 
 SchoolGirlSharonAfterBattleText:

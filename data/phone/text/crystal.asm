@@ -144,8 +144,8 @@ CrystalPhoneTipRoute32Text:
 
 CrystalPhoneTipRoute33Text:
 	text "I confirmed"
-	line "PIKACHU on ROUTE"
-	cont "33."
+	line "PIKACHU on"
+	cont "ROUTE 33."
 
 	para "Look during the"
 	line "morning or day."
@@ -285,8 +285,9 @@ CrystalPhoneTipRoute46Text:
 	done
 
 CrystalPhoneTipRoute9Text:
-	text "RHYHORN roam ROUTE"
-	line "9 in the morning."
+	text "RHYHORN roam"
+	line "ROUTE 9 in the"
+	cont "morning."
 
 	para "They don't scare"
 	line "easily. Bring a"

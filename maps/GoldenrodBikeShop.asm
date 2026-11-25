@@ -131,7 +131,8 @@ GoldenrodBikeShopClerkFirstRateBikesText:
 GoldenrodBikeShopClerkFirstRateSkateboardsText:
 	text "My SKATEBOARDS are"
 	line "first-rate! Great"
-	cont "for getting around"
+	cont "for tricks and"
+	cont "quick trips around"
 	cont "town!"
 	done
 

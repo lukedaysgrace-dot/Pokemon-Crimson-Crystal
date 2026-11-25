@@ -250,5 +250,5 @@ FishingContestWilliamResultText:
 	text "I finished all my"
 	line "snacks too soon."
 	para "Next Friday, I'll"
-	line "bring more snacks!"
+	line "pack extra!"
 	done

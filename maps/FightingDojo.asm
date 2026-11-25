@@ -78,7 +78,7 @@ FightingDojoKiyoSeenText:
 	line "MT.MORTAR is done."
 
 	para "I've mastered many"
-	line "kinds of FIGHTING"
+	line "kinds of fighting"
 	cont "#MON!"
 
 	para "I will defeat"

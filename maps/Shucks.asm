@@ -665,33 +665,33 @@ ShucksHostessEnterMovement:
 	step_end
 
 ShucksBartenderText:
-	text "Hey there kiddo,"
-	line "the name's BUCK"
+	text "Hey there, kiddo!"
+	line "The name's BUCK,"
 	cont "and this here's my"
-	cont "partner in crime"
+	cont "partner in crime,"
 	cont "SHUCK!"
 	done
 
 ShucksBartenderShopText:
 	text "You're a little"
 	line "young to be in"
-	cont "here but no"
-	cont "worries, we have"
-	cont "options for kids."
+	cont "here, but no"
+	cont "worries. We have"
+	cont "options for kids!"
 
 	para "What would you"
 	line "like?"
 	done
 
 ShucksDancingPatronJamText:
-	text "oh yeah, this is"
+	text "Oh yeah, this is"
 	line "my jam!"
 	done
 
 ShucksDancingPatronGrooveText:
-	text "Hey buddy, you"
-	line "mind not throwing"
-	cont "off my groove?"
+	text "Hey, buddy. Mind"
+	line "not throwing off"
+	cont "my groove?"
 	done
 
 ShucksGameboyKidText:
@@ -708,9 +708,10 @@ ShucksGameboyKidText:
 	done
 
 ShucksBartenderReplyText:
-	text "BUCK: I heard that!"
+	text "BUCK: I heard"
+	line "that!"
 
-	para "Ol' Shuck here"
+	para "Ol' SHUCK here"
 	line "works harder than"
 	cont "you do!"
 	done
@@ -729,7 +730,7 @@ ShucksScarletStageDancerText:
 	done
 
 ShucksStageDancerText:
-	text "Well hey there"
+	text "Well, hey there,"
 	line "sweetie! Looking"
 	cont "for a little"
 	cont "excitement?"
@@ -749,7 +750,7 @@ ShucksStageDancerText:
 	para "So bring your"
 	line "toughest #MON"
 	cont "and show us what"
-	cont "you got!"
+	cont "you've got!"
 	done
 
 ShucksPoolPlayerText:
@@ -809,8 +810,9 @@ ShucksSailorText:
 	done
 
 ShucksPatronText:
-	text "The dancers have"
-	line "a show tonight!"
+	text "The dancers put on"
+	line "a show every"
+	cont "Friday night!"
 	para "I've got the best"
 	line "seat in the house."
 	done
@@ -832,7 +834,7 @@ ShucksMenuText:
 	cont "Our signature"
 	cont "drink."
 
-	para "Ol' Shuck's secret"
+	para "Ol' SHUCK's secret"
 	line "recipe. Don't ask"
 	cont "what's in it!"
 
@@ -978,8 +980,9 @@ ShucksElektraAfterText:
 	done
 
 ShucksStoutCharmExplainText:
-	text "ELEKTRA: Hold onto"
-	line "that STOUT CHARM."
+	text "ELEKTRA: Hold on"
+	line "to that STOUT"
+	cont "CHARM."
 
 	para "A #MON holding"
 	line "it shrugs off the"
@@ -1011,7 +1014,7 @@ ShucksElektraComeBackText:
 
 ShucksPrizeBagFullText:
 	text "ELEKTRA: Your"
-	line "BAG's stuffed,"
+	line "PACK's stuffed,"
 	cont "hon!"
 
 	para "Make some room and"
@@ -1040,11 +1043,11 @@ ShucksFridayCooltrainerF1Text:
 
 ShucksFridayCooltrainerF2Text:
 	text "First up is NAMI,"
-	line "the WATER-type"
+	line "the water-type"
 	cont "hostess."
 
 	para "Then comes SCARLET"
-	line "with her FIRE"
+	line "with her fire"
 	cont "#MON."
 	done
 
@@ -1061,7 +1064,7 @@ ShucksFridayCooltrainerMText:
 ShucksFridayCooltrainerF3Text:
 	text "ELEKTRA closes the"
 	line "show with her"
-	cont "ELECTRIC #MON."
+	cont "electric #MON."
 
 	para "I hear she gives"
 	line "first-time winners"

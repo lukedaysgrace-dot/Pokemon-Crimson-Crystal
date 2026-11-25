@@ -193,7 +193,7 @@ SilentCryptGrave3:
 	end
 
 HexManiacOdessaSeenText:
-	text "Sssh. You'll wake"
+	text "Shh. You'll wake"
 	line "them."
 
 	para "…Too late."

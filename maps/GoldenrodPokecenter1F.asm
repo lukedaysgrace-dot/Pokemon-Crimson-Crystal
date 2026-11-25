@@ -849,15 +849,15 @@ GoldenrodPokecenter1FFeebasSalesmanOfferText:
 	cont "swell FEEBAS for"
 	cont "¥2000?"
 
-	para "This is a once in"
-	line "a lifetime kind of"
+	para "This is a once-in-"
+	line "a-lifetime kind of"
 	cont "deal!"
 
 	para "What do you say?"
 	done
 
 GoldenrodPokecenter1FFeebasSalesmanRefusedText:
-	text "……fine."
+	text "……Fine."
 	done
 
 GoldenrodPokecenter1FFeebasSalesmanNoRoomText:

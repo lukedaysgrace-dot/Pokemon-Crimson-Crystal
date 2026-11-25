@@ -132,7 +132,7 @@ TrainerHouseB1FIntroText:
 TrainerHouseB1FPostgameTrainingText:
 	text "Welcome, CHAMPION!"
 
-	para "Train here as often"
+	para "Train here as much"
 	line "as you like for"
 	cont "your next battle."
 	done

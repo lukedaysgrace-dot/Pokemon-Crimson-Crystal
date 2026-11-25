@@ -133,8 +133,8 @@ UnknownText_0x64448:
 	para "You got a MAGNET"
 	line "TRAIN PASS!"
 
-	para "With your travels"
-	line "all over KANTO,"
+	para "You're traveling"
+	line "all over KANTO, so"
 
 	para "I thought I might"
 	line "not see you for"

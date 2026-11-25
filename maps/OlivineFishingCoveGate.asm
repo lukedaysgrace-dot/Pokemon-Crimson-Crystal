@@ -233,7 +233,8 @@ OlivineFishingCoveGateFridayText:
 	text "Welcome to OLIVINE"
 	line "FISHING COVE!"
 	para "We hold a Fishing"
-	line "Contest on Friday."
+	line "Contest every"
+	cont "Friday."
 	para "Fishing here is"
 	line "only allowed then."
 	done

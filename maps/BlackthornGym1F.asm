@@ -266,7 +266,7 @@ BlackthornGymClairText_DescribeTM24:
 	text "That contains"
 	line "DRAGON CLAW."
 
-	para "A true DRAGON"
+	para "A true dragon"
 	line "tears through its"
 	cont "foes. Remember it."
 

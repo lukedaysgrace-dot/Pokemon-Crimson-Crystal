@@ -555,7 +555,7 @@ Text_Route31DescribeHoneClaws:
 
 	para "It sharpens claws"
 	line "to raise ATTACK"
-	cont "and accuracy too."
+	cont "and accuracy, too."
 
 	para "Ooooh… That sounds"
 	line "sharp!"

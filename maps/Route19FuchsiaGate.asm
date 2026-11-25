@@ -27,8 +27,8 @@ Route19FuchsiaGateOfficerText:
 	line "erupted."
 
 	para "It hurled boulders"
-	line "that cut off ROUTE"
-	cont "19."
+	line "that cut off"
+	cont "ROUTE 19."
 
 	para "The crews say"
 	line "it'll take a while"

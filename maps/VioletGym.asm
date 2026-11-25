@@ -283,7 +283,7 @@ VioletGymGuyWinText:
 	done
 
 FalknerRematchChallengeText:
-	text "My FLYING #MON"
+	text "My flying #MON"
 	line "have trained hard"
 	cont "since our last"
 	cont "battle."

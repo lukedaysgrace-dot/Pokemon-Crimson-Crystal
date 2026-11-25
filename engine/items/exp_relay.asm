@@ -85,8 +85,9 @@ ExpRelayCore::
 	cont "to @"
 	text_ram wStringBuffer1
 	text "?"
-	para "Donor loses all."
-	line "Stat EXP past the"
+	para "The donor loses"
+	line "all its Stat EXP."
+	cont "Stat EXP past the"
 	cont "max is lost."
 	done
 
