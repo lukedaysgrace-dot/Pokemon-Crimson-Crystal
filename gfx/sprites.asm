@@ -290,6 +290,11 @@ HostessSpriteGFX::           INCBIN "gfx/sprites/hostess.2bpp"
 HostessSpriteGFXEnd::
 assert HostessSpriteGFXEnd - HostessSpriteGFX == 24 * 16
 
+SECTION "Hostess Dance Sprite", ROMX
+HostessDanceSpriteGFX::      INCBIN "gfx/sprites/hostess_dance.2bpp"
+HostessDanceSpriteGFXEnd::
+assert HostessDanceSpriteGFXEnd - HostessDanceSpriteGFX == 12 * 16
+
 SECTION "Sleeping Rocket Sprite", ROMX
 RocketAsleepSpriteGFX::       INCBIN "gfx/sprites/rocket_asleep.2bpp"
 RocketAsleepSpriteGFXEnd::

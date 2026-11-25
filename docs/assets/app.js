@@ -162,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const GB_FRAME_MS = 1000 / 59.7275; // Game Boy vblank
   const sheets = new Map();           // sheet url -> Promise<string[]>
   const playing = new WeakMap();      // img -> token
+  let activeCry;
 
   const parseSeq = s => (s || '')
     .split(',')
@@ -210,18 +211,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const gap = +img.dataset.animGap || 0;
     if (!main.length && !idle.length) return;
 
-    const token = {};
+    const still = playing.get(img)?.still ?? img.getAttribute('src');
+    const token = { still };
     playing.set(img, token);
 
     let frames;
     try {
       frames = await sliceSheet(url, size, count);
     } catch {
+      if (playing.get(img) === token) playing.delete(img);
       return; // sheet missing; leave the static sprite alone
     }
     if (playing.get(img) !== token) return;
 
-    const still = img.getAttribute('src');
     const show = i => { if (frames[i]) img.setAttribute('src', frames[i]); };
 
     // Schedule against a running deadline so long frames don't drift.
@@ -256,21 +258,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function init() {
-    const sprites = document.querySelectorAll('img[data-anim-sheet]');
+    const sprites = document.querySelectorAll('.monhero .sprite-pair img.big:not(.back-sprite)');
     if (!sprites.length) return;
-    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     sprites.forEach(img => {
+      const filename = new URL(img.src).pathname.split('/').pop().replace(/\.png$/, '.wav');
+      const cry = new Audio();
+      cry.preload = 'auto';
+      cry.src = new URL(`../cries/${filename}`, img.src).href;
+
+      const actions = img.dataset.animSheet ? 'animation and cry' : 'cry';
+      const name = img.closest('.monhero').querySelector('h1').textContent.trim();
       img.classList.add('animatable');
-      img.title = 'Click to play animation';
-      img.addEventListener('click', () => play(img));
+      img.title = `Click to play ${actions}`;
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', `Play ${name}'s ${actions}`);
+      img.addEventListener('click', () => {
+        if (activeCry && activeCry !== cry) activeCry.pause();
+        activeCry = cry;
+        cry.currentTime = 0;
+        cry.play().catch(() => {});
+        play(img);
+      });
+      img.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        if (!event.repeat) img.click();
+      });
     });
 
-    if (still) return;
-    // Opening a Pokémon page plays the animation once, the way the stats
-    // screen does when you open it. Clicking the sprite replays it.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // The initial animation is silent. Cries play only on activation.
     const first = document.querySelector('.form-view:not([hidden]) img[data-anim-sheet]')
-      || sprites[0];
+      || document.querySelector('img[data-anim-sheet]');
     if (first) play(first);
   }
 

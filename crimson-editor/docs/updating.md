@@ -46,6 +46,14 @@ The documentation generator includes the **Save Editor** tab in every page's
 main navigation. Regenerate those pages with the usual documentation command;
 the generator preserves `docs/editor/`. The editor links back to the guides.
 
+When the game's cries or Pokédex roster change, rebuild the ROM and refresh
+`docs/assets/cries/` from the repository root with PyBoy installed:
+
+```sh
+python -m pip install pyboy==2.9.0
+python tools/export_website_cries.py --rom pokecrystal.gbc
+```
+
 `test:website` serves the real `docs` tree at the exact GitHub Pages project path
 and checks navigation, game-data and sprite loading, save upload/download,
 links from nested pages, and mobile navigation. The CI workflow runs these checks.

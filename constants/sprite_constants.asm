@@ -244,6 +244,7 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_DAY_CARE_MON_2 ; e8
 	const SPRITE_SHUCKLE        ; e9; resumes the SpriteMons table after Day-Care
 	const SPRITE_GAMBLER        ; ea; extended NPC ID
+	const SPRITE_HOSTESS_DANCE  ; eb; extended NPC ID
 	assert const_value <= $f0, "Overworld sprites overlap variable sprite IDs"
 
 ; wVariableSprites indexes (see wram.asm)
