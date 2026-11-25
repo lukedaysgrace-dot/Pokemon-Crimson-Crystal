@@ -1161,7 +1161,7 @@ wBillsPCDataEnd::
 
 NEXTU ; c800
 ; Beast Triad saves these map blocks before installing its LCD handler.
-wBeastTriadLCDCode:: ds $110
+wBeastTriadLCDCode:: ds $120
 wBeastTriadLCDCodeEnd::
 
 NEXTU ; c800
@@ -3680,6 +3680,7 @@ wBTUsed:: ds 10
 wBTBoard:: ds 9
 wBTOwners:: ds 9
 wBTHandCursor:: db
+wBTFoeCursor:: db ; focused opponent hand position, or -1
 wBTBoardCursor:: db
 wBTPlayerHand:: db
 wBTFoeHand:: db
@@ -3705,12 +3706,15 @@ wBTFaceColors:: ds 10 * 4
 wBTFaceOwners:: ds 10
 wBTRasterBuffer:: db
 wBTRasterActive:: dw
-; Each schedule: 12 rows of four palettes, then the label row's two colors.
-wBTRasterRows0:: ds 12 * 4 * 6 + 4
-wBTRasterRows1:: ds 12 * 4 * 6 + 4
+; Each schedule: 12 padded rows of five palettes, then two label colors.
+wBTRasterRows0:: ds 12 * 32 + 4
+wBTRasterRows1:: ds 12 * 32 + 4
 wBTRasterRowsEnd::
 wBTCapturedCells:: ds 9
 wBTAnimPhase:: db
+wBTFlipSlot:: db ; number of captured cards processed for the current image
+wBTFlipWidth:: db ; index of the horizontal projection
+wBTFlipPals:: ds 4 palettes
 wBTMapBlockBackup:: ds wBeastTriadLCDCodeEnd - wBeastTriadLCDCode
 ; Who the match is against. Trainers set these before the table opens.
 wBTEntry:: db

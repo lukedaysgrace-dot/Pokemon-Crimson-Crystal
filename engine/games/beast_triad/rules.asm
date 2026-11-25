@@ -25,6 +25,7 @@ BeastTriadStartMatch:
 	ld [wBTFoeHand], a
 	ld [wBTPlayerScore], a
 	ld a, -1
+	ld [wBTFoeCursor], a
 	ld [wBTReward + 1], a
 	ld [wBTLost + 1], a
 	call BeastTriadDealFoe
@@ -205,6 +206,7 @@ BeastTriadFoeTurn:
 	ld a, [hl]
 	cp BT_DECK_SIZE
 	jr c, .card
+	call BeastTriadShowFoeSelection
 	ld a, [wBTBestCell]
 	ld [wBTProbeCell], a
 	ld a, [wBTBestCard]
@@ -213,6 +215,33 @@ BeastTriadFoeTurn:
 	jp BeastTriadAfterMove
 .position_score:
 	db 2, 1, 2, 1, 0, 1, 2, 1, 2
+
+BeastTriadShowFoeSelection:
+	; Start just after the chosen card so the sweep visits each available
+	; card once and ends on the card the opponent will play.
+	ld a, [wBTBestCard]
+	sub BT_HAND_SIZE
+	ld [wBTFoeCursor], a
+.next:
+	call BeastTriadInspectFoe
+	ld a, [wBTFoeCursor]
+	cp -1
+	jr z, .next
+	call BeastTriadRender
+	ld a, [wBTBestCard]
+	sub BT_HAND_SIZE
+	ld hl, wBTFoeCursor
+	cp [hl]
+	jr z, .chosen
+	ld c, 7
+	call DelayFrames
+	jr .next
+.chosen:
+	ld c, 18
+	call DelayFrames
+	ld a, -1
+	ld [wBTFoeCursor], a
+	ret
 
 BeastTriadPlace:
 	ld hl, wBTCapturedCells
@@ -411,46 +440,77 @@ BeastTriadAnimatePlacement:
 	ld a, [wBTCaptures]
 	and a
 	jp z, BeastTriadEndMatchup
-	; Turn each captured card over: its old face, its back, then the new
-	; owner's face with one soft flash before it settles.
+	; Rotate the old face to the edge, open the back, then turn it over
+	; again to reveal the new owner's face.
 	ld a, BT_ANIM
 	ld [wBTMode], a
+	call BeastTriadLoadFlipCards
+	call WaitSFX
 	ld a, BT_FLIP_FACE
-	ld c, 10
+	ld c, 5
 	call .frame
 	ld de, SFX_BEAST_TRIAD_FLIP
-	call WaitPlaySFX
+	call PlaySFX
+	ld a, BT_FLIP_FACE_NARROW
+	call .contract
+	ld a, BT_FLIP_BACK_NARROW
+	call .expand
 	ld a, BT_FLIP_BACK
 	ld c, 8
 	call .frame
+	ld a, BT_FLIP_BACK_NARROW
+	call .contract
 	ld a, [wBTProbeOwner]
 	and a
 	ld de, SFX_BEAST_TRIAD_CAPTURE
 	jr z, .reveal_sound
 	ld de, SFX_BEAST_TRIAD_CAPTURED
 .reveal_sound:
-	call WaitPlaySFX
+	call PlaySFX
+	ld a, BT_FLIP_REVEAL_NARROW
+	call .expand
 	ld a, BT_FLIP_REVEAL
-	ld c, 12
-	call .frame
-	ld a, BT_FLIP_SETTLE
-	ld c, 10
+	ld c, 8
 	call .frame
 	xor a
 	ld [wBTAnimPhase], a
 	jp BeastTriadEndMatchup
 
+.contract:
+	ld b, 0
+	ld e, 1
+	jr .widths
+.expand:
+	ld b, BT_FLIP_WIDTHS - 1
+	ld e, -1
+.widths:
+	ld [wBTAnimPhase], a
+.width:
+	ld a, b
+	ld [wBTFlipWidth], a
+	push bc
+	push de
+	ld c, 1
+	call .show
+	pop de
+	pop bc
+	ld a, b
+	add e
+	ld b, a
+	cp BT_FLIP_WIDTHS
+	jr c, .width
+	ret
 .frame:
 	ld [wBTAnimPhase], a
+.show:
 	push bc
 	call BeastTriadRender
 	pop bc
 	jp DelayFrames
 
 BeastTriadShowMatchup:
-	; If the placed card's type changed any edge it attacked with, redraw its
-	; ranks with the new values, light it up and name the matchup. A neutral
-	; attack just gets the usual battle hit.
+	; Show the affected ranks and name the matchup while keeping the board's
+	; ownership colors. A neutral attack gets the usual battle hit.
 	ld hl, wBTEdgeBonus
 	ld a, [hli]
 	or [hl]

@@ -204,6 +204,20 @@ def steady_frames(h, button, count=60):
     return len(runs)
 
 
+def quit_frames(h):
+    h.tick(4)
+    before = h.pb.screen.image.convert("RGB").tobytes()
+    h.pb.button("b", 2)
+    for frame in range(1, 21):
+        h.tick(1)
+        image = h.pb.screen.image.convert("RGB")
+        if image.getextrema() == ((248, 248),) * 3:
+            h.tick(72 - frame)
+            return
+        assert image.tobytes() == before, "The table changed colors before it cleared"
+    raise AssertionError("Exiting did not clear the table")
+
+
 def word(m, symbol, offset=0):
     return int.from_bytes(m.read_bytes(symbol, 2, offset), "little")
 
@@ -297,10 +311,13 @@ def check_palette_frame(h, cards):
     colours = m.read_bytes("wBTFaceColors", 10 * 4)
     ownership = m.read_bytes("wBTFaceOwners", 10)
     hand = [int.from_bytes(m.read_bytes("wBTDeck", 2, i * 2), "little") for i in range(10)]
-    if m.read("wBTMode") == CASE:
+    mode = m.read("wBTMode")
+    selected_prize_slot = 5 + m.read("wBTPickCursor") if mode == PICK else None
+    board_owners = dict(zip(m.read_bytes("wBTBoard", 9), m.read_bytes("wBTOwners", 9)))
+    if mode == CASE:
         hand[m.read("wBTPreviewSlot")] = word(m, "wBTPreviewCard")
         hand[m.read("wBTHeldSlot")] = word(m, "wBTHeldCard")
-    paper = [(30,30,24), (29,23,18), (25,29,30), (31,31,18), (31,22,18), (20,31,18), (22,22,24)]
+    paper = [(30,30,24), (29,23,18), (25,29,30), (31,20,19)]
     image = h.pb.screen.image.convert("RGB")
     cache = {}
 
@@ -320,7 +337,7 @@ def check_palette_frame(h, cards):
         return bytes(h.pb.memory[bank, address + i] for i in range(4))
 
     for i, (tile, attr) in enumerate(zip(tiles, attrs)):
-        if not 4 <= attr <= 7:
+        if not 3 <= attr <= 7:
             continue
         slot, tile_index = divmod(tile, CARD_TILES)
         if slot not in cache:
@@ -328,13 +345,18 @@ def check_palette_frame(h, cards):
             first, second = colours[4*slot:4*slot+2], colours[4*slot+2:4*slot+4]
             assert first + second == original_colours(index), (cards[index].name, first, second)
             art = build.card_image(cards[index])
-            if m.read("wBTMode") != CASE and m.read("wBTTypeShown") == slot + 1:
+            if mode != CASE and m.read("wBTTypeShown") == slot + 1:
                 edges = [signed(b) for b in m.read_bytes("wBTEdgeBonus", 4)]
                 art = badge_image(cards[index], m.read_bytes("wBTRanks", 4, 4 * slot), edges)
-            cache[slot] = (art,
-                           (paper[ownership[slot]], rgb_components(int.from_bytes(first,"little")),
-                            rgb_components(int.from_bytes(second,"little")), (0,0,0)))
-        art, palette = cache[slot]
+            cache[slot] = (art, (rgb_components(int.from_bytes(first, "little")),
+                                 rgb_components(int.from_bytes(second, "little")), (0,0,0)))
+        art, face = cache[slot]
+        owner = ownership[slot]
+        if mode == PICK and 4 <= attr <= 6:
+            owner = 2 + board_owners[slot]
+        elif attr == 7 and slot == selected_prize_slot:
+            owner = 2
+        palette = (paper[owner], *face)
         src_x, src_y = (tile_index % CARD_COLS) * 8, (tile_index // CARD_COLS) * 8
         dst_x, dst_y = (i % 20) * 8, (i // 20) * 8
         for y in range(8):
@@ -346,6 +368,53 @@ def check_palette_frame(h, cards):
                     cards[hand[slot]].name, (dst_x+x,dst_y+y), colour, expected, received
                 )
     return len(cache)
+
+
+def check_foe_hand(h):
+    m = h.battle.mem
+    used = m.read_bytes("wBTUsed", 5, 5)
+    cursor = m.read("wBTFoeCursor")
+    slots = [5 + slot for slot, spent in enumerate(used) if not spent]
+    selected = cursor + 5 if cursor != EMPTY else None
+    check_hand_layout(h, 1, 3, slots, selected)
+    if selected is not None:
+        assert m.read("wBTFaceOwners", selected) == 2
+
+
+def check_right_hand(h):
+    m = h.battle.mem
+    mode = m.read("wBTMode")
+    pick = mode == PICK
+    cursor = m.read("wBTPickCursor" if pick else "wBTHandCursor")
+    if pick:
+        slots = list(range(5, 10))
+        cursor += 5
+    else:
+        slots = [slot for slot, used in enumerate(m.read_bytes("wBTUsed", 5))
+                 if not used and (mode != HELD or slot != cursor)]
+    focus = pick or (mode == HAND and not m.read("wBTTurn") and m.read("wBTFoeCursor") == EMPTY)
+    selected = cursor if focus and cursor in slots else None
+    check_hand_layout(h, 15, 7, slots, selected)
+    if selected is not None and not pick:
+        assert m.read("wBTFaceOwners", selected) == 2
+
+
+def check_hand_layout(h, column, palette, slots, selected):
+    m = h.battle.mem
+    tiles = m.read_bytes("wTileMap", 20 * 18)
+    attrs = m.read_bytes("wAttrMap", 20 * 18)
+    for row in range(18):
+        pos = row * 20 + column
+        layers = {slot: row - (3 + 2 * (slot % 5)) for slot in slots
+                  if 3 + 2 * (slot % 5) <= row < 3 + 2 * (slot % 5) + CARD_ROWS}
+        if not layers:
+            assert palette not in attrs[pos:pos + CARD_COLS]
+            continue
+        slot = selected if selected in layers else max(layers)
+        first_tile = slot * CARD_TILES + layers[slot] * CARD_COLS
+        assert attrs[pos:pos + CARD_COLS] == bytes([palette] * CARD_COLS)
+        assert tiles[pos:pos + CARD_COLS] == bytes(range(first_tile, first_tile + CARD_COLS)), (
+            selected, row, slot, tiles[pos:pos + CARD_COLS])
 
 
 def check_capture_edges(h):
@@ -415,10 +484,12 @@ def main():
     map_before = []
     flip_phases = []
     capture_sounds = []
-    flip = (1, 3, 5, 6)
+    flip = ((1, None), (2, 0), (2, 1), (2, 2), (4, 2), (4, 1), (4, 0),
+            (3, None), (4, 0), (4, 1), (4, 2), (6, 2), (6, 1), (6, 0), (5, None))
     matchup_shows = []
     battled = []
     hits = []
+    foe_selection = []
 
     def map_snapshot():
         return (m.read_bytes("wOverworldMapBlocks", 1300),
@@ -442,6 +513,12 @@ def main():
         card = m.read("wBTProbeCard")
         slot = m.read("wBTProbeCell")
         owner = m.read("wBTProbeOwner")
+        if owner == 1:
+            remaining = [i for i, used in enumerate(m.read_bytes("wBTUsed", 5, 5)) if not used]
+            chosen = remaining.index(card - 5) + 1
+            assert foe_selection == remaining[chosen:] + remaining[:chosen]
+            assert m.read("wBTFoeCursor") == EMPTY
+            foe_selection.clear()
         mods = m.read_bytes("wBTTypeMods", 100)
         expected = predicted_place(board, owners, ranks, card, slot, owner, mods)
         flips = {i for i in range(9) if i != slot and owners[i] != expected[1][i]}
@@ -466,34 +543,47 @@ def main():
         assert set(i for i, marked in enumerate(m.read_bytes("wBTCapturedCells", 9)) if marked) == flips
 
     def commit_frame(_):
+        foe_cursor = m.read("wBTFoeCursor")
+        if m.read("wBTMode") == HAND and m.read("wBTTurn") == 1 and foe_cursor != EMPTY:
+            check_foe_hand(h)
+            check_right_hand(h)
+            foe_selection.append(foe_cursor)
         phase = m.read("wBTAnimPhase")
         if not phase:
             return
         (board, _), (slot, card, owner), flips, edges = captures[-1]
         if phase == 7:
-            # The attacking card glows and its art shows the changed ranks.
+            # The attacking card shows the changed ranks in its owner's color.
             assert any(edges) and m.read("wBTMode") == ANIM
             assert m.read("wBTArtPatch") == card + 1
-            paper = 5 if 1 in edges and -1 not in edges else 6 if -1 in edges and 1 not in edges else None
-            if paper is not None:
-                assert m.read("wBTFaceOwners", card) == paper
+            assert m.read("wBTFaceOwners", card) == 2 + owner
+            assert all(m.read("wBTFaceOwners", board[cell]) == 3 - owner for cell in flips)
             matchup_shows.append(len(captures))
-            flip_phases.append((len(captures), owner, phase))
+            flip_phases.append((len(captures), owner, phase, None))
             return
         assert flips and m.read("wBTMode") == ANIM
-        for cell in flips:
+        narrow = phase in (2, 4, 6)
+        width = m.read("wBTFlipWidth") if narrow else None
+        assert m.read("wBTFlipSlot") == (len(flips) if narrow else 0)
+        for index, cell in enumerate(sorted(flips)):
             at = board_tile(cell)
             for row in range(CARD_ROWS):
                 attrs = m.read_bytes("wAttrMap", CARD_COLS, at + row * 20)
                 card_tiles = [attr < 8 for attr in attrs]
-                if phase == 3:
-                    assert card_tiles == [False] * CARD_COLS, "the card back is static art"
-                else:
-                    assert card_tiles == [True] * CARD_COLS
-            if phase != 3:
-                paper = {1: 1 - owner, 5: 3 + owner, 6: owner}[phase]
+                assert card_tiles == [not narrow and phase != 3] * CARD_COLS
+            if narrow:
+                y, x = 40 + (cell // 3) * 32, 52 + (cell % 3) * 24
+                tile = 96 + 8 * width if phase == 4 else index * 24 + 8 * width
+                palette = 6 if phase == 4 else index
+                assert m.read_bytes("wVirtualOAM", 4, index * 32) == bytes((y, x, tile, palette))
+                if phase != 4:
+                    paper_palette = 4 + (1 - owner if phase == 2 else owner)
+                    assert m.read_bytes("wVirtualOAM", 4, index * 32 + 16) == bytes((
+                        y, x, 120 + 8 * width, paper_palette))
+            elif phase != 3:
+                paper = 3 - owner if phase == 1 else 2 + owner
                 assert m.read("wBTFaceOwners", board[cell]) == paper
-        flip_phases.append((len(captures), owner, phase))
+        flip_phases.append((len(captures), owner, phase, width))
 
     def play_sound(_):
         if m.read("wCurSFX") == sfx["SFX_DAMAGE"]:
@@ -558,10 +648,21 @@ def main():
         case_item = h.con.item_id("CARD_CASE")
         keys_in_bag = m.read_bytes("wKeyItems", m.read("wNumKeyItems"))
         assert case_item in [m.item_index_of(item) for item in keys_in_bag]
-        for button in ("down", "down", "up"):
+        check_right_hand(h)
+        for button in ("down", "down", "down", "down", "down", "up"):
             settled_frames(h, button)
+            check_right_hand(h)
+            check_palette_frame(h, cards)
+        check_foe_hand(h)
+        check_palette_frame(h, cards)
+        foe_slots = [slot for slot, used in enumerate(m.read_bytes("wBTUsed", 5, 5)) if not used]
+        for slot in [*foe_slots, EMPTY]:
+            settled_frames(h, "select")
+            assert m.read("wBTFoeCursor") == slot
+            check_foe_hand(h)
+            check_palette_frame(h, cards)
 
-        key(h, "b", wait=70)
+        quit_frames(h)
         assert m.read("wBTMode") == EXIT
         check_map_restored("quit", map_before[-1])
         before_case = map_snapshot()
@@ -643,7 +744,7 @@ def main():
             h.tick(4)
             assert check_palette_frame(h, cards) == 1
             h.pb.screen.image.crop((120,24,144,56)).save(str(output / f"{species.lower()}-card.png"))
-        key(h, "b", wait=70)
+        quit_frames(h)
         assert m.read("wBTMode") == EXIT
         check_map_restored("case", before_case)
 
@@ -663,6 +764,7 @@ def main():
         states = m.read_bytes("wBTBoard", 9)
         key(h, "a")
         assert m.read("wBTMode") == HELD
+        check_right_hand(h)
         for target in range(9):
             if states[target] == EMPTY:
                 navigate(h, target)
@@ -704,8 +806,14 @@ def main():
             owners = m.read_bytes("wBTOwners", 9)
             target = max(free, key=lambda i: sum(owners[n] == 1 for _, n in neighborhood(i)))
             navigate(h, target)
-            key(h, "a", wait=20)
+            if len(free) <= 2:
+                steady_frames(h, "a", count=210)
+            else:
+                key(h, "a", wait=20)
             await_state(h, lambda: player_ready() or m.read("wBTMode") in (PICK, RESULT), "AI response")
+            if player_ready():
+                check_foe_hand(h)
+                check_right_hand(h)
         assert m.read("wBTMode") == PICK, "A win lets the player pick a prize"
         assert songs[-1] == music["MUSIC_BEAST_TRIAD_VICTORY"]
         assert m.read("wBTMoves") == len(captures) == 9
@@ -713,11 +821,14 @@ def main():
         assert sum(m.read_bytes("wBeastTriadCollection", len(keys))) == owned_before
         h.tick(12)
         assert check_palette_frame(h, cards) >= 9
+        check_right_hand(h)
         h.pb.screen.image.save(str(output / "match-pick.png"))
         key(h, "down")
         key(h, "down")
         key(h, "up")
         assert m.read("wBTPickCursor") == 1
+        check_palette_frame(h, cards)
+        check_right_hand(h)
         prize = word(m, "wBTDeck", 2 * (5 + 1))
         prize_count = m.read("wBeastTriadCollection", prize)
         key(h, "a")
@@ -725,11 +836,11 @@ def main():
         owned = m.read_bytes("wBeastTriadCollection", len(keys))
         assert owned[prize] == prize_count + 1 and sum(owned) == owned_before + 1
         h.tick(12)
-        assert check_palette_frame(h, cards) == 9 + m.read("wBTPlayerHand")
+        assert check_palette_frame(h, cards) == 9 + m.read("wBTPlayerHand") + m.read("wBTFoeHand")
         h.pb.screen.image.save(str(output / "match-result.png"))
         saved_result = BytesIO()
         h.pb.save_state(saved_result)
-        key(h, "b", wait=70)
+        quit_frames(h)
         check_map_restored("finished-match", map_before[-1])
         saved_result.seek(0)
         h.pb.load_state(saved_result)
@@ -747,11 +858,11 @@ def main():
         assert check_palette_frame(h, cards) >= 5
         h.pb.screen.image.save(str(output / "foe-capture.png"))
         await_state(h, player_ready, "after opponent capture")
-        expected_flips = [(i, entry[2], phase)
+        expected_flips = [(i, entry[2], phase, width)
                           for i, (_, entry, flips, edges) in enumerate(captures, 1)
-                          for phase in ((7,) if any(edges) else ()) + (flip if flips else ())]
+                          for phase, width in (((7, None),) if any(edges) else ()) + (flip if flips else ())]
         assert flip_phases == expected_flips
-        assert {owner for _, owner, _ in flip_phases} == {0, 1}
+        assert {owner for _, owner, _, _ in flip_phases} == {0, 1}
         assert hits == [i for i, ((_, _, _, edges), fought) in enumerate(zip(captures, battled), 1)
                         if fought and not any(edges)], "neutral attacks get the usual battle hit"
         reveal = (sfx["SFX_BEAST_TRIAD_CAPTURE"], sfx["SFX_BEAST_TRIAD_CAPTURED"])
@@ -772,6 +883,8 @@ def main():
             key(h, "a")
             key(h, "a", wait=20)
         await_state(h, lambda: m.read("wBTMode") == RESULT, "lost match")
+        # Wait for the loss screen after the result handler repairs the deck.
+        h.tick(12)
         assert m.read("wBTPlayerScore") < 5
         assert songs[-1] == music["MUSIC_BEAST_TRIAD_LOSS"]
         lost = word(m, "wBTLost")
@@ -782,17 +895,16 @@ def main():
         assert m.read_bytes("wBeastTriadCollection", len(keys)) == bytes(owned)
         deck = read_deck(m)
         assert all(deck.count(card) <= owned[card] for card in deck), "the deck stays legal"
-        h.tick(12)
         h.pb.screen.image.save(str(output / "match-lost.png"))
         edited_deck = deck
-        key(h, "b", wait=70)
+        quit_frames(h)
         assert m.read("wBTMode") == EXIT
         check_map_restored("rematch", map_before[-1])
 
         open_case_from_bag(h)
         assert m.read_bytes("wBeastTriadCollection", len(keys)) == bytes(owned)
         assert read_deck(m) == edited_deck
-        key(h, "b", wait=70)
+        quit_frames(h)
         assert m.read("wBTMode") == EXIT
 
         save_continue(h, location("GOLDENROD_GAME_CORNER"))

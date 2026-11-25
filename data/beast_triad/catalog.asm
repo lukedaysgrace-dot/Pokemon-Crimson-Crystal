@@ -793,9 +793,8 @@ BeastTriadCatalog:
 BeastTriadStarters:
 	dw 0, 3, 6, 178, 162
 BEAST_BLANK_TILE EQU $9a
-BEAST_ARROW_TILE EQU $10
-BEAST_CURSOR_TILE EQU $11
-BEAST_HELD_TILE EQU $12
+BEAST_CURSOR_TILE EQU $0e
+BEAST_HELD_TILE EQU $0f
 BeastTriadCardTypes:
 	db GRASS, GRASS, GRASS, FIRE, FIRE, FIRE, WATER, WATER
 	db WATER, BUG, BUG, BUG, BUG, BUG, BUG, NORMAL
@@ -849,7 +848,7 @@ BeastTriadCardIcons:
 	db 0, 0, 7, 1, 3, 10, 10, 10, 9, 1, 9, 16, -1, -1, -1, -1
 	db -1, -1, -1, -1, -1, -1, -1
 BeastTriadTypeIconTiles:
-	db $13, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $1d, $1e, $1f, $20, $21, $22, $23, $24
+	db $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $1d, $1e, $1f, $20, $21
 BeastTriadTypeColors:
 	RGB 21, 21, 21 ; Normal
 	RGB 29, 4, 4 ; Fire
@@ -912,7 +911,534 @@ BeastTriadScreenTiles:
 	INCBIN "gfx/beast_triad/screen.bin", 0, 360
 BeastTriadScreenAttrs:
 	INCBIN "gfx/beast_triad/screen.bin", 360, 360
-BeastTriadFoeMaps:
-	INCBIN "gfx/beast_triad/screen.bin", 720, 216
+BeastTriadCardBack:
+	INCBIN "gfx/beast_triad/screen.bin", 720, 12
 BeastTriadPalettes:
-	INCBIN "gfx/beast_triad/screen.bin", 936, 64
+	INCBIN "gfx/beast_triad/screen.bin", 732, 64
+BeastTriadFlipArtPointers:
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 0
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 384
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 768
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 1152
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 1536
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 1920
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 2304
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 2688
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 3072
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 3456
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 3840
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 4224
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 4608
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 4992
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 5376
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 5760
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 6144
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 6528
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 6912
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 7296
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 7680
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 8064
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 8448
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 8832
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 9216
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 9600
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 9984
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 10368
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 10752
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 11136
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 11520
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 11904
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 12288
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 12672
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 13056
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 13440
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 13824
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 14208
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 14592
+	db BANK(BeastTriadFlipArt0)
+	dw BeastTriadFlipArt0 + 14976
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 0
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 384
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 768
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 1152
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 1536
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 1920
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 2304
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 2688
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 3072
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 3456
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 3840
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 4224
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 4608
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 4992
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 5376
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 5760
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 6144
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 6528
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 6912
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 7296
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 7680
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 8064
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 8448
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 8832
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 9216
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 9600
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 9984
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 10368
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 10752
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 11136
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 11520
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 11904
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 12288
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 12672
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 13056
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 13440
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 13824
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 14208
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 14592
+	db BANK(BeastTriadFlipArt1)
+	dw BeastTriadFlipArt1 + 14976
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 0
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 384
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 768
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 1152
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 1536
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 1920
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 2304
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 2688
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 3072
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 3456
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 3840
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 4224
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 4608
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 4992
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 5376
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 5760
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 6144
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 6528
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 6912
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 7296
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 7680
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 8064
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 8448
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 8832
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 9216
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 9600
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 9984
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 10368
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 10752
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 11136
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 11520
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 11904
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 12288
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 12672
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 13056
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 13440
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 13824
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 14208
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 14592
+	db BANK(BeastTriadFlipArt2)
+	dw BeastTriadFlipArt2 + 14976
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 0
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 384
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 768
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 1152
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 1536
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 1920
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 2304
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 2688
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 3072
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 3456
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 3840
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 4224
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 4608
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 4992
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 5376
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 5760
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 6144
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 6528
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 6912
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 7296
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 7680
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 8064
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 8448
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 8832
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 9216
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 9600
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 9984
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 10368
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 10752
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 11136
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 11520
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 11904
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 12288
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 12672
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 13056
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 13440
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 13824
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 14208
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 14592
+	db BANK(BeastTriadFlipArt3)
+	dw BeastTriadFlipArt3 + 14976
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 0
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 384
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 768
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 1152
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 1536
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 1920
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 2304
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 2688
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 3072
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 3456
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 3840
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 4224
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 4608
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 4992
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 5376
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 5760
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 6144
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 6528
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 6912
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 7296
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 7680
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 8064
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 8448
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 8832
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 9216
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 9600
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 9984
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 10368
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 10752
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 11136
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 11520
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 11904
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 12288
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 12672
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 13056
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 13440
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 13824
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 14208
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 14592
+	db BANK(BeastTriadFlipArt4)
+	dw BeastTriadFlipArt4 + 14976
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 0
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 384
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 768
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 1152
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 1536
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 1920
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 2304
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 2688
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 3072
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 3456
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 3840
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 4224
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 4608
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 4992
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 5376
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 5760
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 6144
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 6528
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 6912
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 7296
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 7680
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 8064
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 8448
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 8832
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 9216
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 9600
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 9984
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 10368
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 10752
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 11136
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 11520
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 11904
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 12288
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 12672
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 13056
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 13440
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 13824
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 14208
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 14592
+	db BANK(BeastTriadFlipArt5)
+	dw BeastTriadFlipArt5 + 14976
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 0
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 384
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 768
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 1152
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 1536
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 1920
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 2304
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 2688
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 3072
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 3456
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 3840
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 4224
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 4608
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 4992
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 5376
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 5760
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 6144
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 6528
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 6912
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 7296
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 7680
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 8064
+	db BANK(BeastTriadFlipArt6)
+	dw BeastTriadFlipArt6 + 8448

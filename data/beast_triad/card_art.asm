@@ -266,7 +266,7 @@ BeastTriadPeers:
 
 SECTION "Beast Triad Board Tiles", ROMX
 BeastTriadStaticGFX:
-	INCBIN "gfx/beast_triad/screen.bin", 1000, 4096
+	INCBIN "gfx/beast_triad/screen.bin", 796, 4096
 BeastTriadStaticGFXEnd:
 
 SECTION "Beast Triad Card Art 0", ROMX
@@ -284,3 +284,36 @@ BeastTriadArt2:
 SECTION "Beast Triad Card Art 3", ROMX
 BeastTriadArt3:
 	INCBIN "gfx/beast_triad/card_art.bin", 48960, 1536
+
+SECTION "Beast Triad Flip Props", ROMX
+BeastTriadFlipProps:
+	INCBIN "gfx/beast_triad/flip_art.bin", 0, 768
+BeastTriadFlipPropsEnd:
+
+SECTION "Beast Triad Flip Art 0", ROMX
+BeastTriadFlipArt0:
+	INCBIN "gfx/beast_triad/flip_art.bin", 768, 15360
+
+SECTION "Beast Triad Flip Art 1", ROMX
+BeastTriadFlipArt1:
+	INCBIN "gfx/beast_triad/flip_art.bin", 16128, 15360
+
+SECTION "Beast Triad Flip Art 2", ROMX
+BeastTriadFlipArt2:
+	INCBIN "gfx/beast_triad/flip_art.bin", 31488, 15360
+
+SECTION "Beast Triad Flip Art 3", ROMX
+BeastTriadFlipArt3:
+	INCBIN "gfx/beast_triad/flip_art.bin", 46848, 15360
+
+SECTION "Beast Triad Flip Art 4", ROMX
+BeastTriadFlipArt4:
+	INCBIN "gfx/beast_triad/flip_art.bin", 62208, 15360
+
+SECTION "Beast Triad Flip Art 5", ROMX
+BeastTriadFlipArt5:
+	INCBIN "gfx/beast_triad/flip_art.bin", 77568, 15360
+
+SECTION "Beast Triad Flip Art 6", ROMX
+BeastTriadFlipArt6:
+	INCBIN "gfx/beast_triad/flip_art.bin", 92928, 8832

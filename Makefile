@@ -76,6 +76,9 @@ gfx/beast_triad/card_art.bin: tools/beast_triad/build.py gfx/beast_triad/type_ic
 	$(BATTLE_TEST_PYTHON) tools/beast_triad/build.py
 	@touch $@
 
+gfx/beast_triad/flip_art.bin: gfx/beast_triad/card_art.bin
+	@test -f $@ || $(BATTLE_TEST_PYTHON) tools/beast_triad/build.py
+
 clean: tidy
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete

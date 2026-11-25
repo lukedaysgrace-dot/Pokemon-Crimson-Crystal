@@ -1,15 +1,16 @@
-; Palettes 0-3 are the table. The remaining four belong to the three
-; board columns and the player's hand. Rewrite their paper and face
-; colors as the display reaches the next row of cards.
+; Palettes 0-2 are the table. The other five belong to the three board
+; columns and the two hands. Update their colors on each tile boundary.
 BT_RASTER_FIRST_ROW EQU BT_BOARD_ROW
 BT_RASTER_ROWS EQU BT_BOARD_ROWS
 BT_RASTER_BYTES_PER_PAL EQU 3 * PAL_COLOR_SIZE
-BT_RASTER_SIZE EQU BT_RASTER_ROWS * 4 * BT_RASTER_BYTES_PER_PAL
+BT_RASTER_ROW_BYTES EQU 32 ; five palettes and two padding bytes
+BT_RASTER_SIZE EQU BT_RASTER_ROWS * BT_RASTER_ROW_BYTES
 BT_RASTER_FIRST_LYC EQU 8 * BT_RASTER_FIRST_ROW - 2
 BT_RASTER_LAST_LYC EQU 8 * (BT_RASTER_FIRST_ROW + BT_RASTER_ROWS - 1) - 2
-; After the cards, recolor the hand palette for the type symbol on the label
-; row. Row 15 is static art, so this can happen anywhere in it.
-BT_LABEL_LYC EQU 8 * 15 + 2
+BT_PRELOAD_BOARD_LYC EQU 8 * (BT_BOARD_ROW + BT_BOARD_ROWS) + 2
+; Recolor the hand palette for the type symbol after the last card scanline.
+BT_LABEL_LYC EQU 8 * (BT_BOARD_ROW + BT_BOARD_ROWS) - 1
+BT_PRELOAD_HAND_LYC EQU 8 * 17 + 1
 BT_RASTER_BUFFER_SIZE EQU BT_RASTER_SIZE + 2 * PAL_COLOR_SIZE
 
 assert wBTRasterRows1 - wBTRasterRows0 == BT_RASTER_BUFFER_SIZE
@@ -48,21 +49,7 @@ BeastTriadCommitFrame:
 	; VBlank handler run.
 	call BeastTriadPrepareRaster
 	call BeastTriadPadMaps
-	ldh a, [rIE]
-	ld b, a
-.wait_visible:
-	; If VBlank is already under way, let its handler finish first.
-	ldh a, [rLY]
-	cp LY_VBLANK
-	jr nc, .wait_visible
-	ld a, b
-	res VBLANK, a
-	ldh [rIE], a
-.wait_vblank:
-	ldh a, [rLY]
-	cp LY_VBLANK
-	jr c, .wait_vblank
-	di
+	call BeastTriadLockVBlank
 	ldh a, [rSVBK]
 	ld c, a
 	ld a, BANK(wScratchTileMap)
@@ -109,6 +96,9 @@ BeastTriadCommitFrame:
 	xor a
 	ld [wBTArtPatch], a
 .no_patch:
+	push bc
+	call BeastTriadCommitFlipSprites
+	pop bc
 	ld a, [wBTRasterBuffer]
 	xor 1
 	ld [wBTRasterBuffer], a
@@ -133,6 +123,12 @@ BeastTriadCommitFrame:
 		add 8
 		ld d, a
 	endr
+	ld a, $80 | (BT_FOE_HAND_PAL * 8)
+	ldh [rBGPI], a
+	rept BT_RASTER_BYTES_PER_PAL
+		ld a, [hli]
+		ldh [c], a
+	endr
 	ld a, BT_RASTER_FIRST_LYC
 	ldh [rLYC], a
 	ld a, 1 << 6 ; LYC-only STAT interrupt
@@ -156,6 +152,25 @@ BeastTriadCommitFrame:
 	ldh [rHDMA4], a
 	ld a, (BG_MAP_WIDTH * SCREEN_HEIGHT) / 16 - 1
 	ldh [rHDMA5], a
+	ret
+
+BeastTriadLockVBlank:
+	; Keep STAT running until the visible frame ends. Return with the
+	; original interrupt mask in B and interrupts disabled for VRAM access.
+	ldh a, [rIE]
+	ld b, a
+.wait_visible:
+	ldh a, [rLY]
+	cp LY_VBLANK
+	jr nc, .wait_visible
+	ld a, b
+	res VBLANK, a
+	ldh [rIE], a
+.wait_vblank:
+	ldh a, [rLY]
+	cp LY_VBLANK
+	jr c, .wait_vblank
+	di
 	ret
 
 BeastTriadPadMaps:
@@ -222,7 +237,12 @@ BeastTriadPrepareRaster:
 	ld bc, 4
 	add hl, bc
 	call BeastTriadStageFacePalette
-	ld bc, SCREEN_WIDTH - 15
+	ld bc, BT_FOE_HAND_COL - BT_PLAYER_HAND_COL
+	add hl, bc
+	call BeastTriadStageFacePalette
+	inc de
+	inc de
+	ld bc, SCREEN_WIDTH - BT_FOE_HAND_COL
 	add hl, bc
 	pop bc
 	dec b
@@ -261,6 +281,7 @@ BeastTriadStageFacePalette:
 	add hl, bc
 	bit 3, [hl]
 	jr nz, .empty
+	ld b, [hl]
 	ld c, 0
 .divide:
 	cp BT_CARD_TILES
@@ -269,11 +290,27 @@ BeastTriadStageFacePalette:
 	inc c
 	jr .divide
 .card:
+	; The selected prize glows in the hand even if the same card is on
+	; the board. Its board copy keeps its owner's paper color.
+	ld a, b
+	cp BT_HAND_PAL
+	jr nz, .owner
+	ld a, [wBTMode]
+	cp BT_PICK
+	jr nz, .owner
+	ld a, [wBTPickCursor]
+	add BT_HAND_SIZE
+	cp c
+	ld a, BT_PAPER_HELD
+	jr z, .paper
+.owner:
 	ld b, 0
 	ld hl, wBTFaceOwners
 	add hl, bc
-	push bc
 	ld a, [hl]
+.paper:
+	ld b, 0
+	push bc
 	add a
 	ld c, a
 	ld hl, BeastTriadPaperColors
@@ -307,16 +344,13 @@ BeastTriadStageFacePalette:
 BeastTriadPaperColors:
 	RGB 30, 30, 24 ; player
 	RGB 29, 23, 18 ; foe
-	RGB 25, 29, 30 ; held/occupied cursor
-	RGB 31, 31, 18 ; player capture flash, a brighter player paper
-	RGB 31, 22, 18 ; foe capture flash, a brighter foe paper
-	RGB 20, 31, 18 ; super effective boost
-	RGB 22, 22, 24 ; not very effective drop
+	dw BT_BOARD_BLUE ; held or player-owned board card
+	dw BT_BOARD_RED ; opponent-owned board card
 
 ; WRAM0 code for the STAT interrupt. Run phase 1 during the blank before
 ; the old card's solid black final row, which needs only untouched color
-; 3. Phase 2 starts one line later since the fan can show a partial card.
-; No objects or window shorten the HBlank on this screen.
+; 3. Phase 2 starts one line later since either fan can show a partial card.
+; If flip objects shorten HBlank, writes can continue in the next Mode 2.
 MACRO beast_tri_palette_bytes
 	rept BT_RASTER_BYTES_PER_PAL
 		ld a, [hli]
@@ -360,7 +394,7 @@ BeastTriadLCDCode:
 	pop af
 	reti
 .label:
-	ld a, BT_RASTER_FIRST_LYC
+	ld a, BT_PRELOAD_BOARD_LYC
 	ldh [rLYC], a
 	ld a, [wBTRasterActive]
 	ld l, a
@@ -389,18 +423,25 @@ BeastTriadLCDCode:
 .on_line:
 	cp BT_LABEL_LYC
 	jr z, .label
+	cp BT_PRELOAD_BOARD_LYC
+	jr z, .first_row
+	cp BT_PRELOAD_HAND_LYC
+	jr z, .first_row
 	add 2
 	srl a
 	srl a
 	srl a
 	sub BT_RASTER_FIRST_ROW
-	ld e, a
-	ld d, 0
-	ld l, e
-	ld h, d
-	add hl, hl
-	add hl, de
-	rept 3
+	jr .row_offset
+.first_row:
+	; Preload the first row after the last use of each palette. A long
+	; VBlank audio update can run past the first LYC of the next frame.
+	xor a
+.row_offset:
+	ld l, a
+	ld h, 0
+	assert BT_RASTER_ROW_BYTES == 1 << 5
+	rept 5
 		add hl, hl
 	endr
 	ld a, [wBTRasterActive]
@@ -409,10 +450,16 @@ BeastTriadLCDCode:
 	ld d, a
 	add hl, de
 	ld c, LOW(rBGPD)
+	assert BT_PRELOAD_BOARD_LYC % 2 == 0 && BT_PRELOAD_HAND_LYC % 2 == 1
 	bit 0, b
 	jr nz, .hand
 	ld a, b
+	cp BT_PRELOAD_BOARD_LYC
+	ld a, BT_PRELOAD_HAND_LYC
+	jr z, .next_board
+	ld a, b
 	inc a
+.next_board:
 	ldh [rLYC], a
 	ld a, $80 | (BT_BOARD_PAL * 8)
 	ldh [rBGPI], a
@@ -432,6 +479,10 @@ BeastTriadLCDCode:
 	ld de, 3 * BT_RASTER_BYTES_PER_PAL
 	add hl, de
 	ld a, b
+	cp BT_PRELOAD_HAND_LYC
+	ld a, BT_RASTER_FIRST_LYC
+	jr z, .next_row
+	ld a, b
 	add 7
 	cp BT_RASTER_LAST_LYC + 1
 	jr c, .next_row
@@ -444,6 +495,9 @@ BeastTriadLCDCode:
 	ldh a, [rSTAT]
 	and 3
 	jr nz, .wait_hand
+	beast_tri_palette_bytes
+	ld a, $80 | (BT_FOE_HAND_PAL * 8)
+	ldh [rBGPI], a
 	beast_tri_palette_bytes
 .done:
 	pop af

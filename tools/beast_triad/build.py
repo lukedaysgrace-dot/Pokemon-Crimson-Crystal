@@ -268,6 +268,25 @@ def encode_card(card):
                     for y in range(0,CARD_HEIGHT,8) for x in range(0,CARD_WIDTH,8))
 
 
+FLIP_WIDTHS = (16, 10, 4)
+FLIP_CARDS_PER_BANK = 40
+
+
+def flip_poses(image):
+    """Center each horizontal projection and arrange it as four 8x16 objects."""
+    poses = bytearray()
+    for width in FLIP_WIDTHS:
+        face = image.resize((width, CARD_HEIGHT), Image.Resampling.NEAREST)
+        canvas = Image.new("L", (16, CARD_HEIGHT))
+        canvas.paste(face, ((16 - width) // 2, 0))
+        for y in (0, 16):
+            for x in (0, 8):
+                for tile_y in (y, y + 8):
+                    tile = canvas.crop((x, tile_y, x + 8, tile_y + 8))
+                    poses.extend(encode_tile(tile.get_flattened_data()))
+    return bytes(poses)
+
+
 def palette_color(value):
     return tuple(round(v*31/255) for v in bytes.fromhex(value))
 
@@ -278,7 +297,7 @@ def screen_assets():
         "f6e8ce d7bd84 a98146 352a26",  # table and paper
         "e2bd7e c9944f ab5944 744335",  # Entei portrait
         "d7bd84 7f9eaa 435a68 352a26",  # Suicune frame
-        "d7bd84 a65945 ebcf95 352a26",  # hidden cards
+        "f7f7c6 42ce5a ef3973 000000",  # opponent's face-up hand
         "f7f7c6 42ce5a ef3973 000000",  # face colors replace indices 0 through 2
         "f7f7c6 42ce5a ef3973 000000",
         "f7f7c6 42ce5a ef3973 000000",
@@ -288,7 +307,6 @@ def screen_assets():
     cream, table, grain, ink = expanded[0]
     gold, ochre, ember, sepia = expanded[1]
     _, blue, blue_dark, _ = expanded[2]
-    _, clay, card_paper, _ = expanded[3]
     image = Image.new("RGB", (160,144), table)
     draw = ImageDraw.Draw(image)
     bold = Image.open(ROOT/"gfx/font/unused_bold_font.png").convert("L")
@@ -316,7 +334,7 @@ def screen_assets():
     portrait.putdata([(gold,ochre,ember,sepia)[SOURCE_SHADES[v]] for v in logo.get_flattened_data()])
     image.paste(portrait.resize((70,65),Image.Resampling.NEAREST),(41,39))
     draw.rectangle((8,24,31,119), fill=table)
-    draw.rectangle((120,24,151,119), fill=table)
+    draw.rectangle((120,24,143,119), fill=table)
     draw.rectangle((0,0,159,15), fill=cream)
     label("BEAST TRIAD",36,0,bold)
     label("FOE",8,8,regular)
@@ -355,29 +373,24 @@ def screen_assets():
     tilemap, attrs = [], []
     for y in range(0,144,8):
         for x in range(0,160,8):
-            ti,at=convert_tile(image.crop((x,y,x+8,y+8)),range(4))
+            ti,at=convert_tile(image.crop((x,y,x+8,y+8)),range(3))
             tilemap.append(ti)
             attrs.append(at)
 
-    foe_maps=[]
-    for count in range(6):
-        stack=Image.new("RGB",(CARD_WIDTH,96),table)
-        back=ImageDraw.Draw(stack)
-        for i in range(count):
-            y=96-CARD_HEIGHT-16*(count-1-i)
-            back.rounded_rectangle((0,y,23,y+31), radius=2, fill=ink)
-            back.rectangle((1,y+1,22,y+30),fill=card_paper)
-            back.rectangle((2,y+2,21,y+29),fill=clay)
-            stack.paste(ink,(8,y+12),ball)
-        for y in range(0,96,8):
-            for x in range(0,CARD_WIDTH,8):
-                tile,_=convert_tile(stack.crop((x,y,x+8,y+8)),[3])
-                foe_maps.append(tile)
+    back=Image.new("RGB",(CARD_WIDTH,CARD_HEIGHT),table)
+    border=ImageDraw.Draw(back)
+    border.rounded_rectangle((0,0,23,31), radius=2, fill=ink)
+    border.rectangle((1,1,22,30),fill=cream)
+    border.rectangle((2,2,21,29),fill=grain)
+    back.paste(ink,(8,12),ball)
+    back_tiles=[convert_tile(back.crop((x,y,x+8,y+8)),[0])[0]
+                for y in range(0,CARD_HEIGHT,8) for x in range(0,CARD_WIDTH,8)]
+    back_face = Image.new("L", back.size)
+    back_colors = [table, cream, grain, ink]
+    back_face.putdata([back_colors.index(pixel) for pixel in back.get_flattened_data()])
+    flip_props = flip_poses(back_face) + flip_poses(Image.new("L", back.size, 1))
 
     empty=tile_id([0]*64)
-    arrow=Image.new("L",(8,8))
-    ImageDraw.Draw(arrow).polygon(((1,3),(5,0),(5,6)), fill=3)
-    arrow_tile=tile_id(arrow.get_flattened_data())
     # Card Case markers: a cursor pointing at the row, and a held card.
     cursor=Image.new("L",(8,8))
     ImageDraw.Draw(cursor).polygon(((2,0),(6,3),(2,6)), fill=3)
@@ -393,14 +406,15 @@ def screen_assets():
     type_tiles=[tile_id([1 if v<128 else 0 for v in sheet.crop((0,8*i,8,8*i+8)).get_flattened_data()])
                 for i in range(len(TYPE_ICONS))]
     palette_data=b"".join((r | g<<5 | b<<10).to_bytes(2,"little") for p in palettes for r,g,b in p)
-    return (bytes(tilemap),bytes(attrs),bytes(foe_maps),palette_data,b"".join(tiles),empty,arrow_tile,
-            cursor_tile,held_tile,type_tiles)
+    return (bytes(tilemap),bytes(attrs),bytes(back_tiles),palette_data,b"".join(tiles),empty,
+            cursor_tile,held_tile,type_tiles,flip_props)
 
 
 def build():
     cards=roster()
     labels={card.key:i for i,card in enumerate(cards)}
-    tiles,attrs,backs,palettes,gfx,blank,arrow,cursor,held,type_tiles=screen_assets()
+    tiles,attrs,backs,palettes,gfx,blank,cursor,held,type_tiles,flip_props=screen_assets()
+    flip_card_bytes = len(flip_props) // 2
     constants=[
         "; Generated by tools/beast_triad/build.py.",
         "BEAST_CARD_ITEM_BASE EQU $200",
@@ -422,7 +436,7 @@ def build():
         "\tassert @ - BeastTriadCatalog == NUM_BEAST_CARDS * 17",
     ])
     lines += ["BeastTriadStarters:", "\tdw " + ", ".join(str(labels[key]) for key in STARTERS),
-        f"BEAST_BLANK_TILE EQU ${blank:02x}", f"BEAST_ARROW_TILE EQU ${arrow:02x}",
+        f"BEAST_BLANK_TILE EQU ${blank:02x}",
         f"BEAST_CURSOR_TILE EQU ${cursor:02x}", f"BEAST_HELD_TILE EQU ${held:02x}"]
     # Primary types only: the game's type constant for matchups, and the
     # symbol shown on the label row. Character cards have neither.
@@ -454,10 +468,15 @@ def build():
                       f"\tdw {label} + DAY_F * 8 palettes + PAL_OW_{palette} palettes + PAL_COLOR_SIZE"]
     lines.append("\tassert @ - BeastTriadTrainerColors == (NUM_BEAST_CARDS - 252) * 3")
     offset=0
-    for label,data in (("ScreenTiles",tiles),("ScreenAttrs",attrs),("FoeMaps",backs),
+    for label,data in (("ScreenTiles",tiles),("ScreenAttrs",attrs),("CardBack",backs),
                        ("Palettes",palettes)):
         lines += [f"BeastTriad{label}:", f'\tINCBIN "gfx/beast_triad/screen.bin", {offset}, {len(data)}']
         offset += len(data)
+    lines += ["BeastTriadFlipArtPointers:"]
+    for i in range(len(cards)):
+        bank, slot = divmod(i, FLIP_CARDS_PER_BANK)
+        lines += [f"\tdb BANK(BeastTriadFlipArt{bank})",
+                  f"\tdw BeastTriadFlipArt{bank} + {slot * flip_card_bytes}"]
     lines.append("")
     # Foe hands are dealt from each card's eight nearest peers. Character
     # cards only come from their owners, so they are nobody's peer.
@@ -481,12 +500,22 @@ def build():
         art_labels += [f'SECTION "Beast Triad Card Art {i//CARDS_PER_BANK}", ROMX',
                        f"BeastTriadArt{i//CARDS_PER_BANK}:",
                        f'\tINCBIN "gfx/beast_triad/card_art.bin", {i*CARD_BYTES}, {count*CARD_BYTES}',""]
+    art_labels += ['SECTION "Beast Triad Flip Props", ROMX', "BeastTriadFlipProps:",
+                   f'\tINCBIN "gfx/beast_triad/flip_art.bin", 0, {len(flip_props)}',
+                   "BeastTriadFlipPropsEnd:", ""]
+    for i in range(0, len(cards), FLIP_CARDS_PER_BANK):
+        bank = i // FLIP_CARDS_PER_BANK
+        count = min(FLIP_CARDS_PER_BANK, len(cards) - i)
+        start = len(flip_props) + i * flip_card_bytes
+        art_labels += [f'SECTION "Beast Triad Flip Art {bank}", ROMX', f"BeastTriadFlipArt{bank}:",
+                       f'\tINCBIN "gfx/beast_triad/flip_art.bin", {start}, {count * flip_card_bytes}', ""]
     return {
         "constants/beast_triad_constants.asm": "\n".join(constants).encode("utf-8"),
         "data/beast_triad/catalog.asm": "\n".join(lines).encode("utf-8"),
         "data/beast_triad/card_art.asm": "\n".join(art_labels).encode("utf-8"),
         "gfx/beast_triad/screen.bin": tiles+attrs+backs+palettes+gfx,
         "gfx/beast_triad/card_art.bin": b"".join(map(encode_card,cards)),
+        "gfx/beast_triad/flip_art.bin": flip_props + b"".join(flip_poses(card_image(card)) for card in cards),
     }
 
 

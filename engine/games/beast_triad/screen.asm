@@ -3,13 +3,13 @@ BT_LABEL EQU 16 * SCREEN_WIDTH + 1
 BT_COMMAND EQU 17 * SCREEN_WIDTH + 1
 BT_BOARD_ROW EQU 3
 BT_BOARD_ROWS EQU 3 * BT_CARD_ROWS
-BT_FOE_STACK EQU BT_BOARD_ROW * SCREEN_WIDTH + 1
+BT_FOE_HAND_COL EQU 1
+BT_PLAYER_HAND_COL EQU 15
 BT_CASE_PREVIEW EQU 3 * SCREEN_WIDTH + 15
 BT_CASE_HELD_PREVIEW EQU 10 * SCREEN_WIDTH + 15
 BT_TEXT_ATTR EQU $8 ; static tiles, table palette
 BT_CURSOR_ATTR EQU $9 ; static tiles, gold palette
 BT_HELD_ATTR EQU $a ; static tiles, blue palette
-BT_BACK_ATTR EQU $b ; static tiles, card back palette
 
 BeastTriadLoadPalettes:
 	ld a, [wBTMode]
@@ -225,11 +225,11 @@ BeastTriadRender:
 	jp BeastTriadCommitFrame
 .match:
 	call BeastTriadDrawScore
-	call BeastTriadDrawFoeStack
 	call BeastTriadDrawBoard
 	ld a, [wBTMode]
 	cp BT_PICK
 	jp z, .pick
+	call BeastTriadDrawFoeHand
 	call BeastTriadDrawHand
 	ld a, [wBTMode]
 	cp BT_ANIM
@@ -241,10 +241,13 @@ BeastTriadRender:
 	ld a, [wBTTurn]
 	and a
 	jr nz, .foe
-	call BeastTriadDrawHandName
+	call BeastTriadDrawSelectionName
 	ld hl, BeastTriadChooseText
-	jr .command
+	jp .command
 .foe:
+	ld a, [wBTFoeCursor]
+	cp -1
+	call nz, BeastTriadDrawFoeName
 	ld hl, BeastTriadFoeTurnText
 	jr .command
 .capture:
@@ -293,9 +296,8 @@ BeastTriadRender:
 	call BeastTriadDrawPickHand
 	ld a, [wBTPickCursor]
 	add BT_HAND_SIZE
-	call BeastTriadDeckCard
 	ld de, wTileMap + BT_LABEL
-	call BeastTriadPrintLabelName
+	call BeastTriadDrawCardLabel
 	ld hl, BeastTriadPickText
 	jr .command
 .result:
@@ -491,49 +493,46 @@ BeastTriadDrawScore:
 	ld de, wTileMap + BT_TOP_SCORE + 7
 	jp BeastTriadPrintNumber
 
-BeastTriadDrawFoeStack:
-	ld a, [wBTFoeHand]
-	ld hl, BeastTriadFoeMaps
-	ld de, BT_BOARD_ROWS * BT_CARD_COLS
-.advance:
-	and a
-	jr z, .source
-	add hl, de
-	dec a
-	jr .advance
-.source:
-	ld de, wTileMap + BT_FOE_STACK
-	ld b, BT_BOARD_ROWS
-.row:
-	rept BT_CARD_COLS
-		ld a, [hli]
-		ld [de], a
-		inc de
-	endr
-	ld a, e
-	add SCREEN_WIDTH - BT_CARD_COLS
+BeastTriadDrawFoeHand:
+	xor a
+	ld [wBTDrawIndex], a
+.card:
+	ld a, [wBTDrawIndex]
 	ld e, a
-	jr nc, .no_carry
-	inc d
-.no_carry:
-	dec b
-	jr nz, .row
-	ld hl, wAttrMap + BT_FOE_STACK
-	ld de, SCREEN_WIDTH - BT_CARD_COLS
-	ld b, BT_BOARD_ROWS
-	ld a, BT_BACK_ATTR
-.attrs:
-	rept BT_CARD_COLS
-		ld [hli], a
-	endr
+	ld d, 0
+	ld hl, wBTUsed + BT_HAND_SIZE
 	add hl, de
-	dec b
-	jr nz, .attrs
-	ret
+	ld a, [hl]
+	and a
+	jr nz, .next
+	ld a, e
+	ld b, BT_PAPER_FOE
+	call .draw
+.next:
+	ld hl, wBTDrawIndex
+	inc [hl]
+	ld a, [hl]
+	cp BT_HAND_SIZE
+	jr c, .card
+	ld a, [wBTFoeCursor]
+	cp -1
+	ret z
+	; The focused card covers whatever is behind its fixed slot.
+	ld b, BT_PAPER_HELD
+.draw:
+	push af
+	call BeastTriadHandOffset
+	ld de, BT_FOE_HAND_COL - BT_PLAYER_HAND_COL
+	add hl, de
+	pop af
+	add BT_HAND_SIZE
+	ld c, BT_FOE_HAND_PAL
+	jp BeastTriadDrawTrackingColors
 
 BeastTriadDrawBoard:
 	xor a
 	ld [wBTDrawIndex], a
+	ld [wBTFlipSlot], a
 .cell:
 	ld a, [wBTDrawIndex]
 	call BeastTriadBoardCell
@@ -543,34 +542,9 @@ BeastTriadDrawBoard:
 	ld hl, wBTOwners
 	add hl, bc
 	ld b, [hl]
-	ld a, [wBTMode]
-	cp BT_HELD
-	jr nz, .animated
-	ld a, [wBTBoardCursor]
-	ld hl, wBTDrawIndex
-	cp [hl]
-	jr nz, .draw
-	ld b, BT_PAPER_HELD
-	jr .draw
-.animated:
 	ld a, [wBTAnimPhase]
 	and a
 	jr z, .draw
-	cp BT_FLIP_TYPE
-	jr nz, .flipping
-	; The attacking card glows: green for a boost, gray for a drop.
-	ld a, [wBTProbeCell]
-	ld hl, wBTDrawIndex
-	cp [hl]
-	jr nz, .draw
-	call BeastTriadMatchupText
-	ld b, BT_PAPER_BOOST
-	ld a, l
-	cp LOW(BeastTriadWeakText)
-	jr nz, .draw
-	ld b, BT_PAPER_WEAK
-	jr .draw
-.flipping:
 	push bc
 	ld a, [wBTDrawIndex]
 	ld c, a
@@ -583,21 +557,24 @@ BeastTriadDrawBoard:
 	jr z, .draw
 	; B is already the new owner.
 	ld a, [wBTAnimPhase]
+	cp BT_FLIP_REVEAL
+	jr z, .draw
 	cp BT_FLIP_BACK
 	jr z, .back
 	cp BT_FLIP_FACE
-	jr nz, .new_face
+	jr z, .old
+	cp BT_FLIP_TYPE
+	jr z, .old
+	call BeastTriadDrawFlipCell
+	jr .next
+.old:
 	ld a, b
 	xor 1
 	ld b, a
-	jr .draw
-.new_face:
-	cp BT_FLIP_REVEAL
-	jr nz, .draw
-	ld a, b
-	add BT_PAPER_PLAYER_FLASH
-	ld b, a
 .draw:
+	ld a, b
+	add BT_PAPER_BOARD_PLAYER
+	ld b, a
 	call .coordinates
 	call BeastTriadDrawTrackingColors
 	jr .next
@@ -643,6 +620,7 @@ BeastTriadDrawHand:
 	jr z, .next
 .draw:
 	ld a, e
+	ld b, BT_PAPER_PLAYER
 	call BeastTriadDrawHandCard
 .next:
 	ld hl, wBTDrawIndex
@@ -650,72 +628,25 @@ BeastTriadDrawHand:
 	ld a, [hl]
 	cp BT_HAND_SIZE
 	jr c, .card
-	call BeastTriadRestoreHandEdge
 	ld a, [wBTMode]
 	cp BT_HAND
+	ret nz
+	ld a, [wBTTurn]
+	and a
 	ret nz
 	ld a, [wBTPlayerHand]
 	and a
 	ret z
-	ld a, [wBTHandCursor]
-	jp BeastTriadDrawHandArrow
-
-BeastTriadHandCardOffset:
-	; A: hand position. Returns HL: its tilemap offset. While choosing, the
-	; selected card shows in full and the cards after it move down.
-	ld c, a
-	call BeastTriadHandOffset
-	ld a, [wBTMode]
-	cp BT_PICK
-	ld a, [wBTPickCursor]
-	jr z, .cursor
-	ld a, [wBTMode]
-	cp BT_HAND
+	ld a, [wBTFoeCursor]
+	cp -1
 	ret nz
 	ld a, [wBTHandCursor]
-.cursor:
-	cp c
-	ret nc
-	ld de, 2 * SCREEN_WIDTH
-	add hl, de
-	ret
-
-BeastTriadRestoreHandEdge:
-	; The last card can move past the hand's rows; the table edge and the
-	; label row stay in front of it.
-	ld hl, BeastTriadScreenTiles + 15 * SCREEN_WIDTH + 15
-	ld de, wTileMap + 15 * SCREEN_WIDTH + 15
-	call .rows
-	ld hl, BeastTriadScreenAttrs + 15 * SCREEN_WIDTH + 15
-	ld de, wAttrMap + 15 * SCREEN_WIDTH + 15
-.rows:
-	ld b, 2
-.row:
-	rept BT_CARD_COLS
-		ld a, [hli]
-		ld [de], a
-		inc de
-	endr
-	ld a, SCREEN_WIDTH - BT_CARD_COLS
-	add l
-	ld l, a
-	jr nc, .no_carry_hl
-	inc h
-.no_carry_hl:
-	ld a, SCREEN_WIDTH - BT_CARD_COLS
-	add e
-	ld e, a
-	jr nc, .no_carry_de
-	inc d
-.no_carry_de:
-	dec b
-	jr nz, .row
-	ret
+	ld b, BT_PAPER_HELD
+	jp BeastTriadDrawHandCard
 
 BeastTriadDrawPickHand:
 	; The foe's five cards fan out where the player's hand was. Cards still
-	; on the board keep their color there; the one under the cursor glows
-	; and shows in full, with the cards after it moved down.
+	; on the board keep their color there. The card at the cursor glows.
 	xor a
 	ld [wBTDrawIndex], a
 .card:
@@ -726,22 +657,11 @@ BeastTriadDrawPickHand:
 	ld a, [hl]
 	cp BT_HAND_SIZE
 	jr c, .card
-	call BeastTriadRestoreHandEdge
 	ld a, [wBTPickCursor]
-	jr BeastTriadDrawHandArrow
 .draw:
 	push af
-	call BeastTriadHandCardOffset
+	call BeastTriadHandOffset
 	pop af
-	ld c, a
-	ld a, [wBTPickCursor]
-	cp c
-	ld a, c
-	jr nz, .not_picked
-	add BT_HAND_SIZE
-	lb bc, BT_PAPER_HELD, BT_HAND_PAL
-	jr BeastTriadDrawTrackingColors
-.not_picked:
 	add BT_HAND_SIZE
 	ld e, a
 	ld d, 0
@@ -758,22 +678,11 @@ BeastTriadDrawPickHand:
 	call BeastTriadTileForCard
 	jp BeastTriadDrawCardAt
 
-BeastTriadDrawHandArrow:
-	; A: hand position.
-	call BeastTriadHandOffset
-	ld de, wTileMap + SCREEN_WIDTH + BT_CARD_COLS
-	add hl, de
-	ld [hl], BEAST_ARROW_TILE
-	ld de, wAttrMap - wTileMap
-	add hl, de
-	ld [hl], BT_HELD_ATTR
-	ret
-
 BeastTriadDrawHandCard:
 	push af
-	call BeastTriadHandCardOffset
+	call BeastTriadHandOffset
 	pop af
-	lb bc, BT_PAPER_PLAYER, BT_HAND_PAL
+	ld c, BT_HAND_PAL
 	jr BeastTriadDrawTrackingColors
 
 BeastTriadBoardPalette:
@@ -810,14 +719,13 @@ BeastTriadTileForCard:
 	ret
 
 BeastTriadHandOffset:
+	; Both hands use fixed slots. The focused card is drawn after the fan.
 	ld hl, .offsets
 	jr BeastTriadGetOffset
 .offsets:
-	dw  3 * SCREEN_WIDTH + 15
-	dw  5 * SCREEN_WIDTH + 15
-	dw  7 * SCREEN_WIDTH + 15
-	dw  9 * SCREEN_WIDTH + 15
-	dw 11 * SCREEN_WIDTH + 15
+FOR row, BT_BOARD_ROW, BT_BOARD_ROW + 2 * BT_HAND_SIZE, 2
+	dw row * SCREEN_WIDTH + BT_PLAYER_HAND_COL
+ENDR
 
 BeastTriadBoardOffset:
 	ld hl, .offsets
@@ -864,12 +772,11 @@ BeastTriadDrawCardAt:
 	ret
 
 BeastTriadDrawCardBack:
-	; HL: screen tile offset. Midway through a flip, show the card's back
-	; (the single card of the foe's stack art).
+	; HL: screen tile offset. Midway through a flip, show the card's back.
 	push hl
 	ld de, wTileMap
 	add hl, de
-	ld de, BeastTriadFoeMaps + (2 * BT_BOARD_ROWS - BT_CARD_ROWS) * BT_CARD_COLS
+	ld de, BeastTriadCardBack
 	ld bc, SCREEN_WIDTH - BT_CARD_COLS
 	rept BT_CARD_ROWS
 		rept BT_CARD_COLS
@@ -882,7 +789,7 @@ BeastTriadDrawCardBack:
 	pop hl
 	ld de, wAttrMap
 	add hl, de
-	ld a, BT_BACK_ATTR
+	ld a, BT_TEXT_ATTR
 	rept BT_CARD_ROWS
 		rept BT_CARD_COLS
 			ld [hli], a
@@ -891,10 +798,28 @@ BeastTriadDrawCardBack:
 	endr
 	ret
 
+BeastTriadDrawSelectionName:
+	ld a, [wBTFoeCursor]
+	cp -1
+	jr z, BeastTriadDrawHandName
+BeastTriadDrawFoeName:
+	ld hl, BeastTriadFoeLabel
+	ld de, wTileMap + BT_LABEL
+	call BeastTriadPrint
+	ld a, [wBTFoeCursor]
+	add BT_HAND_SIZE
+	jr BeastTriadDrawCardLabel
+
 BeastTriadDrawHandName:
 	ld a, [wBTHandCursor]
-	call BeastTriadDeckCard
 	ld de, wTileMap + BT_LABEL
+	; fallthrough
+
+BeastTriadDrawCardLabel:
+	; A: art slot. DE: name position.
+	push de
+	call BeastTriadDeckCard
+	pop de
 	; fallthrough
 
 BeastTriadPrintLabelName:
@@ -1029,7 +954,8 @@ BeastTriadDeckTitle:        db "DECK@"
 BeastTriadTrunkTitle:       db "TRUNK@"
 BeastTriadBrowseText:       db "A PICK     B BACK@"
 BeastTriadSwapText:         db "A SWAP     B DROP@"
-BeastTriadChooseText:       db "A HOLD     B QUIT@"
+BeastTriadChooseText:       db "A HOLD  SELECT FOE@"
+BeastTriadFoeLabel:         db "FOE @"
 BeastTriadFoeTurnText:      db "FOE IS PLAYING@"
 BeastTriadYouCaptureText:   db "YOU CAPTURED@"
 BeastTriadFoeCapturesText:  db "FOE CAPTURED@"

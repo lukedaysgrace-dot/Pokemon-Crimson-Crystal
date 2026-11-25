@@ -14,21 +14,29 @@ BT_CARD_COLS EQU 3
 BT_CARD_ROWS EQU 4
 BT_CARD_TILES EQU BT_CARD_COLS * BT_CARD_ROWS
 assert BT_CARD_TILES * BT_DECK_SIZE <= $80
+BT_FOE_HAND_PAL EQU 3
 BT_BOARD_PAL EQU 4 ; one palette per board column
 BT_HAND_PAL EQU 7
 BT_PAPER_PLAYER EQU 0
 BT_PAPER_FOE EQU 1
 BT_PAPER_HELD EQU 2
-BT_PAPER_PLAYER_FLASH EQU 3
-BT_PAPER_FOE_FLASH EQU 4
-BT_PAPER_BOOST EQU 5
-BT_PAPER_WEAK EQU 6
-; A capture turns the card over: old face, back, new face.
+BT_PAPER_BOARD_PLAYER EQU BT_PAPER_HELD
+BT_PAPER_BOARD_FOE EQU 3
+BT_BOARD_BLUE EQU 25 | (29 << 5) | (30 << 10)
+BT_BOARD_RED EQU 31 | (20 << 5) | (19 << 10)
+; Full faces use the tilemap. The narrow phases use transparent objects.
 BT_FLIP_FACE EQU 1
+BT_FLIP_FACE_NARROW EQU 2
 BT_FLIP_BACK EQU 3
+BT_FLIP_BACK_NARROW EQU 4
 BT_FLIP_REVEAL EQU 5
-BT_FLIP_SETTLE EQU 6
-BT_FLIP_TYPE EQU 7 ; before the flips: show a type matchup
+BT_FLIP_REVEAL_NARROW EQU 6
+BT_FLIP_TYPE EQU 7
+BT_FLIP_WIDTHS EQU 3
+BT_FLIP_POSE_TILES EQU 8
+BT_FLIP_CARD_TILES EQU BT_FLIP_WIDTHS * BT_FLIP_POSE_TILES
+BT_FLIP_BACK_OBJ EQU 4 * BT_FLIP_CARD_TILES
+BT_FLIP_PAPER_OBJ EQU BT_FLIP_BACK_OBJ + BT_FLIP_CARD_TILES
 ; Card Case art slots. Each preview alternates between two slots so new
 ; art loads into a slot that is not on screen.
 BT_PREVIEW_SLOT EQU 0
@@ -95,6 +103,10 @@ BeastTriadEnter:
 	push af
 	ldh a, [hLCDInterruptFunctionTargetHi]
 	push af
+	ldh a, [hOAMUpdate]
+	push af
+	ld a, 1
+	ldh [hOAMUpdate], a
 	xor a
 	ldh [hLCDCPointer], a
 	ldh [hMapAnims], a
@@ -107,6 +119,7 @@ BeastTriadEnter:
 	call BeastTriadInitCollection
 	xor a
 	ld [wBTAnimPhase], a
+	ld [wBTFlipSlot], a
 	ld [wBTLastDirection], a
 	call BeastTriadInitRaster
 	call ClearSprites
@@ -128,6 +141,7 @@ BeastTriadEnter:
 	ld a, [wBTMode]
 	cp BT_CASE
 	jr z, .case
+	call BeastTriadLoadFlipProps
 	call BeastTriadStartMatch
 	jr .show
 .case:
@@ -166,13 +180,26 @@ BeastTriadEnter:
 	call BeastTriadRender
 	jr .loop
 .quit:
+	; Finish the visible frame with its raster colors, then blank the table
+	; before returning control to the map or pack.
+	call BeastTriadLockVBlank
+	push bc
 	xor a
 	ldh [hLCDCPointer], a
 	ldh [rSTAT], a
-	call ClearBGPalettes
+	call ClearPalettes
+	call ForceUpdateCGBPals
+	pop bc
+	ld a, b
+	ldh [rIE], a
+	ei
+	call WaitBGMap
 	call BeastTriadRestoreMapBlocks
+	call ClearSprites
 	ld a, [wBTEntry]
 	ld d, a
+	pop af
+	ldh [hOAMUpdate], a
 	pop af
 	ldh [hLCDInterruptFunctionTargetHi], a
 	pop af
@@ -266,16 +293,22 @@ BeastTriadHandInput:
 	and A_BUTTON
 	jr nz, .hold
 	ld a, b
+	and SELECT
+	jr nz, BeastTriadInspectFoe
+	ld a, b
 	and D_UP | D_LEFT
 	jr nz, .prev
 	ld a, b
 	and D_DOWN | D_RIGHT
 	ret z
+	call .clear_inspection
 	jp BeastTriadNextHand
 .prev:
+	call .clear_inspection
 	ld de, -1
 	jr BeastTriadStepHand
 .hold:
+	call .clear_inspection
 	ld a, BT_HELD
 	ld [wBTMode], a
 	ld a, [wBTBoardCursor]
@@ -294,6 +327,31 @@ BeastTriadHandInput:
 	jr nz, .free
 	dec a
 	ld [wBTBoardCursor], a
+	ret
+.clear_inspection:
+	ld a, -1
+	ld [wBTFoeCursor], a
+	ret
+
+BeastTriadInspectFoe:
+	ld a, [wBTFoeCursor]
+.next:
+	inc a
+	cp BT_HAND_SIZE
+	jr nc, .clear
+	ld c, a
+	ld b, 0
+	ld hl, wBTUsed + BT_HAND_SIZE
+	add hl, bc
+	ld a, [hl]
+	and a
+	ld a, c
+	jr nz, .next
+	jr .store
+.clear:
+	ld a, -1
+.store:
+	ld [wBTFoeCursor], a
 	ret
 
 BeastTriadNextHand:
@@ -509,4 +567,5 @@ INCLUDE "engine/games/beast_triad/collection.asm"
 INCLUDE "engine/games/beast_triad/case.asm"
 INCLUDE "engine/games/beast_triad/rules.asm"
 INCLUDE "engine/games/beast_triad/screen.asm"
+INCLUDE "engine/games/beast_triad/flip.asm"
 INCLUDE "engine/games/beast_triad/raster.asm"
