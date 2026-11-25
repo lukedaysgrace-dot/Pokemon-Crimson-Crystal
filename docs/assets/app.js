@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ------------------------------------------------------------------ *
- * Front-pic animation player.
+ * Pokémon sprite palette toggle and front-pic animation player.
  *
  * Reproduces the stats-screen sequence from engine/gfx/pic_animation.asm
  * (ANIM_MON_MENU): run anim.asm once, hold 18 frames, run anim_idle.asm
@@ -162,6 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const GB_FRAME_MS = 1000 / 59.7275; // Game Boy vblank
   const sheets = new Map();           // sheet url -> Promise<string[]>
   const playing = new WeakMap();      // img -> token
+  const shinySources = new Map();
+  const paletteUrl = new URL('shiny-palettes.json', document.currentScript.src);
+  let palettes;
+  let shiny = false;
   let activeCry;
 
   const parseSeq = s => (s || '')
@@ -170,31 +174,83 @@ document.addEventListener('DOMContentLoaded', () => {
     .map(pair => pair.split(':').map(Number))
     .filter(([f, d]) => Number.isFinite(f) && Number.isFinite(d) && d > 0);
 
-  function sliceSheet(url, size, count) {
-    if (sheets.has(url)) return sheets.get(url);
-    const job = new Promise((resolve, reject) => {
+  function loadImage(url) {
+    return new Promise((resolve, reject) => {
       const img = new Image();
-      img.onload = () => {
-        const out = [];
-        for (let i = 0; i < count; i++) {
-          const c = document.createElement('canvas');
-          c.width = size; c.height = size;
-          const ctx = c.getContext('2d');
-          ctx.imageSmoothingEnabled = false;
-          ctx.drawImage(img, 0, i * size, size, size, 0, 0, size, size);
-          out.push(c.toDataURL('image/png'));
-        }
-        // Decode every frame up front so the first swap cannot flicker.
-        Promise.all(out.map(src => {
-          const p = new Image();
-          p.src = src;
-          return p.decode ? p.decode().catch(() => {}) : Promise.resolve();
-        })).then(() => resolve(out), () => resolve(out));
-      };
+      img.onload = () => resolve(img);
       img.onerror = reject;
       img.src = url;
     });
-    sheets.set(url, job);
+  }
+
+  async function recolorSprite(src) {
+    palettes ??= fetch(paletteUrl).then(response => {
+      if (!response.ok) throw new Error('Could not load shiny palettes');
+      return response.json();
+    }).catch(error => {
+      palettes = undefined;
+      throw error;
+    });
+    const [colors, img] = await Promise.all([palettes, loadImage(src)]);
+    const name = new URL(src, document.baseURI).pathname.split('/').pop().replace(/(?:\.sheet)?\.png$/, '');
+    const palette = colors[name] ?? colors[name.replace(/\.back$/, '')];
+    if (!palette) throw new Error(`Missing shiny palette for ${name}`);
+
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = pixels.data;
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] === 0) continue;
+      const rgb555 = (data[i] >> 3) | ((data[i + 1] >> 3) << 5) | ((data[i + 2] >> 3) << 10);
+      const replacement = palette[rgb555];
+      if (replacement) data.set(replacement, i);
+    }
+    ctx.putImageData(pixels, 0, 0);
+    return canvas.toDataURL('image/png');
+  }
+
+  function shinySource(src) {
+    if (!shinySources.has(src)) {
+      shinySources.set(src, recolorSprite(src).catch(error => {
+        shinySources.delete(src);
+        throw error;
+      }));
+    }
+    return shinySources.get(src);
+  }
+
+  function sliceSheet(url, size, count, useShiny) {
+    const key = `${url}:${useShiny}`;
+    if (sheets.has(key)) return sheets.get(key);
+    const job = (async () => {
+      const img = await loadImage(useShiny ? await shinySource(url) : url);
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = false;
+      const frames = [];
+      for (let i = 0; i < count; i++) {
+        ctx.clearRect(0, 0, size, size);
+        ctx.drawImage(img, 0, i * size, size, size, 0, 0, size, size);
+        frames.push(canvas.toDataURL('image/png'));
+      }
+      // Decode every frame up front so the first swap cannot flicker.
+      await Promise.all(frames.map(src => {
+        const frame = new Image();
+        frame.src = src;
+        return frame.decode ? frame.decode().catch(() => {}) : Promise.resolve();
+      }));
+      return frames;
+    })().catch(error => {
+      sheets.delete(key);
+      throw error;
+    });
+    sheets.set(key, job);
     return job;
   }
 
@@ -217,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let frames;
     try {
-      frames = await sliceSheet(url, size, count);
+      frames = await sliceSheet(url, size, count, shiny);
     } catch {
       if (playing.get(img) === token) playing.delete(img);
       return; // sheet missing; leave the static sprite alone
@@ -257,12 +313,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function initPaletteToggle() {
+    const images = [...document.querySelectorAll('.monhero .sprite-pair img.big')];
+    const normalSources = images.map(img => img.getAttribute('src'));
+    const label = document.createElement('label');
+    label.className = 'shiny-toggle';
+    const toggle = document.createElement('input');
+    toggle.type = 'checkbox';
+    label.append(toggle, 'Shiny');
+    const anchor = document.querySelector('main > .form-toggle') ?? document.querySelector('main > .back');
+    anchor?.after(label);
+
+    let change = 0;
+    toggle.addEventListener('change', async () => {
+      const request = ++change;
+      const showShiny = toggle.checked;
+      try {
+        const sources = showShiny ? await Promise.all(normalSources.map(shinySource)) : normalSources;
+        if (request !== change) return;
+        shiny = showShiny;
+        images.forEach((img, index) => {
+          playing.delete(img);
+          img.setAttribute('src', sources[index]);
+        });
+      } catch {
+        if (request === change) toggle.checked = shiny;
+      }
+    });
+  }
+
   function init() {
     const sprites = document.querySelectorAll('.monhero .sprite-pair img.big:not(.back-sprite)');
     if (!sprites.length) return;
+    initPaletteToggle();
 
     sprites.forEach(img => {
-      const filename = new URL(img.src).pathname.split('/').pop().replace(/\.png$/, '.wav');
+      const filename = img.dataset.cry ?? new URL(img.src).pathname.split('/').pop().replace(/\.png$/, '.wav');
       const cry = new Audio();
       cry.preload = 'auto';
       cry.src = new URL(`../cries/${filename}`, img.src).href;
@@ -290,8 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     // The initial animation is silent. Cries play only on activation.
-    const first = document.querySelector('.form-view:not([hidden]) img[data-anim-sheet]')
-      || document.querySelector('img[data-anim-sheet]');
+    const first = [...sprites].find(img => img.dataset.animSheet && !img.closest('[hidden]'));
     if (first) play(first);
   }
 

@@ -919,7 +919,7 @@ SetBoxIcons:
 
 PCIconLoop:
 ; b = box (0 = party), hl = species list. Fills the list (2 bytes per slot:
-; species index, bit 14 shiny, bit 15 egg; 0 = empty), stages every mini's
+; species/form palette index, bit 14 shiny, bit 15 egg; 0 = empty), stages every mini's
 ; tiles in slot order in wDecompressScratch (blank for empty slots) and
 ; writes the palettes into the HBlank list. The mon held by the cursor is
 ; drawn blank. The caller copies the staged tiles to VRAM afterwards.
@@ -935,6 +935,7 @@ PCIconLoop:
 .load
 	farcall GetStorageBoxSpecies ; hl = index, a = flags, z = empty
 	jr z, .blank
+	call BillsPC_GetFormPaletteIndex
 	ld d, h
 	ld e, l
 	bit SAVEMON_IS_EGG_F, a
@@ -1157,11 +1158,18 @@ BillsPC_GetMonPalAddr:
 	ret
 
 BillsPC_GetMenuIconPointer:
-; de = encoded species (index in bits 0-9) -> b:hl = menu icon graphics.
+; de = encoded species/form (index in bits 0-9) -> b:hl = menu icon graphics.
 	ld a, d
 	and $03
 	ld h, a
 	ld l, e ; hl = index
+	cp HIGH(BUTTERFREE_FEMALE_FORM)
+	jr nz, .got_index
+	ld a, l
+	cp LOW(BUTTERFREE_FEMALE_FORM)
+	jr nz, .got_index
+	ld hl, BUTTERFREE ; both forms share menu icon tiles
+.got_index
 	dec hl
 	ld b, h
 	ld c, l
@@ -1175,6 +1183,22 @@ BillsPC_GetMenuIconPointer:
 	inc hl
 	ld a, BANK(MenuIconPointers)
 	call GetFarHalfword
+	ret
+
+BillsPC_GetFormPaletteIndex:
+; hl = species index, a = shiny/gender flags. Preserve the flags in a.
+	bit MON_MALE_FLAG_F, a
+	ret nz
+	push af
+	ld a, l
+	cp LOW(BUTTERFREE)
+	jr nz, .done
+	ld a, h
+	cp HIGH(BUTTERFREE)
+	jr nz, .done
+	ld hl, BUTTERFREE_FEMALE_FORM
+.done
+	pop af
 	ret
 
 BillsPC_WriteSpeciesPalette:
@@ -1637,17 +1661,8 @@ _GetCursorMon:
 	jr nz, .got_pal_index
 	ld a, [wTempMonSpecies]
 	call GetPokemonIndexFromID
-	; a female Butterfree uses its own palette row (same species)
-	ld a, l
-	cp LOW(BUTTERFREE)
-	jr nz, .got_pal_index
-	ld a, h
-	cp HIGH(BUTTERFREE)
-	jr nz, .got_pal_index
 	ld a, [wTempMonUnused]
-	and MON_MALE_FLAG
-	jr nz, .got_pal_index
-	ld hl, BUTTERFREE_FEMALE_FORM
+	call BillsPC_GetFormPaletteIndex
 .got_pal_index
 	ld d, h
 	ld e, l

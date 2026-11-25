@@ -606,15 +606,19 @@ BeastTriadCopyCardArt:
 	jp FarCopyBytes
 
 BeastTriadDrawBadge:
-	; A: new rank (0-11) for edge wBTBadgeEdge. Draw it as a dark badge
-	; with a light digit over the printed one in wBTArtBuffer.
+	; A: new rank (0-11) for edge wBTBadgeEdge. Replace the old outline
+	; while preserving the card edge and any overlapping portrait pixels.
+	push af
+	call BeastTriadPrepareBadgeMask
+	pop af
 	ld c, a
 	add a
 	add a
-	add c
+	add a
+	sub c
 	ld e, a
 	ld d, 0
-	ld hl, BeastTriadBadgeGlyphs
+	ld hl, BeastTriadBadgeOutlines
 	add hl, de
 	push hl
 	ld a, [wBTBadgeEdge]
@@ -625,56 +629,82 @@ BeastTriadDrawBadge:
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	; D, E: the glyph's top left. Fill a 5x7 box around it.
+	; D, E: the top left of the 5x7 outline.
 	dec d
 	dec e
-	ld b, 7
-.box_row:
-	push de
-	ld c, 5
-.box:
-	push bc
-	ld c, 3
-	call BeastTriadPlotPixel
-	pop bc
-	inc d
-	dec c
-	jr nz, .box
-	pop de
-	inc e
-	dec b
-	jr nz, .box_row
-	; E is now the glyph's bottom + 2. Back to its top left.
-	ld a, e
-	sub 6
-	ld e, a
-	inc d
 	pop hl
-	ld b, 5
-.glyph_row:
+	ld b, 7
+.row:
+	push bc
+	push de
+	ld a, [wBTBadgeSpriteRows]
+	srl a
+	ld [wBTBadgeSpriteRows], a
+	ld a, [wBTBadgeBorderBit]
+	ld c, a
+	jr nc, .outline
+	ld a, [wBTBadgeSpriteBit]
+	or c
+	ld c, a
+.outline:
 	ld a, [hli]
 	push hl
-	push de
-	ld c, 3
-.glyph:
-	bit 2, a
-	jr z, .skip
-	push af
+	ld h, a ; outline bits
+	ld b, c ; pixels to preserve
+	ld l, 5
+.pixel:
+	bit 4, b
+	jr nz, .skip
+	push hl
 	push bc
 	ld c, 0
+	bit 4, h
+	jr z, .plot
+	ld c, 3
+.plot:
 	call BeastTriadPlotPixel
 	pop bc
-	pop af
-.skip:
-	add a
-	inc d
-	dec c
-	jr nz, .glyph
-	pop de
 	pop hl
+.skip:
+	sla h
+	sla b
+	inc d
+	dec l
+	jr nz, .pixel
+	pop hl
+	pop de
 	inc e
+	pop bc
 	dec b
-	jr nz, .glyph_row
+	jr nz, .row
+	ret
+
+BeastTriadPrepareBadgeMask:
+	xor a
+	ld [wBTBadgeBorderBit], a
+	ld [wBTBadgeSpriteBit], a
+	ld [wBTBadgeSpriteRows], a
+	ld a, [wBTBadgeEdge]
+	and 1
+	ret z
+	ld a, [wBTProbeCard]
+	call BeastTriadDeckCard
+	add hl, hl
+	ld de, BeastTriadBadgeSpriteMasks
+	add hl, de
+	ld a, [wBTBadgeEdge]
+	cp 1
+	lb bc, %00001, %10000 ; east border and portrait columns
+	jr z, .store
+	inc hl
+	lb bc, %10000, %00001 ; west border and portrait columns
+.store:
+	ld a, b
+	ld [wBTBadgeBorderBit], a
+	ld a, c
+	ld [wBTBadgeSpriteBit], a
+	ld a, [hl]
+	ld [wBTBadgeSpriteRows], a
 	ret
 
 BeastTriadPlotPixel:

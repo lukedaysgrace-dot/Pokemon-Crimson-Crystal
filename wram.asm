@@ -3745,5 +3745,8 @@ wBTLabelType:: db ; type symbol on the label row, or -1
 wBTArtPatch:: db ; art slot + 1 to copy from wBTArtBuffer in VBlank, or 0
 wBTTypeShown:: db ; art slot + 1 whose ranks show a matchup, or 0
 wBTBadgeEdge:: db
+wBTBadgeBorderBit:: db
+wBTBadgeSpriteBit:: db
+wBTBadgeSpriteRows:: db
 	align 4
 wBTArtBuffer:: ds 12 * 16

@@ -3,6 +3,7 @@
 
 import argparse
 from dataclasses import dataclass
+from functools import cache
 from pathlib import Path
 import re
 import sys
@@ -53,6 +54,28 @@ TYPE_ICONS = (
     ("DARK", (6, 4, 3)), ("STEEL", (7, 20, 21)), ("FAIRY", (30, 19, 25)),
 )
 TYPE_INDEX = {name: i for i, (name, _) in enumerate(TYPE_ICONS)}
+# Card stamps are drawn at five pixels so their silhouettes stay sharp.
+CARD_TYPE_MARKS = {
+    "NORMAL":   ("00100", "01010", "10001", "01010", "00100"),
+    "FIRE":     ("01000", "01110", "10110", "11111", "01110"),
+    "FIGHTING": ("01110", "11111", "11111", "01111", "00110"),
+    "WATER":    ("00100", "00100", "01010", "10101", "01110"),
+    "FLYING":   ("00011", "00110", "01100", "11010", "01100"),
+    "GRASS":    ("00011", "01111", "11011", "11100", "10000"),
+    "POISON":   ("01110", "10101", "11111", "01110", "01010"),
+    "ELECTRIC": ("00110", "01100", "11111", "00110", "01100"),
+    "GROUND":   ("00000", "00100", "01110", "11111", "11011"),
+    "PSYCHIC":  ("01110", "10001", "10101", "10001", "01110"),
+    "ROCK":     ("00110", "01111", "11011", "11111", "01110"),
+    "ICE":      ("10101", "01110", "11111", "01110", "10101"),
+    "BUG":      ("10001", "01110", "11011", "11111", "01110"),
+    "DRAGON":   ("11000", "01110", "11111", "00110", "11100"),
+    "GHOST":    ("01110", "11011", "11111", "11111", "10101"),
+    "DARK":     ("00110", "01100", "01100", "01101", "00110"),
+    "STEEL":    ("01110", "11011", "10001", "11011", "01110"),
+    "FAIRY":    ("00100", "10101", "01110", "11111", "01010"),
+    None:       ("01110", "10001", "11111", "10001", "01110"),  # trainer cards
+}
 # Rank positions on a card face: north, east, south, west.
 RANK_POSITIONS = ((10, 2), (20, 13), (10, 25), (1, 13))
 # Type matchups can push an attacking edge to 0 or 11 for a moment.
@@ -63,6 +86,7 @@ BADGE_GLYPHS = {
 CARD_WIDTH = 24
 CARD_HEIGHT = 32
 CARD_BYTES = CARD_WIDTH * CARD_HEIGHT // 4
+CARD_SPRITE_ORIGIN = (4, 8)
 CARDS_PER_BANK = 0x4000 // CARD_BYTES
 SOURCE_SHADES = {255: 0, 170: 1, 85: 2, 0: 3}
 
@@ -225,31 +249,79 @@ def roster():
     return cards
 
 
-def card_image(card):
+@cache
+def card_type_mark(card_type):
+    pixels = bytes(255 if pixel == "1" else 0 for row in CARD_TYPE_MARKS[card_type] for pixel in row)
+    return Image.frombytes("L", (5, 5), pixels)
+
+
+@cache
+def rank_outline(rank):
+    glyph = BADGE_GLYPHS[rank] if rank in BADGE_GLYPHS else DIGITS["A" if rank == 10 else str(rank)]
+    face = {(x, y) for y, row in enumerate(glyph, 1) for x, pixel in enumerate(row, 1) if pixel == "1"}
+    outline = {(x + dx, y + dy) for x, y in face
+               for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1))} - face
+    return tuple(sum(1 << (4 - x) for x in range(5) if (x, y) in outline) for y in range(7))
+
+
+def badge_sprite_masks(card):
+    """Seven bits that protect the portrait pixels at each side rank's inner edge."""
+    sprite_x, sprite_y = CARD_SPRITE_ORIGIN
+    masks = []
+    for edge, inner_offset in ((1, -1), (3, 3)):
+        left, top = RANK_POSITIONS[edge]
+        x = left + inner_offset - sprite_x
+        first_row = top - 1 - sprite_y
+        masks.append(sum(1 << row for row in range(7) if card.picture.getpixel((x, first_row + row)) != 255))
+    return masks
+
+
+def card_image(card, ranks=None):
     image = Image.new("L", (CARD_WIDTH, CARD_HEIGHT), 0)
     draw = ImageDraw.Draw(image)
-    histogram = card.picture.histogram()
-    primary = 1 if histogram[170] >= histogram[85] else 2
-    for x in (1, 22):
-        draw.line((x, 6, x, 10), fill=primary)
-        draw.line((x, 21, x, 25), fill=primary)
-    for y in (1, 30):
-        draw.line((3, y, 7, y), fill=primary)
-        draw.line((16, y, 20, y), fill=primary)
-    for rank, (left, top) in zip(card.ranks, RANK_POSITIONS):
-        glyph = DIGITS["A" if rank == 10 else str(rank)]
-        pixels = [(x, y) for y, row in enumerate(glyph, top)
-                  for x, pixel in enumerate(row, left) if pixel == "1"]
-        for x, y in pixels:
-            draw.point([(x-1,y), (x+1,y), (x,y-1), (x,y+1)], fill=3)
-        draw.point(pixels, fill=0)
-    draw.rectangle((0, 0, CARD_WIDTH - 1, CARD_HEIGHT - 1), outline=3)
+    draw.rectangle((0, 0, 23, 31), outline=3)
+    # Short bevels leave open paper around the sprite and each rank plate.
+    draw.line(((1, 10), (1, 1), (7, 1)), fill=1)
+    draw.line(((22, 10), (22, 1), (16, 1)), fill=1)
+    draw.line(((1, 21), (1, 30), (7, 30)), fill=2)
+    draw.line(((22, 21), (22, 30), (16, 30)), fill=2)
+    image.paste(3, (2, 2), card_type_mark(card.type))
+
+    for rank, (left, top) in zip(card.ranks if ranks is None else ranks, RANK_POSITIONS):
+        draw.point([(left - 1 + x, top - 1 + y) for y, mask in enumerate(rank_outline(rank))
+                    for x in range(5) if mask & 1 << (4 - x)], fill=3)
     # As in the party menu, color 0 is transparent. Put the menu icon
     # above the outline so all foreground pixels keep their original indices.
     icon = card.picture.point(lambda shade: (255 - shade) // 85)
-    image.paste(icon, (4,8), icon.point(lambda index: 255 if index else 0))
+    image.paste(icon, CARD_SPRITE_ORIGIN, icon.point(lambda index: 255 if index else 0))
     # The palette switch relies on both ends of each card being solid ink.
     assert all(image.getpixel((x,y)) == 3 for y in (0,CARD_HEIGHT-1) for x in range(CARD_WIDTH))
+    return image
+
+
+def card_back_image():
+    """The card back in object palette order, with transparent corners."""
+    image = Image.new("L", (CARD_WIDTH, CARD_HEIGHT))
+    draw = ImageDraw.Draw(image)
+    draw.rounded_rectangle((0, 0, 23, 31), radius=3, fill=3)
+    draw.rounded_rectangle((1, 1, 22, 30), radius=2, fill=2, outline=1)
+    draw.rectangle((3, 3, 20, 28), outline=3)
+    for x in (5, 18):
+        for y in (6, 25):
+            draw.point(((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)), fill=1)
+            draw.point((x, y), fill=3)
+    # Mirror a one-pixel step per row around the card's two center columns.
+    for step in range(9):
+        left, right = 11 - step, 12 + step
+        for y in (7 + step, 24 - step):
+            draw.line((left, y, right, y), fill=3)
+            draw.point(((left, y), (right, y)), fill=1)
+
+    draw.ellipse((7, 11, 16, 20), fill=1)
+    draw.chord((8, 12, 15, 19), 180, 360, fill=2)
+    draw.line((7, 15, 16, 15), fill=3, width=2)
+    draw.ellipse((10, 14, 13, 17), fill=3)
+    draw.rectangle((11, 15, 12, 16), fill=1)
     return image
 
 
@@ -312,7 +384,6 @@ def screen_assets():
     bold = Image.open(ROOT/"gfx/font/unused_bold_font.png").convert("L")
     regular = Image.open(ROOT/"gfx/font/font.png").convert("L")
     logo = Image.open(ROOT/"gfx/menu_icons/entei.png").convert("L").crop((1,0,15,13))
-    ball = ImageOps.invert(Image.open(ROOT/"gfx/mail/small_pokeball.png").convert("L"))
 
     def glyph(sheet, index):
         cols = sheet.width // 8
@@ -377,17 +448,12 @@ def screen_assets():
             tilemap.append(ti)
             attrs.append(at)
 
-    back=Image.new("RGB",(CARD_WIDTH,CARD_HEIGHT),table)
-    border=ImageDraw.Draw(back)
-    border.rounded_rectangle((0,0,23,31), radius=2, fill=ink)
-    border.rectangle((1,1,22,30),fill=cream)
-    border.rectangle((2,2,21,29),fill=grain)
-    back.paste(ink,(8,12),ball)
+    back_face = card_back_image()
+    back = Image.new("RGB", back_face.size)
+    back_colors = [table, cream, grain, ink]
+    back.putdata([back_colors[pixel] for pixel in back_face.get_flattened_data()])
     back_tiles=[convert_tile(back.crop((x,y,x+8,y+8)),[0])[0]
                 for y in range(0,CARD_HEIGHT,8) for x in range(0,CARD_WIDTH,8)]
-    back_face = Image.new("L", back.size)
-    back_colors = [table, cream, grain, ink]
-    back_face.putdata([back_colors.index(pixel) for pixel in back.get_flattened_data()])
     flip_props = flip_poses(back_face) + flip_poses(Image.new("L", back.size, 1))
 
     empty=tile_id([0]*64)
@@ -451,10 +517,13 @@ def build():
     lines.append("\tdb " + ", ".join(f"${tile:02x}" for tile in type_tiles))
     lines.append("BeastTriadTypeColors:")
     lines += [f"\tRGB {r}, {g}, {b} ; {name.title()}" for name, (r, g, b) in TYPE_ICONS]
-    lines.append("BeastTriadBadgeGlyphs:")
+    lines.append("BeastTriadBadgeOutlines:")
     for value in range(12):
-        glyph = BADGE_GLYPHS.get(value) or DIGITS["A" if value == 10 else str(value)]
-        lines.append("\tdb " + ", ".join(f"%{row}" for row in glyph))
+        lines.append("\tdb " + ", ".join(f"%{row:05b}" for row in rank_outline(value)))
+    lines.append("BeastTriadBadgeSpriteMasks:")
+    for i in range(0, len(cards), 8):
+        masks = (mask for card in cards[i:i + 8] for mask in badge_sprite_masks(card))
+        lines.append("\tdb " + ", ".join(f"${mask:02x}" for mask in masks))
     lines.append("BeastTriadRankPositions:")
     lines.append("\tdb " + ", ".join(f"{x}, {y}" for x, y in RANK_POSITIONS))
     lines.append("BeastTriadTrainerColors:")

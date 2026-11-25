@@ -286,21 +286,9 @@ def check_linked_menu_icons(rom_path, symbols, constants, cards):
 
 def badge_image(card, ranks, edges):
     """The card art with its type-changed attacking edges shown as badges."""
-    image = build.card_image(card).copy()
-    for edge, bonus in enumerate(edges):
-        if not bonus:
-            continue
-        value = ranks[edge] + bonus
-        glyph = build.BADGE_GLYPHS.get(value) or build.DIGITS["A" if value == 10 else str(value)]
-        left, top = build.RANK_POSITIONS[edge]
-        for y in range(top - 1, top + 6):
-            for x in range(left - 1, left + 4):
-                image.putpixel((x, y), 3)
-        for y, row in enumerate(glyph):
-            for x, bit in enumerate(row):
-                if bit == "1":
-                    image.putpixel((left + x, top + y), 0)
-    return image
+    shown_ranks = [base + bonus if bonus else printed
+                   for printed, base, bonus in zip(card.ranks, ranks, edges)]
+    return build.card_image(card, shown_ranks)
 
 
 def check_palette_frame(h, cards):
@@ -558,6 +546,11 @@ def main():
             assert m.read("wBTArtPatch") == card + 1
             assert m.read("wBTFaceOwners", card) == 2 + owner
             assert all(m.read("wBTFaceOwners", board[cell]) == 3 - owner for cell in flips)
+            index = word(m, "wBTDeck", 2 * card)
+            ranks = m.read_bytes("wBTRanks", 4, 4 * card)
+            patched = build.decode_tiles(m.read_bytes("wBTArtBuffer", build.CARD_BYTES),
+                                         build.CARD_WIDTH, build.CARD_HEIGHT)
+            assert patched.tobytes() == badge_image(cards[index], ranks, edges).tobytes()
             matchup_shows.append(len(captures))
             flip_phases.append((len(captures), owner, phase, None))
             return
