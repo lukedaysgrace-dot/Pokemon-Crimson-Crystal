@@ -69,6 +69,13 @@ main.o main_debug.o: gfx/battle_vs/data.asm gfx/battle_vs/frames.asm gfx/battle_
 data/pokemon/pre_evolutions.asm: tools/generate_pre_evolutions.py tools/audit_learnset_variety.py constants/pokemon_constants.asm data/pokemon/first_stages.asm data/pokemon/evos_attacks_kanto.asm data/pokemon/evos_attacks_johto.asm data/pokemon/evos_attacks_clones.asm
 	$(BATTLE_TEST_PYTHON) tools/generate_pre_evolutions.py
 
+# Card centers use the same compiled menu tiles as the party screen.
+beast_triad_menu_tiles := $(shell sed -n 's|.*INCBIN "\(gfx/menu_icons/[^"]*\.2bpp\)".*|\1|p' gfx/menu_icons.asm)
+beast_triad_trainer_tiles := $(addprefix gfx/sprites/, $(addsuffix .2bpp, blue red green lorelei koga bruno karen lance oak silver crystal))
+gfx/beast_triad/card_art.bin: tools/beast_triad/build.py gfx/beast_triad/type_icons.png gfx/menu_icons.asm data/menu_icon_pointers.asm $(beast_triad_menu_tiles) $(beast_triad_trainer_tiles)
+	$(BATTLE_TEST_PYTHON) tools/beast_triad/build.py
+	@touch $@
+
 clean: tidy
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete

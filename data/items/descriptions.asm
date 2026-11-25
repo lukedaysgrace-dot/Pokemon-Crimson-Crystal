@@ -309,6 +309,7 @@ ItemDescriptions:
 	dw SHUCKS_SPECIALDesc
 	dw SHUCKS_RESERVEDesc
 	dw STOUT_CHARMDesc
+	dw CardCaseDesc
 
 MasterBallDesc:
 	db   "The best BALL. It"
@@ -1223,6 +1224,10 @@ SHUCKS_SPECIALDesc:
 SHUCKS_RESERVEDesc:
 	db   "Heals 50 HP and"
 	next "adds 5 friendship.@"
+
+CardCaseDesc:
+	db   "Holds cards and"
+	next "sets your deck.@"
 
 STOUT_CHARMDesc:
 	db   "Blocks move extra"

@@ -1160,6 +1160,11 @@ wBillsPC_BGColor0:: dw ; theme background colour, for the LCD code (BG 3 colour 
 wBillsPCDataEnd::
 
 NEXTU ; c800
+; Beast Triad saves these map blocks before installing its LCD handler.
+wBeastTriadLCDCode:: ds $110
+wBeastTriadLCDCodeEnd::
+
+NEXTU ; c800
 ; Hall of Fame data
 wHallOfFamePokemonList:: hall_of_fame wHallOfFamePokemonList
 
@@ -3656,3 +3661,85 @@ wPortraitBackupAttrs:: ds PORTRAIT_FRAME_SIZE * PORTRAIT_FRAME_SIZE
 INCLUDE "sram.asm"
 
 INCLUDE "hram.asm"
+
+SECTION "Beast Triad RAM", WRAMX, BANK[4]
+wBeastTriadCollection:: ds NUM_BEAST_CARDS
+wBeastTriadCollectionReady:: db
+wBeastTriadCollectionEnd::
+wBeastTriadDeck:: ds 2 * BEAST_TRIAD_DECK_SIZE
+wBeastTriadDeckReady:: db
+wBeastTriadDeckEnd::
+
+wBTMode:: db
+wBTScan:: dw
+wBTReward:: dw
+wBTDeckSlot:: db
+wBTDeck:: ds 2 * 10
+wBTRanks:: ds 4 * 10
+wBTUsed:: ds 10
+wBTBoard:: ds 9
+wBTOwners:: ds 9
+wBTHandCursor:: db
+wBTBoardCursor:: db
+wBTPlayerHand:: db
+wBTFoeHand:: db
+wBTPlayerScore:: db
+wBTMoves:: db
+wBTTurn:: db
+wBTProbeCard:: db
+wBTProbeCell:: db
+wBTProbeOwner:: db
+wBTCaptures:: db
+wBTCommit:: db
+wBTDirection:: db
+wBTNeighbor:: db
+wBTBestCard:: db
+wBTBestCell:: db
+wBTBestScore:: db
+wBTLoopCard:: db
+wBTLoopCell:: db
+wBTRepeat:: db
+wBTLastDirection:: db
+wBTDrawIndex:: db
+wBTFaceColors:: ds 10 * 4
+wBTFaceOwners:: ds 10
+wBTRasterBuffer:: db
+wBTRasterActive:: dw
+; Each schedule: 12 rows of four palettes, then the label row's two colors.
+wBTRasterRows0:: ds 12 * 4 * 6 + 4
+wBTRasterRows1:: ds 12 * 4 * 6 + 4
+wBTRasterRowsEnd::
+wBTCapturedCells:: ds 9
+wBTAnimPhase:: db
+wBTMapBlockBackup:: ds wBeastTriadLCDCodeEnd - wBeastTriadLCDCode
+; Who the match is against. Trainers set these before the table opens.
+wBTEntry:: db
+wBTFoeCard:: dw ; signature card dealt into the foe's hand, or -1
+wBTFoeMusic:: db
+wBTPickCursor:: db
+wBTLost:: dw ; card the foe took after a loss (high byte -1 if none)
+; Card Case: five deck rows, then every spare card in the trunk.
+wBTCasePos:: dw
+wBTCaseTop:: dw
+wBTCaseHeld:: dw ; list position picked up with A, or -1
+wBTCaseCount:: dw ; deck rows + trunk rows
+wBTPreviewSlot:: db
+wBTPreviewCard:: dw
+wBTHeldSlot:: db
+wBTHeldCard:: dw
+wBTTrunk:: ds 2 * NUM_BEAST_CARDS
+; Primary types and their matchups for the ten cards in play.
+wBTTypes:: ds 10
+wBTTypeMods:: ds 10 * 10 ; attacker slot * 10 + defender slot: 1, -1 or 0
+wBTEdgeBonus:: ds 4 ; the last placement's matchup on each edge
+wBTBattled:: db ; the last placement attacked at least one foe card
+wBTTypeAttacker:: db
+wBTTypeDefender:: db
+wBTTypeMod:: db
+wBTDefenderCard:: db
+wBTLabelType:: db ; type symbol on the label row, or -1
+wBTArtPatch:: db ; art slot + 1 to copy from wBTArtBuffer in VBlank, or 0
+wBTTypeShown:: db ; art slot + 1 whose ranks show a matchup, or 0
+wBTBadgeEdge:: db
+	align 4
+wBTArtBuffer:: ds 12 * 16

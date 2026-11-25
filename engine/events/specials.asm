@@ -238,6 +238,20 @@ CardFlip:
 	call StartGameCornerGame
 	ret
 
+BeastTriad:
+	ld a, BANK(_BeastTriad)
+	ld hl, _BeastTriad
+	jp StartGameCornerGame
+
+ViewBeastTriadCase:
+	ld a, BANK(_BeastTriadCase)
+	ld hl, _BeastTriadCase
+	jp StartGameCornerGame
+
+InitializeBeastTriadCase:
+	farcall BeastTriadGiveStarterCards
+	ret
+
 DummyNonfunctionalGameCornerGame:
 	call CheckCoinsAndCoinCase
 	ret c

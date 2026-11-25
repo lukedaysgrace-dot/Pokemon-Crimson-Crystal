@@ -347,6 +347,7 @@ SRAM $01
 SRAM $02
 	"Box Metadata"
 	"Item expansion saves"
+	"Beast Triad collection saves"
 SRAM $03
 	"PokeDB 1A"
 SRAM $04

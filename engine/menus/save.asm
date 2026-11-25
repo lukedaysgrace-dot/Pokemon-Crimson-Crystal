@@ -399,6 +399,7 @@ SaveOptions:
 	jp CloseSRAM
 
 SavePlayerData:
+	farcall BeastTriadSaveCollection
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld hl, wPlayerData
@@ -506,6 +507,7 @@ SaveBackupOptions:
 	ret
 
 SaveBackupPlayerData:
+	farcall BeastTriadSaveBackup
 	ld a, BANK(sBackupPlayerData)
 	call GetSRAMBank
 	ld hl, wPlayerData
@@ -762,6 +764,7 @@ CheckBackupSaveFile:
 	ret
 
 LoadPlayerData:
+	farcall BeastTriadLoadCollection
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld hl, sPlayerData
@@ -876,6 +879,7 @@ VerifyChecksum:
 	ret
 
 LoadBackupPlayerData:
+	farcall BeastTriadLoadBackup
 	ld a, BANK(sBackupPlayerData)
 	call GetSRAMBank
 	ld hl, sBackupPlayerData

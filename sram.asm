@@ -420,3 +420,9 @@ sBackupItemIndexChecksum:: dw
 sBackupItemIndexMagic:: dw
 ; Parallel high bytes keep all existing PokeDB record addresses stable.
 sPokeDBItemHigh:: ds 2 * MONDB_ENTRIES
+
+SECTION "Beast Triad collection saves", SRAM, BANK[2]
+sBeastTriadCollection:: ds NUM_BEAST_CARDS + 1 + 2
+sBackupBeastTriadCollection:: ds NUM_BEAST_CARDS + 1 + 2
+sBeastTriadDeck:: ds 2 * BEAST_TRIAD_DECK_SIZE + 1 + 2
+sBackupBeastTriadDeck:: ds 2 * BEAST_TRIAD_DECK_SIZE + 1 + 2

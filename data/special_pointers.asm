@@ -201,3 +201,6 @@ SpecialsPointers::
 	add_special EcruteakWellJirachiCircle
 	add_special CopycatUsePlayerPalette
 	add_special CopycatUseOwnPalette
+	add_special BeastTriad
+	add_special ViewBeastTriadCase
+	add_special InitializeBeastTriadCase

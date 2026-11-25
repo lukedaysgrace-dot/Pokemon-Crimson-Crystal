@@ -365,12 +365,7 @@ GoldenrodGameCornerSlotManiacStepDown:
 
 GoldenrodGameCornerCooltrainerMScript:
 	faceplayer
-	opentext
-	writetext GoldenrodGameCornerCooltrainerMText
-	waitbutton
-	closetext
-	turnobject GOLDENRODGAMECORNER_COOLTRAINER_M, LEFT
-	end
+	sjump GoldenrodGameCornerBeastTriadTable
 
 GoldenrodGameCornerPokefanFScript:
 	faceplayer
@@ -420,6 +415,38 @@ GoldenrodGameCornerCardFlipMachineScript:
 	special CardFlip
 	closetext
 	end
+
+GoldenrodGameCornerBeastTriadTable:
+	checkitem CARD_CASE
+	iftrue .Play
+	opentext
+	writetext .Welcome
+	verbosegiveitem CARD_CASE
+	iffalse .Done
+	special InitializeBeastTriadCase
+	writetext .StarterCards
+	waitbutton
+	closetext
+.Play:
+	refreshscreen
+	special BeastTriad
+.Done:
+	closetext
+	end
+
+.Welcome:
+	text "This is BEAST"
+	line "TRIAD!"
+	para "Take a CARD CASE"
+	line "and a starter set."
+	done
+
+.StarterCards:
+	text "Your five cards"
+	line "are ready to play."
+	para "Use the CARD CASE"
+	line "to edit your deck."
+	done
 
 GoldenrodGameCornerPrizeVendorIntroText:
 	text "Welcome!"
@@ -528,12 +555,6 @@ GoldenrodGameCornerSlotManiacAfterText:
 	cont "favor!"
 	done
 
-GoldenrodGameCornerCooltrainerMText:
-	text "Life is a gamble."
-	line "I'm going to flip"
-	cont "cards till I drop!"
-	done
-
 GoldenrodGameCornerPokefanFText:
 	text "Card flip…"
 
@@ -617,12 +638,12 @@ GoldenrodGameCorner_MapEvents:
 	bg_event 12,  9, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event 12, 10, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event 12, 11, BGEVENT_RIGHT, GoldenrodGameCornerSlotsMachineScript
-	bg_event 13,  6, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
-	bg_event 13,  7, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
-	bg_event 13,  8, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
-	bg_event 13,  9, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
-	bg_event 13, 10, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
-	bg_event 13, 11, BGEVENT_LEFT, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 13,  6, BGEVENT_READ, GoldenrodGameCornerBeastTriadTable
+	bg_event 13,  7, BGEVENT_READ, GoldenrodGameCornerBeastTriadTable
+	bg_event 13,  8, BGEVENT_READ, GoldenrodGameCornerBeastTriadTable
+	bg_event 13,  9, BGEVENT_READ, GoldenrodGameCornerBeastTriadTable
+	bg_event 13, 10, BGEVENT_READ, GoldenrodGameCornerBeastTriadTable
+	bg_event 13, 11, BGEVENT_LEFT, GoldenrodGameCornerBeastTriadTable
 	bg_event 18,  6, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
 	bg_event 18,  7, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
 	bg_event 18,  8, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript

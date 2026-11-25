@@ -16,3 +16,6 @@ WaveSamples:
 	db $00, $04, $02, $6f, $4b, $97, $64, $20, $44, $24, $64, $60, $04, $00, $44, $b2
 	; 11: Trading Card Game Ronald encounter bass waveform.
 	db $01, $12, $23, $34, $45, $56, $67, $77, $88, $99, $aa, $bb, $cc, $dd, $ee, $ff
+	; 12: Trading Card Game wave instrument 4 (Beast Triad themes).
+	; (TCG's wave instrument 1 is wave 11 above.)
+	dn $e,$e,$e,$e,$e,$e,$e,$e,$e,$e,$e,$e,$e,$e,$e,$e,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0,$0

@@ -220,6 +220,19 @@ SECTION "Hostess Battle Music", ROMX
 INCLUDE "audio/music/hostessbattle.asm"
 
 
+SECTION "Beast Triad Duel Music", ROMX
+
+INCLUDE "audio/music/beasttriadduel.asm"
+INCLUDE "audio/music/beasttriadvictory.asm"
+INCLUDE "audio/music/beasttriadloss.asm"
+INCLUDE "audio/music/beasttriaddraw.asm"
+
+
+SECTION "Beast Triad Boss Music", ROMX
+
+INCLUDE "audio/music/beasttriadboss.asm"
+
+
 SECTION "Sound Effects", ROMX
 
 INCLUDE "audio/sfx.asm"
@@ -234,6 +247,9 @@ INCLUDE "audio/sfx_crimson_vs.asm"
 
 SECTION "Shucks Sound Effects", ROMX
 INCLUDE "audio/sfx_shucks.asm"
+
+SECTION "Beast Triad Sound Effects", ROMX
+INCLUDE "audio/sfx_beast_triad.asm"
 
 
 SECTION "Cries", ROMX

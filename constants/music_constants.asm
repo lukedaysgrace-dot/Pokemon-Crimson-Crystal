@@ -125,6 +125,11 @@
 	const MUSIC_MEET_BLUE_CLOAK                ; 74
 	const MUSIC_ARCHER_BATTLE                  ; 75
 	const MUSIC_HOSTESS_BATTLE                 ; 76
+	const MUSIC_BEAST_TRIAD_DUEL               ; 77 Pokemon TCG Duel Theme 1
+	const MUSIC_BEAST_TRIAD_BOSS               ; 78 Pokemon TCG Duel Theme 3
+	const MUSIC_BEAST_TRIAD_VICTORY            ; 79 Pokemon TCG Match Victory
+	const MUSIC_BEAST_TRIAD_LOSS               ; 7a Pokemon TCG Match Loss
+	const MUSIC_BEAST_TRIAD_DRAW               ; 7b Pokemon TCG Match Draw
 
 ; GetMapMusic picks music for this value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $64

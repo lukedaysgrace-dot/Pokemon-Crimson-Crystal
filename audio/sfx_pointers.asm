@@ -219,3 +219,8 @@ SFX:
 	dba Sfx_CrimsonVSLock
 	dba Sfx_CrimsonVSForm
 	dba Sfx_CurtainOpen
+	dba Sfx_BeastTriadFlip
+	dba Sfx_BeastTriadCapture
+	dba Sfx_BeastTriadCaptured
+	dba Sfx_BeastTriadTake
+	dba Sfx_BeastTriadLose

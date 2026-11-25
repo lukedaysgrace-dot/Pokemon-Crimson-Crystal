@@ -651,6 +651,12 @@ INCLUDE "engine/games/dummy_game.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
 
 
+SECTION "Beast Triad", ROMX
+INCLUDE "engine/games/beast_triad.asm"
+INCLUDE "data/beast_triad/catalog.asm"
+
+INCLUDE "data/beast_triad/card_art.asm"
+
 SECTION "bank39", ROMX
 
 CopyrightGFX::

@@ -271,6 +271,7 @@ ItemEffects:
 	dw ShucksSpecialEffect
 	dw ShucksReserveEffect
 	dw NoEffect ; STOUT_CHARM
+	dw CardCaseEffect ; CARD_CASE
 
 ExpRelayEffect:
 	farcall ExpRelayCore
@@ -2653,6 +2654,16 @@ BlueCardEffect:
 .bluecardtext
 	text_far UnknownText_0x1c5c5e
 	text_end
+
+CardCaseEffect:
+	ld hl, .Script
+	jp QueueScript
+
+.Script:
+	refreshscreen
+	special ViewBeastTriadCase
+	closetext
+	end
 
 CoinCaseEffect:
 	ld hl, .coincasetext

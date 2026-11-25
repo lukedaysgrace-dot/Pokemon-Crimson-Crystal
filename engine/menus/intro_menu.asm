@@ -62,6 +62,7 @@ NewGame:
 	xor a
 	ld [wDebugFlags], a
 	call ResetWRAM
+	farcall BeastTriadClearCollection
 	call NewGame_ClearTileMapEtc
 	farcall InitNewGameOptions
 	farcall UpdateLevelCap

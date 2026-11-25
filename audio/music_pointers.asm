@@ -123,3 +123,8 @@ Music:
 	dba Music_MeetBlueCloak           ; MUSIC_MEET_BLUE_CLOAK
 	dba Music_ArcherBattle            ; MUSIC_ARCHER_BATTLE
 	dba Music_HostessBattle           ; MUSIC_HOSTESS_BATTLE
+	dba Music_BeastTriadDuel          ; MUSIC_BEAST_TRIAD_DUEL
+	dba Music_BeastTriadBoss          ; MUSIC_BEAST_TRIAD_BOSS
+	dba Music_BeastTriadVictory       ; MUSIC_BEAST_TRIAD_VICTORY
+	dba Music_BeastTriadLoss          ; MUSIC_BEAST_TRIAD_LOSS
+	dba Music_BeastTriadDraw          ; MUSIC_BEAST_TRIAD_DRAW
