@@ -12,8 +12,8 @@
 	const SHUCKS_GAMBLER
 	const SHUCKS_COUNTER_COOLTRAINER
 	const SHUCKS_WAITRESS_ELEKTRA ; ELEKTRA, waiting tables on weekdays
-	const SHUCKS_CARD_DEALER      ; deals BEAST TRIAD at the card table
-	const SHUCKS_CARD_PLAYER
+	const SHUCKS_CARD_PLAYER_A    ; the two BEAST TRIAD players at the card table
+	const SHUCKS_CARD_PLAYER_B
 	const SHUCKS_CAFE_ROCKER
 	const SHUCKS_CAFE_SEAT_SAVER  ; weekdays only: her seat is the Friday crowd's
 
@@ -50,6 +50,11 @@ Shucks_MapScripts:
 
 .FridayNight:
 	setscene SCENE_SHUCKS_NOTHING
+	; Once he's been escorted out, the gambler stays home for the rest of the day.
+	callasm ShucksCheckGamblerOutToday
+	iffalse .GamblerHere
+	setevent EVENT_SHUCKS_GAMBLER_GONE
+.GamblerHere:
 	callasm ShucksCheckFridayNight
 	iffalse .FridayNightDone
 	; SCARLET and ELEKTRA are backstage getting ready for the show.
@@ -128,7 +133,13 @@ ShucksResumeDancing:
 ShucksGameboyKidScript:
 	faceplayer
 	opentext
+	callasm ShucksCheckFridayNight
+	iftrue .Friday
 	writetext ShucksGameboyKidText
+	sjump .BuckReplies
+.Friday:
+	writetext ShucksGameboyKidFridayText
+.BuckReplies:
 	waitbutton
 	turnobject SHUCKS_GAMEBOY_KID, DOWN
 	writetext ShucksBartenderReplyText
@@ -210,10 +221,16 @@ ShucksSetStageDancerSprite:
 	jp UpdateSprites
 
 ShucksPoolPlayerScript:
+	checkevent EVENT_SHUCKS_GAMBLER_ESCORTED
+	iftrue .AfterEscort
 	jumptextfaceplayer ShucksPoolPlayerText
+.AfterEscort:
+	jumptextfaceplayer ShucksPoolPlayerAfterEscortText
 
 ShucksGamblerScript:
 	faceplayer
+	checkevent EVENT_SHUCKS_GAMBLER_ESCORTED
+	iftrue ShucksGamblerSoberScript
 	opentext
 	writetext ShucksGamblerText
 	buttonsound
@@ -222,6 +239,9 @@ ShucksGamblerScript:
 	waitbutton
 	callasm ShucksPutGamblerToSleep
 	closetext
+	; Only once: on later days he's a (mostly) reformed regular.
+	setevent EVENT_SHUCKS_GAMBLER_ESCORTED
+	callasm ShucksSetGamblerOutToday
 	pause 20
 	readvar VAR_YCOORD
 	ifnotequal 10, .Approach
@@ -243,6 +263,33 @@ ShucksGamblerScript:
 	applymovement SHUCKS_GAMBLER, ShucksGamblerExitMovement
 	disappear SHUCKS_GAMBLER
 	end
+
+ShucksGamblerSoberScript:
+; After the escort, he rotates through a few lines by day of the week.
+	readvar VAR_WEEKDAY
+	ifequal MONDAY, .Reformed
+	ifequal THURSDAY, .Reformed
+	ifequal TUESDAY, .Legend
+	ifequal FRIDAY, .Legend
+	jumptext ShucksGamblerFlowerBedText
+.Reformed:
+	jumptext ShucksGamblerReformedText
+.Legend:
+	jumptext ShucksGamblerLegendText
+
+ShucksCheckGamblerOutToday:
+	ld a, [wSwarmFlags]
+	and 1 << SWARMFLAGS_SHUCKS_GAMBLER_OUT_F
+	jr z, .done
+	ld a, TRUE
+.done
+	ld [wScriptVar], a
+	ret
+
+ShucksSetGamblerOutToday:
+	ld hl, wSwarmFlags
+	set SWARMFLAGS_SHUCKS_GAMBLER_OUT_F, [hl]
+	ret
 
 ShucksPutGamblerToSleep:
 	ld a, SPRITE_GAMBLER_ASLEEP
@@ -337,43 +384,100 @@ ShucksRegularScript:
 	jumptextfaceplayer ShucksRegularText
 
 ShucksCounterCooltrainerScript:
-	jumptextfaceplayer ShucksCounterCooltrainerText
+	faceplayer
+	callasm ShucksCheckFridayNight
+	iftrue .Friday
+	jumptext ShucksCounterCooltrainerText
+.Friday:
+	jumptext ShucksCounterCooltrainerFridayText
 
 ShucksWaitressElektraScript:
 	jumptextfaceplayer ShucksWaitressElektraText
 
-ShucksCardDealerScript:
+ShucksCardPlayerAScript:
 	faceplayer
 	opentext
-	writetext ShucksCardDealerText
+	callasm ShucksCheckFridayNight
+	iftrue .Friday
+	writetext ShucksCardPlayerAText
 	yesorno
 	iffalse .Declined
+	scall ShucksPlayBeastTriad
+	iffalse ShucksCardTableNoCaseScript
+	jumptext ShucksCardPlayerAAfterText
+
+.Declined:
+	writetext ShucksCardPlayerADeclinedText
+	sjump ShucksCardTableCloseScript
+
+.Friday:
+	writetext ShucksCardPlayerAFridayText
+	yesorno
+	iffalse .FridayDeclined
+	scall ShucksPlayBeastTriad
+	iffalse ShucksCardTableNoCaseScript
+	jumptext ShucksCardPlayerAFridayAfterText
+
+.FridayDeclined:
+	writetext ShucksCardPlayerAFridayDeclinedText
+	sjump ShucksCardTableCloseScript
+
+ShucksCardPlayerBScript:
+	faceplayer
+	opentext
+	callasm ShucksCheckFridayNight
+	iftrue .Friday
+	writetext ShucksCardPlayerBText
+	yesorno
+	iffalse .Declined
+	scall ShucksPlayBeastTriad
+	iffalse ShucksCardTableNoCaseScript
+	jumptext ShucksCardPlayerBAfterText
+
+.Declined:
+	writetext ShucksCardPlayerBDeclinedText
+	sjump ShucksCardTableCloseScript
+
+.Friday:
+	writetext ShucksCardPlayerBFridayText
+	yesorno
+	iffalse .FridayDeclined
+	scall ShucksPlayBeastTriad
+	iffalse ShucksCardTableNoCaseScript
+	jumptext ShucksCardPlayerBFridayAfterText
+
+.FridayDeclined:
+	writetext ShucksCardPlayerBFridayDeclinedText
+	sjump ShucksCardTableCloseScript
+
+ShucksPlayBeastTriad:
+; Returns FALSE in wScriptVar (with the text box still open) if the player
+; has no CARD CASE; otherwise plays a hand and returns TRUE.
 	checkitem CARD_CASE
-	iffalse .NoCardCase
+	iffalse .done
 	closetext
 	refreshscreen
 	setval BEAST_TRIAD_TIER_STANDARD
 	special BeastTriadTiered
 	closetext
-	jumptext ShucksCardDealerAfterText
+	setval TRUE
+.done
+	end
 
-.Declined:
-	writetext ShucksCardDealerDeclinedText
+ShucksCardTableNoCaseScript:
+	writetext ShucksCardTableNoCaseText
+ShucksCardTableCloseScript:
 	waitbutton
 	closetext
 	end
-
-.NoCardCase:
-	writetext ShucksCardDealerNoCaseText
-	waitbutton
-	closetext
-	end
-
-ShucksCardPlayerScript:
-	jumptextfaceplayer ShucksCardPlayerText
 
 ShucksCafePatronBScript:
-	jumptextfaceplayer ShucksCafePatronBText
+	faceplayer
+	callasm ShucksCheckFridayNight
+	iftrue .Friday
+	jumptext ShucksCafePatronBText
+.Friday:
+	jumptext ShucksCafePatronBFridayText
 
 ShucksCafePatronCScript:
 	jumptextfaceplayer ShucksCafePatronCText
@@ -740,6 +844,18 @@ ShucksGameboyKidText:
 	line "one here?"
 	done
 
+ShucksGameboyKidFridayText:
+	text "Friday nights are"
+	line "way too loud. I"
+	cont "can't even hear"
+	cont "my game!"
+
+	para "Everybody else is"
+	line "partying. I'm the"
+	cont "only one here"
+	cont "doing real work!"
+	done
+
 ShucksBartenderReplyText:
 	text "BUCK: I heard"
 	line "that!"
@@ -807,6 +923,53 @@ ShucksPoolPlayerEscortText:
 	para "I guess I'll help"
 	line "the poor guy out"
 	cont "this time."
+	done
+
+ShucksPoolPlayerAfterEscortText:
+	text "That old coot's"
+	line "been on his best"
+	cont "behavior since I"
+	cont "hauled him out."
+
+	para "Still hasn't sunk"
+	line "a single ball,"
+	cont "though."
+	done
+
+ShucksGamblerFlowerBedText:
+	text "Oh, it's you…"
+
+	para "Last time, I woke"
+	line "up in a flower bed"
+	cont "outside. No idea"
+	cont "how I got there."
+
+	para "Just MOOMOO MILK"
+	line "for me tonight!"
+	done
+
+ShucksGamblerReformedText:
+	text "I'm a changed man!"
+	line "Haven't touched a"
+	cont "drop all week."
+
+	para "…Well, most of the"
+	line "week."
+
+	para "Rack 'em up! I'll"
+	line "break this time,"
+	cont "I swear!"
+	done
+
+ShucksGamblerLegendText:
+	text "Back in my day, I"
+	line "could sink nine"
+	cont "balls in one shot!"
+
+	para "…Or was it one"
+	line "ball in nine"
+	cont "shots? Eh, same"
+	cont "thing."
 	done
 
 ShucksGamblerText:
@@ -1112,6 +1275,16 @@ ShucksCounterCooltrainerText:
 	line "knows my order!"
 	done
 
+ShucksCounterCooltrainerFridayText:
+	text "Friday crowds are"
+	line "no joke. I got"
+	cont "here early just to"
+	cont "keep this stool!"
+
+	para "Even SHUCKLE looks"
+	line "busy tonight."
+	done
+
 ShucksWaitressElektraText:
 	text "Coming through,"
 	line "hon!"
@@ -1122,29 +1295,49 @@ ShucksWaitressElektraText:
 	cont "the Friday show!"
 	done
 
-ShucksCardDealerText:
-	text "Deal you in? It's"
-	line "BEAST TRIAD, house"
-	cont "rules."
+ShucksCardPlayerAText:
+	text "This table's my"
+	line "second home."
 
-	para "Play a hand?"
+	para "Up for a round of"
+	line "BEAST TRIAD?"
 	done
 
-ShucksCardDealerAfterText:
-	text "Good hand. Pull up"
+ShucksCardPlayerAAfterText:
+	text "Good game! Pull up"
 	line "a chair any time."
 	done
 
-ShucksCardDealerDeclinedText:
+ShucksCardPlayerADeclinedText:
 	text "Suit yourself."
 	line "Seat's still warm."
 	done
 
-ShucksCardDealerNoCaseText:
+ShucksCardTableNoCaseText:
 	text "No CARD CASE? The"
 	line "GAME CORNER's card"
 	cont "table hands them"
 	cont "out."
+	done
+
+ShucksCardPlayerAFridayText:
+	text "Everyone's eyes"
+	line "are on the stage,"
+	cont "so the table's all"
+	cont "ours!"
+
+	para "Play a hand?"
+	done
+
+ShucksCardPlayerAFridayAfterText:
+	text "Ha! That was more"
+	line "fun than the show!"
+	done
+
+ShucksCardPlayerAFridayDeclinedText:
+	text "Go enjoy the show."
+	line "I'll keep a seat"
+	cont "warm for you."
 	done
 
 ShucksCafePatronBText:
@@ -1153,18 +1346,65 @@ ShucksCafePatronBText:
 	cont "the gossip."
 	done
 
+ShucksCafePatronBFridayText:
+	text "Friday's the best"
+	line "night for gossip."
+
+	para "Everyone's talking"
+	line "about who'll make"
+	cont "it past all three"
+	cont "hostesses tonight!"
+	done
+
 ShucksCafePatronCText:
 	text "Shh! I'm saving"
 	line "these seats for"
 	cont "the Friday show."
 	done
 
-ShucksCardPlayerText:
-	text "They say the best"
-	line "card players meet"
+ShucksCardPlayerBText:
+	text "Hey, you play"
+	line "BEAST TRIAD?"
 
-	para "behind a poster in"
-	line "CELADON…"
+	para "She keeps beating"
+	line "me. I could use a"
+	cont "new opponent!"
+
+	para "Play a hand with"
+	line "me?"
+	done
+
+ShucksCardPlayerBAfterText:
+	text "Good game! You"
+	line "know, they say the"
+	cont "best card players"
+	cont "meet behind a"
+	cont "poster in CELADON…"
+	done
+
+ShucksCardPlayerBDeclinedText:
+	text "Aw, OK. I'll just"
+	line "keep shuffling."
+	done
+
+ShucksCardPlayerBFridayText:
+	text "Friday night and"
+	line "I'm on a streak!"
+
+	para "Wanna test your"
+	line "luck? One hand?"
+	done
+
+ShucksCardPlayerBFridayAfterText:
+	text "What a game! The"
+	line "crowd even turned"
+	cont "around to watch!"
+	done
+
+ShucksCardPlayerBFridayDeclinedText:
+	text "Your loss! My"
+	line "streak's staying"
+	cont "red-hot tonight."
 	done
 
 Shucks_MapEvents:
@@ -1196,10 +1436,10 @@ Shucks_MapEvents:
 	object_event 13,  5, SPRITE_FAT_GUY, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksDancingPatronScript, -1
 	object_event  5,  4, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksGameboyKidScript, -1
 	object_event  3,  2, SPRITE_SHUCKLE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksShuckleScript, -1
-	object_event  2,  9, SPRITE_GAMBLER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksGamblerScript, -1
+	object_event  2,  9, SPRITE_GAMBLER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksGamblerScript, EVENT_SHUCKS_GAMBLER_GONE
 	object_event  3,  4, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksCounterCooltrainerScript, -1
 	object_event 14, 12, SPRITE_HOSTESS, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_ELEKTRA, OBJECTTYPE_SCRIPT, 0, ShucksWaitressElektraScript, EVENT_SHUCKS_WAITRESSES_OFF
-	object_event  1, 13, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCardDealerScript, -1
-	object_event  4, 13, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCardPlayerScript, -1
+	object_event  1, 13, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCardPlayerAScript, -1
+	object_event  4, 13, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCardPlayerBScript, -1
 	object_event 16, 10, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCafePatronBScript, -1
 	object_event 19, 10, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCafePatronCScript, EVENT_SHUCKS_WAITRESSES_OFF

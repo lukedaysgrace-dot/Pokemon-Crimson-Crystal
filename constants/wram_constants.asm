@@ -327,6 +327,7 @@ CELEBIEVENT_FOREST_IS_RESTLESS_F EQU 2
 	const SWARMFLAGS_MOBILE_4_F                  ; 4
 	const SWARMFLAGS_SHUCKS_BRAWL_SEEN_F         ; 5 ; Friday shift: brawler already left
 	const SWARMFLAGS_SHUCKS_CHALLENGE_WON_F      ; 6 ; Friday shift: hostess prize claimed
+	const SWARMFLAGS_SHUCKS_GAMBLER_OUT_F        ; 7 ; gambler was escorted out today (cleared at midnight)
 ; The two Shucks bits describe one Friday-night shift (Friday 6 PM through
 ; Saturday 3:59 AM), so the midnight daily reset keeps them; see time.asm.
 SWARMFLAGS_SHUCKS_SHIFT_MASK EQU (1 << SWARMFLAGS_SHUCKS_BRAWL_SEEN_F) | (1 << SWARMFLAGS_SHUCKS_CHALLENGE_WON_F)

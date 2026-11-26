@@ -340,7 +340,7 @@
 	const EVENT_KIMONO_METRONOME_YUMI
 	const EVENT_GOT_DUBIOUS_DISC ; formerly EVENT_140; preserve save layout
 	const EVENT_CELADON_GAME_CORNER_SECRET_DOOR_OPEN ; reused unused EVENT_141; preserve save layout
-	const EVENT_142
+	const EVENT_SHUCKS_GAMBLER_ESCORTED ; reused unused EVENT_142; preserve save layout
 	const EVENT_143
 	const EVENT_144
 	const EVENT_145
@@ -2290,6 +2290,7 @@ EVENT_SHUCKS_BRAWLER_GONE       EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 EVENT_SHUCKS_CURTAINS_OPEN      EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 EVENT_SHUCKS_PRIZE_OWED         EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 EVENT_SHUCKS_WAITRESSES_OFF     EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_5 ; Scarlet & Elektra are backstage on Friday nights
+EVENT_SHUCKS_GAMBLER_GONE       EQU EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6 ; escorted out earlier today
 
 ; The wandering Duraludon in Kiyo's old training area is a one-time encounter.
 	const EVENT_MOUNT_MORTAR_DURALUDON
