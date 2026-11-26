@@ -1105,3 +1105,11 @@ SECTION "Shucks Map Blocks", ROMX
 
 Shucks_Blocks:
 	INCBIN "maps/Shucks.ablk"
+
+SECTION "Beast Triad Club Map Blocks", ROMX
+
+GoldenrodTriadLounge_Blocks:
+	INCBIN "maps/GoldenrodTriadLounge.ablk"
+
+CeladonTriadVault_Blocks:
+	INCBIN "maps/CeladonTriadVault.ablk"

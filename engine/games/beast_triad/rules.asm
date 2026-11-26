@@ -42,6 +42,10 @@ BeastTriadStartMatch:
 	ret
 
 BeastTriadDealFoe:
+	; Card club players deal from a fixed power band instead.
+	ld a, [wBTFoeTier]
+	and a
+	jp nz, BeastTriadDealTieredFoe
 	; Each foe card is a near peer of the player's card in the same slot.
 	ld de, wBTDeck + BT_HAND_SIZE * 2
 	xor a
@@ -73,6 +77,7 @@ BeastTriadDealFoe:
 	inc a
 	cp BT_HAND_SIZE
 	jr c, .deal
+BeastTriadDealSignatureCard:
 	; Named characters always bring their own card.
 	ld a, [wBTFoeCard + 1]
 	cp -1
@@ -90,6 +95,99 @@ BeastTriadDealFoe:
 	ld a, [wBTFoeCard + 1]
 	ld [hl], a
 	ret
+
+BeastTriadDealTieredFoe:
+	; A: BEAST_TRIAD_TIER_* (1+). Deal five different Pokemon cards whose
+	; ranks add up to a total inside that tier's band.
+	dec a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, BeastTriadTierBands
+	add hl, de
+	ld a, [hli]
+	ld b, a ; lowest total
+	ld c, [hl] ; highest total
+	; The tier is set for one match at a time.
+	xor a
+	ld [wBTFoeTier], a
+	ld hl, wBTDeck + BT_HAND_SIZE * 2
+	ld a, -1
+	push bc
+	ld bc, BT_HAND_SIZE * 2
+	call ByteFill
+	pop bc
+	ld de, wBTDeck + BT_HAND_SIZE * 2
+	ld a, BT_HAND_SIZE
+.card:
+	push af
+.draw:
+	push bc
+	push de
+	ld a, NUM_BEAST_POKEMON_CARDS
+	call RandomRange
+	ld e, a
+	ld d, 0
+	push de
+	ld h, d
+	ld l, e
+	call BeastTriadGetRecord
+	ld a, [hli]
+	add [hl]
+	inc hl
+	add [hl]
+	inc hl
+	add [hl]
+	pop hl
+	pop de
+	pop bc
+	cp b
+	jr c, .draw
+	cp c
+	jr z, .in_band
+	jr nc, .draw
+.in_band:
+	; Club players never hold two copies of a card.
+	push de
+	ld de, wBTDeck + BT_HAND_SIZE * 2
+	ld a, BT_HAND_SIZE
+.dup:
+	push af
+	ld a, [de]
+	inc de
+	cp l
+	jr nz, .next
+	ld a, [de]
+	cp h
+	jr z, .duplicate
+.next:
+	inc de
+	pop af
+	dec a
+	jr nz, .dup
+	pop de
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+	inc de
+	pop af
+	dec a
+	jr nz, .card
+	jp BeastTriadDealSignatureCard
+
+.duplicate:
+	pop af
+	pop de
+	jr .draw
+
+BeastTriadTierBands:
+; lowest and highest rank total for each BEAST_TRIAD_TIER_*
+	db 11, 17 ; BEAST_TRIAD_TIER_STANDARD: basic and middle-stage cards
+	db 17, 22 ; BEAST_TRIAD_TIER_MID: strong middle and final stages
+	db 23, 40 ; BEAST_TRIAD_TIER_GRAND_MASTER: top final stages and legends
+	assert @ - BeastTriadTierBands == NUM_BEAST_TRIAD_TIERS * 2
 
 BeastTriadDeckCard:
 	; A: position in the two hands. Returns HL: catalogue index.
@@ -211,6 +309,7 @@ BeastTriadFoeTurn:
 	ld [wBTProbeCell], a
 	ld a, [wBTBestCard]
 	ld [wBTProbeCard], a
+	call BeastTriadMoveFoeCard
 	call BeastTriadPlace
 	jp BeastTriadAfterMove
 .position_score:
@@ -238,10 +337,7 @@ BeastTriadShowFoeSelection:
 	jr .next
 .chosen:
 	ld c, 18
-	call DelayFrames
-	ld a, -1
-	ld [wBTFoeCursor], a
-	ret
+	jp DelayFrames
 
 BeastTriadPlace:
 	ld hl, wBTCapturedCells
@@ -591,6 +687,14 @@ BeastTriadEndMatchup:
 
 BeastTriadCopyCardArt:
 	; A: art slot. Copy its card's printed art to wBTArtBuffer.
+	call BeastTriadCardArtAddress
+	ld a, b
+	ld de, wBTArtBuffer
+	ld bc, BT_CARD_TILES tiles
+	jp FarCopyBytes
+
+BeastTriadCardArtAddress:
+	; A: art slot. Returns B:HL pointing to the printed art.
 	call BeastTriadDeckCard
 	call BeastTriadGetRecord
 	ld de, 14
@@ -600,10 +704,7 @@ BeastTriadCopyCardArt:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, b
-	ld de, wBTArtBuffer
-	ld bc, BT_CARD_TILES * 16
-	jp FarCopyBytes
+	ret
 
 BeastTriadDrawBadge:
 	; A: new rank (0-11) for edge wBTBadgeEdge. Replace the old outline

@@ -613,9 +613,10 @@ GoldenrodGameCornerLeftTheirDrinkText:
 GoldenrodGameCorner_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	db 3 ; warp events
 	warp_event  2, 13, GOLDENROD_CITY, 10
 	warp_event  3, 13, GOLDENROD_CITY, 10
+	warp_event  9,  0, GOLDENROD_TRIAD_LOUNGE, 1 ; always-open doorway in the back wall
 
 	db 0 ; coord events
 

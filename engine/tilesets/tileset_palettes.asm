@@ -20,6 +20,10 @@ LoadSpecialMapPalette:
 	jp z, .kanto
 	cp TILESET_SHUCKS
 	jp z, .shucks
+	cp TILESET_TRIAD_LOUNGE
+	jp z, .triad_club
+	cp TILESET_TRIAD_VAULT
+	jp z, .triad_club
 	sub TILESET_KOGAS_ROOM
 	cp NUM_LEAGUE_PALETTE_TILESETS ; Elite Four chambers and Cerulean Gym
 	jp nc, .do_nothing
@@ -119,6 +123,11 @@ LoadSpecialMapPalette:
 
 .shucks
 	farcall LoadShucksPalette
+	scf
+	ret
+
+.triad_club
+	farcall LoadTriadClubPalette
 	scf
 	ret
 

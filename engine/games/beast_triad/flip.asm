@@ -111,7 +111,7 @@ BeastTriadDrawFlipCell:
 	rept 3
 		add a
 	endr
-	add 5 * 8 + 4 + 8 ; board x, centered within the card, OAM x bias
+	add BT_BOARD_COL * 8 + 4 + 8 ; board x, centered within the card, OAM x bias
 	ld d, a
 	ld a, e
 	swap a
@@ -194,11 +194,15 @@ BeastTriadDrawFlipCell:
 	inc b
 	ret
 
-BeastTriadCommitFlipSprites:
-	; Tilemaps, face palettes and flip objects commit in the same VBlank.
+BeastTriadCommitCardSprites:
+	; Tilemaps, face palettes and card objects commit in the same VBlank.
+	ld a, [wBTMode]
+	cp BT_FOE_MOVE
+	jr z, .visible
 	ld a, [wBTFlipSlot]
 	and a
 	jr z, .hidden
+.visible:
 	ld a, $80
 	ldh [rOBPI], a
 	ld c, LOW(rOBPD)

@@ -573,6 +573,7 @@ ENDM
 	map_attributes Route34IlexForestGate, ROUTE_34_ILEX_FOREST_GATE, $00, 0
 	map_attributes DayCare, DAY_CARE, $00, 0
 	map_attributes Shucks, SHUCKS, $00, 0
+	map_attributes GoldenrodTriadLounge, GOLDENROD_TRIAD_LOUNGE, $00, 0
 	map_attributes VermilionFishingSpeechHouse, VERMILION_FISHING_SPEECH_HOUSE, $00, 0
 	map_attributes VermilionPokecenter1F, VERMILION_POKECENTER_1F, $00, 0
 	map_attributes VermilionPokecenter2FBeta, VERMILION_POKECENTER_2F_BETA, $00, 0
@@ -660,6 +661,7 @@ ENDM
 	map_attributes Route16Gate, ROUTE_16_GATE, $00, 0
 	map_attributes Route7SaffronGate, ROUTE_7_SAFFRON_GATE, $00, 0
 	map_attributes Route17Route18Gate, ROUTE_17_ROUTE_18_GATE, $00, 0
+	map_attributes CeladonTriadVault, CELADON_TRIAD_VAULT, $00, 0
 	map_attributes ManiasHouse, MANIAS_HOUSE, $00, 0
 	map_attributes CianwoodGym, CIANWOOD_GYM, $00, 0
 	map_attributes CianwoodPokecenter1F, CIANWOOD_POKECENTER_1F, $00, 0

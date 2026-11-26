@@ -199,9 +199,9 @@ SPAWN_RED   EQU 2
 	const FRIDAY    ; 5
 	const SATURDAY  ; 6
 
-; wMapObjects:: ; d71e
+; wMapObjects:: ; d749
 PLAYER_OBJECT EQU 0
-NUM_OBJECTS   EQU 16
+NUM_OBJECTS   EQU 18 ; the player + up to 17 object_events per map
 
 ; wStatusFlags:: ; d84c
 	const_def

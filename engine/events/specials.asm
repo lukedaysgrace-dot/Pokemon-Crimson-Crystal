@@ -243,6 +243,11 @@ BeastTriad:
 	ld hl, _BeastTriad
 	jp StartGameCornerGame
 
+BeastTriadTiered:
+	ld a, BANK(_BeastTriadTiered)
+	ld hl, _BeastTriadTiered
+	jp StartGameCornerGame
+
 ViewBeastTriadCase:
 	ld a, BANK(_BeastTriadCase)
 	ld hl, _BeastTriadCase

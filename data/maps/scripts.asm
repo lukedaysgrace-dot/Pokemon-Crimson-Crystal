@@ -551,3 +551,8 @@ INCLUDE "maps/CeruleanCaveB1F.asm"
 SECTION "Celadon City Scripts", ROMX
 
 INCLUDE "maps/CeladonCity.asm"
+
+SECTION "Beast Triad Club Map Scripts", ROMX
+
+INCLUDE "maps/GoldenrodTriadLounge.asm"
+INCLUDE "maps/CeladonTriadVault.asm"

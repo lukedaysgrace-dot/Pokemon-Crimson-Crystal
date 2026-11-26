@@ -23,7 +23,7 @@ CARD_COLS = build.CARD_WIDTH // 8
 CARD_ROWS = build.CARD_HEIGHT // 8
 CARD_TILES = CARD_COLS * CARD_ROWS
 EMPTY = 255
-CASE, HAND, HELD, RESULT, EXIT, ANIM, PICK = range(7)
+CASE, HAND, HELD, RESULT, EXIT, ANIM, PICK, FOE_MOVE = range(8)
 NONE = 0xFFFF
 BUTTONS = ("up", "right", "down", "left")
 STEPS = ((0, -1), (1, 0), (0, 1), (-1, 0))
@@ -181,24 +181,28 @@ def settled_frames(h, button, count=20):
 
 
 def steady_frames(h, button, count=60):
-    """For inputs that legitimately pass through several screens (a rematch
-    clears the table first), every picture must hold for at least two
-    frames; a one-frame picture is a flicker."""
+    """Each settled picture must hold for at least two frames.
+
+    The opponent's moving sprite deliberately updates every frame.
+    """
+    m = h.battle.mem
     runs = []
+    moving = m.read("wBTMode") == FOE_MOVE
     h.pb.button_press(button)
     for i in range(count):
         if i == 2:
             h.pb.button_release(button)
         h.tick(1)
+        was_moving, moving = moving, m.read("wBTMode") == FOE_MOVE
         shot = h.pb.screen.image.convert("RGB").tobytes()
         if runs and runs[-1][0] == shot:
             runs[-1][1] += 1
         else:
-            runs.append([shot, 1])
-    short = [length for _, length in runs[1:-1] if length < 2]
+            runs.append([shot, 1, moving or was_moving])
+    short = [length for _, length, slide in runs[1:-1] if length < 2 and not slide]
     if short:
         from PIL import Image
-        for i, (shot, length) in enumerate(runs[:8]):
+        for i, (shot, length, _) in enumerate(runs[:8]):
             Image.frombytes("RGB", (160, 144), shot).save(f"/tmp/run{i}_{length}.png")
     assert not short, f"{len(short)} one-frame pictures after {button}"
     return len(runs)
@@ -478,6 +482,7 @@ def main():
     battled = []
     hits = []
     foe_selection = []
+    foe_positions = []
 
     def map_snapshot():
         return (m.read_bytes("wOverworldMapBlocks", 1300),
@@ -507,6 +512,15 @@ def main():
             assert foe_selection == remaining[chosen:] + remaining[:chosen]
             assert m.read("wBTFoeCursor") == EMPTY
             foe_selection.clear()
+            start_y, start_x = 40 + 16 * (card - 5), 16
+            end_y, end_x = 40 + 32 * (slot // 3), 48 + 24 * (slot % 3)
+            foe_positions.append(tuple(m.read_bytes("wVirtualOAM", 2)))
+            assert foe_positions == [
+                (start_y + (end_y - start_y) * frame // 16,
+                 start_x + (end_x - start_x) * frame // 16)
+                for frame in range(17)
+            ]
+            foe_positions.clear()
         mods = m.read_bytes("wBTTypeMods", 100)
         expected = predicted_place(board, owners, ranks, card, slot, owner, mods)
         flips = {i for i in range(9) if i != slot and owners[i] != expected[1][i]}
@@ -529,6 +543,31 @@ def main():
         assert m.read("wBTPlayerHand") + m.read("wBTFoeHand") + m.read("wBTMoves") == 10
         assert m.read("wBTCaptures") == len(flips)
         assert set(i for i, marked in enumerate(m.read_bytes("wBTCapturedCells", 9)) if marked) == flips
+
+    def foe_move_step(_):
+        card = m.read("wBTProbeCard")
+        slot = m.read("wBTProbeCell")
+        assert m.read("wBTMode") == FOE_MOVE
+        assert m.read("wBTBoard", slot) == EMPTY and m.read("wBTUsed", card) == 0
+        foe_positions.append(tuple(m.read_bytes("wVirtualOAM", 2)))
+        if len(foe_positions) == 1:
+            # The selected face is gone from the fan, and its full art is
+            # in VRAM as vertically paired tiles for the moving objects.
+            face_tiles = range(card * CARD_TILES, (card + 1) * CARD_TILES)
+            for row in range(3, 15):
+                assert not any(tile in face_tiles and attr == 3 for tile, attr in zip(
+                    m.read_bytes("wTileMap", CARD_COLS, row * 20 + 1),
+                    m.read_bytes("wAttrMap", CARD_COLS, row * 20 + 1)))
+            source = 0x9000 + card * CARD_TILES * 16
+            first_sprite_tile = m.read("wVirtualOAM", 2)
+            dest = 0x8000 + first_sprite_tile * 16
+            assert h.pb.memory[0xFF40] & 0x06 == 0x06, "8x16 card objects are enabled"
+            tiles = [tile for row in range(0, CARD_ROWS, 2) for col in range(CARD_COLS)
+                     for tile in (row * CARD_COLS + col, (row + 1) * CARD_COLS + col)]
+            for offset, tile in enumerate(tiles):
+                sprite_tile = h.pb.memory[0, dest + offset * 16:dest + (offset + 1) * 16]
+                card_tile = h.pb.memory[0, source + tile * 16:source + (tile + 1) * 16]
+                assert sprite_tile == card_tile
 
     def commit_frame(_):
         foe_cursor = m.read("wBTFoeCursor")
@@ -742,6 +781,7 @@ def main():
         check_map_restored("case", before_case)
 
         for name, handler in (("BeastTriadPlace", before_place), ("BeastTriadAfterMove", after_place),
+                              ("BeastTriadMoveFoeCard.step", foe_move_step),
                               ("BeastTriadCommitFrame", commit_frame), ("_PlaySFX", play_sound)):
             h.pb.hook_register(*h.sym[name], handler, None)
 
@@ -915,7 +955,7 @@ def main():
         assert read_deck(m) == starter_deck
         check_capture_edges(h)
         print("PASS: zero-coin NPC entry, five starters, Card Case swaps, duplicates and reordering, "
-              "settled frames while moving, skipping taken cells, both capture sounds and the full "
+              "settled frames while moving, foe card travel, skipping taken cells, capture sounds and the full "
               "flip, picking a prize, losing a card, restored map data and VRAM, legacy migration, "
               "and save/continue.")
     finally:

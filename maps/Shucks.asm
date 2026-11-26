@@ -12,14 +12,16 @@
 	const SHUCKS_GAMBLER
 	const SHUCKS_COUNTER_COOLTRAINER
 	const SHUCKS_WAITRESS_ELEKTRA ; ELEKTRA, waiting tables on weekdays
-	const SHUCKS_CORNER_POKEFAN
-	const SHUCKS_CORNER_COOLTRAINER
+	const SHUCKS_CARD_DEALER      ; deals BEAST TRIAD at the card table
+	const SHUCKS_CARD_PLAYER
+	const SHUCKS_CAFE_ROCKER
+	const SHUCKS_CAFE_SEAT_SAVER  ; weekdays only: her seat is the Friday crowd's
 
 ; Friday-night personas. ShucksFridayCast rewrites these weekday-only objects
 ; on entry during the Friday shift, so the show needs no extra object slots.
 SHUCKS_STAGE_HOSTESS EQU SHUCKS_STAGE_DANCER   ; NAMI, then SCARLET, then ELEKTRA
 SHUCKS_BRAWLER       EQU SHUCKS_DANCING_PATRON
-SHUCKS_FRIDAY_TEACHER        EQU SHUCKS_SAILOR
+SHUCKS_FRIDAY_ROCKER         EQU SHUCKS_SAILOR
 SHUCKS_FRIDAY_COOLTRAINER_F1 EQU SHUCKS_PATRON
 SHUCKS_FRIDAY_COOLTRAINER_F2 EQU SHUCKS_REGULAR
 SHUCKS_FRIDAY_COOLTRAINER_M  EQU SHUCKS_POOL_PLAYER
@@ -340,11 +342,42 @@ ShucksCounterCooltrainerScript:
 ShucksWaitressElektraScript:
 	jumptextfaceplayer ShucksWaitressElektraText
 
-ShucksCornerPokefanScript:
-	jumptextfaceplayer ShucksCornerPokefanText
+ShucksCardDealerScript:
+	faceplayer
+	opentext
+	writetext ShucksCardDealerText
+	yesorno
+	iffalse .Declined
+	checkitem CARD_CASE
+	iffalse .NoCardCase
+	closetext
+	refreshscreen
+	setval BEAST_TRIAD_TIER_STANDARD
+	special BeastTriadTiered
+	closetext
+	jumptext ShucksCardDealerAfterText
 
-ShucksCornerCooltrainerScript:
-	jumptextfaceplayer ShucksCornerCooltrainerText
+.Declined:
+	writetext ShucksCardDealerDeclinedText
+	waitbutton
+	closetext
+	end
+
+.NoCardCase:
+	writetext ShucksCardDealerNoCaseText
+	waitbutton
+	closetext
+	end
+
+ShucksCardPlayerScript:
+	jumptextfaceplayer ShucksCardPlayerText
+
+ShucksCafePatronBScript:
+	jumptextfaceplayer ShucksCafePatronBText
+
+ShucksCafePatronCScript:
+	jumptextfaceplayer ShucksCafePatronCText
+
 
 ShucksMenuScript:
 	jumptext ShucksMenuText
@@ -505,8 +538,8 @@ ShucksHostessGivePrize:
 	closetext
 	end
 
-ShucksFridayTeacherScript:
-	jumptextfaceplayer ShucksFridayTeacherText
+ShucksFridayRockerScript:
+	jumptextfaceplayer ShucksFridayRockerText
 
 ShucksFridayCooltrainerF1Script:
 	jumptextfaceplayer ShucksFridayCooltrainerF1Text
@@ -617,8 +650,8 @@ ShucksFridayCast:
 	object_event 15,  2, SPRITE_HOSTESS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_NAMI, OBJECTTYPE_SCRIPT, 0, ShucksFridayHostessScript, EVENT_SHUCKS_STAGE_HOSTESS_GONE
 	db SHUCKS_BRAWLER
 	object_event 15,  3, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksBrawlerScript, EVENT_SHUCKS_BRAWLER_GONE
-	db SHUCKS_FRIDAY_TEACHER
-	object_event 10, 10, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksFridayTeacherScript, -1
+	db SHUCKS_FRIDAY_ROCKER
+	object_event 10, 10, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksFridayRockerScript, -1
 	db SHUCKS_FRIDAY_COOLTRAINER_F1
 	object_event 13, 10, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksFridayCooltrainerF1Script, -1
 	db SHUCKS_FRIDAY_COOLTRAINER_F2
@@ -1022,8 +1055,8 @@ ShucksPrizeBagFullText:
 	cont "you leave, OK?"
 	done
 
-ShucksFridayTeacherText:
-	text "I grade papers all"
+ShucksFridayRockerText:
+	text "I play gigs all"
 	line "week long."
 
 	para "On Fridays I come"
@@ -1089,22 +1122,49 @@ ShucksWaitressElektraText:
 	cont "the Friday show!"
 	done
 
-ShucksCornerPokefanText:
-	text "My SNUBBULL likes"
-	line "this corner."
+ShucksCardDealerText:
+	text "Deal you in? It's"
+	line "BEAST TRIAD, house"
+	cont "rules."
 
-	para "She can hear the"
-	line "music and still"
-	cont "take a nap."
+	para "Play a hand?"
 	done
 
-ShucksCornerCooltrainerText:
-	text "I can land a"
-	line "THUNDER from clear"
-	cont "across the field."
+ShucksCardDealerAfterText:
+	text "Good hand. Pull up"
+	line "a chair any time."
+	done
 
-	para "At the pool table?"
-	line "I miss every shot."
+ShucksCardDealerDeclinedText:
+	text "Suit yourself."
+	line "Seat's still warm."
+	done
+
+ShucksCardDealerNoCaseText:
+	text "No CARD CASE? The"
+	line "GAME CORNER's card"
+	cont "table hands them"
+	cont "out."
+	done
+
+ShucksCafePatronBText:
+	text "I come for the"
+	line "music and stay for"
+	cont "the gossip."
+	done
+
+ShucksCafePatronCText:
+	text "Shh! I'm saving"
+	line "these seats for"
+	cont "the Friday show."
+	done
+
+ShucksCardPlayerText:
+	text "They say the best"
+	line "card players meet"
+
+	para "behind a poster in"
+	line "CELADON…"
 	done
 
 Shucks_MapEvents:
@@ -1125,19 +1185,21 @@ Shucks_MapEvents:
 	bg_event  2,  3, BGEVENT_READ, ShucksBottleShelfScript
 	bg_event 11,  3, BGEVENT_READ, ShucksSpeakerScript
 	bg_event 19,  3, BGEVENT_READ, ShucksSpeakerScript
-	db 15 ; object events
+	db 17 ; object events
 	object_event  4,  2, SPRITE_SILPH_WORKER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksBartenderScript, -1
 	object_event 16,  3, SPRITE_HOSTESS_DANCE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_SCARLET, OBJECTTYPE_SCRIPT, 0, ShucksScarletStageDancerScript, EVENT_SHUCKS_WAITRESSES_OFF
 	object_event 14,  3, SPRITE_HOSTESS_DANCE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_NAMI, OBJECTTYPE_SCRIPT, 0, ShucksStageDancerScript, -1
 	object_event  7,  9, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksPoolPlayerScript, -1
 	object_event  1,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ShucksSailorScript, -1
 	object_event 10, 10, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksPatronScript, -1
-	object_event 19, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksRegularScript, -1
+	object_event 19, 13, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksRegularScript, -1
 	object_event 13,  5, SPRITE_FAT_GUY, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksDancingPatronScript, -1
 	object_event  5,  4, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksGameboyKidScript, -1
 	object_event  3,  2, SPRITE_SHUCKLE, SPRITEMOVEDATA_ANIMATED_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksShuckleScript, -1
 	object_event  2,  9, SPRITE_GAMBLER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksGamblerScript, -1
 	object_event  3,  4, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ShucksCounterCooltrainerScript, -1
 	object_event 14, 12, SPRITE_HOSTESS, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_ELEKTRA, OBJECTTYPE_SCRIPT, 0, ShucksWaitressElektraScript, EVENT_SHUCKS_WAITRESSES_OFF
-	object_event  1, 14, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ShucksCornerPokefanScript, -1
-	object_event  4, 14, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ShucksCornerCooltrainerScript, -1
+	object_event  1, 13, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCardDealerScript, -1
+	object_event  4, 13, SPRITE_COOLTRAINER_F_NEW, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCardPlayerScript, -1
+	object_event 16, 10, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCafePatronBScript, -1
+	object_event 19, 10, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ShucksCafePatronCScript, EVENT_SHUCKS_WAITRESSES_OFF

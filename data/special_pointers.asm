@@ -204,3 +204,4 @@ SpecialsPointers::
 	add_special BeastTriad
 	add_special ViewBeastTriadCase
 	add_special InitializeBeastTriadCase
+	add_special BeastTriadTiered

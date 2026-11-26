@@ -9,10 +9,22 @@
 	const CELADONGAMECORNER_GYM_GUY
 	const CELADONGAMECORNER_GRAMPS
 
+; The poster at 15,0 hides the way into the Grand Master room
+; (maps/CeladonTriadVault.asm); the switch is behind the poster at 9,0.
+CELADON_GAME_CORNER_DOORWAY_BLOCK EQU $40 ; game_corner tileset, door in the top-right step
+
 CeladonGameCorner_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_TILES, .SecretDoor
+
+.SecretDoor:
+	checkevent EVENT_CELADON_GAME_CORNER_SECRET_DOOR_OPEN
+	iffalse .SecretDoorClosed
+	changeblock 14, 0, CELADON_GAME_CORNER_DOORWAY_BLOCK
+.SecretDoorClosed:
+	return
 
 CeladonGameCornerClerkScript:
 	jumpstd gamecornercoinvendor
@@ -103,10 +115,31 @@ CeladonGameCornerGrampsScript:
 	end
 
 CeladonGameCornerPoster1Script:
+	checkevent EVENT_CELADON_GAME_CORNER_SECRET_DOOR_OPEN
+	iftrue .Open
 	jumptext CeladonGameCornerPoster1Text
 
-CeladonGameCornerPoster2Script:
-	jumptext CeladonGameCornerPoster2Text
+.Open:
+	end
+
+CeladonGameCornerSwitchScript:
+	checkevent EVENT_CELADON_GAME_CORNER_SECRET_DOOR_OPEN
+	iftrue .AlreadyPushed
+	opentext
+	writetext CeladonGameCornerSwitchText
+	waitbutton
+	closetext
+	playsound SFX_PUSH_BUTTON
+	waitsfx
+	changeblock 14, 0, CELADON_GAME_CORNER_DOORWAY_BLOCK
+	reloadmappart
+	playsound SFX_WALL_OPEN
+	waitsfx
+	setevent EVENT_CELADON_GAME_CORNER_SECRET_DOOR_OPEN
+	jumptext CeladonGameCornerDoorOpenedText
+
+.AlreadyPushed:
+	jumptext CeladonGameCornerSwitchPushedText
 
 CeladonGameCornerLuckySlotMachineScript:
 	random 6
@@ -256,13 +289,25 @@ CeladonGameCornerPoster1Text:
 	para "There's nothing!"
 	done
 
-CeladonGameCornerPoster2Text:
-	text "Hey!"
+CeladonGameCornerSwitchText:
+	text "Hey! A switch"
+	line "behind the poster!?"
 
-	para "Underneath this"
-	line "poster…"
+	para "Let's push it!"
+	done
 
-	para "There's nothing!"
+CeladonGameCornerDoorOpenedText:
+	text "The other poster"
+	line "slid away!"
+
+	para "A secret entrance"
+	line "has opened!"
+	done
+
+CeladonGameCornerSwitchPushedText:
+	text "The switch behind"
+	line "the poster is"
+	cont "pushed in."
 	done
 
 CeladonGameCornerLighterText:
@@ -282,9 +327,10 @@ CeladonGameCornerSodaCanText:
 CeladonGameCorner_MapEvents:
 	db 0, 0 ; filler
 
-	db 2 ; warp events
+	db 3 ; warp events
 	warp_event 14, 13, CELADON_CITY, 6
 	warp_event 15, 13, CELADON_CITY, 6
+	warp_event 15,  0, CELADON_TRIAD_VAULT, 1 ; behind the poster; walkable once the switch is pushed
 
 	db 0 ; coord events
 
@@ -326,7 +372,7 @@ CeladonGameCorner_MapEvents:
 	bg_event 18, 10, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript
 	bg_event 18, 11, BGEVENT_RIGHT, CeladonGameCornerLuckySlotMachineScript
 	bg_event 15,  0, BGEVENT_READ, CeladonGameCornerPoster1Script
-	bg_event  9,  0, BGEVENT_READ, CeladonGameCornerPoster2Script
+	bg_event  9,  0, BGEVENT_READ, CeladonGameCornerSwitchScript
 
 	db 9 ; object events
 	object_event  5,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerClerkScript, -1

@@ -282,6 +282,7 @@ ENDM
 	map_const ROUTE_34_ILEX_FOREST_GATE,                    5,  4 ; 23
 	map_const DAY_CARE,                                     5,  4 ; 24
 	map_const SHUCKS,                                      10,  8 ; 25
+	map_const GOLDENROD_TRIAD_LOUNGE,                       8,  6 ; 26
 
 	newgroup                                                      ; 12
 
@@ -422,6 +423,7 @@ ENDM
 	map_const ROUTE_16_GATE,                                5,  4 ; 24
 	map_const ROUTE_7_SAFFRON_GATE,                         5,  4 ; 25
 	map_const ROUTE_17_ROUTE_18_GATE,                       5,  4 ; 26
+	map_const CELADON_TRIAD_VAULT,                          8,  6 ; 27
 
 	newgroup                                                      ; 22
 

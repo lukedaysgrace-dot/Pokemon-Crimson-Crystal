@@ -60,3 +60,4 @@ INCLUDE "constants/16_bit_locking_constants.asm" ; MUST come after the translati
 
 INCLUDE "constants/legacy_item_save_constants.asm"
 INCLUDE "constants/beast_triad_constants.asm"
+INCLUDE "constants/beast_triad_club_constants.asm"

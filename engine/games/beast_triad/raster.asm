@@ -97,7 +97,7 @@ BeastTriadCommitFrame:
 	ld [wBTArtPatch], a
 .no_patch:
 	push bc
-	call BeastTriadCommitFlipSprites
+	call BeastTriadCommitCardSprites
 	pop bc
 	ld a, [wBTRasterBuffer]
 	xor 1
@@ -225,7 +225,7 @@ BeastTriadPrepareRaster:
 	ld b, BT_RASTER_ROWS
 .row:
 	push bc
-	ld bc, 5
+	ld bc, BT_BOARD_COL
 	add hl, bc
 	call BeastTriadStageFacePalette
 	ld bc, 3

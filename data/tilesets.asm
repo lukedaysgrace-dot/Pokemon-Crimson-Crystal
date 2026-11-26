@@ -55,3 +55,5 @@ Tilesets::
 	tileset TilesetLancesRoom
 	tileset TilesetCeruleanGym
 	tileset TilesetShucks
+	tileset TilesetTriadLounge
+	tileset TilesetTriadVault

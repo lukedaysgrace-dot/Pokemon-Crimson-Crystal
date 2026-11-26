@@ -5,6 +5,7 @@ BT_RESULT EQU 3
 BT_EXIT EQU 4
 BT_ANIM EQU 5
 BT_PICK EQU 6
+BT_FOE_MOVE EQU 7
 BT_PLAYER EQU 0
 BT_FOE EQU 1
 BT_HAND_SIZE EQU BEAST_TRIAD_DECK_SIZE
@@ -49,8 +50,23 @@ _BeastTriadCase::
 	xor a
 	jr BeastTriadEnter
 
+_BeastTriadTiered::
+	; Card club players: wScriptVar is a BEAST_TRIAD_TIER_* constant. Grand
+	; Masters play to their own theme; everyone else to the regular one.
+	ld a, [wScriptVar]
+	ld c, a
+	ld b, MUSIC_BEAST_TRIAD_DUEL
+	cp BEAST_TRIAD_TIER_GRAND_MASTER
+	jr nz, BeastTriadSetFoe
+	ld b, MUSIC_BEAST_TRIAD_BOSS
+	jr BeastTriadSetFoe
+
 _BeastTriad::
-	; The Game Corner host plays the regular theme without a character card.
+	; The Game Corner host plays the regular theme without a character card,
+	; dealing cards that are near peers of the player's.
+	ld bc, MUSIC_BEAST_TRIAD_DUEL << 8 | BEAST_TRIAD_TIER_PEERS
+BeastTriadSetFoe:
+	; B: foe music, C: BEAST_TRIAD_TIER_*.
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBTFoeCard)
@@ -58,8 +74,10 @@ _BeastTriad::
 	ld a, -1
 	ld [wBTFoeCard], a
 	ld [wBTFoeCard + 1], a
-	ld a, MUSIC_BEAST_TRIAD_DUEL
+	ld a, b
 	ld [wBTFoeMusic], a
+	ld a, c
+	ld [wBTFoeTier], a
 	pop af
 	ldh [rSVBK], a
 	; fallthrough
@@ -240,6 +258,7 @@ BeastTriadEnter:
 	dw BeastTriadQuit ; BT_EXIT
 	dw BeastTriadQuit ; BT_ANIM
 	dw BeastTriadPickInput
+	dw BeastTriadQuit ; BT_FOE_MOVE
 
 BeastTriadPlayFoeMusic:
 	ld a, [wBTFoeMusic]
@@ -568,4 +587,5 @@ INCLUDE "engine/games/beast_triad/case.asm"
 INCLUDE "engine/games/beast_triad/rules.asm"
 INCLUDE "engine/games/beast_triad/screen.asm"
 INCLUDE "engine/games/beast_triad/flip.asm"
+INCLUDE "engine/games/beast_triad/foe_move.asm"
 INCLUDE "engine/games/beast_triad/raster.asm"

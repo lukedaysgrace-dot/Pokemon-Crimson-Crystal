@@ -2701,9 +2701,10 @@ wObjectStructsEnd:: ; d6de
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 
-	ds 40
+	ds 6 ; was 40; 34 bytes went to map objects 16-17 and their masks,
+	     ; so wVariableSprites and everything after keep their addresses
 
-wMapObjects:: ; d71e
+wMapObjects:: ; d749
 wPlayerObject:: map_object wPlayer
 wMap1Object::   map_object wMap1
 wMap2Object::   map_object wMap2
@@ -2720,11 +2721,17 @@ wMap12Object::  map_object wMap12
 wMap13Object::  map_object wMap13
 wMap14Object::  map_object wMap14
 wMap15Object::  map_object wMap15
+wMap16Object::  map_object wMap16
+wMap17Object::  map_object wMap17
 wMapObjectsEnd::
 
-wObjectMasks:: ds NUM_OBJECTS ; d81e
+wObjectMasks:: ds NUM_OBJECTS ; d869
 
-wVariableSprites:: ds $100 - SPRITE_VARS ; d82e
+; Nothing above may grow: wVariableSprites and the rest of the save data
+; must stay at their addresses.
+	assert wObjectMasks + NUM_OBJECTS == $d87b, "map objects moved wVariableSprites"
+
+wVariableSprites:: ds $100 - SPRITE_VARS ; d87b
 
 wEnteredMapFromContinue:: db ; d83e
 	ds 2
@@ -3720,6 +3727,7 @@ wBTMapBlockBackup:: ds wBeastTriadLCDCodeEnd - wBeastTriadLCDCode
 wBTEntry:: db
 wBTFoeCard:: dw ; signature card dealt into the foe's hand, or -1
 wBTFoeMusic:: db
+wBTFoeTier:: db ; BEAST_TRIAD_TIER_*, cleared once the foe's hand is dealt
 wBTPickCursor:: db
 wBTLost:: dw ; card the foe took after a loss (high byte -1 if none)
 ; Card Case: five deck rows, then every spare card in the trunk.

@@ -339,7 +339,7 @@
 	const EVENT_KIMONO_METRONOME_HANA
 	const EVENT_KIMONO_METRONOME_YUMI
 	const EVENT_GOT_DUBIOUS_DISC ; formerly EVENT_140; preserve save layout
-	const EVENT_141
+	const EVENT_CELADON_GAME_CORNER_SECRET_DOOR_OPEN ; reused unused EVENT_141; preserve save layout
 	const EVENT_142
 	const EVENT_143
 	const EVENT_144

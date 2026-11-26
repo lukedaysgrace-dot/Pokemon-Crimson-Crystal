@@ -653,3 +653,4 @@ TilesetCeruleanGymColl::
 INCLUDE "data/tilesets/cerulean_gym_collision.asm"
 
 INCLUDE "data/tilesets/shucks.asm"
+INCLUDE "data/tilesets/triad_club.asm"

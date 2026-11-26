@@ -58,6 +58,9 @@ VARIABLE_SPEAKERS = {
 
 # Text label -> "NAME" (a PORTRAIT_* suffix) or None (nobody with a portrait).
 OVERRIDES = {
+	# Lines every Grand Master shares in the Celadon card club.
+	'CeladonTriadVaultDeclinedText': None,
+	'CeladonTriadVaultNoCardCaseText': None,
 	# The Azalea Town Rocket grunts share the sprite variable Silver uses later.
 	'AzaleaTownRocket1Text': None,
 	'AzaleaTownRocket2Text': None,

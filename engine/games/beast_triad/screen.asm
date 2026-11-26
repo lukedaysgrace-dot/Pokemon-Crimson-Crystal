@@ -2,6 +2,7 @@ BT_TOP_SCORE EQU SCREEN_WIDTH
 BT_LABEL EQU 16 * SCREEN_WIDTH + 1
 BT_COMMAND EQU 17 * SCREEN_WIDTH + 1
 BT_BOARD_ROW EQU 3
+BT_BOARD_COL EQU 5
 BT_BOARD_ROWS EQU 3 * BT_CARD_ROWS
 BT_FOE_HAND_COL EQU 1
 BT_PLAYER_HAND_COL EQU 15
@@ -505,6 +506,13 @@ BeastTriadDrawFoeHand:
 	ld a, [hl]
 	and a
 	jr nz, .next
+	ld a, [wBTMode]
+	cp BT_FOE_MOVE
+	jr nz, .show
+	ld a, [wBTFoeCursor]
+	cp e
+	jr z, .next
+.show:
 	ld a, e
 	ld b, BT_PAPER_FOE
 	call .draw
@@ -514,6 +522,9 @@ BeastTriadDrawFoeHand:
 	ld a, [hl]
 	cp BT_HAND_SIZE
 	jr c, .card
+	ld a, [wBTMode]
+	cp BT_FOE_MOVE
+	ret z
 	ld a, [wBTFoeCursor]
 	cp -1
 	ret z
@@ -732,7 +743,9 @@ BeastTriadBoardOffset:
 	jr BeastTriadGetOffset
 .offsets:
 FOR row, BT_BOARD_ROW, BT_BOARD_ROW + BT_BOARD_ROWS, BT_CARD_ROWS
-	dw row * SCREEN_WIDTH + 5, row * SCREEN_WIDTH + 8, row * SCREEN_WIDTH + 11
+	dw row * SCREEN_WIDTH + BT_BOARD_COL
+	dw row * SCREEN_WIDTH + BT_BOARD_COL + BT_CARD_COLS
+	dw row * SCREEN_WIDTH + BT_BOARD_COL + 2 * BT_CARD_COLS
 ENDR
 
 BeastTriadGetOffset:

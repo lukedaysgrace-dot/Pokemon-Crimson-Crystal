@@ -220,6 +220,33 @@ PortraitTexts:
 	db PORTRAIT_EUSINE
 	dba NoBeastsText
 	db PORTRAIT_EUSINE
+; CeladonTriadVault
+	dba CeladonTriadVaultDeclinedText
+	db 0
+	dba CeladonTriadVaultDoormanText
+	db 0
+	dba CeladonTriadVaultDuelistAfterText
+	db 0
+	dba CeladonTriadVaultDuelistText
+	db 0
+	dba CeladonTriadVaultGrannyAfterText
+	db 0
+	dba CeladonTriadVaultGrannyText
+	db 0
+	dba CeladonTriadVaultHexManiacAfterText
+	db 0
+	dba CeladonTriadVaultHexManiacText
+	db 0
+	dba CeladonTriadVaultMysticalmanAfterText
+	db PORTRAIT_EUSINE
+	dba CeladonTriadVaultMysticalmanText
+	db PORTRAIT_EUSINE
+	dba CeladonTriadVaultNoCardCaseText
+	db 0
+	dba CeladonTriadVaultPortraitText
+	db 0
+	dba CeladonTriadVaultTrophyText
+	db 0
 ; CeruleanGym
 	dba CeruleanGymGruntBigMistakeText
 	db 0
