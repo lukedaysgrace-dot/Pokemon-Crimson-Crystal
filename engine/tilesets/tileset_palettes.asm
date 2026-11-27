@@ -84,6 +84,7 @@ LoadSpecialMapPalette:
 	ld bc, 8 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
+	farcall ApplyOceanPalette ; open-sea maps use the ocean water colours
 	scf
 	ret
 

@@ -62,3 +62,12 @@ NUM_LEAGUE_PALETTE_TILESETS EQU TILESET_CERULEAN_GYM - TILESET_KOGAS_ROOM + 1
 	const PAL_BG_BROWN  ; 5
 	const PAL_BG_ROOF   ; 6
 	const PAL_BG_TEXT   ; 7
+
+; Open-sea water (engine/tilesets/ocean_water.asm)
+OCEAN_ANIM_STEPS   EQU 24 ; steps in data/ocean/frames.2bpp (STEPS in tools/ocean_water/build.py):
+                          ; 3 sea frames x 8 surf frames; also a multiple of 4 for whirlpools
+OCEAN_FRAME_TILES  EQU 8  ; tiles per step
+; parameters for OceanWaterAnimTrampoline (passed in e)
+	const_def
+	const OCEAN_ANIM_SEA  ; animate the open-sea tiles
+	const OCEAN_ANIM_CALM ; keep the open-sea tiles showing calm water (maps beside the sea)

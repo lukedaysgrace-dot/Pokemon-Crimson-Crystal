@@ -64,13 +64,72 @@ TilesetKantoAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw ViridianForestTreeLeft, AnimateViridianForestTree
 	dw ViridianForestTreeRight, AnimateViridianForestTree
-	dw NULL,  WaitTileAnimation
+	; Ocean rows still on screen after walking from Route 19 into Fuchsia
+	; turn calm too (engine/tilesets/ocean_water.asm).
+	dw OCEAN_ANIM_CALM, OceanWaterAnimTrampoline
 	dw NULL,  WaitTileAnimation
 	dw ViridianForestTreeLeft2, AnimateViridianForestTree
 	dw NULL,  AnimateFlowerTile
 	dw ViridianForestTreeRight2, AnimateViridianForestTree
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
+	dw NULL,  DoneTileAnimation
+
+; Open-sea variants, used on the maps in OceanMaps
+; (engine/tilesets/ocean_water.asm). 16 VBlanks per animation step, so each
+; frame of the sea shows for about a quarter of a second.
+TilesetKantoOceanAnim::
+	dw OCEAN_ANIM_SEA, OceanWaterAnimTrampoline
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  StandingTileFrameOcean
+	dw NULL,  DoneTileAnimation
+
+TilesetJohtoOceanAnim::
+	dw OCEAN_ANIM_SEA, OceanWaterAnimTrampoline
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateFlowerTile
+	dw WhirlpoolFrames1, AnimateWhirlpoolTile
+	dw WhirlpoolFrames2, AnimateWhirlpoolTile
+	dw WhirlpoolFrames3, AnimateWhirlpoolTile
+	dw WhirlpoolFrames4, AnimateWhirlpoolTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  StandingTileFrameOcean
+	dw NULL,  DoneTileAnimation
+
+TilesetJohtoModernOceanAnim::
+	dw OCEAN_ANIM_SEA, OceanWaterAnimTrampoline
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  StandingTileFrameOcean
 	dw NULL,  DoneTileAnimation
 
 TilesetParkAnim:
@@ -268,6 +327,19 @@ StandingTileFrame8:
 	ld a, [wTileAnimationTimer]
 	inc a
 	and %111
+	ld [wTileAnimationTimer], a
+	ret
+
+StandingTileFrameOcean:
+; Open-sea tables: the timer counts to OCEAN_ANIM_STEPS so it divides evenly
+; into the sea's frames. Flowers and whirlpools only read its low bits, so
+; they animate exactly as with StandingTileFrame8.
+	ld a, [wTileAnimationTimer]
+	inc a
+	cp OCEAN_ANIM_STEPS
+	jr c, .ok
+	xor a
+.ok
 	ld [wTileAnimationTimer], a
 	ret
 

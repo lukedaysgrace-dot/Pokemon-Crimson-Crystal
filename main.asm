@@ -1038,6 +1038,7 @@ INCLUDE "engine/events/shucks_palette.asm"
 
 INCLUDE "engine/tilesets/league_room_palettes.asm"
 INCLUDE "engine/tilesets/league_room_anims.asm"
+INCLUDE "engine/tilesets/ocean_water.asm"
 
 SECTION "Goldenrod Shuckle Sign Palette", ROMX
 INCLUDE "engine/events/goldenrod_shuckle_sign.asm"

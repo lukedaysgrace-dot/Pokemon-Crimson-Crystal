@@ -407,6 +407,10 @@ CopyMapPartialAndAttributes::
 	call SwitchToMapAttributesBank
 	call GetMapAttributesPointer
 	call CopyMapAttributes
+	; open-sea maps use their surf-edged blocks (engine/tilesets/ocean_water.asm)
+	push hl
+	farcall ApplyOceanBlocks
+	pop hl
 	jp GetMapConnections
 
 ReadMapEvents::
@@ -2074,6 +2078,9 @@ LoadTileset::
 
 	ld a, BANK(Tilesets)
 	call FarCopyBytes
+
+	; open-sea maps swap in ocean water (engine/tilesets/ocean_water.asm)
+	farcall ApplyOceanTileset
 
 	pop bc
 	pop hl

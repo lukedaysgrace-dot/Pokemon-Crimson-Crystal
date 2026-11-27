@@ -129,6 +129,21 @@ pokecrystal_debug.gbc: $(crystal_debug_obj) pokecrystal.link
 %.lz: %
 	tools/lzcomp$(EXEEXT) -- $< $@
 
+# Open-sea water (engine/tilesets/ocean_water.asm): tools/ocean_water/build.py
+# writes everything in data/ocean/ in one go.
+ocean_sources := tools/ocean_water/build.py engine/tilesets/ocean_water.asm \
+	gfx/tilesets/ocean/water.png gfx/tilesets/ocean/shore.png gfx/tilesets/ocean/rock.png \
+	data/maps/maps.asm constants/map_constants.asm constants/collision_constants.asm \
+	$(wildcard maps/*.ablk data/tilesets/*_metatiles.bin data/tilesets/*_attributes.bin data/tilesets/*_collision.asm)
+data/ocean/frames.2bpp: $(ocean_sources)
+	$(BATTLE_TEST_PYTHON) tools/ocean_water/build.py
+
+data/ocean/%.ablk: data/ocean/frames.2bpp
+	@test -f $@ || $(BATTLE_TEST_PYTHON) tools/ocean_water/build.py
+
+data/ocean/%.bin: data/ocean/frames.2bpp
+	@test -f $@ || $(BATTLE_TEST_PYTHON) tools/ocean_water/build.py
+
 
 ### Pokemon pic animation rules
 
