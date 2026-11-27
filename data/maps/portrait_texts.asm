@@ -1954,12 +1954,6 @@ PortraitTexts:
 	db PORTRAIT_CRYSTAL
 	dba VioletCityCrystalBeforeText
 	db PORTRAIT_CRYSTAL
-	dba VioletCityCrystalCallMeText
-	db PORTRAIT_CRYSTAL
-	dba VioletCityCrystalNumberText
-	db PORTRAIT_CRYSTAL
-	dba VioletCityCrystalRegisteredText
-	db 0
 	dba VioletCityGrampsText
 	db 0
 	dba VioletCityLassText

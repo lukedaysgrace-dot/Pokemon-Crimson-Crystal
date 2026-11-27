@@ -338,6 +338,9 @@ Continue:
 	farcall TryLoadSaveFile
 	jr c, .FailToLoad
 	farcall _LoadData
+	; Remove the old Pokégear contact from existing saves.
+	ld c, PHONE_CRYSTAL
+	farcall DelCellNum
 	farcall UpdateLevelCap
 	call LoadStandardMenuHeader
 	call DisplaySaveInfoOnContinue
