@@ -48,10 +48,10 @@ def load_data():
     base_exp = {}
     for mon, path in zip(species, includes):
         base_exp[mon] = int(re.search(r"db\s+(\d+)\s*; base exp", read(path))[1])
-    stat_exp_values = [int(n) for n in re.findall(r"^\s*dw\s+(\d+)", read("data/trainers/stat_exp.asm"), re.M)]
-    assert len(stat_exp_values) == len(classes) - 1
-    assert all(0 <= n <= 65535 for n in stat_exp_values)
-    stat_exp = dict(zip(classes[1:], stat_exp_values))
+    matching = matching_policies()
+    default_percent = int(re.search(r"^TRAINER_STAT_EXP_DEFAULT_PERCENT EQU (\d+)", read("engine/battle/stat_exp.asm"), re.M)[1])
+    assert default_percent == 25
+    stat_exp = {cls: matching.get(cls, default_percent) for cls in classes[1:]}
     caps = [int(n) for n in re.findall(r"^\s*db\s+(\d+)", read("engine/pokemon/experience.asm").split("HardModeLevelCaps:")[1].split("CalcExpAtLevel:")[0], re.M)]
     assert not trainers.ERRORS, "\n".join(trainers.ERRORS)
     return parties, stats, base_exp, stat_exp, caps
@@ -234,11 +234,8 @@ def policies():
     table = read("engine/pokemon/experience.asm").split("HardModeTrainerExpMultipliers:")[1].split("assert")[0]
     factors = [int(n) for line in table.splitlines() if line.strip().startswith("db ")
                for n in line.split(";", 1)[0].strip()[3:].split(",")]
-    limits = [(int(a), int(b)) for a, b in re.findall(r"db\s+(\d+)\s*\n\s*dw\s+(\d+)", read("data/trainers/stat_exp_limits.asm"))]
     assert len(factors) == 17 and all(1 <= f <= 32 for f in factors)
-    assert limits[-1][0] == 255
-    assert all(a[0] < b[0] and a[1] <= b[1] for a, b in zip(limits, limits[1:]))
-    return factors, limits
+    return factors
 
 
 def stat_points(value):
@@ -249,17 +246,17 @@ def stat_points(value):
 def matching_policies():
     rows = re.findall(r"^\s*db\s+(\w+),\s*(\d+)", read("data/trainers/stat_exp_matching.asm"), re.M)
     assert len(rows) == len(dict(rows)), "Duplicate matching class"
-    policies = {cls: int(bonus) for cls, bonus in rows}
-    assert all(bonus in (0, 2) for bonus in policies.values())
-    assert all(policies[cls] == 0 for cls in ("COOLTRAINERM", "COOLTRAINERF", "DUELIST"))
+    policies = {cls: int(policy) for cls, policy in rows}
+    assert all(policy in (2, 50, 65, 75, 80, 90, 100) for policy in policies.values())
     return policies
 
 
-def matched_stat_exp(value, bonus):
-    if bonus == 0:
-        return value
-    points = min(63, stat_points(value) + bonus)
-    return 65535 if points == 63 else (4 * points) ** 2
+def matched_stat_exp(first, second, policy):
+    points = (stat_points(first) + stat_points(second)) // 2
+    if policy == 2:
+        points = min(63, points + policy)
+        return 65535 if points == 63 else (4 * points) ** 2
+    return (4 * points) ** 2 * policy // 100
 
 
 def level_at(experience, growth):
@@ -314,8 +311,8 @@ def projection(campaign, base_exp, stats, factors, growth="slow", yield_fraction
     return results
 
 
-def report(parties, stats, base_exp, class_exp, caps, placements, overrides):
-    factors, limits = policies()
+def report(parties, stats, base_exp, caps, placements, overrides):
+    factors = policies()
     campaigns = []
     for order in permutations(("Chuck", "Jasmine", "Pryce")):
         for kanto in permutations(("Erika", "Sabrina", "Janine")):
@@ -357,21 +354,23 @@ def report(parties, stats, base_exp, class_exp, caps, placements, overrides):
     lines += ["", "## Trainer Stat EXP", "",
               "Two restored Burned Tower trainers still had their old level-15–17 parties on the level-20–25 Ecruteak approach. Ned now uses levels 21/22/21, and Dick's Charmeleon is 23. Species, party sizes, and scripts are preserved; Dick's optional encounter is not needed for the EXP projection.", "",
               "Player Stat EXP comes from the defeated species' base stats, not from the opponent's own training. EXP multipliers do not multiply Stat EXP. The engine uses ceil(sqrt(Stat EXP)), capped at 255, then divides by four; its contribution scales with level. All comparisons here use those training points, not a promise of an exact final-stat difference (the full formula rounds together).", "",
-              "The final policy replaces fixed training on important characters with party matching. At battle initialization, each of the five Stat EXP words uses the highest corresponding word among the player's non-Egg party, including fainted members. Leaders, rivals, Rocket admins, League members, rematches and superbosses get exactly two additional training points, saturating at 63. Kimono Girls, Eusine, Cal, Sprout Tower's Elder and the Karate King use that same small advantage. Levels, species, moves, DVs, access flags and the cap schedule never scale.", "",
-              "Both Cooltrainer classes and Duelist copy those five maximum words exactly, with no rounding or bonus. No party average or estimated campaign amount is used: a focused starter, vitamins, optional battles, Pokerus, and EXP Relay are reflected in the actual values. A low-training replacement or Egg cannot dilute the match. Changing the party changes the next battle's snapshot; later switches inside a battle do not rebuild the opposing party.", "",
-              "For every player word from 0 through 65,535, the major-character result is never lower than the player, and its training-point advantage is exactly min(2, 63 - player_points). At equal levels this adds at most two actual stat points, depending on formula rounding. Fully trained players are matched at the maximum. This guarantees parity against the most-trained party member in each stat; members with less training can still trail that benchmark. Different species, levels, DVs, abilities and items still affect battle strength separately.", "",
-              "Normal Mode retains zero trainer Stat EXP. Other ordinary classes remain zero; themed generics retain authored level-bounded amounts. Link and Battle Tower parties are not overwritten. Matching values are written before the ordinary stat calculation, so both initial stats and later recalculation/Transform paths see the same training words.", "",
+              "In Hard Mode, the game selects the two highest Stat EXP values separately for each of the player's five training stats when the battle starts. Fainted party members count and Eggs are excluded. With one eligible Pokémon, its value supplies both inputs. With zero eligible Pokémon, both inputs are zero.", "",
+              "The game converts each of the two raw values to training points and averages the points, rounding down. Squaring four times that average creates the raw Stat EXP baseline. The class percentage is applied to the raw baseline and rounded down.", "",
+              "Regular classes use 25%, including the themed generic classes. The first Johto Gyms use 50%, Kanto Gyms use 65%, the first League uses 80%, and Gym and League rematches use 90%. Select special classes still add two training points to the average instead, up to 63 points.", "",
+              "Normal Mode gives zero trainer Stat EXP. Link and Battle Tower use their own party data. The opposing party receives its training values when it is built, so later switches keep those same values and recalculations and Transform can read them.", "",
               "| Class | Hard Mode training policy |", "|---|---|"]
-    for cls, bonus in matching_policies().items():
-        lines.append(f"| {cls} | {'Exact party match' if bonus == 0 else 'Party maximum + 2 training points'} |")
-    lines += ["", "The earlier fixed Blaine value of 18,496 is no longer used. For example, a maximum player word of 10,000 (25 training points) produces 11,664 (27 points) for Blaine. A word of 25,000 (39 points) produces 26,896 (41 points). Thus he remains just above both a rotating team and a more heavily trained starter instead of assuming they have the same training.", "",
+    lines.append("| Regular classes | 25% of the raw baseline |")
+    for cls, policy in matching_policies().items():
+        label = "Top-two training point average + 2" if policy == 2 else f"{policy}% of the raw baseline"
+        lines.append(f"| {cls} | {label} |")
+    lines += ["", "For example, with top values of 10,000 and 2,500 in Attack, the player has 25 and 12 training points. Their average rounds down to 18, which gives a raw baseline of 5,184. Blaine gets 65% of that baseline, or 3,369 raw Attack Stat EXP.", "",
               "The rotation-only estimates below remain useful context, but no longer determine boss fairness. They exclude optional encounters, wild training and vitamins, so they are not measured real-playthrough averages. A starter-focused distribution can exceed them substantially. Newly recruited team members start with zero training in the projection.", "",
               "| Checkpoint | Player training points |", "|---|---:|"]
     for name, values in ordered:
         lines.append(f"| {name} | {min(v['points_min'] for v in values)}–{max(v['points_max'] for v in values)} |")
     lines += ["", "## Optional areas and postgame", "",
               "Optional trainers were inventoried but are extra headroom: Lake of Rage's Surf side, Shiver Isle, Surf-side Union Cave, Mount Mortar, Ruins of Alph, Silent Crypt, Wise Trio, the Fighting Dojo, the Riolu rescue, time-dependent officers and Jaime, S.S. Aqua sailing rosters, the Route 25 Crystal finale (requires Erika), and the Snorlax/Chantz challenge. None is required to make the mainline EXP screen pass.", "",
-              "After the first League, all eight Johto rematches unlock; all eight must be won before the League rematch and the Plateau Silver ambush. Rematches run approximately levels 75–87; Mt. Silver Red is 88–90. Green requires Red, Blue Cloak requires Red plus Green, and Pallet's Red requires Blue Cloak. Every one of these important characters uses the same party-maximum-plus-two rule; no large fixed endgame training bonus remains.", "",
+              "After the first League, all eight Johto rematches unlock. All eight must be won before the League rematch and the Plateau Silver ambush. Rematches run approximately levels 75–87 and use 90% of the raw baseline, as does Silver's final fight. Mt. Silver Red is level 88–90. Green requires Red, Blue Cloak requires Red plus Green, and Pallet's Red requires Blue Cloak. Red, Green, and Blue Cloak each use 100% of the raw baseline.", "",
               "There is no progression cap after badge sixteen: 100 is the system maximum, not a requirement before the level-70s League or level-80s rematches. Forcing a full party to 100 there would erase the intended difficulty. Optional first clears and the party-level-scaled Trainer House provide postgame preparation. Hard Mode champions can now repeat the Trainer House immediately; its once-per-day restriction remains in Normal Mode and before the first League. This adds no flags and changes no Kanto access gates. The report below measures that repeatable fallback explicitly; it does not pretend unused optional trainers are guaranteed to remain. These are aggregate estimates; uneven recipients and rewards lost at target levels can require an extra battle.", "",
               "| Six Slow-growth mons | Trainer House fallback battles (8×, no Egg/trade) |",
               "|---|---:|"]
@@ -394,11 +393,11 @@ def main():
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    parties, stats, base_exp, stat_exp, caps = load_data()
+    parties, stats, base_exp, _, caps = load_data()
     maps = map_trainers(parties)
     if not args.inventory:
         overrides = open_parties(parties)
-        text, failures = report(parties, stats, base_exp, stat_exp, caps, maps, overrides)
+        text, failures = report(parties, stats, base_exp, caps, maps, overrides)
         if args.write:
             (ROOT / "docs/experience-balance.md").write_text(text, encoding="utf-8")
         print(text if not args.check else text.split("## Verification")[1])

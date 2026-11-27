@@ -1,3 +1,6 @@
+TRAINER_STAT_EXP_DEFAULT_PERCENT EQU 25
+TRAINER_STAT_EXP_POINT_BONUS EQU 2
+
 ApplyTrainerStatExpCore::
 ; de = mon's party-struct base. Called before CalcMonStats constructs its
 ; actual stats. This never changes levels, moves, DVs, badges or save fields.
@@ -18,28 +21,12 @@ ApplyTrainerStatExpCore::
 	ld a, c
 	pop de
 	and a
-	jr z, .fixed
+	jr z, .untrained
+	ld a, [wOtherTrainerClass]
+	and a
+	jr z, .untrained
 	call GetTrainerStatExpMatchingPolicy
-	jr c, .match_party
-.fixed
-; Ordinary classes retain their authored, level-bounded training. Normal
-; Mode's lookup returns zero and clears every word, even on reused structs.
-	push de
-	farcall GetTrainerStatExp
-	pop hl
-	ld de, MON_STAT_EXP
-	add hl, de
-	ld d, NUM_EXP_STATS
-.fixed_stat
-	ld a, b
-	ld [hli], a
-	ld a, c
-	ld [hli], a
-	dec d
-	jr nz, .fixed_stat
-	ret
-.match_party
-	ld b, a ; point bonus: 0 for Cooltrainers/Duelists, 2 for major characters
+	ld b, a ; percentage or legacy point bonus
 	ld h, d
 	ld l, e
 	ld de, MON_STAT_EXP
@@ -47,10 +34,8 @@ ApplyTrainerStatExpCore::
 	ld c, 0 ; byte offset into the player's five Stat EXP words
 .matched_stat
 	push hl
-	call GetPlayerMaximumStatExp
-	ld a, b
-	and a
-	call nz, AddTrainerStatExpPointBonus
+	call GetPlayerTopTwoStatExp
+	call CalculateTrainerStatExp
 	pop hl
 	ld a, d
 	ld [hli], a
@@ -62,39 +47,50 @@ ApplyTrainerStatExpCore::
 	cp NUM_EXP_STATS * 2
 	jr c, .matched_stat
 	ret
+.untrained
+	ld h, d
+	ld l, e
+	ld de, MON_STAT_EXP
+	add hl, de
+	ld bc, NUM_EXP_STATS * 2
+	xor a
+	jp ByteFill
 
 GetTrainerStatExpMatchingPolicy::
-; Carry = a matching policy exists; a = point bonus. Preserves de.
+; Return the class policy in a. Preserves de.
 	ld a, [wOtherTrainerClass]
 	ld c, a
 	ld hl, TrainerStatExpMatchingPolicy
 .next
 	ld a, [hli]
 	cp $ff
-	jr z, .fixed
+	jr z, .regular
 	cp c
 	jr z, .found
 	inc hl
 	jr .next
 .found
 	ld a, [hl]
-	scf
 	ret
-.fixed
-	and a
+.regular
+	ld a, TRAINER_STAT_EXP_DEFAULT_PERCENT
 	ret
 
-GetPlayerMaximumStatExp::
-; c = byte offset (0/2/4/6/8); de = highest non-Egg party training word.
-; Preserves bc. Each stat is independent; fainted members remain eligible.
+GetPlayerTopTwoStatExp::
+; c = Stat EXP byte offset. Return the highest word in de and the second
+; highest in hl. Count fainted mons, skip Eggs, and use a sole mon twice.
+; Preserves bc.
 	push bc
 	ld de, 0
+	ld hl, 0
 	ld a, [wPartyCount]
 	and a
 	jr z, .done
 	cp PARTY_LENGTH + 1
 	jr nc, .done
 	ld b, a
+	push hl ; second-highest word
+	push hl ; eligible party member count in the low byte
 	ld hl, wPartyMon1
 .mon
 	push hl
@@ -119,17 +115,39 @@ GetPlayerMaximumStatExp::
 	ld bc, MON_STAT_EXP
 	add hl, bc
 	ld a, [hli]
+	ld b, a
+	ld c, [hl]
 	cp d
-	jr c, .keep_maximum
-	jr nz, .new_maximum
-	ld a, [hl]
+	jr c, .compare_second
+	jr nz, .new_highest
+	ld a, c
 	cp e
-	jr c, .keep_maximum
-.new_maximum
-	ld a, [hld]
-	ld e, a
-	ld d, [hl]
-.keep_maximum
+	jr c, .compare_second
+.new_highest
+	ld a, d
+	ld d, b
+	ld b, a
+	ld a, e
+	ld e, c
+	ld c, a
+.compare_second
+	ld hl, sp + 4 ; past the saved loop registers
+	inc [hl] ; eligible count
+	ld hl, sp + 7 ; second-highest word, high byte
+	ld a, b
+	cp [hl]
+	jr c, .keep_second
+	jr nz, .new_second
+	dec hl
+	ld a, c
+	cp [hl]
+	jr c, .keep_second
+	inc hl
+.new_second
+	ld [hl], b
+	dec hl
+	ld [hl], c
+.keep_second
 	pop bc
 	pop hl
 .next_mon
@@ -139,25 +157,44 @@ GetPlayerMaximumStatExp::
 	pop bc
 	dec b
 	jr nz, .mon
+	pop bc ; eligible count in c
+	pop hl ; second-highest word
+	dec c
+	jr nz, .done
+	ld h, d
+	ld l, e
 .done
 	pop bc
 	ret
 
-AddTrainerStatExpPointBonus::
-; de = player's word, b = positive point bonus. Return de = the square
-; threshold for that many extra points, saturating at $ffff. Never uses a
-; flat raw-EXP increment: that would be disproportionately strong early.
-; Preserves bc. Cooltrainers/Duelists bypass this and copy the exact word.
+CalculateTrainerStatExp::
+; de, hl = top two raw words, b = percentage or legacy point bonus.
+; Average their training points and square (4 * average) for the raw
+; baseline. Return the scaled raw value in de. Preserves bc.
 	push bc
 	push bc
+	push hl
+	farcall GetSquareRoot
+	srl b
+	srl b
+	ld c, b
+	pop de
 	farcall GetSquareRoot
 	srl b
 	srl b
 	ld a, b
+	add c
+	srl a
 	pop bc
+	ld c, a
+	ld a, b
+	cp TRAINER_STAT_EXP_POINT_BONUS
+	ld a, c
+	jr nz, .square
 	add b
 	cp 63
 	jr nc, .maximum
+.square
 	add a
 	add a
 	ld c, a
@@ -166,10 +203,36 @@ AddTrainerStatExpPointBonus::
 	call AddNTimes ; hl = (4 * points) squared
 	ld d, h
 	ld e, l
-	jr .done
+	pop bc
+	ld a, b
+	cp TRAINER_STAT_EXP_POINT_BONUS
+	ret z
+	cp 100
+	ret z
+
+	; The product fits in 24 bits, and division truncates the raw value.
+	xor a
+	ldh [hMultiplicand], a
+	ld a, d
+	ldh [hMultiplicand + 1], a
+	ld a, e
+	ldh [hMultiplicand + 2], a
+	ld a, b
+	ldh [hMultiplier], a
+	call Multiply
+	ld a, 100
+	ldh [hDivisor], a
+	push bc
+	ld b, 4
+	call Divide
+	pop bc
+	ldh a, [hQuotient + 2]
+	ld d, a
+	ldh a, [hQuotient + 3]
+	ld e, a
+	ret
 .maximum
 	ld de, $ffff
-.done
 	pop bc
 	ret
 

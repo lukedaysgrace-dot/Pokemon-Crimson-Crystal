@@ -514,9 +514,21 @@ def validate_parallel_tables(classes, items):
 
 def validate_stat_exp_matching_policy(classes):
 	path = ROOT / "data/trainers/stat_exp_matching.asm"
+	groups = (
+		(50, "FALKNER WHITNEY BUGSY MORTY PRYCE JASMINE CHUCK CLAIR SLOT_MANIAC ELDER KIMONO_GIRL "
+		     "PROTON PETREL PETREL_DIRECTOR ARIANA"),
+		(65, "BROCK MISTY LT_SURGE ERIKA JANINE SABRINA BLAINE BLUE COOLTRAINERM COOLTRAINERF DUELIST MYSTICALMAN"),
+		(75, "RIVAL1 RIVAL2 CRYSTAL CRYSTAL2 HOSTESS ARCHER KARATE_KING"),
+		(80, "LORELEI KOGA BRUNO KAREN CHAMPION"),
+		(90, "RIVAL3 CRYSTAL3 FALKNER_REMATCH BUGSY_REMATCH WHITNEY_REMATCH MORTY_REMATCH CHUCK_REMATCH "
+		     "JASMINE_REMATCH PRYCE_REMATCH CLAIR_REMATCH LORELEI_REMATCH KOGA_REMATCH BRUNO_REMATCH "
+		     "KAREN_REMATCH CHAMPION_REMATCH"),
+		(100, "GREEN RED RED2 BLUE_CLOAK"),
+		(2, "CAL EXECUTIVEM EXECUTIVEF WILL AGATHA"),
+	)
+	expected = {trainer_class: policy for policy, names in groups for trainer_class in names.split()}
 	seen = set()
 	terminated = False
-	exact = {"COOLTRAINERM", "COOLTRAINERF", "DUELIST"}
 	for line_number, line in enumerate(source_lines(path), 1):
 		code = without_comment(line)
 		if code == "db -1":
@@ -528,20 +540,14 @@ def validate_stat_exp_matching_policy(classes):
 		if not match or terminated:
 			fail(path, line_number, "malformed matching policy or data after sentinel")
 			continue
-		trainer_class, bonus = match.groups()
+		trainer_class, policy = match.groups()
 		if trainer_class not in classes or trainer_class in seen:
 			fail(path, line_number, f"unknown or duplicate matching class {trainer_class}")
 		seen.add(trainer_class)
-		if int(bonus) != (0 if trainer_class in exact else 2):
-			fail(path, line_number, f"wrong training bonus for {trainer_class}")
-	required = exact | {cls for cls in classes if cls.endswith("_REMATCH")}
-	required |= {"FALKNER", "BUGSY", "WHITNEY", "MORTY", "CHUCK", "JASMINE", "PRYCE", "CLAIR",
-	             "BROCK", "MISTY", "LT_SURGE", "ERIKA", "JANINE", "SABRINA", "BLAINE", "BLUE",
-	             "RIVAL1", "RIVAL2", "RIVAL3", "CRYSTAL", "CRYSTAL2", "CRYSTAL3", "PROTON",
-	             "PETREL", "ARIANA", "ARCHER", "PETREL_DIRECTOR", "LORELEI", "KOGA", "BRUNO",
-	             "KAREN", "CHAMPION", "RED", "RED2", "GREEN", "BLUE_CLOAK"}
-	if not terminated or required - seen:
-		fail(path, 0, f"missing matching policies/sentinel: {sorted(required - seen)}")
+		if int(policy) != expected.get(trainer_class):
+			fail(path, line_number, f"wrong Stat EXP policy for {trainer_class}")
+	if not terminated or expected.keys() - seen:
+		fail(path, 0, f"missing matching policies/sentinel: {sorted(expected.keys() - seen)}")
 
 
 def validate_attributes(classes, items):

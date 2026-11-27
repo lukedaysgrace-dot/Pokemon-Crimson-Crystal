@@ -99,39 +99,6 @@ SelectOpenProgressionParty::
 	xor a
 	ret
 
-ClampTrainerStatExpToLevel::
-; bc = authored generic training. Return the smaller of that and this party
-; member's level allowance. Normal Mode returns zero before reaching here.
-; wCurPartyLevel is the actual selected (including open-tier) mon's level.
-	ld hl, TrainerStatExpLevelLimits
-.next
-	ld a, [wCurPartyLevel]
-	cp [hl]
-	jr c, .found
-	jr z, .found
-	inc hl
-	inc hl
-	inc hl
-	jr .next
-.found
-	inc hl
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	ld a, b
-	cp d
-	ret c
-	jr nz, .limit
-	ld a, c
-	cp e
-	ret c
-.limit
-	ld b, d
-	ld c, e
-	ret
-
-INCLUDE "data/trainers/stat_exp_limits.asm"
-
 ClampOpenProgressionWildLevel::
 ; Bound newly accessible encounters to the same tier as the region's trainers.
 ; Never raise a level. Roamers keep their shared level/HP records unchanged.

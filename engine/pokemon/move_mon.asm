@@ -1224,7 +1224,7 @@ ComputeNPCTrademonStats:
 	ret
 
 ApplyTrainerStatExp:
-; Apply authored generic training or the Hard Mode party-matching policy.
+; Apply the Hard Mode opponent training policy.
 ; Player-owned mons are untouched. Preserves hl.
 	push hl
 	ld d, h

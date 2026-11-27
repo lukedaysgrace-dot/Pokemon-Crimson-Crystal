@@ -21,7 +21,7 @@ def main():
     parser.add_argument("--rom", default="pokecrystal_debug.gbc")
     args = parser.parse_args()
     parties, stats, base_exp, classes, caps = economy.load_data()
-    factors, limits = economy.policies()
+    factors = economy.policies()
     h = Harness(rom_path=Path(args.rom).resolve(), render=False)
     # These routines only need WRAM, the bank register and a private stack.
     # No debug fixture or patched EXP/stat routine is used.
@@ -95,62 +95,62 @@ def main():
         m.write_bytes("wTempMonExp", (179).to_bytes(3, "big"))  # Totodile's level-6 threshold.
         call(h, "CalcLevel")
         check(h.pb.register_file.D == 6, "CalcLevel still uses the EXP threshold with an invalid cap")
-        # All 100 valid levels, both sides of every training threshold.
-        for level in range(1, 101):
-            limit = next(v for max_level, v in limits if level <= max_level)
-            for value in (0, limit - 1, limit, limit + 1, 65535):
-                m.write("wCurPartyLevel", level)
-                call(h, "ClampTrainerStatExpToLevel", B=value >> 8, C=value & 255)
-                r = h.pb.register_file
-                check((r.B << 8 | r.C) == min(value, limit), f"clamp level={level} input={value}")
-        # Every class, Normal and Hard, outside the open override maps.
         m.write("wMapGroup", 0)
         m.write("wMapNumber", 0)
         m.write("wOtherTrainerID", 1)
         badges(0)
-        for cls, value in classes.items():
-            m.write("wOtherTrainerClass", h.con.trainer_classes[cls])
-            for hard in (False, True):
-                mode(hard)
-                for level in (5, 16, 25, 38, 50, 54, 58, 62, 66, 69, 73, 85, 90, 100):
-                    m.write("wCurPartyLevel", level)
-                    call(h, "GetTrainerStatExp")
-                    r = h.pb.register_file
-                    limit = next(v for ceiling, v in limits if level <= ceiling)
-                    expected = min(value, limit) if hard else 0
-                    check((r.B << 8 | r.C) == expected, f"class {cls} hard={hard} level={level}")
         # Native point-bonus arithmetic across every sqrt-table boundary.
         boundary_words = sorted({max(0, min(65535, root * root + delta))
                                  for root in range(257) for delta in (-1, 0, 1)})
-        for value in boundary_words:
-            call(h, "AddTrainerStatExpPointBonus", B=2, C=8, D=value >> 8, E=value & 255)
-            r = h.pb.register_file
-            expected = economy.matched_stat_exp(value, 2)
-            check((r.D << 8 | r.E) == expected, f"native matching arithmetic {value}: {r.D << 8 | r.E} != {expected}")
-            check((r.B, r.C) == (2, 8), "matching arithmetic preserves counter/bonus")
+        for first in boundary_words:
+            for second in (first, 65535 - first):
+                call(h, "CalculateTrainerStatExp", B=2, C=8, D=first >> 8, E=first & 255, HL=second)
+                r = h.pb.register_file
+                expected = economy.matched_stat_exp(first, second, 2)
+                check((r.D << 8 | r.E) == expected, f"native matching arithmetic {first}/{second}: {r.D << 8 | r.E} != {expected}")
+                check((r.B, r.C) == (2, 8), "matching arithmetic preserves counter/bonus")
+        # Every percentage at all possible training-point averages, plus
+        # uneven parties where the raw average would give a larger baseline.
+        for policy in sorted(set(classes.values()) - {2}):
+            equal_words = [((4 * points) ** 2,) * 2 for points in range(64)]
+            for first, second in equal_words + [(10000, 0), (10000, 2500), (65535, 65535)]:
+                call(h, "CalculateTrainerStatExp", B=policy, C=8, D=first >> 8, E=first & 255, HL=second)
+                r = h.pb.register_file
+                expected = economy.matched_stat_exp(first, second, policy)
+                check((r.D << 8 | r.E) == expected, f"{policy}% native matching {first}/{second}: {r.D << 8 | r.E} != {expected}")
+                check((r.B, r.C) == (policy, 8), "percentage arithmetic preserves counter/policy")
         # Exhaust every possible player word for the mathematical invariants.
         for value in range(65536):
-            result_value = economy.matched_stat_exp(value, 2)
-            assert result_value >= value, f"matching must never fall below player word {value}"
+            result_value = economy.matched_stat_exp(value, value, 2)
+            assert result_value >= value, f"identical training words must retain the bonus at {value}"
             assert economy.stat_points(result_value) - economy.stat_points(value) == min(2, 63 - economy.stat_points(value)), f"matching advantage bounded at word {value}"
             math_checks += 2
-        m.write("wPartyCount", 3)
-        m.write_bytes("wPartySpecies", [1, 2, 0xfd])
+        party_species = [1, 2, 3, 0xfd]
         m.write("wPartyMon1Species", 1)
         m.write("wPartyMon2Species", 2)
-        m.write("wPartyMon3Species", 0xfd)
+        m.write("wPartyMon3Species", 3)
+        m.write("wPartyMon4Species", 0xfd)
         m.write_bytes("wPartyMon2HP", [0, 0])  # Fainted high-training member still counts.
-        player_words = [[0, 10000, 37, 60000, 65535], [4096, 5, 12000, 65535, 0], [65535] * 5]
+        player_words = [[0, 10001, 37, 60000, 65535], [4098, 5, 12000, 65535, 0],
+                        [4098, 100, 15000, 0, 65535], [65535] * 5]
         for i, words in enumerate(player_words, 1):
             m.write_bytes(f"wPartyMon{i}StatExp", b"".join(value.to_bytes(2, "big") for value in words))
-        maxima = [max(player_words[0][i], player_words[1][i]) for i in range(5)]
-        matching = economy.matching_policies()
+        for species, expected in (([0xfd, 0], 0), ([0xfd, 0, 3], 4098)):
+            m.write("wPartyCount", len(species))
+            m.write_bytes("wPartySpecies", species)
+            call(h, "GetPlayerTopTwoStatExp", C=0)
+            r = h.pb.register_file
+            check((r.D << 8 | r.E, r.HL) == (expected, expected), f"top two with zero or one eligible member: {species}")
+        m.write("wPartyCount", len(party_species))
+        m.write_bytes("wPartySpecies", party_species)
+        top_two = [sorted(words, reverse=True)[:2] for words in zip(*player_words[:-1])]
         target_address = h.sym.addr("wOTPartyMon1")
         m.write("wLinkMode", 0)
         m.write("wInBattleTowerBattle", 0)
         m.write("wMonType", 1)
         m.write("wCurPartyLevel", 66)
-        for cls, value in classes.items():
+        # Every class, Normal and Hard, using the actual party-loading hook.
+        for cls, policy in classes.items():
             for hard in (False, True):
                 mode(hard)
                 m.write("wOtherTrainerClass", h.con.trainer_classes[cls])
@@ -159,11 +159,8 @@ def main():
                 actual = [m.read_u16_be("wOTPartyMon1StatExp", j * 2) for j in range(5)]
                 if not hard:
                     expected = [0] * 5
-                elif cls in matching:
-                    expected = [economy.matched_stat_exp(word, matching[cls]) for word in maxima]
                 else:
-                    limit = next(v for ceiling, v in limits if 66 <= ceiling)
-                    expected = [min(value, limit)] * 5
+                    expected = [economy.matched_stat_exp(first, second, policy) for first, second in top_two]
                 check(actual == expected, f"actual training words class={cls} hard={hard}: {actual} != {expected}")
         # External parties and player-owned mons are never rewritten.
         mode(True)
@@ -201,10 +198,10 @@ def main():
                 actual = [m.read_u16_be(f"wPartyMon{i}StatExp", j * 2) for j in range(5)]
                 check(actual == expected_words, f"full capped award slot={i} Pokerus={infected}: {actual}")
             check(m.read("wPendingStatExpRecalcs") == 63, "all actual recipients marked for stat recalculation")
-        # Restore the deliberately uneven three-member party for loading
+        # Restore the deliberately uneven party for loading
         # opponent rosters below (Egg is excluded; fainted member is included).
-        m.write("wPartyCount", 3)
-        m.write_bytes("wPartySpecies", [1, 2, 0xfd])
+        m.write("wPartyCount", len(party_species))
+        m.write_bytes("wPartySpecies", party_species)
         m.write_bytes("wPartyMon2HP", [0, 0])
         for i, words in enumerate(player_words, 1):
             m.write_bytes(f"wPartyMon{i}StatExp", b"".join(value.to_bytes(2, "big") for value in words))
@@ -264,7 +261,7 @@ def main():
                     prefix = f"wOTPartyMon{i}"
                     check(m.read(prefix + "Level") == mon["level"], f"{cls}/{tier}/{i} level {m.read(prefix + 'Level')} expected {mon['level']}; badges {m.read('wJohtoBadges'):02x}/{m.read('wKantoBadges'):02x}")
                     actual = [m.read_u16_be(prefix + "StatExp", j * 2) for j in range(5)]
-                    expected_words = [economy.matched_stat_exp(word, matching[cls]) for word in maxima]
+                    expected_words = [economy.matched_stat_exp(first, second, classes[cls]) for first, second in top_two]
                     check(actual == expected_words, f"{cls}/{tier}/{i} all five matched training words: {actual}")
         # Execute the actual script branch through the native interpreter,
         # stopping before its first text command (no UI emulation required).

@@ -52,79 +52,82 @@ Two restored Burned Tower trainers still had their old level-15–17 parties on 
 
 Player Stat EXP comes from the defeated species' base stats, not from the opponent's own training. EXP multipliers do not multiply Stat EXP. The engine uses ceil(sqrt(Stat EXP)), capped at 255, then divides by four; its contribution scales with level. All comparisons here use those training points, not a promise of an exact final-stat difference (the full formula rounds together).
 
-The final policy replaces fixed training on important characters with party matching. At battle initialization, each of the five Stat EXP words uses the highest corresponding word among the player's non-Egg party, including fainted members. Leaders, rivals, Rocket admins, League members, rematches and superbosses get exactly two additional training points, saturating at 63. Kimono Girls, Eusine, Cal, Sprout Tower's Elder and the Karate King use that same small advantage. Levels, species, moves, DVs, access flags and the cap schedule never scale.
+In Hard Mode, the game selects the two highest Stat EXP values separately for each of the player's five training stats when the battle starts. Fainted party members count and Eggs are excluded. With one eligible Pokémon, its value supplies both inputs. With zero eligible Pokémon, both inputs are zero.
 
-Both Cooltrainer classes and Duelist copy those five maximum words exactly, with no rounding or bonus. No party average or estimated campaign amount is used: a focused starter, vitamins, optional battles, Pokerus, and EXP Relay are reflected in the actual values. A low-training replacement or Egg cannot dilute the match. Changing the party changes the next battle's snapshot; later switches inside a battle do not rebuild the opposing party.
+The game converts each of the two raw values to training points and averages the points, rounding down. Squaring four times that average creates the raw Stat EXP baseline. The class percentage is applied to the raw baseline and rounded down.
 
-For every player word from 0 through 65,535, the major-character result is never lower than the player, and its training-point advantage is exactly min(2, 63 - player_points). At equal levels this adds at most two actual stat points, depending on formula rounding. Fully trained players are matched at the maximum. This guarantees parity against the most-trained party member in each stat; members with less training can still trail that benchmark. Different species, levels, DVs, abilities and items still affect battle strength separately.
+Regular classes use 25%, including the themed generic classes. The first Johto Gyms use 50%, Kanto Gyms use 65%, the first League uses 80%, and Gym and League rematches use 90%. Select special classes still add two training points to the average instead, up to 63 points.
 
-Normal Mode retains zero trainer Stat EXP. Other ordinary classes remain zero; themed generics retain authored level-bounded amounts. Link and Battle Tower parties are not overwritten. Matching values are written before the ordinary stat calculation, so both initial stats and later recalculation/Transform paths see the same training words.
+Normal Mode gives zero trainer Stat EXP. Link and Battle Tower use their own party data. The opposing party receives its training values when it is built, so later switches keep those same values and recalculations and Transform can read them.
 
 | Class | Hard Mode training policy |
 |---|---|
-| FALKNER | Party maximum + 2 training points |
-| WHITNEY | Party maximum + 2 training points |
-| BUGSY | Party maximum + 2 training points |
-| MORTY | Party maximum + 2 training points |
-| PRYCE | Party maximum + 2 training points |
-| JASMINE | Party maximum + 2 training points |
-| CHUCK | Party maximum + 2 training points |
-| CLAIR | Party maximum + 2 training points |
-| RIVAL1 | Party maximum + 2 training points |
-| WILL | Party maximum + 2 training points |
-| CAL | Party maximum + 2 training points |
-| BRUNO | Party maximum + 2 training points |
-| KAREN | Party maximum + 2 training points |
-| KOGA | Party maximum + 2 training points |
-| CHAMPION | Party maximum + 2 training points |
-| BROCK | Party maximum + 2 training points |
-| MISTY | Party maximum + 2 training points |
-| LT_SURGE | Party maximum + 2 training points |
-| ERIKA | Party maximum + 2 training points |
-| JANINE | Party maximum + 2 training points |
-| SABRINA | Party maximum + 2 training points |
-| BLAINE | Party maximum + 2 training points |
-| BLUE | Party maximum + 2 training points |
-| RIVAL2 | Party maximum + 2 training points |
-| RIVAL3 | Party maximum + 2 training points |
-| CRYSTAL | Party maximum + 2 training points |
-| CRYSTAL2 | Party maximum + 2 training points |
-| CRYSTAL3 | Party maximum + 2 training points |
-| PROTON | Party maximum + 2 training points |
-| PETREL | Party maximum + 2 training points |
-| ARIANA | Party maximum + 2 training points |
-| ARCHER | Party maximum + 2 training points |
-| PETREL_DIRECTOR | Party maximum + 2 training points |
-| EXECUTIVEM | Party maximum + 2 training points |
-| EXECUTIVEF | Party maximum + 2 training points |
-| MYSTICALMAN | Party maximum + 2 training points |
-| RED | Party maximum + 2 training points |
-| AGATHA | Party maximum + 2 training points |
-| LORELEI | Party maximum + 2 training points |
-| RED2 | Party maximum + 2 training points |
-| BLUE_CLOAK | Party maximum + 2 training points |
-| GREEN | Party maximum + 2 training points |
-| FALKNER_REMATCH | Party maximum + 2 training points |
-| BUGSY_REMATCH | Party maximum + 2 training points |
-| WHITNEY_REMATCH | Party maximum + 2 training points |
-| MORTY_REMATCH | Party maximum + 2 training points |
-| CHUCK_REMATCH | Party maximum + 2 training points |
-| JASMINE_REMATCH | Party maximum + 2 training points |
-| PRYCE_REMATCH | Party maximum + 2 training points |
-| CLAIR_REMATCH | Party maximum + 2 training points |
-| LORELEI_REMATCH | Party maximum + 2 training points |
-| KOGA_REMATCH | Party maximum + 2 training points |
-| BRUNO_REMATCH | Party maximum + 2 training points |
-| KAREN_REMATCH | Party maximum + 2 training points |
-| CHAMPION_REMATCH | Party maximum + 2 training points |
-| ELDER | Party maximum + 2 training points |
-| KIMONO_GIRL | Party maximum + 2 training points |
-| KARATE_KING | Party maximum + 2 training points |
-| COOLTRAINERM | Exact party match |
-| COOLTRAINERF | Exact party match |
-| DUELIST | Exact party match |
+| Regular classes | 25% of the raw baseline |
+| FALKNER | 50% of the raw baseline |
+| WHITNEY | 50% of the raw baseline |
+| BUGSY | 50% of the raw baseline |
+| MORTY | 50% of the raw baseline |
+| PRYCE | 50% of the raw baseline |
+| JASMINE | 50% of the raw baseline |
+| CHUCK | 50% of the raw baseline |
+| CLAIR | 50% of the raw baseline |
+| BROCK | 65% of the raw baseline |
+| MISTY | 65% of the raw baseline |
+| LT_SURGE | 65% of the raw baseline |
+| ERIKA | 65% of the raw baseline |
+| JANINE | 65% of the raw baseline |
+| SABRINA | 65% of the raw baseline |
+| BLAINE | 65% of the raw baseline |
+| BLUE | 65% of the raw baseline |
+| LORELEI | 80% of the raw baseline |
+| KOGA | 80% of the raw baseline |
+| BRUNO | 80% of the raw baseline |
+| KAREN | 80% of the raw baseline |
+| CHAMPION | 80% of the raw baseline |
+| FALKNER_REMATCH | 90% of the raw baseline |
+| BUGSY_REMATCH | 90% of the raw baseline |
+| WHITNEY_REMATCH | 90% of the raw baseline |
+| MORTY_REMATCH | 90% of the raw baseline |
+| CHUCK_REMATCH | 90% of the raw baseline |
+| JASMINE_REMATCH | 90% of the raw baseline |
+| PRYCE_REMATCH | 90% of the raw baseline |
+| CLAIR_REMATCH | 90% of the raw baseline |
+| LORELEI_REMATCH | 90% of the raw baseline |
+| KOGA_REMATCH | 90% of the raw baseline |
+| BRUNO_REMATCH | 90% of the raw baseline |
+| KAREN_REMATCH | 90% of the raw baseline |
+| CHAMPION_REMATCH | 90% of the raw baseline |
+| GREEN | 100% of the raw baseline |
+| RED | 100% of the raw baseline |
+| RED2 | 100% of the raw baseline |
+| BLUE_CLOAK | 100% of the raw baseline |
+| COOLTRAINERM | 65% of the raw baseline |
+| COOLTRAINERF | 65% of the raw baseline |
+| DUELIST | 65% of the raw baseline |
+| MYSTICALMAN | 65% of the raw baseline |
+| CRYSTAL | 75% of the raw baseline |
+| CRYSTAL2 | 75% of the raw baseline |
+| RIVAL1 | 75% of the raw baseline |
+| RIVAL2 | 75% of the raw baseline |
+| CRYSTAL3 | 90% of the raw baseline |
+| RIVAL3 | 90% of the raw baseline |
+| HOSTESS | 75% of the raw baseline |
+| PROTON | 50% of the raw baseline |
+| PETREL | 50% of the raw baseline |
+| PETREL_DIRECTOR | 50% of the raw baseline |
+| ARIANA | 50% of the raw baseline |
+| ARCHER | 75% of the raw baseline |
+| SLOT_MANIAC | 50% of the raw baseline |
+| ELDER | 50% of the raw baseline |
+| KIMONO_GIRL | 50% of the raw baseline |
+| KARATE_KING | 75% of the raw baseline |
+| CAL | Top-two training point average + 2 |
+| EXECUTIVEM | Top-two training point average + 2 |
+| EXECUTIVEF | Top-two training point average + 2 |
+| WILL | Top-two training point average + 2 |
+| AGATHA | Top-two training point average + 2 |
 
-The earlier fixed Blaine value of 18,496 is no longer used. For example, a maximum player word of 10,000 (25 training points) produces 11,664 (27 points) for Blaine. A word of 25,000 (39 points) produces 26,896 (41 points). Thus he remains just above both a rotating team and a more heavily trained starter instead of assuming they have the same training.
+For example, with top values of 10,000 and 2,500 in Attack, the player has 25 and 12 training points. Their average rounds down to 18, which gives a raw baseline of 5,184. Blaine gets 65% of that baseline, or 3,369 raw Attack Stat EXP.
 
 The rotation-only estimates below remain useful context, but no longer determine boss fairness. They exclude optional encounters, wild training and vitamins, so they are not measured real-playthrough averages. A starter-focused distribution can exceed them substantially. Newly recruited team members start with zero training in the projection.
 
@@ -158,7 +161,7 @@ The rotation-only estimates below remain useful context, but no longer determine
 
 Optional trainers were inventoried but are extra headroom: Lake of Rage's Surf side, Shiver Isle, Surf-side Union Cave, Mount Mortar, Ruins of Alph, Silent Crypt, Wise Trio, the Fighting Dojo, the Riolu rescue, time-dependent officers and Jaime, S.S. Aqua sailing rosters, the Route 25 Crystal finale (requires Erika), and the Snorlax/Chantz challenge. None is required to make the mainline EXP screen pass.
 
-After the first League, all eight Johto rematches unlock; all eight must be won before the League rematch and the Plateau Silver ambush. Rematches run approximately levels 75–87; Mt. Silver Red is 88–90. Green requires Red, Blue Cloak requires Red plus Green, and Pallet's Red requires Blue Cloak. Every one of these important characters uses the same party-maximum-plus-two rule; no large fixed endgame training bonus remains.
+After the first League, all eight Johto rematches unlock. All eight must be won before the League rematch and the Plateau Silver ambush. Rematches run approximately levels 75–87 and use 90% of the raw baseline, as does Silver's final fight. Mt. Silver Red is level 88–90. Green requires Red, Blue Cloak requires Red plus Green, and Pallet's Red requires Blue Cloak. Red, Green, and Blue Cloak each use 100% of the raw baseline.
 
 There is no progression cap after badge sixteen: 100 is the system maximum, not a requirement before the level-70s League or level-80s rematches. Forcing a full party to 100 there would erase the intended difficulty. Optional first clears and the party-level-scaled Trainer House provide postgame preparation. Hard Mode champions can now repeat the Trainer House immediately; its once-per-day restriction remains in Normal Mode and before the first League. This adds no flags and changes no Kanto access gates. The report below measures that repeatable fallback explicitly; it does not pretend unused optional trainers are guaranteed to remain. These are aggregate estimates; uneven recipients and rewards lost at target levels can require an extra battle.
 

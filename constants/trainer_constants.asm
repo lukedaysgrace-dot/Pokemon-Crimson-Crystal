@@ -798,17 +798,15 @@ CRYSTAL2_4_TOTODILE EQU CRYSTAL_4_TOTODILE
 	trainerclass CRYSTAL3
 ; Crystal's final battle, on Route 25 (Cerulean Cape). CRYSTAL3 shares
 ; CrystalGroup (see data/trainers/party_pointers.asm), so these are aliases
-; into the same party list - only the class differs. Splitting it out of
-; CRYSTAL2 lets the Lv66-70 fight carry its own stat exp without inflating the
-; Lv45-48 Ice Path fight (see data/trainers/stat_exp.asm).
+; into the same party list - only the class differs. The separate class
+; lets the final fight use its own training policy (see stat_exp_matching.asm).
 CRYSTAL3_CHIKORITA EQU CRYSTAL_5_CHIKORITA
 CRYSTAL3_CYNDAQUIL EQU CRYSTAL_5_CYNDAQUIL
 CRYSTAL3_TOTODILE EQU CRYSTAL_5_TOTODILE
 
 	trainerclass RIVAL3
 ; Silver's final battle, at the Indigo Plateau Pokecenter. Shares Rival2Group
-; the same way, split off from RIVAL2 so it can outrank CRYSTAL3 without
-; buffing the Mt. Moon fight.
+; and has a separate training policy from the Mt. Moon fight.
 RIVAL3_CHIKORITA EQU RIVAL2_2_CHIKORITA
 RIVAL3_CYNDAQUIL EQU RIVAL2_2_CYNDAQUIL
 RIVAL3_TOTODILE EQU RIVAL2_2_TOTODILE
