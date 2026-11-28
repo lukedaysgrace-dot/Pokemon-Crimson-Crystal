@@ -3,13 +3,15 @@
 ;
 ; The banner is a 2-row band that slides across the battler's side of the
 ; screen, then reveals left-aligned "<MON>'s" / "<ABILITY>" in a small panel.
-; Style (battle text palette only - white, light periwinkle, periwinkle,
-; black - so no palette is loaded or changed):
-;   - black body with a periwinkle underline on its bottom pixel row
-;   - "<MON>'s" in light periwinkle, "<ABILITY>" in white
-;   - the inner end is a forward-leaning slant with a detached periwinkle
-;     speed stripe (AbilityBannerCapPlayer/Enemy); the outer edge joins the
-;     screen without a gap.
+; Style - colors 1 and 2 come from the side's palette:
+;   player: PAL_BATTLE_BG_TEXT (light periwinkle, periwinkle)
+;   enemy:  PAL_BATTLE_BG_ABILITY (light red, crimson; AbilityBannerPalette)
+;   - black body with a color 2 underline on its bottom pixel row
+;   - "<MON>'s" in color 1, "<ABILITY>" in white
+;   - the inner end is a forward-leaning slant edged by a color 2 stripe
+;     that joins the underline (AbilityBannerCapPlayer/Enemy); the outer
+;     edge joins the screen without a gap.
+; Neither palette is changed by the banner.
 ; Full-width names use all 16 columns (no cap) so the longest ability names
 ; remain readable.
 ; Banner tile graphics live in VRAM bank 1 (enemy $c0-$df, player $e0-$ff),
@@ -58,7 +60,7 @@ PerformAbilityGFX::
 
 	; Slide the solid band in, one column per frame. Each column is engaged
 	; with a single atomic BGMap write - the cell flips straight from the
-	; real scene to (solid banner tile + text palette) in one hblank, so it
+	; real scene to (solid banner tile + banner palette) in one hblank, so it
 	; is never shown as a solid tile under the battler's own (blue) palette.
 	call SlideInBanner
 
@@ -158,7 +160,7 @@ endr
 
 FillBannerSolid:
 ; Fill the banner buffer (32 tiles) with the band: solid black, plus a
-; periwinkle underline on the last pixel row of the bottom row of tiles.
+; crimson underline on the last pixel row of the bottom row of tiles.
 ; Assumes rSVBK = BANK(wAbilityTiles).
 	ld hl, wAbilityTiles
 	; top row: every pixel color 3
@@ -315,7 +317,7 @@ SlideInBanner:
 
 EngageBannerColumn:
 ; a = column (0..SLIDEOUT_WIDTH-1). Atomically engage both banner rows of
-; this column: point the BGMap cell at the solid banner tile with the text
+; this column: point the BGMap cell at the solid banner tile with the banner
 ; palette (one hblank per cell) and mirror the change into wTilemap/wAttrMap.
 ; Preserves all registers. rSVBK = BANK(wAbilityTiles).
 	push af
@@ -383,8 +385,13 @@ EngageBannerColumn:
 	push bc
 	ld bc, wAttrMap - wTileMap
 	add hl, bc
-	ld a, PAL_BATTLE_BG_TEXT | VRAM_BANK_1 | PRIORITY
-	ld [hl], a ; wAttrMap -> text attr
+	ldh a, [hBattleTurn]
+	and a
+	ld a, PAL_BATTLE_BG_TEXT | VRAM_BANK_1 | PRIORITY ; player: blue
+	jr z, .got_attr
+	ld a, PAL_BATTLE_BG_ABILITY | VRAM_BANK_1 | PRIORITY ; enemy: red
+.got_attr
+	ld [hl], a ; wAttrMap -> banner attr
 	pop bc
 	ld c, a ; attr for the atomic write
 	pop de
@@ -489,7 +496,7 @@ GetAbilityGFXPkmnName:
 RenderBannerChar:
 ; a = character, de = dest tile (16 bytes) in wAbilityTiles,
 ; h bit 0 = 0 for the top row ("<MON>'s"), 1 for the bottom row (ability).
-; Glyph pixels are painted over the band: light periwinkle (color 1) on the
+; Glyph pixels are painted over the band: light red (color 1) on the
 ; top row, white (color 0) on the bottom row. Non-glyph pixels keep the
 ; band, so the underline survives.
 	cp $80
@@ -626,23 +633,23 @@ endr
 	pop bc
 	ret
 
-; Slanted inner end caps: top tile, then bottom tile (2bpp, text palette).
-; Body (black) leans forward 1px every 2 rows, with a detached
-; periwinkle speed stripe. Enemy caps are the mirror image.
+; Slanted inner end caps: top tile, then bottom tile (2bpp, banner palette).
+; Body (black) leans forward 1px every 2 rows; the red edge stripe hugs it
+; and joins the underline at the bottom. Enemy caps are the mirror image.
 AbilityBannerCapPlayer:
-; #####.b. / #####.b. / ####.b.. / ####.b.. / ###.b... / ###.b... / ##.b.... / ##.b....
-	db $f8, $fa, $f8, $fa, $f0, $f4, $f0, $f4
-	db $e0, $e8, $e0, $e8, $c0, $d0, $c0, $d0
-; #.b..... / #.b..... / .b...... / .b...... / b....... / b....... / ........ / ........
-	db $80, $a0, $80, $a0, $00, $40, $00, $40
-	db $00, $80, $00, $80, $00, $00, $00, $00
+; #######b / #######b / ######b. / ######b. / #####b.. / #####b.. / ####b... / ####b...
+	db $fe, $ff, $fe, $ff, $fc, $fe, $fc, $fe
+	db $f8, $fc, $f8, $fc, $f0, $f8, $f0, $f8
+; ###b.... / ###b.... / ##b..... / ##b..... / #b...... / #b...... / b....... / b.......
+	db $e0, $f0, $e0, $f0, $c0, $e0, $c0, $e0
+	db $80, $c0, $80, $c0, $00, $80, $00, $80
 AbilityBannerCapEnemy:
-; .b.##### / .b.##### / ..b.#### / ..b.#### / ...b.### / ...b.### / ....b.## / ....b.##
-	db $1f, $5f, $1f, $5f, $0f, $2f, $0f, $2f
-	db $07, $17, $07, $17, $03, $0b, $03, $0b
-; .....b.# / .....b.# / ......b. / ......b. / .......b / .......b / ........ / ........
-	db $01, $05, $01, $05, $00, $02, $00, $02
-	db $00, $01, $00, $01, $00, $00, $00, $00
+; b####### / b####### / .b###### / .b###### / ..b##### / ..b##### / ...b#### / ...b####
+	db $7f, $ff, $7f, $ff, $3f, $7f, $3f, $7f
+	db $1f, $3f, $1f, $3f, $0f, $1f, $0f, $1f
+; ....b### / ....b### / .....b## / .....b## / ......b# / ......b# / .......b / .......b
+	db $07, $0f, $07, $0f, $03, $07, $03, $07
+	db $01, $03, $01, $03, $00, $01, $00, $01
 
 ApplyAbilityTiles:
 ; Upload the whole banner buffer (32 tiles) for the current side.

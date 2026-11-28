@@ -1722,6 +1722,10 @@ NUM_BG_EFFECTS EQU 5 ; see wActiveBGEffects
 	const PAL_BATTLE_BG_6         ; 6
 	const PAL_BATTLE_BG_TEXT      ; 7
 
+; The enemy's ability banner (engine/battle/ability_gfx.asm) uses the
+; otherwise unused BG palette 5; the player's uses PAL_BATTLE_BG_TEXT.
+PAL_BATTLE_BG_ABILITY EQU PAL_BATTLE_BG_5
+
 ; animation object palettes
 	const_def
 	const PAL_BATTLE_OB_ENEMY  ; 0

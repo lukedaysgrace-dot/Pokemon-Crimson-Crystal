@@ -167,7 +167,7 @@ LoadDefaultBattlePalette::
 	dw .EnemyHP  ; PAL_BATTLE_BG_ENEMY_HP
 	dw .PlayerHP ; PAL_BATTLE_BG_PLAYER_HP
 	dw .Exp      ; PAL_BATTLE_BG_EXP
-	dw .Text     ; PAL_BATTLE_BG_5 (unused in battle)
+	dw .Ability  ; PAL_BATTLE_BG_5 (PAL_BATTLE_BG_ABILITY: enemy ability banner)
 	dw .Player   ; PAL_BATTLE_BG_TYPE_CAT (mirrors the player mon's palette)
 	dw .Text     ; PAL_BATTLE_BG_TEXT
 	dw .Enemy    ; PAL_BATTLE_OB_ENEMY
@@ -214,6 +214,10 @@ LoadDefaultBattlePalette::
 	ld hl, PartyMenuBGMobilePalette
 	jr .copy
 
+.Ability:
+	ld hl, AbilityBannerPalette
+	jr .copy
+
 .Object:
 	; BattleObjectPals holds the six anim object palettes, starting at
 	; PAL_BATTLE_OB_GRAY (the slots are contiguous and fit within one page).
@@ -227,6 +231,14 @@ LoadDefaultBattlePalette::
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
 	jp FarCopyWRAM
+
+AbilityBannerPalette:
+; Enemy ability banner (PAL_BATTLE_BG_ABILITY): background white, mon name,
+; edge stripe/underline, body.
+	RGB 31, 31, 31
+	RGB 31, 17, 15
+	RGB 27, 4, 6
+	RGB 00, 00, 00
 
 _CGB_PokegearPals:
 	ld a, [wPlayerGender]
