@@ -1,19 +1,23 @@
 ; Open-sea water for the big stretches of ocean.
 ;
-; Art: gfx/tilesets/ocean/water.png (open sea), shore.png (surf rolling in,
-; crashing into land and pulling back to uncover a little sand) and rock.png
-; (rocks in the sea). tools/ocean_water/build.py turns
-; them, plus the normal tilesets and maps, into data/ocean/ at build time.
-; The sea flows north, so the surf only appears where it runs into land
-; directly above it (the Olivine coast, the south shores of islands).
+; Art: gfx/tilesets/ocean/water.png (open sea) and shore.png (the water
+; creeping up the sand and back), both from Polished Coral's Sunset Bay and
+; stepping together, plus rock.png (rocks in the sea, with the sea moving
+; around them). tools/ocean_water/build.py turns them, plus the normal
+; tilesets and maps, into data/ocean/ at build time. The shoreline goes on
+; beach tiles with the sea directly below them (the Olivine coast, the south
+; shores of islands), and, turned on its side so the water crashes in to the
+; left, on beach tiles with the sea directly right of them on the maps in
+; EAST_SHORE_MAPS in the build script (the Cianwood coast).
 ;
 ; Maps listed below keep their normal tileset (Kanto, Johto or Johto Modern)
 ; but swap in, when they load:
-;   - their own block data with surf blocks wherever the sea runs into land
+;   - their own block data with shoreline blocks wherever the sea runs into land
 ;   - metatiles/attributes/collision where calm water and rocks use the ocean
-;     tiles (in VRAM, see OceanTileSlots), plus those surf blocks
+;     tiles (in VRAM, see OceanTileSlots), plus those shoreline blocks
 ;   - an animation table that plays the ocean frames
-;   - the water palette from water.png's colours
+;   - colour 0 of the water palette set to the map's sand colour (the sea
+;     otherwise uses the tileset's own water colours, like all other water)
 ; Neighbouring maps keep reading the original map files, and nothing in the
 ; normal tilesets or maps is modified, so edit those as usual.
 ;
@@ -144,24 +148,17 @@ ApplyOceanTileset::
 
 ApplyOceanPalette::
 ; Called after an outdoor tileset palette is loaded into wBGPals1.
+; The sea is drawn with the tileset's normal water palette, so it has the
+; same colours as every other body of water in the game, at every time of
+; day. Only colour 0 (foam, and the beach the surf uncovers as it pulls back)
+; is set to the map's own sand colour, so the uncovered sand matches the
+; ground exactly.
 	call IsOceanMap
 	ret nc
 	ld a, [wTimeOfDayPal]
 	maskbits NUM_DAYTIMES
 	cp DARKNESS_F
 	ret z
-	ld hl, OceanPaletteDay
-	cp NITE_F
-	jr nz, .got_palette
-	ld hl, OceanPaletteNite
-.got_palette
-	ld de, wBGPals1 palette PAL_BG_WATER
-	ld bc, 1 palettes
-	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
-; Colour 0 (foam, and the beach the surf uncovers as it pulls back) is the
-; map's own sand colour, so the uncovered sand matches the ground exactly at
-; every time of day.
 	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
@@ -177,29 +174,26 @@ ApplyOceanPalette::
 	ldh [rSVBK], a
 	ret
 
-OceanPaletteDay:
-; the colours of gfx/tilesets/ocean/*.png (colour 0 is replaced by the sand)
-	RGB 31, 31, 29,  10, 28, 31,  00, 19, 29,  00, 00, 00
-OceanPaletteNite:
-	RGB 14, 15, 22,  04, 11, 19,  01, 06, 15,  00, 00, 00
-
-; Where each tileset keeps the 8 ocean tiles in VRAM. Each segment: number
+; Where each tileset keeps the 9 ocean tiles in VRAM. Each segment: number
 ; of tiles, VRAM bank, first VRAM tile, first tile of the step it starts at.
-; Step order: sea left/right, surf left/right,
-; rock top-left/top-right/bottom-left/bottom-right.
+; Step order: sea left/right, shoreline left/right,
+; rock top-left/top-right/bottom-left/bottom-right, shoreline facing east.
 ; These must match TILESETS in tools/ocean_water/build.py.
 OceanTileSlots:
 	db TILESET_KANTO
 	db 4, 1, $49, 0
 	db 4, 1, $54, 4
+	db 1, 1, $4d, 8
 	db 0
 	db TILESET_JOHTO
 	db 4, 1, $49, 0
 	db 4, 1, $58, 4
+	db 1, 1, $26, 8
 	db 0
 	db TILESET_JOHTO_MODERN
 	db 4, 1, $49, 0
 	db 4, 1, $1c, 4
+	db 1, 1, $4d, 8
 	db 0
 	db -1
 

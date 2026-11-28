@@ -455,7 +455,7 @@ VioletCity_MapEvents:
 	db 7 ; bg events
 	bg_event 24, 20, BGEVENT_READ, VioletCitySign
 	bg_event 15, 17, BGEVENT_READ, VioletGymSign
-	bg_event 24,  8, BGEVENT_READ, SproutTowerSign
+	bg_event 26, 15, BGEVENT_READ, SproutTowerSign
 	bg_event 27, 17, BGEVENT_READ, EarlsPokemonAcademySign
 	bg_event 32, 25, BGEVENT_READ, VioletCityPokecenterSign
 	bg_event 10, 17, BGEVENT_READ, VioletCityMartSign

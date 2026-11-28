@@ -76,8 +76,9 @@ TilesetKantoAnim:
 	dw NULL,  DoneTileAnimation
 
 ; Open-sea variants, used on the maps in OceanMaps
-; (engine/tilesets/ocean_water.asm). 16 VBlanks per animation step, so each
-; frame of the sea shows for about a quarter of a second.
+; (engine/tilesets/ocean_water.asm). 21 VBlanks per animation step, the same
+; speed as Polished Coral's Sunset Bay water and shoreline: each frame shows
+; for about a third of a second, a full swell in and out in about 2.8s.
 TilesetKantoOceanAnim::
 	dw OCEAN_ANIM_SEA, OceanWaterAnimTrampoline
 	dw NULL,  WaitTileAnimation
@@ -85,6 +86,11 @@ TilesetKantoOceanAnim::
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -111,6 +117,11 @@ TilesetJohtoOceanAnim::
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrameOcean
 	dw NULL,  DoneTileAnimation
 
@@ -121,6 +132,11 @@ TilesetJohtoModernOceanAnim::
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation

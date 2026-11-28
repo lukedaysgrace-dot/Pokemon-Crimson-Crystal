@@ -131,14 +131,14 @@
 	tilecoll WALL, WALL, WALL, WALL ; 82
 	tilecoll WALL, WALL, WALL, WALL ; 83
 	tilecoll WALL, WALL, WALL, WALL ; 84
-	tilecoll WALL, WALL, WALL, WALL ; 85
-	tilecoll WALL, WALL, WALL, WALL ; 86
-	tilecoll WALL, WALL, WALL, DOOR ; 87
-	tilecoll WALL, WALL, WALL, WALL ; 88
-	tilecoll WALL, WALL, WALL, WALL ; 89
-	tilecoll WALL, WALL, WALL, WALL ; 8a
-	tilecoll WALL, WALL, WALL, DOOR ; 8b
-	tilecoll WALL, WALL, WALL, WALL ; 8c
+	tilecoll WALL, WALL, WALL, DOOR ; 85 (pink Poke Center/Mart door)
+	tilecoll WALL, WALL, WALL, WALL ; 86 (pink PC sign)
+	tilecoll WALL, WALL, WALL, WALL ; 87 (pink MART sign)
+	tilecoll WALL, WALL, WALL, WALL ; 88 (free)
+	tilecoll WALL, WALL, WALL, WALL ; 89 (free)
+	tilecoll WALL, WALL, WALL, WALL ; 8a (free)
+	tilecoll WALL, WALL, WALL, WALL ; 8b (free)
+	tilecoll WALL, WALL, WALL, WALL ; 8c (free)
 	tilecoll WALL, FLOOR, FLOOR, FLOOR ; 8d
 	tilecoll FLOOR, WALL, FLOOR, WALL ; 8e
 	tilecoll WALL, FLOOR, WALL, FLOOR ; 8f
