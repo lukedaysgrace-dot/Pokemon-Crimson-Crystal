@@ -3,9 +3,15 @@
 ;
 ; The banner is a 2-row band that slides across the battler's side of the
 ; screen, then reveals left-aligned "<MON>'s" / "<ABILITY>" in a small panel.
-; Short names share an inset and a clipped inner edge; the outer edge joins
-; the screen without a gap. Full-width names use all 16
-; columns so the longest ability names remain readable.
+; Style (battle text palette only - white, light periwinkle, periwinkle,
+; black - so no palette is loaded or changed):
+;   - black body with a periwinkle underline on its bottom pixel row
+;   - "<MON>'s" in light periwinkle, "<ABILITY>" in white
+;   - the inner end is a forward-leaning slant with a detached periwinkle
+;     speed stripe (AbilityBannerCapPlayer/Enemy); the outer edge joins the
+;     screen without a gap.
+; Full-width names use all 16 columns (no cap) so the longest ability names
+; remain readable.
 ; Banner tile graphics live in VRAM bank 1 (enemy $c0-$df, player $e0-$ff),
 ; so they never conflict with the battle scene tiles.
 ;
@@ -126,7 +132,7 @@ endr
 	add hl, bc
 	ld d, h
 	ld e, l
-	pop hl ; unused
+	pop hl ; h bit 0 = bottom row (ability name), for the text colour
 	pop af
 	call RenderBannerChar
 	pop de
@@ -151,18 +157,34 @@ endr
 	jr .char_loop
 
 FillBannerSolid:
-; Fill the whole banner buffer (32 tiles) with the solid band.
+; Fill the banner buffer (32 tiles) with the band: solid black, plus a
+; periwinkle underline on the last pixel row of the bottom row of tiles.
 ; Assumes rSVBK = BANK(wAbilityTiles).
 	ld hl, wAbilityTiles
-	ld bc, SLIDEOUT_WIDTH * 2 * LEN_2BPP_TILE
+	; top row: every pixel color 3
+	ld bc, SLIDEOUT_WIDTH * LEN_2BPP_TILE
+.top
 	ld a, $ff
-.loop
 	ld [hli], a
 	dec bc
 	ld a, b
 	or c
+	jr nz, .top
+	; bottom row: pixel rows 0-6 color 3, pixel row 7 color 2
+	ld c, SLIDEOUT_WIDTH
+.tile
+	ld b, LEN_2BPP_TILE - 2
 	ld a, $ff
-	jr nz, .loop
+.body
+	ld [hli], a
+	dec b
+	jr nz, .body
+	xor a
+	ld [hli], a ; low plane 0
+	dec a
+	ld [hli], a ; high plane 1 -> color 2
+	dec c
+	jr nz, .tile
 	ret
 
 CalculateAbilityBannerWidth:
@@ -465,11 +487,15 @@ GetAbilityGFXPkmnName:
 	ret
 
 RenderBannerChar:
-; a = character, de = dest tile (16 bytes) in wAbilityTiles.
-; Text is carved out of the solid band: glyph pixels become color 0.
+; a = character, de = dest tile (16 bytes) in wAbilityTiles,
+; h bit 0 = 0 for the top row ("<MON>'s"), 1 for the bottom row (ability).
+; Glyph pixels are painted over the band: light periwinkle (color 1) on the
+; top row, white (color 0) on the bottom row. Non-glyph pixels keep the
+; band, so the underline survives.
 	cp $80
 	ret c ; space and control chars leave the band solid
 	sub $80
+	push hl
 	ld l, a
 	ld h, 0
 rept 3
@@ -477,16 +503,34 @@ rept 3
 endr
 	ld bc, Font
 	add hl, bc
+	pop bc ; b bit 0 = text row
 	ld c, LEN_1BPP_TILE
 .row_loop
 	ld a, BANK(Font)
 	call GetFarByte
 	inc hl
+	push hl
+	ld l, a ; glyph row
 	cpl
+	ld h, a ; ~glyph
+	bit 0, b
+	jr nz, .white
+	; color 1: low plane |= glyph, high plane &= ~glyph
+	ld a, [de]
+	or l
+	jr .high
+.white
+	; color 0: both planes &= ~glyph
+	ld a, [de]
+	and h
+.high
 	ld [de], a
 	inc de
+	ld a, [de]
+	and h
 	ld [de], a
 	inc de
+	pop hl
 	dec c
 	jr nz, .row_loop
 	ret
@@ -523,16 +567,42 @@ endr
 	ret
 
 StyleAbilityBannerTile:
-; One-pixel white edge and clipped corners on the end facing into the scene.
-; The screen-facing padding column stays solid, joining the screen edge.
-; The longest names have no inset/border, preserving every glyph pixel.
+; a = buffer tile index. The inner end column of an inset panel becomes the
+; slanted cap; every other tile keeps the band (and its text).
+; The longest names have no inset/cap, preserving every glyph pixel.
 	push bc
 	push de
 	push hl
 	ld e, a ; buffer tile index
 	call GetAbilityBannerInset
 	and a
-	jp z, .done
+	jr z, .done
+	call GetAbilityBannerWidth
+	ld d, a
+	; inner end column: player = width - 1, enemy = SLIDEOUT_WIDTH - width
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, .enemy
+	ld a, d
+	dec a
+	ld hl, AbilityBannerCapPlayer
+	jr .got_column
+.enemy
+	ld a, SLIDEOUT_WIDTH
+	sub d
+	ld hl, AbilityBannerCapEnemy
+.got_column
+	ld b, a
+	ld a, e
+	and SLIDEOUT_WIDTH - 1
+	cp b
+	jr nz, .done
+	bit 4, e
+	jr z, .got_source
+	ld bc, LEN_2BPP_TILE ; bottom row uses the second cap tile
+	add hl, bc
+.got_source
+	push hl
 	ld l, e
 	ld h, 0
 rept 4
@@ -540,107 +610,39 @@ rept 4
 endr
 	ld bc, wAbilityTiles
 	add hl, bc
-	call GetAbilityBannerWidth
-	ld d, a
-	ld b, 0 ; first visible buffer column
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .got_start
-	ld a, SLIDEOUT_WIDTH
-	sub d
-	ld b, a
-.got_start
-	ld a, e
-	and SLIDEOUT_WIDTH - 1
-	sub b
-	jr c, .done
-	cp d
-	jr nc, .done
-	ld c, a ; relative panel column
-	ldh a, [hBattleTurn]
-	and a
-	jr nz, .enemy_edge
-	ld a, c
-	and a
-	jr z, .done ; player panel joins the left screen edge
-	jr .inner_edge
-.enemy_edge
-	ld a, d
-	dec a
-	cp c
-	jr z, .done ; enemy panel joins the right screen edge
-.inner_edge
-	ld a, c
-	ld b, %10000000
-	and a
-	jr z, .got_edge
-	ld a, d
-	dec a
-	cp c
-	ld b, %00000001
-	jr z, .got_edge
-	ld b, 0
-.got_edge
-	ld a, b
-	and a
-	jr z, .done ; keep every pixel of the normal font intact
-	push hl
-	ld c, 8
-.pixel_row
-	ld a, b
-	cpl
-	and [hl]
-	ld [hli], a
-	ld [hli], a
-	dec c
-	jr nz, .pixel_row
+	ld d, h
+	ld e, l ; de = buffer tile
 	pop hl
-	bit 4, e
-	jr z, .top
-	ld a, l
-	add 14
-	ld l, a
-	adc h
-	sub l
-	ld h, a
-.top
-	; Three-pixel cut at the outer corner, two pixels on the next row.
-	bit 7, b
-	jr z, .right_corner
-	ld a, %00011111
-	jr .corner_mask
-.right_corner
-	ld a, %11111000
-.corner_mask
-	and [hl]
-	ld [hli], a
-	ld [hl], a
-	bit 7, b
-	jr z, .right_inner_corner
-	ld a, %00111111
-	jr .inner_corner_mask
-.right_inner_corner
-	ld a, %11111100
-.inner_corner_mask
-	ld b, a
-	bit 4, e
-	jr nz, .bottom_corner
-	inc hl ; second pixel row of the top tile
-	jr .corner
-.bottom_corner
-	dec hl
-	dec hl
-	dec hl ; penultimate pixel row of the bottom tile
-.corner
-	ld a, [hl]
-	and b
-	ld [hli], a
-	ld [hl], a
+	ld c, LEN_2BPP_TILE
+.copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy
 .done
 	pop hl
 	pop de
 	pop bc
 	ret
+
+; Slanted inner end caps: top tile, then bottom tile (2bpp, text palette).
+; Body (black) leans forward 1px every 2 rows, with a detached
+; periwinkle speed stripe. Enemy caps are the mirror image.
+AbilityBannerCapPlayer:
+; #####.b. / #####.b. / ####.b.. / ####.b.. / ###.b... / ###.b... / ##.b.... / ##.b....
+	db $f8, $fa, $f8, $fa, $f0, $f4, $f0, $f4
+	db $e0, $e8, $e0, $e8, $c0, $d0, $c0, $d0
+; #.b..... / #.b..... / .b...... / .b...... / b....... / b....... / ........ / ........
+	db $80, $a0, $80, $a0, $00, $40, $00, $40
+	db $00, $80, $00, $80, $00, $00, $00, $00
+AbilityBannerCapEnemy:
+; .b.##### / .b.##### / ..b.#### / ..b.#### / ...b.### / ...b.### / ....b.## / ....b.##
+	db $1f, $5f, $1f, $5f, $0f, $2f, $0f, $2f
+	db $07, $17, $07, $17, $03, $0b, $03, $0b
+; .....b.# / .....b.# / ......b. / ......b. / .......b / .......b / ........ / ........
+	db $01, $05, $01, $05, $00, $02, $00, $02
+	db $00, $01, $00, $01, $00, $00, $00, $00
 
 ApplyAbilityTiles:
 ; Upload the whole banner buffer (32 tiles) for the current side.
